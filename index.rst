@@ -1,8 +1,0 @@
-
-****
-Home
-****
-
-.. toctree::
-
-    py/index
