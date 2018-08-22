@@ -1,0 +1,17 @@
+\documentclass[convert={density=300,size=1080x800,outext=.png}]{standalone}
+\usepackage{tikz}
+\begin{document}
+
+%.. tikz:: 
+\begin{tikzpicture}
+[every node/.style={midway}]
+    \matrix[column sep={4em,between origins}, column sep={2em}, row sep={2em}] at (0,0)
+    { \node(X1)   {$x$}  ; & \node(X2) {$g(x)$}; \\
+      \node(Y1) {$\tau(x)$}; & \node(Y2) {$h(\tau(x))$}; \\};
+    \draw[->] (X1) -- (X2) node[anchor=south]  {$g$};
+    \draw[->] (X1) -- (Y1) node[anchor=east]  {$\tau$};
+    \draw[->] (Y1) -- (Y2) node[anchor=north]  {$h$};
+    \draw[->] (Y2) -- (X2) node[anchor=west]  {$\tau^{-1}$};
+\end{tikzpicture}
+
+\end{document}

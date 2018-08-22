@@ -1,0 +1,23 @@
+.. raw:: html
+
+		<a href="#"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a>
+
+		<script>
+		var path = window.location.pathname;
+		var pageName = path.split("/").pop().split(".")[0];
+		var downloadLink = ["/", "_downloads/ipynb/py/", pageName, ".ipynb"].join("");
+		document.getElementById('notebook_download_badge').parentElement.setAttribute('href', downloadLink);
+		</script>
+
+		<a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a>
+
+		<div class="how-to">
+			<a href="#" class="toggle"><span class="icon icon-angle-double-down"></span>How to read this lecture...</a>
+			<div class="how-to-content">
+				<p>Code should execute sequentially if run in a Jupyter notebook</p>
+				<ul>
+					<li>See the <a href="/py/getting_started.html">set up page</a> to install Jupyter, Python and all necessary libraries</li>
+					<li>Please direct feedback to <a href="mailto:contact@quantecon.org">contact@quantecon.org</a> or the <a href="http://discourse.quantecon.org/">discourse forum</a></li>
+				</ul>
+			</div>
+		</div>

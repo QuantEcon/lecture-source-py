@@ -1,0 +1,34 @@
+.. _multi_agent_models:
+
+.. include:: /_static/includes/lecture_howto_py.raw
+
+***************************************
+Multiple Agent Models
+***************************************
+
+These lectures look at important economic models that also illustrate common
+equilibrium concepts.
+
+.. only:: html
+
+    Lectures
+    ********
+
+
+
+.. toctree::
+    :maxdepth: 2
+
+    schelling
+    lake_model
+    rational_expectations
+    markov_perf
+    rob_markov_perf
+    markov_asset
+    lucas_model
+    harrison_kreps
+    uncertainty_traps
+    aiyagari
+    arellano
+    matsuyama
+
