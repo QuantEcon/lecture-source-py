@@ -1,0 +1,22 @@
+\documentclass[convert={density=300,size=1080x800,outext=.png}]{standalone}
+\usepackage{tikz}
+\begin{document}
+
+
+%.. tikz:: 
+\begin{tikzpicture}
+[every node/.style={midway}]
+    \matrix[column sep={4em,between origins}, column sep={2em}, row sep={2em}] at (0,0)
+    { \node(X1)   {$x_0$}  ; 
+        & \node(X2) {$g(x_0)$}; 
+        & \node(X3) {$g^2(x_0)$};
+        & \node(X4) {$g^3(x_0)$};
+        & \node(X5) {$\cdots$};
+        \\};
+    \draw[->] (X1) -- (X2) node[anchor=south]  {$g$};
+    \draw[->] (X2) -- (X3) node[anchor=south]  {$g$};
+    \draw[->] (X3) -- (X4) node[anchor=south]  {$g$};
+    \draw[->] (X4) -- (X5) node[anchor=south]  {$g$};
+\end{tikzpicture}
+
+\end{document}

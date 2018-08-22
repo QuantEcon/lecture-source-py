@@ -1,0 +1,1409 @@
+,Time,Country,Series,Pay period,value
+0,2006-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,17132.443
+1,2007-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,18100.918
+2,2008-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,17747.406
+3,2009-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,18580.139
+4,2010-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,18755.832
+5,2011-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,18284.299
+6,2012-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,17979.943
+7,2013-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,17890.01
+8,2014-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,17854.875
+9,2015-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,17907.637
+10,2016-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Annual,18942.762
+11,2006-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.2367496
+12,2007-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.7023602
+13,2008-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.5324097
+14,2009-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.9327602
+15,2010-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,9.01723
+16,2011-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.7905302
+17,2012-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.6442003
+18,2013-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.6009703
+19,2014-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.5840702
+20,2015-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,8.6094398
+21,2016-01-01,Ireland,In 2015 constant prices at 2015 USD PPPs,Hourly,9.1070995
+22,2006-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,19090.537
+23,2007-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,20169.699
+24,2008-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,19775.785
+25,2009-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,20703.691
+26,2010-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,20899.465
+27,2011-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,20374.039
+28,2012-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,20034.898
+29,2013-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,19934.686
+30,2014-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,19895.537
+31,2015-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,19954.328
+32,2016-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Annual,21107.758
+33,2006-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.1780005
+34,2007-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6969995
+35,2008-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5080004
+36,2009-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.9540005
+37,2010-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.048
+38,2011-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.7950001
+39,2012-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.632
+40,2013-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5839996
+41,2014-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5649996
+42,2015-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5930004
+43,2016-01-01,Ireland,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.148
+44,2006-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,11740.059
+45,2007-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12047.642
+46,2008-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12172.902
+47,2009-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12696.383
+48,2010-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12657.498
+49,2011-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12424.575
+50,2012-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12127.923
+51,2013-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12030.048
+52,2014-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12049.553
+53,2015-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12170.472
+54,2016-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Annual,12317.413
+55,2006-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,4.82443
+56,2007-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,4.9513302
+57,2008-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,5.0025601
+58,2009-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,5.21769
+59,2010-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,5.2018299
+60,2011-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,5.1059899
+61,2012-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,4.9840798
+62,2013-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,4.9439602
+63,2014-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,4.9514298
+64,2015-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,5.00178
+65,2016-01-01,Spain,In 2015 constant prices at 2015 USD PPPs,Hourly,5.0620198
+66,2006-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,9714.1846
+67,2007-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,9968.6914
+68,2008-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10072.337
+69,2009-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10505.485
+70,2010-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10473.31
+71,2011-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10280.58
+72,2012-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10035.119
+73,2013-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,9954.1328
+74,2014-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,9970.2734
+75,2015-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10070.326
+76,2016-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Annual,10191.91
+77,2006-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.9920001
+78,2007-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.0970001
+79,2008-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.1389999
+80,2009-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.3169999
+81,2010-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.3039999
+82,2011-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.2249999
+83,2012-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.1240001
+84,2013-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.0910001
+85,2014-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.0970001
+86,2015-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.1389999
+87,2016-01-01,Spain,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.1890001
+88,2006-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,20410.652
+89,2007-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21087.568
+90,2008-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,20718.238
+91,2009-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,20984.768
+92,2010-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,20879.332
+93,2011-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21037.328
+94,2012-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21323.83
+95,2013-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21387.027
+96,2014-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21453.828
+97,2015-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21715.529
+98,2016-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Annual,21967.23
+99,2006-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.33073
+100,2007-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.67106
+101,2008-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.48298
+102,2009-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.61966
+103,2010-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.5709
+104,2011-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.65163
+105,2012-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.79636
+106,2013-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.82608
+107,2014-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.85724
+108,2015-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,10.99195
+109,2016-01-01,Australia,In 2015 constant prices at 2015 USD PPPs,Hourly,11.12024
+110,2006-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,23826.637
+111,2007-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24616.844
+112,2008-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24185.703
+113,2009-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24496.838
+114,2010-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24373.756
+115,2011-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24558.195
+116,2012-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24892.646
+117,2013-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,24966.422
+118,2014-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,25044.402
+119,2015-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,25349.9
+120,2016-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Annual,25643.729
+121,2006-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.06
+122,2007-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.457
+123,2008-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.237
+124,2009-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.397
+125,2010-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.34
+126,2011-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.434
+127,2012-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.603
+128,2013-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.638
+129,2014-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.674
+130,2015-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.832
+131,2016-01-01,Australia,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.981
+132,2006-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,8491.3682
+133,2007-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,8436.2979
+134,2008-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,8301.5244
+135,2009-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,8514.1846
+136,2010-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,8595.4482
+137,2011-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,8853.4424
+138,2012-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,9093.6318
+139,2013-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,9261.2588
+140,2014-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,9379.5137
+141,2015-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,10062.421
+142,2016-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Annual,12074.759
+143,2006-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.0711999
+144,2007-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.0447998
+145,2008-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,3.98018
+146,2009-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.08214
+147,2010-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.12111
+148,2011-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.2448001
+149,2012-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3599601
+150,2013-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.44033
+151,2014-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.4970298
+152,2015-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,4.82445
+153,2016-01-01,Turkey,In 2015 constant prices at 2015 USD PPPs,Hourly,5.7892699
+154,2006-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,4741.165
+155,2007-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,4710.416
+156,2008-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,4635.165
+157,2009-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,4753.9048
+158,2010-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,4799.2778
+159,2011-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,4943.3291
+160,2012-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,5077.4399
+161,2013-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,5171.0342
+162,2014-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,5237.062
+163,2015-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,5618.3638
+164,2016-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Annual,6741.9551
+165,2006-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.273
+166,2007-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2579999
+167,2008-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2219999
+168,2009-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.279
+169,2010-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.3010001
+170,2011-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.3699999
+171,2012-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.434
+172,2013-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.4790001
+173,2014-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.5109999
+174,2015-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.694
+175,2016-01-01,Turkey,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.2320001
+176,2006-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,21639.123
+177,2007-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22044.701
+178,2008-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,21763.514
+179,2009-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22670.305
+180,2010-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22534.82
+181,2011-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22619.83
+182,2012-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22583.826
+183,2013-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22840.506
+184,2014-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,23401.492
+185,2015-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,23290.914
+186,2016-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Annual,22836.064
+187,2006-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.4254
+188,2007-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.62262
+189,2008-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.47679
+190,2009-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.9231
+191,2010-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.85661
+192,2011-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.8929
+193,2012-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,10.8803
+194,2013-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,11.00099
+195,2014-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,11.27708
+196,2015-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,11.2238
+197,2016-01-01,Luxembourg,In 2015 constant prices at 2015 USD PPPs,Hourly,11.00003
+198,2006-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,23777.285
+199,2007-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,24222.939
+200,2008-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,23913.969
+201,2009-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,24910.357
+202,2010-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,24761.488
+203,2011-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,24854.898
+204,2012-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,24815.338
+205,2013-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,25097.377
+206,2014-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,25713.797
+207,2015-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,25592.293
+208,2016-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Annual,25092.498
+209,2006-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,11.456
+210,2007-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,11.672
+211,2008-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,11.512
+212,2009-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.002
+213,2010-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,11.929
+214,2011-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,11.969
+215,2012-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,11.955
+216,2013-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.088
+217,2014-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.391
+218,2015-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.333
+219,2016-01-01,Luxembourg,In 2015 constant prices at 2015 USD exchange rates,Hourly,12.087
+220,2006-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,15566.118
+221,2007-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,16600.805
+222,2008-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,17148.117
+223,2009-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,17592.496
+224,2010-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,17630.885
+225,2011-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,17282.182
+226,2012-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,17679.221
+227,2013-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,17889.35
+228,2014-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,18237.277
+229,2015-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,18827.74
+230,2016-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Annual,19346.395
+231,2006-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,7.4874201
+232,2007-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,7.9811602
+233,2008-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.2425404
+234,2009-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.4613504
+235,2010-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.4780598
+236,2011-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.3103504
+237,2012-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.5028
+238,2013-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.6022196
+239,2014-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,8.7275696
+240,2015-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,9.0548897
+241,2016-01-01,New Zealand,In 2015 constant prices at 2015 USD PPPs,Hourly,9.3042297
+242,2006-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,17538.795
+243,2007-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,18704.605
+244,2008-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,19321.277
+245,2009-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,19821.973
+246,2010-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,19865.227
+247,2011-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,19472.332
+248,2012-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,19919.688
+249,2013-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,20156.445
+250,2014-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,20548.467
+251,2015-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,21213.76
+252,2016-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Annual,21798.143
+253,2006-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.4359999
+254,2007-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.993
+255,2008-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.2869997
+256,2009-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5340004
+257,2010-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.552
+258,2011-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.3640003
+259,2012-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5799999
+260,2013-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6920004
+261,2014-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.8339996
+262,2015-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.202
+263,2016-01-01,New Zealand,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.483
+264,2006-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,16764.969
+265,2007-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,17240.371
+266,2008-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,17198.191
+267,2009-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,17359.232
+268,2010-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,17053.221
+269,2011-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,16701.367
+270,2012-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,16628.547
+271,2013-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,16510.783
+272,2014-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,16630.965
+273,2015-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,17125.453
+274,2016-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Annual,17568.326
+275,2006-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.0679398
+276,2007-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.2850904
+277,2008-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.2645102
+278,2009-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.3492804
+279,2010-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.1948795
+280,2011-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.0331297
+281,2012-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,7.99751
+282,2013-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,7.9376302
+283,2014-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,7.99856
+284,2015-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.2333899
+285,2016-01-01,United Kingdom,In 2015 constant prices at 2015 USD PPPs,Hourly,8.4431896
+286,2006-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20376.32
+287,2007-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20954.133
+288,2008-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20902.865
+289,2009-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,21098.598
+290,2010-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20726.668
+291,2011-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20299.021
+292,2012-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20210.514
+293,2013-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20067.385
+294,2014-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20213.451
+295,2015-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,20814.459
+296,2016-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Annual,21352.73
+297,2006-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.8059998
+298,2007-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.07
+299,2008-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.045
+300,2009-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.148
+301,2010-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.96
+302,2011-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.7639999
+303,2012-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.7200003
+304,2013-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6470003
+305,2014-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.7220001
+306,2015-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.007
+307,2016-01-01,United Kingdom,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.262
+308,2006-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1797.179
+309,2007-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1795.842
+310,2008-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1776.791
+311,2009-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1765.401
+312,2010-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1777.161
+313,2011-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1789.17
+314,2012-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1791.968
+315,2013-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1799.777
+316,2014-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1797.679
+317,2015-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1834.193
+318,2016-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Annual,1895.653
+319,2006-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.86403
+320,2007-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.86339003
+321,2008-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.85422999
+322,2009-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.84875
+323,2010-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.85439998
+324,2011-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.86018002
+325,2012-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.86153001
+326,2013-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.86527997
+327,2014-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.86426997
+328,2015-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.88182998
+329,2016-01-01,Mexico,In 2015 constant prices at 2015 USD PPPs,Hourly,0.91136998
+330,2006-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1104.842
+331,2007-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1104.019
+332,2008-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1092.308
+333,2009-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1085.306
+334,2010-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1092.535
+335,2011-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1099.918
+336,2012-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1101.6379
+337,2013-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1106.439
+338,2014-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1105.149
+339,2015-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1127.5959
+340,2016-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Annual,1165.38
+341,2006-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.53100002
+342,2007-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.53100002
+343,2008-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.52499998
+344,2009-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.52200001
+345,2010-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.52499998
+346,2011-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.52899998
+347,2012-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.52999997
+348,2013-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.53200001
+349,2014-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.53100002
+350,2015-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.542
+351,2016-01-01,Mexico,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.56
+352,2006-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,13672.275
+353,2007-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,14000.953
+354,2008-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,14276.618
+355,2009-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,14914.342
+356,2010-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,14494.549
+357,2011-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,14140.007
+358,2012-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,11309.243
+359,2013-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,11052.496
+360,2014-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,11199.34
+361,2015-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,11397.206
+362,2016-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Annual,11492.088
+363,2006-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,5.6187301
+364,2007-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,5.75317
+365,2008-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,5.8677101
+366,2009-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,6.1298099
+367,2010-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,5.9566798
+368,2011-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,5.81183
+369,2012-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,4.6532202
+370,2013-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,4.54212
+371,2014-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,4.6024699
+372,2015-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,4.6837902
+373,2016-01-01,Greece,In 2015 constant prices at 2015 USD PPPs,Hourly,4.7227802
+374,2006-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,10594.516
+375,2007-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,10849.205
+376,2008-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,11062.816
+377,2009-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,11556.982
+378,2010-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,11231.688
+379,2011-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,10956.958
+380,2012-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,8763.4248
+381,2013-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,8564.4736
+382,2014-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,8678.2617
+383,2015-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,8831.5869
+384,2016-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Annual,8905.1104
+385,2006-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.3540001
+386,2007-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.4580002
+387,2008-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.5469999
+388,2009-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.75
+389,2010-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.6160002
+390,2011-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.5040002
+391,2012-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.6059999
+392,2013-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.52
+393,2014-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.566
+394,2015-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.6289999
+395,2016-01-01,Greece,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.6600001
+396,2006-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,6210.7881
+397,2007-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,6599.4609
+398,2008-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,6615.625
+399,2009-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7155.2778
+400,2010-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7380.063
+401,2011-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7316.3691
+402,2012-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7288.9409
+403,2013-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7418.9419
+404,2014-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7738.9971
+405,2015-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,8381.8604
+406,2016-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Annual,8979.9912
+407,2006-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,2.48699
+408,2007-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,2.7130799
+409,2008-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,2.83991
+410,2009-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.12114
+411,2010-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.24981
+412,2011-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.3490701
+413,2012-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4556799
+414,2013-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4556799
+415,2014-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4556799
+416,2015-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4556799
+417,2016-01-01,Slovak Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4556799
+418,2006-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,3747.3889
+419,2007-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,3981.9021
+420,2008-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,3991.655
+421,2009-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4317.2642
+422,2010-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4452.8921
+423,2011-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4414.4609
+424,2012-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4397.9121
+425,2013-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4476.3511
+426,2014-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4669.4619
+427,2015-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,5057.3442
+428,2016-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,5418.2378
+429,2006-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.501
+430,2007-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.637
+431,2008-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.714
+432,2009-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.883
+433,2010-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.961
+434,2011-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.0209999
+435,2012-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.085
+436,2013-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.085
+437,2014-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.085
+438,2015-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.085
+439,2016-01-01,Slovak Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.085
+440,2006-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,9067.2871
+441,2007-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,9242.2744
+442,2008-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,9523.2383
+443,2009-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10144.52
+444,2010-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10559.993
+445,2011-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10402.312
+446,2012-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10121.601
+447,2013-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10093.904
+448,2014-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10226.408
+449,2015-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10488.292
+450,2016-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Annual,10941.056
+451,2006-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,3.72628
+452,2007-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,3.7981901
+453,2008-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,3.91366
+454,2009-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.1689801
+455,2010-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3397198
+456,2011-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.27492
+457,2012-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.1595602
+458,2013-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.14818
+459,2014-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.20263
+460,2015-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3102598
+461,2016-01-01,Portugal,In 2015 constant prices at 2015 USD PPPs,Hourly,4.4963198
+462,2006-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,6778.751
+463,2007-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,6909.5732
+464,2008-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7119.623
+465,2009-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7584.0962
+466,2010-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7894.7061
+467,2011-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7776.8232
+468,2012-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7566.9619
+469,2013-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7546.2559
+470,2014-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7645.3159
+471,2015-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,7841.1021
+472,2016-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Annual,8179.5908
+473,2006-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.786
+474,2007-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.8399999
+475,2008-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.9260001
+476,2009-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.1170001
+477,2010-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.244
+478,2011-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.1960001
+479,2012-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.1099999
+480,2013-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.1010001
+481,2014-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.142
+482,2015-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.2219999
+483,2016-01-01,Portugal,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.3610001
+484,2006-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19295.826
+485,2007-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19491.205
+486,2008-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19529.021
+487,2009-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19870.871
+488,2010-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19738.678
+489,2011-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19714.971
+490,2012-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,19968.049
+491,2013-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,20052.246
+492,2014-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,20162.414
+493,2015-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,20324.137
+494,2016-01-01,France,In 2015 constant prices at 2015 USD PPPs,Annual,20413.598
+495,2006-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.60213
+496,2007-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.71586
+497,2008-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.73437
+498,2009-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.92428
+499,2010-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.84541
+500,2011-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.83741
+501,2012-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,10.97143
+502,2013-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,11.01769
+503,2014-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,11.07828
+504,2015-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,11.16708
+505,2016-01-01,France,In 2015 constant prices at 2015 USD PPPs,Hourly,11.21624
+506,2006-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,18416.4
+507,2007-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,18602.873
+508,2008-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,18638.969
+509,2009-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,18965.236
+510,2010-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,18839.068
+511,2011-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,18816.441
+512,2012-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,19057.984
+513,2013-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,19138.346
+514,2014-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,19243.492
+515,2015-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,19397.844
+516,2016-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Annual,19483.227
+517,2006-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.119
+518,2007-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.227
+519,2008-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.245
+520,2009-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.426
+521,2010-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.351
+522,2011-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.343
+523,2012-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.471
+524,2013-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.516
+525,2014-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.573
+526,2015-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.658
+527,2016-01-01,France,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.705
+528,2006-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,12594.397
+529,2007-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,12974.395
+530,2008-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,14097.556
+531,2009-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,15756.423
+532,2010-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,16391.313
+533,2011-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,15889.705
+534,2012-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,15567.554
+535,2013-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,15342.814
+536,2014-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,15097.89
+537,2015-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,15080.0
+538,2016-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Annual,14892.122
+539,2006-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,6.0549998
+540,2007-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,6.2414298
+541,2008-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,6.78127
+542,2009-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.5788202
+543,2010-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.8804402
+544,2011-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.6392798
+545,2012-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.4843998
+546,2013-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.3763499
+547,2014-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.2586002
+548,2015-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.25
+549,2016-01-01,United States,In 2015 constant prices at 2015 USD PPPs,Hourly,7.1596699
+550,2006-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,12594.397
+551,2007-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,12974.395
+552,2008-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,14097.556
+553,2009-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,15756.423
+554,2010-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,16391.313
+555,2011-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,15889.705
+556,2012-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,15567.554
+557,2013-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,15342.814
+558,2014-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,15097.89
+559,2015-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,15080.0
+560,2016-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Annual,14892.122
+561,2006-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.0549998
+562,2007-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.2410002
+563,2008-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.7810001
+564,2009-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.579
+565,2010-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.8800001
+566,2011-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.6389999
+567,2012-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.4840002
+568,2013-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.3759999
+569,2014-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.2589998
+570,2015-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.25
+571,2016-01-01,United States,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.1599998
+572,2006-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,13082.115
+573,2007-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,13215.89
+574,2008-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,13315.404
+575,2009-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,13781.248
+576,2010-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,14112.379
+577,2011-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,14436.312
+578,2012-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,14606.66
+579,2013-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,14807.031
+580,2014-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,14700.968
+581,2015-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,14899.183
+582,2016-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Annual,15292.12
+583,2006-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,6.2894802
+584,2007-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,6.3537898
+585,2008-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,6.4016399
+586,2009-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,6.6255999
+587,2010-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,6.7848001
+588,2011-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,6.9405298
+589,2012-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,7.0224299
+590,2013-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,7.1187601
+591,2014-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,7.06777
+592,2015-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,7.1630702
+593,2016-01-01,Japan,In 2015 constant prices at 2015 USD PPPs,Hourly,7.3519802
+594,2006-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,11836.64
+595,2007-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,11957.679
+596,2008-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,12047.718
+597,2009-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,12469.213
+598,2010-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,12768.818
+599,2011-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,13061.912
+600,2012-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,13216.042
+601,2013-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,13397.336
+602,2014-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,13301.371
+603,2015-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,13480.715
+604,2016-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Annual,13836.242
+605,2006-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.691
+606,2007-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.7490001
+607,2008-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.7919998
+608,2009-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.9949999
+609,2010-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.1389999
+610,2011-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.2800002
+611,2012-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.3540001
+612,2013-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.441
+613,2014-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.395
+614,2015-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.4809999
+615,2016-01-01,Japan,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.652
+616,2006-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21681.658
+617,2007-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21844.66
+618,2008-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21915.264
+619,2009-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,22366.592
+620,2010-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,22433.141
+621,2011-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,22075.713
+622,2012-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21994.473
+623,2013-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21723.5
+624,2014-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21820.785
+625,2015-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,21856.795
+626,2016-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Annual,22209.799
+627,2006-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.6256704
+628,2007-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.6972799
+629,2008-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.7287598
+630,2009-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.9294205
+631,2010-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.9588604
+632,2011-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.7999802
+633,2012-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.7642403
+634,2013-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.6435804
+635,2014-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.6868496
+636,2015-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.7027102
+637,2016-01-01,Netherlands,In 2015 constant prices at 2015 USD PPPs,Hourly,9.8594904
+638,2006-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21413.902
+639,2007-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21574.891
+640,2008-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21644.621
+641,2009-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,22090.377
+642,2010-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,22156.104
+643,2011-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21803.09
+644,2012-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21722.854
+645,2013-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21455.227
+646,2014-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21551.311
+647,2015-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21586.875
+648,2016-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Annual,21935.52
+649,2006-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.507
+650,2007-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5780001
+651,2008-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6090002
+652,2009-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.8070002
+653,2010-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.8360004
+654,2011-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6789999
+655,2012-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6440001
+656,2013-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5240002
+657,2014-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5670004
+658,2015-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.5830002
+659,2016-01-01,Netherlands,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.7379999
+660,2006-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,5179.6499
+661,2007-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,5830.6699
+662,2008-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,6383.8848
+663,2009-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,6388.894
+664,2010-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,6204.4941
+665,2011-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,5910.0601
+666,2012-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,5932.1382
+667,2013-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,6368.1611
+668,2014-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,7072.6411
+669,2015-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,7807.5259
+670,2016-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Annual,8594.9775
+671,2006-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.48333
+672,2007-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.7955101
+673,2008-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.0608101
+674,2009-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.06321
+675,2010-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.9748001
+676,2011-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.8336301
+677,2012-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.8441701
+678,2013-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.0532701
+679,2014-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.391
+680,2015-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.74334
+681,2016-01-01,Estonia,In 2015 constant prices at 2015 USD PPPs,Hourly,4.1209002
+682,2006-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,3443.3291
+683,2007-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,3876.114
+684,2008-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,4243.8799
+685,2009-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,4247.21
+686,2010-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,4124.624
+687,2011-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,3928.8911
+688,2012-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,3943.5681
+689,2013-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,4233.4268
+690,2014-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,4701.751
+691,2015-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,5190.2881
+692,2016-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Annual,5713.771
+693,2006-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.651
+694,2007-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.858
+695,2008-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.0350001
+696,2009-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.036
+697,2010-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.978
+698,2011-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.8839999
+699,2012-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.891
+700,2013-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.03
+701,2014-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2539999
+702,2015-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.4879999
+703,2016-01-01,Estonia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.7390001
+704,2006-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,7211.1138
+705,2007-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,7000.125
+706,2008-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,6953.981
+707,2009-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,6914.71
+708,2010-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,6778.9722
+709,2011-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,6921.9839
+710,2012-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,7811.6089
+711,2013-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,8091.3501
+712,2014-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,8399.4414
+713,2015-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,8694.4355
+714,2016-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Annual,9155.1201
+715,2006-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.47191
+716,2007-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.3700299
+717,2008-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.34849
+718,2009-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.3292201
+719,2010-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.26421
+720,2011-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.33305
+721,2012-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.76091
+722,2013-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,3.89568
+723,2014-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,4.04387
+724,2015-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,4.16781
+725,2016-01-01,Hungary,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3919802
+726,2006-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,3741.1919
+727,2007-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,3631.729
+728,2008-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,3607.79
+729,2009-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,3587.415
+730,2010-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,3516.9929
+731,2011-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,3591.189
+732,2012-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,4052.7339
+733,2013-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,4197.8672
+734,2014-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,4357.707
+735,2015-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,4510.7529
+736,2016-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Annual,4749.7612
+737,2006-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.801
+738,2007-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.748
+739,2008-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.737
+740,2009-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.727
+741,2010-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.693
+742,2011-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.729
+743,2012-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.951
+744,2013-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.0209999
+745,2014-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.098
+746,2015-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.1619999
+747,2016-01-01,Hungary,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.279
+748,2006-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,7104.0459
+749,2007-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,7218.9321
+750,2008-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,8337.0762
+751,2009-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,9102.2334
+752,2010-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,9158.3535
+753,2011-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,9246.1934
+754,2012-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,9662.6768
+755,2013-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,10205.613
+756,2014-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,10710.136
+757,2015-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,11254.773
+758,2016-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Annual,11977.516
+759,2006-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,3.40605
+760,2007-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4611299
+761,2008-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,3.9972301
+762,2009-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,4.36408
+763,2010-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3909898
+764,2011-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,4.4331102
+765,2012-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,4.6327901
+766,2013-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,4.8930998
+767,2014-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,5.1350002
+768,2015-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,5.3961201
+769,2016-01-01,Poland,In 2015 constant prices at 2015 USD PPPs,Hourly,5.74264
+770,2006-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,3516.4509
+771,2007-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,3573.3191
+772,2008-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,4126.792
+773,2009-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,4505.5391
+774,2010-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,4533.3179
+775,2011-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,4576.7979
+776,2012-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,4782.9541
+777,2013-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,5051.7041
+778,2014-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,5301.439
+779,2015-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,5571.0308
+780,2016-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Annual,5928.7832
+781,2006-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.686
+782,2007-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.7130001
+783,2008-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.979
+784,2009-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.1600001
+785,2010-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.174
+786,2011-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.194
+787,2012-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.293
+788,2013-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.4219999
+789,2014-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.5420001
+790,2015-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.671
+791,2016-01-01,Poland,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.8429999
+792,2006-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7991.7749
+793,2007-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,8007.124
+794,2008-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7529.7798
+795,2009-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7452.7759
+796,2010-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7345.2349
+797,2011-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7206.2412
+798,2012-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,6976.4521
+799,2013-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7057.999
+800,2014-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7283.0771
+801,2015-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,7856.8091
+802,2016-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Annual,8399.0879
+803,2006-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.98087
+804,2007-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,4.0118999
+805,2008-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.7727301
+806,2009-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.7341499
+807,2010-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.68027
+808,2011-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.61063
+809,2012-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4954901
+810,2013-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.51825
+811,2014-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.6129799
+812,2015-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,3.91417
+813,2016-01-01,Czech Republic,In 2015 constant prices at 2015 USD PPPs,Hourly,4.1500502
+814,2006-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4565.1299
+815,2007-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4573.8979
+816,2008-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4301.2251
+817,2009-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4257.2378
+818,2010-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4195.8071
+819,2011-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4116.4102
+820,2012-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,3985.1479
+821,2013-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4031.73
+822,2014-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4160.3008
+823,2015-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4488.0332
+824,2016-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Annual,4797.7979
+825,2006-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2739999
+826,2007-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2920001
+827,2008-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.155
+828,2009-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.1329999
+829,2010-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.102
+830,2011-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.062
+831,2012-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.997
+832,2013-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.01
+833,2014-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.0639999
+834,2015-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2360001
+835,2016-01-01,Czech Republic,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.3710001
+836,2006-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,13649.689
+837,2007-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,13785.935
+838,2008-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,14342.762
+839,2009-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,15190.474
+840,2010-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,15732.952
+841,2011-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,15778.273
+842,2012-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,16074.195
+843,2013-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,16180.089
+844,2014-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,16284.476
+845,2015-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,16536.828
+846,2016-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Annual,16792.385
+847,2006-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,6.5623498
+848,2007-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,6.6278501
+849,2008-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,6.8955598
+850,2009-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.3031101
+851,2010-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.56392
+852,2011-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.58571
+853,2012-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.7279801
+854,2013-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.7788901
+855,2014-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.8290801
+856,2015-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,7.9503999
+857,2016-01-01,Canada,In 2015 constant prices at 2015 USD PPPs,Hourly,8.0732603
+858,2006-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,14335.12
+859,2007-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,14478.207
+860,2008-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,15062.996
+861,2009-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,15953.276
+862,2010-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,16522.996
+863,2011-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,16570.594
+864,2012-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,16881.375
+865,2013-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,16992.586
+866,2014-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,17102.215
+867,2015-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,17367.238
+868,2016-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Annual,17635.629
+869,2006-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.8920002
+870,2007-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.961
+871,2008-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.2420001
+872,2009-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.6700001
+873,2010-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.9439998
+874,2011-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,7.967
+875,2012-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.1160002
+876,2013-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.1700001
+877,2014-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.2220001
+878,2015-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.3500004
+879,2016-01-01,Canada,In 2015 constant prices at 2015 USD exchange rates,Hourly,8.4790001
+880,2006-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,10106.751
+881,2007-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11065.158
+882,2008-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11452.012
+883,2009-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11824.705
+884,2010-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11802.974
+885,2011-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11925.931
+886,2012-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11442.349
+887,2013-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,11985.897
+888,2014-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,12687.348
+889,2015-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,13493.088
+890,2016-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Annual,14440.917
+891,2006-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,3.72668
+892,2007-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.08007
+893,2008-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.2227201
+894,2009-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3601398
+895,2010-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.3521299
+896,2011-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.39747
+897,2012-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.5623398
+898,2013-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,4.7790699
+899,2014-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,5.0587502
+900,2015-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,5.3800201
+901,2016-01-01,Korea,In 2015 constant prices at 2015 USD PPPs,Hourly,5.7579398
+902,2006-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,9266.9941
+903,2007-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10145.768
+904,2008-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10500.479
+905,2009-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10842.205
+906,2010-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10822.279
+907,2011-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10935.02
+908,2012-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10491.618
+909,2013-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,10990.004
+910,2014-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,11633.172
+911,2015-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,12371.964
+912,2016-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Annual,13241.039
+913,2006-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.4170001
+914,2007-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.7409999
+915,2008-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.872
+916,2009-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.9979999
+917,2010-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.9909999
+918,2011-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.0320001
+919,2012-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.1830001
+920,2013-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.382
+921,2014-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.638
+922,2015-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.9330001
+923,2016-01-01,Korea,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.2800002
+924,2006-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,11273.049
+925,2007-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,11147.784
+926,2008-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,11400.252
+927,2009-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,11727.232
+928,2010-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,13827.877
+929,2011-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,14240.07
+930,2012-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,14200.683
+931,2013-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,14331.078
+932,2014-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,14394.414
+933,2015-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,14512.807
+934,2016-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Annual,14520.798
+935,2006-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,5.40484
+936,2007-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,5.34483
+937,2008-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,5.46592
+938,2009-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,5.6226101
+939,2010-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.6297698
+940,2011-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.8274798
+941,2012-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.8085499
+942,2013-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.8710599
+943,2014-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.9014101
+944,2015-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.9582
+945,2016-01-01,Slovenia,In 2015 constant prices at 2015 USD PPPs,Hourly,6.9620299
+946,2006-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,8177.2139
+947,2007-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,8086.3501
+948,2008-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,8269.4844
+949,2009-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,8506.668
+950,2010-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10030.428
+951,2011-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10329.424
+952,2012-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10300.854
+953,2013-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10395.439
+954,2014-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10441.382
+955,2015-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10527.261
+956,2016-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Annual,10533.057
+957,2006-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.921
+958,2007-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.8770001
+959,2008-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,3.9649999
+960,2009-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.079
+961,2010-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.809
+962,2011-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.9520001
+963,2012-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.9390001
+964,2013-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,4.9840002
+965,2014-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.006
+966,2015-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.0469999
+967,2016-01-01,Slovenia,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.0500002
+968,2006-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5201.6479
+969,2007-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5295.207
+970,2008-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5289.6489
+971,2009-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5573.6162
+972,2010-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5710.6191
+973,2011-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5804.7378
+974,2012-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,5969.625
+975,2013-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,6302.3159
+976,2014-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,6459.085
+977,2015-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,6633.564
+978,2016-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Annual,6998.2891
+979,2006-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.22
+980,2007-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.26
+981,2008-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.25
+982,2009-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.3800001
+983,2010-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.4000001
+984,2011-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.5
+985,2012-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.5
+986,2013-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.7
+987,2014-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.8
+988,2015-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,2.8
+989,2016-01-01,Chile,In 2015 constant prices at 2015 USD PPPs,Hourly,3.0
+990,2006-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3333.7639
+991,2007-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3393.7271
+992,2008-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3390.1641
+993,2009-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3572.1599
+994,2010-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3659.967
+995,2011-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3720.2881
+996,2012-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,3825.9651
+997,2013-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,4039.188
+998,2014-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,4139.6621
+999,2015-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,4251.4868
+1000,2016-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Annual,4485.2412
+1001,2006-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.42
+1002,2007-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.45
+1003,2008-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.4400001
+1004,2009-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.52
+1005,2010-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.5599999
+1006,2011-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.59
+1007,2012-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.63
+1008,2013-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.72
+1009,2014-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.76
+1010,2015-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.8099999
+1011,2016-01-01,Chile,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.91
+1012,2006-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11428.694
+1013,2007-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11949.701
+1014,2008-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11734.456
+1015,2009-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11570.44
+1016,2010-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11268.326
+1017,2011-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11264.469
+1018,2012-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11538.254
+1019,2013-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11772.174
+1020,2014-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,11715.92
+1021,2015-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,12509.465
+1022,2016-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Annual,13059.677
+1023,2006-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.1220398
+1024,2007-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.3540301
+1025,2008-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.2590599
+1026,2009-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.18396
+1027,2010-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.0486002
+1028,2011-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.0479202
+1029,2012-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.1690502
+1030,2013-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.2746601
+1031,2014-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.2494602
+1032,2015-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.6047001
+1033,2016-01-01,Israel,In 2015 constant prices at 2015 USD PPPs,Hourly,5.8510098
+1034,2006-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,12869.038
+1035,2007-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,13455.708
+1036,2008-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,13213.336
+1037,2009-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,13028.649
+1038,2010-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,12688.46
+1039,2011-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,12684.117
+1040,2012-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,12992.407
+1041,2013-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,13255.807
+1042,2014-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,13192.464
+1043,2015-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,14086.018
+1044,2016-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Annual,14705.573
+1045,2006-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.7680001
+1046,2007-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.0289998
+1047,2008-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.9219999
+1048,2009-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.8369999
+1049,2010-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.6849999
+1050,2011-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.684
+1051,2012-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.8200002
+1052,2013-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.9390001
+1053,2014-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,5.9109998
+1054,2015-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.3109999
+1055,2016-01-01,Israel,In 2015 constant prices at 2015 USD exchange rates,Hourly,6.5879998
+1056,2006-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21042.279
+1057,2007-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21310.053
+1058,2008-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21416.957
+1059,2009-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,22140.191
+1060,2010-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21810.281
+1061,2011-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21629.799
+1062,2012-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21594.918
+1063,2013-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21783.131
+1064,2014-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21709.326
+1065,2015-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21588.119
+1066,2016-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Annual,21170.248
+1067,2006-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.08859
+1068,2007-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.2173
+1069,2008-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.26877
+1070,2009-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.61538
+1071,2010-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.45718
+1072,2011-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.37064
+1073,2012-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.35381
+1074,2013-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.4441
+1075,2014-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.40871
+1076,2015-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.3506
+1077,2016-01-01,Belgium,In 2015 constant prices at 2015 USD PPPs,Hourly,10.15025
+1078,2006-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20228.742
+1079,2007-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20486.162
+1080,2008-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20588.934
+1081,2009-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,21284.205
+1082,2010-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20967.053
+1083,2011-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20793.547
+1084,2012-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20760.014
+1085,2013-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20940.949
+1086,2014-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20869.998
+1087,2015-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20753.479
+1088,2016-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Annual,20351.762
+1089,2006-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.6990004
+1090,2007-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.8219995
+1091,2008-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.8719997
+1092,2009-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.205
+1093,2010-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.053
+1094,2011-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.9700003
+1095,2012-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.9540005
+1096,2013-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.04
+1097,2014-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,10.006
+1098,2015-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.9499998
+1099,2016-01-01,Belgium,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.7580004
+1100,2006-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1101,2007-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1102,2008-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1103,2009-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1104,2010-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1105,2011-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1106,2012-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1107,2013-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1108,2014-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,
+1109,2015-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,20948.197
+1110,2016-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Annual,20847.443
+1111,2006-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1112,2007-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1113,2008-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1114,2009-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1115,2010-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1116,2011-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1117,2012-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1118,2013-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1119,2014-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1120,2015-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,10.30438
+1121,2016-01-01,Germany,In 2015 constant prices at 2015 USD PPPs,Hourly,10.25482
+1122,2006-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1123,2007-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1124,2008-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1125,2009-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1126,2010-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1127,2011-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1128,2012-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1129,2013-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1130,2014-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1131,2015-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,19164.674
+1132,2016-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Annual,19072.496
+1133,2006-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1134,2007-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1135,2008-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1136,2009-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1137,2010-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1138,2011-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1139,2012-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1140,2013-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1141,2014-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1142,2015-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.427
+1143,2016-01-01,Germany,In 2015 constant prices at 2015 USD exchange rates,Hourly,9.382
+1144,2006-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,3310.512
+1145,2007-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,3525.4519
+1146,2008-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,3664.3911
+1147,2009-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,3934.771
+1148,2010-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4145.6851
+1149,2011-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4148.1328
+1150,2012-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4498.3789
+1151,2013-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4616.9268
+1152,2014-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4636.707
+1153,2015-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4628.626
+1154,2016-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Annual,4753.5991
+1155,2006-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.41
+1156,2007-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.5
+1157,2008-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.5599999
+1158,2009-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.6799999
+1159,2010-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.8
+1160,2011-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.8
+1161,2012-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,1.9
+1162,2013-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,2.0
+1163,2014-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,2.0
+1164,2015-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,2.0
+1165,2016-01-01,Brazil,In 2015 constant prices at 2015 USD PPPs,Hourly,2.0
+1166,2006-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2032.873
+1167,2007-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2164.8611
+1168,2008-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2250.178
+1169,2009-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2416.21
+1170,2010-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2545.7251
+1171,2011-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2547.228
+1172,2012-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2762.302
+1173,2013-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2835.0991
+1174,2014-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2847.2451
+1175,2015-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2842.282
+1176,2016-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Annual,2919.0239
+1177,2006-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.87
+1178,2007-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.92000002
+1179,2008-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.95999998
+1180,2009-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.03
+1181,2010-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.08
+1182,2011-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.09
+1183,2012-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.1799999
+1184,2013-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.21
+1185,2014-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.21
+1186,2015-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.21
+1187,2016-01-01,Brazil,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.24
+1188,2006-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,1365.35
+1189,2007-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,2618.927
+1190,2008-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,2295.075
+1191,2009-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3869.978
+1192,2010-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3621.8999
+1193,2011-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3466.4299
+1194,2012-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3384.9651
+1195,2013-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3579.2571
+1196,2014-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3542.239
+1197,2015-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3292.291
+1198,2016-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Annual,3199.1631
+1199,2006-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,0.56110001
+1200,2007-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.07627
+1201,2008-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,0.94318002
+1202,2009-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.5904
+1203,2010-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.4884501
+1204,2011-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.42456
+1205,2012-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.39108
+1206,2013-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.47093
+1207,2014-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.4557101
+1208,2015-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.353
+1209,2016-01-01,Russian Federation,In 2015 constant prices at 2015 USD PPPs,Hourly,1.31472
+1210,2006-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,568.23199
+1211,2007-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1089.947
+1212,2008-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,955.16498
+1213,2009-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1610.61
+1214,2010-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1507.364
+1215,2011-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1442.661
+1216,2012-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1408.756
+1217,2013-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1489.6169
+1218,2014-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1474.2111
+1219,2015-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1370.187
+1220,2016-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Annual,1331.429
+1221,2006-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.234
+1222,2007-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.44800001
+1223,2008-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.39300001
+1224,2009-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.662
+1225,2010-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.61900002
+1226,2011-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.59299999
+1227,2012-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.579
+1228,2013-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.61199999
+1229,2014-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.60600001
+1230,2015-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.56300002
+1231,2016-01-01,Russian Federation,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.54699999
+1232,2006-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,5336.2148
+1233,2007-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,5704.9419
+1234,2008-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,6329.873
+1235,2009-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,6060.0161
+1236,2010-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,5981.1152
+1237,2011-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,5743.874
+1238,2012-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,5716.8062
+1239,2013-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,6892.4429
+1240,2014-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,6946.9878
+1241,2015-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,7195.6831
+1242,2016-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Annual,8319.624
+1243,2006-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,2.6913099
+1244,2007-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,2.8744099
+1245,2008-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,3.1979001
+1246,2009-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,3.0615699
+1247,2010-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,3.0217099
+1248,2011-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,2.90185
+1249,2012-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,2.8903201
+1250,2013-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,2.95801
+1251,2014-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,3.1156001
+1252,2015-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,3.6354499
+1253,2016-01-01,Lithuania,In 2015 constant prices at 2015 USD PPPs,Hourly,3.9240899
+1254,2006-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,2960.885
+1255,2007-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3165.479
+1256,2008-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3512.2319
+1257,2009-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3362.4971
+1258,2010-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3318.718
+1259,2011-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3187.0811
+1260,2012-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3172.062
+1261,2013-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3824.3831
+1262,2014-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3854.6479
+1263,2015-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,3992.6399
+1264,2016-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Annual,4616.2769
+1265,2006-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.493
+1266,2007-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.595
+1267,2008-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.774
+1268,2009-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.699
+1269,2010-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.677
+1270,2011-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.61
+1271,2012-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.604
+1272,2013-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.641
+1273,2014-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.729
+1274,2015-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.017
+1275,2016-01-01,Lithuania,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.177
+1276,2006-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,3216.4021
+1277,2007-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,4191.6069
+1278,2008-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,5404.939
+1279,2009-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,6058.2588
+1280,2010-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,5923.5762
+1281,2011-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,6364.6709
+1282,2012-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,6199.5898
+1283,2013-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,6093.915
+1284,2014-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,6823.498
+1285,2015-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,7640.1621
+1286,2016-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Annual,7829.6172
+1287,2006-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,1.54211
+1288,2007-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.00967
+1289,2008-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.5914099
+1290,2009-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.90464
+1291,2010-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.84007
+1292,2011-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.0515499
+1293,2012-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.97241
+1294,2013-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.9217401
+1295,2014-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.2715399
+1296,2015-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.66309
+1297,2016-01-01,Latvia,In 2015 constant prices at 2015 USD PPPs,Hourly,3.7539301
+1298,2006-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,2017.015
+1299,2007-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,2628.5691
+1300,2008-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,3389.4529
+1301,2009-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,3799.1521
+1302,2010-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,3714.6919
+1303,2011-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,3991.304
+1304,2012-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,3887.781
+1305,2013-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,3821.512
+1306,2014-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,4279.0361
+1307,2015-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,4791.168
+1308,2016-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Annual,4909.9761
+1309,2006-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,0.96700001
+1310,2007-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.26
+1311,2008-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.625
+1312,2009-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.822
+1313,2010-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.781
+1314,2011-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.914
+1315,2012-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.864
+1316,2013-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.832
+1317,2014-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.052
+1318,2015-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.2969999
+1319,2016-01-01,Latvia,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.3540001
+1320,2006-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6257.7632
+1321,2007-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6302.5049
+1322,2008-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6267.9331
+1323,2009-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6476.5459
+1324,2010-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6563.3398
+1325,2011-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6600.4678
+1326,2012-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6769.188
+1327,2013-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6902.312
+1328,2014-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,7009.4048
+1329,2015-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6983.5298
+1330,2016-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Annual,6950.1768
+1331,2006-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.1400001
+1332,2007-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.1600001
+1333,2008-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.1500001
+1334,2009-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.22
+1335,2010-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.2
+1336,2011-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.3
+1337,2012-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.3
+1338,2013-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.4000001
+1339,2014-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.4000001
+1340,2015-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.4000001
+1341,2016-01-01,Colombia,In 2015 constant prices at 2015 USD PPPs,Hourly,2.4000001
+1342,2006-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,2948.1211
+1343,2007-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,2969.2
+1344,2008-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,2952.9131
+1345,2009-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3051.1931
+1346,2010-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3092.083
+1347,2011-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3109.575
+1348,2012-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3189.061
+1349,2013-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3251.7781
+1350,2014-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3302.231
+1351,2015-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3290.041
+1352,2016-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Annual,3274.3269
+1353,2006-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.01
+1354,2007-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.02
+1355,2008-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.01
+1356,2009-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.04
+1357,2010-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.0599999
+1358,2011-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.0599999
+1359,2012-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.09
+1360,2013-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.11
+1361,2014-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.13
+1362,2015-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.13
+1363,2016-01-01,Colombia,In 2015 constant prices at 2015 USD exchange rates,Hourly,1.12
+1364,2006-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1365,2007-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1366,2008-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1367,2009-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1368,2010-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1369,2011-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1370,2012-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1371,2013-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,
+1372,2014-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,9967.0381
+1373,2015-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,10561.536
+1374,2016-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Annual,10859.747
+1375,2006-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1376,2007-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1377,2008-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1378,2009-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1379,2010-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1380,2011-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1381,2012-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1382,2013-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,
+1383,2014-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,3.4000001
+1384,2015-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,3.5999999
+1385,2016-01-01,Costa Rica,In 2015 constant prices at 2015 USD PPPs,Hourly,3.7
+1386,2006-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1387,2007-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1388,2008-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1389,2009-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1390,2010-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1391,2011-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1392,2012-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1393,2013-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,
+1394,2014-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,7047.1519
+1395,2015-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,7467.4902
+1396,2016-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Annual,7678.3379
+1397,2006-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1398,2007-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1399,2008-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1400,2009-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1401,2010-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1402,2011-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1403,2012-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1404,2013-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,
+1405,2014-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.4100001
+1406,2015-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.5599999
+1407,2016-01-01,Costa Rica,In 2015 constant prices at 2015 USD exchange rates,Hourly,2.6300001

@@ -1,0 +1,11 @@
+digraph G{
+    rankdir=LR;
+    "poor" -> "poor" [label = "0.9"];
+    "poor" -> "middle class" [label = "0.1"];
+    "middle class" -> "poor" [label = "0.4"];
+    "middle class" -> "middle class" [label = "0.4"];
+    "middle class" -> "rich" [label = "0.2"];
+    "rich" -> "poor" [label = "0.1"];
+    "rich" -> "middle class" [label = "0.1"];
+    "rich" -> "rich" [label = "0.8"];
+}
