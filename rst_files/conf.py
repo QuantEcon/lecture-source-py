@@ -34,13 +34,12 @@ needs_sphinx = '1.5'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-sys.path.insert(0, os.path.abspath("_sphinxext"))  #Add Custom Sphinx Extension
 extensions = [  
 	'sphinx.ext.mathjax', 
 	'sphinxcontrib.bibtex', 
 	'IPython.sphinxext.ipython_console_highlighting',
     # Custom Sphinx Extensions
-    'jupyter', 
+    'sphinxcontrib.jupyter', 
 ]
 
 # Retired Extensions but may be useful in Future
@@ -63,7 +62,7 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
-master_pdf_doc = 'py/index'
+master_pdf_doc = 'index'
 
 # General information about the project.
 project = 'QuantEcon.lectures-python3'
@@ -375,9 +374,9 @@ linkcheck_timeout = 30
 # Conversion Mode Settings
 # If "all", convert codes and texts into notebook
 # If "code", convert codes only
-jupyter_conversion_mode = "code"
+jupyter_conversion_mode = "all"
 
-jupyter_write_metadata = True
+jupyter_write_metadata = False
 
 # Location for _static folder
 jupyter_static_file_path = ["_static"]
