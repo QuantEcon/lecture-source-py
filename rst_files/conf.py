@@ -34,13 +34,12 @@ needs_sphinx = '1.5'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-sys.path.insert(0, os.path.abspath("_sphinxext"))  #Add Custom Sphinx Extension
-extensions = [  
+extensions = [
 	'sphinx.ext.mathjax', 
 	'sphinxcontrib.bibtex', 
 	'IPython.sphinxext.ipython_console_highlighting',
     # Custom Sphinx Extensions
-    'jupyter', 
+    'sphinxcontrib.jupyter', 
 ]
 
 # Retired Extensions but may be useful in Future
@@ -63,10 +62,10 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
-master_pdf_doc = 'py/index'
+master_pdf_doc = 'index'
 
 # General information about the project.
-project = 'QuantEcon.lectures-python3'
+project = 'QuantEcon.lectures-julia'
 copyright = '2017, Thomas J. Sargent and John Stachurski'
 author = 'Thomas J. Sargent and John Stachurski'
 
@@ -125,7 +124,7 @@ todo_include_todos = False
 
 # Add rst prolog
 rst_prolog = """
-.. highlight:: python3
+.. highlight:: julia
 """
 
 # -- Options for HTML output ----------------------------------------------
@@ -178,7 +177,7 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 # html_sidebars = {
-#         'index': ['py_layout.html'],
+#         'index': ['jl_layout.html'],
 #     }
 
 # Additional templates that should be rendered to pages, maps page names to
@@ -226,7 +225,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'QuantEconlectures-python3doc'
+htmlhelp_basename = 'QuantEconlectures-juliadoc'
 
 # Tikz HTML configuration for rendering images
 tikz_latex_preamble = r"""
@@ -336,7 +335,7 @@ to be lower than that of the website}.
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_pdf_doc, 'QuantEconlectures-python3.tex', 'QuantEcon.lectures-python3 PDF',
+    (master_pdf_doc, 'QuantEconlectures-julia.tex', 'QuantEcon.lectures-julia PDF',
      'Thomas J. Sargent and John Stachurski', 'manual'),
 ]
 
@@ -375,9 +374,9 @@ linkcheck_timeout = 30
 # Conversion Mode Settings
 # If "all", convert codes and texts into notebook
 # If "code", convert codes only
-jupyter_conversion_mode = "code"
+jupyter_conversion_mode = "all"
 
-jupyter_write_metadata = True
+jupyter_write_metadata = False
 
 # Location for _static folder
 jupyter_static_file_path = ["_static"]
@@ -394,9 +393,9 @@ jupyter_kernels = {
     },
     "julia": {
         "kernelspec": {
-            "display_name": "Julia 0.6.2",
+            "display_name": "Julia 1.0.0",
             "language": "julia",
-            "name": "julia-0.6"
+            "name": "julia-1.0"
             },
         "file_extension": ".jl"
     }
