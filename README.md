@@ -1,4 +1,4 @@
-# lecture-source-jl
+# lecture-source-py
 Source files for "Lectures in Quantitative Economics" -- Python version
 
 This repo can temporarily compile notebooks in this repository using `make jupyter` after installation of sphinxcontrib-jupyter extension
