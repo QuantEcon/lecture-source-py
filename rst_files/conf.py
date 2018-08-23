@@ -34,7 +34,7 @@ needs_sphinx = '1.5'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions = [  
 	'sphinx.ext.mathjax', 
 	'sphinxcontrib.bibtex', 
 	'IPython.sphinxext.ipython_console_highlighting',
@@ -65,7 +65,7 @@ master_doc = 'index'
 master_pdf_doc = 'index'
 
 # General information about the project.
-project = 'QuantEcon.lectures-julia'
+project = 'QuantEcon.lectures-python3'
 copyright = '2017, Thomas J. Sargent and John Stachurski'
 author = 'Thomas J. Sargent and John Stachurski'
 
@@ -124,7 +124,7 @@ todo_include_todos = False
 
 # Add rst prolog
 rst_prolog = """
-.. highlight:: julia
+.. highlight:: python3
 """
 
 # -- Options for HTML output ----------------------------------------------
@@ -177,7 +177,7 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 # html_sidebars = {
-#         'index': ['jl_layout.html'],
+#         'index': ['py_layout.html'],
 #     }
 
 # Additional templates that should be rendered to pages, maps page names to
@@ -225,7 +225,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'QuantEconlectures-juliadoc'
+htmlhelp_basename = 'QuantEconlectures-python3doc'
 
 # Tikz HTML configuration for rendering images
 tikz_latex_preamble = r"""
@@ -335,7 +335,7 @@ to be lower than that of the website}.
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_pdf_doc, 'QuantEconlectures-julia.tex', 'QuantEcon.lectures-julia PDF',
+    (master_pdf_doc, 'QuantEconlectures-python3.tex', 'QuantEcon.lectures-python3 PDF',
      'Thomas J. Sargent and John Stachurski', 'manual'),
 ]
 
@@ -393,9 +393,9 @@ jupyter_kernels = {
     },
     "julia": {
         "kernelspec": {
-            "display_name": "Julia 1.0.0",
+            "display_name": "Julia 0.6.2",
             "language": "julia",
-            "name": "julia-1.0"
+            "name": "julia-0.6"
             },
         "file_extension": ".jl"
     }
