@@ -195,7 +195,7 @@ the part value of government debt
 
 We obtain the following graph for the historgram of the last 100,000 observations on the par value of government debt
 
-  .. figure:: /_static/figures/amss3_g3.png
+.. figure:: /_static/figures/amss3_g3.png
 
 The  black vertical line denotes the sample mean for the last 100,000 observations included in the historgram; the  green vertical line denots the
 value of :math:`\frac{ {\mathcal B}^*}{E u_c}`, associated with the sample (presumably) from
