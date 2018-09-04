@@ -354,8 +354,6 @@ Here is a more detailed description of our algorithm:
 
 We use simple discretization on a grid of asset holdings and income levels
 
-.. note that the next line will need to be changed when we add a Julia version
-
 The output process is discretized using `Tauchen's quadrature method <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`_
 
 
