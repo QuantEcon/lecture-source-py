@@ -244,13 +244,6 @@ Combining :eq:`eq_29`  and :eq:`eq_33`  gives
 
     d(z) \,d(z^{-1}) + h = c \, (z) \,c\,(z^{-1})
 
-
-.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`lu_tricks`
-
-.. Add the next sentence once Sphinx starts supporting cross file equation references (due in next release)
-
-.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`
-
 Therefore, we have already showed constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`
 
 We now introduce the **annihilation operator**:
