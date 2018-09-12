@@ -431,10 +431,6 @@ Here's the code
 
 .. literalinclude:: /_static/code/wald_friedman/wf_first_pass.py
 
-Running it produces the following output on our machine
-
-  
-
 
 
 The distance column shows the maximal distance between successive iterates
