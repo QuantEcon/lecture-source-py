@@ -804,9 +804,9 @@ For this example, starting from :math:`z_0 =\begin{bmatrix} 1 & v_0 & Q_0 & \ove
 
 That choice implies that
 
-    * :math:`i_1=0.25`, and
+* :math:`i_1=0.25`, and
 
-    * :math:`z_1 = \begin{bmatrix} 1 &  v_1 & Q_1 & \overline {q}_1 \end{bmatrix}  =  \begin{bmatrix} 1 & 0 & 21.83 & 47.43 \end{bmatrix}`
+* :math:`z_1 = \begin{bmatrix} 1 &  v_1 & Q_1 & \overline {q}_1 \end{bmatrix}  =  \begin{bmatrix} 1 & 0 & 21.83 & 47.43 \end{bmatrix}`
 
 A monopolist who started from the initial conditions :math:`\tilde z_0= z_1` would set :math:`i_0=1.10` instead of :math:`.25` as called for under the original optimal plan
 
