@@ -529,6 +529,9 @@ because it comes in handy later when we want to just-in-time compile our code
   import numpy as np
   import matplotlib.pyplot as plt
   from interpolation import interp
+  from numba import njit, prange
+  from quantecon.optimize.scalar_maximization import brent_max
+  
 
   def f(x):
       y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
@@ -553,6 +556,34 @@ because it comes in handy later when we want to just-in-time compile our code
   
 Another advantage of piecewise linear interpolation is that it preserves useful shape properties such as monotonicity and concavity / convexity
 
+Optimal Growth Model
+---------------------
+
+We will hold the primitives of the optimal growth model in a class
+
+The distribution $ \phi $ of the shock is assumed to be lognormal,
+and so a draw from $ \exp(\mu + \sigma \zeta) $ when $ \zeta $ is standard normal
+
+.. code-block:: python3
+
+    class OptimalGrowthModel:
+
+        def __init__(self,
+                     f,
+                     u,
+                     β=0.96,
+                     μ=0,
+                     s=0.1,
+                     grid_max=4,
+                     grid_size=200,
+                     shock_size=250):
+
+            self.β, self.μ, self.s = β, μ, s
+            self.f, self.u = f, u
+
+            self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
+            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
+
 
 The Bellman Operator
 -----------------------
@@ -562,32 +593,38 @@ Here's a function that generates a Bellman operator using linear interpolation
 
 .. code-block:: python3
 
-    from numba import njit, prange
-    from quantecon.optimize.scalar_maximization import brent_max
+    def bellman_function_factory(og, parallel_flag=True):
 
-    def generate_T_operator(lg, parallel_flag=True):
-        α, β, μ, s = lg.parameters()
-        shocks = lg.shocks
-        y_grid = lg.y_grid
-        u = np.log  # Utility function
-        
-        @njit
-        def f(k):  # Production function
-            return k**α
+        '''og is an OptimalGrowthModel'''
+
+        f, u = og.f, og.u
+        y_grid, shocks = og.y_grid, og.shocks
 
         @njit
-        def objective(c, w, y):  # Bellman equation
-            return u(c) + β * np.mean(interp(y_grid, w, f(y - c) * shocks))  
+        def objective(c, w, y):  
+            # Right hand side of Bellman equation
+            w_func = lambda x: interp(y_grid, w, x)
+            return u(c) + β * np.mean(w_func(f(y - c) * shocks))
 
         @njit(parallel=parallel_flag)
         def T(w):
             w_new = np.empty_like(w)
             for i in prange(len(y_grid)):
-                c_star = brent_max(objective, 1e-10, y_grid[i], args=(w, y_grid[i]))[0]  # Solve the model
-                w_new[i] = objective(c_star, w, y_grid[i])  # Back out optimal w
+                y = y_grid[i]
+                w_max = brent_max(objective, 1e-10, y, args=(w, y))[1]  # Solve for optimal w at y
+                w_new[i] = w_max
             return w_new
+        
+        @njit
+        def get_greedy(v):
+            σ = np.empty_like(v)
+            for i in range(len(y_grid)):
+                y = y_grid[i]
+                c_max = brent_max(objective, 1e-10, y, args=(v, y))[0]  # Solve for optimal c at y
+                σ[i] = c_max
+            return σ
 
-        return T
+        return T, get_greedy
 
 The `generate_T_operator` function takes a class that represents the growth model,
 and returns a function `T` that we will use to solve the model
@@ -642,53 +679,21 @@ The optimal consumption policy is
 
     \sigma^*(y) = (1 - \alpha \beta ) y
 
-
-Let's wrap this model in a class so we can generate its Bellman operator
-
+We will define functions to compute the closed form solutions to check our answers
 
 .. code-block:: python3
 
-    class LogLinearOG:
-        """
-        Log linear optimal growth model, with log utility, CD production and
-        multiplicative lognormal shock, so that
+    def σ_star(y, α, β):
+        # True optimal policy
+        return (1 - α * β) * y
 
-            y = f(k, z) = z k^α
-
-        with z ~ LN(μ, s).
-
-        The class holds parameters and true value and policy functions.
-        """
-
-        def __init__(self,
-                     α=0.4,
-                     β=0.96,
-                     μ=0,
-                     s=0.1,
-                     grid_max=4,
-                     grid_size=200,
-                     shock_size=250):
-
-            self.α, self.β, self.μ, self.s = α, β, μ, s
-
-            # == Some useful constants == #
-            self.ab = α * β
-            self.c1 = np.log(1 - self.ab) / (1 - β)
-            self.c2 = (μ + α * np.log(self.ab)) / (1 - α)
-            self.c3 = 1 / (1 - β)
-            self.c4 = 1 / (1 - self.ab)
-
-            self.y_grid = np.linspace(1e-5, grid_max, grid_size)  # Set up grid
-            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
-
-        def c_star(self, y):  # True optimal policy
-            return (1 - self.α * self.β) * y
-
-        def v_star(self, y):  # True value function
-            return self.c1 + self.c2 * (self.c3 - self.c4) + self.c4 * np.log(y)
-
-        def parameters(self):
-            return self.α, self.β, self.μ, self.s
+    def v_star(y, α, β, μ):
+        # True value function
+        c1 = np.log(1 - α * β) / (1 - β)
+        c2 = (μ + α * np.log(α * β)) / (1 - α)
+        c3 = 1 / (1 - β)
+        c4 = 1 / (1 - α * β)
+        return c1 + c2 * (c3 - c4) + c4 * np.log(y)
 
 
 A First Test
@@ -696,16 +701,22 @@ A First Test
 
 To test our code, we want to see if we can replicate the analytical solution numerically, using fitted value function iteration
 
-First, having run the code for the log linear model shown above, let's
+First, having run the code for the general model shown above, let's
 generate an instance of the model and generate its Bellman operator
 
+We first need to define a jitted version of the production function
 
 .. code-block:: python3
 
-    lg = LogLinearOG()
-    v_star, y_grid = lg.v_star, lg.y_grid  # Unpack parameters/functions for convenience
-    
-    T = generate_T_operator(lg)
+    α = 0.4  # Production function parameter
+
+    @njit
+    def f(k):
+        # Production function
+        return k**α
+
+    og = OptimalGrowthModel(f=f, u=np.log)
+    T, get_greedy = bellman_function_factory(og)
 
 
 Now let's do some tests
@@ -718,8 +729,11 @@ In practice we expect some small numerical error
 
 .. code-block:: python3
 
-    w_init = v_star(lg.y_grid)  # Start at the solution
-    w = T(w_init)               # Apply the Bellman operator once
+    y_grid = og.y_grid
+    β, μ = og.β, og.μ
+
+    w_init = v_star(y_grid, α, β, μ)  # Start at the solution
+    w = T(w_init)                     # Apply the Bellman operator once
 
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.set_ylim(-35, -24)
@@ -746,11 +760,12 @@ The initial condition we'll start with is :math:`w(y) = 5 \ln (y)`
     
     ax.plot(y_grid, w, color=plt.cm.jet(0), 
             lw=2, alpha=0.6, label='Initial condition')
+            
     for i in range(n):
         w = T(w)  # Apply the Bellman operator
         ax.plot(y_grid, w, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
     
-    ax.plot(y_grid, v_star(y_grid), 'k-', lw=2, 
+    ax.plot(y_grid, v_star(y_grid, α, β, μ), 'k-', lw=2, 
             alpha=0.8, label='True value function')
             
     ax.legend(loc='lower right')
@@ -774,7 +789,7 @@ tolerance level
 
 .. code-block:: python3
 
-    def compute_fixed_point(lg,
+    def compute_fixed_point(og,
                             w_init,
                             use_parallel=True,
                             tol=1e-4, 
@@ -782,7 +797,7 @@ tolerance level
                             verbose=True,
                             print_skip=25): 
 
-        T = generate_T_operator(lg, parallel_flag=use_parallel)
+        T, _ = bellman_function_factory(og, parallel_flag=use_parallel)
 
         # Set up loop
         w = w_init
@@ -810,12 +825,16 @@ We can check our result by plotting it against the true value
 .. code-block:: python3
 
     initial_w = 5 * np.log(y_grid)
-  
+    v_solution = compute_fixed_point(og, initial_w)
+
     fig, ax = plt.subplots(figsize=(9, 5))
-    ax.plot(y_grid, compute_fixed_point(lg, initial_w), 
-            lw=2, alpha=0.6, label='Approximate value function')
-    ax.plot(y_grid, v_star(y_grid), lw=2, 
+    
+    ax.plot(y_grid, v_solution, lw=2, alpha=0.6, 
+            label='Approximate value function')
+            
+    ax.plot(y_grid, v_star(y_grid, α, β, μ), lw=2,
             alpha=0.6, label='True value function')
+    
     ax.legend(loc='lower right')
     ax.set_ylim(-35, -24)
     plt.show()
@@ -831,48 +850,22 @@ The Policy Function
 .. index:: 
     single: Optimal Growth; Policy Function
 
-To compute an approximate optimal policy, we will need to write a new
-Bellman operator that returns the greedy policy function rather than the
-optimal wage
+To compute an approximate optimal policy, we will write a function
+that backs out the optimal policy from the optimal wage rate
 
 The next figure compares the result to the exact solution, which, as mentioned
 above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
 
 .. code-block:: python3
 
-    def generate_Tσ_operator(lg, parallel_flag=True):
-        α, β, μ, s = lg.parameters()
-        shocks = lg.shocks
-        y_grid = lg.y_grid
-        u = np.log
-        
-        @njit
-        def f(k):
-            return k**α
-
-        @njit
-        def objective(c, w, y):
-            return u(c) + β * np.mean(interp(y_grid, w, f(y - c) * shocks))
-
-        @njit(parallel=parallel_flag)
-        def T(w):
-            c_new = np.empty_like(w)
-            for i in prange(len(y_grid)):
-                c_star = brent_max(objective, 1e-10, y_grid[i], args=(w, y_grid[i]))[0]  # Solve the model
-                c_new[i] = c_star
-            return c_new
-
-        return T
-
-    Tσ = generate_Tσ_operator(lg)
-    w_init = v_star(lg.y_grid)  # Start at the solution
-    σ = Tσ(w_init)              # Apply the Bellman operator once
-
-
     fig, ax = plt.subplots(figsize=(9, 5))
-    ax.plot(y_grid, σ, lw=2, alpha=0.6, label='Approximate policy function')
-    cstar = (1 - lg.α * lg.β) * y_grid
-    ax.plot(y_grid, cstar, lw=2, alpha=0.6, label='True policy function')
+    
+    ax.plot(y_grid, get_greedy(v_solution), lw=2,
+            alpha=0.6, label='Approximate policy function')
+            
+    ax.plot(y_grid, σ_star(y_grid, α, β),
+            lw=2, alpha=0.6, label='True policy function')
+            
     ax.legend(loc='lower right')
     plt.show()
 
@@ -922,7 +915,7 @@ Here's one solution (assuming as usual that you've executed everything above)
 
 .. code-block:: python3
 
-    def simulate_og(σ, lg, y0=0.1, ts_length=100):
+    def simulate_og(σ_func, og, α, y0=0.1, ts_length=100):
         '''
         Compute a time series given consumption policy σ.
         '''
@@ -930,7 +923,7 @@ Here's one solution (assuming as usual that you've executed everything above)
         ξ = np.random.randn(ts_length-1)
         y[0] = y0
         for t in range(ts_length-1):
-            y[t+1] = (y[t] - σ(y[t]))**lg.α * np.exp(lg.μ + lg.s * ξ[t])
+            y[t+1] = (y[t] - σ_func(y[t]))**α * np.exp(og.μ + og.s * ξ[t])
         return y
       
 .. code-block:: python3
@@ -939,17 +932,15 @@ Here's one solution (assuming as usual that you've executed everything above)
 
     for β in (0.8, 0.9, 0.98):
 
-        lg = LogLinearOG(β=β, s=0.05)
-        v_star, y_grid = lg.v_star, lg.y_grid  # Unpack parameters/functions for convenience
-        T = generate_T_operator(lg)
+        og = OptimalGrowthModel(f, np.log, β=β, s=0.05)
+        y_grid = og.y_grid
 
         initial_w = 5 * np.log(y_grid)
-        v_star_approx = compute_fixed_point(lg, initial_w, verbose=False)  # Solve the model
-
-        σ = Tσ(v_star_approx)  # Find optimal policy
-
-        σ_func = lambda x: interp(y_grid, σ, x)  # Define an optimal policy function
-        y = simulate_og(σ_func, lg)              # Simulate time series
+        v_solution = compute_fixed_point(og, initial_w, verbose=False)
+        
+        σ_star = get_greedy(v_solution)
+        σ_func = lambda x: interp(y_grid, σ_star, x)  # Define an optimal policy function
+        y = simulate_og(σ_func, og, α)
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
 
     ax.legend(loc='lower right')
