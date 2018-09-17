@@ -330,7 +330,31 @@ function
 
 In our setting, we have the following key result
 
-    * A feasible consumption policy is optimal if and only if it is :math:`v^*`-greedy
+    * A feasible consumption policy is optimal if and only import numpy as np
+import matplotlib.pyplot as plt
+from interpolation import interp
+from numba import njit, prange
+from quantecon.optimize.scalar_maximization import brent_max
+
+
+def f(x):
+    y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
+    return y1 + 2.5
+
+def Af(x):
+    return interp(c_grid, f(c_grid), x)
+
+c_grid = np.linspace(0, 1, 6)
+f_grid = np.linspace(0, 1, 150)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(f_grid, f(f_grid), 'b-', label='true function')
+ax.plot(f_grid, Af(f_grid), 'g-', label='linear approximation')
+ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
+
+ax.set(xlim=(0, 1), ylim=(0, 6))
+plt.show() it is :math:`v^*`-greedy
 
 The intuition is similar to the intuition for the Bellman equation, which was
 provided after :eq:`fpb30`
@@ -524,35 +548,39 @@ We use an interpolation function from the
 `interpolation.py package <https://github.com/EconForge/interpolation.py>`_
 because it comes in handy later when we want to just-in-time compile our code
 
+This library can be installed via `pip` with the following command
+
 .. code-block:: python3
 
-  import numpy as np
-  import matplotlib.pyplot as plt
-  from interpolation import interp
-  from numba import njit, prange
-  from quantecon.optimize.scalar_maximization import brent_max
-  
+    !pip install interpolation
 
-  def f(x):
-      y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
-      return y1 + 2.5
+.. code-block:: python3
 
-  c_grid = np.linspace(0, 1, 6)
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from interpolation import interp
+    from numba import njit, prange
+    from quantecon.optimize.scalar_maximization import brent_max
 
-  def Af(x):
-      return interp(c_grid, f(c_grid), x)
 
-  f_grid = np.linspace(0, 1, 150)
+    def f(x):
+        y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
+        return y1 + 2.5
 
-  fig, ax = plt.subplots(figsize=(10, 6))
-  ax.plot(f_grid, f(f_grid), 'b-', lw=2, alpha=0.8, label='true function')
-  ax.plot(f_grid, Af(f_grid), 'g-', lw=2, alpha=0.8,
-          label='linear approximation')
-  ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
-  ax.legend(loc='upper center')
-  ax.set(xlim=(0, 1), ylim=(0, 6))
+    def Af(x):
+        return interp(c_grid, f(c_grid), x)
 
-  plt.show()
+    c_grid = np.linspace(0, 1, 6)
+    f_grid = np.linspace(0, 1, 150)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    ax.plot(f_grid, f(f_grid), 'b-', label='true function')
+    ax.plot(f_grid, Af(f_grid), 'g-', label='linear approximation')
+    ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
+
+    ax.set(xlim=(0, 1), ylim=(0, 6))
+    plt.show()
   
 Another advantage of piecewise linear interpolation is that it preserves useful shape properties such as monotonicity and concavity / convexity
 
@@ -594,33 +622,48 @@ Here's a function that generates a Bellman operator using linear interpolation
 .. code-block:: python3
 
     def bellman_function_factory(og, parallel_flag=True):
-
-        '''og is an instance of the OptimalGrowthModel'''
+        """
+        A function factory for building the Bellman operator, as well as
+        a function that computes greedy policies.
+        
+        Here og is an instance of OptimalGrowthModel.
+        """
 
         f, u = og.f, og.u
         y_grid, shocks = og.y_grid, og.shocks
 
         @njit
-        def objective(c, w, y):  
-            # Right hand side of Bellman equation
+        def objective(c, w, y):
+            """
+            The right hand side of the Bellman equation
+            """
+            # First turn w into a function via interpolation
             w_func = lambda x: interp(y_grid, w, x)
             return u(c) + β * np.mean(w_func(f(y - c) * shocks))
 
         @njit(parallel=parallel_flag)
         def T(w):
+            """
+            The Bellman operator
+            """
             w_new = np.empty_like(w)
             for i in prange(len(y_grid)):
                 y = y_grid[i]
-                w_max = brent_max(objective, 1e-10, y, args=(w, y))[1]  # Solve for optimal w at y
+                # Solve for optimal w at y
+                w_max = brent_max(objective, 1e-10, y, args=(w, y))[1]  
                 w_new[i] = w_max
             return w_new
-        
+
         @njit
         def get_greedy(v):
+            """
+            Computes the v-greedy policy of a given function v
+            """
             σ = np.empty_like(v)
             for i in range(len(y_grid)):
                 y = y_grid[i]
-                c_max = brent_max(objective, 1e-10, y, args=(v, y))[0]  # Solve for optimal c at y
+                # Solve for optimal c at y
+                c_max = brent_max(objective, 1e-10, y, args=(v, y))[0]  
                 σ[i] = c_max
             return σ
 
@@ -684,11 +727,15 @@ We will define functions to compute the closed form solutions to check our answe
 .. code-block:: python3
 
     def σ_star(y, α, β):
-        # True optimal policy
+        """
+        True optimal policy
+        """
         return (1 - α * β) * y
 
     def v_star(y, α, β, μ):
-        # True value function
+        """
+        True value function
+        """
         c1 = np.log(1 - α * β) / (1 - β)
         c2 = (μ + α * np.log(α * β)) / (1 - α)
         c3 = 1 / (1 - β)
@@ -712,10 +759,27 @@ We first need to define a jitted version of the production function
 
     @njit
     def f(k):
-        # Production function
+        """
+        Cobb-Douglas production function
+        """
         return k**α
 
+og = OptimalGrowthModel(f=f, u=np.log)
+T, get_greedy = bellman_function_factory(og)
+        
+Now we will create an instance of the model and assign it to the variable `og`
+
+This instance will use the Cobb-Douglas production function and log utility
+
+.. code-block:: python3
+
     og = OptimalGrowthModel(f=f, u=np.log)
+    
+We will use `og` to generate the Bellman operator and a function that computes
+greedy policies
+
+.. code-block:: python3
+
     T, get_greedy = bellman_function_factory(og)
 
 
@@ -851,7 +915,7 @@ The Policy Function
     single: Optimal Growth; Policy Function
 
 To compute an approximate optimal policy, we will use the second function
-return from `bellman_function_factory` that backs out the optimal policy 
+returned from `bellman_function_factory` that backs out the optimal policy 
 from the optimal wage rate
 
 The next figure compares the result to the exact solution, which, as mentioned
@@ -887,7 +951,7 @@ Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`
 The next figure shows a simulation of 100 elements of this sequence for three different discount factors (and hence three different policies)
 
 .. figure:: /_static/figures/solution_og_ex2.png
-   :scale: 100%
+   :scale: 60%
 
 In each sequence, the initial condition is :math:`y_0 = 0.1`
 
