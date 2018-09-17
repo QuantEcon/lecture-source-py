@@ -548,11 +548,7 @@ We use an interpolation function from the
 `interpolation.py package <https://github.com/EconForge/interpolation.py>`_
 because it comes in handy later when we want to just-in-time compile our code
 
-This library can be installed via `pip` with the following command
-
-.. code-block:: python3
-
-    !pip install interpolation
+This library can be installed with the following command: `pip install interpolation`
 
 .. code-block:: python3
 
