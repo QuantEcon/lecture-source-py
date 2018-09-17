@@ -763,9 +763,6 @@ We first need to define a jitted version of the production function
         Cobb-Douglas production function
         """
         return k**α
-
-og = OptimalGrowthModel(f=f, u=np.log)
-T, get_greedy = bellman_function_factory(og)
         
 Now we will create an instance of the model and assign it to the variable `og`
 
