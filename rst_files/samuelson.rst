@@ -327,7 +327,7 @@ We use the Samuelson multiplier-accelerator model as a vehicle for teaching how 
 We want to have a method in the class that automatically generates a simulation, either nonstochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`)
 
 We also show how to map the Samuelson model into a simple instance of
-   the `LinearStateSpace` class described `here <https://lectures.quantecon.org/py/linear\_models.html>`__
+   the `LinearStateSpace` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__
 
 We can use a `LinearStateSpace` instance to do various things that we did above with
    our homemade function and class
