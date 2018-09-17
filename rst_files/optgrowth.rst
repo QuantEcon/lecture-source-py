@@ -330,7 +330,7 @@ function
 
 In our setting, we have the following key result
 
-    *A feasible consumption  policy is optimal if and only if it is* :math:`v^*`-*greedy*
+    * A feasible consumption policy is optimal if and only if it is :math:`v^*`-greedy
 
 The intuition is similar to the intuition for the Bellman equation, which was
 provided after :eq:`fpb30`
@@ -561,8 +561,8 @@ Optimal Growth Model
 
 We will hold the primitives of the optimal growth model in a class
 
-The distribution $ \phi $ of the shock is assumed to be lognormal,
-and so a draw from $ \exp(\mu + \sigma \zeta) $ when $ \zeta $ is standard normal
+The distribution :math:`\phi` of the shock is assumed to be lognormal,
+and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standard normal
 
 .. code-block:: python3
 
@@ -595,7 +595,7 @@ Here's a function that generates a Bellman operator using linear interpolation
 
     def bellman_function_factory(og, parallel_flag=True):
 
-        '''og is an OptimalGrowthModel'''
+        '''og is an instance of the OptimalGrowthModel'''
 
         f, u = og.f, og.u
         y_grid, shocks = og.y_grid, og.shocks
@@ -626,8 +626,8 @@ Here's a function that generates a Bellman operator using linear interpolation
 
         return T, get_greedy
 
-The `generate_T_operator` function takes a class that represents the growth model,
-and returns a function `T` that we will use to solve the model
+`bellman_function_factory` takes a class that represents the growth model,
+and returns the operator `T` and a function `get_greedy` that we will use to solve the model
 
 Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
 
@@ -850,8 +850,9 @@ The Policy Function
 .. index:: 
     single: Optimal Growth; Policy Function
 
-To compute an approximate optimal policy, we will write a function
-that backs out the optimal policy from the optimal wage rate
+To compute an approximate optimal policy, we will use the second function
+return from `bellman_function_factory` that backs out the optimal policy 
+from the optimal wage rate
 
 The next figure compares the result to the exact solution, which, as mentioned
 above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
