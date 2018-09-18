@@ -61,26 +61,23 @@ This lecture studies a special  AMSS model in which
 
    - the one-period gross interest rate :math:`R_t(s^t)` on risk-free debt  converges to a time-invariant function of the Markov state :math:`s_t`
 
-
 *  For a **particular** :math:`b_0 < 0` (i.e., a positive level of initial government **loans** to the private sector), the measurability constraints **never** bind
-
-
 
 * In this special case
 
-  - the **par value** :math:`b_{t+1}(s_t) = \bar b`  of government debt at time :math:`t` and Markov state :math:`s_t`  is constant across time and states,
+   - the **par value** :math:`b_{t+1}(s_t) = \bar b`  of government debt at time :math:`t` and Markov state :math:`s_t`  is constant across time and states,
      but :math:`\ldots`
 
-  - the **market value** :math:`\frac{\bar b}{R_t(s_t)}` of government debt at time :math:`t`  varies as a time-invariant function of the Markov state :math:`s_t`
+   - the **market value** :math:`\frac{\bar b}{R_t(s_t)}` of government debt at time :math:`t`  varies as a time-invariant function of the Markov state :math:`s_t`
 
-  - fluctuations in the interest rate make gross earnings on government debt :math:`\frac{\bar b}{R_t(s_t)}` fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures
+   - fluctuations in the interest rate make gross earnings on government debt :math:`\frac{\bar b}{R_t(s_t)}` fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures
 
-  - the state variable :math:`x` in a recursive representation of a Ramsey plan is a time invariant function of the Markov state for :math:`t \geq 0`
+   - the state variable :math:`x` in a recursive representation of a Ramsey plan is a time invariant function of the Markov state for :math:`t \geq 0`
 
 *  In this special case, the Ramsey allocation in the AMSS model agrees with that in a :cite:`LucasStokey1983` model in which
    the same amount of state-contingent debt falls due in all states tomorrow
 
-   -  it is a situation in which  the Ramsey planner loses nothing from not being  able to  purchase state-contingent debt and being restricted to exchange only risk-free debt  debt
+   - it is a situation in which  the Ramsey planner loses nothing from not being  able to  purchase state-contingent debt and being restricted to exchange only risk-free debt  debt
 
 * This outcome emerges only when we initialize government debt at a particular :math:`b_0 < 0`
 
