@@ -194,24 +194,23 @@ from the allocation
 
 The primal approach uses four steps:
 
-   1. Obtain  first-order conditions of the household's problem and solve them for :math:`\{q^0_t(s^t), \tau_t(s^t)\}_{t=0}^\infty` as functions of
+1. Obtain  first-order conditions of the household's problem and solve them for :math:`\{q^0_t(s^t), \tau_t(s^t)\}_{t=0}^\infty` as functions of
    the allocation :math:`\{c_t(s^t), n_t(s^t)\}_{t=0}^\infty`
 
-   2. Substitute these expressions for taxes and prices in terms of the allocation
+2. Substitute these expressions for taxes and prices in terms of the allocation
    into the household's present-value budget constraint
 
-    * This intertemporal constraint involves only the allocation and is regarded
-      as an *implementability constraint*
+   * This intertemporal constraint involves only the allocation and is regarded
+     as an *implementability constraint*
 
-   3. Find the allocation that maximizes the utility of the representative household
+3. Find the allocation that maximizes the utility of the representative household
    :eq:`TS_prefr_opt_tax` subject to  the feasibility constraints :eq:`feas1_opt_tax`
    and :eq:`TSs_techr_opt_tax`  and the implementability condition derived in step 2
 
-    *  This optimal allocation is called the **Ramsey allocation**
+   *  This optimal allocation is called the **Ramsey allocation**
 
-   4. Use the Ramsey  allocation together with the formulas from step 1 to find
+4. Use the Ramsey  allocation together with the formulas from step 1 to find
    taxes and prices
-
 
 
 The Implementability Constraint
