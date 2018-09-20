@@ -376,8 +376,8 @@ differences from the corresponding condition for the optimal allocation
 in a Lucas-Stokey economy with state-contingent government debt
 
 1. The term involving :math:`b_t(s^{t-1})` in first-order condition 
-:eq:`AMSS_foc;a` does not appear in the corresponding expression  
-for the Lucas-Stokey economy
+   :eq:`AMSS_foc;a` does not appear in the corresponding expression  
+   for the Lucas-Stokey economy
       
     * This term reflects the constraint that
       beginning-of-period government indebtedness must be the same across all
@@ -385,8 +385,8 @@ for the Lucas-Stokey economy
       government debt could be state contingent
 
 2. The Lagrange multiplier :math:`\Psi_t(s^t)` in first-order condition 
-:eq:`AMSS_foc;a` may change over time in response to realizations of the state, 
-while the multiplier :math:`\Phi` in the Lucas-Stokey economy is time invariant
+   :eq:`AMSS_foc;a` may change over time in response to realizations of the state, 
+   while the multiplier :math:`\Phi` in the Lucas-Stokey economy is time invariant
 
 
 We need some code from our :doc:`an earlier lecture <opt_tax_recur>` 
