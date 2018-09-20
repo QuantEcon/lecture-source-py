@@ -1872,7 +1872,7 @@ What happens here is that each successive call uses it's own *frame* in the *sta
 
 * a frame is where the local variables of a given function call are held
 * stack is memory used to process function calls
-    * a First In Last Out (FILO) queue
+  * a First In Last Out (FILO) queue
 
 This example is somewhat contrived, since the first (iterative) solution would usually be preferred to the recursive solution
 
