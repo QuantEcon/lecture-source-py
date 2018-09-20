@@ -9,7 +9,7 @@ with open('gd.xls', 'wb') as output:
     output.write(r.content)
 
 # == Parse data into a DataFrame == #
-govt_debt = pd.read_excel('gd.xls', sheetname='Data', skiprows=3, index_col=1)
+govt_debt = pd.read_excel('gd.xls', sheet_name='Data', skiprows=3, index_col=1)
 
 # == Take desired values and plot == #
 govt_debt = govt_debt.transpose()
