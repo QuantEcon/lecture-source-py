@@ -583,7 +583,7 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
 
             self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
-            self.v_guess = np.empty(grid_size)                         # Guess for value function
+            self.v_guess = np.log(self.y_grid)                         # Guess for value function
 
 
 The Bellman Operator
