@@ -594,7 +594,7 @@ Here's a function that generates a Bellman operator using linear interpolation
 
 .. code-block:: python3
 
-    def bellman_function_factory(og, parallel_flag=True):
+    def operator_factory(og, parallel_flag=True):
         """
         A function factory for building the Bellman operator, as well as
         a function that computes greedy policies.
@@ -642,7 +642,7 @@ Here's a function that generates a Bellman operator using linear interpolation
 
         return T, get_greedy
 
-`bellman_function_factory` takes a class that represents the growth model,
+The function `operator_factory` takes a class that represents the growth model,
 and returns the operator `T` and a function `get_greedy` that we will use to solve the model
 
 Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
@@ -750,7 +750,7 @@ greedy policies
 
 .. code-block:: python3
 
-    T, get_greedy = bellman_function_factory(og)
+    T, get_greedy = operator_factory(og)
 
 
 Now let's do some tests
@@ -830,7 +830,7 @@ tolerance level
                     verbose=True,
                     print_skip=25): 
 
-        T, _ = bellman_function_factory(og, parallel_flag=use_parallel)
+        T, _ = operator_factory(og, parallel_flag=use_parallel)
 
         # Set up loop
         w = og.v_guess
@@ -885,7 +885,7 @@ The Policy Function
     single: Optimal Growth; Policy Function
 
 To compute an approximate optimal policy, we will use the second function
-returned from `bellman_function_factory` that backs out the optimal policy 
+returned from `operator_factory` that backs out the optimal policy 
 from the optimal wage rate
 
 The next figure compares the result to the exact solution, which, as mentioned
