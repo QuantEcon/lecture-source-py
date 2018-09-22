@@ -867,7 +867,7 @@ tolerance level
             i += 1
             if verbose and i % print_skip == 0:
                 print(f"Error at iteration {i} is {error}.")
-            w[:] = w_new
+            w = w_new
 
         if i == max_iter: 
             print("Failed to converge!")
