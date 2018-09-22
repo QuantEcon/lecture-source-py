@@ -330,31 +330,7 @@ function
 
 In our setting, we have the following key result
 
-    * A feasible consumption policy is optimal if and only import numpy as np
-import matplotlib.pyplot as plt
-from interpolation import interp
-from numba import njit, prange
-from quantecon.optimize.scalar_maximization import brent_max
-
-
-def f(x):
-    y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
-    return y1 + 2.5
-
-def Af(x):
-    return interp(c_grid, f(c_grid), x)
-
-c_grid = np.linspace(0, 1, 6)
-f_grid = np.linspace(0, 1, 150)
-
-fig, ax = plt.subplots(figsize=(10, 6))
-
-ax.plot(f_grid, f(f_grid), 'b-', label='true function')
-ax.plot(f_grid, Af(f_grid), 'g-', label='linear approximation')
-ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
-
-ax.set(xlim=(0, 1), ylim=(0, 6))
-plt.show() it is :math:`v^*`-greedy
+    * A feasible consumption policy is optimal if and only it is :math:`v^*`-greedy
 
 The intuition is similar to the intuition for the Bellman equation, which was
 provided after :eq:`fpb30`
@@ -607,6 +583,7 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
 
             self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
+            self.v_guess = None                                        # Guess for value function
 
 
 The Bellman Operator
@@ -625,7 +602,7 @@ Here's a function that generates a Bellman operator using linear interpolation
         Here og is an instance of OptimalGrowthModel.
         """
 
-        f, u = og.f, og.u
+        f, u, β = og.f, og.u, og.β
         y_grid, shocks = og.y_grid, og.shocks
 
         @njit
@@ -874,6 +851,8 @@ tolerance level
 
         if verbose and i < max_iter:
             print(f"\nConverged in {i} iterations.")
+            
+        og.v_guess = w_new  # Update guess for the value function
 
         return w_new
         
