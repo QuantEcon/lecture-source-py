@@ -583,7 +583,7 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
 
             self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
-            self.v_guess = None                                        # Guess for value function
+            self.v_guess = np.empty(grid_size)                         # Guess for value function
 
 
 The Bellman Operator
@@ -823,18 +823,17 @@ tolerance level
 
 .. code-block:: python3
 
-    def compute_fixed_point(og,
-                            w_init,
-                            use_parallel=True,
-                            tol=1e-4, 
-                            max_iter=1000, 
-                            verbose=True,
-                            print_skip=25): 
+    def solve_model(og,
+                    use_parallel=True,
+                    tol=1e-4, 
+                    max_iter=1000, 
+                    verbose=True,
+                    print_skip=25): 
 
         T, _ = bellman_function_factory(og, parallel_flag=use_parallel)
 
         # Set up loop
-        w = w_init
+        w = og.v_guess
         i = 0
         error = tol + 1
 
@@ -860,8 +859,7 @@ We can check our result by plotting it against the true value
 
 .. code-block:: python3
 
-    initial_w = 5 * np.log(y_grid)
-    v_solution = compute_fixed_point(og, initial_w)
+    v_solution = solve_model(og)
 
     fig, ax = plt.subplots(figsize=(9, 5))
     
@@ -972,8 +970,7 @@ Here's one solution (assuming as usual that you've executed everything above)
         og = OptimalGrowthModel(f, np.log, β=β, s=0.05)
         y_grid = og.y_grid
 
-        initial_w = 5 * np.log(y_grid)
-        v_solution = compute_fixed_point(og, initial_w, verbose=False)
+        v_solution = solve_model(og, verbose=False)
         
         σ_star = get_greedy(v_solution)
         σ_func = lambda x: interp(y_grid, σ_star, x)  # Define an optimal policy function
