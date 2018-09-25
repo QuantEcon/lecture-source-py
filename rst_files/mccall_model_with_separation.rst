@@ -234,7 +234,7 @@ The default utility function is a CRRA utility function
 
     import numpy as np
     from quantecon.distributions import BetaBinomial
-    from numba import njit, prange
+    from numba import njit
     import matplotlib.pyplot as plt
 
     # A default utility function
@@ -296,7 +296,7 @@ The following function returns jitted versions of the Bellman operators :math:`U
             V_new = np.empty_like(V)
             U_new = np.empty_like(U)
             
-            for i in prange(len(w_vec)):
+            for i in range(len(w_vec)):
                 w = w_vec[i]
                 V_new[i] = u(w, σ) + β * ((1 - α) * V[i] + α * U)
 
