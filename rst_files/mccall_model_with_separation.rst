@@ -70,7 +70,7 @@ If currently *unemployed*, he
 
 * receives and consumes unemployment compensation :math:`c`
 
-* receives an offer to start work *next period* at a wage :math:`w'` drawn from a known distribution :math:`p_1, \ldots, p_n`
+* receives an offer to start work *next period* at a wage :math:`w'` drawn from a known distribution :math:`\phi`
 
 He can either accept or reject the offer
 
@@ -94,20 +94,20 @@ Solving the Model using Dynamic Programming
 
 Let 
 
-* :math:`V(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
+* :math:`e(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
 
-* :math:`U` be the total lifetime value accruing to a worker who is *unemployed* this period
+* :math:`h` be the total lifetime value accruing to a worker who is *unemployed* this period
 
 Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time
 
-Suppose for now that the worker can calculate the function :math:`V` and the constant :math:`U` and use them in his decision making
+Suppose for now that the worker can calculate the function :math:`e` and the constant :math:`h` and use them in his decision making
 
-Then :math:`V` and :math:`U`  should satisfy 
+Then :math:`e` and :math:`h`  should satisfy 
 
 .. math::
     :label: bell1_mccall
 
-    V(w) = u(w) + \beta [(1-\alpha)V(w) + \alpha U ]
+    e(w) = u(w) + \beta [(1-\alpha) e(w) + \alpha h ]
 
 
 and
@@ -115,7 +115,7 @@ and
 .. math::
     :label: bell2_mccall
 
-    U = u(c) + \beta \sum_i \max \left\{ U, V(w_i) \right\} p_i 
+    h = u(c) + \beta \sum_{w'} \max \left\{ h, e(w') \right\} \phi (w')
 
 
 Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
@@ -128,12 +128,12 @@ Let's interpret these two equations in light of the fact that today's tomorrow i
 
 Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare
 
-In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`U < V(w')`
+In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`h < e(w')`
 
 Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations
 for this model
 
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`V` and :math:`U`
+Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`e` and :math:`h`
 
 Before discussing this, however, let's make a small extension to the model
 
@@ -155,12 +155,12 @@ He either accepts or rejects the offer
 Otherwise the model is the same
 
 
-With some thought, you  will be able to convince yourself that :math:`V` and :math:`U`  should now satisfy 
+With some thought, you  will be able to convince yourself that :math:`e` and :math:`h`  should now satisfy 
 
 .. math::
     :label: bell01_mccall
 
-    V(w) = u(w) + \beta [(1-\alpha)V(w) + \alpha U ]
+    e(w) = u(w) + \beta [(1-\alpha) e(w) + \alpha h ]
 
 
 and
@@ -168,9 +168,9 @@ and
 .. math::
     :label: bell02_mccall
 
-    U = u(c) + 
-      \beta (1 - \gamma) U
-          + \beta \gamma \sum_i \max \left\{ U, V(w_i) \right\} p_i
+    h = u(c) + 
+      \beta (1 - \gamma) h
+          + \beta \gamma \sum_{w'} \max \left\{ h, e(w') \right\} \phi (w')
 
 
 Solving the Bellman Equations
@@ -182,7 +182,7 @@ adopted in the :doc:`first job search lecture <mccall_model>`
 
 Here this amounts to
 
-#. make guesses for :math:`U` and :math:`V`
+#. make guesses for :math:`h` and :math:`e`
 
 #. plug these guesses into the right hand sides of :eq:`bell01_mccall` and :eq:`bell02_mccall`
 
@@ -195,7 +195,7 @@ In other words, we are iterating using the rules
 .. math::
     :label: bell1001
 
-    V_{n+1} (w_i) = u(w_i) + \beta [(1-\alpha)V_n (w_i) + \alpha U_n ]
+    e_{n+1} (w) = u(w) + \beta [(1-\alpha) e_n (w) + \alpha h_n ]
 
 
 and
@@ -203,15 +203,15 @@ and
 .. math::
     :label: bell2001
 
-    U_{n+1} = u(c) + 
-        \beta (1 - \gamma) U_n
-         + \beta \gamma \sum_i \max \{ U_n, V_n(w_i) \} p_i
+    h_{n+1} = u(c) + 
+        \beta (1 - \gamma) h_n
+         + \beta \gamma \sum_{w'} \max \{ h_n, e_n(w') \} \phi (w')
 
 
-starting from some initial conditions :math:`U_0, V_0`
+starting from some initial conditions :math:`h_0, e_0`
 
 As before, the system always converges to the true solutions---in this case,
-the :math:`V` and :math:`U` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`
+the :math:`e` and :math:`h` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`
 
 A proof can be obtained via the Banach contraction mapping theorem
 
@@ -231,28 +231,127 @@ This helps to tidy up the code and provides an object that's easy to pass to fun
 The default utility function is a CRRA utility function
 
 
-
 In places we use :ref:`just in time compilation via Numba <numba_link>` to achieve good performance
 
 
+.. code-block:: python3
+
+    import numpy as np
+    from quantecon.distributions import BetaBinomial
+    from numba import jit
+    import matplotlib.pyplot as plt
+    
+
+    # A default utility function
+
+    @jit
+    def u(c, σ):
+        if c > 0:
+            return (c**(1 - σ) - 1) / (1 - σ)
+        else:
+            return -10e6
 
 
-.. literalinclude:: /_static/code/mccall/mccall_bellman_iteration.py
+    class McCallModel:
+        """
+        Stores the parameters and functions associated with a given model.
+        """
 
+        def __init__(self, 
+                     α=0.2,        # Job separation rate
+                     β=0.98,       # Discount rate
+                     γ=0.7,        # Job offer rate
+                     c=6.0,        # Unemployment compensation
+                     σ=2.0,        # Utility parameter
+                     w_vals=None,  # Possible wage values
+                     ϕ_vals=None): # Probabilities over w_vals
+
+            self.α, self.β, self.γ, self.c = α, β, γ, c
+            self.σ = σ
+
+            # Add a default wage vector and probabilities over the vector using
+            # the beta-binomial distribution
+            if w_vals is None:
+                n = 60  # number of possible outcomes for wage
+                self.w_vals = np.linspace(10, 20, n)     # wages between 10 and 20
+                a, b = 600, 400  # shape parameters
+                dist = BetaBinomial(n-1, a, b)
+                self.ϕ_vals = dist.pdf()  
+            else:
+                self.w_vals = w_vals
+                self.ϕ_vals = ϕ_vals
+
+    @jit
+    def _update_bellman(α, β, γ, c, σ, w_vals, ϕ_vals, e, e_new, h):
+        """
+        A jitted function to update the Bellman equations.  Note that e_new is
+        modified in place (i.e, modified by this function).  The new value of h is
+        returned.
+
+        """
+        for w_idx, w in enumerate(w_vals):
+            # w_idx indexes the vector of possible wages
+            e_new[w_idx] = u(w, σ) + β * ((1 - α) * e[w_idx] + α * h)
+
+        h_new = u(c, σ) + β * (1 - γ) * h + \
+                        β * γ * np.sum(np.maximum(h, e) * ϕ_vals)
+
+        return h_new
+
+
+    def solve_mccall_model(mcm, tol=1e-5, max_iter=2000):
+        """
+        Iterates to convergence on the Bellman equations
+        
+        mcm is an instance of McCallModel
+        """
+
+        e = np.ones_like(mcm.w_vals) # Initial guess of e
+        e_new = np.empty_like(e)     # To store updates to e
+        h = 1                        # Initial guess of h
+        i = 0
+        error = tol + 1
+
+        while error > tol and i < max_iter:
+            h_new = _update_bellman(mcm.α, mcm.β, mcm.γ, 
+                    mcm.c, mcm.σ, mcm.w_vals, mcm.ϕ_vals, e, e_new, h)
+            error_1 = np.max(np.abs(e_new - e))
+            error_2 = np.abs(h_new - h)
+            error = max(error_1, error_2)
+            e[:] = e_new
+            h = h_new
+            i += 1
+
+        return e, h
+
+ 
 
 The approach is to iterate until successive iterates are closer together than some small tolerance level
 
 We then return the current iterate as an approximate solution
 
-Let's plot the approximate solutions :math:`U` and :math:`V` to see what they look like
+Let's plot the approximate solutions :math:`h` and :math:`e` to see what they look like
 
 We'll use the default parameterizations found in the code above
 
 
-.. literalinclude:: /_static/code/mccall/mccall_vf_plot1.py
+.. code-block:: python3
+
+    mcm = McCallModel()
+    e, h = solve_mccall_model(mcm)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    ax.plot(mcm.w_vals, e, 'b-', lw=2, alpha=0.7, label='$e$')
+    ax.plot(mcm.w_vals, [h]*len(mcm.w_vals), 'g-', lw=2, alpha=0.7, label='$h$')
+    ax.set_xlim(min(mcm.w_vals), max(mcm.w_vals))
+    ax.legend()
+    ax.grid()
+
+    plt.show()
 
 
-The value :math:`V` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed
+The value :math:`e` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed
 
 
 
@@ -260,15 +359,15 @@ The value :math:`V` is increasing because higher :math:`w` generates a higher wa
 The Reservation Wage
 =======================
 
-Once :math:`V` and :math:`U` are known, the agent can use them to make decisions in the face of a given wage offer
+Once :math:`e` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer
 
-If :math:`V(w) > U`, then working at wage :math:`w` is preferred to unemployment
+If :math:`e(w) > h`, then working at wage :math:`w` is preferred to unemployment
 
-If :math:`V(w) < U`, then remaining unemployed will generate greater lifetime value
+If :math:`e(w) < h`, then remaining unemployed will generate greater lifetime value
 
-Suppose in particular that :math:`V` crosses :math:`U` (as it does in the preceding figure)
+Suppose in particular that :math:`e` crosses :math:`h` (as it does in the preceding figure)
 
-Then, since :math:`V` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`V(w) \geq U`
+Then, since :math:`e` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`e(w) \geq h`
 
 We denote this wage :math:`\bar w` and call it the reservation wage
 
@@ -280,11 +379,33 @@ Optimal behavior for the worker is characterized by :math:`\bar w`
 
 Here's a function called `compute_reservation_wage` that takes an instance of a McCall model and returns the reservation wage associated with a given model
 
-It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ to obtain the first :math:`w` in the set of possible wages such that :math:`V(w) > U`
+It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ to obtain the first :math:`w` in the set of possible wages such that :math:`e(w) > h`
 
-If :math:`V(w) < U` for all :math:`w`, then the function returns `np.inf`
+If :math:`e(w) < h` for all :math:`w`, then the function returns `np.inf`
 
-.. literalinclude:: /_static/code/mccall/compute_reservation_wage.py
+.. code-block:: python3
+
+    def compute_reservation_wage(mcm, return_values=False):
+        """
+        Computes the reservation wage of an instance of McCallModel
+        by finding the smallest w such that e(w) > h.
+            
+        """
+
+        e, h = solve_mccall_model(mcm)
+        w_idx = np.searchsorted(e - h, 0)  
+
+        if w_idx == len(e):
+            # If e(w) < h for all w, set w_bar to np.inf.
+            w_bar = np.inf
+        else:
+            # Set to lowest wage
+            w_bar = mcm.w_vals[w_idx]
+
+        if return_values == False:
+            return w_bar
+        else:
+            return w_bar, e, h
 
 
 Let's use it to look at how the reservation wage varies with parameters
@@ -385,7 +506,29 @@ Using the `compute_reservation_wage` function mentioned earlier in the lecture,
 we can create an array for reservation wages for different values of :math:`c`,
 :math:`\beta` and :math:`\alpha` and plot the results like so
 
-.. literalinclude:: /_static/code/mccall/mccall_resw_c.py
+.. code-block:: python3
+
+    grid_size = 25  
+    c_vals = np.linspace(2, 12, grid_size)  # values of unemployment compensation
+    w_bar_vals = np.empty_like(c_vals)
+
+    mcm = McCallModel()
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    for i, c in enumerate(c_vals):
+        mcm.c = c
+        w_bar = compute_reservation_wage(mcm)
+        w_bar_vals[i] = w_bar
+
+    ax.set_xlabel('unemployment compensation')
+    ax.set_ylabel('reservation wage')
+    txt = r'$\bar w$ as a function of $c$'
+    ax.plot(c_vals, w_bar_vals, 'b-', lw=2, alpha=0.7, label=txt)
+    ax.legend()
+    ax.grid()
+
+    plt.show()
 
 
 Exercise 2
@@ -393,7 +536,31 @@ Exercise 2
 
 Similar to above, we can plot :math:`\bar w` against :math:`\gamma` as follows
 
-.. literalinclude:: /_static/code/mccall/mccall_resw_gamma.py
+.. code-block:: python3
+
+    grid_size = 25  
+    γ_vals = np.linspace(0.05, 0.95, grid_size)  
+    w_bar_vals = np.empty_like(γ_vals)
+
+    mcm = McCallModel()
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    for i, γ in enumerate(γ_vals):
+        mcm.γ = γ
+        w_bar = compute_reservation_wage(mcm)
+        w_bar_vals[i] = w_bar
+
+    ax.set_xlabel('job offer rate')
+    ax.set_ylabel('reservation wage')
+    ax.set_xlim(γ_vals.min(), γ_vals.max())
+    txt = r'$\bar w$ as a function of $\gamma$'
+    ax.plot(γ_vals, w_bar_vals, 'b-', lw=2, alpha=0.7, label=txt)
+    ax.legend()
+    ax.grid()
+
+    plt.show()
+
 
 
 As expected, the reservation wage increases in :math:`\gamma`
