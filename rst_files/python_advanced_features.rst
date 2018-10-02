@@ -54,18 +54,15 @@ For example, file objects are iterators
 To see this, let's have another look at the :ref:`US cities data <us_cities_data>` 
 
 .. code-block:: python3
-    :class: no-execute
 
     f = open('us_cities.txt')
     f.__next__()
     
 .. code-block:: none
-    :class: no-execute
     
     'new york: 8244910\n'
     
 .. code-block:: python3
-    :class: no-execute
 
     f.__next__()
     
@@ -79,7 +76,6 @@ The next method can also be accessed via the builtin function ``next()``,
 which directly calls this method
 
 .. code-block:: python3
-    :class: no-execute
 
     next(f)
     
@@ -101,7 +97,6 @@ The objects returned by ``enumerate()`` are also iterators
 as are the reader objects from the ``csv`` module 
 
 .. code-block:: python3
-    :class: no-execute
 
     from csv import reader
 
@@ -110,7 +105,6 @@ as are the reader objects from the ``csv`` module
     next(nikkei_data)
     
 .. code-block:: python3
-    :class: no-execute
 
     next(nikkei_data)
 
@@ -126,7 +120,6 @@ All iterators can be placed to the right of the ``in`` keyword in ``for`` loop s
 In fact this is how the ``for`` loop works:  If we write
 
 .. code-block:: python3
-    :class: no-execute
 
     for x in iterator:
         <code block>
@@ -140,7 +133,6 @@ then the interpreter
 So now you know how this magical looking syntax works
 
 .. code-block:: python3
-    :class: no-execute
 
     f = open('somefile.txt', 'r')
     for line in f:
@@ -181,7 +173,6 @@ The answer is no:
     
     
 .. code-block:: python3
-    :class: no-execute
 
     next(x)
     
@@ -224,7 +215,6 @@ Lists are one such object
     next(y)
     
 .. code-block:: python3
-    :class: no-execute
 
     next(y)
     
@@ -243,7 +233,6 @@ Many other objects are iterable, such as dictionaries and tuples
 Of course, not all objects are iterable 
 
 .. code-block:: python3
-    :class: no-execute
 
     iter(42)
     
@@ -301,7 +290,6 @@ One thing to remember about iterators is that they are depleted by use
 
 
 .. code-block:: python3
-    :class: no-execute
     
     max(y)
     
@@ -417,7 +405,6 @@ To see this in action, suppose we write a script ``math2.py`` like this
 Now we start the Python interpreter and import it 
 
 .. code-block:: python3
-    :class: no-execute
 
     import math2
 
@@ -434,7 +421,6 @@ Both of these modules have an attribute called ``pi``
     math.pi
     
 .. code-block:: python3
-    :class: no-execute
 
     math2.pi
     
@@ -453,7 +439,6 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     math.__dict__
     
 .. code-block:: python3
-    :class: no-execute
 
     import math2
 
@@ -539,17 +524,14 @@ To see this, let's create a file ``mod.py`` that prints its own ``__name__`` att
 Now let's look at two different ways of running it in IPython 
 
 .. code-block:: python3
-    :class: no-execute
 
     import mod  # Standard import
     
 .. code-block:: none
-    :class: no-execute
     
     mod
     
 .. code-block:: ipython
-    :class: no-execute
     
     %run mod.py  # Run interactively
 
@@ -592,7 +574,6 @@ We are now working in the module ``__main__``, and hence the namespace for ``__m
 Next, we import a module called ``amodule`` 
 
 .. code-block:: python3
-    :class: no-execute
 
     import amodule
 
@@ -758,7 +739,6 @@ Consider a script ``test.py`` that looks as follows
 What happens when we run this script?  
 
 .. code-block:: ipython
-    :class: no-execute
 
     %run test.py
     
@@ -767,7 +747,6 @@ What happens when we run this script?
     a = 0 y = 11
 
 .. code-block:: python3
-    :class: no-execute
 
     x
     
@@ -923,7 +902,6 @@ If we run this with an array of length one, the program will terminate and
 print our error message
 
 .. code-block:: python3
-    :class: no-execute
 
     var([1])
     
@@ -971,7 +949,6 @@ Exceptions
 Here's an example of a common error type
 
 .. code-block:: python3
-    :class: no-execute
     
     def f:
 
@@ -988,7 +965,6 @@ Since illegal syntax cannot be executed, a syntax error terminates execution of 
 Here's a different kind of error, unrelated to syntax
 
 .. code-block:: python3
-    :class: no-execute
 
     1 / 0
     
@@ -1004,7 +980,6 @@ Here's a different kind of error, unrelated to syntax
 Here's another
 
 .. code-block:: python3
-    :class: no-execute
 
     x1 = y1
     
@@ -1021,7 +996,6 @@ Here's another
 And another
 
 .. code-block:: python3
-    :class: no-execute
 
     'foo' + 6
     
@@ -1037,7 +1011,6 @@ And another
 And another
 
 .. code-block:: python3
-    :class: no-execute
 
     X = []
     x = X[0]
@@ -1636,7 +1609,6 @@ Let's see how it works after running this code
     next(gen)
     
 .. code-block:: python3
-    :class: no-execute
 
     next(gen)
     
@@ -1712,7 +1684,6 @@ Let's see how it works
     next(gen)
     
 .. code-block:: python3
-    :class: no-execute
     
     next(gen)
     
@@ -1781,7 +1752,6 @@ This uses lots of memory and is very slow
 If we make ``n`` even bigger then this happens
 
 .. code-block:: python3
-    :class: no-execute
 
     n = 1000000000
     draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
@@ -1910,7 +1880,6 @@ Complete the following code, and test it using `this csv file <https://github.co
 
 
 .. code-block:: python3
-    :class: no-execute
 
     def column_iterator(target_file, column_number):
         """A generator function for CSV files.
