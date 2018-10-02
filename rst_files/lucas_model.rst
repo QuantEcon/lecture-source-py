@@ -414,8 +414,7 @@ Let's try this when :math:`\ln y_{t+1} = \alpha \ln y_t + \sigma \epsilon_{t+1}`
 
 Utility will take the isoelastic form :math:`u(c) = c^{1-\gamma}/(1-\gamma)`, where :math:`\gamma > 0` is the coefficient of relative risk aversion
 
-We will set up a `LucasTree` class to hold parameters of the model and a guess
-of the initial value function
+We will set up a `LucasTree` class to hold parameters of the model
 
 .. code-block:: python3
 
@@ -428,8 +427,7 @@ of the initial value function
 
     class LucasTree:
         """
-        Class to store parameters of a the Lucas tree model, a grid for the
-        iteration step and some other helpful bits and pieces.
+        Class to store parameters of a the Lucas tree model.
 
         """
 
@@ -457,9 +455,8 @@ of the initial value function
             self.h = np.empty(self.grid_size)
             for i, y in enumerate(self.grid):
                 self.h[i] = β * np.mean((y**α * self.draws)**(1 - γ))
+            
                 
-            self.f_guess = np.empty_like(self.grid)
-
 The following function takes an instance of the `LucasTree` and generates a
 jitted version of the Lucas operator
 
@@ -515,7 +512,7 @@ to find the fixed point
         T = operator_factory(tree)
 
         i = 0
-        f = tree.f_guess  # Initial guess of f
+        f = np.empty_like(grid)  # Initial guess of f
         error = tol + 1
         while error > tol and i < max_iter:
             Tf = T(f)
@@ -523,7 +520,6 @@ to find the fixed point
             f = Tf
             i += 1
             
-        tree.f_guess = f     # Update guess of f
         price = f * grid**γ  # Back out price vector
 
         return price
