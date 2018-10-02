@@ -79,7 +79,7 @@ A young worker aims to maximize the expected sum of discounted wages
 
 subject to the choice restrictions specified above
 
-Let :math:`V(\theta, \epsilon)` denote the value function, which is the
+Let :math:`v(\theta, \epsilon)` denote the value function, which is the
 maximum of :eq:`exw` over all feasible (career, job) policies, given the
 initial state :math:`(\theta, \epsilon)`
 
@@ -87,7 +87,7 @@ The value function obeys
 
 .. math::
 
-    V(\theta, \epsilon) = \max\{I, II, III\},
+    v(\theta, \epsilon) = \max\{I, II, III\}
 
 
 where
@@ -96,9 +96,9 @@ where
     :label: eyes
 
     \begin{aligned}
-    & I = \theta + \epsilon + \beta V(\theta, \epsilon) \\
-    & II = \theta + \int \epsilon' G(d \epsilon') + \beta \int V(\theta, \epsilon') G(d \epsilon') \nonumber \\
-    & III = \int \theta' F(d \theta') + \int \epsilon' G(d \epsilon') + \beta \int \int V(\theta', \epsilon') G(d \epsilon') F(d \theta') \nonumber
+    & I = \theta + \epsilon + \beta v(\theta, \epsilon) \\
+    & II = \theta + \int \epsilon' G(d \epsilon') + \beta \int v(\theta, \epsilon') G(d \epsilon') \nonumber \\
+    & III = \int \theta' F(d \theta') + \int \epsilon' G(d \epsilon') + \beta \int \int v(\theta', \epsilon') G(d \epsilon') F(d \theta') \nonumber
     \end{aligned}
 
 
@@ -109,13 +109,15 @@ Parameterization
 
 As in :cite:`Ljungqvist2012`, section 6.5, we will focus on a discrete version of the model, parameterized as follows:
 
-* both :math:`\theta` and :math:`\epsilon` take values in the set ``np.linspace(0, B, N)`` --- an even grid of :math:`N` points between :math:`0` and :math:`B` inclusive
-* :math:`N = 50`
+* both :math:`\theta` and :math:`\epsilon` take values in the set 
+  ``np.linspace(0, B, grid_size)`` --- an even grid of points between 
+  :math:`0` and :math:`B` inclusive
+* :math:`grid_size = 50`
 * :math:`B = 5`
 * :math:`\beta = 0.95`
 
 The distributions :math:`F` and :math:`G` are discrete distributions
-generating draws from the grid points ``np.linspace(0, B, N)``
+generating draws from the grid points ``np.linspace(0, B, grid_size)``
 
 A very useful family of discrete distributions is the Beta-binomial family,
 with probability mass function
@@ -192,34 +194,34 @@ value function and optimal policy respectively
     class CareerWorkerProblem:
 
         def __init__(self, 
-                     B=5.0,  # Upper bound
-                     β=0.95, # Discount factor
-                     N=50,   # Grid size
+                     B=5.0,          # Upper bound
+                     β=0.95,         # Discount factor
+                     grid_size=50,   # Grid size
                      F_a=1,
                      F_b=1, 
                      G_a=1,
                      G_b=1):
             
-            self.β, self.N, self.B = β, N, B
-            self.θ = np.linspace(0, B, N)     # set of θ values
-            self.ϵ = np.linspace(0, B, N)     # set of ϵ values
-            self.F_probs = BetaBinomial(N-1, F_a, F_b).pdf()
-            self.G_probs = BetaBinomial(N-1, G_a, G_b).pdf()
+            self.β, self.grid_size, self.B = β, grid_size, B
+            
+            self.θ = np.linspace(0, B, grid_size)     # set of θ values
+            self.ϵ = np.linspace(0, B, grid_size)     # set of ϵ values
+            
+            self.F_probs = BetaBinomial(grid_size - 1, F_a, F_b).pdf()
+            self.G_probs = BetaBinomial(grid_size - 1, G_a, G_b).pdf()
             self.F_mean = np.sum(self.θ * self.F_probs)
             self.G_mean = np.sum(self.ϵ * self.G_probs)
 
             # Store these parameters for str and repr methods
             self._F_a, self._F_b = F_a, F_b
             self._G_a, self._G_b = G_a, G_b
-            
-            self.v_guess = np.ones((N, N)) * 100  # Initial guess for value function
-  
+              
   
 The following function takes and instance of `CareerWorkerProblem` and returns
 the Bellman operator :math:`T` and the greedy policy function
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
-:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`, replacing :math:`V` with :math:`v`
+:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
           
 .. code-block:: python3
 
@@ -285,7 +287,7 @@ iterate using the Bellman operator to find the fixed point of the value function
         T, _ = operator_factory(cw, parallel_flag=use_parallel)
 
         # Set up loop
-        v = cw.v_guess
+        v = np.ones((cw.grid_size, cw.grid_size)) * 100  # Initial guess
         i = 0
         error = tol + 1
 
@@ -302,8 +304,6 @@ iterate using the Bellman operator to find the fixed point of the value function
 
         if verbose and i < max_iter:
             print(f"\nConverged in {i} iterations.")
-
-        cw.v_guess = v_new  # Update guess for the value function
 
         return v_new
 
