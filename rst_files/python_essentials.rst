@@ -155,15 +155,6 @@ But tuples are not
     x = (1, 2)  
     x[0] = 10  
 
-.. code-block:: none
-
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <python-input-21-6cb4d74ca096> in <module>()
-    ----> 1 x[0]=10
-
-    TypeError: 'tuple' object does not support item assignment
-
 
 We'll say more about the role of mutable and immutable data a bit later
 
@@ -696,30 +687,9 @@ After running this code, the docstring is available
 
     f?
 
-.. code-block:: none
-
-    Type:       function
-    String Form:<function f at 0x2223320>
-    File:       /home/john/temp/temp.py
-    Definition: f(x)
-    Docstring:  This function squares its argument
-
 .. code-block:: ipython
 
     f??
-
-.. code-block:: none
-
-    Type:       function
-    String Form:<function f at 0x2223320>
-    File:       /home/john/temp/temp.py
-    Definition: f(x)
-    Source:
-    def f(x):
-        """
-        This function squares its argument
-        """
-        return x**2
 
 
 With one question mark we bring up the docstring, and with two we get the source code as well
