@@ -58,17 +58,11 @@ To see this, let's have another look at the :ref:`US cities data <us_cities_data
     f = open('us_cities.txt')
     f.__next__()
     
-.. code-block:: none
-    
-    'new york: 8244910\n'
     
 .. code-block:: python3
 
     f.__next__()
     
-.. code-block:: none
-    
-    'los angeles: 3819702\n'
 
 We see that file objects do indeed have a ``__next__`` method, and that calling this method returns the next line in the file
 
@@ -78,10 +72,6 @@ which directly calls this method
 .. code-block:: python3
 
     next(f)
-    
-.. code-block:: none
-    
-    'chicago: 2707120 \n'
 
 The objects returned by ``enumerate()`` are also iterators 
 
@@ -175,15 +165,6 @@ The answer is no:
 .. code-block:: python3
 
     next(x)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-17-5e4e57af3a97> in <module>()
-    ----> 1 next(x)
-
-    TypeError: 'list' object is not an iterator
 
 
 So why can we iterate over a list in a ``for`` loop?
@@ -216,16 +197,7 @@ Lists are one such object
     
 .. code-block:: python3
 
-    next(y)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-62-75a92ee8313a> in <module>()
-    ----> 1 y.next()
-
-    StopIteration:         
+    next(y)    
 
 
 Many other objects are iterable, such as dictionaries and tuples
@@ -235,15 +207,6 @@ Of course, not all objects are iterable
 .. code-block:: python3
 
     iter(42)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-63-826bbd6e91fc> in <module>()
-    ----> 1 iter(42)
-
-    TypeError: 'int' object is not iterable
 
 
 To conclude our discussion of ``for`` loops
@@ -292,15 +255,6 @@ One thing to remember about iterators is that they are depleted by use
 .. code-block:: python3
     
     max(y)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    ValueError                                Traceback (most recent call last)
-    <ipython-input-72-1d3b6314f310> in <module>()
-    ----> 1 max(y)
-
-    ValueError: max() arg is an empty sequence
 
 
 .. _name_res:
@@ -424,9 +378,6 @@ Both of these modules have an attribute called ``pi``
 
     math2.pi
     
-.. code-block:: none
-    
-    'foobar'
 
 These two different bindings of ``pi`` exist in different namespaces, each one implemented as a dictionary
 
@@ -443,10 +394,6 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     import math2
 
     math2.__dict__
-    
-.. code-block:: none
-    
-    {..., '__file__': 'math2.py', 'pi': 'foobar',...}  # Edited output
 
 
 As you know, we access elements of the namespace using the dotted attribute notation 
@@ -526,18 +473,12 @@ Now let's look at two different ways of running it in IPython
 .. code-block:: python3
 
     import mod  # Standard import
-    
-.. code-block:: none
-    
-    mod
+
     
 .. code-block:: ipython
     
     %run mod.py  # Run interactively
 
-.. code-block:: none
-
-    __main__
   
 In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
 
@@ -742,22 +683,11 @@ What happens when we run this script?
 
     %run test.py
     
-.. code-block:: none
-    
-    a = 0 y = 11
 
 .. code-block:: python3
 
     x
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-2-401b30e3b8b5> in <module>()
-    ----> 1 x
-
-    NameError: name 'x' is not defined
 
 First,
 
@@ -905,21 +835,6 @@ print our error message
 
     var([1])
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    <ipython-input-20-0032ff8a150f> in <module>()
-    ----> 1 var([1])
-
-    <ipython-input-19-cefafaec3555> in var(y)
-          1 def var(y):
-          2     n = len(y)
-    ----> 3     assert n > 1, 'Sample size must be greater than one.'
-          4     return np.sum((y - y.mean())**2) / float(n-1)
-
-    AssertionError: Sample size must be greater than one.
-
 
 The advantage is that we can
 
@@ -952,12 +867,7 @@ Here's an example of a common error type
     
     def f:
 
-.. code-block:: none
-    
-      File "<ipython-input-5-f5bdb6d29788>", line 1
-        def f:
-            ^
-    SyntaxError: invalid syntax
+
 
 
 Since illegal syntax cannot be executed, a syntax error terminates execution of the program
@@ -968,14 +878,6 @@ Here's a different kind of error, unrelated to syntax
 
     1 / 0
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    ZeroDivisionError                         Traceback (most recent call last)
-    <ipython-input-17-05c9758a9c21> in <module>()
-    ----> 1 1/0
-
-    ZeroDivisionError: integer division or modulo by zero
 
 Here's another
 
@@ -983,14 +885,6 @@ Here's another
 
     x1 = y1
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-23-142e0509fbd6> in <module>()
-    ----> 1 x1 = y1
-
-    NameError: name 'y1' is not defined
 
 
 And another
@@ -999,14 +893,6 @@ And another
 
     'foo' + 6
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-20-44bbe7e963e7> in <module>()
-    ----> 1 'foo' + 6
-
-    TypeError: cannot concatenate 'str' and 'int' objects
 
 And another
 
@@ -1015,16 +901,6 @@ And another
     X = []
     x = X[0]
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    IndexError                                Traceback (most recent call last)
-    <ipython-input-22-018da6d9fc14> in <module>()
-    ----> 1 x = X[0]
-
-    IndexError: list index out of range
-
-
 
 On each occasion, the interpreter informs us of the error type
 
@@ -1612,14 +1488,6 @@ Let's see how it works after running this code
 
     next(gen)
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-21-b2c61ce5e131> in <module>()
-    ----> 1 gen.next()
-
-    StopIteration:
 
 
 
@@ -1687,14 +1555,7 @@ Let's see how it works
     
     next(gen)
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-32-b2c61ce5e131> in <module>()
-    ----> 1 gen.next()
 
-    StopIteration:
 
 
 The call ``gen = g(2)`` binds ``gen`` to a generator
@@ -1756,12 +1617,6 @@ If we make ``n`` even bigger then this happens
     n = 1000000000
     draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    MemoryError                               Traceback (most recent call last)
-    <ipython-input-9-20d1ec1dae24> in <module>()
-    ----> 1 draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
 
 We can avoid these problems using iterators
 
