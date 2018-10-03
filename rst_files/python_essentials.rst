@@ -151,7 +151,6 @@ Python lists are mutable
 But tuples are not
 
 .. code-block:: python3
-    :class: no-execute
 
     x = (1, 2)  
     x[0] = 10  
@@ -332,7 +331,6 @@ Note that if ``newfile.txt`` is not in the present working directory then this c
 In this case you can shift the file to the pwd or specify the `full path <https://en.wikipedia.org/wiki/Path_%28computing%29>`_ to the file
 
 .. code-block:: python3
-    :class: no-execute
 
     f = open('insert_full_path_to_file/newfile.txt', 'r')
 
@@ -779,7 +777,6 @@ Keyword Arguments
 If you did the exercises in the :ref:`previous lecture <python_by_example>`, you would have come across the statement
 
 .. code-block:: python3
-    :class: no-execute
 
     plt.plot(x, 'b-', label="white noise")
 
