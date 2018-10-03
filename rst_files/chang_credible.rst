@@ -575,11 +575,8 @@ initial set :math:`Z_0`
 This structure delivers the following recursive representation of a
 sustainable outcome:
 
-   (1) choose an initial
-   :math:`(w_0, \theta_0) \in S`;
-
-   (2) generate a sustainable outcome
-   recursively by iterating on :eq:`chang501`, which we repeat here for convenience:
+i.  choose an initial :math:`(w_0, \theta_0) \in S`;
+ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, which we repeat here for convenience:
 
    .. math::
     \hat h_t & = h(w_t,\theta_t) \\
