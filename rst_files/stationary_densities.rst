@@ -888,7 +888,6 @@ Use the same parameters
 For the four initial distributions, use the shifted beta distributions
 
 .. code-block:: python3
-    :class: no-execute
 
     ψ_0 = beta(5, 5, scale=0.5, loc=i*2)
 
@@ -948,7 +947,6 @@ In particular, the exercise is to generate `J` boxplot figures, one for each ini
 
 
 .. code-block:: python3
-    :class: no-execute
 
     initial_conditions = np.linspace(8, 0, J)
 
