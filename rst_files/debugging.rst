@@ -126,23 +126,7 @@ We run the first cell block again, generating the same error
 
     plot_log()  # Call the function, generate plot
 
-.. code-block:: none
 
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    <ipython-input-1-ef5c75a58138> in <module>()
-          8     plt.show()
-          9 
-    ---> 10 plot_log()  # Call the function, generate plot
-
-    <ipython-input-1-ef5c75a58138> in plot_log()
-          5     fig, ax = plt.subplots(2, 1)
-          6     x = np.linspace(1, 2, 10)
-    ----> 7     ax.plot(x, np.log(x))
-          8     plt.show()
-          9 
-
-    AttributeError: 'numpy.ndarray' object has no attribute 'plot'
 
 But this time we type in the following cell block
 
