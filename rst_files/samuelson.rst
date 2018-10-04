@@ -328,10 +328,7 @@ We want to have a method in the class that automatically generates a simulation,
 
 We also show how to map the Samuelson model into a simple instance of the `LinearStateSpace` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__
 
-We can use a `LinearStateSpace` instance to do various things that we did above with
-   our homemade function and class
-   
-Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the `LinearStateSpace` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
+We can use a `LinearStateSpace` instance to do various things that we did above with our homemade function and class Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the `LinearStateSpace` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
    
 Here is the formula for the matrix :math:`A` in the linear state space system in the case that government expenditures are a constant :math:`G`:
 
