@@ -418,3 +418,5 @@ jupyter_allow_html_only = True
 
 #Adjust links to target html (rather than ipynb)
 jupyter_target_html = True
+
+jupyter_lang_synonyms = ["ipython"]
