@@ -416,8 +416,5 @@ jupyter_welcome_block = ""
 #Allow .. only:: html pass through 
 jupyter_allow_html_only = True
 
-# For Index Support
-jupyter_contents_droplevel = True
-
 #Adjust links to target html (rather than ipynb)
 jupyter_target_html = True
