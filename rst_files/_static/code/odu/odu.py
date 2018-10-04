@@ -63,7 +63,7 @@ class SearchProblem:
         self.w_grid = np.linspace(0, w_max, w_grid_size)
         self.π_grid = np.linspace(self.π_min, self.π_max, π_grid_size)
         x, y = np.meshgrid(self.w_grid, self.π_grid)
-        self.grid_points = np.column_stack((x.ravel(1), y.ravel(1)))
+        self.grid_points = np.column_stack((x.ravel(order='F'), y.ravel(order='F')))
 
 
     def q(self, w, π):
