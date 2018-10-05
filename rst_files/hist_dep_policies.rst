@@ -695,12 +695,6 @@ The next figure uses the program to compute and show the Ramsey plan for :math:`
     
 
 
-
-.. _fig_ES_plot_1:
-
-.. figure:: /_static/figures/evans_sargent_plot1_updated.png
-    :scale: 100%
-
 From top to bottom, the panels show :math:`Q_t`, :math:`\tau_t` and :math:`u_t := Q_{t+1} - Q_t` over :math:`t=0, \ldots, 15`
 
 The optimal decision rule is [#fn_e]_
@@ -905,11 +899,6 @@ The difference :math:`\Delta \tau_t := \check{\tau_t} -  \tau_t` is shown in the
     plt.show()
 
 
-
-.. _fig_ES_plot_2:
-
-.. figure:: /_static/figures/evans_sargent_plot2_updated.png
-    :scale: 75%
 
 
 In the second panel we compare the time :math:`t` outcome for :math:`u_t` under the original Ramsey plan with the time :math:`t` value of this new Ramsey problem starting from :math:`(Q_t, G_t)`
