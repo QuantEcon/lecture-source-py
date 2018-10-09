@@ -140,7 +140,7 @@ Nice properties:
 
 Here's a figure showing the effect of different shape parameters when :math:`n=50`
 
-
+.. _beta-binom:
 
 .. code-block:: python3
 

@@ -516,7 +516,7 @@ Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1)
 
 
 These spectral densities correspond to the autocovariance functions for the
-AR(1) process :ref:`shown above <ar1_acov>`
+AR(1) process shown above
 
 Informally, we think of the spectral density as being large at those :math:`\omega \in [0, \pi]` at which
 the autocovariance function seems approximately to exhibit big damped cycles
