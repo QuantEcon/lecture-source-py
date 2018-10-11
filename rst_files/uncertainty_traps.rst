@@ -2,12 +2,13 @@
 
 .. include:: /_static/includes/lecture_howto_py.raw
 
+.. highlight:: python3
+
 ***************************************
 Uncertainty Traps
 ***************************************
 
-.. highlight:: python3
-
+.. contents:: :depth: 2
 
 Overview
 ============
