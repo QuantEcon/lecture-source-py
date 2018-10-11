@@ -95,7 +95,6 @@ This works fine but for large :math:`n` it is slow
 Here's a C function that will do the same thing
 
 .. code-block:: c
-    :class: no-execute
 
     double geo_prog(double alpha, int n) {
         double current = 1.0;
