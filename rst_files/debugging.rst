@@ -49,7 +49,6 @@ The ``debug`` Magic
 Let's consider a simple (and rather contrived) example
 
 .. code-block:: python3
-    :class: no-execute
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -115,7 +114,6 @@ Let's try doing it a different way
 We run the first cell block again, generating the same error
 
 .. code-block:: python3
-    :class: no-execute
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -128,35 +126,17 @@ We run the first cell block again, generating the same error
 
     plot_log()  # Call the function, generate plot
 
-.. code-block:: none
 
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    <ipython-input-1-ef5c75a58138> in <module>()
-          8     plt.show()
-          9 
-    ---> 10 plot_log()  # Call the function, generate plot
-
-    <ipython-input-1-ef5c75a58138> in plot_log()
-          5     fig, ax = plt.subplots(2, 1)
-          6     x = np.linspace(1, 2, 10)
-    ----> 7     ax.plot(x, np.log(x))
-          8     plt.show()
-          9 
-
-    AttributeError: 'numpy.ndarray' object has no attribute 'plot'
 
 But this time we type in the following cell block
 
 .. code-block:: ipython
-    :class: no-execute
 
     %debug
 
 You should be dropped into a new prompt that looks something like this
 
 .. code-block:: ipython
-    :class: no-execute
 
     ipdb> 
 
@@ -168,7 +148,6 @@ For example, here we simply type the name ``ax`` to see what's happening with
 this object:
 
 .. code-block:: ipython
-    :class: no-execute
 
     ipdb> ax
     array([<matplotlib.axes.AxesSubplot object at 0x290f5d0>,
@@ -181,7 +160,6 @@ To find out what else you can do from inside ``ipdb`` (or ``pdb``), use the
 online help
 
 .. code-block:: ipython
-    :class: no-execute
 
     ipdb> h
 
@@ -237,7 +215,6 @@ To investigate, it would be helpful if we could inspect variables like ``x`` dur
 To this end , we add a "break point" by inserting the line ``from IPython.core.debugger import Tracer; Tracer()()`` inside the function code block
 
 .. code-block:: python3
-    :class: no-execute
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -255,7 +232,6 @@ To this end , we add a "break point" by inserting the line ``from IPython.core.d
 Now let's run the script, and investigate via the debugger
 
 .. code-block:: python3
-    :class: no-execute
 
     > <ipython-input-5-c5864f6d184b>(6)plot_log()
           4 def plot_log():
