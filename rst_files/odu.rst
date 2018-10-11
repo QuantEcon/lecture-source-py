@@ -784,8 +784,6 @@ As a result, the unemployment rate spikes
             if t == d:
                 a, b = F_a, F_b  # Change distribution parameters
 
-            total = 0
-
             # Update each agent
             for n in range(N):
                 if e[n, t] == 1:                    # If agent is currently employment
