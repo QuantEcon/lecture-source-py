@@ -54,24 +54,15 @@ For example, file objects are iterators
 To see this, let's have another look at the :ref:`US cities data <us_cities_data>` 
 
 .. code-block:: python3
-    :class: no-execute
 
     f = open('us_cities.txt')
     f.__next__()
     
-.. code-block:: none
-    :class: no-execute
-    
-    'new york: 8244910\n'
     
 .. code-block:: python3
-    :class: no-execute
 
     f.__next__()
     
-.. code-block:: none
-    
-    'los angeles: 3819702\n'
 
 We see that file objects do indeed have a ``__next__`` method, and that calling this method returns the next line in the file
 
@@ -79,13 +70,8 @@ The next method can also be accessed via the builtin function ``next()``,
 which directly calls this method
 
 .. code-block:: python3
-    :class: no-execute
 
     next(f)
-    
-.. code-block:: none
-    
-    'chicago: 2707120 \n'
 
 The objects returned by ``enumerate()`` are also iterators 
 
@@ -101,7 +87,6 @@ The objects returned by ``enumerate()`` are also iterators
 as are the reader objects from the ``csv`` module 
 
 .. code-block:: python3
-    :class: no-execute
 
     from csv import reader
 
@@ -110,7 +95,6 @@ as are the reader objects from the ``csv`` module
     next(nikkei_data)
     
 .. code-block:: python3
-    :class: no-execute
 
     next(nikkei_data)
 
@@ -126,7 +110,6 @@ All iterators can be placed to the right of the ``in`` keyword in ``for`` loop s
 In fact this is how the ``for`` loop works:  If we write
 
 .. code-block:: python3
-    :class: no-execute
 
     for x in iterator:
         <code block>
@@ -140,7 +123,6 @@ then the interpreter
 So now you know how this magical looking syntax works
 
 .. code-block:: python3
-    :class: no-execute
 
     f = open('somefile.txt', 'r')
     for line in f:
@@ -181,18 +163,8 @@ The answer is no:
     
     
 .. code-block:: python3
-    :class: no-execute
 
     next(x)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-17-5e4e57af3a97> in <module>()
-    ----> 1 next(x)
-
-    TypeError: 'list' object is not an iterator
 
 
 So why can we iterate over a list in a ``for`` loop?
@@ -224,18 +196,8 @@ Lists are one such object
     next(y)
     
 .. code-block:: python3
-    :class: no-execute
 
-    next(y)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-62-75a92ee8313a> in <module>()
-    ----> 1 y.next()
-
-    StopIteration:         
+    next(y)    
 
 
 Many other objects are iterable, such as dictionaries and tuples
@@ -243,18 +205,8 @@ Many other objects are iterable, such as dictionaries and tuples
 Of course, not all objects are iterable 
 
 .. code-block:: python3
-    :class: no-execute
 
     iter(42)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-63-826bbd6e91fc> in <module>()
-    ----> 1 iter(42)
-
-    TypeError: 'int' object is not iterable
 
 
 To conclude our discussion of ``for`` loops
@@ -301,18 +253,8 @@ One thing to remember about iterators is that they are depleted by use
 
 
 .. code-block:: python3
-    :class: no-execute
     
     max(y)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    ValueError                                Traceback (most recent call last)
-    <ipython-input-72-1d3b6314f310> in <module>()
-    ----> 1 max(y)
-
-    ValueError: max() arg is an empty sequence
 
 
 .. _name_res:
@@ -417,7 +359,6 @@ To see this in action, suppose we write a script ``math2.py`` like this
 Now we start the Python interpreter and import it 
 
 .. code-block:: python3
-    :class: no-execute
 
     import math2
 
@@ -434,13 +375,9 @@ Both of these modules have an attribute called ``pi``
     math.pi
     
 .. code-block:: python3
-    :class: no-execute
 
     math2.pi
     
-.. code-block:: none
-    
-    'foobar'
 
 These two different bindings of ``pi`` exist in different namespaces, each one implemented as a dictionary
 
@@ -453,15 +390,10 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     math.__dict__
     
 .. code-block:: python3
-    :class: no-execute
 
     import math2
 
     math2.__dict__
-    
-.. code-block:: none
-    
-    {..., '__file__': 'math2.py', 'pi': 'foobar',...}  # Edited output
 
 
 As you know, we access elements of the namespace using the dotted attribute notation 
@@ -539,23 +471,14 @@ To see this, let's create a file ``mod.py`` that prints its own ``__name__`` att
 Now let's look at two different ways of running it in IPython 
 
 .. code-block:: python3
-    :class: no-execute
 
     import mod  # Standard import
-    
-.. code-block:: none
-    :class: no-execute
-    
-    mod
+
     
 .. code-block:: ipython
-    :class: no-execute
     
     %run mod.py  # Run interactively
 
-.. code-block:: none
-
-    __main__
   
 In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
 
@@ -592,7 +515,6 @@ We are now working in the module ``__main__``, and hence the namespace for ``__m
 Next, we import a module called ``amodule`` 
 
 .. code-block:: python3
-    :class: no-execute
 
     import amodule
 
@@ -758,27 +680,14 @@ Consider a script ``test.py`` that looks as follows
 What happens when we run this script?  
 
 .. code-block:: ipython
-    :class: no-execute
 
     %run test.py
     
-.. code-block:: none
-    
-    a = 0 y = 11
 
 .. code-block:: python3
-    :class: no-execute
 
     x
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-2-401b30e3b8b5> in <module>()
-    ----> 1 x
-
-    NameError: name 'x' is not defined
 
 First,
 
@@ -923,25 +832,9 @@ If we run this with an array of length one, the program will terminate and
 print our error message
 
 .. code-block:: python3
-    :class: no-execute
 
     var([1])
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    <ipython-input-20-0032ff8a150f> in <module>()
-    ----> 1 var([1])
-
-    <ipython-input-19-cefafaec3555> in var(y)
-          1 def var(y):
-          2     n = len(y)
-    ----> 3     assert n > 1, 'Sample size must be greater than one.'
-          4     return np.sum((y - y.mean())**2) / float(n-1)
-
-    AssertionError: Sample size must be greater than one.
-
 
 The advantage is that we can
 
@@ -971,16 +864,10 @@ Exceptions
 Here's an example of a common error type
 
 .. code-block:: python3
-    :class: no-execute
     
     def f:
 
-.. code-block:: none
-    
-      File "<ipython-input-5-f5bdb6d29788>", line 1
-        def f:
-            ^
-    SyntaxError: invalid syntax
+
 
 
 Since illegal syntax cannot be executed, a syntax error terminates execution of the program
@@ -988,70 +875,32 @@ Since illegal syntax cannot be executed, a syntax error terminates execution of 
 Here's a different kind of error, unrelated to syntax
 
 .. code-block:: python3
-    :class: no-execute
 
     1 / 0
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    ZeroDivisionError                         Traceback (most recent call last)
-    <ipython-input-17-05c9758a9c21> in <module>()
-    ----> 1 1/0
-
-    ZeroDivisionError: integer division or modulo by zero
 
 Here's another
 
 .. code-block:: python3
-    :class: no-execute
 
     x1 = y1
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-23-142e0509fbd6> in <module>()
-    ----> 1 x1 = y1
-
-    NameError: name 'y1' is not defined
 
 
 And another
 
 .. code-block:: python3
-    :class: no-execute
 
     'foo' + 6
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-20-44bbe7e963e7> in <module>()
-    ----> 1 'foo' + 6
-
-    TypeError: cannot concatenate 'str' and 'int' objects
 
 And another
 
 .. code-block:: python3
-    :class: no-execute
 
     X = []
     x = X[0]
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    IndexError                                Traceback (most recent call last)
-    <ipython-input-22-018da6d9fc14> in <module>()
-    ----> 1 x = X[0]
-
-    IndexError: list index out of range
-
-
 
 On each occasion, the interpreter informs us of the error type
 
@@ -1636,18 +1485,9 @@ Let's see how it works after running this code
     next(gen)
     
 .. code-block:: python3
-    :class: no-execute
 
     next(gen)
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-21-b2c61ce5e131> in <module>()
-    ----> 1 gen.next()
-
-    StopIteration:
 
 
 
@@ -1712,18 +1552,10 @@ Let's see how it works
     next(gen)
     
 .. code-block:: python3
-    :class: no-execute
     
     next(gen)
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-32-b2c61ce5e131> in <module>()
-    ----> 1 gen.next()
 
-    StopIteration:
 
 
 The call ``gen = g(2)`` binds ``gen`` to a generator
@@ -1781,17 +1613,10 @@ This uses lots of memory and is very slow
 If we make ``n`` even bigger then this happens
 
 .. code-block:: python3
-    :class: no-execute
 
     n = 1000000000
     draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    MemoryError                               Traceback (most recent call last)
-    <ipython-input-9-20d1ec1dae24> in <module>()
-    ----> 1 draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
 
 We can avoid these problems using iterators
 
@@ -1910,7 +1735,6 @@ Complete the following code, and test it using `this csv file <https://github.co
 
 
 .. code-block:: python3
-    :class: no-execute
 
     def column_iterator(target_file, column_number):
         """A generator function for CSV files.
