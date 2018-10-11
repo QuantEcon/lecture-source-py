@@ -116,7 +116,6 @@ On the other hand, between two numbers it means ordinary addition
 Consider the following expression 
 
 .. code-block:: python3
-    :class: no-execute
 
     '300' + 400
 
