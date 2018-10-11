@@ -300,7 +300,6 @@ diagram.  Set
 
 
 .. code-block:: python3
-    :class: no-execute
 
     K = 50
     plot_grid_max, plot_grid_size = 1.2, 100
