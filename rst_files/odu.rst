@@ -249,7 +249,7 @@ The class ``SearchProblem`` is used to store parameters and methods needed to co
                      w_max=1,           # Maximum wage possible
                      w_grid_size=100, 
                      π_grid_size=100,
-                     mc_size=100):
+                     mc_size=500):
 
             self.β, self.c, self.w_max = β, c, w_max
             
