@@ -94,20 +94,20 @@ Solving the Model using Dynamic Programming
 
 Let 
 
-* :math:`V(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
+* :math:`v(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
 
-* :math:`U` be the total lifetime value accruing to a worker who is *unemployed* this period
+* :math:`g` be the total lifetime value accruing to a worker who is *unemployed* this period
 
 Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time
 
-Suppose for now that the worker can calculate the function :math:`V` and the constant :math:`U` and use them in his decision making
+Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`g` and use them in his decision making
 
-Then :math:`V` and :math:`U`  should satisfy 
+Then :math:`v` and :math:`h`  should satisfy 
 
 .. math::
     :label: bell1_mccall
 
-    V(w) = u(w) + \beta [(1-\alpha)V(w) + \alpha U ]
+    v(w) = u(w) + \beta [(1-\alpha)v(w) + \alpha h ]
 
 
 and
@@ -115,7 +115,7 @@ and
 .. math::
     :label: bell2_mccall
 
-    U = u(c) + \beta \sum_i \max \left\{ U, V(w_i) \right\} p_i 
+    h = u(c) + \beta \sum_i \max \left\{ h, v(w_i) \right\} p_i 
 
 
 Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
@@ -128,12 +128,12 @@ Let's interpret these two equations in light of the fact that today's tomorrow i
 
 Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare
 
-In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`U < V(w')`
+In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`h < v(w')`
 
 Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations
 for this model
 
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`V` and :math:`U`
+Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`v` and :math:`h`
 
 Before discussing this, however, let's make a small extension to the model
 
@@ -155,12 +155,12 @@ He either accepts or rejects the offer
 Otherwise the model is the same
 
 
-With some thought, you  will be able to convince yourself that :math:`V` and :math:`U`  should now satisfy 
+With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy 
 
 .. math::
     :label: bell01_mccall
 
-    V(w) = u(w) + \beta [(1-\alpha)V(w) + \alpha U ]
+    v(w) = u(w) + \beta [(1-\alpha)v(w) + \alpha h ]
 
 
 and
@@ -168,9 +168,9 @@ and
 .. math::
     :label: bell02_mccall
 
-    U = u(c) + 
-      \beta (1 - \gamma) U
-          + \beta \gamma \sum_i \max \left\{ U, V(w_i) \right\} p_i
+    h = u(c) + 
+      \beta (1 - \gamma) h
+          + \beta \gamma \sum_i \max \left\{ h, v(w_i) \right\} p_i
 
 
 Solving the Bellman Equations
@@ -182,7 +182,7 @@ adopted in the :doc:`first job search lecture <mccall_model>`
 
 Here this amounts to
 
-#. make guesses for :math:`U` and :math:`V`
+#. make guesses for :math:`h` and :math:`v`
 
 #. plug these guesses into the right hand sides of :eq:`bell01_mccall` and :eq:`bell02_mccall`
 
@@ -195,7 +195,7 @@ In other words, we are iterating using the rules
 .. math::
     :label: bell1001
 
-    V_{n+1} (w_i) = u(w_i) + \beta [(1-\alpha)V_n (w_i) + \alpha U_n ]
+    v_{n+1} (w_i) = u(w_i) + \beta [(1-\alpha)v_n (w_i) + \alpha h_n ]
 
 
 and
@@ -203,15 +203,15 @@ and
 .. math::
     :label: bell2001
 
-    U_{n+1} = u(c) + 
-        \beta (1 - \gamma) U_n
-         + \beta \gamma \sum_i \max \{ U_n, V_n(w_i) \} p_i
+    h_{n+1} = u(c) + 
+        \beta (1 - \gamma) h_n
+         + \beta \gamma \sum_i \max \{ h_n, v_n(w_i) \} p_i
 
 
-starting from some initial conditions :math:`U_0, V_0`
+starting from some initial conditions :math:`h_0, v_0`
 
 As before, the system always converges to the true solutions---in this case,
-the :math:`V` and :math:`U` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`
+the :math:`v` and :math:`h` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`
 
 A proof can be obtained via the Banach contraction mapping theorem
 
@@ -275,10 +275,8 @@ The default utility function is a CRRA utility function
                 self.w_vec = w_vec
                 self.p_vec = p_vec
                 
-            self.V_guess = np.ones_like(self.w_vec)
-            self.U_guess = 1
 
-The following function returns jitted versions of the Bellman operators :math:`U` and :math:`V`
+The following function returns jitted versions of the Bellman operators :math:`h` and :math:`v`
 
 .. code-block:: python3
 
@@ -288,22 +286,22 @@ The following function returns jitted versions of the Bellman operators :math:`U
         σ, w_vec, p_vec = mcm.σ, mcm.w_vec, mcm.p_vec
 
         @njit
-        def Q(V, U):
+        def Q(v, h):
             """
             A jitted function to update the Bellman equations
 
             """
-            V_new = np.empty_like(V)
-            U_new = np.empty_like(U)
+            v_new = np.empty_like(v)
+            h_new = np.empty_like(h)
             
             for i in prange(len(w_vec)):
                 w = w_vec[i]
-                V_new[i] = u(w, σ) + β * ((1 - α) * V[i] + α * U)
+                v_new[i] = u(w, σ) + β * ((1 - α) * v[i] + α * h)
 
-            U_new = u(c, σ) + β * (1 - γ) * U + \
-                            β * γ * np.sum(np.maximum(U, V) * p_vec)
+            h_new = u(c, σ) + β * (1 - γ) * h + \
+                            β * γ * np.sum(np.maximum(h, v) * p_vec)
 
-            return V_new, U_new
+            return v_new, h_new
         
         return Q
 
@@ -314,36 +312,33 @@ We then return the current iterate as an approximate solution
 
 .. code-block:: python3
 
-    def solve_model(mcm, tol=1e-5, max_iter=2000):
+    def solve_model(mcm, use_parallel=True, tol=1e-5, max_iter=2000):
         """
         Iterates to convergence on the Bellman equations 
         
         mcm is an instance of McCallModel
         """
         
-        Q = operator_factory(mcm)
+        Q = operator_factory(mcm, use_parallel)
 
-        V = mcm.V_guess              # Initial guess of V
-        V_new = np.empty_like(V)     # To store updates to V
-        U = mcm.U_guess              # Initial guess of U
+        v = np.ones_like(mcm.w_vec)   # Initial guess of v
+        v_new = np.empty_like(v)      # To store updates to v
+        h = 1                         # Initial guess of h
         i = 0
         error = tol + 1
 
         while error > tol and i < max_iter:
-            V_new, U_new = Q(V, U)
-            error_1 = np.max(np.abs(V_new - V))
-            error_2 = np.abs(U_new - U)
+            v_new, h_new = Q(v, h)
+            error_1 = np.max(np.abs(v_new - v))
+            error_2 = np.abs(h_new - h)
             error = max(error_1, error_2)
-            V = V_new
-            U = U_new
+            v = v_new
+            h = h_new
             i += 1
-            
-        mcm.V_guess = V
-        mcm.U_guess = U
 
-        return V, U
+        return v, h
 
-Let's plot the approximate solutions :math:`U` and :math:`V` to see what they look like
+Let's plot the approximate solutions :math:`v` and :math:`h` to see what they look like
 
 We'll use the default parameterizations found in the code above
 
@@ -351,20 +346,20 @@ We'll use the default parameterizations found in the code above
 .. code-block:: python3
 
     mcm = McCallModel()
-    V, U = solve_model(mcm)
+    v, h = solve_model(mcm)
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    ax.plot(mcm.w_vec, V, 'b-', lw=2, alpha=0.7, label='$V$')
-    ax.plot(mcm.w_vec, [U] * len(mcm.w_vec), 'g-', lw=2, alpha=0.7, label='$U$')
+    ax.plot(mcm.w_vec, v, 'b-', lw=2, alpha=0.7, label='$v$')
+    ax.plot(mcm.w_vec, [h] * len(mcm.w_vec), 'g-', lw=2, alpha=0.7, label='$h$')
     ax.set_xlim(min(mcm.w_vec), max(mcm.w_vec))
-    ax.legend(loc='upper left')
+    ax.legend()
     ax.grid()
 
     plt.show()
 
 
-The value :math:`V` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed
+The value :math:`v` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed
 
 
 
@@ -372,15 +367,15 @@ The value :math:`V` is increasing because higher :math:`w` generates a higher wa
 The Reservation Wage
 =======================
 
-Once :math:`V` and :math:`U` are known, the agent can use them to make decisions in the face of a given wage offer
+Once :math:`v` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer
 
-If :math:`V(w) > U`, then working at wage :math:`w` is preferred to unemployment
+If :math:`v(w) > h`, then working at wage :math:`w` is preferred to unemployment
 
-If :math:`V(w) < U`, then remaining unemployed will generate greater lifetime value
+If :math:`v(w) < h`, then remaining unemployed will generate greater lifetime value
 
-Suppose in particular that :math:`V` crosses :math:`U` (as it does in the preceding figure)
+Suppose in particular that :math:`v` crosses :math:`h` (as it does in the preceding figure)
 
-Then, since :math:`V` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`V(w) \geq U`
+Then, since :math:`v` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`v(w) \geq h`
 
 We denote this wage :math:`\bar w` and call it the reservation wage
 
@@ -390,30 +385,32 @@ Optimal behavior for the worker is characterized by :math:`\bar w`
 
 *  if the  wage offer :math:`w` in hand is less than :math:`\bar w`, then the worker rejects
 
-Here's a function called `compute_reservation_wage` that takes an instance of a McCall model and returns the reservation wage associated with a given model
+Here's a function `compute_reservation_wage` that takes an instance of a McCall 
+model and returns the reservation wage associated with a given model
 
-It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ to obtain the first :math:`w` in the set of possible wages such that :math:`V(w) > U`
+It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ 
+to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`
 
-If :math:`V(w) < U` for all :math:`w`, then the function returns `np.inf`
+If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
 
 .. code-block:: python3
 
     def compute_reservation_wage(mcm, return_values=False):
         """
         Computes the reservation wage of an instance of the McCall model
-        by finding the smallest w such that V(w) > U.
+        by finding the smallest w such that v(w) > h.
 
-        If V(w) > U for all w, then the reservation wage w_bar is set to
+        If v(w) > h for all w, then the reservation wage w_bar is set to
         the lowest wage in mcm.w_vec.
 
-        If v(w) < U for all w, then w_bar is set to np.inf.
+        If v(w) < h for all w, then w_bar is set to np.inf.
             
         """
 
-        V, U = solve_model(mcm)
-        w_idx = np.searchsorted(V - U, 0)  
+        v, h = solve_model(mcm)
+        w_idx = np.searchsorted(v - h, 0)  
 
-        if w_idx == len(V):
+        if w_idx == len(v):
             w_bar = np.inf
         else:
             w_bar = mcm.w_vec[w_idx]
@@ -421,7 +418,7 @@ If :math:`V(w) < U` for all :math:`w`, then the function returns `np.inf`
         if return_values == False:
             return w_bar
         else:
-            return w_bar, V, U
+            return w_bar, v, h
 
 Let's use it to look at how the reservation wage varies with parameters
 
@@ -439,7 +436,7 @@ In the figure below, we use the default parameters in the `McCallModel` class, a
 `c` (which takes the values given on the horizontal axis)
 
 .. figure:: /_static/figures/mccall_resw_c.png
-    :scale: 100%
+    :scale: 60%
 
 As expected, higher unemployment compensation causes the worker to hold out for higher wages
 
@@ -456,7 +453,7 @@ The next figure plots the reservation wage associated with different values of
 :math:`\beta`
 
 .. figure:: /_static/figures/mccall_resw_beta.png
-    :scale: 100%
+    :scale: 60%
 
 Again, the results are intuitive: More patient workers will hold out for higher wages
 
@@ -471,7 +468,7 @@ Higher :math:`\alpha` translates to a greater chance that a worker will face ter
 
 
 .. figure:: /_static/figures/mccall_resw_alpha.png
-    :scale: 100%
+    :scale: 60%
 
 Once more, the results are in line with our intuition
 
