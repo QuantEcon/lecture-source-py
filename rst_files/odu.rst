@@ -65,7 +65,7 @@ At time :math:`t`, our worker either
 
 #. rejects the offer, receives unemployment compensation :math:`c` and reconsiders next period
 
-The wage sequence :math:`\{W_t\}` is iid and generated from known density :math:`h`
+The wage sequence :math:`\{W_t\}` is iid and generated from known density :math:`q`
 
 The worker aims to maximize the expected discounted sum of earnings :math:`\mathbb{E} \sum_{t=0}^{\infty} \beta^t y_t`
 The function :math:`V` satisfies the recursion
@@ -75,7 +75,7 @@ The function :math:`V` satisfies the recursion
 
     v(w)
     = \max \left\{
-    \frac{w}{1 - \beta}, \, c + \beta \int v(w')h(w') dw'
+    \frac{w}{1 - \beta}, \, c + \beta \int v(w')q(w') dw'
     \right\}
 
 
@@ -90,13 +90,13 @@ Now let's extend the model by considering the variation presented in :cite:`Ljun
 
 The model is as above, apart from the fact that
 
-* the density :math:`h` is unknown
+* the density :math:`q` is unknown
 
-* the worker learns about :math:`h` by starting with a prior and updating based on wage offers that he/she observes
+* the worker learns about :math:`q` by starting with a prior and updating based on wage offers that he/she observes
 
 The worker knows there are two possible distributions :math:`F` and :math:`G` --- with densities :math:`f` and :math:`g`
 
-At the start of time, "nature" selects :math:`h` to be either :math:`f` or
+At the start of time, "nature" selects :math:`q` to be either :math:`f` or
 :math:`g` --- the wage distribution from which the entire sequence :math:`\{W_t\}` will be drawn
 
 This choice is not observed by the worker, who puts prior probability :math:`\pi_0` on :math:`f` being chosen
@@ -114,11 +114,11 @@ This last expression follows from Bayes' rule, which tells us that
 
 .. math::
 
-    \mathbb{P}\{h = f \,|\, W = w\}
-    = \frac{\mathbb{P}\{W = w \,|\, h = f\}\mathbb{P}\{h = f\}}
+    \mathbb{P}\{q = f \,|\, W = w\}
+    = \frac{\mathbb{P}\{W = w \,|\, q = f\}\mathbb{P}\{q = f\}}
     {\mathbb{P}\{W = w\}}
     \quad \text{and} \quad
-    \mathbb{P}\{W = w\} = \sum_{\psi \in \{f, g\}} \mathbb{P}\{W = w \,|\, h = \psi\} \mathbb{P}\{h = \psi\}
+    \mathbb{P}\{W = w\} = \sum_{\omega \in \{f, g\}} \mathbb{P}\{W = w \,|\, q = \omega\} \mathbb{P}\{q = \omega\}
 
 
 The fact that :eq:`odu_pi_rec` is recursive allows us to progress to a recursive solution method
@@ -128,9 +128,9 @@ Letting
 
 .. math::
 
-    h_{\pi}(w) := \pi f(w) + (1 - \pi) g(w)
+    q_{\pi}(w) := \pi f(w) + (1 - \pi) g(w)
     \quad \text{and} \quad
-    q(w, \pi) := \frac{\pi f(w)}{\pi f(w) + (1 - \pi) g(w)}
+    \kappa(w, \pi) := \frac{\pi f(w)}{\pi f(w) + (1 - \pi) g(w)}
 
 
 we can express the value function for the unemployed worker recursively as
@@ -141,10 +141,10 @@ follows
 
     v(w, \pi)
     = \max \left\{
-    \frac{w}{1 - \beta}, \, c + \beta \int v(w', \pi') \, h_{\pi}(w') \, dw'
+    \frac{w}{1 - \beta}, \, c + \beta \int v(w', \pi') \, q_{\pi}(w') \, dw'
     \right\}
     \quad \text{where} \quad
-    \pi' = q(w', \pi)
+    \pi' = \kappa(w', \pi)
 
 
 Notice that the current guess :math:`\pi` is a state variable, since it affects the worker's perception of probabilities for future rewards
@@ -158,7 +158,7 @@ Following  section 6.6 of :cite:`Ljungqvist2012`, our baseline parameterization 
   
 * :math:`g` is :math:`\operatorname{Beta}(3, 1.2)`
 
-* :math:`\beta = 0.95` and :math:`c = 0.6`
+* :math:`\beta = 0.95` and :math:`c = 0.3`
 
 The densities :math:`f` and :math:`g` have the following shape
 
@@ -363,14 +363,14 @@ To solve the model we will use the following function that iterates using
                     verbose=True,
                     print_skip=5):
 
-        T, _ = operator_factory(sp)
+        T, _ = operator_factory(sp, use_parallel)
 
         # Set up loop
         i = 0
         error = tol + 1
         m, n = len(sp.w_grid), len(sp.π_grid)
         
-        # Initialize ω
+        # Initialize v
         v = np.zeros((m, n)) + sp.c / (1 - sp.β)
 
         while i < max_iter and error > tol:
@@ -458,7 +458,7 @@ Hence the two choices on the right-hand side of :eq:`odu_mvf` have equal value:
     :label: odu_mvf2
 
     \frac{\bar w(\pi)}{1 - \beta}
-    = c + \beta \int v(w', \pi') \, h_{\pi}(w') \, dw'
+    = c + \beta \int v(w', \pi') \, q_{\pi}(w') \, dw'
 
 
 Together, :eq:`odu_mvf` and :eq:`odu_mvf2` give
@@ -481,10 +481,10 @@ Combining :eq:`odu_mvf2` and :eq:`odu_mvf3`, we obtain
     = c + \beta \int \max \left\{
         \frac{w'}{1 - \beta} ,\, \frac{\bar w(\pi')}{1 - \beta}
     \right\}
-    \, h_{\pi}(w') \, dw'
+    \, q_{\pi}(w') \, dw'
 
 
-Multiplying by :math:`1 - \beta`, substituting in :math:`\pi' = q(w', \pi)` 
+Multiplying by :math:`1 - \beta`, substituting in :math:`\pi' = \kappa(w', \pi)` 
 and using :math:`\circ` for composition of functions yields
 
 .. math::
@@ -492,7 +492,7 @@ and using :math:`\circ` for composition of functions yields
 
     \bar w(\pi)
     = (1 - \beta) c +
-    \beta \int \max \left\{ w', \bar w \circ q(w', \pi) \right\} \, h_{\pi}(w') \, dw'
+    \beta \int \max \left\{ w', \bar w \circ \kappa(w', \pi) \right\} \, q_{\pi}(w') \, dw'
 
 
 Equation :eq:`odu_mvf4` can be understood as a functional equation, where :math:`\bar w` is the unknown function
@@ -510,36 +510,36 @@ fixed point of a `contraction mapping <https://en.wikipedia.org/wiki/Contraction
 To this end, let
 
 * :math:`b[0,1]` be the bounded real-valued functions on :math:`[0,1]`
-* :math:`\| \psi \| := \sup_{x \in [0,1]} | \psi(x) |`
+* :math:`\| \omega \| := \sup_{x \in [0,1]} | \omega(x) |`
 
-Consider the operator :math:`Q` mapping :math:`\psi \in b[0,1]` into :math:`Q\psi \in b[0,1]` via
+Consider the operator :math:`Q` mapping :math:`\omega \in b[0,1]` into :math:`Q\omega \in b[0,1]` via
 
 
 .. math::
     :label: odu_dq
 
-    (Q \psi)(\pi)
+    (Q \omega)(\pi)
     = (1 - \beta) c +
-    \beta \int \max \left\{ w', \psi \circ q(w', \pi) \right\} \, h_{\pi}(w') \, dw'
+    \beta \int \max \left\{ w', \omega \circ \kappa(w', \pi) \right\} \, q_{\pi}(w') \, dw'
 
 
 Comparing :eq:`odu_mvf4` and :eq:`odu_dq`, we see that the set of fixed points of :math:`Q` exactly coincides with the set of solutions to the RWFE
 
 * If :math:`Q \bar w = \bar w` then :math:`\bar w` solves :eq:`odu_mvf4` and vice versa
 
-Moreover, for any :math:`\psi, \phi \in b[0,1]`, basic algebra and the
+Moreover, for any :math:`\omega, \omega' \in b[0,1]`, basic algebra and the
 triangle inequality for integrals tells us that
 
 .. math::
     :label: odu_nt
 
-    |(Q \psi)(\pi) - (Q \phi)(\pi)|
+    |(Q \omega)(\pi) - (Q \omega')(\pi)|
     \leq \beta \int
     \left|
-    \max \left\{w', \psi \circ q(w', \pi) \right\}
-    - \max \left\{w', \phi \circ q(w', \pi) \right\}
+    \max \left\{w', \omega \circ \kappa(w', \pi) \right\}
+    - \max \left\{w', \omega' \circ \kappa(w', \pi) \right\}
     \right|
-    \, h_{\pi}(w') \, dw'
+    \, q_{\pi}(w') \, dw'
 
 
 Working case by case, it is easy to check that for real numbers :math:`a, b, c` we always have
@@ -555,11 +555,11 @@ Combining :eq:`odu_nt` and :eq:`odu_nt2` yields
 .. math::
     :label: odu_nt3
 
-    |(Q \psi)(\pi) - (Q \phi)(\pi)|
+    |(Q \omega)(\pi) - (Q \omega')(\pi)|
     \leq \beta \int
-    \left| \psi \circ q(w', \pi) -  \phi \circ q(w', \pi) \right|
-    \, h_{\pi}(w') \, dw'
-    \leq \beta \| \psi - \phi \|
+    \left| \omega \circ \kappa(w', \pi) -  \omega' \circ \kappa(w', \pi) \right|
+    \, q_{\pi}(w') \, dw'
+    \leq \beta \| \omega - \omega' \|
 
 
 Taking the supremum over :math:`\pi` now gives us
@@ -567,8 +567,8 @@ Taking the supremum over :math:`\pi` now gives us
 .. math::
     :label: odu_rwc
 
-    \|Q \psi - Q \phi\|
-    \leq \beta \| \psi - \phi \|
+    \|Q \omega - Q \omega'\|
+    \leq \beta \| \omega - \omega' \|
 
 
 In other words, :math:`Q` is a contraction of modulus :math:`\beta` on the
@@ -577,7 +577,7 @@ complete metric space :math:`(b[0,1], \| \cdot \|)`
 Hence
 
 * A unique solution :math:`\bar w` to the RWFE exists in :math:`b[0,1]`
-* :math:`Q^k \psi \to \bar w` uniformly as :math:`k \to \infty`, for any :math:`\psi \in b[0,1]`
+* :math:`Q^k \omega \to \bar w` uniformly as :math:`k \to \infty`, for any :math:`\omega \in b[0,1]`
 
 Implementation
 ^^^^^^^^^^^^^^^^^
@@ -607,28 +607,28 @@ operator `Q`
             return π_new
 
         @njit
-        def Q(ϕ):
+        def Q(ω):
             """
 
-            Updates the reservation wage function guess ϕ via the operator
+            Updates the reservation wage function guess ω via the operator
             Q.
 
             """
-            ϕ_func = lambda p: interp(π_grid, ϕ, p)
-            ϕ_new = np.empty_like(ϕ)
+            ω_func = lambda p: interp(π_grid, ω, p)
+            ω_new = np.empty_like(ω)
 
             for i in prange(len(π_grid)):
                 π = π_grid[i]
                 integral_f, integral_g = 0.0, 0.0
 
                 for m in prange(mc_size):
-                    integral_f += max(w_f[m], ϕ_func(κ(w_f[m], π)))
-                    integral_g += max(w_g[m], ϕ_func(κ(w_g[m], π)))
+                    integral_f += max(w_f[m], ω_func(κ(w_f[m], π)))
+                    integral_g += max(w_g[m], ω_func(κ(w_g[m], π)))
                 integral = (π * integral_f + (1 - π) * integral_g) / mc_size
                     
-                ϕ_new[i] = (1 - β) * c + β * integral
+                ω_new[i] = (1 - β) * c + β * integral
 
-            return ϕ_new
+            return ω_new
         
         return Q
 
@@ -677,7 +677,7 @@ Similar to above, we set up a function to iterate with `Q` to find the fixed poi
                    verbose=True,
                    print_skip=5):
 
-        Q = Q_factory(sp)
+        Q = Q_factory(sp, use_parallel)
 
         # Set up loop
         i = 0
@@ -717,6 +717,7 @@ The solution can be plotted as follows
     ax.fill_between(sp.π_grid, w_bar, sp.w_max, color='green', alpha=0.15)
     ax.text(0.5, 0.6, 'reject')
     ax.text(0.7, 0.9, 'accept')
+    ax.set(xlabel='$\pi$', ylabel='$w$')
     ax.grid()
     plt.show()
    
@@ -736,62 +737,68 @@ As a result, the unemployment rate spikes
 
 .. code-block:: python3
 
-    sp = SearchProblem()
+    F_a, F_b, G_a, G_b = 1, 1, 3, 1.2
+
+    sp = SearchProblem(F_a=F_a, F_b=F_b, G_a=G_a, G_b=G_b)
     f, g = sp.f, sp.g
+
+    # Solve for reservation wage
     w_bar = solve_wbar(sp, verbose=False)
+
+    # Interpolate reservation wage function
     π_grid = sp.π_grid
     w_func = njit(lambda x: interp(π_grid, w_bar, x))
-    
+
     @njit
     def update(a, b, e, π):
         "Update e and π by drawing wage offer from beta distribution with parameters a and b."
-        
+
         if e == False:
             w = np.random.beta(a, b)       # Draw random wage
             if w >= w_func(π):
                 e = True                   # Take new job
             else:
                 π = 1 / (1 + ((1 - π) * g(w)) / (π * f(w)))
-                
+
         return e, π
 
     @njit
-    def simulate_path(F_a=1, 
-                      F_b=1, 
-                      G_a=3, 
-                      G_b=1.2, 
+    def simulate_path(F_a=F_a,
+                      F_b=F_b,
+                      G_a=G_a,
+                      G_b=G_b,
                       N=5000,       # Number of agents
                       T=600,        # Simulation length
                       d=200,        # Change date
                       s=0.025):     # Separation rate
-        
+
         """Simulates path of employment for N number of works over T periods."""
 
-        e = np.ones((N, T))
-        π = np.ones((N, T)) * 1e-3
-        
-        separation_list = np.zeros(N)
-        number_separated = int(N * s)           # Number of workers separated each period
-        separation_list[:number_separated] = 1  # Create indices for workers separated
-        
+        e = np.ones((N, T+1))
+        π = np.ones((N, T+1)) * 1e-3
+
         a, b = G_a, G_b   # Initial distribution parameters
-        
-        for t in range(T):
-            
-            np.random.shuffle(separation_list)  # Randomly select s * N workers
-            e[:, t][separation_list == 1] = 0   # Set selected workers to unemployed
-            
+
+        for t in range(T+1):
+
             if t == d:
                 a, b = F_a, F_b  # Change distribution parameters
-            
+
+            total = 0
+
             # Update each agent
             for n in range(N):
+                if e[n, t] == 1:                    # If agent is currently employment
+                    p = np.random.uniform(0, 1)
+                    if p <= s:                      # Randomly separate with probability s
+                        e[n, t] = 0
+
                 new_e, new_π = update(a, b, e[n, t], π[n, t])
                 e[n, t+1] = new_e
                 π[n, t+1] = new_π
-                            
+
         return e[:, 1:]
-        
+
     d = 200  # Change distribution at time d
     unemployment_rate = 1 - simulate_path(d=d).mean(axis=0)
 
@@ -802,4 +809,3 @@ As a result, the unemployment rate spikes
     plt.title('Unemployment rate')
     plt.legend()
     plt.show()
-
