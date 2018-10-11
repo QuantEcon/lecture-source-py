@@ -73,9 +73,9 @@ The function :math:`V` satisfies the recursion
 .. math::
     :label: odu_odu_pv
 
-    V(w)
+    v(w)
     = \max \left\{
-    \frac{w}{1 - \beta}, \, c + \beta \int V(w')h(w') dw'
+    \frac{w}{1 - \beta}, \, c + \beta \int v(w')h(w') dw'
     \right\}
 
 
@@ -139,9 +139,9 @@ follows
 .. math::
     :label: odu_mvf
 
-    V(w, \pi)
+    v(w, \pi)
     = \max \left\{
-    \frac{w}{1 - \beta}, \, c + \beta \int V(w', \pi') \, h_{\pi}(w') \, dw'
+    \frac{w}{1 - \beta}, \, c + \beta \int v(w', \pi') \, h_{\pi}(w') \, dw'
     \right\}
     \quad \text{where} \quad
     \pi' = q(w', \pi)
@@ -458,7 +458,7 @@ Hence the two choices on the right-hand side of :eq:`odu_mvf` have equal value:
     :label: odu_mvf2
 
     \frac{\bar w(\pi)}{1 - \beta}
-    = c + \beta \int V(w', \pi') \, h_{\pi}(w') \, dw'
+    = c + \beta \int v(w', \pi') \, h_{\pi}(w') \, dw'
 
 
 Together, :eq:`odu_mvf` and :eq:`odu_mvf2` give
