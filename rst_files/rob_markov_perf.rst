@@ -5,7 +5,7 @@
 Robust Markov Perfect Equilibrium
 **********************************
 
-
+.. contents:: :depth: 2
 
 **Co-author: Dongchen Zou**
 
