@@ -47,19 +47,19 @@ Let
 Let :math:`w_t = x_t(1 - s_t - \phi_t)`, where
 
 * :math:`\phi_t` is investment in job-specific human capital for the current role
-* :math:`s_t` is search effort, devoted to obtaining new offers from other firms.
+* :math:`s_t` is search effort, devoted to obtaining new offers from other firms
 
 For as long as the worker remains in the current job, evolution of
-:math:`\{x_t\}` is given by :math:`x_{t+1} = G(x_t, \phi_t)`
+:math:`\{x_t\}` is given by :math:`x_{t+1} = g(x_t, \phi_t)`
 
 When search effort at :math:`t` is :math:`s_t`, the worker receives a new job
 offer with probability :math:`\pi(s_t) \in [0, 1]`
 
-Value of offer is :math:`U_{t+1}`, where :math:`\{U_t\}` is iid with common distribution :math:`F`
+Value of offer is :math:`u_{t+1}`, where :math:`\{u_t\}` is iid with common distribution :math:`f`
 
 Worker has the right to reject the current offer and continue with existing job
 
-In particular, :math:`x_{t+1} = U_{t+1}` if accepts and :math:`x_{t+1} = G(x_t, \phi_t)` if rejects
+In particular, :math:`x_{t+1} = u_{t+1}` if accepts and :math:`x_{t+1} = g(x_t, \phi_t)` if rejects
 
 Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicating an offer, we can write
 
@@ -67,24 +67,24 @@ Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicatin
     :label: jd
 
     x_{t+1}
-    = (1 - b_{t+1}) G(x_t, \phi_t) + b_{t+1}
-        \max \{ G(x_t, \phi_t), U_{t+1}\}
+    = (1 - b_{t+1}) g(x_t, \phi_t) + b_{t+1}
+        \max \{ g(x_t, \phi_t), u_{t+1}\}
 
 
 Agent's objective: maximize expected discounted sum of wages via controls :math:`\{s_t\}` and :math:`\{\phi_t\}`
 
-Taking the expectation of :math:`V(x_{t+1})` and using :eq:`jd`,
+Taking the expectation of :math:`v(x_{t+1})` and using :eq:`jd`,
 the Bellman equation for this problem can be written as
 
 .. math::
     :label: jvbell
 
-    V(x)
+    v(x)
     = \max_{s + \phi \leq 1}
         \left\{
-            x (1 - s - \phi) + \beta (1 - \pi(s)) V[G(x, \phi)] +
-            \beta \pi(s) \int V[G(x, \phi) \vee u] F(du)
-         \right\}.
+            x (1 - s - \phi) + \beta (1 - \pi(s)) v[g(x, \phi)] +
+            \beta \pi(s) \int v[g(x, \phi) \vee u] f(du)
+         \right\}
 
 
 Here nonnegativity of :math:`s` and :math:`\phi` is understood, while
@@ -101,11 +101,11 @@ In the implementation below, we will focus on the parameterization
 
 .. math::
 
-    G(x, \phi) = A (x \phi)^{\alpha},
+    g(x, \phi) = A (x \phi)^{\alpha},
     \quad
     \pi(s) = \sqrt s
     \quad \text{and} \quad
-    F = \text{Beta}(2, 2)
+    f = \text{Beta}(2, 2)
 
 
 with default parameter values
@@ -115,7 +115,7 @@ with default parameter values
 * :math:`\beta = 0.96`
 
 
-The Beta(2,2) distribution is supported on :math:`(0,1)`.  It has a unimodal, symmetric density peaked at 0.5
+The :math:`\text{Beta}(2,2)` distribution is supported on :math:`(0,1)` - it has a unimodal, symmetric density peaked at 0.5
 
 
 .. _jvboecalc:
@@ -141,24 +141,26 @@ The relative expected return will depend on :math:`x`
 
 For example, suppose first that :math:`x = 0.05`
 
-* If :math:`s=1` and :math:`\phi = 0`, then since :math:`G(x,\phi) = 0`,
-  taking expectations of :eq:`jd` gives expected next period capital equal to :math:`\pi(s) \mathbb{E} U
-  = \mathbb{E} U = 0.5`
-* If :math:`s=0` and :math:`\phi=1`, then next period capital is :math:`G(x, \phi) = G(0.05, 1) \approx 0.23`
+* If :math:`s=1` and :math:`\phi = 0`, then since :math:`g(x,\phi) = 0`,
+  taking expectations of :eq:`jd` gives expected next period capital equal to :math:`\pi(s) \mathbb{E} u
+  = \mathbb{E} u = 0.5`
+* If :math:`s=0` and :math:`\phi=1`, then next period capital is :math:`g(x, \phi) = g(0.05, 1) \approx 0.23`
 
 Both rates of return are good, but the return from search is better
 
 Next suppose that :math:`x = 0.4`
 
 * If :math:`s=1` and :math:`\phi = 0`, then expected next period capital is again :math:`0.5`
-* If :math:`s=0` and :math:`\phi = 1`, then :math:`G(x, \phi) = G(0.4, 1) \approx 0.8`
+* If :math:`s=0` and :math:`\phi = 1`, then :math:`g(x, \phi) = g(0.4, 1) \approx 0.8`
 
 Return from investment via :math:`\phi` dominates expected return from search
 
 Combining these observations gives us two informal predictions:
 
-#. At any given state :math:`x`, the two controls :math:`\phi` and :math:`s` will function primarily as substitutes --- worker will focus on whichever instrument has the higher expected return
-#. For sufficiently small :math:`x`, search will be preferable to investment in job-specific human capital.  For larger :math:`x`, the reverse will be true
+#. At any given state :math:`x`, the two controls :math:`\phi` and :math:`s` will 
+   function primarily as substitutes --- worker will focus on whichever instrument has the higher expected return
+#. For sufficiently small :math:`x`, search will be preferable to investment in 
+   job-specific human capital.  For larger :math:`x`, the reverse will be true
 
 Now let's turn to implementation, and see if we can match our predictions
 
@@ -169,38 +171,55 @@ Implementation
 .. index::
     single: On-the-Job Search; Programming Implementation
 
-The following code solves the DP problem described above
+We will set up a class `JVWorker` that holds the parameters of the model described above
+
+.. code-block:: python3
+
+    import numpy as np
+    import scipy.stats as stats
+    from interpolation import interp
+    from numba import njit, prange
+    import matplotlib.pyplot as plt
+    from math import gamma
+
+    class JVWorker:
+        r"""
+        A Jovanovic-type model of employment with on-the-job search.
+
+        """
+
+        def __init__(self, 
+                     A=1.4,
+                     α=0.6, 
+                     β=0.96,         # Discount factor
+                     π=np.sqrt,      # Search effort function
+                     a=2,            # Parameter of f
+                     b=2,            # Parameter of f
+                     grid_size=50,
+                     mc_size=100,
+                     ɛ=1e-4):
+            
+            self.A, self.α, self.β, self.π = A, α, β, π
+            self.mc_size, self.ɛ = mc_size, ɛ
+
+            self.g = njit(lambda x, ϕ: A * (x * ϕ)**α)     # Transition function
+            self.f_rvs = np.random.beta(a, b, mc_size)
+           
+            # Max of grid is the max of a large quantile value for f and the
+            # fixed point y = g(y, 1)
+            ɛ = 1e-4
+            grid_max = max(A**(1 / (1 - α)), stats.beta(a, b).ppf(1 - ɛ))
+            
+            # Human capital
+            self.x_grid = np.linspace(ɛ, grid_max, grid_size)
 
 
-.. literalinclude:: /_static/code/jv/jv.py
-
-
-The code is written to be relatively generic---and hence reusable
-
-* For example, we use generic :math:`G(x,\phi)` instead of specific :math:`A (x \phi)^{\alpha}`
-
-
-Regarding the imports
-
-* ``fixed_quad`` is a simple non-adaptive integration routine
-
-* ``fmin_slsqp`` is a minimization routine that permits inequality constraints
-
-
-
-Next we build a class called ``JvWorker`` that
-
-* packages all the parameters and other basic attributes of a given model
-
-* implements the method ``bellman_operator`` for value function iteration
-
-The ``bellman_operator`` method
-takes a candidate value function :math:`V` and updates it to :math:`TV` via
-
+The function `operator_factory` takes an instance of this class and returns a
+jitted version of the Bellman operator `T`, ie.
 
 .. math::
 
-    TV(x)
+    Tv(x)
     = - \min_{s + \phi \leq 1} w(s, \phi)
 
 
@@ -211,40 +230,137 @@ where
 
      w(s, \phi)
      := - \left\{
-             x (1 - s - \phi) + \beta (1 - \pi(s)) V[G(x, \phi)] +
-             \beta \pi(s) \int V[G(x, \phi) \vee u] F(du)
+             x (1 - s - \phi) + \beta (1 - \pi(s)) v[g(x, \phi)] +
+             \beta \pi(s) \int v[g(x, \phi) \vee u] f(du)
     \right\}
+    
 
 
 Here we are minimizing instead of maximizing to fit with SciPy's optimization routines
 
-When we represent :math:`V`, it will be with a NumPy array ``V`` giving values on grid ``x_grid``
+When we represent :math:`v`, it will be with a NumPy array ``v`` giving values on grid ``x_grid``
 
 But to evaluate the right-hand side of :eq:`defw`, we need a function, so
-we replace the arrays ``V`` and ``x_grid`` with a function ``Vf`` that gives linear
-interpolation of ``V`` on ``x_grid``
-
-Hence in the preliminaries of ``bellman_operator``
-
-* from the array ``V`` we define a linear interpolation ``Vf`` of its values
-
-    * ``c1`` is used to implement the constraint :math:`s + \phi \leq 1`
-
-    * ``c2`` is used to implement :math:`s \geq \epsilon`, a numerically stable
-
-      alternative to the true constraint :math:`s \geq 0`
-    * ``c3`` does the same for :math:`\phi`
+we replace the arrays ``v`` and ``x_grid`` with a function ``v_func`` that gives linear
+interpolation of ``v`` on ``x_grid``
 
 Inside the ``for`` loop, for each ``x`` in the grid over the state space, we
-set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`.
+set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`
 
-The function is minimized over all feasible :math:`(s, \phi)` pairs, either by
+The function is minimized over all feasible :math:`(s, \phi)` pairs
 
-* a relatively sophisticated solver from SciPy called ``fmin_slsqp``, or
-* brute force search over a grid
+.. code-block:: python3
 
-The former is much faster, but convergence to the global optimum is not
-guaranteed.  Grid search is a simple way to check results
+    def operator_factory(jv, parallel_flag=True):
+        
+        """
+        Returns a jitted version of the Bellman operator T.
+        
+        If the brute_force flag is True, then grid search is 
+        performed at each maximization step.
+
+        """
+        
+        π, β = jv.π, jv.β
+        x_grid, ɛ, mc_size = jv.x_grid, jv.ɛ, jv.mc_size
+        f_rvs, g = jv.f_rvs, jv.g
+        
+        @njit
+        def objective(z, x, v):
+            s, ϕ = z  
+            v_func = lambda x: interp(x_grid, v, x)
+            
+            integral = 0
+            for m in range(mc_size):
+                u = f_rvs[m]
+                integral += v_func(max(g(x, ϕ), u))
+            integral = integral / mc_size
+
+            q = π(s) * integral + (1 - π(s)) * v_func(g(x, ϕ))
+            return x * (1 - ϕ - s) + β * q
+
+        @njit(parallel=parallel_flag)
+        def T(v):
+            """
+            The Bellman operator
+            """
+            
+            v_new = np.empty_like(v)
+            for i in prange(len(x_grid)):
+                x = x_grid[i]
+
+                # === Search on a grid === #
+                search_grid = np.linspace(ɛ, 1.0, 15)
+                max_val = -1
+                for s in search_grid:
+                    for ϕ in search_grid:
+                        current_val = objective((s, ϕ), x, v) if s + ϕ <= 1 else -1
+                        if current_val > max_val:
+                            max_val = current_val
+                v_new[i] = max_val
+                
+            return v_new
+        
+        @njit
+        def get_greedy(v):
+            """
+            Computes the v-greedy policy of a given function v
+            """
+            s_policy, ϕ_policy = np.empty_like(v), np.empty_like(v)
+            
+            for i in range(len(x_grid)):
+                x = x_grid[i]
+                # === Search on a grid === #
+                search_grid = np.linspace(ɛ, 1.0, 15)
+                max_val = -1
+                for s in search_grid:
+                    for ϕ in search_grid:
+                        current_val = objective((s, ϕ), x, v) if s + ϕ <= 1 else -1
+                        if current_val > max_val:
+                            max_val = current_val
+                            max_s, max_ϕ = s, ϕ
+                            s_policy[i], ϕ_policy[i] = max_s, max_ϕ
+            return s_policy, ϕ_policy
+                    
+        return T, get_greedy
+
+Another function, `get_greedy` returns the optimal policies of `s` and :math:`\phi`
+given a value function
+
+To solve the model, we will write a function that uses the Bellman operator
+and iterates to find a fixed point
+
+.. code-block:: python3
+
+    def solve_model(jv,
+                    use_parallel=True,
+                    tol=1e-4,
+                    max_iter=1000,
+                    verbose=True,
+                    print_skip=25):
+
+        T, _ = operator_factory(jv, parallel_flag=use_parallel)
+
+        # Set up loop
+        v = jv.x_grid * 0.5  # Initial condition
+        i = 0
+        error = tol + 1
+
+        while i < max_iter and error > tol:
+            v_new = T(v)
+            error = np.max(np.abs(v - v_new))
+            i += 1
+            if verbose and i % print_skip == 0:
+                print(f"Error at iteration {i} is {error}.")
+            v = v_new
+
+        if i == max_iter:
+            print("Failed to converge!")
+
+        if verbose and i < max_iter:
+            print(f"\nConverged in {i} iterations.")
+
+        return v_new
 
 
 Solving for Policies
@@ -255,12 +371,26 @@ Solving for Policies
 
 Let's plot the optimal policies and see what they look like
 
-The code is as follows
+.. _jv_policies:
 
+.. code-block:: python3
 
+    jv = JVWorker()
+    T, get_greedy = operator_factory(jv)
+    v_star = solve_model(jv)
+    s_star, ϕ_star = get_greedy(v_star)
+    plots = [s_star, ϕ_star, v_star]
+    titles = ["ϕ policy", "s policy", "value function"]
 
-.. literalinclude:: /_static/code/jv/jv_test.py
+    fig, axes = plt.subplots(3, 1, figsize=(12, 12))
 
+    for ax, plot, title in zip(axes, plots, titles):
+        ax.plot(jv.x_grid, plot)
+        ax.set(title=title)
+        ax.grid()
+
+    axes[-1].set_xlabel("x")
+    plt.show()
 
 
 The horizontal axis is the state :math:`x`, while the vertical axis gives :math:`s(x)` and :math:`\phi(x)`
@@ -293,16 +423,16 @@ Since the dynamics are random, analysis is a bit subtle
 One way to do it is to plot, for each :math:`x` in a relatively fine grid
 called ``plot_grid``, a
 large number :math:`K` of realizations of :math:`x_{t+1}` given :math:`x_t =
-x`.  Plot this with one dot for each realization, in the form of a 45 degree
-diagram.  Set
+x`
 
-
+Plot this with one dot for each realization, in the form of a 45 degree
+diagram, setting
 
 
 .. code-block:: python3
     :class: no-execute
 
-    K = 50
+    jv = JVWorker(grid_size=25, mc_size=50)
     plot_grid_max, plot_grid_size = 1.2, 100
     plot_grid = np.linspace(0, plot_grid_max, plot_grid_size)
     fig, ax = plt.subplots()
@@ -341,7 +471,7 @@ You can take it as given---it's certainly true---that the infinitely patient wor
 search in the long run (i.e., :math:`s_t = 0` for large :math:`t`)
 
 Thus, given :math:`\phi`, steady state capital is the positive fixed point
-:math:`x^*(\phi)` of the map :math:`x \mapsto G(x, \phi)`
+:math:`x^*(\phi)` of the map :math:`x \mapsto g(x, \phi)`
 
 Steady state wages can be written as :math:`w^*(\phi) = x^*(\phi) (1 - \phi)`
 
@@ -365,42 +495,37 @@ Here’s code to produce the 45 degree diagram
 
 .. code-block:: python3
 
-    import random
-    
-    wp = JvWorker(grid_size=25)
-    G, π, F = wp.G, wp.π, wp.F       # Simplify names
-    
-    v_init = wp.x_grid * 0.5
-    print("Computing value function")
-    V = compute_fixed_point(wp.bellman_operator, v_init, max_iter=40, verbose=False)
-    print("Computing policy functions")
-    s_policy, ϕ_policy = wp.bellman_operator(V, return_policies=True)
+    jv = JVWorker(grid_size=25, mc_size=50)
+    π, g, f_rvs, x_grid = jv.π, jv.g, jv.f_rvs, jv.x_grid
+    T, get_greedy = operator_factory(jv)
+    v_star = solve_model(jv, verbose=False)
+    s_policy, ϕ_policy = get_greedy(v_star)
     
     # Turn the policy function arrays into actual functions
-    s = lambda y: np.interp(y, wp.x_grid, s_policy)
-    ϕ = lambda y: np.interp(y, wp.x_grid, ϕ_policy)
-    
-    def h(x, b, U):
-        return (1 - b) * G(x, ϕ(x)) + b * max(G(x, ϕ(x)), U)
+    s = lambda y: interp(x_grid, s_policy, y)
+    ϕ = lambda y: interp(x_grid, ϕ_policy, y)
+
+    def h(x, b, u):
+        return (1 - b) * g(x, ϕ(x)) + b * max(g(x, ϕ(x)), u)
+        
     
     plot_grid_max, plot_grid_size = 1.2, 100
     plot_grid = np.linspace(0, plot_grid_max, plot_grid_size)
     fig, ax = plt.subplots(figsize=(8, 8))
-    ax.set_xlim(0, plot_grid_max)
-    ax.set_ylim(0, plot_grid_max)
     ticks = (0.25, 0.5, 0.75, 1.0)
-    ax.set(xticks=ticks, yticks=ticks)
-    ax.set_xlabel('$x_t$', fontsize=16)
-    ax.set_ylabel('$x_{t+1}$', fontsize=16, rotation='horizontal')
-    
-    ax.plot(plot_grid, plot_grid, 'k--')  # 45 degree line
+    ax.set(xticks=ticks, yticks=ticks, 
+           xlim=(0, plot_grid_max), 
+           ylim=(0, plot_grid_max),
+           xlabel='$x_t$', ylabel='$x_{t+1}$')
+
+    ax.plot(plot_grid, plot_grid, 'k--', alpha=0.6)  # 45 degree line
     for x in plot_grid:
-        for i in range(50):
-            b = 1 if random.uniform(0, 1) < π(s(x)) else 0
-            U = wp.F.rvs(1)
-            y = h(x, b, U)
+        for i in range(jv.mc_size):
+            b = 1 if np.random.uniform(0, 1) < π(s(x)) else 0
+            u = f_rvs[i]
+            y = h(x, b, u)
             ax.plot(x, y, 'go', alpha=0.25)
-    
+
     plt.show()
 
 
@@ -423,17 +548,18 @@ The figure can be produced as follows
 
 .. code-block:: python3
     
-    wp = JvWorker(grid_size=25)
-    
+    jv = JVWorker()
+
     def xbar(ϕ):
-        return (wp.A * ϕ**wp.α)**(1 / (1 - wp.α))
-    
+        A, α = jv.A, jv.α
+        return (A * ϕ**α)**(1 / (1 - α))
+
     ϕ_grid = np.linspace(0, 1, 100)
     fig, ax = plt.subplots(figsize=(9, 7))
-    ax.set_xlabel('$\phi$', fontsize=16)
-    ax.plot(ϕ_grid, [xbar(ϕ) * (1 - ϕ) for ϕ in ϕ_grid], 'b-', label='$w^*(\phi)$')
-    ax.legend(loc='upper left')
-    
+    ax.set(xlabel='$\phi$')
+    ax.plot(ϕ_grid, [xbar(ϕ) * (1 - ϕ) for ϕ in ϕ_grid], label='$w^*(\phi)$')
+    ax.legend()
+
     plt.show()
 
 
