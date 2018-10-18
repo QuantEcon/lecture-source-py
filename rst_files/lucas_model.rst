@@ -512,7 +512,7 @@ to find the fixed point
         T = operator_factory(tree)
 
         i = 0
-        f = np.empty_like(grid)  # Initial guess of f
+        f = np.ones_like(grid)  # Initial guess of f
         error = tol + 1
         while error > tol and i < max_iter:
             Tf = T(f)
