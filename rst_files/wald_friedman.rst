@@ -177,45 +177,38 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
   import numpy as np
   import matplotlib.pyplot as plt
-  import scipy.stats as st
-
-
-  def make_distribution_plots(f0, f1):
-      """
-      This generates the figure that shows the initial versions
-      of the distributions and plots their combinations.
-      """
-      fig, axes = plt.subplots(2, figsize=(10, 8))
-
-      axes[0].set_title("Original Distributions")
-      axes[0].plot(f0, lw=2, label="$f_0$")
-      axes[0].plot(f1, lw=2, label="$f_1$")
-
-      axes[1].set_title("Mixtures")
-      for p in 0.25, 0.5, 0.75:
-          y = p * f0 + (1 - p) * f1
-          axes[1].plot(y, lw=2, label=f"$p_k$ = {p}")
-
-      for ax in axes:
-          ax.legend(fontsize=14)
-          ax.set_xlabel("$k$ values", fontsize=14)
-          ax.set_ylabel("probability of $z_k$", fontsize=14)
-          ax.set_ylim(0, 0.07)
-
-      plt.tight_layout()
-      plt.show()
-
-
-  p_m1 = np.linspace(0, 1, 50)
-  f0 = np.clip(st.beta.pdf(p_m1, a=1, b=1), 1e-8, np.inf)
-  f0 = f0 / np.sum(f0)
-  f1 = np.clip(st.beta.pdf(p_m1, a=9, b=9), 1e-8, np.inf)
-  f1 = f1 / np.sum(f1)
-
-  make_distribution_plots(f0, f1)
+  from scipy.stats import beta
+  import quantecon as qe
+  from numba import njit, prange
+  from interpolation import interp
   
 
+  grid = np.linspace(0, 1, 50)
+  f0 = np.clip(beta.pdf(grid, a=1, b=1), 1e-8, np.inf)
+  f0 = f0 / np.sum(f0)
+  f1 = np.clip(beta.pdf(grid, a=9, b=9), 1e-8, np.inf)
+  f1 = f1 / np.sum(f1)
 
+  fig, axes = plt.subplots(2, figsize=(10, 8))
+
+  axes[0].set_title("Original Distributions")
+  axes[0].plot(f0, lw=2, label="$f_0$")
+  axes[0].plot(f1, lw=2, label="$f_1$")
+
+  axes[1].set_title("Mixtures")
+  for p in 0.25, 0.5, 0.75:
+      y = p * f0 + (1 - p) * f1
+      axes[1].plot(y, lw=2, label=f"$p_k$ = {p}")
+
+  for ax in axes:
+      ax.legend()
+      ax.set(xlabel="$k$ values", 
+             ylabel="probability of $z_k$", 
+             ylim=(0, 0.07))
+
+  plt.tight_layout()
+  plt.show()
+  
 
 Losses and costs
 -------------------
@@ -300,18 +293,18 @@ A Bellman equation
 -------------------
 
 
-Let :math:`J(p)` be the total loss for a decision maker with current belief :math:`p` who chooses optimally
+Let :math:`j(p)` be the total loss for a decision maker with current belief :math:`p` who chooses optimally
 
 With some thought, you will agree that :math:`J` should satisfy the Bellman equation
 
 .. math::
     :label: new1
 
-    J(p) = 
+    j(p) = 
         \min 
         \left\{ 
             (1-p) L_0, \; p L_1, \; 
-            c + \mathbb E [ J (p') ]
+            c + \mathbb E [ j (p') ]
         \right\} 
 
 
@@ -401,20 +394,46 @@ Later, doing this will help us obey **the don't repeat yourself (DRY)** golden r
 Implementation
 ==================
 
-Let's code this problem up and solve it
+First we will construct a class to store the parameters of the model
+
+.. code-block:: python3
+
+    class WaldFriedman:
+        
+        def __init__(self, 
+                     c=1.25,   # Cost of another draw
+                     a0=2.5,
+                     a1=2,
+                     b0=2,
+                     b1=2.5,
+                     L0=25,    # Cost of selecting x0 when x1 is true
+                     L1=25,    # Cost of selecting x1 when x0 is true
+                     m=25):
+            
+            self.c, self.m = c, m
+            self.L0, self.L1 = L0, L1
+            self.p_grid = np.linspace(0.0, 1.0, m)
+
+            # Set up distributions
+            f0 = np.clip(beta.pdf(np.linspace(0, 1, m), a=a0, b=b0), 1e-6, np.inf)
+            self.f0 = f0 / np.sum(f0)
+            f1 = np.clip(beta.pdf(np.linspace(0, 1, m), a=a1, b=b1), 1e-6, np.inf)
+            self.f1 = f1 / np.sum(f1)  # Make sure sums to 1
+
 
 To approximate the value function that solves Bellman equation :eq:`new1`, we 
 use value function iteration 
 
-* For earlier examples of this technique see the :doc:`shortest path <short_path>`, :doc:`job search <mccall_model>` or :doc:`optimal growth <optgrowth>` lectures
+* For earlier examples of this technique see the :doc:`shortest path <short_path>`, 
+  :doc:`job search <mccall_model>` or :doc:`optimal growth <optgrowth>` lectures
 
 As in the :doc:`optimal growth lecture <optgrowth>`, to approximate a continuous value function
 
 * We iterate at a finite grid of possible values of :math:`p`
 
-* When we evaluate :math:`A(p)` between grid points, we use linear interpolation
+* When we evaluate :math:`a(p)` between grid points, we use linear interpolation
 
-This means that to evaluate :math:`J(p)` where :math:`p` is not a grid point, we must use two points:
+This means that to evaluate :math:`j(p)` where :math:`p` is not a grid point, we must use two points:
 
 * First, we use the largest of all the grid points smaller than :math:`p`, and call it :math:`p_i`
 
@@ -422,168 +441,166 @@ This means that to evaluate :math:`J(p)` where :math:`p` is not a grid point, we
 
 .. math::
 
-    J(p) = J(p_i) + (p - p_i) \frac{J(p_{i+1}) - J(p_i)}{p_{i+1} - p_{i}}
+    j(p) = j(p_i) + (p - p_i) \frac{j(p_{i+1}) - j(p_i)}{p_{i+1} - p_{i}}
 
 
 In one dimension, you can think of this as simply drawing a line between each pair of points on the grid
 
-Here's the code
-
-.. literalinclude:: /_static/code/wald_friedman/wf_first_pass.py
-
-
-
-The distance column shows the maximal distance between successive iterates
-
-This converges to zero quickly, indicating a successful iterative procedure
-
-Iteration terminates when the distance falls below some threshold
-
-
-A more sophisticated implementation
--------------------------------------
-
-Now for some gentle criticisms of the preceding code 
-
-By writing the code in terms of functions, we have to pass around
-some things that are constant throughout the problem
-
-* :math:`c`, :math:`f_0`, :math:`f_1`, :math:`L_0`, and :math:`L_1`
-
-So now let's turn our simple script into a class
-
-This will allow us to simplify the function calls and make the code more reusable
-
-
-
-We shall construct a class that 
-
-* stores all of our parameters for us internally 
-  
-* incorporates many of the same functions that we used above
-
-* allows us, in addition, to simulate draws and the decision process under different prior beliefs
-    
-
-
-.. literalinclude:: /_static/code/wald_friedman/wald_class.py
-
-Now let's use our class to solve Bellman equation :eq:`new1` and verify that it gives similar output
-
-
+The function `operator_factory` returns the operator `T`
 
 .. code-block:: python3
 
-    # Set up distributions
-    p_m1 = np.linspace(0, 1, 50)
-    f0 = np.clip(st.beta.pdf(p_m1, a=1, b=1), 1e-8, np.inf)
-    f0 = f0 / np.sum(f0)
-    f1 = np.clip(st.beta.pdf(p_m1, a=9, b=9), 1e-8, np.inf)
-    f1 = f1 / np.sum(f1)
+    def operator_factory(wf, parallel_flag=True):
+        
+        c, m, p_grid = wf.c, wf.m, wf.p_grid
+        L0, L1 = wf.L0, wf.L1
+        f0, f1 = wf.f0, wf.f1
+        
+        @njit
+        def clip(val):
+            if val > 1:
+                return 1
+            elif val < 0:
+                return 0
+            else:
+                return val
+        
+        @njit(parallel=True)
+        def T(j):
+            j_new = np.empty(m)
+            
+            for i in prange(len(p_grid)):
+                p = p_grid[i]
+                
+                payoff_f0 = (1 - p) * L0  # Payoff choosing f0
+                payoff_f1 = p * L1        # Payoff choosing f1
+                
+                # Payoff of continuing
+                current_dist = p * f0 + (1 - p) * f1
+                
+                # Update via Bayes
+                tp1_dist = p * f0 / (p * f0 + (1 - p) * f1)
+                for t, val in enumerate(tp1_dist):
+                    tp1_dist[t] = clip(val)
+                    
+                # Evaluate the expectation
+                a = current_dist @ interp(p_grid, j, tp1_dist)
+                payoff_continue = c + a
 
-    # Create an instance
-    wf = WaldFriedman(0.5, 5.0, 5.0, f0, f1, m=251)
+                j_new[i] = min(payoff_f0, payoff_f1, payoff_continue)
 
-    # Compute the value function
-    wfJ = qe.compute_fixed_point(wf.bellman_operator, np.zeros(251),
-                                 error_tol=1e-6, verbose=True, print_skip=5)
-
+            return j_new
+        
+        return T
 
 
-We get the same output in terms of distance
+To solve the model, we will iterate using `T` to find the fixed point
 
-      
+.. code-block:: python3
 
+    def solve_model(wf,
+                    use_parallel=True,
+                    tol=1e-4,
+                    max_iter=1000,
+                    verbose=True,
+                    print_skip=25):
 
-    
-The approximate value functions produced are also the same
+        T = operator_factory(wf, parallel_flag=use_parallel)
 
-Rather than discuss this further, let's go ahead and use our code to generate some results
+        # Set up loop
+        j = np.zeros(len(wf.p_grid))
+        i = 0
+        error = tol + 1
+
+        while i < max_iter and error > tol:
+            j_new = T(j)
+            error = np.max(np.abs(j - j_new))
+            i += 1
+            if verbose and i % print_skip == 0:
+                print(f"Error at iteration {i} is {error}.")
+            j = j_new
+
+        if i == max_iter:
+            print("Failed to converge!")
+
+        if verbose and i < max_iter:
+            print(f"\nConverged in {i} iterations.")
+
+        return j_new
+
 
 
 
 Analysis
 =====================
 
-Now that our routines are working, let's inspect the solutions
+Let's inspect the model's solutions
 
-We'll start with the following parameterization
-
-
+We will be using the default parametization with distributions like so
 
 .. code-block:: python3
 
-  def analysis_plot(c=1.25, L0=25, L1=25, a0=2.5, b0=2.0, a1=2.0, b1=2.5, m=25):
-      
-      '''
-      c: Cost of another draw
-      L0: Cost of selecting x0 when x1 is true
-      L1: Cost of selecting x1 when x0 is true
-      a0, b0: Parameters for f0 (beta distribution)
-      a1, b1: Parameters for f1 (beta distribution)
-      m: Size of grid
-      '''
+    wf = WaldFriedman()
+    
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(wf.f0, label="$f_0$")
+    ax.plot(wf.f1, label="$f_1$")
+    ax.set(ylabel="probability of $z_k$", xlabel="$k$", title="Distributions")
+    ax.legend()
 
-      f0 = np.clip(st.beta.pdf(np.linspace(0, 1, m), a=a0, b=b0), 1e-6, np.inf)
-      f0 = f0 / np.sum(f0)
-      f1 = np.clip(st.beta.pdf(np.linspace(0, 1, m), a=a1, b=b1), 1e-6, np.inf)
-      f1 = f1 / np.sum(f1)  # Make sure sums to 1
+    plt.show()
 
-      # Create an instance of our WaldFriedman class
-      wf = WaldFriedman(c, L0, L1, f0, f1, m=m)
-      # Solve using qe's `compute_fixed_point` function
-      J = qe.compute_fixed_point(wf.bellman_operator, np.zeros(m),
-                                 error_tol=1e-7, verbose=False,
-                                 print_skip=10, max_iter=500)
-      lb, ub = wf.find_cutoff_rule(J)
-
-      # Get draws
-      ndraws = 500
-      cdist, tdist = wf.stopping_dist(ndraws=ndraws)
-
-      fig, ax = plt.subplots(2, 2, figsize=(12, 9))
-
-      ax[0, 0].plot(f0, label="$f_0$")
-      ax[0, 0].plot(f1, label="$f_1$")
-      ax[0, 0].set(ylabel="probability of $z_k$", xlabel="$k$", title="Distributions")
-      ax[0, 0].legend()
-
-      ax[0, 1].plot(wf.pgrid, J)
-      ax[0, 1].annotate(r"$\beta$", xy=(lb + 0.025, 0.5), size=14)
-      ax[0, 1].annotate(r"$\alpha$", xy=(ub + 0.025, 0.5), size=14)
-      ax[0, 1].vlines(lb, 0.0, wf.payoff_choose_f1(lb), linestyle="--")
-      ax[0, 1].vlines(ub, 0.0, wf.payoff_choose_f0(ub), linestyle="--")
-      ax[0, 1].set(ylim=(0, 0.5 * max(L0, L1)), ylabel="cost", 
-                         xlabel="$p_k$", title="Value function $J$")
-
-      # Histogram the stopping times
-      ax[1, 0].hist(tdist, bins=np.max(tdist))
-      ax[1, 0].set_title(f"Stopping times over {ndraws} replications")
-      ax[1, 0].set(xlabel="time", ylabel="number of stops")
-      ax[1, 0].annotate(f"mean = {np.mean(tdist)}", xy=(max(tdist) / 2, 
-                        max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
-
-      ax[1, 1].hist(cdist, bins=2)
-      ax[1, 1].set_title(f"Correct decisions over {ndraws} replications")
-      ax[1, 1].annotate(f"% correct = {np.mean(cdist)}", 
-                        xy=(0.05, ndraws / 2))
-
-      plt.tight_layout()
-      plt.show()
-      
-  analysis_plot()
-
- 
-
-
-The code to generate this figure can be found in `wald_solution_plots.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/wald_friedman/wald_solution_plots.py>`__
 
 Value Function
 -----------------
 
-In the top left subfigure we have the two beta distributions, :math:`f_0` and :math:`f_1`
+To solve the model, we will call our `solve_model` function
 
-In the top right we have corresponding value function :math:`J`
+.. code-block:: python3
+
+    j_star = solve_model(wf)  # solve the model
+
+We will also set up a function to compute the cutoffs :math:`\alpha` and :math:`\beta`
+and plot these on our value function plot
+
+.. code-block:: python3
+
+    def find_cutoff_rule(wf, j):
+        """
+        This function takes a value function and returns the corresponding
+        cutoffs of where you transition between continue and choosing a
+        specific model
+        """
+        m, p_grid = wf.m, wf.p_grid
+        L0, L1 = wf.L0, wf.L1
+
+        # Evaluate cost at all points on grid for choosing a model
+        payoff_f0 = (1 - p_grid) * L0
+        payoff_f1 = p_grid * L1
+
+        # The cutoff points can be found by differencing these costs with
+        # the Bellman equation (J is always less than or equal to p_c_i)
+        lb = p_grid[np.searchsorted(payoff_f1 - j, 1e-10) - 1]
+        ub = p_grid[np.searchsorted(j - payoff_f0, -1e-10)]
+
+        return (lb, ub)
+
+    lb, ub = find_cutoff_rule(wf, j_star)
+    
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    ax.plot(wf.p_grid, j_star)
+    ax.annotate(r"$\beta$", xy=(lb + 0.01, 0.5), fontsize=14)
+    ax.annotate(r"$\alpha$", xy=(ub + 0.01, 0.5), fontsize=14)
+
+    plt.vlines(lb, 0, lb * wf.L0, linestyle="--")
+    plt.vlines(ub, 0, (1 - ub) * wf.L1, linestyle="--")
+
+    ax.set(ylim=(0, 0.5 * max(wf.L0, wf.L1)), ylabel="cost",
+           xlabel="$p_k$", title="Value function")
+    plt.show()
+
+    
 
 It equals :math:`p L_1` for :math:`p \leq \beta`, and :math:`(1-p )L_0` for :math:`p
 \geq \alpha` 
@@ -600,7 +617,7 @@ The decision maker continues to sample until the probability that he attaches to
 Simulations
 -----------------
 
-The bottom two subfigures show the outcomes of 500 simulations of the decision process
+The next figure shows the outcomes of 500 simulations of the decision process
 
 On the left is a histogram of the stopping times, which equal the number of draws of :math:`z_k` required to make a decision 
 
@@ -610,6 +627,98 @@ On the right is the fraction of correct decisions at the stopping time
 
 In this case the decision maker is correct 80% of the time
 
+.. code-block:: python3
+
+    def simulate(wf, true_dist, j_star, p0=0.5):
+        """
+        This function takes an initial condition and simulates until it
+        stops (when a decision is made).
+        """
+        
+        f0, f1 = wf.f0, wf.f1
+        
+        if true_dist == "f0":
+            f = wf.f0
+        elif true_dist == "f1":
+            f = wf.f1
+
+        # Find cutoffs
+        lb, ub = find_cutoff_rule(wf, j_star)
+        
+        # Function to update p
+        update_p = lambda p, k: p * f0[k] / (p * f1[k] + (1 - p) * f1[k])
+
+        # Initialize a couple useful variables
+        decision_made = False
+        p = p0
+        t = 0
+
+        while decision_made is False:
+            # Maybe should specify which distribution is correct one so that
+            # the draws come from the "right" distribution
+            k = int(qe.random.draw(np.cumsum(f)))
+            t = t+1
+            p = update_p(p, k)
+            current_dist = p * f0 + (1 - p) * f1
+            if p < lb:
+                decision_made = True
+                decision = 1
+            elif p > ub:
+                decision_made = True
+                decision = 0
+                
+        if true_dist == "f0":
+            if decision == 0:
+                correct = True
+            else:
+                correct = False
+        
+        elif true_dist == "f1":
+            if decision == 1:
+                correct = True
+            else:
+                correct = False
+
+        return correct, p, t
+        
+    def stopping_dist(wf, j_star, ndraws=250, true_dist="f0"):
+        """
+        Simulates repeatedly to get distributions of time needed to make a
+        decision and how often they are correct.
+        """
+
+        tdist = np.empty(ndraws, int)
+        cdist = np.empty(ndraws, bool)
+
+        for i in range(ndraws):
+            correct, p, t = simulate(wf, true_dist, j_star)
+            tdist[i] = t
+            cdist[i] = correct
+
+        return cdist, tdist
+
+    def simulation_plot(wf):
+        j_star = solve_model(wf)
+        ndraws = 500
+        cdist, tdist = stopping_dist(wf, j_star, ndraws)
+
+        fig, ax = plt.subplots(1, 2, figsize=(16, 5))
+
+        ax[0].hist(tdist, bins=np.max(tdist))
+        ax[0].set_title(f"Stopping times over {ndraws} replications")
+        ax[0].set(xlabel="time", ylabel="number of stops")
+        ax[0].annotate(f"mean = {np.mean(tdist)}", xy=(max(tdist) / 2,
+                    max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
+
+        ax[1].hist(cdist, bins=2)
+        ax[1].set_title(f"Correct decisions over {ndraws} replications")
+        ax[1].annotate(f"% correct = {np.mean(cdist)}",
+                          xy=(0.05, ndraws / 2))
+
+        plt.show()
+        
+    simulation_plot(wf)
+    
 
 Comparative statics
 ----------------------
@@ -625,15 +734,10 @@ Before you look, think about what will happen:
 -  Will he make decisions sooner or later?
 
 
-
 .. code-block:: python3
 
-  analysis_plot(c=2.5)
-  
-
-
-
-Notice what happens
+    wf = WaldFriedman(c=2.5)
+    simulation_plot(wf)
 
 The stopping times dropped dramatically!
 
@@ -650,7 +754,9 @@ A notebook implementation
 
 
 
-To facilitate comparative statics, we provide a `Jupyter notebook <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/Wald_Friedman.ipynb>`__ that generates the same plots, but with sliders
+To facilitate comparative statics, we provide 
+a `Jupyter notebook <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/Wald_Friedman.ipynb>`__ that 
+generates the same plots, but with sliders
 
 
 
