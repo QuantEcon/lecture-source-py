@@ -72,6 +72,7 @@ But there's an error here: ``plt.subplots(2, 1)`` should be just ``plt.subplots(
 Here's what happens when we run the code:
 
 .. code-block:: none
+    :class: no-execute
 
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
