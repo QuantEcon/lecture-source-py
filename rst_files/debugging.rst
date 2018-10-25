@@ -100,6 +100,7 @@ But let's pretend that we don't understand this for the moment
 We might suspect there's something wrong with ``ax`` but when we try to investigate this object, we get the following exception:
 
 .. code-block:: none
+    :class: no-execute
 
     ---------------------------------------------------------------------------
     NameError                                 Traceback (most recent call last)
