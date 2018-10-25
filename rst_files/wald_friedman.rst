@@ -646,7 +646,7 @@ In this case the decision maker is correct 80% of the time
         lb, ub = find_cutoff_rule(wf, j_star)
         
         # Function to update p
-        update_p = lambda p, k: p * f0[k] / (p * f1[k] + (1 - p) * f1[k])
+        update_p = lambda p, k: p * f0[k] / (p * f0[k] + (1 - p) * f1[k])
 
         # Initialize a couple useful variables
         decision_made = False
