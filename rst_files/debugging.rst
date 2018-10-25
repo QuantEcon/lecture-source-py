@@ -130,7 +130,7 @@ We run the first cell block again, generating the same error
     plot_log()  # Call the function, generate plot
 
 .. code-block:: none
-
+    :class: no-execute
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
     <ipython-input-1-ef5c75a58138> in <module>()
