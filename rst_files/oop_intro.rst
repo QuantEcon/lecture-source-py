@@ -134,6 +134,7 @@ Some languages might try to guess but Python is *strongly typed*
 * Python will respond instead by raising a ``TypeError``
 
 .. code-block:: none
+    :class: no-execute
 
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
