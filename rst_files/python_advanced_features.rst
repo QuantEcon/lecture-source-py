@@ -275,19 +275,10 @@ One thing to remember about iterators is that they are depleted by use
 
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
     
     max(y)
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    ValueError                                Traceback (most recent call last)
-    <ipython-input-72-1d3b6314f310> in <module>()
-    ----> 1 max(y)
-
-    ValueError: max() arg is an empty sequence
-
 
 .. _name_res:
 
