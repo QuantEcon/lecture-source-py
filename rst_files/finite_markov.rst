@@ -1283,6 +1283,7 @@ There is a total of 14 nodes (i.e., web pages), the first named ``a`` and the la
 A typical line from the file has the form
 
 .. code-block:: none
+    :class: no-execute
 
     d -> h;
 
