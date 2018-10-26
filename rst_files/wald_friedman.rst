@@ -24,9 +24,12 @@ Co-authors: `Chase Coleman <https://github.com/cc7768>`__
 Overview
 =========
 
-This lecture describes a statistical decision problem encountered  by Milton Friedman and W. Allen Wallis during World War II when they were analysts at the U.S. Government's  Statistical Research Group at Columbia University  
+This lecture describes a statistical decision problem encountered  by Milton 
+Friedman and W. Allen Wallis during World War II when they were analysts at 
+the U.S. Government's  Statistical Research Group at Columbia University  
 
-This problem led Abraham Wald :cite:`Wald47` to formulate **sequential analysis**, an approach to statistical decision problems intimately related to dynamic programming
+This problem led Abraham Wald :cite:`Wald47` to formulate **sequential analysis**, 
+an approach to statistical decision problems intimately related to dynamic programming
 
 In this lecture, we apply dynamic programming algorithms to Friedman and Wallis and Wald's problem
 
@@ -49,8 +52,6 @@ Key ideas in play will be:
 -  The **critical region** of a statistical test
 
 -  A **uniformly most powerful test**
-
-
 
 
 
@@ -109,7 +110,8 @@ A decision maker observes iid draws of a random variable :math:`z`
 
 He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z` 
 
-After a number of draws, also to be determined, he makes a decision as to which of the distributions is generating the draws he observers
+After a number of draws, also to be determined, he makes a decision as to 
+which of the distributions is generating the draws he observers
 
 To help formalize the problem, let :math:`x \in \{x_0, x_1\}` be a hidden state that indexes the two distributions:
 
@@ -126,7 +128,7 @@ Before observing any outcomes, the decision maker believes that the probability 
 
 .. math::
 
-    p_{-1} = 
+    \pi_{-1} = 
     \mathbb P \{ x=x_0 \mid \textrm{ no observations} \} \in (0, 1)
 
 
@@ -134,25 +136,27 @@ After observing :math:`k+1` observations :math:`z_k, z_{k-1}, \ldots, z_0`, he u
 
 .. math::
 
-    p_k = \mathbb P \{ x = x_0 \mid z_k, z_{k-1}, \ldots, z_0 \},
+    \pi_k = \mathbb P \{ x = x_0 \mid z_k, z_{k-1}, \ldots, z_0 \},
 
 
 which is calculated recursively by applying Bayes' law:
 
 .. math::
 
-    p_{k+1} = \frac{ p_k f_0(z_{k+1})}{ p_k f_0(z_{k+1}) + (1-p_k) f_1 (z_{k+1}) },
+    \pi_{k+1} = \frac{ \pi_k f_0(z_{k+1})}{ \pi_k f_0(z_{k+1}) + (1-\pi_k) f_1 (z_{k+1}) },
     \quad k = -1, 0, 1, \ldots
 
 
-After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker believes that :math:`z_{k+1}` has probability distribution
+After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker believes 
+that :math:`z_{k+1}` has probability distribution
 
 .. math::
 
-    f(v) = p_k f_0(v) + (1-p_k) f_1 (v) 
+    f(v) = \pi_k f_0(v) + (1-\pi_k) f_1 (v) 
 
 
-This is a mixture of distributions :math:`f_0` and :math:`f_1`, with the weight on :math:`f_0` being the posterior probability that :math:`x = x_0` [#f1]_
+This is a mixture of distributions :math:`f_0` and :math:`f_1`, with the weight 
+on :math:`f_0` being the posterior probability that :math:`x = x_0` [#f1]_
 
 To help illustrate this kind of distribution, let's inspect some mixtures of beta distributions
 
@@ -175,39 +179,50 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 .. code-block:: python3
 
-  import numpy as np
-  import matplotlib.pyplot as plt
-  from scipy.stats import beta
-  import quantecon as qe
-  from numba import njit, prange
-  from interpolation import interp
-  
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.stats import beta
+    import quantecon as qe
+    from numba import njit, prange, vectorize
+    from interpolation import interp
+    from math import gamma
 
-  grid = np.linspace(0, 1, 50)
-  f0 = np.clip(beta.pdf(grid, a=1, b=1), 1e-8, np.inf)
-  f0 = f0 / np.sum(f0)
-  f1 = np.clip(beta.pdf(grid, a=9, b=9), 1e-8, np.inf)
-  f1 = f1 / np.sum(f1)
 
-  fig, axes = plt.subplots(2, figsize=(10, 8))
+    def beta_function_factory(a, b):
 
-  axes[0].set_title("Original Distributions")
-  axes[0].plot(f0, lw=2, label="$f_0$")
-  axes[0].plot(f1, lw=2, label="$f_1$")
+        @vectorize
+        def p(x):
+            r = gamma(a + b) / (gamma(a) * gamma(b))
+            return r * x**(a-1) * (1 - x)**(b-1)
+        
+        @njit
+        def p_rvs():
+            return np.random.beta(a, b)
 
-  axes[1].set_title("Mixtures")
-  for p in 0.25, 0.5, 0.75:
-      y = p * f0 + (1 - p) * f1
-      axes[1].plot(y, lw=2, label=f"$p_k$ = {p}")
+        return p, p_rvs
 
-  for ax in axes:
-      ax.legend()
-      ax.set(xlabel="$k$ values", 
-             ylabel="probability of $z_k$", 
-             ylim=(0, 0.07))
 
-  plt.tight_layout()
-  plt.show()
+    f0, _ = beta_function_factory(1, 1)
+    f1, _ = beta_function_factory(9, 9)
+    grid = np.linspace(0, 1, 50)
+
+    fig, axes = plt.subplots(2, figsize=(10, 8))
+
+    axes[0].set_title("Original Distributions")
+    axes[0].plot(grid, f0(grid), lw=2, label="$f_0$")
+    axes[0].plot(grid, f1(grid), lw=2, label="$f_1$")
+
+    axes[1].set_title("Mixtures")
+    for π in 0.25, 0.5, 0.75:
+        y = π * f0(grid) + (1 - π) * f1(grid)
+        axes[1].plot(y, lw=2, label=f"$\pi_k$ = {π}")
+
+    for ax in axes:
+        ax.legend()
+        ax.set(xlabel="$z$ values", ylabel="probability of $z_k$")
+
+    plt.tight_layout()
+    plt.show()
   
 
 Losses and costs
@@ -270,9 +285,9 @@ Suppose at some given point in time that :math:`p` is close to 1
 
 Then our prior beliefs and the evidence so far point strongly to :math:`x = x_0` 
 
-If, on the other hand, :math:`p` is close to 0, then :math:`x = x_1` is strongly favored
+If, on the other hand, :math:`\pi` is close to 0, then :math:`x = x_1` is strongly favored
 
-Finally, if :math:`p` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction
+Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction
 
 This reasoning suggests a decision rule such as the one shown in the figure
 
@@ -293,33 +308,33 @@ A Bellman equation
 -------------------
 
 
-Let :math:`j(p)` be the total loss for a decision maker with current belief :math:`p` who chooses optimally
+Let :math:`J(p)` be the total loss for a decision maker with current belief :math:`p` who chooses optimally
 
 With some thought, you will agree that :math:`J` should satisfy the Bellman equation
 
 .. math::
     :label: new1
 
-    j(p) = 
+    J(p) = 
         \min 
         \left\{ 
-            (1-p) L_0, \; p L_1, \; 
-            c + \mathbb E [ j (p') ]
+            (1-\pi) L_0, \; \pi L_1, \; 
+            c + \mathbb E [ J (\pi') ]
         \right\} 
 
 
-where :math:`p'` is the random variable defined by
+where :math:`\pi'` is the random variable defined by
 
 .. math::
 
-    p' = \frac{ p f_0(z)}{ p f_0(z) + (1-p) f_1 (z) }
+    \pi' = \frac{ \pi f_0(z)}{ \pi f_0(z) + (1-\pi) f_1 (z) }
 
 
-when :math:`p` is fixed and :math:`z` is drawn from the current best guess, which is the distribution :math:`f` defined by
+when :math:`\pi` is fixed and :math:`z` is drawn from the current best guess, which is the distribution :math:`f` defined by
 
 .. math::
 
-    f(v) = p f_0(v) + (1-p) f_1 (v) 
+    f(v) = \pi f_0(v) + (1-\pi) f_1 (v) 
 
 
 In the Bellman equation, minimization is over three actions: 
@@ -397,28 +412,31 @@ Implementation
 First we will construct a class to store the parameters of the model
 
 .. code-block:: python3
-
-    class WaldFriedman:
         
-        def __init__(self, 
-                     c=1.25,   # Cost of another draw
-                     a0=2.5,
-                     a1=2,
-                     b0=2,
-                     b1=2.5,
-                     L0=25,    # Cost of selecting x0 when x1 is true
-                     L1=25,    # Cost of selecting x1 when x0 is true
-                     m=25):
-            
-            self.c, self.m = c, m
+    class WaldFriedman:
+
+        def __init__(self,
+                     c=1.25,         # Cost of another draw
+                     a0=2,
+                     b0=4,
+                     a1=4,
+                     b1=2,
+                     L0=25,          # Cost of selecting f0 when f1 is true
+                     L1=25,          # Cost of selecting f1 when f0 is true
+                     π_grid_size=25,
+                     mc_size=1000):
+
+            self.c, self.π_grid_size = c, π_grid_size
             self.L0, self.L1 = L0, L1
-            self.p_grid = np.linspace(0.0, 1.0, m)
+            self.π_grid = np.linspace(0, 1, π_grid_size)
+            self.mc_size = mc_size
 
             # Set up distributions
-            f0 = np.clip(beta.pdf(np.linspace(0, 1, m), a=a0, b=b0), 1e-6, np.inf)
-            self.f0 = f0 / np.sum(f0)
-            f1 = np.clip(beta.pdf(np.linspace(0, 1, m), a=a1, b=b1), 1e-6, np.inf)
-            self.f1 = f1 / np.sum(f1)  # Make sure sums to 1
+            self.f0, self.f0_rvs = beta_function_factory(a0, b0)
+            self.f1, self.f1_rvs = beta_function_factory(a1, b1)
+
+            self.z0 = np.random.beta(a0, b0, mc_size)
+            self.z1 = np.random.beta(a1, b1, mc_size)
 
 
 To approximate the value function that solves Bellman equation :eq:`new1`, we 
@@ -429,69 +447,71 @@ use value function iteration
 
 As in the :doc:`optimal growth lecture <optgrowth>`, to approximate a continuous value function
 
-* We iterate at a finite grid of possible values of :math:`p`
+* We iterate at a finite grid of possible values of :math:`\pi`
 
-* When we evaluate :math:`a(p)` between grid points, we use linear interpolation
+* When we evaluate :math:`\mathbb E[J(\pi')]` between grid points, we use linear interpolation
 
-This means that to evaluate :math:`j(p)` where :math:`p` is not a grid point, we must use two points:
+This means that to evaluate :math:`J(\pi)` where :math:`\pi` is not a grid point, we must use two points:
 
-* First, we use the largest of all the grid points smaller than :math:`p`, and call it :math:`p_i`
+* First, we use the largest of all the grid points smaller than :math:`\pi`, and call it :math:`\pi_i`
 
-* Second, we use the grid point immediately after :math:`p`, named :math:`p_{i+1}`, to approximate the function value as
+* Second, we use the grid point immediately after :math:`p`, named :math:`\pi_{i+1}`, to approximate the function value as
 
 .. math::
 
-    j(p) = j(p_i) + (p - p_i) \frac{j(p_{i+1}) - j(p_i)}{p_{i+1} - p_{i}}
+    J(\pi) = J(\pi_i) + (\pi - \pi_i) \frac{J(\pi_{i+1}) - J(\pi_i)}{\pi_{i+1} - \pi_{i}}
 
 
 In one dimension, you can think of this as simply drawing a line between each pair of points on the grid
 
-The function `operator_factory` returns the operator `T`
+The function `operator_factory` returns the operator `Q`
 
 .. code-block:: python3
 
     def operator_factory(wf, parallel_flag=True):
-        
-        c, m, p_grid = wf.c, wf.m, wf.p_grid
+
+        c, π_grid = wf.c, wf.π_grid
         L0, L1 = wf.L0, wf.L1
         f0, f1 = wf.f0, wf.f1
-        
+        z0, z1 = wf.z0, wf.z1
+        mc_size = wf.mc_size
+
         @njit
-        def clip(val):
-            if val > 1:
-                return 1
-            elif val < 0:
-                return 0
-            else:
-                return val
-        
+        def κ(z, π):
+            """
+            Updates π using Bayes' rule and the current observation z.
+            """
+            pf0, pf1 = π * f0(z), (1 - π) * f1(z)
+            π_new = pf0 / (pf0 + pf1)
+
+            return π_new
+
         @njit(parallel=True)
-        def T(j):
-            j_new = np.empty(m)
-            
-            for i in prange(len(p_grid)):
-                p = p_grid[i]
-                
-                payoff_f0 = (1 - p) * L0  # Payoff choosing f0
-                payoff_f1 = p * L1        # Payoff choosing f1
-                
+        def Q(h):
+            h_new = np.empty_like(π_grid)
+            h_func = lambda p: interp(π_grid, h, p)
+
+            for i in prange(len(π_grid)):
+                π = π_grid[i]
+
+                integral_f0, integral_f1 = 0, 0
+
                 # Payoff of continuing
-                current_dist = p * f0 + (1 - p) * f1
-                
-                # Update via Bayes
-                tp1_dist = p * f0 / (p * f0 + (1 - p) * f1)
-                for t, val in enumerate(tp1_dist):
-                    tp1_dist[t] = clip(val)
-                    
-                # Evaluate the expectation
-                a = current_dist @ interp(p_grid, j, tp1_dist)
-                payoff_continue = c + a
+                for m in range(mc_size):
+                    π_0 = κ(z0[m], π)
+                    integral_f0 += min((1 - π_0) * L0, π_0 * L1, h_func(π_0))
 
-                j_new[i] = min(payoff_f0, payoff_f1, payoff_continue)
+                for m in range(mc_size):
+                    π_1 = κ(z1[m], π)
+                    integral_f1 += min((1 - π_1) * L0, π_1 * L1, h_func(π_1))
 
-            return j_new
-        
-        return T
+                integral = (π * integral_f0 + (1 - π) * integral_f1) / mc_size
+
+                h_new[i] = c + integral
+
+            return h_new
+
+        return Q
 
 
 To solve the model, we will iterate using `T` to find the fixed point
@@ -505,20 +525,20 @@ To solve the model, we will iterate using `T` to find the fixed point
                     verbose=True,
                     print_skip=25):
 
-        T = operator_factory(wf, parallel_flag=use_parallel)
+        Q = operator_factory(wf, parallel_flag=use_parallel)
 
         # Set up loop
-        j = np.zeros(len(wf.p_grid))
+        h = np.zeros(len(wf.π_grid))
         i = 0
         error = tol + 1
 
         while i < max_iter and error > tol:
-            j_new = T(j)
-            error = np.max(np.abs(j - j_new))
+            h_new = Q(h)
+            error = np.max(np.abs(h - h_new))
             i += 1
             if verbose and i % print_skip == 0:
                 print(f"Error at iteration {i} is {error}.")
-            j = j_new
+            h = h_new
 
         if i == max_iter:
             print("Failed to converge!")
@@ -526,9 +546,7 @@ To solve the model, we will iterate using `T` to find the fixed point
         if verbose and i < max_iter:
             print(f"\nConverged in {i} iterations.")
 
-        return j_new
-
-
+        return h_new
 
 
 Analysis
@@ -541,10 +559,10 @@ We will be using the default parametization with distributions like so
 .. code-block:: python3
 
     wf = WaldFriedman()
-    
+
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(wf.f0, label="$f_0$")
-    ax.plot(wf.f1, label="$f_1$")
+    ax.plot(wf.f0(grid), label="$f_0$")
+    ax.plot(wf.f1(grid), label="$f_1$")
     ax.set(ylabel="probability of $z_k$", xlabel="$k$", title="Distributions")
     ax.legend()
 
@@ -558,51 +576,60 @@ To solve the model, we will call our `solve_model` function
 
 .. code-block:: python3
 
-    j_star = solve_model(wf)  # solve the model
+    h_star = solve_model(wf)  # solve the model
 
 We will also set up a function to compute the cutoffs :math:`\alpha` and :math:`\beta`
 and plot these on our value function plot
 
 .. code-block:: python3
 
-    def find_cutoff_rule(wf, j):
+    def find_cutoff_rule(wf, h):
         """
         This function takes a value function and returns the corresponding
         cutoffs of where you transition between continue and choosing a
         specific model
         """
-        m, p_grid = wf.m, wf.p_grid
+        π_grid = wf.π_grid
         L0, L1 = wf.L0, wf.L1
 
         # Evaluate cost at all points on grid for choosing a model
-        payoff_f0 = (1 - p_grid) * L0
-        payoff_f1 = p_grid * L1
+        payoff_f0 = (1 - π_grid) * L0
+        payoff_f1 = π_grid * L1
 
         # The cutoff points can be found by differencing these costs with
         # the Bellman equation (J is always less than or equal to p_c_i)
-        lb = p_grid[np.searchsorted(payoff_f1 - j, 1e-10) - 1]
-        ub = p_grid[np.searchsorted(j - payoff_f0, -1e-10)]
+        β = π_grid[np.searchsorted(payoff_f1 - h, 1e-10) - 1]
+        α = π_grid[np.searchsorted(h - payoff_f0, -1e-10)]
 
-        return (lb, ub)
+        return (β, α)
 
-    lb, ub = find_cutoff_rule(wf, j_star)
-    
+    β, α = find_cutoff_rule(wf, h_star)
+    cost_L0 = (1 - wf.π_grid) * wf.L0
+    cost_L1 = wf.π_grid * wf.L1
+
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    ax.plot(wf.p_grid, j_star)
-    ax.annotate(r"$\beta$", xy=(lb + 0.01, 0.5), fontsize=14)
-    ax.annotate(r"$\alpha$", xy=(ub + 0.01, 0.5), fontsize=14)
+    ax.plot(wf.π_grid, h_star, label='continue')
+    ax.plot(wf.π_grid, cost_L1, label='choose f1')
+    ax.plot(wf.π_grid, cost_L0, label='choose f0')
+    ax.plot(wf.π_grid, np.amin(np.column_stack([h_star, cost_L0, cost_L1]), axis=1),
+            lw=15, alpha=0.1, color='b', label='minimum cost')
 
-    plt.vlines(lb, 0, lb * wf.L0, linestyle="--")
-    plt.vlines(ub, 0, (1 - ub) * wf.L1, linestyle="--")
+    ax.annotate(r"$\beta$", xy=(β + 0.01, 0.5), fontsize=14)
+    ax.annotate(r"$\alpha$", xy=(α + 0.01, 0.5), fontsize=14)
 
-    ax.set(ylim=(0, 0.5 * max(wf.L0, wf.L1)), ylabel="cost",
-           xlabel="$p_k$", title="Value function")
+    plt.vlines(β, 0, β * wf.L0, linestyle="--")
+    plt.vlines(α, 0, (1 - α) * wf.L1, linestyle="--")
+
+    ax.set(xlim=(0, 1), ylim=(0, 0.5 * max(wf.L0, wf.L1)), ylabel="cost",
+           xlabel="$\pi$", title="Value function")
+
+    plt.legend(borderpad=1.1)
     plt.show()
 
     
 
-It equals :math:`p L_1` for :math:`p \leq \beta`, and :math:`(1-p )L_0` for :math:`p
+It equals :math:`\pi L_1` for :math:`\pi \leq \beta`, and :math:`(1-\pi )L_0` for :math:`\pi
 \geq \alpha` 
 
 The slopes of the two linear pieces of the value function are determined by :math:`L_1`
@@ -611,7 +638,8 @@ and :math:`- L_0`
 The value function is smooth in the interior region, where the posterior
 probability assigned to :math:`f_0` is in the indecisive region :math:`p \in (\beta, \alpha)`
 
-The decision maker continues to sample until the probability that he attaches to model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
+The decision maker continues to sample until the probability that he attaches to 
+model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
 
 
 Simulations
@@ -629,59 +657,66 @@ In this case the decision maker is correct 80% of the time
 
 .. code-block:: python3
 
-    def simulate(wf, true_dist, j_star, p0=0.5):
+    def simulate(wf, true_dist, h_star, π_0=0.5):
         """
         This function takes an initial condition and simulates until it
         stops (when a decision is made).
         """
-        
+
         f0, f1 = wf.f0, wf.f1
-        
+        f0_rvs, f1_rvs = wf.f0_rvs, wf.f1_rvs
+        π_grid = wf.π_grid
+
+        def κ(z, π):
+            """
+            Updates π using Bayes' rule and the current observation z.
+            """
+            π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
+            π_new = π_f0 / (π_f0 + π_f1)
+
+            return π_new
+
         if true_dist == "f0":
-            f = wf.f0
+            f, f_rvs = wf.f0, wf.f0_rvs
         elif true_dist == "f1":
-            f = wf.f1
+            f, f_rvs = wf.f1, wf.f1_rvs
 
         # Find cutoffs
-        lb, ub = find_cutoff_rule(wf, j_star)
-        
-        # Function to update p
-        update_p = lambda p, k: p * f0[k] / (p * f0[k] + (1 - p) * f1[k])
+        β, α = find_cutoff_rule(wf, h_star)
 
         # Initialize a couple useful variables
         decision_made = False
-        p = p0
+        π = π_0
         t = 0
 
         while decision_made is False:
             # Maybe should specify which distribution is correct one so that
             # the draws come from the "right" distribution
-            k = int(qe.random.draw(np.cumsum(f)))
+            z = f_rvs()
             t = t+1
-            p = update_p(p, k)
-            current_dist = p * f0 + (1 - p) * f1
-            if p < lb:
+            π = κ(z, π)
+            if π < β:
                 decision_made = True
                 decision = 1
-            elif p > ub:
+            elif π > α:
                 decision_made = True
                 decision = 0
-                
+
         if true_dist == "f0":
             if decision == 0:
                 correct = True
             else:
                 correct = False
-        
+
         elif true_dist == "f1":
             if decision == 1:
                 correct = True
             else:
                 correct = False
 
-        return correct, p, t
-        
-    def stopping_dist(wf, j_star, ndraws=250, true_dist="f0"):
+        return correct, π, t
+
+    def stopping_dist(wf, h_star, ndraws=250, true_dist="f0"):
         """
         Simulates repeatedly to get distributions of time needed to make a
         decision and how often they are correct.
@@ -691,16 +726,16 @@ In this case the decision maker is correct 80% of the time
         cdist = np.empty(ndraws, bool)
 
         for i in range(ndraws):
-            correct, p, t = simulate(wf, true_dist, j_star)
+            correct, π, t = simulate(wf, true_dist, h_star)
             tdist[i] = t
             cdist[i] = correct
 
         return cdist, tdist
 
     def simulation_plot(wf):
-        j_star = solve_model(wf)
+        h_star = solve_model(wf)
         ndraws = 500
-        cdist, tdist = stopping_dist(wf, j_star, ndraws)
+        cdist, tdist = stopping_dist(wf, h_star, ndraws)
 
         fig, ax = plt.subplots(1, 2, figsize=(16, 5))
 
@@ -708,15 +743,15 @@ In this case the decision maker is correct 80% of the time
         ax[0].set_title(f"Stopping times over {ndraws} replications")
         ax[0].set(xlabel="time", ylabel="number of stops")
         ax[0].annotate(f"mean = {np.mean(tdist)}", xy=(max(tdist) / 2,
-                    max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
+                       max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
 
         ax[1].hist(cdist, bins=2)
         ax[1].set_title(f"Correct decisions over {ndraws} replications")
         ax[1].annotate(f"% correct = {np.mean(cdist)}",
-                          xy=(0.05, ndraws / 2))
+                       xy=(0.05, ndraws / 2))
 
         plt.show()
-        
+
     simulation_plot(wf)
     
 
