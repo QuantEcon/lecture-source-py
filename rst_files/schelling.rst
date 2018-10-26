@@ -140,6 +140,7 @@ Agents can be modeled as :doc:`objects <python_oop>`
 Here's an indication of how they might look
 
 .. code-block:: none
+    :class: no-execute
 
     * Data:
 
@@ -159,6 +160,7 @@ And here's some pseudocode for the main loop
 
 
 .. code-block:: none
+    :class: no-execute
 
     while agents are still moving
         for agent in agents
