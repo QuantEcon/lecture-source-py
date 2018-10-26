@@ -226,18 +226,9 @@ Many other objects are iterable, such as dictionaries and tuples
 Of course, not all objects are iterable 
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     iter(42)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-63-826bbd6e91fc> in <module>()
-    ----> 1 iter(42)
-
-    TypeError: 'int' object is not iterable
 
 
 To conclude our discussion of ``for`` loops
