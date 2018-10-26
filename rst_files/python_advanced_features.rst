@@ -736,14 +736,7 @@ What happens when we run this script?
 
     x
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-2-401b30e3b8b5> in <module>()
-    ----> 1 x
 
-    NameError: name 'x' is not defined
 
 First,
 
