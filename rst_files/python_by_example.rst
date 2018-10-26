@@ -162,6 +162,7 @@ In fact you can find and explore the directory for NumPy on your computer easily
 On this machine it's located in
 
 .. code-block:: none
+    :class: no-execute
 
     anaconda3/lib/python3.6/site-packages/numpy
 
