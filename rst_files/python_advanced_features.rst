@@ -1817,6 +1817,7 @@ Exercise 3
 Suppose we have a text file ``numbers.txt`` containing the following lines
 
 .. code-block:: none
+    :class: no-execute
 
     prices
     3
