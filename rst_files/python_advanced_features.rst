@@ -881,24 +881,10 @@ If we run this with an array of length one, the program will terminate and
 print our error message
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     var([1])
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    <ipython-input-20-0032ff8a150f> in <module>()
-    ----> 1 var([1])
-
-    <ipython-input-19-cefafaec3555> in var(y)
-          1 def var(y):
-          2     n = len(y)
-    ----> 3     assert n > 1, 'Sample size must be greater than one.'
-          4     return np.sum((y - y.mean())**2) / float(n-1)
-
-    AssertionError: Sample size must be greater than one.
 
 
 The advantage is that we can
