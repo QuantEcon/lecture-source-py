@@ -216,18 +216,9 @@ Lists are one such object
     next(y)
     
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
-    next(y)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-62-75a92ee8313a> in <module>()
-    ----> 1 y.next()
-
-    StopIteration:         
+    next(y)    
 
 
 Many other objects are iterable, such as dictionaries and tuples
