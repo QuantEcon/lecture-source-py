@@ -728,11 +728,11 @@ What happens when we run this script?
     %run test.py
     
 .. code-block:: none
-    
+    :class: no-execute
     a = 0 y = 11
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     x
     
