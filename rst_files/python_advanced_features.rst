@@ -103,7 +103,6 @@ The objects returned by ``enumerate()`` are also iterators
 as are the reader objects from the ``csv`` module 
 
 .. code-block:: python3
-    :class: no-execute
 
     from csv import reader
 
@@ -112,7 +111,7 @@ as are the reader objects from the ``csv`` module
     next(nikkei_data)
     
 .. code-block:: python3
-    :class: no-execute
+
 
     next(nikkei_data)
 
