@@ -1665,17 +1665,11 @@ This uses lots of memory and is very slow
 If we make ``n`` even bigger then this happens
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     n = 1000000000
     draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    MemoryError                               Traceback (most recent call last)
-    <ipython-input-9-20d1ec1dae24> in <module>()
-    ----> 1 draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
+
 
 We can avoid these problems using iterators
 
