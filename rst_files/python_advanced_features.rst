@@ -1538,18 +1538,9 @@ Let's see how it works after running this code
     next(gen)
     
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     next(gen)
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    StopIteration                             Traceback (most recent call last)
-    <ipython-input-21-b2c61ce5e131> in <module>()
-    ----> 1 gen.next()
-
-    StopIteration:
 
 
 
