@@ -151,19 +151,10 @@ Python lists are mutable
 But tuples are not
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     x = (1, 2)  
     x[0] = 10  
-
-.. code-block:: none
-
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <python-input-21-6cb4d74ca096> in <module>()
-    ----> 1 x[0]=10
-
-    TypeError: 'tuple' object does not support item assignment
 
 
 We'll say more about the role of mutable and immutable data a bit later
