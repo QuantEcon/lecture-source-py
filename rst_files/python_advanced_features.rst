@@ -915,16 +915,9 @@ Exceptions
 Here's an example of a common error type
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
     
     def f:
-
-.. code-block:: none
-    
-      File "<ipython-input-5-f5bdb6d29788>", line 1
-        def f:
-            ^
-    SyntaxError: invalid syntax
 
 
 Since illegal syntax cannot be executed, a syntax error terminates execution of the program
@@ -932,68 +925,33 @@ Since illegal syntax cannot be executed, a syntax error terminates execution of 
 Here's a different kind of error, unrelated to syntax
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     1 / 0
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    ZeroDivisionError                         Traceback (most recent call last)
-    <ipython-input-17-05c9758a9c21> in <module>()
-    ----> 1 1/0
 
-    ZeroDivisionError: integer division or modulo by zero
 
 Here's another
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     x1 = y1
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-23-142e0509fbd6> in <module>()
-    ----> 1 x1 = y1
-
-    NameError: name 'y1' is not defined
 
 
 And another
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     'foo' + 6
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-20-44bbe7e963e7> in <module>()
-    ----> 1 'foo' + 6
-
-    TypeError: cannot concatenate 'str' and 'int' objects
 
 And another
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     X = []
     x = X[0]
-    
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    IndexError                                Traceback (most recent call last)
-    <ipython-input-22-018da6d9fc14> in <module>()
-    ----> 1 x = X[0]
-
-    IndexError: list index out of range
 
 
 
