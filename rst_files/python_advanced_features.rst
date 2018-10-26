@@ -70,6 +70,7 @@ To see this, let's have another look at the :ref:`US cities data <us_cities_data
     f.__next__()
     
 .. code-block:: none
+    :class: no-execute
     
     'los angeles: 3819702\n'
 
@@ -84,6 +85,7 @@ which directly calls this method
     next(f)
     
 .. code-block:: none
+    :class: no-execute
     
     'chicago: 2707120 \n'
 
