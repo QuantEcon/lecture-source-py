@@ -404,6 +404,7 @@ Both of these modules have an attribute called ``pi``
     math2.pi
     
 .. code-block:: none
+    :class: no-execute
     
     'foobar'
 
@@ -425,6 +426,7 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     math2.__dict__
     
 .. code-block:: none
+    :class: no-execute
     
     {..., '__file__': 'math2.py', 'pi': 'foobar',...}  # Edited output
 
