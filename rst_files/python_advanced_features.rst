@@ -182,19 +182,10 @@ The answer is no:
     
     
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     next(x)
     
-.. code-block:: none
-    
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-17-5e4e57af3a97> in <module>()
-    ----> 1 next(x)
-
-    TypeError: 'list' object is not an iterator
-
 
 So why can we iterate over a list in a ``for`` loop?
 
