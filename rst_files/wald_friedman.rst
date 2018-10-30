@@ -173,7 +173,7 @@ We'll discretize this distribution to make it more straightforward to work with
 
 The next figure shows two discretized beta distributions in the top panel 
 
-The bottom panel presents mixtures of these distributions, with various mixing probabilities :math:`p_k`
+The bottom panel presents mixtures of these distributions, with various mixing probabilities :math:`\pi_k`
 
 
 
@@ -281,7 +281,7 @@ Intuition
 
 Let's try to guess what an optimal decision rule might look like before we go further
 
-Suppose at some given point in time that :math:`p` is close to 1
+Suppose at some given point in time that :math:`\pi` is close to 1
 
 Then our prior beliefs and the evidence so far point strongly to :math:`x = x_0` 
 
@@ -308,14 +308,14 @@ A Bellman equation
 -------------------
 
 
-Let :math:`J(p)` be the total loss for a decision maker with current belief :math:`p` who chooses optimally
+Let :math:`J(\pi)` be the total loss for a decision maker with current belief :math:`\pi` who chooses optimally
 
 With some thought, you will agree that :math:`J` should satisfy the Bellman equation
 
 .. math::
     :label: new1
 
-    J(p) = 
+    J(\pi) = 
         \min 
         \left\{ 
             (1-\pi) L_0, \; \pi L_1, \; 
@@ -343,33 +343,27 @@ In the Bellman equation, minimization is over three actions:
 #. accept :math:`x_1` 
 #. postpone deciding and draw again
 
-Let
-
-.. math::
-
-    A(p) 
-    := \mathbb E [ J (p') ]   
-
 
 Then we can represent the  Bellman equation as
 
 .. math::
+    :label: optdec
 
-    J(p) = 
-    \min \left\{ (1-p) L_0, \; p L_1, \; c + A(p) \right\} 
+    J(\pi) = 
+    \min \left\{ (1-p) L_0, \; p L_1, \; c + \mathbb E [J(\pi)] \right\} 
 
 
-where :math:`p \in [0,1]`
+where :math:`\pi \in [0,1]`
 
 Here
 
--  :math:`(1-p) L_0` is the expected loss associated with accepting
+-  :math:`(1-\pi) L_0` is the expected loss associated with accepting
    :math:`x_0` (i.e., the cost of making a type II error)
 
--  :math:`p L_1` is the expected loss associated with accepting
+-  :math:`\pi L_1` is the expected loss associated with accepting
    :math:`x_1` (i.e., the cost of making a type I error)
 
--  :math:`c + A(p)` is the expected cost associated with drawing one more :math:`z`
+-  :math:`c + \mathbb E [J(\pi)]` is the expected cost associated with drawing one more :math:`z`
 
 
 
@@ -377,33 +371,35 @@ The optimal decision rule is characterized by two numbers :math:`\alpha, \beta \
 
 .. math::
 
-    (1- p) L_0 < \min \{ p L_1, c + A(p) \}  \textrm { if } p \geq \alpha  
+    (1- \pi) L_0 < \min \{ \pi L_1, c + \mathbb E [J(\pi)] \}  \textrm { if } \pi \geq \alpha  
 
 
 and
 
 .. math::
 
-    p L_1 < \min \{ (1-p) L_0,  c + A(p) \} \textrm { if } p \leq \beta 
+
+    \pi L_1 < \min \{ (1-\pi) L_0,  c + \mathbb E [J(\pi)] \} \textrm { if } \pi \leq \beta 
 
 
 The optimal decision rule is then
 
 .. math::
 
-    \textrm { accept } x=x_0 \textrm{ if } p \geq \alpha \\
-    \textrm { accept } x=x_1 \textrm{ if } p \leq \beta \\
-    \textrm { draw another }  z \textrm{ if }  \beta \leq p \leq \alpha 
+    \textrm { accept } x=x_0 \textrm{ if } \pi \geq \alpha \\
+    \textrm { accept } x=x_1 \textrm{ if } \pi \leq \beta \\
+    \textrm { draw another }  z \textrm{ if }  \beta \leq \pi \leq \alpha 
 
 
 Our aim is to compute the value function :math:`J`, and from it the associated cutoffs :math:`\alpha`
 and :math:`\beta`
 
-One sensible approach is to write the three components of :math:`J`
-that appear on the right side of the Bellman equation as separate functions 
+To make our computations simpler, we also note that :eq:`optdec` can be written as
 
-Later, doing this will help us obey **the don't repeat yourself (DRY)** golden rule of coding 
+.. math::
+    :label: optdec2
 
+    h(\pi) = c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \}
 
 
 Implementation
@@ -417,13 +413,13 @@ First we will construct a class to store the parameters of the model
 
         def __init__(self,
                      c=1.25,         # Cost of another draw
-                     a0=2,
-                     b0=4,
-                     a1=4,
-                     b1=2,
+                     a0=1,
+                     b0=1,
+                     a1=3,
+                     b1=1.2,
                      L0=25,          # Cost of selecting f0 when f1 is true
                      L1=25,          # Cost of selecting f1 when f0 is true
-                     π_grid_size=25,
+                     π_grid_size=200,
                      mc_size=1000):
 
             self.c, self.π_grid_size = c, π_grid_size
@@ -439,7 +435,7 @@ First we will construct a class to store the parameters of the model
             self.z1 = np.random.beta(a1, b1, mc_size)
 
 
-To approximate the value function that solves Bellman equation :eq:`new1`, we 
+To approximate the value function that solves Bellman equation :eq:`optdec`, we 
 use value function iteration 
 
 * For earlier examples of this technique see the :doc:`shortest path <short_path>`, 
@@ -455,7 +451,10 @@ This means that to evaluate :math:`J(\pi)` where :math:`\pi` is not a grid point
 
 * First, we use the largest of all the grid points smaller than :math:`\pi`, and call it :math:`\pi_i`
 
-* Second, we use the grid point immediately after :math:`p`, named :math:`\pi_{i+1}`, to approximate the function value as
+* Second, we use the grid point immediately after :math:`\pi`, named :math:`\pi_{i+1}`, to approximate the function value as
+
+
+**need to change**
 
 .. math::
 
@@ -481,8 +480,8 @@ The function `operator_factory` returns the operator `Q`
             """
             Updates π using Bayes' rule and the current observation z.
             """
-            pf0, pf1 = π * f0(z), (1 - π) * f1(z)
-            π_new = pf0 / (pf0 + pf1)
+            π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
+            π_new = π_f0 / (π_f0 + π_f1)
 
             return π_new
 
@@ -514,7 +513,7 @@ The function `operator_factory` returns the operator `Q`
         return Q
 
 
-To solve the model, we will iterate using `T` to find the fixed point
+To solve the model, we will iterate using `Q` to find the fixed point
 
 .. code-block:: python3
 
@@ -628,15 +627,14 @@ and plot these on our value function plot
     plt.show()
 
     
-
-It equals :math:`\pi L_1` for :math:`\pi \leq \beta`, and :math:`(1-\pi )L_0` for :math:`\pi
+The value function equals :math:`\pi L_1` for :math:`\pi \leq \beta`, and :math:`(1-\pi )L_0` for :math:`\pi
 \geq \alpha` 
 
 The slopes of the two linear pieces of the value function are determined by :math:`L_1`
 and :math:`- L_0`
 
 The value function is smooth in the interior region, where the posterior
-probability assigned to :math:`f_0` is in the indecisive region :math:`p \in (\beta, \alpha)`
+probability assigned to :math:`f_0` is in the indecisive region :math:`\pi \in (\beta, \alpha)`
 
 The decision maker continues to sample until the probability that he attaches to 
 model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
@@ -693,7 +691,7 @@ In this case the decision maker is correct 80% of the time
             # Maybe should specify which distribution is correct one so that
             # the draws come from the "right" distribution
             z = f_rvs()
-            t = t+1
+            t = t + 1
             π = κ(z, π)
             if π < β:
                 decision_made = True
@@ -774,9 +772,7 @@ Before you look, think about what will happen:
     wf = WaldFriedman(c=2.5)
     simulation_plot(wf)
 
-The stopping times dropped dramatically!
-
-Increased cost per draw has induced the decision maker usually to take only 1 or 2 draws before deciding
+Increased cost per draw has induced the decision maker to take less draws before deciding
 
 Because he decides with less, the percentage of time he is correct drops
 
