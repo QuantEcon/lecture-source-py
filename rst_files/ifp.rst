@@ -408,7 +408,6 @@ as well as an operator factory which returns
         """
         A class that stores primitives for the income fluctuation problem.  The
         income process is assumed to be a finite state Markov chain.
-
         """
         def __init__(self, 
                      r=0.01,                        # Interest rate
@@ -458,7 +457,6 @@ as well as an operator factory which returns
             """
             The approximate Bellman operator, which computes and returns the
             updated value function.
-
             """
             v_new = np.empty_like(v)
 
@@ -511,7 +509,6 @@ as well as an operator factory which returns
             σ.  The array σ is replaced with a function cf that implements
             univariate linear interpolation over the asset grid for each
             possible value of z.
-
             """
             σ_new = np.empty_like(σ)
             for i_a in prange(len(asset_grid)):
@@ -737,7 +734,6 @@ Exercise 3
         Simulates a time series of length T for assets, given optimal savings
         behavior. Parameter cp is an instance of ConsumerProblem
         """
-
         Π, z_vals, R = cp.Π, cp.z_vals, cp.R  # Simplify names
         mc = MarkovChain(Π)
         σ = solve_model(cp, verbose=False)
