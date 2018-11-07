@@ -368,8 +368,8 @@ Chang works with
  .. math::
     h(w_t, \theta_t), m(h_t, w_t, \theta_t), x(h_t, w_t, \theta_t), \chi(h_t, w_t, \theta_t),\Psi(h_t, w_t, \theta_t)
 
- mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into 
- :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively
+  mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into 
+  :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively
 
 * Starting from initial condition :math:`(w_0, \theta_0)`, a credible 
   government policy can be constructed by iterating on these functions in 
