@@ -116,7 +116,7 @@ On the other hand, between two numbers it means ordinary addition
 Consider the following expression 
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     '300' + 400
 
@@ -133,7 +133,8 @@ Some languages might try to guess but Python is *strongly typed*
 
 * Python will respond instead by raising a ``TypeError``
 
-.. code-block:: none
+.. code-block:: ipython
+    :class: no-execute
 
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
