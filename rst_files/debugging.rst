@@ -49,7 +49,7 @@ The ``debug`` Magic
 Let's consider a simple (and rather contrived) example
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -71,7 +71,8 @@ But there's an error here: ``plt.subplots(2, 1)`` should be just ``plt.subplots(
 
 Here's what happens when we run the code:
 
-.. code-block:: none
+.. code-block:: ipython
+    :class: no-execute
 
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
@@ -98,7 +99,8 @@ But let's pretend that we don't understand this for the moment
 
 We might suspect there's something wrong with ``ax`` but when we try to investigate this object, we get the following exception:
 
-.. code-block:: none
+.. code-block:: ipython
+    :class: no-execute
 
     ---------------------------------------------------------------------------
     NameError                                 Traceback (most recent call last)
@@ -115,7 +117,7 @@ Let's try doing it a different way
 We run the first cell block again, generating the same error
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -128,23 +130,6 @@ We run the first cell block again, generating the same error
 
     plot_log()  # Call the function, generate plot
 
-.. code-block:: none
-
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    <ipython-input-1-ef5c75a58138> in <module>()
-          8     plt.show()
-          9 
-    ---> 10 plot_log()  # Call the function, generate plot
-
-    <ipython-input-1-ef5c75a58138> in plot_log()
-          5     fig, ax = plt.subplots(2, 1)
-          6     x = np.linspace(1, 2, 10)
-    ----> 7     ax.plot(x, np.log(x))
-          8     plt.show()
-          9 
-
-    AttributeError: 'numpy.ndarray' object has no attribute 'plot'
 
 But this time we type in the following cell block
 
@@ -215,6 +200,7 @@ The preceding approach is handy but sometimes insufficient
 Consider the following modified version of our function above
 
 .. code-block:: python3
+    :class: skip-test
 
     import numpy as np
     import matplotlib.pyplot as plt
