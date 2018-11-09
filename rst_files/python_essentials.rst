@@ -151,7 +151,7 @@ Python lists are mutable
 But tuples are not
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     x = (1, 2)  
     x[0] = 10  
@@ -689,7 +689,7 @@ After running this code, the docstring is available
 
     f?
 
-.. code-block:: none
+.. code-block:: ipython
     :class: no-execute
 
     Type:       function
@@ -702,7 +702,7 @@ After running this code, the docstring is available
 
     f??
 
-.. code-block:: none
+.. code-block:: ipython
     :class: no-execute
 
     Type:       function
