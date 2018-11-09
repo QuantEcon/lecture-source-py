@@ -333,7 +333,7 @@ Here's an example of this situation, where the name ``x`` is first bound to one 
     
 .. code-block:: python3
 
-    x = 'bar'  # No names bound to object 164994764
+    x = 'bar'  # No names bound to the first object
 
 What happens here is that the first object, with identity ``164994764`` is garbage collected
 
