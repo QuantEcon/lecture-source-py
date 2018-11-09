@@ -647,7 +647,6 @@ Here's another example
 With the list comprehension syntax, we can simplify the lines
 
 .. code-block:: python3
-    :class: no-execute
 
     ϵ_values = []
     for i in range(n):
@@ -657,7 +656,6 @@ With the list comprehension syntax, we can simplify the lines
 into
 
 .. code-block:: python3
-    :class: no-execute
 
     ϵ_values = [generator_type() for i in range(n)]
 
