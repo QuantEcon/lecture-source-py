@@ -78,8 +78,7 @@ which directly calls this method
     next(f)
     
 .. code-block:: none
-    :class: no-execute
-    
+
     'chicago: 2707120 \n'
 
 The objects returned by ``enumerate()`` are also iterators 
@@ -397,7 +396,6 @@ Both of these modules have an attribute called ``pi``
     math2.pi
     
 .. code-block:: none
-    :class: no-execute
     
     'foobar'
 
@@ -419,7 +417,6 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     math2.__dict__
     
 .. code-block:: none
-    :class: no-execute
     
     {..., '__file__': 'math2.py', 'pi': 'foobar',...}  # Edited output
 
@@ -504,7 +501,6 @@ Now let's look at two different ways of running it in IPython
     import mod  # Standard import
     
 .. code-block:: none
-    :class: no-execute
     
     mod
     
@@ -514,7 +510,6 @@ Now let's look at two different ways of running it in IPython
     %run mod.py  # Run interactively
 
 .. code-block:: none
-    :class: no-execute
     __main__
   
 In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
@@ -723,7 +718,6 @@ What happens when we run this script?
     %run test.py
     
 .. code-block:: none
-    :class: no-execute
     a = 0 y = 11
 
 .. code-block:: python3
@@ -1810,7 +1804,6 @@ Exercise 3
 Suppose we have a text file ``numbers.txt`` containing the following lines
 
 .. code-block:: none
-    :class: no-execute
 
     prices
     3
