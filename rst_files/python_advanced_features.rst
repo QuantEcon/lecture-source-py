@@ -58,21 +58,14 @@ To see this, let's have another look at the :ref:`US cities data <us_cities_data
 
     f = open('us_cities.txt')
     f.__next__()
-    
-.. code-block:: none
-    :class: no-execute
-    
-    'new york: 8244910\n'
+
     
 .. code-block:: python3
     :class: no-execute
 
     f.__next__()
     
-.. code-block:: none
-    :class: no-execute
-    
-    'los angeles: 3819702\n'
+
 
 We see that file objects do indeed have a ``__next__`` method, and that calling this method returns the next line in the file
 
