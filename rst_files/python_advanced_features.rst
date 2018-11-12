@@ -54,14 +54,12 @@ For example, file objects are iterators
 To see this, let's have another look at the :ref:`US cities data <us_cities_data>` 
 
 .. code-block:: python3
-    :class: no-execute
 
     f = open('us_cities.txt')
     f.__next__()
 
     
 .. code-block:: python3
-    :class: no-execute
 
     f.__next__()
     
@@ -73,13 +71,8 @@ The next method can also be accessed via the builtin function ``next()``,
 which directly calls this method
 
 .. code-block:: python3
-    :class: no-execute
 
     next(f)
-    
-.. code-block:: none
-
-    'chicago: 2707120 \n'
 
 The objects returned by ``enumerate()`` are also iterators 
 
@@ -165,7 +158,7 @@ You already know that we can put a Python list to the right of ``in`` in a ``for
 
 So does that mean that a list is an iterator?
 
-The answer is no: 
+The answer is no
 
 .. code-block:: python3
 
@@ -334,7 +327,7 @@ Here's an example of this situation, where the name ``x`` is first bound to one 
 
     x = 'bar'  # No names bound to the first object
 
-What happens here is that the first object, with identity ``164994764`` is garbage collected
+What happens here is that the first object is garbage collected
 
 In other words, the memory slot that stores that object is deallocated, and returned to the operating system
 
@@ -364,17 +357,16 @@ Python uses multiple namespaces, creating them on the fly as necessary
 
 For example, every time we import a module, Python creates a namespace for that module
 
-To see this in action, suppose we write a script ``math2.py`` like this
+To see this in action, suppose we write a script ``math2.py`` with a single line
 
 .. code-block:: python3
 
-    # Filename: math2.py
+    %%file math2.py
     pi = 'foobar'
 
 Now we start the Python interpreter and import it 
 
 .. code-block:: python3
-    :class: no-execute
 
     import math2
 
@@ -391,7 +383,6 @@ Both of these modules have an attribute called ``pi``
     math.pi
     
 .. code-block:: python3
-    :class: no-execute
 
     math2.pi
     
@@ -410,7 +401,6 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     math.__dict__
     
 .. code-block:: python3
-    :class: no-execute
 
     import math2
 
@@ -490,13 +480,12 @@ To see this, let's create a file ``mod.py`` that prints its own ``__name__`` att
 
 .. code-block:: python3
 
-    # Filename: mod.py
+    %%file mod.py
     print(__name__)
 
 Now let's look at two different ways of running it in IPython 
 
 .. code-block:: python3
-    :class: no-execute
 
     import mod  # Standard import
     
@@ -505,7 +494,6 @@ Now let's look at two different ways of running it in IPython
     mod
     
 .. code-block:: ipython
-    :class: no-execute
     
     %run mod.py  # Run interactively
 
@@ -699,7 +687,8 @@ Here's an example that helps to illustrate
 Consider a script ``test.py`` that looks as follows
 
 .. code-block:: python3
- 
+
+    %%file test.py
     def g(x):
         a = 1
         x = x + a
@@ -713,7 +702,6 @@ Consider a script ``test.py`` that looks as follows
 What happens when we run this script?  
 
 .. code-block:: ipython
-    :class: no-execute
 
     %run test.py
     
