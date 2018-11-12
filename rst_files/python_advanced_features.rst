@@ -385,10 +385,6 @@ Both of these modules have an attribute called ``pi``
 .. code-block:: python3
 
     math2.pi
-    
-.. code-block:: none
-    
-    'foobar'
 
 These two different bindings of ``pi`` exist in different namespaces, each one implemented as a dictionary
 
