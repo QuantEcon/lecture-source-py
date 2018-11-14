@@ -396,17 +396,13 @@ We can look at the dictionary directly, using ``module_name.__dict__``
 
     import math
 
-    math.__dict__
+    math.__dict__.items()
     
 .. code-block:: python3
 
     import math2
 
-    math2.__dict__
-    
-.. code-block:: none
-    
-    {..., '__file__': 'math2.py', 'pi': 'foobar',...}  # Edited output
+    math2.__dict__.items()
 
 
 As you know, we access elements of the namespace using the dotted attribute notation 
@@ -431,13 +427,13 @@ Another way to see its contents is to type ``vars(math)``
 
 .. code-block:: python3
 
-    vars(math)
+    vars(math).items()
 
 If you just want to see the names, you can type
 
 .. code-block:: python3
 
-    dir(math)
+    dir(math)[0:10]
 
 Notice the special names ``__doc__`` and ``__name__``
 
@@ -476,7 +472,7 @@ When we run a script using IPython's ``run`` command, the contents of the file a
 
 To see this, let's create a file ``mod.py`` that prints its own ``__name__`` attribute
 
-.. code-block:: python3
+.. code-block:: ipython
 
     %%file mod.py
     print(__name__)
@@ -599,11 +595,11 @@ How does access to these names work?
 
 .. code-block:: python3
 
-    dir()
+    dir()[0:10]
     
 .. code-block:: python3
     
-    dir(__builtins__)
+    dir(__builtins__)[0:10]
 
 We can access elements of the namespace as follows 
 
@@ -702,9 +698,6 @@ What happens when we run this script?
 .. code-block:: ipython
 
     %run test.py
-    
-.. code-block:: none
-    a = 0 y = 11
 
 .. code-block:: python3
     :class: skip-test
