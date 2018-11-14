@@ -87,6 +87,8 @@ The objects returned by ``enumerate()`` are also iterators
 
 as are the reader objects from the ``csv`` module 
 
+.. jupyter-dependency:: _static/code/python_advanced_features/test_table.csv
+
 .. code-block:: python3
 
     from csv import reader
