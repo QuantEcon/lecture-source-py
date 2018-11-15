@@ -465,15 +465,6 @@ Alternatively, you can type the following into a terminal
 
 More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__
 
-.. note:: 
-    
-    The `QuantEcon.py <http://quantecon.org/python_index.html>`__ package can also be installed using conda by:
-
-    .. code-block:: bash
-
-        conda config --add channels conda-forge 
-        conda install quantecon
-
 
 
 
