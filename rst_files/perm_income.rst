@@ -37,6 +37,14 @@ We use the model as a vehicle for illustrating
 
 Background readings on the linear-quadratic-Gaussian permanent income model are Hall's  :cite:`Hall1978`  and chapter 2 of  :cite:`Ljungqvist2012`
 
+Let's start with some imports
+
+.. code-block:: python3
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import random
+    from numba import njit
 
 
 The Savings Problem
@@ -511,11 +519,6 @@ The next figure shows a typical realization with :math:`r = 0.05`, :math:`\mu = 
 
 
 .. code-block:: python3
-
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import random
-    from numba import njit
 
     r = 0.05
     β = 1 / (1 + r)
