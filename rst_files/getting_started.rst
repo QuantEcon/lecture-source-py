@@ -466,7 +466,7 @@ Alternatively, you can type the following into a terminal
 More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__
 
 
-To upgrade to the latest version, use
+To upgrade to the latest version, which you should do regularly, use
 
     ``pip install --upgrade quantecon``
 
