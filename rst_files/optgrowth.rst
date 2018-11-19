@@ -36,7 +36,21 @@ treatments in our lectures on :doc:`shortest paths <short_path>` and
 We'll discuss some of the technical details of dynamic programming as we
 go along
 
+Let's start with some imports
 
+We use an interpolation function from the
+`interpolation.py package <https://github.com/EconForge/interpolation.py>`_
+because it comes in handy later when we want to just-in-time compile our code
+
+This library can be installed with the following command in Jupyter: ``!pip install interpolation``
+
+.. code-block:: python3
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from interpolation import interp
+    from numba import njit, prange
+    from quantecon.optimize.scalar_maximization import brent_max
 
 The Model
 ==========================
@@ -62,7 +76,7 @@ Next period output is
     y_{t+1} := f(k_{t+1}) \xi_{t+1}
 
 
-where :math:`f \colon \RR_+ \to \RR_+` is called the production function
+where :math:`f \colon \mathbb R_+ \to \mathbb R_+` is called the production function
 
 The resource constraint is
 
@@ -231,7 +245,7 @@ The next section covers these ideas more formally
 Optimality 
 ------------------------------------
 
-The **policy value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
+The **:math:`\sigma`-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
 
 .. math::
     :label: vfcsdp00
@@ -270,18 +284,18 @@ For this problem, the Bellman equation takes the form
 .. math::
     :label: fpb30
 
-    w(y) = \max_{0 \leq c \leq y}
+    v(y) = \max_{0 \leq c \leq y}
         \left\{
-            u(c) + \beta \int w(f(y - c) z) \phi(dz)
+            u(c) + \beta \int v(f(y - c) z) \phi(dz)
         \right\}
     \qquad (y \in \mathbb R_+)
 
 
-This is a *functional equation in* :math:`w` 
+This is a *functional equation in* :math:`v` 
 
-The term :math:`\int w(f(y - c) z) \phi(dz)` can be understood as the expected next period value when 
+The term :math:`\int v(f(y - c) z) \phi(dz)` can be understood as the expected next period value when 
 
-* :math:`w` is used to measure value
+* :math:`v` is used to measure value
 
 * the state is :math:`y` 
   
@@ -291,7 +305,7 @@ As shown in `EDTC <http://johnstachurski.net/edtc.html>`_, theorem 10.1.11 and a
 
     *The value function* :math:`v^*` *satisfies the Bellman equation*
 
-In other words, :eq:`fpb30` holds when :math:`w=v^*`
+In other words, :eq:`fpb30` holds when :math:`v=v^*`
 
 The intuition is that maximal value from a given state can be obtained by optimally trading off 
 
@@ -311,33 +325,35 @@ The primary importance of the value function is that we can use it to compute op
 
 The details are as follows
 
-Given a continuous function :math:`w` on :math:`\mathbb R_+`, we say that :math:`\sigma \in \Sigma` is :math:`w`-**greedy** if :math:`\sigma(y)` is a solution to
+Given a continuous function :math:`v` on :math:`\mathbb R_+`, we say that 
+:math:`\sigma \in \Sigma` is :math:`v`-**greedy** if :math:`\sigma(y)` is a solution to
 
 .. math::
     :label: defgp20
 
     \max_{0 \leq c \leq y}
         \left\{
-        u(c) + \beta \int w(f(y - c) z) \phi(dz)
+        u(c) + \beta \int v(f(y - c) z) \phi(dz)
         \right\}
 
 
 for every :math:`y \in \mathbb R_+`
 
-In other words, :math:`\sigma \in \Sigma` is :math:`w`-greedy if it optimally
-trades off current and future rewards when :math:`w` is taken to be the value
+In other words, :math:`\sigma \in \Sigma` is :math:`v`-greedy if it optimally
+trades off current and future rewards when :math:`v` is taken to be the value
 function
 
 In our setting, we have the following key result
 
-    *A feasible consumption  policy is optimal if and only if it is* :math:`v^*`-*greedy*
+    * A feasible consumption policy is optimal if and only it is :math:`v^*`-greedy
 
 The intuition is similar to the intuition for the Bellman equation, which was
 provided after :eq:`fpb30`
 
 See, for example, theorem 10.1.11 of `EDTC <http://johnstachurski.net/edtc.html>`__
 
-Hence, once we have a good approximation to :math:`v^*`, we can compute the (approximately) optimal policy by computing the corresponding greedy policy
+Hence, once we have a good approximation to :math:`v^*`, we can compute the 
+(approximately) optimal policy by computing the corresponding greedy policy
 
 The advantage is that we are now solving a much lower dimensional optimization
 problem
@@ -359,30 +375,31 @@ The Bellman operator is denoted by :math:`T` and defined by
 .. math::
     :label: fcbell20_optgrowth
 
-    Tw(y) := \max_{0 \leq c \leq y}
+    Tv(y) := \max_{0 \leq c \leq y}
     \left\{
-        u(c) + \beta \int w(f(y - c) z) \phi(dz)
+        u(c) + \beta \int v(f(y - c) z) \phi(dz)
     \right\}
     \qquad (y \in \mathbb R_+)
 
 
-In other words, :math:`T` sends the function :math:`w` into the new function
-:math:`Tw` defined :eq:`fcbell20_optgrowth`
+In other words, :math:`T` sends the function :math:`v` into the new function
+:math:`Tv` defined by :eq:`fcbell20_optgrowth`
 
-By construction, the set of solutions to the Bellman equation :eq:`fpb30` *exactly coincides with* the set of fixed points of :math:`T`
+By construction, the set of solutions to the Bellman equation 
+:eq:`fpb30` *exactly coincides with* the set of fixed points of :math:`T`
 
-For example, if :math:`Tw = w`, then, for any :math:`y \geq 0`,
+For example, if :math:`Tv = v`, then, for any :math:`y \geq 0`,
 
 .. math::
 
-    w(y)
-    = Tw(y) 
+    v(y)
+    = Tv(y) 
     = \max_{0 \leq c \leq y}
     \left\{
         u(c) + \beta \int v^*(f(y - c) z) \phi(dz)
     \right\}
 
-which says precisely that :math:`w` is a solution to the Bellman equation
+which says precisely that :math:`v` is a solution to the Bellman equation
 
 
 It follows that :math:`v^*` is a fixed point of :math:`T`
@@ -396,7 +413,8 @@ Review of Theoretical Results
     single: Dynamic Programming; Theory
 
 
-One can also show that :math:`T` is a contraction mapping on the set of continuous bounded functions on :math:`\mathbb R_+` under the supremum distance
+One can also show that :math:`T` is a contraction mapping on the set of 
+continuous bounded functions on :math:`\mathbb R_+` under the supremum distance
 
 .. math::
 
@@ -411,14 +429,16 @@ It follows that
 
 * The value function :math:`v^*` is bounded and continuous 
 
-* Starting from any bounded and continuous :math:`w`, the sequence :math:`w, Tw, T^2 w, \ldots` generated by iteratively applying :math:`T` converges uniformly to :math:`v^*` 
+* Starting from any bounded and continuous :math:`v`, the sequence :math:`v, Tv, T^2v, \ldots` 
+  generated by iteratively applying :math:`T` converges uniformly to :math:`v^*` 
 
 This iterative method is called **value function iteration**
 
 
 We also know that a feasible policy is optimal if and only if it is :math:`v^*`-greedy
 
-It's not too hard to show that a :math:`v^*`-greedy policy exists (see  `EDTC <http://johnstachurski.net/edtc.html>`__, theorem 10.1.11 if you get stuck)
+It's not too hard to show that a :math:`v^*`-greedy policy exists 
+(see  `EDTC <http://johnstachurski.net/edtc.html>`__, theorem 10.1.11 if you get stuck)
 
 Hence at least one optimal policy exists
 
@@ -469,46 +489,52 @@ The first step is to compute the value function by value function iteration
 
 In theory, the algorithm is as follows
 
-#. Begin with a function :math:`w` --- an initial condition
+#. Begin with a function :math:`v` --- an initial condition
 
-#. Solving :eq:`fcbell20_optgrowth`, obtain the function :math:`T w`
+#. Solving :eq:`fcbell20_optgrowth`, obtain the function :math:`Tv`
 
-#. Unless some stopping condition is satisfied, set :math:`w = Tw` and go to step 2
+#. Unless some stopping condition is satisfied, set :math:`v = Tv` and go to step 2
 
-This generates the sequence :math:`w, Tw, T^2 w, \ldots`
+This generates the sequence :math:`v, Tv, T^2v, \ldots`
 
-However, there is a problem we must confront before we implement this procedure: The iterates can neither be calculated exactly nor stored on a computer
+However, there is a problem we must confront before we implement this procedure: 
+The iterates can neither be calculated exactly nor stored on a computer
 
 To see the issue, consider :eq:`fcbell20_optgrowth`
 
-Even if :math:`w` is a known function, unless :math:`Tw` can be shown to have
+Even if :math:`v` is a known function, unless :math:`Tv` can be shown to have
 some special structure, the only way to store it is to record the
-value :math:`Tw(y)` for every :math:`y \in \mathbb R_+`
+value :math:`Tv(y)` for every :math:`y \in \mathbb R_+`
 
 Clearly this is impossible
 
 What we will do instead is use **fitted value function iteration**
 
-The procedure is to record the value of the function :math:`Tw` at only finitely many "grid" points :math:`y_1 < y_2 < \cdots < y_I` and reconstruct it from this information when required
+The procedure is to record the value of the function :math:`Tv` at only 
+finitely many "grid" points :math:`y_1 < y_2 < \cdots < y_I` and reconstruct it from this information when required
 
 More precisely, the algorithm will be
 
 .. _fvi_alg:
 
-#. Begin with an array of values :math:`\{ w_1, \ldots, w_I \}` representing the values of some initial function :math:`w` on the grid points :math:`\{ y_1, \ldots, y_I \}`
+#. Begin with an array of values :math:`\{ v_1, \ldots, v_I \}` representing 
+   the values of some initial function :math:`v` on the grid points :math:`\{ y_1, \ldots, y_I \}`
 
-#. Build a function :math:`\hat w` on the state space :math:`\mathbb R_+` by interpolation or approximation, based on these data points 
+#. Build a function :math:`\hat v` on the state space :math:`\mathbb R_+` by 
+   interpolation or approximation, based on these data points 
 
-#.  Obtain and record the value :math:`T \hat w(y_i)` on each grid point :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth`
+#. Obtain and record the value :math:`T \hat v(y_i)` on each grid point 
+   :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth`
 
-
-#. Unless some stopping condition is satisfied, set :math:`\{ w_1, \ldots, w_I \} = \{ T \hat w(y_1), \ldots, T \hat w(y_I) \}` and go to step 2
+#. Unless some stopping condition is satisfied, set 
+   :math:`\{ v_1, \ldots, v_I \} = \{ T \hat v(y_1), \ldots, T \hat v(y_I) \}` and go to step 2
 
 How should we go about step 2?
 
 This is a problem of function approximation, and there are many ways to approach it
 
-What's important here is that the function approximation scheme must not only produce a good approximation to :math:`Tw`, but also combine well with the broader iteration algorithm described above
+What's important here is that the function approximation scheme must not only 
+produce a good approximation to :math:`Tv`, but also combine well with the broader iteration algorithm described above
 
 .. only:: html
 
@@ -518,61 +544,134 @@ What's important here is that the function approximation scheme must not only pr
 
     One good choice from both respects is continuous piecewise linear interpolation (see `this paper <https://lectures.quantecon.org/_downloads/3ndp.pdf>`__ for further discussion)
 
-The next figure illustrates piecewise linear interpolation of an arbitrary function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
-
+The next figure illustrates piecewise linear interpolation of an arbitrary 
+function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
 
 
 .. code-block:: python3
 
-  import numpy as np
-  import matplotlib.pyplot as plt
 
-  def f(x):
-      y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
-      return y1 + 2.5
+    def f(x):
+        y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
+        return y1 + 2.5
 
-  c_grid = np.linspace(0, 1, 6)
+    def Af(x):
+        return interp(c_grid, f(c_grid), x)
 
-  def Af(x):
-      return np.interp(x, c_grid, f(c_grid))
+    c_grid = np.linspace(0, 1, 6)
+    f_grid = np.linspace(0, 1, 150)
 
-  f_grid = np.linspace(0, 1, 150)
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-  fig, ax = plt.subplots(figsize=(10, 6))
-  ax.set(xlim=(0, 1), ylim=(0, 6))
-  ax.plot(f_grid, f(f_grid), 'b-', lw=2, alpha=0.8, label='true function')
-  ax.plot(f_grid, Af(f_grid), 'g-', lw=2, alpha=0.8,
-          label='linear approximation')
-  ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
-  ax.legend(loc='upper center')
+    ax.plot(f_grid, f(f_grid), 'b-', label='true function')
+    ax.plot(f_grid, Af(f_grid), 'g-', label='linear approximation')
+    ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
 
-  plt.show()
+    ax.set(xlim=(0, 1), ylim=(0, 6))
+    plt.show()
   
+Another advantage of piecewise linear interpolation is that it preserves 
+useful shape properties such as monotonicity and concavity / convexity
 
+Optimal Growth Model
+---------------------
 
-Another advantage of piecewise linear interpolation is that it preserves useful shape properties such as monotonicity and concavity / convexity
+We will hold the primitives of the optimal growth model in a class
+
+The distribution :math:`\phi` of the shock is assumed to be lognormal,
+and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standard normal
+
+.. code-block:: python3
+
+    class OptimalGrowthModel:
+
+        def __init__(self,
+                     f,                # Production function
+                     u,                # Utility function
+                     β=0.96,           # Discount factor
+                     μ=0,
+                     s=0.1,
+                     grid_max=4,
+                     grid_size=200,
+                     shock_size=250):
+
+            self.β, self.μ, self.s = β, μ, s
+            self.f, self.u = f, u
+
+            self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
+            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
 The Bellman Operator
 -----------------------
 
-Here's a function that implements the Bellman operator using linear interpolation
+Here's a function that generates a Bellman operator using linear interpolation
 
 
-.. literalinclude:: /_static/code/optgrowth/optgrowth.py
+.. code-block:: python3
 
-The arguments to `bellman_operator` are described in the docstring to the function
+    def operator_factory(og, parallel_flag=True):
+        """
+        A function factory for building the Bellman operator, as well as
+        a function that computes greedy policies.
+        
+        Here og is an instance of OptimalGrowthModel.
+        """
+
+        f, u, β = og.f, og.u, og.β
+        y_grid, shocks = og.y_grid, og.shocks
+
+        @njit
+        def objective(c, v, y):
+            """
+            The right hand side of the Bellman equation
+            """
+            # First turn v into a function via interpolation
+            v_func = lambda x: interp(y_grid, v, x)
+            return u(c) + β * np.mean(v_func(f(y - c) * shocks))
+
+        @njit(parallel=parallel_flag)
+        def T(v):
+            """
+            The Bellman operator
+            """
+            v_new = np.empty_like(v)
+            for i in prange(len(y_grid)):
+                y = y_grid[i]
+                # Solve for optimal v at y
+                v_max = brent_max(objective, 1e-10, y, args=(v, y))[1]  
+                v_new[i] = v_max
+            return v_new
+
+        @njit
+        def get_greedy(v):
+            """
+            Computes the v-greedy policy of a given function v
+            """
+            σ = np.empty_like(v)
+            for i in range(len(y_grid)):
+                y = y_grid[i]
+                # Solve for optimal c at y
+                c_max = brent_max(objective, 1e-10, y, args=(v, y))[0]  
+                σ[i] = c_max
+            return σ
+
+        return T, get_greedy
+
+The function `operator_factory` takes a class that represents the growth model,
+and returns the operator `T` and a function `get_greedy` that we will use to solve the model
 
 Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
 
 .. math::
 
-    \int w(f(y - c) z) \phi(dz) \approx \frac{1}{n} \sum_{i=1}^n w(f(y - c) \xi_i)
+    \int v(f(y - c) z) \phi(dz) \approx \frac{1}{n} \sum_{i=1}^n v(f(y - c) \xi_i)
 
 
 where :math:`\{\xi_i\}_{i=1}^n` are IID draws from :math:`\phi`
 
-Monte Carlo is not always the most efficient way to compute integrals numerically but it does have some theoretical advantages in the present setting 
+Monte Carlo is not always the most efficient way to compute integrals numerically 
+but it does have some theoretical advantages in the present setting 
 
 (For example, it preserves the contraction mapping property of the Bellman operator --- see, e.g., :cite:`pal2013`)
 
@@ -613,49 +712,63 @@ The optimal consumption policy is
 
     \sigma^*(y) = (1 - \alpha \beta ) y
 
+We will define functions to compute the closed form solutions to check our answers
 
+.. code-block:: python3
 
+    def σ_star(y, α, β):
+        """
+        True optimal policy
+        """
+        return (1 - α * β) * y
 
-Let's wrap this model in a class because we'll use it some later lectures too
-
-
-
-.. literalinclude:: /_static/code/optgrowth/loglinear_og.py
+    def v_star(y, α, β, μ):
+        """
+        True value function
+        """
+        c1 = np.log(1 - α * β) / (1 - β)
+        c2 = (μ + α * np.log(α * β)) / (1 - α)
+        c3 = 1 / (1 - β)
+        c4 = 1 / (1 - α * β)
+        return c1 + c2 * (c3 - c4) + c4 * np.log(y)
 
 
 A First Test
 --------------
 
-To test our code, we want to see if we can replicate the analytical solution numerically, using fitted value function iteration
+To test our code, we want to see if we can replicate the analytical solution 
+numerically, using fitted value function iteration
 
+First, having run the code for the general model shown above, let's
+generate an instance of the model and generate its Bellman operator
 
-
-First, having run the code for the log linear model shown above, let's
-generate an instance
-
-
-.. code-block:: python3
-
-    lg = LogLinearOG()
-    # == Unpack parameters / functions for convenience == #
-    α, β, μ, s = lg.α, lg.β, lg.μ, lg.s
-    v_star = lg.v_star
-
-
-
-We need a grid and some shock draws for Monte Carlo integration
-
-
+We first need to define a jitted version of the production function
 
 .. code-block:: python3
 
-    grid_max = 4         # Largest grid point
-    grid_size = 200      # Number of grid points
-    shock_size = 250     # Number of shock draws in Monte Carlo integral
+    α = 0.4  # Production function parameter
+
+    @njit
+    def f(k):
+        """
+        Cobb-Douglas production function
+        """
+        return k**α
+        
+Now we will create an instance of the model and assign it to the variable `og`
+
+This instance will use the Cobb-Douglas production function and log utility
+
+.. code-block:: python3
+
+    og = OptimalGrowthModel(f=f, u=np.log)
     
-    grid = np.linspace(1e-5, grid_max, grid_size)
-    shocks = np.exp(μ + s * np.random.randn(shock_size))
+We will use `og` to generate the Bellman operator and a function that computes
+greedy policies
 
+.. code-block:: python3
+
+    T, get_greedy = operator_factory(og)
 
 
 Now let's do some tests
@@ -666,25 +779,20 @@ In theory, the resulting function should again be :math:`v^*`
 
 In practice we expect some small numerical error
 
-
-
 .. code-block:: python3
 
-    w = bellman_operator(v_star(grid),                       
-                         grid,  
-                         β,  
-                         np.log,
-                         lambda k: k**α,
-                         shocks)
-    
+    y_grid = og.y_grid
+    β, μ = og.β, og.μ
+
+    v_init = v_star(y_grid, α, β, μ)  # Start at the solution
+    v = T(v_init)                     # Apply the Bellman operator once
+
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.set_ylim(-35, -24)
-    ax.plot(grid, w, lw=2, alpha=0.6, label='$Tv^*$')
-    ax.plot(grid, v_star(grid), lw=2, alpha=0.6, label='$v^*$')
-    ax.legend(loc='lower right')
+    ax.plot(y_grid, v, lw=2, alpha=0.6, label='$Tv^*$')
+    ax.plot(y_grid, v_init, lw=2, alpha=0.6, label='$v^*$')
+    ax.legend()
     plt.show()
-
-
 
 
 The two functions are essentially indistinguishable, so we are off to a good start
@@ -692,35 +800,29 @@ The two functions are essentially indistinguishable, so we are off to a good sta
 Now let's have a look at iterating with the Bellman operator, starting off
 from an arbitrary initial condition
 
-The initial condition we'll start with is :math:`w(y) = 5 \ln (y)`
-
+The initial condition we'll start with is :math:`v(y) = 5 \ln (y)`
 
 
 .. code-block:: python3
 
-    w = 5 * np.log(grid)  # An initial condition
+    v = 5 * np.log(y_grid)  # An initial condition
     n = 35
+    
     fig, ax = plt.subplots(figsize=(9, 6))
-    ax.set_ylim(-40, 10)
-    ax.set_xlim(np.min(grid), np.max(grid))
-    lb = 'initial condition'
-    ax.plot(grid, w, color=plt.cm.jet(0), lw=2, alpha=0.6, label=lb)
+    
+    ax.plot(y_grid, v, color=plt.cm.jet(0), 
+            lw=2, alpha=0.6, label='Initial condition')
+            
     for i in range(n):
-        w = bellman_operator(w,                       
-                             grid,  
-                             β,  
-                             np.log,
-                             lambda k: k**α,
-                             shocks)
+        v = T(v)  # Apply the Bellman operator
+        ax.plot(y_grid, v, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
     
-        ax.plot(grid, w, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
-    
-    lb = 'true value function'
-    ax.plot(grid, v_star(grid), 'k-', lw=2, alpha=0.8, label=lb)
-    ax.legend(loc='lower right')
+    ax.plot(y_grid, v_star(y_grid, α, β, μ), 'k-', lw=2, 
+            alpha=0.8, label='True value function')
+            
+    ax.legend()
+    ax.set(ylim=(-40, 10), xlim=(np.min(y_grid), np.max(y_grid)))
     plt.show()
-
-
 
 
 The figure shows
@@ -737,99 +839,55 @@ We can write a function that iterates until the difference is below a particular
 tolerance level
 
 
-
 .. code-block:: python3
 
-    def solve_optgrowth(initial_w, tol=1e-6, max_iter=500):
-        
-        w = initial_w  # Set initial condition
-        error = tol + 1
+    def solve_model(og,
+                    use_parallel=True,
+                    tol=1e-4, 
+                    max_iter=1000, 
+                    verbose=True,
+                    print_skip=25): 
+
+        T, _ = operator_factory(og, parallel_flag=use_parallel)
+
+        # Set up loop
+        v = np.log(og.y_grid)  # Initial condition
         i = 0
-        
-        # == Create storage array for bellman_operator. Reduces  memory
-        # allocation and speeds code up == #
-        Tw = np.empty(len(grid))
-        
-        # Iterate to find solution
-        while error > tol and i < max_iter:
-            w_new = bellman_operator(w,
-                                     grid,
-                                     β,
-                                     np.log,
-                                     lambda k: k**α,
-                                     shocks,
-                                     Tw)
-            error = np.max(np.abs(w_new - w))
-            w[:] = w_new
+        error = tol + 1
+
+        while i < max_iter and error > tol:
+            v_new = T(v)
+            error = np.max(np.abs(v - v_new))
             i += 1
+            if verbose and i % print_skip == 0:
+                print(f"Error at iteration {i} is {error}.")
+            v = v_new
+
+        if i == max_iter: 
+            print("Failed to converge!")
+
+        if verbose and i < max_iter:
+            print(f"\nConverged in {i} iterations.")
             
-        return w
+        return v_new
         
 We can check our result by plotting it against the true value
 
 .. code-block:: python3
 
-    initial_w = 5 * np.log(grid)
-  
-    fig, ax = plt.subplots(figsize=(9, 5))
-    ax.set_ylim(-35, -24)
-    ax.plot(grid, solve_optgrowth(initial_w), lw=2, alpha=0.6, label='approximate value function')
-    ax.plot(grid, v_star(grid), lw=2, alpha=0.6, label='true value function')
-    ax.legend(loc='lower right')
-    plt.show()
-        
-
-
-Alternatively, we can use `QuantEcon <http://quantecon.org/python_index.html>`__'s `compute_fixed_point` function
-to converge to :math:`v^*`
-
-
-
-.. code-block:: python3
-
-    from quantecon import compute_fixed_point
-
-    initial_w = 5 * np.log(grid)
-
-    # Turn the Bellman operator into a function of one variable
-    T = lambda w: bellman_operator(w,
-                                   grid,
-                                   β,
-                                   np.log,
-                                   lambda k: k**α,
-                                   shocks,
-                                   compute_policy=False)
-
-    v_star_approx = compute_fixed_point(T, initial_w,
-                                        error_tol=1e-5,     # error_tol
-                                        max_iter=500,       # max_iter
-                                        verbose=2,          # verbose
-                                        print_skip=10,      # print_skip
-                                        method='iteration')
-
-
-
-
-
-
-
-
-
-Let's have a look at the result
-
-
-
-
-.. code-block:: python3
+    v_solution = solve_model(og)
 
     fig, ax = plt.subplots(figsize=(9, 5))
+    
+    ax.plot(y_grid, v_solution, lw=2, alpha=0.6, 
+            label='Approximate value function')
+            
+    ax.plot(y_grid, v_star(y_grid, α, β, μ), lw=2,
+            alpha=0.6, label='True value function')
+    
+    ax.legend()
     ax.set_ylim(-35, -24)
-    ax.plot(grid, v_star_approx, lw=2, alpha=0.6, label='approximate value function')
-    ax.plot(grid, v_star(grid), lw=2, alpha=0.6, label='true value function')
-    ax.legend(loc='lower right')
     plt.show()
-
-
 
 The figure shows that we are pretty much on the money
 
@@ -842,35 +900,25 @@ The Policy Function
 .. index:: 
     single: Optimal Growth; Policy Function
 
-To compute an approximate optimal policy, we take the approximate value
-function we just calculated and then compute the corresponding greedy policy
+To compute an approximate optimal policy, we will use the second function
+returned from `operator_factory` that backs out the optimal policy 
+from the solution to the Bellman equation
 
 The next figure compares the result to the exact solution, which, as mentioned
 above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
 
-
-
-
 .. code-block:: python3
 
-    Tw, σ = bellman_operator(v_star_approx, 
-                             grid,  
-                             β,  
-                             np.log,
-                             lambda k: k**α,
-                             shocks,
-                             compute_policy=True)
-    
-    
     fig, ax = plt.subplots(figsize=(9, 5))
-    ax.plot(grid, σ, lw=2, alpha=0.6, label='approximate policy function')
-    cstar = (1 - α * β) * grid
-    ax.plot(grid, cstar, lw=2, alpha=0.6, label='true policy function')
-    ax.legend(loc='lower right')
+    
+    ax.plot(y_grid, get_greedy(v_solution), lw=2,
+            alpha=0.6, label='Approximate policy function')
+            
+    ax.plot(y_grid, σ_star(y_grid, α, β),
+            lw=2, alpha=0.6, label='True policy function')
+            
+    ax.legend()
     plt.show()
-
-
-
 
 
 The figure shows that we've done a good job in this instance of approximating
@@ -886,33 +934,23 @@ Exercise 1
 
 Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`
 
-The next figure shows a simulation of 100 elements of this sequence for three different discount factors (and hence three different policies)
+The next figure shows a simulation of 100 elements of this sequence for three 
+different discount factors (and hence three different policies)
 
 .. figure:: /_static/figures/solution_og_ex2.png
-   :scale: 100%
+   :scale: 60%
 
 In each sequence, the initial condition is :math:`y_0 = 0.1`
 
 The discount factors are ``discount_factors = (0.8, 0.9, 0.98)``
 
-We have also dialed down the shocks a bit
-
-
-
-.. code-block:: python3
-
-    s = 0.05
-    shocks = np.exp(μ + s * np.random.randn(shock_size))
-
-
+We have also dialed down the shocks a bit with `s = 0.05`
 
 Otherwise, the parameters and primitives are the same as the log linear model discussed earlier in the lecture
 
 Notice that more patient agents typically have higher wealth
 
 Replicate the figure modulo randomness
-
-
 
 
 
@@ -927,11 +965,9 @@ Exercise 1
 
 Here's one solution (assuming as usual that you've executed everything above)
 
-
-
 .. code-block:: python3
 
-    def simulate_og(σ, y0=0.1, ts_length=100):
+    def simulate_og(σ_func, og, α, y0=0.1, ts_length=100):
         '''
         Compute a time series given consumption policy σ.
         '''
@@ -939,46 +975,24 @@ Here's one solution (assuming as usual that you've executed everything above)
         ξ = np.random.randn(ts_length-1)
         y[0] = y0
         for t in range(ts_length-1):
-            y[t+1] = (y[t] - σ(y[t]))**α * np.exp(μ + s * ξ[t])
+            y[t+1] = (y[t] - σ_func(y[t]))**α * np.exp(og.μ + og.s * ξ[t])
         return y
+      
+.. code-block:: python3
         
     fig, ax = plt.subplots(figsize=(9, 6))
 
     for β in (0.8, 0.9, 0.98):
 
-        Tw = np.empty(len(grid))
-        initial_w = 5 * np.log(grid)
+        og = OptimalGrowthModel(f, np.log, β=β, s=0.05)
+        y_grid = og.y_grid
 
-        v_star_approx = compute_fixed_point(bellman_operator, 
-                                            initial_w, 
-                                            1e-5,        # error_tol
-                                            500,         # max_iter
-                                            False,       # verbose
-                                            5,           # print_skip
-                                            'iteration',
-                                            grid,
-                                            β,
-                                            np.log,
-                                            lambda k: k**α,
-                                            shocks,
-                                            Tw=Tw,
-                                            compute_policy=False)
+        v_solution = solve_model(og, verbose=False)
         
-        Tw, σ = bellman_operator(v_star_approx, 
-                                 grid,  
-                                 β,  
-                                 np.log,
-                                 lambda k: k**α,
-                                 shocks,
-                                 compute_policy=True)
-
-        σ_func = lambda x: np.interp(x, grid, σ)
-        y = simulate_og(σ_func)
+        σ_star = get_greedy(v_solution)
+        σ_func = lambda x: interp(y_grid, σ_star, x)  # Define an optimal policy function
+        y = simulate_og(σ_func, og, α)
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
-        
-        
-    ax.legend(loc='lower right')    
+
+    ax.legend(loc='lower right')
     plt.show()
-
-
-
