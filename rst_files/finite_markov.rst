@@ -423,9 +423,9 @@ Rewriting this statement in terms of  marginal and conditional probabilities giv
 
 .. _mc_fdd:
 
-.. math::
+    .. math::
 
-    \psi_{t+1}(y) = \sum_{x \in S} P(x,y) \psi_t(x)
+        \psi_{t+1}(y) = \sum_{x \in S} P(x,y) \psi_t(x)
 
 
 There are :math:`n` such equations, one for each :math:`y \in S`

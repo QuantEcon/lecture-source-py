@@ -257,7 +257,7 @@ Let's plot the optimal policies and see what they look like
 
 The code is as follows
 
-
+.. _jv_policies:
 
 .. literalinclude:: /_static/code/jv/jv_test.py
 

@@ -153,7 +153,6 @@ Nice properties:
 
 Here's a figure showing the effect on the pmf of different shape parameters when :math:`n=50`
 
-
 .. code-block:: python3
 
     def gen_probs(n, a, b):

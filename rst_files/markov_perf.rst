@@ -11,6 +11,8 @@ Markov Perfect Equilibrium
 .. index::
     single: Markov Perfect Equilibrium
 
+.. contents:: :depth: 2
+
 Overview
 ==========================
 

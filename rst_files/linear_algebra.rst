@@ -310,7 +310,7 @@ The next figure shows the span of :math:`A = \{a_1, a_2\}` in :math:`\mathbb R ^
 
 The span is a 2 dimensional plane passing through these two points and the origin
 
-
+.. _la_3dvec:
 
 .. code-block:: python3
   :class: collapse
