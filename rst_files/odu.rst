@@ -366,6 +366,12 @@ To solve the model we will use the following function that iterates using
                     max_iter=1000,
                     verbose=True,
                     print_skip=5):
+                    
+        """
+        Solves for the value function
+        
+        * sp is an instance of SearchProblem
+        """
 
         T, _ = operator_factory(sp, use_parallel)
 
