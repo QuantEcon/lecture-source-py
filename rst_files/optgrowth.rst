@@ -62,7 +62,7 @@ Next period output is
     y_{t+1} := f(k_{t+1}) \xi_{t+1}
 
 
-where :math:`f \colon \RR_+ \to \RR_+` is called the production function
+where :math:`f \colon \mathbb \R_+ \to \mathbb \R_+` is called the production function
 
 The resource constraint is
 
@@ -537,7 +537,7 @@ We use an interpolation function from the
 `interpolation.py package <https://github.com/EconForge/interpolation.py>`_
 because it comes in handy later when we want to just-in-time compile our code
 
-This library can be installed with the following command: `pip install interpolation`
+This library can be installed with the following command in Jupyter: ``!pip install interpolation``
 
 .. code-block:: python3
 
