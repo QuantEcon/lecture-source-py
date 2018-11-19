@@ -29,6 +29,17 @@ In the version considered below, the wage distribution is unknown and must be le
 
 * The following is based on the presentation in :cite:`Ljungqvist2012`, section 6.6
 
+Let's start with some imports
+
+.. code-block:: python3
+
+    from numba import njit, prange, vectorize
+    from interpolation import mlinterp, interp
+    from math import gamma
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+
 
 Model features
 ----------------
@@ -166,13 +177,6 @@ The densities :math:`f` and :math:`g` have the following shape
 
 .. code-block:: python3
 
-  from numba import njit, prange, vectorize
-  from interpolation import mlinterp, interp
-  from math import gamma
-  import numpy as np
-  import matplotlib.pyplot as plt
-  from matplotlib import cm
-
   def beta_function_factory(a, b):
     
       @vectorize
@@ -267,7 +271,7 @@ The class ``SearchProblem`` is used to store parameters and methods needed to co
 
 
 The following function takes an instance of this class and returns jitted versions
-of the Bellman operator `T`, and a `get_greedy()` function to compute the approximate
+of the Bellman operator ``T``, and a ``get_greedy()`` function to compute the approximate
 optimal policy from a guess ``v`` of the value function
 
 .. code-block:: python3
@@ -583,8 +587,8 @@ Implementation
 ^^^^^^^^^^^^^^^^^
 
 
-The following function takes an instance of `SearchProblem` and returns the
-operator `Q`
+The following function takes an instance of ``SearchProblem`` and returns the
+operator ``Q``
 
 .. code-block:: python3
 
@@ -643,7 +647,7 @@ Exercises
 Exercise 1
 ------------
 
-Use the default parameters and `Q_factory` to compute an optimal policy
+Use the default parameters and ``Q_factory`` to compute an optimal policy
 
 Your result should coincide closely with the figure for the optimal policy :ref:`shown above<odu_pol_vfi>`
 
@@ -666,7 +670,7 @@ a guess of the reservation wage function
 You should find that the run time is shorter than that of the value 
 function approach
 
-Similar to above, we set up a function to iterate with `Q` to find the fixed point
+Similar to above, we set up a function to iterate with ``Q`` to find the fixed point
 
 .. code-block:: python3
 
