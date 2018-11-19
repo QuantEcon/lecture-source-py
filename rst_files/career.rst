@@ -24,7 +24,18 @@ The model is originally due to Derek Neal :cite:`Neal1999`
 
 This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5
 
+We begin with some imports
 
+.. code-block:: python3
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import quantecon as qe
+    from numba import njit, prange
+    from quantecon.distributions import BetaBinomial
+    from scipy.special import binom, beta
+    from mpl_toolkits.mplot3d.axes3d import Axes3D
+    from matplotlib import cm
 
 
 Model features
@@ -112,9 +123,9 @@ As in :cite:`Ljungqvist2012`, section 6.5, we will focus on a discrete version o
 * both :math:`\theta` and :math:`\epsilon` take values in the set 
   ``np.linspace(0, B, grid_size)`` --- an even grid of points between 
   :math:`0` and :math:`B` inclusive
-* :math:`grid_size = 50`
-* :math:`B = 5`
-* :math:`\beta = 0.95`
+* ``grid_size = 50``
+* ``B = 5``
+* ``β = 0.95``
 
 The distributions :math:`F` and :math:`G` are discrete distributions
 generating draws from the grid points ``np.linspace(0, B, grid_size)``
@@ -131,7 +142,7 @@ with probability mass function
 
 Interpretation:
 
-* draw :math:`q` from a β distribution with shape parameters :math:`(a, b)`
+* draw :math:`q` from a Beta distribution with shape parameters :math:`(a, b)`
 * run :math:`n` independent binary trials, each with success probability :math:`q`
 * :math:`p(k \,|\, n, a, b)` is the probability of :math:`k` successes in these :math:`n` trials
 
@@ -140,21 +151,10 @@ Nice properties:
 * very flexible class of distributions, including uniform, symmetric unimodal, etc.
 * only three parameters
 
-Here's a figure showing the effect of different shape parameters when :math:`n=50`
-
+Here's a figure showing the effect on the pmf of different shape parameters when :math:`n=50`
 
 
 .. code-block:: python3
-
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import quantecon as qe
-    from numba import njit, prange
-    from quantecon.distributions import BetaBinomial
-    from scipy.special import binom, beta
-    from mpl_toolkits.mplot3d.axes3d import Axes3D
-    from matplotlib import cm
-
 
     def gen_probs(n, a, b):
         probs = np.zeros(n+1)
@@ -178,15 +178,8 @@ Here's a figure showing the effect of different shape parameters when :math:`n=5
 Implementation
 ==============================================
 
-We will first create a class `CareerWorkerProblem` which will hold the 
+We will first create a class ``CareerWorkerProblem`` which will hold the 
 default parameterizations of the model and an initial guess for the value function
-
-The default probability distributions in ``CareerWorkerProblem`` correspond to discrete uniform distributions
-
-In fact all our default settings correspond to the version studied in :cite:`Ljungqvist2012`, section 6.5.
-
-Hence we can reproduce figures 6.5.1 and 6.5.2 shown there, which exhibit the
-value function and optimal policy respectively
 
 .. code-block:: python3
 
@@ -217,8 +210,8 @@ value function and optimal policy respectively
             self._G_a, self._G_b = G_a, G_b
               
   
-The following function takes and instance of `CareerWorkerProblem` and returns
-the Bellman operator :math:`T` and the greedy policy function
+The following function takes and instance of ``CareerWorkerProblem`` and returns
+the corresponding Bellman operator :math:`T` and the greedy policy function
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
 :math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
@@ -231,7 +224,7 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
         Returns jitted versions of the Bellman operator and the
         greedy policy function
         
-        cw is an instance of CareerWorkerProblem
+        cw is an instance of ``CareerWorkerProblem``
         """
 
         θ, ϵ, β = cw.θ, cw.ϵ, cw.β
@@ -240,6 +233,8 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
 
         @njit(parallel=parallel_flag)
         def T(v):
+            "The Bellman operator"
+            
             v_new = np.empty_like(v)
 
             for i in prange(len(v)):
@@ -253,7 +248,9 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
         
         @njit
         def get_greedy(v):
-            policy = np.empty(v.shape)
+            "Computes the v-greedy policy"
+            
+            σ = np.empty(v.shape)
             
             for i in range(len(v)):
                 for j in range(len(v)):
@@ -266,13 +263,13 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
                         action = 2
                     else:
                         action = 3
-                    policy[i, j] = action
+                    σ[i, j] = action
                     
-            return policy
+            return σ
 
         return T, get_greedy
       
-Lastly, `solve_model` will  take an instance of `CareerWorkerProblem` and
+Lastly, ``solve_model`` will  take an instance of ``CareerWorkerProblem`` and
 iterate using the Bellman operator to find the fixed point of the value function 
 
 .. code-block:: python3
@@ -308,13 +305,15 @@ iterate using the Bellman operator to find the fixed point of the value function
         return v_new
 
 
-Here's the solution to the model
+Here's the solution to the model -- an approximate value function
 
 
 .. code-block:: python3
 
     cw = CareerWorkerProblem()
-    v_star = solve_model(cw)
+    T, get_greedy = operator_factory(cw)
+    v_star = solve_model(cw, verbose=False)
+    greedy_star = get_greedy(v_star)
     
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
@@ -327,6 +326,21 @@ Here's the solution to the model
                     linewidth=0.25)
     ax.set(xlabel='θ', ylabel='ϵ', zlim=(150, 200))
     ax.view_init(ax.elev, 225)
+    plt.show()
+    
+And here is the optimal policy
+    
+.. code-block:: python3
+    
+    fig, ax = plt.subplots(figsize=(6, 6))
+    tg, eg = np.meshgrid(cw.θ, cw.ϵ)
+    lvls = (0.5, 1.5, 2.5, 3.5)
+    ax.contourf(tg, eg, greedy_star.T, levels=lvls, cmap=cm.winter, alpha=0.5)
+    ax.contour(tg, eg, greedy_star.T, colors='k', levels=lvls, linewidths=2)
+    ax.set(xlabel='θ', ylabel='ϵ')
+    ax.text(1.8, 2.5, 'new life', fontsize=14)
+    ax.text(4.5, 2.5, 'new job', fontsize=14, rotation='vertical')
+    ax.text(4.0, 4.5, 'stay put', fontsize=14)
     plt.show()
 
 
@@ -363,8 +377,7 @@ In particular, modulo randomness, reproduce the following figure (where the hori
 .. figure:: /_static/figures/career_solutions_ex1_py.png
    :scale: 60%
 
-Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use `quantecon.random.draw()`
-
+Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use ``quantecon.random.draw()``
 
 
 .. _career_ex2:
@@ -403,15 +416,8 @@ Repeat the exercise with :math:`\beta=0.99` and interpret the change
 Exercise 3
 ----------------
 
-As best you can, reproduce the figure showing the optimal policy
-
-Hint: The ``get_greedy()`` method returns a representation of the optimal
-policy where values 1, 2 and 3 correspond to "stay put", "new job" and "new life" 
-respectively
-
-Use this and ``contourf`` from ``matplotlib.pyplot`` to produce the different shadings
-
-Now set ``G_a = G_b = 100`` and generate a new figure with these parameters.  Interpret.
+Set the parametization to ``G_a = G_b = 100`` and generate a new optimal policy
+figure -- interpret
 
 
 Solutions
@@ -510,15 +516,13 @@ Not surprisingly, more patient workers will wait longer to settle down to their 
 Exercise 3
 ----------
 
-Here’s the code to reproduce the original figure
-
 .. code-block:: python3
-    
-    cw = CareerWorkerProblem()
+
+    cw = CareerWorkerProblem(G_a=100, G_b=100)
     T, get_greedy = operator_factory(cw)
     v_star = solve_model(cw, verbose=False)
     greedy_star = get_greedy(v_star)
-
+    
     fig, ax = plt.subplots(figsize=(6, 6))
     tg, eg = np.meshgrid(cw.θ, cw.ϵ)
     lvls = (0.5, 1.5, 2.5, 3.5)
@@ -531,13 +535,8 @@ Here’s the code to reproduce the original figure
     plt.show()
 
 
-Now we want to set ``G_a = G_b = 100`` and generate a new figure with
-these parameters
-
-To do this replace: ``cw = CareerWorkerProblem()`` with ``cw = CareerWorkerProblem(G_a=100, G_b=100)``
-
-In the new figure, you will see that the region for which the worker
-will stay put has grown because the distribution for :math:`\epsilon`
+In the new figure, you see that the region for which the worker
+stays put has grown because the distribution for :math:`\epsilon`
 has become more concentrated around the mean, making high-paying jobs
 less realistic
 
