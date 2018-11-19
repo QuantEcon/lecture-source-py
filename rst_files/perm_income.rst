@@ -37,6 +37,14 @@ We use the model as a vehicle for illustrating
 
 Background readings on the linear-quadratic-Gaussian permanent income model are Hall's  :cite:`Hall1978`  and chapter 2 of  :cite:`Ljungqvist2012`
 
+Let's start with some imports
+
+.. code-block:: python3
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import random
+    from numba import njit
 
 
 The Savings Problem
@@ -512,43 +520,35 @@ The next figure shows a typical realization with :math:`r = 0.05`, :math:`\mu = 
 
 .. code-block:: python3
 
-  import matplotlib.pyplot as plt
-  import numpy as np
-  import random
+    r = 0.05
+    β = 1 / (1 + r)
+    σ = 0.15
+    μ = 1
+    T = 60
 
-  r = 0.05
-  β = 1 / (1 + r)
-  T = 60
-  σ = 0.15
-  μ = 1
+    @njit
+    def time_path(T):
+        w = np.random.randn(T+1)  # w_0, w_1, ..., w_T
+        w[0] = 0
+        b = np.zeros(T+1)
+        for t in range(1, T+1):
+            b[t] = w[1:t].sum()
+        b = -σ * b
+        c = μ + (1 - β) * (σ * w - b)
+        return w, b, c
 
-  def time_path():
-      w = np.random.randn(T+1)  # w_0, w_1, ..., w_T
-      w[0] = 0
-      b = np.zeros(T+1)
-      for t in range(1, T+1):
-          b[t] = w[1:t].sum()
-      b = -σ * b
-      c = μ + (1 - β) * (σ * w - b)
-      return w, b, c
+    w, b, c = time_path(T)
 
-  fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-  p_args = {'lw': 2, 'alpha': 0.7}
-  ax.grid()
-  ax.set_xlabel('Time')
-  bbox = (0., 1.02, 1., .102)
-  legend_args = {'bbox_to_anchor': bbox, 'loc': 'upper left',
-                 'mode': 'expand'}
+    ax.plot(μ + σ * w, 'g-', label="Non-financial income")
+    ax.plot(c, 'k-', label="Consumption")
+    ax.plot( b, 'b-', label="Debt")
+    ax.legend(ncol=3, mode='expand', bbox_to_anchor=(0., 1.02, 1., .102))
+    ax.grid()
+    ax.set_xlabel('Time')
 
-  w, b, c = time_path()
-  ax.plot(list(range(T+1)), μ + σ * w, 'g-',
-          label="non-financial income", **p_args)
-  ax.plot(list(range(T+1)), c, 'k-', label="consumption", **p_args)
-  ax.plot(list(range(T+1)), b, 'b-', label="debt", **p_args)
-  ax.legend(ncol=3, **legend_args)
-
-  plt.show()
+    plt.show()
   
 
 
@@ -560,18 +560,18 @@ The figure below shows the consumption paths of 250 consumers with independent i
 
 .. code-block:: python3
 
-  fig, ax = plt.subplots(figsize=(10, 6))
-  p_args = {'lw': 0.8, 'alpha': 0.7}
-  ax.grid()
-  ax.set_xlabel('Time')
-  ax.set_ylabel('Consumption')
-  b_sum = np.zeros(T+1)
-  for i in range(250):
-      rcolor = random.choice(('c', 'g', 'b', 'k'))
-      w, b, c = time_path()
-      ax.plot(list(range(T+1)), c, color=rcolor, **p_args)
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-  plt.show()
+    b_sum = np.zeros(T+1)
+    for i in range(250):
+        w, b, c = time_path(T)  # Generate new time path
+        rcolor = random.choice(('c', 'g', 'b', 'k'))
+        ax.plot(c, color=rcolor, lw=0.8, alpha=0.7)
+
+    ax.grid()
+    ax.set(xlabel='Time', ylabel='Consumption')
+
+    plt.show()
   
 
 
@@ -893,8 +893,48 @@ This confirms that none of :math:`\sigma_1 w_{1t}` is saved, while all of :math:
 The next figure illustrates these very different reactions to transitory and
 permanent income shocks using impulse-response functions
 
+.. code-block:: python3
 
-.. literalinclude:: /_static/code/perm_income/perm_inc_ir.py
+    r = 0.05
+    β = 1 / (1 + r)
+    S = 5   # Impulse date
+    σ1 = σ2 = 0.15
+
+    @njit
+    def time_path(T, permanent=False):
+        "Time path of consumption and debt given shock sequence"
+        w1 = np.zeros(T+1)
+        w2 = np.zeros(T+1)
+        b = np.zeros(T+1)
+        c = np.zeros(T+1)
+        if permanent:
+            w1[S+1] = 1.0
+        else:
+            w2[S+1] = 1.0
+        for t in range(1, T):
+            b[t+1] = b[t] - σ2 * w2[t]
+            c[t+1] = c[t] + σ1 * w1[t+1] + (1 - β) * σ2 * w2[t+1]
+        return b, c
+
+
+    fig, axes = plt.subplots(2, 1, figsize=(10, 8))
+    titles = ['transitory', 'permanent']
+
+    L = 0.175
+
+    for ax, truefalse, title in zip(axes, (True, False), titles):
+        b, c = time_path(T=20, permanent=truefalse)
+        ax.set_title(f'Impulse reponse: {title} income shock')
+        ax.plot(c, 'g-', label="consumption")
+        ax.plot(b, 'b-', label="debt")
+        ax.plot((S, S), (-L, L), 'k-', lw=0.5)
+        ax.grid(alpha=0.5)
+        ax.set(xlabel=r'Time', ylim=(-L, L))
+
+    axes[0].legend(loc='lower right')
+
+    plt.tight_layout()
+    plt.show()
 
 
 Example 2
