@@ -31,7 +31,15 @@ A side benefit of studying Lucas' model is that it provides a beautiful illustra
 
 Another difference to our :doc:`first asset pricing lecture <markov_asset>` is that the state space and shock will be continous rather than discrete
 
+Let's start with some imports
 
+.. code-block:: python3
+
+    import numpy as np
+    from interpolation import interp
+    from numba import njit, prange
+    from scipy.stats import lognorm
+    import matplotlib.pyplot as plt
 
 
 The Lucas Model
@@ -334,6 +342,8 @@ First we introduce the operator :math:`T` mapping :math:`f` into :math:`Tf` as d
     :label: lteeqT
 
     (Tf)(y) = h(y) + \beta \int f[G(y, z)] \phi(dz)
+    
+In what follows, we refer to :math:`T` as the Lucas operator
 
 
 The reason we do this is that a solution to :eq:`lteeq2` now corresponds to a
@@ -414,15 +424,9 @@ Let's try this when :math:`\ln y_{t+1} = \alpha \ln y_t + \sigma \epsilon_{t+1}`
 
 Utility will take the isoelastic form :math:`u(c) = c^{1-\gamma}/(1-\gamma)`, where :math:`\gamma > 0` is the coefficient of relative risk aversion
 
-We will set up a `LucasTree` class to hold parameters of the model
+We will set up a ``LucasTree`` class to hold parameters of the model
 
 .. code-block:: python3
-
-    import numpy as np
-    from interpolation import interp
-    from numba import njit, prange
-    from scipy.stats import lognorm
-    import matplotlib.pyplot as plt
 
 
     class LucasTree:
@@ -457,7 +461,7 @@ We will set up a `LucasTree` class to hold parameters of the model
                 self.h[i] = β * np.mean((y**α * self.draws)**(1 - γ))
             
                 
-The following function takes an instance of the `LucasTree` and generates a
+The following function takes an instance of the ``LucasTree`` and generates a
 jitted version of the Lucas operator
 
 .. code-block:: python3
@@ -478,6 +482,9 @@ jitted version of the Lucas operator
 
         @njit(parallel=parallel_flag)
         def T(f):
+            """
+            The Lucas operator
+            """
 
             # == turn f into a function == #
             Af = lambda x: interp(grid, f, x)
@@ -501,14 +508,14 @@ to find the fixed point
         """
         Compute the equilibrium price function associated with Lucas
         tree
+        
+        * tree is an instance of LucasTree
 
         """
         # == simplify notation == #
         grid, grid_size = tree.grid, tree.grid_size
         γ = tree.γ
 
-        # == Create storage array for lucas_operator. Reduces  memory
-        # allocation and speeds code up == #
         T = operator_factory(tree)
 
         i = 0
