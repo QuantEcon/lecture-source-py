@@ -492,6 +492,7 @@ Now let's look at two different ways of running it in IPython
     %run mod.py  # Run interactively
 
 .. code-block:: none
+
     __main__
   
 In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
