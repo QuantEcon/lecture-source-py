@@ -36,7 +36,21 @@ treatments in our lectures on :doc:`shortest paths <short_path>` and
 We'll discuss some of the technical details of dynamic programming as we
 go along
 
+Let's start with some imports
 
+We use an interpolation function from the
+`interpolation.py package <https://github.com/EconForge/interpolation.py>`_
+because it comes in handy later when we want to just-in-time compile our code
+
+This library can be installed with the following command in Jupyter: ``!pip install interpolation``
+
+.. code-block:: python3
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from interpolation import interp
+    from numba import njit, prange
+    from quantecon.optimize.scalar_maximization import brent_max
 
 The Model
 ==========================
@@ -62,7 +76,7 @@ Next period output is
     y_{t+1} := f(k_{t+1}) \xi_{t+1}
 
 
-where :math:`f \colon \mathbb \R_+ \to \mathbb \R_+` is called the production function
+where :math:`f \colon \mathbb R_+ \to \mathbb R_+` is called the production function
 
 The resource constraint is
 
@@ -231,7 +245,7 @@ The next section covers these ideas more formally
 Optimality 
 ------------------------------------
 
-The **policy value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
+The **:math:`\sigma`-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
 
 .. math::
     :label: vfcsdp00
@@ -533,19 +547,8 @@ produce a good approximation to :math:`Tv`, but also combine well with the broad
 The next figure illustrates piecewise linear interpolation of an arbitrary 
 function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
 
-We use an interpolation function from the
-`interpolation.py package <https://github.com/EconForge/interpolation.py>`_
-because it comes in handy later when we want to just-in-time compile our code
-
-This library can be installed with the following command in Jupyter: ``!pip install interpolation``
 
 .. code-block:: python3
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from interpolation import interp
-    from numba import njit, prange
-    from quantecon.optimize.scalar_maximization import brent_max
 
 
     def f(x):
@@ -583,9 +586,9 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
     class OptimalGrowthModel:
 
         def __init__(self,
-                     f,
-                     u,
-                     β=0.96,
+                     f,                # Production function
+                     u,                # Utility function
+                     β=0.96,           # Discount factor
                      μ=0,
                      s=0.1,
                      grid_max=4,
