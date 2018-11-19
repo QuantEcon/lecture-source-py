@@ -51,7 +51,22 @@ Formally, an *iterator* is an object with a ``__next__`` method
 
 For example, file objects are iterators 
 
-To see this, let's have another look at the :ref:`US cities data <us_cities_data>` 
+To see this, let's have another look at the :ref:`US cities data <us_cities_data>`,
+which is written to the present working directory in the following cell
+
+.. code-block:: ipython
+
+    %%file us_cities.txt
+    new york: 8244910
+    los angeles: 3819702
+    chicago: 2707120
+    houston: 2145146
+    philadelphia: 1536471
+    phoenix: 1469471
+    san antonio: 1359758
+    san diego: 1326179
+    dallas: 1223229 
+
 
 .. code-block:: python3
 
@@ -87,7 +102,22 @@ The objects returned by ``enumerate()`` are also iterators
 
 as are the reader objects from the ``csv`` module 
 
-.. jupyter-dependency:: _static/code/python_advanced_features/test_table.csv
+Let's create a small csv file that contains data from the NIKKEI index
+
+.. code-block:: ipython
+
+    %%file test_table.csv
+    Date,Open,High,Low,Close,Volume,Adj Close
+    2009-05-21,9280.35,9286.35,9189.92,9264.15,133200,9264.15
+    2009-05-20,9372.72,9399.40,9311.61,9344.64,143200,9344.64
+    2009-05-19,9172.56,9326.75,9166.97,9290.29,167000,9290.29
+    2009-05-18,9167.05,9167.82,8997.74,9038.69,147800,9038.69
+    2009-05-15,9150.21,9272.08,9140.90,9265.02,172000,9265.02
+    2009-05-14,9212.30,9223.77,9052.41,9093.73,169400,9093.73
+    2009-05-13,9305.79,9379.47,9278.89,9340.49,176000,9340.49
+    2009-05-12,9358.25,9389.61,9298.61,9298.61,188400,9298.61
+    2009-05-11,9460.72,9503.91,9342.75,9451.98,230800,9451.98
+    2009-05-08,9351.40,9464.43,9349.57,9432.83,220200,9432.83
 
 .. code-block:: python3
 
@@ -483,16 +513,9 @@ Now let's look at two different ways of running it in IPython
 
     import mod  # Standard import
     
-.. code-block:: none
-    
-    mod
-    
 .. code-block:: ipython
     
     %run mod.py  # Run interactively
-
-.. code-block:: none
-    __main__
   
 In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
 
@@ -1635,7 +1658,7 @@ If we make ``n`` even bigger then this happens
 .. code-block:: python3
     :class: skip-test
 
-    n = 1000000000
+    n = 100000000
     draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
 
 
@@ -1728,8 +1751,6 @@ We'll meet less contrived applications of recursion later on
 Exercises
 ============
 
-.. _paf_ex1:
-
 Exercise 1
 -----------------
 
@@ -1741,13 +1762,9 @@ The Fibonacci numbers are defined by
     x_{t+1} = x_t + x_{t-1}, \quad x_0 = 0, \; x_1 = 1
 
 
-The first few numbers in the sequence are: ``0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55``
+The first few numbers in the sequence are :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55`
 
 Write a function to recursively compute the :math:`t`-th Fibonacci number for any :math:`t`
-
-
-
-.. _paf_ex2:
 
 Exercise 2
 ------------
@@ -1772,10 +1789,6 @@ Complete the following code, and test it using `this csv file <https://github.co
     for date in dates:
         print(date)
 
-
-
-
-.. _paf_ex3:
 
 Exercise 3
 ---------------
@@ -1827,24 +1840,6 @@ Let's test it
 
 Exercise 2
 ----------
-
-A small sample from `test_table.csv <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_advanced_features/test_table.csv>`__ is included (and saved) in the code below for convenience
-
-
-.. code-block:: ipython
-    
-    %%file test_table.csv
-    Date,Open,High,Low,Close,Volume,Adj Close
-    2009-05-21,9280.35,9286.35,9189.92,9264.15,133200,9264.15
-    2009-05-20,9372.72,9399.40,9311.61,9344.64,143200,9344.64
-    2009-05-19,9172.56,9326.75,9166.97,9290.29,167000,9290.29
-    2009-05-18,9167.05,9167.82,8997.74,9038.69,147800,9038.69
-    2009-05-15,9150.21,9272.08,9140.90,9265.02,172000,9265.02
-    2009-05-14,9212.30,9223.77,9052.41,9093.73,169400,9093.73
-    2009-05-13,9305.79,9379.47,9278.89,9340.49,176000,9340.49
-    2009-05-12,9358.25,9389.61,9298.61,9298.61,188400,9298.61
-    2009-05-11,9460.72,9503.91,9342.75,9451.98,230800,9451.98
-    2009-05-08,9351.40,9464.43,9349.57,9432.83,220200,9432.83
 
 One solution is as follows
 
