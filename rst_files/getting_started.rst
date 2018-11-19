@@ -457,27 +457,15 @@ Alternatively, you can type the following into a terminal
 
 More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__
 
-.. note:: 
-    
-    The `QuantEcon.py <http://quantecon.org/python_index.html>`__ package can also be installed using conda by:
+To upgrade to the latest version, which you should do regularly, use
 
-    .. code-block:: bash
-
-        conda config --add channels conda-forge 
-        conda install quantecon
-
+    ``pip install --upgrade quantecon``
 
 Another library we will be using is `interpolation.py <https://github.com/EconForge/interpolation.py>`__
 
 This can be installed by typing in Jupyter 
 
     ``!pip install interpolation``
-
-
-
-
-
-
 
 
 Working with Files
