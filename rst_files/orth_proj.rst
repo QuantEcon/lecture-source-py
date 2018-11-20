@@ -82,7 +82,7 @@ For a linear subspace  :math:`S \subset \mathbb R^n`, we call :math:`x \in \math
    
 
 
-The **orthogonal complement** of linear subspace :math:`S \subset RR^n` is the set :math:`S^{\perp} := \{x \in \mathbb R^n \,:\, x \perp S\}`
+The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` is the set :math:`S^{\perp} := \{x \in \mathbb R^n \,:\, x \perp S\}`
  
    
 .. figure:: /_static/figures/orth_proj_def3.png
