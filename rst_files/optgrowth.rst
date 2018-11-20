@@ -245,7 +245,7 @@ The next section covers these ideas more formally
 Optimality 
 ------------------------------------
 
-The **:math:`\sigma`-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
+The :math:`\sigma`**-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
 
 .. math::
     :label: vfcsdp00
