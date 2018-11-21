@@ -96,11 +96,12 @@ We can plot the Poisson distribution over :math:`y` for different values of :mat
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     from numpy import exp
     from scipy.special import factorial
     import matplotlib.pyplot as plt
+    %matplotlib inline
     
     poisson_pmf = lambda y, μ: μ**y / factorial(y) * exp(-μ)
     y_values = range(0, 25)

@@ -415,10 +415,11 @@ The preceding calculations indicate that we can represent a Ramsey plan
 .. math::
     :label: eq_old9
 
+    \begin{aligned}
     \theta_0 & = \theta_0^* \\
     \mu_t &  = b_0 + b_1 \theta_t \\
     \theta_{t+1} & = d_0 + d_1 \theta_t
-
+    \end{aligned}
 
 To interpret this system, think of the  sequence
 :math:`\{\theta_t\}_{t=0}^\infty` as a sequence of
@@ -558,11 +559,12 @@ The bliss level of inflation is denoted by :math:`\theta^*`
 
 First we will create a class `ChangLQ` that solves the models and stores their values
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     from quantecon import LQ
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
     class ChangLQ:
@@ -1044,8 +1046,10 @@ More precisely, a government plan :math:`\vec \mu^A` is
 .. math::
     :label: eq_old10
 
+    \begin{aligned}
     v_j^A & = s(\theta^A_j, \mu^A_j) + \beta v_{j+1}^A \\
     & \geq s(\theta^A_j, 0 ) + \beta v_0^A \equiv v_j^{A,D}, \quad j \geq 0
+    \end{aligned}
 
 (Here it is useful to recall that setting :math:`\mu=0` is the maximizing choice for the government's one-period return function)
 
@@ -1063,8 +1067,10 @@ A sufficient condition for a plan :math:`\vec \mu` to be **credible** or
 
 .. math::
 
+    \begin{aligned}
     \tilde v_j & = s(\tilde \theta_j, \mu_j) + \beta \tilde v_{j+1} \\
     & \geq s(\tilde \theta_j, 0) + \beta v_0^A \quad \forall j \geq 0
+    \end{aligned}
 
 A key step in constructing a credible plan is first constructing a
 self-enforcing plan that has a low time :math:`0` value
@@ -1230,9 +1236,11 @@ We form the following 3-tuple of functions:
 .. math::
     :label: eq_old11
 
+    \begin{aligned}
     \hat \mu_t & = \nu_\mu(v_t) \\
     \theta_t & = \nu_\theta(v_t) \\
     v_{t+1} & = \nu_v(v_t, \mu_t )
+    \end{aligned}
 
 In addition to these equations, we need an initial value :math:`v_0` to
 characterize a sustainable plan

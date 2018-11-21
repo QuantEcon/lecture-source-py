@@ -173,10 +173,11 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import numpy as np
   import matplotlib.pyplot as plt
+  %matplotlib inline
   import scipy.stats as st
 
 

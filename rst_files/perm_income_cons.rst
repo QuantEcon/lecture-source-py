@@ -355,12 +355,13 @@ First we create the objects for the optimal linear regulator
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import quantecon as qe
     import numpy as np
     import scipy.linalg as la
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     # Set parameters
     α, β, ρ1, ρ2, σ = 10.0, 0.95, 0.9, 0.0, 1.0

@@ -396,12 +396,12 @@ rows)
 Using this series, we can plot the average real minimum wage over the
 past decade for each country in our data set
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import matplotlib
     matplotlib.style.use('seaborn')
-    %matplotlib inline
     
     merged.mean().sort_values(ascending=False).plot(kind='bar', title="Average real minimum wage 2006 - 2016")
     

@@ -245,9 +245,10 @@ One of the nice things about pandas ``DataFrame`` and ``Series`` objects is that
 
 For example, we can easily generate a bar plot of GDP per capita
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     df['GDP percap'].plot(kind='bar')    
     plt.show()

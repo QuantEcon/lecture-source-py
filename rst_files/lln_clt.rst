@@ -214,12 +214,13 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import random
     import numpy as np
     from scipy.stats import t, beta, lognorm, expon, gamma, poisson
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     n = 100
 

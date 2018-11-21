@@ -58,9 +58,10 @@ The MATLAB-style API
 
 Here's the kind of easy example you might find in introductory treatments
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import numpy as np
 
     x = np.linspace(0, 10, 200)

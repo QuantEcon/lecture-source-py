@@ -1130,9 +1130,10 @@ We can now plot the Ramsey tax  under both realizations of time :math:`t = 3` go
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     time_π = np.array([[0, 1, 0,   0,   0,  0],
                        [0, 0, 1,   0,   0,  0],
