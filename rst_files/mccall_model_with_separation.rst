@@ -283,6 +283,9 @@ The following function returns jitted versions of the Bellman operators :math:`h
 .. code-block:: python3
 
     def operator_factory(mcm, parallel_flag=True):
+        """
+        mcm is an instance of McCallModel
+        """
         
         α, β, γ, c = mcm.α, mcm.β, mcm.γ, mcm.c
         σ, w_vec, p_vec = mcm.σ, mcm.w_vec, mcm.p_vec
@@ -294,7 +297,6 @@ The following function returns jitted versions of the Bellman operators :math:`h
 
             """
             v_new = np.empty_like(v)
-            h_new = np.empty_like(h)
             
             for i in range(len(w_vec)):
                 w = w_vec[i]
@@ -324,7 +326,6 @@ We then return the current iterate as an approximate solution
         Q = operator_factory(mcm, use_parallel)
 
         v = np.ones_like(mcm.w_vec)   # Initial guess of v
-        v_new = np.empty_like(v)      # To store updates to v
         h = 1                         # Initial guess of h
         i = 0
         error = tol + 1
@@ -387,8 +388,8 @@ Optimal behavior for the worker is characterized by :math:`\bar w`
 
 *  if the  wage offer :math:`w` in hand is less than :math:`\bar w`, then the worker rejects
 
-Here's a function ``compute_reservation_wage`` that takes an instance of a McCall 
-model and returns the reservation wage associated with a given model
+Here's a function ``compute_reservation_wage`` that takes an instance of ``McCallModel``
+and returns the reservation wage associated with a given model
 
 It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ 
 to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`
