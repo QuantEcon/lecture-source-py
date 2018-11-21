@@ -257,10 +257,12 @@ The function is minimized over all feasible :math:`(s, \phi)` pairs
     def operator_factory(jv, parallel_flag=True):
         
         """
-        Returns a jitted version of the Bellman operator T.
+        Returns a jitted version of the Bellman operator T
         
         If the brute_force flag is True, then grid search is 
-        performed at each maximization step.
+        performed at each maximization step
+        
+        jv is an instance of JVWorker
 
         """
         
