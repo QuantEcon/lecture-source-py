@@ -1387,7 +1387,7 @@ Solutions
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
