@@ -26,9 +26,10 @@ This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5
 
 We begin with some imports
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import numpy as np
     import quantecon as qe
     from numba import njit, prange

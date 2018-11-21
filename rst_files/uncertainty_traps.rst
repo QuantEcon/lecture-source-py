@@ -344,9 +344,10 @@ Modulo randomness, replicate the simulation figures shown above
 Solutions
 =========
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import numpy as np
     import itertools
 

@@ -487,10 +487,11 @@ The MPE with robustness function is ``nnash_robust``
 
 The function's code is as follows
 
-.. code:: python3
+.. code:: ipython
 
     from scipy.linalg import solve
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def nnash_robust(A, C, B1, B2, R1, R2, Q1, Q2, S1, S2, W1, W2, M1, M2,
                      θ1, θ2, beta=1.0, tol=1e-8, max_iter=1000):

@@ -722,10 +722,11 @@ Written jointly with `Diasuke Oyama <https://github.com/oyamad>`__
 
 Let's start with some imports
 
-.. code-block:: python3 
+.. code-block:: ipython 
 
     import scipy.sparse as sparse
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from quantecon import compute_fixed_point
     from quantecon.markov import DiscreteDP
 

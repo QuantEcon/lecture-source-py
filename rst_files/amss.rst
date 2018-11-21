@@ -787,9 +787,10 @@ triangle denote war
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     # Initialize μgrid for value function iteration
     μ_grid = np.linspace(-0.7, 0.01, 200)

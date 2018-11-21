@@ -31,13 +31,14 @@ In the version considered below, the wage distribution is unknown and must be le
 
 Let's start with some imports
 
-.. code-block:: python3
+.. code-block:: ipython
 
     from numba import njit, prange, vectorize
     from interpolation import mlinterp, interp
     from math import gamma
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from matplotlib import cm
 
 

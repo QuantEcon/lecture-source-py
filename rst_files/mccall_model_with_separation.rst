@@ -32,12 +32,13 @@ Once separation enters the picture, the agent comes to view
 
 We'll need the following imports
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     from quantecon.distributions import BetaBinomial
     from numba import njit
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 The Model 
 ============

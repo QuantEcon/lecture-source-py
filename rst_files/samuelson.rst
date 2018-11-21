@@ -350,11 +350,12 @@ Implementation
 
 We'll start by drawing an informative graph from page 189 of :cite:`Sargent1987`
 
-.. code-block:: python3
+.. code-block:: ipython
     :class: collapse
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def param_plot():
 

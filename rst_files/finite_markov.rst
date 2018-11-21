@@ -899,6 +899,7 @@ The convergence in the theorem is illustrated in the next figure
 
   from mpl_toolkits.mplot3d import Axes3D
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
   P = ((0.971, 0.029, 0.000),
        (0.145, 0.778, 0.077),

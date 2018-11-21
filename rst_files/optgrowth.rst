@@ -44,10 +44,11 @@ because it comes in handy later when we want to just-in-time compile our code
 
 This library can be installed with the following command in Jupyter: ``!pip install interpolation``
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from interpolation import interp
     from numba import njit, prange
     from quantecon.optimize.scalar_maximization import brent_max

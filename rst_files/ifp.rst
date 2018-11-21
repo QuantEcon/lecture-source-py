@@ -502,9 +502,10 @@ The following figure is a 45 degree diagram showing the law of motion for assets
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import quantecon as qe
     
 

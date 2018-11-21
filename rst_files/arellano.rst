@@ -456,9 +456,10 @@ Solutions
 
 Compute the value function, policy and equilibrium prices
 
-.. code-block:: python3
+.. code-block:: ipython
     
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
     ae = Arellano_Economy(β=.953,        # time discount rate
                           γ=2.,          # risk aversion

@@ -84,9 +84,10 @@ The following figure represents three vectors in this manner
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
   fig, ax = plt.subplots(figsize=(10, 8))
   # Set the axes through the origin

@@ -276,9 +276,10 @@ Let's run a simulation under the default parameters (see above) starting from :m
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
   lm = LakeModel()
   N_0 = 150      # Population

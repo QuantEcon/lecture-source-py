@@ -981,9 +981,10 @@ Here's some code that generates a plot when :math:`\gamma = 0.8`
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
     
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     # == Set seed and generate a_t sequence == #
     np.random.seed(123)

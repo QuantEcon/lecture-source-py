@@ -304,11 +304,12 @@ Let's start with some imports
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     from numba import jit
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import quantecon as qe
     from quantecon.distributions import BetaBinomial
 

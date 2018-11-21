@@ -120,10 +120,11 @@ For this we can use ``scipy.stats``, which provides all of this functionality as
 
 Here's an example of usage
 
-.. code-block:: python3
+.. code-block:: ipython
 
     from scipy.stats import beta
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
     q = beta(5, 5)      # Beta(a, b), with a = b = 5
     obs = q.rvs(2000)   # 2000 observations
