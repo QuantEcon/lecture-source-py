@@ -30,7 +30,14 @@ Once separation enters the picture, the agent comes to view
 
 *  a spell of unemployment as an *investment* in searching for an acceptable job
 
+We'll need the following imports
 
+.. code-block:: python3
+
+    import numpy as np
+    from quantecon.distributions import BetaBinomial
+    from numba import njit
+    import matplotlib.pyplot as plt
 
 The Model 
 ============
@@ -232,11 +239,6 @@ The default utility function is a CRRA utility function
 
 .. code-block:: python3
 
-    import numpy as np
-    from quantecon.distributions import BetaBinomial
-    from numba import njit
-    import matplotlib.pyplot as plt
-
     # A default utility function
 
     @njit
@@ -385,7 +387,7 @@ Optimal behavior for the worker is characterized by :math:`\bar w`
 
 *  if the  wage offer :math:`w` in hand is less than :math:`\bar w`, then the worker rejects
 
-Here's a function `compute_reservation_wage` that takes an instance of a McCall 
+Here's a function ``compute_reservation_wage`` that takes an instance of a McCall 
 model and returns the reservation wage associated with a given model
 
 It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ 
@@ -432,7 +434,7 @@ The Reservation Wage and Unemployment Compensation
 
 First, let's look at how :math:`\bar w` varies with unemployment compensation
 
-In the figure below, we use the default parameters in the `McCallModel` class, apart from
+In the figure below, we use the default parameters in the ``McCallModel`` class, apart from
 `c` (which takes the values given on the horizontal axis)
 
 .. figure:: /_static/figures/mccall_resw_c.png
@@ -514,7 +516,7 @@ Solutions
 Exercise 1
 ----------
 
-Using the `compute_reservation_wage` function mentioned earlier in the lecture,
+Using the ``compute_reservation_wage`` function mentioned earlier in the lecture,
 we can create an array for reservation wages for different values of :math:`c`,
 :math:`\beta` and :math:`\alpha` and plot the results like so
 
