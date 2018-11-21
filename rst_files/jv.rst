@@ -20,7 +20,17 @@ In this section we solve a simple on-the-job search model
 
 * based on :cite:`Ljungqvist2012`, exercise 6.18, and :cite:`Jovanovic1979`
 
+Let's start with some imports
 
+.. code-block:: python3
+
+    import numpy as np
+    import scipy.stats as stats
+    from interpolation import interp
+    from numba import njit, prange
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from math import gamma
 
 Model features
 ----------------
@@ -171,16 +181,9 @@ Implementation
 .. index::
     single: On-the-Job Search; Programming Implementation
 
-We will set up a class `JVWorker` that holds the parameters of the model described above
+We will set up a class ``JVWorker`` that holds the parameters of the model described above
 
 .. code-block:: python3
-
-    import numpy as np
-    import scipy.stats as stats
-    from interpolation import interp
-    from numba import njit, prange
-    import matplotlib.pyplot as plt
-    from math import gamma
 
     class JVWorker:
         r"""
@@ -214,8 +217,8 @@ We will set up a class `JVWorker` that holds the parameters of the model describ
             self.x_grid = np.linspace(ɛ, grid_max, grid_size)
 
 
-The function `operator_factory` takes an instance of this class and returns a
-jitted version of the Bellman operator `T`, ie.
+The function ``operator_factory`` takes an instance of this class and returns a
+jitted version of the Bellman operator ``T``, ie.
 
 .. math::
 
@@ -324,7 +327,7 @@ The function is minimized over all feasible :math:`(s, \phi)` pairs
                     
         return T, get_greedy
 
-Another function, `get_greedy` returns the optimal policies of `s` and :math:`\phi`
+Another function, ``get_greedy`` returns the optimal policies of ``s`` and :math:`\phi`
 given a value function
 
 To solve the model, we will write a function that uses the Bellman operator
