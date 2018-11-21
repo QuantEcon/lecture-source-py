@@ -48,11 +48,12 @@ The ``debug`` Magic
 
 Let's consider a simple (and rather contrived) example
 
-.. code-block:: python3
+.. code-block:: ipython
     :class: skip-test
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def plot_log():
         fig, ax = plt.subplots(2, 1)

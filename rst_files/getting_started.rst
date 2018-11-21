@@ -298,10 +298,11 @@ Here's an arbitrary program we can use: http://matplotlib.org/1.4.1/examples/pie
 
 On that page you'll see the following code
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     N = 20
     θ = np.linspace(0.0, 2 * np.pi, N, endpoint=False)

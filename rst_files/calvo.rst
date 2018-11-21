@@ -559,11 +559,12 @@ The bliss level of inflation is denoted by :math:`\theta^*`
 
 First we will create a class `ChangLQ` that solves the models and stores their values
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     from quantecon import LQ
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
     class ChangLQ:

@@ -791,10 +791,11 @@ The following plot shows both the set of :math:`w,\theta` pairs associated with 
 and the smaller set of :math:`w,\theta` pairs associated with  sustainable plans (in blue)
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import polytope
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def plot_equilibria(ChangModel):
         """

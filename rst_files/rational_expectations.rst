@@ -671,10 +671,11 @@ Solutions
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 We'll use the LQ class from quantecon
 

@@ -444,9 +444,10 @@ Solutions
 
 These solutions are written by `Chase Coleman <github.com/cc7768>`__
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def plot_attraction_basis(s1=0.5, θ=2.5, δ=0.7, ρ=0.2, npts=250, ax=None):
         if ax is None:

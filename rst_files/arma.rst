@@ -234,10 +234,11 @@ The next figure plots an example of this function for :math:`\phi = 0.8` and :ma
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     
     num_rows, num_cols = 2, 1
     fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 8))

@@ -321,9 +321,10 @@ For :math:`f` and :math:`a` let's choose
 
 Here's a plot of :math:`f`
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import matplotlib.pyplot as plt
+  %matplotlib inline
   from mpl_toolkits.mplot3d.axes3d import Axes3D
   from matplotlib import cm
 

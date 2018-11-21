@@ -33,13 +33,14 @@ Another difference to our :doc:`first asset pricing lecture <markov_asset>` is t
 
 Let's start with some imports
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     from interpolation import interp
     from numba import njit, prange
     from scipy.stats import lognorm
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 The Lucas Model

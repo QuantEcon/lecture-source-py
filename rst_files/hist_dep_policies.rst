@@ -674,9 +674,10 @@ The next figure uses the program to compute and show the Ramsey plan for :math:`
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     fig, axes = plt.subplots(3, 1, figsize=(10, 12))
 

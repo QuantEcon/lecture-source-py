@@ -439,9 +439,10 @@ Here's a little program that uses the class to compute  time series from two dif
 
 The common steady state is also plotted for comparison
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     
     s1 = Solow()  
     s2 = Solow(k=8.0)

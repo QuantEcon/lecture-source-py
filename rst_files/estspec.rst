@@ -216,9 +216,10 @@ where :math:`\{ \epsilon_t \}` is white noise with unit variance, and compares t
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from quantecon import ARMA, periodogram
 
     n = 40                          # Data size

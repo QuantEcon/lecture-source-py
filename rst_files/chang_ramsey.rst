@@ -855,10 +855,11 @@ The package can be installed in a terminal/command prompt with pip
     ch1 = ChangModel(β=0.3, mbar=30, h_min=0.9, h_max=2, n_h=8, n_m=35, N_g=10)
     ch1.solve_sustainable()
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import polytope
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
 
   def plot_competitive(ChangModel):
