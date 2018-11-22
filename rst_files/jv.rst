@@ -223,7 +223,7 @@ jitted version of the Bellman operator ``T``, ie.
 .. math::
 
     Tv(x)
-    = - \min_{s + \phi \leq 1} w(s, \phi)
+    = \max_{s + \phi \leq 1} w(s, \phi)
 
 
 where
@@ -232,14 +232,10 @@ where
     :label: defw
 
      w(s, \phi)
-     := - \left\{
-             x (1 - s - \phi) + \beta (1 - \pi(s)) v[g(x, \phi)] +
+     := x (1 - s - \phi) + \beta (1 - \pi(s)) v[g(x, \phi)] +
              \beta \pi(s) \int v[g(x, \phi) \vee u] f(du)
-    \right\}
     
 
-
-Here we are minimizing instead of maximizing to fit with SciPy's optimization routines
 
 When we represent :math:`v`, it will be with a NumPy array ``v`` giving values on grid ``x_grid``
 
@@ -250,7 +246,10 @@ interpolation of ``v`` on ``x_grid``
 Inside the ``for`` loop, for each ``x`` in the grid over the state space, we
 set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`
 
-The function is minimized over all feasible :math:`(s, \phi)` pairs
+The function is maximized over all feasible :math:`(s, \phi)` pairs
+
+Another function, ``get_greedy`` returns the optimal policies of ``s`` and :math:`\phi`
+given a value function
 
 .. code-block:: python3
 
@@ -258,9 +257,6 @@ The function is minimized over all feasible :math:`(s, \phi)` pairs
         
         """
         Returns a jitted version of the Bellman operator T
-        
-        If the brute_force flag is True, then grid search is 
-        performed at each maximization step
         
         jv is an instance of JVWorker
 
@@ -295,7 +291,7 @@ The function is minimized over all feasible :math:`(s, \phi)` pairs
                 x = x_grid[i]
 
                 # === Search on a grid === #
-                search_grid = np.linspace(ɛ, 1.0, 15)
+                search_grid = np.linspace(ɛ, 1, 15)
                 max_val = -1
                 for s in search_grid:
                     for ϕ in search_grid:
@@ -316,7 +312,7 @@ The function is minimized over all feasible :math:`(s, \phi)` pairs
             for i in range(len(x_grid)):
                 x = x_grid[i]
                 # === Search on a grid === #
-                search_grid = np.linspace(ɛ, 1.0, 15)
+                search_grid = np.linspace(ɛ, 1, 15)
                 max_val = -1
                 for s in search_grid:
                     for ϕ in search_grid:
@@ -329,9 +325,6 @@ The function is minimized over all feasible :math:`(s, \phi)` pairs
                     
         return T, get_greedy
 
-Another function, ``get_greedy`` returns the optimal policies of ``s`` and :math:`\phi`
-given a value function
-
 To solve the model, we will write a function that uses the Bellman operator
 and iterates to find a fixed point
 
@@ -343,6 +336,13 @@ and iterates to find a fixed point
                     max_iter=1000,
                     verbose=True,
                     print_skip=25):
+                    
+        """
+        Solves the model by value function iteration
+
+        * jv is an instance of JVWorker 
+
+        """
 
         T, _ = operator_factory(jv, parallel_flag=use_parallel)
 
@@ -400,7 +400,7 @@ Let's plot the optimal policies and see what they look like
 
 The horizontal axis is the state :math:`x`, while the vertical axis gives :math:`s(x)` and :math:`\phi(x)`
 
-Overall, the policies match well with our predictions from :ref:`section <jvboecalc>`
+Overall, the policies match well with our predictions from :ref:`above <jvboecalc>`
 
 * Worker switches from one investment strategy to the other depending on relative return
 
