@@ -211,21 +211,21 @@ There's some special syntax here so let's step through carefully
 
 * The ``class`` keyword indicates that we are building a class
 
-This class defines instance data `wealth` and three methods: `__init__`, `earn` and `spend`
+This class defines instance data ``wealth`` and three methods: ``__init__``, ``earn`` and ``spend``
 
-*  `wealth` is *instance data* because each consumer we create (each instance of the `Consumer` class) will have its own separate wealth data
+*  ``wealth`` is *instance data* because each consumer we create (each instance of the ``Consumer`` class) will have its own separate wealth data
 
-The ideas behind the `earn` and `spend` methods were discussed above
+The ideas behind the ``earn`` and ``spend`` methods were discussed above
 
-Both of these act on the instance data `wealth`
+Both of these act on the instance data ``wealth``
 
-The `__init__` method is a *constructor method*
+The ``__init__`` method is a *constructor method*
 
 Whenever we create an instance of the class, this method will be called automatically
 
-Calling `__init__` sets up a "namespace" to hold the instance data --- more on this soon
+Calling ``__init__`` sets up a "namespace" to hold the instance data --- more on this soon
 
-We'll also discuss the role of `self` just below
+We'll also discuss the role of ``self`` just below
 
 
 Usage
@@ -276,27 +276,27 @@ maintained by the instance
 Self
 ^^^^
 
-If you look at the `Consumer` class definition again you'll see the word
+If you look at the ``Consumer`` class definition again you'll see the word
 `self` throughout the code
 
-The rules with `self` are that
+The rules with ``self`` are that
 
-* Any instance data should be prepended with `self`
+* Any instance data should be prepended with ``self``
 
-    * e.g., the `earn` method references `self.wealth` rather than just `wealth`
+    * e.g., the ``earn`` method references ``self.wealth`` rather than just ``wealth``
 
-* Any method defined within the class should have `self` as its first argument
+* Any method defined within the class should have ``self`` as its first argument
 
-    * e.g., `def earn(self, y)` rather than just `def earn(y)`
+    * e.g., ``def earn(self, y)`` rather than just ``def earn(y)``
 
-* Any method referenced within the class should be called as  `self.method_name`
+* Any method referenced within the class should be called as  ``self.method_name``
 
 There are no examples of the last rule in the preceding code but we will see some shortly
 
 Details
 ^^^^^^^
 
-In this section we look at some more formal details related to classes and `self`
+In this section we look at some more formal details related to classes and ``self``
 
 *  You might wish to skip to :ref:`the next section <oop_solow_growth>` on first pass of this lecture
 
@@ -309,7 +309,7 @@ the class definition
 
     print(Consumer.__dict__)  # Show __dict__ attribute of class object
 
-Note how the three methods `__init__`, `earn` and `spend` are stored in the class object
+Note how the three methods ``__init__``, ``earn`` and ``spend`` are stored in the class object
 
 Consider the following code
 
@@ -319,17 +319,17 @@ Consider the following code
     c1.earn(10)
     c1.wealth
 
-When you call `earn` via `c1.earn(10)` the interpreter passes the instance `c1` and the argument `10` to `Consumer.earn`
+When you call ``earn`` via ``c1.earn(10)`` the interpreter passes the instance ``c1`` and the argument ``10`` to ``Consumer.earn``
 
 In fact the following are equivalent
 
-* `c1.earn(10)`
+* ``c1.earn(10)``
 
-* `Consumer.earn(c1, 10)`
+* ``Consumer.earn(c1, 10)``
 
-In the function call `Consumer.earn(c1, 10)` note that `c1` is the first argument
+In the function call ``Consumer.earn(c1, 10)`` note that ``c1`` is the first argument
 
-Recall that in the definition of the `earn` method, `self` is the first parameter
+Recall that in the definition of the ``earn`` method, ``self`` is the first parameter
 
 .. code-block:: python3
 
@@ -337,9 +337,9 @@ Recall that in the definition of the `earn` method, `self` is the first paramete
         "The consumer earns y dollars"
         self.wealth += y
 
-The end result is that `self` is bound to the instance `c1` inside the function call
+The end result is that ``self`` is bound to the instance ``c1`` inside the function call
 
-That's why the statement `self.wealth += y` inside `earn` ends up modifying `c1.wealth`
+That's why the statement ``self.wealth += y`` inside ``earn`` ends up modifying ``c1.wealth``
 
 
 
@@ -379,15 +379,15 @@ Here's a class that implements this model
 
 Some points of interest in the code are
 
-* An instance maintains a record of its current capital stock in the variable `self.k`
+* An instance maintains a record of its current capital stock in the variable ``self.k``
 
-* The `h` method implements the right hand side of :eq:`solow_lom`
+* The ``h`` method implements the right hand side of :eq:`solow_lom`
 
-* The `update` method uses `h` to update capital as per :eq:`solow_lom`
+* The ``update`` method uses ``h`` to update capital as per :eq:`solow_lom`
 
-    * Notice how inside `update` the reference to the local method `h` is `self.h`
+    * Notice how inside ``update`` the reference to the local method ``h`` is ``self.h``
 
-The methods `steady_state` and `generate_sequence` are fairly self explanatory
+The methods ``steady_state`` and ``generate_sequence`` are fairly self explanatory
 
 .. code-block:: python3
 
@@ -580,7 +580,7 @@ supply curves  with and without taxes
 
 The next program provides a function that
 
-* takes an instance of `Market` as a parameter
+* takes an instance of ``Market`` as a parameter
 
 * computes dead weight loss from the imposition of the tax
 
