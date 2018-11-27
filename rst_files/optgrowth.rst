@@ -659,8 +659,8 @@ Here's a function that generates a Bellman operator using linear interpolation
 
         return T, get_greedy
 
-The function `operator_factory` takes a class that represents the growth model,
-and returns the operator `T` and a function `get_greedy` that we will use to solve the model
+The function ``operator_factory`` takes a class that represents the growth model,
+and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model
 
 Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
 
@@ -756,7 +756,7 @@ We first need to define a jitted version of the production function
         """
         return k**α
         
-Now we will create an instance of the model and assign it to the variable `og`
+Now we will create an instance of the model and assign it to the variable ``og``
 
 This instance will use the Cobb-Douglas production function and log utility
 
@@ -764,7 +764,7 @@ This instance will use the Cobb-Douglas production function and log utility
 
     og = OptimalGrowthModel(f=f, u=np.log)
     
-We will use `og` to generate the Bellman operator and a function that computes
+We will use ``og`` to generate the Bellman operator and a function that computes
 greedy policies
 
 .. code-block:: python3
@@ -902,7 +902,7 @@ The Policy Function
     single: Optimal Growth; Policy Function
 
 To compute an approximate optimal policy, we will use the second function
-returned from `operator_factory` that backs out the optimal policy 
+returned from ``operator_factory`` that backs out the optimal policy 
 from the solution to the Bellman equation
 
 The next figure compares the result to the exact solution, which, as mentioned
@@ -945,7 +945,7 @@ In each sequence, the initial condition is :math:`y_0 = 0.1`
 
 The discount factors are ``discount_factors = (0.8, 0.9, 0.98)``
 
-We have also dialed down the shocks a bit with `s = 0.05`
+We have also dialed down the shocks a bit with ``s = 0.05``
 
 Otherwise, the parameters and primitives are the same as the log linear model discussed earlier in the lecture
 
