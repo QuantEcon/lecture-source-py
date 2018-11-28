@@ -191,12 +191,12 @@ time :math:`t` component
 The government faces a sequence of budget constraints with time
 :math:`t` component
 
-.. math:: - x_t = q_t (M_t - M_{t-1})
+.. math:: -x_t = q_t (M_t - M_{t-1})
 
 which by using the definitions of :math:`m_t` and :math:`h_t` can also
 be expressed as
 
-.. math:: - x_t = m_t (1-h_t)
+.. math:: -x_t = m_t (1-h_t)
    :label: eqn_chang_ramsey2a
 
 The  restrictions :math:`m_t \in [0, \bar m]` and :math:`h_t \in \Pi` evidently
@@ -375,10 +375,12 @@ Chang constructs the following objects
      .. math::
         :label: Chang500
         
-        \begin{split} h_t & = h(\theta_t) \\
-                m_t & = m(\theta_t) \\
-                x_t & = x(\theta_t) \\
-                \theta_{t+1} & = \Psi(\theta_t) \end{split}
+        \begin{split} 
+        h_t & = h(\theta_t) \\
+        m_t & = m(\theta_t) \\
+        x_t & = x(\theta_t) \\
+        \theta_{t+1} & = \Psi(\theta_t) 
+        \end{split}
 
      starting from :math:`\theta_0`
 

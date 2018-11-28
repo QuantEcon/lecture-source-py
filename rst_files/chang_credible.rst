@@ -198,12 +198,12 @@ time :math:`t` component
 The government faces a sequence of budget constraints with time
 :math:`t` component
 
-.. math:: - x_t = q_t (M_t - M_{t-1})
+.. math:: -x_t = q_t (M_t - M_{t-1})
 
 which, by using the definitions of :math:`m_t` and :math:`h_t`, can also
 be expressed as
 
-.. math:: - x_t = m_t (1-h_t)
+.. math:: -x_t = m_t (1-h_t)
    :label: eqn_chang2a
 
 The  restrictions :math:`m_t \in [0, \bar m]` and :math:`h_t \in \Pi` evidently 
@@ -365,7 +365,8 @@ Chang works with
 * A recursive representation of a credible government policy is a pair of 
   initial conditions :math:`(w_0, \theta_0)` and a five-tuple of functions
 
- .. math::
+  .. math::
+
     h(w_t, \theta_t), m(h_t, w_t, \theta_t), x(h_t, w_t, \theta_t), \chi(h_t, w_t, \theta_t),\Psi(h_t, w_t, \theta_t)
 
   mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into 
