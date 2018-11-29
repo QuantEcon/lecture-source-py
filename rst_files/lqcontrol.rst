@@ -165,8 +165,7 @@ In particular, if we write
     a_{t+1} \\
     1
     \end{array}
-    \right)
-    =
+    \right) =
     \left(
     \begin{array}{cc}
     1 + r & -\bar c + \mu \\

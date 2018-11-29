@@ -707,8 +707,7 @@ orthonormal set :math:`\{u_1, \ldots, u_k\}` with
 
 .. math::
 
-    \Span \{x_1, \ldots, x_i\}
-    = 
+    \Span \{x_1, \ldots, x_i\} = 
     \Span \{u_1, \ldots, u_i\}
     \quad \text{for} \quad
     i = 1, \ldots, k

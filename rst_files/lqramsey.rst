@@ -267,15 +267,12 @@ The associated Lagrangian is
 .. math::
     :label: lq_rp
 
-    \mathscr L
-    =
+    \mathscr L =
     \mathbb E  \sum_{t=0}^{\infty} \beta^t
     \left\{
-    - \frac{1}{2} \left[ (c_t - b_t)^2 + \ell_t^2 \right]
-    + \lambda
-    \left[ (b_t - c_t)(\ell_t - s_t - g_t) - \ell_t^2 \right]
-    + \mu_t
-    [d_t + \ell_t - c_t - g_t]
+    -\frac{1}{2} \left[ (c_t - b_t)^2 + \ell_t^2 \right] + 
+    \lambda \left[ (b_t - c_t)(\ell_t - s_t - g_t) - \ell_t^2 \right] + 
+    \mu_t [d_t + \ell_t - c_t - g_t]
     \right\}
 
 
@@ -283,7 +280,7 @@ The first order conditions associated with :math:`c_t` and :math:`\ell_t` are
 
 .. math::
 
-    - (c_t - b_t ) + \lambda [- \ell_t + (g_t + s_t )] = \mu_t
+    -(c_t - b_t ) + \lambda [- \ell_t + (g_t + s_t )] = \mu_t
 
 
 and

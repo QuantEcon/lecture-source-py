@@ -167,8 +167,7 @@ To get these we can divide both sides of :math:`X_{t+1} = A X_t` by  :math:`N_{t
     \begin{pmatrix}
         U_{t+1}/N_{t+1} \\ 
         E_{t+1}/N_{t+1}
-    \end{pmatrix}
-    = 
+    \end{pmatrix} = 
     \frac1{1+g} A
     \begin{pmatrix}
         U_{t}/N_{t}
@@ -184,8 +183,8 @@ Letting
     x_t := 
     \left(\begin{matrix}
         u_t\\ e_t
-    \end{matrix}\right) 
-    = \left(\begin{matrix}
+    \end{matrix}\right) = 
+    \left(\begin{matrix}
         U_t/N_t\\ E_t/N_t
     \end{matrix}\right)
 

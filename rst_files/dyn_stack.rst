@@ -349,8 +349,7 @@ where
 
 .. math::
 
-    P
-    =
+    P =
     \left[
     \begin{array}{cc}
         P_{11} & P_{12} \\
@@ -454,8 +453,7 @@ shadow prices on the transition equations is
 
 .. math::
 
-    \mu_t
-    =
+    \mu_t =
     \left[\begin{array}{c}
     \mu_{zt} \\
     \mu_{xt}

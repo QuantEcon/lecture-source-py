@@ -756,8 +756,7 @@ Expanding this out, we get
 
 .. math::
 
-    \Var[\mathbf X]
-    =
+    \Var[\mathbf X] =
     \left(
     \begin{array}{ccc}
         \mathbb E [(X_1 - \mu_1)(X_1 - \mu_1)]

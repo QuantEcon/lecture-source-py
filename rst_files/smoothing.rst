@@ -297,12 +297,11 @@ or
     \end{bmatrix} + 
     \begin{bmatrix}  
     \bar c \cr \bar c 
-    \end{bmatrix} 
-    = 
+    \end{bmatrix} = 
     \begin{bmatrix} 
         y(\bar s_1) \cr y(\bar s_2) 
-    \end{bmatrix} 
-    + \beta 
+    \end{bmatrix} + 
+    \beta 
     \begin{bmatrix} 
         P_{11} & P_{12} \cr P_{21} & P_{22} 
     \end{bmatrix} 

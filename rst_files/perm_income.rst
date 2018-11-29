@@ -829,8 +829,7 @@ In both examples, the endowment follows the process :math:`y_t = z_{1t} + z_{2t}
     \begin{bmatrix}
       z_{1 t+1} \\
       z_{2t+1}
-    \end{bmatrix}
-    =
+    \end{bmatrix}=
     \begin{bmatrix}
       1 & 0 \\
       0 & 0

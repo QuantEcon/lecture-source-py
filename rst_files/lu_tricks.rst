@@ -320,8 +320,7 @@ Then we can represent :eq:`oneff` as the matrix equation
             y_N \cr y_{N-1} \cr y_{N-2} \cr \vdots \cr 
             y_1 \cr y_0 
         \end{matrix}
-    \right ]
-    = 
+    \right ] = 
     \left[
     \begin{matrix} 
         a_N \cr a_{N-1} \cr a_{N-2} \cr \vdots \cr a_1 \cr 

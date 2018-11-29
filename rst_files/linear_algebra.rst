@@ -124,8 +124,7 @@ As a matter of definition, when we add two vectors, we add them element by eleme
 
 .. math::
 
-    x + y
-    =
+    x + y =
     \left[
     \begin{array}{c}
         x_1 \\
@@ -133,8 +132,7 @@ As a matter of definition, when we add two vectors, we add them element by eleme
         \vdots \\
         x_n
     \end{array}
-    \right]
-    +
+    \right] +
     \left[
     \begin{array}{c}
          y_1 \\
@@ -550,8 +548,7 @@ Scalar multiplication and addition are immediate generalizations of the vector c
 
 .. math::
 
-    \gamma A
-    =
+    \gamma A =
     \gamma
     \left[
     \begin{array}{ccc}
@@ -621,8 +618,7 @@ According to the preceding rule, this gives us an :math:`n \times 1` column vect
 .. math::
     :label: la_atx
 
-    A x
-    =
+    A x =
     \left[
     \begin{array}{ccc}
         a_{11} &  \cdots & a_{1k} \\

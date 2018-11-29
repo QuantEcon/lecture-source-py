@@ -226,8 +226,7 @@ As we'll see, this will eventually lead us to construct the Bellman equation
 .. math::
     :label: rb_wcb0
 
-    J (x)
-    =
+    J (x) =
     \min_u
     \max_w
     \{
@@ -286,8 +285,7 @@ and :math:`I` is a :math:`j \times j` identity matrix.  Substituting this expres
 .. math::
     :label: rb_owb
 
-    x'Px
-    =
+    x'Px =
     \min_u
     \{
         x' R x + u' Q u + \beta \,
@@ -714,8 +712,7 @@ Using this notation, we replace :eq:`rb_wcb0` with the stochastic analogue
 .. math::
     :label: rb_wcb1
 
-    J (x)
-    =
+    J (x) =
     \min_u
     \max_{\psi \in \mathcal P}
     \left\{
@@ -783,8 +780,7 @@ Substituting the expression for the maximum into  Bellman equation
 .. math::
     :label: rb_wcb2
 
-    x' P x + d
-    =
+    x' P x + d =
     \min_u
     \left\{
         x' R x + u' Q u + \beta \,
@@ -848,8 +844,7 @@ the associated loss, which, by analogy with :eq:`rb_wcb1`, satisfies
 
 .. math::
 
-    J_F(x)
-    =
+    J_F(x) =
     \max_{\psi \in \mathcal P}
     \left\{
         x' (R + F'QF) x + \beta \,
@@ -864,8 +859,7 @@ derive :eq:`rb_mls` we get
 
 .. math::
 
-    x' P_F x + d_F
-    =
+    x' P_F x + d_F =
     x' (R + F'QF) x + \beta \,
     \left[
      x' (A - BF)' \mathcal D(P_F) (A - BF) x + d_F + \kappa(\theta, P_F)
@@ -1091,8 +1085,7 @@ or, in other words,
 
 .. math::
 
-    \hat  P
-     =
+    \hat  P =
      R + \hat F' Q \hat F
      + \beta (A - B \hat F)' \hat P C
        (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F)

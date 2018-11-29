@@ -444,8 +444,7 @@ Here the Bellman equation is
 
 .. math::
 
-    v(Q_t,\tau_t,u_t)
-    =
+    v(Q_t,\tau_t,u_t) =
     \max_{\tau_{t+1}}
         \left\{
             A_0 Q_t-\frac {A_1}2 Q_t^2-\frac d2 u_t^2+\mu\tau_tQ_t
@@ -464,10 +463,9 @@ and
 
 .. math::
 
-    u_{t+1}
-    =
-    -\frac{A_0}d+\frac{A_1}d Q_t
-        +  \frac{A_1}d+\frac1\beta u_t+\frac1d \tau_{t+1}
+    u_{t+1} =
+    -\frac{A_0}d+\frac{A_1}d Q_t +  
+    \frac{A_1}d+\frac1\beta u_t+\frac1d \tau_{t+1}
 
 
 Here we regard :math:`u_t` as a state
@@ -498,8 +496,7 @@ Define the state vector to be
             \tau_t
             \\
             u_t
-        \end{bmatrix}
-        =
+        \end{bmatrix} =
         \begin{bmatrix}
             z_t
             \\
@@ -553,8 +550,7 @@ If we partition :math:`P` as
 
 .. math::
 
-    P
-    =
+    P =
     \begin{bmatrix}
         P_{11}&P_{12}
         \\
@@ -566,13 +562,11 @@ then we have
 
 .. math::
 
-    0
-    =
+    0 =
     \frac{\partial}{\partial u_0}
         \left(
             z_0'P_{11}z_0+z_0'P_{12}u_0+u_0'P_{21}z_0 +u_0' P_{22} u_0
-        \right)
-    =
+        \right)=
     P_{12}'z_0+P_{21}z_0+2P_{22}u_0
 
 
@@ -588,8 +582,7 @@ Thus, the Ramsey plan is
 
 .. math::
 
-    \tau_{t+1}
-    =
+    \tau_{t+1} =
     -F
     \begin{bmatrix}
         z_t
@@ -601,8 +594,7 @@ Thus, the Ramsey plan is
         z_{t+1}
         \\
         u_{t+1}
-    \end{bmatrix}
-    =
+    \end{bmatrix} =
     (A-BF)
     \begin{bmatrix}
         z_t

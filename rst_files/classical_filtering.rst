@@ -485,8 +485,7 @@ the following solution
 
 .. math::
 
-    (1-\lambda_1 L) \ldots (1-\lambda_m L) y_t
-    =
+    (1-\lambda_1 L) \ldots (1-\lambda_m L) y_t =
     \sum^m_{j=1} A_j
      \left[
          \frac{1-\beta \lambda_j \, c (\beta \lambda_j) L^{-1} c(L)^{-1} }
