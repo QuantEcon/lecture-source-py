@@ -160,7 +160,7 @@ as
 .. math::
     :label: eqn:xlawforward
 
-    x_t =  \phi_1 z_t + \phi_2 z_{t+1} +  \phi_3 u_t + \phi_0 x_{t+1} ,
+    x_t =  \phi_1 z_t + \phi_2 z_{t+1} +  \phi_3 u_t + \phi_0 x_{t+1}
 
 
 where :math:`\phi_0 = \hat A_{22}^{-1} G_{22}`.
@@ -170,11 +170,11 @@ The models we study in this chapter typically satisfy
 
 *Forward-Looking Stability Condition*
 The eigenvalues of :math:`\phi_0`
-are bounded in modulus by :math:`\beta^{-.5}`.
+are bounded in modulus by :math:`\beta^{-.5}`
 
 
 
-This stability condition  makes equation  :eq:`eqn:xlawforward` explosive if solved 'backwards' but stable if solved 'forwards'.
+This stability condition  makes equation  :eq:`eqn:xlawforward` explosive if solved 'backwards' but stable if solved 'forwards'
 
 See the appendix of chapter 2 of :cite:`Ljungqvist2012`
 
@@ -183,7 +183,7 @@ So we solve equation :eq:`eqn:xlawforward` forward to get
 .. math::
     :label: bell101
 
-    x_t = \sum_{j=0}^\infty \phi_0^j \left[ \phi_1 z_{t+j} + \phi_2 z_{t+j+1} + \phi_3 u_{t+j} \right] .
+    x_t = \sum_{j=0}^\infty \phi_0^j \left[ \phi_1 z_{t+j} + \phi_2 z_{t+j+1} + \phi_3 u_{t+j} \right]
 
 
 In choosing :math:`u_t` for :math:`t \geq 1` at time :math:`0`, the government  takes into account how future :math:`z` and :math:`u` affect earlier
@@ -195,15 +195,20 @@ The lecture on :doc:`history dependent policies <hist_dep_policies>` analyzes an
 
 A :ref:`certainty equivalence principle <lq_cert_eq>` allows us to work with a nonstochastic model (see :doc:`LQ dynamic programming <lqcontrol>`)
 
-That is, we would attain the same decision rule if we were to replace :math:`x_{t+1}` with the forecast :math:`E_t x_{t+1}` and to add a shock process :math:`C \epsilon_{t+1}` to the right side of :eq:`new30`, where :math:`\epsilon_{t+1}` is an IID random vector with mean  zero and identity covariance matrix
+That is, we would attain the same decision rule if we were to replace :math:`x_{t+1}` 
+with the forecast :math:`E_t x_{t+1}` and to add a shock process :math:`C \epsilon_{t+1}` to the right side of :eq:`new30`, where :math:`\epsilon_{t+1}` is an IID random vector with mean  zero and identity covariance matrix
 
 Let :math:`s^t` denote the history of any variable :math:`s` from :math:`0` to :math:`t`
 
-:cite:`MillerSalmon1985`, :cite:`HansenEppleRoberds1985`, :cite:`PearlmanCurrieLevine1986`, :cite:`Sargent1987`, :cite:`Pearlman1992`, and others have all studied versions of the following problem:
+:cite:`MillerSalmon1985`, :cite:`HansenEppleRoberds1985`, :cite:`PearlmanCurrieLevine1986`, 
+:cite:`Sargent1987`, :cite:`Pearlman1992`, and others have all studied versions of the following problem:
 
 .. CC: Also listed was  Miller and Salmon 1982.  I found a 1983 version of their same paper that was published in '85, but not another one, so I'm not sure what paper this referred to.
 
-**Problem S:** The *Stackelberg problem* is to maximize :eq:`new1_dyn_stack` by choosing an :math:`x_0` and a sequence of decision rules, the time :math:`t` component of which maps a time :math:`t` history of the natural state :math:`z^t` into a time :math:`t` decision :math:`u_t` of the Stackelberg leader
+**Problem S:** The *Stackelberg problem* is to maximize :eq:`new1_dyn_stack` by choosing an 
+:math:`x_0` and a sequence of decision rules, the time :math:`t` component of which 
+maps a time :math:`t` history of the natural state :math:`z^t` into a 
+time :math:`t` decision :math:`u_t` of the Stackelberg leader
 
 The Stackelberg leader chooses this sequence of decision rules once and for all at time :math:`t=0`
 
@@ -213,9 +218,13 @@ The maximization is subject to a given initial condition for :math:`z_0`
 
 But :math:`x_0` is among the objects to be chosen by the Stackelberg leader
 
-The optimal decision rule is history dependent, meaning that :math:`u_t` depends not only on :math:`z_t` but at :math:`t \geq 1` also on lags of :math:`z`
+The optimal decision rule is history dependent, meaning that :math:`u_t` depends 
+not only on :math:`z_t` but at :math:`t \geq 1` also on lags of :math:`z`
 
-History dependence has two sources: (a) the government's ability to commit [#f2]_ to a sequence of rules at time :math:`0` as in the lecture on :doc:`history dependent policies <hist_dep_policies>`, and (b) the forward-looking behavior of the private sector embedded in the second block of equations :eq:`new3` as exhibited by :eq:`bell101`
+History dependence has two sources: (a) the government's ability to commit [#f2]_ 
+to a sequence of rules at time :math:`0` as in the lecture on 
+:doc:`history dependent policies <hist_dep_policies>`, and (b) the forward-looking 
+behavior of the private sector embedded in the second block of equations :eq:`new3` as exhibited by :eq:`bell101`
 
 
 
@@ -226,7 +235,7 @@ Some Basic Notation
 --------------------
 
 
-For any vector :math:`a_t`, define :math:`\vec a_t = [a_t, a_{t+1}, \ldots]`.
+For any vector :math:`a_t`, define :math:`\vec a_t = [a_t, a_{t+1}, \ldots]`
 
 Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
 
@@ -235,7 +244,7 @@ Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
     \Omega(y_0) = \left\{ (\vec y_1, \vec u_0) :  y_{t+1} = A y_t + B u_t, \forall t \geq 0 \right\}
 
 
-Note that in the definition of :math:`\Omega(y_0)`, :math:`y_0` is taken as given.
+Note that in the definition of :math:`\Omega(y_0)`, :math:`y_0` is taken as given
 
 Eventually, the  :math:`x_0` component of :math:`y_0` will be chosen, though it is taken as given in :math:`\Omega(y_0)`
 
@@ -272,7 +281,8 @@ Subproblem 1 takes the vector of forward-looking variables  :math:`x_0` as given
 
 Subproblem 2 optimizes over  :math:`x_0`
 
-The value function :math:`w(z_0)` tells the value of the Stackelberg plan as a function of the vector of natural state variables at time :math:`0`,
+The value function :math:`w(z_0)` tells the value of the Stackelberg plan as a 
+function of the vector of natural state variables at time :math:`0`,
 :math:`z_0`
 
 
@@ -323,7 +333,7 @@ and the optimal decision rule coefficient vector
 .. math::
     :label: bell4_dyn_stack
 
-    F = \beta(   Q + \beta   B' P   B)^{-1}  B' P A ,
+    F = \beta(   Q + \beta   B' P   B)^{-1}  B' P A 
 
 
 where the optimal decision rule is
@@ -331,7 +341,7 @@ where the optimal decision rule is
 .. math::
     :label: bell5_dyn_stack
 
-    u_t = - F y_t.
+    u_t = - F y_t
 
 
 Subproblem 2
@@ -406,9 +416,11 @@ or
     u_t  = f_{11}  z_{t} + f_{12} x_{t}
 
 
-where for :math:`t \geq 1`, :math:`x_t` is effectively a state variable, albeit not a *natural* one,  inherited from the past
+where for :math:`t \geq 1`, :math:`x_t` is effectively a state variable, 
+albeit not a *natural* one,  inherited from the past
 
-The means that for :math:`t \geq 1`, :math:`x_t` is  *not* a  function of :math:`z_t` only (though it is at :math:`t=0`) and that :math:`x_t` exerts an independent influence on :math:`u_t`
+The means that for :math:`t \geq 1`, :math:`x_t` is  *not* a  function of 
+:math:`z_t` only (though it is at :math:`t=0`) and that :math:`x_t` exerts an independent influence on :math:`u_t`
 
 
 The situation is different at :math:`t=0`
@@ -431,21 +443,26 @@ This means that :math:`x_t` has an independent role in shaping :math:`u_t` for :
 
 All of this means that  the Stackelberg leader's decision rule at :math:`t \geq 1` differs from its decision rule at :math:`t =0`
 
-As indicated at the beginning of this lecture, this difference is a symptom of the *time inconsistency* of the optimal Stackelberg plan
+As indicated at the beginning of this lecture, this difference is a 
+symptom of the *time inconsistency* of the optimal Stackelberg plan
 
 
 Shadow prices
 ==============
 
-The history dependence of the government's plan can be expressed in the dynamics of Lagrange multipliers :math:`\mu_x` on the last :math:`n_x` equations of :eq:`new2` or :eq:`new3`
+The history dependence of the government's plan can be expressed in the 
+dynamics of Lagrange multipliers :math:`\mu_x` on the last :math:`n_x` equations of :eq:`new2` or :eq:`new3`
 
-These multipliers measure the cost today of honoring past government promises about current and future settings of :math:`u`
+These multipliers measure the cost today of honoring past government 
+promises about current and future settings of :math:`u`
 
-We shall soon show that as a result of optimally choosing :math:`x_0`, it is appropriate to initialize the multipliers to zero at time :math:`t=0`
+We shall soon show that as a result of optimally choosing :math:`x_0`, it is 
+appropriate to initialize the multipliers to zero at time :math:`t=0`
 
 This is true because at :math:`t=0`, there are no past promises about :math:`u` to honor
 
-But the multipliers :math:`\mu_x` take nonzero values thereafter, reflecting future costs to the government of confirming the private sector's
+But the multipliers :math:`\mu_x` take nonzero values thereafter, reflecting 
+future costs to the government of confirming the private sector's
 earlier expectations about its time :math:`t` actions
 
 
@@ -492,9 +509,13 @@ One large firm produces :math:`Q_t` and a representative firm in a competitive f
 
 The representative firm in the competitive fringe acts as a price taker and chooses sequentially
 
-The large firm commits to a policy at time :math:`0`, taking into account its ability to manipulate the price sequence, both directly through the effects of its quantity choices on prices, and indirectly through the responses of the competitive fringe to its forecasts of prices [#f8]_
+The large firm commits to a policy at time :math:`0`, taking into account its 
+ability to manipulate the price sequence, both directly through the effects of its 
+quantity choices on prices, and indirectly through the responses of the competitive fringe to its forecasts of prices [#f8]_
 
-The costs of production are :math:`{\cal C}_t = e Q_t + .5 g Q_t^2+ .5 c (Q_{t+1} - Q_{t})^2` for the large firm and :math:`\sigma_t= d q_t + .5 h q_t^2 + .5 c (q_{t+1} - q_t)^2` for the competitive firm, where :math:`d>0, e >0, c>0, g >0, h>0` are cost parameters
+The costs of production are :math:`{\cal C}_t = e Q_t + .5 g Q_t^2+ .5 c (Q_{t+1} - Q_{t})^2` for 
+the large firm and :math:`\sigma_t= d q_t + .5 h q_t^2 + .5 c (q_{t+1} - q_t)^2` for the 
+competitive firm, where :math:`d>0, e >0, c>0, g >0, h>0` are cost parameters
 
 There is a linear inverse demand curve
 
@@ -512,16 +533,19 @@ where :math:`A_0, A_1` are both positive and :math:`v_t` is a disturbance to dem
     v_{t+1}= \rho v_t + C_\epsilon \check \epsilon_{t+1}
 
 
-where :math:`| \rho | < 1` and :math:`\check \epsilon_{t+1}` is an IID sequence of random variables with mean zero and variance :math:`1`
+where :math:`| \rho | < 1` and :math:`\check \epsilon_{t+1}` is an IID sequence 
+of random variables with mean zero and variance :math:`1`
 
 In :eq:`oli1`, :math:`\overline q_t` is equilibrium output of the representative competitive firm
 
-In equilibrium, :math:`\overline q_t = q_t`, but we must distinguish between :math:`q_t` and :math:`\overline q_t` in posing the optimum problem of a competitive firm
+In equilibrium, :math:`\overline q_t = q_t`, but we must distinguish between 
+:math:`q_t` and :math:`\overline q_t` in posing the optimum problem of a competitive firm
 
 The competitive fringe
 ----------------------
 
-The representative competitive firm regards :math:`\{p_t\}_{t=0}^\infty` as an exogenous stochastic process and chooses an output plan to maximize
+The representative competitive firm regards :math:`\{p_t\}_{t=0}^\infty` as an 
+exogenous stochastic process and chooses an output plan to maximize
 
 .. math::
     :label: oli3
@@ -545,11 +569,15 @@ The first-order conditions for maximizing :eq:`oli3` are
 
 for :math:`t \geq 0`
 
-We appeal to a :ref:`certainty equivalence principle <lq_cert_eq>` to justify working with a non-stochastic version of :eq:`oli4` formed by dropping the expectation operator and the random term :math:`\check \epsilon_{t+1}` from :eq:`oli2`
+We appeal to a :ref:`certainty equivalence principle <lq_cert_eq>` to justify working 
+with a non-stochastic version of :eq:`oli4` formed by dropping the expectation 
+operator and the random term :math:`\check \epsilon_{t+1}` from :eq:`oli2`
 
 We use a method of :cite:`Sargent1979` and :cite:`Townsend1983` [#f9]_
 
-We shift :eq:`oli1` forward one period, replace conditional expectations with realized values, use :eq:`oli1` to substitute for :math:`p_{t+1}` in :eq:`oli4`, and set :math:`q_t = \overline q_t` and :math:`i_t = \overline i_t` for all :math:`t\geq 0` to get
+We shift :eq:`oli1` forward one period, replace conditional expectations with 
+realized values, use :eq:`oli1` to substitute for :math:`p_{t+1}` in :eq:`oli4`, 
+and set :math:`q_t = \overline q_t` and :math:`i_t = \overline i_t` for all :math:`t\geq 0` to get
 
 
 .. math::
@@ -562,9 +590,12 @@ Given sufficiently stable sequences :math:`\{Q_t, v_t\}`, we could solve :eq:`ol
 
 (This would be a version of representation :eq:`bell101`)
 
-It is this feature that makes the monopolist's problem fail to be recursive in the natural state variables :math:`\overline q, Q`
+It is this feature that makes the monopolist's problem fail to be recursive 
+in the natural state variables :math:`\overline q, Q`
 
-The monopolist arrives at period :math:`t >0` facing the constraint that it must confirm the expectations about its time :math:`t` decision upon which the competitive fringe based its decisions at dates before :math:`t`
+The monopolist arrives at period :math:`t >0` facing the constraint that it 
+must confirm the expectations about its time :math:`t` decision upon which 
+the competitive fringe based its decisions at dates before :math:`t`
 
 The monopolist's problem
 ------------------------
@@ -609,9 +640,12 @@ Represent :eq:`oli6` as
     y_{t+1} = A y_t + B u_t
 
 
-Although we have included the competitive fringe's choice variable :math:`\overline i_t` as a component of the "state" :math:`y_t` in the monopolist's transition law :eq:`oli6a`, :math:`\overline i_t` is actually a "jump" variable
+Although we have included the competitive fringe's choice variable 
+:math:`\overline i_t` as a component of the "state" :math:`y_t` in the 
+monopolist's transition law :eq:`oli6a`, :math:`\overline i_t` is actually a "jump" variable
 
-Nevertheless, the analysis above implies that the solution of the large firm's problem is encoded in the Riccati equation associated with :eq:`oli6a` as the transition law
+Nevertheless, the analysis above implies that the solution of the large firm's 
+problem is encoded in the Riccati equation associated with :eq:`oli6a` as the transition law
 
 Let's decode it
 
@@ -625,9 +659,12 @@ The monopolist's problem is
     \sum_{t=0}^\infty \beta^t \left\{ p_t Q_t  - {\cal C}_t \right\}
 
 
-subject to the given initial condition for :math:`z_0`, equations :eq:`oli1` and :eq:`oli5` and :math:`\overline i_t = \overline q_{t+1} - \overline q_t`, as well as the laws of motion of the natural state variables :math:`z`
+subject to the given initial condition for :math:`z_0`, equations :eq:`oli1` and 
+:eq:`oli5` and :math:`\overline i_t = \overline q_{t+1} - \overline q_t`, as well 
+as the laws of motion of the natural state variables :math:`z`
 
-Notice that the monopolist in effect chooses the price sequence, as well as the quantity sequence of the competitive fringe, albeit subject to the restrictions imposed by the behavior of consumers, as summarized by the demand curve :eq:`oli1` and the implementability constraint :eq:`oli5` that describes the best responses  of firms in  the competitive fringe
+Notice that the monopolist in effect chooses the price sequence, as well as the 
+quantity sequence of the competitive fringe, albeit subject to the restrictions imposed by the behavior of consumers, as summarized by the demand curve :eq:`oli1` and the implementability constraint :eq:`oli5` that describes the best responses  of firms in  the competitive fringe
 
 By substituting :eq:`oli1` into the above objective function, the monopolist's problem can be expressed as
 
@@ -695,7 +732,8 @@ The individual firm faces :math:`\{p_t\}` as a price taker and believes
 
 From the point of the view of a representative firm in the competitive fringe, :math:`\{\overline y_t\}` is an exogenous process
 
-A representative fringe firm wants to forecast :math:`\overline y` because it wants to forecast what it regards as the exogenous price process :math:`\{p_t\}`
+A representative fringe firm wants to forecast :math:`\overline y` because it 
+wants to forecast what it regards as the exogenous price process :math:`\{p_t\}`
 
 Therefore it wants to forecast the determinants of future prices
 
@@ -733,8 +771,9 @@ The firm takes :math:`\overline y_t` as an exogenous process and  chooses an out
 
 subject to :math:`q_0` given the law of motion :eq:`oli20` and the price function :eq:`oli22` and where the costs are still :math:`\sigma_t= d q_t + .5 h q_t^2 + .5 c (q_{t+1} - q_t)^2`
 
-The representative firm's problem is a linear-quadratic dynamic programming problem with matrices :math:`A_s, B_s, Q_s, R_s` that can be constructed
-easily from the above information.
+The representative firm's problem is a linear-quadratic dynamic programming 
+problem with matrices :math:`A_s, B_s, Q_s, R_s` that can be constructed
+easily from the above information
 
 The representative firm's decision rule can be represented as
 
@@ -749,13 +788,17 @@ The representative firm's decision rule can be represented as
                                 q_t \end{bmatrix}
 
 
-Now let's stare at the decision rule :eq:`oli23` for :math:`i_t`, apply "Big :math:`K`, little :math:`k`" logic again, and ask what we want in order to  verify a recursive representation of a representative follower's choice problem
+Now let's stare at the decision rule :eq:`oli23` for :math:`i_t`, apply 
+"Big :math:`K`, little :math:`k`" logic again, and ask what we want in order to  
+verify a recursive representation of a representative follower's choice problem
 
-* We want decision rule :eq:`oli23` to have the property that :math:`i_t = \overline i_t` when we evaluate it at :math:`q_t = \overline q_t`
+* We want decision rule :eq:`oli23` to have the property that :math:`i_t = \overline i_t` 
+when we evaluate it at :math:`q_t = \overline q_t`
 
 We inherit these desires from a "Big :math:`K`, little :math:`k`" logic
 
-Here we apply a  "Big :math:`K`, little :math:`k`" logic in two parts to make the "representative firm be representative" *after* solving the
+Here we apply a  "Big :math:`K`, little :math:`k`" logic in two parts to make 
+the "representative firm be representative" *after* solving the
 representative firm's optimization problem
 
     * We want :math:`q_t = \overline q_t`
@@ -770,7 +813,8 @@ representative firm's optimization problem
 Numerical example
 -----------------
 
-We computed the optimal Stackelberg plan for parameter settings :math:`A_0, A_1, \rho, C_\epsilon, c, d, e, g, h,  \beta` = :math:`100, 1, .8, .2, 1,  20, 20, .2, .2, .95` [#f10]_
+We computed the optimal Stackelberg plan for parameter settings 
+:math:`A_0, A_1, \rho, C_\epsilon, c, d, e, g, h,  \beta` = :math:`100, 1, .8, .2, 1,  20, 20, .2, .2, .95` [#f10]_
 
 .. TODO: The parameter listing might look better in a table or maybe an math align style equation.  It is hard to tell what value goes with what parameter when they are grouped like this.
 
@@ -884,9 +928,15 @@ where :math:`\alpha > 0` and :math:`p_t` is the log of the price level
 
 Equation :eq:`ex1a` can be interpreted as the Euler equation of the holders of money
 
-**a.** Briefly interpret how :eq:`ex1a` makes the demand for real balances vary inversely with the expected rate of inflation. Temporarily (only for this part of the exercise) drop :eq:`ex1a` and assume instead that :math:`\{m_t\}` is a given sequence satisfying :math:`\sum_{t=0}^\infty m_t^2 < + \infty`. Solve the difference  equation :eq:`ex1a` "forward" to express :math:`p_t` as a function of current and future values of :math:`m_s`. Note how future values of :math:`m` influence the current price level.
+**a.** Briefly interpret how :eq:`ex1a` makes the demand for real balances vary 
+inversely with the expected rate of inflation. Temporarily (only for this part of the exercise)
+ drop :eq:`ex1a` and assume instead that :math:`\{m_t\}` is a given sequence satisfying 
+ :math:`\sum_{t=0}^\infty m_t^2 < + \infty` -- solve the difference 
+ equation :eq:`ex1a` "forward" to express :math:`p_t` as a function of current 
+ and future values of :math:`m_s`. Note how future values of :math:`m` influence the current price level
 
-At time :math:`0`, a monetary authority chooses (commits to) a possibly history-dependent strategy for setting :math:`\{u_t\}_{t=0}^\infty`
+At time :math:`0`, a monetary authority chooses (commits to) a possibly 
+history-dependent strategy for setting :math:`\{u_t\}_{t=0}^\infty`
 
 The monetary authority orders sequences :math:`\{m_t, p_t\}_{t=0}^\infty` according to
 
@@ -899,7 +949,10 @@ The monetary authority orders sequences :math:`\{m_t, p_t\}_{t=0}^\infty` accord
 
 Assume that :math:`m_0=10, \alpha=5, \bar p=1`
 
-**b.** Please briefly interpret this problem as one where the monetary authority wants to stabilize the price level, subject to costs of adjusting the money supply and some implementability constraints. (We include the term :math:`.00001m_t^2` for purely technical reasons that you need not discuss.)
+**b.** Please briefly interpret this problem as one where the monetary 
+authority wants to stabilize the price level, subject to costs of adjusting the 
+money supply and some implementability constraints (we include the term 
+:math:`.00001m_t^2` for purely technical reasons that you need not discuss)
 
 **c.** Please write and run a Python program to find the optimal sequence :math:`\{u_t\}_{t=0}^\infty`
 
@@ -943,7 +996,8 @@ where
 
 * :math:`y_t` is the consumer's endowment at :math:`t`
 
-The consumer's plan for :math:`(c_t, a_{t+1})` has to obey the boundary condition :math:`\sum_{t=0}^\infty \beta^t a_t^2 < + \infty`
+The consumer's plan for :math:`(c_t, a_{t+1})` has to obey the boundary 
+condition :math:`\sum_{t=0}^\infty \beta^t a_t^2 < + \infty`
 
 Assume that :math:`y_0, a_0` are given initial conditions and that :math:`y_t` obeys
 
@@ -975,11 +1029,13 @@ over :math:`\{c_t, \tau_t\}_{t=0}^\infty` subject to the implementability constr
 
 for :math:`t\geq 0`, where :math:`\lambda_t \equiv (b-c_t)`
 
-**a.** Argue that :eq:`ex2e` is the Euler equation for a consumer who maximizes :eq:`ex2a` subject to :eq:`ex2b`, taking :math:`\{\tau_t\}` as a given sequence
+**a.** Argue that :eq:`ex2e` is the Euler equation for a consumer who maximizes 
+:eq:`ex2a` subject to :eq:`ex2b`, taking :math:`\{\tau_t\}` as a given sequence
 
 **b.** Formulate the planner's problem as a Stackelberg problem
 
-**c.** For :math:`\beta=.95, b=30, \beta(1+r)=.95`, formulate an artificial optimal linear regulator problem and use it to solve the Stackelberg problem
+**c.** For :math:`\beta=.95, b=30, \beta(1+r)=.95`, formulate an artificial optimal 
+linear regulator problem and use it to solve the Stackelberg problem
 
 **d.** Give a recursive representation of the Stackelberg plan for :math:`\tau_t`
 
