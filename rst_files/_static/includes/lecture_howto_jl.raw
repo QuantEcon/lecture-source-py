@@ -1,15 +1,19 @@
 .. raw:: html
 
-		<a href="#"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a>
+		<ul class="badges">
+			<li><a href="#"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
+			<li><a href="#"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
+			<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
+		</ul>
 
 		<script>
 		var path = window.location.pathname;
 		var pageName = path.split("/").pop().split(".")[0];
-		var downloadLink = ["/", "_downloads/ipynb/jl/", pageName, ".ipynb"].join("");
-		document.getElementById('notebook_download_badge').parentElement.setAttribute('href', downloadLink);
+		var notebookDownloadLink = ["/", "_downloads/ipynb/jl/", pageName, ".ipynb"].join("");
+		document.getElementById('notebook_download_badge').parentElement.setAttribute('href', notebookDownloadLink);
+		var pdfDownloadLink = ["/", "_downloads/ipynb/jl/", pageName, ".pdf"].join("");
+		document.getElementById('pdf_download_badge').parentElement.setAttribute('href', pdfDownloadLink);
 		</script>
-
-		<a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a>
 		
 		<div class="how-to">
 			<a href="#" class="toggle"><span class="icon icon-angle-double-down"></span>How to read this lecture...</a>
