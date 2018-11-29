@@ -590,8 +590,8 @@ Including the implementability constraints, we can represent the constraints in 
     0 & 0 & 1 & 0 & 0 \\
     0 & 0 & 0 & 1 & 1 \\
     0 & 0 & 0 & 0 & {c\over \beta} \end{bmatrix}
-    \begin{bmatrix}  1 \\ v_t \\ Q_t \\ \overline q_t \\ \overline i_t \end{bmatrix}
-    + \begin{bmatrix}  0 \\ 0 \\ 1 \\ 0 \\ 0  \end{bmatrix} u_t
+    \begin{bmatrix}  1 \\ v_t \\ Q_t \\ \overline q_t \\ \overline i_t \end{bmatrix} + 
+    \begin{bmatrix}  0 \\ 0 \\ 1 \\ 0 \\ 0  \end{bmatrix} u_t
     \end{aligned}
 
 

@@ -223,8 +223,8 @@ another, we can obtain the household's present-value budget constraint:
     :label: TS_bcPV2
 
     \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) c_t(s^t) =
-    \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t)
-    +  b_0
+    \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t) + 
+    b_0
 
 
 :math:`\{q^0_t(s^t)\}_{t=1}^\infty` can be interpreted as a time :math:`0`
@@ -292,9 +292,9 @@ First define a "pseudo utility function"
     :label: TS_cham17
 
     V\left[c_t(s^t), n_t(s^t), \Phi\right] =
-    u[c_t(s^t),1-n_t(s^t)]
-        + \Phi \left[ u_c(s^t) c_t(s^t)
-          -  u_\ell(s^t) n_t(s^t) \right]
+    u[c_t(s^t),1-n_t(s^t)] + 
+    \Phi \left[ u_c(s^t) c_t(s^t) - 
+    u_\ell(s^t) n_t(s^t) \right]
 
 
 where :math:`\Phi` is a Lagrange multiplier on the implementability condition :eq:`TS_bcPV2`
@@ -503,10 +503,9 @@ the household budget constraint gives
     :label: LSA_budget
 
     \begin{aligned}
-        u_c(s^t) [ n_t(s^t) - g_t(s^t)]
-        + \beta \sum_{s_{t+1}} \Pi (s_{t+1}| s_t) u_c(s^{t+1}) b_{t+1}(s_{t+1} | s^t)
-          \\
-        = u_l (s^t) n_t(s^t) + u_c(s^t) b_t(s_t | s^{t-1})
+        u_c(s^t) [ n_t(s^t) - g_t(s^t)] + 
+        \beta \sum_{s_{t+1}} \Pi (s_{t+1}| s_t) u_c(s^{t+1}) b_{t+1}(s_{t+1} | s^t) \\ = 
+        u_l (s^t) n_t(s^t) + u_c(s^t) b_t(s_t | s^{t-1})
     \end{aligned}
 
 

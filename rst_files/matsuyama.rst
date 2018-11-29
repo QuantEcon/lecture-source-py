@@ -254,8 +254,7 @@ With further manipulations, this becomes
     \quad
     \frac{1}{\sigma}
     \left[
-        \frac{\alpha L_j}{\theta(M_{j,t} + \rho M_{k,t})}
-        +
+        \frac{\alpha L_j}{\theta(M_{j,t} + \rho M_{k,t})} +
         \frac{\alpha L_k}{\theta(M_{j,t} + M_{k,t} / \rho)}
     \right]
     \leq f

@@ -447,8 +447,8 @@ Here the Bellman equation is
     v(Q_t,\tau_t,u_t) =
     \max_{\tau_{t+1}}
         \left\{
-            A_0 Q_t-\frac {A_1}2 Q_t^2-\frac d2 u_t^2+\mu\tau_tQ_t
-                + \beta v(Q_{t+1},\tau_{t+1},u_{t+1})
+            A_0 Q_t-\frac {A_1}2 Q_t^2-\frac d2 u_t^2+\mu\tau_tQ_t + 
+            \beta v(Q_{t+1},\tau_{t+1},u_{t+1})
         \right\}
 
 
@@ -1070,11 +1070,11 @@ The plan is said to be **credible** if, for each :math:`t` and each state :math:
 
     \begin{aligned}
     J_t
-    & = A_0 Q_{t} - \frac{A_1}{2} Q_{t}^2 - \frac{d}{2} u_{t}^2
-        + \beta J_{t+1} (\hat \tau_{t+1}, \hat G_{t+1})
+    & = A_0 Q_{t} - \frac{A_1}{2} Q_{t}^2 - \frac{d}{2} u_{t}^2 + 
+    \beta J_{t+1} (\hat \tau_{t+1}, \hat G_{t+1})
     \\
-    & \geq A_0 Q_{t} - \frac{A_1}{2} Q_{t}^2
-        - \frac{d}{2} u_{t}^2 +  \beta J_{t+1} ( \tau_{t+1}, G_{t+1})
+    & \geq A_0 Q_{t} - \frac{A_1}{2} Q_{t}^2 - 
+    \frac{d}{2} u_{t}^2 +  \beta J_{t+1} ( \tau_{t+1}, G_{t+1})
     \end{aligned}
 
 

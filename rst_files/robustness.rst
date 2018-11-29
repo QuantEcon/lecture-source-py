@@ -1055,10 +1055,10 @@ This is the content of the next lemma
 .. math::
     :label: rb_a2be
 
-    \tilde P = -R - \hat F' Q \hat F
-    - \beta^2 (A - B \hat F)' \tilde P C
-      (\beta \theta I + \beta C' \tilde P C)^{-1} C' \tilde P (A - B \hat F)
-      + \beta (A - B \hat F)' \tilde P (A - B \hat F)
+    \tilde P = -R - \hat F' Q \hat F - 
+    \beta^2 (A - B \hat F)' \tilde P C 
+    (\beta \theta I + \beta C' \tilde P C)^{-1} C' \tilde P (A - B \hat F) + 
+    \beta (A - B \hat F)' \tilde P (A - B \hat F)
 
 
 (revisit :ref:`this discussion <lq_ih>` if you don't know where :eq:`rb_a2be` comes from) and the optimal policy is
@@ -1086,10 +1086,10 @@ or, in other words,
 .. math::
 
     \hat  P =
-     R + \hat F' Q \hat F
-     + \beta (A - B \hat F)' \hat P C
-       (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F)
-       + \beta (A - B \hat F)' \hat P (A - B \hat F)
+    R + \hat F' Q \hat F + 
+    \beta (A - B \hat F)' \hat P C
+    (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F) + 
+    \beta (A - B \hat F)' \hat P (A - B \hat F)
 
 
 Using the definition of :math:`\mathcal D`, we can rewrite the right-hand
@@ -1097,8 +1097,8 @@ side more simply as
 
 .. math::
 
-    R + \hat F' Q \hat F
-    + \beta (A - B \hat F)' \mathcal D(\hat P) (A - B \hat F)
+    R + \hat F' Q \hat F + 
+    \beta (A - B \hat F)' \mathcal D(\hat P) (A - B \hat F)
 
 
 Although it involves a substantial amount of algebra, it can be shown that the

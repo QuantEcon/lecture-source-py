@@ -242,8 +242,8 @@ Expressed recursively, the value of defaulting is
 
 .. math::
 
-    v_d(y) = u(h(y))
-        + \beta \int \left\{
+    v_d(y) = u(h(y)) + 
+                \beta \int \left\{
                 \theta v(0, y') + (1 - \theta) v_d(y')
                 \right\}
                 p(y, y') dy'
@@ -255,8 +255,8 @@ The value of paying is
 
     v_c(B, y) = \max_{B' \geq -Z}
            \left\{
-                u(y - q(B', y) B' + B)
-                + \beta \int v(B', y') p(y, y') dy'
+                u(y - q(B', y) B' + B) + 
+                \beta \int v(B', y') p(y, y') dy'
           \right\}
 
 

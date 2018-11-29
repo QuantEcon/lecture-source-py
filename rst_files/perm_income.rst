@@ -829,7 +829,7 @@ In both examples, the endowment follows the process :math:`y_t = z_{1t} + z_{2t}
     \begin{bmatrix}
       z_{1 t+1} \\
       z_{2t+1}
-    \end{bmatrix}=
+    \end{bmatrix} =
     \begin{bmatrix}
       1 & 0 \\
       0 & 0
@@ -837,8 +837,7 @@ In both examples, the endowment follows the process :math:`y_t = z_{1t} + z_{2t}
     \begin{bmatrix}
       z_{1t} \\
       z_{2t}
-    \end{bmatrix}
-    + \begin{bmatrix}
+    \end{bmatrix} + \begin{bmatrix}
           \sigma_1 & 0 \\
           0 & \sigma_2
       \end{bmatrix}
@@ -961,8 +960,7 @@ The discussion in sections 2.9.1 and 2.11.3 of :cite:`Ljungqvist2012` shows that
         \begin{bmatrix}
             y_t \\
             a_t
-        \end{bmatrix}
-        +
+        \end{bmatrix} +
         \begin{bmatrix}
             1 \\
             1
@@ -1081,8 +1079,8 @@ Substituting these constraints into our two period objective :math:`u(c_0) + \be
 
      \max_{b_1}
      \left\{
-         u \left(\frac{b_1}{R} - b_0 + y_0 \right)
-         + \beta \, \mathbb{E}_0 [ u (y_1 - b_1) ]
+         u \left(\frac{b_1}{R} - b_0 + y_0 \right) + 
+         \beta \, \mathbb{E}_0 [ u (y_1 - b_1) ]
     \right\}
 
 

@@ -695,13 +695,11 @@ As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this particula
     :label: dpi_tv
 
     v^*(y) = 
-    \frac{\ln (1 - \alpha \beta) }{ 1 - \beta}
-    + 
+    \frac{\ln (1 - \alpha \beta) }{ 1 - \beta} + 
     \frac{(\mu + \alpha \ln (\alpha \beta))}{1 - \alpha}
      \left[
          \frac{1}{1- \beta} - \frac{1}{1 - \alpha \beta}
-     \right]
-     +
+     \right] +
      \frac{1}{1 - \alpha \beta} \ln y
 
 

@@ -272,8 +272,8 @@ Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem
    \begin{aligned}
    \mathcal{L} & = \max_{\vec c, \vec M} 
    \min_{\vec \lambda, \vec \mu} \sum_{t=0}^\infty \beta^t
-   \bigl\{ u(c_t) + v(M_t q_t)
-   + \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
+   \bigl\{ u(c_t) + v(M_t q_t) + 
+   \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
    & \quad \quad \quad  + \mu_t [\bar m - q_t  M_t] \bigr\}
    \end{aligned}
 

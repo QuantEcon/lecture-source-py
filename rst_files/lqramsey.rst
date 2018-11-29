@@ -331,13 +331,11 @@ Reinserting into :eq:`lq_gc2`, we get
     \left\{
     \sum_{t=0}^{\infty} \beta^t
     (b_t - \bar c_t) (g_t + s_t )
-    \right\}
-    +
+    \right\} +
     ( \nu^2 - \nu) \mathbb E
     \left\{
     \sum_{t=0}^{\infty} \beta^t 2 m_t^2
-    \right\}
-    = 0
+    \right\} = 0
 
 
 Although it might not be clear yet, we are nearly there because:
