@@ -152,11 +152,11 @@ For :math:`t \geq 1`, these take the form
     :label: TS_barg10a
 
     \begin{aligned}
-      (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g)
-        -  (c+g) u_{\ell c}(c,1-c-g) \bigr]
+      (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
+        (c+g) u_{\ell c}(c,1-c-g) \bigr]
         \\
-        &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g)
-        -  (c+g) u_{\ell \ell}(c,1-c-g)  \bigr]
+        &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) -
+        (c+g) u_{\ell \ell}(c,1-c-g)  \bigr]
     \end{aligned}
 
 There is one such equation for each value of the Markov state :math:`s_t`
@@ -167,11 +167,11 @@ In addition, given an initial Markov state, the time :math:`t=0` quantities :mat
     :label: TS_barg11b
 
     \begin{aligned}
-          (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g)
-            -  (c+g) u_{\ell c}(c,1-c-g) \bigr]
+          (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
+            (c+g) u_{\ell c}(c,1-c-g) \bigr]
             \\
-            &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g)
-            -  (c+g) u_{\ell \ell}(c,1-c-g)  \bigr] + \Phi (u_{cc} - u_{c,\ell}) b_0
+            &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) -
+            (c+g) u_{\ell \ell}(c,1-c-g)  \bigr] + \Phi (u_{cc} - u_{c,\ell}) b_0
     \end{aligned}
 
 In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` and initial government debt

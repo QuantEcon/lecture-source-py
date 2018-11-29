@@ -403,8 +403,7 @@ Thus, we have
     \left[
         \sum^\infty_{j=0} \delta^j X_{t+j}\vert X_t,\, x_{t-1},
         \ldots
-    \right]
-    =
+    \right] =
     \left[
         {1-\delta c (\delta) L^{-1} c(L)^{-1} \over 1 - \delta L^{-1}}
     \right]

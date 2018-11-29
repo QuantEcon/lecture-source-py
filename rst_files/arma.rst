@@ -287,8 +287,8 @@ average process*, or ARMA(:math:`p,q`), if it can be written as
 .. math::
     :label: arma
 
-    X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p}
-        + \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}
+    X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p} +
+        \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}
 
 
 where :math:`\{ \epsilon_t \}` is white noise

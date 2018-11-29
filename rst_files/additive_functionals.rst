@@ -185,9 +185,9 @@ In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x
 .. math::
     :label: ftaf
 
-    \tilde x_{t+1} = \phi_1 \tilde x_{t} + \phi_2 \tilde x_{t-1} 
-    + \phi_3 \tilde x_{t-2}
-    + \phi_4 \tilde x_{t-3} + \sigma z_{t+1} 
+    \tilde x_{t+1} = \phi_1 \tilde x_{t} + \phi_2 \tilde x_{t-1} +
+    \phi_3 \tilde x_{t-2} +
+    \phi_4 \tilde x_{t-3} + \sigma z_{t+1} 
 
 
 Let the increment in :math:`\{y_t\}` obey
