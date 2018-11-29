@@ -724,8 +724,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
 
 .. math::
 
-    \mathbb E [\mathbf X]
-    :=
+    \mathbb E [\mathbf X] :=
     \left(
     \begin{array}{c}
         \mathbb E [X_1] \\
@@ -733,8 +732,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
         \vdots \\
         \mathbb E [X_k]
     \end{array}
-    \right)
-    =
+    \right) =
     \left(
     \begin{array}{c}
         \mu_1 \\
@@ -742,8 +740,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
         \vdots \\
         \mu_k
     \end{array}
-    \right)
-    =: \boldsymbol \mu
+    \right) =: \boldsymbol \mu
 
 
 The *variance-covariance matrix* of random vector :math:`\mathbf X` is defined as
@@ -949,8 +946,7 @@ In doing so, let
 
 .. math::
 
-    \mathbf X_i
-    :=
+    \mathbf X_i :=
     \left(
     \begin{array}{c}
         W_i \\

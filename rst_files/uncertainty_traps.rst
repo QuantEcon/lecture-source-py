@@ -224,8 +224,7 @@ Using standard formulas for expectations of `lognormal <https://en.wikipedia.org
 .. math::
     :label: firm_test
 
-    \psi(\mu, \gamma, F_m)
-    := 
+    \psi(\mu, \gamma, F_m) := 
     \frac{1}{a} 
         \left(
             1 - \exp \left(
