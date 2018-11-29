@@ -550,16 +550,16 @@ However, if a sample is available, we can estimate the risk with the **empirical
 
 .. math::
 
-    \min_{f \in \fF} \frac{1}{N} \sum_{n=1}^N (y_n - f(x_n))^2
+    \min_{f \in \mathcal{F}} \frac{1}{N} \sum_{n=1}^N (y_n - f(x_n))^2
 
 
 Minimizing this expression is called **empirical risk minimization**
 
-The set :math:`\fF` is sometimes called the hypothesis space
+The set :math:`\mathcal{F}` is sometimes called the hypothesis space
 
-The theory of statistical learning tells us that to prevent overfitting we should take the set :math:`\fF` to be relatively simple 
+The theory of statistical learning tells us that to prevent overfitting we should take the set :math:`\mathcal{F}` to be relatively simple 
 
-If we let :math:`\fF` be the class of linear functions :math:`1/N`, the problem is 
+If we let :math:`\mathcal{F}` be the class of linear functions :math:`1/N`, the problem is 
 
 .. math::
 
