@@ -747,7 +747,7 @@ The *variance-covariance matrix* of random vector :math:`\mathbf X` is defined a
 
 .. math::
 
-    \Var[\mathbf X]
+    \mathop{\mathrm{Var}}[\mathbf X]
     := \mathbb E
     [ (\mathbf X - \boldsymbol \mu) (\mathbf X - \boldsymbol \mu)']
 
@@ -756,7 +756,7 @@ Expanding this out, we get
 
 .. math::
 
-    \Var[\mathbf X] =
+    \mathop{\mathrm{Var}}[\mathbf X] =
     \left(
     \begin{array}{ccc}
         \mathbb E [(X_1 - \mu_1)(X_1 - \mu_1)]
@@ -881,8 +881,8 @@ First, if :math:`\mathbf X` is a random vector in :math:`\mathbb R^k` and :math:
 
 .. math::
 
-    \Var[\mathbf A \mathbf X]
-    = \mathbf A \Var[\mathbf X] \mathbf A'
+    \mathop{\mathrm{Var}}[\mathbf A \mathbf X]
+    = \mathbf A \mathop{\mathrm{Var}}[\mathbf X] \mathbf A'
 
 
 Second, by the `continuous mapping theorem <https://en.wikipedia.org/wiki/Continuous_mapping_theorem>`_, if :math:`\mathbf Z_n \stackrel{d}{\to} \mathbf Z` in :math:`\mathbb R^k` and :math:`\mathbf A` is constant and :math:`k \times k`, then
