@@ -99,7 +99,7 @@ Subject to an initial condition for :math:`z_0`, but not for :math:`x_0`, a gove
 .. math::
     :label: new1_dyn_stack
 
-    -  \sum_{t=0}^\infty \beta^t r(y_t, u_t)
+    -\sum_{t=0}^\infty \beta^t r(y_t, u_t)
 
 
 The government makes policy in light of the model
@@ -307,7 +307,7 @@ Substituting :math:`v(y) = - y'P y` into  Bellman equation :eq:`bell1_dyn_stack`
 
 .. math::
 
-    - y' P y = {\rm max}_{  u, y^*} \left\{ -  y' R y -   u'Q     u - \beta y^{* \prime} P y^* \right\}
+    -y' P y = {\rm max}_{  u, y^*} \left\{ -  y' R y -   u'Q     u - \beta y^{* \prime} P y^* \right\}
 
 
 which as in  lecture :doc:`linear regulator <lqcontrol>` gives rise to the algebraic matrix Riccati equation
@@ -349,8 +349,7 @@ where
 
 .. math::
 
-    P
-    =
+    P =
     \left[
     \begin{array}{cc}
         P_{11} & P_{12} \\
@@ -363,7 +362,7 @@ We find an optimal :math:`x_0` by equating to zero the gradient of :math:`v(y_0)
 
 .. math::
 
-    - 2 P_{21} z_0 - 2 P_{22} x_0 =0,
+    -2 P_{21} z_0 - 2 P_{22} x_0 =0,
 
 
 which implies that
@@ -454,8 +453,7 @@ shadow prices on the transition equations is
 
 .. math::
 
-    \mu_t
-    =
+    \mu_t =
     \left[\begin{array}{c}
     \mu_{zt} \\
     \mu_{xt}
@@ -592,8 +590,8 @@ Including the implementability constraints, we can represent the constraints in 
     0 & 0 & 1 & 0 & 0 \\
     0 & 0 & 0 & 1 & 1 \\
     0 & 0 & 0 & 0 & {c\over \beta} \end{bmatrix}
-    \begin{bmatrix}  1 \\ v_t \\ Q_t \\ \overline q_t \\ \overline i_t \end{bmatrix}
-    + \begin{bmatrix}  0 \\ 0 \\ 1 \\ 0 \\ 0  \end{bmatrix} u_t
+    \begin{bmatrix}  1 \\ v_t \\ Q_t \\ \overline q_t \\ \overline i_t \end{bmatrix} + 
+    \begin{bmatrix}  0 \\ 0 \\ 1 \\ 0 \\ 0  \end{bmatrix} u_t
     \end{aligned}
 
 
@@ -893,7 +891,7 @@ The monetary authority orders sequences :math:`\{m_t, p_t\}_{t=0}^\infty` accord
 .. math::
     :label: ex1c
 
-    - \sum_{t=0}^\infty .95^t \left[  (p_t - \overline p)^2 +
+    -\sum_{t=0}^\infty .95^t \left[  (p_t - \overline p)^2 +
     u_t^2 + .00001 m_t^2  \right]
 
 

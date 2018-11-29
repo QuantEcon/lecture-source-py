@@ -224,16 +224,14 @@ Using standard formulas for expectations of `lognormal <https://en.wikipedia.org
 .. math::
     :label: firm_test
 
-    \psi(\mu, \gamma, F_m)
-    := 
+    \psi(\mu, \gamma, F_m) := 
     \frac{1}{a} 
         \left(
             1 - \exp \left(
-                -a \mu + a F_m
-                + \frac{a^2 \left( \frac{1}{\gamma} + \frac{1}{\gamma_x} \right)}{2}
+                -a \mu + a F_m + 
+                \frac{a^2 \left( \frac{1}{\gamma} + \frac{1}{\gamma_x} \right)}{2}
                     \right) 
-        \right)
-            - c
+        \right) - c
             > 0
 
 

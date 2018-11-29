@@ -395,7 +395,7 @@ inside,
     \begin{aligned}
         |Tf(y) - Tg(y)|
         & = \left| \beta \int f[G(y, z)] \phi(dz)
-            -  \beta \int g[G(y, z)] \phi(dz) \right|
+            -\beta \int g[G(y, z)] \phi(dz) \right|
         \\
         & \leq \beta \int \left| f[G(y, z)] -  g[G(y, z)] \right| \phi(dz)
         \\

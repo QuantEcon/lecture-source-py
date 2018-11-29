@@ -509,8 +509,7 @@ To this end, we take
 .. math::
     :label: ddp_def_ogq
 
-    Q(s, a, s') 
-    := 
+    Q(s, a, s') := 
     \begin{cases}
         \frac{1}{B + 1} & \text{if } a \leq s' \leq a + B
         \\

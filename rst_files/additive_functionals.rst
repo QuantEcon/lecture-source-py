@@ -121,8 +121,7 @@ Now we construct the state space system
          1 \\ 
          x_{t+1} \\ 
          y_{t+1}  
-     \end{bmatrix} 
-     = 
+     \end{bmatrix} = 
      \begin{bmatrix} 
         1 & 0 & 0  \\ 
         0  & A & 0 \\ 
@@ -331,8 +330,7 @@ definitions just given,
         x_{t+1} \\ 
         y_{t+1} \\ 
         m_{t+1} 
-    \end{bmatrix} 
-    = 
+    \end{bmatrix} = 
     \begin{bmatrix} 
         1 & 0 & 0 & 0 & 0 \\ 
         1 & 1 & 0 & 0 & 0 \\ 
@@ -346,8 +344,7 @@ definitions just given,
         x_t \\ 
         y_t \\ 
         m_t 
-    \end{bmatrix} 
-    +
+    \end{bmatrix} +
     \begin{bmatrix} 
         0 \\ 
         0 \\ 
@@ -368,8 +365,7 @@ and
         \tau_t \\ 
         m_t \\ 
         s_t 
-    \end{bmatrix} 
-    = 
+    \end{bmatrix} = 
     \begin{bmatrix} 
         0 & 0 & I & 0 & 0 \\ 
         0 & 0 & 0 & 1 & 0 \\ 

@@ -724,8 +724,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
 
 .. math::
 
-    \mathbb E [\mathbf X]
-    :=
+    \mathbb E [\mathbf X] :=
     \left(
     \begin{array}{c}
         \mathbb E [X_1] \\
@@ -733,8 +732,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
         \vdots \\
         \mathbb E [X_k]
     \end{array}
-    \right)
-    =
+    \right) =
     \left(
     \begin{array}{c}
         \mu_1 \\
@@ -742,15 +740,14 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
         \vdots \\
         \mu_k
     \end{array}
-    \right)
-    =: \boldsymbol \mu
+    \right) =: \boldsymbol \mu
 
 
 The *variance-covariance matrix* of random vector :math:`\mathbf X` is defined as
 
 .. math::
 
-    \Var[\mathbf X]
+    \mathop{\mathrm{Var}}[\mathbf X]
     := \mathbb E
     [ (\mathbf X - \boldsymbol \mu) (\mathbf X - \boldsymbol \mu)']
 
@@ -759,8 +756,7 @@ Expanding this out, we get
 
 .. math::
 
-    \Var[\mathbf X]
-    =
+    \mathop{\mathrm{Var}}[\mathbf X] =
     \left(
     \begin{array}{ccc}
         \mathbb E [(X_1 - \mu_1)(X_1 - \mu_1)]
@@ -885,8 +881,8 @@ First, if :math:`\mathbf X` is a random vector in :math:`\mathbb R^k` and :math:
 
 .. math::
 
-    \Var[\mathbf A \mathbf X]
-    = \mathbf A \Var[\mathbf X] \mathbf A'
+    \mathop{\mathrm{Var}}[\mathbf A \mathbf X]
+    = \mathbf A \mathop{\mathrm{Var}}[\mathbf X] \mathbf A'
 
 
 Second, by the `continuous mapping theorem <https://en.wikipedia.org/wiki/Continuous_mapping_theorem>`_, if :math:`\mathbf Z_n \stackrel{d}{\to} \mathbf Z` in :math:`\mathbb R^k` and :math:`\mathbf A` is constant and :math:`k \times k`, then
@@ -949,8 +945,7 @@ In doing so, let
 
 .. math::
 
-    \mathbf X_i
-    :=
+    \mathbf X_i :=
     \left(
     \begin{array}{c}
         W_i \\

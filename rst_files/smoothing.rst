@@ -297,12 +297,11 @@ or
     \end{bmatrix} + 
     \begin{bmatrix}  
     \bar c \cr \bar c 
-    \end{bmatrix} 
-    = 
+    \end{bmatrix} = 
     \begin{bmatrix} 
         y(\bar s_1) \cr y(\bar s_2) 
-    \end{bmatrix} 
-    + \beta 
+    \end{bmatrix} + 
+    \beta 
     \begin{bmatrix} 
         P_{11} & P_{12} \cr P_{21} & P_{22} 
     \end{bmatrix} 
@@ -340,8 +339,8 @@ We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
 .. math::
     :label: cs_7
 
-    y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0
-      + [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 , 
+    y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0 + 
+    [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 , 
 
 
 an equation in the unknown :math:`b(\bar s_2)`
@@ -773,7 +772,7 @@ became
 
 .. math::
 
-    - \sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
+    -\sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
 
 
 But in the complete markets version, we can assume a more general form

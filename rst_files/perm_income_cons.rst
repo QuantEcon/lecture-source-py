@@ -270,8 +270,7 @@ To map into the LQ framework, we'll use
         \begin{bmatrix}
             z_t \\
             b_t
-        \end{bmatrix}
-        =
+        \end{bmatrix} =
         \begin{bmatrix}
             1 \\
             y_t \\

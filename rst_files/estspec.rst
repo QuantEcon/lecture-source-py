@@ -71,8 +71,7 @@ Alternatively, :math:`I(\omega)` can be expressed as
     I(\omega)
     = \frac{1}{n}
     \left\{
-    \left[\sum_{t=0}^{n-1} X_t \cos(\omega t) \right]^2
-    +
+    \left[\sum_{t=0}^{n-1} X_t \cos(\omega t) \right]^2 +
     \left[\sum_{t=0}^{n-1} X_t \sin(\omega t) \right]^2
     \right\}
 
@@ -128,9 +127,8 @@ By carefully working through the sums, one can transform this to
 
 .. math::
 
-    n I(\omega_j)
-    =  \sum_{t=0}^{n-1} (X_t - \bar X)^2
-    + 2 \sum_{k=1}^{n-1} \sum_{t=k}^{n-1} (X_t - \bar X)(X_{t-k} - \bar X)
+    n I(\omega_j) = \sum_{t=0}^{n-1} (X_t - \bar X)^2 + 
+    2 \sum_{k=1}^{n-1} \sum_{t=k}^{n-1} (X_t - \bar X)(X_{t-k} - \bar X)
     \cos(\omega_j k)
 
 
@@ -151,9 +149,8 @@ With this notation, we can now write
 
 .. math::
 
-    I(\omega_j)
-    =  \hat \gamma(0)
-    + 2 \sum_{k=1}^{n-1} \hat \gamma(k) \cos(\omega_j k)
+    I(\omega_j) = \hat \gamma(0) + 
+    2 \sum_{k=1}^{n-1} \hat \gamma(k) \cos(\omega_j k)
 
 
 Recalling our expression for :math:`f` given :ref:`above <periodograms>`,

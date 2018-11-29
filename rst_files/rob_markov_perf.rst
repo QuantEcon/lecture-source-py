@@ -112,12 +112,12 @@ Player :math:`i` takes a sequence :math:`\{u_{-it}\}` as given and chooses a seq
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
     \left\{
-        x_t' R_i x_t
-        + u_{it}' Q_i u_{it}
-        + u_{-it}' S_i u_{-it}
-        + 2 x_t' W_i u_{it}
-        + 2 u_{-it}' M_i u_{it}
-        - \theta_i v_{it}' v_{it}
+        x_t' R_i x_t + 
+        u_{it}' Q_i u_{it} + 
+        u_{-it}' S_i u_{-it} + 
+        2 x_t' W_i u_{it} + 
+        2 u_{-it}' M_i u_{it} - 
+        \theta_i v_{it}' v_{it}
     \right\}
 
 
@@ -178,10 +178,10 @@ If we substitute :math:`u_{2t} = - F_{2t} x_t`  into :eq:`rmp-orig-1` and :eq:`r
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
         \left\{
-        x_t' \Pi_{1t} x_t
-        + u_{1t}' Q_1 u_{1t}
-        + 2 u_{1t}' \Gamma_{1t} x_t
-        - \theta_1 v_{1t}' v_{1t}
+        x_t' \Pi_{1t} x_t + 
+        u_{1t}' Q_1 u_{1t} + 
+        2 u_{1t}' \Gamma_{1t} x_t - 
+        \theta_1 v_{1t}' v_{1t}
         \right\}
 
 
@@ -225,10 +225,10 @@ where :math:`P_{1t}` solves the matrix Riccati difference equation
     :label: rmp-orig-4
 
     P_{1t} =
-    \Pi_{1t}
-    - (\beta B_1' {\mathcal D}_1(P_{1t+1}) \Lambda_{1t} + \Gamma_{1t})' (Q_1 + \beta B_1' {\mathcal D}_1( P_{1t+1}) B_1)^{-1}
-      (\beta B_1' {\mathcal D}_1(P_{1t+1}) \Lambda_{1t} + \Gamma_{1t})
-    + \beta \Lambda_{1t}' {\mathcal D}_1(P_{1t+1}) \Lambda_{1t}
+    \Pi_{1t} - 
+    (\beta B_1' {\mathcal D}_1(P_{1t+1}) \Lambda_{1t} + \Gamma_{1t})' (Q_1 + \beta B_1' {\mathcal D}_1( P_{1t+1}) B_1)^{-1}
+    (\beta B_1' {\mathcal D}_1(P_{1t+1}) \Lambda_{1t} + \Gamma_{1t}) + 
+    \beta \Lambda_{1t}' {\mathcal D}_1(P_{1t+1}) \Lambda_{1t}
 
 
 Similarly, the policy that solves player 2's problem is
@@ -236,8 +236,7 @@ Similarly, the policy that solves player 2's problem is
 .. math::
     :label: rmp-orig-5
 
-    F_{2t}
-    = (Q_2 + \beta B_2' {\mathcal D}_2( P_{2t+1} ) B_2)^{-1}
+    F_{2t} = (Q_2 + \beta B_2' {\mathcal D}_2( P_{2t+1} ) B_2)^{-1}
     (\beta B_2' {\mathcal D}_2 (P_{2t+1}) \Lambda_{2t} + \Gamma_{2t})
 
 
@@ -247,10 +246,8 @@ where :math:`P_{2t}` solves
     :label: rmp-orig-6
 
     P_{2t} =
-    \Pi_{2t}
-    - (\beta B_2' {\mathcal D}_2 ( P_{2t+1}) \Lambda_{2t} + \Gamma_{2t})' (Q_2 + \beta B_2' {\mathcal D}_2 ( P_{2t+1}) B_2)^{-1}
-      (\beta B_2' {\mathcal D}_2 ( P_{2t+1}) \Lambda_{2t} + \Gamma_{2t})
-    + \beta \Lambda_{2t}' {\mathcal D}_2 ( P_{2t+1})  \Lambda_{2t}
+    \Pi_{2t} - (\beta B_2' {\mathcal D}_2 ( P_{2t+1}) \Lambda_{2t} + \Gamma_{2t})' (Q_2 + \beta B_2' {\mathcal D}_2 ( P_{2t+1}) B_2)^{-1}
+      (\beta B_2' {\mathcal D}_2 ( P_{2t+1}) \Lambda_{2t} + \Gamma_{2t}) + \beta \Lambda_{2t}' {\mathcal D}_2 ( P_{2t+1})  \Lambda_{2t}
 
 
 Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`
@@ -663,11 +660,11 @@ Firm  :math:`i` wants to minimize
    \sum_{t=t_0}^{t_1 - 1}
    \beta^{t - t_0}
    \left\{
-       x_t' R_i x_t
-       + u_{it}' Q_i u_{it}
-       + u_{-it}' S_i u_{-it}
-       + 2 x_t' W_i u_{it}
-       + 2 u_{-it}' M_i u_{it}
+       x_t' R_i x_t + 
+       u_{it}' Q_i u_{it} + 
+       u_{-it}' S_i u_{-it} + 
+       2 x_t' W_i u_{it} + 
+       2 u_{-it}' M_i u_{it}
    \right\}
 
 where

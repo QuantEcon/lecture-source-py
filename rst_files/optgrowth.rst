@@ -226,8 +226,7 @@ We insert this process into the objective function to get
     \mathbb E
     \left[ \,
     \sum_{t = 0}^{\infty} \beta^t u(c_t) \,
-    \right]
-    =
+    \right] =
     \mathbb E
     \left[ \,
     \sum_{t = 0}^{\infty} \beta^t u(\sigma(y_t)) \,
@@ -251,8 +250,7 @@ The :math:`\sigma`**-value function** :math:`v_{\sigma}` associated with a given
 .. math::
     :label: vfcsdp00
 
-    v_{\sigma}(y) 
-    =
+    v_{\sigma}(y) =
     \mathbb E \left[ \sum_{t = 0}^{\infty} \beta^t u(\sigma(y_t)) \right] 
 
 
@@ -697,13 +695,11 @@ As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this particula
     :label: dpi_tv
 
     v^*(y) = 
-    \frac{\ln (1 - \alpha \beta) }{ 1 - \beta}
-    + 
+    \frac{\ln (1 - \alpha \beta) }{ 1 - \beta} + 
     \frac{(\mu + \alpha \ln (\alpha \beta))}{1 - \alpha}
      \left[
          \frac{1}{1- \beta} - \frac{1}{1 - \alpha \beta}
-     \right]
-     +
+     \right] +
      \frac{1}{1 - \alpha \beta} \ln y
 
 
