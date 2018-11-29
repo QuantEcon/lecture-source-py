@@ -441,7 +441,7 @@ The Orthonormal Case
 
 Suppose that :math:`U` is :math:`n \times k` with orthonormal columns
 
-Let :math:`u_i := \col U_i` for each :math:`i`, let :math:`S := \mathop{\mathrm{span}} U` and let :math:`y \in \mathbb R^n`
+Let :math:`u_i := \mathop{\mathrm{col}} U_i` for each :math:`i`, let :math:`S := \mathop{\mathrm{span}} U` and let :math:`y \in \mathbb R^n`
 
 We know that the projection of :math:`y` onto :math:`S` is
 
