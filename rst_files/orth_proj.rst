@@ -541,10 +541,10 @@ the **risk**
 
 .. math::
 
-    R(f) := \EE [(y - f(x))^2] 
+    R(f) := \mathbb{E}\, [(y - f(x))^2] 
 
 
-If probabilities and hence :math:`\EE` are unknown, we cannot solve this problem directly
+If probabilities and hence :math:`\mathbb{E}\,` are unknown, we cannot solve this problem directly
 
 However, if a sample is available, we can estimate the risk with the **empirical risk**:
 
