@@ -525,7 +525,7 @@ and
 .. math::
     :label: lq_finrd
 
-    d_{T-1} := \beta \trace(C' P_T C)
+    d_{T-1} := \beta \mathop{\mathrm{trace}}(C' P_T C)
 
 
 (The algebra is a good exercise --- we'll leave it up to you)
@@ -546,7 +546,7 @@ and
 .. math::
     :label: lq_dd
 
-    d_{t-1} = \beta (d_t + \trace(C' P_t C))
+    d_{t-1} = \beta (d_t + \mathop{\mathrm{trace}}(C' P_t C))
     \quad \text{with } \quad
     d_T = 0
 
@@ -900,7 +900,7 @@ The sequence :math:`\{d_t\}` from :eq:`lq_dd` is replaced by the constant value
     :label: lq_dd_ih
 
     d
-    := \trace(C' P C) \frac{\beta}{1 - \beta}
+    := \mathop{\mathrm{trace}}(C' P C) \frac{\beta}{1 - \beta}
 
 
 The state evolves according to the time-homogeneous process :math:`x_{t+1} = (A - BF) x_t + C w_{t+1}`
