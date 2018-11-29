@@ -772,7 +772,7 @@ became
 
 .. math::
 
-    - \sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
+    -\sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
 
 
 But in the complete markets version, we can assume a more general form

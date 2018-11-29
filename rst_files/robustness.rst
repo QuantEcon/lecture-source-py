@@ -446,7 +446,7 @@ or, equivalently,
     \min_{\mathbf w}
     \sum_{t=0}^{\infty} \beta^t
     \left\{
-        - x_t' (R + F' Q F) x_t + \beta \theta w_{t+1}' w_{t+1}
+        -x_t' (R + F' Q F) x_t + \beta \theta w_{t+1}' w_{t+1}
     \right\}
 
 
@@ -548,7 +548,7 @@ We simply replace the *minimization* problem :eq:`rb_a2o` with the *maximization
     V_{\tilde \theta}(x_0, F) =  \max_{\mathbf w}
       \sum_{t=0}^{\infty} \beta^t
       \left\{
-          - x_t' (R + F' Q F) x_t - \beta \tilde \theta w_{t+1}' w_{t+1}
+          -x_t' (R + F' Q F) x_t - \beta \tilde \theta w_{t+1}' w_{t+1}
       \right\}
 
 

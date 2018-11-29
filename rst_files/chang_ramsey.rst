@@ -526,7 +526,7 @@ and
 and
 
 .. math::
-   - x = m(1-h)
+   -x = m(1-h)
    :label: eqn_chang_ramsey10
 
 and

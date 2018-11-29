@@ -596,8 +596,8 @@ First, to represent the solution for :math:`b_t`, shift :eq:`sprob8` forward one
 
 .. math::
 
-    c_{t+1} = (1-\beta)\sum_{j=0}^\infty \beta^j  \mathbb{E}_{t+1} [y_{t+j+1}]
-    - (1-\beta) \left[ \beta^{-1} (c_t + b_t - y_t) \right]
+    c_{t+1} = (1-\beta)\sum_{j=0}^\infty \beta^j  \mathbb{E}_{t+1} [y_{t+j+1}] -
+    (1-\beta) \left[ \beta^{-1} (c_t + b_t - y_t) \right]
 
 
 If we add and subtract :math:`\beta^{-1} (1-\beta) \sum_{j=0}^\infty \beta^j \mathbb{E}_t y_{t+j}` from the right side of the preceding equation and rearrange, we obtain

@@ -1543,7 +1543,7 @@ Regarding the second term :math:`- 2u'B'PAx`,
 .. math::
 
    \begin{aligned}
-   - 2u'B'PAx &= -2 x'S'B'PAx  \\
+   -2u'B'PAx &= -2 x'S'B'PAx  \\
    & = 2 x'A'PB( Q + B'PB)^{-1} B'PAx
    \end{aligned}
 
@@ -1555,7 +1555,7 @@ Regarding the third term :math:`- u'(Q + B'PB) u`,
 .. math::
 
    \begin{aligned}
-   - u'(Q + B'PB) u &= - x'S' (Q + B'PB)Sx \\
+   -u'(Q + B'PB) u &= - x'S' (Q + B'PB)Sx \\
    &= -x'A'PB(Q + B'PB)^{-1}B'PAx
    \end{aligned}
 

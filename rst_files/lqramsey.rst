@@ -90,7 +90,7 @@ for labor and consumption to maximize
 .. math::
     :label: lq_hu
 
-    - \mathbb E \frac{1}{2} \sum_{t=0}^{\infty} \beta^t
+    -\mathbb E \frac{1}{2} \sum_{t=0}^{\infty} \beta^t
     \left[
        (c_t - b_t)^2 + \ell_t^2
     \right]

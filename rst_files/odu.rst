@@ -547,8 +547,8 @@ triangle inequality for integrals tells us that
     |(Q \omega)(\pi) - (Q \omega')(\pi)|
     \leq \beta \int
     \left|
-    \max \left\{w', \omega \circ \kappa(w', \pi) \right\}
-    - \max \left\{w', \omega' \circ \kappa(w', \pi) \right\}
+    \max \left\{w', \omega \circ \kappa(w', \pi) \right\} - 
+    \max \left\{w', \omega' \circ \kappa(w', \pi) \right\}
     \right|
     \, q_{\pi}(w') \, dw'
 
