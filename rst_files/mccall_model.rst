@@ -588,22 +588,22 @@ Here's an implementation:
         
         # == First compute ϕ == #
         
-        ϕ = np.sum(w_vals * ϕ_vals) / (1 - β)
+        h = np.sum(w_vals * ϕ_vals) / (1 - β)
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
             
-            s = np.maximum(w_vals / (1 - β), ϕ)
-            ϕ_next = c + β * np.sum(s * ϕ_vals)
+            s = np.maximum(w_vals / (1 - β), h)
+            h_next = c + β * np.sum(s * ϕ_vals)
                 
-            error = np.abs(ϕ_next - ϕ)
+            error = np.abs(h_next - h)
             i += 1
             
-            ϕ = ϕ_next
+            h = h_next
             
         # == Now compute the reservation wage == #
         
-        return (1 - β) * (c + β * ϕ)
+        return (1 - β) * (c + β * h)
 
 
 You can use this code to solve the exercise below
