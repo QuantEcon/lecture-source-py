@@ -149,7 +149,7 @@ Foreign creditors
 
 * receive zero if the government defaults on its one-period debt due
 
-When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`.
+When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`
 
 Therefore, the discounted expected value of a promise to pay :math:`B` next period is 
 
