@@ -605,7 +605,7 @@ the maximum is found at :math:`\beta = 10`
       y1 = logL(β)
       y2 = logL(β+a)
       x = np.array([[β, 1], [β+a, 1]])
-      m, c = np.linalg.lstsq(x, np.array([y1, y2]))[0]
+      m, c = np.linalg.lstsq(x, np.array([y1, y2]), rcond=None)[0]
       return m, c
   
   β = np.linspace(2, 18)
