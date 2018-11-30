@@ -424,14 +424,11 @@ Save it somewhere, navigate to it from the Jupyter dashboard and then run as dis
 QuantEcon Notes
 -----------------
 
-QuantEcon has its own site that allows people to share Jupyter notebooks related
+QuantEcon has its own site for sharing Jupyter notebooks related
 to economics -- `QuantEcon Notes <http://notes.quantecon.org/>`_
 
-Notebooks submitted to QuantEcon Notes are easily shared with a link, and are open
+Notebooks submitted to QuantEcon Notes can be shared with a link, and are open
 to comments and votes by the commnuity
-
-The site features many interesting notebooks related to computational economics - we would
-appreciate if you checked it out!
 
 
 Installing Libraries
