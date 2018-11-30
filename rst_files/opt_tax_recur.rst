@@ -107,8 +107,8 @@ The government has a sequence of budget constraints whose time :math:`t \geq 0` 
 .. math::
     :label: TS_govr
 
-    g_t(s^t) =   \tau_t(s^t)  n_t(s^t) + \sum_{s_{t+1}} p_{t+1}(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t)
-    - b_t(s_t | s^{t-1})
+    g_t(s^t) =   \tau_t(s^t)  n_t(s^t) + \sum_{s_{t+1}} p_{t+1}(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t) - 
+    b_t(s_t | s^{t-1})
 
 
 where
@@ -223,8 +223,8 @@ another, we can obtain the household's present-value budget constraint:
     :label: TS_bcPV2
 
     \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) c_t(s^t) =
-    \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t)
-    +  b_0
+    \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t) + 
+    b_0
 
 
 :math:`\{q^0_t(s^t)\}_{t=1}^\infty` can be interpreted as a time :math:`0`
@@ -268,8 +268,8 @@ taxes and prices from :eq:`TS_bcPV2`, we derive the *implementability condition*
     :label: TSs_cham1
 
     \sum_{t=0}^\infty  \sum_{s^t} \beta^t \pi_t(s^t)
-             [u_c(s^t) c_t(s^t) - u_\ell(s^t) n_t(s^t)]
-          - u_c(s^0) b_0 = 0.
+             [u_c(s^t) c_t(s^t) - u_\ell(s^t) n_t(s^t)] - 
+             u_c(s^0) b_0 = 0.
 
 
 The **Ramsey problem** is to choose a feasible  allocation  that maximizes
@@ -292,9 +292,9 @@ First define a "pseudo utility function"
     :label: TS_cham17
 
     V\left[c_t(s^t), n_t(s^t), \Phi\right] =
-    u[c_t(s^t),1-n_t(s^t)]
-        + \Phi \left[ u_c(s^t) c_t(s^t)
-          -  u_\ell(s^t) n_t(s^t) \right]
+    u[c_t(s^t),1-n_t(s^t)] + 
+    \Phi \left[ u_c(s^t) c_t(s^t) - 
+    u_\ell(s^t) n_t(s^t) \right]
 
 
 where :math:`\Phi` is a Lagrange multiplier on the implementability condition :eq:`TS_bcPV2`
@@ -326,12 +326,12 @@ The first-order conditions for the Ramsey problem for periods :math:`t \geq 1` a
 
      \begin{aligned}
         c_t(s^t)\rm{:} &
-        \; (1+\Phi) u_c(s^t) + \Phi \left[u_{cc}(s^t) c_t(s^t)
-           -  u_{\ell c}(s^t) n_t(s^t) \right]  - \theta_t(s^t) = 0, \quad t \geq 1
+        \; (1+\Phi) u_c(s^t) + \Phi \left[u_{cc}(s^t) c_t(s^t) - 
+        u_{\ell c}(s^t) n_t(s^t) \right]  - \theta_t(s^t) = 0, \quad t \geq 1
         \\
         n_t(s^t)\rm{:} &
-        \; -(1+\Phi) u_{\ell}(s^t) - \Phi \left[u_{c\ell}(s^t) c_t(s^t)
-           -  u_{\ell \ell}(s^t) n_t(s^t) \right] + \theta_t(s^t) = 0, \quad t \geq 1
+        \; -(1+\Phi) u_{\ell}(s^t) - \Phi \left[u_{c\ell}(s^t) c_t(s^t) - 
+        u_{\ell \ell}(s^t) n_t(s^t) \right] + \theta_t(s^t) = 0, \quad t \geq 1
     \end{aligned}
 
 
@@ -342,13 +342,13 @@ and
 
     \begin{aligned}
         c_0(s^0, b_0)\rm{:} &
-        \; (1+\Phi) u_c(s^0, b_0) + \Phi \left[u_{cc}(s^0, b_0) c_0(s^0, b_0)
-           -  u_{\ell c}(s^0, b_0) n_0(s^0, b_0) \right]  - \theta_0(s^0, b_0)   \\
+        \; (1+\Phi) u_c(s^0, b_0) + \Phi \left[u_{cc}(s^0, b_0) c_0(s^0, b_0) - 
+        u_{\ell c}(s^0, b_0) n_0(s^0, b_0) \right]  - \theta_0(s^0, b_0)   \\
            & \quad \quad \quad \quad \quad \quad  - \Phi u_{cc}(s^0, b_0) b_0 = 0
         \\
         n_0(s^0, b_0)\rm{:} &
-        \; -(1+\Phi) u_{\ell}(s^0, b_0) - \Phi \left[u_{c\ell}(s^0, b_0) c_0(s^0, b_0)
-           -  u_{\ell \ell}(s^0, b_0) n_0(s^0, b_0) \right] + \theta_0(s^0, b_0) \\
+        \; -(1+\Phi) u_{\ell}(s^0, b_0) - \Phi \left[u_{c\ell}(s^0, b_0) c_0(s^0, b_0) - 
+        u_{\ell \ell}(s^0, b_0) n_0(s^0, b_0) \right] + \theta_0(s^0, b_0) \\
           & \quad \quad \quad \quad \quad \quad + \Phi u_{c \ell}(s^0, b_0) b_0 = 0
     \end{aligned}
 
@@ -363,11 +363,11 @@ For convenience, we suppress the time subscript and the index :math:`s^t` and ob
     :label: TS_barg
 
     \begin{aligned}
-      (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g)
-        -  (c+g) u_{\ell c}(c,1-c-g) \bigr]
+      (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) - 
+      (c+g) u_{\ell c}(c,1-c-g) \bigr]
         \\
-        &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g)
-        -  (c+g) u_{\ell \ell}(c,1-c-g)  \bigr]
+        &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) - 
+        (c+g) u_{\ell \ell}(c,1-c-g)  \bigr]
     \end{aligned}
 
 
@@ -383,11 +383,11 @@ We also know that  time :math:`t=0` quantities :math:`c_0` and :math:`n_0` satis
     :label: TS_barg_aust
 
     \begin{aligned}
-          (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g)
-            -  (c+g) u_{\ell c}(c,1-c-g) \bigr]
+          (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) - 
+          (c+g) u_{\ell c}(c,1-c-g) \bigr]
             \\
-            &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g)
-            -  (c+g) u_{\ell \ell}(c,1-c-g)  \bigr] + \Phi (u_{cc} - u_{c,\ell}) b_0
+            &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) - 
+            (c+g) u_{\ell \ell}(c,1-c-g)  \bigr] + \Phi (u_{cc} - u_{c,\ell}) b_0
     \end{aligned}
 
 Notice that a counterpart to :math:`b_0` does *not* appear
@@ -503,10 +503,9 @@ the household budget constraint gives
     :label: LSA_budget
 
     \begin{aligned}
-        u_c(s^t) [ n_t(s^t) - g_t(s^t)]
-        + \beta \sum_{s_{t+1}} \Pi (s_{t+1}| s_t) u_c(s^{t+1}) b_{t+1}(s_{t+1} | s^t)
-          \\
-        = u_l (s^t) n_t(s^t) + u_c(s^t) b_t(s_t | s^{t-1})
+        u_c(s^t) [ n_t(s^t) - g_t(s^t)] + 
+        \beta \sum_{s_{t+1}} \Pi (s_{t+1}| s_t) u_c(s^{t+1}) b_{t+1}(s_{t+1} | s^t) \\ = 
+        u_l (s^t) n_t(s^t) + u_c(s^t) b_t(s_t | s^{t-1})
     \end{aligned}
 
 
@@ -1130,9 +1129,10 @@ We can now plot the Ramsey tax  under both realizations of time :math:`t = 3` go
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     time_π = np.array([[0, 1, 0,   0,   0,  0],
                        [0, 0, 1,   0,   0,  0],

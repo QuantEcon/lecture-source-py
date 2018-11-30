@@ -254,8 +254,7 @@ With further manipulations, this becomes
     \quad
     \frac{1}{\sigma}
     \left[
-        \frac{\alpha L_j}{\theta(M_{j,t} + \rho M_{k,t})}
-        +
+        \frac{\alpha L_j}{\theta(M_{j,t} + \rho M_{k,t})} +
         \frac{\alpha L_k}{\theta(M_{j,t} + M_{k,t} / \rho)}
     \right]
     \leq f
@@ -444,9 +443,10 @@ Solutions
 
 These solutions are written by `Chase Coleman <github.com/cc7768>`__
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def plot_attraction_basis(s1=0.5, θ=2.5, δ=0.7, ρ=0.2, npts=250, ax=None):
         if ax is None:

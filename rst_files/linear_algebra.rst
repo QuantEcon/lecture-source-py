@@ -84,9 +84,10 @@ The following figure represents three vectors in this manner
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
   fig, ax = plt.subplots(figsize=(10, 8))
   # Set the axes through the origin
@@ -123,8 +124,7 @@ As a matter of definition, when we add two vectors, we add them element by eleme
 
 .. math::
 
-    x + y
-    =
+    x + y =
     \left[
     \begin{array}{c}
         x_1 \\
@@ -132,8 +132,7 @@ As a matter of definition, when we add two vectors, we add them element by eleme
         \vdots \\
         x_n
     \end{array}
-    \right]
-    +
+    \right] +
     \left[
     \begin{array}{c}
          y_1 \\
@@ -141,8 +140,7 @@ As a matter of definition, when we add two vectors, we add them element by eleme
         \vdots \\
          y_n
     \end{array}
-    \right]
-    :=
+    \right] :=
     \left[
     \begin{array}{c}
         x_1 + y_1 \\
@@ -158,8 +156,7 @@ vector :math:`x` and produces
 
 .. math::
 
-    \gamma x
-    :=
+    \gamma x :=
     \left[
     \begin{array}{c}
         \gamma x_1 \\
@@ -310,7 +307,7 @@ The next figure shows the span of :math:`A = \{a_1, a_2\}` in :math:`\mathbb R ^
 
 The span is a 2 dimensional plane passing through these two points and the origin
 
-
+.. _la_3dvec:
 
 .. code-block:: python3
   :class: collapse
@@ -382,8 +379,7 @@ If :math:`A = \{e_1, e_2, e_3\}` consists  of the *canonical basis vectors* of :
 
 .. math::
 
-    e_1
-    :=
+    e_1 :=
     \left[
     \begin{array}{c}
          1 \\
@@ -392,8 +388,7 @@ If :math:`A = \{e_1, e_2, e_3\}` consists  of the *canonical basis vectors* of :
     \end{array}
     \right]
     , \quad
-    e_2
-    :=
+    e_2 :=
     \left[
     \begin{array}{c}
          0 \\
@@ -402,8 +397,7 @@ If :math:`A = \{e_1, e_2, e_3\}` consists  of the *canonical basis vectors* of :
     \end{array}
     \right]
     , \quad
-    e_3
-    :=
+    e_3 :=
     \left[
     \begin{array}{c}
          0 \\
@@ -554,8 +548,7 @@ Scalar multiplication and addition are immediate generalizations of the vector c
 
 .. math::
 
-    \gamma A
-    =
+    \gamma A =
     \gamma
     \left[
     \begin{array}{ccc}
@@ -563,8 +556,7 @@ Scalar multiplication and addition are immediate generalizations of the vector c
         \vdots & \vdots  & \vdots \\
         a_{n1} &  \cdots & a_{nk} \\
     \end{array}
-    \right]
-    :=
+    \right] :=
     \left[
     \begin{array}{ccc}
         \gamma a_{11} & \cdots & \gamma a_{1k} \\
@@ -585,16 +577,14 @@ and
         \vdots & \vdots & \vdots \\
         a_{n1} & \cdots & a_{nk} \\
     \end{array}
-    \right]
-    +
+    \right] +
     \left[
     \begin{array}{ccc}
         b_{11} & \cdots & b_{1k} \\
         \vdots & \vdots & \vdots \\
         b_{n1} & \cdots & b_{nk} \\
     \end{array}
-    \right]
-    :=
+    \right] :=
     \left[
     \begin{array}{ccc}
         a_{11} + b_{11} &  \cdots & a_{1k} + b_{1k} \\
@@ -628,8 +618,7 @@ According to the preceding rule, this gives us an :math:`n \times 1` column vect
 .. math::
     :label: la_atx
 
-    A x
-    =
+    A x =
     \left[
     \begin{array}{ccc}
         a_{11} &  \cdots & a_{1k} \\
@@ -643,8 +632,7 @@ According to the preceding rule, this gives us an :math:`n \times 1` column vect
         \vdots  \\
         x_{k}
     \end{array}
-    \right]
-    :=
+    \right] :=
     \left[
     \begin{array}{c}
         a_{11} x_1 + \cdots + a_{1k} x_k \\
@@ -1555,7 +1543,7 @@ Regarding the second term :math:`- 2u'B'PAx`,
 .. math::
 
    \begin{aligned}
-   - 2u'B'PAx &= -2 x'S'B'PAx  \\
+   -2u'B'PAx &= -2 x'S'B'PAx  \\
    & = 2 x'A'PB( Q + B'PB)^{-1} B'PAx
    \end{aligned}
 
@@ -1567,7 +1555,7 @@ Regarding the third term :math:`- u'(Q + B'PB) u`,
 .. math::
 
    \begin{aligned}
-   - u'(Q + B'PB) u &= - x'S' (Q + B'PB)Sx \\
+   -u'(Q + B'PB) u &= - x'S' (Q + B'PB)Sx \\
    &= -x'A'PB(Q + B'PB)^{-1}B'PAx
    \end{aligned}
 

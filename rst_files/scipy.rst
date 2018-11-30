@@ -110,7 +110,7 @@ This generates a draw from the distribution below when ``a, b = 5, 5``
     :label: betadist2
 
     f(x; a, b) = \frac{x^{(a - 1)} (1 - x)^{(b - 1)}}
-        {\int_0^1 u^{(a - 1)} u^{(b - 1)} du}
+        {\int_0^1 u^{(a - 1)} (1 - u)^{(b - 1)} du}
         \qquad (0 \leq x \leq 1)
 
 
@@ -120,10 +120,11 @@ For this we can use ``scipy.stats``, which provides all of this functionality as
 
 Here's an example of usage
 
-.. code-block:: python3
+.. code-block:: ipython
 
     from scipy.stats import beta
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
     q = beta(5, 5)      # Beta(a, b), with a = b = 5
     obs = q.rvs(2000)   # 2000 observations

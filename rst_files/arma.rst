@@ -234,10 +234,11 @@ The next figure plots an example of this function for :math:`\phi = 0.8` and :ma
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     
     num_rows, num_cols = 2, 1
     fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 8))
@@ -286,8 +287,8 @@ average process*, or ARMA(:math:`p,q`), if it can be written as
 .. math::
     :label: arma
 
-    X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p}
-        + \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}
+    X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p} +
+        \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}
 
 
 where :math:`\{ \epsilon_t \}` is white noise
@@ -516,7 +517,7 @@ Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1)
 
 
 These spectral densities correspond to the autocovariance functions for the
-AR(1) process :ref:`shown above <ar1_acov>`
+AR(1) process shown above
 
 Informally, we think of the spectral density as being large at those :math:`\omega \in [0, \pi]` at which
 the autocovariance function seems approximately to exhibit big damped cycles

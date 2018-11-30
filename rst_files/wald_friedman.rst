@@ -173,10 +173,11 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import numpy as np
   import matplotlib.pyplot as plt
+  %matplotlib inline
   import scipy.stats as st
 
 
@@ -430,10 +431,6 @@ In one dimension, you can think of this as simply drawing a line between each pa
 Here's the code
 
 .. literalinclude:: /_static/code/wald_friedman/wf_first_pass.py
-
-Running it produces the following output on our machine
-
-  
 
 
 
