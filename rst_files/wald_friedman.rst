@@ -122,33 +122,19 @@ A decision maker observes iid draws of a random variable :math:`z`
 He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z` 
 
 After a number of draws, also to be determined, he makes a decision as to 
-which of the distributions is generating the draws he observers
-
-To help formalize the problem, let :math:`x \in \{x_0, x_1\}` be a hidden state that indexes the two distributions:
-
-.. math::
-
-    \mathbb P\{z = v \mid x \}
-    = \begin{cases} 
-        f_0(v) & \mbox{if } x = x_0, \\
-        f_1(v) & \mbox{if } x = x_1
-    \end{cases} 
-
-
-Before observing any outcomes, the decision maker believes that the probability that :math:`x = x_0` is 
+which of the distributions is generating the draws he observes
 
 .. math::
 
     \pi_{-1} = 
-    \mathbb P \{ x=x_0 \mid \textrm{ no observations} \} \in (0, 1)
+    \mathbb P \{ f = f_0 \mid \textrm{ no observations} \} \in (0, 1)
 
 
 After observing :math:`k+1` observations :math:`z_k, z_{k-1}, \ldots, z_0`, he updates this value to
 
 .. math::
 
-    \pi_k = \mathbb P \{ x = x_0 \mid z_k, z_{k-1}, \ldots, z_0 \},
-
+    \pi_k = \mathbb P \{ f = f_0 \mid z_k, z_{k-1}, \ldots, z_0 \}
 
 which is calculated recursively by applying Bayes' law:
 
@@ -163,11 +149,11 @@ that :math:`z_{k+1}` has probability distribution
 
 .. math::
 
-    f(v) = \pi_k f_0(v) + (1-\pi_k) f_1 (v) 
+    f_{{\pi}_k} (v) = \pi_k f_0(v) + (1-\pi_k) f_1 (v) 
 
 
 This is a mixture of distributions :math:`f_0` and :math:`f_1`, with the weight 
-on :math:`f_0` being the posterior probability that :math:`x = x_0` [#f1]_
+on :math:`f_0` being the posterior probability that :math:`f = f_0` [#f1]_
 
 To help illustrate this kind of distribution, let's inspect some mixtures of beta distributions
 
@@ -180,9 +166,7 @@ The density of a beta probability distribution with parameters :math:`a` and :ma
     \Gamma(t) := \int_{0}^{\infty} x^{t-1} e^{-x} dx
 
 
-We'll discretize this distribution to make it more straightforward to work with
-
-The next figure shows two discretized beta distributions in the top panel 
+The next figure shows two beta distributions in the top panel 
 
 The bottom panel presents mixtures of these distributions, with various mixing probabilities :math:`\pi_k`
 
@@ -234,9 +218,9 @@ After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker
 chooses among three distinct actions:
 
 
--  He decides that :math:`x = x_0` and draws no more :math:`z`'s
+-  He decides that :math:`f = f_0` and draws no more :math:`z`'s
 
--  He decides that :math:`x = x_1` and draws no more :math:`z`'s
+-  He decides that :math:`f = f_1` and draws no more :math:`z`'s
 
 -  He postpones deciding now and instead chooses to draw a
    :math:`z_{k+1}`
@@ -244,30 +228,28 @@ chooses among three distinct actions:
 Associated with these three actions, the decision maker can suffer three
 kinds of losses:
 
--  A loss :math:`L_0` if he decides :math:`x = x_0` when actually
-   :math:`x=x_1`
+-  A loss :math:`L_0` if he decides :math:`f = f_0` when actually
+   :math:`f=f_1`
 
--  A loss :math:`L_1` if he decides :math:`x = x_1` when actually
-   :math:`x=x_0`
+-  A loss :math:`L_1` if he decides :math:`f = f_1` when actually
+   :math:`f=f_0`
 
 -  A cost :math:`c` if he postpones deciding and chooses instead to draw
    another :math:`z`
 
 
 
-
-
 Digression on type I and type II errors
 ----------------------------------------
 
-If we regard  :math:`x=x_0` as a null hypothesis and :math:`x=x_1` as an alternative hypothesis,
-then :math:`L_1` and :math:`L_0` are losses associated with two types of statistical errors.
+If we regard  :math:`f=f_0` as a null hypothesis and :math:`f=f_1` as an alternative hypothesis,
+then :math:`L_1` and :math:`L_0` are losses associated with two types of statistical errors
 
 - a type I error is an incorrect rejection of a true null hypothesis (a "false positive")
 
 - a type II error is a failure to reject a false null hypothesis (a "false negative")
 
-So when we treat :math:`x=x_0` as the null hypothesis
+So when we treat :math:`f=f_0` as the null hypothesis
 
 -  We can think of :math:`L_1` as the loss associated with a type I
    error
@@ -285,9 +267,9 @@ Let's try to guess what an optimal decision rule might look like before we go fu
 
 Suppose at some given point in time that :math:`\pi` is close to 1
 
-Then our prior beliefs and the evidence so far point strongly to :math:`x = x_0` 
+Then our prior beliefs and the evidence so far point strongly to :math:`f = f_0` 
 
-If, on the other hand, :math:`\pi` is close to 0, then :math:`x = x_1` is strongly favored
+If, on the other hand, :math:`\pi` is close to 0, then :math:`f = f_1` is strongly favored
 
 Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction
 
@@ -329,43 +311,41 @@ where :math:`\pi'` is the random variable defined by
 
 .. math::
 
-    \pi' = \frac{ \pi f_0(z)}{ \pi f_0(z) + (1-\pi) f_1 (z) }
+    \pi' = \kappa(z', \pi) = \frac{ \pi f_0(z')}{ \pi f_0(z') + (1-\pi) f_1 (z') }
 
 
-when :math:`\pi` is fixed and :math:`z` is drawn from the current best guess, which is the distribution :math:`f` defined by
+when :math:`\pi` is fixed and :math:`z'` is drawn from the current best guess, which is the distribution :math:`f` defined by
 
 .. math::
 
-    f(v) = \pi f_0(v) + (1-\pi) f_1 (v) 
+    f_{\pi}(v) = \pi f_0(v) + (1-\pi) f_1 (v) 
 
 
 In the Bellman equation, minimization is over three actions: 
 
-#. accept :math:`x_0` 
-#. accept :math:`x_1` 
+#. accept the hypthesis that :math:`f = f_0` 
+#. accept the hypthesis that :math:`f = f_1` 
 #. postpone deciding and draw again
 
 
-Then we can represent the  Bellman equation as
+We can represent the  Bellman equation as
 
 .. math::
     :label: optdec
 
     J(\pi) = 
-    \min \left\{ (1-p) L_0, \; p L_1, \; c + \mathbb E [J(\pi)] \right\} 
+    \min \left\{ (1-\pi) L_0, \; \pi L_1, \; h(\pi) \right\} 
 
-
-where :math:`\pi \in [0,1]`
-
-Here
+where :math:`\pi \in [0,1]` and
 
 -  :math:`(1-\pi) L_0` is the expected loss associated with accepting
-   :math:`x_0` (i.e., the cost of making a type II error)
+   :math:`f_0` (i.e., the cost of making a type II error)
 
 -  :math:`\pi L_1` is the expected loss associated with accepting
-   :math:`x_1` (i.e., the cost of making a type I error)
+   :math:`f_1` (i.e., the cost of making a type I error)
 
--  :math:`c + \mathbb E [J(\pi)]` is the expected cost associated with drawing one more :math:`z`
+-  :math:`h(\pi) :=  c + \mathbb E [J(\pi')]` the continuation value; i.e.,
+   the expected cost associated with drawing one more :math:`z`
 
 
 
@@ -610,7 +590,7 @@ and plot these on our value function plot
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    ax.plot(wf.π_grid, h_star, label='continue')
+    ax.plot(wf.π_grid, h_star, label='continuation value')
     ax.plot(wf.π_grid, cost_L1, label='choose f1')
     ax.plot(wf.π_grid, cost_L0, label='choose f0')
     ax.plot(wf.π_grid, np.amin(np.column_stack([h_star, cost_L0, cost_L1]), axis=1),
