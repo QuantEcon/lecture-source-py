@@ -433,9 +433,10 @@ solution
 
 We assume the following imports
    
-.. code-block:: python3 
+.. code-block:: ipython 
 
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
+    %matplotlib inline
     import quantecon as qe
 
 

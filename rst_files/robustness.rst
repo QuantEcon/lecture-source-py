@@ -226,8 +226,7 @@ As we'll see, this will eventually lead us to construct the Bellman equation
 .. math::
     :label: rb_wcb0
 
-    J (x)
-    =
+    J (x) =
     \min_u
     \max_w
     \{
@@ -286,8 +285,7 @@ and :math:`I` is a :math:`j \times j` identity matrix.  Substituting this expres
 .. math::
     :label: rb_owb
 
-    x'Px
-    =
+    x'Px =
     \min_u
     \{
         x' R x + u' Q u + \beta \,
@@ -448,7 +446,7 @@ or, equivalently,
     \min_{\mathbf w}
     \sum_{t=0}^{\infty} \beta^t
     \left\{
-        - x_t' (R + F' Q F) x_t + \beta \theta w_{t+1}' w_{t+1}
+        -x_t' (R + F' Q F) x_t + \beta \theta w_{t+1}' w_{t+1}
     \right\}
 
 
@@ -550,7 +548,7 @@ We simply replace the *minimization* problem :eq:`rb_a2o` with the *maximization
     V_{\tilde \theta}(x_0, F) =  \max_{\mathbf w}
       \sum_{t=0}^{\infty} \beta^t
       \left\{
-          - x_t' (R + F' Q F) x_t - \beta \tilde \theta w_{t+1}' w_{t+1}
+          -x_t' (R + F' Q F) x_t - \beta \tilde \theta w_{t+1}' w_{t+1}
       \right\}
 
 
@@ -714,8 +712,7 @@ Using this notation, we replace :eq:`rb_wcb0` with the stochastic analogue
 .. math::
     :label: rb_wcb1
 
-    J (x)
-    =
+    J (x) =
     \min_u
     \max_{\psi \in \mathcal P}
     \left\{
@@ -783,8 +780,7 @@ Substituting the expression for the maximum into  Bellman equation
 .. math::
     :label: rb_wcb2
 
-    x' P x + d
-    =
+    x' P x + d =
     \min_u
     \left\{
         x' R x + u' Q u + \beta \,
@@ -848,8 +844,7 @@ the associated loss, which, by analogy with :eq:`rb_wcb1`, satisfies
 
 .. math::
 
-    J_F(x)
-    =
+    J_F(x) =
     \max_{\psi \in \mathcal P}
     \left\{
         x' (R + F'QF) x + \beta \,
@@ -864,8 +859,7 @@ derive :eq:`rb_mls` we get
 
 .. math::
 
-    x' P_F x + d_F
-    =
+    x' P_F x + d_F =
     x' (R + F'QF) x + \beta \,
     \left[
      x' (A - BF)' \mathcal D(P_F) (A - BF) x + d_F + \kappa(\theta, P_F)
@@ -1061,10 +1055,10 @@ This is the content of the next lemma
 .. math::
     :label: rb_a2be
 
-    \tilde P = -R - \hat F' Q \hat F
-    - \beta^2 (A - B \hat F)' \tilde P C
-      (\beta \theta I + \beta C' \tilde P C)^{-1} C' \tilde P (A - B \hat F)
-      + \beta (A - B \hat F)' \tilde P (A - B \hat F)
+    \tilde P = -R - \hat F' Q \hat F - 
+    \beta^2 (A - B \hat F)' \tilde P C 
+    (\beta \theta I + \beta C' \tilde P C)^{-1} C' \tilde P (A - B \hat F) + 
+    \beta (A - B \hat F)' \tilde P (A - B \hat F)
 
 
 (revisit :ref:`this discussion <lq_ih>` if you don't know where :eq:`rb_a2be` comes from) and the optimal policy is
@@ -1091,12 +1085,11 @@ or, in other words,
 
 .. math::
 
-    \hat  P
-     =
-     R + \hat F' Q \hat F
-     + \beta (A - B \hat F)' \hat P C
-       (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F)
-       + \beta (A - B \hat F)' \hat P (A - B \hat F)
+    \hat  P =
+    R + \hat F' Q \hat F + 
+    \beta (A - B \hat F)' \hat P C
+    (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F) + 
+    \beta (A - B \hat F)' \hat P (A - B \hat F)
 
 
 Using the definition of :math:`\mathcal D`, we can rewrite the right-hand
@@ -1104,8 +1097,8 @@ side more simply as
 
 .. math::
 
-    R + \hat F' Q \hat F
-    + \beta (A - B \hat F)' \mathcal D(\hat P) (A - B \hat F)
+    R + \hat F' Q \hat F + 
+    \beta (A - B \hat F)' \mathcal D(\hat P) (A - B \hat F)
 
 
 Although it involves a substantial amount of algebra, it can be shown that the

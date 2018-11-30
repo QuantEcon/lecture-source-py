@@ -906,9 +906,10 @@ Solutions
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 Exercise 1
 ----------

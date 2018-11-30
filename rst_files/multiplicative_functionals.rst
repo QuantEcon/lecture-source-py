@@ -62,8 +62,8 @@ Evidently,
 
 .. math::
 
-    x_{t+1} = \left(A - B F^{-1}D \right)x_t 
-        + B F^{-1} \left(y_{t+1} - y_t \right),
+    x_{t+1} = \left(A - B F^{-1}D \right)x_t + 
+    B F^{-1} \left(y_{t+1} - y_t \right),
 
 
 so that :math:`x_{t+1}` can be constructed from observations on

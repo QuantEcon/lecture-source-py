@@ -91,21 +91,20 @@ Important points:
 * Otherwise you can accept all of the defaults
 
 
+Updating Anaconda
+------------------
 
+Anaconda supplies a tool called `conda` to manage and upgrade your Anaconda packages 
 
+One `conda` command you should execute regularly is the one that updates the whole Anaconda distribution
 
-Get a Modern Browser
------------------------
+As a practice run, please execute the following
 
-We'll be using your browser to interact with Python, so now might be a good time to 
+#. Open up a terminal
 
-#. update your browser, or
+#. Type ``conda update anaconda``
 
-#. install a free modern browser such as `Chrome <https://www.google.com/chrome/browser/>`_ or `Firefox <https://www.mozilla.org/en-US/firefox/new/>`_
-
-
-
-
+For more information on `conda`,  type `conda help` in a terminal
 
 
 
@@ -145,10 +144,6 @@ Here's an image of showing execution of some code (borrowed from `here <http://m
 
 
 You can find a nice example of the kinds of things you can do in a Jupyter notebook (such as include maths and text) `here <http://nbviewer.jupyter.org/github/QuantEcon/TaxSmoothing/blob/master/Tax_Smoothing_1.ipynb>`__ 
-
-
-Further examples can be found at QuantEcon's `notebook archive <https://quantecon.org/notebooks.html>`__ or the  `NB viewer site <http://nbviewer.jupyter.org/>`_
-
 
 While Jupyter isn't the only way to code in Python, it's great for when you wish to
 
@@ -299,10 +294,11 @@ Here's an arbitrary program we can use: http://matplotlib.org/1.4.1/examples/pie
 
 On that page you'll see the following code
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     N = 20
     θ = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
@@ -425,10 +421,17 @@ To run one, download it as an ``ipynb`` file by clicking on the download icon at
 Save it somewhere, navigate to it from the Jupyter dashboard and then run as discussed above
 
 
+QuantEcon Notes
+-----------------
+
+QuantEcon has its own site for sharing Jupyter notebooks related
+to economics -- `QuantEcon Notes <http://notes.quantecon.org/>`_
+
+Notebooks submitted to QuantEcon Notes can be shared with a link, and are open
+to comments and votes by the commnuity
 
 
-
-QuantEcon.py
+Installing Libraries
 =================================
 
 .. _gs_qe:
@@ -436,18 +439,11 @@ QuantEcon.py
 .. index:: 
     single: QuantEcon
 
+Most of the libraries we need come in Anaconda
 
-In these lectures we'll make extensive use of code from the `QuantEcon <http://quantecon.org>`_ organization
+Other libraries can be installed with ``pip``
 
-On the Python side we'll be using the `QuantEcon.py <http://quantecon.org/python_index.html>`__ version
-
-This code has been organized into a Python *package* 
-
-* A Python package is a software library that has been bundled for distribution
-
-* Hosted Python packages can be found through channels like `Anaconda <http://docs.continuum.io/anaconda/pkg-docs>`__ and `PyPi <https://pypi.org/>`_
-
-
+One library we'll be using is `QuantEcon.py <http://quantecon.org/python_index.html>`__
 
 .. _gs_install_qe:
 
@@ -465,54 +461,15 @@ Alternatively, you can type the following into a terminal
 
 More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__
 
-.. note:: 
-    
-    The `QuantEcon.py <http://quantecon.org/python_index.html>`__ package can also be installed using conda by:
+To upgrade to the latest version, which you should do regularly, use
 
-    .. code-block:: bash
+    ``pip install --upgrade quantecon``
 
-        conda config --add channels conda-forge 
-        conda install quantecon
+Another library we will be using is `interpolation.py <https://github.com/EconForge/interpolation.py>`__
 
+This can be installed by typing in Jupyter 
 
-
-
-
-
-Keeping Software up to Date
-==============================
-
-For these lectures to run without error you need to keep your software up to date
-
-
-Updating Anaconda
-------------------
-
-Anaconda supplies a tool called `conda` to manage and upgrade your Anaconda packages 
-
-One `conda` command you should execute regularly is the one that updates the whole Anaconda distribution
-
-As a practice run, please execute the following
-
-#. Open up a terminal
-
-#. Type ``conda update anaconda``
-
-For more information on `conda`,  type `conda help` in a terminal
-
-
-
-Updating QuantEcon.py
-----------------------
-
-Open up a terminal and type 
-
- ``pip install --upgrade quantecon``
-
-Or open up Jupyter and type the same thing in a notebook cell with ``!`` in front of it
-
-
-
+    ``!pip install interpolation``
 
 
 Working with Files

@@ -31,7 +31,16 @@ A side benefit of studying Lucas' model is that it provides a beautiful illustra
 
 Another difference to our :doc:`first asset pricing lecture <markov_asset>` is that the state space and shock will be continous rather than discrete
 
+Let's start with some imports
 
+.. code-block:: ipython
+
+    import numpy as np
+    from interpolation import interp
+    from numba import njit, prange
+    from scipy.stats import lognorm
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 The Lucas Model
@@ -334,6 +343,8 @@ First we introduce the operator :math:`T` mapping :math:`f` into :math:`Tf` as d
     :label: lteeqT
 
     (Tf)(y) = h(y) + \beta \int f[G(y, z)] \phi(dz)
+    
+In what follows, we refer to :math:`T` as the Lucas operator
 
 
 The reason we do this is that a solution to :eq:`lteeq2` now corresponds to a
@@ -384,7 +395,7 @@ inside,
     \begin{aligned}
         |Tf(y) - Tg(y)|
         & = \left| \beta \int f[G(y, z)] \phi(dz)
-            -  \beta \int g[G(y, z)] \phi(dz) \right|
+            -\beta \int g[G(y, z)] \phi(dz) \right|
         \\
         & \leq \beta \int \left| f[G(y, z)] -  g[G(y, z)] \right| \phi(dz)
         \\
@@ -414,32 +425,119 @@ Let's try this when :math:`\ln y_{t+1} = \alpha \ln y_t + \sigma \epsilon_{t+1}`
 
 Utility will take the isoelastic form :math:`u(c) = c^{1-\gamma}/(1-\gamma)`, where :math:`\gamma > 0` is the coefficient of relative risk aversion
 
-Some code to implement the iterative computational procedure can be found in
-`lucastree.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lucas_model/lucastree.py>`__
+We will set up a ``LucasTree`` class to hold parameters of the model
 
-We repeat it here for convenience
-
-.. literalinclude:: /_static/code/lucas_model/lucastree.py
+.. code-block:: python3
 
 
-An example of usage is given in the docstring and repeated here
+    class LucasTree:
+        """
+        Class to store parameters of a the Lucas tree model.
 
+        """
 
+        def __init__(self, 
+                     γ=2,            # CRRA utility parameter
+                     β=0.95,         # Discount factor
+                     α=0.90,         # Correlation coefficient
+                     σ=0.1,          # Volatility coefficient
+                     grid_size=100):
+
+            self.γ, self.β, self.α, self.σ = γ, β, α, σ
+
+            # == Set the grid interval to contain most of the mass of the
+            # stationary distribution of the consumption endowment == #
+            ssd = self.σ / np.sqrt(1 - self.α**2)
+            grid_min, grid_max = np.exp(-4 * ssd), np.exp(4 * ssd)
+            self.grid = np.linspace(grid_min, grid_max, grid_size)
+            self.grid_size = grid_size
+
+            # == set up distribution for shocks == #
+            self.ϕ = lognorm(σ)
+            self.draws = self.ϕ.rvs(500)
+
+            # == h(y) = β * int G(y,z)^(1-γ) ϕ(dz) == #
+            self.h = np.empty(self.grid_size)
+            for i, y in enumerate(self.grid):
+                self.h[i] = β * np.mean((y**α * self.draws)**(1 - γ))
+            
+                
+The following function takes an instance of the ``LucasTree`` and generates a
+jitted version of the Lucas operator
+
+.. code-block:: python3
+
+    def operator_factory(tree, parallel_flag=True):
+        
+        """
+        Returns approximate Lucas operator, which computes and returns the
+        updated function Tf on the grid points.
+        
+        tree is an instance of the LucasTree class
+
+        """
+        
+        grid, h = tree.grid, tree.h
+        α, β = tree.α, tree.β
+        z_vec = tree.draws
+
+        @njit(parallel=parallel_flag)
+        def T(f):
+            """
+            The Lucas operator
+            """
+
+            # == turn f into a function == #
+            Af = lambda x: interp(grid, f, x)
+
+            Tf = np.empty_like(f)
+            # == Apply the T operator to f using Monte Carlo integration == #
+            for i in prange(len(grid)):
+                y = grid[i]
+                Tf[i] = h[i] + β * np.mean(Af(y**α * z_vec))
+
+            return Tf
+
+        return T
+
+To solve the model, we write a function that iterates using the Lucas operator
+to find the fixed point
+
+.. code-block:: python3
+
+    def solve_model(tree, tol=1e-6, max_iter=500):
+        """
+        Compute the equilibrium price function associated with Lucas
+        tree
+        
+        * tree is an instance of LucasTree
+
+        """
+        # == simplify notation == #
+        grid, grid_size = tree.grid, tree.grid_size
+        γ = tree.γ
+
+        T = operator_factory(tree)
+
+        i = 0
+        f = np.ones_like(grid)  # Initial guess of f
+        error = tol + 1
+        while error > tol and i < max_iter:
+            Tf = T(f)
+            error = np.max(np.abs(Tf - f))
+            f = Tf
+            i += 1
+            
+        price = f * grid**γ  # Back out price vector
+
+        return price
+
+Solving the model and plotting the resulting price function
 
 .. code-block:: python3
 
     tree = LucasTree()
-    price_vals = solve_lucas_model(tree)
-
-
-
-Here's the resulting price function
-
-
-
-.. code-block:: python3
-
-    import matplotlib.pyplot as plt
+    price_vals = solve_model(tree)
     
     plt.figure(figsize=(12, 8))
     plt.plot(tree.grid, price_vals, label='$p*(y)$')
@@ -449,8 +547,7 @@ Here's the resulting price function
     plt.show()
     
 
-
-The price is increasing, even if we remove all serial correlation from the endowment process
+We see that the price is increasing, even if we remove all serial correlation from the endowment process
 
 The reason is that a larger current endowment reduces current marginal
 utility
@@ -487,32 +584,23 @@ Solutions
 ==========
 
 
-
-.. code-block:: python3
-
-    import matplotlib.pyplot as plt
-
 Exercise 1
 ----------
 
-Note that this code assumes you have run the lucastree.py script embedded above
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(10,7))
-    
-    ax.set_xlabel('$y$', fontsize=16)
-    ax.set_ylabel('price', fontsize=16)
-    
-    for β in (.95, 0.98):
-        tree = LucasTree(β=β)
-        grid = tree.grid
-        price_vals = solve_lucas_model(tree)
-        label = rf'$\beta = {β}$'
-        ax.plot(grid, price_vals, lw=2, alpha=0.7, label=label)
-    
-    ax.legend(loc='upper left')
-    ax.set_xlim(min(grid), max(grid))
-    plt.show()
+  fig, ax = plt.subplots(figsize=(10, 6))
+
+  for β in (.95, 0.98):
+      tree = LucasTree(β=β)
+      grid = tree.grid
+      price_vals = solve_model(tree)
+      label = rf'$\beta = {β}$'
+      ax.plot(grid, price_vals, lw=2, alpha=0.7, label=label)
+
+  ax.legend(loc='upper left')
+  ax.set(xlabel='$y$', ylabel='price', xlim=(min(grid), max(grid)))
+  plt.show()
     
 
