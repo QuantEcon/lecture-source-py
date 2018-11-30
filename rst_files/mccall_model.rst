@@ -40,7 +40,15 @@ Here we set up McCall's model and adopt the same solution method
 
 As we'll see, McCall's model is not only interesting in its own right but also an excellent vehicle for learning dynamic programming
 
+Let's start with some imports
 
+.. code-block:: python3
+
+    import numpy as np
+    from numba import jit
+    import matplotlib.pyplot as plt
+    import quantecon as qe
+    from quantecon.distributions import BetaBinomial
 
 The McCall Model
 =================
@@ -297,18 +305,6 @@ generates a sequence that converges to the fixed point
 
 Implementation
 ----------------
-
-Let's start with some imports
-
-
-
-.. code-block:: python3
-
-    import numpy as np
-    from numba import jit
-    import matplotlib.pyplot as plt
-    import quantecon as qe
-    from quantecon.distributions import BetaBinomial
 
 
 
