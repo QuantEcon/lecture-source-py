@@ -90,7 +90,7 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
   :class: collapse
 
   from scipy import linalg
@@ -98,6 +98,7 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
   import matplotlib.cm as cm
   from matplotlib.mlab import bivariate_normal
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
   # == Set up the Gaussian prior density p == #
   Σ = [[0.4, 0.3], [0.3, 0.45]]

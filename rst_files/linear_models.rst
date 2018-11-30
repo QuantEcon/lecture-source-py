@@ -1205,8 +1205,8 @@ With a bit of algebra we obtain
 
 .. math::
 
-    x_{t+j} = A^j x_t + A^{j-1} C w_{t+1} + A^{j-2} C w_{t+2}
-    + \cdots + A^0 C w_{t+j}
+    x_{t+j} = A^j x_t + A^{j-1} C w_{t+1} + A^{j-2} C w_{t+2} + 
+    \cdots + A^0 C w_{t+j}
 
 
 In view of the iid property, current and past state values provide no information about future values of the shock

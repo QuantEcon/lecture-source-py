@@ -149,7 +149,7 @@ Foreign creditors
 
 * receive zero if the government defaults on its one-period debt due
 
-When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`.
+When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`
 
 Therefore, the discounted expected value of a promise to pay :math:`B` next period is 
 
@@ -242,8 +242,8 @@ Expressed recursively, the value of defaulting is
 
 .. math::
 
-    v_d(y) = u(h(y))
-        + \beta \int \left\{
+    v_d(y) = u(h(y)) + 
+                \beta \int \left\{
                 \theta v(0, y') + (1 - \theta) v_d(y')
                 \right\}
                 p(y, y') dy'
@@ -255,8 +255,8 @@ The value of paying is
 
     v_c(B, y) = \max_{B' \geq -Z}
            \left\{
-                u(y - q(B', y) B' + B)
-                + \beta \int v(B', y') p(y, y') dy'
+                u(y - q(B', y) B' + B) + 
+                \beta \int v(B', y') p(y, y') dy'
           \right\}
 
 
@@ -348,9 +348,9 @@ Here is a more detailed description of our algorithm:
 
    * update the value of continuing :math:`v_c(B, y)`
 
-3.  Update the value function `v(B, y)`, the default rule,  the implied ex ante default probability,  and the price function
+3.  Update the value function :math:`v(B, y)`, the default rule,  the implied ex ante default probability,  and the price function
 
-4. Check for convergence. If converged, stop. If not, go to step 2.
+4. Check for convergence. If converged, stop -- if not, go to step 2
 
 We use simple discretization on a grid of asset holdings and income levels
 
@@ -361,10 +361,6 @@ The output process is discretized using `Tauchen's quadrature method <https://gi
 
 :ref:`Numba <numba_link>` has been used in two places to speed up the code
 
-
-The code can be found in the file `arellano_vfi.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/arellano/arellano_vfi.py>`__ but we repeat it here for convenience
-
-(Results and discussion follow the code)
 
 .. literalinclude:: /_static/code/arellano/arellano_vfi.py
 
@@ -378,9 +374,9 @@ Let's start by trying to replicate the results obtained in :cite:`arellano2008de
 
 In what follows, all results are computed using Arellano's parameter values
 
-The values can be seen in the `__init__` method of the `Arellano_Economy` shown above
+The values can be seen in the ``__init__`` method of the ``Arellano_Economy`` shown above
 
-* For example, `r=0.017` matches the average quarterly rate on a 5 year US treasury
+* For example, ``r=0.017`` matches the average quarterly rate on a 5 year US treasury
   over the period 1983--2001
 
 Details on how to compute the figures are reported as solutions to the exercises
@@ -394,9 +390,9 @@ The first figure shows the bond price schedule and replicates Figure 3 of Arella
 
 * :math:`y_H` is 5% above  the mean of the :math:`y` grid values
 
-The grid used to compute this figure was relatively coarse (`ny, nB = 21, 251`) in order to match Arrelano's findings
+The grid used to compute this figure was relatively coarse (``ny, nB = 21, 251``) in order to match Arrelano's findings
 
-Here's the same relationships computed on a finer grid (`ny, nB = 51, 551`)
+Here's the same relationships computed on a finer grid (``ny, nB = 51, 551``)
 
 .. figure:: /_static/figures/arellano_bond_prices_2.png
 
@@ -444,7 +440,7 @@ Exercise 1
 
 To the extent that you can, replicate the figures shown above
 
-* Use the parameter values listed as defaults in the `__init__` method of the `Arellano_Economy`
+* Use the parameter values listed as defaults in the ``__init__`` method of the ``Arellano_Economy``
 
 * The time series will of course vary depending on the shock draws
 
@@ -456,9 +452,10 @@ Solutions
 
 Compute the value function, policy and equilibrium prices
 
-.. code-block:: python3
+.. code-block:: ipython
     
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
     ae = Arellano_Economy(β=.953,        # time discount rate
                           γ=2.,          # risk aversion
@@ -540,7 +537,7 @@ Draw a heat map for default probability
     plt.show()
 
 
-Plot a time series of major variables simulated from the model.
+Plot a time series of major variables simulated from the model
 
 .. code-block:: python3
 

@@ -162,9 +162,10 @@ Let's test out the code above on some example parameterizations, after the follo
 
 
    
-.. code-block:: python3 
+.. code-block:: ipython 
 
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
+    %matplotlib inline 
     import quantecon as qe
 
 

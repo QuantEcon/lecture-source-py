@@ -478,8 +478,8 @@ Reproduce the following figure, which shows (approximately) optimal consumption 
 .. figure:: /_static/figures/ifp_policies.png
    :scale: 100%
 
-* Other than `r`, all parameters are at their default values
-* `r` steps through `np.linspace(0, 0.04, 4)`
+* Other than ``r``, all parameters are at their default values
+* ``r`` steps through ``np.linspace(0, 0.04, 4)``
 * Consumption is plotted against assets for income shock fixed at the smallest value
 
 The figure shows that higher interest rates boost savings and hence suppress consumption
@@ -496,15 +496,16 @@ Exercise 3
 
 Now let's consider the long run asset levels held by households
 
-We'll take `r = 0.03` and otherwise use default parameters
+We'll take ``r = 0.03`` and otherwise use default parameters
 
 The following figure is a 45 degree diagram showing the law of motion for assets when consumption is optimal
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import quantecon as qe
     
 
@@ -585,7 +586,7 @@ For a given parameterization of the model, the mean of the stationary distributi
 Let's look at how this measure of aggregate capital varies with the interest
 rate and borrowing constraint
 
-The next figure plots aggregate capital against the interest rate for `b in (1, 3)`
+The next figure plots aggregate capital against the interest rate for ``b in (1, 3)``
 
 
 .. figure:: /_static/figures/ifp_agg_savings.png

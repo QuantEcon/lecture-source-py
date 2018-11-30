@@ -65,10 +65,11 @@ The plots will be grouped into three subfigures
 
 In each subfigure, two parameters are held fixed while another varies
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     # Allocate memory for time series
     k = np.empty(50)

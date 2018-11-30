@@ -177,7 +177,7 @@ In our case, the state is the current wage offer :math:`w`
 Given *any* :math:`w`, we can read off the corresponding best choice (accept or
 reject) by picking the max on the r.h.s. of :eq:`odu_pv`
 
-Thus, we have a map from :math:`\RR` to :math:`\{0, 1\}`, with 1 meaning accept and zero meaning reject
+Thus, we have a map from :math:`\mathbb R` to :math:`\{0, 1\}`, with 1 meaning accept and 0 meaning reject
 
 We can write the policy as follows
 
@@ -187,7 +187,7 @@ We can write the policy as follows
             \frac{w}{1 - \beta} \geq c + \beta \sum_{w'} v^*(w') \phi (w') 
         \right\}
 
-Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals zero otherwise
+Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals 0 otherwise
 
 We can also write this as
 
@@ -288,7 +288,7 @@ itself via
 the r.h.s. at each :math:`i`)
 
 One can show that the conditions of the Banach contraction mapping theorem are
-satisfied by :math:`T` as a self-mapping on :math:`\RR^n`
+satisfied by :math:`T` as a self-mapping on :math:`\mathbb R^n`
 
 One implication is that :math:`T` has a unique fixed point in :math:`\mathbb R^n`
 
@@ -305,8 +305,6 @@ generates a sequence that converges to the fixed point
 
 Implementation
 ----------------
-
-
 
 Here's the distribution of wage offers we'll work with
 
