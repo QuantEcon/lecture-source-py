@@ -549,7 +549,7 @@ Here's some code that does exactly this for the exponential distribution
     fig, ax = plt.subplots(figsize=(10, 6))
     xmin, xmax = -3 * s, 3 * s
     ax.set_xlim(xmin, xmax)
-    ax.hist(Y, bins=60, alpha=0.5, normed=True)
+    ax.hist(Y, bins=60, alpha=0.5, density=True)
     xgrid = np.linspace(xmin, xmax, 200)
     ax.plot(xgrid, norm.pdf(xgrid, scale=s), 'k-', lw=2, label='$N(0, \sigma^2)$')
     ax.legend()
@@ -1005,7 +1005,7 @@ Here is one solution
     xmin = -3 * g_prime(μ) * s
     xmax = -xmin
     ax.set_xlim(xmin, xmax)
-    ax.hist(error_obs, bins=60, alpha=0.5, normed=True)
+    ax.hist(error_obs, bins=60, alpha=0.5, density=True)
     xgrid = np.linspace(xmin, xmax, 200)
     lb = "$N(0, g'(\mu)^2  \sigma^2)$"
     ax.plot(xgrid, norm.pdf(xgrid, scale=asymptotic_sd), 'k-', lw=2, label=lb)
@@ -1117,7 +1117,7 @@ Our solution is as follows
     lb = "Chi-squared with 2 degrees of freedom"
     ax.plot(xgrid, chi2.pdf(xgrid, 2), 'k-', lw=2, label=lb)
     ax.legend()
-    ax.hist(chisq_obs, bins=50, normed=True)
+    ax.hist(chisq_obs, bins=50, density=True)
     plt.show()
 
 
