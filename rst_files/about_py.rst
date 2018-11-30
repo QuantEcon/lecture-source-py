@@ -412,10 +412,11 @@ One well-known example is `NetworkX <http://networkx.github.io/>`_
 
 Here's some example code that generates and plots a random graph, with node color determined by shortest path length from a central node
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import networkx as nx
   import matplotlib.pyplot as plt
+  %matplotlib inline
   np.random.seed(1234)
 
   # Generate random graph

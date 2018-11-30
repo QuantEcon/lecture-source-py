@@ -58,7 +58,7 @@ Key Definitions
 ===============
 
 
-Assume  :math:`x, z \in \RR^n` 
+Assume  :math:`x, z \in \mathbb R^n` 
 
 Define :math:`\langle x,  z\rangle = \sum_i x_i z_i`
 
@@ -74,7 +74,7 @@ When :math:`\langle x,  z\rangle = 0`, then :math:`\cos(\theta) = 0` and  :math:
 .. figure:: /_static/figures/orth_proj_def1.png
     :scale: 50%
 
-For a linear subspace  :math:`S \subset \RR^n`, we call :math:`x \in \RR^n` **orthogonal to** :math:`S` if :math:`x \perp z` for all :math:`z \in S`, and write :math:`x \perp S`
+For a linear subspace  :math:`S \subset \mathbb R^n`, we call :math:`x \in \mathbb R^n` **orthogonal to** :math:`S` if :math:`x \perp z` for all :math:`z \in S`, and write :math:`x \perp S`
    
 
 .. figure:: /_static/figures/orth_proj_def2.png
@@ -82,16 +82,16 @@ For a linear subspace  :math:`S \subset \RR^n`, we call :math:`x \in \RR^n` **or
    
 
 
-The **orthogonal complement** of linear subspace :math:`S \subset RR^n` is the set :math:`S^{\perp} := \{x \in \RR^n \,:\, x \perp S\}`
+The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` is the set :math:`S^{\perp} := \{x \in \mathbb R^n \,:\, x \perp S\}`
  
    
 .. figure:: /_static/figures/orth_proj_def3.png
     :scale: 50% 
    
 
-:math:`S^\perp` is  a linear subspace of :math:`\RR^n`
+:math:`S^\perp` is  a linear subspace of :math:`\mathbb R^n`
 
-* To see this, fix :math:`x, y \in S^{\perp}` and :math:`\alpha, \beta \in \RR`
+* To see this, fix :math:`x, y \in S^{\perp}` and :math:`\alpha, \beta \in \mathbb R`
 
 * Observe that if :math:`z \in S`, then
 
@@ -105,7 +105,7 @@ The **orthogonal complement** of linear subspace :math:`S \subset RR^n` is the s
 * Hence :math:`\alpha x + \beta y \in S^{\perp}`, as was to be shown
  
 
-A set of vectors :math:`\{x_1, \ldots, x_k\} \subset \RR^n` is called an **orthogonal set** if :math:`x_i \perp x_j` whenever :math:`i \not= j`
+A set of vectors :math:`\{x_1, \ldots, x_k\} \subset \mathbb R^n` is called an **orthogonal set** if :math:`x_i \perp x_j` whenever :math:`i \not= j`
  
 
 If :math:`\{x_1, \ldots, x_k\}` is an orthogonal set, then the **Pythagorean Law** states that
@@ -129,7 +129,7 @@ For example, when  :math:`k=2`, :math:`x_1 \perp x_2` implies
 Linear Independence vs Orthogonality
 -----------------------------------------
 
-If :math:`X \subset \RR^n` is an orthogonal set and :math:`0 \notin X`, then :math:`X` is linearly independent
+If :math:`X \subset \mathbb R^n` is an orthogonal set and :math:`0 \notin X`, then :math:`X` is linearly independent
 
 Proving this is a nice exercise
 
@@ -139,11 +139,11 @@ While the converse is not true, a kind of partial converse holds, as we'll :ref:
 The Orthogonal Projection Theorem
 ========================================
 
-What vector within a linear subspace of :math:`\RR^n`  best approximates a given vector in :math:`\RR^n`?
+What vector within a linear subspace of :math:`\mathbb R^n`  best approximates a given vector in :math:`\mathbb R^n`?
 
 The next theorem provides answers this question
 
-**Theorem** (OPT) Given :math:`y \in \RR^n` and linear subspace :math:`S \subset \RR^n`, 
+**Theorem** (OPT) Given :math:`y \in \mathbb R^n` and linear subspace :math:`S \subset \mathbb R^n`, 
 there exists a unique solution to the minimization problem
 
 .. math::
@@ -151,7 +151,7 @@ there exists a unique solution to the minimization problem
     \hat y := \argmin_{z \in S} \|y - z\|
 
 
-The minimizer :math:`\hat y` is the unique vector in :math:`\RR^n` that satisfies
+The minimizer :math:`\hat y` is the unique vector in :math:`\mathbb R^n` that satisfies
 
 * :math:`\hat y \in S`
 
@@ -176,9 +176,9 @@ We'll omit the full proof.
 
 But we will prove sufficiency of the asserted conditions
 
-To this end, let :math:`y \in \RR^n` and let :math:`S` be a linear subspace of :math:`\RR^n`
+To this end, let :math:`y \in \mathbb R^n` and let :math:`S` be a linear subspace of :math:`\mathbb R^n`
 
-Let :math:`\hat y` be a vector in :math:`\RR^n` such that :math:`\hat y \in S` and :math:`y - \hat y \perp S`
+Let :math:`\hat y` be a vector in :math:`\mathbb R^n` such that :math:`\hat y \in S` and :math:`y - \hat y \perp S`
 
 Let :math:`z` be any other point in :math:`S` and use the fact that :math:`S` is a linear subspace to deduce
 
@@ -203,7 +203,7 @@ For a linear space :math:`Y` and a fixed linear subspace :math:`S`, we have a fu
     y \in Y\; \mapsto \text{ its orthogonal projection } \hat y \in S
 
 
-By the OPT, this is a well-defined mapping  or *operator* from :math:`\RR^n` to :math:`\RR^n`
+By the OPT, this is a well-defined mapping  or *operator* from :math:`\mathbb R^n` to :math:`\mathbb R^n`
 
 In what follows we denote this operator by a matrix :math:`P`
 
@@ -219,7 +219,7 @@ The operator :math:`P` is called the **orthogonal projection mapping onto** :mat
   
 
 
-It is immediate from the OPT that for any :math:`y \in \RR^n` 
+It is immediate from the OPT that for any :math:`y \in \mathbb R^n` 
 
 #. :math:`P y \in S` and
 
@@ -236,7 +236,7 @@ For example, to prove 1, observe that :math:`y  = P y  + y - P y` and apply the 
 Orthogonal Complement
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Let :math:`S \subset \RR^n`.  
+Let :math:`S \subset \mathbb R^n`.  
 
 The **orthogonal complement** of :math:`S` is the linear subspace :math:`S^{\perp}` that satisfies
 :math:`x_1 \perp x_2` for every :math:`x_1 \in S` and :math:`x_2 \in S^{\perp}`
@@ -256,14 +256,14 @@ Moreover, :math:`x_1 = \hat E_S y` and :math:`x_2 = y - \hat E_S y`
 
 This amounts to another version of the OPT:
 
-**Theorem**.  If :math:`S` is a linear subspace of :math:`\RR^n`, :math:`\hat E_S y = P y` and :math:`\hat E_{S^{\perp}} y = M y`, then   
+**Theorem**.  If :math:`S` is a linear subspace of :math:`\mathbb R^n`, :math:`\hat E_S y = P y` and :math:`\hat E_{S^{\perp}} y = M y`, then   
 
 .. math::
 
      P y \perp M y
      \quad \text{and} \quad
     y = P y + M y
-     \quad \text{for all } \, y \in \RR^n
+     \quad \text{for all } \, y \in \mathbb R^n
 
 
 The next figure illustrates
@@ -277,16 +277,16 @@ Orthonormal Basis
 ====================
 
 
-An orthogonal set of vectors :math:`O \subset \RR^n` is called an **orthonormal set** if :math:`\| u \| = 1` for all :math:`u \in O`
+An orthogonal set of vectors :math:`O \subset \mathbb R^n` is called an **orthonormal set** if :math:`\| u \| = 1` for all :math:`u \in O`
 
-Let :math:`S` be a linear subspace of :math:`\RR^n` and let :math:`O \subset S`
+Let :math:`S` be a linear subspace of :math:`\mathbb R^n` and let :math:`O \subset S`
 
-If :math:`O` is orthonormal and :math:`\Span O = S`, then :math:`O` is called an **orthonormal basis** of :math:`S`
+If :math:`O` is orthonormal and :math:`\mathop{\mathrm{span}} O = S`, then :math:`O` is called an **orthonormal basis** of :math:`S`
 
 :math:`O` is necessarily a basis of :math:`S` (being independent by orthogonality and the fact that no element is the zero vector)
 
 One example of an orthonormal set is the canonical basis :math:`\{e_1, \ldots, e_n\}` 
-that forms an orthonormal basis of :math:`\RR^n`, where :math:`e_i` is the :math:`i` th unit vector
+that forms an orthonormal basis of :math:`\mathbb R^n`, where :math:`e_i` is the :math:`i` th unit vector
 
 If :math:`\{u_1, \ldots, u_k\}` is an orthonormal basis of linear subspace :math:`S`, then 
 
@@ -297,7 +297,7 @@ If :math:`\{u_1, \ldots, u_k\}` is an orthonormal basis of linear subspace :math
     x \in S
 
 
-To see this, observe that since :math:`x \in \Span\{u_1, \ldots, u_k\}`, we can find
+To see this, observe that since :math:`x \in \mathop{\mathrm{span}}\{u_1, \ldots, u_k\}`, we can find
 scalars :math:`\alpha_1, \ldots, \alpha_k` that verify
 
 .. math::
@@ -332,10 +332,10 @@ When the subspace onto which are projecting is orthonormal, computing the projec
 
     P y = \sum_{i=1}^k \langle y, u_i \rangle u_i,
     \quad
-    \forall \; y \in \RR^n
+    \forall \; y \in \mathbb R^n
 
 
-Proof: Fix :math:`y \in \RR^n` and let :math:`P y` be  defined as in :eq:`exp_for_op`
+Proof: Fix :math:`y \in \mathbb R^n` and let :math:`P y` be  defined as in :eq:`exp_for_op`
 
 Clearly, :math:`P y \in S`
 
@@ -356,7 +356,7 @@ Projection Using Matrix Algebra
 ===================================
 
 
-Let :math:`S` be a linear subspace of :math:`\RR^n` and  let :math:`y \in \RR^n`.
+Let :math:`S` be a linear subspace of :math:`\mathbb R^n` and  let :math:`y \in \mathbb R^n`.
 
 We want to compute the matrix :math:`P` that verifies
 
@@ -364,7 +364,7 @@ We want to compute the matrix :math:`P` that verifies
 
    \hat E_S y = P y
 
-Evidently  :math:`Py` is a linear function from :math:`y \in \RR^n` to :math:`P y \in \RR^n`
+Evidently  :math:`Py` is a linear function from :math:`y \in \mathbb R^n` to :math:`P y \in \mathbb R^n`
 
 This reference is useful `<https://en.wikipedia.org/wiki/Linear_map#Matrices>`_ 
 
@@ -375,7 +375,7 @@ This reference is useful `<https://en.wikipedia.org/wiki/Linear_map#Matrices>`_
     P = X (X'X)^{-1} X'
 
 
-Proof: Given arbitrary :math:`y \in \RR^n` and :math:`P = X (X'X)^{-1} X'`, our claim is that 
+Proof: Given arbitrary :math:`y \in \mathbb R^n` and :math:`P = X (X'X)^{-1} X'`, our claim is that 
 
 #. :math:`P y \in S`, and
 
@@ -399,10 +399,10 @@ Claim 2 is equivalent to the statement
 
     y - X (X' X)^{-1} X' y \, \perp\,  X b
     \quad \text{for all} \quad
-    b \in \RR^K
+    b \in \mathbb R^K
 
 
-This is true: If :math:`b \in \RR^K`, then
+This is true: If :math:`b \in \mathbb R^K`, then
 
 .. math::
 
@@ -422,7 +422,7 @@ It is common in applications to start with :math:`n \times k` matrix :math:`X`  
 
 .. math::
 
-    S := \Span X := \Span \{\col_1 X, \ldots, \col_k X \}
+    S := \mathop{\mathrm{span}} X := \mathop{\mathrm{span}} \{\col_1 X, \ldots, \col_k X \}
 
 
 Then the columns of :math:`X` form a basis of :math:`S`
@@ -441,7 +441,7 @@ The Orthonormal Case
 
 Suppose that :math:`U` is :math:`n \times k` with orthonormal columns
 
-Let :math:`u_i := \col U_i` for each :math:`i`, let :math:`S := \Span U` and let :math:`y \in \RR^n`
+Let :math:`u_i := \mathop{\mathrm{col}} U_i` for each :math:`i`, let :math:`S := \mathop{\mathrm{span}} U` and let :math:`y \in \mathbb R^n`
 
 We know that the projection of :math:`y` onto :math:`S` is
 
@@ -469,9 +469,9 @@ basis
 Application: Overdetermined Systems of Equations
 ------------------------------------------------
 
-Let :math:`y \in \RR^n` and let :math:`X` is :math:`n \times k` with linearly independent columns 
+Let :math:`y \in \mathbb R^n` and let :math:`X` is :math:`n \times k` with linearly independent columns 
         
-Given :math:`X` and :math:`y`, we seek :math:`b \in \RR^k` satisfying the system of linear equations :math:`X b = y`
+Given :math:`X` and :math:`y`, we seek :math:`b \in \mathbb R^k` satisfying the system of linear equations :math:`X b = y`
 
 If :math:`n > k` (more equations than unknowns), then :math:`b` is said to be **overdetermined**
 
@@ -483,13 +483,13 @@ The best approach here is to
 
 * Look instead for an approximate solution
 
-By approximate solution, we mean a :math:`b \in \RR^k` such that :math:`X b` is as close to :math:`y` as possible
+By approximate solution, we mean a :math:`b \in \mathbb R^k` such that :math:`X b` is as close to :math:`y` as possible
 
 The next theorem shows that the solution is well defined and unique
 
 The proof uses the OPT
 
-**Theorem** The unique minimizer of  :math:`\| y - X b \|` over :math:`b \in \RR^K` is 
+**Theorem** The unique minimizer of  :math:`\| y - X b \|` over :math:`b \in \mathbb R^K` is 
 
 .. math::
 
@@ -504,20 +504,20 @@ Proof:  Note that
     P y
 
 
-Since :math:`P y` is the orthogonal projection onto :math:`\Span(X)` we have
+Since :math:`P y` is the orthogonal projection onto :math:`\mathop{\mathrm{span}}(X)` we have
 
 .. math::
 
     \| y - P y \| 
-    \leq \| y - z \| \text{ for any } z \in \Span(X)   
+    \leq \| y - z \| \text{ for any } z \in \mathop{\mathrm{span}}(X)   
 
 
-Because :math:`Xb \in \Span(X)`
+Because :math:`Xb \in \mathop{\mathrm{span}}(X)`
 
 .. math::
 
     \| y - X \hat \beta \| 
-    \leq \| y - X b \| \text{ for any } b \in \RR^K
+    \leq \| y - X b \| \text{ for any } b \in \mathbb R^K
 
 
 This is what we aimed to show
@@ -536,34 +536,34 @@ We treat only some examples
 Squared risk measures
 ----------------------
 
-Given pairs :math:`(x, y) \in \RR^K \times \RR`, consider choosing :math:`f \colon \RR^K \to \RR` to minimize 
+Given pairs :math:`(x, y) \in \mathbb R^K \times \mathbb R`, consider choosing :math:`f \colon \mathbb R^K \to \mathbb R` to minimize 
 the **risk**
 
 .. math::
 
-    R(f) := \EE [(y - f(x))^2] 
+    R(f) := \mathbb{E}\, [(y - f(x))^2] 
 
 
-If probabilities and hence :math:`\EE` are unknown, we cannot solve this problem directly
+If probabilities and hence :math:`\mathbb{E}\,` are unknown, we cannot solve this problem directly
 
 However, if a sample is available, we can estimate the risk with the **empirical risk**:
 
 .. math::
 
-    \min_{f \in \fF} \frac{1}{N} \sum_{n=1}^N (y_n - f(x_n))^2
+    \min_{f \in \mathcal{F}} \frac{1}{N} \sum_{n=1}^N (y_n - f(x_n))^2
 
 
 Minimizing this expression is called **empirical risk minimization**
 
-The set :math:`\fF` is sometimes called the hypothesis space
+The set :math:`\mathcal{F}` is sometimes called the hypothesis space
 
-The theory of statistical learning tells us that to prevent overfitting we should take the set :math:`\fF` to be relatively simple 
+The theory of statistical learning tells us that to prevent overfitting we should take the set :math:`\mathcal{F}` to be relatively simple 
 
-If we let :math:`\fF` be the class of linear functions :math:`1/N`, the problem is 
+If we let :math:`\mathcal{F}` be the class of linear functions :math:`1/N`, the problem is 
 
 .. math::
 
-    \min_{b \in \RR^K} \;
+    \min_{b \in \mathbb R^K} \;
     \sum_{n=1}^N (y_n - b' x_n)^2
 
 
@@ -632,8 +632,8 @@ Since monotone transforms don't affect minimizers, we have
 
 .. math::
 
-    \argmin_{b \in \RR^K} \sum_{n=1}^N (y_n - b' x_n)^2 
-    = \argmin_{b \in \RR^K} \| y - X b \|
+    \argmin_{b \in \mathbb R^K} \sum_{n=1}^N (y_n - b' x_n)^2 
+    = \argmin_{b \in \mathbb R^K} \| y - X b \|
 
 
 By our results about overdetermined linear systems of equations, the solution is 
@@ -702,14 +702,13 @@ The next section gives details
 Gram-Schmidt Orthogonalization
 -----------------------------------
 
-**Theorem** For each linearly independent set :math:`\{x_1, \ldots, x_k\} \subset \RR^n`, there exists an 
+**Theorem** For each linearly independent set :math:`\{x_1, \ldots, x_k\} \subset \mathbb R^n`, there exists an 
 orthonormal set :math:`\{u_1, \ldots, u_k\}` with
 
 .. math::
 
-    \Span \{x_1, \ldots, x_i\}
-    = 
-    \Span \{u_1, \ldots, u_i\}
+    \mathop{\mathrm{span}} \{x_1, \ldots, x_i\} = 
+    \mathop{\mathrm{span}} \{u_1, \ldots, u_i\}
     \quad \text{for} \quad
     i = 1, \ldots, k
 
@@ -718,7 +717,7 @@ The **Gram-Schmidt orthogonalization** procedure constructs an orthogonal set :m
 
 One description of this procedure is as follows: 
 
-* For :math:`i = 1, \ldots, k`, form :math:`S_i := \Span\{x_1, \ldots, x_i\}` and :math:`S_i^{\perp}`
+* For :math:`i = 1, \ldots, k`, form :math:`S_i := \mathop{\mathrm{span}}\{x_1, \ldots, x_i\}` and :math:`S_i^{\perp}`
 
 * Set :math:`v_1 = x_1`
 
@@ -751,7 +750,7 @@ Proof sketch: Let
   
 * :math:`Q` be formed from cols :math:`u_i` 
 
-Since :math:`x_j \in \Span\{u_1, \ldots, u_j\}`, we have
+Since :math:`x_j \in \mathop{\mathrm{span}}\{u_1, \ldots, u_j\}`, we have
 
 .. math::
 
@@ -794,7 +793,7 @@ Exercises
 Exercise 1
 ------------
 
-Show that, for any linear subspace :math:`S \subset \RR^n`,  :math:`S \cap S^{\perp} = \{0\}`
+Show that, for any linear subspace :math:`S \subset \mathbb R^n`,  :math:`S \cap S^{\perp} = \{0\}`
 
 Exercise 2
 -------------

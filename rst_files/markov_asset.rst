@@ -322,10 +322,11 @@ The next figure shows a simulation, where
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import quantecon as qe
 
     mc = qe.tauchen(0.96, 0.25, n=25)  

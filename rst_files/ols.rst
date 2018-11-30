@@ -84,9 +84,10 @@ Let's use a scatterplot to see whether any obvious relationship exists
 between GDP per capita and the protection against
 expropriation index 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     plt.style.use('seaborn')
     
     df1.plot(x='avexpr', y='logpgp95', kind='scatter')

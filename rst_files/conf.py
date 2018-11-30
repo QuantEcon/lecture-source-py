@@ -418,5 +418,12 @@ jupyter_allow_html_only = True
 
 #Adjust links to target html (rather than ipynb)
 jupyter_target_html = True
+jupyter_target_html_urlpath = "http://compare-lectures.quantecon.org/py/"
+#Use urlprefix images
+jupyter_images_urlpath = "https://s3-ap-southeast-2.amazonaws.com/compare-lectures.quantecon.org/py/_static/"
 
+#Allow ipython as a language synonym for blocks to be ipython highlighted
 jupyter_lang_synonyms = ["ipython"]
+
+#Execute skip-test code blocks for rendering of website (this will need to be ignored in coverage testing)
+jupyter_ignore_skip_test = True

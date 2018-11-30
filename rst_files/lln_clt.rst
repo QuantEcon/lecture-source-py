@@ -214,12 +214,13 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import random
     import numpy as np
     from scipy.stats import t, beta, lognorm, expon, gamma, poisson
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     n = 100
 
@@ -548,7 +549,7 @@ Here's some code that does exactly this for the exponential distribution
     fig, ax = plt.subplots(figsize=(10, 6))
     xmin, xmax = -3 * s, 3 * s
     ax.set_xlim(xmin, xmax)
-    ax.hist(Y, bins=60, alpha=0.5, normed=True)
+    ax.hist(Y, bins=60, alpha=0.5, density=True)
     xgrid = np.linspace(xmin, xmax, 200)
     ax.plot(xgrid, norm.pdf(xgrid, scale=s), 'k-', lw=2, label='$N(0, \sigma^2)$')
     ax.legend()
@@ -723,8 +724,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
 
 .. math::
 
-    \mathbb E [\mathbf X]
-    :=
+    \mathbb E [\mathbf X] :=
     \left(
     \begin{array}{c}
         \mathbb E [X_1] \\
@@ -732,8 +732,7 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
         \vdots \\
         \mathbb E [X_k]
     \end{array}
-    \right)
-    =
+    \right) =
     \left(
     \begin{array}{c}
         \mu_1 \\
@@ -741,15 +740,14 @@ The expectation :math:`\mathbb E [\mathbf X]` of :math:`\mathbf X` is defined to
         \vdots \\
         \mu_k
     \end{array}
-    \right)
-    =: \boldsymbol \mu
+    \right) =: \boldsymbol \mu
 
 
 The *variance-covariance matrix* of random vector :math:`\mathbf X` is defined as
 
 .. math::
 
-    \Var[\mathbf X]
+    \mathop{\mathrm{Var}}[\mathbf X]
     := \mathbb E
     [ (\mathbf X - \boldsymbol \mu) (\mathbf X - \boldsymbol \mu)']
 
@@ -758,8 +756,7 @@ Expanding this out, we get
 
 .. math::
 
-    \Var[\mathbf X]
-    =
+    \mathop{\mathrm{Var}}[\mathbf X] =
     \left(
     \begin{array}{ccc}
         \mathbb E [(X_1 - \mu_1)(X_1 - \mu_1)]
@@ -884,8 +881,8 @@ First, if :math:`\mathbf X` is a random vector in :math:`\mathbb R^k` and :math:
 
 .. math::
 
-    \Var[\mathbf A \mathbf X]
-    = \mathbf A \Var[\mathbf X] \mathbf A'
+    \mathop{\mathrm{Var}}[\mathbf A \mathbf X]
+    = \mathbf A \mathop{\mathrm{Var}}[\mathbf X] \mathbf A'
 
 
 Second, by the `continuous mapping theorem <https://en.wikipedia.org/wiki/Continuous_mapping_theorem>`_, if :math:`\mathbf Z_n \stackrel{d}{\to} \mathbf Z` in :math:`\mathbb R^k` and :math:`\mathbf A` is constant and :math:`k \times k`, then
@@ -948,8 +945,7 @@ In doing so, let
 
 .. math::
 
-    \mathbf X_i
-    :=
+    \mathbf X_i :=
     \left(
     \begin{array}{c}
         W_i \\
@@ -972,11 +968,6 @@ Hints:
 
 Solutions
 ==========
-
-
-
-
-.. code-block:: python3
 
 
 Exercise 1
@@ -1014,7 +1005,7 @@ Here is one solution
     xmin = -3 * g_prime(μ) * s
     xmax = -xmin
     ax.set_xlim(xmin, xmax)
-    ax.hist(error_obs, bins=60, alpha=0.5, normed=True)
+    ax.hist(error_obs, bins=60, alpha=0.5, density=True)
     xgrid = np.linspace(xmin, xmax, 200)
     lb = "$N(0, g'(\mu)^2  \sigma^2)$"
     ax.plot(xgrid, norm.pdf(xgrid, scale=asymptotic_sd), 'k-', lw=2, label=lb)
@@ -1126,7 +1117,7 @@ Our solution is as follows
     lb = "Chi-squared with 2 degrees of freedom"
     ax.plot(xgrid, chi2.pdf(xgrid, 2), 'k-', lw=2, label=lb)
     ax.legend()
-    ax.hist(chisq_obs, bins=50, normed=True)
+    ax.hist(chisq_obs, bins=50, density=True)
     plt.show()
 
 

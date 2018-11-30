@@ -114,8 +114,8 @@ class SearchProblem:
         for i in range(N):
             w, π = self.grid_points[i, :]
             v1 = w / (1 - β)
-            integrand = lambda m: vf(m, q(m, π)) * (π * f(m)
-                                                     + (1 - π) * g(m))
+            integrand = lambda m: vf(m, q(m, π)) * (π * f(m) + 
+                        (1 - π) * g(m))
             integral, error = fixed_quad(integrand, 0, self.w_max)
             v2 = c + β * integral
             new_v[i] = max(v1, v2)

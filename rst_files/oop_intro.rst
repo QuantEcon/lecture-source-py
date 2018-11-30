@@ -116,7 +116,7 @@ On the other hand, between two numbers it means ordinary addition
 Consider the following expression 
 
 .. code-block:: python3
-    :class: no-execute
+    :class: skip-test
 
     '300' + 400
 
@@ -132,15 +132,6 @@ Some languages might try to guess but Python is *strongly typed*
 * Type is important, and implicit type conversion is rare
 
 * Python will respond instead by raising a ``TypeError``
-
-.. code-block:: none
-
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-1-9b7dffd27f2d> in <module>()
-    ----> 1 '300' + 400
-
-    TypeError: Can't convert 'int' object to str implicitly
 
 
 To avoid the error, you need to clarify by changing the relevant type  

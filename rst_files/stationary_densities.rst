@@ -489,10 +489,11 @@ The following code is example of usage for the stochastic growth model :ref:`des
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from scipy.stats import lognorm, beta
     from quantecon import LAE
 

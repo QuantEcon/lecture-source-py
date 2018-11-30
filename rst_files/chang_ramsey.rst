@@ -191,12 +191,12 @@ time :math:`t` component
 The government faces a sequence of budget constraints with time
 :math:`t` component
 
-.. math:: - x_t = q_t (M_t - M_{t-1})
+.. math:: -x_t = q_t (M_t - M_{t-1})
 
 which by using the definitions of :math:`m_t` and :math:`h_t` can also
 be expressed as
 
-.. math:: - x_t = m_t (1-h_t)
+.. math:: -x_t = m_t (1-h_t)
    :label: eqn_chang_ramsey2a
 
 The  restrictions :math:`m_t \in [0, \bar m]` and :math:`h_t \in \Pi` evidently
@@ -268,19 +268,23 @@ Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem
 
 .. math::
 
+   \begin{aligned}
    \mathcal{L} & = \max_{\vec c, \vec M}
    \min_{\vec \lambda, \vec \mu} \sum_{t=0}^\infty \beta^t
-   \bigl\{ u(c_t) + v(M_t q_t)
-   + \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
+   \bigl\{ u(c_t) + v(M_t q_t) + 
+   \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
    & \quad \quad \quad  + \mu_t [\bar m - q_t  M_t] \bigr\}
+   \end{aligned}
 
 First-order conditions with respect to :math:`c_t` and :math:`M_t`, respectively, are
 
 .. math::
 
+   \begin{aligned}
    u'(c_t) & = \lambda_t \\
    q_t [ u'(c_t) - v'(M_t q_t) ] & \leq \beta u'(c_{t+1})
    q_{t+1} , \quad = \ {\rm if} \ M_t q_t < \bar m
+   \end{aligned}
 
 The last equation expresses Karush-Kuhn-Tucker complementary slackness
 conditions (see `here <https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions>`__)
@@ -369,11 +373,14 @@ Chang constructs the following objects
    * A competitive equilibrium can be represented recursively by iterating on
 
      .. math::
-        \begin{split} h_t & = h(\theta_t) \\
-                m_t & = m(\theta_t) \\
-                x_t & = x(\theta_t) \\
-                \theta_{t+1} & = \Psi(\theta_t) \end{split}
         :label: Chang500
+        
+        \begin{split} 
+        h_t & = h(\theta_t) \\
+        m_t & = m(\theta_t) \\
+        x_t & = x(\theta_t) \\
+        \theta_{t+1} & = \Psi(\theta_t) 
+        \end{split}
 
      starting from :math:`\theta_0`
 
@@ -519,7 +526,7 @@ and
 and
 
 .. math::
-   - x = m(1-h)
+   -x = m(1-h)
    :label: eqn_chang_ramsey10
 
 and
@@ -780,7 +787,7 @@ The *outer hyperplane approximation algorithm* proceeds as follows:
 
 3. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2
 
-**Step 1** simply creates a large initial set :math:`S_0`.
+**Step 1** simply creates a large initial set :math:`S_0`
 
 Given some set :math:`S_t`, **Step 2** then constructs the set
 :math:`S_{t+1} = D(S_t)`. The linear program in Step 2 is designed to
@@ -850,10 +857,11 @@ The package can be installed in a terminal/command prompt with pip
     ch1 = ChangModel(β=0.3, mbar=30, h_min=0.9, h_max=2, n_h=8, n_m=35, N_g=10)
     ch1.solve_sustainable()
 
-.. code-block:: python3
+.. code-block:: ipython
 
   import polytope
   import matplotlib.pyplot as plt
+  %matplotlib inline
 
 
   def plot_competitive(ChangModel):
