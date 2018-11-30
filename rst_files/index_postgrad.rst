@@ -15,7 +15,7 @@
 
 .. raw:: html
 
-    <p><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
+    <p id="numfocus_badge"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
 
 .. only:: html
 
