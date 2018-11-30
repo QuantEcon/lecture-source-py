@@ -53,7 +53,18 @@ Key ideas in play will be:
 
 -  A **uniformly most powerful test**
 
+We'll begin with some imports
 
+.. code-block:: python3
+
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.stats import beta
+    import quantecon as qe
+    from numba import njit, prange, vectorize
+    from interpolation import interp
+    from math import gamma
 
 Origin of the problem
 ======================
@@ -178,15 +189,6 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 
 .. code-block:: python3
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from scipy.stats import beta
-    import quantecon as qe
-    from numba import njit, prange, vectorize
-    from interpolation import interp
-    from math import gamma
-
 
     def beta_function_factory(a, b):
 
@@ -463,7 +465,7 @@ This means that to evaluate :math:`J(\pi)` where :math:`\pi` is not a grid point
 
 In one dimension, you can think of this as simply drawing a line between each pair of points on the grid
 
-The function `operator_factory` returns the operator `Q`
+The function ``operator_factory`` returns the operator ``Q``
 
 .. code-block:: python3
 
@@ -513,7 +515,7 @@ The function `operator_factory` returns the operator `Q`
         return Q
 
 
-To solve the model, we will iterate using `Q` to find the fixed point
+To solve the model, we will iterate using ``Q`` to find the fixed point
 
 .. code-block:: python3
 
@@ -571,7 +573,7 @@ We will be using the default parametization with distributions like so
 Value Function
 -----------------
 
-To solve the model, we will call our `solve_model` function
+To solve the model, we will call our ``solve_model`` function
 
 .. code-block:: python3
 
