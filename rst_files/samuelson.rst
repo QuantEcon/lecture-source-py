@@ -356,13 +356,9 @@ We use the Samuelson multiplier-accelerator model as a vehicle for teaching how 
 
 We want to have a method in the class that automatically generates a simulation, either nonstochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`)
 
-We also show how to map the Samuelson model into a simple instance of
-   the `LinearStateSpace` class described `here <https://lectures.quantecon.org/py/linear\_models.html>`__
+We also show how to map the Samuelson model into a simple instance of the ``LinearStateSpace`` class described `here <https://lectures.quantecon.org/py/linear\_models.html>`__
 
-We can use a `LinearStateSpace` instance to do various things that we did above with
-   our homemade function and class
-
-Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the `LinearStateSpace` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
+Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the ``LinearStateSpace`` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
 
 Here is the formula for the matrix :math:`A` in the linear state space system in the case that government expenditures are a constant :math:`G`:
 
@@ -970,7 +966,7 @@ Wrapping everything into a class
 
 Up to now we have written functions to do the work
 
-Now we'll roll up our sleeves and write a Python class called `Samuelson`
+Now we'll roll up our sleeves and write a Python class called ``Samuelson``
 for the Samuleson model
 
 .. code-block:: python3
@@ -1276,10 +1272,10 @@ calculating the eigenvalues of :math:`A`
     w, v = np.linalg.eig(A)
     print(w)
 
-Inheriting methods from `LinearStateSpace`
---------------------------------------------
+Inheriting methods from ``LinearStateSpace``
+----------------------------------------------
 
-We could also create a subclass of `LinearStateSpace` (inheriting all its
+We could also create a subclass of ``LinearStateSpace`` (inheriting all its
 methods and attributes) to add more functions to use
 
 .. code-block:: python3
@@ -1387,7 +1383,7 @@ methods and attributes) to add more functions to use
 Illustrations
 -------------
 
-Let's show how we can use the `SamuelsonLSS`
+Let's show how we can use the ``SamuelsonLSS``
 
 .. code-block:: python3
 
