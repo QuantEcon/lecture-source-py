@@ -537,7 +537,7 @@ Draw a heat map for default probability
     plt.show()
 
 
-Plot a time series of major variables simulated from the model.
+Plot a time series of major variables simulated from the model
 
 .. code-block:: python3
 
