@@ -198,12 +198,12 @@ time :math:`t` component
 The government faces a sequence of budget constraints with time
 :math:`t` component
 
-.. math:: - x_t = q_t (M_t - M_{t-1})
+.. math:: -x_t = q_t (M_t - M_{t-1})
 
 which, by using the definitions of :math:`m_t` and :math:`h_t`, can also
 be expressed as
 
-.. math:: - x_t = m_t (1-h_t)
+.. math:: -x_t = m_t (1-h_t)
    :label: eqn_chang2a
 
 The  restrictions :math:`m_t \in [0, \bar m]` and :math:`h_t \in \Pi` evidently 
@@ -269,20 +269,23 @@ Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem
 
 .. math::
 
+   \begin{aligned}
    \mathcal{L} & = \max_{\vec c, \vec M} 
    \min_{\vec \lambda, \vec \mu} \sum_{t=0}^\infty \beta^t
-   \bigl\{ u(c_t) + v(M_t q_t)
-   + \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
+   \bigl\{ u(c_t) + v(M_t q_t) + 
+   \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
    & \quad \quad \quad  + \mu_t [\bar m - q_t  M_t] \bigr\}
+   \end{aligned}
 
 First-order conditions with respect to :math:`c_t` and :math:`M_t`, respectively, are
 
 .. math::
 
+   \begin{aligned}
    u'(c_t) & = \lambda_t \\
    q_t [ u'(c_t) - v'(M_t q_t) ] & \leq \beta u'(c_{t+1}) 
    q_{t+1} , \quad = \ {\rm if} \ M_t q_t < \bar m
-
+   \end{aligned}
 
 Using :math:`h_t = {M_{t-1}\over M_t}` and :math:`q_t = {m_t \over M_t}` in 
 these first-order conditions and rearranging implies
@@ -362,23 +365,28 @@ Chang works with
 * A recursive representation of a credible government policy is a pair of 
   initial conditions :math:`(w_0, \theta_0)` and a five-tuple of functions
 
- .. math::
+  .. math::
+
     h(w_t, \theta_t), m(h_t, w_t, \theta_t), x(h_t, w_t, \theta_t), \chi(h_t, w_t, \theta_t),\Psi(h_t, w_t, \theta_t)
 
- mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into 
- :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively
+  mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into 
+  :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively
 
 * Starting from initial condition :math:`(w_0, \theta_0)`, a credible 
   government policy can be constructed by iterating on these functions in 
   the following order that respects the within-period timing:
 
   .. math::
-     \begin{split} \hat h_t & = h(w_t,\theta_t) \\
-             m_t & = m(h_t, w_t,\theta_t) \\
-             x_t & = x(h_t, w_t,\theta_t) \\
-             w_{t+1} & = \chi(h_t, w_t,\theta_t)  \\
-             \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  \end{split}
-     :label: chang501
+   :label: chang501
+
+   \begin{aligned} 
+   \hat h_t & = h(w_t,\theta_t) \\
+   m_t & = m(h_t, w_t,\theta_t) \\
+   x_t & = x(h_t, w_t,\theta_t) \\
+   w_{t+1} & = \chi(h_t, w_t,\theta_t)  \\
+   \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  
+   \end{aligned}
+
 
 * Here it is to be understood that :math:`\hat h_t` is the action that the 
   government policy instructs the government to take, while :math:`h_t` 
@@ -575,18 +583,18 @@ initial set :math:`Z_0`
 This structure delivers the following recursive representation of a
 sustainable outcome:
 
-   (1) choose an initial
-   :math:`(w_0, \theta_0) \in S`;
-
-   (2) generate a sustainable outcome
-   recursively by iterating on :eq:`chang501`, which we repeat here for convenience:
+i.  choose an initial :math:`(w_0, \theta_0) \in S`;
+ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, which we repeat here for convenience:
 
    .. math::
-    \hat h_t & = h(w_t,\theta_t) \\
-    m_t & = m(h_t, w_t,\theta_t) \\
-    x_t & = x(h_t, w_t,\theta_t) \\
-    w_{t+1} & = \chi(h_t, w_t,\theta_t)  \\
-    \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  \\
+
+      \begin{aligned}
+      \hat h_t & = h(w_t,\theta_t) \\
+      m_t & = m(h_t, w_t,\theta_t) \\
+      x_t & = x(h_t, w_t,\theta_t) \\
+      w_{t+1} & = \chi(h_t, w_t,\theta_t)  \\
+      \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  \\
+      \end{aligned}
 
 Calculating  set of sustainable :math:`(w,\theta)` pairs 
 ==================================================================================
@@ -784,10 +792,11 @@ The following plot shows both the set of :math:`w,\theta` pairs associated with 
 and the smaller set of :math:`w,\theta` pairs associated with  sustainable plans (in blue)
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import polytope
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     def plot_equilibria(ChangModel):
         """

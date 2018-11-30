@@ -270,8 +270,7 @@ To map into the LQ framework, we'll use
         \begin{bmatrix}
             z_t \\
             b_t
-        \end{bmatrix}
-        =
+        \end{bmatrix} =
         \begin{bmatrix}
             1 \\
             y_t \\
@@ -355,12 +354,13 @@ First we create the objects for the optimal linear regulator
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import quantecon as qe
     import numpy as np
     import scipy.linalg as la
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     # Set parameters
     α, β, ρ1, ρ2, σ = 10.0, 0.95, 0.9, 0.0, 1.0
@@ -510,7 +510,7 @@ Now we'll apply the formulas in this system
 
 
 
-`A_LSS` calculated as we have here should equal `ABF` calculated above using the LQ model
+``A_LSS`` calculated as we have here should equal ``ABF`` calculated above using the LQ model
 
 
 
@@ -520,7 +520,7 @@ Now we'll apply the formulas in this system
     
 
 
-Now compare pertinent elements of `c_pol` and `F`
+Now compare pertinent elements of ``c_pol`` and ``F``
 
 
 
@@ -573,7 +573,7 @@ We generate  25 paths of the exogenous non-financial income process and the asso
    
 In a first set of graphs,  darker lines depict a particular sample path, while the lighter lines describe 24 other  paths
 
-A second graph  plots a collection of simulations against the population distribution that we extract from the `LinearStateSpace` instance LSS
+A second graph  plots a collection of simulations against the population distribution that we extract from the ``LinearStateSpace`` instance ``LSS``
 
 Comparing sample paths with population distributions at each date :math:`t` is a useful exercise---see :ref:`our discussion <lln_mr>` of the laws of large numbers
 
@@ -604,7 +604,7 @@ In the code below, we use the `LinearStateSpace <https://github.com/QuantEcon/Qu
     def income_consumption_debt_series(A, C, G, μ_0, Σ_0, T=150, npaths=25):
         """
         This function takes initial conditions (μ_0, Σ_0) and uses the LinearStateSpace
-        class from QuantEcon to  simulate an economy `npaths` times for `T` periods.
+        class from QuantEcon to  simulate an economy npaths times for T periods.
         It then uses that information to generate some graphs related to the discussion
         below.
         """

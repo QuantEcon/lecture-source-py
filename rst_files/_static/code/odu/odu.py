@@ -63,7 +63,7 @@ class SearchProblem:
         self.w_grid = np.linspace(0, w_max, w_grid_size)
         self.π_grid = np.linspace(self.π_min, self.π_max, π_grid_size)
         x, y = np.meshgrid(self.w_grid, self.π_grid)
-        self.grid_points = np.column_stack((x.ravel(1), y.ravel(1)))
+        self.grid_points = np.column_stack((x.ravel(order='F'), y.ravel(order='F')))
 
 
     def q(self, w, π):
@@ -114,8 +114,8 @@ class SearchProblem:
         for i in range(N):
             w, π = self.grid_points[i, :]
             v1 = w / (1 - β)
-            integrand = lambda m: vf(m, q(m, π)) * (π * f(m)
-                                                     + (1 - π) * g(m))
+            integrand = lambda m: vf(m, q(m, π)) * (π * f(m) + 
+                        (1 - π) * g(m))
             integral, error = fixed_quad(integrand, 0, self.w_max)
             v2 = c + β * integral
             new_v[i] = max(v1, v2)

@@ -509,8 +509,7 @@ To this end, we take
 .. math::
     :label: ddp_def_ogq
 
-    Q(s, a, s') 
-    := 
+    Q(s, a, s') := 
     \begin{cases}
         \frac{1}{B + 1} & \text{if } a \leq s' \leq a + B
         \\
@@ -722,10 +721,11 @@ Written jointly with `Diasuke Oyama <https://github.com/oyamad>`__
 
 Let's start with some imports
 
-.. code-block:: python3 
+.. code-block:: ipython 
 
     import scipy.sparse as sparse
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from quantecon import compute_fixed_point
     from quantecon.markov import DiscreteDP
 
