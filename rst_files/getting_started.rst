@@ -145,10 +145,6 @@ Here's an image of showing execution of some code (borrowed from `here <http://m
 
 You can find a nice example of the kinds of things you can do in a Jupyter notebook (such as include maths and text) `here <http://nbviewer.jupyter.org/github/QuantEcon/TaxSmoothing/blob/master/Tax_Smoothing_1.ipynb>`__ 
 
-
-Further examples can be found at QuantEcon's `notebook archive <https://quantecon.org/notebooks.html>`__ or the  `NB viewer site <http://nbviewer.jupyter.org/>`_
-
-
 While Jupyter isn't the only way to code in Python, it's great for when you wish to
 
 * start coding in Python
@@ -425,7 +421,14 @@ To run one, download it as an ``ipynb`` file by clicking on the download icon at
 Save it somewhere, navigate to it from the Jupyter dashboard and then run as discussed above
 
 
+QuantEcon Notes
+-----------------
 
+QuantEcon has its own site for sharing Jupyter notebooks related
+to economics -- `QuantEcon Notes <http://notes.quantecon.org/>`_
+
+Notebooks submitted to QuantEcon Notes can be shared with a link, and are open
+to comments and votes by the commnuity
 
 
 Installing Libraries
