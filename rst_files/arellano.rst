@@ -350,7 +350,7 @@ Here is a more detailed description of our algorithm:
 
 3.  Update the value function :math:`v(B, y)`, the default rule,  the implied ex ante default probability,  and the price function
 
-4. Check for convergence. If converged, stop. If not, go to step 2
+4. Check for convergence. If converged, stop -- if not, go to step 2
 
 We use simple discretization on a grid of asset holdings and income levels
 
