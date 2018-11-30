@@ -597,7 +597,7 @@ Here's an implementation:
             
         # == Now compute the reservation wage == #
         
-        return (1 - β) * (c + β * h)
+        return (1 - β) * h
 
 
 You can use this code to solve the exercise below
