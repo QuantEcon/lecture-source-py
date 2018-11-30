@@ -970,11 +970,6 @@ Solutions
 ==========
 
 
-
-
-.. code-block:: python3
-
-
 Exercise 1
 ----------
 
