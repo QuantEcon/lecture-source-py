@@ -787,7 +787,7 @@ The *outer hyperplane approximation algorithm* proceeds as follows:
 
 3. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2
 
-**Step 1** simply creates a large initial set :math:`S_0`.
+**Step 1** simply creates a large initial set :math:`S_0`
 
 Given some set :math:`S_t`, **Step 2** then constructs the set
 :math:`S_{t+1} = D(S_t)`. The linear program in Step 2 is designed to
