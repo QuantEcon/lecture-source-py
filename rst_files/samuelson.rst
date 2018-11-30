@@ -60,7 +60,7 @@ represent a model of national output based on three components:
 
 Samuelson used the model to analyze how particular values of the
 marginal propensity to consume and the accelerator coefficient might
-give rise to transient *business cycles* in national output 
+give rise to transient *business cycles* in national output
 
 Possible dynamic properties include
 
@@ -84,7 +84,7 @@ gives rise to recurrent irregular business cycles.
 :cite:`Sargent1987`)
 
 
-Details 
+Details
 ===========
 
 Let's assume that
@@ -243,21 +243,21 @@ When the roots are complex, they will occur as a complex conjugate pair
 When the roots are complex, it is convenient to represent them in the
 polar form
 
-.. math::  \lambda_1 = r e^{i \theta}, \  \lambda_2 = r e^{-i \theta}
+.. math::  \lambda_1 =  r e^{i \omega}, \  \lambda_2 = r e^{-i \omega}
 
 where :math:`r` is the *amplitude* of the complex number and
-:math:`\theta` is its *angle*.
+:math:`\omega` is its *angle* or *phase*
 
 These can also be represented as
 
-.. math::  \lambda_1 = r (cos (\theta) + i \sin (\theta))
+.. math::  \lambda_1 = r (cos (\omega) + i \sin (\omega))
 
-.. math::  \lambda_2 = r (cos (\theta) - i \sin(\theta))
+.. math::  \lambda_2 = r (cos (\omega) - i \sin(\omega))
 
 (To read about the polar form, see
 `here <https://www.varsitytutors.com/hotmath/hotmath\_help/topics/polar-form-of-a-complex-number>`__)
 
-Given **initial conditions** :math:`Y_{-1}, Y_{-2}` we want to generate
+Given **initial conditions** :math:`Y_{-1}, Y_{-2}`, we want to generate
 a **solution** of the difference equation :eq:`second_stochastic2`
 
 It can be represented as
@@ -267,17 +267,47 @@ It can be represented as
 where :math:`c_1` and :math:`c_2` are constants that depend on the two
 initial conditions and on :math:`\rho_1, \rho_2`
 
-When the roots are complex, some algebra that exploits the fact that the
-roots appear as a complex conjugate pair implies that
+When the roots are complex, it is useful to pursue the following calculations
 
-.. math::  Y_t = \tilde c_1 r^t \cos(\theta t + \tilde c_1)
+Notice that
 
-where :math:`\tilde c_1, \tilde c_2` is a pair of constants chosen to
-satisfy the given initial conditions for :math:`Y_{-1}, Y_{-2}`
+.. math::
+
+   \begin{eqnarray}
+     Y_t & =  & c_1 (r e^{i \omega})^t + c_2 (r e^{-i \omega})^t  \\
+      & = & c_1 r^t e^{i\omega t} + c_2 r^t e^{-i \omega t} \\
+      & = &  c_1 r^t [\cos(\omega t) + i \sin(\omega t) ] + c_2 r^t [\cos(\omega t) - i \sin(\omega t) ] \\
+      & = & (c_1 + c_2) r^t \cos(\omega t) + i (c_1 - c_2) r^t \sin(\omega t)
+    \end{eqnarray}
+
+The only way that :math:`Y_t` can be a  real number for each :math:`t` is if :math:`c_1 + c_2` is a real number and :math:`c_1 - c_2` is an imaginary number
+
+This happens only when :math:`c_1` and :math:`c_2` are complex conjugates, in which case they can be written in the polar forms
+
+.. math::
+
+    c_1 = v e^{i \theta},  \  \ c_2 = v e^{- i \theta}
+
+So we can write
+
+.. math::
+
+   \begin{eqnarray}
+     Y_t & = & v e^{i \theta} r^t e^{i \omega t} + v e ^{- i \theta} r^t e^{-i \omega t} \\
+         & = & v r^t [ e^{i(\omega t + \theta)} + e^{-i (\omega t +\theta)}]  \\
+         & = & 2 v r^t  \cos (\omega t + \theta)
+    \end{eqnarray}
+
+where :math:`v` and :math:`\theta` are constants that must be chosen to satisfy initial conditions for :math:`Y_{-1}, Y_{-2}`
+
 
 This formula shows that when the roots are complex, :math:`Y_t` displays
 oscillations with **period** :math:`\check p =
-\frac{2 \pi}{\theta}` and **damping factor** :math:`r`
+\frac{2 \pi}{\omega}` and **damping factor** :math:`r`
+
+We say that :math:`\check p` is the **period** because in that amount of time the cosine wave :math:`\cos(\omega t + \theta)` goes through exactly one complete cycles
+
+(Draw a cosine funtion to convince yourself of this please)
 
 **Remark:** Following :cite:`Samuelson1939`, we want to choose the parameters
 :math:`a, b` of the model so that the absolute values (of the possibly
@@ -286,7 +316,7 @@ polynomial are both strictly less than one:
 
 .. math::  | \lambda_j | < 1 \quad \quad \text{for } j = 1, 2
 
-**Remark:** When both eigenvalues :math:`\lambda_1, \lambda_2` have
+**Remark:** When both roots  :math:`\lambda_1, \lambda_2` of the characteristic polynomial have
 absolute values strictly less than one, the absolute value of the larger
 one governs the rate of convergence to the steady state of the non
 stochastic version of the model
@@ -300,38 +330,38 @@ We write a function to generate simulations of a :math:`\{Y_t\}` sequence as a f
 
 The function requires that we put in initial conditions for :math:`Y_{-1}, Y_{-2}`
 
-The function checks that :math:`a, b` are set so that :math:`\lambda\_1, \lambda\_2` are less than
+The function checks that :math:`a, b` are set so that :math:`\lambda_1, \lambda_2` are less than
    unity in absolute value (also called "modulus")
-   
+
 The function also tells us whether the roots are complex, and, if they are complex, returns both their real and complex parts
-   
+
 If the roots are both real, the function returns their values
 
 
 We use our function written to simulate paths that are stochastic (when :math:`\sigma >0`)
 
-We have written the function in a way that allows us to input :math:`\{G_t\}` paths of a few simple forms, e.g., 
+We have written the function in a way that allows us to input :math:`\{G_t\}` paths of a few simple forms, e.g.,
 
 * one time jumps in :math:`G` at some time
-  
+
 * a permanent jump in :math:`G` that occurs at some time
 
-We proceed to use the Samuelson multiplier-accererator model as a laboratory to make a simple OOP example 
+We proceed to use the Samuelson multiplier-accererator model as a laboratory to make a simple OOP example
 
-The "state" that determines next period's :math:`Y_{t+1}` is now not just the current value :math:`Y_t` but also the once lagged value :math:`Y_{t-1}` 
-   
+The "state" that determines next period's :math:`Y_{t+1}` is now not just the current value :math:`Y_t` but also the once lagged value :math:`Y_{t-1}`
+
 This involves a little more bookkeeping than is required in the Solow model class definition
 
 We use the Samuelson multiplier-accelerator model as a vehicle for teaching how we can gradually add more features to the class
-   
+
 We want to have a method in the class that automatically generates a simulation, either nonstochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`)
 
-We also show how to map the Samuelson model into a simple instance of the `LinearStateSpace` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__
+We also show how to map the Samuelson model into a simple instance of the ``LinearStateSpace`` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__
 
-We can use a `LinearStateSpace` instance to do various things that we did above with our homemade function and class 
+We can use a ``LinearStateSpace`` instance to do various things that we did above with our homemade function and class 
 
-Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the `LinearStateSpace` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
-   
+Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the ``LinearStateSpace`` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
+
 Here is the formula for the matrix :math:`A` in the linear state space system in the case that government expenditures are a constant :math:`G`:
 
 .. math::
@@ -939,7 +969,7 @@ Wrapping everything into a class
 
 Up to now we have written functions to do the work
 
-Now we'll roll up our sleeves and write a Python class called `Samuelson`
+Now we'll roll up our sleeves and write a Python class called ``Samuelson``
 for the Samuleson model
 
 .. code-block:: python3
@@ -1245,10 +1275,10 @@ calculating the eigenvalues of :math:`A`
     w, v = np.linalg.eig(A)
     print(w)
 
-Inheriting methods from `LinearStateSpace`
---------------------------------------------
+Inheriting methods from ``LinearStateSpace``
+----------------------------------------------
 
-We could also create a subclass of `LinearStateSpace` (inheriting all its
+We could also create a subclass of ``LinearStateSpace`` (inheriting all its
 methods and attributes) to add more functions to use
 
 .. code-block:: python3
@@ -1356,7 +1386,7 @@ methods and attributes) to add more functions to use
 Illustrations
 -------------
 
-Let's show how we can use the `SamuelsonLSS`
+Let's show how we can use the ``SamuelsonLSS``
 
 .. code-block:: python3
 
