@@ -135,7 +135,7 @@ loading the Cython extension in a notebook cell
 
 In the next cell, we execute the following
 
-.. code-block:: cython
+.. code-block:: ipython
 
     %%cython
     def geo_prog_cython(double alpha, int n):
