@@ -76,31 +76,36 @@ Statistical Research Group at Columbia University
 
 Let's listen to Milton Friedman tell us what happened
 
-"In order to understand the story, it is necessary to have an idea of a
-simple statistical problem, and of the standard procedure for dealing
-with it. The actual problem out of which sequential analysis grew will
-serve. The Navy has two alternative designs (say A and B) for a
-projectile. It wants to determine which is superior. To do so it
-undertakes a series of paired firings. On each round it assigns the
-value 1 or 0 to A accordingly as its performance is superior or inferio
-to that of B and conversely 0 or 1 to B. The Navy asks the statistician
-how to conduct the test and how to analyze the results.
+    In order to understand the story, it is necessary to have an idea of a
+    simple statistical problem, and of the standard procedure for dealing
+    with it. The actual problem out of which sequential analysis grew will
+    serve. The Navy has two alternative designs (say A and B) for a
+    projectile. It wants to determine which is superior. To do so it
+    undertakes a series of paired firings. On each round it assigns the
+    value 1 or 0 to A accordingly as its performance is superior or inferio
+    to that of B and conversely 0 or 1 to B. The Navy asks the statistician
+    how to conduct the test and how to analyze the results.
 
-"The standard statistical answer was to specify a number of firings (say
-1,000) and a pair of percentages (e.g., 53% and 47%) and tell the client
-that if A receives a 1 in more than 53% of the firings, it can be
-regarded as superior; if it receives a 1 in fewer than 47%, B can be
-regarded as superior; if the percentage is between 47% and 53%, neither
-can be so regarded.
+..
 
-"When Allen Wallis was discussing such a problem with (Navy) Captain
-Garret L. Schyler, the captain objected that such a test, to quote from
-Allen's account, may prove wasteful. If a wise and seasoned ordnance
-officer like Schyler were on the premises, he would see after the first
-few thousand or even few hundred [rounds] that the experiment need not
-be completed either because the new method is obviously inferior or
-because it is obviously superior beyond what was hoped for
-:math:`\ldots` "
+    The standard statistical answer was to specify a number of firings (say
+    1,000) and a pair of percentages (e.g., 53% and 47%) and tell the client
+    that if A receives a 1 in more than 53% of the firings, it can be
+    regarded as superior; if it receives a 1 in fewer than 47%, B can be
+    regarded as superior; if the percentage is between 47% and 53%, neither
+    can be so regarded.
+
+..
+
+    When Allen Wallis was discussing such a problem with (Navy) Captain
+    Garret L. Schyler, the captain objected that such a test, to quote from
+    Allen's account, may prove wasteful. If a wise and seasoned ordnance
+    officer like Schyler were on the premises, he would see after the first
+    few thousand or even few hundred [rounds] that the experiment need not
+    be completed either because the new method is obviously inferior or
+    because it is obviously superior beyond what was hoped for
+    :math:`\ldots`
+
 
 Friedman and Wallis struggled with the problem but, after realizing that
 they were not able to solve it,  described the problem to  Abraham Wald
@@ -123,6 +128,8 @@ He (or she) wants to know which of two probability distributions :math:`f_0` or 
 
 After a number of draws, also to be determined, he makes a decision as to 
 which of the distributions is generating the draws he observes
+
+He starts with prior
 
 .. math::
 
@@ -323,9 +330,9 @@ when :math:`\pi` is fixed and :math:`z'` is drawn from the current best guess, w
 
 In the Bellman equation, minimization is over three actions: 
 
-#. accept the hypthesis that :math:`f = f_0` 
-#. accept the hypthesis that :math:`f = f_1` 
-#. postpone deciding and draw again
+#. Accept the hypothesis that :math:`f = f_0` 
+#. Accept the hypothesis that :math:`f = f_1` 
+#. Postpone deciding and draw again
 
 
 We can represent the  Bellman equation as
@@ -353,7 +360,7 @@ The optimal decision rule is characterized by two numbers :math:`\alpha, \beta \
 
 .. math::
 
-    (1- \pi) L_0 < \min \{ \pi L_1, c + \mathbb E [J(\pi)] \}  \textrm { if } \pi \geq \alpha  
+    (1- \pi) L_0 < \min \{ \pi L_1, c + \mathbb E [J(\pi')] \}  \textrm { if } \pi \geq \alpha  
 
 
 and
@@ -361,15 +368,15 @@ and
 .. math::
 
 
-    \pi L_1 < \min \{ (1-\pi) L_0,  c + \mathbb E [J(\pi)] \} \textrm { if } \pi \leq \beta 
+    \pi L_1 < \min \{ (1-\pi) L_0,  c + \mathbb E [J(\pi')] \} \textrm { if } \pi \leq \beta 
 
 
 The optimal decision rule is then
 
 .. math::
 
-    \textrm { accept } x=x_0 \textrm{ if } \pi \geq \alpha \\
-    \textrm { accept } x=x_1 \textrm{ if } \pi \leq \beta \\
+    \textrm { accept } f=f_0 \textrm{ if } \pi \geq \alpha \\
+    \textrm { accept } f=f_1 \textrm{ if } \pi \leq \beta \\
     \textrm { draw another }  z \textrm{ if }  \beta \leq \pi \leq \alpha 
 
 
@@ -381,7 +388,10 @@ To make our computations simpler, we also note that :eq:`optdec` can be written 
 .. math::
     :label: optdec2
 
-    h(\pi) = c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \}
+    h(\pi) = c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \} \\
+    = c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    
+This allows us to return the continuation value, and back out the stopping values
 
 
 Implementation
@@ -436,8 +446,6 @@ This means that to evaluate :math:`J(\pi)` where :math:`\pi` is not a grid point
 * Second, we use the grid point immediately after :math:`\pi`, named :math:`\pi_{i+1}`, to approximate the function value as
 
 
-**need to change**
-
 .. math::
 
     J(\pi) = J(\pi_i) + (\pi - \pi_i) \frac{J(\pi_{i+1}) - J(\pi_i)}{\pi_{i+1} - \pi_{i}}
@@ -450,6 +458,12 @@ The function ``operator_factory`` returns the operator ``Q``
 .. code-block:: python3
 
     def operator_factory(wf, parallel_flag=True):
+        
+        """
+        Returns a jitted version of the Bellman operator.
+            
+        wf is an instance of the WaldFriedman class
+        """
 
         c, π_grid = wf.c, wf.π_grid
         L0, L1 = wf.L0, wf.L1
@@ -469,21 +483,22 @@ The function ``operator_factory`` returns the operator ``Q``
 
         @njit(parallel=True)
         def Q(h):
+            """
+            The Bellman operator.
+            """
             h_new = np.empty_like(π_grid)
             h_func = lambda p: interp(π_grid, h, p)
 
             for i in prange(len(π_grid)):
                 π = π_grid[i]
 
+                # Find the expected value of J by integrating over z
                 integral_f0, integral_f1 = 0, 0
-
-                # Payoff of continuing
                 for m in range(mc_size):
-                    π_0 = κ(z0[m], π)
+                    π_0 = κ(z0[m], π)  # Draw z from f0 and update π
                     integral_f0 += min((1 - π_0) * L0, π_0 * L1, h_func(π_0))
 
-                for m in range(mc_size):
-                    π_1 = κ(z1[m], π)
+                    π_1 = κ(z1[m], π)  # Draw z from f1 and update π
                     integral_f1 += min((1 - π_1) * L0, π_1 * L1, h_func(π_1))
 
                 integral = (π * integral_f0 + (1 - π) * integral_f1) / mc_size
@@ -505,6 +520,12 @@ To solve the model, we will iterate using ``Q`` to find the fixed point
                     max_iter=1000,
                     verbose=True,
                     print_skip=25):
+        
+        """
+        Compute the optimal value function
+        
+        * wf is an instance of WaldFriedman
+        """
 
         Q = operator_factory(wf, parallel_flag=use_parallel)
 
@@ -775,9 +796,12 @@ generates the same plots, but with sliders
 
 With these sliders you can adjust parameters and immediately observe
 
-*  effects on the smoothness of the value function in the indecisive middle range as we increase the number of grid points in the piecewise linear  approximation.
+*  effects on the smoothness of the value function in the indecisive middle range 
+   as we increase the number of grid points in the piecewise linear  approximation
 
-* effects of different settings for the cost parameters :math:`L_0, L_1, c`, the parameters of two beta distributions :math:`f_0` and :math:`f_1`, and the number of points and linear functions :math:`m` to use in the piece-wise continuous approximation to the value function.
+* effects of different settings for the cost parameters :math:`L_0, L_1, c`, the 
+  parameters of two beta distributions :math:`f_0` and :math:`f_1`, and the number 
+  of points and linear functions :math:`m` to use in the piece-wise continuous approximation to the value function
 
 * various simulations from :math:`f_0` and associated distributions of waiting times to making a decision
 
@@ -826,30 +850,30 @@ Neyman-Pearson approach to hypothesis testing
 Wald frames the problem as making a decision about a probability
 distribution that is partially known 
 
-(You have to assume that *something* is already known in order to state a well posed problem.
-Usually, *something* means *a lot*.)
+(You have to assume that *something* is already known in order to state a well 
+posed problem -- usually, *something* means *a lot*)
 
 By limiting  what is unknown, Wald uses the following simple structure
-to illustrate the main ideas.
+to illustrate the main ideas:
 
 -  a decision maker wants to decide which of two distributions
    :math:`f_0`, :math:`f_1` govern an i.i.d. random variable :math:`z`
 
 -  The null hypothesis :math:`H_0` is the statement that :math:`f_0`
-   governs the data.
+   governs the data
 
 -  The alternative hypothesis :math:`H_1` is the statement that
-   :math:`f_1` governs the data.
+   :math:`f_1` governs the data
 
 -  The problem is to devise and analyze a test of hypothesis
    :math:`H_0` against the alternative hypothesis :math:`H_1` on the
    basis of a sample of a fixed number :math:`n` independent
    observations :math:`z_1, z_2, \ldots, z_n` of the random variable
-   :math:`z`.
+   :math:`z`
 
 To quote Abraham Wald,
 
--  A test procedure leading to the acceptance or rejection of the
+   A test procedure leading to the acceptance or rejection of the
    hypothesis in question is simply a rule specifying, for each possible
    sample of size :math:`n`, whether the hypothesis should be accepted
    or rejected on the basis of the sample. This may also be expressed as
@@ -865,7 +889,7 @@ To quote Abraham Wald,
 
 Let's listen to Wald longer:
 
--  As a basis for choosing among critical regions the following
+   As a basis for choosing among critical regions the following
    considerations have been advanced by Neyman and Pearson: In accepting
    or rejecting :math:`H_0` we may commit errors of two kinds. We commit
    an error of the first kind if we reject :math:`H_0` when it is true;
@@ -887,7 +911,7 @@ Let's listen to Wald longer:
 Let's listen carefully to how Wald applies a law of large numbers to
 interpret :math:`\alpha` and :math:`\beta`:
 
--  The probabilities :math:`\alpha` and :math:`\beta` have the
+   The probabilities :math:`\alpha` and :math:`\beta` have the
    following important practical interpretation: Suppose that we draw a
    large number of samples of size :math:`n`. Let :math:`M` be the
    number of such samples drawn. Suppose that for each of these
@@ -909,11 +933,11 @@ interpret :math:`\alpha` and :math:`\beta`:
 
 The quantity :math:`\alpha` is called the *size* of the critical region,
 and the quantity :math:`1-\beta` is called the *power* of the critical
-region.
+region
 
 Wald notes that
 
--  one critical region :math:`W` is more desirable than another if it
+   one critical region :math:`W` is more desirable than another if it
    has smaller values of :math:`\alpha` and :math:`\beta`. Although
    either :math:`\alpha` or :math:`\beta` can be made arbitrarily small
    by a proper choice of the critical region :math:`W`, it is possible
@@ -922,7 +946,7 @@ Wald notes that
 
 Wald summarizes Neyman and Pearson's setup as follows:
 
--  Neyman and Pearson show that a region consisting of all samples
+   Neyman and Pearson show that a region consisting of all samples
    :math:`(z_1, z_2, \ldots, z_n)` which satisfy the inequality
 
     .. math::
@@ -937,11 +961,11 @@ Wald summarizes Neyman and Pearson's setup as follows:
 
 
 Wald goes on to discuss Neyman and Pearson's concept of *uniformly most
-powerful* test.
+powerful* test
 
 Here is how Wald introduces the notion of a sequential test 
 
--  A rule is given for making one of the following three decisions at any stage of
+   A rule is given for making one of the following three decisions at any stage of
    the experiment (at the m th trial for each integral value of m ): (1) to
    accept the hypothesis H , (2) to reject the hypothesis H , (3) to
    continue the experiment by making an additional observation. Thus, such
