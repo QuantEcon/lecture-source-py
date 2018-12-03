@@ -18,9 +18,9 @@ class JvWorker:
 
     .. math::
 
-        w(x, ϕ, s) := x(1 - ϕ - s)
-                        + β (1 - π(s)) V(G(x, ϕ))
-                        + β π(s) E V[ \max(G(x, ϕ), U)]
+        w(x, ϕ, s) := x(1 - ϕ - s) + 
+        β (1 - π(s)) V(G(x, ϕ)) + 
+        β π(s) E V[ \max(G(x, ϕ), U)]
 
     Here
 

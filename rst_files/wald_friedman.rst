@@ -179,7 +179,7 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     def beta_function_factory(a, b):
 

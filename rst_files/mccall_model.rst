@@ -40,7 +40,15 @@ Here we set up McCall's model and adopt the same solution method
 
 As we'll see, McCall's model is not only interesting in its own right but also an excellent vehicle for learning dynamic programming
 
+Let's start with some imports
 
+.. code-block:: python3
+
+    import numpy as np
+    from numba import jit
+    import matplotlib.pyplot as plt
+    import quantecon as qe
+    from quantecon.distributions import BetaBinomial
 
 The McCall Model
 =================
@@ -57,9 +65,9 @@ At time :math:`t`, our worker has two choices:
 
 #. Reject the offer, receive unemployment compensation :math:`c`, and reconsider next period
 
-The wage sequence :math:`\{W_t\}` is assumed to be iid with probability mass function :math:`p_1, \ldots, p_n`
+The wage sequence is assumed to be iid with probability mass function :math:`\phi`
 
-Here :math:`p_i` is the probability of observing wage offer :math:`W_t = w_i` in the set :math:`w_1, \ldots, w_n`
+Thus :math:`\phi (w)` is the probability of observing wage offer :math:`w` in the set :math:`w_1, \ldots, w_n`
 
 The worker is infinitely lived and aims to maximize the expected discounted sum of earnings 
 
@@ -112,25 +120,25 @@ In order to optimally trade off current and future rewards, we need to think abo
 
 To weigh these two aspects of the decision problem, we need to assign *values* to states
 
-To this end, let :math:`V(w)` be the total lifetime *value* accruing to an unemployed worker who enters the current period unemployed but with wage offer :math:`w` in hand
+To this end, let :math:`v^*(w)` be the total lifetime *value* accruing to an unemployed worker who enters the current period unemployed but with wage offer :math:`w` in hand
 
-More precisely, :math:`V(w)` denotes the value of the objective function :eq:`objective` when an agent in this situation makes *optimal* decisions now and at all future points in time
+More precisely, :math:`v^*(w)` denotes the value of the objective function :eq:`objective` when an agent in this situation makes *optimal* decisions now and at all future points in time
 
-Of course :math:`V(w)` is not trivial to calculate because we don't yet know what decisions are optimal and what aren't!
+Of course :math:`v^*(w)` is not trivial to calculate because we don't yet know what decisions are optimal and what aren't!
 
-But think of :math:`V` as a function that assigns to each possible wage :math:`w` the maximal lifetime value that can be obtained with that offer in hand
+But think of :math:`v^*` as a function that assigns to each possible wage :math:`w` the maximal lifetime value that can be obtained with that offer in hand
 
-A crucial observation is that this function :math:`V` must satisfy the recursion
+A crucial observation is that this function :math:`v^*` must satisfy the recursion
 
 .. math::
     :label: odu_pv
 
-    V(w)
+    v^*(w)
     = \max \left\{
-            \frac{w}{1 - \beta}, \, c + \beta \sum_{i=1}^n V(w_i) p_i
+            \frac{w}{1 - \beta}, \, c + \beta \sum_{w'} v^*(w') \phi (w')
         \right\}
 
-for every possible :math:`w_i`  in :math:`w_1, \ldots, w_n`
+for every possible :math:`w`  in :math:`w_1, \ldots, w_n`
 
 This important equation is a version of the **Bellman equation**, which is
 ubiquitous in economic dynamics and other fields involving planning over time
@@ -146,7 +154,7 @@ The intuition behind it is as follows:
 
 If we optimize and pick the best of these two options, we obtain maximal lifetime value from today, given current offer :math:`w`
 
-But this is precisely :math:`V(w)`, which is the l.h.s. of :eq:`odu_pv`
+But this is precisely :math:`v^*(w)`, which is the l.h.s. of :eq:`odu_pv`
 
 
 
@@ -154,7 +162,7 @@ The Optimal Policy
 -------------------
 
 Suppose for now that we are able to solve :eq:`odu_pv` for the unknown
-function :math:`V` 
+function :math:`v^*` 
 
 Once we have this function in hand we can behave optimally (i.e., make the
 right choice between accept and reject) 
@@ -169,17 +177,17 @@ In our case, the state is the current wage offer :math:`w`
 Given *any* :math:`w`, we can read off the corresponding best choice (accept or
 reject) by picking the max on the r.h.s. of :eq:`odu_pv`
 
-Thus, we have a map from :math:`\RR` to :math:`\{0, 1\}`, with 1 meaning accept and zero meaning reject
+Thus, we have a map from :math:`\mathbb R` to :math:`\{0, 1\}`, with 1 meaning accept and 0 meaning reject
 
 We can write the policy as follows
 
 .. math::
     \sigma(w) := \mathbf{1} 
         \left\{ 
-            \frac{w}{1 - \beta} \geq c + \beta \sum_{i=1}^n V(w_i) p_i 
+            \frac{w}{1 - \beta} \geq c + \beta \sum_{w'} v^*(w') \phi (w') 
         \right\}
 
-Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals zero otherwise
+Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals 0 otherwise
 
 We can also write this as
 
@@ -189,7 +197,7 @@ We can also write this as
 where
 
 .. math::
-    \bar w := (1 - \beta) \left\{ c + \beta \sum_{i=1}^n V(w_i) p_i \right\}
+    \bar w := (1 - \beta) \left\{ c + \beta \sum_{w'} v^*(w') \phi (w') \right\}
 
 Here :math:`\bar w` is a constant depending on :math:`\beta, c` and the wage distribution, called the *reservation wage*
 
@@ -208,7 +216,7 @@ Computing the Optimal Policy: Take 1
 To put the above ideas into action, we need to compute the value function at
 points :math:`w_1, \ldots, w_n`
 
-In doing so, we can identify these values with the vector :math:`v = (v_i)` where :math:`v_i := V(w_i)`
+In doing so, we can identify these values with the vector :math:`v^* = (v^*_i)` where :math:`v^*_i := v^*(w_i)`
 
 In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 
@@ -216,15 +224,12 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 .. math::
     :label: odu_pv2
 
-    v_i
+    v^*_i
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{i=1}^n v_i p_i
+            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{w'} v^*(w') \phi (w')
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
-
-It turns out that there is exactly one vector :math:`v := (v_i)_{i=1}^n` in
-:math:`\mathbb R^n` that satisfies this equation
 
 
 The Algorithm
@@ -242,7 +247,7 @@ Step 2: compute a new vector :math:`v' \in \mathbb R^n` via
 
     v'_i
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{i=1}^n v_i p_i
+            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v_j \phi (w_j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -271,18 +276,19 @@ itself via
 .. math::
     :label: odu_pv3
 
-    Tv_i
+    Tv'_i
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{i=1}^n v_i p_i
+            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v_j \phi (w_j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
+
 
 (A new vector :math:`Tv` is obtained from given vector :math:`v` by evaluating
 the r.h.s. at each :math:`i`)
 
 One can show that the conditions of the Banach contraction mapping theorem are
-satisfied by :math:`T` as a self-mapping on :math:`\RR^n`
+satisfied by :math:`T` as a self-mapping on :math:`\mathbb R^n`
 
 One implication is that :math:`T` has a unique fixed point in :math:`\mathbb R^n`
 
@@ -300,20 +306,6 @@ generates a sequence that converges to the fixed point
 Implementation
 ----------------
 
-Let's start with some imports
-
-
-
-.. code-block:: python3
-
-    import numpy as np
-    from numba import jit
-    import matplotlib.pyplot as plt
-    import quantecon as qe
-    from quantecon.distributions import BetaBinomial
-
-
-
 Here's the distribution of wage offers we'll work with
 
 
@@ -323,10 +315,10 @@ Here's the distribution of wage offers we'll work with
     w_min, w_max = 10, 60
     w_vals = np.linspace(w_min, w_max, n+1)
     dist = BetaBinomial(n, a, b)
-    p_vals = dist.pdf()
+    ϕ_vals = dist.pdf()
     
     fig, ax = plt.subplots(figsize=(9, 6.5))
-    ax.stem(w_vals, p_vals, label='$p_i$')
+    ax.stem(w_vals, ϕ_vals, label='$\phi (w\')$')
     ax.set_xlabel('wages')
     ax.set_ylabel('probabilities')
     
@@ -350,7 +342,7 @@ Our initial guess :math:`v` is the value of accepting at every given wage
                                 c=25, 
                                 β=0.99,
                                 w_vals=w_vals,
-                                p_vals=p_vals,
+                                ϕ_vals=ϕ_vals,
                                 num_plots=6):
         
         v = w_vals / (1 - β)
@@ -360,7 +352,7 @@ Our initial guess :math:`v` is the value of accepting at every given wage
             # Update guess
             for j, w in enumerate(w_vals):
                 stop_val = w / (1 - β)
-                cont_val = c + β * np.sum(v * p_vals)
+                cont_val = c + β * np.sum(v * ϕ_vals)
                 v_next[j] = max(stop_val, cont_val)
             v[:] = v_next
             
@@ -386,7 +378,7 @@ We'll be using JIT compilation via Numba to turbo charge our loops
     def compute_reservation_wage(c=25, 
                                  β=0.99,
                                  w_vals=w_vals,
-                                 p_vals=p_vals,
+                                 ϕ_vals=ϕ_vals,
                                  max_iter=500, 
                                  tol=1e-6):
         
@@ -400,7 +392,7 @@ We'll be using JIT compilation via Numba to turbo charge our loops
             
             for j, w in enumerate(w_vals):
                 stop_val = w / (1 - β)
-                cont_val = c + β * np.sum(v * p_vals)
+                cont_val = c + β * np.sum(v * ϕ_vals)
                 v_next[j] = max(stop_val, cont_val)
                 
             error = np.max(np.abs(v_next - v))
@@ -410,7 +402,7 @@ We'll be using JIT compilation via Numba to turbo charge our loops
             
         # == Now compute the reservation wage == #
         
-        return (1 - β) * (c + β * np.sum(v * p_vals))
+        return (1 - β) * (c + β * np.sum(v * ϕ_vals))
 
 
 
@@ -504,7 +496,7 @@ broadly applicable
 For this particular problem, there's also an easier way, which circumvents the
 need to compute the value function
 
-Let :math:`\psi` denote the value of not accepting a job in this period but
+Let :math:`h` denote the value of not accepting a job in this period but
 then behaving optimally in all subsequent periods 
 
 That is,
@@ -512,19 +504,19 @@ That is,
 .. math::
     :label: j1
 
-    \psi
+    h
     = c + \beta
-        \sum_{i=1}^n V(w_i) p_i
+        \sum_{w'} v^*(w') \phi (w')
     \quad
 
-where :math:`V` is the value function
+where :math:`v^*` is the value function
 
 By the Bellman equation, we then have
 
 .. math::
 
-    V(w_i)
-    = \max \left\{ \frac{w_i}{1 - \beta}, \, \psi \right\}
+    v^*(w')
+    = \max \left\{ \frac{w'}{1 - \beta}, \, h \right\}
 
 Substituting this last equation into :eq:`j1` gives
 
@@ -532,40 +524,40 @@ Substituting this last equation into :eq:`j1` gives
 .. math::
     :label: j2
 
-    \psi
+    h
     = c + \beta
-        \sum_{i=1}^n
+        \sum_{w'}
         \max \left\{
-            \frac{w_i}{1 - \beta}, \psi
-        \right\}  p_i
+            \frac{w'}{1 - \beta}, h
+        \right\}  \phi (w')
     \quad
 
-This is a nonlinear equation that we can solve for :math:`\psi`
+This is a nonlinear equation that we can solve for :math:`h`
 
 The natural solution method for this kind of nonlinear equation is iterative
 
 That is,
 
-Step 1: pick an initial guess :math:`\psi`
+Step 1: pick an initial guess :math:`h`
 
-Step 2: compute the update :math:`\psi'` via
+Step 2: compute the update :math:`h'` via
 
 .. math::
     :label: j3
 
-    \psi'
+    h'
     = c + \beta
-        \sum_{i=1}^n
+        \sum_{w'}
         \max \left\{
-            \frac{w_i}{1 - \beta}, \psi
-        \right\}  p_i
+            \frac{w'}{1 - \beta}, h
+        \right\}  \phi (w')
     \quad
 
-Step 3: calculate the deviation :math:`|\psi - \psi'|`
+Step 3: calculate the deviation :math:`|h - h'|`
 
-Step 4: if the deviation is larger than some fixed tolerance, set :math:`\psi = \psi'` and go to step 2, else continue
+Step 4: if the deviation is larger than some fixed tolerance, set :math:`h = h'` and go to step 2, else continue
 
-Step 5: return :math:`\psi`
+Step 5: return :math:`h`
 
 
 Once again, one can use the Banach contraction mapping theorem to show that this process always converges
@@ -584,28 +576,28 @@ Here's an implementation:
     def compute_reservation_wage_two(c=25, 
                                      β=0.99,
                                      w_vals=w_vals,
-                                     p_vals=p_vals,
+                                     ϕ_vals=ϕ_vals,
                                      max_iter=500, 
                                      tol=1e-5):
         
-        # == First compute ψ == #
+        # == First compute ϕ == #
         
-        ψ = np.sum(w_vals * p_vals) / (1 - β)
+        h = np.sum(w_vals * ϕ_vals) / (1 - β)
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
             
-            s = np.maximum(w_vals / (1 - β), ψ)
-            ψ_next = c + β * np.sum(s * p_vals)
+            s = np.maximum(w_vals / (1 - β), h)
+            h_next = c + β * np.sum(s * ϕ_vals)
                 
-            error = np.abs(ψ_next - ψ)
+            error = np.abs(h_next - h)
             i += 1
             
-            ψ = ψ_next
+            h = h_next
             
         # == Now compute the reservation wage == #
         
-        return (1 - β) * (c + β * ψ)
+        return (1 - β) * h
 
 
 You can use this code to solve the exercise below
@@ -647,7 +639,7 @@ Here's one solution
 .. code-block:: python3
 
 
-    cdf = np.cumsum(p_vals)
+    cdf = np.cumsum(ϕ_vals)
 
     @jit(nopython=True)
     def compute_stopping_time(w_bar, seed=1234):

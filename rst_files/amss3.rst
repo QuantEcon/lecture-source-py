@@ -150,9 +150,10 @@ government debt equal to :math:`-.5`
 
 Here is a graph of a long simulation of 102000 periods
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     μ_grid = np.linspace(-0.09, 0.1, 100)
 
