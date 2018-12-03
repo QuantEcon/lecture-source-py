@@ -116,7 +116,7 @@ where
 * :math:`p_{t+1}(s_{t+1}|s^t)` is a competitive equilibrium price of one unit of
   consumption at date :math:`t+1` in state :math:`s_{t+1}` at date :math:`t` and history :math:`s^t`
 
-* :math:`b_t(s_t|s^{t-1})` is government debt falling due at time :math:`t`, history :math:`s^t`.
+* :math:`b_t(s_t|s^{t-1})` is government debt falling due at time :math:`t`, history :math:`s^t`
 
 
 Government debt :math:`b_0(s_0)` is an exogenous initial condition
@@ -127,7 +127,7 @@ The representative household has a sequence of budget constraints whose time :ma
     :label: TS_bcr
 
     c_t(s^t) + \sum_{s_{t+1}} p_t(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t)
-    =  \left[1-\tau_t(s^t)\right]  n_t(s^t) + b_t(s_t | s^{t-1}) \quad \forall t \geq 0.
+    =  \left[1-\tau_t(s^t)\right]  n_t(s^t) + b_t(s_t | s^{t-1}) \quad \forall t \geq 0
 
 
 A  **government policy** is an exogenous sequence :math:`\{g(s_t)\}_{t=0}^\infty`,
@@ -269,7 +269,7 @@ taxes and prices from :eq:`TS_bcPV2`, we derive the *implementability condition*
 
     \sum_{t=0}^\infty  \sum_{s^t} \beta^t \pi_t(s^t)
              [u_c(s^t) c_t(s^t) - u_\ell(s^t) n_t(s^t)] - 
-             u_c(s^0) b_0 = 0.
+             u_c(s^0) b_0 = 0
 
 
 The **Ramsey problem** is to choose a feasible  allocation  that maximizes
@@ -561,7 +561,7 @@ vector :math:`x`, whose solution is
 
 
 In these equations, by :math:`\vec u_c \vec n`, for example, we mean
-element-by-element multiplication of the two vectors.
+element-by-element multiplication of the two vectors
 
 After solving for :math:`\vec x`, we can find :math:`b(s_t|s^{t-1})` in Markov
 state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equation
@@ -647,7 +647,7 @@ Specification with CRRA Utility
 
 
 In our calculations below and in a :doc:`subsequent lecture <amss>` based on an extension of the Lucas-Stokey model
-by  Aiyagari, Marcet, Sargent, and Seppälä (2002) :cite:`AMSS_2002`, we shall modify the one-period utility function assumed above.
+by  Aiyagari, Marcet, Sargent, and Seppälä (2002) :cite:`AMSS_2002`, we shall modify the one-period utility function assumed above
 
 (We adopted the preceding utility specification because it was the one used in  the original :cite:`LucasStokey1983` paper)
 
@@ -686,7 +686,7 @@ With these adjustments, the analysis of Lucas and Stokey prevails once we make t
         \end{aligned}
 
 
-With these understandings, equations :eq:`TS_barg` and :eq:`TS_barg_aust` simplify in the case of the CRRA utility function.
+With these understandings, equations :eq:`TS_barg` and :eq:`TS_barg_aust` simplify in the case of the CRRA utility function
 
 They become
 
@@ -702,7 +702,7 @@ and
 
     (1+\Phi) [u_c(c_0) + u_n(c_0+g_0)] + \Phi[c_0 u_{cc}(c_0) + (c_0+g_0) u_{nn}(c_0+g_0)] - \Phi u_{cc}(c_0) b_0 = 0
 
-In equation :eq:`TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`.
+In equation :eq:`TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
 
 In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` and initial government debt
 :math:`b_0`:
@@ -713,7 +713,7 @@ In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` 
     b_0 + g_0 = \tau_0 (c_0 + g_0) + \frac{\bar b}{R_0}
 
 where :math:`R_0` is the gross interest rate for the Markov state :math:`s_0` that is assumed to prevail at time :math:`t =0`
-and :math:`\tau_0` is the time :math:`t=0` tax rate.
+and :math:`\tau_0` is the time :math:`t=0` tax rate
 
 
 In equation :eq:`opt_tax_eqn_10`, it is understood that
@@ -1073,14 +1073,14 @@ Government expenditures are known for sure in all periods except one
 
 * For :math:`t<3` and :math:`t > 3` we assume that :math:`g_t = g_l = 0.1`
 
-* At :math:`t = 3` a war occcurs with probability 0.5.
+* At :math:`t = 3` a war occcurs with probability 0.5
 
   *  If there is war, :math:`g_3 = g_h = 0.2`
 
   *  If there is no war :math:`g_3 = g_l = 0.1`
 
 We define the components of the state vector as the following six  :math:`(t,g)`
-pairs: :math:`(0,g_l),(1,g_l),(2,g_l),(3,g_l),(3,g_h), (t\geq 4,g_l)`.
+pairs: :math:`(0,g_l),(1,g_l),(2,g_l),(3,g_l),(3,g_h), (t\geq 4,g_l)`
 
 We think of these  6 states as corresponding to :math:`s=1,2,3,4,5,6`
 
@@ -1100,7 +1100,7 @@ Government expenditures at  each state are
 
 .. math::
 
-    g = \left(\begin{matrix} 0.1\\0.1\\0.1\\0.1\\0.2\\0.1 \end{matrix}\right).
+    g = \left(\begin{matrix} 0.1\\0.1\\0.1\\0.1\\0.2\\0.1 \end{matrix}\right)
 
 
 We assume that the  representative agent has  utility function
@@ -1330,10 +1330,10 @@ which reduces the *value* :math:`u_{c,0} b_0` of its  initial debt
 It does this by increasing :math:`c_0` and thereby lowering :math:`u_{c,0}`
 
 Conversely, if  :math:`b_{0} < 0`, the Ramsey planner sets the tax rate at :math:`t=0`
-higher than in  subsequent periods.
+higher than in  subsequent periods
 
 A side effect of lowering time :math:`t=0` consumption  is that it raises  the
-one-period  interest rate at time 0 above that of subsequent periods.
+one-period  interest rate at time 0 above that of subsequent periods
 
 There are only two values of initial government debt at which  the tax rate is
 constant for all :math:`t \geq 0`

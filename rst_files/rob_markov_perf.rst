@@ -708,7 +708,7 @@ and
    \text{,} \quad
    W_1 = W_2 = 0
    \text{,} \quad
-   M_1 = M_2 = 0.
+   M_1 = M_2 = 0
    \end{split}
 
 The parameters of the duopoly model are:
@@ -768,7 +768,7 @@ with ``qe.nnash`` in the non-robustness case in which each :math:`\theta_i \appr
     print('P2 and P2r should be the same: ', np.allclose(P1, P1r))
 
 
-We can see that the results are consistent across the two functions.
+We can see that the results are consistent across the two functions
 
 Comparative dynamics under baseline transition dynamics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

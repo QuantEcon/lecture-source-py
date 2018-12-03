@@ -184,7 +184,7 @@ As before,
 * :math:`R` is :math:`n \times n` and :math:`Q` is :math:`k \times k`
 
 
-Here :math:`x_t` is the state, :math:`u_t` is the control,  and :math:`w_t` is a shock vector.
+Here :math:`x_t` is the state, :math:`u_t` is the control,  and :math:`w_t` is a shock vector
 
 For now we take :math:`\{ w_t \} := \{ w_t \}_{t=1}^{\infty}` to be deterministic --- a single fixed sequence
 
@@ -478,7 +478,7 @@ Using Agent 2's Problem to Construct Bounds on the Value Sets
 The Lower Bound
 ^^^^^^^^^^^^^^^^
 
-Define the minimized object on the right side of problem :eq:`rb_a2o` as :math:`R_\theta(x_0, F)`.
+Define the minimized object on the right side of problem :eq:`rb_a2o` as :math:`R_\theta(x_0, F)`
 
 Because "minimizers minimize" we have
 
@@ -487,7 +487,7 @@ Because "minimizers minimize" we have
     R_\theta(x_0, F) \leq \sum_{t=0}^\infty \beta^t \left\{  - x_t' (R + F' Q F) x_t \right\} + \beta \theta \sum_{t=0}^\infty \beta^t w_{t+1}' w_{t+1},
 
 
-where :math:`x_{t+1} = (A - B F + CK(F, \theta)) x_t` and :math:`x_0` is a given initial condition.
+where :math:`x_{t+1} = (A - B F + CK(F, \theta)) x_t` and :math:`x_0` is a given initial condition
 
 
 This inequality in turn implies the inequality
@@ -552,7 +552,7 @@ We simply replace the *minimization* problem :eq:`rb_a2o` with the *maximization
       \right\}
 
 
-where now :math:`\tilde \theta  >0`  penalizes the choice of :math:`{\mathbf w}` with larger entropy.
+where now :math:`\tilde \theta  >0`  penalizes the choice of :math:`{\mathbf w}` with larger entropy
 
 (Notice that :math:`\tilde \theta = - \theta` in problem :eq:`rb_a2o`)
 

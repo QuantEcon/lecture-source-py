@@ -659,7 +659,7 @@ Let's try out our method computing :math:`\tau`
 
 
 In the above cell, B is fixed at 1 and :math:`\tau` is to be computed as
-a function of B.
+a function of B
 
 Note that 0.2 is the initial value for :math:`\tau` in the root-finding
 algorithm

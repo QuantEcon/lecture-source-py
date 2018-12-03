@@ -30,7 +30,7 @@ turn is computed via the famous `fast Fourier transform <https://en.wikipedia.or
 
 Once the basic technique has been explained, we will apply it to the analysis of several key macroeconomic time series
 
-For supplementary reading, see :cite:`Sargent1987` or :cite:`CryerChan2008`.
+For supplementary reading, see :cite:`Sargent1987` or :cite:`CryerChan2008`
 
 
 
@@ -512,15 +512,6 @@ The model is as in equation :eq:`estspec_ar_dgp`, with :math:`\mu = 0`, :math:`\
 and 150 observations in each time series
 
 All periodograms are fit with the "hamming" window and window length of 65
-
-
-
-
-
-Exercise 3
-------------
-
-To be written.  The exercise will be to use the code from :ref:`this lecture <pd>` to download FRED data and generate periodograms for different kinds of macroeconomic data.
 
 
 

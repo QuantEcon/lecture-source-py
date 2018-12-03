@@ -247,7 +247,7 @@ To put this in the linear state space format we take :math:`x_t = \begin{bmatrix
 
 
 The matrix :math:`A` has the form of the *companion matrix* to the vector
-:math:`\begin{bmatrix}\phi_1 &  \phi_2 & \phi_3 & \phi_4 \end{bmatrix}`.
+:math:`\begin{bmatrix}\phi_1 &  \phi_2 & \phi_3 & \phi_4 \end{bmatrix}`
 
 The next figure shows dynamics of this process when
 
@@ -351,9 +351,9 @@ It is easy to check that :math:`A^4 = I`, which implies that :math:`x_t` is stri
     x_{t+4} = x_t
 
 
-Such an :math:`x_t` process can be used to model deterministic seasonals in quarterly time series.
+Such an :math:`x_t` process can be used to model deterministic seasonals in quarterly time series
 
-The *indeterministic* seasonal produces recurrent, but aperiodic, seasonal fluctuations.
+The *indeterministic* seasonal produces recurrent, but aperiodic, seasonal fluctuations
 
 
 
@@ -1269,7 +1269,7 @@ Under particular conditions, :math:`V_j` converges to
 
 Equation :eq:`eqob10` is an example of a *discrete Lyapunov* equation in the covariance matrix :math:`V_\infty`
 
-A sufficient condition for :math:`V_j` to converge is that the eigenvalues of :math:`A` be strictly less than one in modulus.
+A sufficient condition for :math:`V_j` to converge is that the eigenvalues of :math:`A` be strictly less than one in modulus
 
 Weaker sufficient conditions for convergence  associate eigenvalues equaling or exceeding one in modulus with elements of :math:`C` that equal :math:`0`
 

@@ -128,7 +128,7 @@ the Arrow-Debreu time :math:`0` price of a claim on one unit of consumption at d
 
 
 Thus, our scaled Arrow-Debreu price is the ordinary Arrow-Debreu price multiplied by the discount factor :math:`\beta^t` and divided
-by an appropriate probability.
+by an appropriate probability
 
 
 The budget constraint :eq:`lq_hc` requires that the present value of consumption be restricted to equal the present value of endowments, labor income and coupon payments on bond holdings

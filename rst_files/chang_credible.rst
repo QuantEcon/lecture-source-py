@@ -101,7 +101,7 @@ We start by reviewing notation
 For a sequence of scalars
 :math:`\vec z \equiv \{z_t\}_{t=0}^\infty`, let
 :math:`\vec z^t = (z_0,  \ldots , z_t)`,
-:math:`\vec z_t = (z_t, z_{t+1}, \ldots )`.
+:math:`\vec z_t = (z_t, z_{t+1}, \ldots )`
 
 An infinitely lived
 representative agent and an infinitely lived government exist at dates
@@ -679,7 +679,7 @@ our *outer hyperplane approximation algorithm* :
 
 4. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2
 
-**Step 1** simply creates a large initial set :math:`S_0`.
+**Step 1** simply creates a large initial set :math:`S_0`
 
 Given some set :math:`S_t`, **Step 2** then constructs the value
 :math:`BR(S_t)`

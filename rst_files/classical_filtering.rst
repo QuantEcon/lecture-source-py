@@ -478,7 +478,7 @@ or
 
 Second, the solution of the problem under uncertainty is obtained by
 replacing the terms on the right-hand side of the above expressions with
-their linear least squares predictors.
+their linear least squares predictors
 
 Using :eq:`eq_41` and :eq:`eq_43`, we have
 the following solution
@@ -571,7 +571,7 @@ We also have
 .. math::
     :label: eq_55
 
-    x_t = \sum^{t-1}_{j=0} L^{-1}_{t,t-j}\, \varepsilon_{t-j}\ .
+    x_t = \sum^{t-1}_{j=0} L^{-1}_{t,t-j}\, \varepsilon_{t-j}\
 
 
 Notice from :eq:`eq_55` that :math:`x_t` is in the space spanned by
@@ -860,7 +860,7 @@ quickly on a computer
 
 The last row of :math:`L^{-1}` gives the approximate Wold moving average coefficients
 
-This method can readily be generalized to multivariate systems.
+This method can readily be generalized to multivariate systems
 
 
 

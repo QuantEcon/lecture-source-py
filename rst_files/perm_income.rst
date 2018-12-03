@@ -170,7 +170,7 @@ where
 
 *  the :ref:`spectral radius <la_neumann_remarks>` of :math:`A` satisfies :math:`\rho(A) < \sqrt{1/\beta}`
 
-*  :math:`U` is a selection vector that pins down :math:`y_t` as a particular linear combination of components of :math:`z_t`.
+*  :math:`U` is a selection vector that pins down :math:`y_t` as a particular linear combination of components of :math:`z_t`
 
 The restriction on :math:`\rho(A)` prevents income from growing so fast that discounted geometric sums of some quadratic forms to be described below become infinite
 
@@ -184,7 +184,7 @@ Regarding preferences, we assume the quadratic utility function
 where :math:`\gamma` is a bliss level of consumption
 
 .. note::
-    Along with this quadratic utility specification, we allow consumption to be negative.  However, by choosing parameters appropriately, we can make the probability that the model generates negative consumption paths over finite time horizons as low as desired.
+    Along with this quadratic utility specification, we allow consumption to be negative.  However, by choosing parameters appropriately, we can make the probability that the model generates negative consumption paths over finite time horizons as low as desired
 
 Finally, we impose the *no Ponzi scheme* condition
 
@@ -695,7 +695,7 @@ Equation :eq:`pi_spr` can be rearranged to take the form
 .. math::
     :label: sprob77
 
-    (1-\beta) b_t + c_t = (1-\beta) \mathbb{E}_t \sum_{j=0}^\infty \beta^j y_{t+j}.
+    (1-\beta) b_t + c_t = (1-\beta) \mathbb{E}_t \sum_{j=0}^\infty \beta^j y_{t+j}
 
 
 Equation :eq:`sprob77`  asserts that the *cointegrating residual*  on the left side equals the conditional expectation of the geometric sum of future incomes on the right [#f8]_

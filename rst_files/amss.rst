@@ -113,7 +113,7 @@ In period :math:`t` and history :math:`s^t`, let
 
 That :math:`b_{t+1}(s^t)` is the same for all realizations of :math:`s_{t+1}` captures its *risk-free* character
 
-The market value at time :math:`t` of government debt maturing at time :math:`t+1` equals :math:`b_{t+1}(s^t)` divided by :math:`R_t(s^t)`.
+The market value at time :math:`t` of government debt maturing at time :math:`t+1` equals :math:`b_{t+1}(s^t)` divided by :math:`R_t(s^t)`
 
 The government’s budget constraint in period :math:`t` at history :math:`s^t` is
 
@@ -292,7 +292,7 @@ Depending on how the constraints  bind, these multipliers can be positive or neg
        &\;\geq\; (\leq)\;\, 0 \quad \text{if the constraint binds in this direction } 
        \\
        & \EE_{t} \sum_{j=0}^\infty \beta^j
-        { u_c(s^{t+j}) \over u_c(s^{t}) } \;z(s^{t+j}) \;\geq \;(\leq)\;\, b_t(s^{t-1}).
+        { u_c(s^{t+j}) \over u_c(s^{t}) } \;z(s^{t+j}) \;\geq \;(\leq)\;\, b_t(s^{t-1})
     \end{aligned}
 
 
@@ -849,7 +849,7 @@ triangle denote war
 
 
 
-How a Ramsey planner responds to  war depends on the structure of the asset market.
+How a Ramsey planner responds to  war depends on the structure of the asset market
 
 If it is able to trade state-contingent debt, then at time :math:`t=2`
 

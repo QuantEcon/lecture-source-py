@@ -313,7 +313,7 @@ It is convenient for us to introduce the following notation:
 
 -  :math:`s_t = g x_t`, an (asymptotically) stationary component
 
-We want to characterize and simulate components :math:`\tau_t, m_t, s_t` of the decomposition.
+We want to characterize and simulate components :math:`\tau_t, m_t, s_t` of the decomposition
 
 A convenient way to do this is to construct an appropriate instance of a :doc:`linear state space system <linear_models>` by using `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_
 

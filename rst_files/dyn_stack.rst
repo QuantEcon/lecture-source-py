@@ -142,7 +142,7 @@ These Euler equations summarize the forward-looking aspect of private agents' be
 When combined with a stability condition to be imposed below, the
 Euler equations
 summarize the private sector's best response to the
-sequence of actions by the government.
+sequence of actions by the government
 
 The government maximizes :eq:`new1_dyn_stack` by choosing sequences :math:`\{u_t, x_t, z_{t+1}\}_{t=0}^\infty` subject to :eq:`new30` and an initial condition for :math:`z_0`
 
@@ -163,7 +163,7 @@ as
     x_t =  \phi_1 z_t + \phi_2 z_{t+1} +  \phi_3 u_t + \phi_0 x_{t+1}
 
 
-where :math:`\phi_0 = \hat A_{22}^{-1} G_{22}`.
+where :math:`\phi_0 = \hat A_{22}^{-1} G_{22}`
 
 The models we study in this chapter typically satisfy
 
@@ -187,7 +187,7 @@ So we solve equation :eq:`eqn:xlawforward` forward to get
 
 
 In choosing :math:`u_t` for :math:`t \geq 1` at time :math:`0`, the government  takes into account how future :math:`z` and :math:`u` affect earlier
-:math:`x` through equation :eq:`bell101`.
+:math:`x` through equation :eq:`bell101`
 
 The lecture on :doc:`history dependent policies <hist_dep_policies>` analyzes an example about *Ramsey taxation* in which, as is typical in such problems, the last :math:`n_x` equations of :eq:`new3` or :eq:`new30` constitute
 *implementability constraints* that are formed by the Euler equations of a competitive fringe or private sector
@@ -311,7 +311,7 @@ where the maximization is subject to
     y^* = A y + B u
 
 
-and  :math:`y^*` denotes next period's value.
+and  :math:`y^*` denotes next period's value
 
 Substituting :math:`v(y) = - y'P y` into  Bellman equation :eq:`bell1_dyn_stack`  gives
 
@@ -380,8 +380,7 @@ which implies that
 .. math::
     :label:  king6x0
 
-    x_0 = - P_{22}^{-1} P_{21} z_0.
-
+    x_0 = - P_{22}^{-1} P_{21} z_0
 
 Summary
 -------
@@ -483,7 +482,7 @@ The shadow price :math:`\mu_{xt}` on the forward-looking variables :math:`x_t` e
 .. math::
     :label: eqnmux
 
-    \mu_{xt} = P_{21} z_t + P_{22} x_t.
+    \mu_{xt} = P_{21} z_t + P_{22} x_t
 
 
 So  :eq:`king6x0` is equivalent with
@@ -491,7 +490,7 @@ So  :eq:`king6x0` is equivalent with
 .. math::
     :label: mu0condition
 
-    \mu_{x0} = 0 .
+    \mu_{x0} = 0 
 
 
 A Large Firm With a Competitive Fringe

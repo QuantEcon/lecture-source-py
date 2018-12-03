@@ -183,7 +183,7 @@ In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` 
     b_0 + g_0 = \tau_0 (c_0 + g_0) + \frac{\bar b}{R_0}
 
 where :math:`R_0` is the gross interest rate for the Markov state :math:`s_0` that is assumed to prevail at time :math:`t =0`
-and :math:`\tau_0` is the time :math:`t=0` tax rate.
+and :math:`\tau_0` is the time :math:`t=0` tax rate
 
 
 In equation :eq:`eqn_AMSS2_10`, it is understood that
@@ -233,7 +233,7 @@ The analysis of Lucas and Stokey prevails once we make the following replacement
         u_{c,\ell} (c,\ell) &\sim 0 \\
         \end{aligned}
 
-With these understandings, equations :eq:`TS_barg10a` and :eq:`TS_barg11b` simplify in the case of the CRRA utility function.
+With these understandings, equations :eq:`TS_barg10a` and :eq:`TS_barg11b` simplify in the case of the CRRA utility function
 
 They become
 
@@ -303,7 +303,7 @@ We can reverse engineer a value :math:`b_0` of initial debt due   that renders t
 
 We accomplish this by recognizing that if the AMSS measurability constraints never bind, then the AMSS allocation and Ramsey plan is equivalent
 with that for a Lucas-Stokey economy in which for each period :math:`t \geq 0`, the government promises to pay the **same** state-contingent
-amount  :math:`\bar b` in each state tomorrow.
+amount  :math:`\bar b` in each state tomorrow
 
 This insight tells us to find a :math:`b_0` and other fundamentals for the Lucas-Stokey :cite:`LucasStokey1983` model that make the Ramsey planner
 want to borrow the same value :math:`\bar b` next period for all states and all dates
@@ -314,7 +314,7 @@ presented in :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`
 We use the following steps
 
 
-**Step 1:**  Pick an initial :math:`\Phi`.
+**Step 1:**  Pick an initial :math:`\Phi`
 
 **Step 2:** Given that :math:`\Phi`, jointly solve two versions of equation :eq:`amss2_TS_barg10` for :math:`c(s), s=1, 2` associated with the two values
 for :math:`g(s), s=1,2`
@@ -560,7 +560,7 @@ BEGS approximations of  limiting debt and convergence rate
 
 It is useful to link the outcome of our reverse engineering exercise to limiting approximations constructed by :cite:`BEGS1`
 
-:cite:`BEGS1` used a slightly different notation to represent a generalization of the AMSS model.
+:cite:`BEGS1` used a slightly different notation to represent a generalization of the AMSS model
 
 We'll introduce a version of their notation so that readers can quickly relate notation that appears in their key formulas to the notation
 that we have used
