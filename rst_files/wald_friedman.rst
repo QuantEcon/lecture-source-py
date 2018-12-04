@@ -283,7 +283,7 @@ Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we
 This reasoning suggests a decision rule such as the one shown in the figure
 
 .. figure:: /_static/figures/wald_dec_rule.png
-    :scale: 40%
+    :scale: 60%
     
 
 
@@ -383,15 +383,39 @@ The optimal decision rule is then
 Our aim is to compute the value function :math:`J`, and from it the associated cutoffs :math:`\alpha`
 and :math:`\beta`
 
-To make our computations simpler, we also note that :eq:`optdec` can be written as
+To make our computations simpler, using :eq:`optdec`, we can write the continuation value :math:`h(\pi)` as
 
 .. math::
     :label: optdec2
-
-    h(\pi) = c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \} \\
-    = c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
     
-This allows us to return the continuation value, and back out the stopping values
+    \begin{align}
+    h(\pi) &= c + \mathbb E [J(\pi')] \\
+    &= c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \} \\
+    &= c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    \end{align}
+    
+The equality
+
+.. math::
+    :label: funceq
+
+    h(\pi) = 
+    c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    
+can be understood as a functional equation, where :math:`h` is the unknown
+
+Using the functional equation, :eq:`funceq`, for the continuation value, we can back out
+optimal choices using the RHS of :eq:`optdec`
+
+This functional equation can be solved by taking an initial guess and iterating
+to find the fixed point
+
+In other words, we iterate with an operator :math:`Q`, where
+
+.. math::
+
+    Q h(\pi) = 
+    c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
 
 
 Implementation
@@ -427,31 +451,11 @@ First we will construct a class to store the parameters of the model
             self.z1 = np.random.beta(a1, b1, mc_size)
 
 
-To approximate the value function that solves Bellman equation :eq:`optdec`, we 
-use value function iteration 
-
-* For earlier examples of this technique see the :doc:`shortest path <short_path>`, 
-  :doc:`job search <mccall_model>` or :doc:`optimal growth <optgrowth>` lectures
-
 As in the :doc:`optimal growth lecture <optgrowth>`, to approximate a continuous value function
 
 * We iterate at a finite grid of possible values of :math:`\pi`
 
 * When we evaluate :math:`\mathbb E[J(\pi')]` between grid points, we use linear interpolation
-
-This means that to evaluate :math:`J(\pi)` where :math:`\pi` is not a grid point, we must use two points:
-
-* First, we use the largest of all the grid points smaller than :math:`\pi`, and call it :math:`\pi_i`
-
-* Second, we use the grid point immediately after :math:`\pi`, named :math:`\pi_{i+1}`, to approximate the function value as
-
-
-.. math::
-
-    J(\pi) = J(\pi_i) + (\pi - \pi_i) \frac{J(\pi_{i+1}) - J(\pi_i)}{\pi_{i+1} - \pi_{i}}
-
-
-In one dimension, you can think of this as simply drawing a line between each pair of points on the grid
 
 The function ``operator_factory`` returns the operator ``Q``
 
@@ -460,9 +464,9 @@ The function ``operator_factory`` returns the operator ``Q``
     def operator_factory(wf, parallel_flag=True):
         
         """
-        Returns a jitted version of the Bellman operator.
+        Returns a jitted version of the Q operator.
             
-        wf is an instance of the WaldFriedman class
+        * wf is an instance of the WaldFriedman class
         """
 
         c, π_grid = wf.c, wf.π_grid
@@ -483,9 +487,6 @@ The function ``operator_factory`` returns the operator ``Q``
 
         @njit(parallel=True)
         def Q(h):
-            """
-            The Bellman operator.
-            """
             h_new = np.empty_like(π_grid)
             h_func = lambda p: interp(π_grid, h, p)
 
@@ -522,7 +523,7 @@ To solve the model, we will iterate using ``Q`` to find the fixed point
                     print_skip=25):
         
         """
-        Compute the optimal value function
+        Compute the continuation value function
         
         * wf is an instance of WaldFriedman
         """
@@ -587,7 +588,7 @@ and plot these on our value function plot
 
     def find_cutoff_rule(wf, h):
         """
-        This function takes a value function and returns the corresponding
+        This function takes a continuation value function and returns the corresponding
         cutoffs of where you transition between continue and choosing a
         specific model
         """
