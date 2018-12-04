@@ -24,9 +24,12 @@ Co-authors: `Chase Coleman <https://github.com/cc7768>`__
 Overview
 =========
 
-This lecture describes a statistical decision problem encountered  by Milton Friedman and W. Allen Wallis during World War II when they were analysts at the U.S. Government's  Statistical Research Group at Columbia University  
+This lecture describes a statistical decision problem encountered  by Milton 
+Friedman and W. Allen Wallis during World War II when they were analysts at 
+the U.S. Government's  Statistical Research Group at Columbia University  
 
-This problem led Abraham Wald :cite:`Wald47` to formulate **sequential analysis**, an approach to statistical decision problems intimately related to dynamic programming
+This problem led Abraham Wald :cite:`Wald47` to formulate **sequential analysis**, 
+an approach to statistical decision problems intimately related to dynamic programming
 
 In this lecture, we apply dynamic programming algorithms to Friedman and Wallis and Wald's problem
 
@@ -50,9 +53,18 @@ Key ideas in play will be:
 
 -  A **uniformly most powerful test**
 
+We'll begin with some imports
+
+.. code-block:: python3
 
 
-
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.stats import beta
+    import quantecon as qe
+    from numba import njit, prange, vectorize
+    from interpolation import interp
+    from math import gamma
 
 Origin of the problem
 ======================
@@ -64,31 +76,36 @@ Statistical Research Group at Columbia University
 
 Let's listen to Milton Friedman tell us what happened
 
-"In order to understand the story, it is necessary to have an idea of a
-simple statistical problem, and of the standard procedure for dealing
-with it. The actual problem out of which sequential analysis grew will
-serve. The Navy has two alternative designs (say A and B) for a
-projectile. It wants to determine which is superior. To do so it
-undertakes a series of paired firings. On each round it assigns the
-value 1 or 0 to A accordingly as its performance is superior or inferio
-to that of B and conversely 0 or 1 to B. The Navy asks the statistician
-how to conduct the test and how to analyze the results.
+    In order to understand the story, it is necessary to have an idea of a
+    simple statistical problem, and of the standard procedure for dealing
+    with it. The actual problem out of which sequential analysis grew will
+    serve. The Navy has two alternative designs (say A and B) for a
+    projectile. It wants to determine which is superior. To do so it
+    undertakes a series of paired firings. On each round it assigns the
+    value 1 or 0 to A accordingly as its performance is superior or inferio
+    to that of B and conversely 0 or 1 to B. The Navy asks the statistician
+    how to conduct the test and how to analyze the results.
 
-"The standard statistical answer was to specify a number of firings (say
-1,000) and a pair of percentages (e.g., 53% and 47%) and tell the client
-that if A receives a 1 in more than 53% of the firings, it can be
-regarded as superior; if it receives a 1 in fewer than 47%, B can be
-regarded as superior; if the percentage is between 47% and 53%, neither
-can be so regarded.
+..
 
-"When Allen Wallis was discussing such a problem with (Navy) Captain
-Garret L. Schyler, the captain objected that such a test, to quote from
-Allen's account, may prove wasteful. If a wise and seasoned ordnance
-officer like Schyler were on the premises, he would see after the first
-few thousand or even few hundred [rounds] that the experiment need not
-be completed either because the new method is obviously inferior or
-because it is obviously superior beyond what was hoped for
-:math:`\ldots` "
+    The standard statistical answer was to specify a number of firings (say
+    1,000) and a pair of percentages (e.g., 53% and 47%) and tell the client
+    that if A receives a 1 in more than 53% of the firings, it can be
+    regarded as superior; if it receives a 1 in fewer than 47%, B can be
+    regarded as superior; if the percentage is between 47% and 53%, neither
+    can be so regarded.
+
+..
+
+    When Allen Wallis was discussing such a problem with (Navy) Captain
+    Garret L. Schyler, the captain objected that such a test, to quote from
+    Allen's account, may prove wasteful. If a wise and seasoned ordnance
+    officer like Schyler were on the premises, he would see after the first
+    few thousand or even few hundred [rounds] that the experiment need not
+    be completed either because the new method is obviously inferior or
+    because it is obviously superior beyond what was hoped for
+    :math:`\ldots`
+
 
 Friedman and Wallis struggled with the problem but, after realizing that
 they were not able to solve it,  described the problem to  Abraham Wald
@@ -109,50 +126,41 @@ A decision maker observes iid draws of a random variable :math:`z`
 
 He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z` 
 
-After a number of draws, also to be determined, he makes a decision as to which of the distributions is generating the draws he observers
+After a number of draws, also to be determined, he makes a decision as to 
+which of the distributions is generating the draws he observes
 
-To help formalize the problem, let :math:`x \in \{x_0, x_1\}` be a hidden state that indexes the two distributions:
-
-.. math::
-
-    \mathbb P\{z = v \mid x \}
-    = \begin{cases} 
-        f_0(v) & \mbox{if } x = x_0, \\
-        f_1(v) & \mbox{if } x = x_1
-    \end{cases} 
-
-
-Before observing any outcomes, the decision maker believes that the probability that :math:`x = x_0` is 
+He starts with prior
 
 .. math::
 
-    p_{-1} = 
-    \mathbb P \{ x=x_0 \mid \textrm{ no observations} \} \in (0, 1)
+    \pi_{-1} = 
+    \mathbb P \{ f = f_0 \mid \textrm{ no observations} \} \in (0, 1)
 
 
 After observing :math:`k+1` observations :math:`z_k, z_{k-1}, \ldots, z_0`, he updates this value to
 
 .. math::
 
-    p_k = \mathbb P \{ x = x_0 \mid z_k, z_{k-1}, \ldots, z_0 \},
-
+    \pi_k = \mathbb P \{ f = f_0 \mid z_k, z_{k-1}, \ldots, z_0 \}
 
 which is calculated recursively by applying Bayes' law:
 
 .. math::
 
-    p_{k+1} = \frac{ p_k f_0(z_{k+1})}{ p_k f_0(z_{k+1}) + (1-p_k) f_1 (z_{k+1}) },
+    \pi_{k+1} = \frac{ \pi_k f_0(z_{k+1})}{ \pi_k f_0(z_{k+1}) + (1-\pi_k) f_1 (z_{k+1}) },
     \quad k = -1, 0, 1, \ldots
 
 
-After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker believes that :math:`z_{k+1}` has probability distribution
+After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker believes 
+that :math:`z_{k+1}` has probability distribution
 
 .. math::
 
-    f(v) = p_k f_0(v) + (1-p_k) f_1 (v) 
+    f_{{\pi}_k} (v) = \pi_k f_0(v) + (1-\pi_k) f_1 (v) 
 
 
-This is a mixture of distributions :math:`f_0` and :math:`f_1`, with the weight on :math:`f_0` being the posterior probability that :math:`x = x_0` [#f1]_
+This is a mixture of distributions :math:`f_0` and :math:`f_1`, with the weight 
+on :math:`f_0` being the posterior probability that :math:`f = f_0` [#f1]_
 
 To help illustrate this kind of distribution, let's inspect some mixtures of beta distributions
 
@@ -165,58 +173,50 @@ The density of a beta probability distribution with parameters :math:`a` and :ma
     \Gamma(t) := \int_{0}^{\infty} x^{t-1} e^{-x} dx
 
 
-We'll discretize this distribution to make it more straightforward to work with
+The next figure shows two beta distributions in the top panel 
 
-The next figure shows two discretized beta distributions in the top panel 
-
-The bottom panel presents mixtures of these distributions, with various mixing probabilities :math:`p_k`
+The bottom panel presents mixtures of these distributions, with various mixing probabilities :math:`\pi_k`
 
 
 
 .. code-block:: ipython
 
-  import numpy as np
-  import matplotlib.pyplot as plt
-  %matplotlib inline
-  import scipy.stats as st
+    def beta_function_factory(a, b):
+
+        @vectorize
+        def p(x):
+            r = gamma(a + b) / (gamma(a) * gamma(b))
+            return r * x**(a-1) * (1 - x)**(b-1)
+        
+        @njit
+        def p_rvs():
+            return np.random.beta(a, b)
+
+        return p, p_rvs
 
 
-  def make_distribution_plots(f0, f1):
-      """
-      This generates the figure that shows the initial versions
-      of the distributions and plots their combinations.
-      """
-      fig, axes = plt.subplots(2, figsize=(10, 8))
+    f0, _ = beta_function_factory(1, 1)
+    f1, _ = beta_function_factory(9, 9)
+    grid = np.linspace(0, 1, 50)
 
-      axes[0].set_title("Original Distributions")
-      axes[0].plot(f0, lw=2, label="$f_0$")
-      axes[0].plot(f1, lw=2, label="$f_1$")
+    fig, axes = plt.subplots(2, figsize=(10, 8))
 
-      axes[1].set_title("Mixtures")
-      for p in 0.25, 0.5, 0.75:
-          y = p * f0 + (1 - p) * f1
-          axes[1].plot(y, lw=2, label=f"$p_k$ = {p}")
+    axes[0].set_title("Original Distributions")
+    axes[0].plot(grid, f0(grid), lw=2, label="$f_0$")
+    axes[0].plot(grid, f1(grid), lw=2, label="$f_1$")
 
-      for ax in axes:
-          ax.legend(fontsize=14)
-          ax.set_xlabel("$k$ values", fontsize=14)
-          ax.set_ylabel("probability of $z_k$", fontsize=14)
-          ax.set_ylim(0, 0.07)
+    axes[1].set_title("Mixtures")
+    for π in 0.25, 0.5, 0.75:
+        y = π * f0(grid) + (1 - π) * f1(grid)
+        axes[1].plot(y, lw=2, label=f"$\pi_k$ = {π}")
 
-      plt.tight_layout()
-      plt.show()
+    for ax in axes:
+        ax.legend()
+        ax.set(xlabel="$z$ values", ylabel="probability of $z_k$")
 
-
-  p_m1 = np.linspace(0, 1, 50)
-  f0 = np.clip(st.beta.pdf(p_m1, a=1, b=1), 1e-8, np.inf)
-  f0 = f0 / np.sum(f0)
-  f1 = np.clip(st.beta.pdf(p_m1, a=9, b=9), 1e-8, np.inf)
-  f1 = f1 / np.sum(f1)
-
-  make_distribution_plots(f0, f1)
+    plt.tight_layout()
+    plt.show()
   
-
-
 
 Losses and costs
 -------------------
@@ -225,9 +225,9 @@ After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker
 chooses among three distinct actions:
 
 
--  He decides that :math:`x = x_0` and draws no more :math:`z`'s
+-  He decides that :math:`f = f_0` and draws no more :math:`z`'s
 
--  He decides that :math:`x = x_1` and draws no more :math:`z`'s
+-  He decides that :math:`f = f_1` and draws no more :math:`z`'s
 
 -  He postpones deciding now and instead chooses to draw a
    :math:`z_{k+1}`
@@ -235,30 +235,28 @@ chooses among three distinct actions:
 Associated with these three actions, the decision maker can suffer three
 kinds of losses:
 
--  A loss :math:`L_0` if he decides :math:`x = x_0` when actually
-   :math:`x=x_1`
+-  A loss :math:`L_0` if he decides :math:`f = f_0` when actually
+   :math:`f=f_1`
 
--  A loss :math:`L_1` if he decides :math:`x = x_1` when actually
-   :math:`x=x_0`
+-  A loss :math:`L_1` if he decides :math:`f = f_1` when actually
+   :math:`f=f_0`
 
 -  A cost :math:`c` if he postpones deciding and chooses instead to draw
    another :math:`z`
 
 
 
-
-
 Digression on type I and type II errors
 ----------------------------------------
 
-If we regard  :math:`x=x_0` as a null hypothesis and :math:`x=x_1` as an alternative hypothesis,
-then :math:`L_1` and :math:`L_0` are losses associated with two types of statistical errors.
+If we regard  :math:`f=f_0` as a null hypothesis and :math:`f=f_1` as an alternative hypothesis,
+then :math:`L_1` and :math:`L_0` are losses associated with two types of statistical errors
 
 - a type I error is an incorrect rejection of a true null hypothesis (a "false positive")
 
 - a type II error is a failure to reject a false null hypothesis (a "false negative")
 
-So when we treat :math:`x=x_0` as the null hypothesis
+So when we treat :math:`f=f_0` as the null hypothesis
 
 -  We can think of :math:`L_1` as the loss associated with a type I
    error
@@ -274,18 +272,18 @@ Intuition
 
 Let's try to guess what an optimal decision rule might look like before we go further
 
-Suppose at some given point in time that :math:`p` is close to 1
+Suppose at some given point in time that :math:`\pi` is close to 1
 
-Then our prior beliefs and the evidence so far point strongly to :math:`x = x_0` 
+Then our prior beliefs and the evidence so far point strongly to :math:`f = f_0` 
 
-If, on the other hand, :math:`p` is close to 0, then :math:`x = x_1` is strongly favored
+If, on the other hand, :math:`\pi` is close to 0, then :math:`f = f_1` is strongly favored
 
-Finally, if :math:`p` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction
+Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction
 
 This reasoning suggests a decision rule such as the one shown in the figure
 
 .. figure:: /_static/figures/wald_dec_rule.png
-    :scale: 40%
+    :scale: 60%
     
 
 
@@ -301,68 +299,60 @@ A Bellman equation
 -------------------
 
 
-Let :math:`J(p)` be the total loss for a decision maker with current belief :math:`p` who chooses optimally
+Let :math:`J(\pi)` be the total loss for a decision maker with current belief :math:`\pi` who chooses optimally
 
 With some thought, you will agree that :math:`J` should satisfy the Bellman equation
 
 .. math::
     :label: new1
 
-    J(p) = 
+    J(\pi) = 
         \min 
         \left\{ 
-            (1-p) L_0, \; p L_1, \; 
-            c + \mathbb E [ J (p') ]
+            (1-\pi) L_0, \; \pi L_1, \; 
+            c + \mathbb E [ J (\pi') ]
         \right\} 
 
 
-where :math:`p'` is the random variable defined by
+where :math:`\pi'` is the random variable defined by
 
 .. math::
 
-    p' = \frac{ p f_0(z)}{ p f_0(z) + (1-p) f_1 (z) }
+    \pi' = \kappa(z', \pi) = \frac{ \pi f_0(z')}{ \pi f_0(z') + (1-\pi) f_1 (z') }
 
 
-when :math:`p` is fixed and :math:`z` is drawn from the current best guess, which is the distribution :math:`f` defined by
+when :math:`\pi` is fixed and :math:`z'` is drawn from the current best guess, which is the distribution :math:`f` defined by
 
 .. math::
 
-    f(v) = p f_0(v) + (1-p) f_1 (v) 
+    f_{\pi}(v) = \pi f_0(v) + (1-\pi) f_1 (v) 
 
 
 In the Bellman equation, minimization is over three actions: 
 
-#. accept :math:`x_0` 
-#. accept :math:`x_1` 
-#. postpone deciding and draw again
-
-Let
-
-.. math::
-
-    A(p) 
-    := \mathbb E [ J (p') ]   
+#. Accept the hypothesis that :math:`f = f_0` 
+#. Accept the hypothesis that :math:`f = f_1` 
+#. Postpone deciding and draw again
 
 
-Then we can represent the  Bellman equation as
+We can represent the  Bellman equation as
 
 .. math::
+    :label: optdec
 
-    J(p) = 
-    \min \left\{ (1-p) L_0, \; p L_1, \; c + A(p) \right\} 
+    J(\pi) = 
+    \min \left\{ (1-\pi) L_0, \; \pi L_1, \; h(\pi) \right\} 
 
+where :math:`\pi \in [0,1]` and
 
-where :math:`p \in [0,1]`
+-  :math:`(1-\pi) L_0` is the expected loss associated with accepting
+   :math:`f_0` (i.e., the cost of making a type II error)
 
-Here
+-  :math:`\pi L_1` is the expected loss associated with accepting
+   :math:`f_1` (i.e., the cost of making a type I error)
 
--  :math:`(1-p) L_0` is the expected loss associated with accepting
-   :math:`x_0` (i.e., the cost of making a type II error)
-
--  :math:`p L_1` is the expected loss associated with accepting
-   :math:`x_1` (i.e., the cost of making a type I error)
-
--  :math:`c + A(p)` is the expected cost associated with drawing one more :math:`z`
+-  :math:`h(\pi) :=  c + \mathbb E [J(\pi')]` the continuation value; i.e.,
+   the expected cost associated with drawing one more :math:`z`
 
 
 
@@ -370,238 +360,294 @@ The optimal decision rule is characterized by two numbers :math:`\alpha, \beta \
 
 .. math::
 
-    (1- p) L_0 < \min \{ p L_1, c + A(p) \}  \textrm { if } p \geq \alpha  
+    (1- \pi) L_0 < \min \{ \pi L_1, c + \mathbb E [J(\pi')] \}  \textrm { if } \pi \geq \alpha  
 
 
 and
 
 .. math::
 
-    p L_1 < \min \{ (1-p) L_0,  c + A(p) \} \textrm { if } p \leq \beta 
+
+    \pi L_1 < \min \{ (1-\pi) L_0,  c + \mathbb E [J(\pi')] \} \textrm { if } \pi \leq \beta 
 
 
 The optimal decision rule is then
 
 .. math::
 
-    \textrm { accept } x=x_0 \textrm{ if } p \geq \alpha \\
-    \textrm { accept } x=x_1 \textrm{ if } p \leq \beta \\
-    \textrm { draw another }  z \textrm{ if }  \beta \leq p \leq \alpha 
+    \textrm { accept } f=f_0 \textrm{ if } \pi \geq \alpha \\
+    \textrm { accept } f=f_1 \textrm{ if } \pi \leq \beta \\
+    \textrm { draw another }  z \textrm{ if }  \beta \leq \pi \leq \alpha 
 
 
 Our aim is to compute the value function :math:`J`, and from it the associated cutoffs :math:`\alpha`
 and :math:`\beta`
 
-One sensible approach is to write the three components of :math:`J`
-that appear on the right side of the Bellman equation as separate functions 
+To make our computations simpler, using :eq:`optdec`, we can write the continuation value :math:`h(\pi)` as
 
-Later, doing this will help us obey **the don't repeat yourself (DRY)** golden rule of coding 
+.. math::
+    :label: optdec2
+    
+    \begin{align}
+    h(\pi) &= c + \mathbb E [J(\pi')] \\
+    &= c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \} \\
+    &= c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    \end{align}
+    
+The equality
 
+.. math::
+    :label: funceq
+
+    h(\pi) = 
+    c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    
+can be understood as a functional equation, where :math:`h` is the unknown
+
+Using the functional equation, :eq:`funceq`, for the continuation value, we can back out
+optimal choices using the RHS of :eq:`optdec`
+
+This functional equation can be solved by taking an initial guess and iterating
+to find the fixed point
+
+In other words, we iterate with an operator :math:`Q`, where
+
+.. math::
+
+    Q h(\pi) = 
+    c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
 
 
 Implementation
 ==================
 
-Let's code this problem up and solve it
+First we will construct a class to store the parameters of the model
 
-To approximate the value function that solves Bellman equation :eq:`new1`, we 
-use value function iteration 
+.. code-block:: python3
+        
+    class WaldFriedman:
 
-* For earlier examples of this technique see the :doc:`shortest path <short_path>`, :doc:`job search <mccall_model>` or :doc:`optimal growth <optgrowth>` lectures
+        def __init__(self,
+                     c=1.25,         # Cost of another draw
+                     a0=1,
+                     b0=1,
+                     a1=3,
+                     b1=1.2,
+                     L0=25,          # Cost of selecting f0 when f1 is true
+                     L1=25,          # Cost of selecting f1 when f0 is true
+                     π_grid_size=200,
+                     mc_size=1000):
+
+            self.c, self.π_grid_size = c, π_grid_size
+            self.L0, self.L1 = L0, L1
+            self.π_grid = np.linspace(0, 1, π_grid_size)
+            self.mc_size = mc_size
+
+            # Set up distributions
+            self.f0, self.f0_rvs = beta_function_factory(a0, b0)
+            self.f1, self.f1_rvs = beta_function_factory(a1, b1)
+
+            self.z0 = np.random.beta(a0, b0, mc_size)
+            self.z1 = np.random.beta(a1, b1, mc_size)
+
 
 As in the :doc:`optimal growth lecture <optgrowth>`, to approximate a continuous value function
 
-* We iterate at a finite grid of possible values of :math:`p`
+* We iterate at a finite grid of possible values of :math:`\pi`
 
-* When we evaluate :math:`A(p)` between grid points, we use linear interpolation
+* When we evaluate :math:`\mathbb E[J(\pi')]` between grid points, we use linear interpolation
 
-This means that to evaluate :math:`J(p)` where :math:`p` is not a grid point, we must use two points:
-
-* First, we use the largest of all the grid points smaller than :math:`p`, and call it :math:`p_i`
-
-* Second, we use the grid point immediately after :math:`p`, named :math:`p_{i+1}`, to approximate the function value as
-
-.. math::
-
-    J(p) = J(p_i) + (p - p_i) \frac{J(p_{i+1}) - J(p_i)}{p_{i+1} - p_{i}}
-
-
-In one dimension, you can think of this as simply drawing a line between each pair of points on the grid
-
-Here's the code
-
-.. literalinclude:: /_static/code/wald_friedman/wf_first_pass.py
-
-
-
-The distance column shows the maximal distance between successive iterates
-
-This converges to zero quickly, indicating a successful iterative procedure
-
-Iteration terminates when the distance falls below some threshold
-
-
-A more sophisticated implementation
--------------------------------------
-
-Now for some gentle criticisms of the preceding code 
-
-By writing the code in terms of functions, we have to pass around
-some things that are constant throughout the problem
-
-* :math:`c`, :math:`f_0`, :math:`f_1`, :math:`L_0`, and :math:`L_1`
-
-So now let's turn our simple script into a class
-
-This will allow us to simplify the function calls and make the code more reusable
-
-
-
-We shall construct a class that 
-
-* stores all of our parameters for us internally 
-  
-* incorporates many of the same functions that we used above
-
-* allows us, in addition, to simulate draws and the decision process under different prior beliefs
-    
-
-
-.. literalinclude:: /_static/code/wald_friedman/wald_class.py
-
-Now let's use our class to solve Bellman equation :eq:`new1` and verify that it gives similar output
-
-
+The function ``operator_factory`` returns the operator ``Q``
 
 .. code-block:: python3
 
-    # Set up distributions
-    p_m1 = np.linspace(0, 1, 50)
-    f0 = np.clip(st.beta.pdf(p_m1, a=1, b=1), 1e-8, np.inf)
-    f0 = f0 / np.sum(f0)
-    f1 = np.clip(st.beta.pdf(p_m1, a=9, b=9), 1e-8, np.inf)
-    f1 = f1 / np.sum(f1)
+    def operator_factory(wf, parallel_flag=True):
+        
+        """
+        Returns a jitted version of the Q operator.
+            
+        * wf is an instance of the WaldFriedman class
+        """
 
-    # Create an instance
-    wf = WaldFriedman(0.5, 5.0, 5.0, f0, f1, m=251)
+        c, π_grid = wf.c, wf.π_grid
+        L0, L1 = wf.L0, wf.L1
+        f0, f1 = wf.f0, wf.f1
+        z0, z1 = wf.z0, wf.z1
+        mc_size = wf.mc_size
 
-    # Compute the value function
-    wfJ = qe.compute_fixed_point(wf.bellman_operator, np.zeros(251),
-                                 error_tol=1e-6, verbose=True, print_skip=5)
+        @njit
+        def κ(z, π):
+            """
+            Updates π using Bayes' rule and the current observation z.
+            """
+            π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
+            π_new = π_f0 / (π_f0 + π_f1)
+
+            return π_new
+
+        @njit(parallel=True)
+        def Q(h):
+            h_new = np.empty_like(π_grid)
+            h_func = lambda p: interp(π_grid, h, p)
+
+            for i in prange(len(π_grid)):
+                π = π_grid[i]
+
+                # Find the expected value of J by integrating over z
+                integral_f0, integral_f1 = 0, 0
+                for m in range(mc_size):
+                    π_0 = κ(z0[m], π)  # Draw z from f0 and update π
+                    integral_f0 += min((1 - π_0) * L0, π_0 * L1, h_func(π_0))
+
+                    π_1 = κ(z1[m], π)  # Draw z from f1 and update π
+                    integral_f1 += min((1 - π_1) * L0, π_1 * L1, h_func(π_1))
+
+                integral = (π * integral_f0 + (1 - π) * integral_f1) / mc_size
+
+                h_new[i] = c + integral
+
+            return h_new
+
+        return Q
 
 
+To solve the model, we will iterate using ``Q`` to find the fixed point
 
-We get the same output in terms of distance
+.. code-block:: python3
 
-      
+    def solve_model(wf,
+                    use_parallel=True,
+                    tol=1e-4,
+                    max_iter=1000,
+                    verbose=True,
+                    print_skip=25):
+        
+        """
+        Compute the continuation value function
+        
+        * wf is an instance of WaldFriedman
+        """
 
+        Q = operator_factory(wf, parallel_flag=use_parallel)
 
-    
-The approximate value functions produced are also the same
+        # Set up loop
+        h = np.zeros(len(wf.π_grid))
+        i = 0
+        error = tol + 1
 
-Rather than discuss this further, let's go ahead and use our code to generate some results
+        while i < max_iter and error > tol:
+            h_new = Q(h)
+            error = np.max(np.abs(h - h_new))
+            i += 1
+            if verbose and i % print_skip == 0:
+                print(f"Error at iteration {i} is {error}.")
+            h = h_new
 
+        if i == max_iter:
+            print("Failed to converge!")
+
+        if verbose and i < max_iter:
+            print(f"\nConverged in {i} iterations.")
+
+        return h_new
 
 
 Analysis
 =====================
 
-Now that our routines are working, let's inspect the solutions
+Let's inspect the model's solutions
 
-We'll start with the following parameterization
-
-
+We will be using the default parametization with distributions like so
 
 .. code-block:: python3
 
-  def analysis_plot(c=1.25, L0=25, L1=25, a0=2.5, b0=2.0, a1=2.0, b1=2.5, m=25):
-      
-      '''
-      c: Cost of another draw
-      L0: Cost of selecting x0 when x1 is true
-      L1: Cost of selecting x1 when x0 is true
-      a0, b0: Parameters for f0 (beta distribution)
-      a1, b1: Parameters for f1 (beta distribution)
-      m: Size of grid
-      '''
+    wf = WaldFriedman()
 
-      f0 = np.clip(st.beta.pdf(np.linspace(0, 1, m), a=a0, b=b0), 1e-6, np.inf)
-      f0 = f0 / np.sum(f0)
-      f1 = np.clip(st.beta.pdf(np.linspace(0, 1, m), a=a1, b=b1), 1e-6, np.inf)
-      f1 = f1 / np.sum(f1)  # Make sure sums to 1
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(wf.f0(grid), label="$f_0$")
+    ax.plot(wf.f1(grid), label="$f_1$")
+    ax.set(ylabel="probability of $z_k$", xlabel="$k$", title="Distributions")
+    ax.legend()
 
-      # Create an instance of our WaldFriedman class
-      wf = WaldFriedman(c, L0, L1, f0, f1, m=m)
-      # Solve using qe's `compute_fixed_point` function
-      J = qe.compute_fixed_point(wf.bellman_operator, np.zeros(m),
-                                 error_tol=1e-7, verbose=False,
-                                 print_skip=10, max_iter=500)
-      lb, ub = wf.find_cutoff_rule(J)
+    plt.show()
 
-      # Get draws
-      ndraws = 500
-      cdist, tdist = wf.stopping_dist(ndraws=ndraws)
-
-      fig, ax = plt.subplots(2, 2, figsize=(12, 9))
-
-      ax[0, 0].plot(f0, label="$f_0$")
-      ax[0, 0].plot(f1, label="$f_1$")
-      ax[0, 0].set(ylabel="probability of $z_k$", xlabel="$k$", title="Distributions")
-      ax[0, 0].legend()
-
-      ax[0, 1].plot(wf.pgrid, J)
-      ax[0, 1].annotate(r"$\beta$", xy=(lb + 0.025, 0.5), size=14)
-      ax[0, 1].annotate(r"$\alpha$", xy=(ub + 0.025, 0.5), size=14)
-      ax[0, 1].vlines(lb, 0.0, wf.payoff_choose_f1(lb), linestyle="--")
-      ax[0, 1].vlines(ub, 0.0, wf.payoff_choose_f0(ub), linestyle="--")
-      ax[0, 1].set(ylim=(0, 0.5 * max(L0, L1)), ylabel="cost", 
-                         xlabel="$p_k$", title="Value function $J$")
-
-      # Histogram the stopping times
-      ax[1, 0].hist(tdist, bins=np.max(tdist))
-      ax[1, 0].set_title(f"Stopping times over {ndraws} replications")
-      ax[1, 0].set(xlabel="time", ylabel="number of stops")
-      ax[1, 0].annotate(f"mean = {np.mean(tdist)}", xy=(max(tdist) / 2, 
-                        max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
-
-      ax[1, 1].hist(cdist, bins=2)
-      ax[1, 1].set_title(f"Correct decisions over {ndraws} replications")
-      ax[1, 1].annotate(f"% correct = {np.mean(cdist)}", 
-                        xy=(0.05, ndraws / 2))
-
-      plt.tight_layout()
-      plt.show()
-      
-  analysis_plot()
-
- 
-
-
-The code to generate this figure can be found in `wald_solution_plots.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/wald_friedman/wald_solution_plots.py>`__
 
 Value Function
 -----------------
 
-In the top left subfigure we have the two beta distributions, :math:`f_0` and :math:`f_1`
+To solve the model, we will call our ``solve_model`` function
 
-In the top right we have corresponding value function :math:`J`
+.. code-block:: python3
 
-It equals :math:`p L_1` for :math:`p \leq \beta`, and :math:`(1-p )L_0` for :math:`p
+    h_star = solve_model(wf)  # solve the model
+
+We will also set up a function to compute the cutoffs :math:`\alpha` and :math:`\beta`
+and plot these on our value function plot
+
+.. code-block:: python3
+
+    def find_cutoff_rule(wf, h):
+        """
+        This function takes a continuation value function and returns the corresponding
+        cutoffs of where you transition between continue and choosing a
+        specific model
+        """
+        π_grid = wf.π_grid
+        L0, L1 = wf.L0, wf.L1
+
+        # Evaluate cost at all points on grid for choosing a model
+        payoff_f0 = (1 - π_grid) * L0
+        payoff_f1 = π_grid * L1
+
+        # The cutoff points can be found by differencing these costs with
+        # the Bellman equation (J is always less than or equal to p_c_i)
+        β = π_grid[np.searchsorted(payoff_f1 - h, 1e-10) - 1]
+        α = π_grid[np.searchsorted(h - payoff_f0, -1e-10)]
+
+        return (β, α)
+
+    β, α = find_cutoff_rule(wf, h_star)
+    cost_L0 = (1 - wf.π_grid) * wf.L0
+    cost_L1 = wf.π_grid * wf.L1
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    ax.plot(wf.π_grid, h_star, label='continuation value')
+    ax.plot(wf.π_grid, cost_L1, label='choose f1')
+    ax.plot(wf.π_grid, cost_L0, label='choose f0')
+    ax.plot(wf.π_grid, np.amin(np.column_stack([h_star, cost_L0, cost_L1]), axis=1),
+            lw=15, alpha=0.1, color='b', label='minimum cost')
+
+    ax.annotate(r"$\beta$", xy=(β + 0.01, 0.5), fontsize=14)
+    ax.annotate(r"$\alpha$", xy=(α + 0.01, 0.5), fontsize=14)
+
+    plt.vlines(β, 0, β * wf.L0, linestyle="--")
+    plt.vlines(α, 0, (1 - α) * wf.L1, linestyle="--")
+
+    ax.set(xlim=(0, 1), ylim=(0, 0.5 * max(wf.L0, wf.L1)), ylabel="cost",
+           xlabel="$\pi$", title="Value function")
+
+    plt.legend(borderpad=1.1)
+    plt.show()
+
+    
+The value function equals :math:`\pi L_1` for :math:`\pi \leq \beta`, and :math:`(1-\pi )L_0` for :math:`\pi
 \geq \alpha` 
 
 The slopes of the two linear pieces of the value function are determined by :math:`L_1`
 and :math:`- L_0`
 
 The value function is smooth in the interior region, where the posterior
-probability assigned to :math:`f_0` is in the indecisive region :math:`p \in (\beta, \alpha)`
+probability assigned to :math:`f_0` is in the indecisive region :math:`\pi \in (\beta, \alpha)`
 
-The decision maker continues to sample until the probability that he attaches to model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
+The decision maker continues to sample until the probability that he attaches to 
+model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
 
 
 Simulations
 -----------------
 
-The bottom two subfigures show the outcomes of 500 simulations of the decision process
+The next figure shows the outcomes of 500 simulations of the decision process
 
 On the left is a histogram of the stopping times, which equal the number of draws of :math:`z_k` required to make a decision 
 
@@ -611,6 +657,105 @@ On the right is the fraction of correct decisions at the stopping time
 
 In this case the decision maker is correct 80% of the time
 
+.. code-block:: python3
+
+    def simulate(wf, true_dist, h_star, π_0=0.5):
+        """
+        This function takes an initial condition and simulates until it
+        stops (when a decision is made).
+        """
+
+        f0, f1 = wf.f0, wf.f1
+        f0_rvs, f1_rvs = wf.f0_rvs, wf.f1_rvs
+        π_grid = wf.π_grid
+
+        def κ(z, π):
+            """
+            Updates π using Bayes' rule and the current observation z.
+            """
+            π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
+            π_new = π_f0 / (π_f0 + π_f1)
+
+            return π_new
+
+        if true_dist == "f0":
+            f, f_rvs = wf.f0, wf.f0_rvs
+        elif true_dist == "f1":
+            f, f_rvs = wf.f1, wf.f1_rvs
+
+        # Find cutoffs
+        β, α = find_cutoff_rule(wf, h_star)
+
+        # Initialize a couple useful variables
+        decision_made = False
+        π = π_0
+        t = 0
+
+        while decision_made is False:
+            # Maybe should specify which distribution is correct one so that
+            # the draws come from the "right" distribution
+            z = f_rvs()
+            t = t + 1
+            π = κ(z, π)
+            if π < β:
+                decision_made = True
+                decision = 1
+            elif π > α:
+                decision_made = True
+                decision = 0
+
+        if true_dist == "f0":
+            if decision == 0:
+                correct = True
+            else:
+                correct = False
+
+        elif true_dist == "f1":
+            if decision == 1:
+                correct = True
+            else:
+                correct = False
+
+        return correct, π, t
+
+    def stopping_dist(wf, h_star, ndraws=250, true_dist="f0"):
+        """
+        Simulates repeatedly to get distributions of time needed to make a
+        decision and how often they are correct.
+        """
+
+        tdist = np.empty(ndraws, int)
+        cdist = np.empty(ndraws, bool)
+
+        for i in range(ndraws):
+            correct, π, t = simulate(wf, true_dist, h_star)
+            tdist[i] = t
+            cdist[i] = correct
+
+        return cdist, tdist
+
+    def simulation_plot(wf):
+        h_star = solve_model(wf)
+        ndraws = 500
+        cdist, tdist = stopping_dist(wf, h_star, ndraws)
+
+        fig, ax = plt.subplots(1, 2, figsize=(16, 5))
+
+        ax[0].hist(tdist, bins=np.max(tdist))
+        ax[0].set_title(f"Stopping times over {ndraws} replications")
+        ax[0].set(xlabel="time", ylabel="number of stops")
+        ax[0].annotate(f"mean = {np.mean(tdist)}", xy=(max(tdist) / 2,
+                       max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
+
+        ax[1].hist(cdist, bins=2)
+        ax[1].set_title(f"Correct decisions over {ndraws} replications")
+        ax[1].annotate(f"% correct = {np.mean(cdist)}",
+                       xy=(0.05, ndraws / 2))
+
+        plt.show()
+
+    simulation_plot(wf)
+    
 
 Comparative statics
 ----------------------
@@ -626,19 +771,12 @@ Before you look, think about what will happen:
 -  Will he make decisions sooner or later?
 
 
-
 .. code-block:: python3
 
-  analysis_plot(c=2.5)
-  
+    wf = WaldFriedman(c=2.5)
+    simulation_plot(wf)
 
-
-
-Notice what happens
-
-The stopping times dropped dramatically!
-
-Increased cost per draw has induced the decision maker usually to take only 1 or 2 draws before deciding
+Increased cost per draw has induced the decision maker to take less draws before deciding
 
 Because he decides with less, the percentage of time he is correct drops
 
@@ -651,15 +789,20 @@ A notebook implementation
 
 
 
-To facilitate comparative statics, we provide a `Jupyter notebook <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/Wald_Friedman.ipynb>`__ that generates the same plots, but with sliders
+To facilitate comparative statics, we provide 
+a `Jupyter notebook <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/Wald_Friedman.ipynb>`__ that 
+generates the same plots, but with sliders
 
 
 
 With these sliders you can adjust parameters and immediately observe
 
-*  effects on the smoothness of the value function in the indecisive middle range as we increase the number of grid points in the piecewise linear  approximation.
+*  effects on the smoothness of the value function in the indecisive middle range 
+   as we increase the number of grid points in the piecewise linear  approximation
 
-* effects of different settings for the cost parameters :math:`L_0, L_1, c`, the parameters of two beta distributions :math:`f_0` and :math:`f_1`, and the number of points and linear functions :math:`m` to use in the piece-wise continuous approximation to the value function.
+* effects of different settings for the cost parameters :math:`L_0, L_1, c`, the 
+  parameters of two beta distributions :math:`f_0` and :math:`f_1`, and the number 
+  of points and linear functions :math:`m` to use in the piece-wise continuous approximation to the value function
 
 * various simulations from :math:`f_0` and associated distributions of waiting times to making a decision
 
@@ -708,30 +851,30 @@ Neyman-Pearson approach to hypothesis testing
 Wald frames the problem as making a decision about a probability
 distribution that is partially known 
 
-(You have to assume that *something* is already known in order to state a well posed problem.
-Usually, *something* means *a lot*.)
+(You have to assume that *something* is already known in order to state a well 
+posed problem -- usually, *something* means *a lot*)
 
 By limiting  what is unknown, Wald uses the following simple structure
-to illustrate the main ideas.
+to illustrate the main ideas:
 
 -  a decision maker wants to decide which of two distributions
    :math:`f_0`, :math:`f_1` govern an i.i.d. random variable :math:`z`
 
 -  The null hypothesis :math:`H_0` is the statement that :math:`f_0`
-   governs the data.
+   governs the data
 
 -  The alternative hypothesis :math:`H_1` is the statement that
-   :math:`f_1` governs the data.
+   :math:`f_1` governs the data
 
 -  The problem is to devise and analyze a test of hypothesis
    :math:`H_0` against the alternative hypothesis :math:`H_1` on the
    basis of a sample of a fixed number :math:`n` independent
    observations :math:`z_1, z_2, \ldots, z_n` of the random variable
-   :math:`z`.
+   :math:`z`
 
 To quote Abraham Wald,
 
--  A test procedure leading to the acceptance or rejection of the
+   A test procedure leading to the acceptance or rejection of the
    hypothesis in question is simply a rule specifying, for each possible
    sample of size :math:`n`, whether the hypothesis should be accepted
    or rejected on the basis of the sample. This may also be expressed as
@@ -747,7 +890,7 @@ To quote Abraham Wald,
 
 Let's listen to Wald longer:
 
--  As a basis for choosing among critical regions the following
+   As a basis for choosing among critical regions the following
    considerations have been advanced by Neyman and Pearson: In accepting
    or rejecting :math:`H_0` we may commit errors of two kinds. We commit
    an error of the first kind if we reject :math:`H_0` when it is true;
@@ -769,7 +912,7 @@ Let's listen to Wald longer:
 Let's listen carefully to how Wald applies a law of large numbers to
 interpret :math:`\alpha` and :math:`\beta`:
 
--  The probabilities :math:`\alpha` and :math:`\beta` have the
+   The probabilities :math:`\alpha` and :math:`\beta` have the
    following important practical interpretation: Suppose that we draw a
    large number of samples of size :math:`n`. Let :math:`M` be the
    number of such samples drawn. Suppose that for each of these
@@ -791,11 +934,11 @@ interpret :math:`\alpha` and :math:`\beta`:
 
 The quantity :math:`\alpha` is called the *size* of the critical region,
 and the quantity :math:`1-\beta` is called the *power* of the critical
-region.
+region
 
 Wald notes that
 
--  one critical region :math:`W` is more desirable than another if it
+   one critical region :math:`W` is more desirable than another if it
    has smaller values of :math:`\alpha` and :math:`\beta`. Although
    either :math:`\alpha` or :math:`\beta` can be made arbitrarily small
    by a proper choice of the critical region :math:`W`, it is possible
@@ -804,7 +947,7 @@ Wald notes that
 
 Wald summarizes Neyman and Pearson's setup as follows:
 
--  Neyman and Pearson show that a region consisting of all samples
+   Neyman and Pearson show that a region consisting of all samples
    :math:`(z_1, z_2, \ldots, z_n)` which satisfy the inequality
 
     .. math::
@@ -819,11 +962,11 @@ Wald summarizes Neyman and Pearson's setup as follows:
 
 
 Wald goes on to discuss Neyman and Pearson's concept of *uniformly most
-powerful* test.
+powerful* test
 
 Here is how Wald introduces the notion of a sequential test 
 
--  A rule is given for making one of the following three decisions at any stage of
+   A rule is given for making one of the following three decisions at any stage of
    the experiment (at the m th trial for each integral value of m ): (1) to
    accept the hypothesis H , (2) to reject the hypothesis H , (3) to
    continue the experiment by making an additional observation. Thus, such
