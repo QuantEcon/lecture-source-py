@@ -747,7 +747,7 @@ In this case the decision maker is correct 80% of the time
         ax[0].annotate(f"mean = {np.mean(tdist)}", xy=(max(tdist) / 2,
                        max(np.histogram(tdist, bins=max(tdist))[0]) / 2))
 
-        ax[1].hist(cdist, bins=2)
+        ax[1].hist(cdist.astype(int), bins=2)
         ax[1].set_title(f"Correct decisions over {ndraws} replications")
         ax[1].annotate(f"% correct = {np.mean(cdist)}",
                        xy=(0.05, ndraws / 2))
