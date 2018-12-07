@@ -19,8 +19,8 @@
 
 .. only:: html
 
-    Table of Contents (Python)
-    *************************************************************
+    Table of Contents
+    *****************
 
 .. raw:: html
 
