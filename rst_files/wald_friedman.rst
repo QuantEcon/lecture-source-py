@@ -564,8 +564,8 @@ We will be using the default parametization with distributions like so
     wf = WaldFriedman()
 
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(wf.f0(grid), label="$f_0$")
-    ax.plot(wf.f1(grid), label="$f_1$")
+    ax.plot(wf.f0(wf.π_grid), label="$f_0$")
+    ax.plot(wf.f1(wf.π_grid), label="$f_1$")
     ax.set(ylabel="probability of $z_k$", xlabel="$k$", title="Distributions")
     ax.legend()
 
