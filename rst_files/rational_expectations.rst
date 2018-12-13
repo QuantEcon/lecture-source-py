@@ -704,7 +704,7 @@ For the state and control vectors we choose
        \qquad
        u_t = y_{t+1} - y_{t}
 
-For :math:`, B, Q, R` we set
+For :math:`B, Q, R` we set
 
 .. math::
 
