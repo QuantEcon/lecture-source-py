@@ -483,7 +483,7 @@ The associated first order condition is
 .. math::
     :label: comp14
 
-    - \gamma (Y' - Y) + \beta V'(Y') = 0
+    -\gamma (Y' - Y) + \beta V'(Y') = 0
 
 
 Applying the same Benveniste-Scheinkman formula gives
