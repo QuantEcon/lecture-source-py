@@ -313,10 +313,11 @@ In what follows it will be helpful to have a second characterization of :math:`h
 
 The first-order necessary condition for choosing :math:`y'` is
 
+
 .. math::
     :label: comp5
-
-    - \gamma (y' - y) + \beta v_y(y',H(Y)) =0
+    
+    - \gamma (y' - y) + \beta v_y(y', H(Y) ) = 0
 
 
 An important useful envelope result of Benveniste-Scheinkman  :cite:`BenvenisteScheinkman1979` implies that to
