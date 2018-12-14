@@ -35,6 +35,14 @@ Debugging tools for Python vary across platforms, IDEs and editors
 
 Here we'll focus on Jupyter and leave you to explore other settings
 
+We'll need the following imports
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
 
 Debugging
 ============
@@ -50,10 +58,6 @@ Let's consider a simple (and rather contrived) example
 
 .. code-block:: ipython
     :class: skip-test
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
 
     def plot_log():
         fig, ax = plt.subplots(2, 1)
@@ -92,9 +96,6 @@ We run the first cell block again, generating the same error
 
 .. code-block:: python3
     :class: skip-test
-
-    import numpy as np
-    import matplotlib.pyplot as plt
 
     def plot_log():
         fig, ax = plt.subplots(2, 1)
@@ -176,9 +177,6 @@ Consider the following modified version of our function above
 .. code-block:: python3
     :class: skip-test
 
-    import numpy as np
-    import matplotlib.pyplot as plt
-
     def plot_log():
         fig, ax = plt.subplots()
         x = np.logspace(1, 2, 10)
@@ -194,18 +192,13 @@ Now there won't be any exception, but the plot won't look right
 
 To investigate, it would be helpful if we could inspect variables like ``x`` during execution of the function
 
-To this end, we add a "break point" by inserting the line 
-``from IPython.core.debugger import Pdb; Pdb.set_trace()`` inside the function code block
+To this end, we add a "break point" by inserting  ``breakpoint()`` inside the function code block
 
 .. code-block:: python3
     :class: no-execute
 
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from IPython.core.debugger import Pdb
-
     def plot_log():
-        Pdb().set_trace()
+        breakpoint()
         fig, ax = plt.subplots()
         x = np.logspace(1, 2, 10)
         ax.plot(x, np.log(x))
@@ -215,33 +208,18 @@ To this end, we add a "break point" by inserting the line
 
 Now let's run the script, and investigate via the debugger
 
-.. code-block:: python3
+.. code-block:: ipython
     :class: no-execute
 
-    > <ipython-input-2-bac193d9f277>(7)plot_log()
-          5 def plot_log():
-          6     Pdb().set_trace()
-    ----> 7     fig, ax = plt.subplots()
-          8     x = np.logspace(1, 2, 10)
-          9     ax.plot(x, np.log(x))
-
-    ipdb> n
-    > <ipython-input-2-bac193d9f277>(8)plot_log()
-          6     Pdb().set_trace()
-          7     fig, ax = plt.subplots()
-    ----> 8     x = np.logspace(1, 2, 10)
-          9     ax.plot(x, np.log(x))
-         10     plt.show()
-
-    ipdb> n
-    > <ipython-input-2-bac193d9f277>(9)plot_log()
-          7     fig, ax = plt.subplots()
-          8     x = np.logspace(1, 2, 10)
-    ----> 9     ax.plot(x, np.log(x))
-         10     plt.show()
-         11 
-
-    ipdb> x
+    > <ipython-input-6-a188074383b7>(6)plot_log()
+    -> fig, ax = plt.subplots()
+    (Pdb) n
+    > <ipython-input-6-a188074383b7>(7)plot_log()
+    -> x = np.logspace(1, 2, 10)
+    (Pdb) n
+    > <ipython-input-6-a188074383b7>(8)plot_log()
+    -> ax.plot(x, np.log(x))
+    (Pdb) x
     array([ 10.        ,  12.91549665,  16.68100537,  21.5443469 ,
             27.82559402,  35.93813664,  46.41588834,  59.94842503,
             77.42636827, 100.        ])

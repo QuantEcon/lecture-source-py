@@ -24,8 +24,7 @@ analyzed **competitive equilibria** and a best competitive equilibrium called a 
 He did this by
 
 * characterizing a competitive equilibrium recursively in a way also employed
-  in :doc:`dynamic Stackelberg problems<dyn_stack>`, :doc:`the Calvo model<calvo>`,
-  and :doc:`history dependent public policies lecture<hist_dep_policies>`
+  in the :doc:`dynamic Stackelberg problems<dyn_stack>` and :doc:`Calvo model<calvo>` lectures
   to pose Stackelberg problems in linear economies, and then
 
 * appropriately adapting an argument of Abreu, Pearce, and Stachetti

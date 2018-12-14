@@ -62,7 +62,7 @@ In other words, we want to generate figures that look something like this:
 
 
 .. figure:: /_static/figures/test_program_1_updated.png
-    :scale: 100%
+    :scale: 60%
 
 We'll do this several different ways
 

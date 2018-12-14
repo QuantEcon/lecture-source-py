@@ -135,7 +135,7 @@ loading the Cython extension in a notebook cell
 
 In the next cell, we execute the following
 
-.. code-block:: cython
+.. code-block:: ipython
 
     %%cython
     def geo_prog_cython(double alpha, int n):
@@ -189,7 +189,7 @@ The natural array type to work with is NumPy arrays
 Here's a Cython implementation that initializes, populates and returns a NumPy
 array
 
-.. code-block:: cython
+.. code-block:: ipython
 
     %%cython
     import numpy as np
@@ -223,7 +223,7 @@ Next, we declare a memoryview and bind it to the NumPy array
 
 Here's an example:
 
-.. code-block:: cython
+.. code-block:: ipython
 
     %%cython
     import numpy as np
