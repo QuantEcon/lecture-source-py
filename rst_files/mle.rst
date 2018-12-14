@@ -96,11 +96,12 @@ We can plot the Poisson distribution over :math:`y` for different values of :mat
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     from numpy import exp
     from scipy.special import factorial
     import matplotlib.pyplot as plt
+    %matplotlib inline
     
     poisson_pmf = lambda y, μ: μ**y / factorial(y) * exp(-μ)
     y_values = range(0, 25)
@@ -604,7 +605,7 @@ the maximum is found at :math:`\beta = 10`
       y1 = logL(β)
       y2 = logL(β+a)
       x = np.array([[β, 1], [β+a, 1]])
-      m, c = np.linalg.lstsq(x, np.array([y1, y2]))[0]
+      m, c = np.linalg.lstsq(x, np.array([y1, y2]), rcond=None)[0]
       return m, c
   
   β = np.linspace(2, 18)
@@ -961,8 +962,7 @@ The Hessian of the Probit model is
    \frac {\partial^2 \log \mathcal{L}} {\partial \boldsymbol{\beta} \partial \boldsymbol{\beta}'} =
    - \sum_{i=1}^n \phi (\mathbf{x}_i' \boldsymbol{\beta})
    \Big[
-   y_i \frac{ \phi (\mathbf{x}_i' \boldsymbol{\beta}) + \mathbf{x}_i' \boldsymbol{\beta} \Phi (\mathbf{x}_i' \boldsymbol{\beta}) } { [\Phi (\mathbf{x}_i' \boldsymbol{\beta})]^2 }
-   +
+   y_i \frac{ \phi (\mathbf{x}_i' \boldsymbol{\beta}) + \mathbf{x}_i' \boldsymbol{\beta} \Phi (\mathbf{x}_i' \boldsymbol{\beta}) } { [\Phi (\mathbf{x}_i' \boldsymbol{\beta})]^2 } +
    (1 - y_i) \frac{ \phi_i (\mathbf{x}_i' \boldsymbol{\beta}) - \mathbf{x}_i' \boldsymbol{\beta} (1 - \Phi (\mathbf{x}_i' \boldsymbol{\beta})) } { [1 - \Phi (\mathbf{x}_i' \boldsymbol{\beta})]^2 }
    \Big]
    \mathbf{x}_i \mathbf{x}_i'

@@ -313,10 +313,11 @@ In what follows it will be helpful to have a second characterization of :math:`h
 
 The first-order necessary condition for choosing :math:`y'` is
 
+
 .. math::
     :label: comp5
-
-    - \gamma (y' - y) + \beta v_y(y',H(Y)) =0
+    
+    -\gamma (y' - y) + \beta v_y(y', H(Y) ) = 0
 
 
 An important useful envelope result of Benveniste-Scheinkman  :cite:`BenvenisteScheinkman1979` implies that to
@@ -482,7 +483,7 @@ The associated first order condition is
 .. math::
     :label: comp14
 
-    - \gamma (Y' - Y) + \beta V'(Y') = 0
+    -\gamma (Y' - Y) + \beta V'(Y') = 0
 
 
 Applying the same Benveniste-Scheinkman formula gives
@@ -671,10 +672,11 @@ Solutions
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
 We'll use the LQ class from quantecon
 
@@ -702,7 +704,7 @@ For the state and control vectors we choose
        \qquad
        u_t = y_{t+1} - y_{t}
 
-For :math:`, B, Q, R` we set
+For :math:`B, Q, R` we set
 
 .. math::
 

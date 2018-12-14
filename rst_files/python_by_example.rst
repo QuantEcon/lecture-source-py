@@ -62,7 +62,7 @@ In other words, we want to generate figures that look something like this:
 
 
 .. figure:: /_static/figures/test_program_1_updated.png
-    :scale: 100%
+    :scale: 60%
 
 We'll do this several different ways
 
@@ -74,10 +74,11 @@ Version 1
 
 Here's a few lines of code that perform the task we set
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
 
     x = np.random.randn(100)
     plt.plot(x)
@@ -98,14 +99,14 @@ The first line imports :doc:`NumPy <numpy>`, a favorite Python package for tasks
 
 * working with arrays (vectors and matrices)
 
-* common mathematical functions like `cos` and `sqrt`
+* common mathematical functions like ``cos`` and ``sqrt``
 
 * generating random numbers
 
 * linear algebra, etc.
 
 
-After `import numpy as np` we have access to these attributes via the syntax `np.` 
+After ``import numpy as np`` we have access to these attributes via the syntax ``np.`` 
 
 Here's another example 
 
@@ -137,7 +138,7 @@ to import additional functionality
 
 Scientific work in Python is no exception
 
-Most of our programs start off with lines similar to the `import` statements seen above
+Most of our programs start off with lines similar to the ``import`` statements seen above
 
 Packages 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,13 +156,14 @@ In fact a package is just a directory containing
 
 #. possibly some compiled code that can be accessed by Python (e.g., functions compiled from C or FORTRAN code)
 
-#. a file called `__init__.py` that specifies what will be executed when we type `import package_name`
+#. a file called ``__init__.py`` that specifies what will be executed when we type ``import package_name``
 
 In fact you can find and explore the directory for NumPy on your computer easily enough if you look around
 
 On this machine it's located in
 
-.. code-block:: none
+.. code-block:: ipython
+    :class: no-execute
 
     anaconda3/lib/python3.6/site-packages/numpy
 
@@ -172,9 +174,9 @@ Subpackages
     single: Python; Subpackages
 
 
-Consider the line `x = np.random.randn(100)`
+Consider the line ``x = np.random.randn(100)``
 
-Here `np` refers to the package NumPy, while `random` is a **subpackage** of NumPy
+Here ``np`` refers to the package NumPy, while ``random`` is a **subpackage** of NumPy
 
 You can see the contents `here <https://github.com/numpy/numpy/tree/master/numpy/random>`__
 
@@ -206,12 +208,12 @@ Here's another way to access NumPy's square root function
 
 This is also fine
 
-The advantage is less typing if we use `sqrt` often in our code
+The advantage is less typing if we use ``sqrt`` often in our code
 
 The disadvantage is that, in a long program, these two lines might be
 separated by many other lines
 
-Then it's harder for readers to know where `sqrt` came from, should they wish to 
+Then it's harder for readers to know where ``sqrt`` came from, should they wish to 
 
 
 
@@ -256,7 +258,7 @@ In brief,
 
 * The next line creates an empty *list* called ``ϵ_values`` that will store the :math:`\epsilon_t` values as we generate them
 
-* The next three lines are the `for` loop, which repeatedly draws a new random number :math:`\epsilon_t` and appends it to the end of the list ``ϵ_values``
+* The next three lines are the ``for`` loop, which repeatedly draws a new random number :math:`\epsilon_t` and appends it to the end of the list ``ϵ_values``
 
 * The last two lines generate the plot and display it to the user
 

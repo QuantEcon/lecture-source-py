@@ -35,6 +35,14 @@ Debugging tools for Python vary across platforms, IDEs and editors
 
 Here we'll focus on Jupyter and leave you to explore other settings
 
+We'll need the following imports
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
 
 Debugging
 ============
@@ -48,11 +56,8 @@ The ``debug`` Magic
 
 Let's consider a simple (and rather contrived) example
 
-.. code-block:: python3
-    :class: no-execute
-
-    import numpy as np
-    import matplotlib.pyplot as plt
+.. code-block:: ipython
+    :class: skip-test
 
     def plot_log():
         fig, ax = plt.subplots(2, 1)
@@ -69,27 +74,6 @@ But there's an error here: ``plt.subplots(2, 1)`` should be just ``plt.subplots(
 
 (The call ``plt.subplots(2, 1)`` returns a NumPy array containing two axes objects, suitable for having two subplots on the same figure)
 
-Here's what happens when we run the code:
-
-.. code-block:: none
-
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    <ipython-input-1-ef5c75a58138> in <module>()
-          8     plt.show()
-          9 
-    ---> 10 plot_log()  # Call the function, generate plot
-
-    <ipython-input-1-ef5c75a58138> in plot_log()
-          5     fig, ax = plt.subplots(2, 1)
-          6     x = np.linspace(1, 2, 10)
-    ----> 7     ax.plot(x, np.log(x))
-          8     plt.show()
-          9 
-
-    AttributeError: 'numpy.ndarray' object has no attribute 'plot'
-
-
 The traceback shows that the error occurs at the method call ``ax.plot(x, np.log(x))``
 
 The error occurs because we have mistakenly made ``ax`` a NumPy array, and a NumPy array has no ``plot`` method
@@ -98,14 +82,10 @@ But let's pretend that we don't understand this for the moment
 
 We might suspect there's something wrong with ``ax`` but when we try to investigate this object, we get the following exception:
 
-.. code-block:: none
+.. code-block:: python3
+    :class: skip-test
 
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    <ipython-input-2-645aedc8a285> in <module>()
-    ----> 1 ax
-
-    NameError: name 'ax' is not defined
+    ax
 
 The problem is that ``ax`` was defined inside ``plot_log()``, and the name is
 lost once that function terminates
@@ -115,10 +95,7 @@ Let's try doing it a different way
 We run the first cell block again, generating the same error
 
 .. code-block:: python3
-    :class: no-execute
-
-    import numpy as np
-    import matplotlib.pyplot as plt
+    :class: skip-test
 
     def plot_log():
         fig, ax = plt.subplots(2, 1)
@@ -128,23 +105,6 @@ We run the first cell block again, generating the same error
 
     plot_log()  # Call the function, generate plot
 
-.. code-block:: none
-
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    <ipython-input-1-ef5c75a58138> in <module>()
-          8     plt.show()
-          9 
-    ---> 10 plot_log()  # Call the function, generate plot
-
-    <ipython-input-1-ef5c75a58138> in plot_log()
-          5     fig, ax = plt.subplots(2, 1)
-          6     x = np.linspace(1, 2, 10)
-    ----> 7     ax.plot(x, np.log(x))
-          8     plt.show()
-          9 
-
-    AttributeError: 'numpy.ndarray' object has no attribute 'plot'
 
 But this time we type in the following cell block
 
@@ -215,9 +175,7 @@ The preceding approach is handy but sometimes insufficient
 Consider the following modified version of our function above
 
 .. code-block:: python3
-
-    import numpy as np
-    import matplotlib.pyplot as plt
+    :class: skip-test
 
     def plot_log():
         fig, ax = plt.subplots()
@@ -234,17 +192,13 @@ Now there won't be any exception, but the plot won't look right
 
 To investigate, it would be helpful if we could inspect variables like ``x`` during execution of the function
 
-To this end , we add a "break point" by inserting the line ``from IPython.core.debugger import Tracer; Tracer()()`` inside the function code block
+To this end, we add a "break point" by inserting  ``breakpoint()`` inside the function code block
 
 .. code-block:: python3
     :class: no-execute
 
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from IPython.core.debugger import Pdb
-
     def plot_log():
-        Pdb().set_trace()
+        breakpoint()
         fig, ax = plt.subplots()
         x = np.logspace(1, 2, 10)
         ax.plot(x, np.log(x))
@@ -254,36 +208,21 @@ To this end , we add a "break point" by inserting the line ``from IPython.core.d
 
 Now let's run the script, and investigate via the debugger
 
-.. code-block:: python3
+.. code-block:: ipython
     :class: no-execute
 
-    > <ipython-input-5-c5864f6d184b>(6)plot_log()
-          4 def plot_log():
-          5     from IPython.core.debugger import Tracer; Tracer()()
-    ----> 6     fig, ax = plt.subplots()
-          7     x = np.logspace(1, 2, 10)
-          8     ax.plot(x, np.log(x))
-
-    ipdb> n
-    > <ipython-input-5-c5864f6d184b>(7)plot_log()
-          5     from IPython.core.debugger import Tracer; Tracer()()
-          6     fig, ax = plt.subplots()
-    ----> 7     x = np.logspace(1, 2, 10)
-          8     ax.plot(x, np.log(x))
-          9     plt.show()
-
-    ipdb> n
-    > <ipython-input-5-c5864f6d184b>(8)plot_log()
-          6     fig, ax = plt.subplots()
-          7     x = np.logspace(1, 2, 10)
-    ----> 8     ax.plot(x, np.log(x))
-          9     plt.show()
-         10 
-
-    ipdb> x
-    array([  10.        ,   12.91549665,   16.68100537,   21.5443469 ,
-             27.82559402,   35.93813664,   46.41588834,   59.94842503,
-             77.42636827,  100.        ])
+    > <ipython-input-6-a188074383b7>(6)plot_log()
+    -> fig, ax = plt.subplots()
+    (Pdb) n
+    > <ipython-input-6-a188074383b7>(7)plot_log()
+    -> x = np.logspace(1, 2, 10)
+    (Pdb) n
+    > <ipython-input-6-a188074383b7>(8)plot_log()
+    -> ax.plot(x, np.log(x))
+    (Pdb) x
+    array([ 10.        ,  12.91549665,  16.68100537,  21.5443469 ,
+            27.82559402,  35.93813664,  46.41588834,  59.94842503,
+            77.42636827, 100.        ])
 
 We used ``n`` twice to step forward through the code (one line at a time)
 

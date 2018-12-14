@@ -180,15 +180,17 @@ Solutions
 Exercise 1
 ----------
 
-Here's one solution that does the job we want. If you feel like a
-further exercise you can probably speed up some of the computations and
-then increase the number of agents.
+Here's one solution that does the job we want
 
-.. code-block:: python3
+If you feel like a further exercise you can probably speed up some of the computations and
+then increase the number of agents
+
+.. code-block:: ipython
 
     from random import uniform, seed
     from math import sqrt
     import matplotlib.pyplot as plt
+    %matplotlib inline
     
     seed(10)  # for reproducible random numbers
     

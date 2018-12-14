@@ -489,10 +489,11 @@ The following code is example of usage for the stochastic growth model :ref:`des
 
 
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from scipy.stats import lognorm, beta
     from quantecon import LAE
 
@@ -981,8 +982,9 @@ is
 
 .. math::     X_{t+1} = \theta |X_t| + (1 - \theta^2)^{1/2} \xi_{t+1} 
 
-and :math:`\xi_t \sim N(0,1)`. Try running at n = 10, 100, 1000, 10000
-to get an idea of the speed of convergence.
+and :math:`\xi_t \sim N(0,1)`
+
+Try running at ``n = 10, 100, 1000, 10000`` to get an idea of the speed of convergence
 
 .. code-block:: python3
 
@@ -1071,10 +1073,10 @@ Here's one program that does the job
 Exercise 3
 ----------
 
-Here's a possible solution.
+Here's a possible solution
 
 Note the way we use vectorized code to simulate the :math:`k` time
-series for one boxplot all at once.
+series for one boxplot all at once
 
 .. code-block:: python3
 

@@ -24,7 +24,19 @@ The model is originally due to Derek Neal :cite:`Neal1999`
 
 This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5
 
+We begin with some imports
 
+.. code-block:: ipython
+
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import numpy as np
+    import quantecon as qe
+    from numba import njit, prange
+    from quantecon.distributions import BetaBinomial
+    from scipy.special import binom, beta
+    from mpl_toolkits.mplot3d.axes3d import Axes3D
+    from matplotlib import cm
 
 
 Model features
@@ -79,7 +91,7 @@ A young worker aims to maximize the expected sum of discounted wages
 
 subject to the choice restrictions specified above
 
-Let :math:`V(\theta, \epsilon)` denote the value function, which is the
+Let :math:`v(\theta, \epsilon)` denote the value function, which is the
 maximum of :eq:`exw` over all feasible (career, job) policies, given the
 initial state :math:`(\theta, \epsilon)`
 
@@ -87,7 +99,7 @@ The value function obeys
 
 .. math::
 
-    V(\theta, \epsilon) = \max\{I, II, III\},
+    v(\theta, \epsilon) = \max\{I, II, III\}
 
 
 where
@@ -96,9 +108,9 @@ where
     :label: eyes
 
     \begin{aligned}
-    & I = \theta + \epsilon + \beta V(\theta, \epsilon) \\
-    & II = \theta + \int \epsilon' G(d \epsilon') + \beta \int V(\theta, \epsilon') G(d \epsilon') \nonumber \\
-    & III = \int \theta' F(d \theta') + \int \epsilon' G(d \epsilon') + \beta \int \int V(\theta', \epsilon') G(d \epsilon') F(d \theta') \nonumber
+    & I = \theta + \epsilon + \beta v(\theta, \epsilon) \\
+    & II = \theta + \int \epsilon' G(d \epsilon') + \beta \int v(\theta, \epsilon') G(d \epsilon') \nonumber \\
+    & III = \int \theta' F(d \theta') + \int \epsilon' G(d \epsilon') + \beta \int \int v(\theta', \epsilon') G(d \epsilon') F(d \theta') \nonumber
     \end{aligned}
 
 
@@ -109,13 +121,15 @@ Parameterization
 
 As in :cite:`Ljungqvist2012`, section 6.5, we will focus on a discrete version of the model, parameterized as follows:
 
-* both :math:`\theta` and :math:`\epsilon` take values in the set ``np.linspace(0, B, N)`` --- an even grid of :math:`N` points between :math:`0` and :math:`B` inclusive
-* :math:`N = 50`
-* :math:`B = 5`
-* :math:`\beta = 0.95`
+* both :math:`\theta` and :math:`\epsilon` take values in the set 
+  ``np.linspace(0, B, grid_size)`` --- an even grid of points between 
+  :math:`0` and :math:`B` inclusive
+* ``grid_size = 50``
+* ``B = 5``
+* ``β = 0.95``
 
 The distributions :math:`F` and :math:`G` are discrete distributions
-generating draws from the grid points ``np.linspace(0, B, N)``
+generating draws from the grid points ``np.linspace(0, B, grid_size)``
 
 A very useful family of discrete distributions is the Beta-binomial family,
 with probability mass function
@@ -129,7 +143,7 @@ with probability mass function
 
 Interpretation:
 
-* draw :math:`q` from a β distribution with shape parameters :math:`(a, b)`
+* draw :math:`q` from a Beta distribution with shape parameters :math:`(a, b)`
 * run :math:`n` independent binary trials, each with success probability :math:`q`
 * :math:`p(k \,|\, n, a, b)` is the probability of :math:`k` successes in these :math:`n` trials
 
@@ -138,16 +152,9 @@ Nice properties:
 * very flexible class of distributions, including uniform, symmetric unimodal, etc.
 * only three parameters
 
-Here's a figure showing the effect of different shape parameters when :math:`n=50`
-
-.. _beta-binom:
+Here's a figure showing the effect on the pmf of different shape parameters when :math:`n=50`
 
 .. code-block:: python3
-
-    from scipy.special import binom, beta
-    import matplotlib.pyplot as plt
-    import numpy as np
-
 
     def gen_probs(n, a, b):
         probs = np.zeros(n+1)
@@ -158,7 +165,7 @@ Here's a figure showing the effect of different shape parameters when :math:`n=5
     n = 50
     a_vals = [0.5, 1, 100]
     b_vals = [0.5, 1, 100]
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 6))
     for a, b in zip(a_vals, b_vals):
         ab_label = f'$a = {a:.1f}$, $b = {b:.1f}$'
         ax.plot(list(range(0, n+1)), gen_probs(n, a, b), '-o', label=ab_label)
@@ -168,79 +175,173 @@ Here's a figure showing the effect of different shape parameters when :math:`n=5
 
 
 
-Implementation: ``career.py``
+Implementation
 ==============================================
 
-The code for solving the DP problem described above is found in `this file <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/career/career.py>`__, which is repeated here for convenience
+We will first create a class ``CareerWorkerProblem`` which will hold the 
+default parameterizations of the model and an initial guess for the value function
+
+.. code-block:: python3
 
 
-.. literalinclude:: /_static/code/career/career.py
+    class CareerWorkerProblem:
 
+        def __init__(self, 
+                     B=5.0,          # Upper bound
+                     β=0.95,         # Discount factor
+                     grid_size=50,   # Grid size
+                     F_a=1,
+                     F_b=1, 
+                     G_a=1,
+                     G_b=1):
+            
+            self.β, self.grid_size, self.B = β, grid_size, B
+            
+            self.θ = np.linspace(0, B, grid_size)     # set of θ values
+            self.ϵ = np.linspace(0, B, grid_size)     # set of ϵ values
+            
+            self.F_probs = BetaBinomial(grid_size - 1, F_a, F_b).pdf()
+            self.G_probs = BetaBinomial(grid_size - 1, G_a, G_b).pdf()
+            self.F_mean = np.sum(self.θ * self.F_probs)
+            self.G_mean = np.sum(self.ϵ * self.G_probs)
 
-The code defines
-
-* a class ``CareerWorkerProblem`` that
-
-    * encapsulates all the details of a particular parameterization
-
-    * implements the Bellman operator :math:`T`
+            # Store these parameters for str and repr methods
+            self._F_a, self._F_b = F_a, F_b
+            self._G_a, self._G_b = G_a, G_b
+              
+  
+The following function takes and instance of ``CareerWorkerProblem`` and returns
+the corresponding Bellman operator :math:`T` and the greedy policy function
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
-:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`, replacing :math:`V` with :math:`v`
+:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
+          
+.. code-block:: python3
 
-The default probability distributions in ``CareerWorkerProblem`` correspond to discrete uniform distributions (see :ref:`the Beta-binomial figure <beta-binom>`)
+    def operator_factory(cw, parallel_flag=True):
+    
+        """
+        Returns jitted versions of the Bellman operator and the
+        greedy policy function
+        
+        cw is an instance of ``CareerWorkerProblem``
+        """
 
-In fact all our default settings correspond to the version studied in :cite:`Ljungqvist2012`, section 6.5.
+        θ, ϵ, β = cw.θ, cw.ϵ, cw.β
+        F_probs, G_probs = cw.F_probs, cw.G_probs
+        F_mean, G_mean = cw.F_mean, cw.G_mean
 
-Hence we can reproduce figures 6.5.1 and 6.5.2 shown there, which exhibit the
-value function and optimal policy respectively
+        @njit(parallel=parallel_flag)
+        def T(v):
+            "The Bellman operator"
+            
+            v_new = np.empty_like(v)
 
-Here's the value function
+            for i in prange(len(v)):
+                for j in prange(len(v)):
+                    v1 = θ[i] + ϵ[j] + β * v[i, j]                    # stay put
+                    v2 = θ[i] + G_mean + β * v[i, :] @ G_probs        # new job
+                    v3 = G_mean + F_mean + β * F_probs @ v @ G_probs  # new life
+                    v_new[i, j] = max(v1, v2, v3)
 
+            return v_new
+        
+        @njit
+        def get_greedy(v):
+            "Computes the v-greedy policy"
+            
+            σ = np.empty(v.shape)
+            
+            for i in range(len(v)):
+                for j in range(len(v)):
+                    v1 = θ[i] + ϵ[j] + β * v[i, j]
+                    v2 = θ[i] + G_mean + β * v[i, :] @ G_probs
+                    v3 = G_mean + F_mean + β * F_probs @ v @ G_probs
+                    if v1 > max(v2, v3):
+                        action = 1
+                    elif v2 > max(v1, v3):
+                        action = 2
+                    else:
+                        action = 3
+                    σ[i, j] = action
+                    
+            return σ
+
+        return T, get_greedy
+      
+Lastly, ``solve_model`` will  take an instance of ``CareerWorkerProblem`` and
+iterate using the Bellman operator to find the fixed point of the value function 
+
+.. code-block:: python3
+
+    def solve_model(cw,
+                    use_parallel=True,
+                    tol=1e-4,
+                    max_iter=1000,
+                    verbose=True,
+                    print_skip=25):
+
+        T, _ = operator_factory(cw, parallel_flag=use_parallel)
+
+        # Set up loop
+        v = np.ones((cw.grid_size, cw.grid_size)) * 100  # Initial guess
+        i = 0
+        error = tol + 1
+
+        while i < max_iter and error > tol:
+            v_new = T(v)
+            error = np.max(np.abs(v - v_new))
+            i += 1
+            if verbose and i % print_skip == 0:
+                print(f"Error at iteration {i} is {error}.")
+            v = v_new
+
+        if i == max_iter:
+            print("Failed to converge!")
+
+        if verbose and i < max_iter:
+            print(f"\nConverged in {i} iterations.")
+
+        return v_new
+
+
+Here's the solution to the model -- an approximate value function
 
 
 .. code-block:: python3
 
-    from mpl_toolkits.mplot3d.axes3d import Axes3D
-    from matplotlib import cm
-    import quantecon as qe
-
-    # === set matplotlib parameters === #
-    plt.rcParams['axes.xmargin'] = 0
-    plt.rcParams['axes.ymargin'] = 0
-    plt.rcParams['patch.force_edgecolor'] = True
-
-    # === solve for the value function === #
-    wp = CareerWorkerProblem()
-    v_init = np.ones((wp.N, wp.N)) * 100
-    v = qe.compute_fixed_point(wp.bellman_operator, v_init,
-                               max_iter=200, print_skip=25)
-
-    # === plot value function === #
+    cw = CareerWorkerProblem()
+    T, get_greedy = operator_factory(cw)
+    v_star = solve_model(cw, verbose=False)
+    greedy_star = get_greedy(v_star)
+    
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
-    tg, eg = np.meshgrid(wp.θ, wp.ϵ)
+    tg, eg = np.meshgrid(cw.θ, cw.ϵ)
     ax.plot_surface(tg,
                     eg,
-                    v.T,
-                    rstride=2, cstride=2,
+                    v_star.T,
                     cmap=cm.jet,
                     alpha=0.5,
                     linewidth=0.25)
-    ax.set_zlim(150, 200)
-    ax.set_xlabel('θ', fontsize=14)
-    ax.set_ylabel('ϵ', fontsize=14)
+    ax.set(xlabel='θ', ylabel='ϵ', zlim=(150, 200))
     ax.view_init(ax.elev, 225)
     plt.show()
     
-
-
-The optimal policy can be represented as follows (see :ref:`Exercise 3 <career_ex3>` for code)
-
-.. _career_opt_pol:
-
-.. figure:: /_static/figures/career_solutions_ex3_py.png
-   :scale: 100%
+And here is the optimal policy
+    
+.. code-block:: python3
+    
+    fig, ax = plt.subplots(figsize=(6, 6))
+    tg, eg = np.meshgrid(cw.θ, cw.ϵ)
+    lvls = (0.5, 1.5, 2.5, 3.5)
+    ax.contourf(tg, eg, greedy_star.T, levels=lvls, cmap=cm.winter, alpha=0.5)
+    ax.contour(tg, eg, greedy_star.T, colors='k', levels=lvls, linewidths=2)
+    ax.set(xlabel='θ', ylabel='ϵ')
+    ax.text(1.8, 2.5, 'new life', fontsize=14)
+    ax.text(4.5, 2.5, 'new job', fontsize=14, rotation='vertical')
+    ax.text(4.0, 4.5, 'stay put', fontsize=14)
+    plt.show()
 
 
 Interpretation:
@@ -274,10 +375,9 @@ when the worker follows the optimal policy
 In particular, modulo randomness, reproduce the following figure (where the horizontal axis represents time)
 
 .. figure:: /_static/figures/career_solutions_ex1_py.png
-   :scale: 100%
+   :scale: 60%
 
-Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use the class `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_
-
+Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use ``quantecon.random.draw()``
 
 
 .. _career_ex2:
@@ -316,22 +416,13 @@ Repeat the exercise with :math:`\beta=0.99` and interpret the change
 Exercise 3
 ----------------
 
-As best you can, reproduce :ref:`the figure showing the optimal policy <career_opt_pol>`
-
-Hint: The ``get_greedy()`` method returns a representation of the optimal
-policy where values 1, 2 and 3 correspond to "stay put", "new job" and "new life" respectively.  Use this and ``contourf`` from ``matplotlib.pyplot`` to produce the different shadings.
-
-Now set ``G_a = G_b = 100`` and generate a new figure with these parameters.  Interpret.
+Set the parametization to ``G_a = G_b = 100`` and generate a new optimal policy
+figure -- interpret
 
 
 Solutions
 ====================
 
-
-
-.. code-block:: python3
-
-    from quantecon import compute_fixed_point
 
 Exercise 1
 ----------
@@ -344,36 +435,36 @@ In reading the code, recall that ``optimal_policy[i, j]`` = policy at
 
 .. code-block:: python3
 
-    wp = CareerWorkerProblem()
-    v_init = np.ones((wp.N, wp.N)) * 100
-    v = compute_fixed_point(wp.bellman_operator, v_init, verbose=False, max_iter=200)
-    optimal_policy = wp.get_greedy(v)
-    F = np.cumsum(wp.F_probs)
-    G = np.cumsum(wp.G_probs)
-    
-    def gen_path(T=20):
-        i = j = 0  
+    F = np.cumsum(cw.F_probs)
+    G = np.cumsum(cw.G_probs)
+    v_star = solve_model(cw, verbose=False)
+    T, get_greedy = operator_factory(cw)
+    greedy_star = get_greedy(v_star)
+
+    def gen_path(optimal_policy, F, G, t=20):
+        i = j = 0
         θ_index = []
         ϵ_index = []
-        for t in range(T):
-            if optimal_policy[i, j] == 1:    # Stay put
+        for t in range(t):
+            if greedy_star[i, j] == 1:       # Stay put
                 pass
-            elif optimal_policy[i, j] == 2:  # New job
+            elif greedy_star[i, j] == 2:     # New job
                 j = int(qe.random.draw(G))
             else:                            # New life
-                i, j  = int(qe.random.draw(F)), int(qe.random.draw(G))
+                i, j = int(qe.random.draw(F)), int(qe.random.draw(G))
             θ_index.append(i)
             ϵ_index.append(j)
-        return wp.θ[θ_index], wp.ϵ[ϵ_index]
-    
+        return cw.θ[θ_index], cw.ϵ[ϵ_index]
+        
+        
     fig, axes = plt.subplots(2, 1, figsize=(10, 8))
     for ax in axes:
-        θ_path, ϵ_path = gen_path()
+        θ_path, ϵ_path = gen_path(greedy_star, F, G)
         ax.plot(ϵ_path, label='ϵ')
         ax.plot(θ_path, label='θ')
-        ax.legend(loc='lower right')
         ax.set_ylim(0, 6)
-    
+
+    plt.legend()
     plt.show()
 
 
@@ -384,14 +475,15 @@ The median for the original parameterization can be computed as follows
 
 .. code-block:: python3
 
-    wp = CareerWorkerProblem()
-    v_init = np.ones((wp.N, wp.N)) * 100
-    v = compute_fixed_point(wp.bellman_operator, v_init, max_iter=200, print_skip=25)
-    optimal_policy = wp.get_greedy(v)
-    F = np.cumsum(wp.F_probs)
-    G = np.cumsum(wp.G_probs)
-    
-    def gen_first_passage_time():
+    cw = CareerWorkerProblem()
+    F = np.cumsum(cw.F_probs)
+    G = np.cumsum(cw.G_probs)
+    T, get_greedy = operator_factory(cw)
+    v_star = solve_model(cw, verbose=False)
+    greedy_star = get_greedy(v_star)
+
+    @njit
+    def passage_time(optimal_policy, F, G):
         t = 0
         i = j = 0
         while True:
@@ -402,17 +494,20 @@ The median for the original parameterization can be computed as follows
             else:                            # New life
                 i, j  = int(qe.random.draw(F)), int(qe.random.draw(G))
             t += 1
-    
-    M = 25000 # Number of samples
-    samples = np.empty(M)
-    for i in range(M): 
-        samples[i] = gen_first_passage_time()
-    print(np.median(samples))
+            
+    @njit(parallel=True)
+    def median_time(optimal_policy, F, G, M=25000):
+        samples = np.empty(M)
+        for i in prange(M):
+            samples[i] = passage_time(optimal_policy, F, G)
+        return np.median(samples)
+        
+    median_time(greedy_star, F, G)
 
 
 To compute the median with :math:`\beta=0.99` instead of the default
-value :math:`\beta=0.95`, replace ``wp = CareerWorkerProblem()`` with
-``wp = CareerWorkerProblem(β=0.99)`` and increase the ``max_iter=200`` in ``v = compute_fixed_point(...)`` to ``max_iter=1000``
+value :math:`\beta=0.95`, replace ``cw = CareerWorkerProblem()`` with
+``cw = CareerWorkerProblem(β=0.99)``
 
 The medians are subject to randomness, but should be about 7 and 14 respectively
 
@@ -421,35 +516,27 @@ Not surprisingly, more patient workers will wait longer to settle down to their 
 Exercise 3
 ----------
 
-Here’s the code to reproduce the original figure
-
 .. code-block:: python3
+
+    cw = CareerWorkerProblem(G_a=100, G_b=100)
+    T, get_greedy = operator_factory(cw)
+    v_star = solve_model(cw, verbose=False)
+    greedy_star = get_greedy(v_star)
     
-    wp = CareerWorkerProblem()
-    v_init = np.ones((wp.N, wp.N)) * 100
-    v = compute_fixed_point(wp.bellman_operator, v_init, max_iter=200, print_skip=25)
-    optimal_policy = wp.get_greedy(v)
-    
-    fig, ax = plt.subplots(figsize=(6,6))
-    tg, eg = np.meshgrid(wp.θ, wp.ϵ)
-    lvls=(0.5, 1.5, 2.5, 3.5)
-    ax.contourf(tg, eg, optimal_policy.T, levels=lvls, cmap=cm.winter, alpha=0.5)
-    ax.contour(tg, eg, optimal_policy.T, colors='k', levels=lvls, linewidths=2)
-    ax.set_xlabel('θ', fontsize=14)
-    ax.set_ylabel('ϵ', fontsize=14)
+    fig, ax = plt.subplots(figsize=(6, 6))
+    tg, eg = np.meshgrid(cw.θ, cw.ϵ)
+    lvls = (0.5, 1.5, 2.5, 3.5)
+    ax.contourf(tg, eg, greedy_star.T, levels=lvls, cmap=cm.winter, alpha=0.5)
+    ax.contour(tg, eg, greedy_star.T, colors='k', levels=lvls, linewidths=2)
+    ax.set(xlabel='θ', ylabel='ϵ')
     ax.text(1.8, 2.5, 'new life', fontsize=14)
     ax.text(4.5, 2.5, 'new job', fontsize=14, rotation='vertical')
     ax.text(4.0, 4.5, 'stay put', fontsize=14)
     plt.show()
 
 
-Now we want to set ``G_a = G_b = 100`` and generate a new figure with
-these parameters
-
-To do this replace: ``wp = CareerWorkerProblem()`` with ``wp = CareerWorkerProblem(G_a=100, G_b=100)``
-
-In the new figure, you will see that the region for which the worker
-will stay put has grown because the distribution for :math:`\epsilon`
+In the new figure, you see that the region for which the worker
+stays put has grown because the distribution for :math:`\epsilon`
 has become more concentrated around the mean, making high-paying jobs
 less realistic
 

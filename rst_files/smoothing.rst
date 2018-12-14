@@ -297,12 +297,11 @@ or
     \end{bmatrix} + 
     \begin{bmatrix}  
     \bar c \cr \bar c 
-    \end{bmatrix} 
-    = 
+    \end{bmatrix} = 
     \begin{bmatrix} 
         y(\bar s_1) \cr y(\bar s_2) 
-    \end{bmatrix} 
-    + \beta 
+    \end{bmatrix} + 
+    \beta 
     \begin{bmatrix} 
         P_{11} & P_{12} \cr P_{21} & P_{22} 
     \end{bmatrix} 
@@ -340,8 +339,8 @@ We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
 .. math::
     :label: cs_7
 
-    y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0
-      + [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 , 
+    y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0 + 
+    [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 , 
 
 
 an equation in the unknown :math:`b(\bar s_2)`
@@ -360,8 +359,8 @@ of our model, we obtain the following striking results:
  
 We computed the constant level of consumption :math:`\bar c` and indicated how that level depends on the underlying specifications of preferences, Arrow securities prices,  the stochastic process of exogenous nonfinancial income, and the initial debt level :math:`b_0` 
 
-*  The consumer's debt neither accumulates, nor decumulates, nor drifts.
-   Instead the debt level each period is an exact function of the Markov
+*  The consumer's debt neither accumulates, nor decumulates, nor drifts --
+   instead the debt level each period is an exact function of the Markov
    state, so in the two-state Markov case, it switches between two
    values
 
@@ -434,7 +433,7 @@ For our assumed quadratic utility function this implies
 .. math::
     :label: cs_8
 
-    \sum_j c_{t+1,j} P_{ij} = c_{t,i}    ,
+    \sum_j c_{t+1,j} P_{ij} = c_{t,i}    
 
 
 which is Hall's (1978) conclusion that consumption follows a random walk
@@ -455,7 +454,7 @@ and
     c_t = (1-\beta) 
         \left[ 
             \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j} - b_t
-        \right]   .
+        \right]   
 
 
 Equation :eq:`cs_10` expresses :math:`c_t` as a net interest rate factor :math:`1 - \beta` times the sum
@@ -614,7 +613,7 @@ We can simply relabel variables to acquire tax-smoothing interpretations of our 
 Example: Tax Smoothing with Complete Markets
 ============================================
 
-It is useful to focus on a simple tax-smoothing example with complete markets.
+It is useful to focus on a simple tax-smoothing example with complete markets
 
 This example will illustrate how, in a complete markets model like that of Lucas and Stokey :cite:`LucasStokey1983`, the government purchases 
 insurance from the private sector. 
@@ -773,7 +772,7 @@ became
 
 .. math::
 
-    - \sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
+    -\sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
 
 
 But in the complete markets version, we can assume a more general form
@@ -822,7 +821,7 @@ the state :math:`x_t` described by :eq:`cs_15`
 
 
 Here's an example that shows how in this setting the availability of insurance against fluctuating nonfinancial income
-allows the consumer completely to smooth consumption across time and across states of the world.
+allows the consumer completely to smooth consumption across time and across states of the world
 
 .. literalinclude:: /_static/code/smoothing/lss_example.py
 

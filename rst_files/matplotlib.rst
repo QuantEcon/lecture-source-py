@@ -58,9 +58,10 @@ The MATLAB-style API
 
 Here's the kind of easy example you might find in introductory treatments
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import numpy as np
 
     x = np.linspace(0, 10, 200)
@@ -323,7 +324,7 @@ The output should look like this
 
 
 .. figure:: /_static/figures/matplotlib_ex1.png
-    :scale: 100
+    :scale: 60
 
 
 
