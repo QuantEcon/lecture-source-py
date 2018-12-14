@@ -77,7 +77,7 @@ identity representing random fluctuations in aggregate demand
 
 This modification makes national output become governed by a second-order
 *stochastic linear difference equation* that, with appropriate parameter values,
-gives rise to recurrent irregular business cycles.
+gives rise to recurrent irregular business cycles
 
 
 (To read about stochastic linear difference equations see chapter XI of
@@ -89,8 +89,8 @@ Details
 
 Let's assume that
 
-*  :math:`\{G_t\}` is a sequence of levels of government expenditures.
-   We'll start by setting :math:`G_t = G` for all :math:`t`
+*  :math:`\{G_t\}` is a sequence of levels of government expenditures --
+   we'll start by setting :math:`G_t = G` for all :math:`t`
 
 *  :math:`\{C_t\}` is a sequence of levels of aggregate consumption
    expenditures, a key endogenous variable in the model
@@ -199,7 +199,7 @@ Mathematical analysis of the model
 -------------------------------------------
 
 To get started, let's set :math:`G_t \equiv 0`, :math:`\sigma = 0`, and
-:math:`\gamma = 0`.
+:math:`\gamma = 0`
 
 Then we can write equation :eq:`second_stochastic` as
 

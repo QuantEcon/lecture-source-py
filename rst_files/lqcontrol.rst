@@ -1361,7 +1361,7 @@ where :math:`\{w_t\}` is iid :math:`N(0, 1)` and the coefficients
 :math:`p(t) = m_1 t + m_2 t^2` has an inverted U shape with
 
 -  :math:`p(0) = 0, p(T/2) = \mu`, and
--  :math:`p(T) = 0`.
+-  :math:`p(T) = 0`
 
 .. code-block:: python3
 
@@ -1433,9 +1433,10 @@ Exercise 2
 ----------
 
 This is a permanent income / life-cycle model with polynomial growth in
-income over working life followed by a fixed retirement income. The
-model is solved by combining two LQ programming problems as described in
-the lecture.
+income over working life followed by a fixed retirement income
+
+The model is solved by combining two LQ programming problems as described in
+the lecture
 
 .. code-block:: python3
 

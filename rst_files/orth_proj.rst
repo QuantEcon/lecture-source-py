@@ -250,7 +250,7 @@ We write
     Y = S \oplus S^{\perp}
 
 to indicate that for every :math:`y \in Y` there is unique :math:`x_1 \in S` and a unique :math:`x_2 \in S^{\perp}`
-such that :math:`y = x_1 + x_2`.
+such that :math:`y = x_1 + x_2`
 
 Moreover, :math:`x_1 = \hat E_S y` and :math:`x_2 = y - \hat E_S y`    
 
@@ -356,7 +356,7 @@ Projection Using Matrix Algebra
 ===================================
 
 
-Let :math:`S` be a linear subspace of :math:`\mathbb R^n` and  let :math:`y \in \mathbb R^n`.
+Let :math:`S` be a linear subspace of :math:`\mathbb R^n` and  let :math:`y \in \mathbb R^n`
 
 We want to compute the matrix :math:`P` that verifies
 
@@ -842,7 +842,7 @@ Exercise 1
 ------------
 
 If :math:`x \in S` and :math:`x \in S^\perp`, then we have in particular
-that :math:`\langle x, x \rangle = 0`. But then :math:`x = 0`.
+that :math:`\langle x, x \rangle = 0`, ut then :math:`x = 0`
 
 Exercise 2
 ------------
@@ -859,7 +859,7 @@ Exercise 3
 ------------
 
 Here's a function that computes the orthonormal vectors using the GS
-algorithm given in the lecture.
+algorithm given in the lecture
 
 .. code-block:: python3
 
@@ -925,7 +925,7 @@ First let's try projection of :math:`y` onto the column space of
 
 
 Now let's do the same using an orthonormal basis created from our
-``gram_schmidt`` function.
+``gram_schmidt`` function
 
 .. code-block:: python3
 

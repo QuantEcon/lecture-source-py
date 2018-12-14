@@ -1154,7 +1154,7 @@ First let's enter the parameters:
     p_s = 150.0
 
 Next we'll create an instance of ``AssetPriceModel`` to feed into the
-functions.
+functions
 
 .. code-block:: python3
 
@@ -1182,7 +1182,7 @@ Now we just need to call the relevant functions on the data:
 
 
 
-Let's show the last two functions as a plot.
+Let's show the last two functions as a plot
 
 .. code-block:: python3
 
@@ -1236,7 +1236,7 @@ Now let's compute the option values at ``k=5`` and ``k=25``
 
 
 
-Not surprisingly, the option has greater value with larger :math:`k`.
-This is because the owner has a longer time horizon over which he or she
-may exercise the option.
+Not surprisingly, the option has greater value with larger :math:`k`
 
+This is because the owner has a longer time horizon over which he or she
+may exercise the option

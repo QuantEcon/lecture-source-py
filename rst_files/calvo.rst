@@ -170,7 +170,7 @@ or
      x_{t+1} = A x_t + B \mu_t
 
 We write the model in the state-space form :eq:`eq_old4` even though :math:`\theta_0` is to be determined and so is not an initial condition
-as it ordinarily would be in the state-space model described in :doc:`Linear Quadratic Control<lqcontrol>`.
+as it ordinarily would be in the state-space model described in :doc:`Linear Quadratic Control<lqcontrol>`
 
 We write the model in the form :eq:`eq_old4` because we want to apply an approach described in  :doc:`Stackelberg problems<dyn_stack>`
 
@@ -182,7 +182,7 @@ time :math:`t` is:
 
     U(m_t - p_t) = a_0 + a_1 (m_t - p_t) - \frac{a_2}{2} (m_t - p_t)^2, \quad a_0 > 0, a_1 > 0, a_2 > 0
 
-The "bliss level" of real balances is then :math:`\frac{a_1}{a_2}`.
+The "bliss level" of real balances is then :math:`\frac{a_1}{a_2}`
 
 The money demand function :eq:`eq_old1` and the utility function :eq:`eq_old5` imply that the bliss level of real
 balances is attained when:
@@ -307,7 +307,7 @@ sets :math:`\mu_t` at one :math:`t` only
 The four models differ with respect to timing protocols, constraints on
 government policy, and government policy makers' beliefs about how their
 decisions affect private agents' beliefs about future government
-decisions.
+decisions
 
 The models are
 
@@ -452,9 +452,9 @@ equation :eq:`eq_old3` plays three roles simultaneously:
 Time Inconsistency
 -------------------
 
-As discussed in :doc:`Stackelberg problems<dyn_stack>` and :doc:`Optimal taxation with state-contingent debt<opt_tax_recur>`, a continuation Ramsey plan is not a Ramsey plan.
+As discussed in :doc:`Stackelberg problems<dyn_stack>` and :doc:`Optimal taxation with state-contingent debt<opt_tax_recur>`, a continuation Ramsey plan is not a Ramsey plan
 
-This is a concise way of characterizing the time inconsistency of a Ramsey plan.
+This is a concise way of characterizing the time inconsistency of a Ramsey plan
 
 The time inconsistency of a Ramsey plan has motivated other models of government decision making
 that alter either
@@ -1086,7 +1086,7 @@ Abreu Carrot-Stick  Plan
 -------------------------------------------
 
 :cite:`Abreu` invented a way to create a self-enforcing plan with low
-initial value.
+initial value
 
 Imitating his idea, we can construct a self-enforcing plan
 :math:`\vec \mu` with a low time :math:`0` value to the government by

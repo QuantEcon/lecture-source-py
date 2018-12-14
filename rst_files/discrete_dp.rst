@@ -769,7 +769,7 @@ Thus the Bellman equation is:
 
    v(k) = \max_{0 < k' < f(k)} u(f(k) - k') + \beta v(k'),
 
-where :math:`k'` is the capital stock in the next period.
+where :math:`k'` is the capital stock in the next period
 
 The transition probability array ``Q`` will be highly sparse (in fact it
 is degenerate as the model is deterministic), so we formulate the
@@ -993,7 +993,7 @@ much faster than value iteration
 Replication of the figures
 --------------------------
 
-Using ``DiscreteDP`` we replicate the figures shown in the lecture.
+Using ``DiscreteDP`` we replicate the figures shown in the lecture
 
 Convergence of value iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1021,7 +1021,7 @@ a method of ``DiscreteDP``
     plt.show()
 
 
-We next plot the consumption policies along the value iteration.
+We next plot the consumption policies along the value iteration
 
 .. code-block:: python3 
 
@@ -1175,7 +1175,7 @@ Given :math:`\varepsilon > 0`, provided that :math:`v^0` is such that
 :math:`T v^0 \geq v^0`, the modified policy iteration algorithm
 terminates in a finite number of iterations
 
-It returns an :math:`\varepsilon/2`-approximation of the optimal value function and an :math:`\varepsilon`-optimal policy function (unless ``iter_max`` is reached).
+It returns an :math:`\varepsilon/2`-approximation of the optimal value function and an :math:`\varepsilon`-optimal policy function (unless ``iter_max`` is reached)
 
 See also the documentation for ``DiscreteDP``
 

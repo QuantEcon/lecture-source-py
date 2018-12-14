@@ -176,7 +176,7 @@ Competitive Equilibrium with Adjustment Costs
 .. index::
     single: Rational Expectations Equilibrium; Competitive Equilbrium (w. Adjustment Costs)
 
-To illustrate, consider a collection of :math:`n` firms producing a homogeneous good that is sold in a competitive market.
+To illustrate, consider a collection of :math:`n` firms producing a homogeneous good that is sold in a competitive market
 
 Each of these :math:`n` firms sells output :math:`y_t`
 
@@ -526,7 +526,7 @@ If it is appropriate to apply the same terminal conditions for these two differe
 It follows that for this example we can compute equilibrium quantities by forming the optimal linear regulator problem corresponding to the Bellman equation :eq:`comp12`
 
 The optimal policy function for the planning problem is the aggregate law of motion
-:math:`H` that the representative firm faces within a rational expectations equilibrium.
+:math:`H` that the representative firm faces within a rational expectations equilibrium
 
 
 Structure of the Law of Motion
@@ -662,7 +662,7 @@ In particular, solve for the parameters in
     Y_{t+1} = m_0 + m_1 Y_t
 
 
-Compare your results with the previous exercise.  Comment.
+Compare your results with the previous exercise -- comment
 
 
 

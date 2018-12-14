@@ -375,7 +375,7 @@ where
 If we take a random variable :math:`\theta` with this distribution and
 then evaluate the distribution of :math:`\rho \theta + \sigma_\theta w`
 where :math:`w` is independent and standard normal, we get the
-expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture.
+expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture
 
 Exercise 2
 -----------

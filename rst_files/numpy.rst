@@ -1000,7 +1000,7 @@ using descriptors that behaves as we desire can be found
 Exercise 3
 ----------
 
-An example solution is given below.
+An example solution is given below
 
 In essence we've just taken `this
 code <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/ecdf.py>`__

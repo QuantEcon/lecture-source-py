@@ -123,7 +123,7 @@ Digression on a useful isomorphism
 ----------------------------------
 
 The LQ permanent income model of consumption is mathematically isomorphic with a version of 
-Barro's :cite:`Barro1979` model of tax smoothing.
+Barro's :cite:`Barro1979` model of tax smoothing
 
 
 In the LQ permanent income model
@@ -796,7 +796,7 @@ of cointegration implies that the cointegrating residual is
 
 The cointegrating residual for the specification with zero income and zero
 debt initially has a notable transient component that dominates its
-behavior early in the sample.
+behavior early in the sample
 
 By altering initial conditions, we shall remove this transient in our second example to be presented below
 

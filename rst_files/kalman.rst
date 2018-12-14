@@ -23,7 +23,7 @@ This lecture provides a simple and intuitive introduction to the Kalman filter, 
 
 For additional (more advanced) reading on the Kalman filter, see
 
-* :cite:`Ljungqvist2012`, section 2.7.
+* :cite:`Ljungqvist2012`, section 2.7
 * :cite:`AndersonMoore2005`
 
 The second reference presents a  comprehensive treatment of the Kalman filter
@@ -54,7 +54,8 @@ One way to summarize our knowledge is a point prediction :math:`\hat x`
 
 The density :math:`p` is called our *prior* for the random variable :math:`x`
 
-To keep things tractable in our example,  we  assume that our prior is Gaussian.
+To keep things tractable in our example,  we  assume that our prior is Gaussian
+
 In particular, we take
 
 .. math::
@@ -170,7 +171,7 @@ location :math:`y`
 
 
 
-The bad news is that our sensors are imprecise.
+The bad news is that our sensors are imprecise
 
 In particular, we should interpret the output of our sensor not as
 :math:`y=x`, but rather as
