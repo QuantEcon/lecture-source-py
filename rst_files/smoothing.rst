@@ -359,8 +359,8 @@ of our model, we obtain the following striking results:
  
 We computed the constant level of consumption :math:`\bar c` and indicated how that level depends on the underlying specifications of preferences, Arrow securities prices,  the stochastic process of exogenous nonfinancial income, and the initial debt level :math:`b_0` 
 
-*  The consumer's debt neither accumulates, nor decumulates, nor drifts.
-   Instead the debt level each period is an exact function of the Markov
+*  The consumer's debt neither accumulates, nor decumulates, nor drifts --
+   instead the debt level each period is an exact function of the Markov
    state, so in the two-state Markov case, it switches between two
    values
 
@@ -433,7 +433,7 @@ For our assumed quadratic utility function this implies
 .. math::
     :label: cs_8
 
-    \sum_j c_{t+1,j} P_{ij} = c_{t,i}    ,
+    \sum_j c_{t+1,j} P_{ij} = c_{t,i}    
 
 
 which is Hall's (1978) conclusion that consumption follows a random walk
@@ -454,7 +454,7 @@ and
     c_t = (1-\beta) 
         \left[ 
             \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j} - b_t
-        \right]   .
+        \right]   
 
 
 Equation :eq:`cs_10` expresses :math:`c_t` as a net interest rate factor :math:`1 - \beta` times the sum
@@ -613,7 +613,7 @@ We can simply relabel variables to acquire tax-smoothing interpretations of our 
 Example: Tax Smoothing with Complete Markets
 ============================================
 
-It is useful to focus on a simple tax-smoothing example with complete markets.
+It is useful to focus on a simple tax-smoothing example with complete markets
 
 This example will illustrate how, in a complete markets model like that of Lucas and Stokey :cite:`LucasStokey1983`, the government purchases 
 insurance from the private sector. 
@@ -821,7 +821,7 @@ the state :math:`x_t` described by :eq:`cs_15`
 
 
 Here's an example that shows how in this setting the availability of insurance against fluctuating nonfinancial income
-allows the consumer completely to smooth consumption across time and across states of the world.
+allows the consumer completely to smooth consumption across time and across states of the world
 
 .. literalinclude:: /_static/code/smoothing/lss_example.py
 
