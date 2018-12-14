@@ -42,18 +42,25 @@ Our presentation of the model will be relatively brief
 
 To solve the model we will use Euler equation based time iteration, similar to :doc:`this lecture <coleman_policy_iter>`
 
-This method turns out to be
+This method turns out to be globally convergent under mild assumptions, even when utility is unbounded (both above and below)
 
-* Globally convergent under mild assumptions, even when utility is unbounded (both above and below)
+We'll need the following imports
 
-* More efficient numerically than value function iteration
+.. code-block:: ipython
 
+    import numpy as np
+    from quantecon.optimize import brent_max, brentq
+    from interpolation import interp
+    from numba import njit, prange
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 References
 ----------------
 
 Other useful references include :cite:`Deaton1991`, :cite:`DenHaan2010`, :cite:`Kuhn2013`, :cite:`Rabault2002`,  :cite:`Reiter2009`  and :cite:`SchechtmanEscudero1977`
+
 
 
 The Optimal Savings Problem
@@ -282,7 +289,7 @@ candidate consumption functions :math:`\sigma \colon S \to \mathbb R` such that
 * each :math:`\sigma \in \mathscr{C}` is continuous and (weakly) increasing
 * :math:`\min Z \leq c(a,z) \leq Ra + z + b` for all :math:`(a,z) \in S`
 
-In addition, let :math:`K \colon \mathscr{C} \to \mathscr{C}` be defined as follows:
+In addition, let :math:`K \colon \mathscr{C} \to \mathscr{C}` be defined as follows
 
 For given :math:`\sigma \in \mathscr{C}`, the value :math:`K \sigma (a,z)` is the unique :math:`t \in J(a,z)` that solves
 
@@ -385,24 +392,9 @@ Implementation
 .. index::
     single: Optimal Savings; Programming Implementation
 
-Here’s the code for a class called ConsumerProblem that stores primitives, 
-as well as an operator factory which returns
-
-* `T`, a function which implements the Bellman operator :math:`T` specified above
-
-* `get_greedy` function, which finds the maximizers of the Bellman operator :math:`T`
-
-* `K`, a function which implements the Coleman operator :math:`K` specified above
-
+First we build a class called ``ConsumerProblem`` that stores the model primitives
 
 .. code-block:: python3
-
-    import numpy as np
-    from quantecon.optimize import brent_max, brentq
-    from interpolation import interp
-    from numba import njit, prange
-    import matplotlib.pyplot as plt
-    
 
     class ConsumerProblem:
         """
@@ -426,8 +418,18 @@ as well as an operator factory which returns
             self.β, self.b = β, b
             self.Π, self.z_vals = np.array(Π), tuple(z_vals)
             self.asset_grid = np.linspace(-b, grid_max, grid_size)
-            
-                    
+
+
+The function ``operator_factory`` returns:
+
+* ``T``, a function which implements the Bellman operator :math:`T` specified above
+
+* ``get_greedy`` function, which finds the maximizers of the Bellman operator :math:`T`
+
+* ``K``, a function which implements the Coleman operator :math:`K` specified above
+
+.. code-block:: python3
+      
     def operator_factory(cp, parallel_flag=True):
         """
         A function factory for building the Bellman operator,
@@ -464,7 +466,7 @@ as well as an operator factory which returns
                 a = asset_grid[i_a]
                 for i_z in prange(len(z_vals)):
                     z = z_vals[i_z]
-                    c_star, v_star, _ = brent_max(objective, 1e-8, R * a + z + b, args=(a, z, i_z, v))
+                    v_star = brent_max(objective, 1e-8, R * a + z + b, args=(a, z, i_z, v))[1]
                     v_new[i_a, i_z] = v_star
 
             return v_new
@@ -480,7 +482,7 @@ as well as an operator factory which returns
                 a = asset_grid[i_a]
                 for i_z in prange(len(z_vals)):
                     z = z_vals[i_z]
-                    c_star, v_star, _ = brent_max(objective, 1e-8, R * a + z + b, args=(a, z, i_z, v))
+                    c_star = brent_max(objective, 1e-8, R * a + z + b, args=(a, z, i_z, v))[0]
                     σ[i_a, i_z] = c_star
 
             return σ
@@ -523,51 +525,12 @@ as well as an operator factory which returns
         return T, K, get_greedy
 
 
-Both `T` and `K` use linear interpolation along the asset grid to approximate the value and consumption functions
+Both ``T`` and ``K`` use linear interpolation along the asset grid to approximate the value and consumption functions
 
-The following exercises walk you through several applications where policy functions are computed
+To solve for the optimal policy function, we will write a function ``solve_model``
+that uses ``K`` to iterate and find the optimal :math:`\sigma`
 
-In exercise 1 you will see that while VFI and TI produce similar results, the latter is much faster
-
-Intuition behind this fact was provided in :doc:`a previous lecture on time iteration <coleman_policy_iter>`
-
-Exercises
-=============
-
-
-Exercise 1
-------------
-
-Next let's consider how the interest rate affects consumption
-
-Reproduce the following figure, which shows (approximately) optimal consumption policies for different interest rates
-
-.. figure:: /_static/figures/ifp_policies.png
-   :scale: 100%
-
-* Other than ``r``, all parameters are at their default values
-* ``r`` steps through ``np.linspace(0, 0.04, 4)``
-* Consumption is plotted against assets for income shock fixed at the smallest value
-
-The figure shows that higher interest rates boost savings and hence suppress consumption
-
-
-
-.. _ifp_ex3:
-
-Exercise 3
-------------
-
-Now let's consider the long run asset levels held by households
-
-We'll take ``r = 0.03`` and otherwise use default parameters
-
-The following figure is a 45 degree diagram showing the law of motion for assets when consumption is optimal
-
-First we will write a `solve_model` function which iterates Coleman operation to find :math:`\sigma^*`
-
-
-.. code-block:: ipython
+.. code-block:: python3
 
     def solve_model(cp,
                     use_parallel=True,
@@ -575,6 +538,12 @@ First we will write a `solve_model` function which iterates Coleman operation to
                     max_iter=1000,
                     verbose=True,
                     print_skip=25):
+                    
+        """
+        Solves for the optimal policy using time iteration
+        
+        * cp is an instance of ConsumerProblem 
+        """
         
         u, β, b, R = cp.u, cp.β, cp.b, cp.R
         asset_grid, z_vals = cp.asset_grid, cp.z_vals
@@ -608,20 +577,65 @@ First we will write a `solve_model` function which iterates Coleman operation to
             print(f"\nConverged in {i} iterations.")
 
         return σ_new
+        
+Plotting the result using the default parameters of the ``ConsumerProblem`` class
 
-    
+.. code-block:: python3
 
-    # === solve for optimal consumption === #
+    cp = ConsumerProblem()
+    σ_star = solve_model(cp)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(cp.asset_grid, σ_star[:, 0], label='$\sigma^*$')
+    ax.set(xlabel='asset level', ylabel='optimal consumption')
+    ax.legend()
+    plt.show()
+
+The following exercises walk you through several applications where policy functions are computed
+
+Exercises
+=============
+
+
+Exercise 1
+------------
+
+Next let's consider how the interest rate affects consumption
+
+Reproduce the following figure, which shows (approximately) optimal consumption policies for different interest rates
+
+.. figure:: /_static/figures/ifp_policies.png
+   :scale: 60%
+
+* Other than ``r``, all parameters are at their default values
+* ``r`` steps through ``np.linspace(0, 0.04, 4)``
+* Consumption is plotted against assets for income shock fixed at the smallest value
+
+The figure shows that higher interest rates boost savings and hence suppress consumption
+
+
+
+Exercise 2
+------------
+
+Now let's consider the long run asset levels held by households
+
+We'll take ``r = 0.03`` and otherwise use default parameters
+
+The following figure is a 45 degree diagram showing the law of motion for assets when consumption is optimal
+
+.. code-block:: python3
+
     m = ConsumerProblem(r=0.03, grid_max=4)
     T, K, get_greedy = operator_factory(m)
 
-    σ = solve_model(m, verbose=False)
+    σ_star = solve_model(m, verbose=False)
     a = m.asset_grid
     R, z_vals = m.R, m.z_vals
 
     fig, ax = plt.subplots(figsize=(10, 8))
-    ax.plot(a, R * a + z_vals[0] - σ[:, 0], label='Low income')
-    ax.plot(a, R * a + z_vals[1] - σ[:, 1], label='High income')
+    ax.plot(a, R * a + z_vals[0] - σ_star[:, 0], label='Low income')
+    ax.plot(a, R * a + z_vals[1] - σ_star[:, 1], label='High income')
     ax.plot(a, a, 'k--')
     ax.set(xlabel='Current assets', 
            ylabel='Next period assets',
@@ -654,10 +668,10 @@ In fact there is a unique stationary distribution of assets that we can calculat
 
 Ergodicity is valid here, so stationary probabilities can be calculated by averaging over a single long time series
 
-* Hence to approximate the stationary distribution we can simulate a long time series for assets and histogram, as in the following figure
+Hence to approximate the stationary distribution we can simulate a long time series for assets and histogram, as in the following figure
 
 .. figure:: /_static/figures/ifp_histogram.png
-   :scale: 100%
+   :scale: 60%
 
 Your task is to replicate the figure
 
@@ -671,12 +685,11 @@ Your task is to replicate the figure
 
 
 
-.. _ifp_ex4:
 
-Exercise 4
+Exercise 3
 ------------
 
-Following on from exercises 2 and 3, let's look at how savings and aggregate asset holdings vary with the interest rate
+Following on from exercises 1 and 2, let's look at how savings and aggregate asset holdings vary with the interest rate
 
 * Note: :cite:`Ljungqvist2012` section 18.6 can be consulted for more background on the topic treated in this exercise
 
@@ -689,13 +702,13 @@ The next figure plots aggregate capital against the interest rate for ``b in (1,
 
 
 .. figure:: /_static/figures/ifp_agg_savings.png
-   :scale: 100%
+   :scale: 60%
 
 As is traditional, the price (interest rate) is on the vertical axis
 
 The horizontal axis is aggregate capital computed as the mean of the stationary distribution
 
-Exercise 4 is to replicate the figure, making use of code from previous exercises
+Exercise 3 is to replicate the figure, making use of code from previous exercises
 
 Try to explain why the measure of aggregate capital is equal to :math:`-b`
 when :math:`r=0` for both cases shown here
@@ -716,15 +729,15 @@ Exercise 1
     fig, ax = plt.subplots(figsize=(10, 8))
     for r_val in r_vals:
         cp = ConsumerProblem(r=r_val)
-        σ = solve_model(cp, verbose=False)
-        ax.plot(cp.asset_grid, σ[:, 0], label=f'$r = {r_val:.3f}$')
+        σ_star = solve_model(cp, verbose=False)
+        ax.plot(cp.asset_grid, σ_star[:, 0], label=f'$r = {r_val:.3f}$')
 
     ax.set(xlabel='asset level', ylabel='consumption (low income)')
     ax.legend()
     plt.show()
 
 
-Exercise 3
+Exercise 2
 ----------
 
 .. code-block:: python3
@@ -734,12 +747,14 @@ Exercise 3
     def compute_asset_series(cp, T=500000, verbose=False):
         """
         Simulates a time series of length T for assets, given optimal savings
-        behavior. Parameter cp is an instance of ConsumerProblem
+        behavior. 
+        
+        cp is an instance of ConsumerProblem
         """
         Π, z_vals, R = cp.Π, cp.z_vals, cp.R  # Simplify names
         mc = MarkovChain(Π)
-        σ = solve_model(cp, verbose=False)
-        cf = lambda a, i_z: interp(cp.asset_grid, σ[:, i_z], a)
+        σ_star = solve_model(cp, verbose=False)
+        cf = lambda a, i_z: interp(cp.asset_grid, σ_star[:, i_z], a)
         a = np.zeros(T+1)
         z_seq = mc.simulate(T)
         for t in range(T):
@@ -748,7 +763,6 @@ Exercise 3
         return a
 
     cp = ConsumerProblem(r=0.03, grid_max=4)
-    T, K, get_greedy = operator_factory(cp)
     a = compute_asset_series(cp)
     
     fig, ax = plt.subplots(figsize=(10, 8))
@@ -757,7 +771,7 @@ Exercise 3
     plt.show()
 
 
-Exercise 4
+Exercise 3
 ----------
 
 .. code-block:: python3
@@ -773,7 +787,7 @@ Exercise 4
             mean = np.mean(compute_asset_series(cp, T=250000))
             asset_mean.append(mean)
         ax.plot(asset_mean, r_vals, label=f'$b = {b:d}$')
-        print(f"Finished iteration b={b:d}")
+        print(f"Finished iteration b = {b:d}")
 
     ax.set(xlabel='capital', ylabel='interest rate')
     ax.grid()
