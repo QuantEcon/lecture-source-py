@@ -37,7 +37,7 @@ Here we'll focus on Jupyter and leave you to explore other settings
 
 We'll need the following imports
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -208,7 +208,8 @@ To this end, we add a "break point" by inserting  ``breakpoint()`` inside the fu
 
 Now let's run the script, and investigate via the debugger
 
-.. code-block:: none
+.. code-block:: ipython
+    :class: no-execute
 
     > <ipython-input-6-a188074383b7>(6)plot_log()
     -> fig, ax = plt.subplots()
