@@ -180,9 +180,10 @@ Solutions
 Exercise 1
 ----------
 
-Here's one solution that does the job we want. If you feel like a
-further exercise you can probably speed up some of the computations and
-then increase the number of agents.
+Here's one solution that does the job we want
+
+If you feel like a further exercise you can probably speed up some of the computations and
+then increase the number of agents
 
 .. code-block:: ipython
 
