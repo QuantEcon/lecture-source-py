@@ -51,7 +51,7 @@ We'll need the following imports
     import numpy as np
     from quantecon.optimize import brent_max, brentq
     from interpolation import interp
-    from numba import njit, prange
+    from numba import njit
     import matplotlib.pyplot as plt
     %matplotlib inline
 
@@ -420,21 +420,13 @@ First we build a class called ``ConsumerProblem`` that stores the model primitiv
             self.asset_grid = np.linspace(-b, grid_max, grid_size)
 
 
-The function ``operator_factory`` returns:
-
-* ``T``, a function which implements the Bellman operator :math:`T` specified above
-
-* ``get_greedy`` function, which finds the maximizers of the Bellman operator :math:`T`
-
-* ``K``, a function which implements the Coleman operator :math:`K` specified above
+The function ``operator_factory`` returns the operator ``K`` as specified above
 
 .. code-block:: python3
       
-    def operator_factory(cp, parallel_flag=True):
+    def operator_factory(cp):
         """
-        A function factory for building the Bellman operator,
-        a function that computes greedy policies, as well as
-        the Coleman operator.
+        A function factory for building operator K.
 
         Here cp is an instance of ConsumerProblem.
         """
@@ -443,49 +435,6 @@ The function ``operator_factory`` returns:
         asset_grid, z_vals = cp.asset_grid, cp.z_vals
         γ = R * β
 
-        @njit
-        def objective(c, a, z, i_z, v):
-            """
-            The right hand side of the Bellman equation.
-            """
-            val = u(c)
-            for i in range(len(z_vals)):
-                val += β * interp(asset_grid, v[:, i], R * a + z - c) * Π[i_z, i]
-
-            return val
-
-        @njit(parallel=parallel_flag)
-        def T(v):
-            """
-            The approximate Bellman operator, which computes and returns the
-            updated value function.
-            """
-            v_new = np.empty_like(v)
-
-            for i_a in prange(len(asset_grid)):
-                a = asset_grid[i_a]
-                for i_z in prange(len(z_vals)):
-                    z = z_vals[i_z]
-                    v_star = brent_max(objective, 1e-8, R * a + z + b, args=(a, z, i_z, v))[1]
-                    v_new[i_a, i_z] = v_star
-
-            return v_new
-        
-        @njit(parallel=parallel_flag)
-        def get_greedy(v):
-            """
-            Computes the v-greedy policy of a given function v.
-            """
-            σ = np.empty_like(v)
-
-            for i_a in prange(len(asset_grid)):
-                a = asset_grid[i_a]
-                for i_z in prange(len(z_vals)):
-                    z = z_vals[i_z]
-                    c_star = brent_max(objective, 1e-8, R * a + z + b, args=(a, z, i_z, v))[0]
-                    σ[i_a, i_z] = c_star
-
-            return σ
         
         @njit
         def euler_diff(c, a, z, i_z, σ):
@@ -495,16 +444,16 @@ The function ``operator_factory`` returns:
             """
             lhs = du(c)
             expectation = 0
-            for i in prange(len(z_vals)):
+            for i in range(len(z_vals)):
                 expectation += du(interp(asset_grid, σ[:, i], R * a + z - c)) * Π[i_z, i]
             rhs = max(γ * expectation, du(R * a + z + b))
 
             return lhs - rhs
 
-        @njit(parallel=parallel_flag)
+        @njit
         def K(σ):
             """
-            The approximate Coleman operator.
+            The operator K.
 
             Iteration with this operator corresponds to time iteration on the Euler
             equation.  Computes and returns the updated consumption policy
@@ -513,27 +462,26 @@ The function ``operator_factory`` returns:
             possible value of z.
             """
             σ_new = np.empty_like(σ)
-            for i_a in prange(len(asset_grid)):
+            for i_a in range(len(asset_grid)):
                 a = asset_grid[i_a]
-                for i_z in prange(len(z_vals)):
+                for i_z in range(len(z_vals)):
                     z = z_vals[i_z]
                     c_star = brentq(euler_diff, 1e-8, R * a + z + b, args=(a, z, i_z, σ)).root
                     σ_new[i_a, i_z] = c_star
                                     
             return σ_new
 
-        return T, K, get_greedy
+        return K
 
 
-Both ``T`` and ``K`` use linear interpolation along the asset grid to approximate the value and consumption functions
+``K`` uses linear interpolation along the asset grid to approximate the value and consumption functions
 
 To solve for the optimal policy function, we will write a function ``solve_model``
-that uses ``K`` to iterate and find the optimal :math:`\sigma`
+to iterate and find the optimal :math:`\sigma`
 
 .. code-block:: python3
 
     def solve_model(cp,
-                    use_parallel=True,
                     tol=1e-4,
                     max_iter=1000,
                     verbose=True,
@@ -548,16 +496,14 @@ that uses ``K`` to iterate and find the optimal :math:`\sigma`
         u, β, b, R = cp.u, cp.β, cp.b, cp.R
         asset_grid, z_vals = cp.asset_grid, cp.z_vals
         
-        # initial guess of V and σ
-        V = np.empty((len(asset_grid), len(z_vals)))
-        σ = np.empty_like(V)
+        # initial guess of σ
+        σ = np.empty((len(asset_grid), len(z_vals)))
         for i_a, a in enumerate(asset_grid):
             for i_z, z in enumerate(z_vals):
                 c_max = R * a + z + b
                 σ[i_a, i_z] = c_max
-                V[i_a, i_z] = u(c_max) / (1 - β)
 
-        _, K, _ = operator_factory(cp, parallel_flag=use_parallel)
+        K = operator_factory(cp)
 
         i = 0
         error = tol + 1
@@ -627,7 +573,7 @@ The following figure is a 45 degree diagram showing the law of motion for assets
 .. code-block:: python3
 
     m = ConsumerProblem(r=0.03, grid_max=4)
-    T, K, get_greedy = operator_factory(m)
+    K = operator_factory(m)
 
     σ_star = solve_model(m, verbose=False)
     a = m.asset_grid
