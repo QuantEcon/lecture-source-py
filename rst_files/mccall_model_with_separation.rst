@@ -539,9 +539,7 @@ we can create an array for reservation wages for different values of :math:`c`,
 
     ax.set(xlabel='unemployment compensation', 
            ylabel='reservation wage')
-    ax.plot(c_vals, w_bar_vals, 'b-', lw=2, alpha=0.7, 
-            label=r'$\bar w$ as a function of $c$')
-    ax.legend(loc='upper left')
+    ax.plot(c_vals, w_bar_vals, label=r'$\bar w$ as a function of $c$')
     ax.grid()
 
     plt.show()
@@ -554,23 +552,20 @@ Similar to above, we can plot :math:`\bar w` against :math:`\gamma` as follows
 .. code-block:: python3
 
     grid_size = 25  
-    c_vals = np.linspace(2, 12, grid_size)  # values of unemployment compensation
-    w_bar_vals = np.empty_like(c_vals)
+    γ_vals = np.linspace(0.05, 0.95, grid_size)  
+    w_bar_vals = np.empty_like(γ_vals)
 
     mcm = McCallModel()
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    for i, c in enumerate(c_vals):
-        mcm.c = c
+    for i, γ in enumerate(γ_vals):
+        mcm.γ = γ
         w_bar = compute_reservation_wage(mcm)
         w_bar_vals[i] = w_bar
 
-    ax.set(xlabel='unemployment compensation', 
-           ylabel='reservation wage')
-    ax.plot(c_vals, w_bar_vals, 'b-', lw=2, alpha=0.7, 
-            label=r'$\bar w$ as a function of $c$')
-    ax.legend(loc='upper left')
+    ax.plot(γ_vals, w_bar_vals, label=r'$\bar w$ as a function of $\gamma$')
+    ax.set(xlabel='job offer rate', ylabel='reservation wage')
     ax.grid()
 
     plt.show()
