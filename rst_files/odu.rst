@@ -415,6 +415,7 @@ Let's look at solutions computed from value function iteration
 
     plt.show()
   
+.. _odu_pol_vfi:
 
 We will also plot the optimal policy
 

@@ -785,7 +785,7 @@ Now let's stare at the decision rule :eq:`oli23` for :math:`i_t`, apply
 verify a recursive representation of a representative follower's choice problem
 
 * We want decision rule :eq:`oli23` to have the property that :math:`i_t = \overline i_t` 
-when we evaluate it at :math:`q_t = \overline q_t`
+  when we evaluate it at :math:`q_t = \overline q_t`
 
 We inherit these desires from a "Big :math:`K`, little :math:`k`" logic
 
@@ -796,9 +796,6 @@ representative firm's optimization problem
     * We want :math:`q_t = \overline q_t`
 
     * We want :math:`i_t = \overline i_t`
-
-
-
 
 
 
@@ -922,10 +919,10 @@ Equation :eq:`ex1a` can be interpreted as the Euler equation of the holders of m
 
 **a.** Briefly interpret how :eq:`ex1a` makes the demand for real balances vary 
 inversely with the expected rate of inflation. Temporarily (only for this part of the exercise)
- drop :eq:`ex1a` and assume instead that :math:`\{m_t\}` is a given sequence satisfying 
- :math:`\sum_{t=0}^\infty m_t^2 < + \infty` -- solve the difference 
- equation :eq:`ex1a` "forward" to express :math:`p_t` as a function of current 
- and future values of :math:`m_s`. Note how future values of :math:`m` influence the current price level
+drop :eq:`ex1a` and assume instead that :math:`\{m_t\}` is a given sequence satisfying 
+:math:`\sum_{t=0}^\infty m_t^2 < + \infty` -- solve the difference 
+equation :eq:`ex1a` "forward" to express :math:`p_t` as a function of current 
+and future values of :math:`m_s`. Note how future values of :math:`m` influence the current price level
 
 At time :math:`0`, a monetary authority chooses (commits to) a possibly 
 history-dependent strategy for setting :math:`\{u_t\}_{t=0}^\infty`
