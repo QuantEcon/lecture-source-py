@@ -209,7 +209,7 @@ was also  an *implementability constraint* on a Ramsey allocation in a Lucas-Sto
 .. math::
     :label: TS_gov_wo4
 
-    b_0(s^{-1}) = \EE_0 \sum_{j=0}^\infty \beta^j
+    b_0(s^{-1}) = \mathbb E_0 \sum_{j=0}^\infty \beta^j
                    { u_c(s^{j}) \over u_c(s^{0}) } \;z(s^{j})
 
 Indeed, it was the *only* implementability constraint there
@@ -219,7 +219,7 @@ But now we also have a large number of additional implementability constraints
 .. math:: 
     :label: TS_gov_wo4a
 
-     b_t(s^{t-1}) =  \EE_t \sum_{j=0}^\infty \beta^j
+     b_t(s^{t-1}) =  \mathbb E_t \sum_{j=0}^\infty \beta^j
                   { u_c(s^{t+j}) \over u_c(s^{t}) } \;z(s^{t+j})
 
 Equation :eq:`TS_gov_wo4a` must hold for each :math:`s^t` for each :math:`t \geq 1` 
@@ -244,7 +244,7 @@ After we have substituted the resource constraint into the utility function, we 
 .. math::
 
     \max_{\{c_t(s^t),b_{t+1}(s^t)\}} 
-    \EE_0 \sum_{t=0}^\infty \beta^t
+    \mathbb E_0 \sum_{t=0}^\infty \beta^t
                             u\left(c_t(s^t),1-c_t(s^t)-g_t(s_t)\right)
 
 
@@ -253,7 +253,7 @@ where the maximization is subject to
 .. math::
     :label: AMSS_44
 
-    \EE_{0} \sum_{j=0}^\infty \beta^j
+    \mathbb E_{0} \sum_{j=0}^\infty \beta^j
           { u_c(s^{j}) \over u_c(s^{0}) } \;z(s^{j}) \geq b_0(s^{-1})
 
 
@@ -262,7 +262,7 @@ and
 .. math::
     :label: AMSS_46
 
-    \EE_{t} \sum_{j=0}^\infty \beta^j  
+    \mathbb E_{t} \sum_{j=0}^\infty \beta^j  
         { u_c(s^{t+j}) \over u_c(s^{t}) } \;
         z(s^{t+j}) = b_t(s^{t-1})
           \quad \forall \,  s^t
@@ -291,7 +291,7 @@ Depending on how the constraints  bind, these multipliers can be positive or neg
        \gamma_t(s^t) 
        &\;\geq\; (\leq)\;\, 0 \quad \text{if the constraint binds in this direction } 
        \\
-       & \EE_{t} \sum_{j=0}^\infty \beta^j
+       & \mathbb E_{t} \sum_{j=0}^\infty \beta^j
         { u_c(s^{t+j}) \over u_c(s^{t}) } \;z(s^{t+j}) \;\geq \;(\leq)\;\, b_t(s^{t-1})
     \end{aligned}
 
@@ -318,12 +318,12 @@ Then a Lagrangian for the Ramsey problem can  be represented as
     :label: AMSS_lagr;a
 
     \begin{aligned}
-       J &= \EE_{0} \sum_{t=0}^\infty \beta^t
+       J &= \mathbb E_{0} \sum_{t=0}^\infty \beta^t
                             \biggl\{ u\left(c_t(s^t), 1-c_t(s^t)-g_t(s_t)\right)\\
-       &  \qquad + \gamma_t(s^t) \Bigl[ \EE_{t} \sum_{j=0}^\infty \beta^j
+       &  \qquad + \gamma_t(s^t) \Bigl[ \mathbb E_{t} \sum_{j=0}^\infty \beta^j
              u_c(s^{t+j}) \,z(s^{t+j}) - u_c(s^{t}) \,b_t(s^{t-1}) \biggr\}           
              \\
-       &= \EE_{0} \sum_{t=0}^\infty \beta^t
+       &= \mathbb E_{0} \sum_{t=0}^\infty \beta^t
                              \biggl\{ u\left(c_t(s^t), 1-c_t(s^t)-g_t(s_t)\right)   
             \\
        &  \qquad + \Psi_t(s^t)\, u_c(s^{t}) \,z(s^{t}) -
@@ -367,7 +367,7 @@ and with respect to :math:`b_t(s^t)` as
 .. math::
     :label: AMSS_foc;b
 
-    \EE_{t} \left[\gamma_{t+1}(s^{t+1})\,u_c(s^{t+1})\right] = 0
+    \mathbb E_{t} \left[\gamma_{t+1}(s^{t+1})\,u_c(s^{t+1})\right] = 0
 
 
 If we substitute :math:`z(s^t)` from :eq:`AMSS_44_2` and its derivative
@@ -447,7 +447,7 @@ In this case, the household faces a sequence of budget constraints
     b_t(s^{t-1}) + (1-\tau_t(s^t)) n_t(s^t) = c_t(s^t) + b_{t+1}(s^t)/R_t(s^t)
 
 
-The household’s first-order conditions are :math:`u_{c,t} = \beta R_t \EE_t u_{c,t+1}` 
+The household’s first-order conditions are :math:`u_{c,t} = \beta R_t \mathbb E_t u_{c,t+1}` 
 and :math:`(1-\tau_t) u_{c,t} = u_{l,t}`
 
 Using these to eliminate :math:`R_t` and :math:`\tau_t` from  budget constraint 
@@ -457,7 +457,7 @@ Using these to eliminate :math:`R_t` and :math:`\tau_t` from  budget constraint
     :label: eqn:AMSSapp2a
 
     b_t(s^{t-1}) + \frac{u_{l,t}(s^t)}{u_{c,t}(s^t)} n_t(s^t)
-    = c_t(s^t) + {\frac{\beta (\EE_t u_{c,t+1}) b_{t+1}(s^t)}{u_{c,t}(s^t)}}
+    = c_t(s^t) + {\frac{\beta (\mathbb E_t u_{c,t+1}) b_{t+1}(s^t)}{u_{c,t}(s^t)}}
 
 
 or
@@ -466,7 +466,7 @@ or
     :label: eqn:AMSSapp2
 
     u_{c,t}(s^t) b_t(s^{t-1}) + u_{l,t}(s^t) n_t(s^t) 
-    = u_{c,t}(s^t) c_t(s^t) + \beta (\EE_t u_{c,t+1}) b_{t+1}(s^t)
+    = u_{c,t}(s^t) c_t(s^t) + \beta (\mathbb E_t u_{c,t+1}) b_{t+1}(s^t)
 
 
 Now define
@@ -474,7 +474,7 @@ Now define
 .. math::
     :label: eqn:AMSSapp3
 
-    x_t \equiv \beta b_{t+1}(s^t) \EE_t u_{c,t+1} = u_{c,t} (s^t) {\frac{b_{t+1}(s^t)}{R_t(s^t)}}
+    x_t \equiv \beta b_{t+1}(s^t) \mathbb E_t u_{c,t+1} = u_{c,t} (s^t) {\frac{b_{t+1}(s^t)}{R_t(s^t)}}
 
 
 and represent the household’s budget constraint at time :math:`t`,
@@ -483,7 +483,7 @@ history :math:`s^t` as
 .. math::
     :label: eqn:AMSSapp4
 
-    {\frac{u_{c,t} x_{t-1}}{\beta \EE_{t-1} u_{c,t}}} = u_{c,t} c_t - u_{l,t} n_t + x_t
+    {\frac{u_{c,t} x_{t-1}}{\beta \mathbb E_{t-1} u_{c,t}}} = u_{c,t} c_t - u_{l,t} n_t + x_t
 
 
 for :math:`t \geq 1`
@@ -497,7 +497,7 @@ Write equation :eq:`eqn:AMSSapp2` as
     :label: eqn:AMSSapp2b
 
     b_t(s^{t-1})  = c_t(s^t) -  { \frac{u_{l,t}(s^t)}{u_{c,t}(s^t)}} n_t(s^t) +
-    {\frac{\beta (\EE_t u_{c,t+1}) b_{t+1}(s^t)}{u_{c,t}}}
+    {\frac{\beta (\mathbb E_t u_{c,t+1}) b_{t+1}(s^t)}{u_{c,t}}}
 
 
 The right side of equation :eq:`eqn:AMSSapp2b` expresses the time :math:`t` value of government debt
