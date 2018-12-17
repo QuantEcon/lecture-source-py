@@ -351,14 +351,14 @@ The Bellman Equation and the Principle of Optimality
 The main principle of the theory of dynamic programming is that
 
 -  the optimal value function :math:`v^*` is a unique solution to the *Bellman equation*
-
+   
    .. math::
 
-       v(s) = \max_{a \in A(s)} 
-           \left\{
-               r(s, a) + \beta \sum_{s' \in S} v(s') Q(s, a, s') 
-           \right\}
-       \qquad (s \in S)
+     v(s) = \max_{a \in A(s)} 
+            \left\{
+            r(s, a) + \beta \sum_{s' \in S} v(s') Q(s, a, s') 
+            \right\}
+     \qquad (s \in S)
 
    or in other words, :math:`v^*` is the unique fixed point of :math:`T`, and
    
