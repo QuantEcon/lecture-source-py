@@ -28,7 +28,19 @@ We'll use this structure to obtain an **Euler equation**  based method that's mo
 
 In a :doc:`subsequent lecture <egm_policy_iter>` we'll see that the numerical implementation part of the Euler equation method can be further adjusted to obtain even more efficiency
 
+Let's start with some imports
 
+.. code-block:: ipython
+
+    import numpy as np
+    from interpolation import interp
+    from numba import njit, prange
+    from quantecon.optimize import brentq
+    from quantecon.optimize.scalar_maximization import brent_max
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+  
 
 The Euler Equation
 ==========================
@@ -59,22 +71,22 @@ Recall the Bellman equation
     y \in \mathbb R_+
 
 
-Let the optimal consumption policy be denoted by :math:`c^*`
+Let the optimal consumption policy be denoted by :math:`\sigma^*`
 
-We know that :math:`c^*` is a :math:`v^*` greedy policy, so that :math:`c^*(y)` is the maximizer in :eq:`cpi_fpb30`
+We know that :math:`\sigma^*` is a :math:`v^*` greedy policy, so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30`
 
 The conditions above imply that 
 
-* :math:`c^*` is the unique optimal policy for the stochastic optimal growth model
+* :math:`\sigma^*` is the unique optimal policy for the stochastic optimal growth model
 
-* the optimal policy is continuous, strictly increasing and also **interior**, in the sense that :math:`0 < c^*(y) < y` for all strictly positive :math:`y`, and
+* the optimal policy is continuous, strictly increasing and also **interior**, in the sense that :math:`0 < \sigma^*(y) < y` for all strictly positive :math:`y`, and
 
 * the value function is strictly concave and continuously differentiable, with
 
 .. math::
     :label: cpi_env
 
-    (v^*)'(y) = u' (c^*(y) ) := (u' \circ c^*)(y)
+    (v^*)'(y) = u' (\sigma^*(y) ) := (u' \circ \sigma^*)(y)
 
 The last result is called the **envelope condition** due to its relationship with the `envelope theorem <https://en.wikipedia.org/wiki/Envelope_theorem>`_ 
 
@@ -101,7 +113,7 @@ with :eq:`cpi_fpb30`, which is
 .. math::
     :label: cpi_foc
 
-    u'(c^*(y)) = \beta \int (v^*)'(f(y - c^*(y)) z) f'(y - c^*(y)) z \phi(dz)
+    u'(\sigma^*(y)) = \beta \int (v^*)'(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
 
 
 Combining :eq:`cpi_env` and the first-order condition :eq:`cpi_foc` gives the famous **Euler equation**
@@ -109,8 +121,8 @@ Combining :eq:`cpi_env` and the first-order condition :eq:`cpi_foc` gives the fa
 .. math::
     :label: cpi_euler
 
-    (u'\circ c^*)(y) 
-    = \beta \int (u'\circ c^*)(f(y - c^*(y)) z) f'(y - c^*(y)) z \phi(dz)
+    (u'\circ \sigma^*)(y) 
+    = \beta \int (u'\circ \sigma^*)(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
 
 
 We can think of the Euler equation as a functional equation
@@ -122,9 +134,9 @@ We can think of the Euler equation as a functional equation
     = \beta \int (u'\circ \sigma)(f(y - \sigma(y)) z) f'(y - \sigma(y)) z \phi(dz)
 
 
-over interior consumption policies :math:`\sigma`, one solution of which is the optimal policy :math:`c^*`
+over interior consumption policies :math:`\sigma`, one solution of which is the optimal policy :math:`\sigma^*`
 
-Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtain :math:`c^*`
+Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtain :math:`\sigma^*`
 
 
 
@@ -171,18 +183,18 @@ The  important thing to note about :math:`K` is that, by
 construction, its fixed points coincide with solutions to the functional
 equation :eq:`cpi_euler_func`
 
-In particular, the optimal policy :math:`c^*` is a fixed point
+In particular, the optimal policy :math:`\sigma^*` is a fixed point
 
-Indeed, for fixed :math:`y`, the value :math:`Kc^*(y)` is the :math:`c` that
+Indeed, for fixed :math:`y`, the value :math:`K\sigma^*(y)` is the :math:`c` that
 solves
 
 .. math::
 
     u'(c) 
-    = \beta \int (u' \circ c^*) (f(y - c) z ) f'(y - c) z \phi(dz)
+    = \beta \int (u' \circ \sigma^*) (f(y - c) z ) f'(y - c) z \phi(dz)
 
 
-In view of the Euler equation, this is exactly :math:`c^*(y)`
+In view of the Euler equation, this is exactly :math:`\sigma^*(y)`
 
 
 
@@ -400,14 +412,72 @@ Our intuition for this result is that
 
 * policy functions generally have less curvature than value functions, and hence admit more accurate approximations based on grid point information
 
+First we'll store the parameters of the model is a class ``OptimalGrowthModel``
 
-The Operator
-----------------
+.. code-block:: python3
+
+    class OptimalGrowthModel:
+
+        def __init__(self,
+                     f,
+                     f_prime,
+                     u,
+                     u_prime,
+                     β=0.96,
+                     μ=0,
+                     s=0.1,
+                     grid_max=4,
+                     grid_size=200,
+                     shock_size=250):
+
+            self.β, self.μ, self.s = β, μ, s
+            self.f, self.u = f, u
+            self.f_prime, self.u_prime = f_prime, u_prime
+
+            self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
+            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
-Here's some code that implements the Coleman operator
+Here's some code that returns the operator ``K``
 
-.. literalinclude:: /_static/code/coleman_policy_iter/coleman.py
+.. code-block:: python3
+
+    def time_operator_factory(og, parallel_flag=True):
+        """
+        A function factory for building the operator K.
+
+        Here og is an instance of OptimalGrowth.
+        """
+        β = og.β    
+        f, u = og.f, og.u
+        f_prime, u_prime = og.f_prime, og.u_prime
+        y_grid, shocks = og.y_grid, og.shocks
+
+        @njit
+        def objective(c, σ, y):
+            """
+            The right hand side of the operator
+            """
+            # First turn w into a function via interpolation
+            σ_func = lambda x: interp(y_grid, σ, x)
+            vals = u_prime(σ_func(f(y - c) * shocks)) * f_prime(y - c) * shocks
+            return u_prime(c) - β * np.mean(vals)
+        
+        @njit(parallel=parallel_flag)
+        def K(σ):
+            """
+            The operator K
+            """
+            σ_new = np.empty_like(σ)
+            for i in prange(len(y_grid)):
+                y = y_grid[i]
+                # Solve for optimal c at y
+                c_star = brentq(objective, 1e-10, y-1e-10, args=(σ, y))[0]
+                σ_new[i] = c_star
+            
+            return σ_new
+        
+        return K
 
 It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>` 
 
@@ -415,7 +485,7 @@ For example, it evaluates integrals by Monte Carlo and approximates functions us
 
 Here's that Bellman operator code again, which needs to be executed because we'll use it in some tests below
 
-.. literalinclude:: /_static/code/optgrowth/optgrowth.py
+.. literalinclude:: /_static/code/optgrowth/bellman_operator.py
     :class: collapse
 
 
@@ -430,73 +500,48 @@ testing our method in the presence of a model that does have an analytical
 solution
 
 
-
-We assume the following imports
-   
-.. code-block:: ipython 
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-    import quantecon as qe
+First we generate an instance of ``OptimalGrowthModel`` and return the corresponding
+operator :math:`K`
 
 
+.. code-block:: python3
+
+    α = 0.3
+
+    @njit
+    def f(k):
+        "Deterministic part of production function"
+        return k**α
+
+    @njit
+    def f_prime(k):
+        return α * k**(α - 1)
+      
+    og = OptimalGrowthModel(f=f, f_prime=f_prime,
+                            u=np.log, u_prime=njit(lambda x: 1/x))
+                            
+    K = time_operator_factory(og)
 
 
-
-
-
-Now let's bring in the log-linear growth model we used in the :doc:`value function iteration lecture <optgrowth>`
-
-.. literalinclude:: /_static/code/optgrowth/loglinear_og.py
-    :class: collapse
-
-
-
-Next we generate an instance
-
-
-.. code-block:: python3 
-
-    lg = LogLinearOG()
-
-    # == Unpack parameters / functions for convenience == #
-    α, β, μ, s = lg.α, lg.β, lg.μ, lg.s
-    v_star, c_star = lg.v_star, lg.c_star
-    u, u_prime, f, f_prime = lg.u, lg.u_prime, lg.f, lg.f_prime 
-
-
-
-
-
-
-We also need a grid and some shock draws for Monte Carlo integration
-
-.. code-block:: python3 
-
-    grid_max = 4         # Largest grid point
-    grid_size = 200      # Number of grid points
-    shock_size = 250     # Number of shock draws in Monte Carlo integral
-    
-    grid = np.linspace(1e-5, grid_max, grid_size)
-    shocks = np.exp(μ + s * np.random.randn(shock_size))
-
-
-
-As a preliminary test, let's see if :math:`K c^* = c^*`, as implied by the
+As a preliminary test, let's see if :math:`K \sigma^* = \sigma^*`, as implied by the
 theory
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
-    c_star_new = coleman_operator(c_star(grid), 
-                                  grid, β, u_prime, 
-                                  f, f_prime, shocks)
+    @njit
+    def σ_star(y, α, β):
+        "True optimal policy"
+        return (1 - α * β) * y
 
+    y_grid, β = og.y_grid, og.β
+    σ_star_new = K(σ_star(y_grid, α, β))
+    
     fig, ax = plt.subplots()
-    ax.plot(grid, c_star(grid), label="optimal policy $c^*$")
-    ax.plot(grid, c_star_new, label="$Kc^*$")
+    ax.plot(y_grid, σ_star(y_grid, α, β), label="optimal policy $\sigma^*$")
+    ax.plot(y_grid, σ_star_new, label="$K\sigma^*$")
 
-    ax.legend(loc='upper left')
+    ax.legend()
     plt.show()
 
 
@@ -505,36 +550,35 @@ We can't really distinguish the two plots, so we are looking good, at least
 for this test
 
 Next let's try iterating from an arbitrary initial condition and see if we
-converge towards :math:`c^*`
+converge towards :math:`\sigma^*`
 
 
-The initial condition we'll use is the one that eats the whole pie: :math:`c(y) = y`
+The initial condition we'll use is the one that eats the whole pie: :math:`\sigma(y) = y`
 
 
 
 .. code-block:: python3 
 
-    g = grid
     n = 15
+    σ = y_grid.copy()  # Set initial condition
     fig, ax = plt.subplots(figsize=(9, 6))
-    lb = 'initial condition $c(y) = y$'
-    ax.plot(grid, g, color=plt.cm.jet(0), lw=2, alpha=0.6, label=lb)
-    for i in range(n):
-        new_g = coleman_operator(g, grid, β, u_prime, f, f_prime, shocks)
-        g = new_g
-        ax.plot(grid, g, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
+    lb = 'initial condition $\sigma(y) = y$'
+    ax.plot(y_grid, σ, color=plt.cm.jet(0), alpha=0.6, label=lb)
 
-    lb = 'true policy function $c^*$'
-    ax.plot(grid, c_star(grid), 'k-', lw=2, alpha=0.8, label=lb)
-    ax.legend(loc='upper left')
+    for i in range(n):
+        σ = K(σ)
+        ax.plot(y_grid, σ, color=plt.cm.jet(i / n), alpha=0.6)
+
+    lb = 'true policy function $\sigma^*$'
+    ax.plot(y_grid, σ_star(y_grid, α, β), 'k-', alpha=0.8, label=lb)
+    ax.legend()
 
     plt.show()
 
 
 We see that the policy has converged nicely, in only a few steps
 
-Now let's compare the accuracy of iteration using the Coleman and Bellman operators
-
+Now let's compare the accuracy of iteration between the operators
 
 We'll generate 
 
@@ -542,7 +586,7 @@ We'll generate
 
 #. :math:`(M \circ T^n \circ M^{-1}) c` where :math:`c(y) = y`
 
-In each case we'll compare the resulting policy to :math:`c^*`
+In each case we'll compare the resulting policy to :math:`\sigma^*`
 
 The theory on equivalent dynamics says we will get the same policy function
 and hence the same errors
@@ -554,34 +598,27 @@ discussed above
 
 .. code-block:: python3 
 
-    α, β, μ, s = lg.α, lg.β, lg.μ, lg.s
-    v_star, c_star = lg.v_star, lg.c_star
-    u, u_prime, f, f_prime = lg.u, lg.u_prime, lg.f, lg.f_prime
+    T, get_greedy = operator_factory(og)  # Return the Bellman operator
 
-    g_init = grid
-    w_init = u(grid)
+    σ = y_grid          # Set initial condition for σ
+    v = og.u(y_grid)    # Set initial condition for v
     sim_length = 20
 
-    g, w = g_init, w_init
     for i in range(sim_length):
-        new_g = coleman_operator(g, grid, β, u_prime, f, f_prime, shocks)
-        new_w = bellman_operator(w, grid, β, u, f, shocks)
-        g, w = new_g, new_w
+        σ = K(σ)  # Time iteration
+        v = T(v)  # Value function iteration
 
-    new_w, vf_g = bellman_operator(w, grid, β, u, f, shocks, compute_policy=True)
+    # Calculate difference with actual solution
+    σ_error = σ_star(y_grid, α, β) - σ
+    v_error = σ_star(y_grid, α, β) - get_greedy(v)
 
     fig, ax = plt.subplots()
 
-    pf_error = c_star(grid) - g
-    vf_error = c_star(grid) - vf_g
+    ax.plot(y_grid, σ_error, alpha=0.6, label="policy iteration error")
+    ax.plot(y_grid, v_error, alpha=0.6, label="value iteration error")
 
-    ax.plot(grid, 0 * grid, 'k-', lw=1)
-    ax.plot(grid, pf_error, lw=2, alpha=0.6, label="policy iteration error")
-    ax.plot(grid, vf_error, lw=2, alpha=0.6, label="value iteration error")
-
-    ax.legend(loc='lower left')
+    ax.legend()
     plt.show()
-
 
 
 As you can see, time iteration is much more accurate for a given
@@ -634,8 +671,8 @@ Exercise 4
 -----------
 
 
-Do the same exercise, but now, rather than plotting results, time how long 20
-iterations takes in each case
+Solve the above model as we did in :doc:`the previous lecture <optgrowth>`, and compare
+the time difference between the operators :math:`T` and :math`K`
 
 
 
@@ -643,7 +680,7 @@ Solutions
 ===========
 
 
-Solution to Exercise 1
+Exercise 1
 -------------------------
 
 Let :math:`T, K, M, v` and :math:`y` be as stated in the exercise
@@ -679,7 +716,7 @@ On the other hand, :math:`KMv(y)` is the :math:`c(y)` that solves
 We see that :math:`c(y)` is the same in each case
 
 
-Solution to Exercise 2
+Exercise 2
 -------------------------
 
 We need to show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P` 
@@ -717,10 +754,8 @@ Then :math:`v(0) = w(0) = 0` and :math:`v' = w'` on :math:`(0, \infty)`
 The fundamental theorem of calculus then implies that :math:`v = w` on :math:`\mathbb R_+`
 
 
-Solution to Exercise 3
+Exercise 3
 -------------------------
-
-
 
 Here's the code, which will execute if you've run all the code above
 
@@ -728,62 +763,35 @@ Here's the code, which will execute if you've run all the code above
 
 .. code-block:: python3 
 
-    ## Define the model
-
-    α = 0.65
-    β = 0.95 
-    μ = 0       
-    s = 0.1       
-    grid_min = 1e-6
-    grid_max = 4
-    grid_size = 200
-    shock_size = 250     
-
     γ = 1.5   # Preference parameter
 
-    def f(k):
-        return k**α
-
-    def f_prime(k):
-        return α * k**(α - 1)
-
+    @njit
     def u(c):
         return (c**(1 - γ) - 1) / (1 - γ)
 
+    @njit
     def u_prime(c):
         return c**(-γ)
 
-    grid = np.linspace(grid_min, grid_max, grid_size)
-    shocks = np.exp(μ + s * np.random.randn(shock_size))
+    og = OptimalGrowthModel(f=f, f_prime=f_prime, u=u, u_prime=u_prime)
 
-    ## Let's make convenience functions based around these primitives
-
-    def crra_bellman(w):
-        return bellman_operator(w, grid, β, u, f, shocks)
-
-    def crra_coleman(g):
-        return coleman_operator(g, grid, β, u_prime, f, f_prime, shocks)
-
-    ## Iterate with K and T, compare policies
-
-    g_init = grid
-    w_init = u(grid)
+    T, get_greedy = operator_factory(og)
+    K = time_operator_factory(og)
+    
+    σ = y_grid        # Initial condition for σ
+    v = u(y_grid)     # Initial condition for v
     sim_length = 20
 
-    g, w = g_init, w_init
     for i in range(sim_length):
-        new_g = crra_coleman(g)
-        new_w = crra_bellman(w)
-        g, w = new_g, new_w
-
-    new_w, vf_g = bellman_operator(w, grid, β, u, f, shocks, compute_policy=True)
+        σ = K(σ)  # Time iteration
+        v = T(v)  # Value function iteration
 
     fig, ax = plt.subplots()
 
-    ax.plot(grid, g, lw=2, alpha=0.6, label="policy iteration")
-    ax.plot(grid, vf_g, lw=2, alpha=0.6, label="value iteration")
+    ax.plot(y_grid, σ, alpha=0.6, label="policy iteration")
+    ax.plot(y_grid, get_greedy(v), alpha=0.6, label="value iteration")
 
-    ax.legend(loc="upper left")
+    ax.legend()
     plt.show()
 
 
@@ -793,41 +801,58 @@ The policies are indeed close
 
 
 
-Solution to Exercise 4
+Exercise 4
 -------------------------
 
 
-Here's the code
+Here's is the function we need to solve the model using value function iteration,
+copied from the previous lecture
 
-It assumes that you've just run the code from the previous exercise
+.. literalinclude:: /_static/code/optgrowth/solve_model.py
 
+Similarly, we can write a function that uses ``K`` to solve the model
 
+.. code-block:: python3
 
+    def solve_model_time(og,
+                         use_parallel=True,
+                         tol=1e-4,
+                         max_iter=1000,
+                         verbose=True,
+                         print_skip=25):
 
-.. code-block:: python3 
+        K = time_operator_factory(og, parallel_flag=use_parallel)
 
-    g_init = grid
-    w_init = u(grid)
-    sim_length = 100
+        # Set up loop
+        σ = og.y_grid  # Initial condition
+        i = 0
+        error = tol + 1
 
-    print("Timing value function iteration")
+        while i < max_iter and error > tol:
+            σ_new = K(σ)
+            error = np.max(np.abs(σ - σ_new))
+            i += 1
+            if verbose and i % print_skip == 0:
+                print(f"Error at iteration {i} is {error}.")
+            σ = σ_new
 
-    w = w_init
-    qe.util.tic()
-    for i in range(sim_length):
-        new_w = crra_bellman(w)
-        w = new_w
-    qe.util.toc()
+        if i == max_iter:
+            print("Failed to converge!")
 
+        if verbose and i < max_iter:
+            print(f"\nConverged in {i} iterations.")
 
-    print("Timing Euler equation time iteration")
+        return σ_new
 
-    g = g_init
-    qe.util.tic()
-    for i in range(sim_length):
-        new_g = crra_coleman(g)
-        g = new_g
-    qe.util.toc()
+We can time how long it takes for each iteration method to solve the model
+
+.. code-block:: ipython 
+
+    %time v_star = solve_model(og)
+    
+.. code-block:: ipython 
+
+    %time σ_star = solve_model_time(og)
 
 If you run this you'll find that the two operators execute at about the same speed
 

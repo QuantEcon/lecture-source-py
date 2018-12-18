@@ -606,56 +606,8 @@ The Bellman Operator
 
 Here's a function that generates a Bellman operator using linear interpolation
 
+.. literalinclude:: /_static/code/optgrowth/bellman_operator.py
 
-.. code-block:: python3
-
-    def operator_factory(og, parallel_flag=True):
-        """
-        A function factory for building the Bellman operator, as well as
-        a function that computes greedy policies.
-        
-        Here og is an instance of OptimalGrowthModel.
-        """
-
-        f, u, β = og.f, og.u, og.β
-        y_grid, shocks = og.y_grid, og.shocks
-
-        @njit
-        def objective(c, v, y):
-            """
-            The right hand side of the Bellman equation
-            """
-            # First turn v into a function via interpolation
-            v_func = lambda x: interp(y_grid, v, x)
-            return u(c) + β * np.mean(v_func(f(y - c) * shocks))
-
-        @njit(parallel=parallel_flag)
-        def T(v):
-            """
-            The Bellman operator
-            """
-            v_new = np.empty_like(v)
-            for i in prange(len(y_grid)):
-                y = y_grid[i]
-                # Solve for optimal v at y
-                v_max = brent_max(objective, 1e-10, y, args=(v, y))[1]  
-                v_new[i] = v_max
-            return v_new
-
-        @njit
-        def get_greedy(v):
-            """
-            Computes the v-greedy policy of a given function v
-            """
-            σ = np.empty_like(v)
-            for i in range(len(y_grid)):
-                y = y_grid[i]
-                # Solve for optimal c at y
-                c_max = brent_max(objective, 1e-10, y, args=(v, y))[0]  
-                σ[i] = c_max
-            return σ
-
-        return T, get_greedy
 
 The function ``operator_factory`` takes a class that represents the growth model,
 and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model
@@ -835,38 +787,8 @@ We are clearly getting closer
 We can write a function that iterates until the difference is below a particular
 tolerance level
 
+.. literalinclude:: /_static/code/optgrowth/solve_model.py
 
-.. code-block:: python3
-
-    def solve_model(og,
-                    use_parallel=True,
-                    tol=1e-4, 
-                    max_iter=1000, 
-                    verbose=True,
-                    print_skip=25): 
-
-        T, _ = operator_factory(og, parallel_flag=use_parallel)
-
-        # Set up loop
-        v = np.log(og.y_grid)  # Initial condition
-        i = 0
-        error = tol + 1
-
-        while i < max_iter and error > tol:
-            v_new = T(v)
-            error = np.max(np.abs(v - v_new))
-            i += 1
-            if verbose and i % print_skip == 0:
-                print(f"Error at iteration {i} is {error}.")
-            v = v_new
-
-        if i == max_iter: 
-            print("Failed to converge!")
-
-        if verbose and i < max_iter:
-            print(f"\nConverged in {i} iterations.")
-            
-        return v_new
         
 We can check our result by plotting it against the true value
 
