@@ -33,6 +33,7 @@ Let's start with some imports
 .. code-block:: ipython
 
     import numpy as np
+    import quantecon as qe
     from interpolation import interp
     from numba import njit, prange
     from quantecon.optimize import brentq
@@ -438,15 +439,15 @@ First we'll store the parameters of the model is a class ``OptimalGrowthModel``
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
-Here's some code that returns the operator ``K``
+Here's some code that returns the Coleman-Reffett operator, :math:`K`
 
 .. code-block:: python3
 
     def time_operator_factory(og, parallel_flag=True):
         """
-        A function factory for building the operator K.
+        A function factory for building the Coleman-Reffett operator.
 
-        Here og is an instance of OptimalGrowth.
+        Here og is an instance of OptimalGrowthModel.
         """
         β = og.β    
         f, u = og.f, og.u
@@ -466,7 +467,7 @@ Here's some code that returns the operator ``K``
         @njit(parallel=parallel_flag)
         def K(σ):
             """
-            The operator K
+            The Coleman-Reffett operator
             """
             σ_new = np.empty_like(σ)
             for i in prange(len(y_grid)):
@@ -501,7 +502,7 @@ solution
 
 
 First we generate an instance of ``OptimalGrowthModel`` and return the corresponding
-operator :math:`K`
+Coleman-Reffett operator
 
 
 .. code-block:: python3
@@ -582,9 +583,9 @@ Now let's compare the accuracy of iteration between the operators
 
 We'll generate 
 
-#. :math:`K^n c` where :math:`c(y) = y`
+#. :math:`K^n \sigma` where :math:`\sigma(y) = y`
 
-#. :math:`(M \circ T^n \circ M^{-1}) c` where :math:`c(y) = y`
+#. :math:`(M \circ T^n \circ M^{-1}) \sigma` where :math:`\sigma(y) = y`
 
 In each case we'll compare the resulting policy to :math:`\sigma^*`
 
@@ -612,12 +613,9 @@ discussed above
     σ_error = σ_star(y_grid, α, β) - σ
     v_error = σ_star(y_grid, α, β) - get_greedy(v)
 
-    fig, ax = plt.subplots()
-
-    ax.plot(y_grid, σ_error, alpha=0.6, label="policy iteration error")
-    ax.plot(y_grid, v_error, alpha=0.6, label="value iteration error")
-
-    ax.legend()
+    plt.plot(y_grid, σ_error, alpha=0.6, label="policy iteration error")
+    plt.plot(y_grid, v_error, alpha=0.6, label="value iteration error")
+    plt.legend()
     plt.show()
 
 
@@ -658,7 +656,7 @@ Consider the same model as above but with the CRRA utility function
 
 Iterate 20 times with Bellman iteration and Euler equation time iteration
 
-* start time iteration from :math:`c(y) = y`
+* start time iteration from :math:`\sigma(y) = y`
 
 * start value function iteration from :math:`v(y) = u(y)`
 
@@ -668,11 +666,17 @@ Compare the resulting policies and check that they are close
 
 
 Exercise 4
+------------
+
+Do the same exercise, but now, rather than plotting results, time how long 20 iterations takes in each case
+
+
+Exercise 5
 -----------
 
 
-Solve the above model as we did in :doc:`the previous lecture <optgrowth>`, and compare
-the time difference between the operators :math:`T` and :math`K`
+Solve the above model as we did in :doc:`the previous lecture <optgrowth>` using
+the operators :math:`T` and :math:`K`, and check the solutions are similiar by plotting
 
 
 
@@ -786,22 +790,40 @@ Here's the code, which will execute if you've run all the code above
         σ = K(σ)  # Time iteration
         v = T(v)  # Value function iteration
 
-    fig, ax = plt.subplots()
 
-    ax.plot(y_grid, σ, alpha=0.6, label="policy iteration")
-    ax.plot(y_grid, get_greedy(v), alpha=0.6, label="value iteration")
-
-    ax.legend()
+    plt.plot(y_grid, σ, alpha=0.6, label="policy iteration")
+    plt.plot(y_grid, get_greedy(v), alpha=0.6, label="value iteration")
+    plt.legend()
     plt.show()
-
-
 
 The policies are indeed close
 
 
-
-
 Exercise 4
+------------
+
+.. code-block:: python3
+
+    σ = y_grid        # Initial condition for σ
+    v = u(y_grid)     # Initial condition for v
+    sim_length = 20
+
+    print("Timing value function iteration")
+
+    qe.util.tic()
+    for i in range(sim_length):
+        v = T(v)
+    qe.util.toc()
+
+    print("Timing Euler equation time iteration")
+
+    qe.util.tic()
+    for i in range(sim_length):
+        σ = K(σ)
+    qe.util.toc()
+
+
+Exercise 5
 -------------------------
 
 
@@ -844,15 +866,18 @@ Similarly, we can write a function that uses ``K`` to solve the model
 
         return σ_new
 
-We can time how long it takes for each iteration method to solve the model
+Solving both models and plotting
 
 .. code-block:: ipython 
 
-    %time v_star = solve_model(og)
+    v_star = solve_model(og)
+    σ_star = solve_model_time(og)
     
-.. code-block:: ipython 
-
-    %time σ_star = solve_model_time(og)
+    plt.plot(y_grid, get_greedy(v_star), alpha=0.6, label='Bellman operator')
+    plt.plot(y_grid, σ_star, alpha=0.6, label='Coleman-Reffett operator')
+    plt.legend()
+    plt.show()
+    
 
 If you run this you'll find that the two operators execute at about the same speed
 
