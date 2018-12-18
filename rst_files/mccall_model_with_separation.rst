@@ -78,7 +78,7 @@ If currently *unemployed*, he
 
 * receives and consumes unemployment compensation :math:`c`
 
-* receives an offer to start work *next period* at a wage :math:`w'` drawn from a known distribution :math:`p_1, \ldots, p_n`
+* receives an offer to start work *next period* at a wage :math:`w'` drawn from a known distribution :math:`\phi`
 
 He can either accept or reject the offer
 
@@ -104,11 +104,11 @@ Let
 
 * :math:`v(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
 
-* :math:`g` be the total lifetime value accruing to a worker who is *unemployed* this period
+* :math:`h` be the total lifetime value accruing to a worker who is *unemployed* this period
 
 Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time
 
-Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`g` and use them in his decision making
+Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`h` and use them in his decision making
 
 Then :math:`v` and :math:`h`  should satisfy 
 
@@ -123,7 +123,7 @@ and
 .. math::
     :label: bell2_mccall
 
-    h = u(c) + \beta \sum_i \max \left\{ h, v(w_i) \right\} p_i 
+    h = u(c) + \beta \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
 
 
 Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
@@ -156,7 +156,7 @@ Let's suppose now that unemployed workers don't always receive job offers
 
 Instead, let's suppose that unemployed workers only receive an offer with probability :math:`\gamma`
 
-If our worker does receive an offer, the wage offer is drawn from :math:`p` as before
+If our worker does receive an offer, the wage offer is drawn from :math:`\phi` as before
 
 He either accepts or rejects the offer
 
@@ -178,7 +178,7 @@ and
 
     h = u(c) + 
       \beta (1 - \gamma) h + 
-      \beta \gamma \sum_i \max \left\{ h, v(w_i) \right\} p_i
+      \beta \gamma \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
 
 
 Solving the Bellman Equations
@@ -203,7 +203,7 @@ In other words, we are iterating using the rules
 .. math::
     :label: bell1001
 
-    v_{n+1} (w_i) = u(w_i) + \beta [(1-\alpha)v_n (w_i) + \alpha h_n ]
+    v_{n+1} (w') = u(w') + \beta [(1-\alpha)v_n (w') + \alpha h_n ]
 
 
 and
@@ -213,7 +213,7 @@ and
 
     h_{n+1} = u(c) + 
         \beta (1 - \gamma) h_n + 
-        \beta \gamma \sum_i \max \{ h_n, v_n(w_i) \} p_i
+        \beta \gamma \sum_{w'} \max \{ h_n, v_n(w') \} \phi(w')
 
 
 starting from some initial conditions :math:`h_0, v_0`
@@ -255,28 +255,28 @@ The default utility function is a CRRA utility function
         """
 
         def __init__(self, 
-                     α=0.2,       # Job separation rate
-                     β=0.98,      # Discount rate
-                     γ=0.7,       # Job offer rate
-                     c=6.0,       # Unemployment compensation
-                     σ=2.0,       # Utility parameter
-                     w_vec=None,  # Possible wage values
-                     p_vec=None): # Probabilities over w_vec
+                     α=0.2,        # Job separation rate
+                     β=0.98,       # Discount rate
+                     γ=0.7,        # Job offer rate
+                     c=6.0,        # Unemployment compensation
+                     σ=2.0,        # Utility parameter
+                     w_vals=None,  # Possible wage values
+                     ϕ_vals=None): # Probabilities over w_vals
 
             self.α, self.β, self.γ, self.c = α, β, γ, c
             self.σ = σ
 
             # Add a default wage vector and probabilities over the vector using
             # the beta-binomial distribution
-            if w_vec is None:
+            if w_vals is None:
                 n = 60  # number of possible outcomes for wage
-                self.w_vec = np.linspace(10, 20, n)     # wages between 10 and 20
+                self.w_vals = np.linspace(10, 20, n)     # wages between 10 and 20
                 a, b = 600, 400  # shape parameters
                 dist = BetaBinomial(n-1, a, b)
-                self.p_vec = dist.pdf()  
+                self.ϕ_vals = dist.pdf()  
             else:
-                self.w_vec = w_vec
-                self.p_vec = p_vec
+                self.w_vals = w_vals
+                self.ϕ_vals = ϕ_vals
                 
 
 The following function returns jitted versions of the Bellman operators :math:`h` and :math:`v`
@@ -289,7 +289,7 @@ The following function returns jitted versions of the Bellman operators :math:`h
         """
         
         α, β, γ, c = mcm.α, mcm.β, mcm.γ, mcm.c
-        σ, w_vec, p_vec = mcm.σ, mcm.w_vec, mcm.p_vec
+        σ, w_vals, ϕ_vals = mcm.σ, mcm.w_vals, mcm.ϕ_vals
 
         @njit
         def Q(v, h):
@@ -299,12 +299,12 @@ The following function returns jitted versions of the Bellman operators :math:`h
             """
             v_new = np.empty_like(v)
             
-            for i in range(len(w_vec)):
-                w = w_vec[i]
+            for i in range(len(w_vals)):
+                w = w_vals[i]
                 v_new[i] = u(w, σ) + β * ((1 - α) * v[i] + α * h)
 
             h_new = u(c, σ) + β * (1 - γ) * h + \
-                            β * γ * np.sum(np.maximum(h, v) * p_vec)
+                            β * γ * np.sum(np.maximum(h, v) * ϕ_vals)
 
             return v_new, h_new
         
@@ -326,8 +326,8 @@ We then return the current iterate as an approximate solution
         
         Q = operator_factory(mcm, use_parallel)
 
-        v = np.ones_like(mcm.w_vec)   # Initial guess of v
-        h = 1                         # Initial guess of h
+        v = np.ones_like(mcm.w_vals)   # Initial guess of v
+        h = 1                          # Initial guess of h
         i = 0
         error = tol + 1
 
@@ -354,9 +354,9 @@ We'll use the default parameterizations found in the code above
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    ax.plot(mcm.w_vec, v, 'b-', lw=2, alpha=0.7, label='$v$')
-    ax.plot(mcm.w_vec, [h] * len(mcm.w_vec), 'g-', lw=2, alpha=0.7, label='$h$')
-    ax.set_xlim(min(mcm.w_vec), max(mcm.w_vec))
+    ax.plot(mcm.w_vals, v, 'b-', lw=2, alpha=0.7, label='$v$')
+    ax.plot(mcm.w_vals, [h] * len(mcm.w_vals), 'g-', lw=2, alpha=0.7, label='$h$')
+    ax.set_xlim(min(mcm.w_vals), max(mcm.w_vals))
     ax.legend()
     ax.grid()
 
@@ -405,7 +405,7 @@ If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
         by finding the smallest w such that v(w) > h.
 
         If v(w) > h for all w, then the reservation wage w_bar is set to
-        the lowest wage in mcm.w_vec.
+        the lowest wage in mcm.w_vals.
 
         If v(w) < h for all w, then w_bar is set to np.inf.
             
@@ -417,7 +417,7 @@ If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
         if w_idx == len(v):
             w_bar = np.inf
         else:
-            w_bar = mcm.w_vec[w_idx]
+            w_bar = mcm.w_vals[w_idx]
 
         if return_values == False:
             return w_bar
