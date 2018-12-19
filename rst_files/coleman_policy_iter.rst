@@ -250,9 +250,9 @@ In particular, they converge at  the same rate
 
 We'll prove this in just a moment
 
-The other side to the story is the speed of the numerical implementation
+The other side to the story is the accuracy of the numerical implementation
 
-It turns out that, once we actually implement these two routines, time iteration is faster and more accurate than value function iteration
+It turns out that, once we actually implement these two routines, time iteration is more accurate than value function iteration
 
 More on this below
 
