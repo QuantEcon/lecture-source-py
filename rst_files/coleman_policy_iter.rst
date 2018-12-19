@@ -20,13 +20,17 @@ In that lecture we solved the associated discounted dynamic programming problem 
 
 The beauty of this technique is its broad applicability
 
-With numerical problems, however, we can often attain higher efficiency in specific applications by deriving methods that are carefully tailored to the application at hand
+With numerical problems, however, we can often attain higher efficiency in specific 
+applications by deriving methods that are carefully tailored to the application at hand
 
-The stochastic optimal growth model has plenty of structure to exploit for this purpose, especially when we adopt some concavity and smoothness assumptions over primitives
+The stochastic optimal growth model has plenty of structure to exploit for this purpose, 
+especially when we adopt some concavity and smoothness assumptions over primitives
 
-We'll use this structure to obtain an **Euler equation**  based method that's more efficient than value function iteration for this and some other closely related applications
+We'll use this structure to obtain an **Euler equation**  based method that's more efficient 
+than value function iteration for this and some other closely related applications
 
-In a :doc:`subsequent lecture <egm_policy_iter>` we'll see that the numerical implementation part of the Euler equation method can be further adjusted to obtain even more efficiency
+In a :doc:`subsequent lecture <egm_policy_iter>` we'll see that the numerical implementation 
+part of the Euler equation method can be further adjusted to obtain even more efficiency
 
 Let's start with some imports
 
@@ -107,7 +111,7 @@ differentiate naively with respect to :math:`y`,  and then  evaluate at the opti
 Section 12.1 of `EDTC <http://johnstachurski.net/edtc.html>`_ contains full proofs of these results, and closely related discussions can be found in many other texts
 
 
-Differentiability of the value function and iteriority of the optimal policy
+Differentiability of the value function and interiority of the optimal policy
 imply that optimal consumption satisfies the first order condition associated
 with :eq:`cpi_fpb30`, which is
 
@@ -141,7 +145,7 @@ Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtai
 
 
 
-The Coleman Operator
+The Coleman-Reffett Operator
 -------------------------------
 
 Recall the Bellman operator
@@ -175,7 +179,8 @@ Henceforth we denote this set of policies by :math:`\mathscr P`
     = \beta \int (u' \circ \sigma) (f(y - c) z ) f'(y - c) z \phi(dz)
 
 
-We call this operator the **Coleman operator** to acknowledge the work of :cite:`Coleman1990`  (although many people have studied this and other closely related iterative techniques)
+We call this operator the **Coleman-Reffett operator** to acknowledge the work of
+:cite:`Coleman1990` and :cite:`Reffett1996`
 
 In essence, :math:`K\sigma` is the consumption policy that the Euler equation tells
 you to choose today when your future consumption policy is :math:`\sigma`
@@ -200,8 +205,8 @@ In view of the Euler equation, this is exactly :math:`\sigma^*(y)`
 
 
 
-Is the Coleman Operator Well Defined?
---------------------------------------
+Is the Coleman-Reffett Operator Well Defined?
+-----------------------------------------------
 
 In particular, is there always a unique :math:`c \in (0, y)` that solves
 :eq:`cpi_coledef`?
@@ -409,7 +414,7 @@ In particular, the image of policy functions under :math:`K` can be calculated f
 
 Our intuition for this result is that
 
-* the Coleman operator exploits more information because it uses first order and envelope conditions
+* the Coleman-Reffett operator exploits more information because it uses first order and envelope conditions
 
 * policy functions generally have less curvature than value functions, and hence admit more accurate approximations based on grid point information
 
@@ -664,14 +669,7 @@ Iterate 20 times with Bellman iteration and Euler equation time iteration
 
 Compare the resulting policies and check that they are close
 
-
 Exercise 4
-------------
-
-Do the same exercise, but now, rather than plotting results, time how long 20 iterations takes in each case
-
-
-Exercise 5
 -----------
 
 
@@ -689,35 +687,35 @@ Exercise 1
 
 Let :math:`T, K, M, v` and :math:`y` be as stated in the exercise
 
-Using the envelope theorem, one can show that :math:`(Tv)'(y) = u'(c(y))`
-where :math:`c(y)` solves
+Using the envelope theorem, one can show that :math:`(Tv)'(y) = u'(\sigma(y))`
+where :math:`\sigma(y)` solves
 
 .. math::
     :label: cpi_foo
 
-    u'(c(y)) 
-    = \beta \int v' (f(y - c(y)) z ) f'(y - c(y)) z \phi(dz)
+    u'(\sigma(y)) 
+    = \beta \int v' (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
 
 
-Hence :math:`MTv(y) = (u')^{-1} (u'(c(y))) = c(y)`
+Hence :math:`MTv(y) = (u')^{-1} (u'(\sigma(y))) = \sigma(y)`
 
-On the other hand, :math:`KMv(y)` is the :math:`c(y)` that solves
+On the other hand, :math:`KMv(y)` is the :math:`\sigma(y)` that solves
 
 
 .. math::
 
     \begin{aligned}
-        u'(c(y)) 
-        & = \beta \int (u' \circ (Mv)) (f(y - c(y)) z ) f'(y - c(y)) z \phi(dz)
+        u'(\sigma(y)) 
+        & = \beta \int (u' \circ (Mv)) (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
         \\
         & = \beta \int (u' \circ ((u')^{-1} \circ v')) 
-            (f(y - c(y)) z ) f'(y - c(y)) z \phi(dz)
+            (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
         \\
-        & = \beta \int v'(f(y - c(y)) z ) f'(y - c(y)) z \phi(dz)
+        & = \beta \int v'(f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
     \end{aligned}
 
 
-We see that :math:`c(y)` is the same in each case
+We see that :math:`\sigma(y)` is the same in each case
 
 
 Exercise 2
@@ -800,30 +798,6 @@ The policies are indeed close
 
 
 Exercise 4
-------------
-
-.. code-block:: python3
-
-    σ = y_grid        # Initial condition for σ
-    v = u(y_grid)     # Initial condition for v
-    sim_length = 20
-
-    print("Timing value function iteration")
-
-    qe.util.tic()
-    for i in range(sim_length):
-        v = T(v)
-    qe.util.toc()
-
-    print("Timing Euler equation time iteration")
-
-    qe.util.tic()
-    for i in range(sim_length):
-        σ = K(σ)
-    qe.util.toc()
-
-
-Exercise 5
 -------------------------
 
 
@@ -879,9 +853,8 @@ Solving both models and plotting
     plt.show()
     
 
-If you run this you'll find that the two operators execute at about the same speed
 
-However, as we saw above, time iteration is numerically far more accurate for a given number of iterations
+Time iteration is numerically far more accurate for a given number of iterations
 
 
 
