@@ -1,0 +1,13 @@
+{%- extends "layout.html" %}
+
+{% set title = _('Search') %}
+
+{% block body %}
+
+	<h1>Search</h1>
+
+	<div class="search-searchbox"><gcse:searchbox-only></gcse:searchbox-only></div>
+
+	<div class="search-results"><gcse:searchresults-only linktarget="_self"></gcse:searchresults-only></div>
+
+{% endblock %}

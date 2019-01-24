@@ -1,0 +1,10 @@
+				<div class="topic-pager clearfix">
+					<ul>
+						{%- if next %}
+						<li class="next"><a href="{{ next.link|e }}" title="{{ _('next chapter') }}"><strong>{{ _('Next topic') }}</strong> <span>{{ next.title }}</span></a></li>
+						{%- endif %}
+						{%- if prev %}
+						<li class="prev"><a href="{{ prev.link|e }}" title="{{ _('previous chapter') }}"><strong>{{ _('Previous topic') }}</strong> <span>{{ prev.title }}</span></a></li>
+						{%- endif %}
+					</ul>
+				</div>

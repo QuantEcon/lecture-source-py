@@ -1,0 +1,12 @@
+				<div class="breadcrumbs clearfix">
+					<ul>
+						<li><a href="https://quantecon.org/">Org</a> •</li>
+						<li><a href="/">Lectures</a> &raquo;</li>
+				      {% for doc in parents %}
+				      {% if not (doc.title == 'Home' and title == 'Quantitative Economics') %}
+				         <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
+				      {% endif %}
+				      {% endfor %}
+						<li>{{ title }}</li>
+					</ul>
+				</div>
