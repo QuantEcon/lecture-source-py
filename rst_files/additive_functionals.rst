@@ -118,8 +118,8 @@ The nonstationary random process :math:`\{y_t\}_{t=0}^\infty` displays
 systematic but random *arithmetic growth*
 
 
-A linear state space representation
-------------------------------------
+Linear State-Space Representation
+=====================================
 
 A convenient way to represent our additive functional is to use a :doc:`linear state space system <linear_models>`
 
@@ -236,7 +236,7 @@ In fact this whole model can be mapped into the additive functional system defin
 You can try writing these matrices down now as an exercise --- correct expressions appear in the code below
 
 Simulation
----------------
+============
 
 When simulating we embed our variables into a bigger system 
 
@@ -293,7 +293,7 @@ Notice the irregular but persistent growth in :math:`y_t`
 
 
 Decomposition
----------------
+==============
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` describe how to construct a decomposition of
 an additive functional into four parts:
@@ -471,8 +471,8 @@ Notice tell-tale signs of these probability coverage shaded areas
    constant band
 
 
-An associated multiplicative functional
-------------------------------------------
+Associated Multiplicative Functional
+===========================================
 
 Where :math:`\{y_t\}` is our additive functional, let :math:`M_t = \exp(y_t)`
 
@@ -541,8 +541,8 @@ It is interesting to how the martingale behaves as :math:`T \rightarrow +\infty`
 Let's see what happens when we set :math:`T = 12000` instead of :math:`150`
 
 
-A peculiar large sample property
----------------------------------
+Peculiar Large Sample Property
+=====================================
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale component
 :math:`\widetilde M_t` of the multiplicative decomposition 
@@ -577,8 +577,8 @@ The purple 95 percent coverage intervale collapses around zero, illustrating the
 
 
 
-More about the Multiplicative Martingale
--------------------------------------------
+More About the Multiplicative Martingale
+==========================================
 
 Let's drill down and study probability distribution of the multiplicative martingale  :math:`\{\widetilde M_t\}_{t=0}^\infty`  in 
 more detail
@@ -594,6 +594,125 @@ As we  have seen, it has representation
 where :math:`H =  [F + B'(I-A')^{-1} D]` 
 
 It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal 
+
+Simulating a Multiplicative Martingale Again
+==========================================================
+
+Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
+
+In particular, we want to simulate 5000 sample paths of length :math:`T` for the case in which :math:`x` is a scalar and
+:math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005` 
+
+After accomplishing this, we want to display and stare at  histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T` 
+
+
+
+Here is code that accomplishes these tasks
+
+
+Sample Paths
+---------------------------
+
+Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`
+
+We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work
+
+ .. literalinclude:: /_static/code/multiplicative_functionals/amflss_scalar.py
+
+The heavy lifting is done inside the `AMF_LSS_VAR` class
+
+The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR` 
+
+
+
+.. code-block:: python3 
+
+    def simulate_xy(amf, T):
+        "Simulate individual paths."
+        foo, bar = amf.lss.simulate(T)
+        x = bar[0, :]
+        y = bar[1, :]
+        
+        return x, y
+    
+    def simulate_paths(amf, T=150, I=5000):
+        "Simulate multiple independent paths."
+        
+        # Allocate space
+        storeX = np.empty((I, T))
+        storeY = np.empty((I, T))
+        
+        for i in range(I):
+            # Do specific simulation
+            x, y = simulate_xy(amf, T)
+            
+            # Fill in our storage matrices
+            storeX[i, :] = x
+            storeY[i, :] = y
+            
+        return storeX, storeY
+    
+    def population_means(amf, T=150):
+        # Allocate Space
+        xmean = np.empty(T)
+        ymean = np.empty(T)
+        
+        # Pull out moment generator
+        moment_generator = amf.lss.moment_sequence()
+    
+        for tt in range (T):
+            tmoms = next(moment_generator)
+            ymeans = tmoms[1]
+            xmean[tt] = ymeans[0]
+            ymean[tt] = ymeans[1]
+            
+        return xmean, ymean
+
+
+
+Now that we have these functions in our took kit, let's apply them to run some
+simulations
+
+
+
+.. code-block:: python3 
+
+    def simulate_martingale_components(amf, T=1000, I=5000):
+        # Get the multiplicative decomposition
+        ν, H, g = amf.multiplicative_decomp()
+        
+        # Allocate space
+        add_mart_comp = np.empty((I, T))
+        
+        # Simulate and pull out additive martingale component
+        for i in range(I):
+            foo, bar = amf.lss.simulate(T)
+            
+            # Martingale component is third component
+            add_mart_comp[i, :] = bar[2, :]
+            
+        mul_mart_comp = np.exp(add_mart_comp - (np.arange(T) * H**2) / 2)
+        
+        return add_mart_comp, mul_mart_comp
+
+
+    # Build model
+    amf_2 = AMF_LSS_VAR(0.8, 0.001, 1.0, 0.01,.005)
+    
+    amc, mmc = simulate_martingale_components(amf_2, 1000, 5000)
+    
+    amcT = amc[:, -1]
+    mmcT = mmc[:, -1]
+    
+    print("The (min, mean, max) of additive Martingale component in period T is")
+    print(f"\t ({np.min(amcT)}, {np.mean(amcT)}, {np.max(amcT)})")
+    
+    print("The (min, mean, max) of multiplicative Martingale component in period T is")
+    print(f"\t ({np.min(mmcT)}, {np.mean(mmcT)}, {np.max(mmcT)})")
+
+
+
+
 
 Let's plot the probability density functions for :math:`\log {\widetilde M}_t` for
 :math:`t=100, 500, 1000, 10000, 100000`
@@ -671,7 +790,7 @@ Here is some code that tackles these tasks
 
 
 
-These probability density functions help us to study the  **peculiar property** of our multiplicative martingale 
+These probability density functions help us understand mechanics underlying the  **peculiar property** of our multiplicative martingale 
 
 * As :math:`T` grows, most of probability mass shifts leftward toward zero -- 
 
@@ -684,8 +803,8 @@ These probability density functions help us to study the  **peculiar property** 
   even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`
 
 
-Multiplicative martingale is a likelihood ratio process
---------------------------------------------------------
+Multiplicative Martingale as  Likelihood Ratio Process
+==========================================================
 
 A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**
 
