@@ -207,7 +207,7 @@ In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x
     \phi_3 \tilde x_{t-2} +
     \phi_4 \tilde x_{t-3} + \sigma z_{t+1} 
 
-in which the zeros $z$  of the polynomial
+in which the zeros :math:`z`  of the polynomial
 
 .. math::
     
@@ -215,7 +215,7 @@ in which the zeros $z$  of the polynomial
 
 are strictly greater than unity in absolute value
 
-(Being a zero of $\phi(z)$ means that $\phi(z) = 0$)
+(Being a zero of :math:`\phi(z)` means that :math:`\phi(z) = 0`)
 
 Let the increment in :math:`\{y_t\}` obey
 
@@ -533,12 +533,12 @@ Comparing this figure and the last also helps show how geometric growth differs 
 arithmetic growth 
 
 
-The top right panel of the above graph shows a panel of martingales associated with the panel of $M_t = \exp(y_t)$ that we have generated
-for a limited horizon $T$
+The top right panel of the above graph shows a panel of martingales associated with the panel of :math:`M_t = \exp(y_t)` that we have generated
+for a limited horizon :math:`T`
 
-It is interesting to how the martingale behaves as $T \rightarrow +\infty$  
+It is interesting to how the martingale behaves as :math:`T \rightarrow +\infty`
 
-Let's see what happens when we set $T = 12000$ instead of $150$
+Let's see what happens when we set :math:`T = 12000` instead of :math:`150`
 
 
 A peculiar large sample property
@@ -553,8 +553,8 @@ Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale 
 *  As :math:`t \rightarrow +\infty`, :math:`\widetilde M_t` converges to
    zero almost surely
 
-The first property follows from $\widetilde M_t$ being a multiplicative martingale with initial condition
-$\widetilde M_0 = 1$
+The first property follows from :math:`\widetilde M_t` being a multiplicative martingale with initial condition
+:math:`\widetilde M_0 = 1`
 
 The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`Hans_Sarg_book_2016` 
 
@@ -569,7 +569,7 @@ The following simulation of many paths of :math:`\widetilde M_t` illustrates bot
     plt.show()
 
 
-The dotted line in the above graph is the mean $E \tilde M_t = 1$ of the martingale
+The dotted line in the above graph is the mean :math:`E \tilde M_t = 1` of the martingale
 
 It remains constant at unity, illustrating the first property
 
@@ -588,7 +588,7 @@ As we  have seen, it has representation
 
 .. math::
 
-    \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1 ,
+    \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1
 
 
 where :math:`H =  [F + B'(I-A')^{-1} D]` 
@@ -607,7 +607,7 @@ We will plot the densities of :math:`\log {\widetilde M}_t` for different values
 
 Note: ``scipy.stats.lognorm`` expects you to pass the standard deviation
 first :math:`(tH \cdot H)` and then the exponent of the mean as a
-keyword argument ``scale`` (``scale=``\ :math:`\exp(-tH \cdot H/2)`) 
+keyword argument ``scale`` (``scale=np.exp(-t * H2 / 2)``) 
 
 * See the documentation `here
   <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__
@@ -673,13 +673,15 @@ Here is some code that tackles these tasks
 
 These probability density functions help us to study the  **peculiar property** of our multiplicative martingale 
 
-* As $T$ grows, most of probability mass shifts leftward toward zero -- 
+* As :math:`T` grows, most of probability mass shifts leftward toward zero -- 
 
-* for example, note that most  mass is near $1$ for $T =10 $ or $T = 100$ but  most of it is near $0$ for $T = 5000$
+* for example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but 
+  most of it is near :math:`0` for :math:`T = 5000`
 
-* As $T$ grows, the tail of the density of $\widetilde M_T $ lengthens toward the right
+* As :math:`T` grows, the tail of the density of :math:`\widetilde M_T` lengthens toward the right
 
-* Enough mass moves toward the right tail to keep $E \widetilde M_T = 1$ even as most mass in the distribution of $\widetilde M_T$ collapses around $0$
+* Enough mass moves toward the right tail to keep :math:`E \widetilde M_T = 1` 
+  even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`
 
 
 Multiplicative martingale is a likelihood ratio process
