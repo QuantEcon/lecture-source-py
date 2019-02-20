@@ -660,17 +660,17 @@ For convenience, let :math:`\check A \equiv A - BF` and partition
    \begin{bmatrix}\check A_{11} & \check A_{12} \cr \check A_{21} & \check A_{22} \end{bmatrix}
 
 Let :math:`H^0_0 \equiv - P_{22}^{-1} P_{21}` so that
-:math:`\check x_0 = H^0_0 \check z_0`. Then iterations on
-:math:`\check y_{t+1} = \check A \check y_t` starting from initial
-condition
-:math:`\check y_0 = \begin{bmatrix}\check z_0 \cr H^0_0 \check z_0\end{bmatrix}`
+:math:`\check x_0 = H^0_0 \check z_0`
+
+ Then iterations on :math:`\check y_{t+1} = \check A \check y_t` starting from initial
+condition :math:`\check y_0 = \begin{bmatrix}\check z_0 \cr H^0_0 \check z_0\end{bmatrix}`
 imply that for :math:`t \geq 1`
 
 .. math::
 
     x_t = \sum_{j=1}^t H_j^t z_{t-j}  
 
- where
+where
 
 .. math::
 
@@ -750,11 +750,9 @@ a given sequence
 To do so, recall that under the Stackelberg plan, firm 2 sets output
 according to the :math:`q_{2t}` component of
 
-.. math:: 
+.. math::  y_{t+1} = \begin{bmatrix}  1 \cr q_{2t} \cr q_{1t} \cr x_t \end{bmatrix}
 
-    y_{t+1} = \begin{bmatrix}  1 \cr q_{2t} \cr q_{1t} \cr x_t \end{bmatrix}
-
- which is governed by
+which is governed by
 
 .. math::  y_{t+1} = (A - BF) y_t 
 
