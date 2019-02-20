@@ -167,9 +167,12 @@ where
 This equation can in turn be rearranged to become the second-order
 difference equation
 
-.. math::  - q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1} \quad \tag{1} 
+.. math::
+  :label: sstack1
+  
+  - q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
 
-Equation (1) is a second-order difference equation in the sequence
+Equation :eq:`sstack1` is a second-order difference equation in the sequence
 :math:`\vec q_1` whose solution we want satisfies **two boundary
 conditions:**
 
@@ -180,14 +183,17 @@ conditions:**
 
 Using the lag operators described in chapter IX of *Macroeconomic
 Theory, Second edition (1987)*, difference equation
-`(1) <#equation-sstack1>`__ can be written as
+:eq:`sstack1` can be written as
 
-.. math::  \beta(1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 ) q_{1t+2} = - c_0 + c_2 q_{2t+1} \quad \tag{2} 
+.. math::  \beta(1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 ) q_{1t+2} = - c_0 + c_2 q_{2t+1}
 
 The polynomial in the lag operator on the left side can be **factored**
 as
 
-.. math::  (1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 )  = ( 1 - \delta_1 L ) (1 - \delta_2 L) 
+.. math::
+    :label: sstack2
+    
+    (1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 )  = ( 1 - \delta_1 L ) (1 - \delta_2 L) 
 
 where :math:`0 < \delta_1 < 1 < \frac{1}{\sqrt{\beta}} < \delta_2`
 
@@ -203,39 +209,42 @@ and compute the following inverse operator
 
 .. math::  \left[-\delta_{2} L (1 - \delta_2^{-1} L^{-1} )\right]^{-1} = - \delta_2 (1 - {\delta_2}^{-1} )^{-1} L^{-1} 
 
-Operating on both sides of equation `(2) <#equation-sstack2>`__ with
+Operating on both sides of equation :eq:`sstack2` with
 :math:`\beta^{-1}` times this inverse operator gives the follower's
 decision rule for setting :math:`q_{1t+1}` in the
 **feedback-feedforward** form
 
-.. math::  q_{1t+1} = \delta_1 q_{1t} - c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}}  + c_2 \delta_2^{-1} \beta^{-1} \sum_{j=0}^\infty \delta_2^j q_{2t+j+1} ,  \quad t \geq 0  \quad \tag{3} 
+.. math::
+    :label: sstack3
+  
+    q_{1t+1} = \delta_1 q_{1t} - c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}}  + c_2 \delta_2^{-1} \beta^{-1} \sum_{j=0}^\infty \delta_2^j q_{2t+j+1} ,  \quad t \geq 0 
 
 The problem of the Stackelberg leader firm 2 is to choose the sequence
 :math:`\{q_{2t+1}\}_{t=0}^\infty` to maximize its discounted profits
 
 .. math::  \sum_{t=0}^\infty \beta^t \{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \} 
 
-subject to the sequence of constraints `(3) <#equation-sstack3>`__ for
-:math:`t \geq 0`.
+subject to the sequence of constraints :eq:`sstack3` for :math:`t \geq 0`
 
 We can put a sequence :math:`\{\theta_t\}_{t=0}^\infty` of Lagrange
-multipliers on the sequence of equations\ `(3) <#equation-sstack3>`__
+multipliers on the sequence of equations :eq:`sstack3`
 and formulate the following Lagrangian for the Stackelberg leader firm
 2's problem
 
 .. math::
+    :label: sstack4
 
     \eqalign{ \tilde L & = \sum_{t=0}^\infty  \beta^t\{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \} \cr
      &  + \sum_{t=0}^\infty \beta^t \theta_t \{ \delta_1 q_{1t} -  c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}} +  c_2 \delta_2^{-1} \beta^{-1}
-       \sum_{j=0}^\infty \delta_2^{-j} q_{2t+j+1} - q_{1t+1} \} } \quad \tag{4} 
+       \sum_{j=0}^\infty \delta_2^{-j} q_{2t+j+1} - q_{1t+1} \} }
 
 subject to initial conditions for :math:`q_{1t}, q_{2t}` at :math:`t=0`
 
 **Comments:** We have formulated the Stackelberg problem in a space of
-sequences.
+sequences
 
 The max-min problem associated with Lagrangian
-`(4) <#equation-sstack3>`__ is unpleasant because the time :math:`t`
+:eq:`sstack4` is unpleasant because the time :math:`t`
 component of firm :math:`1`'s payoff function depends on the entire
 future of its choices of :math:`\{q_{1t+j}\}_{j=0}^\infty`
 
@@ -287,50 +296,49 @@ Represent the Stackelberg leader's one-period loss function as
 
 .. math::
 
-
-   r(y, u)  =  y' R y  + u' Q u \tag{5}
+   r(y, u)  =  y' R y  + u' Q u
 
 Subject to an initial condition for :math:`z_0`, but not for :math:`x_0`, the
 Stackelberg leader wants to maximize
 
 .. math::
+    :label: maxeq
 
-
-   -\sum_{t=0}^\infty \beta^t r(y_t, u_t) \tag{6}
+    -\sum_{t=0}^\infty \beta^t r(y_t, u_t)
 
 The Stackelberg leader faces the model
 
 .. math::
+    :label: new2
 
-
-   \begin{bmatrix} I & 0 \\ G_{21} & G_{22} \end{bmatrix}
-   \begin{bmatrix}    z_{t+1} \\  x_{t+1} \end{bmatrix}
-   = \begin{bmatrix}  \hat A_{11}  &  \hat A_{12} \\ \hat A_{21} & \hat A_{22}  \end{bmatrix} \begin{bmatrix}  z_t \\ x_t \end{bmatrix} + \hat B u_t \tag{7}
+    \begin{bmatrix} I & 0 \\ G_{21} & G_{22} \end{bmatrix}
+    \begin{bmatrix}    z_{t+1} \\  x_{t+1} \end{bmatrix}
+    = \begin{bmatrix}  \hat A_{11}  &  \hat A_{12} \\ \hat A_{21} & \hat A_{22}  \end{bmatrix} \begin{bmatrix}  z_t \\ x_t \end{bmatrix} + \hat B u_t
 
 We assume that the matrix
 :math:`\begin{bmatrix} I & 0 \\ G_{21} & G_{22} \end{bmatrix}` on the
-left side of equation `(7) <#equation-new2>`__ is invertible, so that we
+left side of equation :eq:`new2` is invertible, so that we
 can multiply both sides by its inverse to obtain
 
 .. math::
+    :label: new3
 
-
-   \begin{bmatrix}    z_{t+1} \\  x_{t+1} \end{bmatrix}
-   = \begin{bmatrix}  A_{11}  &   A_{12} \\ A_{21} &  A_{22}  \end{bmatrix}
-   \begin{bmatrix}  z_t \\ x_t \end{bmatrix} +  B u_t \tag{8}
+    \begin{bmatrix}    z_{t+1} \\  x_{t+1} \end{bmatrix}
+    = \begin{bmatrix}  A_{11}  &   A_{12} \\ A_{21} &  A_{22}  \end{bmatrix}
+    \begin{bmatrix}  z_t \\ x_t \end{bmatrix} +  B u_t
 
 or
 
 .. math::
+    :label: constrainteq
 
-
-   y_{t+1} = A y_t + B u_t \tag{9}
+    y_{t+1} = A y_t + B u_t
 
 Interpretation of the second block of equations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Stackelberg follower's best response mapping is summarized by the
-second block of equations of `(8) <#equation-new3>`__
+second block of equations of :eq:`new3`
 
 In particular, these equations are the first-order conditions of the
 Stackelberg follower's optimization problem (i.e., its Euler equations)
@@ -343,9 +351,9 @@ When combined with a stability condition to be imposed below, the Euler
 equations summarize the follower’s best response to the sequence of
 actions by the leader
 
-The Stackelberg leader maximizes `(6) <#equation-new1-dyn-stack>`__ by
+The Stackelberg leader maximizes :eq:`maxeq` by
 choosing sequences :math:`{u_t, x_t, z_{t+1}}\_{t=0}^{\infty}`
-subject to `(9) <#equation-new30>`__ and an initial condition for :math:`z_0`
+subject to :eq:`constrainteq` and an initial condition for :math:`z_0`
 
 Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
 
@@ -353,7 +361,7 @@ Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
 Stackelberg leader
 
 The Stackelberg leader uses its understanding of the responses
-restricted by `(9) <#equation-new30>`__ to manipulate the follower's
+restricted by :eq:`constrainteq` to manipulate the follower's
 decisions
 
 More mechanical details
@@ -410,7 +418,7 @@ Subproblem 1
 .. math::
 
 
-   v(y_0) = \max_{(\vec y_1, \vec u_0) \in \Omega(y_0)} - \sum_{t=0}^\infty \beta^t r(y_t, u_t) \tag{10}
+   v(y_0) = \max_{(\vec y_1, \vec u_0) \in \Omega(y_0)} - \sum_{t=0}^\infty \beta^t r(y_t, u_t)
 
 Subproblem 2
 ^^^^^^^^^^^^
@@ -418,7 +426,7 @@ Subproblem 2
 .. math::
 
 
-   w(z_0) = \max_{x_0} v(y_0) \tag{11}
+   w(z_0) = \max_{x_0} v(y_0)
 
 Subproblem 1 takes the vector of forward-looking variables :math:`x_0` as
 given
@@ -441,49 +449,46 @@ The value function :math:`v(y)` in subproblem 1 satisfies the Bellman
 equation
 
 .. math::
+    :label: bellman-stack
 
-
-   v(y) = \max_{u, y^*}  \left\{ - r(y,u) + \beta v(y^*) \right\} \tag{12}
+    v(y) = \max_{u, y^*}  \left\{ - r(y,u) + \beta v(y^*) \right\}
 
 where the maximization is subject to
 
 .. math::
 
-
-   y^* = A y + B u \tag{13}
+   y^* = A y + B u
 
 and :math:`y^*` denotes next period’s value
 
-Substituting :math:`v(y) = - y'P y` into Bellman equation
-`(12) <#equation-bell1-dyn-stack>`__ gives
+Substituting :math:`v(y) = - y'P y` into Bellman equation :eq:`bellman-stack` gives
 
 .. math::
 
 
    -y' P y = {\rm max}_{  u, y^*} \left\{ -  y' R y -   u'Q     u - \beta y^{* \prime} P y^* \right\}
 
-which as in lecture `linear
-regulator <https://lectures.quantecon.org/py/lqcontrol.html>`__ gives
+which as in lecture `linear regulator <https://lectures.quantecon.org/py/lqcontrol.html>`__ gives
 rise to the algebraic matrix Riccati equation
 
 .. math::
 
 
-   P = R + \beta A' P A - \beta^2 A' P   B (  Q  + \beta   B' P   B)^{-1}   B' P A \tag{14}
+   P = R + \beta A' P A - \beta^2 A' P   B (  Q  + \beta   B' P   B)^{-1}   B' P A
 
 and the optimal decision rule coefficient vector
 
 .. math::
 
 
-   F = \beta(   Q + \beta   B' P   B)^{-1}  B' P A \tag{15}
+   F = \beta(   Q + \beta   B' P   B)^{-1}  B' P A
 
 where the optimal decision rule is
 
 .. math::
 
 
-   u_t = - F y_t \tag{16}
+   u_t = - F y_t
 
 Subproblem 2
 ~~~~~~~~~~~~
@@ -500,8 +505,7 @@ which implies that
 
 .. math::
 
-
-   x_0 = - P_{22}^{-1} P_{21} z_0 \tag{17}
+   x_0 = - P_{22}^{-1} P_{21} z_0}
 
 Stackelberg plan
 ----------------
@@ -529,7 +533,7 @@ As emphasized above, firm 1 acts as if firm 2's decisions
 control
 
 Firm 1's problem
-^^^^^^^^^^^^^^^^
+-----------------------------
 
 We again formulate firm 1's optimum problem in terms of the Lagrangian
 
@@ -645,7 +649,7 @@ We have demonstrated that a Stackelberg plan for
 
     \eqalign{ \check x_0 & = - P_{22}^{-1} P_{21} z_0 \cr
                 u_t & = - F \check y_t, \quad t \geq 0 \cr
-                \check y_{t+1} & = (A - BF) \check y_t, \quad t \geq 0 . } 
+                \check y_{t+1} & = (A - BF) \check y_t, \quad t \geq 0 } 
 
 From this representation we can deduce the sequence of functions
 :math:`\sigma = \{\sigma_t(\check z^t)\}_{t=0}^\infty` that comprise a
@@ -662,7 +666,7 @@ For convenience, let :math:`\check A \equiv A - BF` and partition
 Let :math:`H^0_0 \equiv - P_{22}^{-1} P_{21}` so that
 :math:`\check x_0 = H^0_0 \check z_0`
 
- Then iterations on :math:`\check y_{t+1} = \check A \check y_t` starting from initial
+Then iterations on :math:`\check y_{t+1} = \check A \check y_t` starting from initial
 condition :math:`\check y_0 = \begin{bmatrix}\check z_0 \cr H^0_0 \check z_0\end{bmatrix}`
 imply that for :math:`t \geq 1`
 
@@ -689,9 +693,12 @@ An optimal decision rule for the Stackelberg's choice of :math:`u_t` is
 
 or
 
-.. math::    u_t  = - F_z \check z_t - F_x \sum_{j=1}^t H^t_j z_{t-j} = \sigma_t(\check z^t) \tag{18}  
+.. math::
+    :label: finalrule
 
-Representation `(18) <#equation-finalrule>`__ confirms that whenever
+    u_t  = - F_z \check z_t - F_x \sum_{j=1}^t H^t_j z_{t-j} = \sigma_t(\check z^t)
+
+Representation :eq:`finalrule` confirms that whenever
 :math:`F_x \neq 0`, the typical situation, the time :math:`t` component
 :math:`\sigma_t` of a Stackelberg plan is **history dependent**, meaning
 that the Stackelberg leader's choice :math:`u_t` depends not just on
@@ -709,7 +716,7 @@ Then why did we distinguish :math:`\check z_t` from :math:`z_t`?
 The answer is that if we want to present to the Stackelberg **follower**
 a history-dependent representation of the Stackelberg **leader's**
 sequence :math:`\vec q_2`, we must use representation
-`(18) <#equation-finalrule>`__ cast in terms of the history
+:eq:`finalrule` cast in terms of the history
 :math:`\check z^t` and **not** a corresponding representation cast in
 terms of :math:`z^t`
 
@@ -731,8 +738,7 @@ Recursive formulation of a follower’s problem
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We now use what amounts to another “Big :math:`K`, little :math:`k`” trick (see
-`rational expectations
-equilibrium <https://lectures.quantecon.org/py/rational_expectations.html>`__)
+`rational expectations equilibrium <https://lectures.quantecon.org/py/rational_expectations.html>`__)
 to formulate a recursive version of a follower’s problem cast in terms
 of an ordinary Bellman equation
 
@@ -776,12 +782,12 @@ Firm 1's state vector is
 It follows that the follower firm 1 faces law of motion
 
 .. math::
+    :label: law-motion
 
-
-   \begin{bmatrix} \tilde y_{t+1} \\
-   q_{1t+1} \end{bmatrix} = \begin{bmatrix} A - BF & 0 \\
-   0  & 1 \end{bmatrix}  \begin{bmatrix} \tilde y_{t} \\
-   q_{1t} \end{bmatrix} + \begin{bmatrix} 0 \cr 1 \end{bmatrix} x_t \tag{19}
+    \begin{bmatrix} \tilde y_{t+1} \\
+    q_{1t+1} \end{bmatrix} = \begin{bmatrix} A - BF & 0 \\
+    0  & 1 \end{bmatrix}  \begin{bmatrix} \tilde y_{t} \\
+    q_{1t} \end{bmatrix} + \begin{bmatrix} 0 \cr 1 \end{bmatrix} x_t
 
 This specfification assures that from the point of the view of a firm 1,
 :math:`q_{2t}` is an exogenous process
@@ -876,7 +882,9 @@ dynamic program as outlined above
 
     # == In LQ form == #
     Alhs = np.eye(4)
-    Alhs[3, :] = β * a0 / (2 * γ), -β * a1 / (2 * γ), -β * a1 / γ, β  # Euler equation coefficients
+    
+    # Euler equation coefficients
+    Alhs[3, :] = β * a0 / (2 * γ), -β * a1 / (2 * γ), -β * a1 / γ, β
     
     Arhs = np.eye(4)
     Arhs[2, 3] = 1
@@ -895,7 +903,8 @@ dynamic program as outlined above
     Q = np.array([[γ]])
     
     # == Solve using QE's LQ class == #
-    lq = LQ(Q, R, A, B, beta=β)  # LQ solves minimization problems which is why the sign of R and Q was changed 
+    # LQ solves minimization problems which is why the sign of R and Q was changed 
+    lq = LQ(Q, R, A, B, beta=β) 
     P, F, d = lq.stationary_values(method='doubling')
     
     P22 = P[3:, 3:]
@@ -921,8 +930,6 @@ dynamic program as outlined above
     # == Display policies == #
     print("Computed policy for Stackelberg leader\n")
     print(f"F = {F}")
-    print("\n")
-
 
 
 Implied time series for price and quantities
@@ -935,7 +942,7 @@ The following code plots the price and quantities
     q_leader = yt[1, :-1]
     q_follower = yt[2, :-1]
     q = q_leader + q_follower       # Total output, Stackelberg
-    p = a0 - a1 * q                       # Price, Stackelberg
+    p = a0 - a1 * q                 # Price, Stackelberg
     
     fig, ax = plt.subplots(figsize=(9, 5.8))
     ax.plot(range(n), q_leader, 'b-', lw=2, label='leader output')
@@ -962,10 +969,8 @@ on coding and thinking)
     
     # == Display values == #
     print("Computed values for the Stackelberg leader at t=0:\n")
-    print(f"v_leader_forward(forward sim) = {v_leader_forward.round(4)}")
-    print(f"v_leader_direct (direct) = {v_leader_direct.round(4)}")
-    print("\n")
-
+    print(f"v_leader_forward(forward sim) = {v_leader_forward:.4f}")
+    print(f"v_leader_direct (direct) = {v_leader_direct:.4f}")
 
 .. code:: python3
 
@@ -976,8 +981,10 @@ on coding and thinking)
 
 .. code:: python3
 
-    # Manually checks whether two different ways of computing the value function give approximately the same answer
-    v_expanded = -(y0.T @ R @ y0 + ut[:, 0].T @ Q @ ut[:, 0] + β * (y0.T @ (A - B @ F).T @ P @ (A - B @ F) @ y0))
+    # Manually checks whether two different ways of computing the 
+    # value function give approximately the same answer
+    v_expanded = -((y0.T @ R @ y0 + ut[:, 0].T @ Q @ ut[:, 0] + 
+                   β * (y0.T @ (A - B @ F).T @ P @ (A - B @ F) @ y0)))
     (v_leader_direct - v_expanded < tol0)[0, 0]
 
 
@@ -1010,27 +1017,22 @@ inconsistency of the Stackelberg plan
 
 .. code:: python3
 
-    f = plt.figure(figsize=(16, 7))
-    ax1 = f.add_subplot(131)
-    ax2 = f.add_subplot(132)
-    ax3 = f.add_subplot(133)
+    fig, axes = plt.subplots(3, 1, figsize=(10, 7))
     
-    ax1.plot(range(n+1), (- F @ yt).flatten(), 'bo', label='Stackelberg leader', markersize=2)
-    ax1.plot(range(n+1), (- F @ yt_reset).flatten(), 'ro', label='continuation leader at t', markersize=2)
-    ax1.set_title(r'Leader control variable $u_{t}$')
-    ax1.set_xlabel('t')
+    axes[0].plot(range(n+1), (- F @ yt).flatten(), 'bo', label='Stackelberg leader', ms=2)
+    axes[0].plot(range(n+1), (- F @ yt_reset).flatten(), 'ro', label='continuation leader at t', ms=2)
+    axes[0].set(title=r'Leader control variable $u_{t}$', xlabel='t')
+    axes[0].legend()
     
-    ax2.plot(range(n+1), yt[3, :], 'bo', markersize=2)
-    ax2.plot(range(n+1), yt_reset[3, :], 'ro', markersize=2)
-    ax2.set_title(r'Follower control variable $x_{t}$',)
-    ax2.set_xlabel('t')
+    axes[1].plot(range(n+1), yt[3, :], 'bo', ms=2)
+    axes[1].plot(range(n+1), yt_reset[3, :], 'ro', ms=2)
+    axes[1].set(title=r'Follower control variable $x_{t}$', xlabel='t')
     
-    ax3.plot(range(n), vt_leader, 'bo', markersize=2)
-    ax3.plot(range(n), vt_reset_leader, 'ro', markersize=2)
-    ax3.set_title(r'Leader value function $v(y_{t})$')
-    ax3.set_xlabel('t')
+    axes[2].plot(range(n), vt_leader, 'bo', ms=2)
+    axes[2].plot(range(n), vt_reset_leader, 'ro', ms=2)
+    axes[2].set(title=r'Leader value function $v(y_{t})$', xlabel='t')
     
-    f.legend()
+    plt.tight_layout()
     plt.show()
 
 
@@ -1056,7 +1058,6 @@ formulation of the follower's problem produces the same output path
                         [-a0 / 2, a1 / 2, 0,    0,      a1]])
     
     Q_tilde = Q
-    
     B_tilde = np.array([[0, 0, 0, 0, 1]]).T
     
     lq_tilde = LQ(Q_tilde, R_tilde, A_tilde, B_tilde, beta=β)
@@ -1127,7 +1128,7 @@ Hint: remember the components of :math:`X_t`
 
 .. code:: python3
 
-    # Manually check that P is an approximate fixe point
+    # Manually check that P is an approximate fixed point
     (P  - ((R + F.T @ Q @ F) + β * (A - B @ F).T @ P @ (A - B @ F)) < tol0).all()
 
 
@@ -1138,41 +1139,52 @@ Hint: remember the components of :math:`X_t`
     F_tilde_star = -np.array([[0, 0, 0, 1, 0]])
     P_guess = np.zeros((5, 5))
     
-    for _ in range(1000):
-        P_guess = (R_tilde + F_tilde_star.T @ Q @ F_tilde_star) + β * (A_tilde - B_tilde @ F_tilde_star).T @ P_guess @ (A_tilde - B_tilde @ F_tilde_star)
+    for i in range(1000):
+        P_guess = ((R_tilde + F_tilde_star.T @ Q @ F_tilde_star) + 
+                   β * (A_tilde - B_tilde @ F_tilde_star).T @ P_guess 
+                   @ (A_tilde - B_tilde @ F_tilde_star))
 
 
 .. code:: python3
 
     # Value function in the follower's problem
-    - (y0_tilde.T @ P_tilde @ y0_tilde)[0, 0]
+    -(y0_tilde.T @ P_tilde @ y0_tilde)[0, 0]
 
 
 
 .. code:: python3
 
     # Value function with `P_guess`
-    - (y0_tilde.T @ P_guess @ y0_tilde)[0, 0]
-
-
+    -(y0_tilde.T @ P_guess @ y0_tilde)[0, 0]
 
 
 .. code:: python3
 
     # Compute policy using policy iteration algorithm
-    F_iter = β * la.inv(Q + β * B_tilde.T @ P_guess @ B_tilde) @ B_tilde.T @ P_guess @ A_tilde
+    F_iter = (β * la.inv(Q + β * B_tilde.T @ P_guess @ B_tilde) 
+              @ B_tilde.T @ P_guess @ A_tilde)
     
     for i in range(100):
         # Compute P_iter
         P_iter = np.zeros((5, 5))
         for j in range(1000):
-            P_iter = (R_tilde + F_iter.T @ Q @ F_iter) + β * (A_tilde - B_tilde @ F_iter).T @ P_iter @ (A_tilde - B_tilde @ F_iter)
+            P_iter = ((R_tilde + F_iter.T @ Q @ F_iter) + β * 
+                      (A_tilde - B_tilde @ F_iter).T @ P_iter @ 
+                      (A_tilde - B_tilde @ F_iter))
     
         # Update F_iter
-        F_iter = β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) @ B_tilde.T @ P_iter @ A_tilde
+        F_iter = (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) 
+                  @ B_tilde.T @ P_iter @ A_tilde)
         
-    if np.max(np.abs(P_iter - ((R_tilde + F_iter.T @ Q @ F_iter) + β * (A_tilde - B_tilde @ F_iter).T @ P_iter @ (A_tilde - B_tilde @ F_iter)))) < 1e-8:
-        if np.max(np.abs(F_iter - (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) @ B_tilde.T @ P_iter @ A_tilde))) < 1e-8:
+    dist_vec = (P_iter - ((R_tilde + F_iter.T @ Q @ F_iter) + 
+                β * (A_tilde - B_tilde @ F_iter).T @ P_iter @ 
+                (A_tilde - B_tilde @ F_iter)))
+    
+    if np.max(np.abs(dist_vec)) < 1e-8:
+        dist_vec2 = (F_iter - (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) 
+                     @ B_tilde.T @ P_iter @ A_tilde))
+                     
+        if np.max(np.abs(dist_vec)) < 1e-8:
             F_iter
         else: 
             print("The policy didn't converge: try increasing the number of outer loop iterations")
@@ -1201,7 +1213,7 @@ Hint: remember the components of :math:`X_t`
 
 
 Markov perfect equilibrium
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 
 The **state** vector is
 
@@ -1213,7 +1225,10 @@ and the state transition dynamics are
 
 where :math:`A` is a :math:`3 \times 3` identity matrix and
 
-.. math::  B_1 = \begin{bmatrix} 0 \cr 0 \cr 1 \end{bmatrix} , \quad B_2 = \begin{bmatrix} 0 \cr 1 \cr 0 \end{bmatrix} 
+.. math::  
+
+    B_1 = \begin{bmatrix} 0 \cr 0 \cr 1 \end{bmatrix} , 
+    \quad B_2 = \begin{bmatrix} 0 \cr 1 \cr 0 \end{bmatrix} 
 
 The Markov perfect decision rules are
 
@@ -1256,9 +1271,7 @@ and in the Markov perfect equilibrium the state evolves according to
     # == Display policies == #
     print("Computed policies for firm 1 and firm 2:\n")
     print(f"F1 = {F1}")
-    print(f"F2 = {F2}")
-    print("\n")
-    
+    print(f"F2 = {F2}")    
 
 
 .. code:: python3
@@ -1301,9 +1314,8 @@ and in the Markov perfect equilibrium the state evolves according to
     
     # == Display values == #
     print("Computed values for firm 1 and firm 2:\n")
-    print(f"v1(forward sim) = {v1_forward.round(4)}; v1 (direct) = {v1_direct.round(4)}")
-    print(f"v2 (forward sim) = {v2_forward.round(4)}; v2 (direct) = {v2_direct.round(4)}")
-    print("\n")
+    print(f"v1(forward sim) = {v1_forward:.4f}; v1 (direct) = {v1_direct:.4f}")
+    print(f"v2 (forward sim) = {v2_forward:.4f}; v2 (direct) = {v2_direct:.4f}")
 
 
 .. code:: python3
@@ -1319,7 +1331,7 @@ and in the Markov perfect equilibrium the state evolves according to
 
 
 MPE vs. Stackelberg
-~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 .. code:: python3
 
@@ -1343,11 +1355,9 @@ MPE vs. Stackelberg
 
     # == Display values == #
     print("Computed values:\n")
-    print(f"vt_leader(y0) = {vt_leader[0].round(4)}")
-    print(f"vt_follower(y0) = {vt_follower[0].round(4)}")
-    print(f"vt_MPE(y0) = {vt_MPE[0].round(4)}")
-    print("\n")
-
+    print(f"vt_leader(y0) = {vt_leader[0]:.4f}")
+    print(f"vt_follower(y0) = {vt_follower[0]:.4f}")
+    print(f"vt_MPE(y0) = {vt_MPE[0]:.4f}")
 
 
 .. code:: python3
