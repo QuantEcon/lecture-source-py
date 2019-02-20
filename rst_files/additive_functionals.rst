@@ -119,7 +119,7 @@ systematic but random *arithmetic growth*
 
 
 Linear State-Space Representation
-=====================================
+----------------------------------
 
 A convenient way to represent our additive functional is to use a :doc:`linear state space system <linear_models>`
 
@@ -236,7 +236,7 @@ In fact this whole model can be mapped into the additive functional system defin
 You can try writing these matrices down now as an exercise --- correct expressions appear in the code below
 
 Simulation
-============
+----------------------------------
 
 When simulating we embed our variables into a bigger system 
 
@@ -293,7 +293,7 @@ Notice the irregular but persistent growth in :math:`y_t`
 
 
 Decomposition
-==============
+----------------------------------
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` describe how to construct a decomposition of
 an additive functional into four parts:
@@ -472,7 +472,7 @@ Notice tell-tale signs of these probability coverage shaded areas
 
 
 Associated Multiplicative Functional
-===========================================
+--------------------------------------
 
 Where :math:`\{y_t\}` is our additive functional, let :math:`M_t = \exp(y_t)`
 
@@ -542,7 +542,7 @@ Let's see what happens when we set :math:`T = 12000` instead of :math:`150`
 
 
 Peculiar Large Sample Property
-=====================================
+----------------------------------
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale component
 :math:`\widetilde M_t` of the multiplicative decomposition 
@@ -596,7 +596,7 @@ where :math:`H =  [F + B'(I-A')^{-1} D]`
 It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal 
 
 Simulating a Multiplicative Martingale Again
-==========================================================
+-----------------------------------------------
 
 Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
 
@@ -804,7 +804,7 @@ These probability density functions help us understand mechanics underlying the 
 
 
 Multiplicative Martingale as  Likelihood Ratio Process
-==========================================================
+--------------------------------------------------------
 
 A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**
 
