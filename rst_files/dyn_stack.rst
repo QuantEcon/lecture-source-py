@@ -631,7 +631,7 @@ decisions :math:`x_t` of the followers, from another vector
 :math:`\check z_t`, which does not
 
 We will use :math:`\check z_t` and its history :math:`\check z^t
-= [\check z_t, \check z\_{t-1}, \ldots, \check z_0]` to describe the
+= [\check z_t, \check z_{t-1}, \ldots, \check z_0]` to describe the
 sequence of the Stackelberg leader's decisions that the Stackelberg
 follower takes as given
 
