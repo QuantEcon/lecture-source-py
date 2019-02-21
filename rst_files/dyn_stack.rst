@@ -505,7 +505,7 @@ which implies that
 
 .. math::
 
-   x_0 = - P_{22}^{-1} P_{21} z_0}
+   x_0 = - P_{22}^{-1} P_{21} z_0
 
 Stackelberg plan
 ----------------
