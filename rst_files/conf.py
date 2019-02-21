@@ -35,11 +35,8 @@ needs_sphinx = '1.5'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [  
-	'sphinx.ext.mathjax', 
-	'sphinxcontrib.bibtex', 
-	'IPython.sphinxext.ipython_console_highlighting',
-    # Custom Sphinx Extensions
-    'sphinxcontrib.jupyter', 
+	'sphinxcontrib.jupyter', 
+
 ]
 
 # Retired Extensions but may be useful in Future

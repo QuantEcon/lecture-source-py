@@ -378,7 +378,7 @@ Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
    \Omega(y_0) = \left\{ (\vec y_1, \vec u_0) :  y_{t+1} = A y_t + B u_t, \forall t \geq 0 \right\}
 
 Please remember that the follower's Euler equation is embedded in the
-system of dynamic equations :math:`y\_{t+1} = A y\_t + B u\_t`
+system of dynamic equations :math:`y_{t+1} = A y_t + B u_t`
 
 Note that in the definition of :math:`\Omega(y_0)`, :math:`y_0`
 is taken as given
