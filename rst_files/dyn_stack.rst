@@ -148,8 +148,7 @@ First-order conditions for this problem are
                 \lambda_{t-1} = 0 , \quad t \geq 1 \cr
                 \frac{\partial L}{\partial v_{1t}} & = -2 \gamma v_{1t} +  \lambda_t = 0 , \quad t \geq 0  \cr }
 
-These first-order conditions and the constraint :math:`q\_{1t+1} = q\_{1t} +
-v\_{1t}` can be rearranged to take the form
+These first-order conditions and the constraint :math:`q_{1t+1} = q_{1t} + v_{1t}` can be rearranged to take the form
 
 .. math::
 
