@@ -126,7 +126,7 @@ Firm 2 knows that firm 1 chooses second and takes this into account in
 choosing :math:`\{q_{2t+1}\}_{t=0}^\infty`
 
 In the spirit of *working backwards*, we study firm 1's problem first,
-taking :math:`{q_{2t+1} }_{t=0}^{\infty}` as given
+taking :math:`\{q_{2t+1}\}_{t=0}^\infty` as given
 
 We can formulate firm 1's optimum problem in terms of the Lagrangian
 
