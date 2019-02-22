@@ -742,7 +742,7 @@ We now use what amounts to another “Big :math:`K`, little :math:`k`” trick (
 to formulate a recursive version of a follower’s problem cast in terms
 of an ordinary Bellman equation
 
-Firm 1, the follower, faces :math:`{q_{2t}}_{t=0}^{\infty}` as
+Firm 1, the follower, faces :math:`\{q_{2t}\}_{t=0}^\infty` as
 a given quantity sequence chosen by the leader and believes that its
 output price at :math:`t` satisfies
 
@@ -750,7 +750,7 @@ output price at :math:`t` satisfies
 
     p_t  = a_0 - a_1 ( q_{1t} + q_{2t})  , \quad t \geq 0 
 
-Our challenge is to represent :math:`{q_{2t}}_{t=0}^{\infty}` as
+Our challenge is to represent :math:`\{q_{2t}\}_{t=0}^\infty` as
 a given sequence
 
 To do so, recall that under the Stackelberg plan, firm 2 sets output
