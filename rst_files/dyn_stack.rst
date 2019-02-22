@@ -637,7 +637,7 @@ follower takes as given
 
 Thus, we let
 :math:`\check y_t' = \begin{bmatrix}\check z_t' & \check x_t'\end{bmatrix}`
-with initial condition :math:`\check z_0 = z_0` given.
+with initial condition :math:`\check z_0 = z_0` given
 
 That we distinguish :math:`\check z_t` from :math:`z_t` is part and
 parcel of the **Big K, little k** device in this
