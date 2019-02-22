@@ -673,7 +673,7 @@ imply that for :math:`t \geq 1`
 
 .. math::
 
-    x_t = \sum_{j=1}^t H_j^t z_{t-j}  
+    x_t = \sum_{j=1}^t H_j^t \check z_{t-j}  
 
 where
 
