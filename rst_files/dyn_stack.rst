@@ -178,7 +178,7 @@ conditions:**
 -  an initial condition that :math:`q_{1,0}` is given
 
 -  a terminal condition requiring that
-   :math:`\lim * {T \rightarrow + \infty} \beta^T q * {1t}^2 < + \infty`
+   :math:`\lim_{T \rightarrow + \infty} \beta^T q * {1t}^2 < + \infty`
 
 Using the lag operators described in chapter IX of *Macroeconomic
 Theory, Second edition (1987)*, difference equation
