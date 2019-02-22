@@ -3,8 +3,9 @@
 .. include:: /_static/includes/lecture_howto_py.raw
 
 
-Stackelberg plans
------------------
+*****************************************************
+Stackelberg Plans
+*****************************************************
 
 This notebook formulates and computes a plan that a **Stackelberg
 leader** uses to manipulate forward-looking decisions of a **Stackelberg
@@ -19,7 +20,7 @@ which firms face adjustment costs that make them want to forecast
 actions of other firms that influence future prices
 
 Duopoly
-~~~~~~~
+=======
 
 Time is discrete and is indexed by :math:`t = 0, 1, \ldots`
 
@@ -53,8 +54,10 @@ Firm :math:`i` wants to maximize the present value of its profits
 
 where :math:`\beta \in (0,1)` is a time discount factor
 
+
+
 Stackelberg leader and follower
--------------------------------
+--------------------------------
 
 Each firm :math:`i=1,2` chooses a sequence
 :math:`\vec q_i \equiv \{q_{it+1}\}_{t=0}^\infty` once and for all at
@@ -74,8 +77,9 @@ In choosing :math:`\vec q_2`, firm 2 takes into account that firm 1 will
 base its choice of :math:`\vec q_1` on firm 2's choice of
 :math:`\vec q_2`
 
+
 Abstract statement of the leader's and follower's problems
-----------------------------------------------------------
+-----------------------------------------------------------
 
 We can express firm 1's problem as
 
@@ -117,7 +121,7 @@ follower's best response to it
 To gain insights about these things, we study them in more detail
 
 Firms' problems
----------------
+----------------
 
 Firm 1 acts as if firm 2's sequence :math:`\{q_{2t+1}\}_{t=0}^\infty` is
 given and beyond its control
@@ -256,7 +260,7 @@ We'll put our little duopoly model into a broader class of models with
 the same conceptual structure
 
 The Stackelberg Problem
------------------------
+========================
 
 We formulate a class of linear-quadratic Stackelberg leader-follower
 problems of which our duopoly model is an instance
@@ -334,7 +338,7 @@ or
     y_{t+1} = A y_t + B u_t
 
 Interpretation of the second block of equations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------
 
 The Stackelberg follower's best response mapping is summarized by the
 second block of equations of :eq:`new3`
@@ -364,7 +368,7 @@ restricted by :eq:`constrainteq` to manipulate the follower's
 decisions
 
 More mechanical details
-~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 For any vector :math:`a_t`, define :math:`\vec a_t = [a_t,
 a\_{t+1} \ldots ]`
@@ -387,7 +391,7 @@ eventually, the :math:`x_0` component of :math:`y_0` will be chosen by the
 Stackelberg leader
 
 Two Subproblems
-~~~~~~~~~~~~~~~
+----------------
 
 Once again we use backward induction
 
@@ -412,7 +416,7 @@ The two subproblems are designed
    to the leader
 
 Subproblem 1
-^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 .. math::
 
@@ -420,7 +424,7 @@ Subproblem 1
    v(y_0) = \max_{(\vec y_1, \vec u_0) \in \Omega(y_0)} - \sum_{t=0}^\infty \beta^t r(y_t, u_t)
 
 Subproblem 2
-^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
 .. math::
 
@@ -437,7 +441,7 @@ as a function of the vector of natural state variables at time :math:`0`,
 :math:`z_0`
 
 Two Bellman equations
-~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 We now describe Bellman equations for :math:`v(y)` and :math:`w(z_0)`
 
@@ -506,8 +510,11 @@ which implies that
 
    x_0 = - P_{22}^{-1} P_{21} z_0
 
+
+
+
 Stackelberg plan
-----------------
+=================
 
 Now let's map our duopoly model into the above setup.
 
@@ -519,7 +526,7 @@ where in this instance :math:`x_t = v_{1t}`, the time :math:`t` decision
 of the follower firm 1
 
 Calculations to prepare duopoly model
--------------------------------------
+----------------------------------------
 
 Now we'll proceed to cast our duopoly model within the framework of the
 more general linear-quadratic structure described above
@@ -532,7 +539,7 @@ As emphasized above, firm 1 acts as if firm 2's decisions
 control
 
 Firm 1's problem
------------------------------
+-------------------
 
 We again formulate firm 1's optimum problem in terms of the Lagrangian
 
@@ -619,8 +626,11 @@ It is important to do this for several reasons:
 First let's get a recursive representation of the Stackelberg leader's
 choice of :math:`\vec q_2` for our duopoly model
 
+
+
+
 Recursive representation of Stackelberg plan
---------------------------------------------
+=============================================
 
 In order to attain an appropriate representation of the Stackelberg
 leader's history-dependent plan, we will employ what amounts to a
@@ -704,8 +714,10 @@ Representation :eq:`finalrule` confirms that whenever
 that the Stackelberg leader's choice :math:`u_t` depends not just on
 :math:`\check z_t` but on components of :math:`\check z^{t-1}`
 
+
+
 Comments and interpretations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 After all, at the end of the day, it will turn out that because we set
 :math:`\check z_0 = z_0`, it will be true that :math:`z_t = \check z_t`
@@ -720,8 +732,10 @@ sequence :math:`\vec q_2`, we must use representation
 :math:`\check z^t` and **not** a corresponding representation cast in
 terms of :math:`z^t`
 
+
+
 Dynamic programming and time consistency of **follower's** problem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------
 
 Given the sequence :math:`\vec q_2` chosen by the Stackelberg leader in
 our duopoly model, it turns out that the Stackelberg **follower's**
@@ -735,7 +749,7 @@ follower's problem that builds on our recursive representation of the
 Stackelberg leader's plan and our use of the **Big K, little k** idea
 
 Recursive formulation of a follower’s problem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 We now use what amounts to another “Big :math:`K`, little :math:`k`” trick (see
 `rational expectations equilibrium <https://lectures.quantecon.org/py/rational_expectations.html>`__)
@@ -833,7 +847,7 @@ representation of the follower's problem facing the Stackelberg leader's
 :math:`\vec q_2`
 
 Time consistency of follower's plan
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 Since the follower can solve its problem using dynamic programming its
 problem is recursive in what for it are the **natural state variables**,
@@ -847,8 +861,8 @@ It follows that the follower's plan is time consistent
 
 
 
-Stackelberg Plan
-----------------
+Computing the Stackelberg Plan
+===============================
 
 Here is our code to compute a Stackelberg plan via a linear-quadratic
 dynamic program as outlined above
@@ -933,7 +947,7 @@ dynamic program as outlined above
 
 
 Implied time series for price and quantities
---------------------------------------------
+---------------------------------------------
 
 The following code plots the price and quantities
 
@@ -955,7 +969,7 @@ The following code plots the price and quantities
 
 
 Value of Stackelberg leader
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 We'll compute the present value earned by the Stackelberg leader
 
@@ -989,7 +1003,7 @@ on coding and thinking)
 
 
 Exhibiting time inconsistency of Stackelberg plan
--------------------------------------------------
+==================================================
 
 In the code below we compare two values
 
@@ -1037,7 +1051,7 @@ inconsistency of the Stackelberg plan
 
 
 Recursive formulation of the follower's problem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================================
 
 We now formulate and compute the recursive version of the follower's
 problem
@@ -1093,7 +1107,7 @@ problem -- those without are from the Stackelberg problem
 
 
 Explanation of alignment
-------------------------
+--------------------------
 
 If we inspect the coefficients in the decision rule :math:`- \tilde F`,
 we can spot the reason that the follower chooses to set :math:`x_t =
@@ -1212,7 +1226,7 @@ Hint: remember the components of :math:`X_t`
 
 
 Markov perfect equilibrium
------------------------------
+============================
 
 The **state** vector is
 
@@ -1330,7 +1344,7 @@ and in the Markov perfect equilibrium the state evolves according to
 
 
 MPE vs. Stackelberg
------------------------------
+====================
 
 .. code:: python3
 
