@@ -1042,8 +1042,7 @@ Recursive formulation of the follower's problem
 We now formulate and compute the recursive version of the follower's
 problem
 
-We check that the recursive **Big :math:`K`, little :math:`k`**
-formulation of the follower's problem produces the same output path
+We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation of the follower's problem produces the same output path
 :math:`\vec q_1` that we computed when we solved the Stackelberg problem
 
 .. code:: python3
