@@ -540,7 +540,7 @@ We again formulate firm 1's optimum problem in terms of the Lagrangian
 
 Firm 1 seeks a maximum with respect to
 :math:`\{q_{1t+1}, v_{1t} \}_{t=0}^\infty` and a minimum with respect to
-:math:`{\lambda_t}_{t=0}^\infty`
+:math:`\{ \lambda_t\}_{t=0}^\infty`
 
 First-order conditions for this problem are
 
