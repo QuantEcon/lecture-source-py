@@ -1,6 +1,12 @@
 .. raw:: html
 
-		<ul class="badges">
+		<div id="qe-notebook-header" style="text-align:right;">
+			<a href="https://quantecon.org/" title="quantecon.org">
+				<img style="width:250px;display:inline;" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
+			</a>
+		</div>
+
+		<ul class="badges" style="display:none;">
 			<li><a href="#"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
 			<li><a href="#"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 			<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
@@ -15,7 +21,7 @@
 		document.getElementById('pdf_download_badge').parentElement.setAttribute('href', pdfDownloadLink);
 		</script>
 
-		<div class="how-to">
+		<div class="how-to" style="display:none;">
 			<a href="#" class="toggle"><span class="icon icon-angle-double-down"></span>How to read this lecture...</a>
 			<div class="how-to-content">
 				<p>Code should execute sequentially if run in a Jupyter notebook</p>
