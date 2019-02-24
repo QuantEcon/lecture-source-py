@@ -55,7 +55,7 @@
 
 |
     
-.. image:: /_static/banner.png
+.. image:: http://assets.quantecon.org/img/banner.png
     :scale: 30%
     :align: center
 
