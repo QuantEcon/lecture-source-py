@@ -17,7 +17,6 @@ help:
 # Install requiremenets for building lectures.
 setup:
 	pip install -r requirements.txt
-	cd source/rst && ln -s ../_static _static
 	
 local:
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_images_urlpath=0
