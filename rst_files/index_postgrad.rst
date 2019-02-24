@@ -19,43 +19,35 @@
 
 .. only:: html
 
-    Table of Contents
-    *****************
+    Table of Contents (Python)
+    *************************************************************
 
 .. raw:: html
 
     <ul class="index-tabs">
-        <li class="active"><a href="/py/">All</a></li>
+        <li><a href="/py/">All</a></li>
         <li><a href="/py/index_undergrad.html">Undergraduate course</a></li>
-        <li><a href="/py/index_postgrad.html">Graduate course</a></li>
+        <li class="active"><a href="/py/index_postgrad.html">Graduate course</a></li>
     </ul>
-
-
+    
 .. toctree::
     :maxdepth: 2
     :titlesonly:
+
 
     index_learning_python
     index_python_scientific_libraries
     index_advanced_python_programming
     index_data_and_empirics
-    index_tools_and_techniques
-    index_dynamic_programming
-    index_multi_agent_models
-    index_time_series_models
+    index_tools_and_techniques_grad
+    index_dynamic_programming_grad
+    index_multi_agent_models_grad
+    index_time_series_models_grad
     index_dynamic_programming_squared
     zreferences
 
-
-.. toctree::
-    :hidden:
-
-    index_undergrad
-    index_postgrad
-
-|
     
-.. image:: https://assets.quantecon.org/img/banner.png
+.. image:: /_static/banner.png
     :scale: 30%
     :align: center
 
