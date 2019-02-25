@@ -98,10 +98,10 @@ Consider this Python operation
 
 Even for this simple operation, the Python interpreter has a fair bit of work to do
 
-For example, in the statement `a + b`, the interpreter has to know which
+For example, in the statement ``a + b``, the interpreter has to know which
 operation to invoke
 
-If `a` and `b` are strings, then `a + b` requires string concatenation
+If ``a`` and ``b`` are strings, then ``a + b`` requires string concatenation
 
 .. code-block:: python3
 
@@ -109,7 +109,7 @@ If `a` and `b` are strings, then `a + b` requires string concatenation
     a + b
 
 
-If `a` and `b` are lists, then `a + b` requires list concatenation
+If ``a`` and ``b`` are lists, then ``a + b`` requires list concatenation
 
 .. code-block:: python3
 
@@ -258,7 +258,7 @@ much faster
 
 The reason is that in the second implementation we have broken the loop down into three basic operations
 
-#. draw `n` uniforms
+#. draw ``n`` uniforms
 
 #. square them
 
@@ -643,14 +643,14 @@ Why should that be?  After all, anything vectorized with NumPy will be running i
 
 The reason is that it's much less memory intensive
 
-For example, when NumPy computes `np.cos(x**2 + y**2)` it first creates the
-intermediate arrays `x**2` and `y**2`, then it creates the array `np.cos(x**2 + y**2)`
+For example, when NumPy computes ``np.cos(x**2 + y**2)`` it first creates the
+intermediate arrays ``x**2`` and ``y**2``, then it creates the array ``np.cos(x**2 + y**2)``
 
-In our `@vectorize` version using Numba, the entire operator is reduced to a
+In our ``@vectorize`` version using Numba, the entire operator is reduced to a
 single vectorized process and none of these intermediate arrays are created
     
 We can gain further speed improvements using Numba's automatic parallelization 
-feature by specifying `target='parallel'`
+feature by specifying ``target='parallel'``
 
 In this case, we need to specify the types of our inputs and outputs
 
