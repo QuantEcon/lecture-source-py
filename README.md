@@ -1,9 +1,15 @@
 
-# Source files for "Lectures in Quantitative Economics" -- Python version
+# Lectures in Quantitative Economics Source Files (Python version)
 
-This repository contains the `rst` source files for each python lecture in the [Quantitative Economics](https://lectures.quantecon.org/) lecture series. Additionally the repository holds assets such as code snippets, figures and includes that are referenced from the source files.
+This repository contains 
 
-You can quickly and easily build and run the lectures as Jupyter Notebooks with the help of a [QuantEcon](https://quantecon.org/) built extension [sphinxcontrib.jupyter](https://github.com/QuantEcon/sphinxcontrib-jupyter).
+* the `rst` source files for each python lecture in the [Quantitative Economics](https://lectures.quantecon.org/) in `source/rst`
+
+* supporting code in `source/_static/code/`
+
+* figures, PDFs and other static assets in `source/_static`
+
+You can build and run the lectures as Jupyter notebooks with the help of the [QuantEcon](https://quantecon.org/) built extension [sphinxcontrib.jupyter](https://github.com/QuantEcon/sphinxcontrib-jupyter).
 
 
 ## Installation
@@ -12,30 +18,45 @@ You can quickly and easily build and run the lectures as Jupyter Notebooks with 
 
 2) Download or clone this repository.
 
-3) Run `make setup`
+3) Run `make setup`.
 
-*The make setup command checks for and installs the [quantecon package](https://pypi.org/project/quantecon/) and the [sphinxcontrib.jupyter extension](https://pypi.org/project/sphinxcontrib-jupyter/) for [Sphinx](https://www.sphinx-doc.org/). All other dependencies are included with Anaconda including the [Jupyter Notebook](https://jupyter.org/) viewer.*
+The make setup command checks for and installs 
+
+* the [quantecon package](https://pypi.org/project/quantecon/) and 
+* the [sphinxcontrib.jupyter extension](https://pypi.org/project/sphinxcontrib-jupyter/) for [Sphinx](https://www.sphinx-doc.org/). 
+
+Other dependencies are included with Anaconda .
 
 
 ## Building notebooks
 
-Run `make notebooks`
+To transform the `rst` files in to `ipynb` files, run `make notebooks`.
 
-*The make notebooks command converts the `rst` source files into `ipynb` notebooks using Sphinx and the sphinxcontrib.jupyter extension. The `ipynb` files are stored in a temporary `_build` directory.*
+The resulting `ipynb` files are stored in a temporary `_build` directory at the root level of the repository.
 
 
 ## Viewing notebooks
 
 Run `make view`
 
-Additionally you can view a lecture directly:
+Additionally you can view a particular lecture directly:
 
 Example `make view lecture=about_py`
 
-*The make view command launches a local instance of Jupyter Notebook viewer. A new web browser will open displaying a web based interface for viewing and interacting with the notebook files.*
+The make view command launches a local instance of Jupyter and points it at
+the contents of the `_build` directory.
 
-## Editing notebooks
 
-Edit the source `rst` files in your favorite text editor and run `make notebooks`.
+## Workflow
 
-If you have previously run `make view` and have your web browser with Jupyter Notebook still running you can simply refresh the page to view your updates. Alternatively, run `make view` again to relaunch Jupyter Notebook in your web browser.
+Standard workflow for editing, say, `lqcontrol.rst` is 
+
+1. Run `make notebooks`
+1. Run `make view lecture=lqcontrol` to see `lqcontrol.ipynb` in Jupyter
+    * or just `make view` and then navigate to `lqcontrol.ipynb` in the browser window that pops up
+1.  Edit `lqcontrol.rst` in your favorite text editor 
+1. Run `make notebooks` again to 
+1. Return to `lqcontrol.ipynb` in Jupyter and reload the page
+1. Go to step 3 and repeat as necessary.
+
+
