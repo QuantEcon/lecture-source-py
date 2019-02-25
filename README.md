@@ -65,3 +65,20 @@ Standard workflow for editing, say, `lqcontrol.rst` in the master branch is
 Finally, add, commit and push your changes using `git`.
 
 
+## Converting notebooks to RST files
+
+Sometimes it's convenient to write a lecture as a notebook and then convert to
+RST
+
+This is guide provided by TJS, which requires pandoc 2.6 or newer
+
+(Use `pandoc --version` to test)
+
+1.  This step is necessary only if you want to strip out dollar signs from
+    maths
+
+   `python latex_space_strip.py  [myinputfile.ipynb] -o [myoutputfile.ipynb]`
+
+2.  To convert, use
+
+    type `pandoc [myfilenamenew.pynb] -f ipynb+tex_math_dollars -t rst -s -o [newfilename.rst]`
