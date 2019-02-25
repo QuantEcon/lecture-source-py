@@ -59,6 +59,7 @@ Standard workflow for editing, say, `lqcontrol.rst` in the master branch is
 1.  Edit `lqcontrol.rst` in your favorite text editor 
 1. Run `make notebooks` again to generate a new version of `lqcontrol.ipynb`
     * the build system uses caching so this should be quick
+    * you might need to open a new terminal window to run this command
 1. Return to `lqcontrol.ipynb` in Jupyter and reload the page
 1. Go to step 4 and repeat as necessary.
 
