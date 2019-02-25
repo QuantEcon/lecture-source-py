@@ -25,7 +25,11 @@ notebooks:
 	make jupyter
 
 preview:
-	cd _build/jupyter/ && jupyter notebook $(basename $(LECTURE))'.ipynb'
+ifdef LECTURE
+	cd _build/jupyter/ && jupyter notebook $(basename $(LECTURE)).ipynb
+else
+	cd _build/jupyter/ && jupyter notebook
+endif
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
