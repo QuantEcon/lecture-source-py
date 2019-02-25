@@ -1,11 +1,11 @@
 
-# Lectures in Quantitative Economics Source Files 
+# Lectures in Quantitative Economics: Source Files 
 
 ### Python version
 
 This repository contains 
 
-* the `rst` source files for each python lecture in the [Quantitative Economics](https://lectures.quantecon.org/), in directory `source/rst`
+* the `rst` source files for each python lecture in [Quantitative Economics](https://lectures.quantecon.org/), in directory `source/rst`
 
 * supporting Python code in `source/_static/code/`
 
@@ -20,11 +20,11 @@ This repository contains
 
 3) Enter your local copy of the repository and run `make setup`.
 
-The make setup command checks for and installs 
+The `make setup` command checks for and installs 
 
-* the [quantecon package](https://pypi.org/project/quantecon/) and 
+* the [quantecon package](https://quantecon.org/quantecon-py) and 
 
-* the [sphinxcontrib.jupyter extension](https://pypi.org/project/sphinxcontrib-jupyter/) for [Sphinx](https://www.sphinx-doc.org/). 
+* the [sphinxcontrib.jupyter extension](https://github.com/QuantEcon/sphinxcontrib-jupyter) for [Sphinx](https://www.sphinx-doc.org/). 
 
 Other dependencies are included with Anaconda.
 
@@ -57,9 +57,10 @@ Standard workflow for editing, say, `lqcontrol.rst` in the master branch is
 1. Run `make view lecture=lqcontrol` to see `lqcontrol.ipynb` in Jupyter
     * or just `make view` and then navigate to `lqcontrol.ipynb` in the browser window that pops up
 1.  Edit `lqcontrol.rst` in your favorite text editor 
-1. Run `make notebooks` again to 
+1. Run `make notebooks` again to generate a new version of `lqcontrol.ipynb`
+    * the build system uses caching so this should be quick
 1. Return to `lqcontrol.ipynb` in Jupyter and reload the page
-1. Go to step 3 and repeat as necessary.
+1. Go to step 4 and repeat as necessary.
 
 Finally, add, commit and push your changes using `git`.
 
