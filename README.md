@@ -70,15 +70,14 @@ Finally, add, commit and push your changes using `git`.
 Sometimes it's convenient to write a lecture as a notebook and then convert to
 RST
 
-This is guide provided by TJS, which requires pandoc 2.6 or newer
+This guide is provided by TJS and requires pandoc 2.6 or newer
 
 (Use `pandoc --version` to test)
 
-1.  This step is necessary only if you want to strip out dollar signs from
-    maths
+1.  This step is necessary only if you want to strip out dollar signs from maths
 
-   `python latex_space_strip.py  [myinputfile.ipynb] -o [myoutputfile.ipynb]`
+    *  `python latex_space_strip.py  [myinputfile.ipynb] -o [myoutputfile.ipynb]`
 
 2.  To convert, use
 
-    type `pandoc [myfilenamenew.pynb] -f ipynb+tex_math_dollars -t rst -s -o [newfilename.rst]`
+    *  `pandoc [myfilenamenew.pynb] -f ipynb+tex_math_dollars -t rst -s -o [newfilename.rst]`
