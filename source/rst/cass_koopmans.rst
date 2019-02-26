@@ -41,7 +41,7 @@ The lecture uses important ideas including
 -  A connection between some Lagrange multipliers in the max-min
    problem and the Hicks-Arrow prices
 
--  A **Big K, little k** trick widely used in
+-  A **Big** :math:`K` **, little** :math:`k` trick widely used in
    macroeconomic dynamics
 
   *  We shall encounter this trick in `this lecture <https://lectures.quantecon.org/py/rational_expectations.html#>`__
