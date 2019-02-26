@@ -405,9 +405,9 @@ We have no initial condition for the Lagrange multiplier
 If we did, solving for the allocation would be simple:
 
 -  Given :math:`\mu_0`\ and :math:`k_0`, we could compute $c_0 $ from
-   equation (:eq:`constraint1`) and then :math:`k_1` from equation
-   (:eq:`constraint3`) and\ :math:`\mu_1` from equation
-   (:eq:`constraint2`)
+   equation :eq:`constraint1` and then :math:`k_1` from equation
+   :eq:`constraint3` and\ :math:`\mu_1` from equation
+   :eq:`constraint2`
 
 -  We could then iterate on to compute the remaining elements of
    :math:`\vec C, \vec K, \vec \mu`
