@@ -913,7 +913,7 @@ A rule of thumb for the planner is
 
 In loose language: head for the turnpick and stay near it for as long as you can
 
-As we drive :math:`T \toward +\infty`, the planner
+As we drive :math:`T` toward :math:`+\infty`, the planner
 keeps :math:`K_t` very close to its steady state for all dates after
 some transition toward the steady state
 
