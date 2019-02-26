@@ -99,14 +99,14 @@ We let :math:`C_t` be a nondurable consumption good at time t
 
 Let :math:`K_t` be the stock of physical capital at time t
 
-Let :math:`\vec{C}`\ =\ :math:`\{C_0,\dots, C_T\}` and
-:math:`\vec{K}`\ =\ :math:`\{K_1,\dots,K_{T+1}\}`
+Let :math:`\vec{C}` = :math:`\{C_0,\dots, C_T\}` and
+:math:`\vec{K}` = :math:`\{K_1,\dots,K_{T+1}\}`
 
 A representative household is endowed with one unit of labor at each
-:math:`t`\ and likes the consumption good at each\ :math:`t`
+:math:`t` and likes the consumption good at each :math:`t`
 
 The representative household inelastically supplies a single unit of
-labor :math:`N_t`\ at each\ :math:`t`, so that
+labor :math:`N_t` at each :math:`t`, so that
 :math:`N_t =1 \text{ for all } t \in [0,T]`
 
 The representative household has preferences over consumption bundles
@@ -241,30 +241,28 @@ derivatives of the Lagrangian and set them equal to 0
 
 Here are the **first order necessary conditions** for extremization
 (i.e., maximization with respect to :math:`\vec C, \vec K`,
-minimization with respect to\ :math:`\vec \mu`):
+minimization with respect to :math:`\vec \mu`):
+
 
 .. math::
     :label: constraint1
   
-    C_t:& \quad u'(C_t)-\mu_t=0 \quad &&\text{for all } t=
-    0,1,\dots,T
+    C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T \\
   
 .. math::
     :label: constraint2
     
-    K_t:& \quad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - 
-    \mu_{t-1}=0 \quad &&\text{for all } t=1,2,\dots,T+1
+    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T+1 \\
   
 .. math::
     :label: constraint3
     
-    \mu_t:&  \quad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0
-    \quad &&\text{for all } t=0,1,\dots,T
+    \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T \\
 
 .. math::
     :label: constraint4
     
-    \quad -\mu_T \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0 
+    K_{t+1}: \qquad -\mu_T \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
 
 Note that in :eq:`constraint1` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
@@ -394,10 +392,10 @@ We have no initial condition for the Lagrange multiplier
 
 If we did, solving for the allocation would be simple:
 
--  Given :math:`\mu_0`\ and :math:`k_0`, we could compute $c_0 $ from
-   equation (:eq:`constraint1`) and then :math:`k_1` from equation
-   (:eq:`constraint3`) and\ :math:`\mu_1` from equation
-   (:eq:`constraint2`)
+-  Given :math:`\mu_0` and :math:`k_0`, we could compute $c_0 $ from
+   equation :eq:`constraint1` and then :math:`k_1` from equation
+   :eq:`constraint3` and :math:`\mu_1` from equation
+   :eq:`constraint2`
 
 -  We could then iterate on to compute the remaining elements of
    :math:`\vec C, \vec K, \vec \mu`
@@ -523,7 +521,7 @@ largest it can be is initial output :math:`f(K_0)`
 We take a :math:`C_0` guess and shoot forward to :math:`T+1`
 
 If the :math:`K_{T+1}>0`, let it be our new **lower** bound
-on\ :math:`C_0`
+on :math:`C_0`
 
 If :math:`K_{T+1}<0`, let it be our new **upper** bound
 
@@ -618,18 +616,18 @@ Setting :math:`K_0` equal to steady state
 ------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
-steady state values of :math:`C_t`\ and\ :math:`K_t`
+steady state values of :math:`C_t` and :math:`K_t`
 
 It is instructive to compute these and then to set :math:`K_0` equal
 to its steady state value
 
-In a steady state :math:`K_{t+1} = K_t=\bar{K}`\ for all very
-large\ :math:`t` the feasibility constraint :eq:`allocation` is
+In a steady state :math:`K_{t+1} = K_t=\bar{K}` for all very
+large :math:`t` the feasibility constraint :eq:`allocation` is
 
 .. math:: f(\bar{K})-\delta \bar{K} = \bar{C}
 
-Substituting :math:`K_t = \bar K`\ and :math:`C_t=\bar C` for
-all\ :math:`t` into (`1.16 <#1.16>`__) gives
+Substituting :math:`K_t = \bar K` and :math:`C_t=\bar C` for
+all :math:`t` into (`1.16 <#1.16>`__) gives
 
 .. math:: 1=\beta \frac{u'(\bar{C})}{u'(\bar{C})}[f'(\bar{K})+(1-\delta)]
 
@@ -874,7 +872,7 @@ A rule of thumb for the planner is
 
 In loose language: head for the turnpick and stay near it for as long as you can
 
-As we drive :math:`T \toward +\infty`, the planner
+As we drive :math:`T` toward :math:`+\infty`, the planner
 keeps :math:`K_t` very close to its steady state for all dates after
 some transition toward the steady state
 
@@ -947,7 +945,7 @@ Let's calculate it
 We now consider an economy in which :math:`T = +\infty`
 
 The appropriate thing to do is to replace terminal condition
-(:eq:`condition4`) with
+:eq:`constraint4` with
 
 .. math:: 
   
@@ -1115,7 +1113,7 @@ household chooses for itself subject to a budget constraint
 
 -  At each time :math:`t`, the household receives wages and rentals
    of capital from a firm -- these comprise its **income** at
-   time\ :math:`t`
+   time :math:`t`
 
 -  The consumer decides how much income to allocate to consumption or
    to savings
@@ -1211,11 +1209,11 @@ or
   \left(\frac{\partial F}{\partial \tilde k_t}-\eta_t\right) \tilde k_t + 
   \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t \label{3.8} \tag{3.8}
 
-Because :math:`F`\ is homogeneous of degree\ :math:`1`, it follows
-that :math:`\frac{\partial F}{\partial \tilde k_t}`\ and
+Because :math:`F` is homogeneous of degree :math:`1`, it follows
+that :math:`\frac{\partial F}{\partial \tilde k_t}` and
 :math:`\frac{\partial F}{\partial \tilde n_t}` are homogoneous of
 degree :math:`0` and therefore fixed with respect to
-:math:`\tilde k_t` and\ :math:`\tilde n_t`
+:math:`\tilde k_t` and :math:`\tilde n_t`
 
 If :math:`\frac{\partial F}{\partial \tilde k_t}> \eta_t`, then the
 firm makes positive profits on each additional unit of
@@ -1230,22 +1228,22 @@ A related argument applies if
 :math:`\frac{\partial F}{\partial \tilde n_t}> w_t`
 
 If :math:`\frac{\partial \tilde k_t}{\partial \tilde k_t}< \eta_t`,
-the firm will set\ :math:`\tilde k_t` to zero
+the firm will set :math:`\tilde k_t` to zero
 
 Again, **equilibrium** prices won't incentive the firm to do that.
 
 And so on...
 
 It is convenient to define
-:math:`\vec w_t =\{w_0, \dots,w_T\}`\ and\ :math:`\vec \eta_t = \{\eta_0, \dots, \eta_T\}`
+:math:`\vec w_t =\{w_0, \dots,w_T\}`\ and :math:`\vec \eta_t = \{\eta_0, \dots, \eta_T\}`
 
 Household Problem
 ------------------
 
 A representative household lives at :math:`t=0,1,\dots, T`
 
-At :math:`t`, the household rents :math:`1`\ unit of labor
-and\ :math:`k_t` units of capital to a firm and receives income
+At :math:`t`, the household rents :math:`1` unit of labor
+and :math:`k_t` units of capital to a firm and receives income
 
 .. math:: w_t 1+ \eta_t k_t
 
@@ -1277,7 +1275,7 @@ Market structure for intertemporal trades
 
 There is a **single** grand competitive market in which a
 representative household can trade date :math:`0` goods for goods at
-all other dates\ :math:`t=1, 2, \ldots, T`
+all other dates :math:`t=1, 2, \ldots, T`
 
 What matters are not **bilateral** trades of the good at one date
 :math:`t` for the good at another date :math:`\tilde t \neq t`.
@@ -1308,7 +1306,7 @@ which prices are quoted are arbitrary -- we can normalize them
 without substantial consequence
 
 If we use the price vector :math:`\{q^0_t\}_{t=0}^T` to evaluate a
-stream of excess demands :math:`\{e_t\}_{t=0}^T`\ we compute the
+stream of excess demands :math:`\{e_t\}_{t=0}^T` we compute the
 **present value** of :math:`\{e_t\}_{t=0}^T` to be
 :math:`\sum_{t=0}^T q^0_t e_t`
 
@@ -1453,7 +1451,7 @@ Combining (`3.27 <#3.27>`__), (`3.16 <#3.16>`__), and
 
 .. math:: -\lambda \beta^t \mu_t\left[(1-\delta) +f'(K_t)\right] +\lambda \beta^{t-1}\mu_{t-1}=0
 
-Rewriting :math:`(\ref{3.31})`\ by dividing by\ :math:`\lambda` on
+Rewriting :math:`(\ref{3.31})` by dividing by :math:`\lambda` on
 both sides (which is nonzero due to u'>0) we get:
 
 .. math:: \beta^t \mu_t [(1-\delta+f'(K_t)] = \beta^{t-1} \mu_{t-1} \label{3.32} \tag{3.32}
@@ -1474,7 +1472,7 @@ Cancelling,
 
 .. math:: \sum_{t=0}^T  \beta^t \mu_{t} \left(C_t +K_{t+1} -(1-\delta)K_t - F(K_t,1)\right) \leq 0 \label{3.35} \tag{3.35}
 
-Since :math:`\beta^t`\ and\ :math:`\mu_t` are always positive here,
+Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 (excepting perhaps the T+1 period) we get:
 
 .. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T \label{3.36} \tag{3.36}
@@ -1524,9 +1522,9 @@ identical to the one that solves the consumer's problem
 :math:`\{q_0^t\}` is determined only up to multiplication by a
 positive constant
 
-**Normalization:** We are free to choose a :math:`\{q_0^t\}`\ that
+**Normalization:** We are free to choose a :math:`\{q_0^t\}` that
 makes :math:`\lambda=1`, thereby making :math:`q_0^t` be measured in
-units of the marginal utility of time\ :math:`0` goods
+units of the marginal utility of time :math:`0` goods
 
 Brandon's take on what all this means
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1559,7 +1557,7 @@ in economics
 
 What we just did is we took a sequence of prices, used it to generate
 a sequence of little k's and c's and :math:`\tilde k`'s
-and\ :math:`\tilde c`'sthat are the firm and households optimal
+and :math:`\tilde c`'sthat are the firm and households optimal
 response, and then showed that when we look at the aggregates
 generated by the little k's and little c's, they are exactly the
 sequence of aggregates (:math:`K_t, C_t`) that generate the prices
@@ -1718,8 +1716,8 @@ Varying :math:`\gamma`
 
 
 Now we see how our results change if we keep T constant, but allow
-the curvature parameter, :math:`\gamma`\ to vary, starting
-with\ :math:`K_0` below the steady state.
+the curvature parameter, :math:`\gamma` to vary, starting
+with :math:`K_0` below the steady state.
 
 We plot the results for :math:`T=150`
 
@@ -1871,11 +1869,11 @@ A generic Hicks-Arrow price for any base-year :math:`t_0\leq t`
   q^{t_0}_t = \beta^{t-t_0} \frac{u'(c_t)}{u'(c_{t_0})}= \beta^{t-t_0} 
   \frac{c_t^{-\gamma}}{c_{t_0}^{-\gamma}}
 
-We redefine our function for :math:`q`\ to allow arbitrary base
-years, and define a new function for\ :math:`r`, then plot both
+We redefine our function for :math:`q` to allow arbitrary base
+years, and define a new function for :math:`r`, then plot both
 
-First we plot when :math:`t_0=0`\ as before, for different values of
-:math:`T`, with\ :math:`K_0` below the steady state
+First we plot when :math:`t_0=0` as before, for different values of
+:math:`T`, with :math:`K_0` below the steady state
 
 .. code:: python3
 
