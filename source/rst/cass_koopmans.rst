@@ -326,13 +326,6 @@ problem with Python
 
 .. code:: python3
 
-    δ = .02  # Depreciation rate on capital
-    ᾱ = .33  # Return to capital per capita
-    γ̄ = 2    # Coefficient of relative risk aversion
-    T = 10   # Maximum time period
-    Ā = 1    # Technology 
-    β = .95  # Discount rate
-
     @njit
     def u(c, γ):
         '''
@@ -376,11 +369,6 @@ problem with Python
     @njit
     def f_prime_inv(A, k, α):
         return (k / (A * α))**(1 / (α - 1))
-
-    # Define an initial value for all c
-
-    C = np.zeros(T + 1)  # T periods of consumption initialized to 0
-    K = np.zeros(T + 2)  # T periods of capital initialized to 0 (T+2 to include t+1 variable as well)
 
 
 Shooting Method
@@ -450,51 +438,60 @@ perfect, as we'll soon see
 
 .. code:: python3
 
+    # Parameters
+    T = 10
+    γ = 2
+    δ = 0.2
+    β = 0.95
+    α = 0.33
+    A = 1
+
     # Initial guesses
-    K[0] = 0.3  # Initial k
-    C[0] = 0.2  # Guess of c_0
+    c = np.zeros(T+1)  # T periods of consumption initialized to 0
+    k = np.zeros(T+2)  # T periods of capital initialized to 0 (T+2 to include t+1 variable as well)
+    k[0] = 0.3  # Initial k
+    c[0] = 0.2  # Guess of c_0
 
     @njit
-    def shooting_method(c,       # Initial consumption
-                        k,       # Initial capital
-                        T,       # Number of periods
-                        γ̄=γ̄, 
-                        δ=δ,     # Depreciation rate
-                        β=β,     # Discount factor
-                        ᾱ=ᾱ, 
-                        Ā=Ā):
+    def shooting_method(c,   # Initial consumption
+                        k,   # Initial capital
+                        T,   # Number of periods
+                        γ,   # Coefficient of relative risk aversion
+                        δ,   # Depreciation rate on capital# Depreciation rate
+                        β,   # Discount factor
+                        α,   # Return to capital per capita
+                        A):  # Technology
 
         for t in range(T):
-            k[t+1] = f(A=Ā, k=k[t], α=ᾱ) + (1 - δ) * k[t] - c[t]  # Equation 1 with inequality
+            k[t+1] = f(A=A, k=k[t], α=α) + (1 - δ) * k[t] - c[t]  # Equation 1 with inequality
             if k[t+1] < 0:   # Ensure nonnegativity
-                    k[t+1] = 0 
+                    k[t+1] = 0
 
-          # Equation 2: We keep in the general form to show how we would 
+          # Equation 2: We keep in the general form to show how we would
           # solve if we didn't want to do any simplification
-            
-            if β * (f_prime(A=Ā, k=k[t+1], α=ᾱ) + (1 - δ)) == np.inf:
-                # This only occurs if k[t+1] is 0, in which case, we won't 
+
+            if β * (f_prime(A=A, k=k[t+1], α=α) + (1 - δ)) == np.inf:
+                # This only occurs if k[t+1] is 0, in which case, we won't
                 # produce anything next period, so consumption will have to be 0
                 c[t+1] = 0
-            else:    
-                c[t+1] = u_prime_inv(u_prime(c=c[t], γ=γ̄) / (β * (f_prime(A=Ā, k=k[t+1], α=ᾱ) + (1 - δ))), γ=γ̄)
+            else:
+                c[t+1] = u_prime_inv(u_prime(c=c[t], γ=γ) / (β * (f_prime(A=A, k=k[t+1], α=α) + (1 - δ))), γ=γ)
 
-        # Terminal condition calculation      
-        k[T+1] = f(A=Ā, k=k[T], α=ᾱ) + (1 - δ) * k[T] - c[T]
+        # Terminal condition calculation
+        k[T+1] = f(A=A, k=k[T], α=α) + (1 - δ) * k[T] - c[T]
 
         return c, k
 
-    paths = shooting_method(C, K, T)
+    paths = shooting_method(c, k, T, γ, δ, β, α, A)
 
-    fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     colors = ['blue', 'red']
     titles = ['Consumption', 'Capital']
     ylabels = ['$c_t$', '$k_t$']
-    ranges = [range(T+1), range(T+2)]
 
-    for path, c, t, y, r, ax in zip(paths, colors, titles, ylabels, ranges, axes):
-        ax.plot(r, path, c=c, alpha=0.7)
-        ax.set(title=t, ylabel=y, xlabel='t', xlim=(0, T+1.5))
+    for path, color, title, y, ax in zip(paths, colors, titles, ylabels, axes):
+        ax.plot(path, c=color, alpha=0.7)
+        ax.set(title=title, ylabel=y, xlabel='t')
         ax.axhline(0, color='k', lw=1)
 
     ax.scatter(T+1, 0, s=80)
@@ -540,105 +537,82 @@ tolerance bounds), stop and declare victory
 
 .. code:: python3
 
-  @njit
-  def bisection_method(c_init_guess, 
-                       c_val,
-                       k_val,
-                       T,
-                       γ̄=γ̄,
-                       δ=δ,
-                       β=β,
-                       ᾱ=ᾱ,
-                       Ā=Ā,
-                       tol=1e-4,
-                       max_iter=10000,
-                       terminal=0):     # The value we are shooting towards
-                       
-      i = 1                             # Initial iteration
-      c_high = f(k=k_val[0], α=ᾱ, A=Ā)  # Initial high value of c
-      c_low = 0                         # Initial low value of c
-      c_val[0] = c_init_guess
-      
-      path_c, path_k = shooting_method(c_val, k_val, T, γ̄, δ, β, ᾱ, Ā)
-      
-      condition_1 = path_k[T+1] - terminal > tol
-      condition_2 = path_k[T+1] - terminal < -tol
-      condition_3 = path_k[T] == terminal
-      
-      while (condition_1 or condition_2 or condition_3) and (i < max_iter):
-          print(f'Iteration: {i}')
-          if path_k[T+1] - terminal > tol:
-              # If assets are too high the initial c we chose is 
-              # now a lower bound on possible values of c[0]
-              c_low = c_val[0] 
-          elif path_k[T+1] - terminal < -tol:
-              # If assets fell too quickly, the initial c we 
-              # chose is now an upper bound on possible values of c[0]
-              c_high = c_val[0]
-          elif path_k[T] == terminal:
-              # If assets fell too quickly, the initial c we 
-              # chose is now an upper bound on possible values of c[0]
-              c_high = c_val[0]
-          
-          c_val[0] = (c_high + c_low) / 2  # Value in middle of high and low value -- bisection part
-          
-          path_c, path_k = shooting_method(c_val, k_val, T, γ̄, δ, β, ᾱ, Ā)
-          i = i + 1
-      
-      condition_4 = path_k[T+1] - terminal < tol
-      condition_5 = path_k[T] != terminal
-      condition_6 = path_k[T+1]-terminal > -tol
-      
-      if condition_4 & condition_5 & condition_6:
-         print(f'Converged successfully on iteration {i-1}')
-      else:
-         print('Failed to converge and hit maximum iteration')
-         
-      mu = u_prime(c=path_c, γ=γ̄)
-      return (path_c.copy(), path_k.copy(), mu)
-  
+    @njit
+    def bisection_method(c_init,
+                         c,
+                         k,
+                         T,              # Number of periods
+                         γ,              # Coefficient of relative risk aversion
+                         δ,              # Depreciation rate on capital# Depreciation rate
+                         β,              # Discount factor
+                         α,              # Return to capital per capita
+                         tol=1e-4,
+                         max_iter=1e4,
+                         terminal=0):    # Value we are shooting towards
+        
+        i = 0
+        c_high = f(k=k[0], α=α, A=A)     # Initial high value of c
+        c_low = 0                        # Initial low value of c
+        c[0] = c_init
+        
+        # Initial paths of consumption and capital
+        path_c, path_k = shooting_method(c, k, T, γ, δ, β, α, A)
+        
+        while (np.abs(path_k[T+1] - terminal) > tol or path_k[T] == terminal) and i < max_iter:
+             
+            if path_k[T+1] - terminal > tol:
+                # If assets are too high, the initial c we chose is now a lower bound on possible values
+                c_low = c[0] 
+            
+            elif path_k[T+1] - terminal < -tol:
+                # If assets fell too quickly, the initial c we chose is now an upper bound on possible values
+                c_high = c[0]
+            
+            elif path_k[T] == terminal:
+                # If assets fell too quickly, the intial c we chose is now an upper bound on possible values
+                c_high = c[0] 
+                
+            c[0] = (c_high + c_low) / 2  # Value in middle of high and low value -- this is the bisection part
+            
+            # Update paths
+            path_c, path_k = shooting_method(c, k, T, γ, δ, β, α, A)
+            
+            print('Iteration: ', i)
+            i += 1
+            
+        # Test for convergence
+        if path_k[T+1] - terminal < tol and path_k[T] != terminal and path_k[T+1] - terminal > -tol:
+            print('Converged successfully on iteration', i-1)
+        else:
+            print('Failed to converge and hit maximum iteration')
+        
+        μ_path = u_prime(c=path_c, γ=γ)  # Path of Lagrange multiplier
+        
+        return path_c, path_k, μ_path
 
-Now we can plot:
+Now we can plot
 
 .. code:: python3
 
-    paths = bisection_method(0.3, C, K, T)
-    
-    fix, axes = plt.subplots(3, 1)
-    colors = ['blue, 'red', 'green']
-    ylabels = ['C_t', 'K_t', '$\mu_t$']
+    paths = bisection_method(0.3, c, k, T, γ, δ, β, α, A)
+
+    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
+
+    colors = ['blue', 'red', 'green']
+    ylabels = ['$c_t$', '$k_t$', '$\mu_t$']
     titles = ['Consumption', 'Capital', 'Lagrange Multiplier']
-    
-    for path, c, y, t, ax in zip(paths, colors, ylabels, titles, axes):
-        ax.plot(
 
-    plt.subplot(131)
-    plt.plot(range(T+1),path_opt_C,color='blue',alpha=.7)
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
+    for path, color, y, title, ax in zip(paths, colors, ylabels, titles, axes):
+        ax.plot(path, c=color)
+        ax.set(ylabel=y, title=title, xlabel='t')
+        ax.axhline(0, c='k', lw=1)
 
-    plt.subplot(132)
-    plt.plot(range(T+2),path_opt_K,color='red',alpha=.7)
-    plt.axvline(11,color='black',ls='--',lw=1)
-    plt.axhline(0,color='black', lw=1)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlim(0,)
-    plt.xlabel('$t$')
-    plt.scatter(11,0,s=80)
-    plt.subplot(133)
-    plt.plot(range(T+1),path_opt_mu,color='green',alpha=.7)
-    plt.title('Lagrange Multiplier')
-    plt.ylabel('$\mu_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-    plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
+    axes[1].axvline(11, c='k', ls='--', lw=1)
+    axes[1].scatter(11, 0, s=80)
 
+    plt.tight_layout()
     plt.show()
+
 
 Setting :math:`K_0` equal to steady state
 ------------------------------------------
@@ -687,51 +661,37 @@ Let's verify this with Python and then use this steady state
 .. code:: python3
 
     ρ = 1 / β - 1
-    K_ss = f_prime_inv(k=ρ+δ, A=Ā, α=ᾱ)
-
-    print(f'Steady state for capital is: {K_ss}')
-
+    k_ss = f_prime_inv(k=ρ+δ, A=A, α=α)
+    
+    print(f'Steady state for capital is: {k_ss}')
 
 .. code:: python3
 
-    K_init_val = K_ss  # At our steady state
-    T_new = 150
-    C_new = np.zeros(T_new+1)
-    K_new = np.zeros(T_new+2)
-    K_new[0] = K_init_val
-    path_opt_C_new, path_opt_K_new, path_opt_mu_new = bisection_method(.3, C_new, K_new, T_new)
+    T = 150
+    c = np.zeros(T+1)
+    k = np.zeros(T+2)
+    k[0] = k_ss       # Start at steady state
+    paths = bisection_method(0.3, c, k, T, γ, δ, β, α, A)
 
 And now we plot
 
-.. code:: python
+.. code:: python3
 
-    plt.subplot(131)
-    plt.plot(range(T_new+1),path_opt_C_new,color='blue',alpha=.7, )
+    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
 
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
+    colors = ['blue', 'red', 'green']
+    ylabels = ['$c_t$', '$k_t$', '$\mu_t$']
+    titles = ['Consumption', 'Capital', 'Lagrange Multiplier']
 
-    plt.subplot(132)
-    plt.plot(range(T_new+2),path_opt_K_new,alpha=.7)
-    plt.axhline(K_ss,linestyle='-.',color='black', lw=1,alpha=.7)
-    plt.axhline(0,color='black', lw=1)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.scatter(T_new+1,0,s=80) 
-    plt.subplot(133)
-    plt.plot(range(T_new+1),path_opt_mu_new,color='green',alpha=.7)
-    plt.title('Lagrange Multiplier')
-    plt.ylabel('$\mu_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-    plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
+    for path, color, y, title, ax in zip(paths, colors, ylabels, titles, axes):
+        ax.plot(path, c=color)
+        ax.set(ylabel=y, title=title, xlabel='t')
+        ax.axhline(0, c='k', lw=1)
 
+    axes[1].axvline(11, c='k', ls='--', lw=1)
+    axes[1].scatter(11, 0, s=80)
+
+    plt.tight_layout()
     plt.show()
 
 Evidently in this economy with a large value of
@@ -746,12 +706,11 @@ Let's see what happens when we push the initial
 
 .. code:: python3
 
-  K_init_val = K_ss / 3   # Below our steady state
-  T_new = 150
-  C_new = np.zeros(T_new + 1)
-  K_new = np.zeros(T_new + 2)
-  K_new[0] = K_init_val
-  path_opt_C_new, path_opt_K_new, path_opt_mu_new = bisection_method(0.3, C_new, K_new, T_new)
+  k_init = k_ss / 3   # Below our steady state
+  c = np.zeros(T+1)
+  k = np.zeros(T+2)
+  k[0] = k_init
+  paths = bisection_method(0.3, c, k, T, γ, δ, β, α, A)
 
 The following code plots the optimal allocation
 
@@ -791,7 +750,7 @@ value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`
 
 The following graphs compare outcomes as we vary :math:`T`
 
-.. code:: python
+.. code:: python3
 
     K_new[0] = K_init_val
     path_opt_C_new, path_opt_K_new, path_opt_mu_new = bisection_method(.3, C_new, K_new, T_new)
@@ -1973,7 +1932,7 @@ First we plot when :math:`t_0=0`\ as before, for different values of
 
 Now we plot when :math:`t_0=20`
 
-.. code:: python
+.. code:: python3
 
   t_init=20
   q_path_1 = q(t_init,β,path_opt_C_new,T_new,γ̄)
