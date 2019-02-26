@@ -218,15 +218,14 @@ First
 
 Also
 
-.. math::
+.. math:: 
+  
+  \frac{\partial F}{\partial N} =
+  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t}{=}_{\text{product rule}} 
+  f\left(\frac{K_t}{N_t}\right){+} N_t \frac{\partial f\left( \frac{K_t}{N_t}\right)}{\partial N_t}{=}_{\text{chain rule}} 
+  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2}=
+  f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} = f(K_t)
 
-  \frac{\partial F}{\partial N} = \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t}=
-  _{\text{product rule}}f\left( \frac{K_t}{N_t}\right)+
-  N_t\frac{\partial f\left(\frac{K_t}{N_t}\right)}{\partial N_t}{=}_
-  {\text{chain rule}}f\left(\frac{K_t}{N_t}\right)+ N_t f'\left(\frac{K_t}{N_t}\right)
-  \frac{-K_t}{N_t^2}=f\left(\frac{K_t}{N_t}\right)- \left
-  \frac{K_t}{N_t}f'\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} =
-  f\left(K_t\right)-K_t f'\left(K_t\right)
 
 
 Back to solving the problem
