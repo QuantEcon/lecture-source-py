@@ -986,7 +986,7 @@ Let's calculate it
 We now consider an economy in which :math:`T = +\infty`
 
 The appropriate thing to do is to replace terminal condition
-(:eq:`condition4`) with
+:eq:`constraint4` with
 
 .. math:: 
   
