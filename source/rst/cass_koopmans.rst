@@ -243,28 +243,26 @@ Here are the **first order necessary conditions** for extremization
 (i.e., maximization with respect to :math:`\vec C, \vec K`,
 minimization with respect to\ :math:`\vec \mu`):
 
+
 .. math::
     :label: constraint1
   
-    C_t:& \quad u'(C_t)-\mu_t=0 \quad &&\text{for all } t=
-    0,1,\dots,T
+    C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T \\
   
 .. math::
     :label: constraint2
     
-    K_t:& \quad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - 
-    \mu_{t-1}=0 \quad &&\text{for all } t=1,2,\dots,T+1
+    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T+1 \\
   
 .. math::
     :label: constraint3
     
-    \mu_t:&  \quad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0
-    \quad &&\text{for all } t=0,1,\dots,T
+    \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T \\
 
 .. math::
     :label: constraint4
     
-    \quad -\mu_T \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0 
+    K_{t+1}: \qquad -\mu_T \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
 
 Note that in :eq:`constraint1` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
