@@ -656,7 +656,7 @@ Finally, using :math:`\alpha= .33`,
 :math:`\rho = 1/\beta-1 =1/(19/20)-1 = 20/19-19/19 = 1/19`, :math:`\delta = 1/50`,
 we get
 
-.. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583  \tag{2.7} \label{2.7}
+.. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583  
 
 Let's verify this with Python and then use this steady state
 :math:`\bar K` as our initial capital stock :math:`K_0`
@@ -1215,7 +1215,7 @@ or
 .. math:: 
   
   \left(\frac{\partial F}{\partial \tilde k_t}-\eta_t\right) \tilde k_t + 
-  \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t \label{3.8} \tag{3.8}
+  \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t 
 
 Because :math:`F` is homogeneous of degree :math:`1`, it follows
 that :math:`\frac{\partial F}{\partial \tilde k_t}` and
