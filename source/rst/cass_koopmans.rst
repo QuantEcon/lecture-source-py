@@ -1260,7 +1260,7 @@ purchases
 
 .. math:: \left(c_t + (k_{t+1} -(1-\delta)k_t)\right)
 
-Here :math:`\left(k_{t+1} -(1-\delta)k_t)\right)` is the household's
+Here :math:`\left(k_{t+1} -(1-\delta)k_t\right)` is the household's
 net investment in physical capital and :math:`\delta \in (0,1)` is
 again a depreciation rate of capital
 
