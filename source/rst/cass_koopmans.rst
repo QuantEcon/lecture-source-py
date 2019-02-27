@@ -50,14 +50,14 @@ The lecture uses important ideas including
 -  An application of a **guess and verify** method for solving a
    system of difference equations
 
--  The intimate connection between the cases for the optimalty of two
+-  The intimate connection between the cases for the optimaltiy of two
    competing visions of good ways to organize an economy, namely:
 
   *  **socialism** in which a central planner commands the
      allocation of resources, and
 
   *  **capitalism** (also known as **a free markets economy**) in
-     which competitive equiibrium **prices** induce individual
+     which competitive equilibrium **prices** induce individual
      consumers and producers to choose a socially optimal allocation
      as an unintended consequence of their completely selfish
      decisions
@@ -503,7 +503,7 @@ perfect, as we'll soon see
 Evidently our initial guess for :math:`\mu_0` is too high and makes
 initial consumption is too low
 
-We know this becuase we miss our :math:`K_{T+1}=0` target on the high
+We know this because we miss our :math:`K_{T+1}=0` target on the high
 side
 
 Now we automate things with a search-for-a-good :math:`\mu_0`
@@ -865,7 +865,7 @@ its steady state value
 The different colors in the above graphs are tied to outcomes with
 different horizons :math:`T`
 
-Notice that as the hoizon increases, the planner puts :math:`K_t`
+Notice that as the horizon increases, the planner puts :math:`K_t`
 closer to the steady state value :math:`\bar K` for longer
 
 This pattern reflects a **turnpike** property of the steady state.
@@ -1134,7 +1134,7 @@ household chooses for itself subject to a budget constraint
 -  The household consumes, supplies labor, and invests in physical
    capital
 
--  A profit-maximizing representative firm operates the producion
+-  A profit-maximizing representative firm operates the production
    technology
 
 -  The firm rents labor and capital each period from the
@@ -1184,7 +1184,7 @@ and
 
 These conditions emerge from a no-arbitrage requirement
 
-To describe this line of reasoning, we begin by applying a theorm of
+To describe this line of reasoning, we begin by applying a theorem of
 Euler about linearly homogenous functions
 
 The theorem applies to the Cobb-Douglas production function because
@@ -1219,7 +1219,7 @@ or
 
 Because :math:`F` is homogeneous of degree :math:`1`, it follows
 that :math:`\frac{\partial F}{\partial \tilde k_t}` and
-:math:`\frac{\partial F}{\partial \tilde n_t}` are homogoneous of
+:math:`\frac{\partial F}{\partial \tilde n_t}` are homogeneous of
 degree :math:`0` and therefore fixed with respect to
 :math:`\tilde k_t` and :math:`\tilde n_t`
 
@@ -1374,7 +1374,7 @@ Guess for price system
 We have computed an allocation :math:`\{\vec C, \vec K, \vec 1\}`
 that solves the planning problem
 
-We use that allocation to construct our guess for the equilibium
+We use that allocation to construct our guess for the equilibrium
 price system
 
 In particular, we guess that for :math:`t=0,\dots,T`:
@@ -1511,14 +1511,14 @@ Combining (`3.29 <#3.29>`__) and :eq:`eq-price`, we get:
 
 .. math:: - \beta^{T+1} \mu_{T+1} \leq 0 
 
-Dviding both sides by :math:`\beta^{T+1}` which will be strictly
+Dividing both sides by :math:`\beta^{T+1}` which will be strictly
 positive here, we get:
 
 .. math:: -\mu_{T+1} \leq 0
 
 \ which is the :eq:`constraint4` of our social planner problem
 
-**Thus, at our guess of the equibrium price system the allocation
+**Thus, at our guess of the equilibrium price system the allocation
 that solves the planning problem also solves the problem that the
 representative household faces in a competitive equilibrium**
 
@@ -1539,7 +1539,7 @@ get:
 
 \ which is exactly :eq:`eq-pr4`
 
-**Thus, at our guess of the equibrium price system the allocation
+**Thus, at our guess of the equilibrium price system the allocation
 that solves the planning problem also solves the problem that a firm
 faces in a competitive equilibrium**
 
@@ -1574,9 +1574,9 @@ in economics
 
   -  The First Welfare Theorem states that any allocation generated
      by a social planner problem can be achieved (supported) by a
-     competative equilibrium with the introduction of prices and
+     competitive equilibrium with the introduction of prices and
      transfers between individuals
-  -  The Second welfare Theorem states that the competative
+  -  The Second welfare Theorem states that the competitive
      equilibrium is **pareto optimal** -- this loosely means one
      cannot be made better off than the individual-optimal
      allocation without making others worse off. Our competitive
@@ -1585,7 +1585,7 @@ in economics
 
 What we just did is we took a sequence of prices, used it to generate
 a sequence of little k's and c's and :math:`\tilde k`'s
-and :math:`\tilde c`'sthat are the firm and households optimal
+and :math:`\tilde c`'s that are the firm and households optimal
 response, and then showed that when we look at the aggregates
 generated by the little k's and little c's, they are exactly the
 sequence of aggregates (:math:`K_t, C_t`) that generate the prices
