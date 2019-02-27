@@ -264,18 +264,18 @@ minimization with respect to :math:`\vec \mu`):
     
     K_{t+1}: \qquad -\mu_T \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
 
-Note that in :eq:`constraint1` we plugged in for
+Note that in :eq:`constraint2` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
 above
 
 Because :math:`N_t = 1` for :math:`t = 1, \ldots, T`, need not
 differentiate with respect to those arguments
 
-Note that :eq:`constraint2` comes from the occurrence
+Note that :eq:`constraint3` comes from the occurrence
 of :math:`K_t` in both the period :math:`t` and period :math:`t-1`
 feasibility constraints
 
-:eq:`constraint3` comes from differentiating with respect
+:eq:`constraint4` comes from differentiating with respect
 to :math:`K_{T+1}` in the last period and applying the following
 condition called a **Karush-Kuhn-Tucker condition** (KKT):
 
@@ -295,8 +295,10 @@ Combining :eq:`constraint1` and :eq:`constraint2` gives
 Rewriting gives
 
 .. math:: 
-  u'\left(C_{t+1}\right)\left[(1-\delta)+f'\left(K_{t+1}\right)\right]=
-  u'\left(C_{t}\right) \quad \text{ for all } t=0,1,\dots, T
+    :label: l12
+    
+    u'\left(C_{t+1}\right)\left[(1-\delta)+f'\left(K_{t+1}\right)\right]=
+    u'\left(C_{t}\right) \quad \text{ for all } t=0,1,\dots, T
 
 Taking the inverse of the utility function on both sides of the above
 equation gives
@@ -624,10 +626,13 @@ to its steady state value
 In a steady state :math:`K_{t+1} = K_t=\bar{K}` for all very
 large :math:`t` the feasibility constraint :eq:`allocation` is
 
-.. math:: f(\bar{K})-\delta \bar{K} = \bar{C}
+.. math::
+    :label: feasibility-constraint
+    
+    f(\bar{K})-\delta \bar{K} = \bar{C}
 
 Substituting :math:`K_t = \bar K` and :math:`C_t=\bar C` for
-all :math:`t` into (`1.16 <#1.16>`__) gives
+all :math:`t` into :eq:`l12` gives
 
 .. math:: 1=\beta \frac{u'(\bar{C})}{u'(\bar{C})}[f'(\bar{K})+(1-\delta)]
 
@@ -643,7 +648,7 @@ and
 
 .. math:: \bar{K} = f'^{-1}(\rho+\delta)
 
-Using our production function (`1.2 <#1.2>`__) gives
+Using our production function :eq:`production-function` gives
 
 .. math:: \alpha \bar{K}^{\alpha-1} = \rho + \delta
 
@@ -965,7 +970,7 @@ savings rate
 We know that in the steady state that the saving rate must be fixed
 and that :math:`\bar s= \frac{f(\bar K)-\bar C}{f(\bar K)}`
 
-From (`2.1 <#2.1>`__) the steady state saving rate equals
+From :eq:`feasibility-constraint` the steady state saving rate equals
 
 .. math:: 
   
@@ -1172,7 +1177,10 @@ Zero-profits condition for capital and labor are
 
 and
 
-.. math:: F_n(\tilde k_t, \tilde n_t) =w_t
+.. math::
+    :label: Zero-profits
+    
+    F_n(\tilde k_t, \tilde n_t) =w_t
 
 These conditions emerge from a no-arbitrage requirement
 
@@ -1264,7 +1272,7 @@ exceeds its purchases
 A household's net excess demand for time :math:`t` consumption goods
 is the gap
 
-.. math:: e_t \equiv \left(c_t + (k_{t+1} -(1-\delta)k_t)\right)-(w_t 1 + \eta_t k_t) \label{3.11} \tag{3.11}
+.. math:: e_t \equiv \left(c_t + (k_{t+1} -(1-\delta)k_t)\right)-(w_t 1 + \eta_t k_t)
 
 Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_T+1\}`
 
@@ -1316,7 +1324,8 @@ that the household faces a **single** budget constraint
 It states that the present value of the household's net excess
 demands must be zero:
 
-.. math:: \sum_{t=0}^T q^0_t e_t  \leq 0
+.. math:: 
+    \sum_{t=0}^T q^0_t e_t  \leq 0
 
 or
 
@@ -1327,7 +1336,7 @@ Household problem
 
 The household faces the constrained optimization problem:
 
-.. math:: \begin {align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \label{3.15} \tag{3.15}\\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
+.. math:: \begin {align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
 
 Definitions
 ------------
@@ -1370,15 +1379,28 @@ price system
 
 In particular, we guess that for :math:`t=0,\dots,T`:
 
-.. math:: \lambda q_t^0 = \beta^t u'(K_t) =\beta^t \mu_t
+.. math::
+    :label: eq-price
+    
+    \lambda q_t^0 = \beta^t u'(K_t) =\beta^t \mu_t
 
-.. math:: w_t = f(K_t) -K_t f'(K_t)
 
-.. math:: \eta_t = f'(K_t)
+.. math::
+    :label: eq-price2
+    
+    w_t = f(K_t) -K_t f'(K_t)
+
+.. math::
+    :label: eq-price3
+    
+    \eta_t = f'(K_t)
 
 At these prices, let the capital chosen by the household be
 
-.. math:: k^*_t(\vec q, \vec w, \vec \eta) , \quad t \geq 0
+.. math::
+    :label: eq-pr4
+    
+    k^*_t(\vec q, \vec w, \vec \eta) , \quad t \geq 0
 
 and let the allocation chosen by the firm be
 
@@ -1401,7 +1423,10 @@ We shall verify that for :math:`t=0,\dots,T` the allocations chosen
 by the household and the firm both equal the allocation that solves
 the planning problem:
 
-.. math:: k^*_t = \tilde k^*_t=K_t, \tilde n_t=1, c^*_t=C_t
+.. math::
+    :label: eq-pl
+    
+    k^*_t = \tilde k^*_t=K_t, \tilde n_t=1, c^*_t=C_t
 
 Verification procedure
 -----------------------
@@ -1438,57 +1463,60 @@ First-order conditions are
   \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0 \end{align}
 
 Now we plug in for our guesses of prices and derive all the FONC of
-the planner problem (`1.10 <#1.10>`__)-(\ `1.13 <#1.13>`__):
+the planner problem :eq:`constraint1`-:eq:`constraint4`:
 
-Combining (`3.26 <#3.26>`__) and (`3.16 <#3.16>`__), we get:
+Combining (`3.26 <#3.26>`__) and :eq:`eq-price`, we get:
 
-.. math:: u'(C_t) = \mu_t \label{3.30} \tag{3.30}
+.. math:: u'(C_t) = \mu_t 
 
-which is (`1.10 <#1.10>`__).
+which is :eq:`constraint1`.
 
-Combining (`3.27 <#3.27>`__), (`3.16 <#3.16>`__), and
-(`3.18 <#3.18>`__) we get:
+Combining (`3.27 <#3.27>`__), :eq:`eq-price`, and
+:eq:`eq-price3` we get:
 
-.. math:: -\lambda \beta^t \mu_t\left[(1-\delta) +f'(K_t)\right] +\lambda \beta^{t-1}\mu_{t-1}=0
+.. math::
+    :label: co-re
+    
+    -\lambda \beta^t \mu_t\left[(1-\delta) +f'(K_t)\right] +\lambda \beta^{t-1}\mu_{t-1}=0
 
-Rewriting :math:`(\ref{3.31})` by dividing by :math:`\lambda` on
+Rewriting :eq:`co-re` by dividing by :math:`\lambda` on
 both sides (which is nonzero due to u'>0) we get:
 
-.. math:: \beta^t \mu_t [(1-\delta+f'(K_t)] = \beta^{t-1} \mu_{t-1} \label{3.32} \tag{3.32}
+.. math:: \beta^t \mu_t [(1-\delta+f'(K_t)] = \beta^{t-1} \mu_{t-1} 
 
 or
 
-.. math:: \beta \mu_t [(1-\delta+f'(K_t)] = \mu_{t-1} \label{3.33} \tag{3.33}
+.. math:: \beta \mu_t [(1-\delta+f'(K_t)] = \mu_{t-1} 
 
-which is (`1.11 <#1.11>`__).
+which is :eq:`constraint2`.
 
-Combining (`3.28 <#3.28>`__), (`3.16 <#3.16>`__), (`3.17 <#3.17>`__)
-and (`3.18 <#3.18>`__) after multiplying both sides of
+Combining (`3.28 <#3.28>`__), :eq:`eq-price`, :eq:`eq-price2`
+and :eq:`eq-price3` after multiplying both sides of
 (`3.28 <#3.28>`__) by :math:`\lambda`, we get:
 
-.. math:: \sum_{t=0}^T \beta^t \mu_{t} \left(C_t+ (K_{t+1} -(1-\delta)K_t)-f(K_t)+K_t f'(K_t)-f'(K_t)K_t\right) \leq 0  \label{3.34} \tag{3.34}
+.. math:: \sum_{t=0}^T \beta^t \mu_{t} \left(C_t+ (K_{t+1} -(1-\delta)K_t)-f(K_t)+K_t f'(K_t)-f'(K_t)K_t\right) \leq 0  
 
 Cancelling,
 
-.. math:: \sum_{t=0}^T  \beta^t \mu_{t} \left(C_t +K_{t+1} -(1-\delta)K_t - F(K_t,1)\right) \leq 0 \label{3.35} \tag{3.35}
+.. math:: \sum_{t=0}^T  \beta^t \mu_{t} \left(C_t +K_{t+1} -(1-\delta)K_t - F(K_t,1)\right) \leq 0 
 
 Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 (excepting perhaps the T+1 period) we get:
 
-.. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T \label{3.36} \tag{3.36}
+.. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T 
 
-\ which is (`1.12 <#1.12>`__)
+\ which is :eq:`constraint3`
 
-Combining (`3.29 <#3.29>`__) and (`3.16 <#3.16>`__), we get:
+Combining (`3.29 <#3.29>`__) and :eq:`eq-price`, we get:
 
-.. math:: - \beta^{T+1} \mu_{T+1} \leq 0 \label{3.37} \tag{3.37}
+.. math:: - \beta^{T+1} \mu_{T+1} \leq 0 
 
 Dviding both sides by :math:`\beta^{T+1}` which will be strictly
 positive here, we get:
 
 .. math:: -\mu_{T+1} \leq 0
 
-\ which is the (`1.13 <#1.13>`__) of our social planner problem
+\ which is the :eq:`constraint4` of our social planner problem
 
 **Thus, at our guess of the equibrium price system the allocation
 that solves the planning problem also solves the problem that the
@@ -1497,19 +1525,19 @@ representative household faces in a competitive equilibrium**
 We now consider the problem faced by a firm in a competitive
 equilibrium:
 
-If we plug in (`3.24 <#3.24>`__) into (`3.4 <#3.3>`__) for all t, we
+If we plug in :eq:`eq-pl` into  for all t, we
 get
 
-.. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t, \label{3.39} \tag{3.39}
+.. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t, 
 
-\ which is (`3.18 <#3.18>`__)
+\ which is :eq:`eq-price3`
 
-If we now plug (`3.24 <#3.24>`__) into (`3.4 <#3.4>`__) for all t, we
+If we now plug :eq:`eq-pl` into :eq:`Zero-profits` for all t, we
 get:
 
 .. math:: \frac{\partial F(\tilde K_t, 1)}{\partial \tilde L} = f(K_t)-f'(K_t)K_t=w_t
 
-\ which is exactly (`3.19 <#3.19>`__)
+\ which is exactly :eq:`eq-pr4`
 
 **Thus, at our guess of the equibrium price system the allocation
 that solves the planning problem also solves the problem that a firm
@@ -1860,7 +1888,7 @@ The **yield to maturity**
 
 .. math:: 
   
-  r_{t_0,t}= -\frac{\log q^{t_0}_t}{t} \label{4.1} \tag{4.1}
+  r_{t_0,t}= -\frac{\log q^{t_0}_t}{t} 
 
 A generic Hicks-Arrow price for any base-year :math:`t_0\leq t`
 
