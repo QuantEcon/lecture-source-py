@@ -50,7 +50,7 @@ The lecture uses important ideas including
 -  An application of a **guess and verify** method for solving a
    system of difference equations
 
--  The intimate connection between the cases for the optimaltiy of two
+-  The intimate connection between the cases for the optimality of two
    competing visions of good ways to organize an economy, namely:
 
   *  **socialism** in which a central planner commands the
@@ -1274,7 +1274,7 @@ is the gap
 
 .. math:: e_t \equiv \left(c_t + (k_{t+1} -(1-\delta)k_t)\right)-(w_t 1 + \eta_t k_t)
 
-Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_T+1\}`
+Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_{T+1}\}`
 
 :math:`k_0` is given to the household
 
