@@ -1476,6 +1476,7 @@ First-order conditions are
     \lambda:  \quad \left(\sum_{t=0}^T q_t^0\left(c_t -\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) = 0
 
 .. math::
+    :label: cond4
     
     k_{T+1}: \quad -\lambda q_0^{T+1} \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0
 
@@ -1525,7 +1526,7 @@ Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 
 \ which is :eq:`constraint3`
 
-Combining (`3.29 <#3.29>`__) and :eq:`eq-price`, we get:
+Combining :eq:`cond4` and :eq:`eq-price`, we get:
 
 .. math:: - \beta^{T+1} \mu_{T+1} \leq 0 
 
@@ -1543,7 +1544,7 @@ representative household faces in a competitive equilibrium**
 We now consider the problem faced by a firm in a competitive
 equilibrium:
 
-If we plug in :eq:`eq-pl` into  for all t, we
+If we plug in :eq:`eq-pl` into :eq:`Zero-profits` for all t, we
 get
 
 .. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t, 
