@@ -656,7 +656,7 @@ Finally, using :math:`\alpha= .33`,
 :math:`\rho = 1/\beta-1 =1/(19/20)-1 = 20/19-19/19 = 1/19`, :math:`\delta = 1/50`,
 we get
 
-.. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583  \tag{2.7} \label{2.7}
+.. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583  
 
 Let's verify this with Python and then use this steady state
 :math:`\bar K` as our initial capital stock :math:`K_0`
@@ -1215,7 +1215,7 @@ or
 .. math:: 
   
   \left(\frac{\partial F}{\partial \tilde k_t}-\eta_t\right) \tilde k_t + 
-  \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t \label{3.8} \tag{3.8}
+  \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t 
 
 Because :math:`F` is homogeneous of degree :math:`1`, it follows
 that :math:`\frac{\partial F}{\partial \tilde k_t}` and
@@ -1412,12 +1412,19 @@ If our guess for the equilibrium price system is correct, then it
 must occur that
 
 .. math::
+    :label: ge1
+  
+    k_t^*  = \tilde k_t^* \\
+  
+.. math::
+    :label: ge2
+    
+    1   = \tilde n_t^* \\
+  
+.. math::
+    
+    c_t^* + k_{t+1}^* - (1-\delta) k_t^*  = F(\tilde k_t^*, \tilde n_t^*) \\
 
-   \begin{align} 
-  k_t^* & = \tilde k_t^*  \label{3.21} \tag{3.21}\\
-  1 &  = \tilde n_t^*  \label{3.22} \tag{3.22}\\
-  c_t^* + k_{t+1}^* - (1-\delta) k_t^* & = F(\tilde k_t^*, \tilde n_t^*) 
-  \end{align} 
 
 We shall verify that for :math:`t=0,\dots,T` the allocations chosen
 by the household and the firm both equal the allocation that solves
@@ -1452,26 +1459,38 @@ Lagrangian and pose the max-min problem:
 
 First-order conditions are
 
-.. math:: 
+.. math::
+    :label: cond1
+    
+    c_t: \quad \beta^t u'(c_t)-\lambda q_t^0=0 \quad  t=0,1,\dots,T
   
-  \begin{align} &&& c_t:& \quad \beta^t u'(c_t)-\lambda q_t^0=0 \quad 
-  && t=0,1,\dots,T \label{3.26} \tag{3.26}\\ &&& k_t:& \quad -\lambda q_t^0 
-  \left[(1-\delta)+\eta_t \right]+\lambda q^0_{t-1}=0 \quad && t=1,2,\dots,T+1 
-  \label{3.27} \tag{3.27}\\ &&& \lambda:&  \quad \left(\sum_{t=0}^T 
-  q_t^0\left(c_t -\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) = 
-  0 \label{3.28} \tag{3.28}\\ &&& k_{T+1}:& \quad -\lambda q_0^{T+1} \leq 0, \ <0 
-  \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0 \end{align}
+.. math::
+    :label: cond2
+    
+    k_t: \quad -\lambda q_t^0 \left[(1-\delta)+\eta_t \right]+\lambda q^0_{t-1}=0 \quad  t=1,2,\dots,T+1 
+
+  
+.. math::
+    :label: cond3
+    
+    \lambda:  \quad \left(\sum_{t=0}^T q_t^0\left(c_t -\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) = 0
+
+.. math::
+    :label: cond4
+    
+    k_{T+1}: \quad -\lambda q_0^{T+1} \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0
+
 
 Now we plug in for our guesses of prices and derive all the FONC of
 the planner problem :eq:`constraint1`-:eq:`constraint4`:
 
-Combining (`3.26 <#3.26>`__) and :eq:`eq-price`, we get:
+Combining :eq:`cond1` and :eq:`eq-price`, we get:
 
 .. math:: u'(C_t) = \mu_t 
 
 which is :eq:`constraint1`.
 
-Combining (`3.27 <#3.27>`__), :eq:`eq-price`, and
+Combining :eq:`cond2`, :eq:`eq-price`, and
 :eq:`eq-price3` we get:
 
 .. math::
@@ -1490,9 +1509,9 @@ or
 
 which is :eq:`constraint2`.
 
-Combining (`3.28 <#3.28>`__), :eq:`eq-price`, :eq:`eq-price2`
+Combining :eq:`cond3`, :eq:`eq-price`, :eq:`eq-price2`
 and :eq:`eq-price3` after multiplying both sides of
-(`3.28 <#3.28>`__) by :math:`\lambda`, we get:
+:eq:`cond3` by :math:`\lambda`, we get:
 
 .. math:: \sum_{t=0}^T \beta^t \mu_{t} \left(C_t+ (K_{t+1} -(1-\delta)K_t)-f(K_t)+K_t f'(K_t)-f'(K_t)K_t\right) \leq 0  
 
@@ -1507,7 +1526,7 @@ Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 
 \ which is :eq:`constraint3`
 
-Combining (`3.29 <#3.29>`__) and :eq:`eq-price`, we get:
+Combining :eq:`cond4` and :eq:`eq-price`, we get:
 
 .. math:: - \beta^{T+1} \mu_{T+1} \leq 0 
 
@@ -1525,7 +1544,7 @@ representative household faces in a competitive equilibrium**
 We now consider the problem faced by a firm in a competitive
 equilibrium:
 
-If we plug in :eq:`eq-pl` into  for all t, we
+If we plug in :eq:`eq-pl` into :eq:`Zero-profits` for all t, we
 get
 
 .. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t
@@ -1543,7 +1562,7 @@ get:
 that solves the planning problem also solves the problem that a firm
 faces in a competitive equilibrium**
 
-By (`3.21 <#3.21>`__) and (`3.22 <#3.22>`__) this allocation is
+By :eq:`ge1` and :eq:`ge2` this allocation is
 identical to the one that solves the consumer's problem
 
 **Note:** Because budget sets are affected only by relative prices,
