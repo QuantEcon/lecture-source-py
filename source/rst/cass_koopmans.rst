@@ -1528,7 +1528,7 @@ equilibrium:
 If we plug in :eq:`eq-pl` into  for all t, we
 get
 
-.. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t, 
+.. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t
 
 \ which is :eq:`eq-price3`
 
