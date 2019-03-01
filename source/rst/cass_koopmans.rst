@@ -70,7 +70,7 @@ The lecture uses important ideas including
   
 Let's start with some imports
 
-.. code:: ipython
+.. code-block:: ipython
 
   from numba import njit
   import numpy as np
@@ -324,7 +324,7 @@ We now use some of the the equations above to calculate some
 variables and functions that we'll soon use to solve the planning
 problem with Python
 
-.. code:: python3
+.. code-block:: python3
 
     @njit
     def u(c, γ):
@@ -436,36 +436,37 @@ there is no difference to the procedure above
 We'll apply it with an initial guess that will turn out not to be
 perfect, as we'll soon see
 
-.. code:: python3
+.. code-block:: python3
 
     # Parameters
-    T = 10
     γ = 2
-    δ = 0.2
+    δ = 0.02
     β = 0.95
     α = 0.33
     A = 1
 
     # Initial guesses
+    T = 10
     c = np.zeros(T+1)  # T periods of consumption initialized to 0
     k = np.zeros(T+2)  # T periods of capital initialized to 0 (T+2 to include t+1 variable as well)
     k[0] = 0.3  # Initial k
     c[0] = 0.2  # Guess of c_0
 
     @njit
-    def shooting_method(c,   # Initial consumption
+    def shooting_method(c, # Initial consumption
                         k,   # Initial capital
-                        T,   # Number of periods
                         γ,   # Coefficient of relative risk aversion
                         δ,   # Depreciation rate on capital# Depreciation rate
                         β,   # Discount factor
                         α,   # Return to capital per capita
                         A):  # Technology
 
+        T = len(c) - 1
+        
         for t in range(T):
             k[t+1] = f(A=A, k=k[t], α=α) + (1 - δ) * k[t] - c[t]  # Equation 1 with inequality
             if k[t+1] < 0:   # Ensure nonnegativity
-                    k[t+1] = 0
+                k[t+1] = 0
 
           # Equation 2: We keep in the general form to show how we would
           # solve if we didn't want to do any simplification
@@ -482,7 +483,7 @@ perfect, as we'll soon see
 
         return c, k
 
-    paths = shooting_method(c, k, T, γ, δ, β, α, A)
+    paths = shooting_method(c, k, γ, δ, β, α, A)
 
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     colors = ['blue', 'red']
@@ -492,7 +493,6 @@ perfect, as we'll soon see
     for path, color, title, y, ax in zip(paths, colors, titles, ylabels, axes):
         ax.plot(path, c=color, alpha=0.7)
         ax.set(title=title, ylabel=y, xlabel='t')
-        ax.axhline(0, color='k', lw=1)
 
     ax.scatter(T+1, 0, s=80)
     ax.axvline(T+1, color='k', ls='--', lw=1)
@@ -535,83 +535,87 @@ Shoot forward again and iterate the procedure
 When :math:`K_{T+1}` gets close enough to 0 (within some error
 tolerance bounds), stop and declare victory
 
-.. code:: python3
+.. code-block:: python3
 
     @njit
-    def bisection_method(c_init,
-                         c,
+    def bisection_method(c,
                          k,
-                         T,              # Number of periods
                          γ,              # Coefficient of relative risk aversion
                          δ,              # Depreciation rate on capital# Depreciation rate
                          β,              # Discount factor
                          α,              # Return to capital per capita
+                         A,              # Technology
                          tol=1e-4,
                          max_iter=1e4,
                          terminal=0):    # Value we are shooting towards
         
-        i = 0
+        T = len(c) - 1
+        i = 1                            # Initial iteration
         c_high = f(k=k[0], α=α, A=A)     # Initial high value of c
         c_low = 0                        # Initial low value of c
-        c[0] = c_init
+
+        path_c, path_k = shooting_method(c, k, γ, δ, β, α, A)
         
-        # Initial paths of consumption and capital
-        path_c, path_k = shooting_method(c, k, T, γ, δ, β, α, A)
-        
-        while (np.abs(path_k[T+1] - terminal) > tol or path_k[T] == terminal) and i < max_iter:
-             
+        while (np.abs((path_k[T+1] - terminal)) > tol or path_k[T] == terminal) and i < max_iter:
+                        
             if path_k[T+1] - terminal > tol:
-                # If assets are too high, the initial c we chose is now a lower bound on possible values
-                c_low = c[0] 
-            
+                # If assets are too high the c[0] we chose is now a lower bound on possible values of c[0]
+                c_low = c[0]
             elif path_k[T+1] - terminal < -tol:
-                # If assets fell too quickly, the initial c we chose is now an upper bound on possible values
-                c_high = c[0]
-            
+                # If assets fell too quickly, the c[0] we chose is now an upper bound on possible values of c[0]
+                c_high=c[0]
             elif path_k[T] == terminal:
-                # If assets fell too quickly, the intial c we chose is now an upper bound on possible values
-                c_high = c[0] 
-                
-            c[0] = (c_high + c_low) / 2  # Value in middle of high and low value -- this is the bisection part
+                # If assets fell  too quickly, the c[0] we chose is now an upper bound on possible values of c[0]
+                c_high=c[0]
             
-            # Update paths
-            path_c, path_k = shooting_method(c, k, T, γ, δ, β, α, A)
-            
-            print('Iteration: ', i)
+            c[0] = (c_high + c_low) / 2  # This is the bisection part
+            path_c, path_k = shooting_method(c, k, γ, δ, β, α, A)
             i += 1
             
-        # Test for convergence
-        if path_k[T+1] - terminal < tol and path_k[T] != terminal and path_k[T+1] - terminal > -tol:
+        if np.abs(path_k[T+1] - terminal) < tol and path_k[T] != terminal:
             print('Converged successfully on iteration', i-1)
         else:
             print('Failed to converge and hit maximum iteration')
-        
-        μ_path = u_prime(c=path_c, γ=γ)  # Path of Lagrange multiplier
-        
-        return path_c, path_k, μ_path
+            
+        μ = u_prime(c=path_c, γ=γ)
+        return path_c, path_k, μ
 
 Now we can plot
 
-.. code:: python3
+.. code-block:: python3
 
-    paths = bisection_method(0.3, c, k, T, γ, δ, β, α, A)
+    T = 10
+    c = np.zeros(T+1) # T periods of consumption initialized to 0
+    k = np.zeros(T+2) # T periods of capital initialized to 0. T+2 to include t+1 variable as well.
 
-    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
+    k[0] = 0.3 # initial k
+    c[0] = 0.3 # our guess of c_0
 
-    colors = ['blue', 'red', 'green']
-    ylabels = ['$c_t$', '$k_t$', '$\mu_t$']
-    titles = ['Consumption', 'Capital', 'Lagrange Multiplier']
+    paths = bisection_method(c, k, γ, δ, β, α, A)
 
-    for path, color, y, title, ax in zip(paths, colors, ylabels, titles, axes):
-        ax.plot(path, c=color)
-        ax.set(ylabel=y, title=title, xlabel='t')
-        ax.axhline(0, c='k', lw=1)
+    def plot_paths(paths, axes=None, ss=None):
 
-    axes[1].axvline(11, c='k', ls='--', lw=1)
-    axes[1].scatter(11, 0, s=80)
+        T = len(paths[0])
 
-    plt.tight_layout()
-    plt.show()
+        if axes is None:
+            fix, axes = plt.subplots(1, 3, figsize=(13, 3))
+
+        ylabels = ['$c_t$', '$k_t$', '$\mu_t$']
+        titles = ['Consumption', 'Capital', 'Lagrange Multiplier']
+
+        for path, y, title, ax in zip(paths, ylabels, titles, axes):
+            ax.plot(path)
+            ax.set(ylabel=y, title=title, xlabel='t')
+
+        # Plot steady state value of capital
+        if ss is not None:
+            axes[1].axhline(ss, c='k', ls='--', lw=1)
+
+        axes[1].axvline(T, c='k', ls='--', lw=1)
+        axes[1].scatter(T, paths[1][-1], s=80)
+        plt.tight_layout()
+
+    plot_paths(paths)
 
 
 Setting :math:`K_0` equal to steady state
@@ -661,41 +665,25 @@ we get
 Let's verify this with Python and then use this steady state
 :math:`\bar K` as our initial capital stock :math:`K_0`
 
-.. code:: python3
+.. code-block:: python3
 
     ρ = 1 / β - 1
     k_ss = f_prime_inv(k=ρ+δ, A=A, α=α)
     
     print(f'Steady state for capital is: {k_ss}')
+    
+Now we plot
 
-.. code:: python3
+.. code-block:: python3
 
     T = 150
     c = np.zeros(T+1)
     k = np.zeros(T+2)
-    k[0] = k_ss       # Start at steady state
-    paths = bisection_method(0.3, c, k, T, γ, δ, β, α, A)
-
-And now we plot
-
-.. code:: python3
-
-    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
-
-    colors = ['blue', 'red', 'green']
-    ylabels = ['$c_t$', '$k_t$', '$\mu_t$']
-    titles = ['Consumption', 'Capital', 'Lagrange Multiplier']
-
-    for path, color, y, title, ax in zip(paths, colors, ylabels, titles, axes):
-        ax.plot(path, c=color)
-        ax.set(ylabel=y, title=title, xlabel='t')
-        ax.axhline(0, c='k', lw=1)
-
-    axes[1].axvline(11, c='k', ls='--', lw=1)
-    axes[1].scatter(11, 0, s=80)
-
-    plt.tight_layout()
-    plt.show()
+    c[0] = 0.3
+    k[0] = k_ss  # Start at steady state
+    paths = bisection_method(c, k, γ, δ, β, α, A)
+    
+    plot_paths(paths, ss=k_ss)
 
 Evidently in this economy with a large value of
 :math:`T`, :math:`K_t` stays near its initial value at the until the
@@ -707,45 +695,17 @@ to stay near there for a long time
 Let's see what happens when we push the initial
 :math:`K_0` below :math:`\bar K`
 
-.. code:: python3
+.. code-block:: python3
 
-  k_init = k_ss / 3   # Below our steady state
-  c = np.zeros(T+1)
-  k = np.zeros(T+2)
-  k[0] = k_init
-  paths = bisection_method(0.3, c, k, T, γ, δ, β, α, A)
+    k_init = k_ss / 3   # Below our steady state
+    T = 150
+    c = np.zeros(T+1)
+    k = np.zeros(T+2)
+    c[0] = 0.3
+    k[0] = k_init
+    paths = bisection_method(c, k, γ, δ, β, α, A)
 
-The following code plots the optimal allocation
-
-.. code:: python3
-
-    plt.subplot(131)
-    plt.plot(range(T_new+1),path_opt_C_new,color='blue',alpha=.7)
-
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-
-    plt.subplot(132)
-    plt.plot(range(T_new+2),path_opt_K_new,alpha=.7)
-    plt.axhline(K_ss,linestyle='-.',color='black', lw=1,alpha=.7)
-    plt.axhline(0,color='black', lw=1)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.scatter(T_new+1,0,s=80)
-    plt.subplot(133)
-    plt.plot(range(T_new+1),path_opt_mu_new,color='green',alpha=.7)
-    plt.title('Lagrange Multiplier')
-    plt.ylabel('$\mu_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-    plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
-    plt.show()
+    plot_paths(paths, ss=k_ss)
 
 Notice how the planner pushes capital toward the steady state, stays
 near there for a while, then pushes :math:`K_t` toward the terminal
@@ -753,114 +713,37 @@ value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`
 
 The following graphs compare outcomes as we vary :math:`T`
 
-.. code:: python3
+.. code-block:: python3
 
-    K_new[0] = K_init_val
-    path_opt_C_new, path_opt_K_new, path_opt_mu_new = bisection_method(.3, C_new, K_new, T_new)
-    T_new_2 = 75
-    C_new_2 = np.zeros(T_new_2+1)
-    K_new_2 = np.zeros(T_new_2+2)
-    K_new_2[0] = K_init_val
-    path_opt_C_2, path_opt_K_2, path_opt_mu_new_2 = bisection_method(.3, C_new_2, K_new_2, T_new_2);
-    T_new_3 = 50
-    C_new_3 = np.zeros(T_new_3+1)
-    K_new_3 = np.zeros(T_new_3+2)
-    K_new_3[0] = K_init_val
-    path_opt_C_3, path_opt_K_3, path_opt_mu_new_3 = bisection_method(.3, C_new_3, K_new_3, T_new_3);
-    T_new_4 = 25
-    C_new_4 = np.zeros(T_new_4+1)
-    K_new_4 = np.zeros(T_new_4+2)
-    K_new_4[0] = K_init_val
-    path_opt_C_4, path_opt_K_4, path_opt_mu_new_4 = bisection_method(.3, C_new_4, K_new_4, T_new_4);
+    T_list = (150, 75, 50, 25)
 
-.. code:: python3
+    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
 
-    plt.subplot(131)
-    plt.plot(range(T_new+1),path_opt_C_new,path_opt_C_2,alpha=.7)
-    plt.plot(range(T_new_3+1),path_opt_C_3, alpha=.7)
-    plt.plot(range(T_new_4+1),path_opt_C_4,color='darkslateblue', alpha=.7)
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-
-    plt.subplot(132)
-    plt.plot(range(T_new+2),path_opt_K_new,path_opt_K_2,alpha=.7)
-    plt.plot(range(T_new_3+2),path_opt_K_3, alpha=.7)
-    plt.plot(range(T_new_4+2),path_opt_K_4,color='darkslateblue', alpha=.7)
-    plt.axhline(0,color='black', lw=1)
-    plt.axhline(K_ss,linestyle='-.',color='black', lw=1,alpha=.7)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.scatter(T_new+1,0,s=80)
-    plt.scatter(T_new_2+1,0,s=80)
-    plt.scatter(T_new_3+1,0,s=80)
-    plt.scatter(T_new_4+1,0,s=80, color='slateblue')
-    plt.subplots_adjust(left=0.2, wspace=0.5, top=0.8)
-    plt.subplot(133)
-    plt.plot(range(T_new+1),path_opt_mu_new,path_opt_mu_new_2,alpha=.7)
-    plt.plot(range(T_new_3+1),path_opt_mu_new_3,alpha=.7)
-    plt.plot(range(T_new_4+1),path_opt_mu_new_4,color='darkslateblue',alpha=.7)
-    plt.title('Lagrange Multiplier')
-    plt.ylabel('$\mu_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-    plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
-    plt.show()
+    for T in T_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_init
+        paths = bisection_method(c, k, γ, δ, β, α, A)
+        plot_paths(paths, ss=k_ss, axes=axes)
 
 The following calculation shows that when we set :math:`T` very large
 the planner makes the capital stock spend most of its time close to
 its steady state value
 
-.. code:: python3
+.. code-block:: python3
 
-    T_new_large = 250
-    C_new_large = np.zeros(T_new_large+1)
-    K_new_large = np.zeros(T_new_large+2)
-    K_new_large[0] = K_init_val
-    path_opt_C_large, path_opt_K_large, path_opt_mu_large = bisection_method(.3, C_new_large, K_new_large, T_new_large)
+    T_list = (250, 150, 50, 25)
 
-.. code:: python3
+    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
 
-    plt.subplot(131)
-    plt.plot(range(T_new+1),path_opt_C_new,path_opt_C_2,alpha=.7)
-    plt.plot(range(T_new_3+1),path_opt_C_3, alpha=.7)
-    plt.plot(range(T_new_large+1),path_opt_C_large,alpha=.7)
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-
-    plt.subplot(132)
-    plt.plot(range(T_new+2),path_opt_K_new,path_opt_K_2,alpha=.7)
-    plt.plot(range(T_new_3+2),path_opt_K_3, alpha=.7)
-    plt.plot(range(T_new_large+2),path_opt_K_large,alpha=.7)
-    plt.axhline(0,linestyle='-',color='black', lw=1)
-    plt.axhline(K_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.scatter(T_new+1,0,s=80)
-    plt.scatter(T_new_2+1,0,s=80)
-    plt.scatter(T_new_3+1,0,s=80)
-    plt.scatter(T_new_large+1,0,s=80)
-    plt.subplot(133)
-    plt.plot(range(T_new+1),path_opt_mu_new,path_opt_mu_new_2,alpha=.7)
-    plt.plot(range(T_new_3+1),path_opt_mu_new_3,alpha=.7)
-    plt.plot(range(T_new_large+1),path_opt_mu_large,alpha=.7)
-    plt.title('Lagrange Multiplier')
-    plt.ylabel('$\mu_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,)
-    plt.axhline(0,color='black', lw=1)
-    plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
-    plt.show()
+    for T in T_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_init
+        paths = bisection_method(c, k, γ, δ, β, α, A)
+        plot_paths(paths, ss=k_ss, axes=axes)
 
 The different colors in the above graphs are tied to outcomes with
 different horizons :math:`T`
@@ -868,7 +751,7 @@ different horizons :math:`T`
 Notice that as the horizon increases, the planner puts :math:`K_t`
 closer to the steady state value :math:`\bar K` for longer
 
-This pattern reflects a **turnpike** property of the steady state.
+This pattern reflects a **turnpike** property of the steady state
 
 A rule of thumb for the planner is
 
@@ -886,63 +769,71 @@ vary over time
 
 Let's calculate it
 
-.. code:: python3
+.. code-block:: python3
 
-  def S(K, δ, T):
-      '''Aggregate savings'''
-      S = np.zeros(T+1)
-      for t in range(0, T+1):
-          S[t] = K[t+1] - (1 - δ) * K[t]
-      return S
-      
-  def s(A, K, α, δ, T):
-      '''Savings rate'''
-      S = S(K, δ, T)
-      Y = f(A, K, α)
-      Y = Y[0:T+1]
-      s = S / Y
-      return s
+    @njit
+    def S(K):
+        '''Aggregate savings'''
+        T = len(K) - 2
+        S = np.zeros(T+1)
+        for t in range(T+1):
+            S[t] = K[t+1] - (1 - δ) * K[t]
+        return S
 
-  path_opt_s_new=s(Ā,path_opt_K_new,ᾱ,δ,T_new)
-  path_opt_s_2=s(Ā,path_opt_K_2,ᾱ,δ,T_new_2)
-  path_opt_s_3=s(Ā,path_opt_K_3,ᾱ,δ,T_new_3)
-  path_opt_s_large=s(Ā,path_opt_K_large,ᾱ,δ,T_new_large)
+    @njit
+    def s(K):
+        '''Savings rate'''
+        T = len(K) - 2
+        Y = f(A, K, α)
+        Y = Y[0:T+1]
+        s = S(K) / Y
+        return s
 
-  plt.subplot(131)
-  plt.plot(range(T_new+1),path_opt_C_new,path_opt_C_2,alpha=.7)
-  plt.plot(range(T_new_3+1),path_opt_C_3, alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_C_large,alpha=.7)
-  plt.title('Consumption')
-  plt.ylabel('$C_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
+    def plot_savings(paths, c_ss=None, k_ss=None, s_ss=None, axes=None):
 
-  plt.subplot(132)
-  plt.plot(range(T_new+2),path_opt_K_new,path_opt_K_2,alpha=.7)
-  plt.plot(range(T_new_3+2),path_opt_K_3, alpha=.7)
-  plt.plot(range(T_new_large+2),path_opt_K_large,alpha=.7)
-  plt.axhline(0,linestyle='-',color='black', lw=1)
-  plt.axhline(K_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-  plt.title('Capital')
-  plt.ylabel('$K_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.scatter(T_new+1,0,s=80)
-  plt.scatter(T_new_2+1,0,s=80)
-  plt.scatter(T_new_3+1,0,s=80)
-  plt.scatter(T_new_large+1,0,s=80)
-  plt.subplot(133)
-  plt.plot(range(T_new+1),path_opt_s_new,path_opt_s_2,alpha=.7)
-  plt.plot(range(T_new_3+1),path_opt_s_3, alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_s_large,alpha=.7)
-  plt.axhline(0,color='black', lw=1)
-  plt.title('Savings rate')
-  plt.ylabel('$s_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.subplots_adjust(left=0.0, wspace=0.4, top=0.8,right=1.2)
-  plt.show()
+        T = len(paths[0])
+        k_star = paths[1]
+        savings_path = s(k_star)
+        new_paths = (paths[0], paths[1], savings_path)
+
+        if axes is None:
+            fix, axes = plt.subplots(1, 3, figsize=(13, 3))
+
+        ylabels = ['$c_t$', '$k_t$', '$s_t$']
+        titles = ['Consumption', 'Capital', 'Savings Rate']
+
+        for path, y, title, ax in zip(new_paths, ylabels, titles, axes):
+            ax.plot(path)
+            ax.set(ylabel=y, title=title, xlabel='t')
+
+        # Plot steady state value of consumption
+        if c_ss is not None:
+            axes[0].axhline(c_ss, c='k', ls='--', lw=1)
+            
+        # Plot steady state value of capital
+        if k_ss is not None:
+            axes[1].axhline(k_ss, c='k', ls='--', lw=1)
+            
+        # Plot steady state value of savings
+        if s_ss is not None:
+            axes[2].axhline(s_ss, c='k', ls='--', lw=1)
+
+        axes[1].axvline(T, c='k', ls='--', lw=1)
+        axes[1].scatter(T, k_star[-1], s=80)
+        plt.tight_layout()
+
+    T_list = (250, 150, 75, 50)
+
+    fix, axes = plt.subplots(1, 3, figsize=(13, 3))
+
+    for T in T_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_init
+        paths = bisection_method(c, k, γ, δ, β, α, A)
+        plot_savings(paths, k_ss=k_ss, axes=axes)
+
 
 :math:`T=+\infty` economy
 --------------------------
@@ -982,51 +873,21 @@ the amount required to offset capital depreciation each period
 We first study optimal capital paths that start below the steady
 state
 
-.. code:: python3
+.. code-block:: python3
 
-    T = 130                     # Long time series
-    K_init_val = K_ss / 3       # Below our steady state
-    S_ss = δ * K_ss
-    C_ss = f(Ā, K_ss, ᾱ) - S_ss
-    s_ss = S_ss / f(Ā, K_ss, ᾱ)
-    
-    C = np.zeros(T+1)
-    K = np.zeros(T+2)
-    K[0] = K_init_val
-    path_opt_C, path_opt_K, path_opt_mu = bisection_method(.3, C, K, T, tol=1e-8, terminal=K_ss)
-    path_opt_s = s(Ā, path_opt_K, ᾱ, δ, T)
+    T = 130
 
-.. code:: python3
+    # Steady states
+    S_ss = δ * k_ss
+    c_ss = f(A, k_ss, α) - S_ss
+    s_ss = S_ss / f(A, k_ss, α)
 
-    plt.subplot(131)
-    plt.plot(range(T+1),path_opt_C_vlarge,alpha=.7,color='blue')
-    plt.axhline(C_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,T)
-    plt.axhline(0,color='black', lw=1)
-
-    plt.subplot(132)
-    plt.plot(range(T+2),path_opt_K_vlarge,alpha=.7,color='red')
-    plt.axhline(0,linestyle='-',color='black', lw=1)
-    plt.axhline(K_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,T+1)
-
-    plt.subplot(133)
-    plt.plot(range(T+1),path_opt_s_vlarge,alpha=.7,color='purple')
-    plt.axhline(s_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.axhline(0,color='black', lw=1)
-    plt.title('Savings rate')
-    plt.ylabel('$s_t$')
-    plt.xlabel('$t$')
-    plt.ylim(-.015,.3)
-    plt.xlim(0,T)
-    plt.subplots_adjust(left=0.0, wspace=0.4, top=0.8,right=1.2)
-    plt.show()
+    c = np.zeros(T+1)
+    k = np.zeros(T+2)
+    c[0] = 0.3
+    k[0] = k_ss / 3         # Start below steady state
+    paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
+    plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
 Since :math:`K_0<\bar K`, :math:`f'(K_0)>\rho +\delta`
 
@@ -1051,50 +912,16 @@ Exercise
 Solution
 ----------
 
-.. code:: python
+.. code-block:: python3
 
     T = 130
-    K_init_val = K_ss * 1.5  # Above our steady state
-    S_ss = δ * K_ss
-    C_ss = f(Ā, K_ss, ᾱ) - S_ss
-    s_ss = S_ss / f(Ā, K_ss, ᾱ)
-    C = np.zeros(T+1)
-    K = np.zeros(T+2)
-    K[0] = K_init_val
-    path_opt_C, path_opt_K, path_opt_mu = bisection_method(0.3, C_vlarge, K_vlarge, T, tol=1e-8, terminal=K_ss)
-    path_opt_s = s(Ā, path_opt_K, ᾱ, δ, T)
 
-.. code:: python3
-
-    plt.subplot(131)
-    plt.plot(range(T+1), path_opt_C_vlarge, alpha=.7, color='blue')
-    plt.axhline(C_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.title('Consumption')
-    plt.ylabel('$C_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,T)
-    plt.axhline(0,color='black', lw=1)
-
-    plt.subplot(132)
-    plt.plot(range(T+2),path_opt_K_vlarge,alpha=.7,color='red')
-    plt.axhline(0,linestyle='-',color='black', lw=1)
-    plt.axhline(K_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.title('Capital')
-    plt.ylabel('$K_t$')
-    plt.xlabel('$t$')
-    plt.xlim(0,T+1)
-
-    plt.subplot(133)
-    plt.plot(range(T+1),path_opt_s_vlarge,alpha=.7,color='purple')
-    plt.axhline(s_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-    plt.axhline(0,color='black', lw=1)
-    plt.title('Savings rate')
-    plt.ylabel('$s_t$')
-    plt.xlabel('$t$')
-    plt.ylim(-.015,.3)
-    plt.xlim(0,T)
-    plt.subplots_adjust(left=0.0, wspace=0.4, top=0.8,right=1.2)
-    plt.show()
+    c = np.zeros(T+1)
+    k = np.zeros(T+2)
+    c[0] = 0.3
+    k[0] = k_ss * 1.5   # Start above steady state
+    paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
+    plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
 Competitive Equilibrium
 ========================
@@ -1647,116 +1474,62 @@ We will also plot q, w and :math:`\eta` below to show the prices that
 generate the aggregate movements we saw earlier in the social planner
 problem.
 
-.. code:: python3
+.. code-block:: python3
 
-  @njit
-  def q(β,C,T,γ):
-      # Here we choose numeraire to be u'(c_0) -- this is q^(t_0)_t
-      q = np.zeros(T+1) 
-      q[0] = 1
-      for t in range(1, T+2):
-          q[t] = β**t * u_prime(C[t], γ)
-      return q
-  
-  @njit
-  def w(A, k, α):
-      w = f(A, k, α) - k * f_prime(A=A, k=k, α=α)
-      return w
-  
-  @njit
-  def η(A, k, α):
-      η = f_prime(A=A, k=k, α=α)
-      return η
+    @njit
+    def q_func(β, c, γ):
+        # Here we choose numeraire to be u'(c_0) -- this is q^(t_0)_t
+        T = len(c) - 2
+        q = np.zeros(T+1)
+        q[0] = 1
+        for t in range(1, T+2):
+            q[t] = β**t * u_prime(c[t], γ)
+        return q
+
+    @njit
+    def w_func(A, k, α):
+        w = f(A, k, α) - k * f_prime(A, k, α)
+        return w
+
+    @njit
+    def η_func(A, k, α):
+        η = f_prime(A, k, α)
+        return η
 
 Now we calculate and plot for each :math:`T`
 
-.. code:: python3
+.. code-block:: python3
 
-  q_path_1 = q(β,path_opt_C_new,T_new,γ̄)
-  q_path_2 = q(β,path_opt_C_2,T_new_2,γ̄)
-  q_path_3 = q(β,path_opt_C_3,T_new_3,γ̄)
-  q_path_large = q(β,path_opt_C_large,T_new_large,γ̄)
+    T_list = (250, 150, 75, 50)
 
-  w_path_1 =w(Ā,path_opt_K_new,ᾱ)
-  w_path_2= w(Ā,path_opt_K_2,ᾱ)
-  w_path_3 = w(Ā,path_opt_K_3,ᾱ)
-  w_path_large=w(Ā,path_opt_K_large,ᾱ)
+    fix, axes = plt.subplots(2, 3, figsize=(13, 6))
+    titles = ['Arrow-Hicks Prices', 'Labor Rental Rate', 'Capital Rental Rate',
+              'Consumption', 'Capital', 'Lagrange Multiplier']
+    ylabels = ['$q_t^0$', '$w_t$', '$\eta_t$', '$c_t$', '$k_t$', '$\mu_t$']
 
-  eta_path_1 = η(Ā,path_opt_K_new,ᾱ)
-  eta_path_2 = η(Ā,path_opt_K_2,ᾱ)
-  eta_path_3 = η(Ā,path_opt_K_3,ᾱ)
-  eta_path_large = η(Ā,path_opt_K_large,ᾱ)
+    for T in T_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_ss / 3
+        c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
 
-.. code:: python3
+        q = q_func(β, c, γ)
+        w = w_func(β, k, α)
+        η = η_func(A, k, α)
+        plots = [q, w, η, c, k, μ]
+        
+        for ax, plot, title, y in zip(axes.flatten(), plots, titles, ylabels):
+            ax.plot(plot)
+            ax.set(title=title, ylabel=y, xlabel='t')
+            if title is 'Capital':
+                ax.axhline(k_ss, lw=1, ls='--', c='k')
+            if title is 'Consumption':
+                ax.axhline(c_ss, lw=1, ls='--', c='k')
 
-  plt.subplot(231)
-  plt.plot(range(T_new+1),q_path_1,q_path_2,alpha=.7)
-  plt.plot(range(T_new_3+1),q_path_3, alpha=.7)
-  plt.plot(range(T_new_large+1),q_path_large,alpha=.7)
-  plt.title('Arrow-Hicks Prices')
-  plt.ylabel('$q_t^0$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
 
-  plt.subplot(232)
-  plt.plot(range(T_new+1),w_path_1[:T_new+1],alpha=.7)
-  plt.plot(range(T_new_2+1),w_path_2[:T_new_2+1],alpha=.7)
-  plt.plot(range(T_new_3+1),w_path_3[:T_new_3+1], alpha=.7)
-  plt.plot(range(T_new_large+1),w_path_large[:T_new_large+1],alpha=.7)
-  plt.title('Labor Rental Rate')
-  plt.ylabel('$w_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-  plt.subplot(233)
-  plt.plot(range(T_new+1),eta_path_1[:T_new+1],eta_path_2[:T_new_2+1],alpha=.7)
-  plt.plot(range(T_new_3+1),eta_path_3[:T_new_3+1], alpha=.7)
-  plt.plot(range(T_new_large+1),eta_path_large[:T_new_large+1],alpha=.7)
-  plt.title('Capital Rental Rate')
-  plt.ylabel('$\eta_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-  plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
-
-  plt.subplot(234)
-  plt.plot(range(T_new+1),path_opt_C_new,path_opt_C_2,alpha=.7)
-  plt.plot(range(T_new_3+1),path_opt_C_3, alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_C_large,alpha=.7)
-  plt.title('Consumption')
-  plt.ylabel('$C_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-  plt.subplot(235)
-  plt.plot(range(T_new+2),path_opt_K_new,path_opt_K_2,alpha=.7)
-  plt.plot(range(T_new_3+2),path_opt_K_3, alpha=.7)
-  plt.plot(range(T_new_large+2),path_opt_K_large,alpha=.7)
-  plt.axhline(0,linestyle='-',color='black', lw=1)
-  plt.axhline(K_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-  plt.title('Capital')
-  plt.ylabel('$K_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.scatter(T_new+1,0,s=80)
-  plt.scatter(T_new_2+1,0,s=80)
-  plt.scatter(T_new_3+1,0,s=80)
-  plt.scatter(T_new_large+1,0,s=80)
-
-  plt.subplot(236)
-  plt.plot(range(T_new+1),path_opt_mu_new,path_opt_mu_new_2,alpha=.7)
-  plt.plot(range(T_new_3+1),path_opt_mu_new_3,alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_mu_large,alpha=.7)
-  plt.title('Lagrange Multiplier')
-  plt.ylabel('$\mu_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-  plt.subplots_adjust(right=2, wspace=0.2, top=2)
-  plt.show()
+    plt.tight_layout()
+    plt.show()
 
 Varying :math:`\gamma`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1768,121 +1541,36 @@ with :math:`K_0` below the steady state.
 
 We plot the results for :math:`T=150`
 
-.. code:: python3
+.. code-block:: python3
 
-  C_ss = f(k=K_ss, A=Ā, α=ᾱ) - δ * K_ss
-  C_ss_growth = 0
-  γ_1 = 1.1
-  γ_2 = 4
-  γ_3 = 6
-  γ_4 = 8
-  T_new_large=T_new
-  C_new_large=C_new
-  K_new_large=K_new
-  path_opt_C_large,path_opt_K_large,path_opt_mu_large=bisection_method(.3,C_new_large,K_new_large,T_new_large,γ̄,δ,β,ᾱ,Ā);
-  path_opt_C_large_1,path_opt_K_large_1,path_opt_mu_large_1=bisection_method(.3,C_new_large,K_new_large,T_new_large,γ_1,δ,β,ᾱ,Ā);
-  path_opt_C_large_2,path_opt_K_large_2,path_opt_mu_large_2=bisection_method(.3,C_new_large,K_new_large,T_new_large,γ_2,δ,β,ᾱ,Ā);
-  path_opt_C_large_3,path_opt_K_large_3,path_opt_mu_large_3=bisection_method(.3,C_new_large,K_new_large,T_new_large,γ_3,δ,β,ᾱ,Ā);
-  path_opt_C_large_4,path_opt_K_large_4,path_opt_mu_large_4=bisection_method(.3,C_new_large,K_new_large,T_new_large,γ_4,δ,β,ᾱ,Ā);
+    γ_list = (1.1, 4, 6, 8)
+    T = 150
 
-  q_path_large = q(β,path_opt_C_large,T_new_large,γ̄)
-  q_path_large_1 = q(β,path_opt_C_large_1,T_new_large,γ_1)
-  q_path_large_2 = q(β,path_opt_C_large_2,T_new_large,γ_2)
-  q_path_large_3 = q(β,path_opt_C_large_3,T_new_large,γ_3)
-  q_path_large_4 = q(β,path_opt_C_large_4,T_new_large,γ_4)
+    fix, axes = plt.subplots(2, 3, figsize=(13, 6))
 
-  w_path_large =w(Ā,path_opt_K_large,ᾱ)
-  w_path_large_1= w(Ā,path_opt_K_large_1,ᾱ)
-  w_path_large_2 = w(Ā,path_opt_K_large_2,ᾱ)
-  w_path_large_3=w(Ā,path_opt_K_large_3,ᾱ)
-  w_path_large_4=w(Ā,path_opt_K_large_4,ᾱ)
+    for γ in γ_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_ss / 3
+        c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
 
-  eta_path_large = η(Ā,path_opt_K_large,ᾱ)
-  eta_path_large_1 = η(Ā,path_opt_K_large_1,ᾱ)
-  eta_path_large_2 = η(Ā,path_opt_K_large_2,ᾱ)
-  eta_path_large_3 = η(Ā,path_opt_K_large_3,ᾱ)
-  eta_path_large_4 = η(Ā,path_opt_K_large_4,ᾱ)
+        q = q_func(β, c, γ)
+        w = w_func(β, k, α)
+        η = η_func(A, k, α)
+        plots = [q, w, η, c, k, μ]
+        
+        for ax, plot, title, y in zip(axes.flatten(), plots, titles, ylabels):
+            ax.plot(plot, label=f'$\gamma = {γ}$')
+            ax.set(title=title, ylabel=y, xlabel='t')
+            if title is 'Capital':
+                ax.axhline(k_ss, lw=1, ls='--', c='k')
+            if title is 'Consumption':
+                ax.axhline(c_ss, lw=1, ls='--', c='k')
 
-.. code:: python3
-
-  plt.subplot(231)
-  plt.plot(range(T_new_large+1),q_path_large,q_path_large_1,alpha=.7)
-  plt.plot(range(T_new_large+1),q_path_large_2, alpha=.7)
-  plt.plot(range(T_new_large+1),q_path_large_3,alpha=.7)
-  plt.plot(range(T_new_large+1),q_path_large_4,alpha=.7)
-
-  plt.title('Arrow-Hicks Prices')
-  plt.ylabel('$q_t^0$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-  plt.subplot(232)
-  plt.plot(range(T_new_large+1),w_path_large[:T_new_large+1],alpha=.7)
-  plt.plot(range(T_new_large+1),w_path_large_1[:T_new_large+1],alpha=.7)
-  plt.plot(range(T_new_large+1),w_path_large_2[:T_new_large+1], alpha=.7)
-  plt.plot(range(T_new_large+1),w_path_large_3[:T_new_large+1],alpha=.7)
-  plt.plot(range(T_new_large+1),w_path_large_4[:T_new_large+1],alpha=.7)
-  plt.title('Labor Rental Rate')
-  plt.ylabel('$w_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-  plt.subplot(233)
-  plt.plot(range(T_new_large+1),eta_path_large[:T_new_large+1],eta_path_large_1[:T_new_large+1],alpha=.7)
-  plt.plot(range(T_new_large+1),eta_path_large_2[:T_new_large+1], alpha=.7)
-  plt.plot(range(T_new_large+1),eta_path_large_3[:T_new_large+1],alpha=.7)
-  plt.plot(range(T_new_large+1),eta_path_large_4[:T_new_large+1],alpha=.7)
-
-  plt.title('Capital Rental Rate')
-  plt.ylabel('$\eta_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-  plt.subplots_adjust(left=0.0, wspace=0.5, top=0.8)
-
-
-  plt.subplot(234)
-  plt.plot(range(T_new_large+1),path_opt_C_large,path_opt_C_large_1,alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_C_large_2,alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_C_large_3,alpha=.7)
-  plt.plot(range(T_new_large+1),path_opt_C_large_4,alpha=.7)
-  plt.axhline(C_ss,linestyle='-.',color='black', lw=1,alpha=.7)
-  plt.title('Consumption')
-  plt.ylabel('$C_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-
-  plt.subplot(235)
-  plt.plot(range(T_new_large+2),path_opt_K_large,path_opt_K_large_1,alpha=.7)
-  plt.plot(range(T_new_large+2),path_opt_K_large_2,alpha=.7)
-  plt.plot(range(T_new_large+2),path_opt_K_large_3,alpha=.7)
-  plt.plot(range(T_new_large+2),path_opt_K_large_4,alpha=.7)
-  plt.axhline(0,linestyle='-',color='black', lw=1)
-  plt.axhline(K_ss,linestyle='-.',color='black',lw=1,  alpha=.7)
-  plt.title('Capital')
-  plt.ylabel('$K_t$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.scatter(T_new_large+1,0,s=80)
-
-  plt.subplot(236)
-  plt.plot(range(T_new_large+1),path_opt_mu_large,path_opt_mu_large_1,alpha=.7) 
-  plt.plot(range(T_new_large+1),path_opt_mu_large_2,alpha=.7) 
-  plt.plot(range(T_new_large+1),path_opt_mu_large_3,alpha=.7) 
-  plt.plot(range(T_new_large+1),path_opt_mu_large_4,alpha=.7) 
-  plt.axhline(0,linestyle='-',color='black', lw=1)
-  plt.title('Lagrange Multiplier')
-  plt.ylabel('$\mu_t$')
-  plt.xlabel('$t$')
-  plt.axhline(0,color='black', lw=1)
-  plt.xlim(0,)
-  plt.subplots_adjust(left=0.0, wspace=0.6, top=1.8,hspace=0.25,right=1.2)
-  plt.show()
-
+    axes[0, 0].legend()
+    plt.tight_layout()
+    plt.show()
 
 Adjusting :math:`\gamma` means adjusting how much individuals prefer
 to smooth consumption
@@ -1897,7 +1585,7 @@ Yield Curves and Hicks-Arrow Prices Again
 ------------------------------------------
 
 Now, we compute Hicks-Arrow prices again, but also calculate the
-implied the yields to maturity.
+implied the yields to maturity
 
 This will let us plot a **yield curve**
 
@@ -1922,95 +1610,74 @@ years, and define a new function for :math:`r`, then plot both
 First we plot when :math:`t_0=0` as before, for different values of
 :math:`T`, with :math:`K_0` below the steady state
 
-.. code:: python3
+.. code-block:: python3
 
-  @njit
-  def q(t_0, β, c, T, γ):
-      # Here we choose numeraire to be u'(c_0) -- this is q^(t_0)_t
-      q = np.zeros(T+1-t_0) 
-      q[0] = 1
-      for t in range(t_0+1, T+2):
-          q[t-t_0] = β**(t - t_0) * u_prime(c[t], γ) / u_prime(c[t_0], γ) 
-      return q
-      
-  @njit
-  def r_m(t_0, β, c, T, γ):
-      '''Yield to maturity'''
-      r = np.zeros(T+1-t_0)
-      for t in range(t_0+1, T+2):
-          r[t-t_0]= -np.log(q(t_0,β, c, T, γ)[t-t_0]) / (t - t_0)
-      return r
+    @njit
+    def q_func(t_0, β, c, γ):
+        # Here we choose numeraire to be u'(c_0) -- this is q^(t_0)_t
+        T = len(c)
+        q = np.zeros(T+1-t_0)
+        q[0] = 1
+        for t in range(t_0+1, T):
+            q[t-t_0] = β**(t - t_0) * u_prime(c[t], γ) / u_prime(c[t_0], γ)
+        return q
 
-  t_init=0
-  q_path_1 = q(t_init,β,path_opt_C_new,T_new,γ̄)
-  q_path_2 = q(t_init,β,path_opt_C_2,T_new_2,γ̄)
-  q_path_3 = q(t_init,β,path_opt_C_3,T_new_3,γ̄)
-  q_path_large = q(t_init,β,path_opt_C_large,T_new_large,γ̄)
+    @njit
+    def r_func(t_0, β, c, γ):
+        '''Yield to maturity'''
+        T = len(c) - 1
+        r = np.zeros(T+1-t_0)
+        for t in range(t_0+1, T+1):
+            r[t-t_0]= -np.log(q_func(t_0, β, c, γ)[t-t_0]) / (t - t_0)
+        return r
 
-  r_path_1=r_m(t_init,β,path_opt_C_new,T_new,γ̄)
-  r_path_2 = r_m(t_init,β,path_opt_C_2,T_new_2,γ̄)
-  r_path_3 = r_m(t_init,β,path_opt_C_3,T_new_3,γ̄)
-  r_path_large = r_m(t_init,β,path_opt_C_large,T_new_large,γ̄)
+    t_0 = 0
+    T_list = [150, 75, 50, 25]
+    γ = 2
+    titles = ['Hicks-Arrow Prices', 'Yields']
+    ylabels = ['$q_t^0$', '$r_t^0$']
 
+    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
-  plt.subplot(121)
-  plt.plot(range(T_new+1-t_init),q_path_1,q_path_2,alpha=.7)
-  plt.plot(range(T_new_3+1-t_init),q_path_3, alpha=.7)
-  plt.plot(range(T_new_large+1-t_init),q_path_large,alpha=.7)
-  plt.title('Hicks-Arrow Prices')
-  plt.ylabel('$q_t^0$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-  plt.subplot(122)
-  plt.plot(range(T_new+1-t_init),r_path_1,r_path_2,alpha=.7)
-  plt.plot(range(T_new_3+1-t_init),r_path_3, alpha=.7)
-  plt.plot(range(T_new_large+1-t_init),r_path_large,alpha=.7)
-  plt.title('Yields')
-  plt.ylabel('$r_{0,t}$')
-  plt.xlabel('$t$')
-  plt.ylim(-.01,.3)
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-  plt.subplots_adjust(left=0.0, wspace=0.3)
+    for T in T_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_ss / 3
+        c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
+        q = q_func(t_0, β, c, γ)
+        r = r_func(t_0, β, c, γ)
+        
+        for ax, plot, title, y in zip(axes, (q, r), titles, ylabels):
+            ax.plot(plot)
+            ax.set(title=title, ylabel=y, xlabel='t')
+        
+    plt.tight_layout()
+    plt.show()
 
 Now we plot when :math:`t_0=20`
 
-.. code:: python3
+.. code-block:: python3
 
-  t_init=20
-  q_path_1 = q(t_init,β,path_opt_C_new,T_new,γ̄)
-  q_path_2 = q(t_init,β,path_opt_C_2,T_new_2,γ̄)
-  q_path_3 = q(t_init,β,path_opt_C_3,T_new_3,γ̄)
-  q_path_large = q(t_init,β,path_opt_C_large,T_new_large,γ̄)
+    t_0 = 20
 
-  r_path_1=r_m(t_init,β,path_opt_C_new,T_new,γ̄)
-  r_path_2 = r_m(t_init,β,path_opt_C_2,T_new_2,γ̄)
-  r_path_3 = r_m(t_init,β,path_opt_C_3,T_new_3,γ̄)
-  r_path_large = r_m(t_init,β,path_opt_C_large,T_new_large,γ̄)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
-  plt.subplot(121)
-  plt.plot(range(T_new+1-t_init),q_path_1,q_path_2,alpha=.7)
-  plt.plot(range(T_new_3+1-t_init),q_path_3, alpha=.7)
-  plt.plot(range(T_new_large+1-t_init),q_path_large,alpha=.7)
-  plt.title('Arrow Prices at $t_0=20$')
-  plt.ylabel('$q_t^{20}$')
-  plt.xlabel('$t$')
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-
-  plt.subplot(122)
-  plt.plot(range(T_new+1-t_init),r_path_1,r_path_2,alpha=.7)
-  plt.plot(range(T_new_3+1-t_init),r_path_3, alpha=.7)
-  plt.plot(range(T_new_large+1-t_init),r_path_large,alpha=.7)
-  plt.title('Yields at $t_0=20$')
-  plt.ylabel('$r_{20,t}$')
-  plt.xlabel('$t$')
-  plt.ylim(-.01,.4)
-  plt.xlim(0,)
-  plt.axhline(0,color='black', lw=1)
-  plt.subplots_adjust(left=0.0, wspace=0.3)
+    for T in T_list:
+        c = np.zeros(T+1)
+        k = np.zeros(T+2)
+        c[0] = 0.3
+        k[0] = k_ss / 3
+        c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
+        q = q_func(t_0, β, c, γ)
+        r = r_func(t_0, β, c, γ)
+        
+        for ax, plot, title, y in zip(axes, (q, r), titles, ylabels):
+            ax.plot(plot)
+            ax.set(title=title, ylabel=y, xlabel='t')
+        
+    plt.tight_layout()
+    plt.show()
 
 We shall have more to say about the term structure of interest rates
 in a later lecture on the topic
