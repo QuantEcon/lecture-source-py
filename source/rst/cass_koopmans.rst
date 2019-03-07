@@ -1515,8 +1515,8 @@ Now we calculate and plot for each :math:`T`
         c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
 
         q = q_func(β, c, γ)
-        w = w_func(β, k, α)
-        η = η_func(A, k, α)
+        w = w_func(β, k, α)[:-1]
+        η = η_func(A, k, α)[:-1]
         plots = [q, w, η, c, k, μ]
         
         for ax, plot, title, y in zip(axes.flatten(), plots, titles, ylabels):
@@ -1556,8 +1556,8 @@ We plot the results for :math:`T=150`
         c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
 
         q = q_func(β, c, γ)
-        w = w_func(β, k, α)
-        η = η_func(A, k, α)
+        w = w_func(β, k, α)[:-1]
+        η = η_func(A, k, α)[:-1]
         plots = [q, w, η, c, k, μ]
         
         for ax, plot, title, y in zip(axes.flatten(), plots, titles, ylabels):
@@ -1632,7 +1632,7 @@ First we plot when :math:`t_0=0` as before, for different values of
         return r
 
     t_0 = 0
-    T_list = [150, 75, 50, 25]
+    T_list = [150, 75, 50]
     γ = 2
     titles = ['Hicks-Arrow Prices', 'Yields']
     ylabels = ['$q_t^0$', '$r_t^0$']
@@ -1675,7 +1675,8 @@ Now we plot when :math:`t_0=20`
         for ax, plot, title, y in zip(axes, (q, r), titles, ylabels):
             ax.plot(plot)
             ax.set(title=title, ylabel=y, xlabel='t')
-        
+
+    axes[1].set_title(f'Yields at $t_0 = {t_0}$')      
     plt.tight_layout()
     plt.show()
 
