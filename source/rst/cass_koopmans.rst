@@ -211,21 +211,32 @@ First
 .. math:: 
   :label: useful-calc1
   
-  \frac{\partial F}{\partial K} =
-  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial K_t}{=}_{\text{chain rule}} 
-  N_t f'\left(\frac{K_t}{N_t}\right)\frac{1}{N_t}=
-  f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} = f'(K_t)
+  \begin{align}
+  \frac{\partial F}{\partial K} 
+  &=
+  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial K_t}
+  \\ &=
+  N_t f'\left(\frac{K_t}{N_t}\right)\frac{1}{N_t} \quad \text{(Chain rule)}
+  \\ &=
+  f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} 
+  \\ &= f'(K_t)
+  \end{align}
 
 Also
 
 .. math:: 
   
-  \frac{\partial F}{\partial N} =
-  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t}{=}_{\text{product rule}} 
-  f\left(\frac{K_t}{N_t}\right){+} N_t \frac{\partial f\left( \frac{K_t}{N_t}\right)}{\partial N_t}{=}_{\text{chain rule}} 
-  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2}=
-  f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} = f(K_t)
-
+  \begin{align}
+  \frac{\partial F}{\partial N} 
+  &=
+  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \tag{Product rule}
+  \\ &=
+  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2} \tag{Chain rule}
+  \\ &=
+  f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} 
+  \\ &= 
+  f(K_t)
+  \end{align}
 
 
 Back to solving the problem
