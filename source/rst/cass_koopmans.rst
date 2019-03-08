@@ -83,7 +83,7 @@ The Growth Model
 Time is discrete and takes values :math:`t = 0, 1 , \ldots, T`
 
 (We leave open the possibility that :math:`T = + \infty`, but that
-will require special care in interpreting and using **terminal
+will require special care in interpreting and using a **terminal
 condition** on :math:`K_t` at :math:`t = T+1` to be described
 below)
 
@@ -202,7 +202,7 @@ Evidently,
 
 .. math:: 
   
-  F(K_t,N_t)=N_t f( \frac{K_t}{N_t})
+  F(K_t,N_t)=N_t f \left( \frac{K_t}{N_t} \right)
 
 Now for some useful calculations
 
