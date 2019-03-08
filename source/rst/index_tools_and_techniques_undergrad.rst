@@ -24,5 +24,6 @@ tools and techniques
     linear_models
     finite_markov
     kalman
+    cass_koopmans
 
 

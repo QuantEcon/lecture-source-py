@@ -26,5 +26,6 @@ tools and techniques
     finite_markov
     stationary_densities
     kalman
+    cass_koopmans
 
 
