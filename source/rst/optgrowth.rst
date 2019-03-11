@@ -597,7 +597,7 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
             self.β, self.μ, self.s = β, μ, s
             self.f, self.u = f, u
 
-            self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
+            self.grid = np.linspace(1e-5, grid_max, grid_size)         # Set up grid
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
@@ -608,7 +608,7 @@ Here's a function that generates a Bellman operator using linear interpolation
 
 .. literalinclude:: /_static/code/optgrowth/bellman_operator.py
 
-
+optgro
 The function ``operator_factory`` takes a class that represents the growth model,
 and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model
 
@@ -730,16 +730,16 @@ In practice we expect some small numerical error
 
 .. code-block:: python3
 
-    y_grid = og.y_grid
+    grid = og.grid
     β, μ = og.β, og.μ
 
-    v_init = v_star(y_grid, α, β, μ)  # Start at the solution
+    v_init = v_star(grid, α, β, μ)    # Start at the solution
     v = T(v_init)                     # Apply the Bellman operator once
 
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.set_ylim(-35, -24)
-    ax.plot(y_grid, v, lw=2, alpha=0.6, label='$Tv^*$')
-    ax.plot(y_grid, v_init, lw=2, alpha=0.6, label='$v^*$')
+    ax.plot(grid, v, lw=2, alpha=0.6, label='$Tv^*$')
+    ax.plot(grid, v_init, lw=2, alpha=0.6, label='$v^*$')
     ax.legend()
     plt.show()
 
@@ -754,23 +754,23 @@ The initial condition we'll start with is :math:`v(y) = 5 \ln (y)`
 
 .. code-block:: python3
 
-    v = 5 * np.log(y_grid)  # An initial condition
+    v = 5 * np.log(grid)  # An initial condition
     n = 35
     
     fig, ax = plt.subplots(figsize=(9, 6))
     
-    ax.plot(y_grid, v, color=plt.cm.jet(0), 
+    ax.plot(grid, v, color=plt.cm.jet(0), 
             lw=2, alpha=0.6, label='Initial condition')
             
     for i in range(n):
         v = T(v)  # Apply the Bellman operator
-        ax.plot(y_grid, v, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
+        ax.plot(grid, v, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
     
-    ax.plot(y_grid, v_star(y_grid, α, β, μ), 'k-', lw=2, 
+    ax.plot(grid, v_star(grid, α, β, μ), 'k-', lw=2, 
             alpha=0.8, label='True value function')
             
     ax.legend()
-    ax.set(ylim=(-40, 10), xlim=(np.min(y_grid), np.max(y_grid)))
+    ax.set(ylim=(-40, 10), xlim=(np.min(grid), np.max(grid)))
     plt.show()
 
 
@@ -798,10 +798,10 @@ We can check our result by plotting it against the true value
 
     fig, ax = plt.subplots(figsize=(9, 5))
     
-    ax.plot(y_grid, v_solution, lw=2, alpha=0.6, 
+    ax.plot(grid, v_solution, lw=2, alpha=0.6, 
             label='Approximate value function')
             
-    ax.plot(y_grid, v_star(y_grid, α, β, μ), lw=2,
+    ax.plot(grid, v_star(grid, α, β, μ), lw=2,
             alpha=0.6, label='True value function')
     
     ax.legend()
@@ -830,10 +830,10 @@ above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
 
     fig, ax = plt.subplots(figsize=(9, 5))
     
-    ax.plot(y_grid, get_greedy(v_solution), lw=2,
+    ax.plot(grid, get_greedy(v_solution), lw=2,
             alpha=0.6, label='Approximate policy function')
             
-    ax.plot(y_grid, σ_star(y_grid, α, β),
+    ax.plot(grid, σ_star(grid, α, β),
             lw=2, alpha=0.6, label='True policy function')
             
     ax.legend()
@@ -904,12 +904,12 @@ Here's one solution (assuming as usual that you've executed everything above)
     for β in (0.8, 0.9, 0.98):
 
         og = OptimalGrowthModel(f, np.log, β=β, s=0.05)
-        y_grid = og.y_grid
+        grid = og.grid
 
         v_solution = solve_model(og, verbose=False)
         
         σ_star = get_greedy(v_solution)
-        σ_func = lambda x: interp(y_grid, σ_star, x)  # Define an optimal policy function
+        σ_func = lambda x: interp(grid, σ_star, x)  # Define an optimal policy function
         y = simulate_og(σ_func, og, α)
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
 
