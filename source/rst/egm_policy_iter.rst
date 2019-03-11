@@ -411,7 +411,6 @@ Here's the result
     qe.util.toc()
 
 
-We see that the EGM version is around twice as fast, even without jit compilation
+We see that the EGM version is significantly faster, even without jit compilation!
 
-At the same time, the absence of numerical root finding means that it is
-typically more accurate at each step as well
+The absence of numerical root finding means that it is typically more accurate at each step as well
