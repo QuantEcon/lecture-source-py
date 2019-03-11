@@ -440,50 +440,13 @@ First we'll store the parameters of the model is a class ``OptimalGrowthModel``
             self.f, self.u = f, u
             self.f_prime, self.u_prime = f_prime, u_prime
 
-            self.y_grid = np.linspace(1e-5, grid_max, grid_size)       # Set up grid
+            self.grid = np.linspace(1e-5, grid_max, grid_size)         # Set up grid
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
 Here's some code that returns the Coleman-Reffett operator, :math:`K`
 
-.. code-block:: python3
-
-    def time_operator_factory(og, parallel_flag=True):
-        """
-        A function factory for building the Coleman-Reffett operator.
-
-        Here og is an instance of OptimalGrowthModel.
-        """
-        β = og.β    
-        f, u = og.f, og.u
-        f_prime, u_prime = og.f_prime, og.u_prime
-        y_grid, shocks = og.y_grid, og.shocks
-
-        @njit
-        def objective(c, σ, y):
-            """
-            The right hand side of the operator
-            """
-            # First turn w into a function via interpolation
-            σ_func = lambda x: interp(y_grid, σ, x)
-            vals = u_prime(σ_func(f(y - c) * shocks)) * f_prime(y - c) * shocks
-            return u_prime(c) - β * np.mean(vals)
-        
-        @njit(parallel=parallel_flag)
-        def K(σ):
-            """
-            The Coleman-Reffett operator
-            """
-            σ_new = np.empty_like(σ)
-            for i in prange(len(y_grid)):
-                y = y_grid[i]
-                # Solve for optimal c at y
-                c_star = brentq(objective, 1e-10, y-1e-10, args=(σ, y))[0]
-                σ_new[i] = c_star
-            
-            return σ_new
-        
-        return K
+.. literalinclude:: /_static/code/coleman_policy_iter/coleman_operator.py
 
 It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>` 
 
@@ -540,12 +503,12 @@ theory
         "True optimal policy"
         return (1 - α * β) * y
 
-    y_grid, β = og.y_grid, og.β
-    σ_star_new = K(σ_star(y_grid, α, β))
+    grid, β = og.grid, og.β
+    σ_star_new = K(σ_star(grid, α, β))
     
     fig, ax = plt.subplots()
-    ax.plot(y_grid, σ_star(y_grid, α, β), label="optimal policy $\sigma^*$")
-    ax.plot(y_grid, σ_star_new, label="$K\sigma^*$")
+    ax.plot(grid, σ_star(grid, α, β), label="optimal policy $\sigma^*$")
+    ax.plot(grid, σ_star_new, label="$K\sigma^*$")
 
     ax.legend()
     plt.show()
@@ -566,17 +529,17 @@ The initial condition we'll use is the one that eats the whole pie: :math:`\sigm
 .. code-block:: python3 
 
     n = 15
-    σ = y_grid.copy()  # Set initial condition
+    σ = grid.copy()  # Set initial condition
     fig, ax = plt.subplots(figsize=(9, 6))
     lb = 'initial condition $\sigma(y) = y$'
-    ax.plot(y_grid, σ, color=plt.cm.jet(0), alpha=0.6, label=lb)
+    ax.plot(grid, σ, color=plt.cm.jet(0), alpha=0.6, label=lb)
 
     for i in range(n):
         σ = K(σ)
-        ax.plot(y_grid, σ, color=plt.cm.jet(i / n), alpha=0.6)
+        ax.plot(grid, σ, color=plt.cm.jet(i / n), alpha=0.6)
 
     lb = 'true policy function $\sigma^*$'
-    ax.plot(y_grid, σ_star(y_grid, α, β), 'k-', alpha=0.8, label=lb)
+    ax.plot(grid, σ_star(grid, α, β), 'k-', alpha=0.8, label=lb)
     ax.legend()
 
     plt.show()
@@ -606,8 +569,8 @@ discussed above
 
     T, get_greedy = operator_factory(og)  # Return the Bellman operator
 
-    σ = y_grid          # Set initial condition for σ
-    v = og.u(y_grid)    # Set initial condition for v
+    σ = grid          # Set initial condition for σ
+    v = og.u(grid)    # Set initial condition for v
     sim_length = 20
 
     for i in range(sim_length):
@@ -615,11 +578,11 @@ discussed above
         v = T(v)  # Value function iteration
 
     # Calculate difference with actual solution
-    σ_error = σ_star(y_grid, α, β) - σ
-    v_error = σ_star(y_grid, α, β) - get_greedy(v)
+    σ_error = σ_star(grid, α, β) - σ
+    v_error = σ_star(grid, α, β) - get_greedy(v)
 
-    plt.plot(y_grid, σ_error, alpha=0.6, label="policy iteration error")
-    plt.plot(y_grid, v_error, alpha=0.6, label="value iteration error")
+    plt.plot(grid, σ_error, alpha=0.6, label="policy iteration error")
+    plt.plot(grid, v_error, alpha=0.6, label="value iteration error")
     plt.legend()
     plt.show()
 
@@ -780,8 +743,8 @@ Here's the code, which will execute if you've run all the code above
     T, get_greedy = operator_factory(og)
     K = time_operator_factory(og)
     
-    σ = y_grid        # Initial condition for σ
-    v = u(y_grid)     # Initial condition for v
+    σ = grid        # Initial condition for σ
+    v = u(grid)     # Initial condition for v
     sim_length = 20
 
     for i in range(sim_length):
@@ -789,8 +752,8 @@ Here's the code, which will execute if you've run all the code above
         v = T(v)  # Value function iteration
 
 
-    plt.plot(y_grid, σ, alpha=0.6, label="policy iteration")
-    plt.plot(y_grid, get_greedy(v), alpha=0.6, label="value iteration")
+    plt.plot(grid, σ, alpha=0.6, label="policy iteration")
+    plt.plot(grid, get_greedy(v), alpha=0.6, label="value iteration")
     plt.legend()
     plt.show()
 
@@ -820,7 +783,7 @@ Similarly, we can write a function that uses ``K`` to solve the model
         K = time_operator_factory(og, parallel_flag=use_parallel)
 
         # Set up loop
-        σ = og.y_grid  # Initial condition
+        σ = og.grid  # Initial condition
         i = 0
         error = tol + 1
 
@@ -847,14 +810,13 @@ Solving both models and plotting
     v_star = solve_model(og)
     σ_star = solve_model_time(og)
     
-    plt.plot(y_grid, get_greedy(v_star), alpha=0.6, label='Bellman operator')
-    plt.plot(y_grid, σ_star, alpha=0.6, label='Coleman-Reffett operator')
+    plt.plot(grid, get_greedy(v_star), alpha=0.6, label='Bellman operator')
+    plt.plot(grid, σ_star, alpha=0.6, label='Coleman-Reffett operator')
     plt.legend()
     plt.show()
     
 
 
 Time iteration is numerically far more accurate for a given number of iterations
-
 
 
