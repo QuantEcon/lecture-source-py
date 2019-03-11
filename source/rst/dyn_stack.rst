@@ -171,9 +171,9 @@ This equation can in turn be rearranged to become the second-order
 difference equation
 
 .. math::
-  :label: sstack1
+    :label: sstack1
   
-  - q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
+    q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
 
 Equation :eq:`sstack1` is a second-order difference equation in the sequence
 :math:`\vec q_1` whose solution we want satisfies **two boundary
