@@ -176,10 +176,11 @@ difference equation
     q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
 
 Equation :eq:`sstack1` is a second-order difference equation in the sequence
-:math:`\vec q_1` whose solution we want satisfies **two boundary
-conditions:**
+:math:`\vec q_1` whose solution we want 
 
--  an initial condition that :math:`q_{1,0}` is given
+It satisfies **two boundary conditions:**
+
+-  an initial condition that :math:`q_{1,0}`, which is given
 
 -  a terminal condition requiring that
    :math:`\lim_{T \rightarrow + \infty} \beta^T q_{1t}^2 < + \infty`
