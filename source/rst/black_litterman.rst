@@ -1,15 +1,23 @@
+.. _black_litterman:
 
+.. include:: /_static/includes/lecture_howto_py.raw
+
+.. index::
+    single: python
+
+****************************************************
 Two modifications of mean-variance portfolio theory
-===================================================
+****************************************************
 
-Daniel Csaba, Thomas J. Sargent and Balint Szoke
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. contents:: :depth: 2
 
-December 2016
-^^^^^^^^^^^^^
+**Authors:** Daniel Csaba, Thomas J. Sargent and Balint Szoke
+
+Overview
+=========
 
 Remarks about estimating means and variances
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 The famous **Black-Litterman** (1992) portfolio choice model that we
 describe in this notebook is motivated by the finding that with high or
@@ -17,17 +25,17 @@ moderate frequency data, means are more difficult to estimate than
 variances.
 
 A model of **robust portfolio choice** that we'll describe also begins
-from the same starting point.
+from the same starting point
 
 To begin, we'll take for granted that means are more difficult to
 estimate that covariances and will focus on how Black and Litterman, on
 the one hand, an robust control theorists, on the other, would recommend
 modifying the **mean-variance portfolio choice model** to take that into
-account.
+account
 
 At the end of this notebook, we shall use some rates of convergence
 results and some simulations to verify how means are more difficult to
-estimate than variances.
+estimate than variances
 
 Among the ideas in play in this notebook will be
 
@@ -40,42 +48,41 @@ Among the ideas in play in this notebook will be
 
 .. code:: ipython3
 
-    %matplotlib inline
-    
     import numpy as np
     import scipy as sp
     import scipy.stats as stat
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from ipywidgets import interact, FloatSlider
 
 
 Adjusting mean-variance portfolio choice theory for distrust of mean excess returns
 -----------------------------------------------------------------------------------
 
-This notebook describes two lines of thought that modify the classic
+This lecture describes two lines of thought that modify the classic
 mean-variance portfolio choice model in ways designed to make its
-recommendations more plausible.
+recommendations more plausible
 
 As we mentioned above, the two approaches build on a common hunch --
 that because it is much easier statistically to estimate covariances of
 excess returns than it is to estimate their means, it makes sense to
 contemplated the consequences of adjusting investors' subjective beliefs
-about mean returns in order to render more sensible decisions.
+about mean returns in order to render more sensible decisions
 
 Both of the adjustments that we describe are designed to confront a
 widely recognized embarassment to mean-variance portfolio theory,
 namely, that it usually implies taking very extreme long-short portfolio
-positions.
+positions
 
 Mean-variance portfolio choice
-''''''''''''''''''''''''''''''
+-------------------------------
 
-A risk free security earns one-period net return :math:`r_f`.
+A risk free security earns one-period net return :math:`r_f`
 
-An :math:`n \times 1`\ vector of risky securities earns
-an\ :math:`n \times 1` vector :math:`\vec r - r_f {\bf 1}`\ of *excess
-returns*, where\ :math:`{\bf 1}` is an :math:`n \times 1` vector of
-ones.
+An :math:`n \times 1` vector of risky securities earns
+an :math:`n \times 1` vector :math:`\vec r - r_f {\bf 1}` of *excess
+returns*, where :math:`{\bf 1}` is an :math:`n \times 1` vector of
+ones
 
 The excess return vector is multivariate normal with mean :math:`\mu`
 and covariance matrix :math:`\Sigma`, which we express either as
@@ -86,11 +93,10 @@ or
 
 .. math:: \vec r - r_f {\bf 1} = \mu + C \epsilon 
 
-where :math:`\epsilon \sim {\mathcal N}(0, I)`\ is an :math:`n \times 1`
+where :math:`\epsilon \sim {\mathcal N}(0, I)` is an :math:`n \times 1`
 random vector.
 
-Let $w :math:`be an`\ n:raw-latex:`\times `1$ vector of portfolio
-weights.
+Let :math:`w be an \times 1` vector of portfolio weights
 
 A portfolio consisting :math:`w` earns returns
 
@@ -99,159 +105,145 @@ A portfolio consisting :math:`w` earns returns
 The **mean-variance portfolio choice problem** is to choose :math:`w` to
 maximize
 
-.. math:: U(\mu,\Sigma;w) = w'\mu - \frac{\delta}{2} w' \Sigma w   ,  \quad (1)
+.. math::
+  :label: choice-problem
+  
+  U(\mu,\Sigma;w) = w'\mu - \frac{\delta}{2} w' \Sigma w
 
 where :math:`\delta > 0` is a risk-aversion parameter. The first-order
-condition for maximizing (1) with respect to the vector :math:`w` is
+condition for maximizing :eq:`choice-problem` with respect to the vector :math:`w` is
 
-.. math:: \mu = \delta \Sigma w ,  \quad (2)
+.. math:: \mu = \delta \Sigma w
 
 which implies the following design of a risky portfolio:
 
-.. math:: w = (\delta \Sigma)^{-1} \mu , \quad (3) 
+.. math:: 
+  :label: risky-portfolio
+  
+  w = (\delta \Sigma)^{-1} \mu
 
-Estimating :math:`\mu`\ and\ :math:`\Sigma`
-'''''''''''''''''''''''''''''''''''''''''''
+Estimating :math:`\mu` and :math:`\Sigma`
+--------------------------------------------
 
-The key inputs into the portfolio choice model (3) are
+The key inputs into the portfolio choice model :eq:`risky-portfolio` are
 
--  estimates of the parameters :math:`\mu, \Sigma`\ of the random excess
+-  estimates of the parameters :math:`\mu, \Sigma` of the random excess
    return vector\ :math:`(\vec r - r_f {\bf 1})`
 
 -  the risk-aversion parameter :math:`\delta`
 
 A standard way of estimating :math:`\mu` is maximum-likelihood or least
-squares; that amounts to estimating :math:`\mu`\ by a sample mean of
-excess returns and estimating\ :math:`\Sigma` by a sample covariance
-matrix.
+squares; that amounts to estimating :math:`\mu` by a sample mean of
+excess returns and estimating :math:`\Sigma` by a sample covariance
+matrix
 
 The Black-Litterman starting point
                                   
 
-When estimates of :math:`\mu`\ and\ :math:`\Sigma` from historical
-sample means and covariances have been combined with \`\`reasonable''
+When estimates of :math:`\mu` and :math:`\Sigma` from historical
+sample means and covariances have been combined with **reasonable**
 values of the risk-aversion parameter :math:`\delta` to compute an
-optimal portfolio from formula (3), a typical outcome has been
-:math:`w`'s with **extreme long and short positions**. A common reaction
-to these outcomes is that they are so unreasonable that a portfolio
-manager cannot recommend them to a customer.
+optimal portfolio from formula :eq:`risky-portfolio`, a typical outcome has been
+:math:`w`'s with **extreme long and short positions**
 
-.. code:: ipython3
+A common reaction to these outcomes is that they are so unreasonable that a portfolio
+manager cannot recommend them to a customer
 
-    #========================================
-    # Primitives of the laboratory
-    #========================================
+.. code:: python3
+
     np.random.seed(12)
     
-    N = 10                                           # number of assets
-    T = 200                                          # sample size
+    N = 10                                              # Number of assets
+    T = 200                                             # Sample size
     
     # random market portfolio (sum is normalized to 1)
     w_m = np.random.rand(N) 
-    w_m = w_m/(w_m.sum())                      
+    w_m = w_m / (w_m.sum())                      
     
     # True risk premia and variance of excess return 
-    #          (constructed so that the Sharpe ratio is 1)
-    Mu = (np.random.randn(N) + 5)/100                   # mean excess return (risk premium)   
-    S = np.random.randn(N, N)                           # random matrix for the covariance matrix
-    V = S @ S.T                                         # turn the random matrix into symmetric psd   
-    Sigma = V * (w_m @ Mu)**2 / (w_m @ V @ w_m)         # make sure that the Sharpe ratio is one
+    # (constructed so that the Sharpe ratio is 1)
+    μ = (np.random.randn(N) + 5) / 100                  # Mean excess return (risk premium)   
+    S = np.random.randn(N, N)                           # Random matrix for the covariance matrix
+    V = S @ S.T                                         # Turn the random matrix into symmetric psd   
+    Σ = V * (w_m @ μ)**2 / (w_m @ V @ w_m)              # Make sure that the Sharpe ratio is one
     
     # Risk aversion of market portfolio holder
-    delta = 1 / np.sqrt(w_m @ Sigma @ w_m)
+    δ = 1 / np.sqrt(w_m @ Sigma @ w_m)
     
     # Generate a sample of excess returns
-    excess_return = stat.multivariate_normal(Mu, Sigma)
+    excess_return = stat.multivariate_normal(μ, Σ)
     sample = excess_return.rvs(T)
-
-.. code:: ipython3
-
-    #==================================
-    # Mean-variance portfolio
-    #==================================
     
-    # Estimate mu and sigma
-    Mu_est = sample.mean(0).reshape(N, 1)
-    Sigma_est = np.cov(sample.T)
+    # Estimate μ and Σ
+    μ_est = sample.mean(0).reshape(N, 1)
+    Σ_est = np.cov(sample.T)
     
+    # Solve the constrained problem for the weights
+    w = np.linalg.solve(δ * Σ_est, μ_est)
     
-    # Solve the constrained problem for the weights (with iota @ w = 1)
-    #iota = np.ones((N, 1))                                    # column vector of ones
-    #def lamb(mu, sigma, delta):
-    #    aux_vector = iota.T @ np.linalg.inv(delta * sigma)    # save memory
-    #    return ((1 - aux_vector @ mu) / (aux_vector @ iota))[0]    # lagrange multiplier on the const
-    #w = np.linalg.solve(d_m * sigma_hat, mu_hat) + lamb(mu_hat, sigma_hat, delta) * iota)
-    
-    w = np.linalg.solve(delta * Sigma_est, Mu_est)
-    
-    fig, ax = plt.subplots(figsize = (8, 5))
-    ax.set_title('Mean-variance portfolio weights recommendation and the market portfolio ', fontsize = 12)
-    ax.plot(np.arange(N) + 1, w, 'o', color = 'k', label = '$w$ (mean-variance)')
-    ax.plot(np.arange(N) + 1, w_m, 'o', color = 'r', label = '$w_m$ (market portfolio)')
-    ax.vlines(np.arange(N) + 1, 0, w, lw = 1)
-    ax.vlines(np.arange(N) + 1, 0, w_m, lw = 1)
-    ax.axhline(0, color = 'k')
-    ax.axhline(-1, color = 'k', linestyle = '--')
-    ax.axhline(1, color = 'k', linestyle = '--')
-    ax.set_xlim([0, N+1])
-    ax.set_xlabel('Assets', fontsize = 11)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(w, 'o', color='k', label='$w$ (mean-variance)')
+    ax.plot(w_m, 'o', color='r', label='$w_m$ (market portfolio)')
+    ax.vlines(w, lw=1)
+    ax.vlines(w_m, lw=1)
+    ax.axhline(0, color='k')
+    ax.axhline(-1, color='k', linestyle='--')
+    ax.axhline(1, color='k', linestyle='--')
+    ax.set(xlim=(0, N+1), xlabel='Assets', 
+           title='Mean-variance portfolio weights recommendation and the market portfolio')
+    ax.set_xlabel('Assets', fontsize=11)
     ax.xaxis.set_ticks(np.arange(1, N + 1, 1))
-    plt.legend(numpoints = 1, loc = 'best', fontsize = 11)
+    plt.legend(numpoints=1, fontsize=11)
     plt.show()
-
-
-
-.. image:: black_litterman1_files/black_litterman1_6_0.png
-
 
 Black and Litterman's responded to this situation in the following way:
 
--  They continue to accept (3) as a good model for choosing an optimal
+-  They continue to accept :eq:`risky-portfolio` as a good model for choosing an optimal
    portfolio :math:`w`
 
 -  They want to continue to allow the customer to express his or her
    risk tolerance by setting :math:`\delta`
 
--  Leaving :math:`\Sigma`\ at its maximum-likelihood value, they push
+-  Leaving :math:`\Sigma` at its maximum-likelihood value, they push
    :math:`\mu` away from its maximum value in a way designed to make
    portfolio choices that are more plausible in terms of conforming to
-   what most people actually do.
+   what most people actually do
 
-In particular, given :math:`\Sigma`\ and a reasonable value
-of\ :math:`\delta`, Black and Litterman reverse engineered a vector
-:math:`\mu_{BL}`\ of mean excess returns that makes the\ :math:`w`
-implied by formula (3) equal the **actual** market portfolio
+In particular, given :math:`\Sigma` and a reasonable value
+of :math:`\delta`, Black and Litterman reverse engineered a vector
+:math:`\mu_{BL}` of mean excess returns that makes the :math:`w`
+implied by formula :eq:`risky-portfolio` equal the **actual** market portfolio
 :math:`w_m`, so that
 
-.. math:: w_m = (\delta \Sigma)^{-1} \mu_{BL} \quad (4)
+.. math:: w_m = (\delta \Sigma)^{-1} \mu_{BL}
 
 Details
-'''''''
+--------
 
 Let's define
 
 .. math:: w_m' \mu \equiv ( r_m - r_f) 
 
-as the (scalar) excess return on the market portfolio :math:`w_m`.
+as the (scalar) excess return on the market portfolio :math:`w_m`
 
 Define
 
 .. math:: \sigma^2 = w_m' \Sigma w_m 
 
 as the variance of the excess return on the market portfolio
-:math:`w_m`.
+:math:`w_m`
 
 Define
 
 .. math:: {\bf SR}_m = \frac{ r_m - r_f}{\sigma} 
 
-as the **Sharpe-ratio** on the market portfolio :math:`w_m`.
+as the **Sharpe-ratio** on the market portfolio :math:`w_m`
 
 Let :math:`\delta_m` be the value of the risk aversion parameter that
 induces an investor to hold the market portfolio in light of the optimal
-portfolio choice rule (3).
+portfolio choice rule :eq:`risky-portfolio`
 
-Evidently, portfolio rule (3) then implies that
+Evidently, portfolio rule :eq:`risky-portfolio` then implies that
 :math:`r_m - r_f = \delta_m \sigma^2` or
 
 .. math:: \delta_m = \frac{r_m - r_f}{\sigma^2} 
@@ -265,13 +257,13 @@ a value of :math:`\delta_m` from
 
 -  an estimate of the Sharpe-ratio, and
 
--  our maximum likelihood estimate of :math:`\sigma`\ drawn from our
-   estimates or :math:`w_m` and\ :math:`\Sigma`
+-  our maximum likelihood estimate of :math:`\sigma` drawn from our
+   estimates or :math:`w_m` and :math:`\Sigma`
 
 The second key Black-Litterman step is then to use this value of
 :math:`\delta` together with the maximum likelihood estimate of
-:math:`\Sigma`\ to deduce a\ :math:`\mu_{\bf BL}` that verifies
-portfolio rule (3) at the market portfolio :math:`w = w_m`:
+:math:`\Sigma` to deduce a :math:`\mu_{\bf BL}` that verifies
+portfolio rule :eq:`risky-portfolio` at the market portfolio :math:`w = w_m`:
 
 .. math:: \mu_m = \delta_m \Sigma w_m  
 
@@ -279,100 +271,96 @@ The starting point of the Black-Litterman portfolio choice model is thus
 a pair :math:`(\delta_m, \mu_m)` that tells the customer to hold the
 market portfolio.
 
-.. code:: ipython3
+.. code:: python3
 
-    # =====================================================
-    # Derivation of Black-Litterman pair (\delta_m, \mu_m)
-    # =====================================================
-    
     # Observed mean excess market return
-    r_m = w_m @ Mu_est
+    r_m = w_m @ μ_est
     
     # Estimated variance of market portfolio
-    sigma_m = w_m @ Sigma_est @ w_m
+    σ_m = w_m @ Σ_est @ w_m
     
     # Sharpe-ratio
-    SR_m = r_m/np.sqrt(sigma_m)
+    SR_m = r_m / np.sqrt(sigma_m)
     
     # Risk aversion of market portfolio holder
-    d_m = r_m/sigma_m
+    d_m = r_m / σ_m
     
     # Derive "view" which would induce market portfolio
-    mu_m = (d_m * Sigma_est @ w_m).reshape(N, 1)
+    μ_m = (d_m * Σ_est @ w_m).reshape(N, 1)
     
     fig, ax = plt.subplots(figsize = (8, 5))
-    ax.set_title(r'Difference between $\hat{\mu}$(estimate) and$\mu_{BL}$ (market implied)', fontsize = 12)
-    ax.plot(np.arange(N) + 1, Mu_est, 'o', color = 'k', label = '$\hat{\mu}$')
-    ax.plot(np.arange(N) + 1, mu_m, 'o', color = 'r', label = '$\mu_{BL}$')
-    ax.vlines(np.arange(N) + 1, mu_m, Mu_est, lw = 1)
-    ax.axhline(0, color = 'k', linestyle = '--')
-    ax.set_xlim([0, N + 1])
-    ax.set_xlabel('Assets', fontsize = 11)
+    ax.plot(μ_est, 'o', color='k', label='$\hat{\mu}$')
+    ax.plot(μ_m, 'o', color='r', label='$\mu_{BL}$')
+    ax.vlines(μ_m, μ_est, lw=1)
+    ax.axhline(0, color='k', linestyle='--')
+    ax.set(xlim=(0, N + 1), xlabel='Assets', 
+           title=r'Difference between $\hat{\mu}$(estimate) and$\mu_{BL}$ (market implied)')
     ax.xaxis.set_ticks(np.arange(1, N + 1, 1))
-    plt.legend(numpoints = 1, loc = 'best', fontsize = 11)
+    plt.legend(numpoints=1)
     plt.show()
 
 
-
-.. image:: black_litterman1_files/black_litterman1_9_0.png
-
-
-Adding \`\`views''
-''''''''''''''''''
+Adding *views*
+-------------------
 
 Black and Litterman start with a baseline customer who asserts that he
-or she shares the \`\`market's views'', which means that his or her
+or she shares the *market's views*, which means that his or her
 believes that excess returns are governed by
 
-.. math:: \vec r - r_f {\bf 1} \sim {\mathcal N}( \mu_{BL}, \Sigma)   , \quad (6)
+.. math::
+  :label: excess-returns
+  
+  \vec r - r_f {\bf 1} \sim {\mathcal N}( \mu_{BL}, \Sigma)
 
 Black and Litterman would advise that customer to hold the market
-portfolio of risky securities.
+portfolio of risky securities
 
 Black and Litterman then imagine a consumer who would like to express a
-view that differs from the market's. The consumer wants appropriately to
-mix his view with the market's before using (3) to choose a portfolio.
+view that differs from the market's
+
+The consumer wants appropriately to
+mix his view with the market's before using :eq:`risky-portfolio` to choose a portfolio
 
 Suppose that the customer's view is expressed by a hunch that rather
-than (6), excess returns are governed by
+than :eq:`excess-returns`, excess returns are governed by
 
 .. math:: \vec r - r_f {\bf 1} \sim {\mathcal N}( \hat \mu, \tau \Sigma)   , \quad (7)
 
 where :math:`\tau > 0` is a scalar parameter that determines how the
-decision maker wants to mix his view :math:`\hat \mu`\ with the market's
-view\ :math:`\mu_{\bf BL}`.
+decision maker wants to mix his view :math:`\hat \mu` with the market's
+view :math:`\mu_{\bf BL}`
 
 Black and Litterman would then use a formula like the following one to
-mix the views :math:`\hat \mu`\ and\ :math:`\mu_{\bf BL}`:
+mix the views :math:`\hat \mu` and :math:`\mu_{\bf BL}`:
 
 .. math:: \tilde \mu = (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  + (\tau \Sigma)^{-1} \hat \mu)  , \quad (8)
 
 Black and Litterman would then advice the customer to hold the portfolio
-associated with these views implied by rule (3):
+associated with these views implied by rule :eq:`risky-portfolio`:
 
-.. math:: \tilde w = (\delta \Sigma)^{-1} \tilde \mu , \quad (9) 
+.. math:: \tilde w = (\delta \Sigma)^{-1} \tilde \mu
 
-This portfolio :math:`\tilde w`\ will deviate from the
-portfolio\ :math:`w_{BL}` in amounts that depend on the mixing parameter
+This portfolio :math:`\tilde w` will deviate from the
+portfolio :math:`w_{BL}` in amounts that depend on the mixing parameter
 :math:`\tau`.
 
-If :math:`\hat \mu`\ is the maximum likelihood estimator
-and\ :math:`\tau` is chosen heavily to weight this view, then the
+If :math:`\hat \mu` is the maximum likelihood estimator
+and :math:`\tau` is chosen heavily to weight this view, then the
 customer's portfolio will involve big short-long positions.
 
-.. code:: ipython3
+.. code:: python3
 
-    def Black_Litterman(lamb, mu_1, mu_2, Sigma_1, Sigma_2):
+    def black_litterman(λ, μ1, μ2, Σ1, Σ2):
         """
         This function calculates the Black-Litterman mixture 
         mean excess return and covariance matrix
         """    
-        sigma1_inv = np.linalg.inv(Sigma_1)
-        sigma2_inv = np.linalg.inv(Sigma_2)
+        Σ1_inv = np.linalg.inv(Σ1)
+        Σ2_inv = np.linalg.inv(Σ2)
         
-        mu_tilde = np.linalg.solve(sigma1_inv + lamb * sigma2_inv, 
-                                   sigma1_inv @ mu_1 + lamb * sigma2_inv @ mu_2)
-        return mu_tilde
+        μ_tilde = np.linalg.solve(Σ1_inv + λ * Σ2_inv, 
+                                  Σ1_inv @ μ1 + λ * Σ2_inv @ μ2)
+        return μ_tilde
     
     #===================================
     # Example cont'
@@ -380,27 +368,25 @@ customer's portfolio will involve big short-long positions.
     #     cov  : scaled MLE cov matrix
     #===================================
     
-    tau = 1
-    mu_tilde = Black_Litterman(1, mu_m, Mu_est, Sigma_est, tau * Sigma_est)
+    τ = 1
+    μ_tilde = black_litterman(1, μ_m, μ_est, Σ_est, τ * Σ_est)
     
     # The Black-Litterman recommendation for the portfolio weights
-    w_tilde = np.linalg.solve(delta * Sigma_est, mu_tilde)
+    w_tilde = np.linalg.solve(δ * Σ_est, μ_tilde)
 
-.. code:: ipython3
-
-    tau_slider = FloatSlider(min = 0.05, max = 10, step = 0.5, value = tau)
+    τ_slider = FloatSlider(min = 0.05, max = 10, step = 0.5, value = tau)
     
     @interact(tau = tau_slider)
     def BL_plot(tau):
-        mu_tilde = Black_Litterman(1, mu_m, Mu_est, Sigma_est, tau * Sigma_est)
-        w_tilde = np.linalg.solve(delta * Sigma_est, mu_tilde)
+        mu_tilde = Black_Litterman(1, mu_m, μ_est, Σ_est, tau * Σ_est)
+        w_tilde = np.linalg.solve(delta * Σ_est, mu_tilde)
         
         fig, ax = plt.subplots(1, 2, figsize = (16, 6))
         ax[0].set_title(r'Relationship between $\hat{\mu}$, $\mu_{BL}$and$\tilde{\mu}$', fontsize = 15)
-        ax[0].plot(np.arange(N) + 1, Mu_est, 'o', color = 'k', label = r'$\hat{\mu}$ (subj view)')
+        ax[0].plot(np.arange(N) + 1, μ_est, 'o', color = 'k', label = r'$\hat{\mu}$ (subj view)')
         ax[0].plot(np.arange(N) + 1, mu_m, 'o', color = 'r', label = r'$\mu_{BL}$ (market)')
         ax[0].plot(np.arange(N) + 1, mu_tilde, 'o', color = 'y', label = r'$\tilde{\mu}$ (mixture)')
-        ax[0].vlines(np.arange(N) + 1, mu_m, Mu_est, lw = 1)
+        ax[0].vlines(np.arange(N) + 1, mu_m, μ_est, lw = 1)
         ax[0].axhline(0, color = 'k', linestyle = '--')
         ax[0].set_xlim([0, N + 1])
         ax[0].xaxis.set_ticks(np.arange(1, N + 1, 1))
@@ -424,47 +410,45 @@ customer's portfolio will involve big short-long positions.
         plt.show()
 
 
-
-.. image:: black_litterman1_files/black_litterman1_13_0.png
-
-
 Bayes interpretation of the Black-Litterman recommendation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Consider the following Bayesian interpretation of the Black-Litterman
-recommendation.
+recommendation
 
 The prior belief over the mean excess returns is consistent with the
 market porfolio and is given by
 
-.. math:: \mu \sim \mathcal{N}(\mu_{BL}, \Sigma).
+.. math:: \mu \sim \mathcal{N}(\mu_{BL}, \Sigma)
 
 Given a particular realization of the mean excess returns
-:math:`\mu`\ one observes the average excess returns\ :math:`\hat \mu`
+:math:`\mu` one observes the average excess returns :math:`\hat \mu`
 on the market according to the distribution
 
-.. math:: \hat \mu \mid \mu, \Sigma \sim \mathcal{N}(\mu, \tau\Sigma).
+.. math:: \hat \mu \mid \mu, \Sigma \sim \mathcal{N}(\mu, \tau\Sigma)
 
 where :math:`\tau` is typically small capturing the idea that the
 variation in the mean is smaller than the variation of the individual
-random variable.
+random variable
 
 Given the realized excess returns one should then update the prior over
-the mean excess returns according to Bayes rule. The corresponding
+the mean excess returns according to Bayes rule
+
+The corresponding
 posterior over mean excess returns is normally distributed with mean
 
 .. math:: (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1}\mu_{BL}   + (\tau \Sigma)^{-1} \hat \mu)
 
 The covariance matrix is
 
-.. math:: (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1}.
+.. math:: (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1}
 
 Hence, the Black-Litterman recommendation is consistent with the Bayes
 update of the prior over the mean excess returns in light of the
-realized average excess returns on the market.
+realized average excess returns on the market
 
 Curve Decolletage
-~~~~~~~~~~~~~~~~~
+------------------
 
 Consider two independent "competing" views on the excess market returns.
 
@@ -472,59 +456,69 @@ Consider two independent "competing" views on the excess market returns.
 
 and
 
-.. math:: \vec r_e \sim {\mathcal N}( \hat{\mu}, \tau\Sigma).
+.. math:: \vec r_e \sim {\mathcal N}( \hat{\mu}, \tau\Sigma)
 
 A special feature of the multivariate normal random variable
-:math:`Z`\ is that its density function depends only on the (Euclidiean)
+:math:`Z` is that its density function depends only on the (Euclidiean)
 length of its realization :math:`z`. Formally, let the
 :math:`k`-dimensional random vector be
 :math:`Z\sim \mathcal{N}(\mu, \Sigma)`,
-then\ :math:`\bar{Z} \equiv \Sigma(Z-\mu)\sim \mathcal{N}(\mathbf{0}, I)`
+then :math:`\bar{Z} \equiv \Sigma(Z-\mu)\sim \mathcal{N}(\mathbf{0}, I)`
 and so the points where the density takes the same value can be
 described by the ellipse
 
 .. math:: \bar z \cdot \bar z =  (z - \mu)'\Sigma^{-1}(z - \mu) = \bar d \quad \quad (10)
 
 where :math:`\bar d\in\mathbb{R}_+` denotes the (transformation) of a
-particular density value. The curves defined by equation (10) can be
-labelled as iso-likelihood ellipses.
+particular density value
+
+The curves defined by equation (10) can be
+labelled as iso-likelihood ellipses
 
     **Remark:** More generally there is a class of density functions
     that possesses this feature, i.e.
 
-    .. math:: \exists g: \mathbb{R}_+ \mapsto \mathbb{R}_+ \ \ \text{ and } \ \ c \geq 0, \ \ \text{s.t.  the density } \ \ f \ \ \text{of} \ \ Z  \ \ \text{ has the form } \quad f(z) = c g(z\cdot z)
+    .. math:: 
+      
+      \exists g: \mathbb{R}_+ \mapsto \mathbb{R}_+ \ \ \text{ and } \ \ c \geq 0,
+      \ \ \text{s.t.  the density } \ \ f \ \ \text{of} \ \ Z  \ \ 
+      \text{ has the form } \quad f(z) = c g(z\cdot z)
 
     This property is called **spherical symmetry** (see p 81. in Leamer
-    (1978)).
+    (1978))
 
 In our specific example, we can use the pair
 :math:`(\bar d_1, \bar d_2)` as being two "likelihood" values for which
 the corresponding isolikelihood ellipses in the excess return space are
 given by
 
-.. raw:: latex
+.. math::
 
    \begin{align}
    (\vec r_e - \mu_{BL})'\Sigma^{-1}(\vec r_e - \mu_{BL}) &= \bar d_1 \\
    (\vec r_e - \hat \mu)'\left(\tau \Sigma\right)^{-1}(\vec r_e - \hat \mu) &= \bar d_2
    \end{align}
 
-Notice that for particular :math:`\bar d_1`\ and :math:`\bar d_2` values
-the two ellipses have a tangency point. These tangency points, indexed
+Notice that for particular :math:`\bar d_1` and :math:`\bar d_2` values
+the two ellipses have a tangency point
+
+These tangency points, indexed
 by the pairs :math:`(\bar d_1, \bar d_2)`, characterize points
 :math:`\vec r_e` from which there exists no deviation where one can
 increase the likelihood of one view without decreasing the likelihood of
-the other view. The pairs\ :math:`(\bar d_1, \bar d_2)` for which there
+the other view
+
+The pairs :math:`(\bar d_1, \bar d_2)` for which there
 is such a point outlines a curve in the excess return space. This curve
-is reminiscent of the Pareto curve in an Edgeworth-box setting.
+is reminiscent of the Pareto curve in an Edgeworth-box setting
 
 Leamer (1978) calls this curve *information contract curve* and
 describes it by the following program: maximize the likelihood of one
 view, say the Black-Litterman recommendation, while keeping the
 likelihood of the other view at least at a prespecified constant
-:math:`\bar d_2`.
+:math:`\bar d_2`
 
-.. raw:: latex
+.. math::
 
    \begin{align*}
     \bar d_1(\bar d_2) &\equiv \max_{\vec r_e} \ \ (\vec r_e - \mu_{BL})'\Sigma^{-1}(\vec r_e - \mu_{BL}) \\
@@ -537,64 +531,62 @@ first-order condition is
 .. math:: 2(\vec r_e - \mu_{BL} )'\Sigma^{-1} + \lambda 2(\vec r_e - \hat\mu)'(\tau\Sigma)^{-1} = \mathbf{0}
 
 which defines the *information contract curve* between
-:math:`\mu_{BL}`\ and\ :math:`\hat \mu`
+:math:`\mu_{BL}` and :math:`\hat \mu`
 
-.. math:: \vec r_e = (\Sigma^{-1} + \lambda (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  + \lambda (\tau \Sigma)^{-1}\hat \mu ) \quad \quad (11)
+.. math:: 
+  :label: info-curve
+  
+  \vec r_e = (\Sigma^{-1} + \lambda (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  
+  + \lambda (\tau \Sigma)^{-1}\hat \mu )
 
-Note that if :math:`\lambda = 1`, (11) is equivalent with (8) and it
+Note that if :math:`\lambda = 1`, :eq:`info-curve` is equivalent with (8) and it
 identifies one point on the information contract curve. Furthermore,
-because :math:`\lambda`\ is a function of the minimum likelihood
+because :math:`\lambda` is a function of the minimum likelihood
 :math:`\bar d_2` on the RHS of the constraint, by varying
 :math:`\bar d_2` (or:math:`\lambda`), we can trace out the whole curve
-as the figure below illustrates.
+as the figure below illustrates
 
-.. code:: ipython3
+.. code:: python3
 
-    #========================================
-    # Draw a new sample for two assets
-    #========================================
     np.random.seed(1987102)
     
-    N_new = 2                                           # number of assets
-    T_new = 200                                         # sample size
+    N = 2                                           # Number of assets
+    T = 200                                         # Sample size
+    τ = 0.8
     
-    tau_new = .8
+    # Random market portfolio (sum is normalized to 1)
+    w_m = np.random.rand(N) 
+    w_m = w_m / (w_m.sum())                      
     
-    # random market portfolio (sum is normalized to 1)
-    w_m_new = np.random.rand(N_new) 
-    w_m_new = w_m_new/(w_m_new.sum())                      
+    μ = (np.random.randn(N) + 5) / 100                   
+    S = np.random.randn(N, N)                       
+    V = S @ S.T                                     
+    Sigma = V * (w_m @ μ)**2 / (w_m @ V @ w_m)
     
-    Mu_new = (np.random.randn(N_new) + 5)/100                   
-    S_new = np.random.randn(N_new, N_new)                       
-    V_new = S_new @ S_new.T                                     
-    Sigma_new = V_new * (w_m_new @ Mu_new)**2 / (w_m_new @ V_new @ w_m_new)
+    excess_return = stat.multivariate_normal(μ, Σ)
+    sample = excess_return.rvs(T)
     
-    excess_return_new = stat.multivariate_normal(Mu_new, Sigma_new)
-    sample_new = excess_return_new.rvs(T_new)
+    μ_est = sample.mean(0).reshape(N, 1)
+    Σ_est = np.cov(sample.T)
     
-    Mu_est_new = sample_new.mean(0).reshape(N_new, 1)
-    Sigma_est_new = np.cov(sample_new.T)
-    
-    sigma_m_new = w_m_new @ Sigma_est_new @ w_m_new
-    d_m_new = (w_m_new @ Mu_est_new)/sigma_m_new
-    mu_m_new = (d_m_new * Sigma_est_new @ w_m_new).reshape(N_new, 1)
-
-.. code:: ipython3
+    σ_m = w_m @ Σ_est @ w_m
+    d_m = (w_m @ μ_est) / σ_m
+    μ_m = (d_m * Σ_est @ w_m).reshape(N, 1)
 
     N_r1, N_r2 = 100, 100
     r1 = np.linspace(-0.04, .1, N_r1)
     r2 = np.linspace(-0.02, .15, N_r2)
     
-    lamb_grid = np.linspace(.001, 20, 100)
-    curve = np.asarray([Black_Litterman(l, mu_m_new, Mu_est_new, Sigma_est_new, 
-                                        tau_new*Sigma_est_new).flatten() for l in lamb_grid]) 
+    λ_grid = np.linspace(.001, 20, 100)
+    curve = np.asarray([black_litterman(λ, μ_m, μ_est, Σ_est, 
+                                        τ * Σ_est).flatten() for λ in λ_grid]) 
     
-    lamb_slider = FloatSlider(min = .1, max = 7, step = .5, value = 1)
+    λ_slider = FloatSlider(min = .1, max = 7, step = .5, value = 1)
     
-    @interact(lamb = lamb_slider)
+    @interact(lamb = λ_slider)
     def decolletage(lamb):
-        dist_r_BL = stat.multivariate_normal(mu_m_new.squeeze(), Sigma_est_new)
-        dist_r_hat = stat.multivariate_normal(Mu_est_new.squeeze(), tau_new * Sigma_est_new)
+        dist_r_BL = stat.multivariate_normal(mu_m.squeeze(), Σ_est)
+        dist_r_hat = stat.multivariate_normal(μ_est.squeeze(), tau * Σ_est)
         
         X, Y = np.meshgrid(r1, r2)
         Z_BL = np.zeros((N_r1, N_r2))
@@ -605,57 +597,54 @@ as the figure below illustrates.
                 Z_BL[i, j] = dist_r_BL.pdf(np.hstack([X[i, j], Y[i, j]]))
                 Z_hat[i, j] = dist_r_hat.pdf(np.hstack([X[i, j], Y[i, j]]))
         
-        mu_tilde_new = Black_Litterman(lamb, mu_m_new, Mu_est_new, Sigma_est_new, 
-                                       tau_new * Sigma_est_new).flatten()
+        mu_tilde = Black_Litterman(lamb, mu_m, μ_est, Σ_est, 
+                                       tau * Σ_est).flatten()
         
         fig, ax = plt.subplots(figsize = (10, 6))
         ax.contourf(X, Y, Z_hat, cmap = 'viridis', alpha =.4)
         ax.contourf(X, Y, Z_BL, cmap = 'viridis', alpha =.4)
-        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(mu_tilde_new)], cmap = 'viridis', alpha = .9)
-        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(mu_tilde_new)], cmap = 'viridis', alpha = .9)
-        ax.scatter(Mu_est_new[0], Mu_est_new[1])
-        ax.scatter(mu_m_new[0], mu_m_new[1])
+        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(mu_tilde)], cmap = 'viridis', alpha = .9)
+        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(mu_tilde)], cmap = 'viridis', alpha = .9)
+        ax.scatter(μ_est[0], μ_est[1])
+        ax.scatter(mu_m[0], mu_m[1])
         
-        ax.scatter(mu_tilde_new[0], mu_tilde_new[1], color = 'k', s = 20*3)
+        ax.scatter(mu_tilde[0], mu_tilde[1], color = 'k', s = 20*3)
         
         ax.plot(curve[:, 0], curve[:, 1], color = 'k')
         ax.axhline(0, color = 'k', alpha = .8)
         ax.axvline(0, color = 'k', alpha = .8)
         ax.set_xlabel(r'Excess return on the first asset, $r_{e, 1}$', fontsize = 12)
         ax.set_ylabel(r'Excess return on the second asset, $r_{e, 2}$', fontsize = 12)
-        ax.text(Mu_est_new[0] + 0.003, Mu_est_new[1], r'$\hat{\mu}$', fontsize = 20)
-        ax.text(mu_m_new[0] + 0.003, mu_m_new[1] + 0.005, r'$\mu_{BL}$', fontsize = 20)
-
-
-
-
-.. image:: black_litterman1_files/black_litterman1_17_0.png
+        ax.text(μ_est[0] + 0.003, μ_est[1], r'$\hat{\mu}$', fontsize = 20)
+        ax.text(mu_m[0] + 0.003, mu_m[1] + 0.005, r'$\mu_{BL}$', fontsize = 20)
 
 
 Note that the line that connects the two points
-:math:`\hat \mu`\ and\ :math:`\mu_{BL}` is linear, which comes from the
+:math:`\hat \mu` and :math:`\mu_{BL}` is linear, which comes from the
 fact that the covariance matrices of the two competing distributions
-(views) are proportional to each other.
+(views) are proportional to each other
 
 To illustrate the fact that this is not necessarily the case, consider
 another example using the same parameter values, except that the "second
 view" constituting the constraint has covariance matrix
-:math:`\tau I`\ instead of :math:`\tau \Sigma`. This leads to the
+:math:`\tau I` instead of :math:`\tau \Sigma`
+
+This leads to the
 following figure, on which the curve connecting :math:`\hat \mu`
-and\ :math:`\mu_{BL}` are bending.
+and :math:`\mu_{BL}` are bending
 
-.. code:: ipython3
+.. code:: python3
 
-    lamb_grid2 = np.linspace(.001, 20000, 1000)
-    curve2 = np.asarray([Black_Litterman(l, mu_m_new, Mu_est_new, Sigma_est_new, 
-                                        tau_new*np.eye(N_new)).flatten() for l in lamb_grid2]) 
+    λ_grid = np.linspace(.001, 20000, 1000)
+    curve = np.asarray([black_litterman(λ, μ_m, μ_est, Σ_est, 
+                                        τ * np.eye(N)).flatten() for λ in λ_grid]) 
     
-    lamb_slider2 = FloatSlider(min = 5, max = 1500, step = 100, value = 200)
+    λ_slider = FloatSlider(min = 5, max = 1500, step = 100, value = 200)
     
-    @interact(lamb = lamb_slider2)
+    @interact(lamb=λ_slider)
     def decolletage(lamb):
-        dist_r_BL = stat.multivariate_normal(mu_m_new.squeeze(), Sigma_est_new)
-        dist_r_hat = stat.multivariate_normal(Mu_est_new.squeeze(), tau_new * np.eye(N_new))
+        dist_r_BL = stat.multivariate_normal(μ_m.squeeze(), Σ_est)
+        dist_r_hat = stat.multivariate_normal(μ_est.squeeze(), τ * np.eye(N))
         
         X, Y = np.meshgrid(r1, r2)
         Z_BL = np.zeros((N_r1, N_r2))
@@ -666,103 +655,122 @@ and\ :math:`\mu_{BL}` are bending.
                 Z_BL[i, j] = dist_r_BL.pdf(np.hstack([X[i, j], Y[i, j]]))
                 Z_hat[i, j] = dist_r_hat.pdf(np.hstack([X[i, j], Y[i, j]]))
         
-        mu_tilde_new = Black_Litterman(lamb, mu_m_new, Mu_est_new, Sigma_est_new, 
-                                       tau_new * np.eye(N_new)).flatten()
+        mu_tilde = Black_Litterman(lamb, mu_m, μ_est, Σ_est, 
+                                       tau * np.eye(N)).flatten()
         
         fig, ax = plt.subplots(figsize = (10, 6))
         ax.contourf(X, Y, Z_hat, cmap = 'viridis', alpha = .4)
         ax.contourf(X, Y, Z_BL, cmap = 'viridis', alpha = .4)
-        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(mu_tilde_new)], cmap='viridis', alpha =.9)
-        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(mu_tilde_new)], cmap='viridis', alpha =.9)
-        ax.scatter(Mu_est_new[0], Mu_est_new[1])
-        ax.scatter(mu_m_new[0], mu_m_new[1])
+        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(mu_tilde)], cmap='viridis', alpha =.9)
+        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(mu_tilde)], cmap='viridis', alpha =.9)
+        ax.scatter(μ_est[0], μ_est[1])
+        ax.scatter(mu_m[0], mu_m[1])
         
-        ax.scatter(mu_tilde_new[0], mu_tilde_new[1], color = 'k', s = 20*3)
+        ax.scatter(mu_tilde[0], mu_tilde[1], color = 'k', s = 20*3)
         
         ax.plot(curve2[:, 0], curve2[:, 1], color = 'k')
         ax.axhline(0, color = 'k', alpha = .8)
         ax.axvline(0, color = 'k', alpha = .8)
         ax.set_xlabel(r'Excess return on the first asset, $r_{e, 1}$', fontsize = 12)
         ax.set_ylabel(r'Excess return on the second asset, $r_{e, 2}$', fontsize = 12)
-        ax.text(Mu_est_new[0] + 0.003, Mu_est_new[1], r'$\hat{\mu}$', fontsize = 20)
-        ax.text(mu_m_new[0] + 0.003, mu_m_new[1] + 0.005, r'$\mu_{BL}$', fontsize = 20)
+        ax.text(μ_est[0] + 0.003, μ_est[1], r'$\hat{\mu}$', fontsize = 20)
+        ax.text(mu_m[0] + 0.003, mu_m[1] + 0.005, r'$\mu_{BL}$', fontsize = 20)
     
 
-
-
-
-.. image:: black_litterman1_files/black_litterman1_19_0.png
-
-
 Black-Litterman recommendation as regularization
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------
 
-First, consider the OLS regression.
+First, consider the OLS regression
 
 .. math:: \min_{\beta} \Vert X\beta - y \Vert^2
 
 which yields the solution
 
-.. math:: \hat{\beta}_{OLS} = (X'X)^{-1}X'y.
+.. math:: \hat{\beta}_{OLS} = (X'X)^{-1}X'y
 
 A common performance measure of estimators is the *mean squared error
-(MSE)*. An estimator is "good" if its MSE is realtively small. Suppose
+(MSE)*
+
+An estimator is "good" if its MSE is realtively small. Suppose
 that :math:`\beta_0` is the "true" value of the coefficent, then the MSE
 of the OLS estimator is
 
-.. math:: \text{mse}(\hat \beta_{OLS}, \beta_0) := \mathbb E \Vert \hat \beta_{OLS} - \beta_0\Vert^2 = \underbrace{\mathbb E \Vert \hat \beta_{OLS} - \mathbb E  \beta_{OLS}\Vert^2}_{\text{variance}} + \underbrace{\Vert \mathbb E \hat\beta_{OLS} - \beta_0\Vert^2}_{\text{bias}}
+.. math:: 
+  
+  \text{mse}(\hat \beta_{OLS}, \beta_0) := \mathbb E \Vert \hat \beta_{OLS} - \beta_0\Vert^2 = 
+  \underbrace{\mathbb E \Vert \hat \beta_{OLS} - \mathbb E  
+  \beta_{OLS}\Vert^2}_{\text{variance}} + 
+  \underbrace{\Vert \mathbb E \hat\beta_{OLS} - \beta_0\Vert^2}_{\text{bias}}
 
 From this decomposition one can see that in order for the MSE to be
-small, both the bias and the variance terms must be small. For example,
-consider the case when :math:`X`\ is a :math:`T`-vector of ones (where
+small, both the bias and the variance terms must be small
+
+For example,
+consider the case when :math:`X` is a :math:`T`-vector of ones (where
 :math:`T` is the sample size), so :math:`\hat\beta_{OLS}` is simply the
 sample average, while :math:`\beta_0\in \mathbb{R}` is defined by the
-true mean of\ :math:`y`. In this example the MSE is
+true mean of :math:`y`
 
-.. math:: \text{mse}(\hat \beta_{OLS}, \beta_0) = \underbrace{\frac{1}{T^2} \mathbb E \left(\sum_{t=1}^{T} (y_{t}- \beta_0)\right)^2 }_{\text{variance}} + \underbrace{0}_{\text{bias}}
+In this example the MSE is
+
+.. math:: 
+  
+  \text{mse}(\hat \beta_{OLS}, \beta_0) = \underbrace{\frac{1}{T^2} 
+  \mathbb E \left(\sum_{t=1}^{T} (y_{t}- \beta_0)\right)^2 }_{\text{variance}} + 
+  \underbrace{0}_{\text{bias}}
 
 However, because there is a trade-off between the estimator's bias and
 variance, there are cases when by permitting a small bias we can
-substantially reduce the variance so overall the MSE gets smaller. A
-typical scenario when this proves to be useful is when the number of
-coefficients to be estimated is large relative to the sample size.
+substantially reduce the variance so overall the MSE gets smaller
+
+A typical scenario when this proves to be useful is when the number of
+coefficients to be estimated is large relative to the sample size
 
 In these cases one approach to handle the bias-variance trade-off is the
-so called *Tikhonov regularization*. A general form with regularization
-matrix :math:`\Gamma` can be written as
+so called *Tikhonov regularization*
+
+A general form with regularization matrix :math:`\Gamma` can be written as
 
 .. math:: \min_{\beta} \Big\{ \Vert X\beta - y \Vert^2 + \Vert \Gamma (\beta - \tilde \beta) \Vert^2 \Big\}
 
 which yields the solution
 
-.. math:: \hat{\beta}_{Reg} = (X'X + \Gamma'\Gamma)^{-1}(X'y + \Gamma'\Gamma\tilde \beta).
+.. math:: \hat{\beta}_{Reg} = (X'X + \Gamma'\Gamma)^{-1}(X'y + \Gamma'\Gamma\tilde \beta)
 
 Substituting the value of :math:`\hat{\beta}_{OLS}` yields
 
-.. math:: \hat{\beta}_{Reg} = (X'X + \Gamma'\Gamma)^{-1}(X'X\hat{\beta}_{OLS} + \Gamma'\Gamma\tilde \beta).
+.. math:: \hat{\beta}_{Reg} = (X'X + \Gamma'\Gamma)^{-1}(X'X\hat{\beta}_{OLS} + \Gamma'\Gamma\tilde \beta)
 
 Often, the regularization matrix takes the form
-:math:`\Gamma = \lambda I`\ with :math:`\lambda>0`
-and\ :math:`\tilde \beta = \mathbf{0}`. Then the Tikhonov regularization
-is equivalent to what is called *ridge regression* in statistics.
+:math:`\Gamma = \lambda I` with :math:`\lambda>0`
+and :math:`\tilde \beta = \mathbf{0}`
+
+Then the Tikhonov regularization is equivalent to what is called *ridge regression* in statistics
 
 To illustrate how this estimator addresses the bias-variance trade-off,
 we compute the MSE of the ridge estimator
 
-.. math:: \text{mse}(\hat \beta_{\text{ridge}}, \beta_0) = \underbrace{\frac{1}{(T+\lambda)^2} \mathbb E \left(\sum_{t=1}^{T} (y_{t}- \beta_0)\right)^2 }_{\text{variance}} + \underbrace{\left(\frac{\lambda}{T+\lambda}\right)^2 \beta_0^2}_{\text{bias}}
+.. math:: 
+  
+  \text{mse}(\hat \beta_{\text{ridge}}, \beta_0) = \underbrace{\frac{1}{(T+\lambda)^2} 
+  \mathbb E \left(\sum_{t=1}^{T} (y_{t}- \beta_0)\right)^2 }_{\text{variance}} + 
+  \underbrace{\left(\frac{\lambda}{T+\lambda}\right)^2 \beta_0^2}_{\text{bias}}
 
 The ridge regression shrinks the coefficients of the estimated vector
 towards zero relative to the OLS estimates thus reducing the variance
-term at the cost of introducing a "small" bias. However, there is
-nothing special about the zero vector. When
-:math:`\tilde \beta \neq \mathbf{0}`\ shrinkage occurs in the direction
-of\ :math:`\tilde \beta`.
+term at the cost of introducing a "small" bias
+
+However, there is nothing special about the zero vector
+
+When :math:`\tilde \beta \neq \mathbf{0}` shrinkage occurs in the direction
+of :math:`\tilde \beta`
 
 Now, we can give a regularization interpretation of the Black-Litterman
-portfolio recommendation. To this end, simplify first the equation (8)
-characterizing the Black-Litterman recommendation
+portfolio recommendation
 
-.. raw:: latex
+To this end, simplify first the equation (8) characterizing the Black-Litterman recommendation
+
+.. math::
 
    \begin{align*}
    \tilde \mu &= (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1}\mu_{BL}  + (\tau \Sigma)^{-1}\hat \mu) \\
@@ -773,20 +781,21 @@ characterizing the Black-Litterman recommendation
 In our case, :math:`\hat \mu` is the estimated mean excess returns of
 securities. This could be written as a vector autoregression where
 
--  :math:`y`\ is the stacked vector of observed excess returns of size
-   :math:`(N T\times 1)` -- :math:`N` securities and\ :math:`T`
+-  :math:`y` is the stacked vector of observed excess returns of size
+   :math:`(N T\times 1)` -- :math:`N` securities and :math:`T`
    observations
 
--  :math:`X = \sqrt{T^{-1}}(I_{N} \otimes \iota_T)`\ where :math:`I_N`
-   is the identity matrix and\ :math:`\iota_T` is a column vector of
+-  :math:`X = \sqrt{T^{-1}}(I_{N} \otimes \iota_T)` where :math:`I_N`
+   is the identity matrix and :math:`\iota_T` is a column vector of
    ones.
 
-Correspondingly, the OLS regression of :math:`y`\ on :math:`X` would
-yield the mean excess returns as coefficients.
-With\ :math:`\Gamma = \sqrt{\tau T^{-1}}(I_{N} \otimes \iota_T)` we can
-write the regularized version of the mean excess return estimation.
+Correspondingly, the OLS regression of :math:`y` on :math:`X` would
+yield the mean excess returns as coefficients
 
-.. raw:: latex
+With :math:`\Gamma = \sqrt{\tau T^{-1}}(I_{N} \otimes \iota_T)` we can
+write the regularized version of the mean excess return estimation
+
+.. math::
 
    \begin{align*}
    \hat{\beta}_{Reg} &= (X'X + \Gamma'\Gamma)^{-1}(X'X\hat{\beta}_{OLS} + \Gamma'\Gamma\tilde \beta) \\
@@ -796,47 +805,49 @@ write the regularized version of the mean excess return estimation.
    \end{align*}
 
 Given that
-:math:`\hat \beta_{OLS} = \hat \mu`\ and\ :math:`\tilde \beta = \mu_{BL}`
+:math:`\hat \beta_{OLS} = \hat \mu` and :math:`\tilde \beta = \mu_{BL}`
 in the Black-Litterman model we have the following interpretation of the
-model's recommendation.
+model's recommendation
 
 The estimated (personal) view of the mean excess returns,
-:math:`\hat{\mu}`\ that would lead to extreme short-long positions are
-"shrunk" towards the conservative market view,\ :math:`\mu_{BL}`. that
-leads to the more conservative market portfolio.
+:math:`\hat{\mu}` that would lead to extreme short-long positions are
+"shrunk" towards the conservative market view, :math:`\mu_{BL}`, that
+leads to the more conservative market portfolio
 
 So the Black-Litterman procedure results in a recommendation that is a
 compromise between the conservative market portfolio and the more
-extreme portfolio that is implied by estimated "personal" views.
+extreme portfolio that is implied by estimated "personal" views
 
 Digression on :math:`{\sf T}` operator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 The Black-Litterman approach is partly inspired by the econometric
 insight that it is easier to estimate covariances of excess returns than
-the means. That is what gave Black and Litterman license to adjust
+the means
+
+That is what gave Black and Litterman license to adjust
 investors' perception of mean excess returns while not tampering with
-the covariance matrix of excess returns.
+the covariance matrix of excess returns
 
 The robust control theory is another approach that also hinges on
-adjusting mean excess returns but not covariances.
+adjusting mean excess returns but not covariances
 
 Associated with a robust control problem is what Hansen and Sargent call
-a :math:`{\sf T}` operator.
+a :math:`{\sf T}` operator
 
 Let's define the :math:`{\sf T}` operator as it applies to the problem
-at hand.
+at hand
 
-Let :math:`x`\ be an :math:`n \times 1` Gaussian random vector with mean
-vector\ :math:`\mu` and covariance matrix :math:`\Sigma = C C'`. This
-means that\ :math:`x` can be represented as
+Let :math:`x` be an :math:`n \times 1` Gaussian random vector with mean
+vector :math:`\mu` and covariance matrix :math:`\Sigma = C C'`. This
+means that :math:`x` can be represented as
 
 .. math:: x = \mu + C \epsilon 
 
-where :math:`\epsilon \sim {\mathcal N}(0,I)`.
+where :math:`\epsilon \sim {\mathcal N}(0,I)`
 
 Let :math:`\phi(\epsilon)` denote the associated standardized Gaussian
-density.
+density
 
 Let :math:`m(\epsilon,\mu)` be a **likelihood ratio**, meaning that it
 satisfies
@@ -846,17 +857,16 @@ satisfies
 -  :math:`\int m(\epsilon,\mu) \phi(\epsilon) d \epsilon =1`
 
 That is, :math:`m(\epsilon, \mu)` is a nonnegative random variable with
-mean 1.
+mean 1
 
-Multiplying $:raw-latex:`\phi`(:raw-latex:`\epsilon`)
-:math:`by the likelihood ratio`\ m(:raw-latex:`\epsilon`,
-:raw-latex:`\mu`)$ produces a distorted distribution for
-:math:`\epsilon`, namely,
+Multiplying :math:`\phi(\epsilon)`
+by the likelihood ratio :math:`m(\epsilon, \mu)` produces a distorted distribution for
+:math:`\epsilon`, namely
 
 .. math:: \tilde \phi(\epsilon) = m(\epsilon,\mu) \phi(\epsilon) 
 
 The next concept that we need is the **entropy** of the distorted
-distribution :math:`\tilde \phi`\ with respect to\ :math:`\phi`.
+distribution :math:`\tilde \phi` with respect to :math:`\phi`
 
 **Entropy** is defined as
 
@@ -868,16 +878,18 @@ or
 
 That is, relative entropy is the expected value of the likelihood ratio
 :math:`m` where the expectation is taken with respect to the twisted
-density :math:`\tilde \phi`.
+density :math:`\tilde \phi`
 
 Relative entropy is nonnegative. It is a measure of the discrepancy
-between two probability distributions. As such, it plays an important
+between two probability distributions
+
+As such, it plays an important
 role in governing the behavior of statistical tests designed to
-discriminate one probability distribution from another.
+discriminate one probability distribution from another
 
-We are ready to define the :math:`{\sf T}` operator.
+We are ready to define the :math:`{\sf T}` operator
 
-Let :math:`V(x)` be a value function.
+Let :math:`V(x)` be a value function
 
 Define
 
@@ -887,7 +899,7 @@ Define
                             & = - \log \theta \int \exp \left( \frac{- V(\mu + C \epsilon)}{\theta} \right) \phi(\epsilon) d \epsilon } 
 
 This asserts that :math:`{\sf T}` is an indirect utility function for a
-minimization problem in which an \`\`evil agent'' chooses a distorted
+minimization problem in which an **evil agent** chooses a distorted
 probablity distribution :math:`\tilde \phi` to lower expected utility,
 subject to a penalty term that gets bigger the larger is relative
 entropy.
