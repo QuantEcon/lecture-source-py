@@ -5,32 +5,3 @@
 				<img style="width:250px;display:inline;" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
 			</a>
 		</div>
-
-		<ul class="badges" style="display:none;">
-			<li><a href="#"><img src="/_static/img/jupyter-notebook-run-FDD935.svg" id="notebook_run_badge"></a></li>
-			<li><a href="#"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
-			<li><a href="#"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
-			<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
-		</ul>
-
-		<script>
-		var path = window.location.pathname;
-		var pageName = path.split("/").pop().split(".")[0];
-		var notebookRunLink = ["https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/", pageName, ".ipynb"].join("");
-		document.getElementById('notebook_run_badge').parentElement.setAttribute('href', notebookRunLink);
-		var notebookDownloadLink = ["/", "_downloads/ipynb/py/", pageName, ".ipynb"].join("");
-		document.getElementById('notebook_download_badge').parentElement.setAttribute('href', notebookDownloadLink);
-		var pdfDownloadLink = ["/", "_downloads/pdf/py/", pageName, ".pdf"].join("");
-		document.getElementById('pdf_download_badge').parentElement.setAttribute('href', pdfDownloadLink);
-		</script>
-
-		<div class="how-to" style="display:none;">
-			<a href="#" class="toggle"><span class="icon icon-angle-double-down"></span>How to read this lecture...</a>
-			<div class="how-to-content">
-				<p>Code should execute sequentially if run in a Jupyter notebook</p>
-				<ul>
-					<li>See the <a href="/py/getting_started.html">set up page</a> to install Jupyter, Python and all necessary libraries</li>
-					<li>Please direct feedback to <a href="mailto:contact@quantecon.org">contact@quantecon.org</a> or the <a href="http://discourse.quantecon.org/">discourse forum</a></li>
-				</ul>
-			</div>
-		</div>
