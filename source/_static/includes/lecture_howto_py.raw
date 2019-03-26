@@ -7,6 +7,7 @@
 		</div>
 
 		<ul class="badges" style="display:none;">
+			<li><a href="#"><img src="/_static/img/jupyter-notebook-run-FDD935.svg" id="notebook_run_badge"></a></li>
 			<li><a href="#"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
 			<li><a href="#"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 			<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
@@ -15,6 +16,8 @@
 		<script>
 		var path = window.location.pathname;
 		var pageName = path.split("/").pop().split(".")[0];
+		var notebookRunLink = ["https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/", pageName, ".ipynb"].join("");
+		document.getElementById('notebook_run_badge').parentElement.setAttribute('href', notebookRunLink);
 		var notebookDownloadLink = ["/", "_downloads/ipynb/py/", pageName, ".ipynb"].join("");
 		document.getElementById('notebook_download_badge').parentElement.setAttribute('href', notebookDownloadLink);
 		var pdfDownloadLink = ["/", "_downloads/pdf/py/", pageName, ".pdf"].join("");
