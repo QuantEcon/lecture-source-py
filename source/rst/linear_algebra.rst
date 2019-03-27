@@ -1,6 +1,6 @@
 .. _linear_algebra:
 
-.. include:: /_static/includes/lecture_howto_py.raw
+.. include:: /_static/includes/header.raw
 
 ***********************************
 Linear Algebra
