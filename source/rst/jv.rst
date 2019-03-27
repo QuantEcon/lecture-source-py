@@ -13,6 +13,13 @@
 
 .. contents:: :depth: 2
 
+In addition to what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+
+  !pip install quantecon
+  !pip install interpolation
+
 Overview
 ============
 

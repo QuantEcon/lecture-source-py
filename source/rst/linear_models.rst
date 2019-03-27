@@ -17,6 +17,11 @@ Linear State Space Models
 
     "We may regard the present state of the universe as the effect of its past and the cause of its future" -- Marquis de Laplace
 
+In addition to what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+
+  !pip install quantecon
 
 Overview
 ============

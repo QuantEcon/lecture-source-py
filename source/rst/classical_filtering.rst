@@ -4,11 +4,13 @@
 
 .. highlight:: python3
 
-.. contents:: :depth: 2
 
 ****************************************************
 Classical Filtering With Linear Algebra
 ****************************************************
+
+.. contents:: :depth: 2
+
 
 
 Overview

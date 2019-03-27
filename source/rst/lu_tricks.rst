@@ -4,12 +4,11 @@
 
 .. highlight:: python3
 
-.. contents:: :depth: 2
-
 **************************************************** 
 Classical Control with Linear Algebra
 ****************************************************
 
+.. contents:: :depth: 2
 
 
 Overview

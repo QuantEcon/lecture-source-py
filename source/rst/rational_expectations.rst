@@ -12,6 +12,11 @@
 
     "If you're so smart, why aren't you rich?"
 
+In addition what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+
+  !pip install quantecon
 
 Overview
 ============

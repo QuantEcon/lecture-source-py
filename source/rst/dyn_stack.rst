@@ -7,6 +7,17 @@
 Stackelberg Plans
 *****************************************************
 
+.. contents:: :depth: 2
+
+In addition to what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+
+  !pip install quantecon
+  
+Overview
+=========
+
 This notebook formulates and computes a plan that a **Stackelberg
 leader** uses to manipulate forward-looking decisions of a **Stackelberg
 follower** that depend on continuation sequences of decisions made once
