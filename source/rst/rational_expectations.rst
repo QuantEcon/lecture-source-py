@@ -1,6 +1,6 @@
 .. _ree:
 
-.. include:: /_static/includes/lecture_howto_py.raw
+.. include:: /_static/includes/header.raw
 
 *********************************************
 :index:`Rational Expectations Equilibrium`

@@ -1,6 +1,6 @@
 .. _amss2:
 
-.. include:: /_static/includes/lecture_howto_py.raw
+.. include:: /_static/includes/header.raw
 
 ***********************************************************
 Fluctuating Interest Rates Deliver Fiscal Insurance 

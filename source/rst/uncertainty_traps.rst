@@ -1,6 +1,6 @@
 .. _uncertainty_traps:
 
-.. include:: /_static/includes/lecture_howto_py.raw
+.. include:: /_static/includes/header.raw
 
 .. highlight:: python3
 

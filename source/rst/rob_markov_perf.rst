@@ -1,5 +1,6 @@
 .. _rob_markov_perf:
 
+.. include:: /_static/includes/header.raw
 
 **********************************
 Robust Markov Perfect Equilibrium
