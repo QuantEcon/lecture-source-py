@@ -952,7 +952,7 @@ Wald summarizes Neyman and Pearson's setup as follows:
 
     .. math::
 
-        \frac{ f_1(z_1) \cdots f_1(z_n)}{f_0(z_1) \cdots f_1(z_n)} \geq k 
+        \frac{ f_0(z_1) \cdots f_0(z_n)}{f_1(z_1) \cdots f_1(z_n)} \geq k 
     
 
    is a most powerful critical region for testing the hypothesis
