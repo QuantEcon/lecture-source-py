@@ -874,16 +874,16 @@ to illustrate the main ideas:
 
 To quote Abraham Wald,
 
-   A test procedure leading to the acceptance or rejection of the
+   A test procedure leading to the acceptance or rejection of the \[null\]
    hypothesis in question is simply a rule specifying, for each possible
-   sample of size :math:`n`, whether the hypothesis should be accepted
+   sample of size :math:`n`, whether the \[null\] hypothesis should be accepted
    or rejected on the basis of the sample. This may also be expressed as
    follows: A test procedure is simply a subdivision of the totality of
    all possible samples of size :math:`n` into two mutually exclusive
    parts, say part 1 and part 2, together with the application of the
-   rule that the hypothesis be accepted if the observed sample is
+   rule that the \[null\] hypothesis be accepted if the observed sample is
    contained in part 2. Part 1 is also called the critical region. Since
-   part 2 is the totality of all samples of size `n` which are not
+   part 2 is the totality of all samples of size :math:`n` which are not
    included in part 1, part 2 is uniquely determined by part 1. Thus,
    choosing a test procedure is equivalent to determining a critical
    region.
