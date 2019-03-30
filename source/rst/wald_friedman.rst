@@ -883,7 +883,7 @@ To quote Abraham Wald,
    parts, say part 1 and part 2, together with the application of the
    rule that the hypothesis be accepted if the observed sample is
    contained in part 2. Part 1 is also called the critical region. Since
-   part 2 is the totality of all samples of size 2 which are not
+   part 2 is the totality of all samples of size `n` which are not
    included in part 1, part 2 is uniquely determined by part 1. Thus,
    choosing a test procedure is equivalent to determining a critical
    region.
