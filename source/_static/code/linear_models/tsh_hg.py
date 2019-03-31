@@ -28,7 +28,7 @@ mu_x, mu_y, Sigma_x, Sigma_y = ar.stationary_distributions()
 f_y = norm(loc=float(mu_y), scale=float(np.sqrt(Sigma_y)))
 
 y = y.flatten()
-ax.hist(y, bins=50, normed=True, alpha=0.4)
+ax.hist(y, bins=50, density=True, alpha=0.4)
 
 ygrid = np.linspace(ymin, ymax, 150)
 ax.plot(ygrid, f_y.pdf(ygrid), 'k-', lw=2, alpha=0.8, label='true density')
