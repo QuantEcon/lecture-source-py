@@ -11,6 +11,7 @@ Linear Regression in Python
 In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
+  :class: no-output
 
   !pip install linearmodels
 
