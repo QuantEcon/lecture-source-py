@@ -43,6 +43,6 @@ for i in range(20):
 
 y = y.flatten()
 axes[1].set_ylim(ymin, ymax)
-axes[1].hist(sample, bins=16, normed=True, orientation='horizontal', alpha=0.5)
+axes[1].hist(sample, bins=16, density=True, orientation='horizontal', alpha=0.5)
 
 plt.show()

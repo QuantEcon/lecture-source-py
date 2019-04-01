@@ -131,7 +131,7 @@ Here's an example of usage
     grid = np.linspace(0.01, 0.99, 100)
 
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(obs, bins=40, normed=True)
+    ax.hist(obs, bins=40, density=True)
     ax.plot(grid, q.pdf(grid), 'k-', linewidth=2)
     plt.show()
 
@@ -181,7 +181,7 @@ For example, the previous code can be replaced by
     grid = np.linspace(0.01, 0.99, 100)
 
     fig, ax = plt.subplots()
-    ax.hist(obs, bins=40, normed=True)
+    ax.hist(obs, bins=40, density=True)
     ax.plot(grid, beta.pdf(grid, 5, 5), 'k-', linewidth=2)
     plt.show()
 

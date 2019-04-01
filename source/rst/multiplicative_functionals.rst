@@ -370,8 +370,8 @@ Let's see a histogram of the log-likelihoods under the true and the alternative 
 
     fig, ax = plt.subplots(figsize=(8, 6))
     
-    plt.hist(LLT, bins=50, alpha=0.5, label='True', normed=True)
-    plt.hist(LLT2, bins=50, alpha=0.5, label='Alternative', normed=True)
+    plt.hist(LLT, bins=50, alpha=0.5, label='True', density=True)
+    plt.hist(LLT2, bins=50, alpha=0.5, label='Alternative', density=True)
     plt.vlines(np.mean(LLT), 0, 10, color='k', linestyle="--", linewidth= 4)
     plt.vlines(np.mean(LLT2), 0, 10, color='k', linestyle="--", linewidth= 4)
     plt.legend()
