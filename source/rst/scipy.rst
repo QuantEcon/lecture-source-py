@@ -518,9 +518,9 @@ Here's a reasonable solution:
             middle = 0.5 * (upper + lower)
             print(f'Current mid point = {middle}')
             if f(middle) > 0:   # Implies root is between lower and middle
-                bisect(f, lower, middle)
+                return bisect(f, lower, middle)
             else:               # Implies root is between middle and upper
-                bisect(f, middle, upper)
+                return bisect(f, middle, upper)
 
 
 We can test it as follows
