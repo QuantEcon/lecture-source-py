@@ -17,7 +17,7 @@ Asset Pricing II: The Lucas Asset Pricing Model
 In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
-  :class: no-output
+  :class: hide-output
 
   !pip install interpolation
 

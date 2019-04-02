@@ -13,7 +13,7 @@ Job Search III: Search with Learning
 In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
-  :class: no-output
+  :class: hide-output
 
   !pip install interpolation
 
