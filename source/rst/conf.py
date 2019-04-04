@@ -427,3 +427,15 @@ jupyter_lang_synonyms = ["ipython"]
 
 #Execute skip-test code blocks for rendering of website (this will need to be ignored in coverage testing)
 jupyter_ignore_skip_test = True
+
+#allow execution of notebooks
+jupyter_execute_notebooks = True
+
+# Location of template folder for coverage reports
+jupyter_template_coverage_file_path = "templates/error_report_template.html"
+
+# generate html from IPYNB files
+jupyter_generate_html = True
+
+# html template specific to your website needs
+jupyter_html_template = "templates/lectures-nbconvert.tpl"
