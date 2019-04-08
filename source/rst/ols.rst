@@ -8,6 +8,12 @@ Linear Regression in Python
 
 .. contents:: :depth: 2
 
+In addition to what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install linearmodels
 
 Overview
 ============
@@ -542,8 +548,6 @@ OLS) is not recommended
 We can correctly estimate a 2SLS regression in one step using the
 `linearmodels <https://github.com/bashtage/linearmodels>`__ package, an extension of ``statsmodels``
 
-To install this package, you will need to run
-``pip install linearmodels`` in your command line
 
 .. code-block:: python3
 

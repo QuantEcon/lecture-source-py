@@ -14,11 +14,15 @@ Ramsey plans, Time Inconsistency, Sustainable Plans
     single: Models; Additive functionals
 
 .. contents:: :depth: 2
- 
 
 **Co-author: Sebastian Graves**
 
+In addition to what's in Anaconda, this lecture will need the following libraries
 
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install quantecon
 
 Overview
 =========

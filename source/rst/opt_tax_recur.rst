@@ -8,6 +8,12 @@ Optimal Taxation with State-Contingent Debt
 
 .. contents:: :depth: 2
 
+In addition to what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install quantecon
 
 
 Overview

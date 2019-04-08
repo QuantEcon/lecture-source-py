@@ -1,4 +1,4 @@
-.. _mccall:
+In addition to what's in Anaconda,.. _mccall:
 
 .. include:: /_static/includes/header.raw
 
@@ -19,6 +19,12 @@ Job Search I: The McCall Search Model
     human behavior by visualizing the situation people find themselves in, the options they face
     and the pros and cons as they themselves see them." -- Robert E. Lucas, Jr.
 
+In addition to what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install quantecon
 
 Overview
 ============
