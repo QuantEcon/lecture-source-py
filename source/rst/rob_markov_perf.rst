@@ -10,6 +10,13 @@ Robust Markov Perfect Equilibrium
 
 **Co-author: Dongchen Zou**
 
+In addition what's in Anaconda, this lecture will need the following libraries
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install quantecon
+
 Overview
 ==========================
 
