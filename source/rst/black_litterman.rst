@@ -96,7 +96,7 @@ or
 where :math:`\epsilon \sim {\mathcal N}(0, I)` is an :math:`n \times 1`
 random vector.
 
-Let :math:`w be an \times 1` vector of portfolio weights
+Let :math:`w` be an :math:`n \times 1`  vector of portfolio weights
 
 A portfolio consisting :math:`w` earns returns
 
@@ -138,11 +138,12 @@ excess returns and estimating :math:`\Sigma` by a sample covariance
 matrix
 
 The Black-Litterman starting point
+--------------------------------------------
                                   
 
 When estimates of :math:`\mu` and :math:`\Sigma` from historical
-sample means and covariances have been combined with **reasonable**
-values of the risk-aversion parameter :math:`\delta` to compute an
+sample means and covariances have been combined with **reasonable** values
+of the risk-aversion parameter :math:`\delta` to compute an
 optimal portfolio from formula :eq:`risky-portfolio`, a typical outcome has been
 :math:`w`'s with **extreme long and short positions**
 
@@ -263,13 +264,13 @@ a value of :math:`\delta_m` from
 The second key Black-Litterman step is then to use this value of
 :math:`\delta` together with the maximum likelihood estimate of
 :math:`\Sigma` to deduce a :math:`\mu_{\bf BL}` that verifies
-portfolio rule :eq:`risky-portfolio` at the market portfolio :math:`w = w_m`:
+portfolio rule :eq:`risky-portfolio` at the market portfolio :math:`w = w_m`
 
 .. math:: \mu_m = \delta_m \Sigma w_m  
 
 The starting point of the Black-Litterman portfolio choice model is thus
 a pair :math:`(\delta_m, \mu_m)` that tells the customer to hold the
-market portfolio.
+market portfolio
 
 .. code:: python3
 
@@ -304,7 +305,7 @@ Adding *views*
 -------------------
 
 Black and Litterman start with a baseline customer who asserts that he
-or she shares the *market's views*, which means that his or her
+or she shares the **market's views**, which means that his or her
 believes that excess returns are governed by
 
 .. math::
@@ -331,7 +332,7 @@ decision maker wants to mix his view :math:`\hat \mu` with the market's
 view :math:`\mu_{\bf BL}`
 
 Black and Litterman would then use a formula like the following one to
-mix the views :math:`\hat \mu` and :math:`\mu_{\bf BL}`:
+mix the views :math:`\hat \mu` and :math:`\mu_{\bf BL}`
 
 .. math:: \tilde \mu = (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  + (\tau \Sigma)^{-1} \hat \mu)  , \quad (8)
 
@@ -450,7 +451,7 @@ realized average excess returns on the market
 Curve Decolletage
 ------------------
 
-Consider two independent "competing" views on the excess market returns.
+Consider two independent "competing" views on the excess market returns
 
 .. math:: \vec r_e  \sim {\mathcal N}( \mu_{BL}, \Sigma)
 
@@ -460,10 +461,16 @@ and
 
 A special feature of the multivariate normal random variable
 :math:`Z` is that its density function depends only on the (Euclidiean)
-length of its realization :math:`z`. Formally, let the
+length of its realization :math:`z`.
+Formally, let the
 :math:`k`-dimensional random vector be
-:math:`Z\sim \mathcal{N}(\mu, \Sigma)`,
-then :math:`\bar{Z} \equiv \Sigma(Z-\mu)\sim \mathcal{N}(\mathbf{0}, I)`
+
+.. math:: Z\sim \mathcal{N}(\mu, \Sigma)
+
+then 
+
+.. math:: \bar{Z} \equiv \Sigma(Z-\mu)\sim \mathcal{N}(\mathbf{0}, I)
+
 and so the points where the density takes the same value can be
 described by the ellipse
 
@@ -543,7 +550,7 @@ Note that if :math:`\lambda = 1`, :eq:`info-curve` is equivalent with (8) and it
 identifies one point on the information contract curve. Furthermore,
 because :math:`\lambda` is a function of the minimum likelihood
 :math:`\bar d_2` on the RHS of the constraint, by varying
-:math:`\bar d_2` (or:math:`\lambda`), we can trace out the whole curve
+:math:`\bar d_2` (or :math:`\lambda` ), we can trace out the whole curve
 as the figure below illustrates
 
 .. code:: python3
