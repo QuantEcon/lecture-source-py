@@ -998,7 +998,7 @@ Appendix
 ========
 
 We want to illustrate the "folk theorem" that with high or moderate
-frequency data, it is more difficult to esimate means than variances.
+frequency data, it is more difficult to esimate means than variances
 
 In order to operationalize this statement, we take two analog
 estimators:
@@ -1008,20 +1008,22 @@ estimators:
    :math:`S_N = \frac{1}{N-1}\sum_{t=1}^{N} (X_i - \bar X_N)^2`
 
 to estimate the unconditional mean and unconditional variance of the
-random variable :math:`X`, respectively.
+random variable :math:`X`, respectively
 
 To measure the "difficulty of estimation", we use *mean squared error*
 (MSE), that is the average squared difference between the estimator and
-the true value. Assuming that the process :math:`\{X_i\}`\ is ergodic,
+the true value
+Assuming that the process :math:`\{X_i\}`\ is ergodic,
 both analog estimators are known to converge to their true values as the
-sample size :math:`N` goes to infinity. More precisely, for
-all\ :math:`\varepsilon > 0`,
+sample size :math:`N` goes to infinity
+More precisely
+for all :math:`\varepsilon > 0`,
 
-.. raw:: latex
+.. math:: \lim_{N\to \infty} \ \ P\left\{ \left |\bar X_N - \mathbb E X \right| > \varepsilon \right\} = 0 \quad \quad
 
-   \begin{align}
-   \lim_{N\to \infty} \ \ P\left\{ \left |\bar X_N - \mathbb E X \right| > \varepsilon \right\} = 0 \quad \quad \text{and}\quad \quad  \lim_{N\to \infty} \ \ P \left\{ \left| S_N - \mathbb V X \right| > \varepsilon \right\} = 0
-   \end{align}
+and
+
+.. math:: \lim_{N\to \infty} \ \ P \left\{ \left| S_N - \mathbb V X \right| > \varepsilon \right\} = 0
 
 A necessary condition for these convergence results is that the
 associated MSEs vanish as :math:`N` goes to infintiy, or in other words,
@@ -1034,14 +1036,14 @@ size grows to infinity)
 
 .. math:: \frac{\text{MSE}(S_N, \mathbb V X)}{\text{MSE}(\bar X_N, \mathbb E X)} = \frac{o(1)}{o(1)} \underset{N \to \infty}{\to} B
 
-can inform us about the relative (asymptotic) rates.
+can inform us about the relative (asymptotic) rates
 
 We will show that in general, with dependent data, the limit
-:math:`B`\ depends on the sampling frequency. In particular, we find
+:math:`B` depends on the sampling frequency. In particular, we find
 that the rate of convergence of the variance estimator is less sensitive
 to increased sampling frequency than the rate of convergence of the mean
 estimator. Hence, we can expect the relative asymptotic
-rate,\ :math:`B`, to get smaller with higher frequency data,
+rate, :math:`B`, to get smaller with higher frequency data,
 illustrating that "it is more difficult to estimate means than
 variances". That is, we need significantly more data to obtain a given
 precision of the mean estimate than for our variance estimate.
