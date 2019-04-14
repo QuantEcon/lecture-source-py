@@ -920,15 +920,13 @@ so no robustness to alternative distributions is acquired
 As :math:`\theta` is lowered, more robustness is achieved
 
 **Note:** The :math:`{\sf T}` operator is sometimes called a
-*risk-sensitivity* operator.
+*risk-sensitivity* operator
 
 We shall apply :math:`{\sf T}`\ to the special case of a linear value
-function$w' (:raw-latex:`\vec `r - r\_f {:raw-latex:`\bf 1`})
-:math:`where`\ :raw-latex:`\vec `r - r\_f {:raw-latex:`\bf 1`}
-:raw-latex:`\sim `:raw-latex:`\mathcal `N(:raw-latex:`\mu `,
-:raw-latex:`\Sigma`)$ or
+function :math:`w'(\vec r - r_f 1)` 
+where :math:`\vec r - r_f 1 \sim {\mathcal N}(\mu,\Sigma)` or
 :math:`\vec r - r_f {\bf 1} = \mu + C \epsilon`\ and
-:math:`\epsilon \sim {\mathcal N}(0,I)`.
+:math:`\epsilon \sim {\mathcal N}(0,I)`
 
 The associated worst-case distribution of :math:`\epsilon`\ is Gaussian
 with mean :math:`v =-\theta^{-1} C' w` and covariance matrix\ :math:`I`.
