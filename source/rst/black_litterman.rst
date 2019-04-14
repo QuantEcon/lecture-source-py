@@ -928,23 +928,22 @@ where :math:`\vec r - r_f 1 \sim {\mathcal N}(\mu,\Sigma)` or
 :math:`\vec r - r_f {\bf 1} = \mu + C \epsilon`\ and
 :math:`\epsilon \sim {\mathcal N}(0,I)`
 
-The associated worst-case distribution of :math:`\epsilon`\ is Gaussian
-with mean :math:`v =-\theta^{-1} C' w` and covariance matrix\ :math:`I`.
+The associated worst-case distribution of :math:`\epsilon` is Gaussian
+with mean :math:`v =-\theta^{-1} C' w` and covariance matrix :math:`I`
 (When the value function is affine, the worst-case distribution distorts
-the mean vector of :math:`\epsilon`\ but not the covariance matrix
-of\ :math:`\epsilon`.)
+the mean vector of :math:`\epsilon` but not the covariance matrix
+of :math:`\epsilon`)
 
-For utility function argument $w' (:raw-latex:`\vec `r - r\_f
-{:raw-latex:`\bf 1`}) $,
+For utility function argument :math:`w'(\vec r - r_f 1)`,
 
-.. math:: {\sf T} (\vec r - r_f {\bf 1}) = w' \mu + \zeta - \frac{1}{2\theta} w' \Sigma w
+.. math:: {\sf T} ( \vec r - r_f {\bf 1}) = w' \mu + \zeta - \frac{1}{2 \theta} w' \Sigma w
 
- and entropy is
+and entropy is
 
-.. math:: \frac{v'v}{2} = \frac{1}{2\theta^2}  w' C C' w.
+.. math:: \frac{v'v}{2} = \frac{1}{2\theta^2}  w' C C' w
 
 A robust mean-variance portfolio model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 According to criterion (1), the mean-variance portfolio choice problem
 chooses :math:`w` to maximize
@@ -960,19 +959,18 @@ A robust decision maker can be modelled as replacing the mean return
 
 .. math:: {\sf T} [w ( \vec r - r_f {\bf 1})] = w' \mu - \frac{1}{2 \theta} w' \Sigma w
 
-that comes from replacing the mean :math:`\mu`\ of $ :raw-latex:`\vec `r
-- r\_f {:raw-latex:`\bf 1`}$ with the worst-case mean
+that comes from replacing the mean :math:`\mu` of :math:`\vec r - r\_f {\bf 1}` with the worst-case mean
 
 .. math:: \mu - \theta^{-1} \Sigma w  
 
 Notice how the worst-case mean vector depends on the portfolio
-:math:`w`.
+:math:`w`
 
 The operator :math:`{\sf T}` is the indirect utility function that
 emerges from solving a problem in which an agent who chooses
 probabilities does so in order to minimize the expected utility of a
 maximizing agent (in our case, the maximizing agent chooses portfolio
-weights :math:`w`).
+weights :math:`w`)
 
 The robust version of the mean-variance portfolio choice problem is then
 to choose a portfolio :math:`w` that maximizes
@@ -988,11 +986,11 @@ The minimizer of (12) is
 .. math:: w_{\rm rob} = \frac{1}{\delta + \gamma } \Sigma^{-1} \mu  , \quad (13)
 
 where :math:`\gamma \equiv \theta^{-1}` is sometimes called the
-risk-sensitivity parameter.
+risk-sensitivity parameter
 
 An increase in the risk-sensitivity paramter :math:`\gamma` shrinks the
 portfolio weights toward zero in the same way that an increase in risk
-aversion does.
+aversion does
 
 --------------
 
