@@ -912,10 +912,12 @@ subject to a penalty term that gets bigger the larger is relative
 entropy.
 
 Here the penalty parameter
-$:raw-latex:`\theta `:raw-latex:`\in [\underline \theta, +\infty] `\ :math:`is a robustness parameter; when it is`\ +:raw-latex:`\infty`$,
-there is no scope for the minimizing agent to distort the distribution,
-so no robustness to alternative distributions is acquired. As
-:math:`\theta` is lowered, more robustness is achieved.
+
+.. math:: \theta \in [\underline \theta, +\infty]
+
+is a robustness parameter when it is :math:`+\infty`, there is no scope for the minimizing agent to distort the distribution,
+so no robustness to alternative distributions is acquired 
+As :math:`\theta` is lowered, more robustness is achieved
 
 **Note:** The :math:`{\sf T}` operator is sometimes called a
 *risk-sensitivity* operator.
