@@ -70,7 +70,7 @@ contemplated the consequences of adjusting investors' subjective beliefs
 about mean returns in order to render more sensible decisions
 
 Both of the adjustments that we describe are designed to confront a
-widely recognized embarassment to mean-variance portfolio theory,
+widely recognized embarrassment to mean-variance portfolio theory,
 namely, that it usually implies taking very extreme long-short portfolio
 positions
 
@@ -705,7 +705,7 @@ A common performance measure of estimators is the *mean squared error
 (MSE)*
 
 An estimator is "good" if its MSE is realtively small. Suppose
-that :math:`\beta_0` is the "true" value of the coefficent, then the MSE
+that :math:`\beta_0` is the "true" value of the coefficient, then the MSE
 of the OLS estimator is
 
 .. math:: 
@@ -913,7 +913,7 @@ Define
 
 This asserts that :math:`{\sf T}` is an indirect utility function for a
 minimization problem in which an **evil agent** chooses a distorted
-probablity distribution :math:`\tilde \phi` to lower expected utility,
+probability distribution :math:`\tilde \phi` to lower expected utility,
 subject to a penalty term that gets bigger the larger is relative
 entropy.
 
@@ -997,7 +997,7 @@ The minimizer of :eq:`robust-mean-variance` is
 where :math:`\gamma \equiv \theta^{-1}` is sometimes called the
 risk-sensitivity parameter
 
-An increase in the risk-sensitivity paramter :math:`\gamma` shrinks the
+An increase in the risk-sensitivity parameter :math:`\gamma` shrinks the
 portfolio weights toward zero in the same way that an increase in risk
 aversion does
 
@@ -1007,7 +1007,7 @@ Appendix
 ========
 
 We want to illustrate the "folk theorem" that with high or moderate
-frequency data, it is more difficult to esimate means than variances
+frequency data, it is more difficult to estimate means than variances
 
 In order to operationalize this statement, we take two analog
 estimators:
@@ -1120,7 +1120,7 @@ the stochastic process :math:`\{X_{t}\}_{t\in \mathcal T(h)}` is
 
 .. math:: \Gamma_h(n) \equiv \text{corr}(X_{t + h n}, X_t) = \exp(-\kappa h n)
 
-and the autocovariance function is
+and the auto-covariance function is
 
 .. math:: \gamma_h(n) \equiv \text{cov}(X_{t + h n}, X_t) = \frac{\exp(-\kappa h n)\sigma^2}{2\kappa} .
 
