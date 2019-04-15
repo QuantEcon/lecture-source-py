@@ -1161,8 +1161,6 @@ observations is related to sampling frequency
 
 
 
-.. image:: black_litterman1_files/black_litterman1_25_0.png
-
 
 Frequency and the mean estimator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1297,8 +1295,6 @@ compute in closed form
     plt.show()
 
 
-
-.. image:: black_litterman1_files/black_litterman1_30_0.png
 
 
 The above figure illustrates the relationship between the asymptotic
