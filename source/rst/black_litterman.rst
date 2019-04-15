@@ -325,7 +325,7 @@ mix his view with the market's before using :eq:`risky-portfolio` to choose a po
 Suppose that the customer's view is expressed by a hunch that rather
 than :eq:`excess-returns`, excess returns are governed by
 
-.. math:: \vec r - r_f {\bf 1} \sim {\mathcal N}( \hat \mu, \tau \Sigma)   , \quad (7)
+.. math:: \vec r - r_f {\bf 1} \sim {\mathcal N}( \hat \mu, \tau \Sigma)
 
 where :math:`\tau > 0` is a scalar parameter that determines how the
 decision maker wants to mix his view :math:`\hat \mu` with the market's
@@ -334,7 +334,10 @@ view :math:`\mu_{\bf BL}`
 Black and Litterman would then use a formula like the following one to
 mix the views :math:`\hat \mu` and :math:`\mu_{\bf BL}`
 
-.. math:: \tilde \mu = (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  + (\tau \Sigma)^{-1} \hat \mu)  , \quad (8)
+.. math::
+  :label: mix-views
+  
+  \tilde \mu = (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  + (\tau \Sigma)^{-1} \hat \mu)
 
 Black and Litterman would then advice the customer to hold the portfolio
 associated with these views implied by rule :eq:`risky-portfolio`:
@@ -474,12 +477,15 @@ then
 and so the points where the density takes the same value can be
 described by the ellipse
 
-.. math:: \bar z \cdot \bar z =  (z - \mu)'\Sigma^{-1}(z - \mu) = \bar d \quad \quad (10)
+.. math::
+  :label: ellipse
+  
+  \bar z \cdot \bar z =  (z - \mu)'\Sigma^{-1}(z - \mu) = \bar d
 
 where :math:`\bar d\in\mathbb{R}_+` denotes the (transformation) of a
 particular density value
 
-The curves defined by equation (10) can be
+The curves defined by equation :eq:`ellipse` can be
 labelled as iso-likelihood ellipses
 
     **Remark:** More generally there is a class of density functions
@@ -546,7 +552,7 @@ which defines the *information contract curve* between
   \vec r_e = (\Sigma^{-1} + \lambda (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  
   + \lambda (\tau \Sigma)^{-1}\hat \mu )
 
-Note that if :math:`\lambda = 1`, :eq:`info-curve` is equivalent with (8) and it
+Note that if :math:`\lambda = 1`, :eq:`info-curve` is equivalent with :eq:`mix-views` and it
 identifies one point on the information contract curve. Furthermore,
 because :math:`\lambda` is a function of the minimum likelihood
 :math:`\bar d_2` on the RHS of the constraint, by varying
@@ -775,7 +781,7 @@ of :math:`\tilde \beta`
 Now, we can give a regularization interpretation of the Black-Litterman
 portfolio recommendation
 
-To this end, simplify first the equation (8) characterizing the Black-Litterman recommendation
+To this end, simplify first the equation :eq:`mix-views` characterizing the Black-Litterman recommendation
 
 .. math::
 
@@ -979,9 +985,12 @@ to choose a portfolio :math:`w` that maximizes
 
 or
 
-.. math:: w' (\mu - \theta^{-1} \Sigma w ) - \frac{\delta}{2} w' \Sigma w, \quad (12)
+.. math::
+  :label: robust-mean-variance
+  
+  w' (\mu - \theta^{-1} \Sigma w ) - \frac{\delta}{2} w' \Sigma w
 
-The minimizer of (12) is
+The minimizer of :eq:`robust-mean-variance` is
 
 .. math:: w_{\rm rob} = \frac{1}{\delta + \gamma } \Sigma^{-1} \mu  , \quad (13)
 
