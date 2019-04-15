@@ -251,7 +251,7 @@ Evidently, portfolio rule :eq:`risky-portfolio` then implies that
 
 or
 
-.. math:: \delta_m = \frac{\bf SR}{\sigma}, \quad (5)
+.. math:: \delta_m = \frac{\bf SR}{\sigma}
 
 Following the Black-Litterman philosophy, our first step will be to back
 a value of :math:`\delta_m` from
@@ -954,7 +954,7 @@ A robust mean-variance portfolio model
 According to criterion (1), the mean-variance portfolio choice problem
 chooses :math:`w` to maximize
 
-.. math:: E [w ( \vec r - r_f {\bf 1})]] - {\rm var} [ w ( \vec r - r_f {\bf 1}) ]  \quad (10)
+.. math:: E [w ( \vec r - r_f {\bf 1})]] - {\rm var} [ w ( \vec r - r_f {\bf 1}) ]
 
 which equals
 
@@ -981,7 +981,7 @@ weights :math:`w`)
 The robust version of the mean-variance portfolio choice problem is then
 to choose a portfolio :math:`w` that maximizes
 
-.. math:: {\sf T} [w ( \vec r - r_f {\bf 1})] - \frac{\delta}{2} w' \Sigma w , \quad (11)
+.. math:: {\sf T} [w ( \vec r - r_f {\bf 1})] - \frac{\delta}{2} w' \Sigma w 
 
 or
 
@@ -992,7 +992,7 @@ or
 
 The minimizer of :eq:`robust-mean-variance` is
 
-.. math:: w_{\rm rob} = \frac{1}{\delta + \gamma } \Sigma^{-1} \mu  , \quad (13)
+.. math:: w_{\rm rob} = \frac{1}{\delta + \gamma } \Sigma^{-1} \mu
 
 where :math:`\gamma \equiv \theta^{-1}` is sometimes called the
 risk-sensitivity parameter
