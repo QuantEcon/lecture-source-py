@@ -22,7 +22,8 @@ This is a sequel to the earlier lecture :doc:`Classical Control with Linear Alge
 
 That lecture used linear algebra -- in particular,  the `LU decomposition <https://en.wikipedia.org/wiki/LU_decomposition>`_  -- to formulate and solve a class of linear-quadratic optimal control problems
 
-In this lecture, we'll be using a closely related decomposition, the `Cholesky decomposition <https://en.wikipedia.org/wiki/Cholesky_decomposition>`_ , to solve linear prediction and filtering problems
+In this lecture, we'll be using a closely related decomposition, 
+the `Cholesky decomposition <https://en.wikipedia.org/wiki/Cholesky_decomposition>`_, to solve linear prediction and filtering problems
 
 We exploit the useful fact that there is an intimate connection between two superficially different classes of problems:
 
@@ -46,9 +47,15 @@ A useful consequence of duality is that
 
 An understanding of these connections has repeatedly proved useful in cracking interesting applied problems
 
-For example, Sargent :cite:`Sargent1987` [chs. IX, XIV] and Hansen and Sargent :cite:`HanSar1980` formulated and solved control and filtering problems using :math:`z`-transform methods
+For example, Sargent :cite:`Sargent1987` [chs. IX, XIV] and Hansen and Sargent :cite:`HanSar1980` formulated 
+and solved control and filtering problems using :math:`z`-transform methods
 
-In this lecture we investigate these ideas using mostly elementary linear algebra
+In this lecture we begin to investigate these ideas by using mostly elementary linear algebra
+
+This is the main purpose and focus of the lecture
+
+However, after showing matrix algebra formulas, we'll summarize classic infinite-horizon formulas built on :math:`z`-transform  and lag 
+operator methods
 
 
 
@@ -64,435 +71,6 @@ Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfani
 
 
 
-
-
-
-Infinite Horizon Prediction and Filtering Problems
-=====================================================
-
-We pose two related prediction and filtering problems
-
-We let :math:`Y_t` be a univariate :math:`m^{\rm th}` order moving average, covariance stationary stochastic process,
-
-.. math::
-    :label: eq_24
-
-    Y_t = d(L) u_t
-
-
-where :math:`d(L) = \sum^m_{j=0} d_j L^j`, and :math:`u_t` is a serially uncorrelated stationary random process satisfying
-
-.. math::
-    :label: eq_25
-
-    \begin{aligned}
-        \mathbb{E} u_t &= 0\\
-        \mathbb{E} u_t u_s &=
-        \begin{cases}
-            1 & \text{ if } t = s \\
-            0 & \text{ otherwise}
-        \end{cases}
-    \end{aligned}
-
-
-We impose no conditions on the zeros of :math:`d(z)`
-
-A second covariance stationary process is :math:`X_t` given by
-
-.. math::
-    :label: eq_26
-
-    X_t = Y_t + \varepsilon_t
-
-
-where :math:`\varepsilon_t` is a serially uncorrelated stationary
-random process with :math:`\mathbb{E} \varepsilon_t = 0` and :math:`\mathbb{E} \varepsilon_t \varepsilon_s` = :math:`0` for all distinct :math:`t` and :math:`s`
-
-We also assume that :math:`\mathbb{E} \varepsilon_t u_s = 0` for all :math:`t` and :math:`s`
-
-The **linear least squares prediction problem** is to find the :math:`L_2`
-random variable :math:`\hat X_{t+j}` among linear combinations of
-:math:`\{ X_t,\  X_{t-1},
-\ldots \}` that minimizes :math:`\mathbb{E}(\hat X_{t+j} - X_{t+j})^2`
-
-That is, the problem is to find a :math:`\gamma_j (L) = \sum^\infty_{k=0} \gamma_{jk}\, L^k` such that :math:`\sum^\infty_{k=0} \vert \gamma_{jk} \vert^2 < \infty` and :math:`\mathbb{E} [\gamma_j \, (L) X_t -X_{t+j}]^2` is minimized
-
-The **linear least squares filtering problem** is to find a :math:`b\,(L) = \sum^\infty_{j=0} b_j\, L^j` such that :math:`\sum^\infty_{j=0}\vert b_j \vert^2 < \infty` and :math:`\mathbb{E} [b\, (L) X_t -Y_t ]^2` is minimized
-
-Interesting versions of these problems related to the permanent income theory were studied by :cite:`Muth1960`
-
-
-
-
-Problem formulation
---------------------
-
-These problems are solved as follows
-
-The covariograms of :math:`Y` and :math:`X` and their cross covariogram are, respectively,
-
-.. math::
-    :label: eq_27
-
-    \begin{aligned}
-        C_X (\tau) &= \mathbb{E}X_t X_{t-\tau} \\
-        C_Y (\tau) &= \mathbb{E}Y_t Y_{t-\tau}  \qquad \tau = 0, \pm 1, \pm 2, \ldots \\
-        C_{Y,X} (\tau) &= \mathbb{E}Y_t X_{t-\tau}
-    \end{aligned}
-
-
-The covariance and cross covariance generating functions are defined as
-
-.. math::
-    :label: eq_28
-
-     \begin{aligned}
-        g_X(z) &= \sum^\infty_{\tau = - \infty} C_X (\tau) z^\tau \\
-        g_Y(z) &= \sum^\infty_{\tau = - \infty} C_Y (\tau) z^\tau \\
-        g_{YX} (z) &= \sum^\infty_{\tau = - \infty} C_{YX} (\tau) z^\tau
-    \end{aligned}
-
-
-The generating functions can be computed by using the following facts
-
-Let :math:`v_{1t}` and :math:`v_{2t}` be two mutually and serially uncorrelated white noises with unit variances
-
-That is, :math:`\mathbb{E}v^2_{1t} = \mathbb{E}v^2_{2t} = 1, \mathbb{E}v_{1t} = \mathbb{E}v_{2t} = 0, \mathbb{E}v_{1t} v_{2s} = 0` for all :math:`t` and :math:`s`, :math:`\mathbb{E}v_{1t} v_{1t-j} = \mathbb{E}v_{2t} v_{2t-j} = 0` for all :math:`j \not = 0`
-
-Let :math:`x_t` and :math:`y_t` be two random process given by
-
-.. math::
-
-    \begin{aligned}
-        y_t &= A(L) v_{1t} + B(L) v_{2t} \\
-        x_t &= C(L) v_{1t} + D(L) v_{2t}
-    \end{aligned}
-
-
-Then, as shown for example in :cite:`Sargent1987` [ch. XI], it is true that
-
-.. math::
-    :label: eq_29
-
-    \begin{aligned}
-        g_y(z) &= A(z) A(z^{-1}) + B (z) B(z^{-1}) \\
-        g_x (z) &= C(z) C(z^{-1}) + D(z) D(z^{-1}) \\
-        g_{yx} (z) &= A(z) C(z^{-1}) + B(z) D(z^{-1})
-    \end{aligned}
-
-
-Applying these formulas to :eq:`eq_24` -- :eq:`eq_27`, we have
-
-.. math::
-    :label: eq_30
-
-    \begin{aligned}
-        g_Y(z) &= d(z)d(z^{-1}) \\
-        g_X(z) &= d(z)d(z^{-1}) + h\\
-        g_{YX} (z) &= d(z) d(z^{-1})
-    \end{aligned}
-
-
-The key step in obtaining solutions to our problems is to factor the covariance generating function  :math:`g_X(z)` of :math:`X`
-
-The solutions of our problems are given by formulas due to Wiener and Kolmogorov
-
-These formulas utilize the Wold moving average representation of the :math:`X_t` process,
-
-.. math::
-    :label: eq_31
-
-    X_t = c\,(L)\,\eta_t
-
-
-where :math:`c(L) = \sum^m_{j=0} c_j\, L^j`, with
-
-.. math::
-    :label: eq_32
-
-    c_0 \eta_t
-    = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, X_{t-2}, \ldots]
-
-
-Here :math:`\mathbb{\hat E}` is the linear least squares projection operator
-
-Equation :eq:`eq_32`  is the condition that :math:`c_0 \eta_t` can be the one-step ahead error in predicting :math:`X_t` from its own past values
-
-Condition :eq:`eq_32`  requires that :math:`\eta_t` lie in the closed
-linear space spanned by :math:`[X_t,\  X_{t-1}, \ldots]`
-
-This will be true if and only if the zeros of :math:`c(z)` do not lie inside the unit circle
-
-It is an implication of :eq:`eq_32` that :math:`\eta_t` is a serially
-uncorrelated random process, and that a normalization can be imposed so
-that :math:`\mathbb{E}\eta_t^2 = 1`
-
-Consequently, an implication of :eq:`eq_31`  is
-that the covariance generating function of :math:`X_t` can be expressed
-as
-
-.. math::
-    :label: eq_33
-
-    g_X(z) = c\,(z)\,c\,(z^{-1})
-
-
-It remains to discuss how :math:`c(L)` is to be computed
-
-Combining :eq:`eq_29`  and :eq:`eq_33`  gives
-
-.. math::
-    :label: eq_34
-
-    d(z) \,d(z^{-1}) + h = c \, (z) \,c\,(z^{-1})
-
-
-.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`lu_tricks`
-
-.. Add the next sentence once Sphinx starts supporting cross file equation references (due in next release)
-
-.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`
-
-Therefore, we have already showed constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`
-
-We now introduce the **annihilation operator**:
-
-.. math::
-    :label: eq_35
-
-    \left[
-        \sum^\infty_{j= - \infty} f_j\, L^j
-    \right]_+
-    \equiv \sum^\infty_{j=0} f_j\,L^j
-
-
-In words, :math:`[\phantom{00}]_+` means "ignore negative powers of :math:`L`"
-
-We have defined the solution of the prediction problem as :math:`\mathbb{\hat E} [X_{t+j} \vert X_t,\, X_{t-1}, \ldots] = \gamma_j\, (L) X_t`
-
-Assuming that the roots of :math:`c(z) = 0` all lie outside the unit circle, the Wiener-Kolmogorov formula for :math:`\gamma_j (L)` holds:
-
-.. math::
-    :label: eq_36
-
-    \gamma_j\, (L) =
-    \left[
-        {c (L) \over L^j}
-    \right]_+ c\,(L)^{-1}
-
-
-We have defined the solution of the filtering problem as :math:`\mathbb{\hat E}[Y_t \mid X_t, X_{t-1}, \ldots] = b (L)X_t`
-
-The Wiener-Kolomogorov formula for :math:`b(L)` is
-
-.. math::
-
-    b(L) = \left({g_{YX} (L) \over c(L^{-1})}\right)_+ c(L)^{-1}
-
-
-or
-
-.. math::
-    :label: eq_37
-
-    b(L) = \left[ {d(L)d(L^{-1}) \over c(L^{-1})} \right]_+ c(L)^{-1}
-
-
-Formulas :eq:`eq_36` and :eq:`eq_37`  are discussed in detail in  :cite:`Whittle1983` and :cite:`Sargent1987`
-
-The interested reader can there find several examples of the use of these formulas in economics
-Some classic examples using these formulas are due to :cite:`Muth1960`
-
-As an example of the usefulness of formula :eq:`eq_37`, we let :math:`X_t` be a stochastic process with Wold moving average representation
-
-.. math::
-
-    X_t = c(L) \eta_t
-
-
-where :math:`\mathbb{E}\eta^2_t = 1, \hbox { and } c_0 \eta_t = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, \ldots], c (L) = \sum^m_{j=0} c_j L`
-
-Suppose that at time :math:`t`, we wish to predict a geometric sum of future :math:`X`'s, namely
-
-.. math::
-
-    y_t \equiv \sum^\infty_{j=0} \delta^j X_{t+j} = {1 \over 1 - \delta L^{-1}}
-    X_t
-
-
-given knowledge of :math:`X_t, X_{t-1}, \ldots`
-
-We shall use :eq:`eq_37`  to obtain the answer
-
-Using the standard formulas  :eq:`eq_29`, we have that
-
-.. math::
-
-    \begin{aligned}
-        g_{yx}(z) &= (1-\delta z^{-1})c(z) c (z^{-1}) \\
-        g_x (z) &= c(z) c (z^{-1})
-    \end{aligned}
-
-
-Then :eq:`eq_37`  becomes
-
-.. math::
-    :label: eq_38
-
-    b(L)=\left[{c(L)\over 1-\delta L^{-1}}\right]_+ c(L)^{-1}
-
-
-In order to evaluate the term in the annihilation operator, we use the following result from :cite:`HanSar1980`
-
-
-
-
-**Proposition** Let
-
-* :math:`g(z) = \sum^\infty_{j=0} g_j \, z^j` where :math:`\sum^\infty_{j=0} \vert g_j \vert^2 < + \infty`
-
-* :math:`h\,(z^{-1}) =` :math:`(1- \delta_1 z^{-1}) \ldots (1-\delta_n z^{-1})`, where :math:`\vert \delta_j \vert < 1`, for :math:`j = 1, \ldots, n`
-
-Then
-
-.. math::
-    :label: eq_39
-
-    \left[{g(z)\over h(z^{-1})}\right]_+ = {g(z)\over h(z^{-1})} - \sum^n_{j=1}
-    \ {\delta_j g (\delta_j) \over \prod^n_{k=1 \atop k \not = j} (\delta_j -
-    \delta_k)} \ \left({1 \over z- \delta_j}\right)
-
-
-and, alternatively,
-
-.. math::
-    :label: eq_40
-
-    \left[
-        {g(z)\over h(z^{-1})}
-    \right]_+
-    =\sum^n_{j=1} B_j
-    \left(
-        {zg(z)-\delta_j g (\delta_j) \over z- \delta_j}
-    \right)
-
-
-where :math:`B_j = 1 / \prod^n_{k=1\atop k+j} (1 - \delta_k / \delta_j)`
-
-Applying formula :eq:`eq_40`  of the proposition to evaluating  :eq:`eq_38`  with :math:`g(z) = c(z)` and :math:`h(z^{-1}) = 1 - \delta z^{-1}` gives
-
-.. math::
-
-    b(L)=\left[{Lc(L)-\delta c(\delta)\over L-\delta}\right] c(L)^{-1}
-
-
-or
-
-.. math::
-
-    b(L) =
-    \left[
-        {1-\delta c (\delta) L^{-1} c (L)^{-1}\over 1-\delta L^{-1}}
-    \right]
-
-
-Thus, we have
-
-.. math::
-    :label: eq_41
-
-    \mathbb{\hat E}
-    \left[
-        \sum^\infty_{j=0} \delta^j X_{t+j}\vert X_t,\, x_{t-1},
-        \ldots
-    \right] =
-    \left[
-        {1-\delta c (\delta) L^{-1} c(L)^{-1} \over 1 - \delta L^{-1}}
-    \right]
-    \, X_t
-
-
-This formula is useful in solving stochastic versions of problem 1 of lecture :doc:`lu_tricks` in which the randomness emerges because :math:`\{a_t\}` is a stochastic
-process
-
-The problem is to maximize
-
-.. math::
-    :label: eq_42
-
-    \mathbb{E}_0
-    \lim_{N \rightarrow \infty}\
-    \sum^N_{t-0} \beta^t
-    \left[
-        a_t\, y_t - {1 \over 2}\ hy^2_t-{1 \over 2}\ [d(L)y_t]^2
-    \right]
-
-
-where :math:`\mathbb{E}_t` is mathematical expectation conditioned on information
-known at :math:`t`, and where :math:`\{ a_t\}` is a covariance
-stationary stochastic process with Wold moving average representation
-
-.. math::
-
-    a_t = c(L)\, \eta_t
-
-
-where
-
-.. math::
-
-    c(L) = \sum^{\tilde n}_{j=0} c_j L^j
-
-
-and
-
-.. math::
-
-    \eta_t =
-    a_t - \mathbb{\hat E} [a_t \vert a_{t-1}, \ldots]
-
-
-The problem is to maximize :eq:`eq_42`  with respect to a contingency plan
-expressing :math:`y_t` as a function of information known at :math:`t`,
-which is assumed to be
-:math:`(y_{t-1},\  y_{t-2}, \ldots, a_t, \ a_{t-1}, \ldots)`
-
-The solution of this problem can be achieved in two steps
-
-First, ignoring the uncertainty, we can solve the problem assuming that :math:`\{a_t\}` is a known sequence
-
-The solution is, from above,
-
-.. math::
-
-    c(L) y_t = c(\beta L^{-1})^{-1} a_t
-
-
-or
-
-.. math::
-    :label: eq_43
-
-    (1-\lambda_1 L) \ldots (1 - \lambda_m L) y_t
-    = \sum^m_{j=1} A_j
-    \sum^\infty_{k=0} (\lambda_j \beta)^k\, a_{t+k}
-
-
-Second, the solution of the problem under uncertainty is obtained by
-replacing the terms on the right-hand side of the above expressions with
-their linear least squares predictors
-
-Using :eq:`eq_41` and :eq:`eq_43`, we have
-the following solution
-
-.. math::
-
-    (1-\lambda_1 L) \ldots (1-\lambda_m L) y_t =
-    \sum^m_{j=1} A_j
-     \left[
-         \frac{1-\beta \lambda_j \, c (\beta \lambda_j) L^{-1} c(L)^{-1} }
-         { 1-\beta \lambda_j L^{-1} }
-     \right] a_t
 
 
 Finite Dimensional Prediction
@@ -1002,6 +580,450 @@ given by the :math:`(N-t +1)^{\rm th}` row of
             y_{-m}
         \end{matrix}
         \right]
+
+
+
+
+
+
+
+
+Infinite Horizon Prediction and Filtering Problems
+=====================================================
+
+It is instructive to compare the finite-horizon formulas based on linear algebra decompositions of finite-dimensional covariance matrices
+with classic formulas for infinite horizon and infinite history prediction and control problems
+
+These classic infinite horizon formulas used the mathematics of :math:`z`-transforms and lag operators
+
+We'll meet interesting  counterparts to our finite horizon matrix formulas
+
+
+We pose two related prediction and filtering problems
+
+We let :math:`Y_t` be a univariate :math:`m^{\rm th}` order moving average, covariance stationary stochastic process,
+
+.. math::
+    :label: eq_24
+
+    Y_t = d(L) u_t
+
+
+where :math:`d(L) = \sum^m_{j=0} d_j L^j`, and :math:`u_t` is a serially uncorrelated stationary random process satisfying
+
+.. math::
+    :label: eq_25
+
+    \begin{aligned}
+        \mathbb{E} u_t &= 0\\
+        \mathbb{E} u_t u_s &=
+        \begin{cases}
+            1 & \text{ if } t = s \\
+            0 & \text{ otherwise}
+        \end{cases}
+    \end{aligned}
+
+
+We impose no conditions on the zeros of :math:`d(z)`
+
+A second covariance stationary process is :math:`X_t` given by
+
+.. math::
+    :label: eq_26
+
+    X_t = Y_t + \varepsilon_t
+
+
+where :math:`\varepsilon_t` is a serially uncorrelated stationary
+random process with :math:`\mathbb{E} \varepsilon_t = 0` and :math:`\mathbb{E} \varepsilon_t \varepsilon_s` = :math:`0` for all distinct :math:`t` and :math:`s`
+
+We also assume that :math:`\mathbb{E} \varepsilon_t u_s = 0` for all :math:`t` and :math:`s`
+
+The **linear least squares prediction problem** is to find the :math:`L_2`
+random variable :math:`\hat X_{t+j}` among linear combinations of
+:math:`\{ X_t,\  X_{t-1},
+\ldots \}` that minimizes :math:`\mathbb{E}(\hat X_{t+j} - X_{t+j})^2`
+
+That is, the problem is to find a :math:`\gamma_j (L) = \sum^\infty_{k=0} \gamma_{jk}\, L^k` such that :math:`\sum^\infty_{k=0} \vert \gamma_{jk} \vert^2 < \infty` and :math:`\mathbb{E} [\gamma_j \, (L) X_t -X_{t+j}]^2` is minimized
+
+The **linear least squares filtering problem** is to find a :math:`b\,(L) = \sum^\infty_{j=0} b_j\, L^j` such that :math:`\sum^\infty_{j=0}\vert b_j \vert^2 < \infty` and :math:`\mathbb{E} [b\, (L) X_t -Y_t ]^2` is minimized
+
+Interesting versions of these problems related to the permanent income theory were studied by :cite:`Muth1960`
+
+
+
+
+Problem formulation
+--------------------
+
+These problems are solved as follows
+
+The covariograms of :math:`Y` and :math:`X` and their cross covariogram are, respectively,
+
+.. math::
+    :label: eq_27
+
+    \begin{aligned}
+        C_X (\tau) &= \mathbb{E}X_t X_{t-\tau} \\
+        C_Y (\tau) &= \mathbb{E}Y_t Y_{t-\tau}  \qquad \tau = 0, \pm 1, \pm 2, \ldots \\
+        C_{Y,X} (\tau) &= \mathbb{E}Y_t X_{t-\tau}
+    \end{aligned}
+
+
+The covariance and cross covariance generating functions are defined as
+
+.. math::
+    :label: eq_28
+
+     \begin{aligned}
+        g_X(z) &= \sum^\infty_{\tau = - \infty} C_X (\tau) z^\tau \\
+        g_Y(z) &= \sum^\infty_{\tau = - \infty} C_Y (\tau) z^\tau \\
+        g_{YX} (z) &= \sum^\infty_{\tau = - \infty} C_{YX} (\tau) z^\tau
+    \end{aligned}
+
+
+The generating functions can be computed by using the following facts
+
+Let :math:`v_{1t}` and :math:`v_{2t}` be two mutually and serially uncorrelated white noises with unit variances
+
+That is, :math:`\mathbb{E}v^2_{1t} = \mathbb{E}v^2_{2t} = 1, \mathbb{E}v_{1t} = \mathbb{E}v_{2t} = 0, \mathbb{E}v_{1t} v_{2s} = 0` for all :math:`t` and :math:`s`, :math:`\mathbb{E}v_{1t} v_{1t-j} = \mathbb{E}v_{2t} v_{2t-j} = 0` for all :math:`j \not = 0`
+
+Let :math:`x_t` and :math:`y_t` be two random process given by
+
+.. math::
+
+    \begin{aligned}
+        y_t &= A(L) v_{1t} + B(L) v_{2t} \\
+        x_t &= C(L) v_{1t} + D(L) v_{2t}
+    \end{aligned}
+
+
+Then, as shown for example in :cite:`Sargent1987` [ch. XI], it is true that
+
+.. math::
+    :label: eq_29
+
+    \begin{aligned}
+        g_y(z) &= A(z) A(z^{-1}) + B (z) B(z^{-1}) \\
+        g_x (z) &= C(z) C(z^{-1}) + D(z) D(z^{-1}) \\
+        g_{yx} (z) &= A(z) C(z^{-1}) + B(z) D(z^{-1})
+    \end{aligned}
+
+
+Applying these formulas to :eq:`eq_24` -- :eq:`eq_27`, we have
+
+.. math::
+    :label: eq_30
+
+    \begin{aligned}
+        g_Y(z) &= d(z)d(z^{-1}) \\
+        g_X(z) &= d(z)d(z^{-1}) + h\\
+        g_{YX} (z) &= d(z) d(z^{-1})
+    \end{aligned}
+
+
+The key step in obtaining solutions to our problems is to factor the covariance generating function  :math:`g_X(z)` of :math:`X`
+
+The solutions of our problems are given by formulas due to Wiener and Kolmogorov
+
+These formulas utilize the Wold moving average representation of the :math:`X_t` process,
+
+.. math::
+    :label: eq_31
+
+    X_t = c\,(L)\,\eta_t
+
+
+where :math:`c(L) = \sum^m_{j=0} c_j\, L^j`, with
+
+.. math::
+    :label: eq_32
+
+    c_0 \eta_t
+    = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, X_{t-2}, \ldots]
+
+
+Here :math:`\mathbb{\hat E}` is the linear least squares projection operator
+
+Equation :eq:`eq_32`  is the condition that :math:`c_0 \eta_t` can be the one-step ahead error in predicting :math:`X_t` from its own past values
+
+Condition :eq:`eq_32`  requires that :math:`\eta_t` lie in the closed
+linear space spanned by :math:`[X_t,\  X_{t-1}, \ldots]`
+
+This will be true if and only if the zeros of :math:`c(z)` do not lie inside the unit circle
+
+It is an implication of :eq:`eq_32` that :math:`\eta_t` is a serially
+uncorrelated random process, and that a normalization can be imposed so
+that :math:`\mathbb{E}\eta_t^2 = 1`
+
+Consequently, an implication of :eq:`eq_31`  is
+that the covariance generating function of :math:`X_t` can be expressed
+as
+
+.. math::
+    :label: eq_33
+
+    g_X(z) = c\,(z)\,c\,(z^{-1})
+
+
+It remains to discuss how :math:`c(L)` is to be computed
+
+Combining :eq:`eq_29`  and :eq:`eq_33`  gives
+
+.. math::
+    :label: eq_34
+
+    d(z) \,d(z^{-1}) + h = c \, (z) \,c\,(z^{-1})
+
+
+.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`lu_tricks`
+
+.. Add the next sentence once Sphinx starts supporting cross file equation references (due in next release)
+
+.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`
+
+Therefore, we have already showed constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`
+
+We now introduce the **annihilation operator**:
+
+.. math::
+    :label: eq_35
+
+    \left[
+        \sum^\infty_{j= - \infty} f_j\, L^j
+    \right]_+
+    \equiv \sum^\infty_{j=0} f_j\,L^j
+
+
+In words, :math:`[\phantom{00}]_+` means "ignore negative powers of :math:`L`"
+
+We have defined the solution of the prediction problem as :math:`\mathbb{\hat E} [X_{t+j} \vert X_t,\, X_{t-1}, \ldots] = \gamma_j\, (L) X_t`
+
+Assuming that the roots of :math:`c(z) = 0` all lie outside the unit circle, the Wiener-Kolmogorov formula for :math:`\gamma_j (L)` holds:
+
+.. math::
+    :label: eq_36
+
+    \gamma_j\, (L) =
+    \left[
+        {c (L) \over L^j}
+    \right]_+ c\,(L)^{-1}
+
+
+We have defined the solution of the filtering problem as :math:`\mathbb{\hat E}[Y_t \mid X_t, X_{t-1}, \ldots] = b (L)X_t`
+
+The Wiener-Kolomogorov formula for :math:`b(L)` is
+
+.. math::
+
+    b(L) = \left({g_{YX} (L) \over c(L^{-1})}\right)_+ c(L)^{-1}
+
+
+or
+
+.. math::
+    :label: eq_37
+
+    b(L) = \left[ {d(L)d(L^{-1}) \over c(L^{-1})} \right]_+ c(L)^{-1}
+
+
+Formulas :eq:`eq_36` and :eq:`eq_37`  are discussed in detail in  :cite:`Whittle1983` and :cite:`Sargent1987`
+
+The interested reader can there find several examples of the use of these formulas in economics
+Some classic examples using these formulas are due to :cite:`Muth1960`
+
+As an example of the usefulness of formula :eq:`eq_37`, we let :math:`X_t` be a stochastic process with Wold moving average representation
+
+.. math::
+
+    X_t = c(L) \eta_t
+
+
+where :math:`\mathbb{E}\eta^2_t = 1, \hbox { and } c_0 \eta_t = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, \ldots], c (L) = \sum^m_{j=0} c_j L`
+
+Suppose that at time :math:`t`, we wish to predict a geometric sum of future :math:`X`'s, namely
+
+.. math::
+
+    y_t \equiv \sum^\infty_{j=0} \delta^j X_{t+j} = {1 \over 1 - \delta L^{-1}}
+    X_t
+
+
+given knowledge of :math:`X_t, X_{t-1}, \ldots`
+
+We shall use :eq:`eq_37`  to obtain the answer
+
+Using the standard formulas  :eq:`eq_29`, we have that
+
+.. math::
+
+    \begin{aligned}
+        g_{yx}(z) &= (1-\delta z^{-1})c(z) c (z^{-1}) \\
+        g_x (z) &= c(z) c (z^{-1})
+    \end{aligned}
+
+
+Then :eq:`eq_37`  becomes
+
+.. math::
+    :label: eq_38
+
+    b(L)=\left[{c(L)\over 1-\delta L^{-1}}\right]_+ c(L)^{-1}
+
+
+In order to evaluate the term in the annihilation operator, we use the following result from :cite:`HanSar1980`
+
+
+
+
+**Proposition** Let
+
+* :math:`g(z) = \sum^\infty_{j=0} g_j \, z^j` where :math:`\sum^\infty_{j=0} \vert g_j \vert^2 < + \infty`
+
+* :math:`h\,(z^{-1}) =` :math:`(1- \delta_1 z^{-1}) \ldots (1-\delta_n z^{-1})`, where :math:`\vert \delta_j \vert < 1`, for :math:`j = 1, \ldots, n`
+
+Then
+
+.. math::
+    :label: eq_39
+
+    \left[{g(z)\over h(z^{-1})}\right]_+ = {g(z)\over h(z^{-1})} - \sum^n_{j=1}
+    \ {\delta_j g (\delta_j) \over \prod^n_{k=1 \atop k \not = j} (\delta_j -
+    \delta_k)} \ \left({1 \over z- \delta_j}\right)
+
+
+and, alternatively,
+
+.. math::
+    :label: eq_40
+
+    \left[
+        {g(z)\over h(z^{-1})}
+    \right]_+
+    =\sum^n_{j=1} B_j
+    \left(
+        {zg(z)-\delta_j g (\delta_j) \over z- \delta_j}
+    \right)
+
+
+where :math:`B_j = 1 / \prod^n_{k=1\atop k+j} (1 - \delta_k / \delta_j)`
+
+Applying formula :eq:`eq_40`  of the proposition to evaluating  :eq:`eq_38`  with :math:`g(z) = c(z)` and :math:`h(z^{-1}) = 1 - \delta z^{-1}` gives
+
+.. math::
+
+    b(L)=\left[{Lc(L)-\delta c(\delta)\over L-\delta}\right] c(L)^{-1}
+
+
+or
+
+.. math::
+
+    b(L) =
+    \left[
+        {1-\delta c (\delta) L^{-1} c (L)^{-1}\over 1-\delta L^{-1}}
+    \right]
+
+
+Thus, we have
+
+.. math::
+    :label: eq_41
+
+    \mathbb{\hat E}
+    \left[
+        \sum^\infty_{j=0} \delta^j X_{t+j}\vert X_t,\, x_{t-1},
+        \ldots
+    \right] =
+    \left[
+        {1-\delta c (\delta) L^{-1} c(L)^{-1} \over 1 - \delta L^{-1}}
+    \right]
+    \, X_t
+
+
+This formula is useful in solving stochastic versions of problem 1 of lecture :doc:`lu_tricks` in which the randomness emerges because :math:`\{a_t\}` is a stochastic
+process
+
+The problem is to maximize
+
+.. math::
+    :label: eq_42
+
+    \mathbb{E}_0
+    \lim_{N \rightarrow \infty}\
+    \sum^N_{t-0} \beta^t
+    \left[
+        a_t\, y_t - {1 \over 2}\ hy^2_t-{1 \over 2}\ [d(L)y_t]^2
+    \right]
+
+
+where :math:`\mathbb{E}_t` is mathematical expectation conditioned on information
+known at :math:`t`, and where :math:`\{ a_t\}` is a covariance
+stationary stochastic process with Wold moving average representation
+
+.. math::
+
+    a_t = c(L)\, \eta_t
+
+
+where
+
+.. math::
+
+    c(L) = \sum^{\tilde n}_{j=0} c_j L^j
+
+
+and
+
+.. math::
+
+    \eta_t =
+    a_t - \mathbb{\hat E} [a_t \vert a_{t-1}, \ldots]
+
+
+The problem is to maximize :eq:`eq_42`  with respect to a contingency plan
+expressing :math:`y_t` as a function of information known at :math:`t`,
+which is assumed to be
+:math:`(y_{t-1},\  y_{t-2}, \ldots, a_t, \ a_{t-1}, \ldots)`
+
+The solution of this problem can be achieved in two steps
+
+First, ignoring the uncertainty, we can solve the problem assuming that :math:`\{a_t\}` is a known sequence
+
+The solution is, from above,
+
+.. math::
+
+    c(L) y_t = c(\beta L^{-1})^{-1} a_t
+
+
+or
+
+.. math::
+    :label: eq_43
+
+    (1-\lambda_1 L) \ldots (1 - \lambda_m L) y_t
+    = \sum^m_{j=1} A_j
+    \sum^\infty_{k=0} (\lambda_j \beta)^k\, a_{t+k}
+
+
+Second, the solution of the problem under uncertainty is obtained by
+replacing the terms on the right-hand side of the above expressions with
+their linear least squares predictors
+
+Using :eq:`eq_41` and :eq:`eq_43`, we have
+the following solution
+
+.. math::
+
+    (1-\lambda_1 L) \ldots (1-\lambda_m L) y_t =
+    \sum^m_{j=1} A_j
+     \left[
+         \frac{1-\beta \lambda_j \, c (\beta \lambda_j) L^{-1} c(L)^{-1} }
+         { 1-\beta \lambda_j L^{-1} }
+     \right] a_t
+
+
 
 
 Exercises
