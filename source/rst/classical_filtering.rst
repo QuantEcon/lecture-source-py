@@ -1010,6 +1010,37 @@ the following solution
 
 
 
+**Blaschke factors** 
+
+
+The following is a useful piece of mathematics underlying "root flipping"
+
+
+Let :math:`\pi (z) = \sum^m_{j=0} \pi_j z^j` and let :math:`z_1, \ldots,
+z_k` be the zeros of :math:`\pi (z)` that are inside the unit circle, :math:`k < m`
+
+Then define
+
+.. math::
+
+    \theta (z) = \pi (z) \Biggl( {(z_1 z-1) \over (z-z_1)} \Biggr)
+    \Biggl( { (z_2 z-1) \over (z-z_2) } \Biggr ) \ldots \Biggl({(z_kz-1) \over
+    (z-z_k) }\Biggr)
+
+
+The term multiplying :math:`\pi (z)` is termed a "Blaschke factor"
+
+Then it can be proved directly that
+
+.. math::
+
+    \theta (z^{-1}) \theta (z) = \pi (z^{-1}) \pi (z)
+
+
+and that the zeros of :math:`\theta (z)` are not inside the unit circle
+
+
+
 Exercises
 =================
 
