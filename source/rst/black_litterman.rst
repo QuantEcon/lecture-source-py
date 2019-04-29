@@ -19,10 +19,10 @@ Overview
 Remarks about estimating means and variances
 ----------------------------------------------
 
-The famous **Black-Litterman** (1992) portfolio choice model that we
+The famous **Black-Litterman** (1992) :cite:`black1992global` portfolio choice model that we
 describe in this notebook is motivated by the finding that with high or
 moderate frequency data, means are more difficult to estimate than
-variances.
+variances
 
 A model of **robust portfolio choice** that we'll describe also begins
 from the same starting point
@@ -39,14 +39,14 @@ estimate than variances
 
 Among the ideas in play in this notebook will be
 
--  mean-variance portfolio theory
+-  Mean-variance portfolio theory
 
 -  Bayesian approaches to estimating linear regressions
 
 -  A risk-sensitivity operator and its connection to robust control
    theory
 
-.. code:: ipython3
+.. code-block:: ipython
 
     import numpy as np
     import scipy as sp
@@ -150,50 +150,47 @@ optimal portfolio from formula :eq:`risky-portfolio`, a typical outcome has been
 A common reaction to these outcomes is that they are so unreasonable that a portfolio
 manager cannot recommend them to a customer
 
-.. code:: python3
+.. code-block:: python3
 
     np.random.seed(12)
-    
-    N = 10                                              # Number of assets
-    T = 200                                             # Sample size
-    
+
+    N = 10                                           # Number of assets
+    T = 200                                          # Sample size
+
     # random market portfolio (sum is normalized to 1)
     w_m = np.random.rand(N) 
     w_m = w_m / (w_m.sum())                      
-    
-    # True risk premia and variance of excess return 
-    # (constructed so that the Sharpe ratio is 1)
-    μ = (np.random.randn(N) + 5) / 100                  # Mean excess return (risk premium)   
-    S = np.random.randn(N, N)                           # Random matrix for the covariance matrix
-    V = S @ S.T                                         # Turn the random matrix into symmetric psd   
-    Σ = V * (w_m @ μ)**2 / (w_m @ V @ w_m)              # Make sure that the Sharpe ratio is one
-    
+
+    # True risk premia and variance of excess return (constructed so that the Sharpe ratio is 1)
+    μ = (np.random.randn(N) + 5)  /100                   # Mean excess return (risk premium)   
+    S = np.random.randn(N, N)                            # Random matrix for the covariance matrix
+    V = S @ S.T                                          # Turn the random matrix into symmetric psd   
+    Σ = V * (w_m @ μ)**2 / (w_m @ V @ w_m)               # Make sure that the Sharpe ratio is one
+
     # Risk aversion of market portfolio holder
-    δ = 1 / np.sqrt(w_m @ Sigma @ w_m)
-    
+    δ = 1 / np.sqrt(w_m @ Σ @ w_m)
+
     # Generate a sample of excess returns
     excess_return = stat.multivariate_normal(μ, Σ)
     sample = excess_return.rvs(T)
-    
+
     # Estimate μ and Σ
     μ_est = sample.mean(0).reshape(N, 1)
     Σ_est = np.cov(sample.T)
-    
-    # Solve the constrained problem for the weights
+
     w = np.linalg.solve(δ * Σ_est, μ_est)
-    
+
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.plot(w, 'o', color='k', label='$w$ (mean-variance)')
-    ax.plot(w_m, 'o', color='r', label='$w_m$ (market portfolio)')
-    ax.vlines(w, lw=1)
-    ax.vlines(w_m, lw=1)
-    ax.axhline(0, color='k')
-    ax.axhline(-1, color='k', linestyle='--')
-    ax.axhline(1, color='k', linestyle='--')
-    ax.set(xlim=(0, N+1), xlabel='Assets', 
-           title='Mean-variance portfolio weights recommendation and the market portfolio')
-    ax.set_xlabel('Assets', fontsize=11)
-    ax.xaxis.set_ticks(np.arange(1, N + 1, 1))
+    ax.set_title('Mean-variance portfolio weights recommendation and the market portfolio')
+    ax.plot(np.arange(N)+1, w, 'o', c='k', label='$w$ (mean-variance)')
+    ax.plot(np.arange(N)+1, w_m, 'o', c='r', label='$w_m$ (market portfolio)')
+    ax.vlines(np.arange(N)+1, 0, w, lw=1)
+    ax.vlines(np.arange(N)+1, 0, w_m, lw=1)
+    ax.axhline(0, c='k')
+    ax.axhline(-1, c='k', ls='--')
+    ax.axhline(1, c='k', ls='--')
+    ax.set_xlabel('Assets')
+    ax.xaxis.set_ticks(np.arange(1, N+1, 1))
     plt.legend(numpoints=1, fontsize=11)
     plt.show()
 
@@ -272,31 +269,31 @@ The starting point of the Black-Litterman portfolio choice model is thus
 a pair :math:`(\delta_m, \mu_m)` that tells the customer to hold the
 market portfolio
 
-.. code:: python3
+.. code-block:: python3
 
     # Observed mean excess market return
     r_m = w_m @ μ_est
-    
+
     # Estimated variance of market portfolio
     σ_m = w_m @ Σ_est @ w_m
-    
+
     # Sharpe-ratio
-    SR_m = r_m / np.sqrt(sigma_m)
-    
+    SR_m = r_m / np.sqrt(σ_m)
+
     # Risk aversion of market portfolio holder
     d_m = r_m / σ_m
-    
+
     # Derive "view" which would induce market portfolio
     μ_m = (d_m * Σ_est @ w_m).reshape(N, 1)
-    
-    fig, ax = plt.subplots(figsize = (8, 5))
-    ax.plot(μ_est, 'o', color='k', label='$\hat{\mu}$')
-    ax.plot(μ_m, 'o', color='r', label='$\mu_{BL}$')
-    ax.vlines(μ_m, μ_est, lw=1)
-    ax.axhline(0, color='k', linestyle='--')
-    ax.set(xlim=(0, N + 1), xlabel='Assets', 
-           title=r'Difference between $\hat{\mu}$(estimate) and$\mu_{BL}$ (market implied)')
-    ax.xaxis.set_ticks(np.arange(1, N + 1, 1))
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.set_title(r'Difference between $\hat{\mu}$ (estimate) and $\mu_{BL}$ (market implied)')
+    ax.plot(np.arange(N)+1, μ_est, 'o', c='k', label='$\hat{\mu}$')
+    ax.plot(np.arange(N)+1, μ_m, 'o', c='r', label='$\mu_{BL}$')
+    ax.vlines(np.arange(N) + 1, μ_m, μ_est, lw=1)
+    ax.axhline(0, c='k', ls='--')
+    ax.set_xlabel('Assets')
+    ax.xaxis.set_ticks(np.arange(1, N+1, 1))
     plt.legend(numpoints=1)
     plt.show()
 
@@ -350,72 +347,64 @@ portfolio :math:`w_{BL}` in amounts that depend on the mixing parameter
 
 If :math:`\hat \mu` is the maximum likelihood estimator
 and :math:`\tau` is chosen heavily to weight this view, then the
-customer's portfolio will involve big short-long positions.
+customer's portfolio will involve big short-long positions
 
-.. code:: python3
+.. code-block:: python3
 
     def black_litterman(λ, μ1, μ2, Σ1, Σ2):
         """
-        This function calculates the Black-Litterman mixture 
+        This function calculates the Black-Litterman mixture
         mean excess return and covariance matrix
-        """    
+        """
         Σ1_inv = np.linalg.inv(Σ1)
         Σ2_inv = np.linalg.inv(Σ2)
-        
-        μ_tilde = np.linalg.solve(Σ1_inv + λ * Σ2_inv, 
+
+        μ_tilde = np.linalg.solve(Σ1_inv + λ * Σ2_inv,
                                   Σ1_inv @ μ1 + λ * Σ2_inv @ μ2)
         return μ_tilde
-    
-    #===================================
-    # Example cont'
-    #     mean : MLE mean
-    #     cov  : scaled MLE cov matrix
-    #===================================
-    
+
     τ = 1
     μ_tilde = black_litterman(1, μ_m, μ_est, Σ_est, τ * Σ_est)
-    
+
     # The Black-Litterman recommendation for the portfolio weights
     w_tilde = np.linalg.solve(δ * Σ_est, μ_tilde)
 
-    τ_slider = FloatSlider(min = 0.05, max = 10, step = 0.5, value = tau)
-    
-    @interact(tau = tau_slider)
-    def BL_plot(tau):
-        mu_tilde = Black_Litterman(1, mu_m, μ_est, Σ_est, tau * Σ_est)
-        w_tilde = np.linalg.solve(delta * Σ_est, mu_tilde)
-        
-        fig, ax = plt.subplots(1, 2, figsize = (16, 6))
-        ax[0].set_title(r'Relationship between $\hat{\mu}$, $\mu_{BL}$and$\tilde{\mu}$', fontsize = 15)
-        ax[0].plot(np.arange(N) + 1, μ_est, 'o', color = 'k', label = r'$\hat{\mu}$ (subj view)')
-        ax[0].plot(np.arange(N) + 1, mu_m, 'o', color = 'r', label = r'$\mu_{BL}$ (market)')
-        ax[0].plot(np.arange(N) + 1, mu_tilde, 'o', color = 'y', label = r'$\tilde{\mu}$ (mixture)')
-        ax[0].vlines(np.arange(N) + 1, mu_m, μ_est, lw = 1)
-        ax[0].axhline(0, color = 'k', linestyle = '--')
-        ax[0].set_xlim([0, N + 1])
-        ax[0].xaxis.set_ticks(np.arange(1, N + 1, 1))
-        ax[0].set_xlabel('Assets', fontsize = 14)
-        ax[0].legend(numpoints = 1, loc = 'best', fontsize = 13)
-    
-        ax[1].set_title('Black-Litterman portfolio weight recommendation', fontsize = 15)
-        ax[1].plot(np.arange(N) + 1, w, 'o', color = 'k', label = r'$w$ (mean-variance)')
-        ax[1].plot(np.arange(N) + 1, w_m, 'o', color = 'r', label = r'$w_{m}$ (market, BL)')
-        ax[1].plot(np.arange(N) + 1, w_tilde, 'o', color = 'y', label = r'$\tilde{w}$ (mixture)')
-        ax[1].vlines(np.arange(N) + 1, 0, w, lw = 1)
-        ax[1].vlines(np.arange(N) + 1, 0, w_m, lw = 1)
-        ax[1].axhline(0, color = 'k')
-        ax[1].axhline(-1, color = 'k', linestyle = '--')
-        ax[1].axhline(1, color = 'k', linestyle = '--')
-        ax[1].set_xlim([0, N + 1])
-        ax[1].set_xlabel('Assets', fontsize = 14)
-        ax[1].xaxis.set_ticks(np.arange(1, N + 1, 1))
-        ax[1].legend(numpoints = 1, loc = 'best', fontsize = 13)
-    
+    τ_slider = FloatSlider(min=0.05, max=10, step=0.5, value=τ)
+
+    @interact(τ=τ_slider)
+    def BL_plot(τ):
+        μ_tilde = black_litterman(1, μ_m, μ_est, Σ_est, τ * Σ_est)
+        w_tilde = np.linalg.solve(δ * Σ_est, μ_tilde)
+
+        fig, ax = plt.subplots(1, 2, figsize=(16, 6))
+        ax[0].plot(np.arange(N)+1, μ_est, 'o', c='k', label=r'$\hat{\mu}$ (subj view)')
+        ax[0].plot(np.arange(N)+1, μ_m, 'o', c='r', label=r'$\mu_{BL}$ (market)')
+        ax[0].plot(np.arange(N)+1, μ_tilde, 'o', c='y', label=r'$\tilde{\mu}$ (mixture)')
+        ax[0].vlines(np.arange(N)+1, μ_m, μ_est, lw=1)
+        ax[0].axhline(0, c='k', ls='--')
+        ax[0].set(xlim=(0, N+1), xlabel='Assets',
+                  title=r'Relationship between $\hat{\mu}$, $\mu_{BL}$and$\tilde{\mu}$')
+        ax[0].xaxis.set_ticks(np.arange(1, N+1, 1))
+        ax[0].legend(numpoints=1)
+
+        ax[1].set_title('Black-Litterman portfolio weight recommendation')
+        ax[1].plot(np.arange(N)+1, w, 'o', c='k', label=r'$w$ (mean-variance)')
+        ax[1].plot(np.arange(N)+1, w_m, 'o', c='r', label=r'$w_{m}$ (market, BL)')
+        ax[1].plot(np.arange(N)+1, w_tilde, 'o', c='y', label=r'$\tilde{w}$ (mixture)')
+        ax[1].vlines(np.arange(N)+1, 0, w, lw=1)
+        ax[1].vlines(np.arange(N)+1, 0, w_m, lw=1)
+        ax[1].axhline(0, c='k')
+        ax[1].axhline(-1, c='k', ls='--')
+        ax[1].axhline(1, c='k', ls='--')
+        ax[1].set(xlim=(0, N+1), xlabel='Assets', 
+                  title='Black-Litterman portfolio weight recommendation')
+        ax[1].xaxis.set_ticks(np.arange(1, N+1, 1))
+        ax[1].legend(numpoints=1)
         plt.show()
 
 
 Bayes interpretation of the Black-Litterman recommendation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------------
 
 Consider the following Bayesian interpretation of the Black-Litterman
 recommendation
@@ -464,7 +453,8 @@ and
 
 A special feature of the multivariate normal random variable
 :math:`Z` is that its density function depends only on the (Euclidiean)
-length of its realization :math:`z`.
+length of its realization :math:`z`
+
 Formally, let the
 :math:`k`-dimensional random vector be
 
@@ -498,7 +488,7 @@ labelled as iso-likelihood ellipses
       \text{ has the form } \quad f(z) = c g(z\cdot z)
 
     This property is called **spherical symmetry** (see p 81. in Leamer
-    (1978))
+    (1978) :cite:`leamer1978specification`)
 
 In our specific example, we can use the pair
 :math:`(\bar d_1, \bar d_2)` as being two "likelihood" values for which
@@ -525,7 +515,7 @@ The pairs :math:`(\bar d_1, \bar d_2)` for which there
 is such a point outlines a curve in the excess return space. This curve
 is reminiscent of the Pareto curve in an Edgeworth-box setting
 
-Leamer (1978) calls this curve *information contract curve* and
+Leamer (1978) :cite:`leamer1978specification` calls this curve *information contract curve* and
 describes it by the following program: maximize the likelihood of one
 view, say the Black-Litterman recommendation, while keeping the
 likelihood of the other view at least at a prespecified constant
@@ -559,7 +549,7 @@ because :math:`\lambda` is a function of the minimum likelihood
 :math:`\bar d_2` (or :math:`\lambda` ), we can trace out the whole curve
 as the figure below illustrates
 
-.. code:: python3
+.. code-block:: python3
 
     np.random.seed(1987102)
     
@@ -574,7 +564,7 @@ as the figure below illustrates
     μ = (np.random.randn(N) + 5) / 100                   
     S = np.random.randn(N, N)                       
     V = S @ S.T                                     
-    Sigma = V * (w_m @ μ)**2 / (w_m @ V @ w_m)
+    Σ = V * (w_m @ μ)**2 / (w_m @ V @ w_m)
     
     excess_return = stat.multivariate_normal(μ, Σ)
     sample = excess_return.rvs(T)
@@ -594,12 +584,12 @@ as the figure below illustrates
     curve = np.asarray([black_litterman(λ, μ_m, μ_est, Σ_est, 
                                         τ * Σ_est).flatten() for λ in λ_grid]) 
     
-    λ_slider = FloatSlider(min = .1, max = 7, step = .5, value = 1)
+    λ_slider = FloatSlider(min=.1, max=7, step=.5, value=1)
     
-    @interact(lamb = λ_slider)
-    def decolletage(lamb):
-        dist_r_BL = stat.multivariate_normal(mu_m.squeeze(), Σ_est)
-        dist_r_hat = stat.multivariate_normal(μ_est.squeeze(), tau * Σ_est)
+    @interact(λ=λ_slider)
+    def decolletage(λ):
+        dist_r_BL = stat.multivariate_normal(μ_m.squeeze(), Σ_est)
+        dist_r_hat = stat.multivariate_normal(μ_est.squeeze(), τ * Σ_est)
         
         X, Y = np.meshgrid(r1, r2)
         Z_BL = np.zeros((N_r1, N_r2))
@@ -610,26 +600,25 @@ as the figure below illustrates
                 Z_BL[i, j] = dist_r_BL.pdf(np.hstack([X[i, j], Y[i, j]]))
                 Z_hat[i, j] = dist_r_hat.pdf(np.hstack([X[i, j], Y[i, j]]))
         
-        mu_tilde = Black_Litterman(lamb, mu_m, μ_est, Σ_est, 
-                                       tau * Σ_est).flatten()
+        μ_tilde = black_litterman(λ, μ_m, μ_est, Σ_est, τ * Σ_est).flatten()
         
-        fig, ax = plt.subplots(figsize = (10, 6))
-        ax.contourf(X, Y, Z_hat, cmap = 'viridis', alpha =.4)
-        ax.contourf(X, Y, Z_BL, cmap = 'viridis', alpha =.4)
-        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(mu_tilde)], cmap = 'viridis', alpha = .9)
-        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(mu_tilde)], cmap = 'viridis', alpha = .9)
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.contourf(X, Y, Z_hat, cmap='viridis', alpha =.4)
+        ax.contourf(X, Y, Z_BL, cmap='viridis', alpha =.4)
+        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(μ_tilde)], cmap='viridis', alpha=.9)
+        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(μ_tilde)], cmap='viridis', alpha=.9)
         ax.scatter(μ_est[0], μ_est[1])
-        ax.scatter(mu_m[0], mu_m[1])
+        ax.scatter(μ_m[0], μ_m[1])
+        ax.scatter(μ_tilde[0], μ_tilde[1], c='k', s=20*3)
         
-        ax.scatter(mu_tilde[0], mu_tilde[1], color = 'k', s = 20*3)
-        
-        ax.plot(curve[:, 0], curve[:, 1], color = 'k')
-        ax.axhline(0, color = 'k', alpha = .8)
-        ax.axvline(0, color = 'k', alpha = .8)
-        ax.set_xlabel(r'Excess return on the first asset, $r_{e, 1}$', fontsize = 12)
-        ax.set_ylabel(r'Excess return on the second asset, $r_{e, 2}$', fontsize = 12)
-        ax.text(μ_est[0] + 0.003, μ_est[1], r'$\hat{\mu}$', fontsize = 20)
-        ax.text(mu_m[0] + 0.003, mu_m[1] + 0.005, r'$\mu_{BL}$', fontsize = 20)
+        ax.plot(curve[:, 0], curve[:, 1], c='k')
+        ax.axhline(0, c='k', alpha=.8)
+        ax.axvline(0, c='k', alpha=.8)
+        ax.set_xlabel(r'Excess return on the first asset, $r_{e, 1}$')
+        ax.set_ylabel(r'Excess return on the second asset, $r_{e, 2}$')
+        ax.text(μ_est[0] + 0.003, μ_est[1], r'$\hat{\mu}$')
+        ax.text(μ_m[0] + 0.003, μ_m[1] + 0.005, r'$\mu_{BL}$')
+        plt.show()
 
 
 Note that the line that connects the two points
@@ -646,16 +635,16 @@ This leads to the
 following figure, on which the curve connecting :math:`\hat \mu`
 and :math:`\mu_{BL}` are bending
 
-.. code:: python3
+.. code-block:: python3
 
     λ_grid = np.linspace(.001, 20000, 1000)
     curve = np.asarray([black_litterman(λ, μ_m, μ_est, Σ_est, 
                                         τ * np.eye(N)).flatten() for λ in λ_grid]) 
     
-    λ_slider = FloatSlider(min = 5, max = 1500, step = 100, value = 200)
+    λ_slider = FloatSlider(min=5, max=1500, step=100, value=200)
     
-    @interact(lamb=λ_slider)
-    def decolletage(lamb):
+    @interact(λ=λ_slider)
+    def decolletage(λ):
         dist_r_BL = stat.multivariate_normal(μ_m.squeeze(), Σ_est)
         dist_r_hat = stat.multivariate_normal(μ_est.squeeze(), τ * np.eye(N))
         
@@ -668,26 +657,26 @@ and :math:`\mu_{BL}` are bending
                 Z_BL[i, j] = dist_r_BL.pdf(np.hstack([X[i, j], Y[i, j]]))
                 Z_hat[i, j] = dist_r_hat.pdf(np.hstack([X[i, j], Y[i, j]]))
         
-        mu_tilde = Black_Litterman(lamb, mu_m, μ_est, Σ_est, 
-                                       tau * np.eye(N)).flatten()
+        μ_tilde = black_litterman(λ, μ_m, μ_est, Σ_est, τ * np.eye(N)).flatten()
         
-        fig, ax = plt.subplots(figsize = (10, 6))
-        ax.contourf(X, Y, Z_hat, cmap = 'viridis', alpha = .4)
-        ax.contourf(X, Y, Z_BL, cmap = 'viridis', alpha = .4)
-        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(mu_tilde)], cmap='viridis', alpha =.9)
-        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(mu_tilde)], cmap='viridis', alpha =.9)
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.contourf(X, Y, Z_hat, cmap='viridis', alpha=.4)
+        ax.contourf(X, Y, Z_BL, cmap='viridis', alpha=.4)
+        ax.contour(X, Y, Z_BL, [dist_r_BL.pdf(μ_tilde)], cmap='viridis', alpha=.9)
+        ax.contour(X, Y, Z_hat, [dist_r_hat.pdf(μ_tilde)], cmap='viridis', alpha=.9)
         ax.scatter(μ_est[0], μ_est[1])
-        ax.scatter(mu_m[0], mu_m[1])
+        ax.scatter(μ_m[0], μ_m[1])
         
-        ax.scatter(mu_tilde[0], mu_tilde[1], color = 'k', s = 20*3)
+        ax.scatter(μ_tilde[0], μ_tilde[1], c='k', s=20*3)
         
-        ax.plot(curve2[:, 0], curve2[:, 1], color = 'k')
-        ax.axhline(0, color = 'k', alpha = .8)
-        ax.axvline(0, color = 'k', alpha = .8)
-        ax.set_xlabel(r'Excess return on the first asset, $r_{e, 1}$', fontsize = 12)
-        ax.set_ylabel(r'Excess return on the second asset, $r_{e, 2}$', fontsize = 12)
-        ax.text(μ_est[0] + 0.003, μ_est[1], r'$\hat{\mu}$', fontsize = 20)
-        ax.text(mu_m[0] + 0.003, mu_m[1] + 0.005, r'$\mu_{BL}$', fontsize = 20)
+        ax.plot(curve[:, 0], curve[:, 1], c='k')
+        ax.axhline(0, c='k', alpha=.8)
+        ax.axvline(0, c='k', alpha=.8)
+        ax.set_xlabel(r'Excess return on the first asset, $r_{e, 1}$')
+        ax.set_ylabel(r'Excess return on the second asset, $r_{e, 2}$')
+        ax.text(μ_est[0] + 0.003, μ_est[1], r'$\hat{\mu}$')
+        ax.text(μ_m[0] + 0.003, μ_m[1] + 0.005, r'$\mu_{BL}$')
+        plt.show()
     
 
 Black-Litterman recommendation as regularization
@@ -915,7 +904,7 @@ This asserts that :math:`{\sf T}` is an indirect utility function for a
 minimization problem in which an **evil agent** chooses a distorted
 probability distribution :math:`\tilde \phi` to lower expected utility,
 subject to a penalty term that gets bigger the larger is relative
-entropy.
+entropy
 
 Here the penalty parameter
 
@@ -940,7 +929,7 @@ with mean :math:`v =-\theta^{-1} C' w` and covariance matrix :math:`I`
 the mean vector of :math:`\epsilon` but not the covariance matrix
 of :math:`\epsilon`)
 
-For utility function argument :math:`w'(\vec r - r_f 1)`,
+For utility function argument :math:`w'(\vec r - r_f 1)`
 
 .. math:: {\sf T} ( \vec r - r_f {\bf 1}) = w' \mu + \zeta - \frac{1}{2 \theta} w' \Sigma w
 
@@ -1022,11 +1011,13 @@ random variable :math:`X`, respectively
 To measure the "difficulty of estimation", we use *mean squared error*
 (MSE), that is the average squared difference between the estimator and
 the true value
+
 Assuming that the process :math:`\{X_i\}`\ is ergodic,
 both analog estimators are known to converge to their true values as the
 sample size :math:`N` goes to infinity
+
 More precisely
-for all :math:`\varepsilon > 0`,
+for all :math:`\varepsilon > 0`
 
 .. math:: \lim_{N\to \infty} \ \ P\left\{ \left |\bar X_N - \mathbb E X \right| > \varepsilon \right\} = 0 \quad \quad
 
@@ -1086,7 +1077,7 @@ We are interested in how this (asymptotic) relative rate of convergence
 changes as increasing sampling frequency puts dependence into the data
 
 Dependence and sampling frequency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 To investigate how sampling frequency affects relative rates of
 convergence, we assume that the data are generated by a mean-reverting
@@ -1135,35 +1126,33 @@ observations is related to sampling frequency
 
 -  Moreover, for a fixed lag length, :math:`n`, the dependence vanishes as the sampling frequency goes to infinity. In fact, letting :math:`h` go to :math:`\infty` gives back the case of i.i.d. data
 
-.. code:: ipython3
+.. code-block:: python3
 
-    mu = .0
-    kappa = .1 
-    sigma = .5
-    var_uncond = sigma**2 / (2 * kappa) 
+    μ = .0
+    κ = .1 
+    σ = .5
+    var_uncond = σ**2 / (2 * κ) 
     
     n_grid = np.linspace(0, 40, 100)
-    autocorr_h1 = np.exp(- kappa * n_grid * 1)
-    autocorr_h2 = np.exp(- kappa * n_grid * 2)
-    autocorr_h5 = np.exp(- kappa * n_grid * 5)
-    autocorr_h1000 = np.exp(- kappa * n_grid * 1e8)
+    autocorr_h1 = np.exp(-κ * n_grid * 1)
+    autocorr_h2 = np.exp(-κ * n_grid * 2)
+    autocorr_h5 = np.exp(-κ * n_grid * 5)
+    autocorr_h1000 = np.exp(-κ * n_grid * 1e8)
     
-    fig, ax = plt.subplots(figsize = (8, 4))
-    ax.plot(n_grid, autocorr_h1, label = r'$h = 1$', color = 'darkblue', lw = 2)
-    ax.plot(n_grid, autocorr_h2, label = r'$h = 2$', color = 'darkred', lw = 2)
-    ax.plot(n_grid, autocorr_h5, label = r'$h = 5$', color = 'orange', lw = 2)
-    ax.plot(n_grid, autocorr_h1000, label = r'"$h = \infty$"', color = 'darkgreen', lw = 2)
-    ax.legend(loc = 'best', fontsize = 13)
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.plot(n_grid, autocorr_h1, label=r'$h=1$', c='darkblue', lw=2)
+    ax.plot(n_grid, autocorr_h2, label=r'$h=2$', c='darkred', lw=2)
+    ax.plot(n_grid, autocorr_h5, label=r'$h=5$', c='orange', lw=2)
+    ax.plot(n_grid, autocorr_h1000, label=r'"$h=\infty$"', c='darkgreen', lw=2)
+    ax.legend()
     ax.grid()
-    ax.set_title(r'Autocorrelation functions, $\Gamma_h(n)$', fontsize = 13)
-    ax.set_xlabel(r'Lags between observations, $n$', fontsize = 11)
+    ax.set(title=r'Autocorrelation functions, $\Gamma_h(n)$', 
+           xlabel=r'Lags between observations, $n$')
     plt.show()
 
 
-
-
 Frequency and the mean estimator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 Consider again the AR(1) process generated by discrete sampling with
 frequency :math:`h`. Assume that we have a sample of size :math:`N` and
@@ -1177,7 +1166,7 @@ mean
 
 The variance of the sample mean is given by
 
-.. raw:: latex
+.. math::
 
    \begin{align}
    \mathbb{V}\left(\bar X_N\right) &= \mathbb{V}\left(\frac{1}{N}\sum_{i = 1}^N X_i\right) \\
@@ -1198,7 +1187,7 @@ Intuitively, the stronger dependence across observations for high frequency data
 
 We can upper bound the variance term in the following way
 
-.. raw:: latex
+.. math::
 
    \begin{align}
    \mathbb{V}(\bar X_N) &= \frac{1}{N^2} \left( N \sigma^2 + 2 \sum_{i=1}^{N-1} i \cdot \exp(-\kappa h (N - i)) \sigma^2 \right) \\
@@ -1228,31 +1217,31 @@ thus getting an idea about how the asymptotic relative MSEs changes in
 the sampling frequency :math:`h` relative to the iid case that we
 compute in closed form
 
-.. code:: ipython3
+.. code-block:: python3
 
     def sample_generator(h, N, M):
-        phi = (1 - np.exp(- kappa * h)) * mu
-        rho = np.exp(- kappa * h)
-        s = sigma**2 * (1 - np.exp(-2 * kappa * h)) / (2 * kappa)
+        ϕ = (1 - np.exp(-κ * h)) * μ
+        ρ = np.exp(-κ * h)
+        s = σ**2 * (1 - np.exp(-2 * κ * h)) / (2 * κ)
     
-        mean_uncond = mu
-        std_uncond = np.sqrt(sigma**2 / (2 * kappa))
+        mean_uncond = μ
+        std_uncond = np.sqrt(σ**2 / (2 * κ))
     
-        eps_path = stat.norm(0, np.sqrt(s)).rvs((M, N)) 
+        ε_path = stat.norm(0, np.sqrt(s)).rvs((M, N)) 
         
         y_path = np.zeros((M, N + 1))
         y_path[:, 0] = stat.norm(mean_uncond, std_uncond).rvs(M)
     
         for i in range(N):
-            y_path[:, i + 1] = phi + rho*y_path[:, i] + eps_path[:, i]
+            y_path[:, i + 1] = ϕ + ρ * y_path[:, i] + ε_path[:, i]
         
         return y_path
 
 
-.. code:: ipython3
+.. code-block:: python3
 
-    # generate large sample for different frequencies
-    N_app, M_app = 1000, 30000                      # sample size, number of simulations
+    # Generate large sample for different frequencies
+    N_app, M_app = 1000, 30000                      # Sample size, number of simulations
     h_grid = np.linspace(.1, 80, 30)
     
     var_est_store = []
@@ -1268,40 +1257,30 @@ compute in closed form
     var_est_store = np.array(var_est_store)
     mean_est_store = np.array(mean_est_store)
 
-
-.. code:: ipython3
-
-    # save mse of estimators
-    mse_mean = np.var(mean_est_store, 1) + (np.mean(mean_est_store, 1) - mu)**2
+    # Save mse of estimators
+    mse_mean = np.var(mean_est_store, 1) + (np.mean(mean_est_store, 1) - μ)**2
     mse_var = np.var(var_est_store, 1) + (np.mean(var_est_store, 1) - var_uncond)**2
     
-    benchmark_rate = 2*var_uncond       # iid case
+    benchmark_rate = 2 * var_uncond       # iid case
     
-    #relative MSE for large samples
-    rate_h = mse_var/mse_mean
+    # Relative MSE for large samples
+    rate_h = mse_var / mse_mean
 
-
-.. code:: ipython3
-
-    fig, ax = plt.subplots(figsize = (8, 5))
-    ax.plot(h_grid, rate_h, color = 'darkblue', lw = 2, 
-            label = r'large sample relative MSE, $B(h)$')
-    ax.axhline(benchmark_rate, color = 'k', linestyle = '--', label = r'iid benchmark')
-    ax.set_title('Relative MSE for large samples as a function of sampling frequency \n MSE($S_N$) relative to MSE($\\bar X_N$)', 
-                 fontsize = 12)
-    ax.set_xlabel('Sampling frequency, $h$', fontsize = 11)
-    ax.set_ylim([1, 2.9])
-    ax.legend(loc = 'best', fontsize = 10)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(h_grid, rate_h, c='darkblue', lw=2, 
+            label=r'large sample relative MSE, $B(h)$')
+    ax.axhline(benchmark_rate, c='k', ls='--', label=r'iid benchmark')
+    ax.set_title('Relative MSE for large samples as a function of sampling frequency \n MSE($S_N$) relative to MSE($\\bar X_N$)')
+    ax.set_xlabel('Sampling frequency, $h$')
+    ax.legend()
     plt.show()
 
 
-
-
 The above figure illustrates the relationship between the asymptotic
-relative MSEs and the sampling frequency.
+relative MSEs and the sampling frequency
 
 -  We can see that with low frequency data -- large values of :math:`h`
-   -- the ratio of asymptotic rates approaches the iid case.
+   -- the ratio of asymptotic rates approaches the iid case
 
 -  As :math:`h` gets smaller -- the higher the frequency -- the relative
    performance of the variance estimator is better in the sense that the
@@ -1310,10 +1289,8 @@ relative MSEs and the sampling frequency.
    estimator's MSE deteriorates more than that of the variance
    estimator
 
---------------
-
 References
-^^^^^^^^^^
+------------
 
 Black, F. and Litterman, R., 1992. "Global portfolio optimization".
 Financial analysts journal, 48(5), pp.28-43
