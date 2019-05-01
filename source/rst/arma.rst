@@ -833,11 +833,9 @@ Here are some functions to generate the plots
 
 
 
-Now let's call these functions to generate the plots
+Now let's call these functions to generate plots
 
-
-We'll use the model :math:`X_t = 0.5 X_{t-1} + \epsilon_t - 0.8 \epsilon_{t-2}`
-
+As a warmup, let's make sure things look right when we for the pure white noise model :math:`X_t = \epsilon_t`
 
 
 
@@ -845,14 +843,73 @@ We'll use the model :math:`X_t = 0.5 X_{t-1} + \epsilon_t - 0.8 \epsilon_{t-2}`
 
     import quantecon as qe
 
-    ϕ = 0.5
-    θ = 0, -0.8
+    ϕ = 0.0
+    θ = 0.0
+    arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma)
+
+
+If we look carefully, things look good: the spectrum is the flat line at :math:`10^0` at the very top of the specturm graphs,
+which is at it should be
+
+Also 
+
+   * the variance  equals :math:`1 = \frac{1}{2 \pi} \int_{-\pi}^\pi 1 d \omega` as it should
+
+   * the covariogram and impulse response look as they should
+
+   * it is actually challenging to visualize a time series realization of a white noise -- a sequence of surprises -- but this too looks pretty good
+
+
+To get some more examples, as our laboratory
+we'll replicate quartets of graphs that :cite:`Ljungqvist2012` use to teach "how to read spectral densities"
+
+
+Ljunqvist and Sargent's first  model is  :math:`X_t = 1.3 X_{t-1} - .7 X_{t-2} + \epsilon_t`
+
+
+
+
+.. code-block:: python3
+
+    ϕ = 1.3, -.7
+    θ = 0.0
+    arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma)
+  
+ 
+
+
+Ljungqvist and Sargent's second model is :math:`X_t = .9 X_{t-1} + \epsilon_t` 
+
+.. code-block:: python3
+   
+    ϕ = 0.9
+    θ = -0.0
+    arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma)
+
+
+Ljungqvist and Sargent's third  model is  :math:`X_t = .8 X_{t-4} + \epsilon_t` 
+
+.. code-block:: python3
+   
+    ϕ = 0., 0., 0., .8
+    θ = -0.0
     arma = qe.ARMA(ϕ, θ)
     quad_plot(arma)
 
 
 
+Ljungqvist and Sargent's fourth  model is  :math:`X_t = .98 X_{t-1}  + \epsilon_t -.7 \epsilon_{t-1}` 
 
+
+.. code-block:: python3
+   
+    ϕ = .98
+    θ = -0.7
+    arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma)    
 
 Explanation
 --------------------
