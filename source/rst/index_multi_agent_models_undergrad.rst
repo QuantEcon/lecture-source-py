@@ -23,5 +23,3 @@ equilibrium concepts.
     lake_model
     rational_expectations
     markov_perf
-    markov_asset
-
