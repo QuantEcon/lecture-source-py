@@ -1202,13 +1202,13 @@ It turns out that we can use the `QuantEcon.py <http://quantecon.org/python_inde
 much of the work that we have done from scratch above
 
 Here is how we map the Samuelson model into an instance of a
-`LinearStateSpace` class
+``LinearStateSpace`` class
 
 .. code-block:: python3
 
     from quantecon import LinearStateSpace
 
-    """ This script maps the Samuelson model in the the LinearStateSpace class"""
+    """ This script maps the Samuelson model in the the ``LinearStateSpace`` class"""
     α = 0.8
     β = 0.9
     ρ1 = α + β
@@ -1247,11 +1247,11 @@ Here is how we map the Samuelson model into an instance of a
     plt.show()
 
 
-Other Methods in the LinearStateSpace Class
+Other Methods in the ``LinearStateSpace`` Class
 ----------------------------------------------------
 
 Let's plot **impulse response functions** for the instance of the
-Samuelson model using a method in the LinearStateSpace class
+Samuelson model using a method in the ``LinearStateSpace`` class
 
 .. code-block:: python3
 
