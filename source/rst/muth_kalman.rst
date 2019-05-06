@@ -305,7 +305,7 @@ Recall that we wrote down the innovation representation that depended on
 MA and AR Representations
 ---------------------------
 
-Now we shall extract from the **Kalman** instance kmuth coefficients of
+Now we shall extract from the ``Kalman`` instance ``kmuth`` coefficients of
 
 -  a fundamental moving average representation that represents
    :math:`y_t` as a one-sided moving sum of current and past
