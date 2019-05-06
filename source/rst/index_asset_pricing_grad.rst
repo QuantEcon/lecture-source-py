@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 **********************************************
-Asset Pricing
+Asset Pricing and Finance
 **********************************************
 
 
@@ -17,5 +17,7 @@ Asset Pricing
 .. toctree::
     :maxdepth: 2
 
+    markov_asset
     lucas_model
+    harrison_kreps
     black_litterman

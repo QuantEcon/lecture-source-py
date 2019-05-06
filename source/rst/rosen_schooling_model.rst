@@ -6,7 +6,7 @@
     single: python
 
 ****************************
-Rosen schooling model
+Rosen Schooling Model
 ****************************
 
 .. contents:: :depth: 2

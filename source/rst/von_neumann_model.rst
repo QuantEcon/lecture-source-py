@@ -6,7 +6,7 @@
     single: python
 
 **************************************************
-von Neumann growth model (and a generalization)
+Von Neumann Growth Model (and a Generalization)
 **************************************************
 
 .. contents:: :depth: 2
