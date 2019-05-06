@@ -155,7 +155,7 @@ A feasible allocation :math:`\vec C, \vec K` satisfies
 
 where :math:`\delta \in (0,1)` is a depreciation rate of capital
 
-Planning problem
+Planning Problem
 ------------------
 
 A planner chooses an allocation :math:`\{\vec{C},\vec{K}\}` to
@@ -629,7 +629,7 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting :math:`K_0` equal to steady state :math:`K`
+Setting :math:`K_0` Equal to Steady State :math:`K`
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
@@ -846,7 +846,7 @@ Let's calculate it
         plot_savings(paths, k_ss=k_ss, axes=axes)
 
 
-:math:`T=+\infty` economy
+:math:`T=+\infty` Economy
 --------------------------
 
 We now consider an economy in which :math:`T = +\infty`
@@ -1116,7 +1116,7 @@ Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_{T+
 
 :math:`k_0` is given to the household
 
-Market structure for intertemporal trades
+Market Structure for Intertemporal Trades
 -------------------------------------------
 
 There is a **single** grand competitive market in which a
@@ -1133,7 +1133,7 @@ bundles of goods at some other dates.
 There exist **complete markets** in such bundles with associated
 market prices
 
-Market prices
+Market Prices
 --------------
 
 Let :math:`q^0_t` be the price of a good at date :math:`t` relative
@@ -1169,7 +1169,7 @@ or
 
 .. math:: \sum_{t=0}^T q^0_t  \left(c_t + (k_{t+1} -(1-\delta)k_t)-(w_t 1 + \eta_t k_t) \right) \leq 0
 
-Household problem
+Household Problem
 ------------------
 
 The household faces the constrained optimization problem:
@@ -1273,7 +1273,7 @@ the planning problem:
     
     k^*_t = \tilde k^*_t=K_t, \tilde n_t=1, c^*_t=C_t
 
-Verification procedure
+Verification Procedure
 -----------------------
 
 Our approach is to stare at first-order necessary conditions for the
