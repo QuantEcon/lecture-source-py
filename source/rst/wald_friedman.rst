@@ -6,7 +6,7 @@
 
 
 ***********************************************
-:index:`A Problem that Stumped Milton Friedman`
+:index:`A Problem That Stumped Milton Friedman`
 ***********************************************
 
 (and that Abraham Wald solved by inventing sequential analysis)
@@ -72,7 +72,7 @@ We'll begin with some imports
     from interpolation import interp
     from math import gamma
 
-Origin of the problem
+Origin of the Problem
 ======================
 
 On pages 137-139 of his 1998 book *Two Lucky People* with Rose Friedman :cite:`Friedman98`,
@@ -122,7 +122,7 @@ We'll formulate the problem using dynamic programming
 
 
 
-A dynamic programming approach
+A Dynamic Programming Approach
 ================================
 
 The following presentation of the problem closely follows Dmitri
@@ -224,7 +224,7 @@ The bottom panel presents mixtures of these distributions, with various mixing p
     plt.show()
   
 
-Losses and costs
+Losses and Costs
 -------------------
 
 After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker
@@ -252,7 +252,7 @@ kinds of losses:
 
 
 
-Digression on type I and type II errors
+Digression on Type I and Type II Errors
 ----------------------------------------
 
 If we regard  :math:`f=f_0` as a null hypothesis and :math:`f=f_1` as an alternative hypothesis,
@@ -301,7 +301,7 @@ which will depend on the parameters listed above
 You might like to pause at this point and try to predict the impact of a
 parameter such as :math:`c` or :math:`L_0` on :math:`\alpha` or :math:`\beta`
 
-A Bellman equation
+A Bellman Equation
 -------------------
 
 
@@ -763,7 +763,7 @@ In this case the decision maker is correct 80% of the time
     simulation_plot(wf)
     
 
-Comparative statics
+Comparative Statics
 ----------------------
 
 Now let's consider the following exercise
@@ -790,7 +790,7 @@ This leads to him having a higher expected loss when he puts equal weight on bot
 
 
 
-A notebook implementation
+A Notebook Implementation
 ---------------------------
 
 
@@ -818,7 +818,7 @@ With these sliders you can adjust parameters and immediately observe
 
 
 
-Comparison with Neyman-Pearson formulation
+Comparison with Neyman-Pearson Formulation
 =============================================
 
 For several reasons, it is useful to describe the theory underlying the test
