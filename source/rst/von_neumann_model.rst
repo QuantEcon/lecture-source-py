@@ -445,7 +445,7 @@ instance
 Dynamic interpretation
 ====================================
 
-Attach a time index :math:`t` to the preceding objects, regard aneconomy
+Attach a time index :math:`t` to the preceding objects, regard an economy
 as a dynamic system, and study sequences
 
 .. math:: \{(A_t,B_t)\}_{t\geq 0}, \hspace{1cm}\{x_t\}_{t\geq 0},\hspace{1cm} \{p_t\}_{t\geq 0}
