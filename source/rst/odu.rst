@@ -49,7 +49,7 @@ Let's start with some imports
     from matplotlib import cm
 
 
-Model features
+Model Features
 ----------------
 
 * Infinite horizon dynamic programming with two states and one binary control
