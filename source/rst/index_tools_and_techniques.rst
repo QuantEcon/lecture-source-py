@@ -20,6 +20,7 @@ tools and techniques
     :maxdepth: 2
 
     linear_algebra
+    complex_and_trig
     orth_proj
     lln_clt
     linear_models

@@ -6,16 +6,40 @@
     single: python
 
 **********************************
-Complex numbers and trignometry
+Complex Numbers and Trignometry
 **********************************
 
 .. contents:: :depth: 2
 
+
 Overview
 =========
 
-The Euclidean, polar, and trigonometric forms of a complex number
-:math:`z` are:
+This lecture introduces some elementary mathematics and trigonometry
+
+Useful and interesting in its own right, these concepts reap substantial rewards when studying dynamics generated
+by linear difference equations or linear differential equations
+
+For example, these tools are keys to understanding outcomes attained by Paul
+Samuelson (1939) :cite:`Samuelson1939` in his classic paper on interactions
+between the investment accelertor and the Keynesian consumption function, our
+topic in the lecture :doc:`The Samuelson accelerator<samuelson>` 
+
+In addition to providing foundations for Samuelson's work and extensions of
+it, this lecture can be read as a stand-alone quick reminder of key results
+from elementary high school trigonometry
+
+So let's dive in
+
+
+Complex Numbers
+----------------
+
+A complex number has a **real part** :math:`x` and a purely **imaginary part** :math:`y`
+
+
+
+The Euclidean, polar, and trigonometric forms of a complex number :math:`z` are:
 
 .. math::
 
@@ -25,19 +49,18 @@ The Euclidean, polar, and trigonometric forms of a complex number
 
 The second equality above is known as called **Euler's formula**
 
--  Euler contributed many other formulas too!
+-  `Euler <https://en.wikipedia.org/wiki/Leonhard_Euler>`__ contributed many other formulas too!
 
 The complex conjugate :math:`\bar z` of :math:`z` is defined as
 
 .. math:: \bar z = r e^{-i \theta} = r (\cos{\theta} - i \sin{\theta} )
 
-:math:`x`\ is the **real** part of :math:`z` and :math:`y` is the
+The value :math:`x` is the **real** part of :math:`z` and :math:`y` is the
 **imaginary** part of :math:`z`
 
-:math:`\| z \|` = :math:`\bar z z = r` is called the **modulus**
-of\ :math:`z`
+The symbol :math:`\| z \|` = :math:`\bar z z = r` represents the **modulus** of :math:`z`
 
-:math:`r` is the Euclidean distance of vector :math:`(x,y)` from the
+The value :math:`r` is the Euclidean distance of vector :math:`(x,y)` from the
 origin:
 
 .. math::
@@ -46,11 +69,9 @@ origin:
    r = |z| = \sqrt{x^2 + y^2}
    \end{equation}
 
-:math:`\theta` is the angle of :math:`(x,y)` with respect to the real
-axis
+The value :math:`\theta` is the angle of :math:`(x,y)` with respect to the real axis
 
-Evidently, the tangent of :math:`\theta`
-is :math:`\left(\frac{y}{x}\right)`
+Evidently, the tangent of :math:`\theta` is :math:`\left(\frac{y}{x}\right)`
 
 Therefore,
 
@@ -72,18 +93,19 @@ Three elementary trigonometric functions are
 
 We'll need the following imports
 
-.. code:: python3
+.. code-block:: ipython
 
    import numpy as np
    import matplotlib.pyplot as plt
+   %matplotlib inline
    
 
-An example
+An Example
 -----------
 
 Consider the complex number :math:`z = 1 + \sqrt{3} i`
 
-For :math:`z = 1 + \sqrt{3} i`, :math:`x = 1`,\ :math:`y = \sqrt{3}`
+For :math:`z = 1 + \sqrt{3} i`, :math:`x = 1`, :math:`y = \sqrt{3}`
 
 It follows that :math:`r = 2` and
 :math:`\theta = \tan^{-1}(\sqrt{3}) = \frac{\pi}{3} = 60^o`
@@ -91,7 +113,7 @@ It follows that :math:`r = 2` and
 Let's use Python to plot the trigonometric form of the complex number
 :math:`z = 1 + \sqrt{3} i`
 
-.. code:: python3
+.. code-block:: python3
     
     # Abbreviate useful values and functions
     π = np.pi
@@ -132,7 +154,7 @@ Let's use Python to plot the trigonometric form of the complex number
     plt.show()
 
 
-De Moivre's theorem
+De Moivre's Theorem
 ====================
 
 de Moivre's theorem states that:
@@ -151,7 +173,7 @@ To prove de Moivre's theorem, note that
 
 and compute
 
-Applications of de Moivre's theorem
+Applications of de Moivre's Theorem
 =====================================
 
 Example 1
@@ -185,15 +207,14 @@ We recogize this as a theorem of **Pythagoras**
 Example 2
 ----------
 
-Let :math:`z = re^{i\theta}`\ and\ :math:`\bar{z} = re^{-i\theta}` so
-that :math:`\bar{z}`\ is the **complex conjugate** of\ :math:`z`
+Let :math:`z = re^{i\theta}` and :math:`\bar{z} = re^{-i\theta}` so that :math:`\bar{z}` is the **complex conjugate** of :math:`z`
 
 :math:`(z, \bar z)` form a **complex conjugate pair** of complex numbers
 
 Let :math:`a = pe^{i\omega}` and :math:`\bar{a} = pe^{-i\omega}` be
 another complex conjugate pair
 
-We want to calculate :math:`x_n = az^n + \bar{a}\bar{z}^n`
+For each element of a sequence of integers :math:`n = 0, 1, 2, \ldots, ` we want to calculate :math:`x_n = az^n + \bar{a}\bar{z}^n`
 
 To do so, we can apply de Moivre's formula
 
@@ -213,11 +234,13 @@ Thus,
 Example 3
 ----------
 
-Consider a **second-order linear difference equation**
+This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model :cite:`Samuelson1939` 
+
+Thus, consider a **second-order linear difference equation**
 
 .. math:: x_{n+2} = c_1 x_{n+1} + c_2 x_n 
 
-whose **characteristic polynomial**
+whose **characteristic polynomial** is
 
 .. math:: z^2 - c_1 z - c_2 = 0
 
@@ -227,7 +250,7 @@ or
 
 has roots :math:`z_1, z_1`
 
-A **solution** is a sequence :math:`\{x_n\}_{n=0}^\infty` that satisfies
+A **solution**  is a sequence :math:`\{x_n\}_{n=0}^\infty` that satisfies
 the difference equation
 
 Under the following circumstances we can apply our example 2 formula to
@@ -255,8 +278,7 @@ the ratio of :math:`x_1` to :math:`x_0` is
    \frac{x_1}{x_0} = \frac{r \cos{(\omega + \theta)}}{\cos{\omega}}
    \end{equation}
 
-We can solve this equation for :math:`\omega`\ then solve for\ :math:`p`
-using :math:`x_0 = 2 pr^0 \cos{(\omega + n\theta)}`
+We can solve this equation for :math:`\omega` then solve for :math:`p` using :math:`x_0 = 2 pr^0 \cos{(\omega + n\theta)}`
 
 With the ``sympy`` package in Python, we are able to solve and plot the
 dynamics of :math:`x_n` given different values of :math:`n`
@@ -269,7 +291,7 @@ We first numerically solve for :math:`\omega` and :math:`p` using
 ``nsolve`` in the ``sympy`` package based on the above initial
 condition:
 
-.. code:: python3
+.. code-block:: python3
 
     from sympy import *
     
@@ -302,7 +324,7 @@ Using the code above, we compute that
 Then we plug in the values we solve for :math:`\omega` and :math:`p`
 and plot the dynamic
 
-.. code:: python3
+.. code-block:: python3
 
     # Define range of n
     max_n = 30
@@ -335,7 +357,7 @@ and plot the dynamic
     plt.show()
 
 
-Trigonometric identities
+Trigonometric Identities
 ------------------------
 
 We can obtain a complete suite of trigonometric identities by
@@ -386,7 +408,7 @@ The equations above are also known as the **angle sum identities**. We
 can verify the equations using the ``simplify`` function in the
 ``sympy`` package:
 
-.. code:: python3
+.. code-block:: python3
 
     # Define symbols
     ω, θ = symbols('ω θ', real=True)
@@ -447,7 +469,7 @@ and thus:
 We can verify the analytical as well as numerical results using
 ``integrate`` in the ``sympy`` package:
 
-.. code:: python3
+.. code-block:: python3
 
     # Set initial priting
     init_printing()
@@ -457,7 +479,7 @@ We can verify the analytical as well as numerical results using
     integrate(cos(ω) * sin(ω), ω)
 
 
-.. code:: python3
+.. code-block:: python3
 
     print('The numerical solution for the integral of cos(ω)sin(ω) from -π to π is:')
     integrate(cos(ω) * sin(ω), (ω, -π, π))
