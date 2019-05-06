@@ -6,7 +6,7 @@
 
 
 ***********************************************
-:index:`A Problem That Stumped Milton Friedman`
+:index:`A Problem that Stumped Milton Friedman`
 ***********************************************
 
 (and that Abraham Wald solved by inventing sequential analysis)
