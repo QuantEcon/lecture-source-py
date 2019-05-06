@@ -19,23 +19,23 @@ In an :doc:`earlier lecture on pandas <pandas>` we looked at working with simple
 
 Econometricians often need to work with more complex data sets, such as panels
 
-Common tasks include 
+Common tasks include
 
-* Importing data, cleaning it and reshaping it across several axes 
+* Importing data, cleaning it and reshaping it across several axes
 
-* Selecting a time series or cross-section from a panel 
-  
+* Selecting a time series or cross-section from a panel
+
 * Grouping and summarizing data
 
 ``pandas`` (derived from 'panel' and 'data') contains powerful and
 easy-to-use tools for solving exactly these kinds of problems
 
-In what follows, we will use a panel data set of real minimum wages from the OECD to create: 
+In what follows, we will use a panel data set of real minimum wages from the OECD to create:
 
-* summary statistics over multiple dimensions of our data 
-  
-* a time series of the average minimum wage of countries in the dataset 
-  
+* summary statistics over multiple dimensions of our data
+
+* a time series of the average minimum wage of countries in the dataset
+
 * kernel density estimates of wages by continent
 
 We will begin by reading in our long format panel data from a csv file and
@@ -48,7 +48,7 @@ function
 Most of this lecture was created by `Natasha Watkins <https://github.com/natashawatkins>`__
 
 
-Slicing and reshaping data
+Slicing and Reshaping Data
 ==========================
 
 We will read in a dataset from the OECD of real minimum wages in 32
@@ -56,12 +56,12 @@ countries and assign it to ``realwage``
 
 .. only:: html
 
-    The dataset ``pandas_panel/realwage.csv`` can be downloaded 
+    The dataset ``pandas_panel/realwage.csv`` can be downloaded
     :download:`here </_static/code/pandas_panel/realwage.csv>`
 
 .. only:: latex
 
-    The dataset ``pandas_panel/realwage.csv`` can be downloaded 
+    The dataset ``pandas_panel/realwage.csv`` can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/realwage.csv>`__
 
 Make sure the file is in your current working directory
@@ -69,13 +69,13 @@ Make sure the file is in your current working directory
 .. code-block:: python3
 
     import pandas as pd
-    
+
     # Display 6 columns for viewing purposes
     pd.set_option('display.max_columns', 6)
-    
+
     # Reduce decimal points to 2
     pd.options.display.float_format = '{:,.2f}'.format
-    
+
     realwage = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas_panel/realwage.csv')
 
 
@@ -95,11 +95,11 @@ By passing a list in columns, we can create a ``MultiIndex`` in our column axis
 
 .. code-block:: python3
 
-  realwage = realwage.pivot_table(values='value', 
-                                  index='Time', 
+  realwage = realwage.pivot_table(values='value',
+                                  index='Time',
                                   columns=['Country', 'Series', 'Pay period'])
   realwage.head()
-    
+
 To more easily filter our time series data later on, we will convert the index into a ``DateTimeIndex``
 
 .. code-block:: python3
@@ -180,7 +180,7 @@ the higher levels (countries in this case)
     realwage_f.head()
 
 
-Merging dataframes and filling NaNs
+Merging Dataframes and Filling NaNs
 ===================================
 
 Similar to relational databases like SQL, pandas has built in methods to
@@ -193,12 +193,12 @@ function
 
 .. only:: html
 
-    The csv file can be found in ``pandas_panel/countries.csv``, and can be downloaded 
+    The csv file can be found in ``pandas_panel/countries.csv``, and can be downloaded
     :download:`here </_static/code/pandas_panel/countries.csv>`
 
 .. only:: latex
 
-    The csv file can be found in ``pandas_panel/countries.csv``, and can be downloaded 
+    The csv file can be found in ``pandas_panel/countries.csv``, and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/countries.csv>`__
 
 .. code-block:: python3
@@ -230,17 +230,17 @@ in both dataframes
 .. code-block:: python3
 
     realwage_f.transpose().head()
-   
+
 
 We can use either left, right, inner, or outer join to merge our
-datasets: 
+datasets:
 
-* left join includes only countries from the left dataset 
-  
-* right join includes only countries from the right dataset 
-  
-* outer join includes countries that are in either the left and right datasets 
-  
+* left join includes only countries from the left dataset
+
+* right join includes only countries from the right dataset
+
+* outer join includes countries that are in either the left and right datasets
+
 * inner join includes only countries common to both the left and right datasets
 
 By default, ``merge`` will use an inner join
@@ -268,7 +268,7 @@ Our 'right' dataframe (``worlddata``) contains countries in the
 
 .. code-block:: python3
 
-    merged = pd.merge(realwage_f.transpose(), worlddata, 
+    merged = pd.merge(realwage_f.transpose(), worlddata,
                       how='left', left_index=True, right_on='Country')
     merged.head()
 
@@ -299,7 +299,7 @@ Notice how countries not in our dictionary are mapped with ``NaN``
     missing_continents = {'Korea': 'Asia',
                           'Russian Federation': 'Europe',
                           'Slovak Republic': 'Europe'}
-    
+
     merged['Country'].map(missing_continents)
 
 
@@ -312,9 +312,9 @@ with the mapping, while leaving other values in the column unchanged
 .. code-block:: python3
 
     merged['Continent'] = merged['Continent'].fillna(merged['Country'].map(missing_continents))
-    
+
     # Check for whether continents were correctly mapped
-    
+
     merged[merged['Country'] == 'Korea']
 
 We will also combine the Americas into a single continent - this will make our visualization nicer later on
@@ -324,12 +324,12 @@ To do this, we will use ``.replace()`` and loop through a list of the continent 
 .. code-block:: python3
 
     replace = ['Central America', 'North America', 'South America']
-    
+
     for country in replace:
-        merged['Continent'].replace(to_replace=country, 
-                                    value='America', 
+        merged['Continent'].replace(to_replace=country,
+                                    value='America',
                                     inplace=True)
-      
+
 
 Now that we have all the data we want in a single ``DataFrame``, we will
 reshape it back into panel form with a ``MultiIndex``
@@ -374,7 +374,7 @@ will go ahead and transpose ``merged``
     merged.head()
 
 
-Grouping and summarizing data
+Grouping and Summarizing Data
 =============================
 
 Grouping and summarizing data can be particularly useful for
@@ -402,14 +402,14 @@ past decade for each country in our data set
     %matplotlib inline
     import matplotlib
     matplotlib.style.use('seaborn')
-    
+
     merged.mean().sort_values(ascending=False).plot(kind='bar', title="Average real minimum wage 2006 - 2016")
-    
+
     #Set country labels
     country_labels = merged.mean().sort_values(ascending=False).index.get_level_values('Country').tolist()
     plt.xticks(range(0, len(country_labels)), country_labels)
     plt.xlabel('Country')
-    
+
     plt.show()
 
 
@@ -471,12 +471,12 @@ summary statistics
 
 This is a simplified way to use ``groupby``
 
-Using ``groupby`` generally follows a 'split-apply-combine' process: 
+Using ``groupby`` generally follows a 'split-apply-combine' process:
 
-* split: data is grouped based on one or more keys 
-  
-* apply: a function is called on each group independently 
-  
+* split: data is grouped based on one or more keys
+
+* apply: a function is called on each group independently
+
 * combine: the results of the function calls are combined into a new data structure
 
 The ``groupby`` method achieves the first step of this process, creating
@@ -515,12 +515,12 @@ object
 .. code-block:: python3
 
     import seaborn as sns
-    
+
     continents = grouped.groups.keys()
-    
+
     for continent in continents:
         sns.kdeplot(grouped.get_group(continent)['2015'].unstack(), label=continent, shade=True)
-    
+
     plt.title('Real minimum wages in 2015')
     plt.xlabel('US dollars')
     plt.show()
@@ -548,12 +548,12 @@ in Europe by age and sex from `Eurostat <http://ec.europa.eu/eurostat/data/datab
 
 .. only:: html
 
-    The dataset ``pandas_panel/employ.csv`` can be downloaded 
+    The dataset ``pandas_panel/employ.csv`` can be downloaded
     :download:`here </_static/code/pandas_panel/employ.csv>`
 
 .. only:: latex
 
-    The dataset ``pandas_panel/employ.csv`` can be downloaded 
+    The dataset ``pandas_panel/employ.csv`` can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/employ.csv>`__
 
 Reading in the csv file returns a panel dataset in long format. Use ``.pivot_table()`` to construct
@@ -588,8 +588,8 @@ Exercise 1
 .. code-block:: python3
 
     employ = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas_panel/employ.csv')
-    employ = employ.pivot_table(values='Value', 
-                                index=['DATE'], 
+    employ = employ.pivot_table(values='Value',
+                                index=['DATE'],
                                 columns=['UNIT','AGE', 'SEX', 'INDIC_EM', 'GEO'])
     employ.index = pd.to_datetime(employ.index) # ensure that dates are datetime format
     employ.head()
