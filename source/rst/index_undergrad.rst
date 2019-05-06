@@ -4,7 +4,7 @@
 
     ****
     Home
-    ****   
+    ****
 
 .. only:: latex
 
@@ -42,11 +42,12 @@
     index_tools_and_techniques_undergrad
     index_dynamic_programming_undergrad
     index_multi_agent_models_undergrad
+    index_asset_pricing_undergrad
     zreferences
 
 
 |
-    
+
 .. image:: http://assets.quantecon.org/img/banner.png
     :scale: 30%
     :align: center
@@ -55,6 +56,6 @@
 
     Acknowledgements:  These lectures have benefitted greatly from comments and
     suggestion from our colleagues, students and friends.  Special thanks go to
-    Anmol Bhandari, Long Bui, Jeong-Hun Choi, Chase Coleman, David Evans, Shunsuke Hori, 
-    Chenghan Hou, Doc-Jin Jang, Spencer Lyon, Qingyin Ma, Akira Matsushita, 
+    Anmol Bhandari, Long Bui, Jeong-Hun Choi, Chase Coleman, David Evans, Shunsuke Hori,
+    Chenghan Hou, Doc-Jin Jang, Spencer Lyon, Qingyin Ma, Akira Matsushita,
     Matthew McKay, Tomohito Okabe, Alex Olssen, Nathan Palmer and Yixiao Zhou.

@@ -24,11 +24,7 @@ equilibrium concepts.
     rational_expectations
     markov_perf
     rob_markov_perf
-    markov_asset
-    lucas_model
-    harrison_kreps
     uncertainty_traps
     aiyagari
     arellano
     matsuyama
-
