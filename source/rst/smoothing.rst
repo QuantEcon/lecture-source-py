@@ -353,7 +353,7 @@ an equation in the unknown :math:`b(\bar s_2)`
 
 Knowing :math:`b(\bar s_1)` and :math:`b(\bar s_2)`, we can solve equation :eq:`cs_5`  for the constant level of consumption :math:`\bar c`
 
-Key outcomes
+Key Outcomes
 ------------
 
 The preceding calculations indicate that in the complete markets version
