@@ -350,7 +350,7 @@ We have written the function in a way that allows us to input :math:`\{G_t\}` pa
 
 * a permanent jump in :math:`G` that occurs at some time
 
-We proceed to use the Samuelson multiplier-accererator model as a laboratory to make a simple OOP example
+We proceed to use the Samuelson multiplier-accelerator model as a laboratory to make a simple OOP example
 
 The "state" that determines next period's :math:`Y_{t+1}` is now not just the current value :math:`Y_t` but also the once lagged value :math:`Y_{t-1}`
 
@@ -497,7 +497,7 @@ Function to Describe Implications of Characteristic Polynomial
         elif discriminant < 0:
             print('Roots are complex with modulus less than one; therefore damped oscillations')
         else:
-            print('Roots are real and absolute values are less than zero; therefore get smooth convergence to a steady state')
+            print('Roots are real and absolute values are less than one; therefore get smooth convergence to a steady state')
 
 .. code-block:: python3
 
