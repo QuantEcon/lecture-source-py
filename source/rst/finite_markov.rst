@@ -230,7 +230,7 @@ In these exercises we'll take the state space to be :math:`S = 0,\ldots, n-1`
 
 
 
-Rolling our own
+Rolling Our Own
 --------------------
 
 To simulate a Markov chain, we need its stochastic matrix :math:`P` and either an initial state or a probability distribution :math:`\psi` for initial state to be drawn from
