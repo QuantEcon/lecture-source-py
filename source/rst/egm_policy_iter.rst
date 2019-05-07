@@ -251,7 +251,7 @@ We'll also run our original implementation, which uses an exogenous grid and req
 Let's test out the code above on some example parameterizations
 
 
-Testing on the Log / Cobb--Douglas case
+Testing on the Log / Cobb--Douglas Case
 ------------------------------------------
 
 
