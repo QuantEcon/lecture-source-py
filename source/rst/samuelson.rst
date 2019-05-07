@@ -185,7 +185,7 @@ no random shocks hit aggregate demand --- has only transient fluctuations
 We can convert the model to one that has persistent irregular
 fluctuations by adding a random shock to aggregate demand
 
-Stochastic version of the model
+Stochastic Version of the Model
 --------------------------------------------------
 
 We create a **random** or **stochastic** version of the model by adding
@@ -199,7 +199,7 @@ equation**:
 
    Y_t = G_t + a (1-b) Y_{t-1} - a b Y_{t-2} + \sigma \epsilon_{t}
 
-Mathematical analysis of the model
+Mathematical Analysis of the Model
 -------------------------------------------
 
 To get started, let's set :math:`G_t \equiv 0`, :math:`\sigma = 0`, and
@@ -327,7 +327,7 @@ stochastic version of the model
 
 
 
-Things this lecture does
+Things This Lecture Does
 ---------------------------
 
 We write a function to generate simulations of a :math:`\{Y_t\}` sequence as a function of time
@@ -481,7 +481,7 @@ difference equation parameter pairs in the Samuelson model are such that:
 Later we'll present the graph with a red mark showing the particular
 point implied by the setting of :math:`(a,b)`
 
-Function to describe implications of characteristic polynomial
+Function to Describe Implications of Characteristic Polynomial
 -------------------------------------------------------------------------------
 
 .. code-block:: python3
@@ -505,7 +505,7 @@ Function to describe implications of characteristic polynomial
 
     categorize_solution(1.3, -.4)
 
-Function for plotting :math:`Y_t` paths
+Function for Plotting :math:`Y_t` Paths
 -------------------------------------------
 
 A useful function for our work below
@@ -521,7 +521,7 @@ A useful function for our work below
         plt.grid()
         plt.show()
 
-Manual or "by hand" root calculations
+Manual or "by hand" Root Calculations
 ----------------------------------------------
 
 The following function calculates roots of the characteristic polynomial
@@ -586,7 +586,7 @@ that we set
     plot_y(y_nonstochastic())
 
 
-Reverse engineering parameters to generate damped cycles
+Reverse Engineering Parameters to Generate Damped Cycles
 -----------------------------------------------------------------
 
 The next cell writes code that takes as inputs the modulus :math:`r` and
@@ -649,7 +649,7 @@ phase :math:`\phi` of a conjugate pair of complex numbers in polar form
     ρ1, ρ2
 
 
-Root finding using numpy
+Root Finding Using Numpy
 ---------------------------
 
 Here we'll use numpy to compute the roots of the characteristic
@@ -717,7 +717,7 @@ polynomial
     plot_y(y_nonstochastic())
 
 
-Reverse engineered complex roots: example
+Reverse Engineered Complex Roots: Example
 --------------------------------------------------
 
 The next cell studies the implications of reverse engineered complex
@@ -746,7 +746,7 @@ We'll generate an **undamped** cycle of period 10
 
 
 
-Digression: using sympy to find roots
+Digression: Using Sympy to Find Roots
 ----------------------------------------------
 
 We can also use sympy to compute analytic formulas for the roots
@@ -789,7 +789,7 @@ We can also use sympy to compute analytic formulas for the roots
 
 
 
-Stochastic shocks
+Stochastic Shocks
 ===================
 
 Now we'll construct some code to simulate the stochastic version of the
@@ -866,7 +866,7 @@ Let's do a simulation in which there are shocks and the characteristic polynomia
     plot_y(y_stochastic(y_0=40, y_1 = 42, α=a, β=b, σ=2, n=100))
 
 
-Government spending
+Government Spending
 ======================
 
 This function computes a response to either a permanent or one-off increase
@@ -968,7 +968,7 @@ We can also see the response to a one time jump in government expenditures
     plot_y(y_stochastic_g(g=500, g_t=50, duration='one-off'))
 
 
-Wrapping everything into a class
+Wrapping Everything Into a Class
 =================================
 
 Up to now we have written functions to do the work
@@ -1164,7 +1164,7 @@ for the Samuleson model
 
             return fig
 
-Illustration of Samuelson class
+Illustration of Samuelson Class
 -------------------------------------------
 
 Now we'll put our Samuelson class to work on an example
@@ -1180,7 +1180,7 @@ Now we'll put our Samuelson class to work on an example
     plt.show()
 
 
-Using the graph
+Using the Graph
 -----------------
 
 We'll use our graph to show where the roots lie and how their location
@@ -1194,7 +1194,7 @@ The red $+$ sign shows the location of the roots
     plt.show()
 
 
-Using the LinearStateSpace class
+Using the LinearStateSpace Class
 =======================================================
 
 It turns out that we can use the `QuantEcon.py <http://quantecon.org/python_index.html>`_
@@ -1202,13 +1202,13 @@ It turns out that we can use the `QuantEcon.py <http://quantecon.org/python_inde
 much of the work that we have done from scratch above
 
 Here is how we map the Samuelson model into an instance of a
-`LinearStateSpace` class
+``LinearStateSpace`` class
 
 .. code-block:: python3
 
     from quantecon import LinearStateSpace
 
-    """ This script maps the Samuelson model in the the LinearStateSpace class"""
+    """ This script maps the Samuelson model in the the ``LinearStateSpace`` class"""
     α = 0.8
     β = 0.9
     ρ1 = α + β
@@ -1247,11 +1247,11 @@ Here is how we map the Samuelson model into an instance of a
     plt.show()
 
 
-Other methods in the LinearStateSpace class
+Other Methods in the ``LinearStateSpace`` Class
 ----------------------------------------------------
 
 Let's plot **impulse response functions** for the instance of the
-Samuelson model using a method in the LinearStateSpace class
+Samuelson model using a method in the ``LinearStateSpace`` class
 
 .. code-block:: python3
 
@@ -1279,7 +1279,7 @@ calculating the eigenvalues of :math:`A`
     w, v = np.linalg.eig(A)
     print(w)
 
-Inheriting methods from ``LinearStateSpace``
+Inheriting Methods from ``LinearStateSpace``
 ----------------------------------------------
 
 We could also create a subclass of ``LinearStateSpace`` (inheriting all its
@@ -1419,7 +1419,7 @@ Let's show how we can use the ``SamuelsonLSS``
     samlss.multipliers()
 
 
-Pure multiplier model
+Pure Multiplier Model
 =======================
 
 Let's shut down the accelerator by setting :math:`b=0` to get a pure
