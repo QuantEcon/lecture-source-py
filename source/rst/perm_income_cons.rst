@@ -125,7 +125,7 @@ The restrictions on the shock process and parameters are the same as in our :doc
 
 
 
-Digression on a useful isomorphism
+Digression on a Useful Isomorphism
 ----------------------------------
 
 The LQ permanent income model of consumption is mathematically isomorphic with a version of 
@@ -163,7 +163,7 @@ All characterizations of a :math:`\{c_t, y_t, b_t\}` in the LQ permanent income 
 See :doc:`consumption and tax smoothing models <smoothing>` for further exploitation of an isomorphism between consumption and tax smoothing models
 
 
-A specification of the nonfinancial income process
+A Specification of the Nonfinancial Income Process
 ---------------------------------------------------
 
 For the purposes of this lecture, let's assume :math:`\{y_t\}` is a second-order univariate autoregressive process:
@@ -264,7 +264,7 @@ Under an optimal decision rule :math:`F`, the state vector :math:`x_t` evolves a
 
 
 
-Mapping into the LQ framework
+Mapping into the LQ Framework
 --------------------------------
 
 
@@ -352,7 +352,7 @@ In what follows we set it equal to unity
 
 
 
-The exogenous noinfinancial income process
+The Exogenous Nonfinancial Income Process
 -------------------------------------------
 
 
@@ -461,7 +461,7 @@ employing an alternative solution method
 
 
 
-Comparison with the difference equation approach
+Comparison with the Difference Equation Approach
 --------------------------------------------------------------
 
 In our :doc:`first lecture <perm_income>` on the infinite horizon permanent
@@ -572,7 +572,7 @@ Those transient effects will not be present in the second example
 We use methods affiliated with the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to simulate the model 
 
 
-First set of initial conditions
+First Set of Initial Conditions
 --------------------------------
 
 We generate  25 paths of the exogenous non-financial income process and the associated optimal consumption and debt paths. 
@@ -592,7 +592,7 @@ Comparing sample paths with population distributions at each date :math:`t` is a
 
 
 
-Population and sample panels
+Population and Sample Panels
 --------------------------------
 
 In the code below, we use the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to
@@ -778,7 +778,7 @@ All of them accumulate debt in anticipation of rising nonfinancial income
 They expect their nonfinancial income to rise toward the invariant distribution of income, a consequence of our having started them at :math:`y_{-1} = y_{-2} = 0`
 
 
-Cointegration residual
+Cointegration Residual
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -834,7 +834,7 @@ By altering initial conditions, we shall remove this transient in our second exa
 
 
 
-A "borrowers and lenders" closed economy
+A "borrowers and lenders" Closed Economy
 ----------------------------------------
 
 When we set :math:`y_{-1} = y_{-2} = 0` and :math:`b_0 =0` in the
