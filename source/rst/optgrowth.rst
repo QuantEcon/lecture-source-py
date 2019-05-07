@@ -325,7 +325,7 @@ The Bellman equation is important because it gives us more information about the
 It also suggests a way of computing the value function, which we discuss below
 
 
-Greedy policies
+Greedy Policies
 -----------------
 
 The primary importance of the value function is that we can use it to compute optimal policies
