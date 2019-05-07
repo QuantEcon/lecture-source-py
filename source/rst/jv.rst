@@ -40,7 +40,7 @@ Let's start with some imports
     %matplotlib inline
     from math import gamma
 
-Model features
+Model Features
 ----------------
 
 .. index::
