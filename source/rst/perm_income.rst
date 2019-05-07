@@ -1057,7 +1057,7 @@ Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker
 
 .. _perm_income_appendix:
 
-Appendix: the Euler Equation
+Appendix: The Euler Equation
 ================================
 
 Where does the first order condition :eq:`sprob4` come from?
