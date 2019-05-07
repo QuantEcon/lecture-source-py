@@ -44,7 +44,7 @@ We begin with some imports
     from matplotlib import cm
 
 
-Model features
+Model Features
 ----------------
 
 * Career and job within career both chosen to maximize expected discounted wage flow
