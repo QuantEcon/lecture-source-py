@@ -467,7 +467,7 @@ Here's that Bellman operator code again, which needs to be executed because we'l
 
 
 
-Testing on the Log / Cobb--Douglas case
+Testing on the Log / Cobb--Douglas Case
 ------------------------------------------
 
 
