@@ -3,12 +3,12 @@
 .. include:: /_static/includes/header.raw
 
 ***************************************************
-OOP I: Introduction to Object Oriented Programming
+Oop I: Introduction to Object Oriented Programming 
 ***************************************************
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 
@@ -38,7 +38,7 @@ In contrast, in the OOP paradigm
 
 
 
-Python and OOP
+Python and OOP 
 ----------------
 
 Python is pragmatic language that blends object oriented and procedural styles, rather than taking a purist approach
@@ -53,7 +53,7 @@ In this lecture we explain what that statement means and why it matters
 
 
 
-Objects
+Objects 
 ===========
 
 .. index::
@@ -79,7 +79,7 @@ These concepts are defined and discussed sequentially below
 
 .. _type:
 
-Type
+Type 
 ------
 
 .. index::
@@ -146,7 +146,7 @@ For example,
 
 .. _identity:
 
-Identity
+Identity 
 ------------
 
 .. index::
@@ -174,7 +174,7 @@ The identity of an object is in fact just the address of the object in memory
 
 
 
-Object Content: Data and Attributes
+Object Content: Data and Attributes 
 -----------------------------------
 
 .. index::
@@ -216,7 +216,7 @@ These attributes are important, so let's discuss them in depth
 
 .. _methods:
 
-Methods
+Methods 
 -----------
 
 .. index::
@@ -281,7 +281,7 @@ What actually happens is that Python calls the ``__setitem__`` method, as follow
 
 
 
-Summary
+Summary 
 ==========
 
 In Python, *everything in memory is treated as an object*

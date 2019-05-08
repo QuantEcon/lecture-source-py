@@ -6,7 +6,7 @@
 
 
 *******************************************************
-The Aiyagari Model
+The Aiyagari Model 
 *******************************************************
 
 .. contents:: :depth: 2
@@ -18,7 +18,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 In this lecture we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`
@@ -53,7 +53,7 @@ The Aiyagari model has been used to investigate many topics, including
 
 
 
-References
+References 
 -------------
 
 The primary reference for this lecture is :cite:`Aiyagari1994`
@@ -63,14 +63,14 @@ A textbook treatment is available in chapter 18 of :cite:`Ljungqvist2012`
 A continuous time version of the model by SeHyoun Ahn and Benjamin Moll can be found `here <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/aiyagari_continuous_time.ipynb>`__
 
 
-The Economy
+The Economy 
 ==============
 
 
 
 
 
-Households
+Households 
 ---------------
 
 
@@ -118,7 +118,7 @@ In this simple version of the model, households supply labor  inelastically beca
 
 
 
-Firms
+Firms 
 =======
 
 
@@ -173,7 +173,7 @@ the equilibrium wage rate as a function of :math:`r` as
     w(r) = A  (1 - \alpha)  (A \alpha / (r + \delta))^{\alpha / (1 - \alpha)}
 
 
-Equilibrium
+Equilibrium 
 -----------------
 
 We construct  a *stationary rational expectations equilibrium* (SREE)
@@ -210,7 +210,7 @@ If this final quantity agrees with :math:`K` then we have a SREE
 
 
 
-Code
+Code 
 ====
 
 Let's look at how we might compute such an equilibrium in practice

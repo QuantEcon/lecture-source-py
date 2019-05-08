@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************
-:index:`Finite Markov Chains`
+:index:`finite Markov Chains` 
 ************************************
 
 .. contents:: :depth: 2
@@ -17,7 +17,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 =============
 
 Markov chains are one of the most useful classes of stochastic processes, being
@@ -40,14 +40,14 @@ Prerequisite knowledge is basic probability and linear algebra
 
 
 
-Definitions
+Definitions 
 ==============
 
 The following concepts are fundamental
 
 .. _finite_dp_stoch_mat:
 
-:index:`Stochastic Matrices`
+:index:`stochastic Matrices` 
 -----------------------------
 
 .. index::
@@ -65,7 +65,7 @@ Each row of :math:`P` can be regarded as a probability mass function over :math:
 It is too not difficult to check [#pm]_ that if :math:`P` is a stochastic matrix, then so is the :math:`k`-th power :math:`P^k` for all :math:`k \in \mathbb N`
 
 
-:index:`Markov Chains`
+:index:`markov Chains` 
 -----------------------------
 
 .. index::
@@ -128,7 +128,7 @@ By construction, the resulting process satisfies :eq:`mpp`
 
 .. _mc_eg1:
 
-Example 1
+Example 1 
 ----------
 
 Consider a worker who, at any given time :math:`t`, is either unemployed (state 0) or employed (state 1)
@@ -170,7 +170,7 @@ We'll cover such applications below
 
 .. _mc_eg2:
 
-Example 2
+Example 2 
 ----------
 
 Using  US unemployment data, Hamilton :cite:`Hamilton2005` estimated the stochastic matrix
@@ -209,7 +209,7 @@ Here "ng" is normal growth, "mr" is mild recession, etc.
 
 
 
-Simulation
+Simulation 
 =============
 
 .. index::
@@ -230,7 +230,7 @@ In these exercises we'll take the state space to be :math:`S = 0,\ldots, n-1`
 
 
 
-Rolling Our Own
+Rolling Our Own 
 --------------------
 
 To simulate a Markov chain, we need its stochastic matrix :math:`P` and either an initial state or a probability distribution :math:`\psi` for initial state to be drawn from
@@ -322,7 +322,7 @@ If you run the following code you should get roughly that answer
 
 
 
-Using QuantEcon's Routines
+Using Quantecon's Routines 
 ----------------------------
 
 As discussed above, `QuantEcon.py <http://quantecon.org/python_index.html>`__ has routines for handling Markov chains, including simulation
@@ -354,7 +354,7 @@ In fact the `QuantEcon.py <http://quantecon.org/python_index.html>`__ routine is
 
 
 
-Adding state values and initial conditions
+Adding State Values and Initial Conditions 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If we wish to, we can provide a specification of state values to ``MarkovChain``
@@ -392,7 +392,7 @@ If we want to simulate with output as indices rather than state values we can us
 
 .. _mc_md:
 
-:index:`Marginal Distributions`
+:index:`marginal Distributions` 
 ===============================
 
 .. index::
@@ -405,7 +405,7 @@ Suppose that
 
 What then is the distribution of :math:`X_{t+1}`, or, more generally, of :math:`X_{t+m}`?
 
-Solution
+Solution 
 ------------
 
 Let :math:`\psi_t` be the distribution of :math:`X_t` for :math:`t = 0, 1, 2, \ldots`
@@ -477,7 +477,7 @@ and, more generally,
 
 .. _finite_mc_mstp:
 
-Multiple Step Transition Probabilities
+Multiple Step Transition Probabilities 
 ---------------------------------------
 
 We know that the probability of transitioning from :math:`x` to :math:`y` in
@@ -500,7 +500,7 @@ In particular
     \mathbb P \{X_{t+m} = y \} = P^m(x, y) = (x, y) \text{-th element of } P^m
 
 
-Example: Probability of Recession
+Example: Probability of Recession 
 -----------------------------------
 
 .. index::
@@ -530,7 +530,7 @@ The probability of being in recession (either mild or severe) in 6 months time i
 .. _mc_eg1-1:
 
 
-Example 2: Cross-Sectional Distributions
+Example 2: Cross-sectional Distributions 
 --------------------------------------------
 
 .. index::
@@ -552,7 +552,7 @@ The cross-sectional distribution records the fractions of workers employed and u
 The same distribution also describes the fractions of  a particular worker's career spent being employed and unemployed, respectively
 
 
-:index:`Irreducibility and Aperiodicity`
+:index:`irreducibility and Aperiodicity` 
 ============================================
 
 .. index::
@@ -563,7 +563,7 @@ Irreducibility and aperiodicity are central concepts of modern Markov chain theo
 
 Let's see what they're about
 
-Irreducibility
+Irreducibility 
 ----------------
 
 Let :math:`P` be a fixed stochastic matrix
@@ -674,7 +674,7 @@ We'll come back to this a bit later
 
 
 
-Aperiodicity
+Aperiodicity 
 ----------------
 
 
@@ -752,7 +752,7 @@ We can confirm that the stochastic matrix is periodic as follows
 
 
 
-:index:`Stationary Distributions`
+:index:`stationary Distributions` 
 =================================
 
 .. index::
@@ -825,7 +825,7 @@ One easy sufficient condition for aperiodicity and irreducibility is that every 
 
 
 
-Example
+Example 
 ----------
 
 Recall our model of employment / unemployment dynamics for a given worker :ref:`discussed above <mc_eg1>`
@@ -846,7 +846,7 @@ This is, in some sense, a steady state probability of unemployment --- more on i
 Not surprisingly it tends to zero as :math:`\beta \to 0`, and to one as :math:`\alpha \to 0`
 
 
-Calculating Stationary Distributions
+Calculating Stationary Distributions 
 -----------------------------------------------
 
 .. index::
@@ -888,7 +888,7 @@ A suitable algorithm is implemented in `QuantEcon.py <http://quantecon.org/pytho
 The stationary distribution is unique
 
 
-Convergence to Stationarity
+Convergence to Stationarity 
 -----------------------------------------------
 
 .. index::
@@ -958,7 +958,7 @@ The code for the figure can be found `here <https://github.com/QuantEcon/QuantEc
 
 .. _ergodicity:
 
-:index:`Ergodicity`
+:index:`ergodicity` 
 ===================
 
 .. index::
@@ -996,7 +996,7 @@ The convergence in :eq:`llnfmc0` is a special case of a law of large numbers res
 
 .. _mc_eg1-2:
 
-Example
+Example 
 ---------
 
 Recall our cross-sectional interpretation of the employment / unemployment model :ref:`discussed above <mc_eg1-1>`
@@ -1021,7 +1021,7 @@ This is one interpretation of the notion of ergodicity
 
 .. _finite_mc_expec:
 
-Computing Expectations
+Computing Expectations 
 =================================
 
 .. index::
@@ -1099,7 +1099,7 @@ The vector :math:`P^k h` stores the conditional expectation :math:`\mathbb E [ h
 
 
 
-Expectations of Geometric Sums
+Expectations of Geometric Sums 
 ------------------------------------
 
 Sometimes we also want to compute expectations of a geometric sum, such as
@@ -1128,12 +1128,12 @@ Premultiplication by :math:`(I - \beta P)^{-1}` amounts to "applying the **resol
 
 
 
-Exercises
+Exercises 
 ==============
 
 .. _mc_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 According to the discussion :ref:`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
@@ -1188,7 +1188,7 @@ course
 
 .. _mc_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 A topic of interest for economics and many other disciplines is *ranking*
@@ -1320,7 +1320,7 @@ When you solve for the ranking, you will find that the highest ranked node is in
 
 .. _mc_ex3:
 
-Exercise 3
+Exercise 3 
 ------------
 
 In numerical work it is sometimes convenient to replace a continuous model with a discrete one
@@ -1389,7 +1389,7 @@ The exercise is to write a function ``approx_markov(rho, sigma_u, m=3, n=7)`` th
 * Even better, write a function that returns an instance of `QuantEcon.py's <http://quantecon.org/python_index.html>`__ `MarkovChain` class
 
 
-Solutions
+Solutions 
 ===========
 
 
@@ -1400,7 +1400,7 @@ Solutions
     import matplotlib.pyplot as plt
     from quantecon import MarkovChain
 
-Exercise 1
+Exercise 1 
 ----------
 
 Compute the fraction of time that the worker spends unemployed, and
@@ -1436,7 +1436,7 @@ compare it to the stationary probability
     plt.show()
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 First save the data into a file called ``web_graph_data.txt`` by
@@ -1522,7 +1522,7 @@ executing the next cell
         print(f'{name}: {rank:.4}')
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 A solution from the `QuantEcon.py <http://quantecon.org/python_index.html>`__ library

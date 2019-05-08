@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 **************
-:index:`SciPy`
+:index:`scipy` 
 **************
 
 .. index::
@@ -34,7 +34,7 @@ A more common approach is to get some idea of what's in the library and then loo
 In this lecture we aim only to highlight some useful parts of the package
 
 
-:index:`SciPy` versus :index:`NumPy`
+:index:`scipy` Versus :index:`numpy` 
 ====================================
 
 SciPy is a package that contains various tools that are built on top of NumPy, using its array data type and related functionality
@@ -83,7 +83,7 @@ These subpackages and their attributes need to be imported separately
 
 Let's explore some of the major subpackages
 
-Statistics
+Statistics 
 =============
 
 .. index::
@@ -95,7 +95,7 @@ The ``scipy.stats`` subpackage supplies
 * some estimation procedures
 * some statistical tests
 
-Random Variables and Distributions
+Random Variables and Distributions 
 -------------------------------------
 
 Recall that ``numpy.random`` provides functions for generating random variables
@@ -187,7 +187,7 @@ For example, the previous code can be replaced by
 
 
 
-Other Goodies in scipy.stats
+Other Goodies in Scipy.stats 
 -------------------------------
 
 There are a variety statistical functions in ``scipy.stats``
@@ -208,7 +208,7 @@ To see the full list, consult the `documentation <http://docs.scipy.org/doc/scip
 
 
 
-Roots and Fixed Points
+Roots and Fixed Points 
 =========================
 
 A *root* of a real function :math:`f` on :math:`[a,b]` is an :math:`x \in [a, b]` such that :math:`f(x)=0`
@@ -237,7 +237,7 @@ The unique root is approximately 0.408
 
 Let's consider some numerical techniques for finding roots
 
-:index:`Bisection`
+:index:`bisection` 
 ------------------
 
 .. index::
@@ -276,7 +276,7 @@ In fact SciPy provides it's own bisection function, which we now test using the 
 
 
 
-The :index:`Newton-Raphson Method`
+The :index:`newton-raphson Method` 
 ----------------------------------
 
 .. index::
@@ -320,7 +320,7 @@ On the other hand, using IPython's ``timeit`` magic, we see that ``newton`` can 
     %timeit newton(f, 0.2)
 
 
-Hybrid Methods
+Hybrid Methods 
 ---------------
 
 So far we have seen that the Newton-Raphson method is fast but not robust
@@ -354,7 +354,7 @@ In ``scipy.optimize``, the function ``brentq`` is such a hybrid method, and a go
 Here the correct solution is found and the speed is almost the same as ``newton``
 
 
-Multivariate Root Finding
+Multivariate Root Finding 
 ----------------------------
 
 .. index::
@@ -365,7 +365,7 @@ Use ``scipy.optimize.fsolve``, a wrapper for a hybrid method in MINPACK
 See the `documentation <http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html>`__ for details
 
 
-Fixed Points
+Fixed Points 
 ---------------
 
 .. index::
@@ -386,7 +386,7 @@ the fixed point of a function :math:`f` is the root of :math:`g(x) := x - f(x)`
 
 
 
-:index:`Optimization`
+:index:`optimization` 
 =====================
 
 .. index::
@@ -412,7 +412,7 @@ For constrained, univariate (i.e., scalar) minimization, a good hybrid option is
     fminbound(lambda x: x**2, -1, 2)  # Search in [-1, 2]
 
 
-Multivariate Optimization
+Multivariate Optimization 
 ----------------------------
 
 .. index::
@@ -426,7 +426,7 @@ See the `documentation <http://docs.scipy.org/doc/scipy/reference/optimize.html>
 
 
 
-:index:`Integration`
+:index:`integration` 
 ====================
 
 .. index::
@@ -460,7 +460,7 @@ See the `documentation <http://docs.scipy.org/doc/scipy/reference/integrate.html
 
 
 
-:index:`Linear Algebra`
+:index:`linear Algebra` 
 =======================
 
 .. index::
@@ -475,12 +475,12 @@ The latter is not an exact superset of the former, but overall it has more funct
 We leave you to investigate the `set of available routines <http://docs.scipy.org/doc/scipy/reference/linalg.html>`_
 
 
-Exercises
+Exercises 
 =============
 
 .. _sp_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 
@@ -493,13 +493,13 @@ Write a recursive implementation of the bisection function described above, whic
 Test it on the function ``f = lambda x: np.sin(4 * (x - 0.25)) + x + x**20 - 1`` discussed above
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here's a reasonable solution:

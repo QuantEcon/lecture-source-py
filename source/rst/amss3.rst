@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *********************************************************
-Fiscal Risk and Government Debt
+Fiscal Risk and Government Debt 
 *********************************************************
 
 .. contents:: :depth: 2
@@ -15,7 +15,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 =============
 
 This lecture studies government debt in an AMSS
@@ -65,7 +65,7 @@ We use code constructed :doc:`in a previous lecture <amss2>`
 
 
 
-The economy
+The Economy 
 ==================
 
 
@@ -110,7 +110,7 @@ The following Python code sets up the economy
 .. literalinclude:: /_static/code/opt_tax_recur/crra_utility.py
 
 
-First  and second moments
+First and Second Moments 
 --------------------------
 
 We'll want  first and second moments of some key random variables below
@@ -135,7 +135,7 @@ The following code computes these moments; the code is recycled from :doc:`Fisca
 
 
 
-Long simulation
+Long Simulation 
 ================
 
 To generate a long simulation we use the following code
@@ -253,7 +253,7 @@ these early observations
   * much later observations are more influenced by the ergodic mean and are independent of the initial value of the par value of government debt
 
 
-Asymptotic mean and rate of convergence
+Asymptotic Mean and Rate of Convergence 
 ================================================================================
 
 We apply results of :cite:`BEGS1` to interpret
@@ -307,7 +307,7 @@ BEGS interpret random variations in the right side of :eq:`eq_fiscal_risk_1`  as
 
 - fluctuations in the effective government deficit :math:`{\mathcal X}_t`
 
-Asymptotic mean
+Asymptotic Mean 
 ----------------
 
 BEGS give conditions under which the ergodic mean of :math:`{\mathcal B}_t` approximately satisfies the equation
@@ -345,7 +345,7 @@ AMSS model should approximately equal
 where mathematical expectations are taken with respect to the ergodic distribution
 
 
-Rate of convergence
+Rate of Convergence 
 --------------------
 
 BEGS also derive the following  approximation to the rate of convergence to :math:`{\mathcal B}^{*}` from an arbitrary initial condition
@@ -358,7 +358,7 @@ BEGS also derive the following  approximation to the rate of convergence to :mat
 (See the equation above equation (47) in :cite:`BEGS1`)
 
 
-More advanced material
+More Advanced Material 
 ------------------------
 
 The remainder of this lecture is about  technical material based on  formulas from :cite:`BEGS1`
@@ -366,7 +366,7 @@ The remainder of this lecture is about  technical material based on  formulas fr
 The topic is interpreting  and extending formula :eq:`eq_criterion_fiscal_1` for the ergodic mean :math:`{\mathcal B}^*`
 
 
-Chicken and egg
+Chicken and egg 
 --------------------------
 
 
@@ -392,7 +392,7 @@ As an example, notice how we used the formula for the mean of :math:`{\mathcal B
 
 
 
-Approximating :math:`{\mathcal B}^*`
+Approximating :math:`{\mathcal B}^*` 
 ------------------------------------------
 
 :cite:`BEGS1` propose  an approximation to  :math:`{\mathcal B}^*` that can be computed without first knowing the
@@ -411,7 +411,7 @@ To  construct the BEGS  approximation to :math:`{\mathcal B}^*`, we just follow 
 Here is a step-by-step description of the :cite:`BEGS1` approximation procedure
 
 
-Step by step
+Step by Step 
 ---------------
 
 **Step 1:** For a given :math:`\tau` we  compute a vector of
@@ -520,7 +520,7 @@ In this economy, :math:`\hat b` given by the above formula approximates the mean
    *  so while the approximation circumvents the chicken and egg problem surrounding 
       the much better approximation associated with the green vertical line, it does so by enlarging the approximation error
 
-Execution
+Execution 
 -----------
 
 
@@ -559,7 +559,7 @@ Step 2
 
     n = c + u.G   # compute labor supply
 
-Note about code
+Note About Code 
 ----------------
 
 Remember that in our code :math:`\pi` is a :math:`3 \times 3` transition
@@ -572,7 +572,7 @@ This explains why at some places below we set :math:`s=0` just to pick
 off the first row of :math:`\pi` in the calculations
 
 
-Code
+Code 
 -----
 
 First, let's compute :math:`{\mathcal R}` and :math:`{\mathcal X}`

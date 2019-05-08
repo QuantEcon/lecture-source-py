@@ -6,14 +6,14 @@
 
 
 ***********************************
-Cass-Koopmans Optimal Growth Model
+Cass-koopmans Optimal Growth Model 
 ***********************************
 
 .. contents:: :depth: 2
 
 **Coauthor: Brandon Kaplowitz**
 
-Overview
+Overview 
 =========
 
 This lecture describes a model that Tjalling Koopmans :cite:`Koopmans`
@@ -77,7 +77,7 @@ Let's start with some imports
   import matplotlib.pyplot as plt
   %matplotlib inline
 
-The Growth Model
+The Growth Model 
 ==================
 
 Time is discrete and takes values :math:`t = 0, 1 , \ldots, T`
@@ -155,7 +155,7 @@ A feasible allocation :math:`\vec C, \vec K` satisfies
 
 where :math:`\delta \in (0,1)` is a depreciation rate of capital
 
-Planning Problem
+Planning Problem 
 ------------------
 
 A planner chooses an allocation :math:`\{\vec{C},\vec{K}\}` to
@@ -179,7 +179,7 @@ and then solve the following max-min problem:
   
   \max_{\vec{C},\vec{K}}\min_{\vec{\mu}}\mathcal{L}(\vec{C},\vec{K},\vec{\mu})
 
-Useful properties of linearly homogeneous production function
+Useful Properties of Linearly Homogeneous Production Function 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following technicalities will help us
@@ -239,7 +239,7 @@ Also
   \end{align}
 
 
-Back to solving the problem
+Back to Solving the Problem 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To solve the Lagrangian extremization problem, we compute first
@@ -382,7 +382,7 @@ problem with Python
         return (k / (A * α))**(1 / (α - 1))
 
 
-Shooting Method
+Shooting Method 
 ----------------
 
 We shall use a **shooting method** to compute an optimal allocation
@@ -629,7 +629,7 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting :math:`K_0` Equal to Steady State :math:`K`
+Setting :math:`k_0` Equal to Steady State :math:`k` 
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
@@ -846,7 +846,7 @@ Let's calculate it
         plot_savings(paths, k_ss=k_ss, axes=axes)
 
 
-:math:`T=+\infty` Economy
+:math:`t=+\infty` Economy 
 --------------------------
 
 We now consider an economy in which :math:`T = +\infty`
@@ -911,7 +911,7 @@ Note, :math:`f''(K)<0`, so as :math:`K` rises, :math:`f'(K)` declines
 The planner slowly lowers the savings rate until reaching a steady
 state where :math:`f'(K)=\rho +\delta`
 
-Exercise
+Exercise 
 ---------
 
 -  Plot the optimal consumption, capital, and savings paths when the
@@ -920,7 +920,7 @@ Exercise
 
 -  Why does the savings rate respond like it does?
 
-Solution
+Solution 
 ----------
 
 .. code-block:: python3
@@ -934,7 +934,7 @@ Solution
     paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
     plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
-Competitive Equilibrium
+Competitive Equilibrium 
 ========================
 
 Next we study a decentralized version of an economy with same
@@ -989,7 +989,7 @@ household chooses for itself subject to a budget constraint
 :math:`M` of identical representative consumers and :math:`M`
 identical representative firms
 
-Firm Problem
+Firm Problem 
 -------------
 
 At time :math:`t` the representative firm hires labor
@@ -1006,7 +1006,7 @@ As in the planned economy model
 
 .. math:: F(\tilde k_t, \tilde n_t) = A \tilde k_t^\alpha \tilde n_t^{1-\alpha}
 
-Zero profit conditions
+Zero Profit Conditions 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Zero-profits condition for capital and labor are
@@ -1083,7 +1083,7 @@ And so on...
 It is convenient to define
 :math:`\vec w_t =\{w_0, \dots,w_T\}`\ and :math:`\vec \eta_t = \{\eta_0, \dots, \eta_T\}`
 
-Household Problem
+Household Problem 
 ------------------
 
 A representative household lives at :math:`t=0,1,\dots, T`
@@ -1116,7 +1116,7 @@ Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_{T+
 
 :math:`k_0` is given to the household
 
-Market Structure for Intertemporal Trades
+Market Structure for Intertemporal Trades 
 -------------------------------------------
 
 There is a **single** grand competitive market in which a
@@ -1133,7 +1133,7 @@ bundles of goods at some other dates.
 There exist **complete markets** in such bundles with associated
 market prices
 
-Market Prices
+Market Prices 
 --------------
 
 Let :math:`q^0_t` be the price of a good at date :math:`t` relative
@@ -1169,14 +1169,14 @@ or
 
 .. math:: \sum_{t=0}^T q^0_t  \left(c_t + (k_{t+1} -(1-\delta)k_t)-(w_t 1 + \eta_t k_t) \right) \leq 0
 
-Household Problem
+Household Problem 
 ------------------
 
 The household faces the constrained optimization problem:
 
 .. math:: \begin {align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
 
-Definitions
+Definitions 
 ------------
 
 -  A **price system** is a sequence
@@ -1194,7 +1194,7 @@ Definitions
    -  Given the price system, the allocation solves the firm's
       problem
 
-Computing a Competitive Equilibrium
+Computing a Competitive Equilibrium 
 -------------------------------------
 
 We shall compute a competitive equilibrium using a **guess and
@@ -1206,7 +1206,7 @@ verify** approach
 -  We shall then **verify** that at those prices, the household and
    the firm choose the same allocation
 
-Guess for price system
+Guess for Price System 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 We have computed an allocation :math:`\{\vec C, \vec K, \vec 1\}`
@@ -1273,7 +1273,7 @@ the planning problem:
     
     k^*_t = \tilde k^*_t=K_t, \tilde n_t=1, c^*_t=C_t
 
-Verification Procedure
+Verification Procedure 
 -----------------------
 
 Our approach is to stare at first-order necessary conditions for the
@@ -1283,7 +1283,7 @@ At the price system we have guessed, both sets of first-order
 conditions are satisfied at the allocation that solves the planning
 problem
 
-Household's Lagrangian
+Household's Lagrangian 
 ------------------------
 
 To solve the household's problem, we formulate the appropriate
@@ -1473,7 +1473,7 @@ Now we calculate and plot for each :math:`T`
     plt.tight_layout()
     plt.show()
 
-Varying :math:`\gamma`
+Varying :math:`\gamma` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -1523,7 +1523,7 @@ resulting in slower adjustments to the steady state allocations
 Vice-versa for lower :math:`\gamma`
 
 
-Yield Curves and Hicks-Arrow Prices Again
+Yield Curves and Hicks-arrow Prices Again 
 ------------------------------------------
 
 Now, we compute Hicks-Arrow prices again, but also calculate the

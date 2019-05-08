@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ******************************************************
-Shortest Paths
+Shortest Paths 
 ******************************************************
 
 .. index::
@@ -11,7 +11,7 @@ Shortest Paths
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 =============
 
 The shortest path problem is a `classic problem <https://en.wikipedia.org/wiki/Shortest_path>`_ in mathematics and computer science with applications in
@@ -42,7 +42,7 @@ Dynamic programming is an extremely powerful optimization technique that we appl
 
 
 
-Outline of the Problem
+Outline of the Problem 
 =========================
 
 The shortest path problem is one of finding how to traverse a `graph <https://en.wikipedia.org/wiki/Graph_%28mathematics%29>`_ from one specified node to another at minimum cost
@@ -75,7 +75,7 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 .. figure:: /_static/figures/graph3.png
    :scale: 100%
 
-Finding Least-Cost Paths
+Finding Least-cost Paths 
 ===========================
 
 For large graphs we need a systematic solution
@@ -125,7 +125,7 @@ This is known as the *Bellman equation*, after the mathematician Richard Bellman
 
 
 
-Solving for :math:`J`
+Solving for :math:`j` 
 =========================
 
 The standard algorithm for finding :math:`J` is to start with
@@ -151,12 +151,12 @@ In general, this sequence converges to :math:`J`---the proof is omitted
 
 
 
-Exercises
+Exercises 
 ============
 
 .. _short_path_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Use the algorithm given above to find the optimal path (and its cost) for the
@@ -283,13 +283,13 @@ Your code should replicate this result
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3

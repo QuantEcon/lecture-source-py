@@ -6,7 +6,7 @@
 
 
 ***********************************************
-Orthogonal Projections and Their Applications
+Orthogonal Projections and Their Applications 
 ***********************************************
 
 .. index::
@@ -15,7 +15,7 @@ Orthogonal Projections and Their Applications
 .. contents:: :depth: 2
 
 
-Overview
+Overview 
 ===========
 
 Orthogonal projection is a cornerstone of vector space methods, with many diverse applications 
@@ -42,7 +42,7 @@ In this lecture we focus on
 * least squares regression
 
 
-Further Reading
+Further Reading 
 ----------------
 
 For background and foundational concepts, see our lecture :doc:`on linear algebra <linear_algebra>`
@@ -54,7 +54,7 @@ For a complete set of proofs in a general setting, see, for example, :cite:`Roma
 For an advanced treatment of projection in the context of least squares prediction, see `this book chapter <http://www.tomsargent.com/books/TOMchpt.2.pdf>`_
 
 
-Key Definitions
+Key Definitions 
 ===============
 
 
@@ -126,7 +126,7 @@ For example, when  :math:`k=2`, :math:`x_1 \perp x_2` implies
      = \| x_1 \|^2 + \| x_2 \|^2 
 
 
-Linear Independence vs Orthogonality
+Linear Independence vs Orthogonality 
 -----------------------------------------
 
 If :math:`X \subset \mathbb R^n` is an orthogonal set and :math:`0 \notin X`, then :math:`X` is linearly independent
@@ -136,7 +136,7 @@ Proving this is a nice exercise
 While the converse is not true, a kind of partial converse holds, as we'll :ref:`see below <gram_schmidt>`
 
 
-The Orthogonal Projection Theorem
+The Orthogonal Projection Theorem 
 ========================================
 
 What vector within a linear subspace of :math:`\mathbb R^n`  best approximates a given vector in :math:`\mathbb R^n`?
@@ -169,7 +169,7 @@ The next figure provides some intuition
 
 
 
-Proof of sufficiency
+Proof of Sufficiency 
 --------------------
 
 We'll omit the full proof.  
@@ -193,7 +193,7 @@ Hence :math:`\| y - z \| \geq \| y - \hat y \|`, which completes the proof
  
 
 
-Orthogonal Projection as a Mapping
+Orthogonal Projection as a Mapping 
 -------------------------------------
 
 For a linear space :math:`Y` and a fixed linear subspace :math:`S`, we have a functional relationship
@@ -233,7 +233,7 @@ From this we can deduce additional useful properties, such as
 
 For example, to prove 1, observe that :math:`y  = P y  + y - P y` and apply the Pythagorean law
 
-Orthogonal Complement
+Orthogonal Complement 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Let :math:`S \subset \mathbb R^n`.  
@@ -273,7 +273,7 @@ The next figure illustrates
     
 
 
-Orthonormal Basis
+Orthonormal Basis 
 ====================
 
 
@@ -320,7 +320,7 @@ Combining this result with :eq:`pob` verifies the claim
 
 
 
-Projection onto an Orthonormal Basis
+Projection Onto an Orthonormal Basis 
 ------------------------------------------
 
 When the subspace onto which are projecting is orthonormal, computing the projection simplifies:
@@ -352,7 +352,7 @@ This is true because
     \langle u_i, u_j  \rangle = 0
 
 
-Projection Using Matrix Algebra
+Projection Using Matrix Algebra 
 ===================================
 
 
@@ -415,7 +415,7 @@ This is true: If :math:`b \in \mathbb R^K`, then
 The proof is now complete
 
 
-Starting with :math:`X`
+Starting With :math:`x` 
 -----------------------
 
 It is common in applications to start with :math:`n \times k` matrix :math:`X`  with linearly independent columns and let
@@ -436,7 +436,7 @@ In this context, :math:`P` is often called the **projection matrix**
 
 
 
-The Orthonormal Case
+The Orthonormal Case 
 --------------------
 
 Suppose that :math:`U` is :math:`n \times k` with orthonormal columns
@@ -466,7 +466,7 @@ basis
 
 
 
-Application: Overdetermined Systems of Equations
+Application: Overdetermined Systems of Equations 
 ------------------------------------------------
 
 Let :math:`y \in \mathbb R^n` and let :math:`X` is :math:`n \times k` with linearly independent columns 
@@ -523,7 +523,7 @@ Because :math:`Xb \in \mathop{\mathrm{span}}(X)`
 This is what we aimed to show
 
 
-Least Squares Regression
+Least Squares Regression 
 ============================
 
 Let's apply the theory of orthogonal projection to least squares regression
@@ -533,7 +533,7 @@ This approach provides insights about  many geometric  properties of linear regr
 We treat only some examples
 
 
-Squared risk measures
+Squared Risk Measures 
 ----------------------
 
 Given pairs :math:`(x, y) \in \mathbb R^K \times \mathbb R`, consider choosing :math:`f \colon \mathbb R^K \to \mathbb R` to minimize 
@@ -571,7 +571,7 @@ This is the sample **linear least squares problem**
 
 
 
-Solution
+Solution 
 ----------
 
 Define the matrices
@@ -685,7 +685,7 @@ Applying the Pythagorean law completes the proof
 
 
 
-Orthogonalization and Decomposition
+Orthogonalization and Decomposition 
 ========================================
 
 Let's return to the connection between linear independence and orthogonality touched on above
@@ -699,7 +699,7 @@ The next section gives details
 
 .. _gram_schmidt:
 
-Gram-Schmidt Orthogonalization
+Gram-schmidt Orthogonalization 
 -----------------------------------
 
 **Theorem** For each linearly independent set :math:`\{x_1, \ldots, x_k\} \subset \mathbb R^n`, there exists an 
@@ -731,7 +731,7 @@ In some exercises below you are asked to implement this algorithm and test it us
 
 
 
-QR Decomposition
+Qr Decomposition 
 --------------------
 
 The following result uses the preceding algorithm to produce a useful decomposition
@@ -762,7 +762,7 @@ Some rearranging gives :math:`X = Q R`
 
 
 
-Linear Regression via QR Decomposition
+Linear Regression via QR Decomposition 
 -----------------------------------------
 
 For matrices :math:`X` and :math:`y` that overdetermine :math:`beta` in the linear
@@ -787,22 +787,22 @@ Numerical routines would in this case use the alternative form :math:`R \hat \be
 
 
 
-Exercises
+Exercises 
 ==============
 
-Exercise 1
+Exercise 1 
 ------------
 
 Show that, for any linear subspace :math:`S \subset \mathbb R^n`,  :math:`S \cap S^{\perp} = \{0\}`
 
-Exercise 2
+Exercise 2 
 -------------
 
 Let :math:`P = X (X' X)^{-1} X'` and let :math:`M = I - P`.  Show that
 :math:`P` and :math:`M` are both idempotent and symmetric.  Can you give any
 intuition as to why they should be idempotent?
 
-Exercise 3
+Exercise 3 
 -------------
 
 Using Gram-Schmidt orthogonalization, produce a linear projection of :math:`y` onto the column space of :math:`X` and verify this using the projection matrix :math:`P := X (X' X)^{-1} X'` and also using QR decomposition, where:
@@ -833,18 +833,18 @@ and
     \right)
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 If :math:`x \in S` and :math:`x \in S^\perp`, then we have in particular
 that :math:`\langle x, x \rangle = 0`, ut then :math:`x = 0`
 
-Exercise 2
+Exercise 2 
 ------------
 
 Symmetry and idempotence of :math:`M` and :math:`P` can be established
@@ -855,7 +855,7 @@ the projection again makes no difference. (A point inside the subspace
 is not shifted by orthogonal projection onto that space because it is
 already the closest point in the subspace to itself.)
 
-Exercise 3
+Exercise 3 
 ------------
 
 Here's a function that computes the orthonormal vectors using the GS

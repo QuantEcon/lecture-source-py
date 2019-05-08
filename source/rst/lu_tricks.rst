@@ -5,13 +5,13 @@
 .. highlight:: python3
 
 **************************************************** 
-Classical Control with Linear Algebra
+Classical Control With Linear Algebra 
 ****************************************************
 
 .. contents:: :depth: 2
 
 
-Overview
+Overview 
 ============
 
 In an earlier lecture :doc:`Linear Quadratic Dynamic Programming Problems<lqcontrol>` we have studied how to solve a special
@@ -46,13 +46,13 @@ Later, we will examine the close connection between LQ control and least squares
 These classes of problems are connected in the sense that to solve each, essentially the same mathematics is used 
 
 
-References
+References 
 -------------
 
 Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfanidisoptimum1988`, :cite:`Athanasios1991`, and :cite:`Muth1960`
 
 
-A Control Problem
+A Control Problem 
 ====================================
 
 Let :math:`L` be the **lag operator**, so that, for sequence :math:`\{x_t\}` we have :math:`L x_t = x_{t-1}` 
@@ -91,7 +91,7 @@ Maximization in :eq:`oneone` is subject to  initial conditions for :math:`y_{-1}
 Maximization is over infinite sequences :math:`\{y_t\}_{t \geq 0}`
 
 
-Example
+Example 
 ---------
 
 The formulation of the LQ problem given above is broad enough to encompass
@@ -132,7 +132,7 @@ You will be able to confirm that the objective function can be rewritten as :eq:
 Further examples of this problem for factor demand, economic growth, and government policy problems are given in ch. IX of :cite:`Sargent1987` 
 
 
-Finite Horizon Theory
+Finite Horizon Theory 
 =======================
 
 We first study a finite :math:`N` version of the problem
@@ -261,12 +261,12 @@ Next we describe how to obtain the solution using matrix methods
 
 .. _fdlq:
 
-Matrix Methods
+Matrix Methods 
 -----------------
 
 Let's look at how linear algebra can be used to tackle and shed light on the finite horizon LQ control problem
 
-A Single Lag Term
+A Single Lag Term 
 ^^^^^^^^^^^^^^^^^^^
 
 Let's begin with the special case in which :math:`m=1`
@@ -361,7 +361,7 @@ which represents each element :math:`y_t` of :math:`\bar y` as a function of the
 
 That is, :math:`y_t` is a function of past, present, and future values of :math:`a`'s, as well as of the initial condition :math:`y_{-1}`
 
-An Alternative Representation
+An Alternative Representation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An alternative way to express the solution to :eq:`onefourfive` or
@@ -452,7 +452,7 @@ where :math:`L^{-1}_{ij}` is the :math:`(i,j)` element of :math:`L^{-1}` and :ma
 Note how the left side for a given :math:`t` involves  :math:`y_t` and one lagged value :math:`y_{t-1}` while the right side involves all future values of the forcing process :math:`a_t, a_{t+1}, \ldots, a_N`
 
 
-Additional Lag Terms
+Additional Lag Terms 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 We briefly indicate how this approach extends to the problem with
@@ -576,7 +576,7 @@ to :math:`c(L)` and :math:`c(\beta L^{-1})^{-1}` can be obtained
 
 
 
-The Infinite Horizon Limit
+The Infinite Horizon Limit 
 ===========================
 
 For the infinite horizon problem, we propose to discover first-order
@@ -812,7 +812,7 @@ Therefore it is easy to dominate a path that violates :eq:`onesix`
 
 
 
-Undiscounted Problems
+Undiscounted Problems 
 =======================
 
 It is worthwhile focusing on a special case of the LQ problems above:
@@ -853,7 +853,7 @@ The solution of the problem becomes
     \sum^\infty_{k=0} \lambda^k_j a_{t+k}
 
 
-Transforming discounted to undiscounted problem
+Transforming Discounted to Undiscounted Problem 
 -------------------------------------------------
 
 Discounted problems can always be converted into undiscounted problems via a simple transformation 
@@ -937,7 +937,7 @@ The transformations :eq:`onetwenty` and the inverse formulas
 solving a related undiscounted problem
 
 
-Implementation
+Implementation 
 ================
 
 Code that computes solutions to the LQ problem using the methods described
@@ -1036,11 +1036,11 @@ And here's :math:`\gamma = 10`
 
 
 
-Exercises
+Exercises 
 =================
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Consider solving a discounted version :math:`(\beta < 1)` of problem
@@ -1085,7 +1085,7 @@ where :math:`f_j = \tilde f_j \beta^{-j/2}, A_j = \tilde A_j`, and :math:`\lambd
 
 
 
-Exercise 2
+Exercise 2 
 -----------
 
 Solve the optimal control problem, maximize
@@ -1104,7 +1104,7 @@ Make sure that the boundary conditions :eq:`onefive` are satisfied
 (Note: this problem differs from the problem in the text in one important way: instead of :math:`h > 0` in :eq:`oneone`, :math:`h = 0`. This has an important influence on the solution.)
 
 
-Exercise 3
+Exercise 3 
 --------------
 
 Solve the infinite time optimal control problem to maximize
@@ -1122,7 +1122,7 @@ subject to :math:`y_{-1}` given. Prove that the solution is
     y_t = 2y_{t-1} = 2^{t+1} y_{-1} \qquad t > 0
 
 
-Exercise 4
+Exercise 4 
 --------------
 
 Solve the infinite time problem, to maximize

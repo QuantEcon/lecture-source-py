@@ -6,7 +6,7 @@
 
 
 *****************************************
-Additive and Multiplicative Functionals
+Additive and Multiplicative Functionals 
 *****************************************
 
 
@@ -25,7 +25,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 =============
 
 Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic 
@@ -70,7 +70,7 @@ We describe how to construct,  simulate,  and interpret these components
 More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`Hans_Sarg_book_2016` 
 
 
-A Particular Additive Functional
+A Particular Additive Functional 
 ====================================
 
 
@@ -125,7 +125,7 @@ The nonstationary random process :math:`\{y_t\}_{t=0}^\infty` displays
 systematic but random *arithmetic growth*
 
 
-Linear State-Space Representation
+Linear State-space Representation 
 ----------------------------------
 
 A convenient way to represent our additive functional is to use a :doc:`linear state space system <linear_models>`
@@ -198,7 +198,7 @@ But here we will use a different set of code for simulation, for reasons describ
 
 
 
-Dynamics
+Dynamics 
 ============
 
 Let's run some simulations to build intuition
@@ -242,7 +242,7 @@ In fact this whole model can be mapped into the additive functional system defin
 
 You can try writing these matrices down now as an exercise --- correct expressions appear in the code below
 
-Simulation
+Simulation 
 ----------------------------------
 
 When simulating we embed our variables into a bigger system 
@@ -299,7 +299,7 @@ For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a desc
 Notice the irregular but persistent growth in :math:`y_t`
 
 
-Decomposition
+Decomposition 
 ----------------------------------
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` describe how to construct a decomposition of
@@ -439,7 +439,7 @@ we can write this as the linear state space system
 By picking out components of :math:`\tilde y_t`, we can track all variables of
 interest
 
-Code
+Code 
 =====================
 
 The class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ mentioned above does all that we want to study our additive functional
@@ -478,7 +478,7 @@ Notice tell-tale signs of these probability coverage shaded areas
    constant band
 
 
-Associated Multiplicative Functional
+Associated Multiplicative Functional 
 --------------------------------------
 
 Where :math:`\{y_t\}` is our additive functional, let :math:`M_t = \exp(y_t)`
@@ -548,7 +548,7 @@ It is interesting to how the martingale behaves as :math:`T \rightarrow +\infty`
 Let's see what happens when we set :math:`T = 12000` instead of :math:`150`
 
 
-Peculiar Large Sample Property
+Peculiar Large Sample Property 
 ----------------------------------
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale component
@@ -584,7 +584,7 @@ The purple 95 percent coverage intervale collapses around zero, illustrating the
 
 
 
-More About the Multiplicative Martingale
+More About the Multiplicative Martingale 
 ==========================================
 
 Let's drill down and study probability distribution of the multiplicative martingale  :math:`\{\widetilde M_t\}_{t=0}^\infty`  in 
@@ -602,7 +602,7 @@ where :math:`H =  [F + B'(I-A')^{-1} D]`
 
 It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal 
 
-Simulating a Multiplicative Martingale Again
+Simulating a Multiplicative Martingale Again 
 -----------------------------------------------
 
 Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
@@ -617,7 +617,7 @@ After accomplishing this, we want to display and stare at  histograms of :math:`
 Here is code that accomplishes these tasks
 
 
-Sample Paths
+Sample Paths 
 ---------------------------
 
 Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`
@@ -810,7 +810,7 @@ These probability density functions help us understand mechanics underlying the 
   even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`
 
 
-Multiplicative Martingale as  Likelihood Ratio Process
+Multiplicative Martingale as Likelihood Ratio Process 
 --------------------------------------------------------
 
 A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**

@@ -6,7 +6,7 @@
     single: python
 
 ******************************
-Reverse engineering a la Muth
+Reverse Engineering a la Muth 
 ******************************
 
 .. contents:: :depth: 2
@@ -43,7 +43,7 @@ Muth used *classical* prediction methods to reverse engineer a
 stochastic process that renders optimal Milton Friedman’s :cite:`Friedman1956` “adaptive
 expectations” scheme
 
-Friedman (1956) and Muth (1960)
+Friedman (1956) and Muth (1960) 
 =================================
 
 Milton Friedman :cite:`Friedman1956` (1956) posited that
@@ -89,7 +89,7 @@ The lecture :doc:`First Look at Kalman Filter<kalman>` describes the Kalman filt
 
 We'll use limiting versions of the Kalman filter corresponding to what are called **stationary values** in that lecture
 
-A :math:`\{y_t\}` Process for Which Adaptive Expectations are Optimal
+A :math:`\{y_t\}` Process for Which Adaptive Expectations are Optimal 
 ------------------------------------------------------------------------
 
 Suppose that an observable :math:`y_t` is the sum of an unobserved
@@ -165,7 +165,7 @@ apply the quantecon ``Kalman`` class, then uses it to construct the associated "
 
     ssk = LinearStateSpace(Ak, Ck, Gk, Hk, mu_0=x_hat_0)
 
-Some useful statespace math
+Some Useful Statespace Math 
 -----------------------------
 
 Now we want to map the time-invariant innovations representation :eq:`innovations` and
@@ -246,7 +246,7 @@ Now that we have simulated our joint system, we have :math:`x_t`,
 We can now investigate how these
 variables are related by plotting some key objects
 
-Estimates of unobservables
+Estimates of Unobservables 
 ---------------------------
 
 First, let’s plot the hidden state :math:`x_t` and the filtered version
@@ -268,7 +268,7 @@ Note how :math:`x_t` and :math:`\hat{x_t}` differ
 For Friedman, :math:`\hat x_t` and not :math:`x_t` is the consumer’s
 idea about her/his *permanent income*
 
-Relation between unobservable and observable
+Relation Between Unobservable and Observable 
 ---------------------------------------------
 
 Now let’s plot :math:`x_t` and :math:`y_t`
@@ -287,7 +287,7 @@ Recall that :math:`y_t` is just :math:`x_t` plus white noise
 We see above that :math:`y` seems to look like white noise around the
 values of :math:`x`
 
-Innovations
+Innovations 
 ------------
 
 Recall that we wrote down the innovation representation that depended on
@@ -302,7 +302,7 @@ Recall that we wrote down the innovation representation that depended on
     plt.show()
 
 
-MA and AR Representations
+Ma and AR Representations 
 ---------------------------
 
 Now we shall extract from the ``Kalman`` instance ``kmuth`` coefficients of

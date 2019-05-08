@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************
-Schelling's Segregation Model
+Schelling's Segregation Model 
 ********************************
 
 .. index::
@@ -16,7 +16,7 @@ Schelling's Segregation Model
 
 .. contents:: :depth: 2
 
-Outline
+Outline 
 =======================
 
 
@@ -34,12 +34,12 @@ In this lecture we (in fact you) will build and run a version of Schelling's mod
 
 
 
-The Model
+The Model 
 =======================
 
 We will cover a variation of Schelling's model that is easy to program and captures the main idea
 
-Set Up
+Set Up 
 ---------
 
 Suppose we have two types of people: orange people and green people
@@ -52,7 +52,7 @@ The location of an agent is just a point :math:`(x, y)`,  where :math:`0 < x, y 
 
 
 
-Preferences
+Preferences 
 -------------
 
 We will say that an agent is *happy* if half or more of her 10 nearest neighbors are of the same type
@@ -66,7 +66,7 @@ An important point here is that agents are not averse to living in mixed areas
 They are perfectly happy if half their neighbors are of the other color
 
 
-Behavior
+Behavior 
 -----------
 
 Initially, agents are mixed together (integrated)
@@ -91,7 +91,7 @@ We continue to cycle until no one wishes to move
 
 
 
-Results
+Results 
 =============
 
 Let's have a look at the results we got when we coded and ran this model
@@ -119,14 +119,14 @@ This is despite the fact that people in the model don't actually mind living mix
 Even with these preferences, the outcome is a high degree of segregation
 
 
-Exercises
+Exercises 
 ===============
 
 
 
 .. _schelling_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Implement and run this simulation for yourself
@@ -170,14 +170,14 @@ Use 250 agents of each type
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here's one solution that does the job we want

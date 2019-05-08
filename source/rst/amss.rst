@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *****************************************************
-Optimal Taxation without State-Contingent Debt
+Optimal Taxation Without State-contingent Debt 
 *****************************************************
 
 .. contents:: :depth: 2
@@ -15,7 +15,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ==========
 
 In :doc:`an earlier lecture <opt_tax_recur>` we described a model of 
@@ -42,7 +42,7 @@ We begin with an introduction to the model
 
 
 
-Competitive Equilibrium with Distorting Taxes
+Competitive Equilibrium With Distorting Taxes 
 ===================================================
 
 
@@ -106,7 +106,7 @@ AMSS allow the government to issue only one-period risk-free debt each period
 Ruling out complete markets in this way is a step in the direction of making total tax collections behave more like that prescribed in :cite:`Barro1979` than they do in :cite:`LucasStokey1983`
 
 
-Risk-free One-Period Debt Only
+Risk-free One-period Debt Only 
 --------------------------------
 
 In period :math:`t` and history :math:`s^t`, let 
@@ -230,7 +230,7 @@ But now we also have a large number of additional implementability constraints
 
 Equation :eq:`TS_gov_wo4a` must hold for each :math:`s^t` for each :math:`t \geq 1` 
 
-Comparison with Lucas-Stokey Economy
+Comparison With Lucas-stokey Economy 
 -------------------------------------
 
 The expression on the right side of :eq:`TS_gov_wo4a` in the Lucas-Stokey (1983) economy would  equal the present value of a continuation stream of government surpluses evaluated at what would be competitive equilibrium Arrow-Debreu prices at date :math:`t`
@@ -242,7 +242,7 @@ In the AMSS economy, the restriction that government debt be risk-free imposes t
 In a language used in the literature on incomplete markets models, it can be said that the AMSS model requires that at each :math:`(t, s^t)` what would be the present value of continuation government surpluses in the Lucas-Stokey model must belong to  the **marketable subspace** of the AMSS model
 
 
-Ramsey Problem Without State-contingent Debt
+Ramsey Problem Without State-contingent Debt 
 -----------------------------------------------
 
 After we have substituted the resource constraint into the utility function, we can express the Ramsey problem as being to choose an allocation that solves
@@ -278,7 +278,7 @@ given :math:`b_0(s^{-1})`
 
 
 
-Lagrangian Formulation
+Lagrangian Formulation 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Let :math:`\gamma_0(s^0)` be a nonnegative Lagrange multiplier on constraint :eq:`AMSS_44`
@@ -310,7 +310,7 @@ That would let us reduce the beginning-of-period indebtedness for some other his
 
 These features flow from  the fact that the government cannot use state-contingent debt and therefore cannot allocate its indebtedness  efficiently across future states
 
-Some Calculations
+Some Calculations 
 ------------------
 
 
@@ -408,7 +408,7 @@ using techniques like those in our lectures on :doc:`dynamic Stackelberg models 
 
 
 
-Recursive Version of AMSS Model
+Recursive Version of Amss Model 
 ==================================
 
 We now describe a recursive formulation of the AMSS economy
@@ -428,7 +428,7 @@ continuation Ramsey planners
 
 
 
-Recasting State Variables
+Recasting State Variables 
 --------------------------
 
 In the AMSS setting, the government faces a sequence of budget constraints
@@ -494,7 +494,7 @@ history :math:`s^t` as
 
 for :math:`t \geq 1`
 
-Measurability Constraints
+Measurability Constraints 
 --------------------------
 
 Write equation :eq:`eqn:AMSSapp2` as
@@ -518,7 +518,7 @@ That implies that it is has to be *measurable* with respect to :math:`s^{t-1}`
 Equations :eq:`eqn:AMSSapp2b` are the *measurablility constraints* that the AMSS model adds to the single time :math:`0` implementation
 constraint imposed in the Lucas and Stokey model
 
-Two Bellman Equations
+Two Bellman Equations 
 ----------------------
 
 Let :math:`\Pi(s|s_-)` be a Markov transition matrix whose entries tell probabilities of moving from state :math:`s_-` to state :math:`s` in one period
@@ -577,7 +577,7 @@ where maximization is subject to
     u_{c,0} b_0 = u_{c,0} (n_0-g_0) - u_{l,0} n_0 + x_0
 
 
-Martingale Supercedes State-Variable Degeneracy
+Martingale Supercedes State-variable Degeneracy 
 ------------------------------------------------
 
 Let :math:`\mu(s|s_-) \Pi(s|s_-)` be a Lagrange multiplier on constraint :eq:`eqn:AMSSapp6`
@@ -628,7 +628,7 @@ that for each :math:`s_-`, the sum over :math:`s` equals unity
 
 
 
-Absence of State Variable Degeneracy
+Absence of State Variable Degeneracy 
 ------------------------------------
 
 Along a Ramsey plan, the state variable :math:`x_t = x_t(s^t, b_0)`
@@ -656,7 +656,7 @@ component to consumption, employment, and the tax rate
 
 
 
-Digression on Nonnegative Transfers
+Digression on Nonnegative Transfers 
 ------------------------------------
 
 Throughout this lecture we have imposed that transfers :math:`T_t = 0`
@@ -690,7 +690,7 @@ accumulates sufficient assets to finance all expenditures from earnings on those
 assets, returning any excess revenues to the household as nonnegative lump sum transfers
 
 
-Code
+Code 
 -----
 
 The recursive formulation is implemented as follows
@@ -698,7 +698,7 @@ The recursive formulation is implemented as follows
 .. literalinclude:: /_static/code/amss/recursive_allocation.py
 
 
-Examples
+Examples 
 ================
 
 We now turn to some examples
@@ -712,7 +712,7 @@ We will first build some useful functions for solving the model
 
 
 
-Anticipated One-Period War
+Anticipated One-period War 
 ----------------------------------
 
 In our lecture on :doc:`optimal taxation with state contingent debt <opt_tax_recur>` 
@@ -892,7 +892,7 @@ Without state contingent debt, the optimal tax rate is history dependent
 
 
 
-Perpetual War Alert
+Perpetual War Alert 
 ^^^^^^^^^^^^^^^^^^^^
 
 History dependence occurs more dramatically in a case in which the government 

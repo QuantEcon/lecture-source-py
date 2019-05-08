@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 **********************************************
-Classic Linear Models
+Classic Linear Models 
 **********************************************
 
 

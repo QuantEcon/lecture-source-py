@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************
-A First Look at the Kalman Filter
+A First Look at the Kalman Filter 
 ************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 This lecture provides a simple and intuitive introduction to the Kalman filter, for those who either
@@ -38,7 +38,7 @@ The second reference presents a  comprehensive treatment of the Kalman filter
 Required knowledge: Familiarity with matrix manipulations, multivariate normal distributions, covariance matrices, etc.
 
 
-The Basic Idea
+The Basic Idea 
 ====================
 
 The Kalman filter has many applications in economics, but for now
@@ -151,7 +151,7 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
 
 
 
-The Filtering Step
+The Filtering Step 
 --------------------
 
 We are now presented with some good news and some bad news
@@ -269,7 +269,7 @@ In generating the figure, we set :math:`G` to the identity matrix and :math:`R =
 
 .. _kl_forecase_step:
 
-The Forecast Step
+The Forecast Step 
 -------------------
 
 
@@ -390,7 +390,7 @@ the update has used parameters
 
 
 
-The Recursive Procedure
+The Recursive Procedure 
 -------------------------
 
 .. index::
@@ -430,7 +430,7 @@ These are the standard dynamic equations for the Kalman filter (see, for example
 
 .. _kalman_convergence:
 
-Convergence
+Convergence 
 ==============
 
 The matrix :math:`\Sigma_t` is a measure of the uncertainty of our prediction :math:`\hat x_t` of :math:`x_t`
@@ -477,7 +477,7 @@ In this case, for any initial choice of :math:`\Sigma_0` that is both nonnegativ
 
 
 
-Implementation
+Implementation 
 =========================
 
 .. index::
@@ -537,13 +537,13 @@ You can view the program `on GitHub <https://github.com/QuantEcon/QuantEcon.py/b
 
 
 
-Exercises
+Exercises 
 =============
 
 
 .. _kalman_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Consider the following simple application of the Kalman filter, loosely based
@@ -572,7 +572,7 @@ Your figure should -- modulo randomness -- look something like this
 
 .. _kalman_ex2:
 
-Exercise 2
+Exercise 2 
 ----------------
 
 The preceding figure gives some support to the idea that probability mass
@@ -597,7 +597,7 @@ Your figure should show error erratically declining something like this
 
 .. _kalman_ex3:
 
-Exercise 3
+Exercise 3 
 ----------------
 
 As discussed :ref:`above <kalman_convergence>`, if the shock sequence :math:`\{w_t\}` is not degenerate, then it is not in general possible to predict :math:`x_t` without error at time :math:`t-1` (and this would be the case even if we could observe :math:`x_{t-1}`)
@@ -665,7 +665,7 @@ Observe how, after an initial learning period, the Kalman filter performs quite 
 
 .. _kalman_ex4:
 
-Exercise 4
+Exercise 4 
 ----------------
 
 Try varying the coefficient :math:`0.3` in :math:`Q = 0.3 I` up and down
@@ -677,7 +677,7 @@ The interpretation is that more randomness in the law of motion for :math:`x_t` 
 
 
 
-Solutions
+Solutions 
 ==========
 
 
@@ -689,7 +689,7 @@ Solutions
     from quantecon import LinearStateSpace
     from scipy.stats import norm
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -724,7 +724,7 @@ Exercise 1
     plt.show()
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3
@@ -762,7 +762,7 @@ Exercise 2
     plt.show()
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 .. code-block:: python3

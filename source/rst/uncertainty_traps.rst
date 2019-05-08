@@ -5,12 +5,12 @@
 .. highlight:: python3
 
 ***************************************
-Uncertainty Traps
+Uncertainty Traps 
 ***************************************
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 In this lecture we study a simplified version of an uncertainty traps model of Fajgelbaum, Schaal and Taschereau-Dumouchel :cite:`fun`
@@ -48,7 +48,7 @@ Uncertainty traps stem from a positive externality: high aggregate economic acti
 
 
 
-The Model
+The Model 
 ===============
 
 
@@ -58,7 +58,7 @@ Here we examine a simplified version that nonetheless captures many of the key i
 
 
 
-Fundamentals
+Fundamentals 
 --------------
 
 The evolution of the fundamental process :math:`\{\theta_t\}` is given by
@@ -78,7 +78,7 @@ The random variable :math:`\theta_t` is not observable at any time
 
 
 
-Output
+Output 
 -----------
 
 There is a total :math:`\bar M` of risk averse entrepreneurs
@@ -106,7 +106,7 @@ Output shocks are independent across time and firms
 
 
 
-Information and Beliefs
+Information and Beliefs 
 ----------------------------
 
 All entrepreneurs start with identical beliefs about :math:`\theta_0`
@@ -172,7 +172,7 @@ Thus, if one of these values for :math:`M` remains fixed, a corresponding steady
 In practice, as we'll see, the number of active firms fluctuates stochastically
 
 
-Participation
+Participation 
 ----------------
 
 Omitting time subscripts once more, entrepreneurs enter the market in the current period if
@@ -235,7 +235,7 @@ Using standard formulas for expectations of `lognormal <https://en.wikipedia.org
             > 0
 
 
-Implementation
+Implementation 
 ===============
 
 
@@ -261,7 +261,7 @@ The `__init__` method encodes as default values the parameters we'll use in the 
 In the results below we use this code to simulate time series for the major variables
 
 
-Results
+Results 
 ===============
 
 Let's look first at the dynamics of :math:`\mu`, which the agents use to track :math:`\theta`
@@ -296,13 +296,13 @@ Thus, the model gives us a *propagation mechanism* that maps bad random draws in
 
 
 
-Exercises
+Exercises 
 ==============
 
 .. _uncertainty_traps_ex1:
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Fill in the details behind :eq:`update_mean` and :eq:`update_prec` based on
@@ -328,7 +328,7 @@ where
     \gamma_0 = \gamma + M \gamma_x
 
 
-Exercise 2
+Exercise 2 
 ------------
 
 Modulo randomness, replicate the simulation figures shown above
@@ -339,7 +339,7 @@ Modulo randomness, replicate the simulation figures shown above
 
 
 
-Solutions
+Solutions 
 =========
 
 .. code-block:: ipython
@@ -349,7 +349,7 @@ Solutions
     import numpy as np
     import itertools
 
-Exercise 1
+Exercise 1 
 ----------------
 
 This exercise asked you to validate the laws of motion for
@@ -377,7 +377,7 @@ then evaluate the distribution of :math:`\rho \theta + \sigma_\theta w`
 where :math:`w` is independent and standard normal, we get the
 expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture
 
-Exercise 2
+Exercise 2 
 -----------
 
 First let's replicate the plot that illustrates the law of motion for

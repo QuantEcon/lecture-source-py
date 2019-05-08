@@ -6,7 +6,7 @@
     single: python
 
 **************************************************
-Von Neumann Growth Model (and a Generalization)
+Von Neumann Growth Model (and a Generalization) 
 **************************************************
 
 .. contents:: :depth: 2
@@ -303,7 +303,7 @@ The code below provides the ``Neumann`` class
 
           return γ, x, p
 
-Notation
+Notation 
 ===========
 
 We use the following notation
@@ -338,7 +338,7 @@ row and :math:`j` th column
 denote the :math:`j` th column and :math:`i` th row of :math:`A`,
 respectively
 
-Model Ingredients and Assumptions
+Model Ingredients and Assumptions 
 ====================================
 
 A pair :math:`(A,B)` of :math:`m\times n` nonnegative matrices defines
@@ -442,7 +442,7 @@ instance
     N2 = Neumann(A2, B2)
     N2
 
-Dynamic interpretation
+Dynamic Interpretation 
 ====================================
 
 Attach a time index :math:`t` to the preceding objects, regard an economy
@@ -478,7 +478,7 @@ yesterday
 Accordingly, :math:`Ap_t` tells the costs of production in period
 :math:`t` and :math:`Bp_t` tells revenues in period :math:`t+1`
 
-Balanced growth
+Balanced Growth 
 -----------------
 
 We follow John von Neumann in studying “balanced growth”
@@ -516,7 +516,7 @@ conduct an analysis purely in terms of a time-invariant growth rate
 :math:`\alpha` and interest factor :math:`\beta`
 
 
-Duality
+Duality 
 ========
 
 The following two problems are connected by a remarkable dual
@@ -636,7 +636,7 @@ this extra condition does not affect the existence result, while it
 significantly reduces the number of (relevant) solutions
 
 
-Interpretation as a Game Theoretic Problem (Two-player Zero-sum Game)
+Interpretation as a Game Theoretic Problem (two-player Zero-sum Game) 
 =======================================================================
 
 To compute the equilibrium :math:`(\gamma^{*}, x_0, p_0)`, we follow the
@@ -687,7 +687,7 @@ Moreover, von Neumann’s Minmax Theorem (1928) :cite:`neumann1928theorie` impli
 
 
 
-Connection with Linear Programming (LP)
+Connection With Linear Programming (lp) 
 -----------------------------------------
 
 Finding Nash equilibria of a finite two-player zero-sum game can be
@@ -807,7 +807,7 @@ This suggests an algorithm to compute
 :math:`(\alpha_0, x_0)` and :math:`(\beta_0, p_0)` for a given
 input-output pair :math:`(A, B)`
 
-Algorithm
+Algorithm 
 ----------
 
 Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` propose a simple bisection algorithm
@@ -937,7 +937,7 @@ and minimal roots of :math:`V(M(\gamma))` necessarily coincide implying
 a ‘’full duality’’ result, i.e. :math:`\alpha_0 = \beta_0 = \gamma^*`,
 and that the expansion (and interest) rate :math:`\gamma^*` is unique
 
-Uniqueness and irreducibility
+Uniqueness and Irreducibility 
 -----------------------------
 
 As an illustration, compute first the maximal and minimal roots of
@@ -980,7 +980,7 @@ imposing irreducibility is sufficient for uniqueness of
 **Theorem II:** Consider the conditions of Theorem 1. If the economy
 :math:`(A,B)` is irreducible, then :math:`\gamma^*=\alpha_0=\beta_0`
 
-A special case
+A Special Case 
 --------------
 
 There is a special :math:`(A,B)` that allows us to simplify the solution

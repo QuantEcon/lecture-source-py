@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *********************************************
-Optimal Taxation with State-Contingent Debt
+Optimal Taxation With State-contingent Debt 
 *********************************************
 
 .. contents:: :depth: 2
@@ -16,7 +16,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install quantecon
 
 
-Overview
+Overview 
 =========
 
 
@@ -55,7 +55,7 @@ responses of private agents to a Ramsey plan
 See :doc:`Optimal taxation <lqramsey>` for an analysis within a linear-quadratic setting
 
 
-A Competitive Equilibrium with Distorting Taxes
+A Competitive Equilibrium With Distorting Taxes 
 ================================================
 
 
@@ -164,7 +164,7 @@ They are indexed by different government policies
 The **Ramsey problem** or **optimal taxation problem** is to choose a competitive
 equilibrium with distorting taxes that maximizes :eq:`TS_prefr_opt_tax`
 
-Arrow-Debreu Version of Price System
+Arrow-debreu Version of Price System 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We find it convenient sometimes to work with the Arrow-Debreu price system that is
@@ -186,7 +186,7 @@ Arrow-Debreu prices are useful when we want to compress a sequence of budget
 constraints into a single intertemporal budget constraint, as we shall find it
 convenient to do below
 
-Primal Approach
+Primal Approach 
 ^^^^^^^^^^^^^^^^
 
 We apply a popular approach to solving a Ramsey problem, called the *primal approach*
@@ -219,7 +219,7 @@ The primal approach uses four steps:
    taxes and prices
 
 
-The Implementability Constraint
+The Implementability Constraint 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By sequential substitution of one one-period budget constraint :eq:`TS_bcr` into
@@ -289,7 +289,7 @@ The **Ramsey problem** is to choose a feasible  allocation  that maximizes
 subject to  :eq:`TSs_cham1`
 
 
-Solution Details
+Solution Details 
 ^^^^^^^^^^^^^^^^^
 
 First define a "pseudo utility function"
@@ -429,7 +429,7 @@ currently realized quantity of government purchases :math:`g` only and does
 
 
 
-The Ramsey Allocation for a Given :math:`\Phi`
+The Ramsey Allocation for a Given :math:`\phi` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Temporarily take  :math:`\Phi` as given
@@ -458,7 +458,7 @@ satisfied at a candidate Ramsey allocation and price system associated
 with that :math:`\Phi`
 
 
-Further Specialization
+Further Specialization 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 At this point, it is useful to specialize the model in the following ways
@@ -477,7 +477,7 @@ Also, assume that government purchases :math:`g` are an exact time-invariant fun
 We maintain these assumptions throughout the remainder of this lecture
 
 
-Determining :math:`\Phi`
+Determining :math:`\phi` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We complete the Ramsey plan by computing the Lagrange multiplier :math:`\Phi`
@@ -618,7 +618,7 @@ equations in :math:`S` components each of :math:`\vec c`, :math:`\vec n`, and
 
 
 
-Time Inconsistency
+Time Inconsistency 
 ^^^^^^^^^^^^^^^^^^^
 
 Let :math:`\{\tau_t(s^t)\}_{t=0}^\infty, \{b_{t+1}(s_{t+1}| s^t)\}_{t=0}^\infty`
@@ -647,7 +647,7 @@ We shall discuss this more below
 
 
 
-Specification with CRRA Utility
+Specification With Crra Utility 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -737,7 +737,7 @@ In equation :eq:`opt_tax_eqn_10`, it is understood that
 
 
 
-Sequence Implementation
+Sequence Implementation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -749,7 +749,7 @@ The above steps are implemented in a class called `SequentialAllocation`
 
 
 
-Recursive Formulation of the Ramsey problem
+Recursive Formulation of the Ramsey Problem 
 =============================================
 
 :math:`x_t(s^t) = u_c(s^t) b_t(s_t | s^{t-1})` in equation :eq:`LSA_budget`
@@ -758,7 +758,7 @@ appears to be a purely “forward-looking” variable
 But :math:`x_t(s^t)` is a also a  natural candidate for a state variable in
 a recursive formulation of the Ramsey problem
 
-Intertemporal Delegation
+Intertemporal Delegation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To express a Ramsey plan recursively, we imagine that a time :math:`0`
@@ -801,7 +801,7 @@ responsibilities across time express the continuation Ramsey planners’
 obligations to implement their parts of the original Ramsey plan,
 designed once-and-for-all at time :math:`0`
 
-Two Bellman Equations
+Two Bellman Equations 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 After :math:`s_t` has been realized at time :math:`t \geq 1`, the state
@@ -815,7 +815,7 @@ variables confronting the time :math:`t` **continuation Ramsey planner** are
 We work backwards by presenting a Bellman equation for
 :math:`V(x,s)` first, then a Bellman equation for :math:`W(b,s)`
 
-The Continuation Ramsey Problem
+The Continuation Ramsey Problem 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Bellman equation for a time :math:`t \geq 1` continuation Ramsey
@@ -855,7 +855,7 @@ are :math:`S+1` time-invariant policy functions
     \end{aligned}
 
 
-The Ramsey Problem
+The Ramsey Problem 
 ^^^^^^^^^^^^^^^^^^^
 
 The Bellman equation for the time :math:`0` Ramsey planner is
@@ -903,7 +903,7 @@ continuation Ramsey planner equals
 the consumption and leisure processes are evaluated along the original
 time :math:`0` Ramsey plan
 
-First-Order Conditions
+First-order Conditions 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Attach a Lagrange multiplier :math:`\Phi_1(x,s)` to constraint :eq:`LSA_Bellman1cons` and a
@@ -985,7 +985,7 @@ formulated the Ramsey plan in the space of sequences
 
 
 
-State Variable Degeneracy
+State Variable Degeneracy 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Equations :eq:`LSAx0` and :eq:`LSAn0` imply that :math:`\Phi_0 = \Phi_1`
@@ -1008,7 +1008,7 @@ can be expressed as a vector :math:`\vec x` that solves equation :eq:`Bellman2co
 for :math:`n` and :math:`c` as functions of :math:`g` that are associated
 with :math:`\Phi = \Phi_0`
 
-Manifestations of Time Inconsistency
+Manifestations of Time Inconsistency 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 While the marginal utility adjusted level of government debt :math:`x_t`
@@ -1054,7 +1054,7 @@ time :math:`0` and time :math:`t \geq 1` objects reflect
 the Ramsey planner’s incentive to manipulate Arrow security prices and,
 through them, the value of initial government debt :math:`b_0`
 
-Recursive Implementation
+Recursive Implementation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -1067,10 +1067,10 @@ The above steps are implemented in a class called `RecursiveAllocation`
 
 
 
-Examples
+Examples 
 =============
 
-Anticipated One Period War
+Anticipated One Period War 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This example illustrates in a simple setting how a Ramsey planner manages risk
@@ -1235,7 +1235,7 @@ time 0 by raising consumption
 
 
 
-Government Saving
+Government Saving 
 ^^^^^^^^^^^^^^^^^^
 
 At time  :math:`t=0` the government evidently *dissaves* since :math:`b_1> b_0`
@@ -1266,7 +1266,7 @@ At times :math:`t \geq 4` the government rolls over its debt, knowing that the
 tax rate is set at level required to service the interest payments
 on the debt and government expenditures
 
-Time 0 Manipulation of Interest Rate
+Time 0 Manipulation of Interest Rate 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have seen that when :math:`b_0>0`, the Ramsey plan sets the time :math:`t=0`
@@ -1280,7 +1280,7 @@ By doing this, it lowers the value of time :math:`t=0` debt that it has inherite
 and must finance
 
 
-Time 0  and Time-Inconsistency
+Time 0 and Time-inconsistency 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the  preceding  example,  the Ramsey tax rate at time 0 differs from its value  at time 1
@@ -1402,7 +1402,7 @@ The tax rates in the figure are equal  for only two values of initial government
 
 
 
-Tax Smoothing and non-CRRA Preferences
+Tax Smoothing and Non-crra Preferences 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The complete tax smoothing for :math:`t \geq 1` in the preceding example is a
@@ -1494,7 +1494,7 @@ Unlike outcomes with CRRA preferences, the tax rate is not perfectly smoothed
 Instead the government raises the tax rate when :math:`g_t` is high
 
 
-Further Comments
+Further Comments 
 ^^^^^^^^^^^^^^^^^^
 
 A :doc:`related lecture <amss>` describes an extension of the Lucas-Stokey model

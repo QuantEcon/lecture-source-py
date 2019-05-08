@@ -6,13 +6,13 @@
     single: python
 
 **********************************
-Complex Numbers and Trignometry
+Complex Numbers and Trignometry 
 **********************************
 
 .. contents:: :depth: 2
 
 
-Overview
+Overview 
 =========
 
 This lecture introduces some elementary mathematics and trigonometry
@@ -32,7 +32,7 @@ from elementary high school trigonometry
 So let's dive in
 
 
-Complex Numbers
+Complex Numbers 
 ----------------
 
 A complex number has a **real part** :math:`x` and a purely **imaginary part** :math:`y`
@@ -100,7 +100,7 @@ We'll need the following imports
    %matplotlib inline
    
 
-An Example
+An Example 
 -----------
 
 Consider the complex number :math:`z = 1 + \sqrt{3} i`
@@ -154,7 +154,7 @@ Let's use Python to plot the trigonometric form of the complex number
     plt.show()
 
 
-De Moivre's Theorem
+De Moivre's Theorem 
 ====================
 
 de Moivre's theorem states that:
@@ -173,10 +173,10 @@ To prove de Moivre's theorem, note that
 
 and compute
 
-Applications of de Moivre's Theorem
+Applications of de Moivre's Theorem 
 =====================================
 
-Example 1
+Example 1 
 ----------
 
 We can use de Moivre's theorem to show that
@@ -204,7 +204,7 @@ and thus
 
 We recogize this as a theorem of **Pythagoras**
 
-Example 2
+Example 2 
 ----------
 
 Let :math:`z = re^{i\theta}` and :math:`\bar{z} = re^{-i\theta}` so that :math:`\bar{z}` is the **complex conjugate** of :math:`z`
@@ -231,7 +231,7 @@ Thus,
    &= 2 pr^n \cos{(\omega + n\theta)}
    \end{aligned}
 
-Example 3
+Example 3 
 ----------
 
 This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model :cite:`Samuelson1939` 
@@ -357,7 +357,7 @@ and plot the dynamic
     plt.show()
 
 
-Trigonometric Identities
+Trigonometric Identities 
 ------------------------
 
 We can obtain a complete suite of trigonometric identities by
@@ -418,7 +418,7 @@ can verify the equations using the ``simplify`` function in the
     print("cos(ω)sin(θ) + sin(ω)cos(θ) =", simplify(cos(ω)*sin(θ) + sin(ω) * cos(θ)))
 
 
-Trigonometric Integrals
+Trigonometric Integrals 
 -----------------------
 
 We can also compute the trigonometric integrals using polar forms of

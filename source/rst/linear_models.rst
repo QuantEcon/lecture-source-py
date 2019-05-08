@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 *********************************************
-Linear State Space Models
+Linear State Space Models 
 *********************************************
 
 .. index::
@@ -24,7 +24,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 This lecture introduces the **linear state space** dynamic system
@@ -64,7 +64,7 @@ Its many applications include:
 
 
 
-The Linear State Space Model
+The Linear State Space Model 
 ===============================
 
 .. index::
@@ -99,7 +99,7 @@ Here is the linear state-space system
 
 .. _lss_pgs:
 
-Primitives
+Primitives 
 --------------
 
 The primitives of the model are
@@ -120,7 +120,7 @@ Later we'll see how to compute these distributions and their moments
 
 
 
-Martingale difference shocks
+Martingale Difference Shocks 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -145,7 +145,7 @@ This is a weaker condition than that :math:`\{w_t\}` is iid with :math:`w_{t+1} 
 
 
 
-Examples
+Examples 
 --------------
 
 By appropriate choice of the primitives, a variety of dynamics can be represented in terms of the linear state space model
@@ -157,7 +157,7 @@ They also illustrate the wise dictum *finding the state is an art*
 
 .. _lss_sode:
 
-Second-order difference equation
+Second-order Difference Equation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -212,7 +212,7 @@ Later you'll be asked to recreate this figure
 
 
 
-Univariate Autoregressive Processes
+Univariate Autoregressive Processes 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -270,7 +270,7 @@ The next figure shows dynamics of this process when
     /_static/figures/solution_lss_ex2.png
     :scale: 80%
 
-Vector Autoregressions
+Vector Autoregressions 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -324,7 +324,7 @@ where :math:`I` is the :math:`k \times k` identity matrix and :math:`\sigma` is 
 
 
 
-Seasonals
+Seasonals 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -363,7 +363,7 @@ The *indeterministic* seasonal produces recurrent, but aperiodic, seasonal fluct
 
 
 
-Time Trends
+Time Trends 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -442,7 +442,7 @@ linear and quadratic time trends
 
 
 
-Moving Average Representations
+Moving Average Representations 
 ---------------------------------
 
 .. index::
@@ -512,7 +512,7 @@ For this reason, :math:`x_{1t}` is called a *martingale with drift*
 
 
 
-Distributions and Moments
+Distributions and Moments 
 ===========================
 
 .. index::
@@ -521,7 +521,7 @@ Distributions and Moments
 .. index::
     single: Linear State Space Models; Moments
 
-Unconditional Moments
+Unconditional Moments 
 --------------------------------------
 
 Using :eq:`st_space_rep`, it's easy to obtain expressions for the
@@ -567,7 +567,7 @@ information, to be defined below
 However, you should be aware that these "unconditional" moments do depend on
 the initial distribution :math:`N(\mu_0, \Sigma_0)`
 
-Moments of the Observations
+Moments of the Observations 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using linearity of expectations again we have
@@ -586,7 +586,7 @@ The variance-covariance matrix of :math:`y_t` is easily shown to be
     \textrm{Var} [y_t] = \textrm{Var} [G x_t] = G \Sigma_t G'
 
 
-Distributions
+Distributions 
 ----------------
 
 .. index::
@@ -650,7 +650,7 @@ By similar reasoning combined with :eq:`lss_umy` and :eq:`lss_uvy`,
     y_t \sim N(G \mu_t, G \Sigma_t G')
 
 
-Ensemble Interpretations
+Ensemble Interpretations 
 ------------------------------
 
 How should we interpret the distributions defined by :eq:`lss_mgs_x`--:eq:`lss_mgs_y`?
@@ -698,7 +698,7 @@ feel for how the population distribution depends on the model primitives :ref:`l
 the distribution's sufficient statistics
 
 
-Ensemble means
+Ensemble Means 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the preceding figure we approximated the population distribution of :math:`y_T` by
@@ -750,7 +750,7 @@ Another application of the law of large numbers assures us that
     \qquad (I \to \infty)
 
 
-Joint Distributions
+Joint Distributions 
 -----------------------------
 
 In the preceding discussion we looked at the distributions of :math:`x_t` and
@@ -793,7 +793,7 @@ In view of :eq:`st_space_rep`, the conditional densities are
     p(x_{t+1} \,|\, x_t) = N(Ax_t, C C')
 
 
-Autocovariance functions
+Autocovariance Functions 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An important object related to the joint distribution is the *autocovariance function*
@@ -818,7 +818,7 @@ Notice that :math:`\Sigma_{t+j,t}` in general depends on both :math:`j`, the gap
 
 
 
-Stationarity and Ergodicity
+Stationarity and Ergodicity 
 ===============================
 
 .. index::
@@ -831,7 +831,7 @@ Stationarity and ergodicity are two properties  that, when they hold,  greatly a
 
 Let's start with the intuition
 
-Visualizing Stability
+Visualizing Stability 
 -------------------------
 
 Let's look at some more time series from the same model that we analyzed above
@@ -853,7 +853,7 @@ distribution as :math:`t \to \infty`
 When such a distribution exists it is called a *stationary distribution*
 
 
-Stationary Distributions
+Stationary Distributions 
 ---------------------------
 
 In our setting, a distribution :math:`\psi_{\infty}` is said to be *stationary* for :math:`x_t` if
@@ -883,7 +883,7 @@ we can restate the definition as follows: :math:`\psi_{\infty}` is stationary fo
 
 where :math:`\mu_{\infty}` and :math:`\Sigma_{\infty}` are fixed points of :eq:`lss_mut_linear_models` and :eq:`eqsigmalaw_linear_models` respectively
 
-Covariance Stationary Processes
+Covariance Stationary Processes 
 ---------------------------------
 
 Let's see what happens to the preceding figure if we start :math:`x_0` at the stationary distribution
@@ -926,11 +926,11 @@ A  process :math:`\{x_t\}` is said to be *covariance stationary* if
 In our setting, :math:`\{x_t\}` will be covariance stationary if :math:`\mu_0, \Sigma_0, A, C`  assume values that  imply that none of :math:`\mu_t, \Sigma_t, \Sigma_{t+j,t}` depends on :math:`t`
 
 
-Conditions for Stationarity
+Conditions for Stationarity 
 ------------------------------
 
 
-The globally stable case
+The Globally Stable Case 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The difference equation :math:`\mu_{t+1} = A \mu_t` is known to have *unique*
@@ -969,7 +969,7 @@ Because of the constant first component in the state vector, we will never have 
 How can we find stationary solutions that respect a constant state component?
 
 
-Processes with a constant state component
+Processes With a Constant State Component 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To investigate such a process, suppose that :math:`A` and :math:`C` take the
@@ -1058,7 +1058,7 @@ component
 
 
 
-Ergodicity
+Ergodicity 
 -------------
 
 
@@ -1069,7 +1069,7 @@ In this case we know that the ensemble mean will converge to :math:`\mu_{\infty}
 
 
 
-Averages over time
+Averages Over Time 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Ensemble averages across simulations are interesting theoretically, but in real life we usually observe only a *single* realization :math:`\{x_t, y_t\}_{t=0}^T`
@@ -1105,7 +1105,7 @@ In particular,
 In our linear Gaussian setting, any covariance stationary process is also ergodic
 
 
-Noisy Observations
+Noisy Observations 
 ===================
 
 In some settings the observation equation :math:`y_t = Gx_t` is modified to
@@ -1161,7 +1161,7 @@ The distribution of :math:`y_t` is therefore
     y_t \sim N(G \mu_t, G \Sigma_t G' + HH')
 
 
-Prediction
+Prediction 
 ==================
 
 
@@ -1174,7 +1174,7 @@ simple
 
 .. _ff_cm:
 
-Forecasting Formulas -- Conditional Means
+Forecasting Formulas -- Conditional Means 
 --------------------------------------------
 
 The natural way to predict variables is to use conditional distributions
@@ -1235,7 +1235,7 @@ The :math:`j`-step ahead forecast of :math:`y` is therefore
     = G A^j x_t
 
 
-Covariance of Prediction Errors
+Covariance of Prediction Errors 
 ---------------------------------
 
 It is useful to obtain the covariance matrix of the vector of  :math:`j`-step-ahead prediction errors
@@ -1281,7 +1281,7 @@ Weaker sufficient conditions for convergence  associate eigenvalues equaling or 
 
 .. _lm_fgs:
 
-Forecasts of Geometric Sums
+Forecasts of Geometric Sums 
 -------------------------------
 
 In several contexts, we want to compute forecasts of  geometric sums of future random variables governed by the linear state-space system :eq:`st_space_rep`
@@ -1302,7 +1302,7 @@ For example,
 
 
 
-Formulas
+Formulas 
 ^^^^^^^^^
 
 Fortunately, it is easy to use a little matrix algebra to compute these objects
@@ -1330,7 +1330,7 @@ This leads to our formulas:
     = G[I - \beta A]^{-1} x_t
 
 
-Code
+Code 
 =======
 
 Our preceding simulations and calculations are based on code in
@@ -1354,13 +1354,13 @@ Examples of usage are given in the solutions to the exercises
 
 
 
-Exercises
+Exercises 
 ====================
 
 
 .. _lss_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Replicate :ref:`this figure <lss_sode_fig>` using the ``LinearStateSpace`` class from ``lss.py``
@@ -1370,7 +1370,7 @@ Replicate :ref:`this figure <lss_sode_fig>` using the ``LinearStateSpace`` class
 
 .. _lss_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 Replicate :ref:`this figure <lss_uap_fig>` modulo randomness using the same class
@@ -1380,7 +1380,7 @@ Replicate :ref:`this figure <lss_uap_fig>` modulo randomness using the same clas
 
 .. _lss_ex3:
 
-Exercise 3
+Exercise 3 
 ------------
 
 Replicate :ref:`this figure <lss_em_fig>` modulo randomness using the same class
@@ -1391,7 +1391,7 @@ The state space model and parameters are the same as for the preceding exercise
 
 .. _lss_ex4:
 
-Exercise 4
+Exercise 4 
 ------------
 
 Replicate :ref:`this figure <lss_s_fig>` modulo randomness using the same class
@@ -1408,7 +1408,7 @@ the bars are at dates 10, 50 and 75
 
 
 
-Solutions
+Solutions 
 ==========
 
 
@@ -1419,7 +1419,7 @@ Solutions
     import matplotlib.pyplot as plt
     from quantecon import LinearStateSpace
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -1444,7 +1444,7 @@ Exercise 1
     plt.show()
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3
@@ -1473,7 +1473,7 @@ Exercise 2
     ax.set_ylabel('$y_t$', fontsize=16)
     plt.show()
 
-Exercise 3
+Exercise 3 
 ----------
 
 .. code-block:: python3
@@ -1524,7 +1524,7 @@ Exercise 3
     ax.legend(ncol=2)
     plt.show()
 
-Exercise 4
+Exercise 4 
 ----------
 
 .. code-block:: python3

@@ -6,7 +6,7 @@
 .. highlight:: python3
 
 **************************************************************
-:index:`Optimal Growth I: The Stochastic Optimal Growth Model`
+:index:`optimal Growth I: The Stochastic Optimal Growth Model` 
 **************************************************************
 
 .. contents:: :depth: 2
@@ -19,7 +19,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
   !pip install quantecon
   !pip install interpolation
 
-Overview
+Overview 
 ============
 
 In this lecture we're going to study a simple optimal growth model with one agent
@@ -61,7 +61,7 @@ This library can be installed with the following command in Jupyter: ``!pip inst
     from numba import njit, prange
     from quantecon.optimize.scalar_maximization import brent_max
 
-The Model
+The Model 
 ==========================
 
 .. index:: 
@@ -98,7 +98,7 @@ The resource constraint is
 and all variables are required to be nonnegative
 
 
-Assumptions and Comments
+Assumptions and Comments 
 ---------------------------
 
 In what follows,
@@ -118,7 +118,7 @@ This will allow us to treat a stochastic model while maintaining only one state 
 We consider alternative states and timing specifications in some of our other lectures 
 
 
-Optimization
+Optimization 
 --------------
 
 Taking :math:`y_0` as given, the agent wishes to maximize
@@ -170,7 +170,7 @@ In the present context
 
 
 
-The Policy Function Approach
+The Policy Function Approach 
 --------------------------------
 
 .. index:: 
@@ -281,7 +281,7 @@ The value function gives the maximal value that can be obtained from state :math
 A policy :math:`\sigma \in \Sigma` is called **optimal** if it attains the supremum in :eq:`vfcsdp0` for all :math:`y \in \mathbb R_+`
 
 
-The Bellman Equation
+The Bellman Equation 
 ----------------------
 
 With our assumptions on utility and production function, the value function as defined in :eq:`vfcsdp0` also satisfies a **Bellman equation** 
@@ -325,7 +325,7 @@ The Bellman equation is important because it gives us more information about the
 It also suggests a way of computing the value function, which we discuss below
 
 
-Greedy Policies
+Greedy Policies 
 -----------------
 
 The primary importance of the value function is that we can use it to compute optimal policies
@@ -368,7 +368,7 @@ problem
 
 
 
-The Bellman Operator
+The Bellman Operator 
 ------------------------
 
 How, then, should we compute the value function?
@@ -413,7 +413,7 @@ It follows that :math:`v^*` is a fixed point of :math:`T`
 
 
 
-Review of Theoretical Results
+Review of Theoretical Results 
 ---------------------------------
 
 .. index:: 
@@ -454,7 +454,7 @@ Our problem now is how to compute it
 
 
 
-:index:`Unbounded Utility`
+:index:`unbounded Utility` 
 --------------------------
 
 .. index:: 
@@ -476,7 +476,7 @@ Consult,  for example, section 12.2 of `EDTC <http://johnstachurski.net/edtc.htm
 
 
 
-Computation
+Computation 
 =============
 
 .. index:: 
@@ -486,7 +486,7 @@ Let's now look at computing the value function and the optimal policy
 
 
 
-Fitted Value Iteration
+Fitted Value Iteration 
 -------------------------
 
 .. index:: 
@@ -580,7 +580,7 @@ function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
 Another advantage of piecewise linear interpolation is that it preserves 
 useful shape properties such as monotonicity and concavity / convexity
 
-Optimal Growth Model
+Optimal Growth Model 
 ---------------------
 
 We will hold the primitives of the optimal growth model in a class
@@ -609,7 +609,7 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
-The Bellman Operator
+The Bellman Operator 
 -----------------------
 
 Here's a function that generates a Bellman operator using linear interpolation
@@ -638,7 +638,7 @@ but it does have some theoretical advantages in the present setting
 
 .. _benchmark_growth_mod:
 
-An Example
+An Example 
 -----------------------------
 
 Let's test out our operator when
@@ -690,7 +690,7 @@ We will define functions to compute the closed form solutions to check our answe
         return c1 + c2 * (c3 - c4) + c4 * np.log(y)
 
 
-A First Test
+A First Test 
 --------------
 
 To test our code, we want to see if we can replicate the analytical solution 
@@ -821,7 +821,7 @@ The figure shows that we are pretty much on the money
 
 
 
-The Policy Function
+The Policy Function 
 -----------------------
 
 .. index:: 
@@ -852,11 +852,11 @@ The figure shows that we've done a good job in this instance of approximating
 the true policy
 
 
-Exercises
+Exercises 
 =============
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`
@@ -881,12 +881,12 @@ Replicate the figure modulo randomness
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ---------------------------
 
 

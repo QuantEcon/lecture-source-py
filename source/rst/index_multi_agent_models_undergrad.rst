@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***************************************
-Multiple Agent Models
+Multiple Agent Models 
 ***************************************
 
 These lectures look at important economic models that also illustrate common

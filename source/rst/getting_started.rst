@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *************************************
-Setting up Your Python Environment
+Setting up Your Python Environment 
 *************************************
 
 .. index:: 
@@ -11,7 +11,7 @@ Setting up Your Python Environment
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 In this lecture you will learn how to
@@ -28,7 +28,7 @@ In this lecture you will learn how to
 
 
 
-Anaconda
+Anaconda 
 ================
 
 
@@ -71,7 +71,7 @@ Anaconda also comes with a great package management system to organize your code
 
 .. _install_anaconda:
 
-Installing Anaconda
+Installing Anaconda 
 ---------------------
 
 .. index:: 
@@ -91,7 +91,7 @@ Important points:
 * Otherwise you can accept all of the defaults
 
 
-Updating Anaconda
+Updating Anaconda 
 ------------------
 
 Anaconda supplies a tool called `conda` to manage and upgrade your Anaconda packages 
@@ -110,7 +110,7 @@ For more information on `conda`,  type `conda help` in a terminal
 
 .. _ipython_notebook:
 
-:index:`Jupyter Notebooks`
+:index:`jupyter Notebooks` 
 ==========================
 
 .. index:: 
@@ -206,7 +206,7 @@ The notebook displays an *active cell*, into which you can type Python commands
 
 
 
-Notebook Basics
+Notebook Basics 
 ------------------
 
 .. index:: 
@@ -216,7 +216,7 @@ Let's start with how to edit code and run simple programs
 
 
 
-Running Cells
+Running Cells 
 ^^^^^^^^^^^^^^^
 
 Notice that in the previous figure the cell is surrounded by a green border
@@ -233,7 +233,7 @@ When you're ready to execute the code in a cell, hit ``Shift-Enter`` instead of 
 (Note: There are also menu and button options for running code in a cell that you can find by exploring)
 
 
-Modal Editing
+Modal Editing 
 ^^^^^^^^^^^^^^^^
 
 The next thing to understand about the Jupyter notebook is that it uses a *modal* editing system
@@ -264,7 +264,7 @@ To switch to
 The modal behavior of the Jupyter notebook is a little tricky at first but very efficient when you get used to it
 
 
-User Interface Tour
+User Interface Tour 
 ^^^^^^^^^^^^^^^^^^^^
 
 At this stage we recommend you take your time to 
@@ -273,7 +273,7 @@ At this stage we recommend you take your time to
 
 * take the "user interface tour", which can be accessed through the help menu
 
-Inserting unicode (e.g., Greek letters)
+Inserting Unicode (e.g., Greek Letters) 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Python 3 introduced support for `unicode characters <https://docs.python.org/3/howto/unicode.html>`__,
@@ -285,7 +285,7 @@ Try creating a new code cell and typing `\\alpha`, then hitting the `tab` key on
 
 .. _a_test_program:
 
-A Test Program
+A Test Program 
 ^^^^^^^^^^^^^^^^^^
 
 Let's run a test program
@@ -326,13 +326,13 @@ The easiest way to run this code is to copy and paste into a cell in the noteboo
 
 
 
-Working with the Notebook
+Working With the Notebook 
 -----------------------------
 
 Here are a few more tips on working with Jupyter notebooks
 
 
-Tab Completion
+Tab Completion 
 ^^^^^^^^^^^^^^^^^^
 
 In the previous program we executed the line ``import numpy as np``
@@ -359,7 +359,7 @@ In this way, the Tab key helps remind you of what's available, and also saves yo
 
 .. _gs_help:
 
-On-Line Help
+On-line Help 
 ^^^^^^^^^^^^^^^
 
 .. index:: 
@@ -376,7 +376,7 @@ Clicking in the top right of the lower split closes the on-line help
 
 
 
-Other Content
+Other Content 
 ^^^^^^^^^^^^^^^
 
 In addition to executing code, the Jupyter notebook allows you to embed text, equations, figures and even videos in the page
@@ -399,7 +399,7 @@ Now we ``Shift+Enter`` to produce this
 
 
 
-Sharing Notebooks
+Sharing Notebooks 
 ------------------------
 
 .. index:: 
@@ -421,7 +421,7 @@ To run one, download it as an ``ipynb`` file by clicking on the download icon at
 Save it somewhere, navigate to it from the Jupyter dashboard and then run as discussed above
 
 
-QuantEcon Notes
+Quantecon Notes 
 -----------------
 
 QuantEcon has its own site for sharing Jupyter notebooks related
@@ -431,7 +431,7 @@ Notebooks submitted to QuantEcon Notes can be shared with a link, and are open
 to comments and votes by the commnuity
 
 
-Installing Libraries
+Installing Libraries 
 =================================
 
 .. _gs_qe:
@@ -472,14 +472,14 @@ This can be installed by typing in Jupyter
     ``!pip install interpolation``
 
 
-Working with Files
+Working With Files 
 ====================
 
 How does one run a locally saved Python file?
 
 There are a number of ways to do this but let's focus on methods using Jupyter notebooks
 
-Option 1: Copy and Paste
+Option 1: Copy and Paste 
 ------------------------
 
 The steps are:
@@ -491,7 +491,7 @@ The steps are:
 #. Copy and paste into a cell and ``Shift-Enter``
 
 
-Method 2: Run
+Method 2: Run 
 -------------
 
 Using the ``run`` command is often easier than copy and paste
@@ -531,7 +531,7 @@ Here
 * ``run test.py`` runs the file and prints any output
 
 
-But file X isn't in my PWD!
+But File X Isn't in my Pwd! 
 ---------------------------
 
 If you're trying to run a file not in the present working director, you'll get an error
@@ -577,7 +577,7 @@ Now the code from the file appears in a cell ready to execute
 
 
 
-Saving Files
+Saving Files 
 -------------
 
 To save the contents of a cell as file ``foo.py``
@@ -596,7 +596,7 @@ Here ``%%file`` is an example of a `cell magic <http://ipython.readthedocs.org/e
 
 
 
-Editors and IDEs
+Editors and Ides 
 ==================
 
 The preceding discussion covers most of what you need to know to interact with
@@ -610,7 +610,7 @@ There are many different options and we mention them only in passing
 
 
 
-:index:`JupyterLab`
+:index:`jupyterlab` 
 -----------------------
 
 .. index:: 
@@ -625,7 +625,7 @@ Reading the docs or searching for a recent YouTube video will give you more info
 
 
 
-:index:`Text Editors`
+:index:`text Editors` 
 ---------------------
 
 A text editor is an application that is specifically designed to work with text files --- such as Python programs
@@ -647,7 +647,7 @@ If you want an outstanding free text editor and don't mind a seemingly vertical 
 
 
 
-Text Editors Plus IPython Shell
+Text Editors Plus Ipython Shell 
 -------------------------------------
 
 .. _ipython_shell:
@@ -689,7 +689,7 @@ Here's one set up, on a Linux box, with
 
 
 
-IDEs
+Ides 
 ----
 
 IDEs are Integrated Development Environments, which allow you to edit, execute
@@ -708,10 +708,10 @@ We hear good things about VS Code --- please tell us about your experiences on
 
 
 
-Exercises
+Exercises 
 ===========
 
-Exercise 1
+Exercise 1 
 ------------
 
 If Jupyter is still running, quit by using ``Ctrl-C`` at the terminal where you started it
@@ -737,7 +737,7 @@ This is an alternative way to start the notebook that can also be handy
 
 .. _gs_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 .. index:: 

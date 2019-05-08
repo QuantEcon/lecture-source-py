@@ -6,7 +6,7 @@
     single: python
 
 ****************************
-Shock Non Invertibility
+Shock Non Invertibility 
 ****************************
 
 .. contents:: :depth: 2

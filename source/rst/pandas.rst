@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *******************************
-:index:`Pandas`
+:index:`pandas` 
 *******************************
 
 .. index::
@@ -11,7 +11,7 @@
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 `Pandas <http://pandas.pydata.org/>`_ is a package of fast, efficient data analysis tools for Python
@@ -57,7 +57,7 @@ place
 
 
 
-Series
+Series 
 ==========
 
 .. index::
@@ -128,7 +128,7 @@ In fact, you can use much of the same syntax as Python dictionaries
     'AAPL' in s
 
 
-DataFrames
+Dataframes 
 ==============
 
 .. index::
@@ -269,7 +269,7 @@ Plotting as before now yields
 
 
 
-On-Line Data Sources
+On-line Data Sources 
 ==========================
 
 .. index::
@@ -298,7 +298,7 @@ This can be done with a variety of methods
 
 We start with a relatively low level method, and then return to pandas
 
-Accessing Data with :index:`requests`
+Accessing Data With :index:`requests` 
 -------------------------------------------
 
 .. index::
@@ -377,7 +377,7 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
     data['2006':'2012'].plot()
     plt.show()
 
-Accessing World Bank Data
+Accessing World Bank Data 
 ----------------------------
 
 .. index::
@@ -408,12 +408,12 @@ DataFrame, and plots time series for the US and Australia
     (The file is ``pandas/wb_download.py``, and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas/wb_download.py>`__
 
-Exercises
+Exercises 
 =============
 
 .. _pd_ex1:
 
-Exercise 1
+Exercise 1 
 -------------
 
 Write a program to calculate the percentage price change over 2013 for the following shares
@@ -452,13 +452,13 @@ Plot the result as a bar graph like follows
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3

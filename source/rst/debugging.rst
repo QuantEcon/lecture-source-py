@@ -19,7 +19,7 @@ Debugging
 
 
 
-Overview
+Overview 
 ===========
 
 
@@ -44,14 +44,14 @@ We'll need the following imports
     %matplotlib inline
 
 
-Debugging
+Debugging 
 ============
 
 .. index::
     single: Debugging
 
 
-The ``debug`` Magic
+The ``debug`` Magic 
 ----------------------
 
 Let's consider a simple (and rather contrived) example
@@ -167,7 +167,7 @@ online help
     Continue execution, only stop when a breakpoint is encountered.
 
 
-Setting a Break Point
+Setting a Break Point 
 ----------------------
 
 The preceding approach is handy but sometimes insufficient
@@ -232,7 +232,7 @@ To exit from the debugger, use ``q``
 
 
 
-Other Useful Magics
+Other Useful Magics 
 ==================================
 
 In this lecture we used the ``%debug`` IPython magic

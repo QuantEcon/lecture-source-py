@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************************
-:index:`Optimal Savings II: LQ Techniques`
+:index:`optimal Savings II: LQ Techniques` 
 ************************************************
 
 .. index::
@@ -23,7 +23,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 This lecture continues our analysis of the linear-quadratic (LQ) permanent income model of savings and consumption
@@ -69,7 +69,7 @@ The model will prove useful for illustrating concepts such as
  
 
 
-Setup
+Setup 
 ======================
 
 
@@ -126,7 +126,7 @@ The restrictions on the shock process and parameters are the same as in our :doc
 
 
 
-Digression on a Useful Isomorphism
+Digression on a Useful Isomorphism 
 ----------------------------------
 
 The LQ permanent income model of consumption is mathematically isomorphic with a version of 
@@ -164,7 +164,7 @@ All characterizations of a :math:`\{c_t, y_t, b_t\}` in the LQ permanent income 
 See :doc:`consumption and tax smoothing models <smoothing>` for further exploitation of an isomorphism between consumption and tax smoothing models
 
 
-A Specification of the Nonfinancial Income Process
+A Specification of the Nonfinancial Income Process 
 ---------------------------------------------------
 
 For the purposes of this lecture, let's assume :math:`\{y_t\}` is a second-order univariate autoregressive process:
@@ -203,7 +203,7 @@ To do so we take
     U = \begin{bmatrix} 0 & 1 & 0 \end{bmatrix}
 
 
-The LQ Approach
+The LQ Approach 
 ==================
 
 :ref:`Previously <odr_pi>` we solved the permanent income model  by solving a system of linear expectational difference equations subject to two boundary conditions
@@ -227,7 +227,7 @@ On the other hand, formulating the model in terms of an LQ dynamic programming p
 
 
 
-The LQ Problem
+The LQ Problem 
 ---------------------------
 
 
@@ -265,7 +265,7 @@ Under an optimal decision rule :math:`F`, the state vector :math:`x_t` evolves a
 
 
 
-Mapping into the LQ Framework
+Mapping Into the LQ Framework 
 --------------------------------
 
 
@@ -337,7 +337,7 @@ We'll check whether it really is small numerically soon
 
 
 
-Implementation
+Implementation 
 ====================
 
 Let's write some code to solve the model
@@ -353,7 +353,7 @@ In what follows we set it equal to unity
 
 
 
-The Exogenous Nonfinancial Income Process
+The Exogenous Nonfinancial Income Process 
 -------------------------------------------
 
 
@@ -462,7 +462,7 @@ employing an alternative solution method
 
 
 
-Comparison with the Difference Equation Approach
+Comparison With the Difference Equation Approach 
 --------------------------------------------------------------
 
 In our :doc:`first lecture <perm_income>` on the infinite horizon permanent
@@ -545,7 +545,7 @@ To do this, we'll use the outcomes from our second method
 
 
 
-Two Example Economies
+Two Example Economies 
 =======================
 
 In the spirit of Bewley models :cite:`Bewley86`, we'll generate panels of consumers 
@@ -573,7 +573,7 @@ Those transient effects will not be present in the second example
 We use methods affiliated with the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to simulate the model 
 
 
-First Set of Initial Conditions
+First Set of Initial Conditions 
 --------------------------------
 
 We generate  25 paths of the exogenous non-financial income process and the associated optimal consumption and debt paths. 
@@ -593,7 +593,7 @@ Comparing sample paths with population distributions at each date :math:`t` is a
 
 
 
-Population and Sample Panels
+Population and Sample Panels 
 --------------------------------
 
 In the code below, we use the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to
@@ -779,7 +779,7 @@ All of them accumulate debt in anticipation of rising nonfinancial income
 They expect their nonfinancial income to rise toward the invariant distribution of income, a consequence of our having started them at :math:`y_{-1} = y_{-2} = 0`
 
 
-Cointegration Residual
+Cointegration Residual 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -835,7 +835,7 @@ By altering initial conditions, we shall remove this transient in our second exa
 
 
 
-A "borrowers and lenders" Closed Economy
+A "borrowers and Lenders" Closed Economy 
 ----------------------------------------
 
 When we set :math:`y_{-1} = y_{-2} = 0` and :math:`b_0 =0` in the

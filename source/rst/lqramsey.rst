@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 *****************************************************************
-:index:`Optimal Taxation in an LQ Economy`
+:index:`optimal Taxation in an LQ Economy` 
 *****************************************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 In this lecture we study optimal fiscal policy in a linear quadratic setting
@@ -62,7 +62,7 @@ We cover only the key features of the problem in this lecture, leaving you to re
 
 
 
-Model Features
+Model Features 
 ---------------
 
 * Linear quadratic (LQ) model
@@ -71,12 +71,12 @@ Model Features
 * Distortionary taxation
 
 
-The Ramsey Problem
+The Ramsey Problem 
 =====================
 
 We begin by outlining the key assumptions regarding technology, households and the government sector
 
-Technology
+Technology 
 ----------
 
 Labor can be converted one-for-one into a single, non-storable consumption good
@@ -88,7 +88,7 @@ This is unrealistic, but helpful when it comes to solving the model
 Realistic labor supply can be induced by suitable parameter values
 
 
-Households
+Households 
 ----------
 
 Consider a representative household who chooses a path :math:`\{\ell_t, c_t\}`
@@ -142,7 +142,7 @@ The budget constraint :eq:`lq_hc` requires that the present value of consumption
 
 
 
-Government
+Government 
 ----------
 
 The government imposes a linear tax on labor income, fully committing to a stochastic path of tax rates at time zero
@@ -154,7 +154,7 @@ Given government tax and borrowing plans, we can construct a competitive equilib
 Among all such competitive equilibria, the Ramsey plan is the one that maximizes the welfare of the representative consumer
 
 
-Exogenous Variables
+Exogenous Variables 
 ----------------------
 
 Endowments, government expenditure, the preference shock process :math:`b_t`, and
@@ -177,7 +177,7 @@ We consider two specifications for :math:`\{x_t\}`
 #. VAR case: :math:`\{x_t\}` obeys :math:`x_{t+1} = A x_t + C w_{t+1}` where :math:`\{w_t\}` is independent zero mean Gaussian with identify covariance matrix
 
 
-Feasibility
+Feasibility 
 -----------
 
 The period-by-period feasibility restriction for this economy is
@@ -191,7 +191,7 @@ The period-by-period feasibility restriction for this economy is
 A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:`lq_feasible` holds for all :math:`t`
 
 
-Government budget constraint
+Government Budget Constraint 
 ----------------------------------
 
 Where :math:`p_t^0` is again a scaled Arrow-Debreu price, the time zero government budget constraint is
@@ -203,7 +203,7 @@ Where :math:`p_t^0` is again a scaled Arrow-Debreu price, the time zero governme
     (s_t + g_t - \tau_t \ell_t ) = 0
 
 
-Equilibrium
+Equilibrium 
 --------------
 
 An *equilibrium* is a feasible allocation :math:`\{\ell_t, c_t\}`, a sequence
@@ -234,7 +234,7 @@ The solution procedure we adopt is
 The solution to this maximization problem pins down all quantities of interest
 
 
-Solution
+Solution 
 ----------
 
 Step one is to obtain the first-conditions for the household's problem,
@@ -357,7 +357,7 @@ Although it might not be clear yet, we are nearly there because:
   :eq:`lq_hfoc`
 
 
-Computing the Quadratic Term
+Computing the Quadratic Term 
 -------------------------------
 
 Let's consider how to obtain the term :math:`\nu` in :eq:`lq_gc22`
@@ -427,7 +427,7 @@ In this case, the formula for computing :math:`q(x_0)` is known to be :math:`q(x
 The first equation is known as a discrete Lyapunov equation, and can be solved
 using `this function <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/matrix_eqn.py#L25>`_
 
-Finite state Markov case
+Finite State Markov Case 
 -------------------------
 
 Next suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`
@@ -466,7 +466,7 @@ This last fact is applied in the calculations below
 
 
 
-Other Variables
+Other Variables 
 -------------------
 
 We are interested in tracking several other variables besides the ones
@@ -541,7 +541,7 @@ Define
 between :math:`t` and :math:`t+1`
 
 
-A Martingale
+A Martingale 
 -------------
 
 We now want to study the following two objects, namely,  
@@ -606,7 +606,7 @@ In the tax-smoothing model of Robert Barro :cite:`Barro1979`, government debt is
 In the current model, government debt :math:`\{B_t\}` is not a random walk, but the ``excess payoff`` :math:`\{\Pi_t\}` on it  is
 
 
-Implementation
+Implementation 
 ================
 
 The following code provides functions for
@@ -620,7 +620,7 @@ Description and clarifications are given below
 .. literalinclude:: /_static/code/lqramsey/lqramsey.py
 
 
-Comments on the Code
+Comments on the Code 
 ------------------------
 
 The function ``var_quadratic_sum`` imported from ``quadsums`` is for computing the value of :eq:`lq_eqs`
@@ -646,14 +646,14 @@ Other than that, our code is long but relatively straightforward
 
 
 
-Examples
+Examples 
 ================
 
 Let's look at two examples of usage
 
 .. _lq_cc:
 
-The Continuous Case
+The Continuous Case 
 ------------------------
 
 Our first example adopts the VAR specification described :ref:`above <lq_twospec>`
@@ -697,7 +697,7 @@ much less variable than government expenditure
 
     See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation
 
-The Discrete Case
+The Discrete Case 
 ----------------------
 
 Our second example adopts a discrete Markov specification for the exogenous process
@@ -722,13 +722,13 @@ The call ``gen_fig_2(path)`` generates
 
     See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation
 
-Exercises
+Exercises 
 ================
 
 
 .. _lqramsey_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 
@@ -745,13 +745,13 @@ Produce the corresponding figures
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3

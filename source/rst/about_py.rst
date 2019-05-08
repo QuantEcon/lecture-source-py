@@ -6,12 +6,12 @@
     single: python
 
 ******************************************
-About Python
+About Python 
 ******************************************
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 In this lecture we will 
@@ -28,7 +28,7 @@ Our only objective for this lecture is to give you some feel of what Python is, 
 
 
 
-What's Python?
+What's Python? 
 ============================
 
 `Python <https://www.python.org>`_ is a general purpose programming language conceived in 1989 by Dutch programmer `Guido van Rossum <https://en.wikipedia.org/wiki/Guido_van_Rossum>`_
@@ -38,7 +38,7 @@ Python is free and open source, with development coordinated through the `Python
 Python has experienced rapid adoption in the last decade, and is now one of the most popular programming languages 
 
 
-Common Uses
+Common Uses 
 ------------
 
 :index:`Python <single: Python; common uses>` is a general purpose language used in almost all application domains
@@ -73,7 +73,7 @@ For reasons we will discuss, Python is particularly popular within the scientifi
 
 
 
-Relative Popularity
+Relative Popularity 
 ----------------------
 
 The following chart, produced using Stack Overflow Trends, shows one measure of the relative popularity of Python
@@ -105,7 +105,7 @@ Overall, it's clear that
 
 
 
-Features
+Features 
 ----------
 
 Python is a `high level language <https://en.wikipedia.org/wiki/High-level_programming_language>`_ suitable for rapid development
@@ -120,7 +120,7 @@ Other features:
 
 
 
-Syntax and Design
+Syntax and Design 
 -----------------
 
 .. index::
@@ -141,7 +141,7 @@ Features like iterators, generators, decorators, list comprehensions, etc. make 
 
 
 
-Scientific Programming
+Scientific Programming 
 ============================
 
 .. index::
@@ -166,7 +166,7 @@ This section briefly showcases some examples of Python for scientific programmin
 * All of these topics will be covered in detail later on
 
 
-Numerical programming
+Numerical Programming 
 ------------------------
 
 .. index::
@@ -237,7 +237,7 @@ SciPy includes many of the standard routines used in
 
 
 
-Graphics
+Graphics 
 --------------------
 
 .. index::
@@ -276,7 +276,7 @@ Other graphics libraries include
 
 
 
-Symbolic Algebra
+Symbolic Algebra 
 --------------------
 
 It's useful to be able to manipulate symbolic expressions, as in Mathematica or Maple
@@ -335,13 +335,13 @@ The beauty of importing this functionality into Python is that we are working wi
 Can easily create tables of derivatives, generate LaTeX output, add it to figures, etc., etc.
 
 
-Statistics
+Statistics 
 --------------------
 
 Python's data manipulation and statistics libraries have improved rapidly over
 the last few years
 
-Pandas
+Pandas 
 ^^^^^^
 .. index::
     single: Pandas
@@ -370,7 +370,7 @@ Here's a simple example, using some fake data
     
 
 
-Other Useful Statistics Libraries
+Other Useful Statistics Libraries 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -394,7 +394,7 @@ Other Useful Statistics Libraries
 * `pystan <https://pystan.readthedocs.org/en/latest/>`_ Bayesian analysis based on `stan <http://mc-stan.org/>`_
 
 
-Networks and Graphs
+Networks and Graphs 
 --------------------
 
 Python has many libraries for studying graphs 
@@ -441,7 +441,7 @@ Here's some example code that generates and plots a random graph, with node colo
   plt.show()
  
 
-Cloud Computing
+Cloud Computing 
 --------------------------------
 
 .. index::
@@ -477,7 +477,7 @@ See also
 * `Sagemath Cloud <https://cloud.sagemath.com/>`_
 
 
-Parallel Processing
+Parallel Processing 
 --------------------------------
 
 .. index::
@@ -509,7 +509,7 @@ Apart from the cloud computing options listed above, you might like to consider
 
 
 
-Other Developments
+Other Developments 
 ------------------------
 
 There are many other interesting developments with scientific programming in Python
@@ -546,7 +546,7 @@ Some representative examples include
 
 
 
-Learn More
+Learn More 
 ============
 
 

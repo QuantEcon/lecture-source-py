@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************************
-A Lake Model of Employment and Unemployment
+A Lake Model of Employment and Unemployment 
 ********************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ===============
 
 This lecture describes what has come to be called a *lake model*
@@ -53,7 +53,7 @@ We'll also use some nifty concepts like ergodicity, which provides a fundamental
 These concepts will help us build an equilibrium model of ex ante homogeneous workers whose different luck generates variations in their ex post experiences 
 
 
-Prerequisites
+Prerequisites 
 -------------
 
 Before working through what follows, we recommend you read the :doc:`lecture
@@ -64,7 +64,7 @@ You will also need some basic :doc:`linear algebra <linear_algebra>` and probabi
 
 
 
-The Model
+The Model 
 ==========
 
 The economy is inhabited by a very large number of ex ante identical workers
@@ -84,7 +84,7 @@ Their rates of  transition between employment and unemployment are  governed by 
 The growth rate of the labor force evidently equals :math:`g=b-d`
 
 
-Aggregate Variables
+Aggregate Variables 
 ----------------------
 
 We want to derive the dynamics of the following aggregates
@@ -106,7 +106,7 @@ We also want to know the values of the following objects
 
 
 
-Laws of Motion for Stock Variables
+Laws of Motion for Stock Variables 
 ------------------------------------
 
 We begin by constructing laws of motion for the aggregate variables :math:`E_t,U_t, N_t`
@@ -210,7 +210,7 @@ You can check that :math:`e_t + u_t = 1` implies that :math:`e_{t+1}+u_{t+1} = 1
 This follows from the fact that the columns of :math:`\hat A` sum to 1
 
 
-Implementation
+Implementation 
 ================
 
 
@@ -274,7 +274,7 @@ As desired, if we create an instance and update a primitive like
     
 
 
-Aggregate Dynamics
+Aggregate Dynamics 
 --------------------
 
 
@@ -351,7 +351,7 @@ Let's look at the convergence of the unemployment and employment rate to steady 
 
 
 
-Dynamics of an Individual Worker
+Dynamics of an Individual Worker 
 =================================
 
 
@@ -406,7 +406,7 @@ the dismissal rate and falls with the job finding rate rate
 
 
 
-Ergodicity
+Ergodicity 
 ------------------------
 
 Let's look at a typical lifetime of employment-unemployment spells
@@ -449,7 +449,7 @@ Inspection tells us that :math:`P` is exactly the transpose of :math:`\hat A` un
 Thus, the percentages of time that an  infinitely lived worker  spends employed and unemployed equal the fractions of workers employed and unemployed in the steady state distribution
 
 
-Convergence rate
+Convergence Rate 
 ------------------
 
 How long does it take for time series sample averages to converge to cross sectional averages?
@@ -473,7 +473,7 @@ This is largely due to the high persistence in the Markov chain
 
 
 
-Endogenous Job Finding Rate
+Endogenous Job Finding Rate 
 ============================
 
 
@@ -484,7 +484,7 @@ The transition rate from unemployment to employment will be determined by the Mc
 All details relevant to the following discussion can be found in :doc:`our treatment <mccall_model>` of that model
 
 
-Reservation Wage
+Reservation Wage 
 -------------------
 
 The most important thing to remember about the model is that optimal decisions
@@ -507,7 +507,7 @@ As we saw in :doc:`our discussion of the model <mccall_model>`, the reservation 
 
 
 
-Linking the McCall Search Model to the Lake Model
+Linking the Mccall Search Model to the Lake Model 
 --------------------------------------------------
 
 Suppose that  all workers inside a lake model behave according to the McCall search model 
@@ -526,7 +526,7 @@ This is now
     = \gamma \sum_{w' \geq \bar w} p(w')
 
 
-Fiscal Policy
+Fiscal Policy 
 -----------------
 
 We can use the McCall search version of the Lake Model  to find an optimal level of unemployment insurance
@@ -590,7 +590,7 @@ Following :cite:`davis2006flow`, we set :math:`\alpha`, the hazard rate of leavi
 
 
 
-Fiscal Policy Code
+Fiscal Policy Code 
 -----------------------
 
 
@@ -618,10 +618,10 @@ Welfare first increases and then decreases as unemployment benefits rise
 The level that maximizes steady state welfare is approximately 62
 
 
-Exercises
+Exercises 
 =============
 
-Exercise 1
+Exercise 1 
 ----------------
 
 Consider an economy with initial stock  of workers :math:`N_0 = 100` at the
@@ -650,7 +650,7 @@ What is the new steady state level of employment?
 
 
 
-Exercise 2
+Exercise 2 
 -----------------
 
 Consider an economy with initial stock  of workers :math:`N_0 = 100` at the
@@ -667,16 +667,16 @@ How long does the economy take to return to its original steady state?
 
 
 
-Solutions
+Solutions 
 ==========
 
  
 
 
-Lake Model Solutions
+Lake Model Solutions 
 ====================
 
-Exercise 1
+Exercise 1 
 -----------
 
 We begin by constructing the class containing the default parameters and assigning the
@@ -749,7 +749,7 @@ And how the rates evolve
 We see that it takes 20 periods for the economy to converge to its new
 steady state levels
 
-Exercise 2
+Exercise 2 
 ----------
 
 This next exercise has the economy experiencing a boom in entrances to

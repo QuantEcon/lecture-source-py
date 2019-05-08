@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *******************************
-:index:`Pandas for Panel Data`
+:index:`pandas for Panel Data` 
 *******************************
 
 .. index::
@@ -12,7 +12,7 @@
 .. contents:: :depth: 2
 
 
-Overview
+Overview 
 =====================
 
 In an :doc:`earlier lecture on pandas <pandas>` we looked at working with simple data sets
@@ -48,7 +48,7 @@ function
 Most of this lecture was created by `Natasha Watkins <https://github.com/natashawatkins>`__
 
 
-Slicing and Reshaping Data
+Slicing and Reshaping Data 
 ==========================
 
 We will read in a dataset from the OECD of real minimum wages in 32
@@ -180,7 +180,7 @@ the higher levels (countries in this case)
     realwage_f.head()
 
 
-Merging Dataframes and Filling NaNs
+Merging Dataframes and Filling Nans 
 ===================================
 
 Similar to relational databases like SQL, pandas has built in methods to
@@ -374,7 +374,7 @@ will go ahead and transpose ``merged``
     merged.head()
 
 
-Grouping and Summarizing Data
+Grouping and Summarizing Data 
 =============================
 
 Grouping and summarizing data can be particularly useful for
@@ -527,7 +527,7 @@ object
 
 
 
-Final Remarks
+Final Remarks 
 ==============
 
 This lecture has provided an introduction to some of pandas' more
@@ -537,10 +537,10 @@ plotting
 Other tools that may be useful in panel data analysis include `xarray <http://xarray.pydata.org/en/stable/>`__, a python package that
 extends pandas to N-dimensional data structures
 
-Exercises
+Exercises 
 =========
 
-Exercise 1
+Exercise 1 
 -------------
 
 In these exercises you'll work with a dataset of employment rates
@@ -566,7 +566,7 @@ Start off by exploring the dataframe and the variables available in the
 
 Write a program that quickly returns all values in the ``MultiIndex``
 
-Exercise 2
+Exercise 2 
 -------------
 
 Filter the above dataframe to only include employment as a percentage of
@@ -579,10 +579,10 @@ by age group and sex
 
 
 
-Solutions
+Solutions 
 =========
 
-Exercise 1
+Exercise 1 
 -----------
 
 .. code-block:: python3
@@ -611,7 +611,7 @@ Variables within levels can be quickly retrieved with a loop
 
 
 
-Exercise 2
+Exercise 2 
 ---------------
 
 To easily filter by country, swap ``GEO`` to the top level and sort the

@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ********************************************
-:index:`OOP II: Building Classes`
+:index:`oop II: Building Classes` 
 ********************************************
 
 .. index::
@@ -13,7 +13,7 @@
 
 
 
-Overview
+Overview 
 ============
 
 In an :doc:`earlier lecture <oop_intro>` we learned some foundations of object oriented programming
@@ -51,7 +51,7 @@ Classes are blueprints that help you build objects according to your own specifi
 It takes a little while to get used to the syntax so we'll provide plenty of examples
 
 
-OOP Review
+Oop Review 
 ============
 
 OOP is supported in many languages:
@@ -70,7 +70,7 @@ Let's cover general OOP concepts before we specialize to Python
 
 
 
-Key Concepts
+Key Concepts 
 ---------------
 
 .. index::
@@ -131,7 +131,7 @@ In the example
 
 .. _why_oop:
 
-Why is OOP Useful?
+Why is OOP Useful? 
 ----------------------
 
 
@@ -158,7 +158,7 @@ When we use OOP, the ``simulate`` method is conveniently bundled together with t
 
 
 
-Defining Your Own Classes
+Defining Your Own Classes 
 ==============================
 
 .. index::
@@ -170,7 +170,7 @@ Let's build some simple classes to start off
 .. _oop_consumer_class:
 
 
-Example: A Consumer Class
+Example: A Consumer Class 
 -------------------------------------
 
 First we'll build a ``Consumer`` class with  
@@ -228,7 +228,7 @@ Calling ``__init__`` sets up a "namespace" to hold the instance data --- more on
 We'll also discuss the role of ``self`` just below
 
 
-Usage
+Usage 
 ^^^^^^^
 
 
@@ -273,7 +273,7 @@ In fact each instance stores its data in a separate namespace dictionary
 When we access or set attributes we're actually just modifying the dictionary
 maintained by the instance
 
-Self
+Self 
 ^^^^
 
 If you look at the ``Consumer`` class definition again you'll see the word
@@ -293,7 +293,7 @@ The rules with ``self`` are that
 
 There are no examples of the last rule in the preceding code but we will see some shortly
 
-Details
+Details 
 ^^^^^^^
 
 In this section we look at some more formal details related to classes and ``self``
@@ -346,7 +346,7 @@ That's why the statement ``self.wealth += y`` inside ``earn`` ends up modifying 
 
 .. _oop_solow_growth:
 
-Example: The Solow Growth Model
+Example: The Solow Growth Model 
 -------------------------------------
 
 .. index::
@@ -463,7 +463,7 @@ The common steady state is also plotted for comparison
 
 
 
-Example: A Market
+Example: A Market 
 ------------------------------
 
 Next let's write a class for a simple one good market where agents are price takers
@@ -605,7 +605,7 @@ Here's an example of usage
 
 
 
-Example: Chaos
+Example: Chaos 
 ------------------------------
 
 Let's look at one more example, related to chaotic dynamics in nonlinear systems
@@ -711,7 +711,7 @@ Notice that there is no value of :math:`r` that leads to a steady state oscillat
 
 
 
-Special Methods
+Special Methods 
 =================
 
 .. index::
@@ -767,13 +767,13 @@ After running we get
 Exercise 1 provides a more useful example
 
 
-Exercises
+Exercises 
 ===========
 
 
 .. _oop_ex1:
 
-Exercise 1
+Exercise 1 
 ---------------
 
 
@@ -819,7 +819,7 @@ Aim for clarity, not efficiency
 
 .. _oop_ex2:
 
-Exercise 2
+Exercise 2 
 -------------------------
 
 In an :ref:`earlier exercise <pyess_ex2>`, you wrote a function for evaluating polynomials
@@ -845,12 +845,12 @@ Provide methods that
 Avoid using any ``import`` statements
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -882,7 +882,7 @@ Exercise 1
 
     print(F(0.5))
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3

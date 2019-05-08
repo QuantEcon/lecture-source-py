@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***************************************
-Tools and Techniques
+Tools and Techniques 
 ***************************************
 
 This section of the course contains foundational mathematical and statistical

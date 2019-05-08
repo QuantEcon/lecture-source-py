@@ -6,7 +6,7 @@
     single: python
 
 ********************************************************
-Permanent Income Model using the DLE class
+Permanent Income Model Using the DLE Class 
 ********************************************************
 
 .. contents:: :depth: 2
@@ -53,7 +53,7 @@ We'll also require the following imports
     %matplotlib inline
     np.set_printoptions(suppress=True, precision=4)
 
-The Permanent Income Model
+The Permanent Income Model 
 ===========================
 
 The LQ permanent income model is an example of a **savings problem**
@@ -138,7 +138,7 @@ autoregressive process:
 
 .. math::  y_{t+1} = \alpha + \rho_1 y_t + \rho_2 y_{t-1} + \sigma w_{t+1}
 
-Solution with the DLE Class
+Solution With the DLE Class 
 ----------------------------
 
 One way of solving this model is to map the problem into the framework

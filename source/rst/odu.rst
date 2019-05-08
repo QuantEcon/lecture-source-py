@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ******************************************
-Job Search III: Search with Learning
+Job Search Iii: Search With Learning 
 ******************************************
 
 .. contents:: :depth: 2
@@ -17,7 +17,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install interpolation
 
-Overview
+Overview 
 ============
 
 In this lecture we consider an extension of the :doc:`previously studied <mccall_model>` job search model of McCall :cite:`McCall1970`
@@ -49,7 +49,7 @@ Let's start with some imports
     from matplotlib import cm
 
 
-Model Features
+Model Features 
 ----------------
 
 * Infinite horizon dynamic programming with two states and one binary control
@@ -59,7 +59,7 @@ Model Features
 
 
 
-Model
+Model 
 ========
 
 .. index::
@@ -69,7 +69,7 @@ Let's first review the basic McCall model :cite:`McCall1970` and then add the va
 
 
 
-The Basic McCall Model
+The Basic Mccall Model 
 ------------------------
 
 .. index::
@@ -102,7 +102,7 @@ The optimal policy has the form :math:`\mathbf{1}\{w \geq \bar w\}`, where
 :math:`\bar w` is a constant depending called the *reservation wage*
 
 
-Offer Distribution Unknown
+Offer Distribution Unknown 
 ----------------------------
 
 Now let's extend the model by considering the variation presented in :cite:`Ljungqvist2012`, section 6.6
@@ -168,7 +168,7 @@ follows
 
 Notice that the current guess :math:`\pi` is a state variable, since it affects the worker's perception of probabilities for future rewards
 
-Parameterization
+Parameterization 
 ------------------
 
 Following  section 6.6 of :cite:`Ljungqvist2012`, our baseline parameterization will be
@@ -209,7 +209,7 @@ The densities :math:`f` and :math:`g` have the following shape
 
 .. _looking_forward:
 
-Looking Forward
+Looking Forward 
 ------------------
 
 What kind of optimal policy might result from :eq:`odu_mvf` and the parameterization specified above?
@@ -231,7 +231,7 @@ Thus larger :math:`\pi` depresses the worker's assessment of her future prospect
 
 
 
-Take 1: Solution by VFI
+Take 1: Solution by VFI 
 ==================================
 
 Let's set about solving the model and see how our results match with our intuition
@@ -449,7 +449,7 @@ The results fit well with our intuition from section :ref:`looking forward <look
 * It is decreasing as expected
 
 
-Take 2: A More Efficient Method
+Take 2: A More Efficient Method 
 ==================================
 
 Let's consider another method to solve for the optimal policy
@@ -465,7 +465,7 @@ This section illustrates the point that when it comes to programming, a bit of
 mathematical analysis goes a long way
 
 
-Another Functional Equation
+Another Functional Equation 
 -----------------------------
 
 To begin, note that when :math:`w = \bar w(\pi)`, the worker is indifferent
@@ -520,7 +520,7 @@ Equation :eq:`odu_mvf4` can be understood as a functional equation, where :math:
 * The solution :math:`\bar w` to the RWFE is the object that we wish to compute
 
 
-Solving the RWFE
+Solving the Rwfe 
 --------------------------------
 
 To solve the RWFE, we will first show that its solution is the
@@ -598,7 +598,7 @@ Hence
 * A unique solution :math:`\bar w` to the RWFE exists in :math:`b[0,1]`
 * :math:`Q^k \omega \to \bar w` uniformly as :math:`k \to \infty`, for any :math:`\omega \in b[0,1]`
 
-Implementation
+Implementation 
 ^^^^^^^^^^^^^^^^^
 
 
@@ -654,12 +654,12 @@ operator ``Q``
 In the next exercise you are asked to compute an approximation to :math:`\bar w`
 
 
-Exercises
+Exercises 
 =============
 
 .. _odu_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Use the default parameters and ``Q_factory`` to compute an optimal policy
@@ -671,12 +671,12 @@ the optimal policy coincides with your intuition
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 This code solves the "Offer Distribution Unknown" model by iterating on
@@ -741,7 +741,7 @@ The solution can be plotted as follows
     plt.show()
    
 
-Appendix
+Appendix 
 =========
 
 The next piece of code is just a fun simulation to see what the effect of a change in the

@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ***********************************
-Robustness
+Robustness 
 ***********************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ===========
 
 .. index::
@@ -65,7 +65,7 @@ The original decision maker uses those bounds to construct a decision rule with 
 
 .. _rb_vec:
 
-Sets of Models Imply Sets Of Values
+Sets of Models Imply Sets Of Values 
 ----------------------------------------
 
 Our "robust" decision maker wants to know how well a given rule will work when he does not *know* a single transition law  :math:`\ldots`
@@ -131,7 +131,7 @@ We will also describe how to choose :math:`F` to shape the sets of values
 This will involve crafting a *skinnier* set at the cost of  a lower *level* (at least for low values of entropy)
 
 
-Inspiring Video
+Inspiring Video 
 ------------------------
 
 
@@ -140,7 +140,7 @@ If you want to understand more about why one serious quantitative researcher is 
 .. .. raw:: html <iframe src="http://www.youtube.com/embed/WzxZGvrpFu4" style="border: 0; height: 510px; width: 640px"> </iframe>
 
 
-Other References
+Other References 
 -----------------
 
 Our discussion in this lecture is based on
@@ -153,7 +153,7 @@ Our discussion in this lecture is based on
 
 
 
-The Model
+The Model 
 ================
 
 For simplicity, we present ideas in the context of a class of problems with linear transition laws and quadratic objective functions
@@ -207,7 +207,7 @@ Soon we'll quantify the quality of a model specification in terms of the maximal
 
 
 
-Constructing More Robust Policies
+Constructing More Robust Policies 
 =================================
 
 If our agent takes :math:`\{ w_t \}` as a given deterministic sequence, then, drawing on intuition from earlier lectures on dynamic programming, we can anticipate Bellman equations such as
@@ -253,7 +253,7 @@ By raising :math:`\theta` more and more, we more and more limit the ability of m
 So bigger :math:`\theta` is implicitly associated with smaller distortion sequences :math:`\{w_t \}`
 
 
-Analyzing the Bellman equation
+Analyzing the Bellman Equation 
 -------------------------------
 
 So what does :math:`J` in :eq:`rb_wcb0` look like?
@@ -358,7 +358,7 @@ Conversely, smaller :math:`\theta` is associated with greater fear of model miss
 
 
 
-Robustness as Outcome of a Two-Person Zero-Sum Game
+Robustness as Outcome of a Two-person Zero-sum Game 
 ====================================================
 
 What we have done above can be interpreted in terms of  a two-person zero-sum game in which :math:`\hat F, \hat K` are Nash equilibrium objects
@@ -373,7 +373,7 @@ We begin with agent 2's problem
 
 .. _rb_a2:
 
-Agent 2's Problem
+Agent 2's Problem 
 --------------------
 
 Agent 2
@@ -479,10 +479,10 @@ Here :math:`x_t` is given by :eq:`rob_lomf` --- which in this case becomes :math
 
 
 
-Using Agent 2's Problem to Construct Bounds on the Value Sets
+Using Agent 2's Problem to Construct Bounds on the Value Sets 
 --------------------------------------------------------------
 
-The Lower Bound
+The Lower Bound 
 ^^^^^^^^^^^^^^^^
 
 Define the minimized object on the right side of problem :eq:`rb_a2o` as :math:`R_\theta(x_0, F)`
@@ -541,7 +541,7 @@ To construct the *lower bound* on the set of values associated with all perturba
 .. note::
     This procedure  sweeps  out a set of separating hyperplanes indexed by different values for  the Lagrange multiplier :math:`\theta`
 
-The Upper Bound
+The Upper Bound 
 ^^^^^^^^^^^^^^^^^^^
 
 To construct an *upper bound* we use a very similar procedure
@@ -607,13 +607,13 @@ To construct the *upper bound* on the set of values associated all perturbations
     *  Repeat the preceding three steps  for a range of values of :math:`\tilde \theta` to trace out the upper bound
 
 
-Reshaping the set of values
+Reshaping the set of Values 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Now in the interest of *reshaping* these sets of values by choosing :math:`F`, we turn to agent 1's problem
 
-Agent 1's Problem
+Agent 1's Problem 
 --------------------
 
 Now we turn to agent 1, who solves
@@ -657,7 +657,7 @@ it by :math:`\tilde F`
 
 .. _rb_eq:
 
-Nash Equilibrium
+Nash Equilibrium 
 -----------------
 
 Clearly the :math:`\tilde F` we have obtained depends on :math:`K`, which, in agent 2's problem,
@@ -691,7 +691,7 @@ A sketch of the proof is given in :ref:`the appendix <rb_appendix>`
 
 
 
-The Stochastic Case
+The Stochastic Case 
 ====================
 
 Now we turn to the stochastic case, where the sequence :math:`\{w_t\}` is treated as an iid sequence of random vectors
@@ -738,7 +738,7 @@ This penalty term plays a role analogous to the one played by the deterministic 
 
 
 
-Solving the Model
+Solving the Model 
 --------------------
 
 The maximization problem in :eq:`rb_wcb1` appears highly nontrivial --- after all,
@@ -834,13 +834,13 @@ Note that the mean of the worst-case shock distribution is equal to the same  wo
 
 .. _rb_coq:
 
-Computing Other Quantities
+Computing Other Quantities 
 ------------------------------
 
 Before turning to implementation, we briefly outline how to compute several other quantities of interest
 
 
-Worst-Case Value of a Policy
+Worst-case Value of a Policy 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One thing we will be interested in doing is holding a policy fixed and
@@ -897,7 +897,7 @@ agent 2's problem :ref:`discussed above <rb_a2>`  --- we use this in our
 computations
 
 
-Implementation
+Implementation 
 ================
 
 The `QuantEcon.py <http://quantecon.org/python_index.html>`_ package provides a class called ``RBLQ`` for implementation of robust LQ optimal control
@@ -926,7 +926,7 @@ Here is a brief description of the methods of the class
 
 
 
-Application
+Application 
 ==============
 
 Let us consider a monopolist similar to :ref:`this one <lqc_mwac>`, but now facing model uncertainty
@@ -1040,7 +1040,7 @@ Can you explain the different shape of the value-entropy correspondence for the 
 
 .. _rb_appendix:
 
-Appendix
+Appendix 
 ==============
 
 We sketch the proof only of the first claim in :ref:`this section <rb_eq>`,

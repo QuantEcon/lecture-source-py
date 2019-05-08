@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***********************************
-Linear Algebra
+Linear Algebra 
 ***********************************
 
 .. index::
@@ -11,7 +11,7 @@ Linear Algebra
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ===========
 
 Linear algebra is one of the most useful branches of applied mathematics for economists to invest in
@@ -61,7 +61,7 @@ material that will be used in applications as we go along
 
 
 
-:index:`Vectors`
+:index:`vectors` 
 ================
 
 .. index::
@@ -112,7 +112,7 @@ The following figure represents three vectors in this manner
 
 
 
-Vector Operations
+Vector Operations 
 -------------------
 
 .. index::
@@ -230,7 +230,7 @@ One advantage of NumPy arrays is that scalar multiplication and addition have ve
 
 
 
-Inner Product and Norm
+Inner Product and Norm 
 ------------------------
 
 .. index::
@@ -281,7 +281,7 @@ follows
 
 
 
-Span
+Span 
 -----
 
 .. index::
@@ -369,7 +369,7 @@ The span is a 2 dimensional plane passing through these two points and the origi
 
 
 
-Examples
+Examples 
 ^^^^^^^^^
 
 If :math:`A` contains only one vector :math:`a_1 \in \mathbb R ^2`, then its
@@ -423,7 +423,7 @@ Hence :math:`A_0` fails to span all of :math:`\mathbb R ^3`
 
 .. _la_li:
 
-Linear Independence
+Linear Independence 
 ----------------------
 
 .. index::
@@ -464,7 +464,7 @@ The following statements are equivalent to linear independence of :math:`A := \{
 
 .. _la_unique_reps:
 
-Unique Representations
+Unique Representations 
 --------------------------
 
 Another nice thing about sets of linearly independent vectors is that each element in the span has a unique representation as a linear combination of these vectors
@@ -492,7 +492,7 @@ Linear independence now implies :math:`\gamma_i = \beta_i` for all :math:`i`
 
 
 
-Matrices
+Matrices 
 ==========
 
 .. index::
@@ -536,7 +536,7 @@ If, in addition to being diagonal, each element along the principal diagonal is 
 
 
 
-Matrix Operations
+Matrix Operations 
 --------------------
 
 .. index::
@@ -655,7 +655,7 @@ If :math:`I` is the :math:`n \times n` identity matrix, then :math:`IA = A`
 
 
 
-Matrices in NumPy
+Matrices in Numpy 
 -----------------------------
 
 .. index::
@@ -724,7 +724,7 @@ See :ref:`here <numpy_matrix_multiplication>` for more discussion
 
 .. _la_linear_map:
 
-Matrices as Maps
+Matrices as Maps 
 -------------------
 
 .. index::
@@ -748,7 +748,7 @@ In fact, it's `known <https://en.wikipedia.org/wiki/Linear_map#Matrices>`_ that 
 
 
 
-Solving Systems of Equations
+Solving Systems of Equations 
 ================================
 
 .. index::
@@ -854,7 +854,7 @@ A happy fact is that linear independence of the columns of :math:`A` also gives 
 Indeed, it follows from our :ref:`earlier discussion <la_unique_reps>` that if :math:`\{a_1, \ldots, a_k\}` are linearly independent and :math:`y = Ax = x_1 a_1 + \cdots + x_k a_k`, then no :math:`z \not= x` satisfies :math:`y = Az`
 
 
-The :math:`n \times n` Case
+The :math:`n \times n` Case 
 --------------------------------
 
 Let's discuss some more details, starting with the case where :math:`A` is :math:`n \times n`
@@ -879,7 +879,7 @@ In particular, the following are equivalent
 
 The property of having linearly independent columns is sometimes expressed as having *full column rank*
 
-Inverse Matrices
+Inverse Matrices 
 ^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -899,7 +899,7 @@ As a consequence, if we pre-multiply both sides of :math:`y = Ax` by :math:`A^{-
 
 This is the solution that we're looking for
 
-Determinants
+Determinants 
 ^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -918,7 +918,7 @@ This gives us a useful one-number summary of whether or not a square matrix can 
 inverted
 
 
-More Rows than Columns
+More Rows Than Columns 
 -------------------------
 
 This is the :math:`n \times k` case with :math:`n > k`
@@ -962,7 +962,7 @@ projections
     The solution is known to be :math:`\hat x = (A'A)^{-1}A'y` --- see for example
     chapter 3 of `these notes <https://lectures.quantecon.org/_downloads/course_notes.pdf>`__
 
-More Columns than Rows
+More Columns Than Rows 
 -------------------------
 
 
@@ -998,7 +998,7 @@ In other words, uniqueness fails
 
 
 
-Linear Equations with SciPy
+Linear Equations With Scipy 
 ----------------------------------
 
 .. index::
@@ -1046,7 +1046,7 @@ To obtain the least squares solution :math:`\hat x = (A'A)^{-1}A'y`, use ``scipy
 
 .. _la_eigen:
 
-:index:`Eigenvalues` and :index:`Eigenvectors`
+:index:`eigenvalues` and :index:`eigenvectors` 
 ===============================================
 
 .. index::
@@ -1183,7 +1183,7 @@ Since any scalar multiple of an eigenvector is an eigenvector with the same
 eigenvalue (check it), the eig routine normalizes the length of each eigenvector
 to one
 
-Generalized Eigenvalues
+Generalized Eigenvalues 
 -------------------------
 
 It is sometimes useful to consider the *generalized eigenvalue problem*, which, for given
@@ -1202,14 +1202,14 @@ generalized eigenvalue problem as an ordinary eigenvalue problem :math:`B^{-1}
 A v = \lambda v`, but this is not always the case
 
 
-Further Topics
+Further Topics 
 ================
 
 We round out our discussion by briefly mentioning several other important
 topics
 
 
-Series Expansions
+Series Expansions 
 ---------------------
 
 .. index::
@@ -1222,7 +1222,7 @@ A generalization of this idea exists in the matrix setting
 
 .. _la_mn:
 
-Matrix Norms
+Matrix Norms 
 ^^^^^^^^^^^^^
 
 .. index::
@@ -1244,7 +1244,7 @@ For example, for a square matrix :math:`S`, the condition :math:`\| S \| < 1` me
 
 .. _la_neumann:
 
-:index:`Neumann's Theorem`
+:index:`neumann's Theorem` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -1265,7 +1265,7 @@ Neumann's theorem states the following: If :math:`\| A^k \| < 1` for some
 
 .. _la_neumann_remarks:
 
-:index:`Spectral Radius`
+:index:`spectral Radius` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -1286,7 +1286,7 @@ there exists a :math:`k` with :math:`\| A^k \| < 1`
 In which case :eq:`la_neumann` is valid
 
 
-:index:`Positive Definite Matrices`
+:index:`positive Definite Matrices` 
 ------------------------------------
 
 .. index::
@@ -1309,7 +1309,7 @@ definite inverse)
 
 .. _la_mcalc:
 
-Differentiating Linear and Quadratic forms
+Differentiating Linear and Quadratic Forms 
 -------------------------------------------
 
 .. index::
@@ -1339,7 +1339,7 @@ Then
 Exercise 1 below asks you to apply these formulas
 
 
-Further Reading
+Further Reading 
 -----------------
 
 
@@ -1356,11 +1356,11 @@ is :cite:`Janich1994`
 
 
 
-Exercises
+Exercises 
 =============
 
 
-Exercise 1
+Exercise 1 
 -----------
 
 Let :math:`x` be a given :math:`n \times 1` vector and consider the problem
@@ -1412,13 +1412,13 @@ As we will see, in economic contexts Lagrange multipliers often are shadow price
     If we don't care about the Lagrange multipliers, we can substitute the constraint into the objective function, and then just maximize :math:`-(Ax + Bu)'P (Ax + Bu) - u' Q u` with respect to :math:`u`.  You can verify that this leads to the same maximizer.
 
 
-Solutions
+Solutions 
 ===========
 
 
 
 
-Solution to Exercise 1
+Solution to Exercise 1 
 ----------------------
 
 We have an optimization problem:

@@ -6,7 +6,7 @@
 
 
 **********************************************
-:index:`Asset Pricing I: Finite State Models`
+:index:`asset Pricing I: Finite State Models` 
 **********************************************
 
 .. index::
@@ -30,7 +30,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install quantecon
 
 
-Overview
+Overview 
 =====================================
 
 .. index::
@@ -61,7 +61,7 @@ Key tools for the lecture are
 
 
 
-:index:`Pricing Models`
+:index:`pricing Models` 
 =====================================
 
 .. index::
@@ -79,7 +79,7 @@ Let's look at some equations that we expect to hold for prices of assets under e
 (we will consider cum-dividend pricing in the exercises)
 
 
-Risk Neutral Pricing
+Risk Neutral Pricing 
 ------------------------
 
 .. index::
@@ -108,7 +108,7 @@ Here :math:`{\mathbb E}_t [y]` denotes the best forecast of :math:`y`, condition
 
 
 
-Pricing with Random Discount Factor
+Pricing With Random Discount Factor 
 ------------------------------------
 
 .. index::
@@ -140,7 +140,7 @@ We give examples of how the stochastic discount factor has been modeled below
 
 
 
-Asset Pricing and Covariances
+Asset Pricing and Covariances 
 ------------------------------
 
 Recall that, from the definition of a conditional covariance :math:`{\rm cov}_t (x_{t+1}, y_{t+1})`, we have
@@ -171,7 +171,7 @@ We give examples of some models of stochastic discount factors that have been pr
 
 
 
-The Price-Dividend Ratio
+The Price-dividend Ratio 
 --------------------------
 
 Aside from prices, another quantity of interest is the **price-dividend ratio** :math:`v_t := p_t / d_t`
@@ -189,7 +189,7 @@ Below we'll discuss the implication of this equation
 
 
 
-Prices in the Risk Neutral Case
+Prices in the Risk Neutral Case 
 ===================================
 
 What can we say about price dynamics on the basis of the models described above?
@@ -204,7 +204,7 @@ For now let's focus on the risk neutral case, where the stochastic discount fact
 
 
 
-Example 1: Constant dividends
+Example 1: Constant Dividends 
 ---------------------------------
 
 The simplest case is risk neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`
@@ -238,7 +238,7 @@ Indeed, simple algebra shows that setting :math:`p_t = \bar p` for all :math:`t`
 satisfies the equilibrium condition :math:`p_t = \beta (d + p_{t+1})`
 
 
-Example 2: Dividends with deterministic growth paths
+Example 2: Dividends With Deterministic Growth Paths 
 ---------------------------------------------------------
 
 Consider a growing, non-random dividend process :math:`d_{t+1} = g d_t`
@@ -275,7 +275,7 @@ This is called the *Gordon formula*
 
 .. _mass_mg:
 
-Example 3: Markov growth, risk neutral pricing
+Example 3: Markov Growth, Risk Neutral Pricing 
 ------------------------------------------------
 
 Next we consider a dividend process 
@@ -357,7 +357,7 @@ The next figure shows a simulation, where
 
 
 
-Pricing
+Pricing 
 ^^^^^^^^^^^^
 
 To obtain asset prices in this setting, let's adapt our analysis from the case of deterministic growth
@@ -424,7 +424,7 @@ The solution is then
     v = (I - \beta K)^{-1} \beta K{\mathbb 1}
 
 
-Code
+Code 
 -----
 
 Let's calculate and plot the price-dividend ratio at a set of parameters
@@ -475,7 +475,7 @@ Anticipation of high future dividend growth leads to a high price-dividend ratio
 
 
 
-Asset Prices under Risk Aversion
+Asset Prices Under Risk Aversion 
 ==================================
 
 
@@ -493,7 +493,7 @@ We'll price several distinct assets, including
 
 
 
-Pricing a Lucas tree
+Pricing a Lucas Tree 
 ---------------------------
 
 .. index::
@@ -702,7 +702,7 @@ discount factor, lowering the weight placed on future returns
 
 
 
-Special cases
+Special Cases 
 ^^^^^^^^^^^^^^^^^
 
 In the special case :math:`\gamma =1`, we have :math:`J = P`
@@ -726,7 +726,7 @@ This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and henc
 
 
 
-A Risk-Free Consol
+A Risk-free Consol 
 -------------------
 
 Consider the same pure exchange representative agent economy
@@ -815,13 +815,13 @@ The above is implemented in the function `consol_price`
 
 
 
-Pricing an Option to Purchase the Consol
+Pricing an Option to Purchase the Consol 
 ----------------------------------------
 
 Let's now price options of varying maturity that give the right to purchase a consol at a price :math:`p_S`
 
 
-An infinite horizon call option
+An Infinite Horizon Call Option 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to price an infinite horizon  option to purchase a consol at a price :math:`p_S`
@@ -975,14 +975,14 @@ The reason is that :math:`\beta=0.9`, so the future is discounted relatively rap
 
 
 
-Risk Free Rates
+Risk Free Rates 
 -----------------
 
 Let's look at risk free interest rates over different periods
 
 
 
-The one-period risk-free interest rate
+The One-period Risk-free Interest Rate 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As before, the stochastic discount factor is :math:`m_{t+1} = \beta g_{t+1}^{-\gamma}`
@@ -1004,7 +1004,7 @@ We can write this as
 where the :math:`i`-th  element of :math:`m_1` is the reciprocal of the one-period gross risk-free interest rate in state :math:`x_i`
 
 
-Other terms
+Other Terms 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Let :math:`m_j` be an :math:`n \times 1` vector whose :math:`i` th component is the reciprocal of the :math:`j` -period gross risk-free interest rate in state :math:`x_i`
@@ -1014,10 +1014,10 @@ Then :math:`m_1 = \beta M`, and :math:`m_{j+1} = M m_j` for :math:`j \geq 1`
 
 
  
-Exercises
+Exercises 
 ==============
 
-Exercise 1
+Exercise 1 
 -----------
 
 In the lecture, we considered **ex-dividend assets**
@@ -1033,7 +1033,7 @@ price of a cum-dividend asset?
 With a growing, non-random dividend process :math:`d_t = g d_t` where :math:`0 < g \beta < 1`,
 what is the equilibrium price of a cum-dividend asset?
 
-Exercise 2
+Exercise 2 
 ------------
 
 Consider the following primitives
@@ -1063,7 +1063,7 @@ Do the same for
 
 
 
-Exercise 3
+Exercise 3 
 -----------
 
 Let's consider finite horizon call options, which are more common than the
@@ -1110,14 +1110,14 @@ Is one higher than the other?  Can you give intuition?
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 For a cum-dividend asset, the basic risk-neutral asset pricing equation is
@@ -1140,7 +1140,7 @@ With a growing, non-random dividend process, the equilibrium price is
 
     p_t = \frac{1}{1 - \beta g} d_t
     
-Exercise 2
+Exercise 2 
 -----------
 
 First let's enter the parameters:
@@ -1200,7 +1200,7 @@ Let's show the last two functions as a plot
 
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 Here's a suitable function:

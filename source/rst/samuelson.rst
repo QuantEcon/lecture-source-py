@@ -3,7 +3,7 @@
 .. highlight:: python3
 
 ****************************************
-OOP III: The Samuelson Accelerator
+Oop Iii: The Samuelson Accelerator 
 ****************************************
 
 .. contents:: :depth: 2
@@ -17,7 +17,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 =======================================================
 
 
@@ -37,7 +37,7 @@ Our objectives are to
 
 
 
-Samuelson's Model
+Samuelson's Model 
 -------------------
 
 
@@ -89,7 +89,7 @@ gives rise to recurrent irregular business cycles
 :cite:`Sargent1987`)
 
 
-Details
+Details 
 ===========
 
 Let's assume that
@@ -186,7 +186,7 @@ no random shocks hit aggregate demand --- has only transient fluctuations
 We can convert the model to one that has persistent irregular
 fluctuations by adding a random shock to aggregate demand
 
-Stochastic Version of the Model
+Stochastic Version of the Model 
 --------------------------------------------------
 
 We create a **random** or **stochastic** version of the model by adding
@@ -200,7 +200,7 @@ equation**:
 
    Y_t = G_t + a (1-b) Y_{t-1} - a b Y_{t-2} + \sigma \epsilon_{t}
 
-Mathematical Analysis of the Model
+Mathematical Analysis of the Model 
 -------------------------------------------
 
 To get started, let's set :math:`G_t \equiv 0`, :math:`\sigma = 0`, and
@@ -328,7 +328,7 @@ stochastic version of the model
 
 
 
-Things This Lecture Does
+Things This Lecture Does 
 ---------------------------
 
 We write a function to generate simulations of a :math:`\{Y_t\}` sequence as a function of time
@@ -380,7 +380,7 @@ Here is the formula for the matrix :math:`A` in the linear state space system in
 
 
 
-Implementation
+Implementation 
 ==================
 
 We'll start by drawing an informative graph from page 189 of :cite:`Sargent1987`
@@ -482,7 +482,7 @@ difference equation parameter pairs in the Samuelson model are such that:
 Later we'll present the graph with a red mark showing the particular
 point implied by the setting of :math:`(a,b)`
 
-Function to Describe Implications of Characteristic Polynomial
+Function to Describe Implications of Characteristic Polynomial 
 -------------------------------------------------------------------------------
 
 .. code-block:: python3
@@ -506,7 +506,7 @@ Function to Describe Implications of Characteristic Polynomial
 
     categorize_solution(1.3, -.4)
 
-Function for Plotting :math:`Y_t` Paths
+Function for Plotting :math:`y_t` Paths 
 -------------------------------------------
 
 A useful function for our work below
@@ -522,7 +522,7 @@ A useful function for our work below
         plt.grid()
         plt.show()
 
-Manual or "by hand" Root Calculations
+Manual or "by Hand" Root Calculations 
 ----------------------------------------------
 
 The following function calculates roots of the characteristic polynomial
@@ -587,7 +587,7 @@ that we set
     plot_y(y_nonstochastic())
 
 
-Reverse Engineering Parameters to Generate Damped Cycles
+Reverse Engineering Parameters to Generate Damped Cycles 
 -----------------------------------------------------------------
 
 The next cell writes code that takes as inputs the modulus :math:`r` and
@@ -650,7 +650,7 @@ phase :math:`\phi` of a conjugate pair of complex numbers in polar form
     ρ1, ρ2
 
 
-Root Finding Using Numpy
+Root Finding Using Numpy 
 ---------------------------
 
 Here we'll use numpy to compute the roots of the characteristic
@@ -718,7 +718,7 @@ polynomial
     plot_y(y_nonstochastic())
 
 
-Reverse Engineered Complex Roots: Example
+Reverse Engineered Complex Roots: Example 
 --------------------------------------------------
 
 The next cell studies the implications of reverse engineered complex
@@ -747,7 +747,7 @@ We'll generate an **undamped** cycle of period 10
 
 
 
-Digression: Using Sympy to Find Roots
+Digression: Using Sympy to Find Roots 
 ----------------------------------------------
 
 We can also use sympy to compute analytic formulas for the roots
@@ -790,7 +790,7 @@ We can also use sympy to compute analytic formulas for the roots
 
 
 
-Stochastic Shocks
+Stochastic Shocks 
 ===================
 
 Now we'll construct some code to simulate the stochastic version of the
@@ -867,7 +867,7 @@ Let's do a simulation in which there are shocks and the characteristic polynomia
     plot_y(y_stochastic(y_0=40, y_1 = 42, α=a, β=b, σ=2, n=100))
 
 
-Government Spending
+Government Spending 
 ======================
 
 This function computes a response to either a permanent or one-off increase
@@ -969,7 +969,7 @@ We can also see the response to a one time jump in government expenditures
     plot_y(y_stochastic_g(g=500, g_t=50, duration='one-off'))
 
 
-Wrapping Everything Into a Class
+Wrapping Everything Into a Class 
 =================================
 
 Up to now we have written functions to do the work
@@ -1165,7 +1165,7 @@ for the Samuleson model
 
             return fig
 
-Illustration of Samuelson Class
+Illustration of Samuelson Class 
 -------------------------------------------
 
 Now we'll put our Samuelson class to work on an example
@@ -1181,7 +1181,7 @@ Now we'll put our Samuelson class to work on an example
     plt.show()
 
 
-Using the Graph
+Using the Graph 
 -----------------
 
 We'll use our graph to show where the roots lie and how their location
@@ -1195,7 +1195,7 @@ The red $+$ sign shows the location of the roots
     plt.show()
 
 
-Using the LinearStateSpace Class
+Using the Linearstatespace Class 
 =======================================================
 
 It turns out that we can use the `QuantEcon.py <http://quantecon.org/python_index.html>`_
@@ -1248,7 +1248,7 @@ Here is how we map the Samuelson model into an instance of a
     plt.show()
 
 
-Other Methods in the ``LinearStateSpace`` Class
+Other Methods in the ``linearstatespace`` Class 
 ----------------------------------------------------
 
 Let's plot **impulse response functions** for the instance of the
@@ -1280,7 +1280,7 @@ calculating the eigenvalues of :math:`A`
     w, v = np.linalg.eig(A)
     print(w)
 
-Inheriting Methods from ``LinearStateSpace``
+Inheriting Methods From ``linearstatespace`` 
 ----------------------------------------------
 
 We could also create a subclass of ``LinearStateSpace`` (inheriting all its
@@ -1388,7 +1388,7 @@ methods and attributes) to add more functions to use
             x, y = self.impulse_response(j)
             return np.sum(np.array(y).flatten().reshape(j+1, 3), axis=0)
 
-Illustrations
+Illustrations 
 -------------
 
 Let's show how we can use the ``SamuelsonLSS``
@@ -1420,7 +1420,7 @@ Let's show how we can use the ``SamuelsonLSS``
     samlss.multipliers()
 
 
-Pure Multiplier Model
+Pure Multiplier Model 
 =======================
 
 Let's shut down the accelerator by setting :math:`b=0` to get a pure
@@ -1451,7 +1451,7 @@ multiplier model
 
     pure_multiplier.plot_irf(100)
 
-Summary
+Summary 
 ========
 
 In this lecture, we wrote functions and classes to represent non-stochastic and

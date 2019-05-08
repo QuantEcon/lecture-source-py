@@ -7,7 +7,7 @@
     single: python
 
 **************
-Cattle Cycles
+Cattle Cycles 
 **************
 
 .. contents:: :depth: 2
@@ -45,7 +45,7 @@ We make the following imports
     %matplotlib inline
 
 
-The Model
+The Model 
 ==========
 
 The model features a static linear demand curve and a "time-to-grow"
@@ -96,10 +96,10 @@ Demand for beef is government by :math:`c_t = a_0 - a_1p_t + \tilde d_t`
 where :math:`\tilde d_t` is a stochastic process with mean zero,
 representing a demand shifter
 
-Mapping into HS2013 Framework
+Mapping Into Hs2013 Framework 
 ==============================
 
-Preferences
+Preferences 
 -------------
 
 We set
@@ -109,7 +109,7 @@ and :math:`b_t = \Pi \tilde d_t + \Pi \alpha_0`
 With these settings, the FOC for the household's problem becomes the
 demand curve of the "Cattle Cycles" model
 
-Technology
+Technology 
 -----------
 
 To capture the law of motion for cattle, we set
@@ -155,7 +155,7 @@ To capture the production of cattle, we set
       \end{array} }
       \right]
 
-Information
+Information 
 ------------
 
 We set

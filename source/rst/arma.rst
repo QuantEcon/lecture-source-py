@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ******************************************
-:index:`Covariance Stationary Processes`
+:index:`covariance Stationary Processes` 
 ******************************************
 
 .. contents:: :depth: 2
@@ -17,7 +17,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 In this lecture we study covariance stationary linear stochastic processes, a
@@ -30,7 +30,7 @@ This class has the advantage of being
 
 We consider these models in both the time and frequency domain
 
-:index:`ARMA Processes`
+:index:`arma Processes` 
 ------------------------
 
 We will focus much of our attention on linear covariance stationary models with a finite number of parameters
@@ -43,7 +43,7 @@ However, ARMA have some important structure that makes it valuable to study them
 
 
 
-:index:`Spectral Analysis`
+:index:`spectral Analysis` 
 ---------------------------
 
 Analysis in the frequency domain is also called spectral analysis
@@ -61,7 +61,7 @@ The famous *Fourier transform* and its inverse are used to map between the two r
 
 
 
-Other Reading
+Other Reading 
 ---------------
 
 For supplementary reading, see
@@ -83,7 +83,7 @@ For supplementary reading, see
     * :cite:`CryerChan2008`, all
 
 
-Introduction
+Introduction 
 =================================
 
 Consider a sequence of random variables :math:`\{ X_t \}` indexed by :math:`t \in \mathbb Z` and taking values in :math:`\mathbb R`
@@ -102,7 +102,7 @@ For this reason, we will focus in what follows on processes that are *stationary
 
 .. _arma_defs:
 
-Definitions
+Definitions 
 --------------
 
 .. index::
@@ -121,7 +121,7 @@ Throughout this lecture, we will work exclusively with zero-mean (i.e., :math:`\
 The zero-mean assumption costs nothing in terms of generality, since working with non-zero-mean processes involves no more than adding a constant
 
 
-Example 1: :index:`White Noise`
+Example 1: :index:`white Noise` 
 --------------------------------
 
 Perhaps the simplest class of covariance stationary processes is the white noise processes
@@ -139,7 +139,7 @@ White noise processes play the role of **building blocks** for processes with mo
 
 .. _generalized_lps:
 
-Example 2: :index:`General Linear Processes`
+Example 2: :index:`general Linear Processes` 
 --------------------------------------------
 
 From the simple building block provided by white noise, we can construct a very flexible family of covariance stationary processes --- the *general linear processes*
@@ -175,7 +175,7 @@ Evidently, :math:`\gamma(k)` does not depend on :math:`t`
 
 
 
-:index:`Wold's Decomposition`
+:index:`wold's Decomposition` 
 ------------------------------
 
 Remarkably, the class of general linear processes goes a long way towards
@@ -198,7 +198,7 @@ where
 For intuition and further discussion, see :cite:`Sargent1987`, p. 286
 
 
-AR and MA
+Ar and MA 
 --------------------
 
 .. index::
@@ -285,7 +285,7 @@ The AR(1) can be generalized to an AR(:math:`p`) and likewise for the MA(1)
 
 Putting all of this together, we get the
 
-:index:`ARMA` Processes
+:index:`arma` Processes 
 ------------------------
 
 A stochastic process :math:`\{X_t\}` is called an *autoregressive moving
@@ -350,7 +350,7 @@ The function :math:`t \mapsto \psi_t` is often called the *impulse response func
 
 
 
-:index:`Spectral Analysis`
+:index:`spectral Analysis` 
 =================================
 
 Autocovariance functions provide a great deal of information about covariance stationary processes
@@ -363,7 +363,7 @@ It turns out that there is an alternative representation of the autocovariance f
 
 At times, the spectral density is easier to derive, easier to manipulate, and provides additional intuition
 
-:index:`Complex Numbers`
+:index:`complex Numbers` 
 -------------------------
 
 Before discussing the spectral density, we invite you to recall the main properties of complex numbers (or :ref:`skip to the next section <arma_specd>`)
@@ -400,7 +400,7 @@ where :math:`x = r \cos(\omega), y = r \sin(\omega)`, and :math:`\omega = \arcta
 
 .. _arma_specd:
 
-:index:`Spectral Densities`
+:index:`spectral Densities` 
 ---------------------------------
 
 Let :math:`\{ X_t \}` be a covariance stationary process with autocovariance function :math:`\gamma`  satisfying :math:`\sum_{k} \gamma(k)^2 < \infty`
@@ -436,7 +436,7 @@ For this reason it is standard to plot the spectral density only on the interval
 
 .. _arma_wnsd:
 
-Example 1: :index:`White Noise`
+Example 1: :index:`white Noise` 
 ---------------------------------
 
 Consider a white noise process :math:`\{\epsilon_t\}` with standard deviation :math:`\sigma`
@@ -448,7 +448,7 @@ As we will see, this can be interpreted as meaning that "all frequencies are equ
 (White light has this property when frequency refers to the visible spectrum, a connection that provides the origins of the term "white noise")
 
 
-Example 2: :index:`AR` and :index:`MA` and :index:`ARMA`
+Example 2: :index:`ar` and :index:`ma` and :index:`arma` 
 ---------------------------------------------------------
 
 It is an exercise to show that the MA(1) process :math:`X_t = \theta \epsilon_{t-1} + \epsilon_t` has spectral density
@@ -491,7 +491,7 @@ The proof is elegant and can be found in many places --- see, for example, :cite
 It's a nice exercise to verify that :eq:`ma1_sd_ed` and :eq:`ar1_sd_ed` are indeed special cases of :eq:`arma_sd`
 
 
-Interpreting the :index:`Spectral Density`
+Interpreting the :index:`spectral Density` 
 --------------------------------------------
 
 .. index::
@@ -637,7 +637,7 @@ both positive and negative terms, and hence the sum of these terms is much small
 In summary, the spectral density is large at frequencies :math:`\omega` where the autocovariance function exhibits damped cycles
 
 
-Inverting the Transformation
+Inverting the Transformation 
 -------------------------------
 
 .. index::
@@ -660,7 +660,7 @@ This is convenient in situations where the spectral density is easier to calcula
 (For example, the expression :eq:`arma_sd` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance)
 
 
-Mathematical Theory
+Mathematical Theory 
 ---------------------
 
 .. index::
@@ -744,7 +744,7 @@ Transforming this inner product into its integral expression and using :eq:`arma
 
 .. _arma_imp:
 
-Implementation
+Implementation 
 =================================
 
 Most code for working with covariance stationary models deals with ARMA models
@@ -764,7 +764,7 @@ The module provides functions for mapping ARMA(:math:`p,q`) models into their
 #. spectral density
 
 
-Application
+Application 
 -----------------------------------------
 
 Let's use this code to replicate the plots on pages 68--69 of :cite:`Ljungqvist2012`
@@ -911,7 +911,7 @@ Ljungqvist and Sargent's fourth  model is  :math:`X_t = .98 X_{t-1}  + \epsilon_
     arma = qe.ARMA(ϕ, θ)
     quad_plot(arma)    
 
-Explanation
+Explanation 
 --------------------
 
 The call
@@ -975,7 +975,7 @@ This is achieved in our implementation by using :ref:`descriptors<descriptors>`
 
 
 
-Computing the Autocovariance Function
+Computing the Autocovariance Function 
 -----------------------------------------
 
 As discussed above, for ARMA processes the spectral density has a :ref:`simple representation <arma_spec_den>` that is relatively easy to calculate

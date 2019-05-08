@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 **************
-:index:`NumPy`
+:index:`numpy` 
 **************
 
 .. index::
@@ -17,7 +17,7 @@
 
 
 
-Overview
+Overview 
 ============
 
 `NumPy <https://en.wikipedia.org/wiki/NumPy>`_ is a first-rate library for numerical programming
@@ -31,7 +31,7 @@ In this lecture we introduce NumPy arrays and the fundamental array processing o
 
 
 
-References
+References 
 ----------------
 
 * `The official NumPy documentation <http://docs.scipy.org/doc/numpy/reference/>`_
@@ -42,7 +42,7 @@ References
 
 
 
-Introduction to NumPy
+Introduction to Numpy 
 ========================
 
 .. index::
@@ -82,7 +82,7 @@ This is similar in spirit to Matlab, which provides an interface to fast Fortran
 
 
 
-A Comment on Vectorization
+A Comment on Vectorization 
 ----------------------------------
 
 NumPy is great for operations that are naturally *vectorized*
@@ -101,7 +101,7 @@ In a :doc:`later lecture <numba>` we'll discuss code that isn't easy to vectoriz
 
 .. _numpy_array:
 
-NumPy Arrays
+Numpy Arrays 
 ================
 
 .. index::
@@ -157,7 +157,7 @@ If we want to use integers we can specify as follows:
 
 .. _numpy_shape_dim:
 
-Shape and Dimension
+Shape and Dimension 
 ----------------------
 
 .. index::
@@ -199,7 +199,7 @@ in ``z = np.zeros((2, 2))``
 
 .. _creating_arrays:
 
-Creating Arrays
+Creating Arrays 
 ------------------
 
 .. index::
@@ -272,7 +272,7 @@ To read in the array data from a text file containing numeric data use ``np.load
 or ``np.genfromtxt``---see `the documentation <http://docs.scipy.org/doc/numpy/reference/routines.io.html>`_ for details
 
 
-Array Indexing
+Array Indexing 
 -----------------
 
 .. index::
@@ -370,7 +370,7 @@ An aside: all elements of an array can be set equal to one number using slice no
     z
 
 
-Array Methods
+Array Methods 
 ------------------
 
 .. index::
@@ -456,13 +456,13 @@ Many of the methods discussed above have equivalent functions in the NumPy names
 
 
 
-Operations on Arrays
+Operations on Arrays 
 ================================
 
 .. index::
     single: NumPy; Arrays (Operations)
 
-Arithmetic Operations
+Arithmetic Operations 
 ------------------------
 
 The operators ``+``, ``-``, ``*``, ``/`` and ``**`` all act *elementwise* on arrays
@@ -511,7 +511,7 @@ The two dimensional arrays follow the same general rules
 
 In particular, ``A * B`` is *not* the matrix product, it is an element-wise product
 
-Matrix Multiplication
+Matrix Multiplication 
 ------------------------
 
 .. index::
@@ -552,7 +552,7 @@ In fact, we can use ``@`` when one element is a Python list or tuple
 Since we are postmultiplying, the tuple is treated as a column vector
 
 
-Mutability and Copying Arrays
+Mutability and Copying Arrays 
 -------------------------------
 
 NumPy arrays are mutable data types, like Python lists
@@ -603,7 +603,7 @@ Making copies is expensive in terms of both speed and memory
 
 
 
-Making Copies
+Making Copies 
 ^^^^^^^^^^^^^
 
 It is of course possible to make ``b`` an independent copy of ``a`` when required
@@ -634,13 +634,13 @@ Now ``b`` is an independent copy (called a *deep copy*)
 Note that the change to ``b`` has not affected ``a``
 
 
-Additional Functionality
+Additional Functionality 
 =========================
 
 Let's look at some other useful things we can do with NumPy
 
 
-Vectorized Functions
+Vectorized Functions 
 --------------------------
 
 .. index::
@@ -712,7 +712,7 @@ You can also use ``np.vectorize`` to vectorize a given function
 However, this approach doesn't always obtain the same speed as a more carefully crafted vectorized function
 
 
-Comparisons
+Comparisons 
 --------------
 
 .. index::
@@ -768,7 +768,7 @@ Of course we can---and frequently do---perform this in one step
     z[z > 3]
 
 
-Subpackages
+Subpackages 
 ---------------
 
 NumPy provides some additional functionality related to scientific programming
@@ -808,13 +808,13 @@ We'll cover the SciPy versions in more detail :doc:`soon <scipy>`
 For a comprehensive list of what's available in NumPy see `this documentation <https://docs.scipy.org/doc/numpy/reference/routines.html>`_
 
 
-Exercises
+Exercises 
 =============
 
 
 .. _np_ex1:
 
-Exercise 1
+Exercise 1 
 ----------------
 
 Consider the polynomial expression
@@ -838,7 +838,7 @@ Now write a new function that does the same job, but uses NumPy arrays and array
 
 .. _np_ex2:
 
-Exercise 2
+Exercise 2 
 ----------------
 
 Let ``q`` be a NumPy array of length ``n`` with ``q.sum() == 1``
@@ -890,7 +890,7 @@ If you can, write the method so that ``draw(k)`` returns ``k`` draws from ``q``
 
 .. _np_ex3:
 
-Exercise 3
+Exercise 3 
 ----------------
 
 Recall our :ref:`earlier discussion <oop_ex1>` of the empirical cumulative distribution function
@@ -901,7 +901,7 @@ Your task is to
 #. Add a method that plots the ECDF over :math:`[a, b]`, where :math:`a` and :math:`b` are method parameters
 
 
-Solutions
+Solutions 
 ==========
 
 
@@ -911,7 +911,7 @@ Solutions
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-Exercise 1
+Exercise 1 
 ----------
 
 This code does the job
@@ -937,7 +937,7 @@ Let's test it
     print(q(1))
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 Here's our first pass at a solution:
@@ -997,7 +997,7 @@ library <https://github.com/QuantEcon/QuantEcon.py/tree/master/quantecon>`__
 using descriptors that behaves as we desire can be found
 `here <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`__
 
-Exercise 3
+Exercise 3 
 ----------
 
 An example solution is given below

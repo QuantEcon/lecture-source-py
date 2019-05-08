@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 **********************************************
-Asset Pricing and Finance
+Asset Pricing and Finance 
 **********************************************
 
 

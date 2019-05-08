@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************************
-:index:`Discrete State Dynamic Programming`
+:index:`discrete State Dynamic Programming` 
 ********************************************
 
 .. contents:: :depth: 2
@@ -17,7 +17,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 In this lecture we discuss a family of dynamic programming problems with the following features:
@@ -58,7 +58,7 @@ This lecture covers
 
 
 
-How to Read this Lecture
+How to Read This Lecture 
 ---------------------------
 
 We use dynamic programming many applied lectures, such as 
@@ -74,7 +74,7 @@ The objective of this lecture is to provide a more systematic and theoretical tr
 
 
 
-Code
+Code 
 -----
 
 The code discussed below was authored primarily by `Daisuke Oyama <https://github.com/oyamad>`_
@@ -94,7 +94,7 @@ seamlessly if you are using `Anaconda <https://www.anaconda.com/download/>`_ as 
 
 
 
-References
+References 
 ------------
 
 For background reading on dynamic programming and additional applications, see, for example,
@@ -119,7 +119,7 @@ For background reading on dynamic programming and additional applications, see, 
 
 .. _discrete_dps:
 
-Discrete DPs
+Discrete DPs 
 ============================
 
 Loosely speaking, a discrete DP is a maximization problem with an objective
@@ -158,7 +158,7 @@ Examples:
 * exercising an option now vs waiting 
 
 
-Policies
+Policies 
 ------------
 
 The most fruitful way to think about solutions to discrete DP problems is to compare *policies*
@@ -183,7 +183,7 @@ The aim is to find an optimal policy, in the sense of one that maximizes :eq:`dp
 Let's now step through these ideas more carefully
 
 
-Formal definition
+Formal Definition 
 -----------------------------
 
 Formally, a discrete dynamic program consists of the following components:
@@ -251,7 +251,7 @@ This is natural because they are in one to one correspondence
 
 
 
-Value and Optimality
+Value and Optimality 
 ----------------------
 
 Let :math:`v_{\sigma}(s)` denote the discounted sum of expected reward flows from policy :math:`\sigma`
@@ -300,7 +300,7 @@ As discussed in detail below, optimal policies are precisely those that are :mat
 
 
 
-Two Operators
+Two Operators 
 -------------------
 
 It is useful to define the following operators:
@@ -352,7 +352,7 @@ For proofs of these results and those in the next section, see, for example, `ED
 
 
 
-The Bellman Equation and the Principle of Optimality
+The Bellman Equation and the Principle of Optimality 
 ----------------------------------------------------
 
 The main principle of the theory of dynamic programming is that
@@ -383,7 +383,7 @@ By the definition of greedy policies given above, this means that
     \qquad (s \in S)
 
 
-Solving Discrete DPs
+Solving Discrete DPs 
 ========================================
 
 Now that the theory has been set out, let's turn to solution methods
@@ -402,7 +402,7 @@ Let's briefly review these algorithms and their implementation
 
 
 
-Value Function Iteration
+Value Function Iteration 
 ------------------------------
 
 Perhaps the most familiar method for solving all manner of dynamic programs is value function iteration
@@ -420,7 +420,7 @@ The details of the algorithm can be found in :ref:`the appendix <ddp_algorithms>
 
 
 
-Policy Function Iteration
+Policy Function Iteration 
 --------------------------
 
 This routine, also known as Howard's policy improvement algorithm, exploits more closely the particular structure of a discrete DP problem
@@ -440,7 +440,7 @@ The details of the algorithm can be found in :ref:`the appendix <ddp_algorithms>
 
 
 
-Modified Policy Function Iteration
+Modified Policy Function Iteration 
 ----------------------------------
 
 
@@ -460,7 +460,7 @@ The details of the algorithm can be found in :ref:`the appendix <ddp_algorithms>
 
 .. _ddp_eg_gm:
 
-Example: A Growth Model
+Example: A Growth Model 
 =============================
 
 Let's consider a simple consumption-saving model 
@@ -490,7 +490,7 @@ The discount factor is :math:`\beta \in [0, 1)`
 
 
 
-Discrete DP Representation
+Discrete DP Representation 
 ----------------------------
 
 We want to represent this model in the format of a discrete dynamic program
@@ -525,7 +525,7 @@ To this end, we take
     \end{cases}
 
 
-Defining a DiscreteDP Instance
+Defining a Discretedp Instance 
 --------------------------------
 
 This information will be used to create an instance of `DiscreteDP` by passing
@@ -684,7 +684,7 @@ If we look at the bar graph we can see the rightward shift in probability mass
    :scale: 80%
 
 
-State-Action Pair Formulation
+State-action Pair Formulation 
 --------------------------------
 
 The ``DiscreteDP`` class in fact provides a second interface to setting up an instance
@@ -711,7 +711,7 @@ For larger problems you might need to write this code more efficiently by vector
 
 
 
-Exercises
+Exercises 
 =============
 
 In the stochastic optimal growth lecture :doc:`dynamic programming lecture <optgrowth>`, we solve a
@@ -720,7 +720,7 @@ In the stochastic optimal growth lecture :doc:`dynamic programming lecture <optg
 The exercise is to replicate this solution using ``DiscreteDP`` 
 
 
-Solutions
+Solutions 
 ==========
 
 
@@ -737,7 +737,7 @@ Let's start with some imports
     from quantecon import compute_fixed_point
     from quantecon.markov import DiscreteDP
 
-Setup
+Setup 
 -----
 
 Details of the model can be found in :doc:`the lecture on optimal growth <optgrowth>`
@@ -838,7 +838,7 @@ Here we intensively vectorized the operations on arrays to simplify the code
 As :ref:`noted <numba-p_c_vectorization>`, however, vectorization is memory consumptive, and it can be prohibitively so for grids with large size
 
 
-Solving the model
+Solving the Model 
 -----------------
 
 Solve the dynamic optimization problem:
@@ -950,7 +950,7 @@ The value function is monotone:
     (np.diff(v) > 0).all()
 
 
-Comparison of the solution methods
+Comparison of the Solution Methods 
 ----------------------------------
 
 Let us solve the problem by the other two methods
@@ -998,7 +998,7 @@ Speed comparison
 As is often the case, policy iteration and modified policy iteration are
 much faster than value iteration
 
-Replication of the figures
+Replication of the Figures 
 --------------------------
 
 Using ``DiscreteDP`` we replicate the figures shown in the lecture
@@ -1099,7 +1099,7 @@ condition :math:`k_0 = 0.1`
 
 .. _ddp_algorithms:
 
-Appendix: Algorithms
+Appendix: Algorithms 
 ==========================
 
 This appendix covers the details of the solution algorithms implemented for ``DiscreteDP`` 
@@ -1112,7 +1112,7 @@ We will make use of the following notions of approximate optimality:
 
 
 
-Value Iteration
+Value Iteration 
 ------------------
 
 The ``DiscreteDP`` value iteration method implements value function iteration as
@@ -1137,7 +1137,7 @@ Given :math:`\varepsilon > 0`, the value iteration algorithm
 terminated if the number of iterations reaches ``iter_max``)
 
 
-Policy Iteration
+Policy Iteration 
 ------------------
 
 The ``DiscreteDP`` policy iteration method runs as follows
@@ -1161,7 +1161,7 @@ iterations
 It returns an optimal value function and an optimal policy function (unless ``iter_max`` is reached)
 
 
-Modified Policy Iteration
+Modified Policy Iteration 
 -------------------------------
 
 The ``DiscreteDP`` modified policy iteration method runs as follows:

@@ -3,13 +3,13 @@
 .. highlight:: python3
 
 *******************************
-Maximum Likelihood Estimation
+Maximum Likelihood Estimation 
 *******************************
 
 .. contents:: :depth: 2
 
 
-Overview
+Overview 
 ============
 
 
@@ -31,27 +31,27 @@ economic factors such as market size and tax rate predict
 
 
 
-Prerequisites
+Prerequisites 
 -------------
 
 We assume familiarity with basic probability and multivariate calculus
 
 
-Comments
+Comments 
 -------------
 
 This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__
 
 
 
-Set Up and Assumptions
+Set Up and Assumptions 
 ========================
 
 
 Let's consider the steps we need to go through in maximum likelihood estimation and how they pertain to this study
 
 
-Flow of Ideas
+Flow of Ideas 
 --------------------------
 
 The first step with maximum likelihood estimation is to choose the probability distribution believed to be generating the data
@@ -71,7 +71,7 @@ We'll let the data pick out a particular element of the class by pinning down th
 The parameter estimates so produced will be called **maximum likelihood estimates** 
 
 
-Counting Billionaires
+Counting Billionaires 
 ----------------------------------
 
 
@@ -179,7 +179,7 @@ From the histogram, it appears that the Poisson assumption is not unreasonable (
 
 
 
-Conditional Distributions
+Conditional Distributions 
 =========================
 
 
@@ -248,7 +248,7 @@ We use our ``poisson_pmf`` function from above and arbitrary values for
 We can see that the distribution of :math:`y_i` is conditional on
 :math:`\mathbf{x}_i` (:math:`\mu_i` is no longer constant)
 
-Maximum Likelihood Estimation
+Maximum Likelihood Estimation 
 =============================
 
 In our model for number of billionaires, the conditional distribution
@@ -377,7 +377,7 @@ The MLE of the Poisson to the Poisson  for :math:`\hat{\beta}` can be obtained b
 However, no analytical solution exists to the above problem -- to find the MLE 
 we need to use numerical methods
 
-MLE with Numerical Methods
+Mle With Numerical Methods 
 ==================================
 
 Many distributions do not have nice, analytical solutions and therefore require
@@ -638,7 +638,7 @@ for example, `scipy.optimize <https://docs.scipy.org/doc/scipy/reference/optimiz
 
 
 
-Maximum Likelihood Estimation with ``statsmodels``
+Maximum Likelihood Estimation With ``statsmodels`` 
 ==================================================
 
 Now that we know what's going on under the hood, we can apply MLE to an interesting application
@@ -817,7 +817,7 @@ Russia, the political climate, and the history of privatization in the
 years after the USSR
 
 
-Summary
+Summary 
 =======
 
 In this lecture we used Maximum Likelihood Estimation to estimate the
@@ -838,12 +838,12 @@ example notebook can be found
 
 
 
-Exercises
+Exercises 
 =========
 
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Suppose we wanted to estimate the probability of an event :math:`y_i`
@@ -871,7 +871,7 @@ Hessian
 The ``scipy`` module ``stats.norm`` contains the functions needed to
 compute the cmf and pmf of the normal distribution
 
-Exercise 2
+Exercise 2 
 -----------
 
 Use the following dataset and initial values of :math:`\boldsymbol{\beta}` to
@@ -917,10 +917,10 @@ Note that the simple Newton-Raphson algorithm developed in this lecture
 is very sensitive to initial values, and therefore you may fail to
 achieve convergence with different starting values
 
-Solutions
+Solutions 
 =========
 
-Exercise 1
+Exercise 1 
 --------------
 
 The log-likelihood can be written as
@@ -1004,7 +1004,7 @@ follows
             b = (ϕ - (X @ β.T) * (1 - μ)) / (1 - μ)**2
             return -(ϕ * (y * a + (1 - y) * b) * X.T) @ X
 
-Exercise 2
+Exercise 2 
 -----------
 
 .. code-block:: python3

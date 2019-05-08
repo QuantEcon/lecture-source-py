@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *******************
-:index:`Matplotlib`
+:index:`matplotlib` 
 *******************
 
 .. index::
@@ -11,7 +11,7 @@
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 We've already generated quite a few figures in these lectures using `Matplotlib <http://matplotlib.org/>`__
@@ -30,7 +30,7 @@ Matplotlib is an outstanding graphics library, designed for scientific computing
 
 
 
-Matplotlib's Split Personality
+Matplotlib's Split Personality 
 ---------------------------------
 
 
@@ -47,13 +47,13 @@ But first, let's discuss the difference
 
 
 
-The APIs
+The Apis 
 =======================
 
 .. index::
     single: Matplotlib; Simple API
 
-The MATLAB-style API
+The Matlab-style API 
 --------------------
 
 Here's the kind of easy example you might find in introductory treatments
@@ -79,7 +79,7 @@ Python programmers tend to prefer a more explicit style of programming (run ``im
 
 This leads us to the alternative, object oriented Matplotlib API
 
-The Object Oriented API
+The Object Oriented API 
 -----------------------
 
 Here's the code corresponding to the preceding figure using the object-oriented API
@@ -104,7 +104,7 @@ While there's a bit more typing, the more explicit use of objects gives us bette
 This will become more clear as we go along
 
 
-Tweaks
+Tweaks 
 --------------
 
 Here we've changed the line to red and added a legend 
@@ -148,7 +148,7 @@ Controlling the ticks, adding titles and so on is also straightforward
     plt.show()
 
 
-More Features
+More Features 
 ====================
 
 Matplotlib has a huge array of functions and features, which you can discover
@@ -157,7 +157,7 @@ over time as you have need for them
 We mention just a few
 
 
-Multiple Plots on One Axis
+Multiple Plots on One Axis 
 -------------------------------
 
 .. index::
@@ -183,7 +183,7 @@ Here's an example that randomly generates three normal densities and adds a labe
     plt.show()
 
 
-Multiple Subplots
+Multiple Subplots 
 ------------------
 
 .. index::
@@ -207,7 +207,7 @@ Here's an example that generates 6 histograms
     plt.show()
 
 
-3D Plots
+3d Plots 
 ---------------
 
 .. index::
@@ -243,7 +243,7 @@ Matplotlib does a nice job of 3D plots --- here is one example
 
 
 
-A Customizing Function
+A Customizing Function 
 -------------------------
 
 Perhaps you will find a set of customizations that you regularly use
@@ -287,7 +287,7 @@ The custom ``subplots`` function
 
 
 
-Further Reading
+Further Reading 
 ===================
 
 
@@ -302,11 +302,11 @@ Further Reading
 
 
 
-Exercises
+Exercises 
 =============
 
 
-Exercise 1
+Exercise 1 
 ----------------
 
 
@@ -329,11 +329,11 @@ The output should look like this
 
 
 
-Solutions
+Solutions 
 ===========
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 

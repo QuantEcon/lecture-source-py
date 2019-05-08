@@ -6,7 +6,7 @@
 
 
 *******************************************************************
-Consumption and Tax Smoothing with Complete and Incomplete Markets
+Consumption and Tax Smoothing With Complete and Incomplete Markets 
 *******************************************************************
 
 
@@ -23,7 +23,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
   !pip install quantecon
 
 
-Overview
+Overview 
 ========
 
 
@@ -81,7 +81,7 @@ We'll spend most of this lecture studying the finite-state Markov specification,
 
 
 
-Relationship to Other Lectures
+Relationship to Other Lectures 
 ------------------------------
 
 This lecture can be viewed as a followup to :doc:`perm_income_cons` and  a warm up for a model of tax smoothing described in :doc:`opt_tax_recur`
@@ -98,7 +98,7 @@ So these later lectures are partly about how the government should  manipulate p
 
 
 
-Background
+Background 
 ==========
 
 Outcomes in consumption-smoothing (or tax-smoothing) models emerge from two
@@ -129,7 +129,7 @@ In the incomplete markets version of the model, the consumer can buy and sell on
 
 
 
-Finite State Markov Income Process
+Finite State Markov Income Process 
 ----------------------------------
                                   
 
@@ -170,7 +170,7 @@ A consumer wishes to maximize
      0 < \beta < 1 
 
 
-Remark About Isomorphism
+Remark About Isomorphism 
 ^^^^^^^^^^^^^^^^^^^^^^^^
                         
 
@@ -179,7 +179,7 @@ We can regard these as Barro :cite:`Barro1979`  tax-smoothing models if we set
 collections and :math:`\{G_t\}` is an exogenous government expenditures
 process
 
-Market Structure
+Market Structure 
 ----------------
 
 The two models differ in how effectively the market structure allows the
@@ -197,7 +197,7 @@ Watch how these differences in opportunities affect
 
 
 
-Model 1 (Complete Markets)
+Model 1 (complete Markets) 
 ==========================
 
 
@@ -353,7 +353,7 @@ an equation in the unknown :math:`b(\bar s_2)`
 
 Knowing :math:`b(\bar s_1)` and :math:`b(\bar s_2)`, we can solve equation :eq:`cs_5`  for the constant level of consumption :math:`\bar c`
 
-Key Outcomes
+Key Outcomes 
 ------------
 
 The preceding calculations indicate that in the complete markets version
@@ -376,7 +376,7 @@ We computed how one of those debt levels depends entirely on initial debt -- it 
 
 
 
-Code
+Code 
 -----
            
 Here's some code that, among other things, contains a function called `consumption_complete()` 
@@ -406,7 +406,7 @@ from an incomplete markets model in the spirit of Hall :cite:`Hall1978` and Barr
 
 
 
-Model 2 (One-Period Risk Free Debt Only)
+Model 2 (one-period Risk Free Debt Only) 
 ========================================
                                         
 
@@ -530,7 +530,7 @@ and the increment in debt is
     b_{t+1} - b_t = \beta^{-1} [ (1- \beta) v(i) - y(i) ]  
 
 
-Summary of Outcomes
+Summary of Outcomes 
 -------------------
 
 In contrast to outcomes in the complete markets model, in the incomplete
@@ -552,7 +552,7 @@ markets model
 
 
 
-The Incomplete Markets Model
+The Incomplete Markets Model 
 -------------------------------------
 
 
@@ -580,7 +580,7 @@ income :math:`y_t`, notice that
 
 
 
-Using the Isomorphism
+Using the Isomorphism 
 ^^^^^^^^^^^^^^^^^^^^^
                           
 
@@ -616,7 +616,7 @@ We can simply relabel variables to acquire tax-smoothing interpretations of our 
 
 
 
-Example: Tax Smoothing with Complete Markets
+Example: Tax Smoothing With Complete Markets 
 ============================================
 
 It is useful to focus on a simple tax-smoothing example with complete markets
@@ -662,7 +662,7 @@ Here's our code to compute a quantitative example with zero debt in peace time:
 
 
 
-Explanation
+Explanation 
 -----------
 
 In this example, the government always purchase :math:`0` units of the
@@ -698,7 +698,7 @@ war in debt and :math:`b_2 = -10`
 
 
 
-Linear State Space Version of Complete Markets Model
+Linear State Space Version of Complete Markets Model 
 =====================================================
 
 Now we'll use a setting like that in  :doc:`first lecture on the permanent income model <perm_income>`
@@ -832,7 +832,7 @@ allows the consumer completely to smooth consumption across time and across stat
 .. literalinclude:: /_static/code/smoothing/lss_example.py
 
 
-Interpretation of Graph
+Interpretation of Graph 
 -----------------------
 
 In the above graph, please note that:
@@ -847,7 +847,7 @@ In the above graph, please note that:
    (meaning linear plus a constant) of the consumer's nonfinancial
    income
 
-Incomplete Markets Version
+Incomplete Markets Version 
 --------------------------
                           
 
@@ -861,7 +861,7 @@ We leave it to the reader to apply the usual isomorphism to deduce the correspon
 
 
 
-Government Manipulation of  Arrow Securities Prices
+Government Manipulation of Arrow Securities Prices 
 ----------------------------------------------------
 
 In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optimal taxation <opt_tax_recur>`, we study **complete-markets** 

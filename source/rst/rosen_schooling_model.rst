@@ -6,7 +6,7 @@
     single: python
 
 ****************************
-Rosen Schooling Model
+Rosen Schooling Model 
 ****************************
 
 .. contents:: :depth: 2
@@ -36,7 +36,7 @@ We'll also need the following imports
     from math import sqrt
     %matplotlib inline
 
-A One-Occupation Model
+A One-occupation Model 
 ========================
 
 Ryoo and Rosen's (2004) :cite:`ryoo2004engineering` partial equilibrium model determines
@@ -68,7 +68,7 @@ The model consists of the following equations:
 
 .. math:: n_t = \\alpha_s v_t + \epsilon_{st}
 
-Mapping into HS2013 framework
+Mapping Into Hs2013 Framework 
 ===============================================
 
 We represent this model in the :cite:`HS2013` framework by
@@ -79,7 +79,7 @@ We represent this model in the :cite:`HS2013` framework by
 -  putting the supply of engineers into the technology for producing
    goods
 
-Preferences
+Preferences 
 ------------
 
 .. math::
@@ -109,7 +109,7 @@ This specification sets :math:`N_t = h_{1t-1}`, :math:`n_t = c_t`,
 Below we set things up so that the number of years of education, k, can
 be varied
 
-Technology
+Technology 
 ------------
 
 To capture Ryoo and Rosen's :cite:`ryoo2004engineering` supply curve, we use the physical
@@ -121,7 +121,7 @@ technology:
 
 where :math:`\psi_1` is inversely proportional to :math:`\alpha_s`
 
-Information
+Information 
 ------------
 
 Because we  want :math:`b_t = \epsilon_{dt}` and :math:`d_{1t} =\epsilon_{st}`, we set
@@ -159,7 +159,7 @@ supply and demand shocks
     Technology = namedtuple('Technology', ['ϕ_c', 'ϕ_g', 'ϕ_i', 'γ', 'δ_k', 'θ_k'])
     Preferences = namedtuple('Preferences', ['β', 'l_λ', 'π_h', 'δ_h', 'θ_h'])
 
-Effects of Changes in Education Technology and Demand
+Effects of Changes in Education Technology and Demand 
 ------------------------------------------------------
 
 We now study how changing

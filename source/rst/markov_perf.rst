@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************
-Markov Perfect Equilibrium
+Markov Perfect Equilibrium 
 ********************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ==========================
 
 .. index::
@@ -47,7 +47,7 @@ Other references include chapter 7 of :cite:`Ljungqvist2012`
 
 
 
-Background
+Background 
 ================
 
 .. index::
@@ -74,7 +74,7 @@ Well known examples include
 Let's examine a model of the first type
 
 
-Example: A duopoly model
+Example: A Duopoly Model 
 -----------------------------
 
 
@@ -146,7 +146,7 @@ The adjective "Markov" denotes that the equilibrium decision rules depend only o
 
 
 
-Computation
+Computation 
 -----------
 
 One strategy for computing a Markov perfect equilibrium is iterating to convergence on pairs of Bellman equations and decision rules
@@ -169,7 +169,7 @@ However, they simplify for the case in which the one-period payoff functions are
 
 
 
-Linear Markov perfect equilibria
+Linear Markov Perfect Equilibria 
 ================================
 
 .. index::
@@ -182,7 +182,7 @@ In linear quadratic dynamic games, these "stacked Bellman equations" become "sta
 We'll lay out that structure in a general setup and then apply it to some simple problems
 
 
-Coupled linear regulator problems
+Coupled Linear Regulator Problems 
 -----------------------------------
 
 We consider a general linear quadratic regulator game with two players
@@ -227,7 +227,7 @@ Here
 
 
 
-Computing Equilibrium
+Computing Equilibrium 
 -----------------------------------
 
 We formulate a linear Markov perfect equilibrium as follows
@@ -326,7 +326,7 @@ Moreover, since
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
-Key insight
+Key Insight 
 ^^^^^^^^^^^^
 
 A key insight is that  equations  :eq:`orig-3` and :eq:`orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
@@ -340,7 +340,7 @@ After these equations have been solved, we can take  :math:`F_{it}` and solve fo
 
 .. However, in the Markov perfect equilibrium of this game, each agent is assumed to ignore the influence that his choice exerts on the other agent's choice
 
-Infinite horizon
+Infinite Horizon 
 ^^^^^^^^^^^^^^^^^^^^
 
 We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time invariant as :math:`t_1 \rightarrow +\infty`
@@ -351,14 +351,14 @@ This is the approach we adopt in the next section
 
 
 
-Implementation
+Implementation 
 ----------------
 
 We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear quadratic dynamic game in the manner described above
 
 
 
-Application
+Application 
 =====================
 
 .. index::
@@ -367,7 +367,7 @@ Application
 Let's use these procedures to treat some applications, starting with the duopoly model
 
 
-A duopoly model
+A Duopoly Model 
 ----------------------
 
 To map the duopoly model into  coupled linear-quadratic dynamic programming problems, define the state
@@ -448,7 +448,7 @@ The optimal decision rule of firm :math:`i` will take the form :math:`u_{it} = -
     x_{t+1} = (A - B_1 F_1 -B_1 F_2 ) x_t
 
 
-Parameters and Solution
+Parameters and Solution 
 --------------------------
 
 Consider the previously presented duopoly model with parameter values of:
@@ -500,7 +500,7 @@ Indeed, `np.allclose` agrees with our assessment
 
 
 
-Dynamics
+Dynamics 
 -----------------------
 
 Let's now investigate the dynamics of price and output in this simple duopoly model under the MPE policies
@@ -535,11 +535,11 @@ The monopolist initial condition is :math:`q_0 = 2.0` to mimic the industry init
 
 As expected, output is higher and prices are lower under duopoly than monopoly
 
-Exercises
+Exercises 
 ===========
 
 
-Exercise 1
+Exercise 1 
 ---------------
 
 Replicate the :ref:`pair of figures <mpe_vs_monopolist>` showing the comparison of output and prices for the monopolist and duopoly under MPE
@@ -549,7 +549,7 @@ Parameters are as in `duopoly_mpe.py` and you can use that code to compute MPE p
 The optimal policy in the monopolist case can be computed using `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class
 
 
-Exercise 2
+Exercise 2 
 ---------------
 
 In this exercise we consider a slightly more sophisticated duopoly problem
@@ -660,10 +660,10 @@ This is indeed the case, as the next figure shows
     :scale: 70
 
 
-Solutions
+Solutions 
 ==========
 
-Exercise 1
+Exercise 1 
 -------------
 
 First let's compute the duopoly MPE under the stated parameters
@@ -793,7 +793,7 @@ Let's have a look at the different time paths
 
 
 
-Exercise 2
+Exercise 2 
 -------------
 
 We treat the case :math:`\delta = 0.02`

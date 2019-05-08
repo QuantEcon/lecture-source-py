@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***************************
-Other Scientific Libraries
+Other Scientific Libraries 
 ***************************
 
 .. contents:: :depth: 2
@@ -15,7 +15,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 
@@ -29,7 +29,7 @@ economic research
 Hence you should feel free to skip this lecture on first pass
 
 
-:index:`Cython`
+:index:`cython` 
 ===============
 
 .. index::
@@ -66,7 +66,7 @@ Some modifications are required to run the code outside a notebook
 
 
 
-A First Example
+A First Example 
 ------------------
 
 Let's start with a rather artificial example
@@ -82,7 +82,7 @@ Suppose further that we've forgotten the basic formula
 
 for a geometric progression and hence have resolved to rely on a loop
 
-Python vs C
+Python vs C 
 ^^^^^^^^^^^^^^^^^^
 
 Here's a pure Python function that does the job
@@ -128,7 +128,7 @@ type definitions
 
 Not surprisingly, the C code is faster than the Python code
 
-A Cython Implementation
+A Cython Implementation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cython implementations look like a convex combination of Python and C
@@ -179,7 +179,7 @@ What you are in fact calling is compiled C code with a Python call interface
 
 
 
-Example 2: Cython with NumPy Arrays
+Example 2: Cython With Numpy Arrays 
 ------------------------------------------
 
 Let's go back to the first problem that we worked with: generating the iterates of the quadratic map
@@ -265,7 +265,7 @@ This is fast, although still slightly slower than ``qm_numba``
 
 
 
-Summary
+Summary 
 ------------
 
 Cython requires more expertise than Numba, and is a little more fiddly in terms of getting good performance
@@ -282,7 +282,7 @@ Nonetheless,
 
 
 
-Joblib
+Joblib 
 ==========
 
 
@@ -303,7 +303,7 @@ Here we review just the basics
 
 
 
-Caching
+Caching 
 --------
 
 
@@ -320,7 +320,7 @@ back up to you when you repeat the calculation
 
 
 
-An Example
+An Example 
 -----------
 
 Let's look at a toy example, related to the quadratic map model discussed :ref:`above <quad_map_eg>`
@@ -378,7 +378,7 @@ The next time we call the function with the same set of parameters, the result i
 
 
 
-Other Options
+Other Options 
 =================
 
 There are in fact many other approaches to speeding up your Python code
@@ -404,12 +404,12 @@ Recently, `a Jupyter cell magic for Fortran
 
 
 
-Exercises
+Exercises 
 =============
 
 .. _speed_ex1:
 
-Exercise 1
+Exercise 1 
 -------------
 
 Later we'll learn all about :doc:`finite state Markov chains <finite_markov>`
@@ -443,12 +443,12 @@ If your code is correct, it should be about 2/3
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 We let

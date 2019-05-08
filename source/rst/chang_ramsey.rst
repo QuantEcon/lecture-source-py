@@ -4,7 +4,7 @@
 
 
 ********************************************
-Competitive Equilibria of Chang Model
+Competitive Equilibria of Chang Model 
 ********************************************
 
 
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install polytope
 
-Overview
+Overview 
 =============
 
 This lecture describes how Chang :cite:`chang1998credible`
@@ -61,7 +61,7 @@ We encountered problems with this structure in
 :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`,
 and other lectures
 
-The setting
+The Setting 
 -----------
 
 First, we introduce some notation
@@ -120,11 +120,11 @@ effects into account in designing a plan of government actions for
 :math:`t \geq 0`
 
 
-Setting
+Setting 
 =========
 
 
-The household’s problem
+The Household’s Problem 
 --------------------------
 
 A representative household faces a nonnegative value of money sequence
@@ -183,7 +183,7 @@ Equation :eq:`eqn_chang_ramsey3` imposes an exogenous upper bound
 :math:`\bar m` on the household's choice of real balances, where
 :math:`\bar m \geq m^f`
 
-Government
+Government 
 -----------
 
 The government chooses a sequence of inverse money growth rates with
@@ -265,7 +265,7 @@ large distorting tax collections
 To promote the welfare increasing effects of high real balances, the
 government wants to induce  *gradual deflation*
 
-Household’s problem
+Household’s Problem 
 ----------------------
 
 Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem is
@@ -329,7 +329,7 @@ A closely related observation pervaded the analysis of Stackelberg plans
 in lecture  :doc:`dynamic Stackelberg problems<dyn_stack>`
 
 
-Competitive equilibrium
+Competitive Equilibrium 
 ========================
 
 **Definition:**
@@ -353,7 +353,7 @@ Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system
 
 * Given :math:`\vec q, \vec x, \vec y`, :math:`(\vec c, \vec m)` solves the household’s problem
 
-Inventory of objects in play
+Inventory of Objects in Play 
 =============================
 
 Chang constructs the following objects
@@ -427,7 +427,7 @@ Chang constructs the following objects
      decisions for :math:`s = 0, \ldots, t-1`
 
 
-Analysis
+Analysis 
 ===========
 
 A competitive equilibrium is a triple of sequences
@@ -584,7 +584,7 @@ This property allows Chang to compute :math:`\Omega` as the
 limit of iterations on :math:`B` provided that iterations begin from a
 sufficiently large initial set
 
-Some useful notation
+Some Useful Notation 
 ---------------------
 
 Let :math:`\vec h^t = (h_0, h_1, \ldots, h_t)` denote a history of
@@ -644,7 +644,7 @@ Thus, the time :math:`t` component of :math:`\alpha_t(h^t)` is a pair of functio
 :math:`\alpha` after :math:`(\vec h^{t-1},h_t)` induce a competitive
 equilibrium sequence
 
-Another operator
+Another Operator 
 ------------------
 
 At this point it is convenient to introduce another operator that can be
@@ -724,7 +724,7 @@ As a very useful by-product, the algorithm that finds the largest fixed
 point :math:`S = D(S)` also produces the Ramsey plan, its value
 :math:`w`, and the associated competitive equilibrium
 
-Calculating all :math:`(w,\theta)` pairs in :math:`CE`
+Calculating all :math:`(w,\theta)` Pairs in :math:`ce` 
 =============================================================
 
 Above we have defined the :math:`D(Z)` operator as:
@@ -908,7 +908,7 @@ The package can be installed in a terminal/command prompt with pip
 
     plot_competitive(ch2)
 
-Solving a continuation Ramsey planner's Bellman equation
+Solving a Continuation Ramsey Planner's Bellman Equation 
 =============================================================
 
 
@@ -1063,7 +1063,7 @@ These are shown below for both sets of parameters
 
         plt.show()
 
-Next Steps
+Next Steps 
 ------------
 
 In :doc:`Credible Government Policies in Chang Model<chang_credible>` we shall find

@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ***************************************
-Job Search IV: Modeling Career Choice
+Job Search IV: Modeling Career Choice 
 ***************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 Next we study a computational problem concerning career and job choices
@@ -44,7 +44,7 @@ We begin with some imports
     from matplotlib import cm
 
 
-Model Features
+Model Features 
 ----------------
 
 * Career and job within career both chosen to maximize expected discounted wage flow
@@ -52,7 +52,7 @@ Model Features
 * Infinite horizon dynamic programming with two state variables
 
 
-Model
+Model 
 ========
 
 In what follows we distinguish between a career and a job, where
@@ -121,7 +121,7 @@ where
 
 Evidently :math:`I`, :math:`II` and :math:`III` correspond to "stay put", "new job" and "new life", respectively
 
-Parameterization
+Parameterization 
 ------------------
 
 As in :cite:`Ljungqvist2012`, section 6.5, we will focus on a discrete version of the model, parameterized as follows:
@@ -180,7 +180,7 @@ Here's a figure showing the effect on the pmf of different shape parameters when
 
 
 
-Implementation
+Implementation 
 ==============================================
 
 We will first create a class ``CareerWorkerProblem`` which will hold the 
@@ -365,12 +365,12 @@ the worker cannot change careers without changing jobs
 
 * Sometimes a good job must be sacrificed in order to change to a better career
 
-Exercises
+Exercises 
 =============
 
 .. _career_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Using the default parameterization in the class ``CareerWorkerProblem``,
@@ -387,7 +387,7 @@ Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use 
 
 .. _career_ex2:
 
-Exercise 2
+Exercise 2 
 ----------------
 
 Let's now consider how long it takes for the worker to settle down to a
@@ -418,18 +418,18 @@ Repeat the exercise with :math:`\beta=0.99` and interpret the change
 
 .. _career_ex3:
 
-Exercise 3
+Exercise 3 
 ----------------
 
 Set the parametization to ``G_a = G_b = 100`` and generate a new optimal policy
 figure -- interpret
 
 
-Solutions
+Solutions 
 ====================
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Simulate job / career paths
@@ -473,7 +473,7 @@ In reading the code, recall that ``optimal_policy[i, j]`` = policy at
     plt.show()
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 The median for the original parameterization can be computed as follows
@@ -518,7 +518,7 @@ The medians are subject to randomness, but should be about 7 and 14 respectively
 
 Not surprisingly, more patient workers will wait longer to settle down to their final job
 
-Exercise 3
+Exercise 3 
 ----------
 
 .. code-block:: python3

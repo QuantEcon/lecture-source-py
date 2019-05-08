@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************
-LQ Dynamic Programming Problems
+Lq Dynamic Programming Problems 
 ************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 Linear quadratic (LQ) control refers to a class of dynamic optimization problems that have found applications in almost every scientific field
@@ -61,7 +61,7 @@ In order to focus on computation, we leave longer proofs to these sources (while
 
 
 
-Introduction
+Introduction 
 ====================
 
 The "linear" part of LQ is a linear law of motion for the state, while the "quadratic" part refers to preferences
@@ -70,7 +70,7 @@ Let's begin with the former, move on to the latter, and then put them together i
 
 
 
-The Law of Motion
+The Law of Motion 
 -------------------
 
 Let :math:`x_t` be a vector describing the state of some economic system
@@ -99,7 +99,7 @@ Regarding the dimensions
 * :math:`w_t` is :math:`j \times 1`, :math:`C` is :math:`n \times j`
 
 
-Example 1
+Example 1 
 ^^^^^^^^^^^
 
 Consider a household budget constraint given by
@@ -125,7 +125,7 @@ This is clearly a special case of :eq:`lq_lom`, with assets being the state and 
 
 .. _lq_hhp:
 
-Example 2
+Example 2 
 ^^^^^^^^^^^
 
 One unrealistic feature of the previous model is that non-financial income has a zero mean and is often negative
@@ -246,7 +246,7 @@ In effect, we've bought ourselves linearity by adding another state
 
 
 
-Preferences
+Preferences 
 --------------
 
 In the LQ model, the aim is to minimize a flow of losses, where time-:math:`t` loss is given by the quadratic expression
@@ -267,7 +267,7 @@ Here
     In fact, for many economic problems, the definiteness conditions on :math:`R` and :math:`Q` can be relaxed.  It is sufficient that certain submatrices of :math:`R` and :math:`Q` be nonnegative definite. See :cite:`HansenSargent2008` for details
 
 
-Example 1
+Example 1 
 ^^^^^^^^^
 
 A very simple example that satisfies these assumptions is to take :math:`R`
@@ -294,7 +294,7 @@ The aim is to put the state close to the target, while using  controls parsimoni
 
 
 
-Example 2
+Example 2 
 ^^^^^^^^^
 
 In the household problem :ref:`studied above <lq_hhp>`, setting :math:`R=0`
@@ -311,7 +311,7 @@ Under this specification, the household's current loss is the squared deviation 
 
 
 
-Optimality -- Finite Horizon
+Optimality -- Finite Horizon 
 =============================
 
 .. index::
@@ -319,7 +319,7 @@ Optimality -- Finite Horizon
 
 Let's now be precise about the optimization problem we wish to consider, and look at how to solve it
 
-The Objective
+The Objective 
 --------------
 
 We will begin with the finite horizon case, with terminal time :math:`T \in \mathbb N`
@@ -352,7 +352,7 @@ Comments:
 
 .. _lq_cp:
 
-Information
+Information 
 --------------
 
 There's one constraint we've neglected to mention so far, which is that the
@@ -389,7 +389,7 @@ Actually, the preceding discussion applies to all standard dynamic programming p
 What's special about the LQ case is that -- as we shall soon see ---  the optimal :math:`u_t` turns out to be a linear function of :math:`x_t`
 
 
-Solution
+Solution 
 --------------
 
 
@@ -584,7 +584,7 @@ Rephrasing this more precisely, the sequence :math:`u_0, \ldots, u_{T-1}` given 
 
 for :math:`t = 0, \ldots, T-1` attains the minimum of :eq:`lq_object` subject to our constraints
 
-Implementation
+Implementation 
 ====================
 
 We will use code from `lqcontrol.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`__ 
@@ -618,7 +618,7 @@ are wrapped in a class  called ``LQ``, which includes
 
 .. _lq_mfpa:
 
-An Application
+An Application 
 -----------------
 
 Early Keynesian models assumed that households have a constant marginal
@@ -771,14 +771,14 @@ up of assets in the middle periods to fund rising consumption
 However, the essential features are the same: consumption is smooth relative to income, and assets are strongly positively correlated with cumulative unanticipated income
 
 
-Extensions and Comments
+Extensions and Comments 
 =================================
 
 
 Let's now consider a number of standard extensions to the LQ problem treated above
 
 
-Time-Varying Parameters
+Time-varying Parameters 
 ------------------------
 
 In some settings it can be desirable to allow :math:`A, B, C, R` and :math:`Q` to depend on :math:`t`
@@ -797,7 +797,7 @@ For further examples and a more systematic treatment, see :cite:`HansenSargent20
 .. _lq_cpt:
 
 
-Adding a Cross-Product Term
+Adding a Cross-product Term 
 -------------------------------
 
 In some LQ problems, preferences include a cross-product term :math:`u_t' N x_t`, so that the objective function becomes
@@ -845,7 +845,7 @@ We leave interested readers to confirm these results (the calculations are long 
 
 .. _lq_ih:
 
-Infinite Horizon
+Infinite Horizon 
 ---------------------
 
 .. index::
@@ -917,7 +917,7 @@ An example infinite horizon problem is treated :ref:`below <lqc_mwac>`
 
 .. _lq_cert_eq:
 
-Certainty Equivalence
+Certainty Equivalence 
 ----------------------------
 
 Linear quadratic control problems of the class discussed above have the property of *certainty equivalence*
@@ -930,13 +930,13 @@ It follows that we can ignore uncertainty when solving for optimal behavior, and
 
 
 
-Further Applications
+Further Applications 
 =====================
 
 
 .. _lq_nsi:
 
-Application 1: Age-Dependent Income Process
+Application 1: Age-dependent Income Process 
 --------------------------------------------
 
 
@@ -1079,7 +1079,7 @@ Exercise 1 gives the full set of parameters used here and asks you to replicate 
 
 
 
-Application 2: A Permanent Income Model with Retirement
+Application 2: A Permanent Income Model With Retirement 
 --------------------------------------------------------
 
 In the :ref:`previous application <lq_nsi>`, we generated income dynamics with an inverted U shape using polynomials, and placed them in an LQ framework
@@ -1161,7 +1161,7 @@ Assets peak at retirement and subsequently decline
 
 .. _lqc_mwac:
 
-Application 3: Monopoly with Adjustment Costs
+Application 3: Monopoly With Adjustment Costs 
 --------------------------------------------------------
 
 Consider a monopolist facing stochastic inverse demand function
@@ -1281,12 +1281,12 @@ can be found by writing down the dynamics of each element of the state
 
 
 
-Exercises
+Exercises 
 ====================
 
 .. _lqc_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Replicate the figure with polynomial income :ref:`shown above <solution_lqc_ex1_fig>`
@@ -1299,7 +1299,7 @@ The parameters are :math:`r = 0.05, \beta = 1 / (1 + r), \bar c = 1.5,  \mu = 2,
 
 .. _lqc_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 Replicate the figure on work and retirement :ref:`shown above <solution_lqc_ex2_fig>`
@@ -1333,7 +1333,7 @@ together the simulations from these two separate models
 
 .. _lqc_ex3:
 
-Exercise 3
+Exercise 3 
 ------------
 
 Reproduce the figures from the monopolist application :ref:`given above <lqc_mwac>`
@@ -1345,12 +1345,12 @@ For parameters, use :math:`a_0 = 5, a_1 = 0.5, \sigma = 0.15, \rho = 0.9,
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here’s one solution
@@ -1436,7 +1436,7 @@ where :math:`\{w_t\}` is iid :math:`N(0, 1)` and the coefficients
     
     plt.show()
 
-Exercise 2
+Exercise 2 
 ----------
 
 This is a permanent income / life-cycle model with polynomial growth in
@@ -1544,7 +1544,7 @@ the lecture
     
     plt.show()
 
-Exercise 3
+Exercise 3 
 ----------
 
 The first task is to find the matrices :math:`A, B, C, Q, R` that define

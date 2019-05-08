@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 *********************************************
-:index:`Optimal Growth II: Time Iteration`
+:index:`optimal Growth II: Time Iteration` 
 *********************************************
 
 .. contents:: :depth: 2
@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install quantecon
   !pip install interpolation
 
-Overview
+Overview 
 ============
 
 In this lecture we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model
@@ -54,7 +54,7 @@ Let's start with some imports
 
   
 
-The Euler Equation
+The Euler Equation 
 ==========================
 
 Let's take the model set out in :doc:`the stochastic growth model lecture <optgrowth>` and add the assumptions that 
@@ -152,7 +152,7 @@ Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtai
 
 
 
-The Coleman-Reffett Operator
+The Coleman-reffett Operator 
 -------------------------------
 
 Recall the Bellman operator
@@ -212,7 +212,7 @@ In view of the Euler equation, this is exactly :math:`\sigma^*(y)`
 
 
 
-Is the Coleman-Reffett Operator Well Defined?
+Is the Coleman-reffett Operator Well Defined? 
 -----------------------------------------------
 
 In particular, is there always a unique :math:`c \in (0, y)` that solves
@@ -241,7 +241,7 @@ whenever :math:`\sigma \in \mathscr P`
 
 
 
-Comparison with Value Function Iteration
+Comparison With Value Function Iteration 
 =========================================
 
 How does Euler equation time iteration compare with value function iteration?
@@ -264,7 +264,7 @@ It turns out that, once we actually implement these two routines, time iteration
 More on this below
 
 
-Equivalent Dynamics
+Equivalent Dynamics 
 ---------------------
 
 Let's talk about the theory first
@@ -352,7 +352,7 @@ It tells us that the following are equivalent
 We end up with exactly the same object
 
 
-Back to Economics
+Back to Economics 
 --------------------
 
 Have you guessed where this is leading?
@@ -366,7 +366,7 @@ To make life a little easier, we'll assume in the following analysis (although n
 always in our applications) that :math:`u(0) = 0`
 
 
-A Bijection
+A Bijection 
 ^^^^^^^^^^^^^
 
 Let :math:`\mathscr V` be all strictly concave, continuously differentiable functions :math:`v` mapping :math:`\mathbb R_+` to itself and satisfying :math:`v(0) = 0` and :math:`v'(y) > u'(y)` for all positive :math:`y` 
@@ -387,7 +387,7 @@ It turns out that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\ma
 A (solved) exercise below asks you to confirm this
 
 
-Commutative Operators
+Commutative Operators 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 It is an additional solved exercise (see below) to show that :math:`T` and :math:`K` commute under :math:`M`, in the sense that
@@ -409,7 +409,7 @@ Hence, :math:`T` and :math:`K` converge at exactly the same rate!
 
 
 
-Implementation
+Implementation 
 ================
 
 We've just shown that the operators :math:`T` and :math:`K` have the same rate of convergence
@@ -467,7 +467,7 @@ Here's that Bellman operator code again, which needs to be executed because we'l
 
 
 
-Testing on the Log / Cobb--Douglas Case
+Testing on the Log / Cobb--douglas Case 
 ------------------------------------------
 
 
@@ -599,11 +599,11 @@ number of iterations
 
 
 
-Exercises
+Exercises 
 ===========
 
 
-Exercise 1
+Exercise 1 
 -----------
 
 Show that :eq:`cpi_ed_tk` is valid.  In particular, 
@@ -613,13 +613,13 @@ Show that :eq:`cpi_ed_tk` is valid.  In particular,
 * Fix :math:`y \in (0, \infty)` and show that :math:`MTv(y) = KMv(y)`
 
 
-Exercise 2
+Exercise 2 
 -----------
 
 Show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P` 
 
 
-Exercise 3
+Exercise 3 
 ------------
 
 Consider the same model as above but with the CRRA utility function
@@ -639,7 +639,7 @@ Iterate 20 times with Bellman iteration and Euler equation time iteration
 
 Compare the resulting policies and check that they are close
 
-Exercise 4
+Exercise 4 
 -----------
 
 
@@ -648,11 +648,11 @@ the operators :math:`T` and :math:`K`, and check the solutions are similiar by p
 
 
 
-Solutions
+Solutions 
 ===========
 
 
-Exercise 1
+Exercise 1 
 -------------------------
 
 Let :math:`T, K, M, v` and :math:`y` be as stated in the exercise
@@ -688,7 +688,7 @@ On the other hand, :math:`KMv(y)` is the :math:`\sigma(y)` that solves
 We see that :math:`\sigma(y)` is the same in each case
 
 
-Exercise 2
+Exercise 2 
 -------------------------
 
 We need to show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P` 
@@ -726,7 +726,7 @@ Then :math:`v(0) = w(0) = 0` and :math:`v' = w'` on :math:`(0, \infty)`
 The fundamental theorem of calculus then implies that :math:`v = w` on :math:`\mathbb R_+`
 
 
-Exercise 3
+Exercise 3 
 -------------------------
 
 Here's the code, which will execute if you've run all the code above
@@ -767,7 +767,7 @@ Here's the code, which will execute if you've run all the code above
 The policies are indeed close
 
 
-Exercise 4
+Exercise 4 
 -------------------------
 
 

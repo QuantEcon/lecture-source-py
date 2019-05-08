@@ -6,14 +6,14 @@
 
 
 ********************************************************
-Classical Prediction and Filtering With Linear Algebra
+Classical Prediction and Filtering With Linear Algebra 
 ********************************************************
 
 .. contents:: :depth: 2
 
 
 
-Overview
+Overview 
 ============
 
 
@@ -65,7 +65,7 @@ formulas and associated linear algebra
 
 
 
-References
+References 
 -------------
 
 Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfanidisoptimum1988`, :cite:`Athanasios1991`, and :cite:`Muth1960`
@@ -76,7 +76,7 @@ Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfani
 
 
 
-Finite Dimensional Prediction
+Finite Dimensional Prediction 
 ===============================
 
 Let :math:`(x_1, x_2, \ldots, x_T)^\prime = x` be a :math:`T \times 1` vector of random variables with mean :math:`\mathbb{E} x = 0` and covariance matrix :math:`\mathbb{E} xx^\prime = V`
@@ -234,7 +234,7 @@ It follows that
 
     \mathbb{\hat E}  [ x_t \mid x_{t-m},\, x_{t-m-1}, \ldots, x_1 ] =  \sum^{m-1}_{j=0} L_{t,t-j}^{-1}\, \varepsilon_{t-j}
 
-Implementation
+Implementation 
 ----------------
 
 Code that computes solutions to  LQ control and filtering problems  using the methods described here and in :doc:`lu_tricks` can be found in the file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__
@@ -246,7 +246,7 @@ Here's how it looks
 Let's use this code to tackle two interesting examples
 
 
-Example 1
+Example 1 
 -----------
 
 
@@ -337,7 +337,7 @@ autoregressive representation to be described below when we study infinite horiz
 
 
 
-Example 2
+Example 2 
 -----------
 
 Consider a stochastic process :math:`X_t` with moving average
@@ -397,7 +397,7 @@ We proceed in the same way as example 1
 
 
 
-Prediction
+Prediction 
 -------------
 
 
@@ -477,7 +477,7 @@ This method can readily be generalized to multivariate systems
 
 .. _fdcp:
 
-Combined Finite Dimensional Control and Prediction
+Combined Finite Dimensional Control and Prediction 
 ====================================================
 
 
@@ -572,7 +572,7 @@ given by the :math:`(N-t +1)^{\rm th}` row of
 
 
 
-Infinite Horizon Prediction and Filtering Problems
+Infinite Horizon Prediction and Filtering Problems 
 =====================================================
 
 It is instructive to compare the finite-horizon formulas based on linear algebra decompositions of finite-dimensional covariance matrices
@@ -637,7 +637,7 @@ Interesting versions of these problems related to the permanent income theory we
 
 
 
-Problem formulation
+Problem Formulation 
 --------------------
 
 These problems are solved as follows
@@ -1041,12 +1041,12 @@ and that the zeros of :math:`\theta (z)` are not inside the unit circle
 
 
 
-Exercises
+Exercises 
 =================
 
 
 
-Exercise 1
+Exercise 1 
 -----------
 
 Let :math:`Y_t = (1 - 2 L ) u_t` where :math:`u_t` is a mean zero
@@ -1079,7 +1079,7 @@ Find a formula for the :math:`A_{2j}`'s in
     X_{t-j}
 
 
-Exercise 2
+Exercise 2 
 ------------
 
 

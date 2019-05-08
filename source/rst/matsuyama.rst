@@ -6,7 +6,7 @@
 
 
 ****************************************
-Globalization and Cycles
+Globalization and Cycles 
 ****************************************
 
 .. contents:: :depth: 2
@@ -15,7 +15,7 @@ This lecture is coauthored with `Chase Coleman <https://github.com/cc7768>`__
 
 
 
-Overview
+Overview 
 =====================================
 
 
@@ -35,7 +35,7 @@ In particular, as trade costs fall and international competition increases, inno
 
 
 
-Background
+Background 
 -------------
 
 The model builds on work by Judd :cite:`Judd1985`, Deneckner and Judd :cite:`Deneckere1992` and Helpman and Krugman :cite:`Helpman1985` by developing a two country model with trade and innovation
@@ -48,13 +48,13 @@ Below we review the model and replicate some of the results on synchronization o
 
 
 
-Key Ideas
+Key Ideas 
 ==========================
 
 It is helpful to begin with an overview of the mechanism
 
 
-Innovation Cycles
+Innovation Cycles 
 ---------------------
 
 As discussed above, two countries produce and trade with each other
@@ -77,7 +77,7 @@ However, goods also become obsolete, so that not all survive from period to peri
 
 This mechanism generates a cycle, where the mass of varieties increases through simultaneous innovation and then falls through obsolescence
 
-Synchronization
+Synchronization 
 ---------------
 
 In the absence of trade, the timing of innovation cycles in each country is decoupled
@@ -90,7 +90,7 @@ As illustrated below, this leads to synchonization of business cycles across the
 
 
 
-Model
+Model 
 =======
 
 Let's write down the model more formally
@@ -135,7 +135,7 @@ The parameter :math:`\sigma > 1` is the direct partial elasticity of substitutio
 
 We can split the varieties into those which are supplied competitively and those supplied monopolistically; that is, :math:`\Omega_t = \Omega_t^c + \Omega_t^m`
 
-Prices
+Prices 
 ---------
 
 Demand for differentiated inputs is
@@ -231,7 +231,7 @@ The symbols :math:`N_{j, t}^c` and :math:`N_{j, t}^m` will denote the measures o
 
 
 
-New Varieties
+New Varieties 
 --------------
 
 To introduce a new variety, a firm must hire :math:`f` units of labor per variety in each country
@@ -260,7 +260,7 @@ With further manipulations, this becomes
     \leq f
 
 
-Law of Motion
+Law of Motion 
 ---------------
 
 With :math:`\delta` as the exogenous probability of a variety becoming obsolete,
@@ -342,7 +342,7 @@ This gives us
     h_j(n_k)^2 + \left( (\rho + \frac{1}{\rho}) n_k - s_j - s_k \right) h_j(n_k) + (n_k^2 - \frac{s_j n_k}{\rho} - s_k n_k \rho) = 0
 
 
-Simulation
+Simulation 
 ===============
 
 
@@ -373,7 +373,7 @@ Here's the main body of code
 
 
 
-Time Series of Firm Measures
+Time Series of Firm Measures 
 ----------------------------
 
 We write a short function below that exploits the preceding code and plots two time series
@@ -424,18 +424,18 @@ Here's one snapshot from the interactive figure
    :scale: 80%
 
 
-Exercises
+Exercises 
 ==============
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Replicate the figure :ref:`shown above <matsrep>` by coloring initial conditions according to whether or not synchronization occurs from those conditions
 
 
 
-Solutions
+Solutions 
 ==========
 
 
@@ -495,7 +495,7 @@ These solutions are written by `Chase Coleman <github.com/cc7768>`__
                  x=0.475, y=0.915, size=26)
     plt.show()
 
-Interactive Version
+Interactive Version 
 -------------------
 
 Additionally, instead of just seeing 4 plots at once, we might want to

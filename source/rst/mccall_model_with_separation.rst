@@ -6,7 +6,7 @@
 
 
 ********************************************
-Job Search II: Search and Separation
+Job Search II: Search and Separation 
 ********************************************
 
 .. index::
@@ -21,7 +21,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ===============
 
 
@@ -74,7 +74,7 @@ It satisfies :math:`u'> 0` and :math:`u'' < 0`
 
 
 
-Timing and Decisions
+Timing and Decisions 
 -----------------------
 
 Here's what happens at the start of a given period in our model with search and separation
@@ -104,7 +104,7 @@ up in a :doc:`later lecture <jv>`)
 
 
 
-Solving the Model using Dynamic Programming
+Solving the Model Using Dynamic Programming 
 ============================================
 
 Let 
@@ -156,7 +156,7 @@ Before discussing this, however, let's make a small extension to the model
 
 
 
-Stochastic Offers
+Stochastic Offers 
 -----------------
 
 Let's suppose now that unemployed workers don't always receive job offers
@@ -188,7 +188,7 @@ and
       \beta \gamma \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
 
 
-Solving the Bellman Equations
+Solving the Bellman Equations 
 -------------------------------
 
 
@@ -233,7 +233,7 @@ A proof can be obtained via the Banach contraction mapping theorem
 
 
 
-Implementation
+Implementation 
 ================
 
 Let's implement this iterative process
@@ -375,7 +375,7 @@ The value :math:`v` is increasing because higher :math:`w` generates a higher wa
 
 
 
-The Reservation Wage
+The Reservation Wage 
 =======================
 
 Once :math:`v` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer
@@ -438,7 +438,7 @@ In each instance below we'll show you a figure and then ask you to reproduce it 
 
 
 
-The Reservation Wage and Unemployment Compensation
+The Reservation Wage and Unemployment Compensation 
 ----------------------------------------------------
 
 First, let's look at how :math:`\bar w` varies with unemployment compensation
@@ -455,7 +455,7 @@ In effect, the cost of continuing job search is reduced
 
 
 
-The Reservation Wage and Discounting
+The Reservation Wage and Discounting 
 ----------------------------------------------------
 
 Next let's investigate how :math:`\bar w` varies with the discount rate
@@ -470,7 +470,7 @@ Again, the results are intuitive: More patient workers will hold out for higher 
 
 
 
-The Reservation Wage and Job Destruction
+The Reservation Wage and Job Destruction 
 ----------------------------------------------------
 
 Finally, let's look at how :math:`\bar w` varies with the job separation rate :math:`\alpha`
@@ -489,17 +489,17 @@ Hence the reservation wage is lower
 
 
 
-Exercises
+Exercises 
 =============
 
 
 
-Exercise 1
+Exercise 1 
 ----------------
 
 Reproduce all the reservation wage figures shown above
 
-Exercise 2
+Exercise 2 
 ------------
 
 Plot the reservation wage against the job offer rate :math:`\gamma`
@@ -519,10 +519,10 @@ Interpret your results
 
 
 
-Solutions
+Solutions 
 ==========
 
-Exercise 1
+Exercise 1 
 ----------
 
 Using the ``compute_reservation_wage`` function mentioned earlier in the lecture,
@@ -551,7 +551,7 @@ we can create an array for reservation wages for different values of :math:`c`,
 
     plt.show()
 
-Exercise 2
+Exercise 2 
 ----------
 
 Similar to above, we can plot :math:`\bar w` against :math:`\gamma` as follows

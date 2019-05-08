@@ -6,7 +6,7 @@
     single: python
 
 ******************************
-Lucas Asset Pricing Using DLE
+Lucas Asset Pricing Using DLE 
 ******************************
 
 .. contents:: :depth: 2
@@ -112,7 +112,7 @@ to develop an equilibrium theory of asset prices:
       \end{array} }
       \right]'
 
-Asset Pricing Equations
+Asset Pricing Equations 
 ========================
 
 :cite:`HS2013` show that the time t value of a permanent claim to a stream
@@ -133,7 +133,7 @@ where
 The use of :math:`\bar e _1` indicates that the first consumption good
 is the numeraire
 
-Asset Pricing Simulations
+Asset Pricing Simulations 
 ==========================
 
 .. code-block:: python3

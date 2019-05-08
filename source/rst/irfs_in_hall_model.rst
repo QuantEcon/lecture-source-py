@@ -6,7 +6,7 @@
     single: python
 
 ****************************
-IRFs in Hall Models
+Irfs in Hall Models 
 ****************************
 
 .. contents:: :depth: 2
@@ -43,7 +43,7 @@ Knowledge of the basic economic environment is assumed
 
 See the lecture "Growth in Dynamic Linear Economies" for more details
 
-Example 1: Hall (1978)
+Example 1: Hall (1978) 
 =======================
 
 First, we set parameters to make consumption (almost) follow a random
@@ -146,7 +146,7 @@ unit eigenvalue in this economy
 Investment is much more response to the endowment shock at shorter time
 horizons
 
-Example 2: Higher adjustment costs
+Example 2: Higher Adjustment Costs 
 ===================================
 
 We generate our next economy by making only one change to the parameters
@@ -206,7 +206,7 @@ The impulse response functions now show that an endowment shock does not
 a have permanent effect on the levels of either consumption or
 investment
 
-Example 3: Durable Consumption Goods
+Example 3: Durable Consumption Goods 
 =====================================
 
 We generate our third economy by raising :math:`\phi_1` further, to 1.0.

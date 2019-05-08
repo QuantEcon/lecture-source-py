@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ******************************************
-Python Essentials
+Python Essentials 
 ******************************************
 
 .. contents:: :depth: 2
@@ -12,7 +12,7 @@ In this lecture we'll cover features of the language that are essential to readi
 
 
 
-Data Types
+Data Types 
 ======================
 
 .. index::
@@ -26,7 +26,7 @@ Let's learn a bit more about them
 
 
 
-Primitive Data Types
+Primitive Data Types 
 -------------------------
 
 One simple data type is **Boolean values**, which can be either ``True`` or ``False``
@@ -114,7 +114,7 @@ Complex numbers are another primitive data type in Python
 
 
 
-Containers
+Containers 
 --------------
 
 Python has several basic types for storing collections of (possibly heterogeneous) data
@@ -176,7 +176,7 @@ You've actually :ref:`seen an example of this <tuple_unpacking_example>` already
 
 Tuple unpacking is convenient and we'll use it often
 
-Slice Notation
+Slice Notation 
 ^^^^^^^^^^^^^^^^
 
 .. index::
@@ -212,7 +212,7 @@ The same slice notation works on tuples and strings
     s[-3:]  # Select the last three elements
 
 
-Sets and Dictionaries
+Sets and Dictionaries 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -268,7 +268,7 @@ The ``set()`` function creates sets from sequences
 
 
 
-Input and Output
+Input and Output 
 ====================
 
 .. index::
@@ -312,7 +312,7 @@ We can also use Python to read the contents of ``newline.txt`` as follows
     print(out)
 
 
-Paths
+Paths 
 --------
 
 .. index::
@@ -331,7 +331,7 @@ In this case you can shift the file to the pwd or specify the `full path <https:
 
 .. _iterating_version_1:
 
-Iterating
+Iterating 
 ========================
 
 .. index::
@@ -344,7 +344,7 @@ One of Python's strengths is its simple, flexible interface to this kind of iter
 the ``for`` loop
 
 
-Looping over Different Objects
+Looping Over Different Objects 
 ---------------------------------
 
 Many Python objects are "iterable", in the sense that they can looped over
@@ -388,7 +388,7 @@ This leads to the clean, convenient syntax shown in our program
 Many other kinds of objects are iterable, and we'll discuss some of them later on
 
 
-Looping without Indices
+Looping Without Indices 
 ------------------------
 
 One thing you might have noticed is that Python tends to favor looping without explicit indexing
@@ -457,10 +457,10 @@ The output of the loop is
 
 
 
-Comparisons and Logical Operators
+Comparisons and Logical Operators 
 ===================================
 
-Comparisons
+Comparisons 
 ---------------------------------
 
 .. index::
@@ -533,7 +533,7 @@ The rule is:
 
 
 
-Combining Expressions
+Combining Expressions 
 ------------------------
 
 .. index::
@@ -570,7 +570,7 @@ Remember
 * ``P or Q`` is ``False`` if both are ``False``, else ``True``
 
 
-More Functions
+More Functions 
 ========================
 
 .. index::
@@ -621,7 +621,7 @@ The full list of Python built-ins is `here <https://docs.python.org/2/library/fu
 Now let's talk some more about user-defined functions constructed using the keyword ``def``
 
 
-Why Write Functions?
+Why Write Functions? 
 --------------------------
 
 User defined functions are important for improving the clarity of your code by
@@ -634,7 +634,7 @@ User defined functions are important for improving the clarity of your code by
 The basics of user defined functions were discussed :ref:`here <user_defined_functions>`
 
 
-The Flexibility of Python Functions
+The Flexibility of Python Functions 
 ---------------------------------------
 
 As we discussed in the :ref:`previous lecture <python_by_example>`, Python functions are very flexible
@@ -663,7 +663,7 @@ code like the following example
 
 Functions without a return statement automatically return the special Python object ``None``
 
-Docstrings
+Docstrings 
 ----------------
 
 .. index::
@@ -722,7 +722,7 @@ With one question mark we bring up the docstring, and with two we get the source
 
 
 
-One-Line Functions: ``lambda``
+One-line Functions: ``lambda`` 
 -------------------------------
 
 .. index::
@@ -763,7 +763,7 @@ To create the function :math:`f(x) = x^3` we can use ``lambda`` as follows
 Here the function created by ``lambda`` is said to be *anonymous*, because it was never given a name
 
 
-Keyword Arguments
+Keyword Arguments 
 -------------------
 
 .. index::
@@ -813,7 +813,7 @@ They can by modified as follows
 
 
 
-Coding Style and PEP8
+Coding Style and Pep8 
 =============================
 
 .. index::
@@ -837,7 +837,7 @@ In Python, the standard style is set out in `PEP8 <https://www.python.org/dev/pe
 
 
 
-Exercises
+Exercises 
 ============
 
 Solve the following exercises
@@ -846,7 +846,7 @@ Solve the following exercises
 
 .. _pyess_ex1:
 
-Exercise 1
+Exercise 1 
 ---------------
 
 Part 1: Given two numeric lists or tuples ``x_vals`` and ``y_vals`` of equal length, compute
@@ -868,7 +868,7 @@ such that both ``a`` and ``b`` are even
 
 .. _pyess_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 Consider the polynomial
@@ -892,7 +892,7 @@ Try to use ``enumerate()`` in your loop
 
 .. _pyess_ex3:
 
-Exercise 3
+Exercise 3 
 --------------
 
 Write a function that takes a string as an argument and returns the number of capital letters in the string
@@ -905,7 +905,7 @@ Hint: ``'foo'.upper()`` returns ``'FOO'``
 
 .. _pyess_ex4:
 
-Exercise 4
+Exercise 4 
 ------------
 
 Write a function that takes two sequences ``seq_a`` and ``seq_b`` as arguments and
@@ -920,7 +920,7 @@ returns ``True`` if every element in ``seq_a`` is also an element of ``seq_b``, 
 
 .. _pyess_ex5:
 
-Exercise 5
+Exercise 5 
 ------------
 
 When we cover the numerical libraries, we will see they include many
@@ -944,16 +944,16 @@ Aim for clarity, not efficiency
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
-Part 1 solution:
+Part 1 Solution: 
 ^^^^^^^^^^^^^^^^
 
 Here's one possible solution
@@ -973,7 +973,7 @@ This also works
     sum(x * y for x, y in zip(x_vals, y_vals))
 
 
-Part 2 solution:
+Part 2 Solution: 
 ^^^^^^^^^^^^^^^^
 
 One solution is
@@ -1007,7 +1007,7 @@ and
 
 
 
-Part 3 solution
+Part 3 Solution 
 ^^^^^^^^^^^^^^^
 
 Here's one possibility
@@ -1018,7 +1018,7 @@ Here's one possibility
     sum([x % 2 == 0 and y % 2 == 0 for x, y in pairs])
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3
@@ -1033,7 +1033,7 @@ Exercise 2
 
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 Here's one solution:
@@ -1049,7 +1049,7 @@ Here's one solution:
     f('The Rain in Spain')
 
 
-Exercise 4
+Exercise 4 
 ----------
 
 Here's a solution:
@@ -1076,7 +1076,7 @@ Of course if we use the ``sets`` data type then the solution is easier
     def f(seq_a, seq_b):
         return set(seq_a).issubset(set(seq_b))
 
-Exercise 5
+Exercise 5 
 ----------
 
 .. code-block:: python3

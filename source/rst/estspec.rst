@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ******************************************
-Estimation of :index:`Spectra`
+Estimation of :index:`spectra` 
 ******************************************
 
 .. index:: 
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 In a :ref:`previous lecture <arma>` we covered some fundamental properties of covariance stationary linear stochastic processes
@@ -43,7 +43,7 @@ For supplementary reading, see :cite:`Sargent1987` or :cite:`CryerChan2008`
 
 .. _periodograms:
 
-:index:`Periodograms`
+:index:`periodograms` 
 =====================
 
 :ref:`Recall that <arma_specd>` the spectral density :math:`f` of a covariance stationary process with
@@ -94,7 +94,7 @@ From these two results, you will be able to verify that the values of
 The next section helps to explain the connection between the periodogram and the spectral density
 
 
-Interpretation
+Interpretation 
 ----------------
 
 .. index:: 
@@ -164,7 +164,7 @@ Recalling our expression for :math:`f` given :ref:`above <periodograms>`,
 we see that :math:`I(\omega_j)` is just a sample analog of :math:`f(\omega_j)`
 
 
-Calculation
+Calculation 
 --------------
 
 .. index:: 
@@ -253,7 +253,7 @@ The periodogram is far too irregular relative to the underlying spectral density
 This brings us to our next topic
 
 
-:index:`Smoothing`
+:index:`smoothing` 
 ==================
 
 .. index:: 
@@ -326,7 +326,7 @@ Note the smaller weights towards the edges and larger weights in the center, so 
 
 
 
-Estimation with Smoothing
+Estimation With Smoothing 
 ------------------------------
 
 .. index:: 
@@ -368,7 +368,7 @@ judgement/priors or some other theory
 
 .. _estspec_pfas:
 
-Pre-Filtering and Smoothing
+Pre-filtering and Smoothing 
 ------------------------------
 
 .. index:: 
@@ -415,7 +415,7 @@ Another way to put this is that if :math:`I` is relatively constant, then we can
 
 .. _ar_periodograms:
 
-The AR(1) Setting
+The Ar(1) Setting 
 -------------------
 
 .. index:: 
@@ -491,13 +491,13 @@ of being closer to the true spectral density
 
 
 
-Exercises
+Exercises 
 =============
 
 
 .. _estspec_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Replicate :ref:`this figure <fig_window_smoothing>` (modulo randomness)
@@ -510,7 +510,7 @@ For the smoothed periodogram, the window type is "hamming"
 
 .. _estspec_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 Replicate :ref:`this figure <fig_ar_smoothed_periodogram>` (modulo randomness)
@@ -522,7 +522,7 @@ All periodograms are fit with the "hamming" window and window length of 65
 
 
 
-Solutions
+Solutions 
 ============
 
 
@@ -532,7 +532,7 @@ Solutions
 
     from quantecon import ar_periodogram
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -562,7 +562,7 @@ Exercise 1
         ax[i].set_title(f'window length = {wl}')
     plt.show()
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3

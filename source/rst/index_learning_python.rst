@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *********************************
-Introduction to Python
+Introduction to Python 
 *********************************
 
 This first part of the course provides a relatively fast-paced introduction to the Python programming language

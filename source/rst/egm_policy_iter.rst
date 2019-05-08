@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************************************
-:index:`Optimal Growth III: The Endogenous Grid Method`
+:index:`optimal Growth Iii: The Endogenous Grid Method` 
 ********************************************************
 
 .. contents:: :depth: 2
@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install quantecon
   !pip install interpolation
 
-Overview
+Overview 
 ============
 
 We solved the stochastic optimal growth model using 
@@ -51,14 +51,14 @@ Let's start with some imports
     %matplotlib inline
 
 
-Key Idea
+Key Idea 
 ==========================
 
 Let's start by reminding ourselves of the theory and then see how the numerics fit in
 
 
 
-Theory
+Theory 
 ------
 
 Take the model set out in :doc:`the time iteration lecture <coleman_policy_iter>`, following the same terminology and notation 
@@ -87,7 +87,7 @@ It returns a new function :math:`K \sigma`,  where :math:`(K \sigma)(y)` is the 
 
 
 
-Exogenous Grid
+Exogenous Grid 
 -------------------
 
 As discussed in :doc:`the lecture on time iteration <coleman_policy_iter>`, to implement the method on a computer we need numerical approximation
@@ -112,7 +112,7 @@ Iteration then continues...
 
 
 
-Endogenous Grid
+Endogenous Grid 
 --------------------
 
 The method discussed above requires a root finding routine to find the
@@ -152,7 +152,7 @@ With the points :math:`\{y_i, c_i\}` in hand, we can reconstruct :math:`K \sigma
 The name EGM comes from the fact that the grid :math:`\{y_i\}` is  determined **endogenously**
 
 
-Implementation
+Implementation 
 ================
 
 Let's implement this version of the Coleman-Reffett operator and see how it performs
@@ -191,7 +191,7 @@ model
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
-The Operator
+The Operator 
 ----------------
 
 
@@ -251,7 +251,7 @@ We'll also run our original implementation, which uses an exogenous grid and req
 Let's test out the code above on some example parameterizations
 
 
-Testing on the Log / Cobb--Douglas Case
+Testing on the Log / Cobb--douglas Case 
 ------------------------------------------
 
 
@@ -359,7 +359,7 @@ Let's start from the consumption policy that eats the whole pie: :math:`\sigma(y
 We see that the policy has converged nicely, in only a few steps
 
 
-Speed
+Speed 
 ========
 
 Now let's compare the clock times per iteration for the standard Coleman-Reffett

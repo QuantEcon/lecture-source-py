@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ******************************************
-An Introductory Example
+An Introductory Example 
 ******************************************
 
 .. index::
@@ -34,7 +34,7 @@ Note: These references offer help on installing Python but you should probably s
 You'll then have an outstanding scientific computing environment (Anaconda) and be ready to move on to the rest of our course
 
 
-Overview
+Overview 
 ============
 
 In this lecture we will write and then pick apart small Python programs
@@ -43,7 +43,7 @@ The objective is to introduce you to basic Python syntax and data structures
 
 Deeper concepts will be covered in later lectures
 
-Prerequisites  
+Prerequisites 
 --------------
 
 The :doc:`lecture <getting_started>` on getting started with Python
@@ -51,7 +51,7 @@ The :doc:`lecture <getting_started>` on getting started with Python
 
 
 
-The Task: Plotting a White Noise Process
+The Task: Plotting a White Noise Process 
 ================================================
 
 
@@ -66,7 +66,7 @@ In other words, we want to generate figures that look something like this:
 
 We'll do this several different ways
 
-Version 1
+Version 1 
 ==============
 
 
@@ -90,7 +90,7 @@ Let's break this program down and see how it works
 
 .. _import:
 
-Import Statements
+Import Statements 
 -------------------
 
 The first two lines of the program import functionality 
@@ -126,7 +126,7 @@ We could also just write
 
 But the former method is convenient and more standard
 
-Why all the imports?
+Why all the Imports? 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Remember that Python is a general purpose language
@@ -167,7 +167,7 @@ On this machine it's located in
 
     anaconda3/lib/python3.6/site-packages/numpy
 
-Subpackages
+Subpackages 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -184,7 +184,7 @@ Subpackages are just packages that are subdirectories of another package
 
 
 
-Importing Names Directly
+Importing Names Directly 
 --------------------------
 
 Recall this code that we saw above
@@ -217,7 +217,7 @@ Then it's harder for readers to know where ``sqrt`` came from, should they wish 
 
 
 
-Alternative Versions
+Alternative Versions 
 =======================
 
 Let's try writing some alternative versions of :ref:`our first program <ourfirstprog>`
@@ -231,7 +231,7 @@ The programs below are less efficient but
 * illustrate common data types like lists
 
 
-A Version with a For Loop 
+A Version With a For Loop 
 -----------------------------------
 
 Here's a version that illustrates loops and Python lists
@@ -268,7 +268,7 @@ Let's study some parts of this program in more detail
 
 .. _lists_ref:
 
-Lists
+Lists 
 --------
 
 .. index::
@@ -339,7 +339,7 @@ Following C, C++, Java, etc., lists in Python are zero based
     x[1]
 
 
-The For Loop
+The For Loop 
 ---------------
 
 .. index::
@@ -387,7 +387,7 @@ The ``sequence`` object can in fact be a very general object, as we'll see
 soon enough
 
 
-Code Blocks and Indentation
+Code Blocks and Indentation 
 -----------------------------
 
 .. index::
@@ -418,7 +418,7 @@ On the other hand, it takes a bit of care to get right, so please remember:
 
 * The Python standard is 4 spaces, and that's what you should use
 
-Tabs vs Spaces
+Tabs vs Spaces 
 ^^^^^^^^^^^^^^^^
 
 One small "gotcha" here is the mixing of tabs and spaces, which often leads to errors
@@ -432,7 +432,7 @@ If you are using a Jupyter notebook you will have no problems here
 Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- trying searching on line
 
 
-While Loops
+While Loops 
 ---------------------
 
 .. index::
@@ -469,7 +469,7 @@ Note that
 
 .. _user_defined_functions:
 
-User-Defined Functions
+User-defined Functions 
 ----------------------------
 
 .. index::
@@ -522,7 +522,7 @@ The net result is that the name ``data`` is *bound* to the list ``ϵ_values`` re
 
 
 
-Conditions
+Conditions 
 --------------
 
 .. index::
@@ -615,7 +615,7 @@ In the context of our program, the ability to bind new names to functions means 
 
 
 
-List Comprehensions
+List Comprehensions 
 ----------------------
 
 .. index::
@@ -666,12 +666,12 @@ into
 
 
 
-Exercises
+Exercises 
 ===============
 
 .. _pbe_ex1:
 
-Exercise 1
+Exercise 1 
 -----------------
 
 Recall that :math:`n!` is read as ":math:`n` factorial" and defined as
@@ -687,7 +687,7 @@ for any positive integer :math:`n`
 
 .. _pbe_ex2:
 
-Exercise 2
+Exercise 2 
 --------------
 
 The `binomial random variable <https://en.wikipedia.org/wiki/Binomial_distribution>`_ :math:`Y \sim Bin(n, p)` represents the number of successes in :math:`n` binary trials, where each trial succeeds with probability :math:`p`
@@ -702,7 +702,7 @@ Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then th
 
 .. _pbe_ex3:
 
-Exercise 3
+Exercise 3 
 --------------
 
 Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besides
@@ -722,7 +722,7 @@ Your hints are as follows:
 
 .. _pbe_ex4:
 
-Exercise 4
+Exercise 4 
 --------------
 
 Write a program that prints one realization of the following random device:
@@ -737,7 +737,7 @@ Use no import besides ``from numpy.random import uniform``
 
 .. _pbe_ex5:
 
-Exercise 5
+Exercise 5 
 ----------------------------------
 
 Your next task is to simulate and plot the correlated time series
@@ -767,7 +767,7 @@ Set :math:`T=200` and :math:`\alpha = 0.9`
 
 .. _pbe_ex6:
 
-Exercise 6
+Exercise 6 
 ----------------------------------
 
 To do the next exercise, you will need to know how to produce a plot legend
@@ -809,13 +809,13 @@ Important hints:
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -830,7 +830,7 @@ Exercise 1
 
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3
@@ -849,7 +849,7 @@ Exercise 2
 
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 Consider the circle of diameter 1 embedded in the unit square
@@ -883,7 +883,7 @@ fraction that fall into the unit circle
     
     print(area_estimate * 4)  # dividing by radius**2
 
-Exercise 4
+Exercise 4 
 ----------
 
 .. code-block:: python3
@@ -902,7 +902,7 @@ Exercise 4
     print(payoff)
 
 
-Exercise 5
+Exercise 5 
 ----------
 
 The next line embeds all subsequent figures in the browser itself
@@ -921,7 +921,7 @@ The next line embeds all subsequent figures in the browser itself
     plt.plot(x_values)
     plt.show()
 
-Exercise 6
+Exercise 6 
 ----------
 
 .. code-block:: python3

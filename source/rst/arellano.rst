@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ***************************************
-Default Risk and Income Fluctuations
+Default Risk and Income Fluctuations 
 ***************************************
 
 .. contents:: :depth: 2
@@ -17,7 +17,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 This lecture computes versions of  Arellano's  :cite:`arellano2008default` model of sovereign default
@@ -58,12 +58,12 @@ Such dynamics are consistent with experiences of many countries
 
 
 
-Structure
+Structure 
 ===============
 
 In this section we describe the main features of the model
 
-Output, Consumption and Debt
+Output, Consumption and Debt 
 -----------------------------
 
 
@@ -101,7 +101,7 @@ Because household are averse to consumption fluctuations, the government will tr
 
 
 
-Asset Markets
+Asset Markets 
 ---------------
 
 The only credit instrument available to the government is a one-period bond traded in international credit markets
@@ -141,7 +141,7 @@ To rule out Ponzi schemes, we also require that :math:`B \geq -Z` in every perio
 * :math:`Z` is chosen to be sufficiently large that the constraint never binds in equilibrium
 
 
-Financial Markets
+Financial Markets 
 -------------------
 
 Foreign creditors
@@ -169,7 +169,7 @@ Therefore, the discounted expected value of a promise to pay :math:`B` next peri
 Next we turn to how the government in effect chooses the default probability :math:`\delta`    
 
 
-Government's decisions
+Government's Decisions 
 -----------------------
 
 
@@ -191,7 +191,7 @@ But a sovereign default has two consequences:
 
 #. The country loses access to foreign credit markets
 
-Reentering international credit market
+Reentering International Credit Market 
 ---------------------------------------
 
 While in a state of default, the economy regains access to
@@ -200,7 +200,7 @@ foreign credit in each subsequent period with probability
 
 
 
-Equilibrium
+Equilibrium 
 ===============
 
 
@@ -298,7 +298,7 @@ the bond price function:
     q(B', y) = \frac{1 - \delta(B', y)}{1 + r}
 
 
-Definition of equilibrium
+Definition of Equilibrium 
 ---------------------------
 
 An *equilibrium* is 
@@ -322,7 +322,7 @@ such that
 
 
 
-Computation
+Computation 
 ===============
 
 Let's now compute an equilibrium of Arellano's model
@@ -374,7 +374,7 @@ The output process is discretized using `Tauchen's quadrature method <https://gi
 
 
 
-Results
+Results 
 ===============
 
 Let's start by trying to replicate the results obtained in :cite:`arellano2008default`
@@ -437,12 +437,12 @@ One notable feature of the simulated data is the nonlinear response of interest 
 Periods of relative stability are followed by sharp spikes in the discount rate on government debt
 
 
-Exercises
+Exercises 
 ==============
 
 .. _arellano_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 To the extent that you can, replicate the figures shown above
@@ -452,7 +452,7 @@ To the extent that you can, replicate the figures shown above
 * The time series will of course vary depending on the shock draws
 
 
-Solutions
+Solutions 
 ==========
 
 

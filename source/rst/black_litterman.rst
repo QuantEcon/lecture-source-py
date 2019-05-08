@@ -6,17 +6,17 @@
     single: python
 
 ****************************************************
-Two Modifications of Mean-variance Portfolio Theory
+Two Modifications of Mean-variance Portfolio Theory 
 ****************************************************
 
 .. contents:: :depth: 2
 
 **Authors:** Daniel Csaba, Thomas J. Sargent and Balint Szoke
 
-Overview
+Overview 
 =========
 
-Remarks About Estimating Means and Variances
+Remarks About Estimating Means and Variances 
 ----------------------------------------------
 
 The famous **Black-Litterman** (1992) :cite:`black1992global` portfolio choice model that we
@@ -56,7 +56,7 @@ Among the ideas in play in this lecture will be
     from ipywidgets import interact, FloatSlider
 
 
-Adjusting Mean-variance Portfolio Choice Theory for Distrust of Mean Excess Returns
+Adjusting Mean-variance Portfolio Choice Theory for Distrust of Mean Excess Returns 
 -----------------------------------------------------------------------------------
 
 This lecture describes two lines of thought that modify the classic
@@ -74,7 +74,7 @@ widely recognized embarrassment to mean-variance portfolio theory,
 namely, that it usually implies taking very extreme long-short portfolio
 positions
 
-Mean-variance Portfolio Choice
+Mean-variance Portfolio Choice 
 -------------------------------
 
 A risk free security earns one-period net return :math:`r_f`
@@ -122,7 +122,7 @@ which implies the following design of a risky portfolio:
 
   w = (\delta \Sigma)^{-1} \mu
 
-Estimating :math:`\mu` and :math:`\Sigma`
+Estimating :math:`\mu` and :math:`\sigma` 
 --------------------------------------------
 
 The key inputs into the portfolio choice model :eq:`risky-portfolio` are
@@ -137,7 +137,7 @@ squares; that amounts to estimating :math:`\mu` by a sample mean of
 excess returns and estimating :math:`\Sigma` by a sample covariance
 matrix
 
-The Black-Litterman Starting Point
+The Black-litterman Starting Point 
 --------------------------------------------
 
 
@@ -215,7 +215,7 @@ implied by formula :eq:`risky-portfolio` equal the **actual** market portfolio
 
 .. math:: w_m = (\delta \Sigma)^{-1} \mu_{BL}
 
-Details
+Details 
 --------
 
 Let's define
@@ -298,7 +298,7 @@ market portfolio
     plt.show()
 
 
-Adding *Views*
+Adding *views* 
 -------------------
 
 Black and Litterman start with a baseline customer who asserts that he
@@ -403,7 +403,7 @@ customer's portfolio will involve big short-long positions
         plt.show()
 
 
-Bayes Interpretation of the Black-Litterman Recommendation
+Bayes Interpretation of the Black-litterman Recommendation 
 -----------------------------------------------------------
 
 Consider the following Bayesian interpretation of the Black-Litterman
@@ -440,7 +440,7 @@ Hence, the Black-Litterman recommendation is consistent with the Bayes
 update of the prior over the mean excess returns in light of the
 realized average excess returns on the market
 
-Curve Decolletage
+Curve Decolletage 
 ------------------
 
 Consider two independent "competing" views on the excess market returns
@@ -682,7 +682,7 @@ and :math:`\mu_{BL}` are bending
         plt.show()
 
 
-Black-Litterman Recommendation as Regularization
+Black-litterman Recommendation as Regularization 
 --------------------------------------------------
 
 First, consider the OLS regression
@@ -823,7 +823,7 @@ So the Black-Litterman procedure results in a recommendation that is a
 compromise between the conservative market portfolio and the more
 extreme portfolio that is implied by estimated "personal" views
 
-Digression on :math:`{\sf T}` Operator
+Digression on :math:`{\sf T}` Operator 
 ---------------------------------------
 
 The Black-Litterman approach is partly inspired by the econometric
@@ -940,7 +940,7 @@ and entropy is
 
 .. math:: \frac{v'v}{2} = \frac{1}{2\theta^2}  w' C C' w
 
-A Robust Mean-variance Portfolio Model
+A Robust Mean-variance Portfolio Model 
 -------------------------------------------
 
 According to criterion (1), the mean-variance portfolio choice problem
@@ -993,7 +993,7 @@ An increase in the risk-sensitivity parameter :math:`\gamma` shrinks the
 portfolio weights toward zero in the same way that an increase in risk
 aversion does
 
-Appendix
+Appendix 
 ========
 
 We want to illustrate the "folk theorem" that with high or moderate
@@ -1055,7 +1055,7 @@ variances".
 That is, we need significantly more data to obtain a given
 precision of the mean estimate than for our variance estimate
 
-A Special Case -- i.i.d. Sample
+A Special Case -- I.i.d. Sample 
 ---------------------------------
 
 We start our analysis with the benchmark case of iid data. Consider a
@@ -1083,7 +1083,7 @@ of convergence:
 We are interested in how this (asymptotic) relative rate of convergence
 changes as increasing sampling frequency puts dependence into the data
 
-Dependence and Sampling Frequency
+Dependence and Sampling Frequency 
 ----------------------------------
 
 To investigate how sampling frequency affects relative rates of
@@ -1158,7 +1158,7 @@ observations is related to sampling frequency
     plt.show()
 
 
-Frequency and the Mean Estimator
+Frequency and the Mean Estimator 
 ---------------------------------
 
 Consider again the AR(1) process generated by discrete sampling with

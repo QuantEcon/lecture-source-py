@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 **********************************************
-Recursive Models of Dynamic Linear Economies
+Recursive Models of Dynamic Linear Economies 
 **********************************************
 
 

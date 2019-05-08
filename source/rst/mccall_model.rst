@@ -5,7 +5,7 @@ In addition to what's in Anaconda,.. _mccall:
 .. highlight:: python3
 
 ******************************************
-Job Search I: The McCall Search Model
+Job Search I: The Mccall Search Model 
 ******************************************
 
 .. contents:: :depth: 2
@@ -26,7 +26,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 
@@ -56,7 +56,7 @@ Let's start with some imports
     import quantecon as qe
     from quantecon.distributions import BetaBinomial
 
-The McCall Model
+The Mccall Model 
 =================
 
 
@@ -93,7 +93,7 @@ The variable  :math:`Y_t` is income, equal to
 
 
 
-A Trade Off
+A Trade Off 
 --------------------
 
 
@@ -115,7 +115,7 @@ We'll go through these steps in turn
 
 
 
-The Value Function
+The Value Function 
 ---------------------
 
 In order to optimally trade off current and future rewards, we need to think about two things:
@@ -164,7 +164,7 @@ But this is precisely :math:`v^*(w)`, which is the l.h.s. of :eq:`odu_pv`
 
 
 
-The Optimal Policy
+The Optimal Policy 
 -------------------
 
 Suppose for now that we are able to solve :eq:`odu_pv` for the unknown
@@ -216,7 +216,7 @@ Clearly, we can compute this reservation wage if we can compute the value functi
 
 
 
-Computing the Optimal Policy: Take 1
+Computing the Optimal Policy: Take 1 
 ======================================
 
 To put the above ideas into action, we need to compute the value function at
@@ -238,7 +238,7 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
     \text{for } i = 1, \ldots, n
 
 
-The Algorithm
+The Algorithm 
 -------------
 
 To compute this vector, we proceed as follows: 
@@ -271,7 +271,7 @@ to :eq:`odu_pv2`, which represents the value function
 solution as the tolerance goes to zero)
 
 
-The Fixed Point Theory
+The Fixed Point Theory 
 -----------------------
 
 What's the math behind these ideas?
@@ -309,7 +309,7 @@ generates a sequence that converges to the fixed point
 
 
 
-Implementation
+Implementation 
 ----------------
 
 Here's the distribution of wage offers we'll work with
@@ -431,7 +431,7 @@ Let's compute the reservation wage at the default parameters
 
 
 
-Comparative Statics
+Comparative Statics 
 -------------------
 
 
@@ -493,7 +493,7 @@ unemployment compensation
 
 
 
-Computing the Optimal Policy: Take 2
+Computing the Optimal Policy: Take 2 
 ======================================
 
 The approach to dynamic programming just described is very standard and
@@ -610,12 +610,12 @@ You can use this code to solve the exercise below
 
 
 
-Exercises
+Exercises 
 =========
 
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Compute the average duration of unemployment when :math:`\beta=0.99` and
@@ -631,11 +631,11 @@ Repeat a large number of times and take the average
 Plot mean unemployment duration as a function of :math:`c` in ``c_vals``
 
 
-Solutions
+Solutions 
 ==========
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here's one solution

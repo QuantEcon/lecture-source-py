@@ -3,7 +3,7 @@
 .. highlight:: python3
 
 *******************************
-Linear Regression in Python
+Linear Regression in Python 
 *******************************
 
 .. contents:: :depth: 2
@@ -15,7 +15,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install linearmodels
 
-Overview
+Overview 
 ============
 
 
@@ -42,7 +42,7 @@ Such variation is needed to determine whether it is institutions that give rise 
 
 
 
-Prerequisites
+Prerequisites 
 -------------
 
 This lecture assumes you are familiar with basic econometrics 
@@ -52,7 +52,7 @@ For an introductory text covering these topics, see, for example,
 
 
 
-Comments
+Comments 
 -------------
 
 This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__
@@ -312,7 +312,7 @@ comparison purposes
 
 
 
-Extending the Linear Regression Model
+Extending the Linear Regression Model 
 =====================================
 
 So far we have only accounted for institutions affecting economic
@@ -580,7 +580,7 @@ significance of institutions in economic development
 
 
 
-Summary
+Summary 
 =======
 
 We have demonstrated basic OLS and 2SLS regression in ``statsmodels`` and ``linearmodels``
@@ -589,10 +589,10 @@ If you are familiar with R, you may want use the `formula interface <http://www.
 
 
 
-Exercises
+Exercises 
 =========
 
-Exercise 1
+Exercise 1 
 ----------
 
 In the lecture, we think the original model suffers from endogeneity
@@ -635,7 +635,7 @@ endogenous
 Using the above information, estimate a Hausman test and interpret your
 results
 
-Exercise 2
+Exercise 2 
 ------------
 
 The OLS parameter :math:`\beta` can also be estimated using matrix
@@ -684,10 +684,10 @@ using ``numpy`` - your results should be the same as those in the
 
 
 
-Solutions
+Solutions 
 =========
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -717,7 +717,7 @@ Exercise 1
 The output shows that the coefficient on the residuals is statistically
 significant, indicating :math:`avexpr_i` is endogenous
 
-Exercise 2
+Exercise 2 
 ------------
 
 .. code-block:: python3

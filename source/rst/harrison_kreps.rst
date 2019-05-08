@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************************************
-Asset Pricing III:  Incomplete Markets
+Asset Pricing Iii: Incomplete Markets 
 ************************************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 =========
 
 This lecture describes a version of a model of Harrison and Kreps :cite:`HarrKreps1978`
@@ -38,7 +38,7 @@ The model features
 * (leverage) limits on an investor's ability to borrow in order to finance purchases of a risky asset
 
 
-References
+References 
 ----------
 
 Prior to reading the following you might like to review our lectures on
@@ -48,7 +48,7 @@ Prior to reading the following you might like to review our lectures on
 * :doc:`Asset pricing with finite state space <markov_asset>`
 
 
-Bubbles
+Bubbles 
 ----------
 
 Economists differ in how they define a *bubble*
@@ -58,7 +58,7 @@ The Harrison-Kreps model illustrates the following notion of a bubble that attra
     *A component of an asset price can be interpreted as a bubble when all investors agree that the current price of the asset exceeds what they believe the asset's underlying dividend stream justifies*
 
 
-Structure of the Model
+Structure of the Model 
 =======================
 
 
@@ -140,7 +140,7 @@ The stationary distribution of :math:`P_a` is approximately :math:`\pi_A = \begi
 The stationary distribution of :math:`P_b` is approximately :math:`\pi_B = \begin{bmatrix} .43 & .57 \end{bmatrix}`
 
 
-Ownership Rights
+Ownership Rights 
 ----------------
 
 An owner of the asset at the end of time :math:`t` is entitled to the dividend at time :math:`t+1` and also has the right to sell the asset at time :math:`t+1`
@@ -160,7 +160,7 @@ Case 1 is the case studied in Harrison and Kreps
 In case 2, both types of investor always hold at least some of the asset
 
 
-Short Sales Prohibited
+Short Sales Prohibited 
 -----------------------
 
 No short sales are allowed
@@ -172,7 +172,7 @@ This matters because it limits pessimists from expressing their opinions
 * They cannot express their pessimism more loudly by artificially "manufacturing shares" -- that is, they cannot borrow shares from more optimistic investors and sell them immediately
 
 
-Optimism and Pessimism
+Optimism and Pessimism 
 ----------------------
 
 The above specifications of the perceived transition matrices :math:`P_a` and :math:`P_b`, taken directly from Harrison and Kreps, build in stochastically alternating temporary optimism and pessimism
@@ -211,7 +211,7 @@ Temporarily pessimistic believe the transition matrix
 
 We'll return to these matrices and their significance in the exercise
 
-Information
+Information 
 --------------
 
 Investors know a price function mapping the state :math:`s_t` at :math:`t` into the equilibrium price :math:`p(s_t)` that prevails in that state
@@ -222,7 +222,7 @@ When investors choose whether to purchase or sell the asset at :math:`t`, they a
 
 
 
-Solving the Model
+Solving the Model 
 ====================
 
 Now let's turn to solving the model
@@ -240,7 +240,7 @@ assumptions about beliefs:
 
 
 
-Summary Table
+Summary Table 
 ---------------
 
 The following table gives a summary of the findings obtained in the remainder of the lecture
@@ -281,7 +281,7 @@ Here
 We'll explain these values and how they are calculated one row at a time
 
 
-Single Belief Prices
+Single Belief Prices 
 --------------------
 
 We’ll start by pricing the asset under homogeneous beliefs
@@ -315,7 +315,7 @@ Here's a function that can be used to compute these values
 .. literalinclude:: /_static/code/harrison_kreps/hk_price_singlebeliefs.py
 
 
-Single belief prices as benchmarks
+Single Belief Prices as Benchmarks 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These equilibrium prices under homogeneous beliefs are important benchmarks for the subsequent analysis
@@ -327,7 +327,7 @@ These equilibrium prices under homogeneous beliefs are important benchmarks for 
 We will compare these fundamental values of the asset with equilibrium values when traders have different beliefs
 
 
-Pricing under Heterogeneous Beliefs
+Pricing Under Heterogeneous Beliefs 
 -----------------------------------
 
 There are several cases to consider
@@ -441,7 +441,7 @@ Here's code to solve for :math:`\bar p`, :math:`\hat p_a` and :math:`\hat p_b` u
 .. literalinclude:: /_static/code/harrison_kreps/hk_price_optimisticbeliefs.py
 
 
-Insufficient Funds
+Insufficient Funds 
 ------------------
 
 Outcomes differ when the more optimistic type of investor has insufficient wealth --- or insufficient ability to borrow enough --- to hold the entire stock of the asset
@@ -483,7 +483,7 @@ Here's code to solve for :math:`\check p` using iteration
 
 
 
-Further Interpretation
+Further Interpretation 
 -------------------------
 
 :cite:`Scheinkman2014` interprets the Harrison-Kreps model as a model of a bubble --- a situation in which an asset price exceeds what every investor thinks is merited by the asset's underlying dividend stream
@@ -506,10 +506,10 @@ Scheinkman extracts insights about effects of financial regulations on bubbles
 
 He emphasizes how limiting short sales and limiting leverage have opposite effects
 
-Exercises
+Exercises 
 ==========
 
-Exercise 1
+Exercise 1 
 -----------
 
 Recreate the summary table using the functions we have built above
@@ -534,10 +534,10 @@ Recreate the summary table using the functions we have built above
 You will first need to define the transition matrices and dividend payoff vector
 
 
-Solutions
+Solutions 
 ==========
 
-Exercise 1
+Exercise 1 
 -----------
 
 First we will obtain equilibrium price vectors with homogeneous beliefs, including when all

@@ -6,7 +6,7 @@
 
 
 ********************************************************
-Ramsey plans, Time Inconsistency, Sustainable Plans
+Ramsey Plans, Time Inconsistency, Sustainable Plans 
 ********************************************************
 
 
@@ -24,7 +24,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 =========
 
 
@@ -70,7 +70,7 @@ plan under a timing protocol in which a government chooses an infinite
 sequence of money supply growth rates once and for all at time
 :math:`0`
 
-The Model
+The Model 
 ==========
 
 There is no uncertainty
@@ -231,7 +231,7 @@ We can represent the dependence of  :math:`v_0` on :math:`(\vec \theta, \vec \mu
 
     v_t = s(\theta_t, \mu_t) + \beta v_{t+1}
 
-Structure
+Structure 
 ==========
 
 
@@ -263,7 +263,7 @@ decisions
 
 
 
-Intertemporal Influences
+Intertemporal Influences 
 =========================
 
 Criterion function :eq:`eq_old7` and constraint system :eq:`eq_old4` exhibit the following
@@ -285,7 +285,7 @@ We'll study outcomes under a Ramsey timing protocol below
 
 But we'll also study consequences of other timing protocols
 
-Four Models of Government Policy
+Four Models of Government Policy 
 =================================
 
 We consider four models of policy makers that  differ in
@@ -334,7 +334,7 @@ The models are
 
      - a time :math:`t` policy maker chooses  only :math:`\mu_t` but believes that its choice of :math:`\mu_t`  shapes private agents' beliefs about  future rates of money creation and inflation, and through them, future government actions
 
-A Ramsey Planner
+A Ramsey Planner 
 ===================
 
 First we consider a Ramsey planner that  chooses
@@ -356,7 +356,7 @@ Define a feasible set of
   \Omega(x_0) = \left \lbrace ( \overrightarrow x_1, \overrightarrow \mu_0) : x_{t+1}
   = A x_t + B \mu_t \: , \: \forall t \geq 0 \right \rbrace
 
-Subproblem 1
+Subproblem 1 
 -------------
 
 The value function
@@ -394,7 +394,7 @@ where
 The QuantEcon `LQ <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`_ class solves for :math:`F` and :math:`P` given inputs
 :math:`Q, R, A, B`, and :math:`\beta`
 
-Subproblem 2
+Subproblem 2 
 -------------
 
 The value of the Ramsey problem is
@@ -413,7 +413,7 @@ which implies
 
 .. math::  \theta_0^* = - \frac{P_{21}}{P_{22}}
 
-Representation of Ramsey Plan
+Representation of Ramsey Plan 
 ------------------------------
 
 The preceding calculations indicate that we can represent a Ramsey plan
@@ -460,7 +460,7 @@ equation :eq:`eq_old3` plays three roles simultaneously:
 
 
 
-Time Inconsistency
+Time Inconsistency 
 -------------------
 
 As discussed in :doc:`Stackelberg problems<dyn_stack>` and :doc:`Optimal taxation with state-contingent debt<opt_tax_recur>`, a continuation Ramsey plan is not a Ramsey plan
@@ -474,7 +474,7 @@ that alter either
 
 - assumptions about how government decision makers think their decisions affect private agents' beliefs about future government decisions
 
-A Constrained-to-a-Constant-:math:`\mu` Ramsey Government
+A Constrained-to-a-constant-:math:`\mu` Ramsey Government 
 ==========================================================
 
 We now consider the following peculiar model of optimal government behavior
@@ -502,7 +502,7 @@ government in order to highlight  time-variation of
 :math:`\mu_t` as a tell tale sign of  time inconsistency of a Ramsey plan
 
 
-Markov Perfect Governments
+Markov Perfect Governments 
 ===========================
 
 We now  change the timing protocol by considering a sequence of 
@@ -554,7 +554,7 @@ simplified to:
 
 
 
-Equilibrium Outcomes for Three Models of Government Policy Making
+Equilibrium Outcomes for Three Models of Government Policy Making 
 ==================================================================
 
 Below we compute sequences :math:`\{ \theta_t,\mu_t \}` under a Ramsey
@@ -869,7 +869,7 @@ to a constant for all :math:`t`
     plot_ramsey_MPE(clq)
 
 
-Time Inconsistency of Ramsey Plan
+Time Inconsistency of Ramsey Plan 
 -----------------------------------
 
 The variation over time in :math:`\vec \mu` chosen by the Ramsey planner
@@ -890,7 +890,7 @@ is a symptom of time inconsistency
 :math:`\mu_t` must be constant over time is time consistent (see
 :math:`\check \mu` and :math:`\check \theta` in the above graphs)
 
-Meaning of Time Inconsistency
+Meaning of Time Inconsistency 
 ------------------------------
 
 In settings in which governments actually choose sequentially, many economists
@@ -908,7 +908,7 @@ economists
 
 The *no incentive to deviate from the plan* property is what makes the Markov perfect equilibrium concept attractive
 
-Ramsey Plan Strikes Back
+Ramsey Plan Strikes Back 
 --------------------------
 
 Research by Abreu :cite:`Abreu`,  Chari and Kehoe :cite:`chari1990sustainable`  
@@ -920,7 +920,7 @@ it that can serve to deter deviations
 
 We turn to such theories of **sustainable plans** next
 
-A Fourth Model of Government Decision Making
+A Fourth Model of Government Decision Making 
 =============================================
 
 This is a model in which
@@ -942,7 +942,7 @@ This is a model in which
 
 
 
-A Theory of Government Decision Making
+A Theory of Government Decision Making 
 ---------------------------------------
 
 
@@ -978,7 +978,7 @@ for each :math:`t \geq 0`:
    expect :math:`\theta_0^A` for :math:`t+1`. Here :math:`\vec \mu^A = \{\mu_j^A \}_{j=0}^\infty` is
    an alternative government plan to be described below
 
-Temptation to Deviate from Plan
+Temptation to Deviate From Plan 
 --------------------------------
 
 The government's one-period return function :math:`s(\theta,\mu)`
@@ -1003,7 +1003,7 @@ If the government at :math:`t` is to resist the temptation to raise its
 current payoff, it is only because it forecasts adverse  consequences that
 its setting of :math:`\mu_t` would bring for subsequent government payoffs via  alterations  in the private sector's expectations
 
-Sustainable or Credible plan
+Sustainable or Credible Plan 
 =============================
 
 We call a plan :math:`\vec \mu` **sustainable** or **credible** if at
@@ -1042,7 +1042,7 @@ But Dilip Abreu showed how to render manageable the number of plans that must be
 The key is an  object called a **self-enforcing** plan
 
 
-Abreu's Self-Enforcing Plan
+Abreu's Self-enforcing Plan 
 ----------------------------
 
 A plan :math:`\vec \mu^A` is said to be **self-enforcing** if
@@ -1095,7 +1095,7 @@ agents' expectation
 We shall use a construction featured in :cite:`Abreu` to construct a
 self-enforcing plan with low time :math:`0` value
 
-Abreu Carrot-Stick  Plan
+Abreu Carrot-stick Plan 
 -------------------------------------------
 
 :cite:`Abreu` invented a way to create a self-enforcing plan with low
@@ -1126,7 +1126,7 @@ The value of :math:`\{\theta_t^A,\mu_t^A \}_{t=0}^\infty` is
 
 .. math::  v^A_0 = \sum_{t=0}^{T_A-1} \beta^t s(\theta_t^A,\mu_t^A) +\beta^{T_A} J(\theta^R_0)
 
-Example of Self-Enforcing Plan
+Example of Self-enforcing Plan 
 ---------------------------------
 
 The following example implements an Abreu stick-and-carrot plan
@@ -1238,7 +1238,7 @@ the Ramsey plan :math:`\vec \mu^R` is sustainable by verifying that:
     check_ramsey(clq)
 
 
-Recursive Representation of a Sustainable Plan
+Recursive Representation of a Sustainable Plan 
 -----------------------------------------------
 
 We can represent a sustainable plan recursively by taking the
@@ -1269,7 +1269,7 @@ depends on whether the government at :math:`t` confirms private agents'
 expectations by setting :math:`\mu_t` equal to the recommended value
 :math:`\hat \mu_t`, or whether it disappoints those expectations
 
-Comparison of Equilibrium Values
+Comparison of Equilibrium Values 
 =================================
 
 We have computed plans for
@@ -1316,7 +1316,7 @@ These include
    Ramsey plan -- that is not self-enforcing
 
 
-Note on Dynamic Programming Squared
+Note on Dynamic Programming Squared 
 ====================================
 
 The theory deployed  in this lecture is an application of what we  nickname **dynamic programming squared**

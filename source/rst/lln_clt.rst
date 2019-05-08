@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ******************************************
-:index:`LLN` and :index:`CLT`
+:index:`lln` and :index:`clt` 
 ******************************************
 
 .. index::
@@ -16,7 +16,7 @@
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 This lecture illustrates two of the most important theorems of probability and statistics: The
@@ -38,7 +38,7 @@ In addition, we examine several useful extensions of the classical theorems, suc
 Some of these extensions are presented as exercises
 
 
-Relationships
+Relationships 
 ==================
 
 The CLT refines the LLN
@@ -50,7 +50,7 @@ The CLT provides information about the rate at which sample moments converge to 
 
 .. _lln_mr:
 
-LLN
+Lln 
 ==================
 
 .. index::
@@ -61,7 +61,7 @@ will converge to their population means
 
 .. _lln_ksl:
 
-The Classical LLN
+The Classical LLN 
 ---------------------------
 
 The classical law of large numbers concerns independent and
@@ -107,7 +107,7 @@ In this setting, :eq:`lln_as` should be interpreted as meaning that the
 probability of the computer producing a sequence where :math:`\bar X_n \to \mu` fails to occur
 is zero
 
-Proof
+Proof 
 --------
 
 .. index::
@@ -193,7 +193,7 @@ In other words, the LLN can still work if the sequence :math:`X_1, \ldots, X_n` 
 
 This idea is very important in time series analysis, and we'll come across it again soon enough
 
-Illustration
+Illustration 
 -------------
 
 .. index::
@@ -276,7 +276,7 @@ The three distributions are chosen at random from a selection stored in the dict
 
 
 
-Infinite Mean
+Infinite Mean 
 ----------------
 
 What happens if the condition :math:`\mathbb E | X | < \infty` in the statement of the LLN is not satisfied?
@@ -387,7 +387,7 @@ In particular, the sequence :math:`\bar X_n` does not converge to a point
 
 
 
-CLT
+Clt 
 ==================
 
 .. index::
@@ -396,7 +396,7 @@ CLT
 Next we turn to the central limit theorem, which tells us about the distribution of the deviation between sample averages and population means
 
 
-Statement of the Theorem
+Statement of the Theorem 
 ---------------------------
 
 The central limit theorem is one of the most remarkable results in all of mathematics
@@ -418,7 +418,7 @@ If the sequence :math:`X_1, \ldots, X_n` is IID, with common mean
 
 Here :math:`\stackrel { d } {\to} N(0, \sigma^2)` indicates `convergence in distribution <https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution>`_ to a centered (i.e, zero mean) normal with standard deviation :math:`\sigma`
 
-Intuition
+Intuition 
 ---------------
 
 .. index::
@@ -504,7 +504,7 @@ We are witnessing the `binomial approximation of the normal distribution <https:
 
 
 
-Simulation 1
+Simulation 1 
 ----------------
 
 Since the CLT seems almost magical, running simulations that verify its implications is one good way to build intuition
@@ -578,7 +578,7 @@ You can also experiment with other specifications of :math:`F`
 
 
 
-Simulation 2
+Simulation 2 
 --------------
 
 Our next simulation is somewhat like the first, except that we aim to track the distribution of :math:`Y_n := \sqrt{n} ( \bar X_n - \mu )` as :math:`n` increases
@@ -689,7 +689,7 @@ density sequence
 
 .. _multivariate_clt:
 
-The Multivariate Case
+The Multivariate Case 
 -------------------------
 
 .. index::
@@ -809,13 +809,13 @@ The CLT tells us that, provided :math:`\Sigma` is finite,
     n \to \infty
 
 
-Exercises
+Exercises 
 =============
 
 
 .. _lln_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 One very useful consequence of the central limit theorem is as follows
@@ -850,7 +850,7 @@ What is the source of the problem?
 
 .. _lln_ex2:
 
-Exercise 2
+Exercise 2 
 ------------
 
 Here's a result that's often used in developing statistical tests, and is connected to the multivariate central limit theorem
@@ -966,11 +966,11 @@ Hints:
 #. You should be able to work out :math:`\Sigma` from the proceding information
 
 
-Solutions
+Solutions 
 ==========
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here is one solution
@@ -1020,7 +1020,7 @@ In this case, the mean :math:`\mu` of this distribution is
 
 Hence the conditions of the delta theorem are not satisfied
 
-Exercise 2
+Exercise 2 
 ----------
 
 First we want to verify the claim that

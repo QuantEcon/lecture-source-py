@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ***************************************
-Writing Good Code
+Writing Good Code 
 ***************************************
 
 .. index::
@@ -15,7 +15,7 @@ Writing Good Code
 
 
 
-Overview
+Overview 
 ============
 
 When computer programs are small, poorly written code is not overly costly
@@ -33,7 +33,7 @@ We also touch on modern developments in scientific computing --- such as just in
 
 
 
-An Example of Bad Code
+An Example of Bad Code 
 =======================
 
 Let's have a look at some poorly written code
@@ -137,7 +137,7 @@ At the same time, it's very poorly structured
 Let's talk about why that's the case, and what we can do about it
 
 
-Good Coding Practice
+Good Coding Practice 
 =====================
 
 There are usually many different ways to write a program that accomplishes a given task
@@ -154,7 +154,7 @@ Here are some basic precepts
 
 
 
-Don't Use Magic Numbers
+Don't Use Magic Numbers 
 ------------------------
 
 If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered through the code
@@ -177,7 +177,7 @@ The advantages are:
 * to alter the time series length, you only need to change one value
 
 
-Don't Repeat Yourself
+Don't Repeat Yourself 
 ------------------------
 
 The other mortal sin in the code snippet above is repetition
@@ -199,7 +199,7 @@ If you want to know more, read the excellent summary found on `this page <https:
 We'll talk about how to avoid repetition below
 
 
-Minimize Global Variables
+Minimize Global Variables 
 ----------------------------
 
 Sure, global variables (i.e., names assigned to values outside of any function or class) are convenient
@@ -221,7 +221,7 @@ While the odd global in small scripts is no big deal, we recommend that you teac
 (We'll discuss how just below)
 
 
-JIT Compilation
+Jit Compilation 
 ^^^^^^^^^^^^^^^^^
 
 In fact, there's now another good reason to avoid global variables
@@ -237,7 +237,7 @@ many global variables are present
 
 
 
-Use Functions or Classes
+Use Functions or Classes 
 --------------------------
 
 Fortunately, we can easily avoid the evils of global variables and WET code
@@ -249,7 +249,7 @@ We can do this by making frequent use of functions or classes
 In fact, functions and classes are designed specifically to help us avoid shaming ourselves by repeating code or excessive use of global variables
 
 
-Which one, functions or classes?
+Which One, Functions or Classes? 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Both can be useful, and in fact they work well with each other
@@ -262,7 +262,7 @@ What's really important is that you use one or the other or both
 
 
 
-Revisiting the  Example
+Revisiting the Example 
 ========================
 
 Here's some code that reproduces the plot above with better coding style
@@ -312,7 +312,7 @@ Note also that
 
     plt.show()
     
-Summary
+Summary 
 =========
 
 Writing decent code isn't hard

@@ -7,7 +7,7 @@
     single: python
 
 **********************************
-Growth in Dynamic Linear Economies
+Growth in Dynamic Linear Economies 
 **********************************
 
 .. contents:: :depth: 2
@@ -47,7 +47,7 @@ We require the following imports
 
 
 
-Common Structure
+Common Structure 
 ================
 
 Our example economies have the following features
@@ -99,7 +99,7 @@ matrices
 
 and the scalar :math:`\beta`
 
-A Planning Problem
+A Planning Problem 
 ==================
 
 The first welfare theorem asserts that a competitive equilibrium
@@ -158,7 +158,7 @@ Letting :math:`A^o = A-BF` we write this law of motion as
 
 .. math:: x_{t+1} = A^ox_t + Cw_{t+1}
 
-Example Economies
+Example Economies 
 =================
 
 Each of the example economies shown here will share a number of
@@ -224,7 +224,7 @@ We shall vary
 :math:`\{\lambda, \pi, \delta_h, \theta_h, \gamma_1, \delta_k, \phi_1\}`
 and the initial state :math:`x_0` across the three economies
 
-Example 1: Hall (1978)
+Example 1: Hall (1978) 
 -----------------------
 
 First, we set parameters such that consumption follows a random walk. In
@@ -350,7 +350,7 @@ steady state of consumption, investment and capital
 However, the near-unity endogenous eigenvalue means that these steady
 state values are of little relevance
 
-Example 2: Altered growth condition
+Example 2: Altered Growth Condition 
 ------------------------------------
 
 We generate our next economy by making two alterations to the parameters
@@ -432,7 +432,7 @@ than 1
 
 
 
-Example 3: A Jones-Manuelli (1990) Economy
+Example 3: A Jones-manuelli (1990) Economy 
 -------------------------------------------
 
 For our third economy, we choose parameter values with the aim of
@@ -515,7 +515,7 @@ The other unit eigenvalue results from setting :math:`\lambda = -1`
 To show the importance of both of these for generating growth, we
 consider the following experiments
 
-Example 3.1: Raise :math:`\lambda` to -0.7
+Example 3.1: Raise :math:`\lambda` to -0.7 
 -------------------------------------------
 
 .. code-block:: python3
@@ -546,7 +546,7 @@ eigenvalues is now less than 1
 
 
 
-Example 3.2: Lower :math:`\beta` to 0.94
+Example 3.2: Lower :math:`\beta` to 0.94 
 -----------------------------------------
 
 .. code-block:: python3

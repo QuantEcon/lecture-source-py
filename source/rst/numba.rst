@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *************************
-Numba
+Numba 
 *************************
 
 .. contents:: :depth: 2
@@ -15,7 +15,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install quantecon
 
-Overview
+Overview 
 ============
 
 
@@ -44,7 +44,7 @@ JIT compilation is effective in many numerical settings and can generate extreme
 It can also do other tricks such as facilitate multithreading (a form of parallelization well suited to numerical work)
 
 
-The Need for Speed
+The Need for Speed 
 -----------------------
 
 To understand what Numba does and why, we need some background knowledge
@@ -83,13 +83,13 @@ This lecture provides a guide
 
 
 
-Where are the Bottlenecks?
+Where are the Bottlenecks? 
 =============================
 
 Let's start by trying to understand why high level languages like Python are slower than compiled code
 
 
-Dynamic Typing
+Dynamic Typing 
 --------------------
 
 .. index::
@@ -131,7 +131,7 @@ As a result, Python must check the type of the objects and then call the correct
 
 This involves substantial overheads
 
-Static Types
+Static Types 
 ^^^^^^^^^^^^^^^^
 
 .. index::
@@ -160,14 +160,14 @@ The variables ``i`` and ``sum`` are explicitly declared to be integers
 
 Hence, the meaning of addition here is completely unambiguous
 
-Data Access
+Data Access 
 --------------------
 
 Another drag on speed for high level languages is data access
 
 To illustrate, let's consider the problem of summing some data --- say, a collection of integers
 
-Summing with Compiled Code
+Summing With Compiled Code 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In C or Fortran, these integers would typically be stored in an array, which
@@ -191,7 +191,7 @@ space by a known and fixed amount
 * In this case 8 bytes
 
 
-Summing in Pure Python
+Summing in Pure Python 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Python tries to replicate these ideas to some degree
@@ -210,7 +210,7 @@ Let's look at some ways around these problems
 
 
 
-:index:`Vectorization`
+:index:`vectorization` 
 ======================
 
 .. index::
@@ -223,7 +223,7 @@ Vectorization is about sending batches of related operations to native machine c
 This can greatly accelerate many (but not all) numerical computations
 
 
-Operations on Arrays
+Operations on Arrays 
 ----------------------
 
 .. index::
@@ -287,7 +287,7 @@ The next section illustrates this point
 .. _ufuncs:
 
 
-Universal Functions
+Universal Functions 
 --------------------------
 
 .. index::
@@ -403,7 +403,7 @@ As you can see, the second version is **much** faster
 
 .. _numba-p_c_vectorization:
 
-Pros and Cons of Vectorization
+Pros and Cons of Vectorization 
 ----------------------------------------
 
 At its best, vectorization yields fast, simple code
@@ -428,7 +428,7 @@ Fortunately, there are nice ways to speed up Python loops
 
 .. _numba_link:
 
-:index:`Numba`
+:index:`numba` 
 ==============
 
 .. index::
@@ -447,7 +447,7 @@ But for simple routines Numba infers types very well
 Moreover, the "hot loops" at the heart of our code that we need to speed up are often such simple routines
 
 
-Prerequisites
+Prerequisites 
 ------------------
 
 If you :doc:`followed our set up instructions <getting_started>`, then Numba should be installed
@@ -460,7 +460,7 @@ Make sure you have the latest version of Anaconda by running ``conda update anac
 
 .. _quad_map_eg:
 
-An Example
+An Example 
 ------------------
 
 Let's consider some problems that are difficult to vectorize
@@ -538,7 +538,7 @@ Your mileage will of course vary depending on hardware and so on
 
 Nonetheless, two orders of magnitude is huge relative to how simple and clear the implementation is
 
-Decorator Notation
+Decorator Notation 
 ^^^^^^^^^^^^^^^^^^^
 
 If you don't need a separate name for the "numbafied" version of ``qm``, 
@@ -562,7 +562,7 @@ This is equivalent to ``qm = jit(qm)``
 
 
 
-How and When it Works
+How and When it Works 
 --------------------------
 
 Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_
@@ -588,7 +588,7 @@ Hence, it's prudent when using Numba to focus on speeding up small, time-critica
 This will give you much better performance than blanketing your Python programs with ``@jit`` statements
 
 
-A Gotcha: Global Variables
+A Gotcha: Global Variables 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Consider the following example
@@ -617,7 +617,7 @@ When Numba compiles machine code for functions, it treats global variables as co
 
 
 
-Numba for vectorization
+Numba for Vectorization 
 --------------------------    
 
 Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator

@@ -3,12 +3,12 @@
 .. include:: /_static/includes/header.raw
 
 ******************************************
-More Language Features
+More Language Features 
 ******************************************
 
 .. contents:: :depth: 2
 
-Overview
+Overview 
 ============
 
 With this last lecture, our advice is to **skip it on first pass**, unless you have a burning desire to read it
@@ -26,7 +26,7 @@ A variety of topics are treated in the lecture, including generators, exceptions
 
 
 
-Iterables and Iterators
+Iterables and Iterators 
 ============================
 
 .. index::
@@ -37,7 +37,7 @@ We've :ref:`already said something <iterating_version_1>` about iterating in Pyt
 Now let's look more closely at how it all works, focusing in Python's implementation of the ``for`` loop
 
 
-Iterators
+Iterators 
 ------------
 
 .. index::
@@ -133,7 +133,7 @@ Let's create a small csv file that contains data from the NIKKEI index
     next(nikkei_data)
 
 
-Iterators in For Loops
+Iterators in For Loops 
 -------------------------
 
 .. index::
@@ -254,7 +254,7 @@ To conclude our discussion of ``for`` loops
 * In the second case, the iterable is converted into an iterator before the loop starts
 
 
-Iterators and built-ins
+Iterators and Built-ins 
 --------------------------
 
 .. index::
@@ -300,11 +300,11 @@ One thing to remember about iterators is that they are depleted by use
 .. _name_res:
 
 
-Names and Name Resolution
+Names and Name Resolution 
 ============================
 
 
-Variable Names in Python
+Variable Names in Python 
 ---------------------------
 
 .. index::
@@ -448,7 +448,7 @@ In fact this is entirely equivalent to ``math.__dict__['pi']``
     math.__dict__['pi'] == math.pi
 
 
-Viewing Namespaces
+Viewing Namespaces 
 ---------------------
 
 As we saw above, the ``math`` namespace can be printed by typing ``math.__dict__``
@@ -480,7 +480,7 @@ These are initialized in the namespace when any module is imported
 
     math.__name__
 
-Interactive Sessions
+Interactive Sessions 
 -----------------------
 
 .. index::
@@ -535,7 +535,7 @@ If you prefer to see only the variables you have initialized, use ``whos``
 
     %whos
 
-The Global Namespace
+The Global Namespace 
 ----------------------
 
 .. index::
@@ -565,7 +565,7 @@ Once execution of the module finishes, the interpreter returns to the module fro
 In this case it's ``__main__``, so the namespace of ``__main__`` again becomes the global namespace
 
 
-Local Namespaces
+Local Namespaces 
 -------------------
 
 .. index::
@@ -603,7 +603,7 @@ You can see the local namespace of ``f`` before it is destroyed
 
 
 
-The ``__builtins__`` Namespace
+The ``__builtins__`` Namespace 
 --------------------------------
 
 .. index::
@@ -644,7 +644,7 @@ But ``__builtins__`` is special, because we can always access them directly as w
 The next section explains how this works ...
 
 
-Name Resolution
+Name Resolution 
 -------------------
 
 .. index::
@@ -747,7 +747,7 @@ Note that the global ``a`` was not affected by the local ``a``
 
 .. _mutable_vs_immutable:
 
-:index:`Mutable` Versus :index:`Immutable` Parameters
+:index:`mutable` Versus :index:`immutable` Parameters 
 -----------------------------------------------------
 
 This is a good time to say a little more about mutable vs immutable objects
@@ -813,7 +813,7 @@ Here's what happens
 
 
 
-Handling Errors
+Handling Errors 
 =======================
 
 .. index::
@@ -850,7 +850,7 @@ Why?
 
 
 
-Assertions
+Assertions 
 -------------------
 
 .. index::
@@ -884,7 +884,7 @@ The advantage is that we can
 
 * supply specific information on why a program is failing
 
-Handling Errors During Runtime
+Handling Errors During Runtime 
 ---------------------------------
 
 .. index::
@@ -897,7 +897,7 @@ Sometimes we can handle errors more gracefully, by treating special cases
 
 Let's look at how this is done
 
-Exceptions
+Exceptions 
 ^^^^^^^^^^^^^^
 
 .. index::
@@ -952,7 +952,7 @@ On each occasion, the interpreter informs us of the error type
 
 In Python, these errors are called *exceptions*
 
-Catching Exceptions
+Catching Exceptions 
 ^^^^^^^^^^^^^^^^^^^^^^
 
 We can catch and deal with exceptions using ``try`` -- ``except`` blocks
@@ -1059,7 +1059,7 @@ In general it's better to be specific
 
 
 
-Decorators and Descriptors
+Decorators and Descriptors 
 ===========================
 
 .. index::
@@ -1076,7 +1076,7 @@ in other people's code
 Hence you need to understand them at some stage of your Python education
 
 
-Decorators
+Decorators 
 -----------
 
 .. index::
@@ -1088,7 +1088,7 @@ It's very easy to say what decorators do
 
 On the other hand it takes a bit of effort to explain *why* you might use them
 
-An Example
+An Example 
 ^^^^^^^^^^^^^^
 
 Suppose we are working on a program that looks something like this
@@ -1182,7 +1182,7 @@ Now the behavior of ``f`` is as we desire, and the same is true of ``g``
 At the same time, the test logic is written only once
 
 
-Enter Decorators
+Enter Decorators 
 ^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -1242,7 +1242,7 @@ In the opinion of many people, this makes the decorator syntax a significant imp
 
 .. _descriptors:
 
-Descriptors
+Descriptors 
 ----------------
 
 .. index::
@@ -1289,7 +1289,7 @@ In the last two lines we see that ``miles`` and ``kms`` are out of sync
 
 What we really want is some mechanism whereby each time a user sets one of these variables, *the other is automatically updated*
 
-A Solution
+A Solution 
 ^^^^^^^^^^^
 
 In Python, this issue is solved using *descriptors*
@@ -1342,7 +1342,7 @@ First let's check that we get the desired behavior
 
 Yep, that's what we want --- ``car.kms`` is automatically updated
 
-How it Works
+How it Works 
 ^^^^^^^^^^^^^^
 
 The names ``_miles`` and ``_kms`` are arbitrary names we are using to store the values of the variables
@@ -1363,7 +1363,7 @@ method is triggered --- in this case ``set_miles``
 
 
 
-Decorators and Properties
+Decorators and Properties 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -1411,7 +1411,7 @@ For further information you can refer to the `descriptor documentation <https://
 
 .. _paf_generators:
 
-Generators
+Generators 
 ==================
 
 .. index::
@@ -1421,7 +1421,7 @@ A generator is a kind of iterator (i.e., it works with a ``next`` function)
 
 We will study two ways to build generators: generator expressions and generator functions
 
-Generator Expressions
+Generator Expressions 
 -------------------------
 
 The easiest way to build generators is using *generator expressions*
@@ -1480,7 +1480,7 @@ In fact, we can omit the outer brackets in this case
     sum(x * x for x in range(10))
 
 
-Generator Functions
+Generator Functions 
 ------------------------
 
 .. index::
@@ -1490,7 +1490,7 @@ The most flexible way to create generator objects is to use generator functions
 
 Let's look at some examples
 
-Example 1
+Example 1 
 ^^^^^^^^^^^^
 
 Here's a very simple example of a generator function
@@ -1560,7 +1560,7 @@ At that point it returns the value following ``yield`` to the caller of ``next(g
 When the code block ends, the generator throws a ``StopIteration`` error
 
 
-Example 2
+Example 2 
 ^^^^^^^^^^^^^
 
 Our next example receives an argument ``x`` from the caller
@@ -1632,7 +1632,7 @@ Incidentally, the loop inside the generator can be infinite
             x = x * x
 
 
-Advantages of Iterators
+Advantages of Iterators 
 ----------------------------
 
 What's the advantage of using an iterator here?
@@ -1696,7 +1696,7 @@ In summary, iterables
 
 .. _recursive_functions:
 
-Recursive Function Calls
+Recursive Function Calls 
 ===========================
 
 .. index::
@@ -1748,10 +1748,10 @@ This example is somewhat contrived, since the first (iterative) solution would u
 We'll meet less contrived applications of recursion later on
 
 
-Exercises
+Exercises 
 ============
 
-Exercise 1
+Exercise 1 
 -----------------
 
 The Fibonacci numbers are defined by
@@ -1766,7 +1766,7 @@ The first few numbers in the sequence are :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
 Write a function to recursively compute the :math:`t`-th Fibonacci number for any :math:`t`
 
-Exercise 2
+Exercise 2 
 ------------
 
 Complete the following code, and test it using `this csv file <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_advanced_features/test_table.csv>`__, which we assume that you've put in your current working directory
@@ -1790,7 +1790,7 @@ Complete the following code, and test it using `this csv file <https://github.co
         print(date)
 
 
-Exercise 3
+Exercise 3 
 ---------------
 
 Suppose we have a text file ``numbers.txt`` containing the following lines
@@ -1809,13 +1809,13 @@ Using ``try`` -- ``except``, write a program to read in the contents of the file
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here's the standard solution
@@ -1838,7 +1838,7 @@ Let's test it
     print([x(i) for i in range(10)])
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 One solution is as follows
@@ -1867,7 +1867,7 @@ One solution is as follows
         i += 1
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 Let's save the data first

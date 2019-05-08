@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***************************************
-Dynamic Programming Squared
+Dynamic Programming Squared 
 ***************************************
 
 Here we look at models in which a value function for one Bellman equation has as an argument the value function for another Bellman equation

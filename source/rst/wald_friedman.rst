@@ -6,7 +6,7 @@
 
 
 ***********************************************
-:index:`A Problem that Stumped Milton Friedman`
+:index:`a Problem That Stumped Milton Friedman` 
 ***********************************************
 
 (and that Abraham Wald solved by inventing sequential analysis)
@@ -28,7 +28,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
   !pip install interpolation
 
 
-Overview
+Overview 
 =========
 
 This lecture describes a statistical decision problem encountered  by Milton 
@@ -73,7 +73,7 @@ We'll begin with some imports
     from interpolation import interp
     from math import gamma
 
-Origin of the Problem
+Origin of the Problem 
 ======================
 
 On pages 137-139 of his 1998 book *Two Lucky People* with Rose Friedman :cite:`Friedman98`,
@@ -123,7 +123,7 @@ We'll formulate the problem using dynamic programming
 
 
 
-A Dynamic Programming Approach
+A Dynamic Programming Approach 
 ================================
 
 The following presentation of the problem closely follows Dmitri
@@ -225,7 +225,7 @@ The bottom panel presents mixtures of these distributions, with various mixing p
     plt.show()
   
 
-Losses and Costs
+Losses and Costs 
 -------------------
 
 After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision maker
@@ -253,7 +253,7 @@ kinds of losses:
 
 
 
-Digression on Type I and Type II Errors
+Digression on Type I and Type II Errors 
 ----------------------------------------
 
 If we regard  :math:`f=f_0` as a null hypothesis and :math:`f=f_1` as an alternative hypothesis,
@@ -274,7 +274,7 @@ So when we treat :math:`f=f_0` as the null hypothesis
 
 
 
-Intuition
+Intuition 
 -------------------
 
 Let's try to guess what an optimal decision rule might look like before we go further
@@ -302,7 +302,7 @@ which will depend on the parameters listed above
 You might like to pause at this point and try to predict the impact of a
 parameter such as :math:`c` or :math:`L_0` on :math:`\alpha` or :math:`\beta`
 
-A Bellman Equation
+A Bellman Equation 
 -------------------
 
 
@@ -425,7 +425,7 @@ In other words, we iterate with an operator :math:`Q`, where
     c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
 
 
-Implementation
+Implementation 
 ==================
 
 First we will construct a class to store the parameters of the model
@@ -559,7 +559,7 @@ To solve the model, we will iterate using ``Q`` to find the fixed point
         return h_new
 
 
-Analysis
+Analysis 
 =====================
 
 Let's inspect the model's solutions
@@ -579,7 +579,7 @@ We will be using the default parametization with distributions like so
     plt.show()
 
 
-Value Function
+Value Function 
 -----------------
 
 To solve the model, we will call our ``solve_model`` function
@@ -651,7 +651,7 @@ The decision maker continues to sample until the probability that he attaches to
 model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
 
 
-Simulations
+Simulations 
 -----------------
 
 The next figure shows the outcomes of 500 simulations of the decision process
@@ -764,7 +764,7 @@ In this case the decision maker is correct 80% of the time
     simulation_plot(wf)
     
 
-Comparative Statics
+Comparative Statics 
 ----------------------
 
 Now let's consider the following exercise
@@ -791,7 +791,7 @@ This leads to him having a higher expected loss when he puts equal weight on bot
 
 
 
-A Notebook Implementation
+A Notebook Implementation 
 ---------------------------
 
 
@@ -819,7 +819,7 @@ With these sliders you can adjust parameters and immediately observe
 
 
 
-Comparison with Neyman-Pearson Formulation
+Comparison With Neyman-pearson Formulation 
 =============================================
 
 For several reasons, it is useful to describe the theory underlying the test

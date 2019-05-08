@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 **********************************************
-:index:`Job Search V: On-the-Job Search`
+:index:`job Search V: On-the-job Search` 
 **********************************************
 
 .. index::
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install quantecon
   !pip install interpolation
 
-Overview
+Overview 
 ============
 
 In this section we solve a simple on-the-job search model
@@ -40,7 +40,7 @@ Let's start with some imports
     %matplotlib inline
     from math import gamma
 
-Model Features
+Model Features 
 ----------------
 
 .. index::
@@ -51,7 +51,7 @@ Model Features
 * infinite horizon dynamic programming with one state variable and two controls
 
 
-Model
+Model 
 ========
 
 .. index::
@@ -109,7 +109,7 @@ Here nonnegativity of :math:`s` and :math:`\phi` is understood, while
 :math:`a \vee b := \max\{a, b\}`
 
 
-Parameterization
+Parameterization 
 ------------------
 
 .. index::
@@ -138,7 +138,7 @@ The :math:`\text{Beta}(2,2)` distribution is supported on :math:`(0,1)` - it has
 
 .. _jvboecalc:
 
-Back-of-the-Envelope Calculations
+Back-of-the-envelope Calculations 
 -----------------------------------
 
 
@@ -183,7 +183,7 @@ Combining these observations gives us two informal predictions:
 Now let's turn to implementation, and see if we can match our predictions
 
 
-Implementation
+Implementation 
 =======================
 
 .. index::
@@ -376,7 +376,7 @@ and iterates to find a fixed point
         return v_new
 
 
-Solving for Policies
+Solving for Policies 
 =====================
 
 .. index::
@@ -417,12 +417,12 @@ Overall, the policies match well with our predictions from :ref:`above <jvboecal
 * Once :math:`x` is larger, worker does better by investing in human capital specific to the current position
 
 
-Exercises
+Exercises 
 =============
 
 .. _jv_ex1:
 
-Exercise 1
+Exercise 1 
 ------------
 
 Let's look at the dynamics for the state process :math:`\{x_t\}` associated with these policies
@@ -468,7 +468,7 @@ Argue that at the steady state, :math:`s_t \approx 0` and :math:`\phi_t \approx 
 
 .. _jv_ex2:
 
-Exercise 2
+Exercise 2 
 ----------------
 
 In the preceding exercise we found that :math:`s_t` converges to zero
@@ -496,12 +496,12 @@ Can you give a rough interpretation for the value that you see?
 
 
 
-Solutions
+Solutions 
 ==========
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 Here’s code to produce the 45 degree diagram
@@ -553,7 +553,7 @@ Referring back to the figure :ref:`here <jv_policies>` we see that :math:`x_t \a
 :math:`s_t = s(x_t) \approx 0` and
 :math:`\phi_t = \phi(x_t) \approx 0.6`
 
-Exercise 2
+Exercise 2 
 ----------
 
 The figure can be produced as follows

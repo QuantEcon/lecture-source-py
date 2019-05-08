@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************************************************
-:index:`Optimal Savings III: Occasionally Binding Constraints`
+:index:`optimal Savings Iii: Occasionally Binding Constraints` 
 ********************************************************************
 
 .. contents:: :depth: 2
@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install quantecon
   !pip install interpolation
 
-Overview
+Overview 
 ============
 
 Next we study an optimal savings problem for an infinitely lived consumer---the "common ancestor" described in :cite:`Ljungqvist2012`, section 1.3
@@ -64,14 +64,14 @@ We'll need the following imports
     %matplotlib inline
 
 
-References
+References 
 ----------------
 
 Other useful references include :cite:`Deaton1991`, :cite:`DenHaan2010`, :cite:`Kuhn2013`, :cite:`Rabault2002`,  :cite:`Reiter2009`  and :cite:`SchechtmanEscudero1977`
 
 
 
-The Optimal Savings Problem
+The Optimal Savings Problem 
 ===============================
 
 .. index::
@@ -79,7 +79,7 @@ The Optimal Savings Problem
 
 Let's write down the model and then discuss how to solve it
 
-Set Up
+Set Up 
 ---------
 
 Consider a household that chooses a state-contingent consumption plan :math:`\{c_t\}_{t \geq 0}` to maximize
@@ -147,7 +147,7 @@ The meaning of the third point is just that consumption at time :math:`t` can on
 a function of outcomes that have already been observed
 
 
-Value Function and Euler Equation
+Value Function and Euler Equation 
 ------------------------------------
 
 The *value function* :math:`V \colon S \to \mathbb{R}` is defined by
@@ -207,7 +207,7 @@ equivalent to
     \right\}
 
 
-Optimality Results
+Optimality Results 
 ------------------
 
 
@@ -253,7 +253,7 @@ In summary, to solve the optimization problem, we need to compute :math:`\sigma^
 
 .. _ifp_computation:
 
-Computation
+Computation 
 ===============
 
 .. index::
@@ -267,7 +267,7 @@ There are two standard ways to solve for :math:`\sigma^*`
 
 Let's look at these in turn
 
-Time Iteration
+Time Iteration 
 -----------------------------
 
 We can rewrite :eq:`eqeul0` to make it a statement about functions rather than
@@ -364,7 +364,7 @@ the solutions to :eq:`eqeul1` in :math:`\mathscr{C}`
 **TL;DR** The unique optimal policy can be computed by picking any
 :math:`\sigma \in \mathscr{C}` and iterating with the operator :math:`K` defined in :eq:`eqsifc`
 
-Value Function Iteration
+Value Function Iteration 
 -----------------------------
 
 
@@ -394,7 +394,7 @@ We can then check the outcome by comparing with that produced by TI
 The latter is known to converge, as described above
 
 
-Implementation
+Implementation 
 -----------------
 
 .. index::
@@ -547,11 +547,11 @@ Plotting the result using the default parameters of the ``ConsumerProblem`` clas
 
 The following exercises walk you through several applications where policy functions are computed
 
-Exercises
+Exercises 
 =============
 
 
-Exercise 1
+Exercise 1 
 ------------
 
 Next let's consider how the interest rate affects consumption
@@ -569,7 +569,7 @@ The figure shows that higher interest rates boost savings and hence suppress con
 
 
 
-Exercise 2
+Exercise 2 
 ------------
 
 Now let's consider the long run asset levels held by households
@@ -640,7 +640,7 @@ Your task is to replicate the figure
 
 
 
-Exercise 3
+Exercise 3 
 ------------
 
 Following on from exercises 1 and 2, let's look at how savings and aggregate asset holdings vary with the interest rate
@@ -667,13 +667,13 @@ Exercise 3 is to replicate the figure, making use of code from previous exercise
 Try to explain why the measure of aggregate capital is equal to :math:`-b`
 when :math:`r=0` for both cases shown here
 
-Solutions
+Solutions 
 ==========
 
 
 
 
-Exercise 1
+Exercise 1 
 ----------
 
 .. code-block:: python3
@@ -691,7 +691,7 @@ Exercise 1
     plt.show()
 
 
-Exercise 2
+Exercise 2 
 ----------
 
 .. code-block:: python3
@@ -725,7 +725,7 @@ Exercise 2
     plt.show()
 
 
-Exercise 3
+Exercise 3 
 ----------
 
 .. code-block:: python3

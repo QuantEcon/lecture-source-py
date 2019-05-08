@@ -1,7 +1,7 @@
 .. include:: /_static/includes/header.raw
 
 *********************************
-Data and Empirics
+Data and Empirics 
 *********************************
 
 This part of the course provides a set of lectures focused on Data and 

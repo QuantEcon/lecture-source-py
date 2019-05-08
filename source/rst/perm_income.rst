@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 **********************************************************
-:index:`Optimal Savings I: The Permanent Income Model`
+:index:`optimal Savings I: The Permanent Income Model` 
 **********************************************************
 
 .. index::
@@ -20,7 +20,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 
   !pip install quantecon
 
-Overview
+Overview 
 ===========
 
 This lecture describes a rational expectations version of the famous permanent income model of Milton Friedman :cite:`Friedman1956`
@@ -55,7 +55,7 @@ Let's start with some imports
     from numba import njit
 
 
-The Savings Problem
+The Savings Problem 
 ====================
 
 .. index::
@@ -64,7 +64,7 @@ The Savings Problem
 In this section we state and solve the savings and consumption problem faced
 by the consumer
 
-Preliminaries
+Preliminaries 
 ---------------
 
 We use a class of stochastic processes called
@@ -112,7 +112,7 @@ Evidently :math:`X_t` can also be expressed as
 Not every martingale arises as a random walk (see, for example, `Wald's martingale <https://en.wikipedia.org/wiki/Wald%27s_martingale>`_)
 
 
-The Decision Problem
+The Decision Problem 
 -----------------------
 
 A consumer has preferences over consumption streams that are ordered by the utility functional
@@ -154,7 +154,7 @@ Here
 The consumer also faces initial conditions :math:`b_0` and :math:`y_0`, which can be fixed or random
 
 
-Assumptions
+Assumptions 
 ---------------
 
 For the remainder of this lecture, we follow Friedman and Hall in assuming that :math:`(1 + r)^{-1} = \beta`
@@ -204,7 +204,7 @@ Finally, we impose the *no Ponzi scheme* condition
 This condition rules out an always-borrow scheme that would allow the consumer to enjoy bliss consumption forever
 
 
-First-Order Conditions
+First-order Conditions 
 -------------------------
 
 
@@ -239,7 +239,7 @@ These ideas will be clarified below
 
 .. _odr_pi:
 
-The Optimal Decision Rule
+The Optimal Decision Rule 
 ------------------------------
 
 
@@ -312,7 +312,7 @@ These last two equations assert that consumption equals *economic income*
 
 
 
-Responding to the State
+Responding to the State 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *state* vector confronting the consumer at :math:`t` is :math:`\begin{bmatrix} b_t & z_t \end{bmatrix}`
@@ -376,7 +376,7 @@ A key is to use the fact that :math:`(1 + r) \beta = 1` and :math:`(I - \beta A)
 
 We've now successfully written :math:`c_t` and :math:`b_{t+1}` as functions of :math:`b_t` and :math:`z_t`
 
-A State-Space Representation
+A State-space Representation 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We can summarize our dynamics in the form of a linear state-space system governing consumption, debt and income:
@@ -468,7 +468,7 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
     \Sigma_{y,t} = \tilde U \Sigma_t \tilde U'
 
 
-A Simple Example with iid Income
+A Simple Example With iid Income 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just iid
@@ -584,14 +584,14 @@ The figure below shows the consumption paths of 250 consumers with independent i
 
 
 
-Alternative Representations
+Alternative Representations 
 ================================
 
 In this section we shed more light on the evolution of savings, debt and
 consumption by representing their dynamics in several different ways
 
 
-Hall's Representation
+Hall's Representation 
 -----------------------
 
 .. index::
@@ -670,7 +670,7 @@ Representation :eq:`sprob16abcd` makes clear that
 
 .. _coint_pi:
 
-Cointegration
+Cointegration 
 --------------
 
 Representation :eq:`sprob16abcd` reveals that the joint process :math:`\{c_t, b_t\}` possesses the property that Engle and Granger :cite:`EngleGranger1987` called `cointegration <https://en.wikipedia.org/wiki/Cointegration>`_
@@ -709,7 +709,7 @@ Equation :eq:`sprob77`  asserts that the *cointegrating residual*  on the left s
 
 
 
-Cross-Sectional Implications
+Cross-sectional Implications 
 -----------------------------------
 
 Consider again :eq:`sprob16abcd`, this time in light of our discussion of
@@ -761,7 +761,7 @@ A number of different studies have investigated this prediction and found some s
 (see, e.g., :cite:`DeatonPaxton1994`, :cite:`STY2004`)
 
 
-Impulse Response Functions
+Impulse Response Functions 
 -----------------------------
 
 Impulse response functions measure responses  to various  impulses (i.e., temporary shocks)
@@ -772,7 +772,7 @@ In particular, the response of :math:`c_{t+j}` to a unit increase in the innovat
 
 
 
-Moving Average Representation
+Moving Average Representation 
 --------------------------------
 
 It's useful to express the innovation to the expected present value of the endowment process in terms of a moving average representation for income :math:`y_t`
@@ -824,7 +824,7 @@ The object :math:`d(\beta)` is the **present value of the moving average coeffic
 
 .. _sub_classic_consumption:
 
-Two Classic Examples
+Two Classic Examples 
 =======================
 
 We illustrate some of the preceding ideas with two examples
@@ -863,7 +863,7 @@ Here
 * :math:`z_{2t}` is a purely transitory component of :math:`y_t`
 
 
-Example 1
+Example 1 
 -------------
 
 Assume as before that the consumer observes the state :math:`z_t` at time :math:`t`
@@ -943,7 +943,7 @@ permanent income shocks using impulse-response functions
     plt.show()
 
 
-Example 2
+Example 2 
 ------------
 
 Assume now that at time :math:`t` the consumer observes :math:`y_t`, and its history up to :math:`t`, but not :math:`z_t`
@@ -1044,7 +1044,7 @@ This indicates how the fraction :math:`K` of the innovation to :math:`y_t` that 
 
 
 
-Further Reading
+Further Reading 
 ==================
 
 The model described above significantly changed how economists think about
@@ -1058,7 +1058,7 @@ Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker
 
 .. _perm_income_appendix:
 
-Appendix: The Euler Equation
+Appendix: The Euler Equation 
 ================================
 
 Where does the first order condition :eq:`sprob4` come from?
