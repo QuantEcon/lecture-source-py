@@ -173,7 +173,7 @@ To prove de Moivre's theorem, note that
 
 and compute
 
-Applications of de Moivre's Theorem
+Applications of De Moivre's Theorem
 =====================================
 
 Example 1

@@ -810,7 +810,7 @@ These probability density functions help us understand mechanics underlying the 
   even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`
 
 
-Multiplicative Martingale as  Likelihood Ratio Process
+Multiplicative Martingale as Likelihood Ratio Process
 --------------------------------------------------------
 
 A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**

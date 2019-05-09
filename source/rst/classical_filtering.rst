@@ -637,7 +637,7 @@ Interesting versions of these problems related to the permanent income theory we
 
 
 
-Problem formulation
+Problem Formulation
 --------------------
 
 These problems are solved as follows

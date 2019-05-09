@@ -83,7 +83,7 @@ This lecture provides a guide
 
 
 
-Where are the Bottlenecks?
+Where Are the Bottlenecks?
 =============================
 
 Let's start by trying to understand why high level languages like Python are slower than compiled code
@@ -562,7 +562,7 @@ This is equivalent to ``qm = jit(qm)``
 
 
 
-How and When it Works
+How and When It Works
 --------------------------
 
 Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_
@@ -617,7 +617,7 @@ When Numba compiles machine code for functions, it treats global variables as co
 
 
 
-Numba for vectorization
+Numba for Vectorization
 --------------------------    
 
 Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator

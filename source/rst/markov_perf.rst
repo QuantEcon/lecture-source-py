@@ -74,7 +74,7 @@ Well known examples include
 Let's examine a model of the first type
 
 
-Example: A duopoly model
+Example: A Duopoly Model
 -----------------------------
 
 
@@ -169,7 +169,7 @@ However, they simplify for the case in which the one-period payoff functions are
 
 
 
-Linear Markov perfect equilibria
+Linear Markov Perfect Equilibria
 ================================
 
 .. index::
@@ -182,7 +182,7 @@ In linear quadratic dynamic games, these "stacked Bellman equations" become "sta
 We'll lay out that structure in a general setup and then apply it to some simple problems
 
 
-Coupled linear regulator problems
+Coupled Linear Regulator Problems
 -----------------------------------
 
 We consider a general linear quadratic regulator game with two players
@@ -326,7 +326,7 @@ Moreover, since
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
-Key insight
+Key Insight
 ^^^^^^^^^^^^
 
 A key insight is that  equations  :eq:`orig-3` and :eq:`orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
@@ -340,7 +340,7 @@ After these equations have been solved, we can take  :math:`F_{it}` and solve fo
 
 .. However, in the Markov perfect equilibrium of this game, each agent is assumed to ignore the influence that his choice exerts on the other agent's choice
 
-Infinite horizon
+Infinite Horizon
 ^^^^^^^^^^^^^^^^^^^^
 
 We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time invariant as :math:`t_1 \rightarrow +\infty`
@@ -367,7 +367,7 @@ Application
 Let's use these procedures to treat some applications, starting with the duopoly model
 
 
-A duopoly model
+A Duopoly Model
 ----------------------
 
 To map the duopoly model into  coupled linear-quadratic dynamic programming problems, define the state

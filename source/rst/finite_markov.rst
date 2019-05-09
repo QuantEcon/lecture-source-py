@@ -354,7 +354,7 @@ In fact the `QuantEcon.py <http://quantecon.org/python_index.html>`__ routine is
 
 
 
-Adding state values and initial conditions
+Adding State Values and Initial Conditions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If we wish to, we can provide a specification of state values to ``MarkovChain``

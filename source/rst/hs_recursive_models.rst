@@ -26,7 +26,7 @@ Recursive Models of Dynamic Linear Economies
     "Every partial equilibrium model can be reinterpreted as a general equilibrium model." --   Anonymous
 
 
-A Suite of  Models
+A Suite of Models
 ===================
 
 This lecture presents  a class of  linear-quadratic-Gaussian models of general economic equilibrium
@@ -54,7 +54,7 @@ Subsequent lectures   use the DLE class to implement various instances that have
 
 
 
-Overview of the models
+Overview of the Models
 -----------------------
 
 In saying that "complete markets are all alike", Robert E. Lucas, Jr. was noting  that all of them have
@@ -1751,7 +1751,7 @@ preference shock :math:`\{b_t\}`, as mediated through the multiplier
 consumption, as mediated through the state variable :math:`h_{t-1}`
 
 
-Gorman Aggregation and Engel curves
+Gorman Aggregation and Engel Curves
 ===================================
 
 We shall explore how the dynamic demand schedule for consumption goods
@@ -1834,7 +1834,7 @@ process, and the household’s continuation plan for :math:`\{\ell_t\}`
 The time :math:`t` continuation of the vector of prices
 :math:`\{p_t^t\}`
 
-Attaining a canonical household technology
+Attaining a Canonical Household Technology
 --------------------------------------------
 
 Apply the following version of a factorization identity:

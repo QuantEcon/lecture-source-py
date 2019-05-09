@@ -103,7 +103,7 @@ For the purposes of this exercise,  set :math:`\theta_o = (A, B, D, F) = (0.8, 1
 Set :math:`x_0 = y_0 = 0`
 
 
-Simulating sample paths
+Simulating Sample Paths
 ---------------------------
 
 Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`
@@ -211,7 +211,7 @@ Here goes
 
 
 
-Simulating log-likelihoods
+Simulating Log-likelihoods
 ---------------------------
 
 Our next aim is to write a program to simulate :math:`\{\log L_t \mid \theta_o\}_{t=1}^T`
@@ -306,7 +306,7 @@ Let's also plot the conditional pdf of :math:`\Delta y_{t+1}`
 
 
 
-An alternative parameter vector
+An Alternative Parameter Vector
 -----------------------------------
 
 Now consider alternative parameter vector :math:`\theta_1 = [A, B, D, F] = [0.9, 1.0, 0.55, 0.25]`
@@ -485,7 +485,7 @@ Here :math:`\gamma \geq 1` is a risk-aversion coefficient and :math:`\delta > 0`
 
 
 
-Consumption as a multiplicative process
+Consumption as a Multiplicative Process
 ----------------------------------------
 
 We begin by showing that consumption is a **multiplicative functional** with representation
@@ -515,7 +515,7 @@ and
     \tilde e(x) = \exp[g(x)] = \exp \bigl[ D' (I - A)^{-1} x \bigr]
 
 
-Simulating a likelihood ratio process again
+Simulating a Likelihood Ratio Process Again
 --------------------------------------------
 
 Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
@@ -621,7 +621,7 @@ Here's a histogram of the multiplicative martingale component
 
 
 
-Representing the likelihood ratio process
+Representing the Likelihood Ratio Process
 -------------------------------------------
 
 The likelihood ratio process :math:`\{\widetilde M_t\}_{t=0}^\infty` can be represented as
@@ -720,7 +720,7 @@ These probability density functions illustrate a **peculiar property** of log li
 
 
 
-Welfare benefits of reduced random aggregate fluctuations
+Welfare Benefits of Reduced Random Aggregate Fluctuations
 ---------------------------------------------------------------
 
 Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`Lucas_2003`) we want to estimate the welfare benefits from removing random fluctuations around trend growth 

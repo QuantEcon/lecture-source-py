@@ -59,7 +59,7 @@ This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatk
 
 
 
-Simple Linear Regression 
+Simple Linear Regression
 ===========================================
 
 :cite:`Acemoglu2001` wish to determine whether or not differences in institutions can help to explain observed economic outcomes
@@ -380,7 +380,7 @@ in the paper)
     
     print(results_table)
 
-Endogeneity 
+Endogeneity
 ===========
 
 As :cite:`Acemoglu2001` discuss, the OLS models likely suffer from

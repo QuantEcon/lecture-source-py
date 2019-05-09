@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***************************************
-Dynamic Programming 
+Dynamic Programming
 ***************************************
 
 This section of the course contains foundational models for dynamic economic

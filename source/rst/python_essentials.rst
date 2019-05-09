@@ -388,7 +388,7 @@ This leads to the clean, convenient syntax shown in our program
 Many other kinds of objects are iterable, and we'll discuss some of them later on
 
 
-Looping without Indices
+Looping Without Indices
 ------------------------
 
 One thing you might have noticed is that Python tends to favor looping without explicit indexing
@@ -953,7 +953,7 @@ Solutions
 Exercise 1
 ----------
 
-Part 1 solution:
+Part 1 Solution:
 ^^^^^^^^^^^^^^^^
 
 Here's one possible solution
@@ -973,7 +973,7 @@ This also works
     sum(x * y for x, y in zip(x_vals, y_vals))
 
 
-Part 2 solution:
+Part 2 Solution:
 ^^^^^^^^^^^^^^^^
 
 One solution is
@@ -1007,7 +1007,7 @@ and
 
 
 
-Part 3 solution
+Part 3 Solution
 ^^^^^^^^^^^^^^^
 
 Here's one possibility

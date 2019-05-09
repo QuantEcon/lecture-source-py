@@ -522,7 +522,7 @@ A useful function for our work below
         plt.grid()
         plt.show()
 
-Manual or "by hand" Root Calculations
+Manual or "by Hand" Root Calculations
 ----------------------------------------------
 
 The following function calculates roots of the characteristic polynomial

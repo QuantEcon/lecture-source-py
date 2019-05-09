@@ -179,7 +179,7 @@ and then solve the following max-min problem:
   
   \max_{\vec{C},\vec{K}}\min_{\vec{\mu}}\mathcal{L}(\vec{C},\vec{K},\vec{\mu})
 
-Useful properties of linearly homogeneous production function
+Useful Properties of Linearly Homogeneous Production Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following technicalities will help us
@@ -239,7 +239,7 @@ Also
   \end{align}
 
 
-Back to solving the problem
+Back to Solving the Problem
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To solve the Lagrangian extremization problem, we compute first
@@ -1006,7 +1006,7 @@ As in the planned economy model
 
 .. math:: F(\tilde k_t, \tilde n_t) = A \tilde k_t^\alpha \tilde n_t^{1-\alpha}
 
-Zero profit conditions
+Zero Profit Conditions
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Zero-profits condition for capital and labor are
@@ -1206,7 +1206,7 @@ verify** approach
 -  We shall then **verify** that at those prices, the household and
    the firm choose the same allocation
 
-Guess for price system
+Guess for Price System
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 We have computed an allocation :math:`\{\vec C, \vec K, \vec 1\}`

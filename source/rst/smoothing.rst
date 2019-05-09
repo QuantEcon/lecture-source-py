@@ -861,7 +861,7 @@ We leave it to the reader to apply the usual isomorphism to deduce the correspon
 
 
 
-Government Manipulation of  Arrow Securities Prices
+Government Manipulation of Arrow Securities Prices
 ----------------------------------------------------
 
 In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optimal taxation <opt_tax_recur>`, we study **complete-markets** 

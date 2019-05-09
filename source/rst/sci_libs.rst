@@ -82,7 +82,7 @@ Suppose further that we've forgotten the basic formula
 
 for a geometric progression and hence have resolved to rely on a loop
 
-Python vs C
+Python Vs C
 ^^^^^^^^^^^^^^^^^^
 
 Here's a pure Python function that does the job

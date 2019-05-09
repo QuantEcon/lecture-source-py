@@ -1055,7 +1055,7 @@ variances".
 That is, we need significantly more data to obtain a given
 precision of the mean estimate than for our variance estimate
 
-A Special Case -- i.i.d. Sample
+A Special Case -- I.i.d. Sample
 ---------------------------------
 
 We start our analysis with the benchmark case of iid data. Consider a

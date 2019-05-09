@@ -120,7 +120,7 @@ Later we'll see how to compute these distributions and their moments
 
 
 
-Martingale difference shocks
+Martingale Difference Shocks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -157,7 +157,7 @@ They also illustrate the wise dictum *finding the state is an art*
 
 .. _lss_sode:
 
-Second-order difference equation
+Second-order Difference Equation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -698,7 +698,7 @@ feel for how the population distribution depends on the model primitives :ref:`l
 the distribution's sufficient statistics
 
 
-Ensemble means
+Ensemble Means
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the preceding figure we approximated the population distribution of :math:`y_T` by
@@ -793,7 +793,7 @@ In view of :eq:`st_space_rep`, the conditional densities are
     p(x_{t+1} \,|\, x_t) = N(Ax_t, C C')
 
 
-Autocovariance functions
+Autocovariance Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An important object related to the joint distribution is the *autocovariance function*
@@ -930,7 +930,7 @@ Conditions for Stationarity
 ------------------------------
 
 
-The globally stable case
+The Globally Stable Case
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The difference equation :math:`\mu_{t+1} = A \mu_t` is known to have *unique*
@@ -969,7 +969,7 @@ Because of the constant first component in the state vector, we will never have 
 How can we find stationary solutions that respect a constant state component?
 
 
-Processes with a constant state component
+Processes with a Constant State Component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To investigate such a process, suppose that :math:`A` and :math:`C` take the
@@ -1069,7 +1069,7 @@ In this case we know that the ensemble mean will converge to :math:`\mu_{\infty}
 
 
 
-Averages over time
+Averages over Time
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Ensemble averages across simulations are interesting theoretically, but in real life we usually observe only a *single* realization :math:`\{x_t, y_t\}_{t=0}^T`

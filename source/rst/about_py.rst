@@ -166,7 +166,7 @@ This section briefly showcases some examples of Python for scientific programmin
 * All of these topics will be covered in detail later on
 
 
-Numerical programming
+Numerical Programming
 ------------------------
 
 .. index::

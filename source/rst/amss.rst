@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 *****************************************************
-Optimal Taxation without State-Contingent Debt
+Optimal Taxation Without State-Contingent Debt
 *****************************************************
 
 .. contents:: :depth: 2

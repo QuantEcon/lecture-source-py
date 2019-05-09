@@ -6,7 +6,7 @@
 
 
 ********************************************************
-Ramsey plans, Time Inconsistency, Sustainable Plans
+Ramsey Plans, Time Inconsistency, Sustainable Plans
 ********************************************************
 
 
@@ -1003,7 +1003,7 @@ If the government at :math:`t` is to resist the temptation to raise its
 current payoff, it is only because it forecasts adverse  consequences that
 its setting of :math:`\mu_t` would bring for subsequent government payoffs via  alterations  in the private sector's expectations
 
-Sustainable or Credible plan
+Sustainable or Credible Plan
 =============================
 
 We call a plan :math:`\vec \mu` **sustainable** or **credible** if at
@@ -1095,7 +1095,7 @@ agents' expectation
 We shall use a construction featured in :cite:`Abreu` to construct a
 self-enforcing plan with low time :math:`0` value
 
-Abreu Carrot-Stick  Plan
+Abreu Carrot-Stick Plan
 -------------------------------------------
 
 :cite:`Abreu` invented a way to create a self-enforcing plan with low

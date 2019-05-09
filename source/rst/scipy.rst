@@ -34,7 +34,7 @@ A more common approach is to get some idea of what's in the library and then loo
 In this lecture we aim only to highlight some useful parts of the package
 
 
-:index:`SciPy` versus :index:`NumPy`
+:index:`SciPy` Versus :index:`NumPy`
 ====================================
 
 SciPy is a package that contains various tools that are built on top of NumPy, using its array data type and related functionality
@@ -187,7 +187,7 @@ For example, the previous code can be replaced by
 
 
 
-Other Goodies in scipy.stats
+Other Goodies in Scipy.stats
 -------------------------------
 
 There are a variety statistical functions in ``scipy.stats``

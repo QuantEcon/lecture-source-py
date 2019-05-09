@@ -853,7 +853,7 @@ The solution of the problem becomes
     \sum^\infty_{k=0} \lambda^k_j a_{t+k}
 
 
-Transforming discounted to undiscounted problem
+Transforming Discounted to Undiscounted Problem
 -------------------------------------------------
 
 Discounted problems can always be converted into undiscounted problems via a simple transformation 
@@ -949,7 +949,7 @@ Here's how it looks
 
 
 
-Example 
+Example
 ---------
 
 In this application we'll have one lag, with 

@@ -468,7 +468,7 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
     \Sigma_{y,t} = \tilde U \Sigma_t \tilde U'
 
 
-A Simple Example with iid Income
+A Simple Example with Iid Income
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just iid

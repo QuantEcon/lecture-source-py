@@ -392,7 +392,7 @@ In the second case different initial conditions are chosen, and the cycles
 become synchronized
 
 
-Basin of Attraction 
+Basin of Attraction
 -----------------------
 
 Next let's study the initial conditions that lead to synchronized cycles more

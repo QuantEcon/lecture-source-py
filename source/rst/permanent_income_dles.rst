@@ -6,7 +6,7 @@
     single: python
 
 ********************************************************
-Permanent Income Model using the DLE class
+Permanent Income Model Using the DLE Class
 ********************************************************
 
 .. contents:: :depth: 2

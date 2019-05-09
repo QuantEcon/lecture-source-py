@@ -126,7 +126,7 @@ For example, when  :math:`k=2`, :math:`x_1 \perp x_2` implies
      = \| x_1 \|^2 + \| x_2 \|^2 
 
 
-Linear Independence vs Orthogonality
+Linear Independence Vs Orthogonality
 -----------------------------------------
 
 If :math:`X \subset \mathbb R^n` is an orthogonal set and :math:`0 \notin X`, then :math:`X` is linearly independent
@@ -169,7 +169,7 @@ The next figure provides some intuition
 
 
 
-Proof of sufficiency
+Proof of Sufficiency
 --------------------
 
 We'll omit the full proof.  
@@ -320,7 +320,7 @@ Combining this result with :eq:`pob` verifies the claim
 
 
 
-Projection onto an Orthonormal Basis
+Projection onto An Orthonormal Basis
 ------------------------------------------
 
 When the subspace onto which are projecting is orthonormal, computing the projection simplifies:
@@ -533,7 +533,7 @@ This approach provides insights about  many geometric  properties of linear regr
 We treat only some examples
 
 
-Squared risk measures
+Squared Risk Measures
 ----------------------
 
 Given pairs :math:`(x, y) \in \mathbb R^K \times \mathbb R`, consider choosing :math:`f \colon \mathbb R^K \to \mathbb R` to minimize 
@@ -762,7 +762,7 @@ Some rearranging gives :math:`X = Q R`
 
 
 
-Linear Regression via QR Decomposition
+Linear Regression Via QR Decomposition
 -----------------------------------------
 
 For matrices :math:`X` and :math:`y` that overdetermine :math:`beta` in the linear

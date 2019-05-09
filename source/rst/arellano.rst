@@ -169,7 +169,7 @@ Therefore, the discounted expected value of a promise to pay :math:`B` next peri
 Next we turn to how the government in effect chooses the default probability :math:`\delta`    
 
 
-Government's decisions
+Government's Decisions
 -----------------------
 
 
@@ -191,7 +191,7 @@ But a sovereign default has two consequences:
 
 #. The country loses access to foreign credit markets
 
-Reentering international credit market
+Reentering International Credit Market
 ---------------------------------------
 
 While in a state of default, the economy regains access to
@@ -298,7 +298,7 @@ the bond price function:
     q(B', y) = \frac{1 - \delta(B', y)}{1 + r}
 
 
-Definition of equilibrium
+Definition of Equilibrium
 ---------------------------
 
 An *equilibrium* is 

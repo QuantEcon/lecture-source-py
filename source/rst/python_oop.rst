@@ -131,7 +131,7 @@ In the example
 
 .. _why_oop:
 
-Why is OOP Useful?
+Why Is OOP Useful?
 ----------------------
 
 

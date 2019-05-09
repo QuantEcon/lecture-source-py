@@ -83,7 +83,7 @@ Chang's operator :math:`\tilde D(Z)` is closely connected with the operator
 
 
 
-The setting
+The Setting
 ============
 
 We begin by reviewing the set up deployed in  :doc:`competitive equilibria in the Chang model<chang_ramsey>`
@@ -140,7 +140,7 @@ In competitive equilibrium, the price of money sequence :math:`\vec q` clears
 markets, thereby reconciling  decisions of the government and the
 representative household
 
-The household’s problem
+The Household’s Problem
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 A representative household faces a nonnegative value of money sequence
@@ -239,7 +239,7 @@ The government chooses a competitive equilibrium that
 maximizes :eq:`eqn_chang1`
 
 
-Within-period timing protocol
+Within-period Timing Protocol
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For the results in this lecture, the *timing* of actions within a period is 
@@ -268,7 +268,7 @@ operator below
 
 
 
-Household’s problem
+Household’s Problem
 ^^^^^^^^^^^^^^^^^^^^
 
 Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem is
@@ -328,7 +328,7 @@ A closely related observation pervaded the analysis of Stackelberg plans in
 :doc:`dynamic Stackelberg problems<dyn_stack>` and :doc:`the Calvo model<calvo>`
 
 
-Competitive equilibrium
+Competitive Equilibrium
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Definition:**
@@ -352,7 +352,7 @@ Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system
 
 * Given :math:`\vec q, \vec x, \vec y`, :math:`(\vec c, \vec m)` solves the household’s problem
 
-A credible government policy
+A Credible Government Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Chang works with
@@ -441,7 +441,7 @@ For a credible government plan, we the two-dimensional state vector
 
 
 
-Sustainable plans
+Sustainable Plans
 ^^^^^^^^^^^^^^^^^^
 
 A government strategy :math:`\sigma` and an allocation rule
@@ -602,7 +602,7 @@ ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, w
       \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  \\
       \end{aligned}
 
-Calculating  set of sustainable :math:`(w,\theta)` pairs 
+Calculating Set of Sustainable :math:`(w,\theta)` Pairs
 ==================================================================================
 
 Above we defined the :math:`\tilde D(Z)` operator as :eq:`chang_operator`
@@ -777,7 +777,7 @@ The package can be installed in a terminal/command prompt with pip
 .. literalinclude:: /_static/code/chang_credible/changecon.py
   :class: collapse
 
-Comparison of sets
+Comparison of Sets
 ^^^^^^^^^^^^^^^^^^^
 
 The set of :math:`(w, \theta)` associated with  sustainable plans is  smaller than the set of :math:`(w, \theta)`

@@ -68,7 +68,7 @@ The model consists of the following equations:
 
 .. math:: n_t = \\alpha_s v_t + \epsilon_{st}
 
-Mapping into HS2013 framework
+Mapping into HS2013 Framework
 ===============================================
 
 We represent this model in the :cite:`HS2013` framework by

@@ -175,7 +175,7 @@ This continues until a ``StopIteration`` error occurs
 
 
 
-Iterables 
+Iterables
 -------------
 
 .. index::
@@ -254,7 +254,7 @@ To conclude our discussion of ``for`` loops
 * In the second case, the iterable is converted into an iterator before the loop starts
 
 
-Iterators and built-ins
+Iterators and Built-ins
 --------------------------
 
 .. index::
@@ -365,7 +365,7 @@ In other words, the memory slot that stores that object is deallocated, and retu
 
 
 
-Namespaces 
+Namespaces
 ----------------------------
 
 .. index::
@@ -1342,7 +1342,7 @@ First let's check that we get the desired behavior
 
 Yep, that's what we want --- ``car.kms`` is automatically updated
 
-How it Works
+How It Works
 ^^^^^^^^^^^^^^
 
 The names ``_miles`` and ``_kms`` are arbitrary names we are using to store the values of the variables
