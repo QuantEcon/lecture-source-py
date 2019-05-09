@@ -43,7 +43,7 @@ The objective is to introduce you to basic Python syntax and data structures
 
 Deeper concepts will be covered in later lectures
 
-Prerequisites  
+Prerequisites
 --------------
 
 The :doc:`lecture <getting_started>` on getting started with Python
@@ -126,7 +126,7 @@ We could also just write
 
 But the former method is convenient and more standard
 
-Why all the imports?
+Why all the Imports?
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Remember that Python is a general purpose language
@@ -140,7 +140,7 @@ Scientific work in Python is no exception
 
 Most of our programs start off with lines similar to the ``import`` statements seen above
 
-Packages 
+Packages
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -231,7 +231,7 @@ The programs below are less efficient but
 * illustrate common data types like lists
 
 
-A Version with a For Loop 
+A Version with a For Loop
 -----------------------------------
 
 Here's a version that illustrates loops and Python lists

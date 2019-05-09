@@ -250,7 +250,7 @@ The next section covers these ideas more formally
 
 
 
-Optimality 
+Optimality
 ------------------------------------
 
 The :math:`\sigma`**-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by

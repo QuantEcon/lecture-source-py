@@ -617,7 +617,7 @@ When Numba compiles machine code for functions, it treats global variables as co
 
 
 
-Numba for vectorization
+Numba for Vectorization
 --------------------------    
 
 Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator

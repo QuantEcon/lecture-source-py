@@ -169,7 +169,7 @@ But this value is inherited as a state variable at time :math:`t`, which explain
 
 
 
-The dynamic program
+The Dynamic Program
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -226,7 +226,7 @@ The solution to this dynamic programming problem is an optimal policy expressing
 * Each one determines the other, since :math:`c(\pi, y) = \pi (y + p(y))- \pi' (\pi, y) p(y)`
 
 
-Next steps
+Next Steps
 ^^^^^^^^^^^
 
 What we need to do now is determine equilibrium prices
@@ -242,7 +242,7 @@ It seems that to obtain these, we will have to
 However, as Lucas showed, there is a related but more straightforward way to do this
 
 
-Equilibrium constraints
+Equilibrium Constraints
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -258,7 +258,7 @@ In particular, the representative consumer owns the whole tree in every period, 
 Prices must adjust to satisfy these two constraints
 
 
-The equilibrium price function
+The Equilibrium Price Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
@@ -315,7 +315,7 @@ The solution is an equilibrium price function :math:`p^*`
 
 Let's look at how to obtain it
 
-Setting up the problem
+Setting up the Problem
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Instead of solving for it directly we'll follow Lucas' indirect approach, first setting
@@ -360,7 +360,7 @@ In other words, a solution is a *fixed point* of :math:`T`
 
 This means that we can use fixed point theory to obtain and compute the solution
 
-A little fixed point theory
+A Little Fixed Point Theory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::

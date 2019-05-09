@@ -175,7 +175,7 @@ This continues until a ``StopIteration`` error occurs
 
 
 
-Iterables 
+Iterables
 -------------
 
 .. index::
@@ -365,7 +365,7 @@ In other words, the memory slot that stores that object is deallocated, and retu
 
 
 
-Namespaces 
+Namespaces
 ----------------------------
 
 .. index::

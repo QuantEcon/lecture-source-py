@@ -162,7 +162,7 @@ Letting :math:`X_t := \left(\begin{matrix}U_t\\E_t\end{matrix}\right)`, the law 
 This law tells us how total employment and unemployment evolve over time
 
 
-Laws of Motion for Rates 
+Laws of Motion for Rates
 --------------------------------------------------------
 
 Now let's derive the law of motion for rates
@@ -449,7 +449,7 @@ Inspection tells us that :math:`P` is exactly the transpose of :math:`\hat A` un
 Thus, the percentages of time that an  infinitely lived worker  spends employed and unemployed equal the fractions of workers employed and unemployed in the steady state distribution
 
 
-Convergence rate
+Convergence Rate
 ------------------
 
 How long does it take for time series sample averages to converge to cross sectional averages?

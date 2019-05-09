@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************************************
-Asset Pricing III:  Incomplete Markets
+Asset Pricing III: Incomplete Markets
 ************************************************************
 
 .. index::
@@ -315,7 +315,7 @@ Here's a function that can be used to compute these values
 .. literalinclude:: /_static/code/harrison_kreps/hk_price_singlebeliefs.py
 
 
-Single belief prices as benchmarks
+Single Belief Prices as Benchmarks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These equilibrium prices under homogeneous beliefs are important benchmarks for the subsequent analysis

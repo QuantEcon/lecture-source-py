@@ -204,7 +204,7 @@ For now let's focus on the risk neutral case, where the stochastic discount fact
 
 
 
-Example 1: Constant dividends
+Example 1: Constant Dividends
 ---------------------------------
 
 The simplest case is risk neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`
@@ -238,7 +238,7 @@ Indeed, simple algebra shows that setting :math:`p_t = \bar p` for all :math:`t`
 satisfies the equilibrium condition :math:`p_t = \beta (d + p_{t+1})`
 
 
-Example 2: Dividends with deterministic growth paths
+Example 2: Dividends with Deterministic Growth Paths
 ---------------------------------------------------------
 
 Consider a growing, non-random dividend process :math:`d_{t+1} = g d_t`
@@ -275,7 +275,7 @@ This is called the *Gordon formula*
 
 .. _mass_mg:
 
-Example 3: Markov growth, risk neutral pricing
+Example 3: Markov Growth, Risk Neutral Pricing
 ------------------------------------------------
 
 Next we consider a dividend process 
@@ -493,7 +493,7 @@ We'll price several distinct assets, including
 
 
 
-Pricing a Lucas tree
+Pricing a Lucas Tree
 ---------------------------
 
 .. index::
@@ -702,7 +702,7 @@ discount factor, lowering the weight placed on future returns
 
 
 
-Special cases
+Special Cases
 ^^^^^^^^^^^^^^^^^
 
 In the special case :math:`\gamma =1`, we have :math:`J = P`
@@ -821,7 +821,7 @@ Pricing an Option to Purchase the Consol
 Let's now price options of varying maturity that give the right to purchase a consol at a price :math:`p_S`
 
 
-An infinite horizon call option
+An Infinite Horizon Call Option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to price an infinite horizon  option to purchase a consol at a price :math:`p_S`
@@ -982,7 +982,7 @@ Let's look at risk free interest rates over different periods
 
 
 
-The one-period risk-free interest rate
+The One-period Risk-free Interest Rate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As before, the stochastic discount factor is :math:`m_{t+1} = \beta g_{t+1}^{-\gamma}`
@@ -1004,7 +1004,7 @@ We can write this as
 where the :math:`i`-th  element of :math:`m_1` is the reciprocal of the one-period gross risk-free interest rate in state :math:`x_i`
 
 
-Other terms
+Other Terms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Let :math:`m_j` be an :math:`n \times 1` vector whose :math:`i` th component is the reciprocal of the :math:`j` -period gross risk-free interest rate in state :math:`x_i`

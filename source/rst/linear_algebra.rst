@@ -1309,7 +1309,7 @@ definite inverse)
 
 .. _la_mcalc:
 
-Differentiating Linear and Quadratic forms
+Differentiating Linear and Quadratic Forms
 -------------------------------------------
 
 .. index::

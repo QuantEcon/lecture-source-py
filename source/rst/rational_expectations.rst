@@ -48,7 +48,7 @@ Except that for us
 * Instead of "little :math:`k`" it will be "little :math:`y`"
 
 
-The Big :math:`Y`, little :math:`y` trick
+The Big :math:`Y`, Little :math:`y` Trick
 --------------------------------------------------
 
 This widely used method applies in contexts in which a "representative firm" or agent is a "price taker" operating within a competitive equilibrium
@@ -70,7 +70,7 @@ Please watch for how this strategy is applied as the lecture unfolds
 We begin by applying the  Big :math:`Y`, little :math:`y` trick in a very simple static context
 
 
-A simple static example of the Big :math:`Y`, little :math:`y` trick
+A Simple Static Example of the Big :math:`Y`, Little :math:`y` Trick
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -390,7 +390,7 @@ A *rational expectations equilibrium* or *recursive competitive equilibrium*  of
 Thus, a rational expectations equilibrium equates the perceived and actual laws of motion :eq:`ree_hlom` and :eq:`ree_comp9a`
 
 
-Fixed point characterization
+Fixed Point Characterization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As we've seen, the firm's optimum problem induces a mapping :math:`\Phi` from a perceived law of motion :math:`H` for market-wide output to an actual law of motion :math:`\Phi(H)`

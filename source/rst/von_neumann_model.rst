@@ -442,7 +442,7 @@ instance
     N2 = Neumann(A2, B2)
     N2
 
-Dynamic interpretation
+Dynamic Interpretation
 ====================================
 
 Attach a time index :math:`t` to the preceding objects, regard an economy
@@ -478,7 +478,7 @@ yesterday
 Accordingly, :math:`Ap_t` tells the costs of production in period
 :math:`t` and :math:`Bp_t` tells revenues in period :math:`t+1`
 
-Balanced growth
+Balanced Growth
 -----------------
 
 We follow John von Neumann in studying “balanced growth”
@@ -937,7 +937,7 @@ and minimal roots of :math:`V(M(\gamma))` necessarily coincide implying
 a ‘’full duality’’ result, i.e. :math:`\alpha_0 = \beta_0 = \gamma^*`,
 and that the expansion (and interest) rate :math:`\gamma^*` is unique
 
-Uniqueness and irreducibility
+Uniqueness and Irreducibility
 -----------------------------
 
 As an illustration, compute first the maximal and minimal roots of
@@ -980,7 +980,7 @@ imposing irreducibility is sufficient for uniqueness of
 **Theorem II:** Consider the conditions of Theorem 1. If the economy
 :math:`(A,B)` is irreducible, then :math:`\gamma^*=\alpha_0=\beta_0`
 
-A special case
+A Special Case
 --------------
 
 There is a special :math:`(A,B)` that allows us to simplify the solution

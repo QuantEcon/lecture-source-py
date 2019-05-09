@@ -191,7 +191,7 @@ The period-by-period feasibility restriction for this economy is
 A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:`lq_feasible` holds for all :math:`t`
 
 
-Government budget constraint
+Government Budget Constraint
 ----------------------------------
 
 Where :math:`p_t^0` is again a scaled Arrow-Debreu price, the time zero government budget constraint is
@@ -427,7 +427,7 @@ In this case, the formula for computing :math:`q(x_0)` is known to be :math:`q(x
 The first equation is known as a discrete Lyapunov equation, and can be solved
 using `this function <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/matrix_eqn.py#L25>`_
 
-Finite state Markov case
+Finite State Markov Case
 -------------------------
 
 Next suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`
