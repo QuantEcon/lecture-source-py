@@ -249,7 +249,7 @@ We can do this by making frequent use of functions or classes
 In fact, functions and classes are designed specifically to help us avoid shaming ourselves by repeating code or excessive use of global variables
 
 
-Which one, functions or classes?
+Which One, Functions or Classes?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Both can be useful, and in fact they work well with each other
@@ -262,7 +262,7 @@ What's really important is that you use one or the other or both
 
 
 
-Revisiting the  Example
+Revisiting the Example
 ========================
 
 Here's some code that reproduces the plot above with better coding style

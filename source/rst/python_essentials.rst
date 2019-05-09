@@ -953,7 +953,7 @@ Solutions
 Exercise 1
 ----------
 
-Part 1 solution:
+Part 1 Solution:
 ^^^^^^^^^^^^^^^^
 
 Here's one possible solution
@@ -973,7 +973,7 @@ This also works
     sum(x * y for x, y in zip(x_vals, y_vals))
 
 
-Part 2 solution:
+Part 2 Solution:
 ^^^^^^^^^^^^^^^^
 
 One solution is
@@ -1007,7 +1007,7 @@ and
 
 
 
-Part 3 solution
+Part 3 Solution
 ^^^^^^^^^^^^^^^
 
 Here's one possibility

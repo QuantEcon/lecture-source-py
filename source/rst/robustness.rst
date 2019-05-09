@@ -253,7 +253,7 @@ By raising :math:`\theta` more and more, we more and more limit the ability of m
 So bigger :math:`\theta` is implicitly associated with smaller distortion sequences :math:`\{w_t \}`
 
 
-Analyzing the Bellman equation
+Analyzing the Bellman Equation
 -------------------------------
 
 So what does :math:`J` in :eq:`rb_wcb0` look like?
@@ -607,7 +607,7 @@ To construct the *upper bound* on the set of values associated all perturbations
     *  Repeat the preceding three steps  for a range of values of :math:`\tilde \theta` to trace out the upper bound
 
 
-Reshaping the set of values
+Reshaping the Set of Values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 

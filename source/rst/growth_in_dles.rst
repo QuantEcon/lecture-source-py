@@ -350,7 +350,7 @@ steady state of consumption, investment and capital
 However, the near-unity endogenous eigenvalue means that these steady
 state values are of little relevance
 
-Example 2: Altered growth condition
+Example 2: Altered Growth Condition
 ------------------------------------
 
 We generate our next economy by making two alterations to the parameters

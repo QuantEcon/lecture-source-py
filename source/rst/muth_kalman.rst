@@ -6,7 +6,7 @@
     single: python
 
 ******************************
-Reverse engineering a la Muth
+Reverse Engineering a la Muth
 ******************************
 
 .. contents:: :depth: 2
@@ -165,7 +165,7 @@ apply the quantecon ``Kalman`` class, then uses it to construct the associated "
 
     ssk = LinearStateSpace(Ak, Ck, Gk, Hk, mu_0=x_hat_0)
 
-Some useful statespace math
+Some Useful Statespace Math
 -----------------------------
 
 Now we want to map the time-invariant innovations representation :eq:`innovations` and
@@ -246,7 +246,7 @@ Now that we have simulated our joint system, we have :math:`x_t`,
 We can now investigate how these
 variables are related by plotting some key objects
 
-Estimates of unobservables
+Estimates of Unobservables
 ---------------------------
 
 First, let’s plot the hidden state :math:`x_t` and the filtered version
@@ -268,7 +268,7 @@ Note how :math:`x_t` and :math:`\hat{x_t}` differ
 For Friedman, :math:`\hat x_t` and not :math:`x_t` is the consumer’s
 idea about her/his *permanent income*
 
-Relation between unobservable and observable
+Relation between Unobservable and Observable
 ---------------------------------------------
 
 Now let’s plot :math:`x_t` and :math:`y_t`

@@ -47,7 +47,7 @@ We'll need the following imports
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-The Model 
+The Model
 ============
 
 The model concerns the life of an infinitely lived worker and

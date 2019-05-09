@@ -146,7 +146,7 @@ unit eigenvalue in this economy
 Investment is much more response to the endowment shock at shorter time
 horizons
 
-Example 2: Higher adjustment costs
+Example 2: Higher Adjustment Costs
 ===================================
 
 We generate our next economy by making only one change to the parameters

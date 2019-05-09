@@ -749,7 +749,7 @@ The above steps are implemented in a class called `SequentialAllocation`
 
 
 
-Recursive Formulation of the Ramsey problem
+Recursive Formulation of the Ramsey Problem
 =============================================
 
 :math:`x_t(s^t) = u_c(s^t) b_t(s_t | s^{t-1})` in equation :eq:`LSA_budget`
@@ -1280,7 +1280,7 @@ By doing this, it lowers the value of time :math:`t=0` debt that it has inherite
 and must finance
 
 
-Time 0  and Time-Inconsistency
+Time 0 and Time-Inconsistency
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the  preceding  example,  the Ramsey tax rate at time 0 differs from its value  at time 1

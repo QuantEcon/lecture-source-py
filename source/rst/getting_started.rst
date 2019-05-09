@@ -157,7 +157,7 @@ These lectures are designed for executing in Jupyter notebooks
 
 
 
-Starting the Jupyter Notebook 
+Starting the Jupyter Notebook
 ------------------------------
 
 .. index:: 
@@ -273,7 +273,7 @@ At this stage we recommend you take your time to
 
 * take the "user interface tour", which can be accessed through the help menu
 
-Inserting unicode (e.g., Greek letters)
+Inserting Unicode (e.g., Greek Letters)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Python 3 introduced support for `unicode characters <https://docs.python.org/3/howto/unicode.html>`__,
@@ -531,7 +531,7 @@ Here
 * ``run test.py`` runs the file and prints any output
 
 
-But file X isn't in my PWD!
+But File X isn't in my PWD!
 ---------------------------
 
 If you're trying to run a file not in the present working director, you'll get an error
@@ -561,7 +561,7 @@ Note: You can type the first letter or two of each directory name and then use t
 
 
 
-Loading Files 
+Loading Files
 --------------
 
 It's often convenient to be able to see your code before you run it

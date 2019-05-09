@@ -68,7 +68,7 @@ where :math:`\beta \in (0,1)` is a time discount factor
 
 
 
-Stackelberg leader and follower
+Stackelberg Leader and Follower
 --------------------------------
 
 Each firm :math:`i=1,2` chooses a sequence
@@ -90,7 +90,7 @@ base its choice of :math:`\vec q_1` on firm 2's choice of
 :math:`\vec q_2`
 
 
-Abstract statement of the leader's and follower's problems
+Abstract Statement of the Leader's and Follower's Problems
 -----------------------------------------------------------
 
 We can express firm 1's problem as
@@ -132,7 +132,7 @@ follower's best response to it
 
 To gain insights about these things, we study them in more detail
 
-Firms' problems
+Firms' Problems
 ----------------
 
 Firm 1 acts as if firm 2's sequence :math:`\{q_{2t+1}\}_{t=0}^\infty` is
@@ -350,7 +350,7 @@ or
 
     y_{t+1} = A y_t + B u_t
 
-Interpretation of the second block of equations
+Interpretation of the Second Block of Equations
 -------------------------------------------------
 
 The Stackelberg follower's best response mapping is summarized by the
@@ -380,7 +380,7 @@ The Stackelberg leader uses its understanding of the responses
 restricted by :eq:`constrainteq` to manipulate the follower's
 decisions
 
-More mechanical details
+More Mechanical Details
 --------------------------
 
 For any vector :math:`a_t`, define :math:`\vec a_t = [a_t,
@@ -453,7 +453,7 @@ The value function :math:`w(z_0)` tells the value of the Stackelberg plan
 as a function of the vector of natural state variables at time :math:`0`,
 :math:`z_0`
 
-Two Bellman equations
+Two Bellman Equations
 -----------------------
 
 We now describe Bellman equations for :math:`v(y)` and :math:`w(z_0)`
@@ -526,7 +526,7 @@ which implies that
 
 
 
-Stackelberg plan
+Stackelberg Plan
 =================
 
 Now let's map our duopoly model into the above setup.
@@ -538,7 +538,7 @@ We we'll formulate a state space system
 where in this instance :math:`x_t = v_{1t}`, the time :math:`t` decision
 of the follower firm 1
 
-Calculations to prepare duopoly model
+Calculations to Prepare Duopoly Model
 ----------------------------------------
 
 Now we'll proceed to cast our duopoly model within the framework of the
@@ -551,7 +551,7 @@ As emphasized above, firm 1 acts as if firm 2's decisions
 :math:`\{q_{2t+1}, v_{2t}\}_{t=0}^\infty` are given and beyond its
 control
 
-Firm 1's problem
+Firm 1's Problem
 -------------------
 
 We again formulate firm 1's optimum problem in terms of the Lagrangian
@@ -642,7 +642,7 @@ choice of :math:`\vec q_2` for our duopoly model
 
 
 
-Recursive representation of Stackelberg plan
+Recursive Representation of Stackelberg Plan
 =============================================
 
 In order to attain an appropriate representation of the Stackelberg
@@ -729,7 +729,7 @@ that the Stackelberg leader's choice :math:`u_t` depends not just on
 
 
 
-Comments and interpretations
+Comments and Interpretations
 -------------------------------
 
 After all, at the end of the day, it will turn out that because we set
@@ -747,7 +747,7 @@ terms of :math:`z^t`
 
 
 
-Dynamic programming and time consistency of **follower's** problem
+Dynamic Programming and Time Consistency of **follower's** Problem
 --------------------------------------------------------------------
 
 Given the sequence :math:`\vec q_2` chosen by the Stackelberg leader in
@@ -761,7 +761,7 @@ To verify these claims, we'll formulate a recursive version of a
 follower's problem that builds on our recursive representation of the
 Stackelberg leader's plan and our use of the **Big K, little k** idea
 
-Recursive formulation of a follower’s problem
+Recursive Formulation of a Follower’s Problem
 ----------------------------------------------
 
 We now use what amounts to another “Big :math:`K`, little :math:`k`” trick (see
@@ -859,7 +859,7 @@ which will verify that we have properly set up a recursive
 representation of the follower's problem facing the Stackelberg leader's
 :math:`\vec q_2`
 
-Time consistency of follower's plan
+Time Consistency of Follower's Plan
 -------------------------------------
 
 Since the follower can solve its problem using dynamic programming its
@@ -959,7 +959,7 @@ dynamic program as outlined above
     print(f"F = {F}")
 
 
-Implied time series for price and quantities
+Implied Time Series for Price and Quantities
 ---------------------------------------------
 
 The following code plots the price and quantities
@@ -981,7 +981,7 @@ The following code plots the price and quantities
     plt.show()
 
 
-Value of Stackelberg leader
+Value of Stackelberg Leader
 ----------------------------
 
 We'll compute the present value earned by the Stackelberg leader
@@ -1015,7 +1015,7 @@ on coding and thinking)
     (v_leader_direct - v_expanded < tol0)[0, 0]
 
 
-Exhibiting time inconsistency of Stackelberg plan
+Exhibiting Time Inconsistency of Stackelberg Plan
 ==================================================
 
 In the code below we compare two values
@@ -1063,7 +1063,7 @@ inconsistency of the Stackelberg plan
     plt.show()
 
 
-Recursive formulation of the follower's problem
+Recursive Formulation of the Follower's Problem
 ================================================
 
 We now formulate and compute the recursive version of the follower's
@@ -1119,7 +1119,7 @@ problem -- those without are from the Stackelberg problem
 
 
 
-Explanation of alignment
+Explanation of Alignment
 --------------------------
 
 If we inspect the coefficients in the decision rule :math:`- \tilde F`,
@@ -1238,7 +1238,7 @@ Hint: remember the components of :math:`X_t`
     np.max(np.abs(yt_tilde_star[:, 4] - yt_tilde[2, :-1]))
 
 
-Markov perfect equilibrium
+Markov Perfect Equilibrium
 ============================
 
 The **state** vector is

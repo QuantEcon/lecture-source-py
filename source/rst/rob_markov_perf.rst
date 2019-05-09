@@ -38,7 +38,7 @@ These specifications simplify calculations and allow us to give a simple example
 This lecture is based on ideas described in chapter 15 of  :cite:`HansenSargent2008` and in :doc:`Markov perfect equilibrium<markov_perf>`
 and :doc:`Robustness<robustness>`
 
-Basic setup
+Basic Setup
 ------------
 
 Decisions of two agents affect the motion of a  state vector
@@ -77,7 +77,7 @@ adjustment costs analyzed in :doc:`Markov perfect equilibrium<markov_perf>`
 
 
 
-Linear Markov perfect equilibria with robust agents
+Linear Markov Perfect Equilibria with Robust Agents
 ====================================================
 
 .. index::
@@ -90,7 +90,7 @@ In linear quadratic dynamic games, these "stacked Bellman equations" become "sta
 
 
 
-Modified coupled linear regulator problems
+Modified Coupled Linear Regulator Problems
 -----------------------------------------------
 
 We consider a general linear quadratic regulator game with two players, each of whom fears model misspecificationyers
@@ -271,7 +271,7 @@ Moreover, since
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
-Key insight
+Key Insight
 ------------
 
 As in :doc:`Markov perfect equilibrium<markov_perf>`, a key insight here  is that  equations  :eq:`rmp-orig-3` and :eq:`rmp-orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
@@ -288,7 +288,7 @@ However, in the Markov perfect equilibrium of this game, each agent is assumed t
 After these equations have been solved, we can also deduce associated sequences of worst-case shocks
 
 
-Worst-case shocks
+Worst-case Shocks
 -------------------
 
 For agent :math:`i` the maximizing or worst-case shock :math:`v_{it}` is
@@ -303,7 +303,7 @@ where
 
 
 
-Infinite horizon
+Infinite Horizon
 -----------------
 
 We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time invariant as :math:`t_1 \rightarrow +\infty`
@@ -330,7 +330,7 @@ Application
     single: Markov Perfect Equilibrium; Applications
 
 
-A duopoly model
+A Duopoly Model
 ----------------------
 
 Without concerns for robustness, the model is identical to the duopoly model from the :doc:`Markov perfect equilibrium<markov_perf>` lecture
@@ -659,7 +659,7 @@ The function's code is as follows
         return F1, F2, P1, P2
 
 
-Some details
+Some Details
 -------------
 Firm  :math:`i` wants to minimize
 
@@ -752,7 +752,7 @@ The parameters of the duopoly model are:
     Q1 = Q2 = γ
     S1 = S2 = W1 = W2 = M1 = M2 = 0.0
 
-Consistency check
+Consistency Check
 ^^^^^^^^^^^^^^^^^^^
 
 We first conduct a comparison test to check if ``nnash_robust`` agrees
@@ -778,7 +778,7 @@ with ``qe.nnash`` in the non-robustness case in which each :math:`\theta_i \appr
 
 We can see that the results are consistent across the two functions
 
-Comparative dynamics under baseline transition dynamics
+Comparative Dynamics under Baseline Transition Dynamics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to compare the dynamics of price and output under the baseline
@@ -958,7 +958,7 @@ To explore this, we study next how *ex post* the two firms' beliefs about state 
 
 (by *ex post* we mean *after* extremization of each firm's intertemporal objective)
 
-Heterogeneous beliefs
+Heterogeneous Beliefs
 ^^^^^^^^^^^^^^^^^^^^^^
 
 As before, let $A^o = A - B\_1 F\_1^r - B\_2 F\_2^r $, where in a robust MPE, :math:`F_i^r` is a robust decision rule for firm :math:`i`

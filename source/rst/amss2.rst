@@ -3,7 +3,7 @@
 .. include:: /_static/includes/header.raw
 
 ***********************************************************
-Fluctuating Interest Rates Deliver Fiscal Insurance 
+Fluctuating Interest Rates Deliver Fiscal Insurance
 ***********************************************************
 
 
@@ -92,7 +92,7 @@ In a nutshell, the reason for this striking outcome is that at a particular leve
 rate provide the government with complete insurance against stochastically varying government expenditures
 
 
-Forces at work
+Forces at Work
 ===============
 
 The forces  driving asymptotic  outcomes here are examples of dynamics present in a more general class  incomplete markets models analyzed in :cite:`BEGS1` (BEGS)
@@ -121,7 +121,7 @@ rate  rather than fluctuations in  par values of debt to insure against shocks t
 
 
 
-Logical flow of  lecture
+Logical Flow of Lecture
 =========================
 
 We present ideas  in the following order
@@ -142,7 +142,7 @@ We present ideas  in the following order
 
 * We compute the BEGS approximations to check how accurately they describe the dynamics of the long-simulation
 
-Equations from Lucas-Stokey (1983) model
+Equations from Lucas-Stokey (1983) Model
 ------------------------------------------
 
 Although we are studying an AMSS :cite:`AMSS_2002` economy,  a Lucas-Stokey :cite:`LucasStokey1983` economy plays
@@ -262,7 +262,7 @@ The CRRA utility function is represented in the following class
 .. literalinclude:: /_static/code/opt_tax_recur/crra_utility.py
 
 
-Example economy
+Example Economy
 ==================
 
 We set the following parameter values
@@ -302,7 +302,7 @@ The code is  mostly taken or adapted from the earlier lectures :doc:`optimal tax
     :class: collapse
 
 
-Reverse engineering strategy
+Reverse Engineering Strategy
 =============================
 
 We can reverse engineer a value :math:`b_0` of initial debt due   that renders the AMSS measurability constraints not binding from time :math:`t =0` onward
@@ -349,7 +349,7 @@ state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equa
 :eq:`amss2_TS_barg11` and :eq:`eqn_AMSS2_10` jointly for :math:`c_0, b_0`
 
 
-Code for reverse engineering
+Code for Reverse Engineering
 ===============================================
 
 Here is code to do the calculations for us
@@ -435,7 +435,7 @@ To solve the equations for :math:`c_0, b_0`, we use SciPy's fsolve function
 Thus, we have reverse engineered an initial :math:`b0 = -1.038698407551764` that ought to render the AMSS measurability constraints slack
 
 
-Short simulation for reverse-engineered: initial debt
+Short Simulation for Reverse-engineered: Initial Debt
 =====================================================
 
 The following graph shows simulations of outcomes for both a Lucas-Stokey economy and for an AMSS economy starting from initial government
@@ -495,7 +495,7 @@ Notice how for :math:`t \geq 1`, the tax rate is a constant - so is the par valu
 However, output and labor supply are both nontrivial time-invariant functions of the Markov state
 
 
-Long simulation
+Long Simulation
 =================
 
 The following graph shows the par value of government debt and the flat rate tax on labor income  for a long simulation for our sample economy
@@ -546,7 +546,7 @@ For the AMSS incomplete markets economy, the marginal tax rate on labor income  
     plt.show()
 
 
-Remarks about long simulation
+Remarks about Long Simulation
 -------------------------------
 
 As remarked above, after :math:`b_{t+1}(s^t)` has converged to a constant, the measurablility constraints in the AMSS model cease to bind
@@ -561,7 +561,7 @@ This leads us to seek an initial value of government debt :math:`b_0` that rende
 We  now describe how to find such an initial level of government debt
 
 
-BEGS approximations of  limiting debt and convergence rate
+BEGS Approximations of Limiting Debt and Convergence Rate
 ===========================================================
 
 It is useful to link the outcome of our reverse engineering exercise to limiting approximations constructed by :cite:`BEGS1`
@@ -603,7 +603,7 @@ BEGS interpret random variations in the right side of :eq:`eq_fiscal_risk` as a 
 
 - fluctuations in the effective government deficit :math:`{\mathcal X}_t`
 
-Asymptotic mean
+Asymptotic Mean
 ----------------
 
 BEGS give conditions under which the ergodic mean of :math:`{\mathcal B}_t` is
@@ -636,7 +636,7 @@ Expressing formula :eq:`prelim_formula` in terms of  our notation tells us that 
 
   \hat b = \frac{\mathcal B^*}{\beta E_t u_{c,t+1}}
 
-Rate of convergence
+Rate of Convergence
 --------------------
 
 BEGS also derive the following  approximation to the rate of convergence to :math:`{\mathcal B}^{*}` from an arbitrary initial condition
@@ -651,7 +651,7 @@ BEGS also derive the following  approximation to the rate of convergence to :mat
 
 
 
-Formulas and code details
+Formulas and Code Details
 --------------------------
 
 For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it

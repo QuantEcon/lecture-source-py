@@ -183,7 +183,7 @@ The aim is to find an optimal policy, in the sense of one that maximizes :eq:`dp
 Let's now step through these ideas more carefully
 
 
-Formal definition
+Formal Definition
 -----------------------------
 
 Formally, a discrete dynamic program consists of the following components:
@@ -838,7 +838,7 @@ Here we intensively vectorized the operations on arrays to simplify the code
 As :ref:`noted <numba-p_c_vectorization>`, however, vectorization is memory consumptive, and it can be prohibitively so for grids with large size
 
 
-Solving the model
+Solving the Model
 -----------------
 
 Solve the dynamic optimization problem:
@@ -950,12 +950,12 @@ The value function is monotone:
     (np.diff(v) > 0).all()
 
 
-Comparison of the solution methods
+Comparison of the Solution Methods
 ----------------------------------
 
 Let us solve the problem by the other two methods
 
-Value iteration
+Value Iteration
 ~~~~~~~~~~~~~~~
 
 .. code-block:: python3 
@@ -971,7 +971,7 @@ Value iteration
     np.array_equal(σ, res1.sigma)
 
 
-Modified policy iteration
+Modified Policy Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python3 
@@ -985,7 +985,7 @@ Modified policy iteration
     np.array_equal(σ, res2.sigma)
 
 
-Speed comparison
+Speed Comparison
 ~~~~~~~~~~~~~~~~
 
 .. code-block:: ipython3
@@ -998,12 +998,12 @@ Speed comparison
 As is often the case, policy iteration and modified policy iteration are
 much faster than value iteration
 
-Replication of the figures
+Replication of the Figures
 --------------------------
 
 Using ``DiscreteDP`` we replicate the figures shown in the lecture
 
-Convergence of value iteration
+Convergence of Value Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let us first visualize the convergence of the value iteration algorithm
@@ -1058,7 +1058,7 @@ We next plot the consumption policies along the value iteration
     plt.show()      
 
 
-Dynamics of the capital stock
+Dynamics of the Capital Stock
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Finally, let us work on `Exercise

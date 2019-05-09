@@ -169,7 +169,7 @@ The next figure provides some intuition
 
 
 
-Proof of sufficiency
+Proof of Sufficiency
 --------------------
 
 We'll omit the full proof.  
@@ -533,7 +533,7 @@ This approach provides insights about  many geometric  properties of linear regr
 We treat only some examples
 
 
-Squared risk measures
+Squared Risk Measures
 ----------------------
 
 Given pairs :math:`(x, y) \in \mathbb R^K \times \mathbb R`, consider choosing :math:`f \colon \mathbb R^K \to \mathbb R` to minimize 
