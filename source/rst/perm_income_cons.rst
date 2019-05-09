@@ -835,7 +835,7 @@ By altering initial conditions, we shall remove this transient in our second exa
 
 
 
-A "borrowers and Lenders" Closed Economy
+A "Borrowers and Lenders" Closed Economy
 ----------------------------------------
 
 When we set :math:`y_{-1} = y_{-2} = 0` and :math:`b_0 =0` in the
