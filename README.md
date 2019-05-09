@@ -52,8 +52,8 @@ Use **bold** for definitions and _italic_ for emphasis. For example,
 * Capitalization of all words for all titles.
   > Example “How it Works: Data, Variables and Names”
 
-## Adding References
-### Adding a Citation to a Lecture
+### Adding References
+#### Adding a Citation to a Lecture
 
 To add a reference to the text of a QuantEcon lecture you need to use the `:cite:<bibtex-label>` directive.
 
@@ -71,16 +71,16 @@ is rendered rendered in HTML and LaTex as:
 
 To add a new reference to the project, a bibtex entry needs to be added to `QuantEcon.lectures/_static/quant-econ.bib`.
 
-## Sphinx and Restructured Text
+### Sphinx and Restructured Text
 
-### Editing
+#### Editing
 The syntax of the source files is reStructuredText.
 
 [Here is a nice primer](http://sphinx-doc.org/rest.html) on how to write reStructuredText files.
 
 [Here is the documentation](http://jinja.pocoo.org/docs/dev/) for the Jinja template syntax.
 
-## Helpful Links
+### Helpful Links
 * [A nice Sphinx tutorial](http://sphinx-doc.org/tutorial.html)
 * [Another rst primer](http://docutils.sourceforge.net/docs/user/rst/quickstart.html)
 
