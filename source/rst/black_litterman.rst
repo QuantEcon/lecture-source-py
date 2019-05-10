@@ -1055,7 +1055,7 @@ variances".
 That is, we need significantly more data to obtain a given
 precision of the mean estimate than for our variance estimate
 
-A Special Case -- IID. Sample
+A Special Case -- IID Sample
 ---------------------------------
 
 We start our analysis with the benchmark case of IID data. Consider a
@@ -1131,7 +1131,7 @@ observations is related to sampling frequency
 
 -  For any given :math:`h`, the autocorrelation converges to zero as we increase the distance -- :math:`n`-- between the observations. This represents the "weak dependence" of the :math:`X` process
 
--  Moreover, for a fixed lag length, :math:`n`, the dependence vanishes as the sampling frequency goes to infinity. In fact, letting :math:`h` go to :math:`\infty` gives back the case of IID. data
+-  Moreover, for a fixed lag length, :math:`n`, the dependence vanishes as the sampling frequency goes to infinity. In fact, letting :math:`h` go to :math:`\infty` gives back the case of IID data
 
 .. code-block:: python3
 
@@ -1199,7 +1199,7 @@ We can upper bound the variance term in the following way
    \begin{align}
    \mathbb{V}(\bar X_N) &= \frac{1}{N^2} \left( N \sigma^2 + 2 \sum_{i=1}^{N-1} i \cdot \exp(-\kappa h (N - i)) \sigma^2 \right) \\
    &\leq \frac{\sigma^2}{2\kappa N} \left(1 + 2 \sum_{i=1}^{N-1} \cdot \exp(-\kappa h (i)) \right) \\
-   &= \underbrace{\frac{\sigma^2}{2\kappa N}}_{\text{IID.  case}} \left(1 + 2 \frac{1 - \exp(-\kappa h)^{N-1}}{1 - \exp(-\kappa h)} \right)
+   &= \underbrace{\frac{\sigma^2}{2\kappa N}}_{\text{IID  case}} \left(1 + 2 \frac{1 - \exp(-\kappa h)^{N-1}}{1 - \exp(-\kappa h)} \right)
    \end{align}
 
 Asymptotically the :math:`\exp(-\kappa h)^{N-1}` vanishes and the

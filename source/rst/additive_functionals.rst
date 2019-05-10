@@ -95,7 +95,7 @@ Here
   
 * :math:`A` is an :math:`n \times n` stable matrix (all eigenvalues lie within the open unit circle),
   
-* :math:`z_{t+1} \sim {\cal N}(0,I)` is an :math:`m \times 1` IID. shock,
+* :math:`z_{t+1} \sim {\cal N}(0,I)` is an :math:`m \times 1` IID shock,
   
 * :math:`B` is an :math:`n \times m` matrix, and
 

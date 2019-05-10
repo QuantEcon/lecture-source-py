@@ -60,7 +60,7 @@ described by
 
 
 where :math:`A` is a stable matrix, :math:`\{z_{t+1}\}_{t=0}^\infty` is
-an IID. sequence of :math:`{\cal N}(0,I)` random vectors, :math:`F` is
+an IID sequence of :math:`{\cal N}(0,I)` random vectors, :math:`F` is
 nonsingular, and :math:`x_0` and :math:`y_0` are vectors of known
 numbers 
 
@@ -453,7 +453,7 @@ where
     x_{t+1} = A x_t + B z_{t+1} 
 
 
-Here :math:`\{z_{t+1}\}_{t=0}^\infty` is an IID. sequence of :math:`{\cal N}(0,I)` random vectors
+Here :math:`\{z_{t+1}\}_{t=0}^\infty` is an IID sequence of :math:`{\cal N}(0,I)` random vectors
 
 A representative household ranks consumption processes :math:`\{c_t\}_{t=0}^\infty` with a utility functional :math:`\{V_t\}_{t=0}^\infty` that satisfies
 

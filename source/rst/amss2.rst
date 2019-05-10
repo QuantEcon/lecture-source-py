@@ -271,7 +271,7 @@ The Markov state :math:`s_t` takes two values, namely,  :math:`0,1`
 
 The initial Markov state is :math:`0`
 
-The Markov transition matrix is :math:`.5 I` where :math:`I` is a :math:`2 \times 2` identity matrix, so the :math:`s_t` process is IID.
+The Markov transition matrix is :math:`.5 I` where :math:`I` is a :math:`2 \times 2` identity matrix, so the :math:`s_t` process is IID
 
 Government expenditures :math:`g(s)` equal :math:`.1` in Markov state :math:`0` and :math:`.2` in Markov state :math:`1`
 
