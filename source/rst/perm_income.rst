@@ -100,7 +100,7 @@ A **random walk** is  a stochastic process :math:`\{X_t\}` that satisfies
     X_{t+1} = X_t + w_{t+1}
 
 
-for some iid zero mean *innovation* sequence :math:`\{w_t\}`
+for some IID zero mean *innovation* sequence :math:`\{w_t\}`
 
 Evidently :math:`X_t` can also be expressed as
 
@@ -173,7 +173,7 @@ Regarding the endowment process, we assume it has the :doc:`state-space represen
 
 where
 
-*  :math:`\{w_t\}` is an iid vector process with :math:`\mathbb{E} w_t = 0` and :math:`\mathbb{E} w_t w_t' = I`
+*  :math:`\{w_t\}` is an IID vector process with :math:`\mathbb{E} w_t = 0` and :math:`\mathbb{E} w_t w_t' = I`
 
 *  the :ref:`spectral radius <la_neumann_remarks>` of :math:`A` satisfies :math:`\rho(A) < \sqrt{1/\beta}`
 
@@ -468,14 +468,14 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
     \Sigma_{y,t} = \tilde U \Sigma_t \tilde U'
 
 
-A Simple Example with iid Income
+A Simple Example with IID Income
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just iid
+To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just IID
 
 (Later examples will investigate more realistic income streams)
 
-In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be iid and scalar standard normal, and let
+In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be IID and scalar standard normal, and let
 
 .. math::
 
@@ -518,7 +518,7 @@ Further, if you work through the state space representation, you will see that
     \end{aligned}
 
 
-Thus income is iid and debt and consumption are both Gaussian random walks
+Thus income is IID and debt and consumption are both Gaussian random walks
 
 Defining assets as :math:`-b_t`, we see that assets are just the cumulative sum of unanticipated incomes prior to the present date
 
@@ -734,7 +734,7 @@ or
 
 The unit root affecting :math:`c_t` causes the time :math:`t` variance of :math:`c_t` to grow linearly with :math:`t`
 
-In particular, since :math:`\{ \hat w_t \}` is iid, we have
+In particular, since :math:`\{ \hat w_t \}` is IID, we have
 
 .. math::
     :label: pi_vt
@@ -856,7 +856,7 @@ In both examples, the endowment follows the process :math:`y_t = z_{1t} + z_{2t}
 
 Here
 
-* :math:`w_{t+1}` is an iid :math:`2 \times 1` process distributed as :math:`N(0,I)`
+* :math:`w_{t+1}` is an IID :math:`2 \times 1` process distributed as :math:`N(0,I)`
 
 * :math:`z_{1t}` is a permanent component of :math:`y_t`
 
@@ -1028,7 +1028,7 @@ He saves the remaining fraction :math:`\beta (1-K)`
 
 According to equation :eq:`incomemaar`, the first difference of income is a first-order moving average
 
-Equation  :eq:`consexample2` asserts that the first difference of consumption is iid
+Equation  :eq:`consexample2` asserts that the first difference of consumption is IID
 
 Application of formula to this example shows that
 

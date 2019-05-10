@@ -1332,7 +1332,7 @@ In particular, Markov chains are routinely generated as discrete approximations 
     y_{t+1} = \rho y_t + u_{t+1}
 
 
-Here :math:`{u_t}` is assumed to be iid and :math:`N(0, \sigma_u^2)`
+Here :math:`{u_t}` is assumed to be IID and :math:`N(0, \sigma_u^2)`
 
 The variance of the stationary probability distribution of :math:`\{ y_t \}` is
 

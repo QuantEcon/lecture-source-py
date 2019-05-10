@@ -1436,7 +1436,7 @@ We will create a new class `LogUtility` to represent this utility function
 
 .. literalinclude:: /_static/code/opt_tax_recur/log_utility.py
 
-Also suppose that :math:`g_t` follows a two state i.i.d. process with equal
+Also suppose that :math:`g_t` follows a two state IID. process with equal
 probabilities attached to :math:`g_l` and :math:`g_h`
 
 To compute the tax rate, we will use both the sequential and recursive approaches described above

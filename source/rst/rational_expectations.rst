@@ -213,7 +213,7 @@ While it faces no uncertainty, it does face adjustment costs
     uncertainty to the problem --- for example, by assuming that the inverse demand function
     is :math:`p_t = a_0 - a_1 Y_t + u_t`, where :math:`u_{t+1} = \rho u_t +
     \sigma_u \epsilon_{t+1}` where :math:`|\rho| < 1` and :math:`\epsilon_{t+1} \sim N(0,1)`
-    is iid.    We ask you to study the consequences of this change in exercise XXXXX
+    is IID.    We ask you to study the consequences of this change in exercise XXXXX
 
 In particular, it chooses a production plan to maximize
 
