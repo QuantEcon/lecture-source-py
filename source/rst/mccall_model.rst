@@ -282,7 +282,7 @@ itself via
 .. math::
     :label: odu_pv3
 
-    Tv'_i
+    (Tv)_i
     = \max \left\{
             \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v_j \phi (w_j)
         \right\}
