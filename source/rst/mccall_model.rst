@@ -232,7 +232,7 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 
     v^*_i
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{w'} v^*(w') \phi (w')
+            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v^*_j \phi (w_j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
