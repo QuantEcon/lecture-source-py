@@ -23,7 +23,7 @@ by linear difference equations or linear differential equations
 For example, these tools are keys to understanding outcomes attained by Paul
 Samuelson (1939) :cite:`Samuelson1939` in his classic paper on interactions
 between the investment accelertor and the Keynesian consumption function, our
-topic in the lecture :doc:`The Samuelson accelerator<samuelson>` 
+topic in the lecture :doc:`Samuelson Multiplier Accelerator<samuelson>` 
 
 In addition to providing foundations for Samuelson's work and extensions of
 it, this lecture can be read as a stand-alone quick reminder of key results
@@ -58,7 +58,7 @@ The complex conjugate :math:`\bar z` of :math:`z` is defined as
 The value :math:`x` is the **real** part of :math:`z` and :math:`y` is the
 **imaginary** part of :math:`z`
 
-The symbol :math:`\| z \|` = :math:`\bar z z = r` represents the **modulus** of :math:`z`
+The symbol :math:`| z |` = :math:`\bar z z = r` represents the **modulus** of :math:`z`
 
 The value :math:`r` is the Euclidean distance of vector :math:`(x,y)` from the
 origin:
@@ -372,7 +372,7 @@ For example, we'll calculate identities for
 :math:`\cos{(\omega + \theta)}` and :math:`\sin{(\omega + \theta)}`
 
 Using the sine and cosine formulas presented at the beginning of this
-notebook, we have:
+lecture, we have:
 
 .. math::
 

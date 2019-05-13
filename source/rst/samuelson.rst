@@ -2,9 +2,9 @@
 
 .. highlight:: python3
 
-****************************************
-OOP III: The Samuelson Accelerator
-****************************************
+******************************************
+OOP III: Samuelson Multiplier Accelerator
+******************************************
 
 .. contents:: :depth: 2
 
