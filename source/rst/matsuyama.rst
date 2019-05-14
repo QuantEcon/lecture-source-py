@@ -410,7 +410,7 @@ Dark colors indicate synchronization, while light colors indicate failure to syn
 .. _matsrep:
 
 .. figure:: /_static/figures/matsuyama_14.png
-   :scale: 60%
+   :scale: 50%
 
 As you can see, larger values of :math:`\rho` translate to more synchronization
 
@@ -421,7 +421,7 @@ In the solution to the exercises, you'll also find a figure with sliders, allowi
 Here's one snapshot from the interactive figure
 
 .. figure:: /_static/figures/matsuyama_18.png
-   :scale: 80%
+   :scale: 50%
 
 
 Exercises
@@ -461,7 +461,7 @@ These solutions are written by `Chase Coleman <github.com/cc7768>`__
         return ab, cf
 
 
-    fig = plt.figure(figsize=(14, 12))
+    fig = plt.figure(figsize=(10, 6))
     
     # Left - Bottom - Width - Height
     ax0 = fig.add_axes((0.05, 0.475, 0.38, 0.35), label="axes0")
@@ -483,16 +483,16 @@ These solutions are written by `Chase Coleman <github.com/cc7768>`__
     plt.colorbar(cf0, cax=cbar_ax)
     
     ax0.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.2$",
-                  fontsize=22)
+                  fontsize=12)
     ax1.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.4$",
-                  fontsize=22)
+                  fontsize=12)
     ax2.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.6$",
-                  fontsize=22)
+                  fontsize=12)
     ax3.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.8$",
-                  fontsize=22)
+                  fontsize=12)
     
     fig.suptitle("Synchronized versus Asynchronized 2-cycles",
-                 x=0.475, y=0.915, size=26)
+                 x=0.475, y=0.915, size=14)
     plt.show()
 
 Interactive Version
@@ -510,7 +510,7 @@ Note, interactive ploting requires the `ipywidgets <https://github.com/jupyter-w
 
     def interact_attraction_basis(ρ=0.2, maxiter=250, npts=250):
         # Create the figure and axis that we will plot on
-        fig, ax = plt.subplots(figsize=(12, 10))
+        fig, ax = plt.subplots(figsize=(10, 8))
     
         # Create model and attraction basis
         s1, θ, δ = 0.5, 2.5, 0.75

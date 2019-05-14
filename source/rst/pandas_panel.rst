@@ -252,7 +252,7 @@ a corresponding data entry ``realwage_f``
 This is illustrated by the red shading in the following diagram
 
 .. figure:: /_static/figures/venn_diag.png
-   :scale: 60%
+   :scale: 40%
 
 
 

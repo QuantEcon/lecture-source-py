@@ -760,7 +760,7 @@ Here is such a figure
 .. _statd_egs:
 
 .. figure:: /_static/figures/solution_statd_ex2.png
-   :scale: 85%
+   :scale: 75%
 
 All sequences are converging towards the same limit, regardless of their initial condition
 
@@ -865,7 +865,7 @@ In doing so, set :math:`\theta = 0.8` and :math:`n = 500`
 The next figure shows the result of such a computation
 
 .. figure:: /_static/figures/solution_statd_ex1.png
-   :scale: 75%
+   :scale: 60%
 
 The additional density (black line) is a `nonparametric kernel density estimate <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_, added to the solution for illustration
 
@@ -927,7 +927,7 @@ The figure looks as follows
 
 
 .. figure:: /_static/figures/boxplot_example_updated.png
-    :scale: 70%
+    :scale: 60%
 
 
 

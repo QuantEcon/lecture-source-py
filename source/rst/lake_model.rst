@@ -574,7 +574,7 @@ The wage offer distribution will be a discretized version of the lognormal distr
 
 
 .. figure:: /_static/figures/lake_distribution_wages.png
-    :scale: 80%
+    :scale: 60%
 
 We take a period to be a month
 

@@ -202,7 +202,7 @@ This Markov process can also be represented as a directed graph, with edges labe
 
 
 .. figure:: /_static/figures/hamilton_graph.png
-   :scale: 80%
+   :scale: 30%
 
 Here "ng" is normal growth, "mr" is mild recession, etc.
 
@@ -594,7 +594,7 @@ households
 
 
 .. figure:: /_static/figures/mc_irreducibility1.png
-    :scale: 100%
+    :scale: 40%
 
 
 
@@ -635,7 +635,7 @@ We can also test this using `QuantEcon.py <http://quantecon.org/python_index.htm
 Here's a more pessimistic scenario, where the poor are poor forever
 
 .. figure:: /_static/figures/mc_irreducibility2.png
-    :scale: 100%
+    :scale: 30%
 
 
 
@@ -683,7 +683,7 @@ Loosely speaking, a Markov chain is called periodic if it cycles in a predictibl
 Here's a trivial example with three states
 
 .. figure:: /_static/figures/mc_aperiodicity1.png
-    :scale: 100%
+    :scale: 30%
 
 
 
@@ -721,7 +721,7 @@ A stochastic matrix is called **aperiodic** if the period of every state is 1, a
 For example, the stochastic matrix associated with the transition probabilities below is periodic because, for example, state :math:`a` has period 2
 
 .. figure:: /_static/figures/mc_aperiodicity2.png
-    :scale: 100%
+    :scale: 50%
 
 
 

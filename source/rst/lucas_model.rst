@@ -545,7 +545,7 @@ Solving the model and plotting the resulting price function
     tree = LucasTree()
     price_vals = solve_model(tree)
     
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(10, 6))
     plt.plot(tree.grid, price_vals, label='$p*(y)$')
     plt.xlabel('$y$')
     plt.ylabel('price')
@@ -568,7 +568,7 @@ Here the orange line corresponds to the previous parameters and the green line i
 .. _mass_lt_cb:
 
 .. figure:: /_static/figures/solution_mass_ex2.png
-   :scale: 80%
+   :scale: 50%
 
 We see that when consumers are more patient the asset becomes more valuable, and the price of the Lucas tree shifts up
 
