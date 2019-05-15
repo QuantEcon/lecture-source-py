@@ -62,7 +62,6 @@ In other words, we want to generate figures that look something like this:
 
 
 .. figure:: /_static/figures/test_program_1_updated.png
-    :scale: 60%
 
 We'll do this several different ways
 
@@ -792,7 +791,6 @@ one for each of the cases :math:`\alpha=0`, :math:`\alpha=0.8` and :math:`\alpha
 In particular, you should produce (modulo randomness) a figure that looks as follows
 
 .. figure:: /_static/figures/pbe_ex2_fig.png
-   :scale: 70%
 
 (The figure nicely illustrates how time series with the same one-step-ahead conditional volatilities, as these three processes have, can have very different unconditional volatilities.)
 

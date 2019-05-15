@@ -661,7 +661,6 @@ can easily simulate it, compute its stationary distribution and so on
 Here's the same information in a bar graph
 
 .. figure:: /_static/figures/finite_dp_simple_og.png
-   :scale: 80%
 
 What happens if the agent is more patient?
 
@@ -681,7 +680,6 @@ What happens if the agent is more patient?
 If we look at the bar graph we can see the rightward shift in probability mass
 
 .. figure:: /_static/figures/finite_dp_simple_og2.png
-   :scale: 80%
 
 
 State-Action Pair Formulation

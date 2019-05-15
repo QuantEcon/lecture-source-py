@@ -139,7 +139,6 @@ Because of these possibilities, Jupyter is fast turning into a major player in t
 Here's an image of showing execution of some code (borrowed from `here <http://matplotlib.org/examples/pylab_examples/hexbin_demo.html>`__) in a Jupyter notebook
 
 .. figure:: /_static/figures/jp_demo.png
-   :scale: 75%
 
 
 
@@ -176,7 +175,6 @@ Either
 If you use the second option, you will see something like this (click to enlarge)
 
 .. figure:: /_static/figures/starting_nb.png
-   :scale: 75%
 
 The output tells us the notebook is running at ``http://localhost:8888/``
 
@@ -189,7 +187,6 @@ Thus, the Jupyter kernel is listening for Python commands on port 8888 of our lo
 Hopefully your default browser has also opened up with a web page that looks something like this (click to enlarge)
 
 .. figure:: /_static/figures/nb.png
-   :scale: 60%
 
 What you see here is called the Jupyter *dashboard*
 
@@ -200,7 +197,6 @@ Assuming all this has worked OK, you can now click on ``New`` at top right and s
 Here's what shows up on our machine:
 
 .. figure:: /_static/figures/nb2.png
-   :scale: 60%
 
 The notebook displays an *active cell*, into which you can type Python commands
 
@@ -228,7 +224,6 @@ As a result, you can type in Python code and it will appear in the cell
 When you're ready to execute the code in a cell, hit ``Shift-Enter`` instead of the usual ``Enter``
 
 .. figure:: /_static/figures/nb3.png
-   :scale: 60%
 
 (Note: There are also menu and button options for running code in a cell that you can find by exploring)
 
@@ -348,7 +343,6 @@ We can explore this attributes of ``np`` using the ``Tab`` key
 For example, here we type ``np.ran`` and hit Tab (click to enlarge)
 
 .. figure:: /_static/figures/nb6.png
-   :scale: 60%
 
 Jupyter offers up the two possible completions, ``random`` and ``rank``
 
@@ -370,7 +364,6 @@ To get help on ``np.rank``, say, we can execute ``np.rank?``
 Documentation appears in a split window of the browser, like so
 
 .. figure:: /_static/figures/nb6a.png
-   :scale: 60%
 
 Clicking in the top right of the lower split closes the on-line help
 
@@ -384,7 +377,6 @@ In addition to executing code, the Jupyter notebook allows you to embed text, eq
 For example, here we enter a mixture of plain text and LaTeX instead of code
 
 .. figure:: /_static/figures/nb7.png
-   :scale: 60%
 
 Next we ``Esc`` to enter command mode and then type ``m`` to indicate that we
 are writing `Markdown <http://daringfireball.net/projects/markdown/>`_, a mark-up language similar to (but simpler than) LaTeX
@@ -394,7 +386,6 @@ are writing `Markdown <http://daringfireball.net/projects/markdown/>`_, a mark-u
 Now we ``Shift+Enter`` to produce this
 
 .. figure:: /_static/figures/nb8.png
-   :scale: 60%
 
 
 
@@ -512,7 +503,6 @@ Let's look at a successful example, where we run a file ``test.py`` with content
 Here's the notebook (click to enlarge)
 
 .. figure:: /_static/figures/nb_run.png
-   :scale: 60%
 
 Here
 
@@ -549,7 +539,6 @@ One way to achieve the first option is to use the ``Upload`` button
 *  Look where the pointer is in this picture
 
 .. figure:: /_static/figures/nb_upload.png
-   :scale: 60%
 
 The second option can be achieved using the ``cd`` command
 
@@ -573,7 +562,6 @@ In the following example we execute ``load white_noise_plot.py`` where ``white_n
 Now the code from the file appears in a cell ready to execute
 
 .. figure:: /_static/figures/nb_wntest2.png
-   :scale: 60%
 
 
 
@@ -668,7 +656,6 @@ To use an IPython shell, open up a terminal and type ``ipython``
 You should see something like this
 
 .. figure:: /_static/figures/ipython_shell.png
-   :scale: 70%
 
 The IPython shell has many of the features of the notebook: tab completion, color syntax, etc.
 
@@ -685,7 +672,6 @@ Here's one set up, on a Linux box, with
 * An IPython shell next to it, to run the file 
 
 .. figure:: /_static/figures/editing_vim.png
-   :scale: 50%
 
 
 

@@ -50,7 +50,6 @@ The shortest path problem is one of finding how to traverse a `graph <https://en
 Consider the following graph
 
 .. figure:: /_static/figures/graph.png
-   :scale: 100%
 
 We wish to travel from node (vertex) A to node G at minimum cost
 
@@ -68,12 +67,10 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 * A, C, F, G at cost 8
 
 .. figure:: /_static/figures/graph4.png
-   :scale: 100%
 
 * A, D, F, G at cost 8
 
 .. figure:: /_static/figures/graph3.png
-   :scale: 100%
 
 Finding Least-Cost Paths
 ===========================
@@ -86,7 +83,6 @@ Suppose that we know :math:`J(v)` for each node :math:`v`, as shown below for th
 
 
 .. figure:: /_static/figures/graph2.png
-   :scale: 100%
 
 Note that :math:`J(G) = 0`
 

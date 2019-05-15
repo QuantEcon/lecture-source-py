@@ -380,7 +380,6 @@ when the worker follows the optimal policy
 In particular, modulo randomness, reproduce the following figure (where the horizontal axis represents time)
 
 .. figure:: /_static/figures/career_solutions_ex1_py.png
-   :scale: 60%
 
 Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use ``quantecon.random.draw()``
 

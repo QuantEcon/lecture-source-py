@@ -567,7 +567,6 @@ In the simulation, take :math:`\theta = 10`, :math:`\hat x_0 = 8` and :math:`\Si
 Your figure should -- modulo randomness -- look something like this
 
 .. figure:: /_static/figures/kl_ex1_fig.png
-   :scale: 100%
 
 
 .. _kalman_ex2:
@@ -592,7 +591,6 @@ Plot :math:`z_t` against :math:`T`, setting :math:`\epsilon = 0.1` and :math:`T 
 Your figure should show error erratically declining something like this
 
 .. figure:: /_static/figures/kl_ex2_fig.png
-   :scale: 100%
 
 
 .. _kalman_ex3:
@@ -656,7 +654,6 @@ Finally, set :math:`x_0 = (0, 0)`
 You should end up with a figure similar to the following (modulo randomness)
 
 .. figure:: /_static/figures/kalman_ex3.png
-   :scale: 100%
 
 Observe how, after an initial learning period, the Kalman filter performs quite well, even relative to the competitor who predicts optimally with knowledge of the latent state
 

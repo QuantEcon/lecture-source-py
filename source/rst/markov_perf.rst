@@ -647,7 +647,6 @@ The first figure shows the dynamics of inventories for each firm when the parame
 
 
 .. figure:: /_static/figures/judd_fig2.png
-    :scale: 70
 
 Inventories trend to a common steady state
 
@@ -657,7 +656,6 @@ This is indeed the case, as the next figure shows
 
 
 .. figure:: /_static/figures/judd_fig1.png
-    :scale: 70
 
 
 Solutions
