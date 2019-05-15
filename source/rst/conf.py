@@ -418,7 +418,13 @@ jupyter_allow_html_only = True
 
 #Adjust links to target html (rather than ipynb)
 jupyter_target_html = True
-jupyter_target_html_urlpath = "https://lectures.quantecon.org/py/"
+
+#path to download notebooks from 
+jupyter_download_nb_urlpath = "https://lectures.quantecon.org"
+
+#allow downloading of notebooks
+jupyter_download_nb = True
+
 #Use urlprefix images
 jupyter_images_urlpath = "https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/"
 
