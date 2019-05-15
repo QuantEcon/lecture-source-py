@@ -324,7 +324,6 @@ The output should look like this
 
 
 .. figure:: /_static/figures/matplotlib_ex1.png
-    :scale: 60
 
 
 

@@ -290,7 +290,6 @@ Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we
 This reasoning suggests a decision rule such as the one shown in the figure
 
 .. figure:: /_static/figures/wald_dec_rule.png
-    :scale: 60%
     
 
 

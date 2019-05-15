@@ -156,7 +156,6 @@ as a 45 degree diagram, with one curve for each :math:`M \in \{0, \ldots, 6\}`
 The other parameter values are :math:`\rho = 0.99, \gamma_x = 0.5, \sigma_\theta =0.5`
 
 .. figure:: /_static/figures/uncertainty_traps_45.png
-   :scale: 100%
 
 
 Points where the curves hit the 45 degree lines are  long run steady
@@ -267,7 +266,6 @@ Results
 Let's look first at the dynamics of :math:`\mu`, which the agents use to track :math:`\theta`
 
 .. figure:: /_static/figures/uncertainty_traps_mu.png
-   :scale: 100%
 
 We see that :math:`\mu` tracks :math:`\theta` well when there are sufficient firms in the market
 
@@ -287,7 +285,6 @@ To get a clearer idea of the dynamics, let's look at all the main time series
 at once, for a given set of shocks
 
 .. figure:: /_static/figures/uncertainty_traps_sim.png
-   :scale: 100%
 
 
 Notice how the traps only take hold after a sequence of bad draws for the fundamental

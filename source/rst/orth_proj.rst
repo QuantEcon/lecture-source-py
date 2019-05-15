@@ -72,13 +72,11 @@ When :math:`\langle x,  z\rangle = 0`, then :math:`\cos(\theta) = 0` and  :math:
 
 
 .. figure:: /_static/figures/orth_proj_def1.png
-    :scale: 50%
 
 For a linear subspace  :math:`S \subset \mathbb R^n`, we call :math:`x \in \mathbb R^n` **orthogonal to** :math:`S` if :math:`x \perp z` for all :math:`z \in S`, and write :math:`x \perp S`
    
 
 .. figure:: /_static/figures/orth_proj_def2.png
-    :scale: 50%
    
 
 
@@ -86,7 +84,6 @@ The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` i
  
    
 .. figure:: /_static/figures/orth_proj_def3.png
-    :scale: 50% 
    
 
 :math:`S^\perp` is  a linear subspace of :math:`\mathbb R^n`
@@ -163,7 +160,6 @@ The vector :math:`\hat y` is called the **orthogonal projection** of :math:`y` o
 The next figure provides some intuition
    
 .. figure:: /_static/figures/orth_proj_thm1.png
-    :scale: 50%
   
 
 
@@ -215,7 +211,6 @@ The operator :math:`P` is called the **orthogonal projection mapping onto** :mat
 
 
 .. figure:: /_static/figures/orth_proj_thm2.png
-    :scale: 50%
   
 
 
@@ -269,7 +264,6 @@ This amounts to another version of the OPT:
 The next figure illustrates
 
 .. figure:: /_static/figures/orth_proj_thm3.png
-    :scale: 50%
     
 
 

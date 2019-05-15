@@ -77,7 +77,6 @@ Ultimately, he wants to design a decision rule :math:`F` that shapes these *sets
 With this in mind, consider the following graph, which relates to a particular decision problem to be explained below
 
 .. figure:: /_static/figures/kg0.png
-   :scale: 70%
 
 The figure shows a *value-entropy correspondence* for a particular decision rule :math:`F`
 
@@ -105,7 +104,6 @@ In the next figure,
 
 
 .. figure:: /_static/figures/kg.png
-   :scale: 70%
 
 
 The blue correspondence is skinnier than the red correspondence
@@ -1031,7 +1029,6 @@ The code for producing the graph shown above, with blue being for the robust pol
 Here's another such figure, with :math:`\theta = 0.002` instead of :math:`0.02`
 
 .. figure:: /_static/figures/kg_small_theta.png
-   :scale: 70%
 
 Can you explain the different shape of the value-entropy correspondence for the robust policy?
 

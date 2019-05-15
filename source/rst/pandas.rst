@@ -22,7 +22,6 @@ of fields such as data science and machine learning
 Here's a popularity comparison over time against STATA and SAS, courtesy of Stack Overflow Trends
 
 .. figure:: /_static/figures/pandas_vs_rest.png
-   :scale: 90%
 
 
 Just as `NumPy <http://www.numpy.org/>`_ provides the basic array data type plus core array operations, pandas 
@@ -448,7 +447,6 @@ Write a program to calculate the percentage price change over 2013 for the follo
 Plot the result as a bar graph like follows
 
 .. figure:: /_static/figures/pandas_share_prices.png
-   :scale: 70%
 
 
 

@@ -79,7 +79,6 @@ Relative Popularity
 The following chart, produced using Stack Overflow Trends, shows one measure of the relative popularity of Python
 
 .. figure:: /_static/figures/python_vs_rest.png
-   :scale: 90%
 
 The figure indicates not only that Python is widely used but also that adoption of Python has accelerated significantly since 2012
 
@@ -91,7 +90,6 @@ For example, the popularity of `pandas <http://pandas.pydata.org/>`_, a library 
 (The corresponding time path for MATLAB is shown for comparison)
 
 .. figure:: /_static/figures/pandas_vs_matlab.png
-   :scale: 90%
 
 Note that pandas takes off in 2012, which is the same year that we seek
 Python's popularity begin to spike in the first figure
@@ -254,17 +252,14 @@ The most popular and comprehensive Python library for creating figures and graph
 Example 2D plot with embedded LaTeX annotations
 
 .. figure:: /_static/figures/qs.png
-   :scale: 70%
 
 Example contour plot
 
 .. figure:: /_static/figures/bn_density1.png
-   :scale: 70%
 
 Example 3D plot
 
 .. figure:: /_static/figures/career_vf.png
-   :scale: 70%
 
 More examples can be found in the `Matplotlib thumbnail gallery <http://matplotlib.org/gallery.html>`_
 

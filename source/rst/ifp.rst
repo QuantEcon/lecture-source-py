@@ -559,7 +559,6 @@ Next let's consider how the interest rate affects consumption
 Reproduce the following figure, which shows (approximately) optimal consumption policies for different interest rates
 
 .. figure:: /_static/figures/ifp_policies.png
-   :scale: 60%
 
 * Other than ``r``, all parameters are at their default values
 * ``r`` steps through ``np.linspace(0, 0.04, 4)``
@@ -625,7 +624,6 @@ Ergodicity is valid here, so stationary probabilities can be calculated by avera
 Hence to approximate the stationary distribution we can simulate a long time series for assets and histogram, as in the following figure
 
 .. figure:: /_static/figures/ifp_histogram.png
-   :scale: 60%
 
 Your task is to replicate the figure
 
@@ -656,7 +654,6 @@ The next figure plots aggregate capital against the interest rate for ``b in (1,
 
 
 .. figure:: /_static/figures/ifp_agg_savings.png
-   :scale: 60%
 
 As is traditional, the price (interest rate) is on the vertical axis
 

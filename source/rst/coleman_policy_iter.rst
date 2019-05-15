@@ -290,7 +290,6 @@ composition of :math:`g` with itself
 Here's the picture
 
 .. figure:: /_static/figures/col_pol_composition.png
-    :scale: 40%
 
 Now let another function :math:`h \colon Y \to Y` where :math:`Y` is another set
 
@@ -321,14 +320,12 @@ or, by applying :math:`\tau^{-1}` to both sides
 Here's a commutative diagram that illustrates
 
 .. figure:: /_static/figures/col_pol_bij1.png
-    :scale: 20%
 
 
 Here's a similar figure that traces out the action of the maps on a point
 :math:`x \in X`
 
 .. figure:: /_static/figures/col_pol_bij2.png
-    :scale: 20%
 
 Now, it's easy to check from :eq:`cpi_ghcom` that :math:`g^2 = \tau^{-1} \circ h^2 \circ \tau` holds
 

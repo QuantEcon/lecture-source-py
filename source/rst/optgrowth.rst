@@ -865,7 +865,6 @@ The next figure shows a simulation of 100 elements of this sequence for three
 different discount factors (and hence three different policies)
 
 .. figure:: /_static/figures/solution_og_ex2.png
-   :scale: 60%
 
 In each sequence, the initial condition is :math:`y_0 = 0.1`
 
