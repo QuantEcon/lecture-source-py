@@ -295,7 +295,7 @@ condition called a **Karush-Kuhn-Tucker condition** (KKT):
   
     \mu_T K_{T+1}=0
 
-See `Karush-Kuhn-Tucker conditions <en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions>`__
+See `Karush-Kuhn-Tucker conditions <https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions>`__
 
 Combining :eq:`constraint1` and :eq:`constraint2` gives
 
