@@ -1210,7 +1210,7 @@ Hint: remember the components of :math:`X_t`
         dist_vec2 = (F_iter - (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) 
                      @ B_tilde.T @ P_iter @ A_tilde))
                      
-        if np.max(np.abs(dist_vec)) < 1e-8:
+        if np.max(np.abs(dist_vec2)) < 1e-8:
             F_iter
         else: 
             print("The policy didn't converge: try increasing the number of outer loop iterations")
