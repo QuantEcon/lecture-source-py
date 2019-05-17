@@ -400,7 +400,7 @@ If we repeat this :math:`n` times, we get :math:`n` independent observations :ma
 
 With these draws in hand, the next step is to generate some kind of representation of their distribution :math:`\psi_t`
 
-A naive approach would be to use a histogram, or perhaps a `smoothed histogram <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_ using  SciPy's ``gaussian_kde`` function 
+A naive approach would be to use a histogram, or perhaps a `smoothed histogram <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_ using  SciPy's ``gaussian_kde`` function
 
 However, in the present setting there is a much better way to do this, based on the look-ahead estimator
 
@@ -543,7 +543,7 @@ The following code is example of usage for the stochastic growth model :ref:`des
     ax.set_xlabel('capital')
     ax.set_title(f'Density of $k_1$ (lighter) to $k_T$ (darker) for $T={T}$')
     plt.show()
-    
+
 
 
 The figure shows part of the density sequence :math:`\{\psi_t\}`, with each
@@ -908,9 +908,7 @@ A common way to compare distributions visually is with `boxplots <https://en.wik
 
 To illustrate, let's generate three artificial data sets and compare them with a boxplot
 
-.. literalinclude:: /_static/code/stationary_densities/boxplot_example.py
-
-The three data sets are
+The three data sets we will use are:
 
 .. math::
 
@@ -920,11 +918,11 @@ The three data sets are
     \{ Z_1, \ldots, Z_n \} \sim N(4, 1), \;
 
 
-The figure looks as follows
+Here is the code and figure:
 
 
+.. literalinclude:: /_static/code/stationary_densities/boxplot_example.py
 
-.. figure:: /_static/figures/boxplot_example_updated.png
 
 
 
@@ -983,7 +981,7 @@ Exercise 1
 Look ahead estimation of a TAR stationary density, where the TAR model
 is
 
-.. math::     X_{t+1} = \theta |X_t| + (1 - \theta^2)^{1/2} \xi_{t+1} 
+.. math::     X_{t+1} = \theta |X_t| + (1 - \theta^2)^{1/2} \xi_{t+1}
 
 and :math:`\xi_t \sim N(0,1)`
 
@@ -992,29 +990,29 @@ Try running at ``n = 10, 100, 1000, 10000`` to get an idea of the speed of conve
 .. code-block:: python3
 
     from scipy.stats import norm, gaussian_kde
-    
+
     ϕ = norm()
     n = 500
     θ = 0.8
     # == Frequently used constants == #
-    d = np.sqrt(1 - θ**2) 
+    d = np.sqrt(1 - θ**2)
     δ = θ / d
-    
+
     def ψ_star(y):
         "True stationary density of the TAR Model"
-        return 2 * norm.pdf(y) * norm.cdf(δ * y) 
-    
+        return 2 * norm.pdf(y) * norm.cdf(δ * y)
+
     def p(x, y):
         "Stochastic kernel for the TAR model."
         return ϕ.pdf((y - θ * np.abs(x)) / d) / d
-    
+
     Z = ϕ.rvs(n)
     X = np.empty(n)
     for t in range(n-1):
         X[t+1] = θ * np.abs(X[t]) + d * Z[t]
     ψ_est = LAE(p, X)
     k_est = gaussian_kde(X)
-    
+
     fig, ax = plt.subplots(figsize=(10, 7))
     ys = np.linspace(-3, 3, 200)
     ax.plot(ys, ψ_star(ys), 'b-', lw=2, alpha=0.6, label='true')
@@ -1029,42 +1027,42 @@ Exercise 2
 Here's one program that does the job
 
 .. code-block:: python3
-    
+
     # == Define parameters == #
     s = 0.2
     δ = 0.1
     a_σ = 0.4                                # A = exp(B) where B ~ N(0, a_σ)
     α = 0.4                                  # f(k) = k**α
-    
-    ϕ = lognorm(a_σ) 
-    
+
+    ϕ = lognorm(a_σ)
+
     def p(x, y):
         "Stochastic kernel, vectorized in x.  Both x and y must be positive."
         d = s * x**α
         return ϕ.pdf((y - (1 - δ) * x) / d) / d
-    
+
     n = 1000                                 # Number of observations at each date t
     T = 40                                   # Compute density of k_t at 1,...,T
-    
+
     fig, axes = plt.subplots(2, 2, figsize=(11, 8))
     axes = axes.flatten()
     xmax = 6.5
-    
+
     for i in range(4):
-        ax = axes[i] 
+        ax = axes[i]
         ax.set_xlim(0, xmax)
         ψ_0 = beta(5, 5, scale=0.5, loc=i*2)  # Initial distribution
-    
+
         # == Generate matrix s.t. t-th column is n observations of k_t == #
         k = np.empty((n, T))
         A = ϕ.rvs((n, T))
         k[:, 0] = ψ_0.rvs(n)
         for t in range(T-1):
             k[:, t+1] = s * A[:,t] * k[:, t]**α + (1 - δ) * k[:, t]
-    
+
         # == Generate T instances of lae using this data, one for each t == #
         laes = [LAE(p, k[:, t]) for t in range(T)]
-    
+
         ygrid = np.linspace(0.01, xmax, 150)
         greys = [str(g) for g in np.linspace(0.0, 0.8, T)]
         greys.reverse()
@@ -1086,28 +1084,28 @@ series for one boxplot all at once
     n = 20
     k = 5000
     J = 6
-    
+
     θ = 0.9
-    d = np.sqrt(1 - θ**2) 
+    d = np.sqrt(1 - θ**2)
     δ = θ / d
-    
+
     fig, axes = plt.subplots(J, 1, figsize=(10, 4*J))
     initial_conditions = np.linspace(8, 0, J)
     X = np.empty((k, n))
-    
+
     for j in range(J):
-        
+
         axes[j].set_ylim(-4, 8)
         axes[j].set_title(f'time series from t = {initial_conditions[j]}')
-        
+
         Z = np.random.randn(k, n)
         X[:, 0] = initial_conditions[j]
         for t in range(1, n):
             X[:, t] = θ * np.abs(X[:, t-1]) + d * Z[:, t]
         axes[j].boxplot(X)
-    
+
     plt.show()
-    
+
 
 
 
@@ -1126,6 +1124,3 @@ By the definition of :math:`V`, we have :math:`F_V(v) = \mathbb P \{ a + b U \le
 In other words, :math:`F_V(v) = F_U ( (v - a)/b )`
 
 Differentiating with respect to :math:`v` yields :eq:`statd_dv`
-
-
-
