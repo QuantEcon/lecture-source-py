@@ -84,7 +84,7 @@ At time :math:`t`, our worker either
 
 #. rejects the offer, receives unemployment compensation :math:`c` and reconsiders next period
 
-The wage sequence :math:`\{W_t\}` is iid and generated from known density :math:`q`
+The wage sequence :math:`\{W_t\}` is IID and generated from known density :math:`q`
 
 The worker aims to maximize the expected discounted sum of earnings :math:`\mathbb{E} \sum_{t=0}^{\infty} \beta^t y_t`
 The function :math:`V` satisfies the recursion

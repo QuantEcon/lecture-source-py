@@ -510,7 +510,7 @@ We have defined a function called ``generate_data()`` as follows
 
 * ``def`` is a Python keyword used to start function definitions
 * ``def generate_data(n):`` indicates that the function is called ``generate_data``, and that it has a single argument ``n``
-* The indented code is a code block called the *function body*---in this case it creates an iid list of random draws using the same logic as before
+* The indented code is a code block called the *function body*---in this case it creates an IID list of random draws using the same logic as before
 * The ``return`` keyword indicates that ``ϵ_values`` is the object that should be returned to the calling code
 
 This whole function definition is read by the Python interpreter and stored in memory
@@ -713,7 +713,7 @@ Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besid
 Your hints are as follows:
 
 * If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`
-* If :math:`U_1,\ldots,U_n` are iid copies of :math:`U`, then, as :math:`n` gets large, the fraction that fall in :math:`B` converges to the probability of landing in :math:`B`
+* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that fall in :math:`B` converges to the probability of landing in :math:`B`
 * For a circle, area = pi * radius^2
 
 
@@ -749,7 +749,7 @@ Your next task is to simulate and plot the correlated time series
     \quad \text{and} \quad t = 0,\ldots,T
 
 
-The sequence of shocks :math:`\{\epsilon_t\}` is assumed to be iid and standard normal
+The sequence of shocks :math:`\{\epsilon_t\}` is assumed to be IID and standard normal
 
 
 In your solution, restrict your import statements to

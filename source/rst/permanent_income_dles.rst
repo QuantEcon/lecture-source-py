@@ -107,7 +107,7 @@ representation
     \eqalign{ z_{t+1} & = A_{22} z_t + C_2 w_{t+1}  \cr
                   y_t & = U_y  z_t  \cr}
 
-where :math:`w_{t+1}` is an i.i.d. process with mean zero and identity
+where :math:`w_{t+1}` is an IID process with mean zero and identity
 contemporaneous covariance matrix, :math:`A_{22}` is a stable matrix,
 its eigenvalues being strictly below unity in modulus, and :math:`U_y`
 is a selection vector that identifies :math:`y` with a particular linear

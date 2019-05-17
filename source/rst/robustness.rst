@@ -692,7 +692,7 @@ A sketch of the proof is given in :ref:`the appendix <rb_appendix>`
 The Stochastic Case
 ====================
 
-Now we turn to the stochastic case, where the sequence :math:`\{w_t\}` is treated as an iid sequence of random vectors
+Now we turn to the stochastic case, where the sequence :math:`\{w_t\}` is treated as an IID sequence of random vectors
 
 In this setting, we suppose that our agent is uncertain about the *conditional probability distribution* of :math:`w_{t+1}`
 
@@ -936,7 +936,7 @@ where
 .. math::
 
     d_{t+1} = \rho d_t + \sigma_d w_{t+1},
-    \quad \{w_t\} \stackrel{\textrm{iid}}{\sim} N(0,1)
+    \quad \{w_t\} \stackrel{\textrm{IID}}{\sim} N(0,1)
 
 
 and all parameters are strictly positive

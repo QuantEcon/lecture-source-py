@@ -94,7 +94,7 @@ We will assume that this endowment is Markovian, following the exogenous process
     y_{t+1} = G(y_t, \xi_{t+1})
 
 
-Here :math:`\{ \xi_t \}` is an iid shock sequence with known distribution :math:`\phi` and :math:`y_t \geq 0`
+Here :math:`\{ \xi_t \}` is an IID shock sequence with known distribution :math:`\phi` and :math:`y_t \geq 0`
 
 An asset is a claim on all or part of this endowment stream
 
@@ -427,7 +427,7 @@ The preceding discussion tells that we can compute :math:`f^*` by picking any ar
 
 The equilibrium price function :math:`p^*` can then be recovered by :math:`p^*(y) = f^*(y) / u'(y)`
 
-Let's try this when :math:`\ln y_{t+1} = \alpha \ln y_t + \sigma \epsilon_{t+1}` where :math:`\{\epsilon_t\}` is iid and standard normal
+Let's try this when :math:`\ln y_{t+1} = \alpha \ln y_t + \sigma \epsilon_{t+1}` where :math:`\{\epsilon_t\}` is IID and standard normal
 
 Utility will take the isoelastic form :math:`u(c) = c^{1-\gamma}/(1-\gamma)`, where :math:`\gamma > 0` is the coefficient of relative risk aversion
 

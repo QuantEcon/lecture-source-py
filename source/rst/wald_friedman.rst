@@ -129,7 +129,7 @@ A Dynamic Programming Approach
 The following presentation of the problem closely follows Dmitri
 Berskekas's treatment in **Dynamic Programming and Stochastic Control** :cite:`Bertekas75`
 
-A decision maker observes iid draws of a random variable :math:`z`
+A decision maker observes IID draws of a random variable :math:`z`
 
 He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z` 
 
@@ -864,7 +864,7 @@ By limiting  what is unknown, Wald uses the following simple structure
 to illustrate the main ideas:
 
 -  a decision maker wants to decide which of two distributions
-   :math:`f_0`, :math:`f_1` govern an i.i.d. random variable :math:`z`
+   :math:`f_0`, :math:`f_1` govern an IID random variable :math:`z`
 
 -  The null hypothesis :math:`H_0` is the statement that :math:`f_0`
    governs the data
@@ -990,7 +990,7 @@ Here is how Wald introduces the notion of a sequential test
 .. rubric:: Footnotes
 
 .. [#f1] Because the decision maker believes that :math:`z_{k+1}` is
-    drawn from a mixture of two i.i.d. distributions, he does *not*
-    believe that the sequence :math:`[z_{k+1}, z_{k+2}, \ldots]` is i.i.d.
+    drawn from a mixture of two IID distributions, he does *not*
+    believe that the sequence :math:`[z_{k+1}, z_{k+2}, \ldots]` is IID
     Instead, he believes that it is *exchangeable*. See :cite:`Kreps88`
     chapter 11, for a discussion of exchangeability.

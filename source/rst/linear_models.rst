@@ -74,7 +74,7 @@ The objects in play are:
 
 * An :math:`n \times 1` vector :math:`x_t` denoting the **state** at time :math:`t = 0, 1, 2, \ldots`
 
-* An iid sequence of :math:`m \times 1` random vectors :math:`w_t \sim N(0,I)`
+* An IID sequence of :math:`m \times 1` random vectors :math:`w_t \sim N(0,I)`
 
 * A :math:`k \times 1` vector :math:`y_t` of **observations** at time :math:`t = 0, 1, 2, \ldots`
 
@@ -139,7 +139,7 @@ In the present case, since :math:`\{x_t\}` is our state sequence, this means tha
     \mathbb{E} [w_{t+1} | x_t, x_{t-1}, \ldots ] = 0
 
 
-This is a weaker condition than that :math:`\{w_t\}` is iid with :math:`w_{t+1} \sim N(0,I)`
+This is a weaker condition than that :math:`\{w_t\}` is IID with :math:`w_{t+1} \sim N(0,I)`
 
 
 
@@ -225,7 +225,7 @@ We can use :eq:`st_space_rep` to represent the model
     y_{t+1} = \phi_1 y_{t} + \phi_2 y_{t-1} + \phi_3 y_{t-2} + \phi_4  y_{t-3} + \sigma w_{t+1}
 
 
-where :math:`\{w_t\}` is iid and standard normal
+where :math:`\{w_t\}` is IID and standard normal
 
 To put this in the linear state space format we take :math:`x_t = \begin{bmatrix} y_t & y_{t-1} &  y_{t-2} &  y_{t-3} \end{bmatrix}'` and
 
@@ -1110,7 +1110,7 @@ observed imperfectly
 
 To include an error term in the observation we introduce
 
-* An iid sequence of :math:`\ell \times 1` random vectors :math:`v_t \sim N(0,I)`
+* An IID sequence of :math:`\ell \times 1` random vectors :math:`v_t \sim N(0,I)`
 
 * A :math:`k \times \ell` matrix :math:`H`
 
@@ -1209,7 +1209,7 @@ With a bit of algebra we obtain
     \cdots + A^0 C w_{t+j}
 
 
-In view of the iid property, current and past state values provide no information about future values of the shock
+In view of the IID property, current and past state values provide no information about future values of the shock
 
 Hence :math:`\mathbb{E}_t[w_{t+k}] = \mathbb{E}[w_{t+k}] = 0`
 

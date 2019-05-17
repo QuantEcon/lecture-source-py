@@ -93,7 +93,7 @@ A :math:`\{y_t\}` Process for Which Adaptive Expectations are Optimal
 ------------------------------------------------------------------------
 
 Suppose that an observable :math:`y_t` is the sum of an unobserved
-random walk :math:`x_t` and an i.i.d. shock :math:`\epsilon_{2,t}`:
+random walk :math:`x_t` and an IID shock :math:`\epsilon_{2,t}`:
 
 .. math::
   :label: statespace
@@ -105,7 +105,7 @@ where
 
 .. math::  \left[\matrix{\epsilon_{1,t+1} \cr \epsilon_{2,t} } \right] \sim {\mathcal N} (0, I)
 
-is an i.i.d. process
+is an IID process
 
 **Note:** A property of the statespace representation :eq:`statespace` is that in
 general neither :math:`\epsilon_{1,t}` nor :math:`\epsilon_{2,t}` is in

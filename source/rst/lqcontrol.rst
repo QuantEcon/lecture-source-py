@@ -690,7 +690,7 @@ consumption can be simulated via :eq:`lq_xud`
 The following figure was computed using :math:`r = 0.05, \beta = 1 / (1+ r), 
 \bar c = 2,  \mu = 1, \sigma = 0.25, T = 45` and :math:`q = 10^6`
 
-The shocks :math:`\{w_t\}` were taken to be iid and standard normal
+The shocks :math:`\{w_t\}` were taken to be IID and standard normal
 
 .. literalinclude:: /_static/code/lqcontrol/lq_permanent_1.py
 
@@ -1178,7 +1178,7 @@ Here :math:`q_t` is output, and the demand shock :math:`d_t` follows
     d_{t+1} = \rho d_t + \sigma w_{t+1}
 
 
-where :math:`\{w_t\}` is iid and standard normal
+where :math:`\{w_t\}` is IID and standard normal
 
 The monopolist maximizes the expected discounted sum of present and future profits
 
@@ -1363,7 +1363,7 @@ income
 
 .. math::     y_t = m_1 t + m_2 t^2 + \sigma w_{t+1} 
 
-where :math:`\{w_t\}` is iid :math:`N(0, 1)` and the coefficients
+where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
 :math:`m_1` and :math:`m_2` are chosen so that
 :math:`p(t) = m_1 t + m_2 t^2` has an inverted U shape with
 

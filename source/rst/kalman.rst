@@ -509,7 +509,7 @@ The latter represents a linear state space model of the form
     \end{aligned}
 
 
-where the shocks :math:`w_t` and :math:`v_t` are iid standard normals
+where the shocks :math:`w_t` and :math:`v_t` are IID standard normals
     
 To connect this with the notation of this lecture we set
 
@@ -556,7 +556,7 @@ Suppose that
 
 State dynamics are therefore given by :eq:`kl_xdynam` with :math:`A=1`, :math:`Q=0` and :math:`x_0 = \theta`
 
-The measurement equation is :math:`y_t = \theta + v_t` where :math:`v_t` is :math:`N(0,1)` and iid
+The measurement equation is :math:`y_t = \theta + v_t` where :math:`v_t` is :math:`N(0,1)` and IID
 
 The task of this exercise to simulate the model and, using the code from ``kalman.py``, plot the first five predictive densities :math:`p_t(x) = N(\hat x_t, \Sigma_t)`
 

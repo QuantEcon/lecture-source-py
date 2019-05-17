@@ -73,7 +73,7 @@ For as long as the worker remains in the current job, evolution of
 When search effort at :math:`t` is :math:`s_t`, the worker receives a new job
 offer with probability :math:`\pi(s_t) \in [0, 1]`
 
-Value of offer is :math:`u_{t+1}`, where :math:`\{u_t\}` is iid with common distribution :math:`f`
+Value of offer is :math:`u_{t+1}`, where :math:`\{u_t\}` is IID with common distribution :math:`f`
 
 Worker has the right to reject the current offer and continue with existing job
 

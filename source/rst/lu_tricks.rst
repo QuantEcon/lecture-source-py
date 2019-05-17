@@ -21,7 +21,7 @@ class of dynamic optimization and prediction problems by applying the method of 
 
   * the one-step transition function is **linear**
 
-  * shocks are i.i.d. Gaussian or martingale differences
+  * shocks are IID Gaussian or martingale differences
 
 In this lecture and a companion lecture :doc:`Classical Filtering with Linear Algebra<classical_filtering>`, we study the classical theory of linear-quadratic (LQ) optimal control problems. 
 

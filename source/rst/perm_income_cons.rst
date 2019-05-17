@@ -249,7 +249,7 @@ subject to :math:`x_0` given and the law of motion
     \qquad t\geq 0, 
 
 
-where :math:`w_{t+1}` is iid with mean vector zero and :math:`\mathbb E w_t w'_t= I`
+where :math:`w_{t+1}` is IID with mean vector zero and :math:`\mathbb E w_t w'_t= I`
 
 The tildes in :math:`\tilde A, \tilde B, \tilde C` are to avoid clashing with notation in :eq:`sprob15ab2`
 

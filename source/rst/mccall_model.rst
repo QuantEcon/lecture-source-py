@@ -71,7 +71,7 @@ At time :math:`t`, our worker has two choices:
 
 #. Reject the offer, receive unemployment compensation :math:`c`, and reconsider next period
 
-The wage sequence is assumed to be iid with probability mass function :math:`\phi`
+The wage sequence is assumed to be IID with probability mass function :math:`\phi`
 
 Thus :math:`\phi (w)` is the probability of observing wage offer :math:`w` in the set :math:`w_1, \ldots, w_n`
 

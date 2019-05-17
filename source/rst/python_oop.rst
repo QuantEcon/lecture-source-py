@@ -789,7 +789,7 @@ The `empirical cumulative distribution function (ecdf) <https://en.wikipedia.org
 Here :math:`\mathbf{1}\{X_i \leq x\}` is an indicator function (one if :math:`X_i \leq x` and zero otherwise)
 and hence :math:`F_n(x)` is the fraction of the sample that falls below :math:`x`
 
-The Glivenko--Cantelli Theorem states that, provided that the sample is iid, the ecdf :math:`F_n` converges to the true distribution function :math:`F`
+The Glivenko--Cantelli Theorem states that, provided that the sample is IID, the ecdf :math:`F_n` converges to the true distribution function :math:`F`
 
 Implement :math:`F_n` as a class called ``ECDF``, where
 

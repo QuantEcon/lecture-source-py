@@ -74,7 +74,7 @@ interpretation, the government's exogenous expenditure process):
 *  that it obeys a finite :math:`N` state Markov chain (setting :math:`N=2` most of the time)
 
 *  that it is described by a linear state space model with a continuous
-   state vector in :math:`{\mathbb R}^n` driven by a Gaussian vector iid shock
+   state vector in :math:`{\mathbb R}^n` driven by a Gaussian vector IID shock
    process
 
 We'll spend most of this lecture studying the finite-state Markov specification, but will briefly treat the linear state space specification before concluding

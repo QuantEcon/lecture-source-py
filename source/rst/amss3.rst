@@ -89,7 +89,7 @@ The Markov state :math:`s_t` takes **three** values, namely,  :math:`0,1,2`
 
 The initial Markov state is :math:`0`
 
-The Markov transition matrix is :math:`(1/3) I` where :math:`I` is a :math:`3 \times 3` identity matrix, so the :math:`s_t` process is i.i.d.
+The Markov transition matrix is :math:`(1/3) I` where :math:`I` is a :math:`3 \times 3` identity matrix, so the :math:`s_t` process is IID
 
 Government expenditures :math:`g(s)` equal :math:`.1` in Markov state :math:`0`, :math:`.2` in Markov state :math:`1`, and :math:`.3`
 in Markov state :math:`2`
@@ -565,7 +565,7 @@ Note about Code
 Remember that in our code :math:`\pi` is a :math:`3 \times 3` transition
 matrix
 
-But because we are studying an i.i.d. case, :math:`\pi` has identical
+But because we are studying an IID case, :math:`\pi` has identical
 rows and we only need to compute objects for one row of :math:`\pi`
 
 This explains why at some places below we set :math:`s=0` just to pick
@@ -599,7 +599,7 @@ according to our formulas
 
 
 
-We only want unconditional expectations because we are in an iid case
+We only want unconditional expectations because we are in an IID case
 
 So we'll set :math:`s=0` and just pick off expectations associated with
 the first row of :math:`\pi`
