@@ -25,19 +25,19 @@ In this lecture we describe the structure of a class of models that build on wor
 
 .. only:: html
 
-    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari </_static/pdfs/aiyagari_obit.pdf>`
+    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/pdfs/aiyagari_obit.pdf>`
 
 .. only:: latex
 
-    We begin by discussing an example of a Bewley model due to `Rao Aiyagari <https://lectures.quantecon.org/_downloads/aiyagari_obit.pdf>`__    
+    We begin by discussing an example of a Bewley model due to `Rao Aiyagari <https://lectures.quantecon.org/_downloads/aiyagari_obit.pdf>`__
 
-The model features 
+The model features
 
-* Heterogeneous agents 
+* Heterogeneous agents
 
 * A single exogenous vehicle for borrowing and lending
 
-* Limits on amounts individual agents may borrow 
+* Limits on amounts individual agents may borrow
 
 
 The Aiyagari model has been used to investigate many topics, including
@@ -74,11 +74,11 @@ Households
 ---------------
 
 
-Infinitely lived households / consumers face idiosyncratic income shocks 
+Infinitely lived households / consumers face idiosyncratic income shocks
 
 A unit interval of  *ex ante* identical households face a common borrowing constraint
 
-The savings problem faced by a typical  household is 
+The savings problem faced by a typical  household is
 
 .. math::
 
@@ -90,8 +90,8 @@ subject to
 .. math::
 
     a_{t+1} + c_t \leq w z_t + (1 + r) a_t
-    \quad 
-    c_t \geq 0, 
+    \quad
+    c_t \geq 0,
     \quad \text{and} \quad
     a_t \geq -B
 
@@ -100,7 +100,7 @@ where
 
 * :math:`c_t` is current consumption
 
-* :math:`a_t` is assets 
+* :math:`a_t` is assets
 
 * :math:`z_t` is an exogenous component of labor income capturing stochastic unemployment risk, etc.
 
@@ -112,9 +112,9 @@ where
 
 The exogenous process :math:`\{z_t\}` follows a finite state Markov chain with given stochastic matrix :math:`P`
 
-The wage and interest rate are fixed over time 
+The wage and interest rate are fixed over time
 
-In this simple version of the model, households supply labor  inelastically because they do not value leisure  
+In this simple version of the model, households supply labor  inelastically because they do not value leisure
 
 
 
@@ -126,7 +126,7 @@ Firms produce output by hiring capital and labor
 
 Firms act competitively and face constant returns to scale
 
-Since returns to scale are constant the number of firms does not matter 
+Since returns to scale are constant the number of firms does not matter
 
 Hence we can consider a single (but nonetheless competitive) representative firm
 
@@ -137,7 +137,7 @@ The firm's output is
     Y_t = A K_t^{\alpha} N^{1 - \alpha}
 
 
-where 
+where
 
 * :math:`A` and :math:`\alpha` are parameters with :math:`A > 0` and :math:`\alpha \in (0, 1)`
 
@@ -178,7 +178,7 @@ Equilibrium
 
 We construct  a *stationary rational expectations equilibrium* (SREE)
 
-In such an equilibrium 
+In such an equilibrium
 
 * prices induce behavior that generates aggregate quantities consistent with the prices
 
@@ -193,7 +193,7 @@ In more detail, an SREE lists a set of prices, savings and production policies s
 
 * the resulting aggregate quantities are consistent with the prices; in particular, the demand for capital equals the supply
 
-* aggregate quantities (defined as cross-sectional averages) are constant 
+* aggregate quantities (defined as cross-sectional averages) are constant
 
 
 In practice, once parameter values are set, we can check for an SREE by the following steps
@@ -205,7 +205,7 @@ In practice, once parameter values are set, we can check for an SREE by the foll
 #. determine the common optimal savings policy of the households given these prices
 
 #. compute aggregate capital as the mean of steady state capital given this savings policy
-   
+
 If this final quantity agrees with :math:`K` then we have a SREE
 
 
@@ -225,7 +225,7 @@ In reading the code, the following information will be helpful
 
 * ``R`` needs to be a matrix where ``R[s, a]`` is the reward at state ``s`` under action ``a``
 
-* ``Q`` needs to be a three dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a`` 
+* ``Q`` needs to be a three dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a``
 
 (For a detailed discussion of ``DiscreteDP`` see :doc:`this lecture <discrete_dp>`)
 
@@ -262,4 +262,3 @@ The intersection gives equilibrium interest rates and capital
 
 
 .. literalinclude:: /_static/code/aiyagari/aiyagari_compute_equilibrium.py
-
