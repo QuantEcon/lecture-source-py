@@ -439,7 +439,7 @@ Solutions
 
 
 
-These solutions are written by `Chase Coleman <github.com/cc7768>`__
+These solutions are written by `Chase Coleman <https://github.com/cc7768>`__
 
 .. code-block:: ipython
 
@@ -449,37 +449,37 @@ These solutions are written by `Chase Coleman <github.com/cc7768>`__
     def plot_attraction_basis(s1=0.5, θ=2.5, δ=0.7, ρ=0.2, npts=250, ax=None):
         if ax is None:
             fig, ax = plt.subplots()
-    
+
         # Create attraction basis
         unitrange = np.linspace(0, 1, npts)
         model = MSGSync(s1, θ, δ, ρ)
         ab = model.create_attraction_basis(npts=npts)
         cf = ax.pcolormesh(unitrange, unitrange, ab, cmap="viridis")
-    
+
         return ab, cf
 
 
     fig = plt.figure(figsize=(14, 12))
-    
+
     # Left - Bottom - Width - Height
     ax0 = fig.add_axes((0.05, 0.475, 0.38, 0.35), label="axes0")
     ax1 = fig.add_axes((0.5, 0.475, 0.38, 0.35), label="axes1")
     ax2 = fig.add_axes((0.05, 0.05, 0.38, 0.35), label="axes2")
     ax3 = fig.add_axes((0.5, 0.05, 0.38, 0.35), label="axes3")
-    
+
     params = [[0.5, 2.5, 0.7, 0.2],
               [0.5, 2.5, 0.7, 0.4],
               [0.5, 2.5, 0.7, 0.6],
               [0.5, 2.5, 0.7, 0.8]]
-    
+
     ab0, cf0 = plot_attraction_basis(*params[0], npts=500, ax=ax0)
     ab1, cf1 = plot_attraction_basis(*params[1], npts=500, ax=ax1)
     ab2, cf2 = plot_attraction_basis(*params[2], npts=500, ax=ax2)
     ab3, cf3 = plot_attraction_basis(*params[3], npts=500, ax=ax3)
-    
+
     cbar_ax = fig.add_axes([0.9, 0.075, 0.03, 0.725])
     plt.colorbar(cf0, cax=cbar_ax)
-    
+
     ax0.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.2$",
                   fontsize=22)
     ax1.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.4$",
@@ -488,7 +488,7 @@ These solutions are written by `Chase Coleman <github.com/cc7768>`__
                   fontsize=22)
     ax3.set_title(r"$s_1=0.5$, $\theta=2.5$, $\delta=0.7$, $\rho=0.8$",
                   fontsize=22)
-    
+
     fig.suptitle("Synchronized versus Asynchronized 2-cycles",
                  x=0.475, y=0.915, size=26)
     plt.show()
@@ -509,12 +509,12 @@ Note, interactive ploting requires the `ipywidgets <https://github.com/jupyter-w
     def interact_attraction_basis(ρ=0.2, maxiter=250, npts=250):
         # Create the figure and axis that we will plot on
         fig, ax = plt.subplots(figsize=(12, 10))
-    
+
         # Create model and attraction basis
         s1, θ, δ = 0.5, 2.5, 0.75
         model = MSGSync(s1, θ, δ, ρ)
         ab = model.create_attraction_basis(maxiter=maxiter, npts=npts)
-    
+
         # Color map with colormesh
         unitrange = np.linspace(0, 1, npts)
         cf = ax.pcolormesh(unitrange, unitrange, ab, cmap="viridis")
@@ -530,4 +530,3 @@ Note, interactive ploting requires the `ipywidgets <https://github.com/jupyter-w
                    ρ=(0.0, 1.0, 0.05),
                    maxiter=(50, 5000, 50),
                    npts=(25, 750, 25))
-
