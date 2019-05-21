@@ -434,7 +434,7 @@ The grey vertical bars correspond to periods when the economy is excluded from f
 
 One notable feature of the simulated data is the nonlinear response of interest rates
 
-Periods of relative stability are followed by sharp spikes in the discount factor on government debt
+Periods of relative stability are followed by sharp spikes in the discount rate on government debt
 
 
 Exercises
