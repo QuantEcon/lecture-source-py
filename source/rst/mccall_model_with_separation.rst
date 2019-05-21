@@ -60,7 +60,7 @@ The model concerns the life of an infinitely lived worker and
 
 The worker can be in one of two states: employed or unemployed
 
-He wants to maximize 
+He wants to maximize
 
 .. math::
     :label: objective
@@ -68,7 +68,7 @@ He wants to maximize
     {\mathbb E} \sum_{t=0}^\infty \beta^t u(Y_t)
 
 The only difference from the :doc:`baseline model <mccall_model>` is that
-we've added some flexibility over preferences by introducing a utility function :math:`u` 
+we've added some flexibility over preferences by introducing a utility function :math:`u`
 
 It satisfies :math:`u'> 0` and :math:`u'' < 0`
 
@@ -80,7 +80,7 @@ Timing and Decisions
 Here's what happens at the start of a given period in our model with search and separation
 
 If currently *employed*, the worker consumes his wage :math:`w`, receiving utility :math:`u(w)`
-  
+
 If currently *unemployed*, he
 
 * receives and consumes unemployment compensation :math:`c`
@@ -97,7 +97,7 @@ When employed, the agent faces a constant probability :math:`\alpha` of becoming
 
 
 (Note: we do not allow for job search while employed---this topic is taken
-up in a :doc:`later lecture <jv>`) 
+up in a :doc:`later lecture <jv>`)
 
 
 
@@ -107,7 +107,7 @@ up in a :doc:`later lecture <jv>`)
 Solving the Model using Dynamic Programming
 ============================================
 
-Let 
+Let
 
 * :math:`v(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
 
@@ -117,7 +117,7 @@ Here *value* means the value of the objective function :eq:`objective` when the 
 
 Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`h` and use them in his decision making
 
-Then :math:`v` and :math:`h`  should satisfy 
+Then :math:`v` and :math:`h`  should satisfy
 
 .. math::
     :label: bell1_mccall
@@ -170,7 +170,7 @@ He either accepts or rejects the offer
 Otherwise the model is the same
 
 
-With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy 
+With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy
 
 .. math::
     :label: bell01_mccall
@@ -183,8 +183,8 @@ and
 .. math::
     :label: bell02_mccall
 
-    h = u(c) + 
-      \beta (1 - \gamma) h + 
+    h = u(c) +
+      \beta (1 - \gamma) h +
       \beta \gamma \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
 
 
@@ -218,8 +218,8 @@ and
 .. math::
     :label: bell2001
 
-    h_{n+1} = u(c) + 
-        \beta (1 - \gamma) h_n + 
+    h_{n+1} = u(c) +
+        \beta (1 - \gamma) h_n +
         \beta \gamma \sum_{w'} \max \{ h_n, v_n(w') \} \phi(w')
 
 
@@ -261,7 +261,7 @@ The default utility function is a CRRA utility function
         Stores the parameters and functions associated with a given model.
         """
 
-        def __init__(self, 
+        def __init__(self,
                      α=0.2,        # Job separation rate
                      β=0.98,       # Discount rate
                      γ=0.7,        # Job offer rate
@@ -280,11 +280,11 @@ The default utility function is a CRRA utility function
                 self.w_vals = np.linspace(10, 20, n)     # wages between 10 and 20
                 a, b = 600, 400  # shape parameters
                 dist = BetaBinomial(n-1, a, b)
-                self.ϕ_vals = dist.pdf()  
+                self.ϕ_vals = dist.pdf()
             else:
                 self.w_vals = w_vals
                 self.ϕ_vals = ϕ_vals
-                
+
 
 The following function returns jitted versions of the Bellman operators :math:`h` and :math:`v`
 
@@ -294,7 +294,7 @@ The following function returns jitted versions of the Bellman operators :math:`h
         """
         mcm is an instance of McCallModel
         """
-        
+
         α, β, γ, c = mcm.α, mcm.β, mcm.γ, mcm.c
         σ, w_vals, ϕ_vals = mcm.σ, mcm.w_vals, mcm.ϕ_vals
 
@@ -305,7 +305,7 @@ The following function returns jitted versions of the Bellman operators :math:`h
 
             """
             v_new = np.empty_like(v)
-            
+
             for i in range(len(w_vals)):
                 w = w_vals[i]
                 v_new[i] = u(w, σ) + β * ((1 - α) * v[i] + α * h)
@@ -314,7 +314,7 @@ The following function returns jitted versions of the Bellman operators :math:`h
                             β * γ * np.sum(np.maximum(h, v) * ϕ_vals)
 
             return v_new, h_new
-        
+
         return Q
 
 
@@ -326,11 +326,11 @@ We then return the current iterate as an approximate solution
 
     def solve_model(mcm, use_parallel=True, tol=1e-5, max_iter=2000):
         """
-        Iterates to convergence on the Bellman equations 
-        
+        Iterates to convergence on the Bellman equations
+
         mcm is an instance of McCallModel
         """
-        
+
         Q = operator_factory(mcm, use_parallel)
 
         v = np.ones_like(mcm.w_vals)   # Initial guess of v
@@ -399,7 +399,7 @@ Optimal behavior for the worker is characterized by :math:`\bar w`
 Here's a function ``compute_reservation_wage`` that takes an instance of ``McCallModel``
 and returns the reservation wage associated with a given model
 
-It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ 
+It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__
 to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`
 
 If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
@@ -415,18 +415,18 @@ If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
         the lowest wage in mcm.w_vals.
 
         If v(w) < h for all w, then w_bar is set to np.inf.
-            
+
         """
 
         v, h = solve_model(mcm)
-        w_idx = np.searchsorted(v - h, 0)  
+        w_idx = np.searchsorted(v - h, 0)
 
         if w_idx == len(v):
             w_bar = np.inf
         else:
             w_bar = mcm.w_vals[w_idx]
 
-        if return_values == False:
+        if not return_values:
             return w_bar
         else:
             return w_bar, v, h
@@ -501,14 +501,14 @@ Exercise 2
 
 Plot the reservation wage against the job offer rate :math:`\gamma`
 
-Use 
+Use
 
 
 
 .. code-block:: python3
 
-    grid_size = 25  
-    γ_vals = np.linspace(0.05, 0.95, grid_size)  
+    grid_size = 25
+    γ_vals = np.linspace(0.05, 0.95, grid_size)
 
 
 
@@ -528,7 +528,7 @@ we can create an array for reservation wages for different values of :math:`c`,
 
 .. code-block:: python3
 
-    grid_size = 25  
+    grid_size = 25
     c_vals = np.linspace(2, 12, grid_size)  # values of unemployment compensation
     w_bar_vals = np.empty_like(c_vals)
 
@@ -541,7 +541,7 @@ we can create an array for reservation wages for different values of :math:`c`,
         w_bar = compute_reservation_wage(mcm)
         w_bar_vals[i] = w_bar
 
-    ax.set(xlabel='unemployment compensation', 
+    ax.set(xlabel='unemployment compensation',
            ylabel='reservation wage')
     ax.plot(c_vals, w_bar_vals, label=r'$\bar w$ as a function of $c$')
     ax.grid()
@@ -555,8 +555,8 @@ Similar to above, we can plot :math:`\bar w` against :math:`\gamma` as follows
 
 .. code-block:: python3
 
-    grid_size = 25  
-    γ_vals = np.linspace(0.05, 0.95, grid_size)  
+    grid_size = 25
+    γ_vals = np.linspace(0.05, 0.95, grid_size)
     w_bar_vals = np.empty_like(γ_vals)
 
     mcm = McCallModel()
@@ -580,4 +580,3 @@ This is because higher :math:`\gamma` translates to a more favorable job
 search environment
 
 Hence workers are less willing to accept lower offers
-
