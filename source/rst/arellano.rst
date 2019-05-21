@@ -158,15 +158,15 @@ Foreign creditors
 
 When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`
 
-Therefore, the discounted expected value of a promise to pay :math:`B` next period is 
+Therefore, the discounted expected value of a promise to pay :math:`B` next period is
 
 .. math::
     :label: epc
 
-    q = \frac{1 - \delta}{1 + r} 
+    q = \frac{1 - \delta}{1 + r}
 
 
-Next we turn to how the government in effect chooses the default probability :math:`\delta`    
+Next we turn to how the government in effect chooses the default probability :math:`\delta`
 
 
 Government's Decisions
@@ -226,7 +226,7 @@ government, which
 
 #. observes current output :math:`y`, and
 
-#. chooses either 
+#. chooses either
 
     #. to default, or
 
@@ -249,7 +249,7 @@ Expressed recursively, the value of defaulting is
 
 .. math::
 
-    v_d(y) = u(h(y)) + 
+    v_d(y) = u(h(y)) +
                 \beta \int \left\{
                 \theta v(0, y') + (1 - \theta) v_d(y')
                 \right\}
@@ -262,7 +262,7 @@ The value of paying is
 
     v_c(B, y) = \max_{B' \geq -Z}
            \left\{
-                u(y - q(B', y) B' + B) + 
+                u(y - q(B', y) B' + B) +
                 \beta \int v(B', y') p(y, y') dy'
           \right\}
 
@@ -301,15 +301,15 @@ the bond price function:
 Definition of Equilibrium
 ---------------------------
 
-An *equilibrium* is 
+An *equilibrium* is
 
-* a  pricing function :math:`q(B',y)`,  
+* a  pricing function :math:`q(B',y)`,
 
 * a triple of value functions :math:`(v_c(B, y), v_d(y), v(B,y))`,
 
 * a decision rule telling the government when to default and when to pay as a function of the state  :math:`(B, y)`, and
 
-* an asset accumulation rule that, conditional on choosing not to  default,  maps :math:`(B,y)` into :math:`B'` 
+* an asset accumulation rule that, conditional on choosing not to  default,  maps :math:`(B,y)` into :math:`B'`
 
 such that
 
@@ -318,7 +318,7 @@ such that
 * Given the price function :math:`q(B',y)`, the default decision rule and the asset accumulation decision rule attain the optimal value function  :math:`v(B,y)`, and
 
 * The price function :math:`q(B',y)` satisfies equation :eq:`bondprice`
-    
+
 
 
 
@@ -434,7 +434,7 @@ The grey vertical bars correspond to periods when the economy is excluded from f
 
 One notable feature of the simulated data is the nonlinear response of interest rates
 
-Periods of relative stability are followed by sharp spikes in the discount rate on government debt
+Periods of relative stability are followed by sharp spikes in the discount factor on government debt
 
 
 Exercises
@@ -460,16 +460,16 @@ Solutions
 Compute the value function, policy and equilibrium prices
 
 .. code-block:: ipython
-    
+
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-    ae = Arellano_Economy(β=.953,        # time discount rate
+    ae = Arellano_Economy(β=.953,        # time discount factor
                           γ=2.,          # risk aversion
                           r=0.017,       # international interest rate
-                          ρ=.945,        # persistence in output 
+                          ρ=.945,        # persistence in output
                           η=0.025,       # st dev of output shock
-                          θ=0.282,       # prob of regaining access 
+                          θ=0.282,       # prob of regaining access
                           ny=21,         # number of points in y grid
                           nB=251,        # number of points in B grid
                           tol=1e-8,      # error tolerance in iteration
@@ -481,14 +481,14 @@ Compute the bond price schedule as seen in figure 3 of Arellano (2008)
 
 .. code-block:: python3
 
-    
+
     # Create "Y High" and "Y Low" values as 5% devs from mean
     high, low = np.mean(ae.ygrid) * 1.05, np.mean(ae.ygrid) * .95
     iy_high, iy_low = (np.searchsorted(ae.ygrid, x) for x in (high, low))
-    
+
     fig, ax = plt.subplots(figsize=(10, 6.5))
     ax.set_title("Bond price schedule $q(y, B')$")
-    
+
     # Extract a suitable plot grid
     x = []
     q_low = []
@@ -510,11 +510,11 @@ Draw a plot of the value functions
 
 .. code-block:: python3
 
-    
+
     # Create "Y High" and "Y Low" values as 5% devs from mean
     high, low = np.mean(ae.ygrid) * 1.05, np.mean(ae.ygrid) * .95
     iy_high, iy_low = (np.searchsorted(ae.ygrid, x) for x in (high, low))
-    
+
     fig, ax = plt.subplots(figsize=(10, 6.5))
     ax.set_title("Value Functions")
     ax.plot(ae.Bgrid, ae.V[iy_high], label="$y_H$", lw=2, alpha=0.7)
@@ -530,10 +530,10 @@ Draw a heat map for default probability
 
 .. code-block:: python3
 
-    
+
     xx, yy = ae.Bgrid, ae.ygrid
     zz = ae.default_prob
-    
+
     # Create figure
     fig, ax = plt.subplots(figsize=(10, 6.5))
     hm = ax.pcolormesh(xx, yy, zz)
@@ -550,7 +550,7 @@ Plot a time series of major variables simulated from the model
 
     T = 250
     y_vec, B_vec, q_vec, default_vec = ae.simulate(T)
-    
+
     # Pick up default start and end dates
     start_end_pairs = []
     i = 0
@@ -564,13 +564,13 @@ Plot a time series of major variables simulated from the model
                 i += 1
             end_default = i - 1
             start_end_pairs.append((start_default, end_default))
-        
+
     plot_series = y_vec, B_vec, q_vec
     titles = 'output', 'foreign assets', 'bond price'
-    
+
     fig, axes = plt.subplots(len(plot_series), 1, figsize=(10, 12))
     fig.subplots_adjust(hspace=0.3)
-    
+
     for ax, series, title in zip(axes, plot_series, titles):
         # determine suitable y limits
         s_max, s_min = max(series), min(series)
@@ -579,13 +579,10 @@ Plot a time series of major variables simulated from the model
         y_min = s_min - s_range * 0.1
         ax.set_ylim(y_min, y_max)
         for pair in start_end_pairs:
-            ax.fill_between(pair, (y_min, y_min), (y_max, y_max), 
+            ax.fill_between(pair, (y_min, y_min), (y_max, y_max),
                             color='k', alpha=0.3)
         ax.grid()
         ax.plot(range(T), series, lw=2, alpha=0.7)
         ax.set(title=title, xlabel="time")
-    
+
     plt.show()
-
-
-
