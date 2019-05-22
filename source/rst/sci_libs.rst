@@ -335,8 +335,8 @@ Here's our code
 .. code-block:: python3
 
     from joblib import Memory
-
-    memory = Memory(cachedir='./joblib_cache')
+    location = './cachedir'
+    memory = Memory(location='./joblib_cache')
 
     @memory.cache
     def qm(x0, n):
@@ -349,7 +349,7 @@ Here's our code
 
 We are using `joblib <https://joblib.readthedocs.io/en/latest/>`_ to cache the result of calling `qm` at a given set of parameters
 
-With the argument `cachedir='./joblib_cache'`, any call to this function results in both the input values and output values being stored a subdirectory `joblib_cache` of the present working directory
+With the argument `location='./joblib_cache'`, any call to this function results in both the input values and output values being stored a subdirectory `joblib_cache` of the present working directory
 
 (In UNIX shells, `.` refers to the present working directory)
 
