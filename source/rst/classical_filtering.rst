@@ -18,7 +18,7 @@ Overview
 
 
 
-This is a sequel to the earlier lecture :doc:`Classical Control with Linear Algebra<classical_filtering>`
+This is a sequel to the earlier lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`
 
 That lecture used linear algebra -- in particular,  the `LU decomposition <https://en.wikipedia.org/wiki/LU_decomposition>`_  -- to formulate and solve a class of linear-quadratic optimal control problems
 
@@ -502,7 +502,7 @@ Maximization is over choices of :math:`y_0,
 y_1 \ldots, y_N`, where :math:`y_t` is required to be a linear function
 of :math:`\{y_{t-s-1}, t+m-1\geq 0;\ a_{t-s}, t\geq s\geq 0\}`
 
-We saw in the lecture :doc:`Classical Control with Linear Algebra<lu_tricks>`  that the solution of this problem under certainty could be represented in feedback-feedforward form
+We saw in the lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`  that the solution of this problem under certainty could be represented in feedback-feedforward form
 
 .. math::
 
