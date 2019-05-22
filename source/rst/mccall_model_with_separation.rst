@@ -263,7 +263,7 @@ The default utility function is a CRRA utility function
 
         def __init__(self,
                      α=0.2,        # Job separation rate
-                     β=0.98,       # Discount rate
+                     β=0.98,       # Discount factor
                      γ=0.7,        # Job offer rate
                      c=6.0,        # Unemployment compensation
                      σ=2.0,        # Utility parameter
@@ -457,7 +457,7 @@ In effect, the cost of continuing job search is reduced
 The Reservation Wage and Discounting
 ----------------------------------------------------
 
-Next let's investigate how :math:`\bar w` varies with the discount rate
+Next let's investigate how :math:`\bar w` varies with the discount factor
 
 The next figure plots the reservation wage associated with different values of
 :math:`\beta`
