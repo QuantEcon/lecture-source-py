@@ -129,7 +129,7 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
 
   def bivariate_normal(X, Y, sigmax=1.0, sigmay=1.0, mux=0.0, muy=0.0, sigmaxy=0.0):
 
-      # Bivariate Gaussian distribution for equal shape *X*, *Y*.
+      # Bivariate Gaussian distribution for equal shape *X*, *Y*
 
       Xmu = X - mux
       Ymu = Y - muy
