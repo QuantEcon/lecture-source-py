@@ -127,16 +127,16 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
   y_grid = np.linspace(-3.1, 1.7, 100)
   X, Y = np.meshgrid(x_grid, y_grid)
 
-  def bivariate_normal(X, Y, sigmax=1.0, sigmay=1.0, mux=0.0, muy=0.0, sigmaxy=0.0):
+  def bivariate_normal(X, Y, sigma_x=1.0, sigma_y=1.0, mu_x=0.0, mu_y=0.0, sigma_xy=0.0):
 
       # Bivariate Gaussian distribution for equal shape *X*, *Y*
 
-      Xmu = X - mux
-      Ymu = Y - muy
+      X_mu = X - mu_x
+      Y_mu = Y - mu_y
 
-      rho = sigmaxy / (sigmax * sigmay)
-      z = Xmu**2 / sigmax**2 + Ymu**2 / sigmay**2 - 2 * rho * Xmu * Ymu / (sigmax * sigmay)
-      denom = 2 * np.pi * sigmax * sigmay * np.sqrt(1 - rho**2)
+      rho = sigma_xy / (sigma_x * sigma_y)
+      z = X_mu**2 / sigma_x**2 + Y_mu**2 / sigma_y**2 - 2 * rho * X_mu * Y_mu / (sigma_x * sigma_y)
+      denom = 2 * np.pi * sigma_x * sigma_y * np.sqrt(1 - rho**2)
       return np.exp(-z / (2 * (1 - rho**2))) / denom
 
   def gen_gaussian_plot_vals(μ, C):
