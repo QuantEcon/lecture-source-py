@@ -97,7 +97,7 @@ We can express firm 1's problem as
 
 .. math::  \max_{\vec q_1} \Pi_1(\vec q_1; \vec q_2)  
 
-where the appearance behind the semi-colon indicates thata
+where the appearance behind the semi-colon indicates that
 :math:`\vec q_2` is given
 
 Firm 1's problem induces a best response mapping
@@ -368,7 +368,7 @@ equations summarize the follower’s best response to the sequence of
 actions by the leader
 
 The Stackelberg leader maximizes :eq:`maxeq` by
-choosing sequences :math:`{u_t, x_t, z_{t+1}}\_{t=0}^{\infty}`
+choosing sequences :math:`\{u_t, x_t, z_{t+1}\}_{t=0}^{\infty}`
 subject to :eq:`constrainteq` and an initial condition for :math:`z_0`
 
 Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
@@ -384,7 +384,7 @@ More Mechanical Details
 --------------------------
 
 For any vector :math:`a_t`, define :math:`\vec a_t = [a_t,
-a\_{t+1} \ldots ]`
+a_{t+1} \ldots ]`
 
 Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
 
