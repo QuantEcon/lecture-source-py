@@ -20,12 +20,12 @@ This lecture describes a model that Tjalling Koopmans :cite:`Koopmans`
 and David Cass :cite:`Cass` used to analyze optimal growth
 
 The model can be viewed as an extension of the model of Robert Solow
-described in `an earlier lecture <https://lectures.quantecon.org/py/python_oop.html>`__ 
+described in `an earlier lecture <https://lectures.quantecon.org/py/python_oop.html>`__
 but adapted to make the savings rate the outcome of an optimal choice
 
 (Solow assumed a constant saving rate determined outside the model)
 
-We describe two versions of the model to illustrate what is in fact a
+We describe two versions of the model to illustrate what is, in fact, a
 more general connection between a **planned economy** and an economy
 organized as a **competitive equilibrium**
 
@@ -35,7 +35,7 @@ The lecture uses important ideas including
 
 -  A min-max problem for solving a planning problem
 
--  A **shooting algorithm** for solving difference equations subject
+-  A **shooting algorithm** for solving difference equations subjected
    to initial and terminal conditions
 
 -  A connection between some Lagrange multipliers in the min-max
@@ -67,7 +67,7 @@ The lecture uses important ideas including
 
 -  A non-stochastic version of a theory of the **term structure of
    interest rates**
-  
+
 Let's start with some imports
 
 .. code-block:: ipython
@@ -106,15 +106,15 @@ A representative household is endowed with one unit of labor at each
 :math:`t` and likes the consumption good at each :math:`t`
 
 The representative household inelastically supplies a single unit of
-labor :math:`N_t` at each :math:`t`, so that
+labor :math:`N_t` at each :math:`t` so that
 :math:`N_t =1 \text{ for all } t \in [0,T]`
 
 The representative household has preferences over consumption bundles
 ordered by the utility functional:
 
-.. math:: 
+.. math::
     :label: utility-functional
-    
+
     U(\vec{C}) = \sum_{t=0}^{T} \beta^t \frac{C_t^{1-\gamma}}{1-\gamma}
 
 where :math:`\beta \in (0,1)` is a discount factor and :math:`\gamma >0`
@@ -124,7 +124,7 @@ Note that
 
 .. math::
     :label: utility-oneperiod
-  
+
     u(C_t) = \frac{C_t^{1-\gamma}}{1-\gamma}
 
 satisfies :math:`u'>0,u''<0`
@@ -139,18 +139,18 @@ capital
 
 There is an economy-wide production function
 
-.. math:: 
+.. math::
   :label: production-function
-  
+
   F(K_t,N_t) = A K_t^{\alpha}N_t^{1-\alpha}
 
 with :math:`0 < \alpha<1`, :math:`A > 0`
 
 A feasible allocation :math:`\vec C, \vec K` satisfies
 
-.. math:: 
+.. math::
   :label: allocation
-  
+
   C_t + K_{t+1} \leq F(K_t,N_t) + (1-\delta) K_t, \quad \text{for all } t \in [0, T]
 
 where :math:`\delta \in (0,1)` is a depreciation rate of capital
@@ -166,17 +166,17 @@ nonnegative **Lagrange multipliers**
 
 To find an optimal allocation, we form a Lagrangian
 
-.. math:: 
-  
-  \mathcal{L}(\vec{C},\vec{K},\vec{\mu}) = 
-  \sum_{t=0}^T \beta^t\left\{ u(C_t)+ \mu_t 
-  \left(F(K_t,1) + (1-\delta) K_t- C_t - K_{t+1} \right)\right\}  
+.. math::
+
+  \mathcal{L}(\vec{C},\vec{K},\vec{\mu}) =
+  \sum_{t=0}^T \beta^t\left\{ u(C_t)+ \mu_t
+  \left(F(K_t,1) + (1-\delta) K_t- C_t - K_{t+1} \right)\right\}
 
 and then solve the following min-max problem:
 
-.. math:: 
+.. math::
   :label: min-max-prob
-  
+
   \min_{\vec{\mu}} \max_{\vec{C},\vec{K}} \mathcal{L}(\vec{C},\vec{K},\vec{\mu})
 
 Useful Properties of Linearly Homogeneous Production Function
@@ -186,55 +186,55 @@ The following technicalities will help us
 
 Notice that
 
-.. math:: 
-  
+.. math::
+
   F(K_t,N_t) = A K_t^\alpha N_t^{1-\alpha} = N_t A\left(\frac{K_t}{N_t}\right)^\alpha
 
 Define the **output per-capita production function**
 
-.. math:: 
-  
+.. math::
+
   f(\frac{K_t}{N_t}) = A\left(\frac{K_t}{N_t}\right)^\alpha
 
 whose argument is **capital per-capita**
 
 Evidently,
 
-.. math:: 
-  
+.. math::
+
   F(K_t,N_t)=N_t f \left( \frac{K_t}{N_t} \right)
 
 Now for some useful calculations
 
 First
 
-.. math:: 
+.. math::
   :label: useful-calc1
-  
+
   \begin{align}
-  \frac{\partial F}{\partial K} 
+  \frac{\partial F}{\partial K}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial K_t}
   \\ &=
   N_t f'\left(\frac{K_t}{N_t}\right)\frac{1}{N_t} \quad \text{(Chain rule)}
   \\ &=
-  f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} 
+  f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &= f'(K_t)
   \end{align}
 
 Also
 
-.. math:: 
-  
+.. math::
+
   \begin{align}
-  \frac{\partial F}{\partial N} 
+  \frac{\partial F}{\partial N}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \tag{Product rule}
   \\ &=
   f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2} \tag{Chain rule}
   \\ &=
-  f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} 
-  \\ &= 
+  f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
+  \\ &=
   f(K_t) - f'(K_t) K_t
   \end{align}
 
@@ -257,22 +257,22 @@ minimization with respect to :math:`\vec \mu`):
 
 .. math::
     :label: constraint1
-  
+
     C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T \\
-  
+
 .. math::
     :label: constraint2
-    
+
     K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T \\
-  
+
 .. math::
     :label: constraint3
-    
+
     \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T \\
 
 .. math::
     :label: constraint4
-    
+
     K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
 
 Note that in :eq:`constraint2` we plugged in for
@@ -290,48 +290,48 @@ feasibility constraints
 to :math:`K_{T+1}` in the last period and applying the following
 condition called a **Karush-Kuhn-Tucker condition** (KKT):
 
-.. math:: 
+.. math::
     :label: kkt
-  
+
     \mu_T K_{T+1}=0
 
 See `Karush-Kuhn-Tucker conditions <https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions>`__
 
 Combining :eq:`constraint1` and :eq:`constraint2` gives
 
-.. math:: 
-  u'\left(C_t\right)\left[(1-\delta)+f'\left(K_t\right)\right]-u'\left(C_{t-1}\right)=0 
+.. math::
+  u'\left(C_t\right)\left[(1-\delta)+f'\left(K_t\right)\right]-u'\left(C_{t-1}\right)=0
   \quad \text{ for all } t=1,2,\dots, T+1
 
 Rewriting gives
 
-.. math:: 
+.. math::
     :label: l12
-    
+
     u'\left(C_{t+1}\right)\left[(1-\delta)+f'\left(K_{t+1}\right)\right]=
     u'\left(C_{t}\right) \quad \text{ for all } t=0,1,\dots, T
 
 Taking the inverse of the utility function on both sides of the above
 equation gives
 
-.. math:: 
+.. math::
   C_{t+1} =u'^{-1}\left(\left(\frac{\beta}{u'(C_t)}[f'(K_{t+1}) +(1-\delta)]\right)^{-1}\right)
 
 or using our utility function :eq:`utility-oneperiod`
 
-.. math:: 
-  
-  \begin{align} C_{t+1} =\left(\beta C_t^{\gamma}[f'(K_{t+1}) + 
+.. math::
+
+  \begin{align} C_{t+1} =\left(\beta C_t^{\gamma}[f'(K_{t+1}) +
   (1-\delta)]\right)^{1/\gamma} \notag\\= C_t\left(\beta [f'(K_{t+1}) +
   (1-\delta)]\right)^{1/\gamma} \end{align}
 
-The above first-order condition for consumption is called an **Euler
+The above first-order condition for consumption is called a **Euler
 equation**
 
 It tells us how consumption in adjacent periods are optimally related
-to each other and to capital next period
+to each other and to the capital next period
 
-We now use some of the the equations above to calculate some
+We now use some of the equations above to calculate some
 variables and functions that we'll soon use to solve the planning
 problem with Python
 
@@ -343,11 +343,11 @@ problem with Python
         Utility function
         ASIDE: If you have a utility function that is hard to solve by hand
         you can use automatic or symbolic  differentiation
-        See https://github.com/HIPS/autograd 
+        See https://github.com/HIPS/autograd
         '''
         if γ == 1:
             ## If γ = 1 we can show via L'hopital's Rule that the utility becomes log
-            return np.log(c) 
+            return np.log(c)
         else:
             return c**(1 - γ) / (1 - γ)
 
@@ -356,7 +356,7 @@ problem with Python
         '''Derivative of utility'''
         if γ == 1:
             return 1 / c
-        else: 
+        else:
             return c**(-γ)
 
     @njit
@@ -364,19 +364,19 @@ problem with Python
         '''Inverse utility'''
         if γ == 1:
             return c
-        else: 
+        else:
             return c**(-1 / γ)
 
     @njit
     def f(A, k, α):
         '''Production function'''
         return A * k**α
-    
+
     @njit
     def f_prime(A, k, α):
         '''Derivative of production function'''
         return α * A * k**(α - 1)
-    
+
     @njit
     def f_prime_inv(A, k, α):
         return (k / (A * α))**(1 / (α - 1))
@@ -396,7 +396,7 @@ two boundary conditions:
 
 -  :math:`K_0` is a given **initial condition** for capital
 
--  :math:`K_{T+1} =0` is a **terminal condition** for capital that we 
+-  :math:`K_{T+1} =0` is a **terminal condition** for capital that we
    deduced from the first-order necessary condition for :math:`K_{T+1}`
    the KKT condition :eq:`kkt`
 
@@ -473,7 +473,7 @@ perfect, as we'll soon see
                         A):  # Technology
 
         T = len(c) - 1
-        
+
         for t in range(T):
             k[t+1] = f(A=A, k=k[t], α=α) + (1 - δ) * k[t] - c[t]  # Equation 1 with inequality
             if k[t+1] < 0:   # Ensure nonnegativity
@@ -511,7 +511,7 @@ perfect, as we'll soon see
     plt.tight_layout()
     plt.show()
 
-Evidently our initial guess for :math:`\mu_0` is too high and makes
+Evidently, our initial guess for :math:`\mu_0` is too high and makes
 initial consumption is too low
 
 We know this because we miss our :math:`K_{T+1}=0` target on the high
@@ -559,16 +559,16 @@ tolerance bounds), stop and declare victory
                          tol=1e-4,
                          max_iter=1e4,
                          terminal=0):    # Value we are shooting towards
-        
+
         T = len(c) - 1
         i = 1                            # Initial iteration
         c_high = f(k=k[0], α=α, A=A)     # Initial high value of c
         c_low = 0                        # Initial low value of c
 
         path_c, path_k = shooting_method(c, k, γ, δ, β, α, A)
-        
+
         while (np.abs((path_k[T+1] - terminal)) > tol or path_k[T] == terminal) and i < max_iter:
-                        
+
             if path_k[T+1] - terminal > tol:
                 # If assets are too high the c[0] we chose is now a lower bound on possible values of c[0]
                 c_low = c[0]
@@ -578,16 +578,16 @@ tolerance bounds), stop and declare victory
             elif path_k[T] == terminal:
                 # If assets fell  too quickly, the c[0] we chose is now an upper bound on possible values of c[0]
                 c_high=c[0]
-            
+
             c[0] = (c_high + c_low) / 2  # This is the bisection part
             path_c, path_k = shooting_method(c, k, γ, δ, β, α, A)
             i += 1
-            
+
         if np.abs(path_k[T+1] - terminal) < tol and path_k[T] != terminal:
             print('Converged successfully on iteration', i-1)
         else:
             print('Failed to converge and hit maximum iteration')
-            
+
         μ = u_prime(c=path_c, γ=γ)
         return path_c, path_k, μ
 
@@ -618,7 +618,7 @@ Now we can plot
             ax.plot(path)
             ax.set(ylabel=y, title=title, xlabel='t')
 
-        # Plot steady state value of capital
+        # Plot steady-state value of capital
         if ss is not None:
             axes[1].axhline(ss, c='k', ls='--', lw=1)
 
@@ -629,21 +629,21 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting :math:`K_0` Equal to Steady State :math:`K`
+Setting :math:`K_0` Equal to steady-state :math:`K`
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
-steady state values of :math:`C_t` and :math:`K_t`
+steady-state values of :math:`C_t` and :math:`K_t`
 
 It is instructive to compute these and then to set :math:`K_0` equal
-to its steady state value
+to its steady-state value
 
-In a steady state :math:`K_{t+1} = K_t=\bar{K}` for all very
+In a steady-state :math:`K_{t+1} = K_t=\bar{K}` for all very
 large :math:`t` the feasibility constraint :eq:`allocation` is
 
 .. math::
     :label: feasibility-constraint
-    
+
     f(\bar{K})-\delta \bar{K} = \bar{C}
 
 Substituting :math:`K_t = \bar K` and :math:`C_t=\bar C` for
@@ -671,18 +671,18 @@ Finally, using :math:`\alpha= .33`,
 :math:`\rho = 1/\beta-1 =1/(19/20)-1 = 20/19-19/19 = 1/19`, :math:`\delta = 1/50`,
 we get
 
-.. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583  
+.. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583
 
-Let's verify this with Python and then use this steady state
+Let's verify this with Python and then use this steady-state
 :math:`\bar K` as our initial capital stock :math:`K_0`
 
 .. code-block:: python3
 
     ρ = 1 / β - 1
     k_ss = f_prime_inv(k=ρ+δ, A=A, α=α)
-    
-    print(f'Steady state for capital is: {k_ss}')
-    
+
+    print(f'steady-state for capital is: {k_ss}')
+
 Now we plot
 
 .. code-block:: python3
@@ -691,16 +691,16 @@ Now we plot
     c = np.zeros(T+1)
     k = np.zeros(T+2)
     c[0] = 0.3
-    k[0] = k_ss  # Start at steady state
+    k[0] = k_ss  # Start at steady-state
     paths = bisection_method(c, k, γ, δ, β, α, A)
-    
+
     plot_paths(paths, ss=k_ss)
 
-Evidently in this economy with a large value of
+Evidently, in this economy with a large value of
 :math:`T`, :math:`K_t` stays near its initial value at the until the
 end of time approaches closely
 
-Evidently, the planner likes the steady state capital stock and wants
+Evidently, the planner likes the steady-state capital stock and wants
 to stay near there for a long time
 
 Let's see what happens when we push the initial
@@ -708,7 +708,7 @@ Let's see what happens when we push the initial
 
 .. code-block:: python3
 
-    k_init = k_ss / 3   # Below our steady state
+    k_init = k_ss / 3   # Below our steady-state
     T = 150
     c = np.zeros(T+1)
     k = np.zeros(T+2)
@@ -718,7 +718,7 @@ Let's see what happens when we push the initial
 
     plot_paths(paths, ss=k_ss)
 
-Notice how the planner pushes capital toward the steady state, stays
+Notice how the planner pushes capital toward the steady-state, stays
 near there for a while, then pushes :math:`K_t` toward the terminal
 value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`
 
@@ -740,7 +740,7 @@ The following graphs compare outcomes as we vary :math:`T`
 
 The following calculation shows that when we set :math:`T` very large
 the planner makes the capital stock spend most of its time close to
-its steady state value
+its steady-state value
 
 .. code-block:: python3
 
@@ -760,20 +760,20 @@ The different colors in the above graphs are tied to outcomes with
 different horizons :math:`T`
 
 Notice that as the horizon increases, the planner puts :math:`K_t`
-closer to the steady state value :math:`\bar K` for longer
+closer to the steady-state value :math:`\bar K` for longer
 
-This pattern reflects a **turnpike** property of the steady state
+This pattern reflects a **turnpike** property of the steady-state
 
 A rule of thumb for the planner is
 
 -  for whatever :math:`K_0` you start with, push :math:`K_t` toward
-   the stady state and stay there for as long as you can
+   the steady-state and stay there for as long as you can
 
-In loose language: head for the turnpick and stay near it for as long as you can
+In loose language: head for the turnpike and stay near it for as long as you can
 
 As we drive :math:`T` toward :math:`+\infty`, the planner
-keeps :math:`K_t` very close to its steady state for all dates after
-some transition toward the steady state
+keeps :math:`K_t` very close to its steady-state for all dates after
+some transition toward the steady-state
 
 The planner makes the saving rate :math:`\frac{f(K_t) - C_t}{f(K_t)}`
 vary over time
@@ -817,15 +817,15 @@ Let's calculate it
             ax.plot(path)
             ax.set(ylabel=y, title=title, xlabel='t')
 
-        # Plot steady state value of consumption
+        # Plot steady-state value of consumption
         if c_ss is not None:
             axes[0].axhline(c_ss, c='k', ls='--', lw=1)
-            
-        # Plot steady state value of capital
+
+        # Plot steady-state value of capital
         if k_ss is not None:
             axes[1].axhline(k_ss, c='k', ls='--', lw=1)
-            
-        # Plot steady state value of savings
+
+        # Plot steady-state value of savings
         if s_ss is not None:
             axes[2].axhline(s_ss, c='k', ls='--', lw=1)
 
@@ -854,30 +854,30 @@ We now consider an economy in which :math:`T = +\infty`
 The appropriate thing to do is to replace terminal condition
 :eq:`constraint4` with
 
-.. math:: 
-  
+.. math::
+
   \lim_{T \rightarrow +\infty} \beta^T u'(C_T) K_{T+1} = 0
 
 which is sometimes called a **transversality condition**
 
 This condition will be satisfied by a path that converges to an
-optimal steady state
+optimal steady-state
 
 We can approximate the optimal path from an arbitrary initial
-:math:`K_0` and shooting toward the optimal steady state
+:math:`K_0` and shooting towards the optimal steady-state
 :math:`K` at a large but finite :math:`T+1`
 
 In the following code, we do this for a large :math:`T`; we shoot
-towards the **steady state** and plot consumption, capital and the
+towards the **steady-state** and plot consumption, capital and the
 savings rate
 
-We know that in the steady state that the saving rate must be fixed
+We know that in the steady-state that the saving rate must be fixed
 and that :math:`\bar s= \frac{f(\bar K)-\bar C}{f(\bar K)}`
 
-From :eq:`feasibility-constraint` the steady state saving rate equals
+From :eq:`feasibility-constraint` the steady-state saving rate equals
 
-.. math:: 
-  
+.. math::
+
   \bar s =\frac{ \delta \bar{K}}{f(\bar K)}
 
 The steady-state savings level :math:`\bar S = \bar s f(\bar K)` is
@@ -898,13 +898,13 @@ state
     c = np.zeros(T+1)
     k = np.zeros(T+2)
     c[0] = 0.3
-    k[0] = k_ss / 3         # Start below steady state
+    k[0] = k_ss / 3         # Start below steady-state
     paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
     plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
 Since :math:`K_0<\bar K`, :math:`f'(K_0)>\rho +\delta`
 
-The planner choose a positive saving rate above the steady state
+The planner chooses a positive saving rate above the steady-state
 level offsetting depreciation that enables us to increase our capital
 stock
 
@@ -917,8 +917,8 @@ Exercise
 ---------
 
 -  Plot the optimal consumption, capital, and savings paths when the
-   initial capital level begins at 1.5 times the steady state level
-   as we shoot towards the steady state at :math:`T=130`
+   initial capital level begins at 1.5 times the steady-state level
+   as we shoot towards the steady-state at :math:`T=130`
 
 -  Why does the savings rate respond like it does?
 
@@ -932,14 +932,14 @@ Solution
     c = np.zeros(T+1)
     k = np.zeros(T+2)
     c[0] = 0.3
-    k[0] = k_ss * 1.5   # Start above steady state
+    k[0] = k_ss * 1.5   # Start above steady-state
     paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
     plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
 Competitive Equilibrium
 ========================
 
-Next we study a decentralized version of an economy with same
+Next, we study a decentralized version of an economy with the same
 technology and preference structure as our planned economy
 
 But now there is no planner
@@ -968,7 +968,7 @@ household chooses for itself subject to a budget constraint
    or by acquiring claims on consumption at dates other
    than :math:`t`
 
--  A utility maximizing household owns all physical capital and labor
+-  A utility-maximizing household owns all physical capital and labor
    and rents them to the firm
 
 -  The household consumes, supplies labor, and invests in physical
@@ -1001,7 +1001,7 @@ The firm's profits at time :math:`t` are
 
 .. math:: F(\tilde k_t, \tilde n_t)-w_t \tilde n_t -\eta_t \tilde k_t
 
-where :math:`w_t` is a wage rate at :math:`t` and
+where :math:`w_t` is a wage rate at :math:`t`
 and :math:`\eta_t` is the rental rate on capital at :math:`t`
 
 As in the planned economy model
@@ -1019,7 +1019,7 @@ and
 
 .. math::
     :label: Zero-profits
-    
+
     F_n(\tilde k_t, \tilde n_t) =w_t
 
 These conditions emerge from a no-arbitrage requirement
@@ -1038,24 +1038,24 @@ Taking the partial derivative
 :math:`\frac{\partial F }{\partial \alpha}` on both sides of the
 above equation gives
 
-.. math:: 
-  
-  F(\tilde k_t,\tilde n_t) =_\text{chain rule} \frac{\partial F}{\partial \tilde k_t} 
+.. math::
+
+  F(\tilde k_t,\tilde n_t) =_\text{chain rule} \frac{\partial F}{\partial \tilde k_t}
   \tilde k_t + \frac{\partial F}{\partial \tilde  n_t} \tilde n_t
 
 Rewrite the firm's profits as
 
-.. math:: 
-  
-  \frac{\partial F}{\partial \tilde k_t} \tilde k_t + 
+.. math::
+
+  \frac{\partial F}{\partial \tilde k_t} \tilde k_t +
   \frac{\partial F}{\partial \tilde  n_t} \tilde n_t-w_t \tilde n_t -\eta_t k_t
 
 or
 
-.. math:: 
-  
-  \left(\frac{\partial F}{\partial \tilde k_t}-\eta_t\right) \tilde k_t + 
-  \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t 
+.. math::
+
+  \left(\frac{\partial F}{\partial \tilde k_t}-\eta_t\right) \tilde k_t +
+  \left(\frac{\partial F}{\partial \tilde  n_t}-w_t\right) \tilde n_t
 
 Because :math:`F` is homogeneous of degree :math:`1`, it follows
 that :math:`\frac{\partial F}{\partial \tilde k_t}` and
@@ -1069,7 +1069,7 @@ firm makes positive profits on each additional unit of
 arbitrarily large
 
 But setting :math:`\tilde k_t = + \infty` is not physically feasible,
-so presumably **equilibrium** prices will assume values that present
+so presumably, **equilibrium** prices will assume values that present
 the firm with no such arbitrage opportunity
 
 A related argument applies if
@@ -1164,7 +1164,7 @@ that the household faces a **single** budget constraint
 It states that the present value of the household's net excess
 demands must be zero:
 
-.. math:: 
+.. math::
     \sum_{t=0}^T q^0_t e_t  \leq 0
 
 or
@@ -1221,25 +1221,25 @@ In particular, we guess that for :math:`t=0,\dots,T`:
 
 .. math::
     :label: eq-price
-    
+
     \lambda q_t^0 = \beta^t u'(K_t) =\beta^t \mu_t
 
 
 .. math::
     :label: eq-price2
-    
+
     w_t = f(K_t) -K_t f'(K_t)
 
 .. math::
     :label: eq-price3
-    
+
     \eta_t = f'(K_t)
 
 At these prices, let the capital chosen by the household be
 
 .. math::
     :label: eq-pr4
-    
+
     k^*_t(\vec q, \vec w, \vec \eta) , \quad t \geq 0
 
 and let the allocation chosen by the firm be
@@ -1253,16 +1253,16 @@ must occur that
 
 .. math::
     :label: ge1
-  
+
     k_t^*  = \tilde k_t^* \\
-  
+
 .. math::
     :label: ge2
-    
+
     1   = \tilde n_t^* \\
-  
+
 .. math::
-    
+
     c_t^* + k_{t+1}^* - (1-\delta) k_t^*  = F(\tilde k_t^*, \tilde n_t^*) \\
 
 
@@ -1272,7 +1272,7 @@ the planning problem:
 
 .. math::
     :label: eq-pl
-    
+
     k^*_t = \tilde k^*_t=K_t, \tilde n_t=1, c^*_t=C_t
 
 Verification Procedure
@@ -1291,33 +1291,33 @@ Household's Lagrangian
 To solve the household's problem, we formulate the appropriate
 Lagrangian and pose the min-max problem:
 
-.. math:: 
-  
+.. math::
+
   \min_{\lambda} \max_{\vec{c},\vec{k}}\mathcal{L}(\vec{c},\vec{k},\lambda)=
-  \sum_{t=0}^T \beta^t u(c_t)+ \lambda \left(\sum_{t=0}^T q_t^0\left(\left((1-\delta) 
+  \sum_{t=0}^T \beta^t u(c_t)+ \lambda \left(\sum_{t=0}^T q_t^0\left(\left((1-\delta)
   k_t -w_t\right) +\eta_t k_t -c_t  - k_{t+1}\right)\right)
 
 First-order conditions are
 
 .. math::
     :label: cond1
-    
+
     c_t: \quad \beta^t u'(c_t)-\lambda q_t^0=0 \quad  t=0,1,\dots,T
-  
+
 .. math::
     :label: cond2
-    
-    k_t: \quad -\lambda q_t^0 \left[(1-\delta)+\eta_t \right]+\lambda q^0_{t-1}=0 \quad  t=1,2,\dots,T+1 
 
-  
+    k_t: \quad -\lambda q_t^0 \left[(1-\delta)+\eta_t \right]+\lambda q^0_{t-1}=0 \quad  t=1,2,\dots,T+1
+
+
 .. math::
     :label: cond3
-    
+
     \lambda:  \quad \left(\sum_{t=0}^T q_t^0\left(c_t + \left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) \leq 0
 
 .. math::
     :label: cond4
-    
+
     k_{T+1}: \quad -\lambda q_0^{T+1} \leq 0, \ \leq 0 \text{ if } k_{T+1}=0; \ =0 \text{ if } k_{T+1}>0
 
 
@@ -1326,7 +1326,7 @@ the planner problem :eq:`constraint1`-:eq:`constraint4`:
 
 Combining :eq:`cond1` and :eq:`eq-price`, we get:
 
-.. math:: u'(C_t) = \mu_t 
+.. math:: u'(C_t) = \mu_t
 
 which is :eq:`constraint1`.
 
@@ -1335,17 +1335,17 @@ Combining :eq:`cond2`, :eq:`eq-price`, and
 
 .. math::
     :label: co-re
-    
+
     -\lambda \beta^t \mu_t\left[(1-\delta) +f'(K_t)\right] +\lambda \beta^{t-1}\mu_{t-1}=0
 
 Rewriting :eq:`co-re` by dividing by :math:`\lambda` on
 both sides (which is nonzero due to u'>0) we get:
 
-.. math:: \beta^t \mu_t [(1-\delta+f'(K_t)] = \beta^{t-1} \mu_{t-1} 
+.. math:: \beta^t \mu_t [(1-\delta+f'(K_t)] = \beta^{t-1} \mu_{t-1}
 
 or
 
-.. math:: \beta \mu_t [(1-\delta+f'(K_t)] = \mu_{t-1} 
+.. math:: \beta \mu_t [(1-\delta+f'(K_t)] = \mu_{t-1}
 
 which is :eq:`constraint2`.
 
@@ -1353,22 +1353,22 @@ Combining :eq:`cond3`, :eq:`eq-price`, :eq:`eq-price2`
 and :eq:`eq-price3` after multiplying both sides of
 :eq:`cond3` by :math:`\lambda`, we get:
 
-.. math:: \sum_{t=0}^T \beta^t \mu_{t} \left(C_t+ (K_{t+1} -(1-\delta)K_t)-f(K_t)+K_t f'(K_t)-f'(K_t)K_t\right) \leq 0  
+.. math:: \sum_{t=0}^T \beta^t \mu_{t} \left(C_t+ (K_{t+1} -(1-\delta)K_t)-f(K_t)+K_t f'(K_t)-f'(K_t)K_t\right) \leq 0
 
 Cancelling,
 
-.. math:: \sum_{t=0}^T  \beta^t \mu_{t} \left(C_t +K_{t+1} -(1-\delta)K_t - F(K_t,1)\right) \leq 0 
+.. math:: \sum_{t=0}^T  \beta^t \mu_{t} \left(C_t +K_{t+1} -(1-\delta)K_t - F(K_t,1)\right) \leq 0
 
 Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 (excepting perhaps the T+1 period) we get:
 
-.. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T 
+.. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T
 
 \ which is :eq:`constraint3`
 
 Combining :eq:`cond4` and :eq:`eq-price`, we get:
 
-.. math:: - \beta^{T+1} \mu_{T+1} \leq 0 
+.. math:: - \beta^{T+1} \mu_{T+1} \leq 0
 
 Dividing both sides by :math:`\beta^{T+1}` which will be strictly
 positive here, we get:
@@ -1377,7 +1377,7 @@ positive here, we get:
 
 \ which is the :eq:`constraint4` of our planning problem
 
-**Thus, at our guess of the equilibrium price system the allocation
+**Thus, at our guess of the equilibrium price system, the allocation
 that solves the planning problem also solves the problem faced by a
 representative household living in a competitive equilibrium**
 
@@ -1398,7 +1398,7 @@ get:
 
 \ which is exactly :eq:`eq-pr4`
 
-**Thus, at our guess of the equilibrium price system the allocation
+**Thus, at our guess of the equilibrium price system, the allocation
 that solves the planning problem also solves the problem faced by a firm
 within a competitive equilibrium**
 
@@ -1462,7 +1462,7 @@ Now we calculate and plot for each :math:`T`
         w = w_func(β, k, α)[:-1]
         η = η_func(A, k, α)[:-1]
         plots = [q, w, η, c, k, μ]
-        
+
         for ax, plot, title, y in zip(axes.flatten(), plots, titles, ylabels):
             ax.plot(plot)
             ax.set(title=title, ylabel=y, xlabel='t')
@@ -1481,7 +1481,7 @@ Varying :math:`\gamma`
 
 Now we see how our results change if we keep T constant, but allow
 the curvature parameter, :math:`\gamma` to vary, starting
-with :math:`K_0` below the steady state.
+with :math:`K_0` below the steady-state.
 
 We plot the results for :math:`T=150`
 
@@ -1503,7 +1503,7 @@ We plot the results for :math:`T=150`
         w = w_func(β, k, α)[:-1]
         η = η_func(A, k, α)[:-1]
         plots = [q, w, η, c, k, μ]
-        
+
         for ax, plot, title, y in zip(axes.flatten(), plots, titles, ylabels):
             ax.plot(plot, label=f'$\gamma = {γ}$')
             ax.set(title=title, ylabel=y, xlabel='t')
@@ -1520,7 +1520,7 @@ Adjusting :math:`\gamma` means adjusting how much individuals prefer
 to smooth consumption
 
 Higher :math:`\gamma` means individuals prefer to smooth more
-resulting in slower adjustments to the steady state allocations
+resulting in slower adjustments to the steady-state allocations
 
 Vice-versa for lower :math:`\gamma`
 
@@ -1529,7 +1529,7 @@ Yield Curves and Hicks-Arrow Prices Again
 ------------------------------------------
 
 Now, we compute Hicks-Arrow prices again, but also calculate the
-implied the yields to maturity
+implied yields to maturity
 
 This will let us plot a **yield curve**
 
@@ -1537,22 +1537,22 @@ The key formulas are:
 
 The **yield to maturity**
 
-.. math:: 
-  
-  r_{t_0,t}= -\frac{\log q^{t_0}_t}{t - t_0} 
+.. math::
+
+  r_{t_0,t}= -\frac{\log q^{t_0}_t}{t - t_0}
 
 A generic Hicks-Arrow price for any base-year :math:`t_0\leq t`
 
-.. math:: 
-  
-  q^{t_0}_t = \beta^{t-t_0} \frac{u'(c_t)}{u'(c_{t_0})}= \beta^{t-t_0} 
+.. math::
+
+  q^{t_0}_t = \beta^{t-t_0} \frac{u'(c_t)}{u'(c_{t_0})}= \beta^{t-t_0}
   \frac{c_t^{-\gamma}}{c_{t_0}^{-\gamma}}
 
 We redefine our function for :math:`q` to allow arbitrary base
 years, and define a new function for :math:`r`, then plot both
 
-First we plot when :math:`t_0=0` as before, for different values of
-:math:`T`, with :math:`K_0` below the steady state
+First, we plot when :math:`t_0=0` as before, for different values of
+:math:`T`, with :math:`K_0` below the steady-state
 
 .. code-block:: python3
 
@@ -1591,11 +1591,11 @@ First we plot when :math:`t_0=0` as before, for different values of
         c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
         q = q_func(t_0, β, c, γ)
         r = r_func(t_0, β, c, γ)
-        
+
         for ax, plot, title, y in zip(axes, (q, r), titles, ylabels):
             ax.plot(plot)
             ax.set(title=title, ylabel=y, xlabel='t')
-        
+
     plt.tight_layout()
     plt.show()
 
@@ -1615,12 +1615,12 @@ Now we plot when :math:`t_0=20`
         c, k, μ = bisection_method(c, k, γ, δ, β, α, A)
         q = q_func(t_0, β, c, γ)
         r = r_func(t_0, β, c, γ)
-        
+
         for ax, plot, title, y in zip(axes, (q, r), titles, ylabels):
             ax.plot(plot)
             ax.set(title=title, ylabel=y, xlabel='t')
 
-    axes[1].set_title(f'Yields at $t_0 = {t_0}$')      
+    axes[1].set_title(f'Yields at $t_0 = {t_0}$')
     plt.tight_layout()
     plt.show()
 
