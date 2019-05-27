@@ -33,12 +33,12 @@ The lecture uses important ideas including
 
 -  Hicks-Arrow prices named after John R. Hicks and Kenneth Arrow
 
--  A max-min problem for solving a planning problem
+-  A min-max problem for solving a planning problem
 
 -  A **shooting algorithm** for solving difference equations subject
    to initial and terminal conditions
 
--  A connection between some Lagrange multipliers in the max-min
+-  A connection between some Lagrange multipliers in the min-max
    problem and the Hicks-Arrow prices
 
 -  A **Big** :math:`K` **, little** :math:`k` trick widely used in
@@ -125,7 +125,7 @@ Note that
 .. math::
     :label: utility-oneperiod
   
-    u(C_t) = \beta^t \frac{C_t^{1-\gamma}}{1-\gamma}
+    u(C_t) = \frac{C_t^{1-\gamma}}{1-\gamma}
 
 satisfies :math:`u'>0,u''<0`
 
@@ -151,7 +151,7 @@ A feasible allocation :math:`\vec C, \vec K` satisfies
 .. math:: 
   :label: allocation
   
-  C_t + K_{t+1} = F(K_t,N_t) + (1-\delta) K_t, \quad \text{for all } t \in [0, T]
+  C_t + K_{t+1} \leq F(K_t,N_t) + (1-\delta) K_t, \quad \text{for all } t \in [0, T]
 
 where :math:`\delta \in (0,1)` is a depreciation rate of capital
 
@@ -172,12 +172,12 @@ To find an optimal allocation, we form a Lagrangian
   \sum_{t=0}^T \beta^t\left\{ u(C_t)+ \mu_t 
   \left(F(K_t,1) + (1-\delta) K_t- C_t - K_{t+1} \right)\right\}  
 
-and then solve the following max-min problem:
+and then solve the following min-max problem:
 
 .. math:: 
-  :label: max-min-prob
+  :label: min-max-prob
   
-  \max_{\vec{C},\vec{K}}\min_{\vec{\mu}}\mathcal{L}(\vec{C},\vec{K},\vec{\mu})
+  \min_{\vec{\mu}} \max_{\vec{C},\vec{K}} \mathcal{L}(\vec{C},\vec{K},\vec{\mu})
 
 Useful Properties of Linearly Homogeneous Production Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -235,7 +235,7 @@ Also
   \\ &=
   f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1} 
   \\ &= 
-  f(K_t)
+  f(K_t) - f'(K_t) K_t
   \end{align}
 
 
@@ -263,7 +263,7 @@ minimization with respect to :math:`\vec \mu`):
 .. math::
     :label: constraint2
     
-    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T+1 \\
+    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T \\
   
 .. math::
     :label: constraint3
@@ -273,7 +273,7 @@ minimization with respect to :math:`\vec \mu`):
 .. math::
     :label: constraint4
     
-    K_{t+1}: \qquad -\mu_T \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
+    K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
 
 Note that in :eq:`constraint2` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
@@ -856,7 +856,9 @@ The appropriate thing to do is to replace terminal condition
 
 .. math:: 
   
-  \lim_{T \rightarrow +\infty} \beta^T u'(C_T) K_T = 0
+  \lim_{T \rightarrow +\infty} \beta^T u'(C_T) K_{T+1} = 0
+
+which is sometimes called a **transversality condition**
 
 This condition will be satisfied by a path that converges to an
 optimal steady state
@@ -1183,7 +1185,7 @@ Definitions
    :math:`\{q_t^0,\eta_t,w_t\}_{t=0}^T= \{\vec q, \vec \eta, \vec w\}`
 
 -  An **allocation** is a sequence
-   :math:`\{c_t,k_{t+1}, k_{t+1},n_t=1\}_{t=0}^T = \{\vec c, \vec k, \vec n =1\}`
+   :math:`\{c_t,k_{t+1},n_t=1\}_{t=0}^T = \{\vec c, \vec k, \vec n =1\}`
 
 -  A **competitive equilibrium** is a price system and an allocation
    for which
@@ -1287,13 +1289,13 @@ Household's Lagrangian
 ------------------------
 
 To solve the household's problem, we formulate the appropriate
-Lagrangian and pose the max-min problem:
+Lagrangian and pose the min-max problem:
 
 .. math:: 
   
-  \max_{\vec{c},\vec{k}}\min_{\lambda}\mathcal{L}(\vec{c},\vec{k},\lambda)=
-  \sum_{t=0}^T \beta^t u(c_t)+ \lambda \left(\sum_{t=0}^T q_t^0\left(c_t -\left(k_{t+1})-(1-\delta) 
-  k_t -w_t\right) -\eta_t k_t\right)\right)
+  \min_{\lambda} \max_{\vec{c},\vec{k}}\mathcal{L}(\vec{c},\vec{k},\lambda)=
+  \sum_{t=0}^T \beta^t u(c_t)+ \lambda \left(\sum_{t=0}^T q_t^0\left(\left((1-\delta) 
+  k_t -w_t\right) +\eta_t k_t -c_t  - k_{t+1}\right)\right)
 
 First-order conditions are
 
@@ -1311,12 +1313,12 @@ First-order conditions are
 .. math::
     :label: cond3
     
-    \lambda:  \quad \left(\sum_{t=0}^T q_t^0\left(c_t -\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) = 0
+    \lambda:  \quad \left(\sum_{t=0}^T q_t^0\left(c_t + \left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) \leq 0
 
 .. math::
     :label: cond4
     
-    k_{T+1}: \quad -\lambda q_0^{T+1} \leq 0, \ <0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0
+    k_{T+1}: \quad -\lambda q_0^{T+1} \leq 0, \ \leq 0 \text{ if } k_{T+1}=0; \ =0 \text{ if } k_{T+1}>0
 
 
 Now we plug in for our guesses of prices and derive all the FONC of
@@ -1537,7 +1539,7 @@ The **yield to maturity**
 
 .. math:: 
   
-  r_{t_0,t}= -\frac{\log q^{t_0}_t}{t} 
+  r_{t_0,t}= -\frac{\log q^{t_0}_t}{t - t_0} 
 
 A generic Hicks-Arrow price for any base-year :math:`t_0\leq t`
 
