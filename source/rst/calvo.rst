@@ -32,12 +32,12 @@ This lecture describes a linear-quadratic version of a model that Guillermo Calv
 used to illustrate the **time inconsistency** of optimal government
 plans
 
-Like Chang :cite:`chang1998credible`, we use the model as a laboratory in which to explore  consequences of
+Like Chang :cite:`chang1998credible`, we use the model as a laboratory in which to explore the consequences of
 different timing protocols for government decision making
 
 The model focuses attention on intertemporal tradeoffs between
 
-- welfare benefits that anticipated deflation generates by increasing a representative agent's liquidity as measured by his or her real money balances, and
+- welfare benefits that anticipated deflation generate by increasing a representative agent's liquidity as measured by his or her real money balances, and
 
 - costs associated with  distorting taxes that must be used to withdraw money from the economy in order to generate anticipated deflation
 
@@ -141,7 +141,7 @@ real balances :math:`m_t - p_t = -\alpha \theta_t`
 We shall use this insight to help us simplify and analyze government policy problems
 
 That future rates of money creation influence earlier rates of inflation
-creates optimal government policy problems in which timing protocols
+create optimal government policy problems in which timing protocols
 matter
 
 We can rewrite the model  as:
@@ -188,7 +188,7 @@ time :math:`t` is:
 
 The "bliss level" of real balances is then :math:`\frac{a_1}{a_2}`
 
-The money demand function :eq:`eq_old1` and the utility function :eq:`eq_old5` 
+The money demand function :eq:`eq_old1` and the utility function :eq:`eq_old5`
 imply that utility maximizing or  bliss level of real balances is attained when:
 
 .. math::  \theta_t = \theta^* = -\frac{a_1}{a_2 \alpha}
@@ -243,7 +243,7 @@ Equation :eq:`eq_old3` maps a **policy** sequence of money growth rates
 :math:`\vec \mu =\{\mu_t\}_{t=0}^\infty \in L^2`  into an inflation sequence
 :math:`\vec \theta = \{\theta_t\}_{t=0}^\infty \in L^2`
 
-These in turn induce a discounted value to a government sequence
+These, in turn, induce a discounted value to a government sequence
 :math:`\vec v = \{v_t\}_{t=0}^\infty \in L^2` that satisfies the
 recursion
 
@@ -266,7 +266,7 @@ decisions
 Intertemporal Influences
 =========================
 
-Criterion function :eq:`eq_old7` and constraint system :eq:`eq_old4` exhibit the following
+Criterion function :eq:`eq_old7` and the constraint system :eq:`eq_old4` exhibit the following
 structure:
 
 -  Setting :math:`\mu_t \neq 0` imposes costs
@@ -283,36 +283,36 @@ optimal government plan  under a Ramsey (also called a Stackelberg)  timing prot
 
 We'll study outcomes under a Ramsey timing protocol below
 
-But we'll also study consequences of other timing protocols
+But we'll also study the consequences of other timing protocols
 
 Four Models of Government Policy
 =================================
 
-We consider four models of policy makers that  differ in
+We consider four models of policymakers that  differ in
 
--  what a policy maker is allowed to choose, either a sequence
+-  what a policymaker is allowed to choose, either a sequence
    :math:`\vec \mu` or just a single period  :math:`\mu_t`
 
--  when a policy maker chooses, either at time :math:`0` or at times
+-  when a policymaker chooses, either at time :math:`0` or at times
    :math:`t \geq 0`
 
--  what a policy maker assumes about how its choice of :math:`\mu_t`
+-  what a policymaker assumes about how its choice of :math:`\mu_t`
    affects private agents' expectations about earlier and later
    inflation rates
 
-In two of our models, a single policy maker  chooses a sequence
+In two of our models, a single policymaker  chooses a sequence
 :math:`\{\mu_t\}_{t=0}^\infty` once and for all, taking into account how
-:math:`\mu_t` affects household one-period utilities at dates :math:`s = 0, 1, \ldots, t-1` 
+:math:`\mu_t` affects household one-period utilities at dates :math:`s = 0, 1, \ldots, t-1`
 
 -  these two models  thus employ a  **Ramsey** or **Stackelberg** timing protocol
 
-In two other models, there is a sequence of policy makers, each of whom
+In two other models, there is a sequence of policymakers, each of whom
 sets :math:`\mu_t` at one :math:`t` only
 
-- Each such policy maker ignores  effects that its choice of :math:`\mu_t` has on household one-period utilities at dates :math:`s = 0, 1, \ldots, t-1`
+- Each such policymaker ignores  effects that its choice of :math:`\mu_t` has on household one-period utilities at dates :math:`s = 0, 1, \ldots, t-1`
 
 The four models differ with respect to timing protocols, constraints on
-government choices, and government policy makers' beliefs about how their
+government choices, and government policymakers' beliefs about how their
 decisions affect private agents' beliefs about future government
 decisions
 
@@ -326,18 +326,18 @@ The models are
    subject to the constraint that :math:`\mu_t = \mu` for all
    :math:`t \geq 0`
 
--  A sequence of separate policy makers chooses :math:`\mu_t` for :math:`t =0, 1, 2, \ldots`
+-  A sequence of separate policymakers chooses :math:`\mu_t` for :math:`t =0, 1, 2, \ldots`
 
-    -  a time :math:`t` policy maker chooses :math:`\mu_t` only and forecasts that future government decisions are unaffected by its choice
+    -  a time :math:`t` policymaker chooses :math:`\mu_t` only and forecasts that future government decisions are unaffected by its choice
 
--  A sequence of separate policy makers chooses :math:`\mu_t` for :math:`t =0, 1, 2, \ldots`
+-  A sequence of separate policymakers chooses :math:`\mu_t` for :math:`t =0, 1, 2, \ldots`
 
-     - a time :math:`t` policy maker chooses  only :math:`\mu_t` but believes that its choice of :math:`\mu_t`  shapes private agents' beliefs about  future rates of money creation and inflation, and through them, future government actions
+     - a time :math:`t` policymaker chooses  only :math:`\mu_t` but believes that its choice of :math:`\mu_t`  shapes private agents' beliefs about  future rates of money creation and inflation, and through them, future government actions
 
 A Ramsey Planner
 ===================
 
-First we consider a Ramsey planner that  chooses
+First, we consider a Ramsey planner that  chooses
 :math:`\{\mu_t, \theta_t\}_{t=0}^\infty` to maximize :eq:`eq_old7`
 subject to the law of motion :eq:`eq_old4`
 
@@ -379,7 +379,7 @@ As in :doc:`Stackelberg problems<dyn_stack>`, we map this problem into a linear-
 optimal value function associated with it
 
 Guessing that :math:`J(x) = - x'Px` and substituting into the Bellman
-equation gives rise to the algebraic matrix Riccatti equation:
+equation gives rise to the algebraic matrix Riccati equation:
 
 .. math::  P = R + \beta A'PA - \beta^2 A'PB(Q + \beta B'PB)^{-1} B'PA
 
@@ -434,10 +434,10 @@ synthetic **promised inflation rates** that are just computational devices for
 generating a sequence :math:`\vec\mu` of money growth rates that are to
 be substituted into equation :eq:`eq_old3` to form actual rates of inflation
 
-It can verified that if we substitute a plan
+It can be verified that if we substitute a plan
 :math:`\vec \mu = \{\mu_t\}_{t=0}^\infty` that satisfies these equations
 into equation :eq:`eq_old3`, we obtain the same sequence :math:`\vec \theta`
-generated by system :eq:`eq_old9`
+generated by the system :eq:`eq_old9`
 
 (Here an application of the **Big $K$, little $k$** trick could once again be enlightening)
 
@@ -446,7 +446,7 @@ inflation** equals **actual inflation**
 
 ### Multiple roles of :math:`\theta_t`
 
-The inflation rate :math:`\theta_t` that appears in system :eq:`eq_old9` and
+The inflation rate :math:`\theta_t` that appears in the system :eq:`eq_old9` and
 equation :eq:`eq_old3` plays three roles simultaneously:
 
 -  In equation :eq:`eq_old3`, :math:`\theta_t` is the actual rate of inflation
@@ -472,7 +472,7 @@ that alter either
 
 - the timing protocol and/or
 
-- assumptions about how government decision makers think their decisions affect private agents' beliefs about future government decisions
+- assumptions about how government decision-makers think their decisions affect private agents' beliefs about future government decisions
 
 A Constrained-to-a-Constant-:math:`\mu` Ramsey Government
 ==========================================================
@@ -499,14 +499,14 @@ maximizing :math:`\bar \mu` is
 
 **Summary:** We have  introduced the constrained-to-a-constant :math:`\mu`
 government in order to highlight  time-variation of
-:math:`\mu_t` as a tell tale sign of  time inconsistency of a Ramsey plan
+:math:`\mu_t` as a telltale sign of  time inconsistency of a Ramsey plan
 
 
 Markov Perfect Governments
 ===========================
 
-We now  change the timing protocol by considering a sequence of 
-government policy makers, the time :math:`t` representative of which 
+We now  change the timing protocol by considering a sequence of
+government policymakers, the time :math:`t` representative of which
 chooses :math:`\mu_t` and expects all future governments to set
 :math:`\mu_{t+j} = \bar \mu`
 
@@ -514,14 +514,14 @@ This assumption mirrors an assumption made in a different setting  :doc:`Markov 
 
 
 
-Further, a government  policy maker at :math:`t` believes that :math:`\bar \mu` is
-unafffected by its choice of :math:`\mu_t`
+Further, a government  policymaker at :math:`t` believes that :math:`\bar \mu` is
+unaffected by its choice of :math:`\mu_t`
 
 The time :math:`t` rate of inflation is then:
 
 .. math::  \theta_t = \frac{\alpha}{1+\alpha} \bar \mu + \frac{1}{1+\alpha} \mu_t
 
-The time :math:`t` government policy maker then chooses :math:`\mu_t` to
+The time :math:`t` government policymaker then chooses :math:`\mu_t` to
 maximize:
 
 .. math::  W = U(-\alpha \theta_t) - \frac{c}{2} \mu_t^2 + \beta V(\bar \mu)
@@ -569,7 +569,7 @@ values as :math:`\theta^{MPE}, \mu^{MPE}`
 The bliss level of inflation is denoted by :math:`\theta^*`
 
 
-First we will create a class `ChangLQ` that solves the models and stores their values
+First, we will create a class `ChangLQ` that solves the models and stores their values
 
 .. code-block:: ipython
 
@@ -639,7 +639,7 @@ First we will create a class `ChangLQ` that solves the models and stores their v
             self.μ_series = μ_series
             self.θ_series = θ_series
 
-            # Find range of θ in Ramsey plan
+            # Find the range of θ in Ramsey plan
             θ_LB = min(θ_series[1, :])
             θ_LB = min(θ_LB, self.θ_B)
             θ_UB = max(θ_series[1, :])
@@ -898,20 +898,20 @@ regard a time inconsistent plan implausible because of the incentives to
 deviate that occur along the plan
 
 A way to summarize this *defect* in a Ramsey plan is to say that it
-is not credible because there  endure incentives for policy makers
+is not credible because there  endure incentives for policymakers
 to deviate from it
 
 For that reason, the Markov perfect equilibrium concept attracts many
 economists
 
-* A Markov perfect equilibrium plan is constructed to insure that government policy makers who choose sequentially do not want to deviate from it
+* A Markov perfect equilibrium plan is constructed to insure that government policymakers who choose sequentially do not want to deviate from it
 
 The *no incentive to deviate from the plan* property is what makes the Markov perfect equilibrium concept attractive
 
 Ramsey Plan Strikes Back
 --------------------------
 
-Research by Abreu :cite:`Abreu`,  Chari and Kehoe :cite:`chari1990sustainable`  
+Research by Abreu :cite:`Abreu`,  Chari and Kehoe :cite:`chari1990sustainable`
 :cite:`stokey1989reputation`, and Stokey :cite:`Stokey1991` discovered conditions under which a Ramsey plan can be rescued from the complaint that it is not credible
 
 They  accomplished this by expanding the
@@ -947,7 +947,7 @@ A Theory of Government Decision Making
 
 
 :math:`\vec \mu` is chosen by a sequence of government
-decision makers, one for each :math:`t \geq 0`
+decision-makers, one for each :math:`t \geq 0`
 
 We assume the following within-period and between-period timing protocol
 for each :math:`t \geq 0`:
@@ -1098,13 +1098,13 @@ self-enforcing plan with low time :math:`0` value
 Abreu Carrot-Stick Plan
 -------------------------------------------
 
-:cite:`Abreu` invented a way to create a self-enforcing plan with low
+:cite:`Abreu` invented a way to create a self-enforcing plan with a low
 initial value
 
 Imitating his idea, we can construct a self-enforcing plan
 :math:`\vec \mu` with a low time :math:`0` value to the government by
-insisting that future government decision makers set :math:`\mu_t` to a value yielding low
-one-period utilities to the household for a long time, after which 
+insisting that future government decision-makers set :math:`\mu_t` to a value yielding low
+one-period utilities to the household for a long time, after which
 government  decisions thereafter  yield high one-period utilities
 
 -  low one-period utilities early are a **stick**
@@ -1200,7 +1200,7 @@ beginning, i.e., :math:`\theta^A_{t+10} =\theta^R_t \ \ \forall t \geq 0`
     abreu_plan(clq)
 
 
-To confirm that the plan :math:`\vec \mu^A` is **self-enforcing**,  we 
+To confirm that the plan :math:`\vec \mu^A` is **self-enforcing**,  we
 plot an object that we call :math:`V_t^{A,D}`, defined in the second line of equation :eq:`eq_old10` above
 
 :math:`V_t^{A,D}` is the value at :math:`t` of deviating from the
@@ -1306,7 +1306,7 @@ governments
     clq.J_MPE
 
 We have also computed **sustainable plans** for a government or sequence
-of governments that chooses sequentially
+of governments that choose sequentially
 
 These include
 
