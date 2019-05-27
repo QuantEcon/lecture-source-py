@@ -26,51 +26,51 @@ Overview
 ============
 
 
-Some of the material in this lecture and :doc:`competitive equilibria in the Chang model<chang_ramsey>` 
-can be viewed as more sophisticated and complete treatments of the topics discussed in 
-:doc:`Ramsey plans, time inconsistency, sustainable plans<calvo>` 
+Some of the material in this lecture and :doc:`competitive equilibria in the Chang model<chang_ramsey>`
+can be viewed as more sophisticated and complete treatments of the topics discussed in
+:doc:`Ramsey plans, time inconsistency, sustainable plans<calvo>`
 
-This lecture assumes almost  the same economic environment analyzed in 
+This lecture assumes almost  the same economic environment analyzed in
 :doc:`competitive equilibria in the Chang model<chang_ramsey>`
 
 
 The only change  --  and it is a substantial one -- is the timing protocol for making government decisions
 
-In  :doc:`competitive equilibria in the Chang model<chang_ramsey>`, a *Ramsey planner* 
+In  :doc:`competitive equilibria in the Chang model<chang_ramsey>`, a *Ramsey planner*
 chose a comprehensive government policy once-and-for-all at time :math:`0`
 
 Now in this lecture, there is no time :math:`0` Ramsey planner
 
-Instead there is a sequence of government decision makers, one for each :math:`t`
+Instead, there is a sequence of government decision-makers, one for each :math:`t`
 
-The time :math:`t` government decision maker choose time :math:`t` government 
+The time :math:`t` government decision-maker choose time :math:`t` government
 actions after forecasting what future governments will do
 
 
-We use the notion of a *sustainable plan* proposed in :cite:`chari1990sustainable`, 
+We use the notion of a *sustainable plan* proposed in :cite:`chari1990sustainable`,
 also referred to as a *credible public policy* in :cite:`stokey1989reputation`
 
 
-Technically, this lecture starts where lecture 
-:doc:`competitive equilibria in the Chang model<chang_ramsey>` on Ramsey plans 
+Technically, this lecture starts where lecture
+:doc:`competitive equilibria in the Chang model<chang_ramsey>` on Ramsey plans
 within the Chang :cite:`chang1998credible` model stopped
 
 That lecture presents recursive representations of  *competitive equilibria* and a *Ramsey plan* for a
 version of a model of Calvo :cite:`Calvo1978` that Chang used to analyze and illustrate these concepts
 
-We used two operators to characterize competitive equilibria and a Ramsey plan, 
+We used two operators to characterize competitive equilibria and a Ramsey plan,
 respectively
 
 In this lecture, we define a *credible public policy* or *sustainable plan*
 
-Starting from a large enough initial set :math:`Z_0`, we use iterations on 
+Starting from a large enough initial set :math:`Z_0`, we use iterations on
 Chang's set-to-set  operator :math:`\tilde D(Z)` to
 compute a set of values associated with sustainable plans
 
-Chang's operator :math:`\tilde D(Z)` is closely connected with the operator 
+Chang's operator :math:`\tilde D(Z)` is closely connected with the operator
 :math:`D(Z)` introduced in lecture :doc:`competitive equilibria in the Chang model<chang_ramsey>`
 
-* :math:`\tilde D(Z)` incorporates all of the restrictions imposed in 
+* :math:`\tilde D(Z)` incorporates all of the restrictions imposed in
   constructing the operator :math:`D(Z)`, but :math:`\ldots`
 
 * It adds some additional restrictions
@@ -163,7 +163,7 @@ subject to
 and
 
 .. math::
-     q_t M_t  \leq \bar m 
+     q_t M_t  \leq \bar m
     :label: eqn_chang3
 
 
@@ -212,13 +212,13 @@ be expressed as
 .. math:: -x_t = m_t (1-h_t)
    :label: eqn_chang2a
 
-The  restrictions :math:`m_t \in [0, \bar m]` and :math:`h_t \in \Pi` evidently 
+The  restrictions :math:`m_t \in [0, \bar m]` and :math:`h_t \in \Pi` evidently
 imply that :math:`x_t \in X \equiv [(\underline  \pi -1)\bar m, (\overline \pi -1) \bar m]`
 
-We define the set :math:`E \equiv [0,\bar m] \times \Pi \times X`, so that we 
+We define the set :math:`E \equiv [0,\bar m] \times \Pi \times X`, so that we
 require that :math:`(m, h, x) \in E`
 
-To represent the idea that taxes are distorting, Chang makes the following 
+To represent the idea that taxes are distorting, Chang makes the following
 assumption about outcomes for per capita output:
 
 .. math:: y_t = f(x_t)
@@ -242,15 +242,15 @@ maximizes :eq:`eqn_chang1`
 Within-period Timing Protocol
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For the results in this lecture, the *timing* of actions within a period is 
+For the results in this lecture, the *timing* of actions within a period is
 important because of the incentives that it activates
 
 Chang assumed the following within-period timing of decisions:
 
 * first, the government chooses :math:`h_t` and :math:`x_t`;
 
-* then given :math:`\vec q` and its expectations about future values of 
-  :math:`x` and :math:`y`\ ’s, the household chooses :math:`M_t` and therefore 
+* then given :math:`\vec q` and its expectations about future values of
+  :math:`x` and :math:`y`\ ’s, the household chooses :math:`M_t` and therefore
   :math:`m_t` because :math:`m_t = q_t M_t`;
 
 * then output :math:`y_t = f(x_t)` is realized;
@@ -262,8 +262,8 @@ choices framed by how the private sector wants to respond when the
 government takes time :math:`t` actions that differ from what the
 private sector had expected
 
-This timing will shape the incentives confronting the government at each 
-history that are to be incorporated in the construction of the :math:`\tilde D` 
+This timing will shape the incentives confronting the government at each
+history that are to be incorporated in the construction of the :math:`\tilde D`
 operator below
 
 
@@ -276,9 +276,9 @@ Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem
 .. math::
 
    \begin{aligned}
-   \mathcal{L} & = \max_{\vec c, \vec M} 
+   \mathcal{L} & = \max_{\vec c, \vec M}
    \min_{\vec \lambda, \vec \mu} \sum_{t=0}^\infty \beta^t
-   \bigl\{ u(c_t) + v(M_t q_t) + 
+   \bigl\{ u(c_t) + v(M_t q_t) +
    \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
    & \quad \quad \quad  + \mu_t [\bar m - q_t  M_t] \bigr\}
    \end{aligned}
@@ -289,17 +289,17 @@ First-order conditions with respect to :math:`c_t` and :math:`M_t`, respectively
 
    \begin{aligned}
    u'(c_t) & = \lambda_t \\
-   q_t [ u'(c_t) - v'(M_t q_t) ] & \leq \beta u'(c_{t+1}) 
+   q_t [ u'(c_t) - v'(M_t q_t) ] & \leq \beta u'(c_{t+1})
    q_{t+1} , \quad = \ {\rm if} \ M_t q_t < \bar m
    \end{aligned}
 
-Using :math:`h_t = {M_{t-1}\over M_t}` and :math:`q_t = {m_t \over M_t}` in 
+Using :math:`h_t = {M_{t-1}\over M_t}` and :math:`q_t = {m_t \over M_t}` in
 these first-order conditions and rearranging implies
 
 .. math::
   :label: eqn_chang4
-  
-  m_t [u'(c_t) - v'(m_t) ] \leq \beta u'(f(x_{t+1})) m_{t+1} h_{t+1}, 
+
+  m_t [u'(c_t) - v'(m_t) ] \leq \beta u'(f(x_{t+1})) m_{t+1} h_{t+1},
   \quad = \text{ if } m_t < \bar m
 
 
@@ -308,23 +308,23 @@ Define the following key variable
 .. math:: \theta_{t+1} \equiv u'(f(x_{t+1})) m_{t+1} h_{t+1}
    :label: eqn_chang5
 
-This is real money balances at time :math:`t+1` measured in units of marginal 
+This is real money balances at time :math:`t+1` measured in units of marginal
 utility, which Chang refers to as ‘the marginal utility of real balances’
 
-From the standpoint of the household at time :math:`t`, equation :eq:`eqn_chang5` 
-shows that :math:`\theta_{t+1}` intermediates the influences of 
-:math:`(\vec x_{t+1}, \vec m_{t+1})` on the household’s choice of real 
+From the standpoint of the household at time :math:`t`, equation :eq:`eqn_chang5`
+shows that :math:`\theta_{t+1}` intermediates the influences of
+:math:`(\vec x_{t+1}, \vec m_{t+1})` on the household’s choice of real
 balances :math:`m_t`
 
-By "intermediates" we mean that the future paths 
-:math:`(\vec x_{t+1}, \vec m_{t+1})` influence :math:`m_t` entirely through 
+By "intermediates" we mean that the future paths
+:math:`(\vec x_{t+1}, \vec m_{t+1})` influence :math:`m_t` entirely through
 their effects on the scalar :math:`\theta_{t+1}`
 
-The observation that the one dimensional promised marginal utility of real 
+The observation that the one dimensional promised marginal utility of real
 balances :math:`\theta_{t+1}` functions in this way is an important step
 in constructing a class of competitive equilibria that have a recursive representation
 
-A closely related observation pervaded the analysis of Stackelberg plans in 
+A closely related observation pervaded the analysis of Stackelberg plans in
 :doc:`dynamic Stackelberg problems<dyn_stack>` and :doc:`the Calvo model<calvo>`
 
 
@@ -344,7 +344,7 @@ It is required that time :math:`t` components :math:`(m_t, x_t, h_t) \in E`
 **Definition:**
 
 Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system :math:`\vec q`, and allocation
-:math:`(\vec c, \vec m, \vec y)` are said to be a *competitive equilibrium* if
+:math:`(\vec c, \vec m, \vec y)` is said to be a *competitive equilibrium* if
 
 * :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`
 
@@ -362,47 +362,47 @@ Chang works with
 
 * Here there is no time :math:`0` Ramsey planner
 
-* Instead there is a sequence of governments, one for each :math:`t`, that 
+* Instead, there is a sequence of governments, one for each :math:`t`, that
   choose time :math:`t` government actions after forecasting what future governments will do
 
-* Let :math:`w=\sum_{t=0}^\infty \beta^t \left[ u(c_t) + v(q_t M_t ) \right]` 
+* Let :math:`w=\sum_{t=0}^\infty \beta^t \left[ u(c_t) + v(q_t M_t ) \right]`
   be a value associated with a particular competitive equilibrium
 
-* A recursive representation of a credible government policy is a pair of 
+* A recursive representation of a credible government policy is a pair of
   initial conditions :math:`(w_0, \theta_0)` and a five-tuple of functions
 
   .. math::
 
     h(w_t, \theta_t), m(h_t, w_t, \theta_t), x(h_t, w_t, \theta_t), \chi(h_t, w_t, \theta_t),\Psi(h_t, w_t, \theta_t)
 
-  mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into 
+  mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into
   :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively
 
-* Starting from initial condition :math:`(w_0, \theta_0)`, a credible 
-  government policy can be constructed by iterating on these functions in 
+* Starting from an initial condition :math:`(w_0, \theta_0)`, a credible
+  government policy can be constructed by iterating on these functions in
   the following order that respects the within-period timing:
 
   .. math::
    :label: chang501
 
-   \begin{aligned} 
+   \begin{aligned}
    \hat h_t & = h(w_t,\theta_t) \\
    m_t & = m(h_t, w_t,\theta_t) \\
    x_t & = x(h_t, w_t,\theta_t) \\
    w_{t+1} & = \chi(h_t, w_t,\theta_t)  \\
-   \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  
+   \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)
    \end{aligned}
 
 
-* Here it is to be understood that :math:`\hat h_t` is the action that the 
-  government policy instructs the government to take, while :math:`h_t` 
-  possibly not equal to :math:`\hat h_t` is some other action that the 
+* Here it is to be understood that :math:`\hat h_t` is the action that the
+  government policy instructs the government to take, while :math:`h_t`
+  possibly not equal to :math:`\hat h_t` is some other action that the
   government is free to take at time :math:`t`
 
-The plan is *credible* if it is in the time :math:`t` government’s interest to 
+The plan is *credible* if it is in the time :math:`t` government’s interest to
 execute it
 
-Credibility requires that the plan be such that for all possible choices of 
+Credibility requires that the plan be such that for all possible choices of
 :math:`h_t` that are consistent with competitive equilibria,
 
 .. math::
@@ -410,33 +410,33 @@ Credibility requires that the plan be such that for all possible choices of
    &  \geq
    u(f(x( h_t, w_t,\theta_t))) + v(m(h_t, w_t,\theta_t)) + \beta \chi(h_t, w_t,\theta_t) \end{split}
 
-so that at each instance and circumstance of choice, a government attains a 
-weakly higher lifetime utility with continuation value 
-:math:`w_{t+1}=\Psi(h_t, w_t,\theta_t)` by adhering to the plan and 
-confirming the associated time :math:`t` action :math:`\hat h_t` that 
+so that at each instance and circumstance of choice, a government attains a
+weakly higher lifetime utility with continuation value
+:math:`w_{t+1}=\Psi(h_t, w_t,\theta_t)` by adhering to the plan and
+confirming the associated time :math:`t` action :math:`\hat h_t` that
 the public had expected earlier
 
-Please note the subtle change in arguments of the functions used to represent 
-a competitive equilibrium and a Ramsey plan, on the one hand, and a credible 
+Please note the subtle change in arguments of the functions used to represent
+a competitive equilibrium and a Ramsey plan, on the one hand, and a credible
 government plan, on the other hand
 
-The extra arguments appearing in the functions used to represent a credible plan 
-come from allowing the government to contemplate disappointing the private sector’s 
+The extra arguments appearing in the functions used to represent a credible plan
+come from allowing the government to contemplate disappointing the private sector’s
 expectation about its time :math:`t` choice :math:`\hat h_t`
 
 A credible plan induces the government to confirm the private sector’s expectation
 
-The recursive representation of the plan uses the evolution of continuation 
+The recursive representation of the plan uses the evolution of continuation
 values to deter the government from wanting to disappoint the private sector’s
 expectations
 
 Technically, a Ramsey plan and a credible plan  both incorporate history dependence
 
-For a Ramsey plan, this is encoded in the dynamics of the state variable 
-:math:`\theta_t`, a promised marginal utility that the Ramsey plan delivers to 
+For a Ramsey plan, this is encoded in the dynamics of the state variable
+:math:`\theta_t`, a promised marginal utility that the Ramsey plan delivers to
 the private sector
 
-For a credible government plan, we the two-dimensional state vector 
+For a credible government plan, we the two-dimensional state vector
 :math:`(w_t, \theta_t)` encodes  history dependence
 
 
@@ -451,9 +451,9 @@ i.   :math:`\sigma` is admissible
 
 ii.  Given :math:`\sigma`, :math:`\alpha` is competitive
 
-iii. After any history :math:`\vec h^{t-1}`, the continuation of :math:`\sigma` 
-     is optimal for the government; i.e., the sequence :math:`\vec h_t` induced 
-     by :math:`\sigma` after :math:`\vec h^{t-1}` maximizes over :math:`CE_\pi` 
+iii. After any history :math:`\vec h^{t-1}`, the continuation of :math:`\sigma`
+     is optimal for the government; i.e., the sequence :math:`\vec h_t` induced
+     by :math:`\sigma` after :math:`\vec h^{t-1}` maximizes over :math:`CE_\pi`
      given :math:`\alpha`
 
 Given any history :math:`\vec h^{t-1}`, the continuation of a sustainable plan is a
@@ -466,13 +466,13 @@ Sustainable outcomes are elements of :math:`\Theta`
 Now consider the space
 
 .. math::
-  
-  S = \Bigl\{ (w,\theta) : \text{there is a sustainable outcome } 
+
+  S = \Bigl\{ (w,\theta) : \text{there is a sustainable outcome }
       (\vec m, \vec x, \vec h) \in \Theta
-      
+
 with value
 
-.. math:: 
+.. math::
 
   w = \sum_{t=0}^\infty \beta^t [u(f(x_t)) + v(m_t)]  \text{ and such that }
        u'(f(x_0)) (m_0 + x_0) = \theta \Bigr\}
@@ -496,7 +496,7 @@ i.   A period :math:`0` action :math:`\hat h \in \Pi` that the public
      consequences :math:`m(\hat h), x(\hat h)` when the government acts as
      expected
 
-ii.  For any first period action :math:`h \neq \hat h` with
+ii.  For any first-period action :math:`h \neq \hat h` with
      :math:`h \in CE_\pi^0`, a pair of within-period consequences
      :math:`m(h), x(h)` when the government does not act as the public had
      expected
@@ -512,7 +512,7 @@ Euler equation must hold with continuation :math:`\theta` being
 
 Given the timing protocol within the model, the representative
 household’s response to a government deviation to :math:`h \neq \hat h`
-from a prescribed :math:`\hat h` consists of a first period action
+from a prescribed :math:`\hat h` consists of a first-period action
 :math:`m(h)` and associated subsequent actions, together with future
 equilibrium prices, captured by :math:`(w'(h), \theta'(h))`
 
@@ -528,7 +528,7 @@ Define the following operator:
 .. math::
     :label: chang_operator
 
-    \tilde D(Z) = \Bigl\{ 
+    \tilde D(Z) = \Bigl\{
     (w,\theta): \text{there is } \hat h \in CE_\pi^0 \text{ and for each } h \in CE_\pi^0 \\
     \text{ a four-tuple } (m(h), x(h), w'(h), \theta'(h)) \in [0,\bar m] \times X \times Z
 
@@ -781,7 +781,7 @@ Comparison of Sets
 ^^^^^^^^^^^^^^^^^^^
 
 The set of :math:`(w, \theta)` associated with  sustainable plans is  smaller than the set of :math:`(w, \theta)`
-pairs associated with competitive equilibria, since the additional
+pairs associated with competitive equilibria since the additional
 constraints associated with sustainability must also be satisfied
 
 Let's compute two examples, one with a low :math:`\beta`, another with a higher :math:`\beta`
@@ -826,7 +826,7 @@ and the smaller set of :math:`w,\theta` pairs associated with  sustainable plans
         R = ext_C[idx_Ramsey, :]
         ax.scatter(R[0], R[1], 150, 'black', 'o', zorder=1)
         w_min = min(ext_C[:, 0])
-        
+
         # Label Ramsey Plan slightly to the right of the point
         ax.annotate("R", xy=(R[0], R[1]),
                     xytext=(R[0] + 0.03 * (R[0] - w_min),
@@ -858,5 +858,3 @@ Let's plot both sets
 
 
 Evidently, the Ramsey plan is now sustainable
-
-
