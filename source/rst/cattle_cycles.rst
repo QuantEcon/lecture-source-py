@@ -19,7 +19,7 @@ Cattle Cycles
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`
 
-In addition what's in Anaconda, this lecture uses the quantecon library
+In addition, what's in Anaconda, this lecture uses the quantecon library
 
 .. code-block:: ipython
   :class: hide-output
@@ -71,7 +71,7 @@ where :math:`g < 1` is the number of calves that each member of the
 breeding stock has each year, and :math:`c_t` is the number of cattle
 slaughtered
 
-The total head count of cattle is
+The total headcount of cattle is
 
 .. math::  y_t = x_t + gx_{t-1} + gx_{t-2}
 
@@ -89,7 +89,7 @@ price process, and the initial state [:math:`x_{-1},x_{-2},x_{-3}`]
 **Remark** The :math:`\psi_j` parameters are very small quadratic costs
 that are included for technical reasons to make well posed and well
 behaved the linear quadratic dynamic programming problem solved by the
-fictious planner who in effect chooses equilibrium quantities and shadow
+fictitious planner who in effect chooses equilibrium quantities and shadow
 prices
 
 Demand for beef is government by :math:`c_t = a_0 - a_1p_t + \tilde d_t`
@@ -308,7 +308,7 @@ baseline case of :math:`\rho_3 = 0.6`)
     Econ2 = DLE(Info2, Tech1, Pref1)
     Econ3 = DLE(Info3, Tech1, Pref1)
 
-    # Calculate steady-state in baseline case and use to set initial condition
+    # Calculate steady-state in baseline case and use to set the initial condition
     Econ1.compute_steadystate(nnc=4)
     x0 = Econ1.zz
 
@@ -331,7 +331,7 @@ to generate cycles in quantities
     plt.show()
 
 
-In their Figure 3, :cite:`rosen1994cattle` plot the impulse response functions
+In Figure 3, :cite:`rosen1994cattle` plot the impulse response functions
 of consumption and the breeding stock of cattle to the demand shock,
 :math:`\tilde d_t`, under the three different values of :math:`\rho_3`
 
@@ -366,7 +366,7 @@ The above figures show how consumption patterns differ markedly,
 depending on the persistence of the demand shock:
 
 -  If it is purely transitory (:math:`\rho_3 = 0`) then consumption
-   rises immediately, but is later reduced to build stocks up again.
+   rises immediately but is later reduced to build stocks up again.
 
 -  If it is permanent (:math:`\rho_3 = 1`), then consumption falls
    immediately, in order to build up stocks to satisfy the permanent
