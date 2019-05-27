@@ -10,7 +10,7 @@ Default Risk and Income Fluctuations
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition, what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -32,7 +32,7 @@ The government borrows and lends abroad in order to  smooth the consumption of i
 
 The government repays its debt only if it wants to, but declining to pay has adverse consequences
 
-The interest rate on government debt adjusts in response to the state-dependent default probability chosen by government
+The interest rate on government debt adjusts in response to the state-dependent default probability chosen by the government
 
 The model yields outcomes that help interpret sovereign default experiences, including
 
@@ -54,14 +54,14 @@ This can lead to
 
 * large capital outflows during recessions
 
-Such dynamics are consistent with experiences of many countries
+Such dynamics are consistent with the experiences of many countries
 
 
 
 Structure
 ===============
 
-In this section we describe the main features of the model
+In this section, we describe the main features of the model
 
 Output, Consumption and Debt
 -----------------------------
@@ -118,7 +118,7 @@ The bond market has the following features
 * For selling :math:`-B'` units of next period goods the seller earns :math:`- q B'` of today's goods
 
 
-    * if :math:`B' < 0`, then :math:`-q B'` units of the good are received in the current period, for a promise to repay :math:`-B'` units next period
+    * if :math:`B' < 0`, then :math:`-q B'` units of the goods are received in the current period, for a promise to repay :math:`-B'` units next period
 
     * there is an equilibrium  price function :math:`q(B', y)` that makes :math:`q` depend on both :math:`B'` and :math:`y`
 
@@ -166,7 +166,7 @@ Therefore, the discounted expected value of a promise to pay :math:`B` next peri
     q = \frac{1 - \delta}{1 + r}
 
 
-Next we turn to how the government in effect chooses the default probability :math:`\delta`
+Next, we turn to how the government in effect chooses the default probability :math:`\delta`
 
 
 Government's Decisions
@@ -181,7 +181,7 @@ At each point in time :math:`t`, the government chooses between
 
 Defaulting means declining to repay all of  its current obligations
 
-If the government defaults in the current period, then consumption equals current output
+If the government defaults in the current period, then consumption equals the current output
 
 But a sovereign default has two consequences:
 
@@ -309,7 +309,7 @@ An *equilibrium* is
 
 * a decision rule telling the government when to default and when to pay as a function of the state  :math:`(B, y)`, and
 
-* an asset accumulation rule that, conditional on choosing not to  default,  maps :math:`(B,y)` into :math:`B'`
+* an asset accumulation rule that conditional on choosing not to  default,  maps :math:`(B,y)` into :math:`B'`
 
 such that
 
@@ -331,7 +331,7 @@ The equilibrium objects are the value function :math:`v(B, y)`, the associated d
 
 We'll use our code to replicate Arellano's results
 
-After that we'll perform some additional simulations
+After that, we'll perform some additional simulations
 
 The majority of the code below was written by `Chase Coleman <https://github.com/cc7768>`_
 
@@ -355,7 +355,7 @@ Here is a more detailed description of our algorithm:
 
    * update the value of continuing :math:`v_c(B, y)`
 
-3.  Update the value function :math:`v(B, y)`, the default rule,  the implied ex ante default probability,  and the price function
+3.  Update the value function :math:`v(B, y)`, the default rule,  the implied ex-ante default probability,  and the price function
 
 4. Check for convergence. If converged, stop -- if not, go to step 2
 
@@ -399,7 +399,7 @@ The first figure shows the bond price schedule and replicates Figure 3 of Arella
 
 The grid used to compute this figure was relatively coarse (``ny, nB = 21, 251``) in order to match Arrelano's findings
 
-Here's the same relationships computed on a finer grid (``ny, nB = 51, 551``)
+Here are the same relationships computed on a finer grid (``ny, nB = 51, 551``)
 
 .. figure:: /_static/figures/arellano_bond_prices_2.png
 
@@ -410,7 +410,7 @@ In either case, the figure shows that
 * Lower income also causes more discounting, as foreign creditors anticipate greater likelihood of default
 
 
-The next figure plots value functions and replicates the right hand panel of Figure 4 of :cite:`arellano2008default`
+The next figure plots value functions and replicates the right-hand panel of Figure 4 of :cite:`arellano2008default`
 
 .. figure:: /_static/figures/arellano_value_funcs.png
 
