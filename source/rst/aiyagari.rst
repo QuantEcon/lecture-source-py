@@ -204,7 +204,7 @@ In practice, once parameter values are set, we can check for an SREE by the foll
 
 #. determine the common optimal savings policy of the households given these prices
 
-#. compute aggregate capital as the mean of steady-state capital given this savings policy
+#. compute aggregate capital as the mean of steady state capital given this savings policy
 
 If this final quantity agrees with :math:`K` then we have a SREE
 
