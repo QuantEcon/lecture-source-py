@@ -411,7 +411,7 @@ First we build a class called ``ConsumerProblem`` that stores the model primitiv
         """
         def __init__(self,
                      r=0.01,                        # Interest rate
-                     β=0.96,                        # Discount rate
+                     β=0.96,                        # Discount factor
                      Π=((0.6, 0.4),
                         (0.05, 0.95)),              # Markov matrix for z_t
                      z_vals=(0.5, 1.0),             # State space of z_t

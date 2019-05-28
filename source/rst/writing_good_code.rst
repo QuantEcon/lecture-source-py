@@ -22,7 +22,7 @@ When computer programs are small, poorly written code is not overly costly
 
 But more data, more sophisticated models, and more computer power are enabling us to take on more challenging problems that involve writing longer programs
 
-For such programs, investment in good coding practices will pay high returns 
+For such programs, investment in good coding practices will pay high returns
 
 The main payoffs are higher productivity and faster code
 
@@ -47,9 +47,9 @@ The job of the code is to generate and plot time series of the simplified Solow 
     \quad t = 0, 1, 2, \ldots
 
 
-Here 
+Here
 
-* :math:`k_t` is capital at time :math:`t` and 
+* :math:`k_t` is capital at time :math:`t` and
 
 * :math:`s, \alpha, \delta` are parameters (savings, a productivity parameter and depreciation)
 
@@ -57,7 +57,7 @@ For each parameterization, the code
 
 #. sets :math:`k_0 = 1`
 
-#. iterates using :eq:`gc_solmod` to produce a sequence :math:`k_0, k_1, k_2 \ldots , k_T` 
+#. iterates using :eq:`gc_solmod` to produce a sequence :math:`k_0, k_1, k_2 \ldots , k_T`
 
 #. plots the sequence
 
@@ -88,7 +88,7 @@ In each subfigure, two parameters are held fixed while another varies
         axes[0].plot(k, 'o-', label=rf"$\alpha = {α[j]},\; s = {s},\; \delta={δ}$")
 
     axes[0].grid(lw=0.2)
-    axes[0].set_ylim(0, 18)        
+    axes[0].set_ylim(0, 18)
     axes[0].set_xlabel('time')
     axes[0].set_ylabel('capital')
     axes[0].legend(loc='upper left', frameon=True, fontsize=14)
@@ -103,11 +103,11 @@ In each subfigure, two parameters are held fixed while another varies
         for t in range(49):
             k[t+1] = s[j] * k[t]**α + (1 - δ) * k[t]
         axes[1].plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s},\; \delta={δ}$")
-        
+
     axes[1].grid(lw=0.2)
     axes[1].set_xlabel('time')
     axes[1].set_ylabel('capital')
-    axes[1].set_ylim(0, 18) 
+    axes[1].set_ylim(0, 18)
     axes[1].legend(loc='upper left', frameon=True, fontsize=14)
 
     # Trajectories with different δ
@@ -124,11 +124,11 @@ In each subfigure, two parameters are held fixed while another varies
     axes[2].set_ylim(0, 18)
     axes[2].set_xlabel('time')
     axes[2].set_ylabel('capital')
-    axes[2].grid(lw=0.2)   
+    axes[2].grid(lw=0.2)
     axes[2].legend(loc='upper left', frameon=True, fontsize=14)
 
     plt.show()
-    
+
 
 True, the code more or less follows `PEP8 <https://www.python.org/dev/peps/pep-0008/>`__
 
@@ -206,7 +206,7 @@ Sure, global variables (i.e., names assigned to values outside of any function o
 
 Rookie programmers typically use global variables with abandon --- as we once did ourselves
 
-But global variables are dangerous, especially in medium to large size programs, since 
+But global variables are dangerous, especially in medium to large size programs, since
 
 * they can affect what happens in any part of your program
 
@@ -269,14 +269,14 @@ Here's some code that reproduces the plot above with better coding style
 
 It uses a function to avoid repetition
 
-Note also that 
+Note also that
 
 * global variables are quarantined by collecting together at the end, not the start of the program
 
 * magic numbers are avoided
 
-* the loop at the end where the actual work is done is short and relatively simple 
-  
+* the loop at the end where the actual work is done is short and relatively simple
+
 .. code-block:: python3
 
     from itertools import product
@@ -286,13 +286,13 @@ Note also that
         Add a time series plot to the axes ax for all given parameters.
         """
         k = np.empty(series_length)
-        
+
         for (α, s, δ) in product(αs, s_vals, δs):
             k[0] = 1
             for t in range(series_length-1):
                 k[t+1] = s * k[t]**α + (1 - δ) * k[t]
             ax.plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s},\; \delta = {δ}$")
-            
+
         ax.grid(lw=0.2)
         ax.set_xlabel('time')
         ax.set_ylabel('capital')
@@ -311,12 +311,12 @@ Note also that
         plot_path(ax, αs, s_vals, δs)
 
     plt.show()
-    
+
 Summary
 =========
 
 Writing decent code isn't hard
 
-It's also fun and intellectually satisfying 
+It's also fun and intellectually satisfying
 
 We recommend that you cultivate good habits and style even when you write relatively short programs

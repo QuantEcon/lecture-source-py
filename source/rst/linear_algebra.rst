@@ -107,7 +107,7 @@ The following figure represents three vectors in this manner
                   width=0.5))
       ax.text(1.1 * v[0], 1.1 * v[1], str(v))
   plt.show()
-  
+
 
 
 
@@ -205,7 +205,7 @@ Scalar multiplication is illustrated in the next figure
                   width=0.5))
       ax.text(v[0] + 0.4, v[1] - 0.2, f'${s} x$', fontsize='16')
   plt.show()
-  
+
 
 
 
@@ -220,13 +220,13 @@ One advantage of NumPy arrays is that scalar multiplication and addition have ve
     x = np.ones(3)            # Vector of three ones
     y = np.array((2, 4, 6))   # Converts tuple (2, 4, 6) into array
     x + y
-  
+
 
 .. code-block:: python3
-    
+
     4 * x
-    
-    
+
+
 
 
 
@@ -266,17 +266,17 @@ follows
 .. code-block:: python3
 
     np.sum(x * y)          # Inner product of x and y
-    
-    
+
+
 .. code-block:: python3
 
     np.sqrt(np.sum(x**2))  # Norm of x, take one
-    
-  
+
+
 .. code-block:: python3
 
     np.linalg.norm(x)      # Norm of x, take two
-    
+
 
 
 
@@ -364,7 +364,7 @@ The span is a 2 dimensional plane passing through these two points and the origi
   ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.jet,
                   linewidth=0, antialiased=True, alpha=0.2)
   plt.show()
-  
+
 
 
 
@@ -672,19 +672,19 @@ You can create them manually from tuples of tuples (or lists of lists) as follow
          (3, 4))
 
     type(A)
-    
-    
+
+
 .. code-block:: python3
 
     A = np.array(A)
 
     type(A)
-    
+
 
 .. code-block:: python3
-    
+
     A.shape
-    
+
 
 The ``shape`` attribute is a tuple giving the number of rows and columns ---
 see :ref:`here <numpy_shape_dim>` for more discussion
@@ -704,12 +704,12 @@ Since operations are performed elementwise by default, scalar multiplication and
     A = np.identity(3)
     B = np.ones((3, 3))
     2 * A
-  
+
 
 .. code-block:: python3
-    
+
     A + B
-  
+
 
 
 To multiply matrices we use the ``@`` symbol
@@ -798,7 +798,7 @@ The answer to both these questions is negative, as the next figure shows
       for spine in ['right', 'top']:
           ax.spines[spine].set_color('none')
 
-      ax.set(ylim=(-0.6, 3.2), xlim=(xmin, xmax), 
+      ax.set(ylim=(-0.6, 3.2), xlim=(xmin, xmax),
              yticks=(), xticks=())
 
       ax.plot(x, y, 'k-', lw=2, label='$f$')
@@ -955,7 +955,7 @@ projections
 .. only:: html
 
     The solution is known to be :math:`\hat x = (A'A)^{-1}A'y` --- see for example
-    chapter 3 of :download:`these notes </_static/pdfs/course_notes.pdf>`
+    chapter 3 of :download:`these notes <_static/pdfs/course_notes.pdf>`
 
 .. only:: latex
 
@@ -1016,24 +1016,24 @@ All of these routines are Python front ends to time-tested and highly optimized 
     A = np.array(A)
     y = np.ones((2, 1))  # Column vector
     det(A)  # Check that A is nonsingular, and hence invertible
-    
-    
+
+
 .. code-block:: python3
 
     A_inv = inv(A)  # Compute the inverse
     A_inv
-  
-           
+
+
 .. code-block:: python3
 
     x = A_inv @ y  # Solution
     A @ x          # Should equal y
-    
-           
+
+
 .. code-block:: python3
 
     solve(A, y)  # Produces same solution
-  
+
 
 
 Observe how we can solve for :math:`x = A^{-1} y` by either via ``inv(A) @ y``, or using ``solve(A, y)``
@@ -1123,7 +1123,7 @@ As expected, the image :math:`Av` of each :math:`v` is just a scaled version of 
       ax.plot(x, a * x, 'b-', lw=0.4)
 
   plt.show()
-  
+
 
 
 
@@ -1168,12 +1168,12 @@ follows
     A = np.array(A)
     evals, evecs = eig(A)
     evals
-    
+
 
 .. code-block:: python3
 
     evecs
-  
+
 
 
 
@@ -1195,7 +1195,7 @@ matrices :math:`A` and :math:`B`, seeks generalized eigenvalues
     A v = \lambda B v
 
 
-This can be solved in SciPy via ``scipy.linalg.eig(A, B)`` 
+This can be solved in SciPy via ``scipy.linalg.eig(A, B)``
 
 Of course, if :math:`B` is square and invertible, then we can treat the
 generalized eigenvalue problem as an ordinary eigenvalue problem :math:`B^{-1}
@@ -1423,15 +1423,15 @@ Solution to Exercise 1
 
 We have an optimization problem:
 
-.. math::  
+.. math::
 
-    v(x) = \max_{y,u} \{ -y'Py - u'Qu \} 
+    v(x) = \max_{y,u} \{ -y'Py - u'Qu \}
 
 s.t.
 
-.. math::  
+.. math::
 
-    y = Ax + Bu 
+    y = Ax + Bu
 
 with primitives
 
@@ -1447,7 +1447,7 @@ with primitives
 
 The associated Lagrangian is :
 
-.. math:: 
+.. math::
 
     L = -y'Py - u'Qu + \lambda' \lbrack Ax + Bu - y \rbrack
 
@@ -1457,7 +1457,7 @@ The associated Lagrangian is :
 Differentiating Lagrangian equation w.r.t y and setting its derivative
 equal to zero yields
 
-.. math::  
+.. math::
 
     \frac{ \partial L}{\partial y} = - (P + P') y - \lambda = - 2 P y - \lambda = 0 \:,
 
@@ -1465,7 +1465,7 @@ since P is symmetric
 
 Accordingly, the first-order condition for maximizing L w.r.t. y implies
 
-.. math::  
+.. math::
 
     \lambda = -2 Py \:
 
@@ -1475,32 +1475,32 @@ Accordingly, the first-order condition for maximizing L w.r.t. y implies
 Differentiating Lagrangian equation w.r.t. u and setting its derivative
 equal to zero yields
 
-.. math::  
+.. math::
 
     \frac{ \partial L}{\partial u} = - (Q + Q') u - B'\lambda = - 2Qu + B'\lambda = 0 \:
 
 Substituting :math:`\lambda = -2 P y` gives
 
-.. math::  
+.. math::
 
     Qu + B'Py = 0 \:
 
 Substituting the linear constraint :math:`y = Ax + Bu` into above
 equation gives
 
-.. math::  
+.. math::
 
-    Qu + B'P(Ax + Bu) = 0  
+    Qu + B'P(Ax + Bu) = 0
 
-.. math::  
+.. math::
 
-    (Q + B'PB)u + B'PAx = 0 
+    (Q + B'PB)u + B'PAx = 0
 
 which is the first-order condition for maximizing L w.r.t. u
 
 Thus, the optimal choice of u must satisfy
 
-.. math::  
+.. math::
 
     u = -(Q + B'PB)^{-1}B'PAx \:,
 
@@ -1513,16 +1513,16 @@ Lagrangian equation
 Rewriting our problem by substituting the constraint into the objective
 function, we get
 
-.. math::  
+.. math::
 
     v(x) = \max_{u} \{ -(Ax+ Bu)'P(Ax+Bu) - u'Qu \} \:
 
 Since we know the optimal choice of u satisfies $ u = -(Q +
 B'PB)^{-1}B'PAx $, then
 
-.. math::  
+.. math::
 
-    v(x) =  -(Ax+ B u)'P(Ax+B u) - u'Q u  \,\,\,\, with \,\,\,\, u = -(Q + B'PB)^{-1}B'PAx 
+    v(x) =  -(Ax+ B u)'P(Ax+B u) - u'Q u  \,\,\,\, with \,\,\,\, u = -(Q + B'PB)^{-1}B'PAx
 
 To evaluate the function
 
@@ -1587,4 +1587,3 @@ Therefore, the solution to the optimization problem
 
 
 .. [#cfn] Suppose that :math:`\|S \| < 1`. Take any nonzero vector :math:`x`, and let :math:`r := \|x\|`. We have :math:`\| Sx \| = r \| S (x/r) \| \leq r \| S \| < r = \| x\|`. Hence every point is pulled towards the origin.
-
