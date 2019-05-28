@@ -41,7 +41,7 @@ chose a comprehensive government policy once-and-for-all at time :math:`0`
 
 Now in this lecture, there is no time :math:`0` Ramsey planner
 
-Instead, there is a sequence of government decision-makers, one for each :math:`t`
+Instead there is a sequence of government decision-makers, one for each :math:`t`
 
 The time :math:`t` government decision-maker choose time :math:`t` government
 actions after forecasting what future governments will do
@@ -362,7 +362,7 @@ Chang works with
 
 * Here there is no time :math:`0` Ramsey planner
 
-* Instead, there is a sequence of governments, one for each :math:`t`, that
+* Instead there is a sequence of governments, one for each :math:`t`, that
   choose time :math:`t` government actions after forecasting what future governments will do
 
 * Let :math:`w=\sum_{t=0}^\infty \beta^t \left[ u(c_t) + v(q_t M_t ) \right]`
@@ -781,7 +781,7 @@ Comparison of Sets
 ^^^^^^^^^^^^^^^^^^^
 
 The set of :math:`(w, \theta)` associated with  sustainable plans is  smaller than the set of :math:`(w, \theta)`
-pairs associated with competitive equilibria since the additional
+pairs associated with competitive equilibria, since the additional
 constraints associated with sustainability must also be satisfied
 
 Let's compute two examples, one with a low :math:`\beta`, another with a higher :math:`\beta`
