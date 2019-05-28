@@ -12,7 +12,7 @@ Fluctuating Interest Rates Deliver Fiscal Insurance
 
 **Co-authors: Anmol Bhandari and David Evans**
 
-In addition, what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -76,7 +76,7 @@ This lecture studies a special  AMSS model in which
 
    - the **market value** :math:`\frac{\bar b}{R_t(s_t)}` of government debt at time :math:`t`  varies as a time-invariant function of the Markov state :math:`s_t`
 
-   - fluctuations in the interest rate make gross earnings on government debt :math:`\frac{\bar b}{R_t(s_t)}` fully ensure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures
+   - fluctuations in the interest rate make gross earnings on government debt :math:`\frac{\bar b}{R_t(s_t)}` fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures
 
    - the state variable :math:`x` in a recursive representation of a Ramsey plan is a time-invariant function of the Markov state for :math:`t \geq 0`
 
@@ -109,12 +109,12 @@ For a long time, the Ramsey plan puts a nontrivial martingale-like component int
 smooths distortions from the labor tax rate across  time and Markov states
 
 But BEGS show that binding implementability constraints slowly push government debt in a direction designed to let the government use fluctuations in equilibrium interest
-rate  rather than fluctuations in  par values of debt to ensure against shocks to government expenditures
+rate  rather than fluctuations in  par values of debt to insure against shocks to government expenditures
 
 - This is a **weak** (but unrelenting) force that, starting from an initial debt level, for a long time is dominated by the stochastic martingale-like component of debt
   dynamics that the Ramsey planner uses to facilitate imperfect tax-smoothing across time and states
 
-- This weak force slowly drives the par value of government **assets** to a **constant** level at which the government can completely ensure against government expenditure shocks while
+- This weak force slowly drives the par value of government **assets** to a **constant** level at which the government can completely insure against government expenditure shocks while
   shutting down the stochastic component of debt dynamics
 
 - At that point, the tail of the par value of government debt becomes a trivial martingale: it is constant over time
@@ -212,7 +212,7 @@ Specification with CRRA Utility
 
 
 As in lectures :doc:`optimal taxation without state-contingent debt<amss>` and :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`,
-we assume that the representative agent has utility function:
+we assume that the representative agent has utility function
 
 .. math::
 
@@ -255,7 +255,7 @@ and
 
     (1+\Phi) [u_c(c_0) + u_n(c_0+g_0)] + \Phi[c_0 u_{cc}(c_0) + (c_0+g_0) u_{nn}(c_0+g_0)] - \Phi u_{cc}(c_0) b_0 = 0
 
-In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g` are each function of the Markov state :math:`s`
+In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
 
 The CRRA utility function is represented in the following class
 
@@ -654,7 +654,7 @@ BEGS also derive the following  approximation to the rate of convergence to :mat
 Formulas and Code Details
 --------------------------
 
-For our example, we describe some code that we use to compute the steady-state mean and the rate of convergence to it
+For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it
 
 The  values of :math:`\pi(s)` are .5, .5
 
