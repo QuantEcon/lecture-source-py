@@ -28,13 +28,13 @@ In addition what's in Anaconda, this lecture will need the following libraries
 Overview
 =============
 
-Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic 
+Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic
 
 For example, outputs, prices, and dividends typically display  irregular but persistent growth
 
 Asymptotic stationarity and ergodicity are key assumptions needed to make it possible to learn by applying statistical methods
 
-Are there ways to model  time series having persistent growth that still enable statistical learning based on a law of large number for 
+Are there ways to model  time series having persistent growth that still enables statistical learning based on a law of large number for
 an asymptotically stationary and ergodic process?
 
 The answer provided by Hansen and Scheinkman :cite:`Hans_Scheink_2009` is yes
@@ -53,7 +53,7 @@ If a process :math:`\{y_t\}` is an additive functional and :math:`\phi_t = \exp(
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` (chs. 5 and 8) describe discrete time versions of additive and multiplicative functionals
 
-In this lecture we describe both  additive functionals and multiplicative functionals 
+In this lecture, we describe both  additive functionals and multiplicative functionals
 
 We also describe  and compute  decompositions of additive and multiplicative processes into four components
 
@@ -63,11 +63,11 @@ We also describe  and compute  decompositions of additive and multiplicative pro
 
 #. an asymptotically **stationary** component
 
-#. a **martingale** 
+#. a **martingale**
 
 We describe how to construct,  simulate,  and interpret these components
 
-More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`Hans_Sarg_book_2016` 
+More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`Hans_Sarg_book_2016`
 
 
 A Particular Additive Functional
@@ -78,36 +78,36 @@ Hansen and Sargent :cite:`Hans_Sarg_book_2016`  describe a general class of addi
 
 This lecture focuses on a subclass of these: a scalar process :math:`\{y_t\}_{t=0}^\infty` whose increments are driven by a Gaussian vector autoregression
 
-Our special additive functional displays interesting time series behavior while also being easy to construct, simulate, and analyze 
+Our special additive functional displays interesting time series behavior while also being easy to construct, simulate, and analyze
 by using linear state-space tools
 
-We construct our  additive functional from two pieces, the first of which is a **first-order vector autoregression** (VAR) 
+We construct our  additive functional from two pieces, the first of which is a **first-order vector autoregression** (VAR)
 
 .. math::
     :label: old1_additive_functionals
 
-    x_{t+1} = A x_t + B z_{t+1} 
+    x_{t+1} = A x_t + B z_{t+1}
 
 
-Here 
+Here
 
-* :math:`x_t` is an :math:`n \times 1` vector, 
-  
+* :math:`x_t` is an :math:`n \times 1` vector,
+
 * :math:`A` is an :math:`n \times n` stable matrix (all eigenvalues lie within the open unit circle),
-  
+
 * :math:`z_{t+1} \sim {\cal N}(0,I)` is an :math:`m \times 1` IID shock,
-  
+
 * :math:`B` is an :math:`n \times m` matrix, and
 
 * :math:`x_0 \sim {\cal N}(\mu_0, \Sigma_0)` is a random initial condition for :math:`x`
 
 The second piece is an equation that expresses increments
-of :math:`\{y_t\}_{t=0}^\infty` as linear functions of 
+of :math:`\{y_t\}_{t=0}^\infty` as linear functions of
 
-* a scalar constant :math:`\nu`, 
-  
-* the vector :math:`x_t`, and 
-  
+* a scalar constant :math:`\nu`,
+
+* the vector :math:`x_t`, and
+
 * the same Gaussian vector :math:`z_{t+1}` that appears in the VAR :eq:`old1_additive_functionals`
 
 In particular,
@@ -115,7 +115,7 @@ In particular,
 .. math::
     :label: old2_additive_functionals
 
-    y_{t+1} - y_{t} = \nu + D x_{t} + F z_{t+1}  
+    y_{t+1} - y_{t} = \nu + D x_{t} + F z_{t+1}
 
 
 Here :math:`y_0 \sim {\cal N}(\mu_{y0}, \Sigma_{y0})` is a random
@@ -130,52 +130,52 @@ Linear State-Space Representation
 
 A convenient way to represent our additive functional is to use a :doc:`linear state space system <linear_models>`
 
-To do this, we set up state and observation vectors 
+To do this, we set up state and observation vectors
 
 .. math::
 
-    \hat{x}_t = \begin{bmatrix} 1 \\  x_t \\ y_t  \end{bmatrix} 
+    \hat{x}_t = \begin{bmatrix} 1 \\  x_t \\ y_t  \end{bmatrix}
     \quad \text{and} \quad
     \hat{y}_t = \begin{bmatrix} x_t \\ y_t  \end{bmatrix}
 
 
-Next we construct linear system
+Next we construct a linear system
 
 .. math::
 
-     \begin{bmatrix} 
-         1 \\ 
-         x_{t+1} \\ 
-         y_{t+1}  
-     \end{bmatrix} = 
-     \begin{bmatrix} 
-        1 & 0 & 0  \\ 
-        0  & A & 0 \\ 
-        \nu & D' &  1 \\ 
-    \end{bmatrix} 
-    \begin{bmatrix} 
-        1 \\ 
-        x_t \\ 
-        y_t 
-    \end{bmatrix} + 
-    \begin{bmatrix} 
-        0 \\  B \\ F'  
-    \end{bmatrix} 
-    z_{t+1} 
+     \begin{bmatrix}
+         1 \\
+         x_{t+1} \\
+         y_{t+1}
+     \end{bmatrix} =
+     \begin{bmatrix}
+        1 & 0 & 0  \\
+        0  & A & 0 \\
+        \nu & D' &  1 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        x_t \\
+        y_t
+    \end{bmatrix} +
+    \begin{bmatrix}
+        0 \\  B \\ F'
+    \end{bmatrix}
+    z_{t+1}
 
 
 .. math::
 
-    \begin{bmatrix} 
-        x_t \\ 
-        y_t  
-    \end{bmatrix} 
-    = \begin{bmatrix} 
-        0  & I & 0  \\ 
-        0 & 0  & 1 
-    \end{bmatrix} 
-    \begin{bmatrix} 
-        1 \\  x_t \\ y_t  
+    \begin{bmatrix}
+        x_t \\
+        y_t
+    \end{bmatrix}
+    = \begin{bmatrix}
+        0  & I & 0  \\
+        0 & 0  & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\  x_t \\ y_t
     \end{bmatrix}
 
 
@@ -191,7 +191,7 @@ This can be written as
 
 which is a standard linear state space system
 
-To study it, we could map it into an instance of `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_ 
+To study it, we could map it into an instance of `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_
 
 But here we will use a different set of code for simulation, for reasons described below
 
@@ -205,20 +205,20 @@ Let's run some simulations to build intuition
 
 .. _addfunc_eg1:
 
-In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x_t` follows a 4th-order scalar autoregession
+In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x_t` follows a 4th-order scalar autoregression
 
 .. math::
     :label: ftaf
 
     \tilde x_{t+1} = \phi_1 \tilde x_{t} + \phi_2 \tilde x_{t-1} +
     \phi_3 \tilde x_{t-2} +
-    \phi_4 \tilde x_{t-3} + \sigma z_{t+1} 
+    \phi_4 \tilde x_{t-3} + \sigma z_{t+1}
 
 in which the zeros :math:`z`  of the polynomial
 
 .. math::
-    
-     \phi(z) = ( 1 - \phi_1 z - \phi_2 z^2 - \phi_3 z^3 - \phi_4 z^4 ) 
+
+     \phi(z) = ( 1 - \phi_1 z - \phi_2 z^2 - \phi_3 z^3 - \phi_4 z^4 )
 
 are strictly greater than unity in absolute value
 
@@ -228,24 +228,24 @@ Let the increment in :math:`\{y_t\}` obey
 
 .. math::
 
-    y_{t+1} - y_t =  \nu + \tilde x_t + \sigma z_{t+1}  
+    y_{t+1} - y_t =  \nu + \tilde x_t + \sigma z_{t+1}
 
 
 with an initial condition for :math:`y_0`
 
 While :eq:`ftaf` is not a first order system like :eq:`old1_additive_functionals`, we know that it can be mapped  into a first order system
 
-* for an example of such a mapping, see :ref:`this example <lss_sode>` 
+* for an example of such a mapping, see :ref:`this example <lss_sode>`
 
 
-In fact this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals` -- :eq:`old2_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`
+In fact, this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals` -- :eq:`old2_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`
 
 You can try writing these matrices down now as an exercise --- correct expressions appear in the code below
 
 Simulation
 ----------------------------------
 
-When simulating we embed our variables into a bigger system 
+When simulating we embed our variables into a bigger system
 
 This system also constructs the components of the decompositions of :math:`y_t` and of :math:`\exp(y_t)` proposed by Hansen and Scheinkman :cite:`Hans_Scheink_2009`
 
@@ -266,16 +266,16 @@ For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a desc
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.01
     ν = 0.01 # Growth rate
-    
+
     # A matrix should be n x n
     A = np.array([[ϕ_1, ϕ_2, ϕ_3, ϕ_4],
                   [ 1,   0,    0,   0],
                   [ 0,   1,    0,   0],
                   [ 0,   0,    1,   0]])
-    
+
     # B matrix should be n x k
     B = np.array([[σ, 0, 0, 0]]).T
-    
+
     D = np.array([1, 0, 0, 0]) @ A
     F = np.array([1, 0, 0, 0]) @ B
 
@@ -283,9 +283,9 @@ For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a desc
 
     T = 150
     x, y = amf.lss.simulate(T)
-    
+
     fig, ax = plt.subplots(2, 1, figsize=(10, 9))
-    
+
     ax[0].plot(np.arange(T), y[amf.nx, :], color='k')
     ax[0].set_title('Path of $y_t$')
     ax[1].plot(np.arange(T), y[0, :], color='g')
@@ -319,7 +319,7 @@ functionals defined by :eq:`old1_additive_functionals` and :eq:`old2_additive_fu
 .. math::
 
     \begin{aligned}
-      H & := F + B'(I - A')^{-1} D 
+      H & := F + B'(I - A')^{-1} D
       \\
       g & := D' (I - A)^{-1}
     \end{aligned}
@@ -330,15 +330,15 @@ Then the Hansen-Scheinkman :cite:`Hans_Scheink_2009` decomposition is
 .. math::
 
     \begin{aligned}
-      y_t 
-      &= \underbrace{t \nu}_{\text{trend component}} + 
-         \overbrace{\sum_{j=1}^t H z_j}^{\text{Martingale component}} - 
-         \underbrace{g x_t}_{\text{stationary component}} + 
+      y_t
+      &= \underbrace{t \nu}_{\text{trend component}} +
+         \overbrace{\sum_{j=1}^t H z_j}^{\text{Martingale component}} -
+         \underbrace{g x_t}_{\text{stationary component}} +
          \overbrace{g x_0 + y_0}^{\text{initial conditions}}
     \end{aligned}
 
 
-At this stage you should pause and verify that :math:`y_{t+1} - y_t` satisfies :eq:`old2_additive_functionals`
+At this stage, you should pause and verify that :math:`y_{t+1} - y_t` satisfies :eq:`old2_additive_functionals`
 
 It is convenient for us to introduce the following notation:
 
@@ -359,61 +359,61 @@ definitions just given,
 
 .. math::
 
-    \begin{bmatrix} 
-        1 \\ 
-        t+1 \\ 
-        x_{t+1} \\ 
-        y_{t+1} \\ 
-        m_{t+1} 
-    \end{bmatrix} = 
-    \begin{bmatrix} 
-        1 & 0 & 0 & 0 & 0 \\ 
-        1 & 1 & 0 & 0 & 0 \\ 
-        0 & 0 & A & 0 & 0 \\ 
-        \nu & 0 & D' & 1 & 0 \\ 
-        0 & 0 & 0 & 0 & 1 
-    \end{bmatrix} 
-    \begin{bmatrix} 
-        1 \\ 
-        t \\ 
-        x_t \\ 
-        y_t \\ 
-        m_t 
+    \begin{bmatrix}
+        1 \\
+        t+1 \\
+        x_{t+1} \\
+        y_{t+1} \\
+        m_{t+1}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        1 & 0 & 0 & 0 & 0 \\
+        1 & 1 & 0 & 0 & 0 \\
+        0 & 0 & A & 0 & 0 \\
+        \nu & 0 & D' & 1 & 0 \\
+        0 & 0 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        t \\
+        x_t \\
+        y_t \\
+        m_t
     \end{bmatrix} +
-    \begin{bmatrix} 
-        0 \\ 
-        0 \\ 
-        B \\ 
-        F' \\ 
-        H' 
-    \end{bmatrix} 
-    z_{t+1} 
+    \begin{bmatrix}
+        0 \\
+        0 \\
+        B \\
+        F' \\
+        H'
+    \end{bmatrix}
+    z_{t+1}
 
 
 and
 
 .. math::
 
-    \begin{bmatrix} 
-        x_t \\ 
-        y_t \\ 
-        \tau_t \\ 
-        m_t \\ 
-        s_t 
-    \end{bmatrix} = 
-    \begin{bmatrix} 
-        0 & 0 & I & 0 & 0 \\ 
-        0 & 0 & 0 & 1 & 0 \\ 
-        0 & \nu & 0 & 0 & 0 \\ 
-        0 & 0 & 0 & 0 & 1 \\ 
-        0 & 0 & -g & 0 & 0 
-    \end{bmatrix} 
-    \begin{bmatrix} 
-        1 \\ 
-        t \\ 
-        x_t \\ 
-        y_t \\ 
-        m_t 
+    \begin{bmatrix}
+        x_t \\
+        y_t \\
+        \tau_t \\
+        m_t \\
+        s_t
+    \end{bmatrix} =
+    \begin{bmatrix}
+        0 & 0 & I & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 \\
+        0 & \nu & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 \\
+        0 & 0 & -g & 0 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        t \\
+        x_t \\
+        y_t \\
+        m_t
     \end{bmatrix}
 
 
@@ -421,7 +421,7 @@ With
 
 .. math::
 
-    \tilde{x} := \begin{bmatrix} 1 \\ t \\ x_t \\ y_t \\ m_t \end{bmatrix} 
+    \tilde{x} := \begin{bmatrix} 1 \\ t \\ x_t \\ y_t \\ m_t \end{bmatrix}
     \quad \text{and} \quad
     \tilde{y} := \begin{bmatrix} x_t \\ y_t \\ \tau_t \\ m_t \\ s_t \end{bmatrix}
 
@@ -444,13 +444,13 @@ Code
 
 The class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ mentioned above does all that we want to study our additive functional
 
-In fact `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ does more, 
-because it allows us to study  an associated multiplative functional as well 
+In fact, `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ does more
+because it allows us to study  an associated multiplicative functional as well
 
 (A hint that it does more is the name of the class -- here AMF stands for
-"additive and multiplicative functional" -- the code computes and displays objects assocaiated with 
+"additive and multiplicative functional" -- the code computes and displays objects associated with
 multiplicative functionals too)
-   
+
 Let's use this code (embedded above) to explore the :ref:`example process described above <addfunc_eg1>`
 
 If you run :ref:`the code that first simulated that example <addfunc_egcode>` again and then the method call
@@ -465,9 +465,9 @@ you will generate (modulo randomness) the plot
 
 
 
-When we plot multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plot population 95% probability coverage sets computed using the LinearStateSpace class
+When we plot multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plot the population 95% probability coverage sets computed using the LinearStateSpace class
 
-We have chosen to simulate many paths, all starting from the *same* nonrandom initial conditions :math:`x_0, y_0` (you can tell this from the shape of the 95% probability coverage shaded areas)
+We have chosen to simulate many paths, all starting from the *same* non-random initial conditions :math:`x_0, y_0` (you can tell this from the shape of the 95% probability coverage shaded areas)
 
 Notice tell-tale signs of these probability coverage shaded areas
 
@@ -489,8 +489,8 @@ Corresponding to the additive decomposition described above we have a multiplica
 
 .. math::
 
-    \frac{M_t}{M_0} 
-    = \exp (t \nu) \exp \Bigl(\sum_{j=1}^t H \cdot Z_j \Bigr) \exp \biggl( D'(I-A)^{-1} x_0 - D'(I-A)^{-1} x_t \biggr)  
+    \frac{M_t}{M_0}
+    = \exp (t \nu) \exp \Bigl(\sum_{j=1}^t H \cdot Z_j \Bigr) \exp \biggl( D'(I-A)^{-1} x_0 - D'(I-A)^{-1} x_t \biggr)
 
 
 or
@@ -506,7 +506,7 @@ where
 
     \tilde \nu =  \nu + \frac{H \cdot H}{2} ,
     \quad
-    \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1 
+    \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1
 
 
 and
@@ -522,7 +522,7 @@ Let's plot this multiplicative functional for our example
 
 
 
-If you run :ref:`the code that first simulated that example <addfunc_egcode>` again and then the method call in the cell below you'll 
+If you run :ref:`the code that first simulated that example <addfunc_egcode>` again and then the method call in the cell below you'll
 obtain the graph in the next cell
 
 
@@ -537,7 +537,7 @@ obtain the graph in the next cell
 As before, when we plotted multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plotted population 95% confidence bands computed using the LinearStateSpace class
 
 Comparing this figure and the last also helps show how geometric growth differs from
-arithmetic growth 
+arithmetic growth
 
 
 The top right panel of the above graph shows a panel of martingales associated with the panel of :math:`M_t = \exp(y_t)` that we have generated
@@ -552,7 +552,7 @@ Peculiar Large Sample Property
 ----------------------------------
 
 Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale component
-:math:`\widetilde M_t` of the multiplicative decomposition 
+:math:`\widetilde M_t` of the multiplicative decomposition
 
 *  While :math:`E_0 \widetilde M_t = 1` for all :math:`t \geq 0`,
    nevertheless :math:`\ldots`
@@ -563,7 +563,7 @@ Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale 
 The first property follows from :math:`\widetilde M_t` being a multiplicative martingale with initial condition
 :math:`\widetilde M_0 = 1`
 
-The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`Hans_Sarg_book_2016` 
+The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`Hans_Sarg_book_2016`
 
 The following simulation of many paths of :math:`\widetilde M_t` illustrates both properties
 
@@ -587,7 +587,7 @@ The purple 95 percent coverage intervale collapses around zero, illustrating the
 More About the Multiplicative Martingale
 ==========================================
 
-Let's drill down and study probability distribution of the multiplicative martingale  :math:`\{\widetilde M_t\}_{t=0}^\infty`  in 
+Let's drill down and study probability distribution of the multiplicative martingale  :math:`\{\widetilde M_t\}_{t=0}^\infty`  in
 more detail
 
 As we  have seen, it has representation
@@ -598,9 +598,9 @@ As we  have seen, it has representation
     \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1
 
 
-where :math:`H =  [F + B'(I-A')^{-1} D]` 
+where :math:`H =  [F + B'(I-A')^{-1} D]`
 
-It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal 
+It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal
 
 Simulating a Multiplicative Martingale Again
 -----------------------------------------------
@@ -608,9 +608,9 @@ Simulating a Multiplicative Martingale Again
 Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
 
 In particular, we want to simulate 5000 sample paths of length :math:`T` for the case in which :math:`x` is a scalar and
-:math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005` 
+:math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005`
 
-After accomplishing this, we want to display and stare at  histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T` 
+After accomplishing this, we want to display and stare at  histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T`
 
 
 
@@ -628,51 +628,51 @@ We'll do this by formulating the additive functional as a linear state space mod
 
 The heavy lifting is done inside the `AMF_LSS_VAR` class
 
-The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR` 
+The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR`
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     def simulate_xy(amf, T):
         "Simulate individual paths."
         foo, bar = amf.lss.simulate(T)
         x = bar[0, :]
         y = bar[1, :]
-        
+
         return x, y
-    
+
     def simulate_paths(amf, T=150, I=5000):
         "Simulate multiple independent paths."
-        
+
         # Allocate space
         storeX = np.empty((I, T))
         storeY = np.empty((I, T))
-        
+
         for i in range(I):
             # Do specific simulation
             x, y = simulate_xy(amf, T)
-            
+
             # Fill in our storage matrices
             storeX[i, :] = x
             storeY[i, :] = y
-            
+
         return storeX, storeY
-    
+
     def population_means(amf, T=150):
         # Allocate Space
         xmean = np.empty(T)
         ymean = np.empty(T)
-        
+
         # Pull out moment generator
         moment_generator = amf.lss.moment_sequence()
-    
+
         for tt in range (T):
             tmoms = next(moment_generator)
             ymeans = tmoms[1]
             xmean[tt] = ymeans[0]
             ymean[tt] = ymeans[1]
-            
+
         return xmean, ymean
 
 
@@ -682,38 +682,38 @@ simulations
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     def simulate_martingale_components(amf, T=1000, I=5000):
         # Get the multiplicative decomposition
         ν, H, g = amf.multiplicative_decomp()
-        
+
         # Allocate space
         add_mart_comp = np.empty((I, T))
-        
+
         # Simulate and pull out additive martingale component
         for i in range(I):
             foo, bar = amf.lss.simulate(T)
-            
+
             # Martingale component is third component
             add_mart_comp[i, :] = bar[2, :]
-            
+
         mul_mart_comp = np.exp(add_mart_comp - (np.arange(T) * H**2) / 2)
-        
+
         return add_mart_comp, mul_mart_comp
 
 
     # Build model
     amf_2 = AMF_LSS_VAR(0.8, 0.001, 1.0, 0.01,.005)
-    
+
     amc, mmc = simulate_martingale_components(amf_2, 1000, 5000)
-    
+
     amcT = amc[:, -1]
     mmcT = mmc[:, -1]
-    
+
     print("The (min, mean, max) of additive Martingale component in period T is")
     print(f"\t ({np.min(amcT)}, {np.mean(amcT)}, {np.max(amcT)})")
-    
+
     print("The (min, mean, max) of multiplicative Martingale component in period T is")
     print(f"\t ({np.min(mmcT)}, {np.mean(mmcT)}, {np.max(mmcT)})")
 
@@ -733,7 +733,7 @@ We will plot the densities of :math:`\log {\widetilde M}_t` for different values
 
 Note: ``scipy.stats.lognorm`` expects you to pass the standard deviation
 first :math:`(tH \cdot H)` and then the exponent of the mean as a
-keyword argument ``scale`` (``scale=np.exp(-t * H2 / 2)``) 
+keyword argument ``scale`` (``scale=np.exp(-t * H2 / 2)``)
 
 * See the documentation `here
   <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__
@@ -746,67 +746,67 @@ Here is some code that tackles these tasks
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     def Mtilde_t_density(amf, t, xmin=1e-8, xmax=5.0, npts=5000):
-        
+
         # Pull out the multiplicative decomposition
         νtilde, H, g = amf.multiplicative_decomp()
         H2 = H * H
-        
+
         # The distribution
         mdist = lognorm(np.sqrt(t * H2), scale=np.exp(-t * H2 / 2))
         x = np.linspace(xmin, xmax, npts)
         pdf = mdist.pdf(x)
-        
+
         return x, pdf
-        
-    
+
+
     def logMtilde_t_density(amf, t, xmin=-15.0, xmax=15.0, npts=5000):
-        
+
         # Pull out the multiplicative decomposition
         νtilde, H, g = amf.multiplicative_decomp()
         H2 = H * H
-        
+
         # The distribution
         lmdist = norm(-t * H2 / 2, np.sqrt(t * H2))
         x = np.linspace(xmin, xmax, npts)
         pdf = lmdist.pdf(x)
-        
+
         return x, pdf
-    
-        
+
+
     times_to_plot = [10, 100, 500, 1000, 2500, 5000]
     dens_to_plot = map(lambda t: Mtilde_t_density(amf_2, t, xmin=1e-8, xmax=6.0), times_to_plot)
     ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0, xmax=10.0), times_to_plot)
-    
+
     fig, ax = plt.subplots(3, 2, figsize=(8, 14))
     ax = ax.flatten()
-    
+
     fig.suptitle(r"Densities of $\tilde{M}_t$", fontsize=18, y=1.02)
     for (it, dens_t) in enumerate(dens_to_plot):
         x, pdf = dens_t
         ax[it].set_title(f"Density for time {times_to_plot[it]}")
         ax[it].fill_between(x, np.zeros_like(pdf), pdf)
-    
+
     plt.tight_layout()
     plt.show()
-    
-
-  
 
 
 
-These probability density functions help us understand mechanics underlying the  **peculiar property** of our multiplicative martingale 
 
-* As :math:`T` grows, most of probability mass shifts leftward toward zero -- 
 
-* for example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but 
+
+These probability density functions help us understand mechanics underlying the  **peculiar property** of our multiplicative martingale
+
+* As :math:`T` grows, most of the probability mass shifts leftward toward zero --
+
+* for example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but
   most of it is near :math:`0` for :math:`T = 5000`
 
 * As :math:`T` grows, the tail of the density of :math:`\widetilde M_T` lengthens toward the right
 
-* Enough mass moves toward the right tail to keep :math:`E \widetilde M_T = 1` 
+* Enough mass moves toward the right tail to keep :math:`E \widetilde M_T = 1`
   even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`
 
 
