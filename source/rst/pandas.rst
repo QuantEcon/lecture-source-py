@@ -24,11 +24,11 @@ Here's a popularity comparison over time against STATA and SAS, courtesy of Stac
 .. figure:: /_static/figures/pandas_vs_rest.png
 
 
-Just as `NumPy <http://www.numpy.org/>`_ provides the basic array data type plus core array operations, pandas 
+Just as `NumPy <http://www.numpy.org/>`_ provides the basic array data type plus core array operations, pandas
 
 #. defines fundamental structures for working with data and
 
-#. endows them with methods that facilitate operations such as 
+#. endows them with methods that facilitate operations such as
 
     * reading in data
 
@@ -68,7 +68,7 @@ Two important data types defined by pandas are  ``Series`` and ``DataFrame``
 
 You can think of a ``Series`` as a "column" of data, such as a collection of observations on a single variable
 
-A ``DataFrame`` is an object for storing related columns of data 
+A ``DataFrame`` is an object for storing related columns of data
 
 Let's start with `Series`
 
@@ -85,11 +85,11 @@ Pandas ``Series`` are built on top of NumPy arrays, and support many similar
 operations
 
 .. code-block:: python3
-    
+
     s * 100
 
 .. code-block:: python3
-    
+
     np.abs(s)
 
 But ``Series`` provide more than NumPy arrays
@@ -118,12 +118,12 @@ In fact, you can use much of the same syntax as Python dictionaries
     s['AMZN']
 
 .. code-block:: python3
-    
+
     s['AMZN'] = 0
     s
 
 .. code-block:: python3
-    
+
     'AAPL' in s
 
 
@@ -137,20 +137,20 @@ While a ``Series`` is a single column of data, a ``DataFrame`` is several column
 
 In essence, a ``DataFrame`` in pandas is analogous to a (highly optimized) Excel spreadsheet
 
-Thus, it is a powerful tool for representing and analyzing data that are naturally organized  into rows and columns, often with  descriptive indexes for individual rows and individual columns 
+Thus, it is a powerful tool for representing and analyzing data that are naturally organized  into rows and columns, often with  descriptive indexes for individual rows and individual columns
 
 .. only:: html
 
     Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv`` that can be downloaded
-    :download:`here </_static/code/pandas/data/test_pwt.csv>`
+    :download:`here <_static/code/pandas/data/test_pwt.csv>`
 
 .. only:: latex
 
-    Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv``, and can be downloaded 
+    Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv``, and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas/data/test_pwt.csv>`__
 
-Here's the contents of ``test_pwt.csv`` 
-    
+Here's the contents of ``test_pwt.csv``
+
 .. code-block:: none
 
     "country","country isocode","year","POP","XRAT","tcgdp","cc","cg"
@@ -173,7 +173,7 @@ Supposing you have this data saved as `test_pwt.csv` in the present working dire
     type(df)
 
 .. code-block:: python3
-    
+
     df
 
 
@@ -197,8 +197,8 @@ To select both rows and columns using integers, the ``iloc`` attribute should be
 
 To select rows and columns using a mixture of integers and labels, the ``loc`` attribute can be used in a similar way
 
-.. code-block:: python3  
-    
+.. code-block:: python3
+
     df.loc[df.index[2:5], ['country', 'tcgdp']]
 
 Let's imagine that we're only interested in population and total GDP (``tcgdp``)
@@ -206,7 +206,7 @@ Let's imagine that we're only interested in population and total GDP (``tcgdp``)
 One way to strip the data frame ``df`` down to only these variables is to overwrite the dataframe using the selection method described above
 
 .. code-block:: python3
-    
+
     df = df[['country', 'POP', 'tcgdp']]
     df
 
@@ -249,7 +249,7 @@ For example, we can easily generate a bar plot of GDP per capita
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-    df['GDP percap'].plot(kind='bar')    
+    df['GDP percap'].plot(kind='bar')
     plt.show()
 
 At the moment the data frame is ordered alphabetically on the countries---let's change it to GDP per capita
@@ -280,7 +280,7 @@ An important database for economists is `FRED <https://research.stlouisfed.org/f
 
 For example, suppose that we are interested in the `unemployment rate <https://research.stlouisfed.org/fred2/series/UNRATE>`_
 
-Via FRED, the entire series for the US civilian unemployment rate can be downloaded directly by entering 
+Via FRED, the entire series for the US civilian unemployment rate can be downloaded directly by entering
 this URL into your browser (note that this requires an internet connection)
 
 .. code-block:: none
@@ -310,7 +310,7 @@ To begin, try the following code on your computer
 .. code-block:: python3
 
     import requests
-    
+
     r = requests.get('http://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv')
 
 If there's no error message, then the call has succeeded
@@ -336,11 +336,11 @@ Assuming that all is working, you can now proceed to using the ``source`` object
     source[0]
 
 .. code-block:: python3
-    
+
     source[1]
 
 .. code-block:: python3
-    
+
     source[2]
 
 We could now write some additional code to parse this text and store it as an array
@@ -360,19 +360,19 @@ The data has been read into a pandas DataFrame called ``data`` that we can now m
     type(data)
 
 .. code-block:: python3
-    
+
     data.head()  # A useful method to get a quick look at a data frame
-    
+
 
 .. code-block:: python3
-    
+
     pd.set_option('precision', 1)
     data.describe()  # Your output might differ slightly
-    
+
 We can also plot the unemployment rate from 2006 to 2012 as follows
 
 .. code-block:: python3
-    
+
     data['2006':'2012'].plot()
     plt.show()
 
@@ -400,7 +400,7 @@ DataFrame, and plots time series for the US and Australia
 .. only:: html
 
     (The file is ``pandas/wb_download.py``, and can be downloaded
-    :download:`here </_static/code/pandas/wb_download.py>`
+    :download:`here <_static/code/pandas/wb_download.py>`
 
 .. only:: latex
 
@@ -437,7 +437,7 @@ Write a program to calculate the percentage price change over 2013 for the follo
 .. only:: html
 
     A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv``, and can be downloaded
-    :download:`here </_static/code/pandas/data/ticker_data.csv>`
+    :download:`here <_static/code/pandas/data/ticker_data.csv>`
 
 .. only:: latex
 
@@ -461,7 +461,7 @@ Exercise 1
 
 .. code-block:: python3
 
-    ticker = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas/data/ticker_data.csv')  
+    ticker = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas/data/ticker_data.csv')
     ticker.set_index('Date', inplace=True)
 
     ticker_list = {'INTC': 'Intel',
@@ -477,14 +477,14 @@ Exercise 1
                    'GOOG': 'Google',
                    'SNE': 'Sony',
                    'PTR': 'PetroChina'}
-    
+
     price_change = pd.Series()
-    
+
     for tick in ticker_list:
         change = 100 * (ticker.loc[ticker.index[-1], tick] - ticker.loc[ticker.index[0], tick]) / ticker.loc[ticker.index[0], tick]
         name = ticker_list[tick]
         price_change[name] = change
-            
+
     price_change.sort_values(inplace=True)
     fig, ax = plt.subplots(figsize=(10,8))
     price_change.plot(kind='bar', ax=ax)
