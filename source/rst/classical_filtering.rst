@@ -576,7 +576,7 @@ Infinite Horizon Prediction and Filtering Problems
 =====================================================
 
 It is instructive to compare the finite-horizon formulas based on linear algebra decompositions of finite-dimensional covariance matrices
-with classic formulas for the infinite horizon and infinite history prediction and control problems
+with classic formulas for infinite horizon and infinite history prediction and control problems
 
 These classic infinite horizon formulas used the mathematics of :math:`z`-transforms and lag operators
 
