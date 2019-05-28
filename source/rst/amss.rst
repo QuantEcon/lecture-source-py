@@ -158,7 +158,7 @@ yields:
     b_t(s^{t-1}) =  z(s^t) + \beta  \sum_{s^{t+1}\vert s^t}  \pi_{t+1}(s^{t+1} | s^t)
                            { u_c(s^{t+1}) \over u_c(s^{t}) } \; b_{t+1}(s^t)
 
-Components of :math:`z(s^t)` on the right side depends on :math:`s^t`, but the left side is required to depend on :math:`s^{t-1}` only
+Components of :math:`z(s^t)` on the right side depend on :math:`s^t`, but the left side is required to depend on :math:`s^{t-1}` only
 
 **This is what it means for one-period government debt to be risk-free**
 
@@ -631,7 +631,7 @@ that for each :math:`s_-`, the sum over :math:`s` equals unity
 Absence of State Variable Degeneracy
 ------------------------------------
 
-Along with a Ramsey plan, the state variable :math:`x_t = x_t(s^t, b_0)`
+Along a Ramsey plan, the state variable :math:`x_t = x_t(s^t, b_0)`
 becomes a function of the history :math:`s^t` and initial
 government debt :math:`b_0`
 
@@ -1014,10 +1014,10 @@ the two policies over 200 periods
 .. [#fn_a]
     In an allocation that solves the Ramsey problem and that levies distorting
     taxes on labor, why would the government ever want to hand revenues back
-    to the private sector? It would not in an economy with state-contingent debt since
+    to the private sector? It would not in an economy with state-contingent debt, since
     any such allocation could be improved by lowering distortionary taxes
-    rather than handing out lump-sum transfers. But without state-contingent
-    debt, there can be circumstances when a government would like to make
+    rather than handing out lump-sum transfers. But, without state-contingent
+    debt there can be circumstances when a government would like to make
     lump-sum transfers to the private sector.
 
 .. [#fn_b]
