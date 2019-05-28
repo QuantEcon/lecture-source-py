@@ -27,7 +27,7 @@ topic in the lecture :doc:`Samuelson Multiplier Accelerator<samuelson>`
 
 In addition to providing foundations for Samuelson's work and extensions of
 it, this lecture can be read as a stand-alone quick reminder of key results
-from elementary-high school trigonometry
+from elementary high school trigonometry
 
 So let's dive in
 
