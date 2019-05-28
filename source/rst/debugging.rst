@@ -118,7 +118,7 @@ You should be dropped into a new prompt that looks something like this
 .. code-block:: ipython
     :class: no-execute
 
-    ipdb> 
+    ipdb>
 
 (You might see `pdb>` instead)
 
@@ -190,7 +190,7 @@ Here the original problem is fixed, but we've accidentally written
 
 Now there won't be any exception, but the plot won't look right
 
-To investigate, it would be helpful if we could inspect variables like ``x`` during execution of the function
+To investigate, it would be helpful if we could inspect variables like ``x`` during the execution of the function
 
 To this end, we add a "break point" by inserting  ``breakpoint()`` inside the function code block
 
@@ -235,9 +235,9 @@ To exit from the debugger, use ``q``
 Other Useful Magics
 ==================================
 
-In this lecture we used the ``%debug`` IPython magic
+In this lecture, we used the ``%debug`` IPython magic
 
-There are many other useful magics: 
+There are many other useful magics:
 
 * ``%precision 4`` sets printed precision for floats to 4 decimal places
 
@@ -246,4 +246,3 @@ There are many other useful magics:
 * ``%quickref`` gives a list of magics
 
 The full list of magics is `here <http://ipython.readthedocs.org/en/stable/interactive/magics.html>`_
-
