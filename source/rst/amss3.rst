@@ -42,7 +42,7 @@ of :cite:`BEGS1` (BEGS)
 
 We study an  :cite:`AMSS_2002` economy with  three Markov states driving government expenditures
 
- * In a :doc:`previous lecture<amss2>`, we showed that with only two Markov states, it is possible that eventually, endogenous
+ * In a :doc:`previous lecture<amss2>`, we showed that with only two Markov states, it is possible that eventually endogenous
    interest rate fluctuations support complete markets allocations and Ramsey outcomes
 
  * The presence of three states  prevents the full spanning that eventually prevails in the two-state example featured in
