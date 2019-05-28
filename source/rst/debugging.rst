@@ -190,7 +190,7 @@ Here the original problem is fixed, but we've accidentally written
 
 Now there won't be any exception, but the plot won't look right
 
-To investigate, it would be helpful if we could inspect variables like ``x`` during the execution of the function
+To investigate, it would be helpful if we could inspect variables like ``x`` during execution of the function
 
 To this end, we add a "break point" by inserting  ``breakpoint()`` inside the function code block
 
