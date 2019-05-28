@@ -37,7 +37,7 @@ different timing protocols for government decision making
 
 The model focuses attention on intertemporal tradeoffs between
 
-- welfare benefits that anticipated deflation generate by increasing a representative agent's liquidity as measured by his or her real money balances, and
+- welfare benefits that anticipated deflation generates by increasing a representative agent's liquidity as measured by his or her real money balances, and
 
 - costs associated with  distorting taxes that must be used to withdraw money from the economy in order to generate anticipated deflation
 
@@ -141,7 +141,7 @@ real balances :math:`m_t - p_t = -\alpha \theta_t`
 We shall use this insight to help us simplify and analyze government policy problems
 
 That future rates of money creation influence earlier rates of inflation
-create optimal government policy problems in which timing protocols
+creates optimal government policy problems in which timing protocols
 matter
 
 We can rewrite the model  as:
@@ -472,7 +472,7 @@ that alter either
 
 - the timing protocol and/or
 
-- assumptions about how government decision-makers think their decisions affect private agents' beliefs about future government decisions
+- assumptions about how government decision makers think their decisions affect private agents' beliefs about future government decisions
 
 A Constrained-to-a-Constant-:math:`\mu` Ramsey Government
 ==========================================================
@@ -947,7 +947,7 @@ A Theory of Government Decision Making
 
 
 :math:`\vec \mu` is chosen by a sequence of government
-decision-makers, one for each :math:`t \geq 0`
+decision makers, one for each :math:`t \geq 0`
 
 We assume the following within-period and between-period timing protocol
 for each :math:`t \geq 0`:
@@ -1103,7 +1103,7 @@ initial value
 
 Imitating his idea, we can construct a self-enforcing plan
 :math:`\vec \mu` with a low time :math:`0` value to the government by
-insisting that future government decision-makers set :math:`\mu_t` to a value yielding low
+insisting that future government decision makers set :math:`\mu_t` to a value yielding low
 one-period utilities to the household for a long time, after which
 government  decisions thereafter  yield high one-period utilities
 
