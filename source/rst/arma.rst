@@ -48,7 +48,7 @@ However, ARMA has some important structure that makes it valuable to study them 
 
 Analysis in the frequency domain is also called spectral analysis
 
-In essence, the spectral analysis provides an alternative representation of the
+In essence, spectral analysis provides an alternative representation of the
 autocovariance function of a covariance stationary process
 
 Having a second representation of this important object
@@ -94,7 +94,7 @@ As in other fields, successful economic modeling typically assumes the existence
 
 If these assumptions are correct, then each new observation :math:`X_t, X_{t+1},\ldots` can provide additional information about the time-invariant features, allowing us to  learn from as data arrive
 
-For this reason, we will focus on what follows on processes that are *stationary* --- or become so after a transformation
+For this reason, we will focus in what follows on processes that are *stationary* --- or become so after a transformation
 (see for example :doc:`this lecture <additive_functionals>` and :doc:`this lecture <multiplicative_functionals>`)
 
 
@@ -374,7 +374,7 @@ When :math:`(x, y)` is regarded as a complex number, :math:`x` is called the *re
 
 The *modulus* or *absolute value* of a complex number :math:`z = (x, y)` is just its Euclidean norm in :math:`\mathbb R^2`, but is usually written as :math:`|z|` instead of :math:`\|z\|`
 
-The product of two complex numbers :math:`(x, y)` and :math:`(u, v)` is defined to be :math:`(xu - vy, xv + yu)`, while an addition is standard pointwise vector addition
+The product of two complex numbers :math:`(x, y)` and :math:`(u, v)` is defined to be :math:`(xu - vy, xv + yu)`, while addition is standard pointwise vector addition
 
 When endowed with these notions of multiplication and addition, the set of complex numbers forms a `field <https://en.wikipedia.org/wiki/Field_%28mathematics%29>`_ --- addition and multiplication play well together, just as they do in :math:`\mathbb R`
 
@@ -707,7 +707,7 @@ Summarizing these results, we say that any separable Hilbert space is isometrica
 
 In essence, this says that each separable Hilbert space we consider is just a different way of looking at the fundamental space :math:`\ell_2`
 
-With this in mind, let's specialize in a setting where
+With this in mind, let's specialize to a setting where
 
 * :math:`\gamma \in \ell_2` is the autocovariance function of a covariance stationary process, and :math:`f` is the spectral density
 * :math:`H = L_2`, where :math:`L_2` is the set of square summable functions on the interval :math:`[-\pi, \pi]`, with inner product :math:`\langle g, h \rangle = \int_{-\pi}^{\pi} g(\omega) h(\omega) d \omega`
@@ -856,7 +856,7 @@ Also
 
    * the variance  equals :math:`1 = \frac{1}{2 \pi} \int_{-\pi}^\pi 1 d \omega` as it should
 
-   * the covariogram and impulse response looks as they should
+   * the covariogram and impulse response look as they should
 
    * it is actually challenging to visualize a time series realization of white noise -- a sequence of surprises -- but this too looks pretty good
 
