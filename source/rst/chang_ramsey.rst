@@ -237,7 +237,7 @@ Within-period timing of decisions is as follows:
 * first, the government chooses :math:`h_t` and :math:`x_t`;
 
 *  then given :math:`\vec q` and its expectations about future values of :math:`x`
-   and :math:`y`\ ’s, the household choose :math:`M_t` and therefore :math:`m_t`
+   and :math:`y`\ ’s, the household chooses :math:`M_t` and therefore :math:`m_t`
    because :math:`m_t = q_t M_t`;
 
 * then output :math:`y_t = f(x_t)` is realized;
@@ -365,7 +365,7 @@ Chang constructs the following objects
 
    * Chang exploits the fact that a competitive equilibrium consists of a first
      period outcome :math:`(h_0, m_0, x_0)` and a continuation competitive
-     equilibrium with the marginal utility of money :math:`\theta _1 \in \Omega`
+     equilibrium with marginal utility of money :math:`\theta _1 \in \Omega`
 
 2. Competitive equilibria that have a recursive representation
 
@@ -772,7 +772,7 @@ We approximate :math:`S` by:
 A key feature of this algorithm is that we discretize the action space,
 i.e., we create a grid of possible values for :math:`m` and :math:`h`
 (note that :math:`x` is implied by :math:`m` and :math:`h`). This
-discretization simplifies the computation of :math:`\tilde S` by allowing us
+discretization simplifies computation of :math:`\tilde S` by allowing us
 to find it by solving a sequence of linear programs
 
 The *outer hyperplane approximation algorithm* proceeds as follows:
@@ -1015,7 +1015,7 @@ The next figure plots the optimal policy functions; values of
 With the first set of parameter values,  the value of :math:`\theta'` chosen by the Ramsey
 planner quickly hits the upper limit of :math:`\Omega`
 
-But with the second set of parameters,  it converges to a value in the interior of the set
+But with the second set of parameters it converges to a value in the interior of the set
 
 Consequently, the choice of :math:`\bar \theta` is clearly important with the first set of parameter values
 
