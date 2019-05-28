@@ -24,7 +24,7 @@ Overview
 =============
 
 This lecture describes how Chang :cite:`chang1998credible`
-analyzed **competitive equilibria** and a best competitive equilibrium called a  **Ramsey plan**
+analyzed **competitive equilibria** and the best competitive equilibrium called a  **Ramsey plan**
 
 He did this by
 
@@ -237,7 +237,7 @@ Within-period timing of decisions is as follows:
 * first, the government chooses :math:`h_t` and :math:`x_t`;
 
 *  then given :math:`\vec q` and its expectations about future values of :math:`x`
-   and :math:`y`\ ’s, the household chooses :math:`M_t` and therefore :math:`m_t`
+   and :math:`y`\ ’s, the household choose :math:`M_t` and therefore :math:`m_t`
    because :math:`m_t = q_t M_t`;
 
 * then output :math:`y_t = f(x_t)` is realized;
@@ -275,7 +275,7 @@ Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem
    \begin{aligned}
    \mathcal{L} & = \max_{\vec c, \vec M}
    \min_{\vec \lambda, \vec \mu} \sum_{t=0}^\infty \beta^t
-   \bigl\{ u(c_t) + v(M_t q_t) + 
+   \bigl\{ u(c_t) + v(M_t q_t) +
    \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
    & \quad \quad \quad  + \mu_t [\bar m - q_t  M_t] \bigr\}
    \end{aligned}
@@ -345,7 +345,7 @@ It is required that time :math:`t` components :math:`(m_t, x_t, h_t) \in E`
 **Definition:**
 
 Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system :math:`\vec q`, and allocation
-:math:`(\vec c, \vec m, \vec y)` are said to be a *competitive equilibrium* if
+:math:`(\vec c, \vec m, \vec y)` is said to be a *competitive equilibrium* if
 
 * :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`
 
@@ -365,7 +365,7 @@ Chang constructs the following objects
 
    * Chang exploits the fact that a competitive equilibrium consists of a first
      period outcome :math:`(h_0, m_0, x_0)` and a continuation competitive
-     equilibrium with marginal utility of money :math:`\theta _1 \in \Omega`
+     equilibrium with the marginal utility of money :math:`\theta _1 \in \Omega`
 
 2. Competitive equilibria that have a recursive representation
 
@@ -378,12 +378,12 @@ Chang constructs the following objects
 
      .. math::
         :label: Chang500
-        
-        \begin{split} 
+
+        \begin{split}
         h_t & = h(\theta_t) \\
         m_t & = m(\theta_t) \\
         x_t & = x(\theta_t) \\
-        \theta_{t+1} & = \Psi(\theta_t) 
+        \theta_{t+1} & = \Psi(\theta_t)
         \end{split}
 
      starting from :math:`\theta_0`
@@ -442,7 +442,7 @@ Chang works with  a set of competitive equilibria defined as follows
 are satisfied :math:`\bigr\}`
 
 :math:`CE` is not empty because there exists a competitive equilibrium
-with :math:`h_t =1` for all :math:`t \geq 1`, namely, an equilibrium with a
+with :math:`h_t =1` for all :math:`t \geq 1`, namely, an equilibrium with
 constant money supply and constant price level
 
 Chang establishes that :math:`CE` is also compact
@@ -480,8 +480,8 @@ money holdings the property that the value of :math:`m_0` consistent with
 the representative household’s choices depends on :math:`(\vec h_1, \vec m_1)`
 
 This dependence is captured in the definition above by making :math:`\Omega`
-be the set of first period values of :math:`\theta_0` satisfying
-:math:`\theta_0 = u'(f(x_0)) (m_0 + x_0)` for first period component
+be the set of first-period values of :math:`\theta_0` satisfying
+:math:`\theta_0 = u'(f(x_0)) (m_0 + x_0)` for first-period component
 :math:`(m_0,h_0)` of competitive equilibrium sequences
 :math:`(\vec m, \vec x, \vec h)`
 
@@ -492,7 +492,7 @@ Next Chang advances:
 **Definition:** :math:`\Gamma(\theta) = \{ (\vec m, \vec x, \vec h) \in CE |  \theta = u'(f(x_0))(m_0 + x_0) \}`
 
 Thus, :math:`\Gamma(\theta)` is the set of competitive equilibrium sequences
-:math:`(\vec m, \vec x, \vec h)` whose first period components
+:math:`(\vec m, \vec x, \vec h)` whose first-period components
 :math:`(m_0, h_0)` deliver the prescribed value :math:`\theta` for first
 period marginal utility
 
@@ -565,7 +565,7 @@ and :eq:`eqn_chang_ramsey11` hold
 
 
 
-Thus, :math:`B(Q)` is the set of first period :math:`\theta`\ ’s attainable with
+Thus, :math:`B(Q)` is the set of first-period :math:`\theta`\ ’s attainable with
 :math:`(m,x,h) \in E` and some :math:`\theta' \in Q`
 
 **Proposition**:
@@ -621,7 +621,7 @@ choice in period :math:`t` to the set
 
 .. math:: CE_\pi^0 = \{ h \in \Pi: {\rm there \ is } \ \vec h \in CE_\pi \ {\rm with } \ h=h_0 \} .
 
-In words, :math:`CE_\pi^0` is the set of all first period money growth
+In words, :math:`CE_\pi^0` is the set of all first-period money growth
 rates :math:`h=h_0`, each of which is consistent with the existence of a
 sequence of money growth rates :math:`\vec h` starting from :math:`h_0`
 in the initial period and for which a competitive equilibrium exists
@@ -647,7 +647,7 @@ equilibrium sequence
 Another Operator
 ------------------
 
-At this point it is convenient to introduce another operator that can be
+At this point, it is convenient to introduce another operator that can be
 used to compute a Ramsey plan
 
 For computing a Ramsey plan, this
@@ -772,7 +772,7 @@ We approximate :math:`S` by:
 A key feature of this algorithm is that we discretize the action space,
 i.e., we create a grid of possible values for :math:`m` and :math:`h`
 (note that :math:`x` is implied by :math:`m` and :math:`h`). This
-discretization simplifies computation of :math:`\tilde S` by allowing us
+discretization simplifies the computation of :math:`\tilde S` by allowing us
 to find it by solving a sequence of linear programs
 
 The *outer hyperplane approximation algorithm* proceeds as follows:
@@ -870,7 +870,7 @@ The package can be installed in a terminal/command prompt with pip
 
   def plot_competitive(ChangModel):
       """
-      Method that only plots competitive equilibrium set
+      A Method that only plots a competitive equilibrium set
       """
       poly_C = polytope.Polytope(ChangModel.H, ChangModel.c1_c)
       ext_C = polytope.extreme(poly_C)
@@ -914,7 +914,7 @@ Solving a Continuation Ramsey Planner's Bellman Equation
 
 In this section we solve the Bellman equation confronting a **continuation Ramsey planner**
 
-The construction of a Ramsey plan is decomposed into a two subproblems in :doc:`Ramsey plans, time inconsistency, sustainable plans<calvo>`
+The construction of a Ramsey plan is decomposed into two subproblems in :doc:`Ramsey plans, time inconsistency, sustainable plans<calvo>`
 and :doc:`dynamic Stackelberg problems<dyn_stack>`
 
 * Subproblem 1 is faced by a sequence of continuation Ramsey planners at :math:`t \geq 1`
@@ -1015,7 +1015,7 @@ The next figure plots the optimal policy functions; values of
 With the first set of parameter values,  the value of :math:`\theta'` chosen by the Ramsey
 planner quickly hits the upper limit of :math:`\Omega`
 
-But with the second set of parameters  it converges to a value in the interior of the set
+But with the second set of parameters,  it converges to a value in the interior of the set
 
 Consequently, the choice of :math:`\bar \theta` is clearly important with the first set of parameter values
 
@@ -1066,7 +1066,7 @@ These are shown below for both sets of parameters
 Next Steps
 ------------
 
-In :doc:`Credible Government Policies in Chang Model<chang_credible>` we shall find
+In :doc:`Credible Government Policies in Chang Model<chang_credible>`, we shall find
 a subset of competitive equilibria that are **sustainable**
 in the sense that a sequence of government administrations  that chooses
 sequentially, rather than once and for all at time :math:`0` will choose to implement them

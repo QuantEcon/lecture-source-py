@@ -1,7 +1,7 @@
 """
 Author: Sebastian Graves
 
-Provides a class called ChangModel to solve different 
+Provides a class called ChangModel to solve different
 parameterizations of the Chang (1998) model.
 """
 
@@ -48,7 +48,7 @@ class ChangModel:
             θ = uc_p(f(h, m)) * (m + x)
             return θ
 
-        # Create set of possible action combinations, A
+        # Create a set of possible action combinations, A
         A1 = np.linspace(h_min, h_max, n_h).reshape(n_h, 1)
         A2 = np.linspace(self.m_min, self.m_max, n_m).reshape(n_m, 1)
         self.A = np.concatenate((np.kron(np.ones((n_m, 1)), A1),
@@ -85,11 +85,11 @@ class ChangModel:
             origin and radius. It is based on a similar function in QuantEcon's Games.jl
             """
 
-            # First, create unit circle. Want points placed on [0, 2π]
+            # First, create a unit circle. Want points placed on [0, 2π]
             inc = 2 * np.pi / N
             degrees = np.arange(0, 2 * np.pi, inc)
 
-            # Points on circle
+            # Points on the circle
             H = np.zeros((N, 2))
             for i in range(N):
                 x = degrees[i]
@@ -149,7 +149,7 @@ class ChangModel:
                 # If m = mbar, use inequality constraint
                 if self.A[j, 1] == self.mbar:
                     bineq_mbar[-1] = self.euler_vec[j]
-                    res = linprog(c, A_ub=aineq_mbar, b_ub=bineq_mbar, 
+                    res = linprog(c, A_ub=aineq_mbar, b_ub=bineq_mbar,
                                   bounds=(self.w_bnds_s, self.p_bnds_s))
                 else:
                     beq = self.euler_vec[j]
@@ -192,7 +192,7 @@ class ChangModel:
             for j in range(self.N_a):
                 # Only try if consumption is possible
                 if self.f_vec[j] > 0:
-                
+
                     # COMPETITIVE EQUILIBRIA
                     # If m = mbar, use inequality constraint
                     if self.A[j, 1] == self.mbar:
@@ -213,7 +213,7 @@ class ChangModel:
                     if self.A[j, 1] == self.mbar:
                         bineq_S_mbar[-2] = self.euler_vec[j]
                         bineq_S_mbar[-1] = self.u_vec[j] - self.br_z
-                        res = linprog(c, A_ub=aineq_S_mbar, b_ub=bineq_S_mbar, 
+                        res = linprog(c, A_ub=aineq_S_mbar, b_ub=bineq_S_mbar,
                                       bounds=(self.w_bnds_s, self.p_bnds_s))
                     # If m < mbar, use equality constraint
                     else:
@@ -285,30 +285,30 @@ class ChangModel:
         Continuous Method to solve the Bellman equation in section 25.3
         """
         mbar = self.mbar
-        
+
         # Utility and production functions
         uc = lambda c: np.log(c)
         uc_p = lambda c: 1 / c
         v = lambda m: 1 / 500 * (mbar * m - 0.5 * m**2)**0.5
         v_p = lambda m: 0.5/500 * (mbar*m - 0.5 * m**2)**(-0.5) * (mbar - m)
         u = lambda h, m: uc(f(h, m)) + v(m)
- 
+
         def f(h, m):
             x = m * (h - 1)
             f = 180 - (0.4 * x)**2
             return f
- 
+
         def θ(h, m):
             x = m * (h - 1)
             θ = uc_p(f(h, m)) * (m + x)
             return θ
- 
+
         # Bounds for Maximization
         lb1 = np.array([self.h_min, 0, θ_min])
         ub1 = np.array([self.h_max, self.mbar - 1e-5, θ_max])
         lb2 = np.array([self.h_min, θ_min])
         ub2 = np.array([self.h_max, θ_max])
- 
+
         # Initialize Value Function coefficents
         # Calculate roots of Chebyshev polynomial
         k = np.linspace(order, 1, order)
@@ -318,30 +318,30 @@ class ChangModel:
         # Create basis matrix
         Φ = cheb.chebvander(roots, order - 1)
         c = np.zeros(Φ.shape[0])
- 
+
         # Function to minimize and constraints
         def p_fun(x):
             scale = -1 + 2 * (x[2] - θ_min)/(θ_max - θ_min)
             p_fun = - (u(x[0], x[1]) + self.β * np.dot(cheb.chebvander(scale, order - 1), c))
             return p_fun
- 
+
         def p_fun2(x):
             scale = -1 + 2*(x[1] - θ_min)/(θ_max - θ_min)
             p_fun = - (u(x[0],mbar) + self.β * np.dot(cheb.chebvander(scale, order - 1), c))
             return p_fun
- 
+
         cons1 = ({'type': 'eq',   'fun': lambda x: uc_p(f(x[0], x[1])) * x[1] * (x[0] - 1) + v_p(x[1]) * x[1] + self.β * x[2] - θ},
                  {'type': 'eq',   'fun': lambda x: uc_p(f(x[0], x[1])) * x[0] * x[1] - θ})
         cons2 = ({'type': 'ineq', 'fun': lambda x: uc_p(f(x[0], mbar)) * mbar * (x[0] - 1) + v_p(mbar) * mbar + self.β * x[1] - θ},
                  {'type': 'eq',   'fun': lambda x: uc_p(f(x[0], mbar)) * x[0] * mbar - θ})
- 
+
         bnds1 = np.concatenate([lb1.reshape(3, 1), ub1.reshape(3, 1)], axis=1)
         bnds2 = np.concatenate([lb2.reshape(2, 1), ub2.reshape(2, 1)], axis=1)
- 
+
         # Bellman Iterations
         diff = 1
         iters = 1
- 
+
         while diff > tol:
         # 1. Maximization, given value function guess
             p_iter1 = np.zeros(order)
