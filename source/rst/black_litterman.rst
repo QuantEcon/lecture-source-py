@@ -210,7 +210,7 @@ Black and Litterman's responded to this situation in the following way:
 In particular, given :math:`\Sigma` and a reasonable value
 of :math:`\delta`, Black and Litterman reverse engineered a vector
 :math:`\mu_{BL}` of mean excess returns that makes the :math:`w`
-implied by formula :eq:`risky-portfolio` equals the **actual** market portfolio
+implied by formula :eq:`risky-portfolio` equal the **actual** market portfolio
 :math:`w_m`, so that
 
 .. math:: w_m = (\delta \Sigma)^{-1} \mu_{BL}
@@ -479,7 +479,7 @@ The curves defined by equation :eq:`ellipse` can be
 labeled as iso-likelihood ellipses
 
     **Remark:** More generally there is a class of density functions
-    that possess this feature, i.e.
+    that possesses this feature, i.e.
 
     .. math::
 
@@ -1185,7 +1185,7 @@ The variance of the sample mean is given by
 It is explicit in the above equation that time dependence in the data
 inflates the variance of the mean estimator through the covariance
 terms. Moreover, as we can see, a higher sampling frequency---smaller
-:math:`h`---makes all the covariance terms larger, everything else is
+:math:`h`---makes all the covariance terms larger, everything else being
 fixed. This implies a relatively slower rate of convergence of the
 sample average for high-frequency data
 
