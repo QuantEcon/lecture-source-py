@@ -21,22 +21,22 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model
+In this, lecture we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model
 
-In that lecture we solved the associated discounted dynamic programming problem using value function iteration
+In that lecture, we solved the associated discounted dynamic programming problem using value function iteration
 
 The beauty of this technique is its broad applicability
 
-With numerical problems, however, we can often attain higher efficiency in specific 
+With numerical problems, however, we can often attain higher efficiency in specific
 applications by deriving methods that are carefully tailored to the application at hand
 
-The stochastic optimal growth model has plenty of structure to exploit for this purpose, 
+The stochastic optimal growth model has plenty of structure to exploit for this purpose,
 especially when we adopt some concavity and smoothness assumptions over primitives
 
-We'll use this structure to obtain an **Euler equation**  based method that's more efficient 
+We'll use this structure to obtain a **Euler equation**  based method that's more efficient
 than value function iteration for this and some other closely related applications
 
-In a :doc:`subsequent lecture <egm_policy_iter>` we'll see that the numerical implementation 
+In a :doc:`subsequent lecture <egm_policy_iter>`, we'll see that the numerical implementation
 part of the Euler equation method can be further adjusted to obtain even more efficiency
 
 Let's start with some imports
@@ -52,12 +52,12 @@ Let's start with some imports
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-  
+
 
 The Euler Equation
 ==========================
 
-Let's take the model set out in :doc:`the stochastic growth model lecture <optgrowth>` and add the assumptions that 
+Let's take the model set out in :doc:`the stochastic growth model lecture <optgrowth>` and add the assumptions that
 
 #. :math:`u` and :math:`f` are continuously differentiable and strictly concave
 
@@ -67,10 +67,10 @@ Let's take the model set out in :doc:`the stochastic growth model lecture <optgr
 
 #. :math:`\lim_{k \to 0} f'(k) = \infty` and :math:`\lim_{k \to \infty} f'(k) = 0`
 
-The last two conditions are usually called **Inada conditions** 
+The last two conditions are usually called **Inada conditions**
 
 
-Recall the Bellman equation 
+Recall the Bellman equation
 
 .. math::
     :label: cpi_fpb30
@@ -85,9 +85,9 @@ Recall the Bellman equation
 
 Let the optimal consumption policy be denoted by :math:`\sigma^*`
 
-We know that :math:`\sigma^*` is a :math:`v^*` greedy policy, so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30`
+We know that :math:`\sigma^*` is a :math:`v^*` greedy policy so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30`
 
-The conditions above imply that 
+The conditions above imply that
 
 * :math:`\sigma^*` is the unique optimal policy for the stochastic optimal growth model
 
@@ -100,7 +100,7 @@ The conditions above imply that
 
     (v^*)'(y) = u' (\sigma^*(y) ) := (u' \circ \sigma^*)(y)
 
-The last result is called the **envelope condition** due to its relationship with the `envelope theorem <https://en.wikipedia.org/wiki/Envelope_theorem>`_ 
+The last result is called the **envelope condition** due to its relationship with the `envelope theorem <https://en.wikipedia.org/wiki/Envelope_theorem>`_
 
 To see why :eq:`cpi_env` might be valid, write the Bellman equation in the equivalent
 form
@@ -113,7 +113,7 @@ form
         \right\},
 
 
-differentiate naively with respect to :math:`y`,  and then  evaluate at the optimum 
+differentiate naively with respect to :math:`y`,  and then  evaluate at the optimum
 
 Section 12.1 of `EDTC <http://johnstachurski.net/edtc.html>`_ contains full proofs of these results, and closely related discussions can be found in many other texts
 
@@ -133,7 +133,7 @@ Combining :eq:`cpi_env` and the first-order condition :eq:`cpi_foc` gives the fa
 .. math::
     :label: cpi_euler
 
-    (u'\circ \sigma^*)(y) 
+    (u'\circ \sigma^*)(y)
     = \beta \int (u'\circ \sigma^*)(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
 
 
@@ -142,7 +142,7 @@ We can think of the Euler equation as a functional equation
 .. math::
     :label: cpi_euler_func
 
-    (u'\circ \sigma)(y) 
+    (u'\circ \sigma)(y)
     = \beta \int (u'\circ \sigma)(f(y - \sigma(y)) z) f'(y - \sigma(y)) z \phi(dz)
 
 
@@ -171,7 +171,7 @@ will now introduce an operator over policies to help us solve the Euler
 equation
 
 This operator :math:`K` will act on the set of all :math:`\sigma \in \Sigma`
-that are continuous, strictly increasing and interior (i.e., :math:`0 < \sigma(y) < y` for all strictly positive :math:`y`) 
+that are continuous, strictly increasing and interior (i.e., :math:`0 < \sigma(y) < y` for all strictly positive :math:`y`)
 
 Henceforth we denote this set of policies by :math:`\mathscr P`
 
@@ -182,7 +182,7 @@ Henceforth we denote this set of policies by :math:`\mathscr P`
 .. math::
     :label: cpi_coledef
 
-    u'(c) 
+    u'(c)
     = \beta \int (u' \circ \sigma) (f(y - c) z ) f'(y - c) z \phi(dz)
 
 
@@ -203,7 +203,7 @@ solves
 
 .. math::
 
-    u'(c) 
+    u'(c)
     = \beta \int (u' \circ \sigma^*) (f(y - c) z ) f'(y - c) z \phi(dz)
 
 
@@ -220,14 +220,14 @@ In particular, is there always a unique :math:`c \in (0, y)` that solves
 
 The answer is yes, under our assumptions
 
-For any :math:`\sigma \in \mathscr P`, the right side of :eq:`cpi_coledef`  
+For any :math:`\sigma \in \mathscr P`, the right side of :eq:`cpi_coledef`
 
 * is continuous and strictly increasing in :math:`c` on :math:`(0, y)`
 
 * diverges to :math:`+\infty` as :math:`c \uparrow y`
 
 
-The left side of :eq:`cpi_coledef`  
+The left side of :eq:`cpi_coledef`
 
 * is continuous and strictly decreasing in :math:`c` on :math:`(0, y)`
 
@@ -257,7 +257,7 @@ In particular, they converge at  the same rate
 
 We'll prove this in just a moment
 
-The other side to the story is the accuracy of the numerical implementation
+The other side of the story is the accuracy of the numerical implementation
 
 It turns out that, once we actually implement these two routines, time iteration is more accurate than value function iteration
 
@@ -295,14 +295,14 @@ Now let another function :math:`h \colon Y \to Y` where :math:`Y` is another set
 
 
 
-Suppose further that 
+Suppose further that
 
 * there exists a bijection :math:`\tau` from :math:`X` to :math:`Y`
 
 * the two functions **commute** under :math:`\tau`, which is to say that
   :math:`\tau(g(x)) = h (\tau(x))` for all :math:`x \in X`
 
-The last statement can be written more simply as 
+The last statement can be written more simply as
 
 .. math::
 
@@ -344,7 +344,7 @@ It tells us that the following are equivalent
 
 * iterate :math:`n` times with :math:`g`, starting at :math:`x`
 
-* shift :math:`x` to :math:`Y` using :math:`\tau`,  iterate :math:`n` times with :math:`h` starting at :math:`\tau(x)`, and shift the result :math:`h^n(\tau(x))` back to :math:`X` using :math:`\tau^{-1}`
+* shift :math:`x` to :math:`Y` using :math:`\tau`,  iterate :math:`n` times with :math:`h` starting at :math:`\tau(x)` and shift the result :math:`h^n(\tau(x))` back to :math:`X` using :math:`\tau^{-1}`
 
 We end up with exactly the same object
 
@@ -366,7 +366,7 @@ always in our applications) that :math:`u(0) = 0`
 A Bijection
 ^^^^^^^^^^^^^
 
-Let :math:`\mathscr V` be all strictly concave, continuously differentiable functions :math:`v` mapping :math:`\mathbb R_+` to itself and satisfying :math:`v(0) = 0` and :math:`v'(y) > u'(y)` for all positive :math:`y` 
+Let :math:`\mathscr V` be all strictly concave, continuously differentiable functions :math:`v` mapping :math:`\mathbb R_+` to itself and satisfying :math:`v(0) = 0` and :math:`v'(y) > u'(y)` for all positive :math:`y`
 
 For :math:`v \in \mathscr V` let
 
@@ -379,7 +379,7 @@ Although we omit details, :math:`\sigma := M v` is actually the unique
 
 * See proposition 12.1.18 of `EDTC <http://johnstachurski.net/edtc.html>`__
 
-It turns out that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P` 
+It turns out that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`
 
 A (solved) exercise below asks you to confirm this
 
@@ -394,7 +394,7 @@ It is an additional solved exercise (see below) to show that :math:`T` and :math
 
     M \circ T = K \circ M
 
-In view of the preceding discussion, this implies that 
+In view of the preceding discussion, this implies that
 
 .. math::
 
@@ -411,7 +411,7 @@ Implementation
 
 We've just shown that the operators :math:`T` and :math:`K` have the same rate of convergence
 
-However, it turns out that, once numerical approximation is taken into account, significant differences arises
+However, it turns out that, once numerical approximation is taken into account, significant differences arise
 
 In particular, the image of policy functions under :math:`K` can be calculated faster and with greater accuracy than the image of value functions under :math:`T`
 
@@ -422,7 +422,7 @@ Our intuition for this result is that
 
 * policy functions generally have less curvature than value functions, and hence admit more accurate approximations based on grid point information
 
-First we'll store the parameters of the model is a class ``OptimalGrowthModel``
+First, we'll store the parameters of the model is a class ``OptimalGrowthModel``
 
 .. code-block:: python3
 
@@ -452,7 +452,7 @@ Here's some code that returns the Coleman-Reffett operator, :math:`K`
 
 .. literalinclude:: /_static/code/coleman_policy_iter/coleman_operator.py
 
-It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>` 
+It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>`
 
 For example, it evaluates integrals by Monte Carlo and approximates functions using linear interpolation
 
@@ -473,7 +473,7 @@ testing our method in the presence of a model that does have an analytical
 solution
 
 
-First we generate an instance of ``OptimalGrowthModel`` and return the corresponding
+First, we generate an instance of ``OptimalGrowthModel`` and return the corresponding
 Coleman-Reffett operator
 
 
@@ -489,10 +489,10 @@ Coleman-Reffett operator
     @njit
     def f_prime(k):
         return α * k**(α - 1)
-      
+
     og = OptimalGrowthModel(f=f, f_prime=f_prime,
                             u=np.log, u_prime=njit(lambda x: 1/x))
-                            
+
     K = time_operator_factory(og)
 
 
@@ -509,7 +509,7 @@ theory
 
     grid, β = og.grid, og.β
     σ_star_new = K(σ_star(grid, α, β))
-    
+
     fig, ax = plt.subplots()
     ax.plot(grid, σ_star(grid, α, β), label="optimal policy $\sigma^*$")
     ax.plot(grid, σ_star_new, label="$K\sigma^*$")
@@ -522,7 +522,7 @@ theory
 We can't really distinguish the two plots, so we are looking good, at least
 for this test
 
-Next let's try iterating from an arbitrary initial condition and see if we
+Next, let's try iterating from an arbitrary initial condition and see if we
 converge towards :math:`\sigma^*`
 
 
@@ -530,7 +530,7 @@ The initial condition we'll use is the one that eats the whole pie: :math:`\sigm
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     n = 15
     σ = grid.copy()  # Set initial condition
@@ -553,23 +553,23 @@ We see that the policy has converged nicely, in only a few steps
 
 Now let's compare the accuracy of iteration between the operators
 
-We'll generate 
+We'll generate
 
 #. :math:`K^n \sigma` where :math:`\sigma(y) = y`
 
 #. :math:`(M \circ T^n \circ M^{-1}) \sigma` where :math:`\sigma(y) = y`
 
-In each case we'll compare the resulting policy to :math:`\sigma^*`
+In each case, we'll compare the resulting policy to :math:`\sigma^*`
 
 The theory on equivalent dynamics says we will get the same policy function
 and hence the same errors
 
-But in fact we expect the first method to be more accurate for reasons
+But in fact, we expect the first method to be more accurate for reasons
 discussed above
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     T, get_greedy = operator_factory(og)  # Return the Bellman operator
 
@@ -603,7 +603,7 @@ Exercises
 Exercise 1
 -----------
 
-Show that :eq:`cpi_ed_tk` is valid.  In particular, 
+Show that :eq:`cpi_ed_tk` is valid.  In particular,
 
 * Let :math:`v` be strictly concave and continuously differentiable on :math:`(0, \infty)`
 
@@ -613,7 +613,7 @@ Show that :eq:`cpi_ed_tk` is valid.  In particular,
 Exercise 2
 -----------
 
-Show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P` 
+Show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`
 
 
 Exercise 3
@@ -660,7 +660,7 @@ where :math:`\sigma(y)` solves
 .. math::
     :label: cpi_foo
 
-    u'(\sigma(y)) 
+    u'(\sigma(y))
     = \beta \int v' (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
 
 
@@ -672,10 +672,10 @@ On the other hand, :math:`KMv(y)` is the :math:`\sigma(y)` that solves
 .. math::
 
     \begin{aligned}
-        u'(\sigma(y)) 
+        u'(\sigma(y))
         & = \beta \int (u' \circ (Mv)) (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
         \\
-        & = \beta \int (u' \circ ((u')^{-1} \circ v')) 
+        & = \beta \int (u' \circ ((u')^{-1} \circ v'))
             (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
         \\
         & = \beta \int v'(f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
@@ -688,14 +688,14 @@ We see that :math:`\sigma(y)` is the same in each case
 Exercise 2
 -------------------------
 
-We need to show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P` 
+We need to show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`
 
 To see this, first observe that, in view of our assumptions above, :math:`u'` is a strictly decreasing continuous bijection from :math:`(0,\infty)` to itself
 
 It `follows <https://math.stackexchange.com/questions/672174/continuity-of-an-inverse-function>`__ that :math:`h` has the same properties
 
 Moreover, for fixed :math:`v \in \mathscr V`, the derivative :math:`v'` is
-a continuous, strictly decreasing function 
+a continuous, strictly decreasing function
 
 Hence, for fixed :math:`v \in \mathscr V`, the map :math:`M v = h \circ v'`
 is strictly increasing and continuous, taking values in :math:`(0, \infty)`
@@ -705,18 +705,18 @@ Moreover, interiority holds because :math:`v'` strictly dominates :math:`u'`, im
 .. math:: (M v)(y) = h(v'(y)) < h(u'(y)) = y
 
 In particular, :math:`\sigma(y) := (Mv)(y)` is an element of :math:`\mathscr
-P` 
+P`
 
 To see that each :math:`\sigma \in \mathscr P` has a preimage :math:`v \in \mathscr V` with :math:`Mv = \sigma`, fix any :math:`\sigma \in \mathscr P`
 
 Let :math:`v(y) := \int_0^y u'(\sigma(x)) dx` with :math:`v(0) = 0`
 
-With a small amount of effort you will be able to show that :math:`v \in \mathscr V` and :math:`Mv = \sigma`
+With a small amount of effort, you will be able to show that :math:`v \in \mathscr V` and :math:`Mv = \sigma`
 
 It's also true that :math:`M` is one-to-one on :math:`\mathscr V`
 
 To see this, suppose that  :math:`v` and :math:`w` are elements of :math:`\mathscr V`
-satisfying :math:`Mv = Mw` 
+satisfying :math:`Mv = Mw`
 
 Then :math:`v(0) = w(0) = 0` and :math:`v' = w'` on :math:`(0, \infty)`
 
@@ -730,7 +730,7 @@ Here's the code, which will execute if you've run all the code above
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     γ = 1.5   # Preference parameter
 
@@ -746,7 +746,7 @@ Here's the code, which will execute if you've run all the code above
 
     T, get_greedy = operator_factory(og)
     K = time_operator_factory(og)
-    
+
     σ = grid        # Initial condition for σ
     v = u(grid)     # Initial condition for v
     sim_length = 20
@@ -809,18 +809,16 @@ Similarly, we can write a function that uses ``K`` to solve the model
 
 Solving both models and plotting
 
-.. code-block:: ipython 
+.. code-block:: ipython
 
     v_star = solve_model(og)
     σ_star = solve_model_time(og)
-    
+
     plt.plot(grid, get_greedy(v_star), alpha=0.6, label='Bellman operator')
     plt.plot(grid, σ_star, alpha=0.6, label='Coleman-Reffett operator')
     plt.legend()
     plt.show()
-    
+
 
 
 Time iteration is numerically far more accurate for a given number of iterations
-
-
