@@ -35,7 +35,7 @@ The lecture uses important ideas including
 
 -  A min-max problem for solving a planning problem
 
--  A **shooting algorithm** for solving difference equations subjected
+-  A **shooting algorithm** for solving difference equations subject
    to initial and terminal conditions
 
 -  A connection between some Lagrange multipliers in the min-max
@@ -106,7 +106,7 @@ A representative household is endowed with one unit of labor at each
 :math:`t` and likes the consumption good at each :math:`t`
 
 The representative household inelastically supplies a single unit of
-labor :math:`N_t` at each :math:`t` so that
+labor :math:`N_t` at each :math:`t`, so that
 :math:`N_t =1 \text{ for all } t \in [0,T]`
 
 The representative household has preferences over consumption bundles
@@ -325,11 +325,11 @@ or using our utility function :eq:`utility-oneperiod`
   (1-\delta)]\right)^{1/\gamma} \notag\\= C_t\left(\beta [f'(K_{t+1}) +
   (1-\delta)]\right)^{1/\gamma} \end{align}
 
-The above first-order condition for consumption is called a **Euler
+The above first-order condition for consumption is called an **Euler
 equation**
 
 It tells us how consumption in adjacent periods are optimally related
-to each other and to the capital next period
+to each other and to capital next period
 
 We now use some of the equations above to calculate some
 variables and functions that we'll soon use to solve the planning
@@ -618,7 +618,7 @@ Now we can plot
             ax.plot(path)
             ax.set(ylabel=y, title=title, xlabel='t')
 
-        # Plot steady-state value of capital
+        # Plot steady state value of capital
         if ss is not None:
             axes[1].axhline(ss, c='k', ls='--', lw=1)
 
@@ -629,16 +629,16 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting :math:`K_0` Equal to steady-state :math:`K`
+Setting :math:`K_0` Equal to steady state :math:`K`
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
-steady-state values of :math:`C_t` and :math:`K_t`
+steady state values of :math:`C_t` and :math:`K_t`
 
 It is instructive to compute these and then to set :math:`K_0` equal
-to its steady-state value
+to its steady state value
 
-In a steady-state :math:`K_{t+1} = K_t=\bar{K}` for all very
+In a steady state :math:`K_{t+1} = K_t=\bar{K}` for all very
 large :math:`t` the feasibility constraint :eq:`allocation` is
 
 .. math::
@@ -673,7 +673,7 @@ we get
 
 .. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583
 
-Let's verify this with Python and then use this steady-state
+Let's verify this with Python and then use this steady state
 :math:`\bar K` as our initial capital stock :math:`K_0`
 
 .. code-block:: python3
@@ -681,7 +681,7 @@ Let's verify this with Python and then use this steady-state
     ρ = 1 / β - 1
     k_ss = f_prime_inv(k=ρ+δ, A=A, α=α)
 
-    print(f'steady-state for capital is: {k_ss}')
+    print(f'steady state for capital is: {k_ss}')
 
 Now we plot
 
@@ -691,7 +691,7 @@ Now we plot
     c = np.zeros(T+1)
     k = np.zeros(T+2)
     c[0] = 0.3
-    k[0] = k_ss  # Start at steady-state
+    k[0] = k_ss  # Start at steady state
     paths = bisection_method(c, k, γ, δ, β, α, A)
 
     plot_paths(paths, ss=k_ss)
@@ -700,7 +700,7 @@ Evidently, in this economy with a large value of
 :math:`T`, :math:`K_t` stays near its initial value at the until the
 end of time approaches closely
 
-Evidently, the planner likes the steady-state capital stock and wants
+Evidently, the planner likes the steady state capital stock and wants
 to stay near there for a long time
 
 Let's see what happens when we push the initial
@@ -708,7 +708,7 @@ Let's see what happens when we push the initial
 
 .. code-block:: python3
 
-    k_init = k_ss / 3   # Below our steady-state
+    k_init = k_ss / 3   # Below our steady state
     T = 150
     c = np.zeros(T+1)
     k = np.zeros(T+2)
@@ -718,7 +718,7 @@ Let's see what happens when we push the initial
 
     plot_paths(paths, ss=k_ss)
 
-Notice how the planner pushes capital toward the steady-state, stays
+Notice how the planner pushes capital toward the steady state, stays
 near there for a while, then pushes :math:`K_t` toward the terminal
 value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`
 
@@ -740,7 +740,7 @@ The following graphs compare outcomes as we vary :math:`T`
 
 The following calculation shows that when we set :math:`T` very large
 the planner makes the capital stock spend most of its time close to
-its steady-state value
+its steady state value
 
 .. code-block:: python3
 
@@ -760,20 +760,20 @@ The different colors in the above graphs are tied to outcomes with
 different horizons :math:`T`
 
 Notice that as the horizon increases, the planner puts :math:`K_t`
-closer to the steady-state value :math:`\bar K` for longer
+closer to the steady state value :math:`\bar K` for longer
 
-This pattern reflects a **turnpike** property of the steady-state
+This pattern reflects a **turnpike** property of the steady state
 
 A rule of thumb for the planner is
 
 -  for whatever :math:`K_0` you start with, push :math:`K_t` toward
-   the steady-state and stay there for as long as you can
+   the steady state and stay there for as long as you can
 
 In loose language: head for the turnpike and stay near it for as long as you can
 
 As we drive :math:`T` toward :math:`+\infty`, the planner
-keeps :math:`K_t` very close to its steady-state for all dates after
-some transition toward the steady-state
+keeps :math:`K_t` very close to its steady state for all dates after
+some transition toward the steady state
 
 The planner makes the saving rate :math:`\frac{f(K_t) - C_t}{f(K_t)}`
 vary over time
@@ -817,15 +817,15 @@ Let's calculate it
             ax.plot(path)
             ax.set(ylabel=y, title=title, xlabel='t')
 
-        # Plot steady-state value of consumption
+        # Plot steady state value of consumption
         if c_ss is not None:
             axes[0].axhline(c_ss, c='k', ls='--', lw=1)
 
-        # Plot steady-state value of capital
+        # Plot steady state value of capital
         if k_ss is not None:
             axes[1].axhline(k_ss, c='k', ls='--', lw=1)
 
-        # Plot steady-state value of savings
+        # Plot steady state value of savings
         if s_ss is not None:
             axes[2].axhline(s_ss, c='k', ls='--', lw=1)
 
@@ -861,26 +861,26 @@ The appropriate thing to do is to replace terminal condition
 which is sometimes called a **transversality condition**
 
 This condition will be satisfied by a path that converges to an
-optimal steady-state
+optimal steady state
 
 We can approximate the optimal path from an arbitrary initial
-:math:`K_0` and shooting towards the optimal steady-state
+:math:`K_0` and shooting towards the optimal steady state
 :math:`K` at a large but finite :math:`T+1`
 
 In the following code, we do this for a large :math:`T`; we shoot
-towards the **steady-state** and plot consumption, capital and the
+towards the **steady state** and plot consumption, capital and the
 savings rate
 
-We know that in the steady-state that the saving rate must be fixed
+We know that in the steady state that the saving rate must be fixed
 and that :math:`\bar s= \frac{f(\bar K)-\bar C}{f(\bar K)}`
 
-From :eq:`feasibility-constraint` the steady-state saving rate equals
+From :eq:`feasibility-constraint` the steady state saving rate equals
 
 .. math::
 
   \bar s =\frac{ \delta \bar{K}}{f(\bar K)}
 
-The steady-state savings level :math:`\bar S = \bar s f(\bar K)` is
+The steady state savings level :math:`\bar S = \bar s f(\bar K)` is
 the amount required to offset capital depreciation each period
 
 We first study optimal capital paths that start below the steady
@@ -898,13 +898,13 @@ state
     c = np.zeros(T+1)
     k = np.zeros(T+2)
     c[0] = 0.3
-    k[0] = k_ss / 3         # Start below steady-state
+    k[0] = k_ss / 3         # Start below steady state
     paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
     plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
 Since :math:`K_0<\bar K`, :math:`f'(K_0)>\rho +\delta`
 
-The planner chooses a positive saving rate above the steady-state
+The planner chooses a positive saving rate above the steady state
 level offsetting depreciation that enables us to increase our capital
 stock
 
@@ -917,8 +917,8 @@ Exercise
 ---------
 
 -  Plot the optimal consumption, capital, and savings paths when the
-   initial capital level begins at 1.5 times the steady-state level
-   as we shoot towards the steady-state at :math:`T=130`
+   initial capital level begins at 1.5 times the steady state level
+   as we shoot towards the steady state at :math:`T=130`
 
 -  Why does the savings rate respond like it does?
 
@@ -932,7 +932,7 @@ Solution
     c = np.zeros(T+1)
     k = np.zeros(T+2)
     c[0] = 0.3
-    k[0] = k_ss * 1.5   # Start above steady-state
+    k[0] = k_ss * 1.5   # Start above steady state
     paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
     plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
@@ -1069,7 +1069,7 @@ firm makes positive profits on each additional unit of
 arbitrarily large
 
 But setting :math:`\tilde k_t = + \infty` is not physically feasible,
-so presumably, **equilibrium** prices will assume values that present
+so presumably **equilibrium** prices will assume values that present
 the firm with no such arbitrage opportunity
 
 A related argument applies if
@@ -1481,7 +1481,7 @@ Varying :math:`\gamma`
 
 Now we see how our results change if we keep T constant, but allow
 the curvature parameter, :math:`\gamma` to vary, starting
-with :math:`K_0` below the steady-state.
+with :math:`K_0` below the steady state.
 
 We plot the results for :math:`T=150`
 
@@ -1520,7 +1520,7 @@ Adjusting :math:`\gamma` means adjusting how much individuals prefer
 to smooth consumption
 
 Higher :math:`\gamma` means individuals prefer to smooth more
-resulting in slower adjustments to the steady-state allocations
+resulting in slower adjustments to the steady state allocations
 
 Vice-versa for lower :math:`\gamma`
 
@@ -1552,7 +1552,7 @@ We redefine our function for :math:`q` to allow arbitrary base
 years, and define a new function for :math:`r`, then plot both
 
 First, we plot when :math:`t_0=0` as before, for different values of
-:math:`T`, with :math:`K_0` below the steady-state
+:math:`T`, with :math:`K_0` below the steady state
 
 .. code-block:: python3
 
