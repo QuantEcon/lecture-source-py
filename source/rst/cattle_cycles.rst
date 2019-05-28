@@ -331,7 +331,7 @@ to generate cycles in quantities
     plt.show()
 
 
-In Figure 3, :cite:`rosen1994cattle` plot the impulse response functions
+In their Figure 3, :cite:`rosen1994cattle` plot the impulse response functions
 of consumption and the breeding stock of cattle to the demand shock,
 :math:`\tilde d_t`, under the three different values of :math:`\rho_3`
 
