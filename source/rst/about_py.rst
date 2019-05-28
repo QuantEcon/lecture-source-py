@@ -91,7 +91,7 @@ For example, the popularity of `pandas <http://pandas.pydata.org/>`_, a library 
 
 .. figure:: /_static/figures/pandas_vs_matlab.png
 
-Note that pandas take off in 2012, which is the same year that we seek
+Note that pandas takes off in 2012, which is the same year that we seek
 Python's popularity begin to spike in the first figure
 
 Overall, it's clear that
@@ -126,7 +126,7 @@ Syntax and Design
 
 One nice feature of Python is its elegant syntax --- we'll see many examples later on
 
-Elegant code might sound superfluous but in fact, it's highly beneficial because it makes the syntax easy to read and easy to remember
+Elegant code might sound superfluous but in fact it's highly beneficial because it makes the syntax easy to read and easy to remember
 
 Remembering how to read from files, sort dictionaries and other such routine tasks means that you don't need to break your flow in order to hunt down correct syntax
 
