@@ -420,7 +420,7 @@ Repeat the exercise with :math:`\beta=0.99` and interpret the change
 Exercise 3
 ----------------
 
-Set the parametrization to ``G_a = G_b = 100`` and generate a new optimal policy
+Set the parameterization to ``G_a = G_b = 100`` and generate a new optimal policy
 figure -- interpret
 
 
