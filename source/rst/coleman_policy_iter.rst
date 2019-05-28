@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this, lecture we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model
+In this lecture, we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model
 
 In that lecture, we solved the associated discounted dynamic programming problem using value function iteration
 
@@ -33,7 +33,7 @@ applications by deriving methods that are carefully tailored to the application 
 The stochastic optimal growth model has plenty of structure to exploit for this purpose,
 especially when we adopt some concavity and smoothness assumptions over primitives
 
-We'll use this structure to obtain a **Euler equation**  based method that's more efficient
+We'll use this structure to obtain an **Euler equation**  based method that's more efficient
 than value function iteration for this and some other closely related applications
 
 In a :doc:`subsequent lecture <egm_policy_iter>`, we'll see that the numerical implementation
@@ -564,7 +564,7 @@ In each case, we'll compare the resulting policy to :math:`\sigma^*`
 The theory on equivalent dynamics says we will get the same policy function
 and hence the same errors
 
-But in fact, we expect the first method to be more accurate for reasons
+But in fact we expect the first method to be more accurate for reasons
 discussed above
 
 
