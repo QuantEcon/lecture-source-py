@@ -118,7 +118,7 @@ The bond market has the following features
 * For selling :math:`-B'` units of next period goods the seller earns :math:`- q B'` of today's goods
 
 
-    * if :math:`B' < 0`, then :math:`-q B'` units of the goods are received in the current period, for a promise to repay :math:`-B'` units next period
+    * if :math:`B' < 0`, then :math:`-q B'` units of the good are received in the current period, for a promise to repay :math:`-B'` units next period
 
     * there is an equilibrium  price function :math:`q(B', y)` that makes :math:`q` depend on both :math:`B'` and :math:`y`
 
@@ -181,7 +181,7 @@ At each point in time :math:`t`, the government chooses between
 
 Defaulting means declining to repay all of  its current obligations
 
-If the government defaults in the current period, then consumption equals the current output
+If the government defaults in the current period, then consumption equals current output
 
 But a sovereign default has two consequences:
 
@@ -309,7 +309,7 @@ An *equilibrium* is
 
 * a decision rule telling the government when to default and when to pay as a function of the state  :math:`(B, y)`, and
 
-* an asset accumulation rule that conditional on choosing not to  default,  maps :math:`(B,y)` into :math:`B'`
+* an asset accumulation rule that, conditional on choosing not to  default,  maps :math:`(B,y)` into :math:`B'`
 
 such that
 
