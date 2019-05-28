@@ -41,7 +41,7 @@ Our presentation of the model will be relatively brief
 .. only:: html
 
     * For further details on economic intuition, implication and models, see :cite:`Ljungqvist2012`
-    * Proofs of all mathematical results stated below can be found in :download:`this paper </_static/pdfs/pi2.pdf>`
+    * Proofs of all mathematical results stated below can be found in :download:`this paper <_static/pdfs/pi2.pdf>`
 
 .. only:: latex
 
@@ -213,7 +213,7 @@ Optimality Results
 
 .. only:: html
 
-    Given our assumptions, it is :download:`known </_static/pdfs/pi2.pdf>` that
+    Given our assumptions, it is :download:`known <_static/pdfs/pi2.pdf>` that
 
 .. only:: latex
 
@@ -325,7 +325,7 @@ We refer to :math:`K` as Coleman's policy function operator :cite:`Coleman1990`
 
 .. only:: html
 
-    It is :download:`known </_static/pdfs/pi2.pdf>` that
+    It is :download:`known <_static/pdfs/pi2.pdf>` that
 
 .. only:: latex
 
@@ -351,7 +351,7 @@ the solutions to :eq:`eqeul1` in :math:`\mathscr{C}`
 
 .. only:: html
 
-    In particular, it :download:`can be shown </_static/pdfs/pi2.pdf>` that the path :math:`\{c_t\}`
+    In particular, it :download:`can be shown <_static/pdfs/pi2.pdf>` that the path :math:`\{c_t\}`
     generated from :math:`(a_0,z_0) \in S` using policy function :math:`\sigma^*` is
     the unique optimal path from :math:`(a_0,z_0) \in S`
 
