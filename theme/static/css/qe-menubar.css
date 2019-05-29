@@ -1,0 +1,109 @@
+.qe-menubar {
+   border-bottom:1px solid #ccc;
+   background:#fff;
+   padding:7px 25px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ .qe-menubar-logo {
+   margin:0;
+ }
+ .qe-menubar-logo img {
+   width:170px;
+ }
+ .qe-menubar-nav {
+   list-style: none;
+   padding:0;
+   margin:0;
+   font-family: 'Roboto', sans-serif;
+   font-size: 13px;
+   display: flex;
+   justify-content: space-between;
+ }
+ .qe-menubar-nav  li {
+   margin:0 0 0 10px;
+   padding:0;
+ }
+.qe-menubar-nav li  a {
+  color: #000;
+  font-weight: normal;
+  text-decoration: none;
+  position: relative;
+  padding: 0 15px 0 24px;
+}
+.qe-menubar-nav li:last-child a {
+  padding-right:0;
+}
+.qe-menubar-nav li  a:before {
+  content: " ";
+  width:20px;
+  height:20px;
+  position: absolute;
+  left: 0;
+  top: -3px;
+  background:url(../img/qe-menubar-icons.png) no-repeat left top;
+  background-size: 200px 20px;
+}
+.qe-menubar-nav li  a:after {
+  position: absolute;
+  content: '\2022';
+  top:0;
+  right:0;
+  font-family: sans-serif;
+}
+.qe-menubar-nav li:last-child a:after {
+  content:"";
+}
+.qe-menubar-nav li:nth-child(1) a:before {
+  background-position: 0 0;
+}
+.qe-menubar-nav li:nth-child(2) a:before {
+  background-position: -20px 0;
+}
+.qe-menubar-nav li:nth-child(3) a:before {
+  background-position: -40px 0;
+}
+.qe-menubar-nav li:nth-child(4) a:before {
+  background-position: -60px 0;
+}
+.qe-menubar-nav li:nth-child(5) a:before {
+  background-position: -80px 0;
+}
+.qe-menubar-nav li:nth-child(6) a:before {
+  background-position: -100px 0;
+}
+.qe-menubar-nav li:nth-child(7) a:before {
+  background-position: -120px 0;
+}
+.qe-menubar-nav li:nth-child(8) a:before {
+  background-position: -140px 0;
+}
+.qe-menubar-nav li:nth-child(9) a:before {
+  background-position: -160px 0;
+}
+.qe-menubar-nav li:nth-child(10) a:before {
+  background-position: -180px 0;
+}
+.show-for-sr {
+    position: absolute!important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+
+@media (max-width: 1024px) {
+  .qe-menubar-nav li a span {
+    display: none;
+  }
+}
+
+@media (max-width: 677px) {
+  .qe-menubar {
+    justify-content: center;
+  }
+  .qe-menubar-nav {
+    display:none;
+  }
+}
