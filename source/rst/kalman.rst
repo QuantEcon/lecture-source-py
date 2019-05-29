@@ -127,44 +127,41 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
   y_grid = np.linspace(-3.1, 1.7, 100)
   X, Y = np.meshgrid(x_grid, y_grid)
 
-  def bivariate_normal(X, Y, σ_x=1.0, σ_y=1.0, μ_x=0.0, μ_y=0.0, σ_xy=0.0):
+  def bivariate_normal(x, y, σ_x=1.0, σ_y=1.0, μ_x=0.0, μ_y=0.0, σ_xy=0.0):
       """
       Compute and return the probability density function of bivariate normal distribution
-      of independent random variables X and Y
+      of normal random variables x and y
 
       Parameters
       ----------
-      X : array_like(float)
-          Independent random variable
+      x : array_like(float)
+          Random variable
 
-      Y : array_like(float)
-          Independent random variable
+      y : array_like(float)
+          Random variable
 
       σ_x : array_like(float)
-            Standard deviation of independent random variable X
+            Standard deviation of random variable x
 
       σ_y : array_like(float)
-            Standard deviation of independent random variable Y
+            Standard deviation of random variable y
 
       μ_x : scalar(float)
-            Mean value of independent random variable X
+            Mean value of random variable x
 
       μ_y : scalar(float)
-            Mean value of independent random variable Y
+            Mean value of random variable y
 
       σ_xy : array_like(float)
-             Covariance of independent random variables X and Y
+             Covariance of random variables x and y
 
-      Returns
-      -------
-      Probability density function of bivariate normal distribution of X and Y
       """
 
-      X_μ = X - μ_x
-      Y_μ = Y - μ_y
+      x_μ = x - μ_x
+      y_μ = y - μ_y
 
       ρ = σ_xy / (σ_x * σ_y)
-      z = X_μ**2 / σ_x**2 + Y_μ**2 / σ_y**2 - 2 * ρ * X_μ * Y_μ / (σ_x * σ_y)
+      z = x_μ**2 / σ_x**2 + y_μ**2 / σ_y**2 - 2 * ρ * x_μ * y_μ / (σ_x * σ_y)
       denom = 2 * np.pi * σ_x * σ_y * np.sqrt(1 - ρ**2)
       return np.exp(-z / (2 * (1 - ρ**2))) / denom
 
