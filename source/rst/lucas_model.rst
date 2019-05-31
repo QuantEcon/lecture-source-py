@@ -75,7 +75,7 @@ This makes it very easy to compute competitive equilibrium prices
 Basic Setup
 --------------------------
 
-Let's review the set up 
+Let's review the set up
 
 Assets
 ^^^^^^^^^^^^^^^
@@ -349,7 +349,7 @@ First we introduce the operator :math:`T` mapping :math:`f` into :math:`Tf` as d
     :label: lteeqT
 
     (Tf)(y) = h(y) + \beta \int f[G(y, z)] \phi(dz)
-    
+
 In what follows, we refer to :math:`T` as the Lucas operator
 
 
@@ -442,7 +442,7 @@ We will set up a ``LucasTree`` class to hold parameters of the model
 
         """
 
-        def __init__(self, 
+        def __init__(self,
                      γ=2,            # CRRA utility parameter
                      β=0.95,         # Discount factor
                      α=0.90,         # Correlation coefficient
@@ -466,23 +466,23 @@ We will set up a ``LucasTree`` class to hold parameters of the model
             self.h = np.empty(self.grid_size)
             for i, y in enumerate(self.grid):
                 self.h[i] = β * np.mean((y**α * self.draws)**(1 - γ))
-            
-                
+
+
 The following function takes an instance of the ``LucasTree`` and generates a
 jitted version of the Lucas operator
 
 .. code-block:: python3
 
     def operator_factory(tree, parallel_flag=True):
-        
+
         """
         Returns approximate Lucas operator, which computes and returns the
         updated function Tf on the grid points.
-        
+
         tree is an instance of the LucasTree class
 
         """
-        
+
         grid, h = tree.grid, tree.h
         α, β = tree.α, tree.β
         z_vec = tree.draws
@@ -515,7 +515,7 @@ to find the fixed point
         """
         Compute the equilibrium price function associated with Lucas
         tree
-        
+
         * tree is an instance of LucasTree
 
         """
@@ -533,7 +533,7 @@ to find the fixed point
             error = np.max(np.abs(Tf - f))
             f = Tf
             i += 1
-            
+
         price = f * grid**γ  # Back out price vector
 
         return price
@@ -544,14 +544,14 @@ Solving the model and plotting the resulting price function
 
     tree = LucasTree()
     price_vals = solve_model(tree)
-    
+
     plt.figure(figsize=(12, 8))
     plt.plot(tree.grid, price_vals, label='$p*(y)$')
     plt.xlabel('$y$')
     plt.ylabel('price')
     plt.legend()
     plt.show()
-    
+
 
 We see that the price is increasing, even if we remove all serial correlation from the endowment process
 
@@ -582,7 +582,7 @@ Exercises
 Exercise 1
 ------------
 
-Replicate :ref:`the figure <mass_lt_cb>` to show how discount rates affect prices
+Replicate :ref:`the figure <mass_lt_cb>` to show how discount factors affect prices
 
 
 Solutions
@@ -607,5 +607,3 @@ Exercise 1
   ax.legend(loc='upper left')
   ax.set(xlabel='$y$', ylabel='price', xlim=(min(grid), max(grid)))
   plt.show()
-    
-

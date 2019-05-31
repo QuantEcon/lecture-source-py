@@ -1618,7 +1618,10 @@ linear combinations of :math:`y^t`
 Wold and Vector Autoregressive Representations
 --------------------------------------------------------------
 
-Lag operator arithmetic
+Let's start with some lag operator arithmetic
+
+The lag operator :math:`L` and the inverse lag operator  :math:`L^{-1}` each map an infinite sequence into an infinite sequence according to the
+tranformation rules
 
 
 .. math:: L x_t \equiv x_{t-1}
@@ -1626,7 +1629,7 @@ Lag operator arithmetic
 .. math:: L^{-1} x_t \equiv x_{t+1}
 
 
-A Wold moving average representation for :math:`\{y_t\}` is
+A **Wold moving average representation**  for :math:`\{y_t\}` is
 
 .. math:: y_t = [ G(I-A^oL)^{-1}KL + I] a_t
 
@@ -1634,26 +1637,14 @@ Applying the inverse of the operator on the right side and using
 
 .. math:: [G(I-A^oL)^{-1}KL+I]^{-1} = I - G[I - (A^o-KG)L]^{-1}KL
 
-gives the vector autoregressive representation
+gives the **vector autoregressive representation**
 
 .. math:: y_t = \sum_{j=1}^\infty G (A^o -KG)^{j-1} K y_{t-j} + a_t
 
 .. _wold-and-vector-autoregressive-representations-1:
 
-Wold and Vector Autoregressive Representations
---------------------------------------------------------------
 
-A Wold moving average representation for :math:`\{y_t\}` is
 
-.. math:: y_t = [ G(I-A^oL)^{-1}{\color{blue}K}L + I] a_t
-
-Applying the inverse of the operator on the right side and using
-
-.. math:: [G(I-A^oL)^{-1}{\color{blue}K}L+I]^{-1} = I - G[I - (A^o-{\color{blue}K}G)L]^{-1}{\color{blue}K} L
-
-gives the vector autoregressive representation
-
-.. math:: y_t = \sum_{j=1}^\infty G (A^o - {\color{blue}K}G)^{j-1} {\color{blue}K} y_{t-j} + a_t
 
 Dynamic Demand Curves and Canonical Household Technologies
 ===========================================================
@@ -2230,6 +2221,11 @@ and by Attanasio and Pavoni (2011) :cite:`attanasio2011risk`
 Gorman Heterogeneous Households
 ================================
 
+We now assume that there is a finite number of households, each with its own household  technology and 
+preferences over consumption services
+
+Household :math:`j` orders preferences over consumption processes according to 
+
 .. math::
 
    -\ \left({1 \over 2}\right)\ E \sum_{t=0}^\infty\, \beta^t\, \bigl[(s_{jt} -
@@ -2256,8 +2252,8 @@ an endowment process :math:`d_{jt}`, governed by the stochastic process
 
 .. _gorman-heterogeneous-households-1:
 
-Gorman Heterogeneous Households
-===============================
+We refer to this as a setting with  Gorman heterogeneous households
+
 
 This specification confines heterogeneity among consumers to:
 
@@ -2279,7 +2275,9 @@ initial conditions for household capital stocks
 
 **Punchline:** :math:`\exists` a representative consumer
 
-Use it to compute competitive equilibrium aggregate allocation and price system
+We can use the representative consumer to compute a competitive equilibrium **aggregate** allocation and price system
+
+With the equilibrium aggregate allocation and price system in hand, we can then compute allocations to each household 
 
 **Computing  Allocations to Individuals:**
 
@@ -2312,6 +2310,10 @@ Here :math:`h_{j,-1}` given
 
 Non-Gorman Heterogeneous Households
 ====================================
+
+We now describe a less tractable type of heterogeneity across households that we dub **Non-Gorman heterogeneity**
+
+Here is the specification
 
 Preferences and Household Technologies:
 
@@ -2360,7 +2362,10 @@ Preferences and Household Technologies:
 
 **Mongrel Aggregation: Static**
 
-Single consumer static inverse demand and implied preferences:
+There is what we call a kind of **mongrel aggregation** in this setting
+
+We first describe the idea within a simple static setting in which there is a single consumer static inverse demand with
+implied preferences:
 
 .. math:: c_t = \Pi^{-1} b_t - \mu_0 \Pi^{-1} \Pi^{-1 \prime} p_t
 
@@ -2379,7 +2384,7 @@ taken to be
 
 **Key Insight:** Factor the inverse of a ‘covariance matrix’
 
-Two consumers, :math:`i=1,2`, with demand curves
+Now assume that there are two consumers, :math:`i=1,2`, with demand curves
 
 .. math:: c_{it} = \Pi_i^{-1} b_{it} - \mu_{0i} \Pi_i^{-1} \Pi_i^{-1 \prime} p_t
 
@@ -2411,6 +2416,10 @@ satisfy
 
 **Dynamic Analogue:**
 
+
+We now describe how to extend mongrel aggregation to a dynamic setting
+
+The key comparison is
 
 -  Static: factor a covariance matrix like object
 

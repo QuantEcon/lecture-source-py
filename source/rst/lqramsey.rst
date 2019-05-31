@@ -50,7 +50,7 @@ Because the Lucas and Stokey model features state-contingent government debt, th
 
 .. only:: html
 
-    The treatment given here closely follows :download:`this manuscript </_static/pdfs/firenze.pdf>`, prepared
+    The treatment given here closely follows :download:`this manuscript <_static/pdfs/firenze.pdf>`, prepared
     by Thomas J. Sargent and Francois R. Velde
 
 .. only:: latex
@@ -123,7 +123,7 @@ Here
 * :math:`\tau_t` is a flat tax rate on labor income
 * :math:`s_t` is a promised time-:math:`t` coupon payment on debt issued by the government
 
-The scaled Arrow-Debreu price :math:`p^0_t` is related to the unscaled Arrow-Debreu price as follows.  
+The scaled Arrow-Debreu price :math:`p^0_t` is related to the unscaled Arrow-Debreu price as follows.
 
 If we let :math:`\pi^0_t(x^t)`
 denote the probability (density) of a history :math:`x^t = [x_t, x_{t-1}, \ldots, x_0]` of the state :math:`x^t`, then
@@ -277,8 +277,8 @@ The associated Lagrangian is
     \mathscr L =
     \mathbb E  \sum_{t=0}^{\infty} \beta^t
     \left\{
-    -\frac{1}{2} \left[ (c_t - b_t)^2 + \ell_t^2 \right] + 
-    \lambda \left[ (b_t - c_t)(\ell_t - s_t - g_t) - \ell_t^2 \right] + 
+    -\frac{1}{2} \left[ (c_t - b_t)^2 + \ell_t^2 \right] +
+    \lambda \left[ (b_t - c_t)(\ell_t - s_t - g_t) - \ell_t^2 \right] +
     \mu_t [d_t + \ell_t - c_t - g_t]
     \right\}
 
@@ -470,7 +470,7 @@ Other Variables
 -------------------
 
 We are interested in tracking several other variables besides the ones
-described above.  
+described above.
 
 To prepare the way for this, we define
 
@@ -481,7 +481,7 @@ To prepare the way for this, we define
 
 as the scaled Arrow-Debreu time :math:`t` price of a history contingent claim on one unit of consumption at time :math:`t+j`
 
-These are prices that would prevail at time :math:`t` if market were reopened at time :math:`t`   
+These are prices that would prevail at time :math:`t` if market were reopened at time :math:`t`
 
 These prices are constituents of the present value of government obligations outstanding at time :math:`t`, which can be expressed as
 
@@ -513,7 +513,7 @@ Using the equation
     p^t_{t+j} = p^t_{t+1} p^{t+1}_{t+j}
 
 
-it is possible to verity that :eq:`lq_cb` implies that 
+it is possible to verity that :eq:`lq_cb` implies that
 
 
 .. math::
@@ -526,10 +526,10 @@ and
 .. math::
     :label: lq_cb22
 
-    B_t =   (\tau_t \ell_t - g_t) + \beta E_t p^t_{t+1} B_{t+1}   
+    B_t =   (\tau_t \ell_t - g_t) + \beta E_t p^t_{t+1} B_{t+1}
 
 
-Define 
+Define
 
 .. math::
     :label: lq_rfr
@@ -537,14 +537,14 @@ Define
     R^{-1}_{t} := \mathbb E_t \beta^j p^t_{t+1}
 
 
-:math:`R_{t}` is the gross :math:`1`-period risk-free rate for loans 
+:math:`R_{t}` is the gross :math:`1`-period risk-free rate for loans
 between :math:`t` and :math:`t+1`
 
 
 A Martingale
 -------------
 
-We now want to study the following two objects, namely,  
+We now want to study the following two objects, namely,
 
 .. math::
 
@@ -562,7 +562,7 @@ The term :math:`\pi_{t+1}` is the difference between two quantities:
 
   * :math:`B_{t+1}`, the value of government debt at the start of period :math:`t+1`
 
-  * :math:`R_t [B_t + g_t - \tau_t ]`, which is what the government would have owed at the beginning of 
+  * :math:`R_t [B_t + g_t - \tau_t ]`, which is what the government would have owed at the beginning of
     period :math:`t+1` if it had simply borrowed at the one-period risk-free rate rather than selling state-contingent securities
 
 Thus, :math:`\pi_{t+1}` is the excess payout on the actual portfolio of state contingent government debt  relative to an alternative
@@ -583,12 +583,12 @@ or
     \pi_{t+1} = B_{t+1} - \tilde E_t B_{t+1}
 
 
-where :math:`\tilde E_t` is the conditional mathematical expectation taken with respect to a one-step transition density 
+where :math:`\tilde E_t` is the conditional mathematical expectation taken with respect to a one-step transition density
 that has been formed by multiplying the original transition density with the likelihood ratio
 
 .. math::
 
-    m^t_{t+1} = \frac{p^t_{t+1}}{E_t p^t_{t+1}} 
+    m^t_{t+1} = \frac{p^t_{t+1}}{E_t p^t_{t+1}}
 
 
 It follows from equation :eq:`lq_pidist` that
@@ -598,7 +598,7 @@ It follows from equation :eq:`lq_pidist` that
     \tilde E_t \pi_{t+1} = \tilde E_t B_{t+1} - \tilde E_t B_{t+1} = 0
 
 
-which asserts that :math:`\{\pi_{t+1}\}` is a martingale difference sequence under the distorted probability measure, and 
+which asserts that :math:`\{\pi_{t+1}\}` is a martingale difference sequence under the distorted probability measure, and
 that  :math:`\{\Pi_t\}` is a martingale under the distorted probability measure
 
 In the tax-smoothing model of Robert Barro :cite:`Barro1979`, government debt is a random walk
@@ -686,12 +686,12 @@ much less variable than government expenditure
 .. code-block:: python3
 
     gen_fig_2(path)
-    
+
 
 
 .. only:: html
 
-    See the original :download:`manuscript </_static/pdfs/firenze.pdf>` for comments and interpretation
+    See the original :download:`manuscript <_static/pdfs/firenze.pdf>` for comments and interpretation
 
 .. only:: latex
 
@@ -711,12 +711,12 @@ The call ``gen_fig_2(path)`` generates
 .. code-block:: python3
 
     gen_fig_2(path)
-    
+
 
 
 .. only:: html
 
-    See the original :download:`manuscript </_static/pdfs/firenze.pdf>` for comments and interpretation
+    See the original :download:`manuscript <_static/pdfs/firenze.pdf>` for comments and interpretation
 
 .. only:: latex
 
@@ -757,7 +757,7 @@ Exercise 1
 .. code-block:: python3
 
     # == Parameters == #
-    β = 1 / 1.05   
+    β = 1 / 1.05
     ρ, mg = .95, .35
     A = np.array([[0, 0, 0, ρ, mg*(1-ρ)],
                   [1, 0, 0, 0,        0],
@@ -766,23 +766,20 @@ Exercise 1
                   [0, 0, 0, 0,        1]])
     C = np.zeros((5, 1))
     C[0, 0] = np.sqrt(1 - ρ**2) * mg / 8
-    Sg = np.array((1, 0, 0, 0, 0)).reshape(1, 5)        
-    Sd = np.array((0, 0, 0, 0, 0)).reshape(1, 5)       
+    Sg = np.array((1, 0, 0, 0, 0)).reshape(1, 5)
+    Sd = np.array((0, 0, 0, 0, 0)).reshape(1, 5)
     Sb = np.array((0, 0, 0, 0, 2.135)).reshape(1, 5)  # Chosen st. (Sc + Sg) * x0 = 1
     Ss = np.array((0, 0, 0, 0, 0)).reshape(1, 5)
-    
-    economy = Economy(β=β, Sg=Sg, Sd=Sd, Sb=Sb, 
+
+    economy = Economy(β=β, Sg=Sg, Sd=Sd, Sb=Sb,
                       Ss=Ss, discrete=False, proc=(A, C))
-    
+
     T = 50
     path = compute_paths(T, economy)
-    
+
     gen_fig_1(path)
 
-   
+
 .. code-block:: python3
 
     gen_fig_2(path)
-
-
-

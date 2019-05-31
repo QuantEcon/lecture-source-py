@@ -23,7 +23,7 @@ Overview
 In this lecture we review some other scientific libraries that are useful for
 economic research and analysis
 
-We have, however, already picked most of the low hanging fruit in terms of 
+We have, however, already picked most of the low hanging fruit in terms of
 economic research
 
 Hence you should feel free to skip this lecture on first pass
@@ -54,11 +54,11 @@ Cython also takes care of building language extensions --- the wrapper code that
 
 **Important Note:**
 
-In what follows code is executed in a Jupyter notebook 
+In what follows code is executed in a Jupyter notebook
 
 This is to take advantage of a Cython `cell magic <http://ipython.readthedocs.org/en/stable/interactive/magics.html#cell-magics>`_ that makes Cython particularly easy to use
 
-Some modifications are required to run the code outside a notebook 
+Some modifications are required to run the code outside a notebook
 
 * See the book `Cython <http://shop.oreilly.com/product/0636920033431.do>`__ by Kurt Smith or `the online documentation <http://cython.org/>`_
 
@@ -168,7 +168,7 @@ What you are in fact calling is compiled C code with a Python call interface
     qe.util.tic()
     geo_prog(0.99, int(10**6))
     qe.util.toc()
-    
+
 .. code-block:: python3
 
     qe.util.tic()
@@ -286,7 +286,7 @@ Joblib
 ==========
 
 
-`Joblib <https://pythonhosted.org/joblib/>`__ is a popular Python library for
+`Joblib <https://joblib.readthedocs.io/en/latest/>`__ is a popular Python library for
 caching and parallelization
 
 To install it, start Jupyter and type
@@ -313,7 +313,7 @@ at a given set of parameters --- to generate a figure, say, or a table
 20 minutes later you realize that you want to tweak the figure and now you have to
 do it all again
 
-What caching will do is automatically store results at each parameterization 
+What caching will do is automatically store results at each parameterization
 
 With Joblib, results are compressed and stored on file, and automatically served
 back up to you when you repeat the calculation
@@ -334,11 +334,11 @@ Here's our code
 
 .. code-block:: python3
 
-    from joblib import Memory  
+    from joblib import Memory
+    location = './cachedir'
+    memory = Memory(location='./joblib_cache')
 
-    memory = Memory(cachedir='./joblib_cache')
-
-    @memory.cache  
+    @memory.cache
     def qm(x0, n):
         x = np.empty(n+1)
         x[0] = x0
@@ -347,9 +347,9 @@ Here's our code
         return np.mean(x < 0.1)
 
 
-We are using `joblib <http://pythonhosted.org/joblib/>`_ to cache the result of calling `qm` at a given set of parameters
+We are using `joblib <https://joblib.readthedocs.io/en/latest/>`_ to cache the result of calling `qm` at a given set of parameters
 
-With the argument `cachedir='./joblib_cache'`, any call to this function results in both the input values and output values being stored a subdirectory `joblib_cache` of the present working directory
+With the argument `location='./joblib_cache'`, any call to this function results in both the input values and output values being stored a subdirectory `joblib_cache` of the present working directory
 
 (In UNIX shells, `.` refers to the present working directory)
 
@@ -533,7 +533,7 @@ Now let's implement a Cython version
     %%cython
     import numpy as np
     from numpy cimport int_t, float_t
-    
+
     def compute_series_cy(int n):
         # == Create NumPy arrays first == #
         x_np = np.empty(n, dtype=int)
@@ -546,7 +546,7 @@ Now let's implement a Cython version
         cdef float q = 0.2
         cdef int t
         # == Main loop == #
-        x[0] = 1  
+        x[0] = 1
         for t in range(1, n):
             current_x = x[t-1]
             if current_x == 0:
@@ -573,8 +573,3 @@ Now let's implement a Cython version
 
 
 The Cython implementation is fast, but not as fast as Numba
-
-
-
-
-

@@ -108,7 +108,7 @@ def value_and_entropy(emax, F, bw, grid_size=1000):
 
 
 # == Compute the optimal rule == #
-optimal_lq = qe.lqcontrol.LQ(Q, R, A, B, C, β)
+optimal_lq = qe.lqcontrol.LQ(Q, R, A, B, C, beta=β)
 Po, Fo, do = optimal_lq.stationary_values()
 
 # == Compute a robust rule given θ == #

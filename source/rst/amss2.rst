@@ -423,13 +423,13 @@ set up a function that returns two simultaneous equations
                 Φ * (c0 * u.Ucc(c0, 1) + (c0 + g0) * u.Unn(1, c0 + g0)) - \
                 Φ * u.Ucc(c0, 1) * b0
 
-        return np.array([eq1, eq2])
+        return np.array([eq1, eq2], dtype='float64')
 
 To solve the equations for :math:`c_0, b_0`, we use SciPy's fsolve function
 
 .. code-block:: python3
 
-    c0, b0 = fsolve(solve_cb, [1., -1.], args=(Φ_star, b[0], 1), xtol=1.0e-12)
+    c0, b0 = fsolve(solve_cb, np.array([1., -1.], dtype='float64'), args=(Φ_star, b[0], 1), xtol=1.0e-12)
     c0, b0
 
 Thus, we have reverse engineered an initial :math:`b0 = -1.038698407551764` that ought to render the AMSS measurability constraints slack

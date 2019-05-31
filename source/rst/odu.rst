@@ -24,7 +24,7 @@ In this lecture we consider an extension of the :doc:`previously studied <mccall
 
 In the McCall model, an unemployed worker decides when to accept a permanent position at a specified wage, given
 
-* his or her discount rate
+* his or her discount factor
 
 * the level of unemployment compensation
 
@@ -174,7 +174,7 @@ Parameterization
 Following  section 6.6 of :cite:`Ljungqvist2012`, our baseline parameterization will be
 
 * :math:`f` is :math:`\operatorname{Beta}(1, 1)`
-  
+
 * :math:`g` is :math:`\operatorname{Beta}(3, 1.2)`
 
 * :math:`\beta = 0.95` and :math:`c = 0.3`
@@ -186,15 +186,15 @@ The densities :math:`f` and :math:`g` have the following shape
 .. code-block:: python3
 
   def beta_function_factory(a, b):
-    
+
       @vectorize
       def p(x):
           r = gamma(a + b) / (gamma(a) * gamma(b))
           return r * x**(a-1) * (1 - x)**(b-1)
-      
+
       return p
-  
-  
+
+
   x_grid = np.linspace(0, 1, 100)
   f = beta_function_factory(1, 1)
   g = beta_function_factory(3, 1.2)
@@ -205,7 +205,7 @@ The densities :math:`f` and :math:`g` have the following shape
 
   plt.legend()
   plt.show()
-  
+
 
 .. _looking_forward:
 
@@ -251,29 +251,29 @@ The class ``SearchProblem`` is used to store parameters and methods needed to co
 
         """
 
-        def __init__(self, 
+        def __init__(self,
                      β=0.95,            # Discount factor
                      c=0.3,             # Unemployment compensation
-                     F_a=1, 
-                     F_b=1, 
-                     G_a=3, 
+                     F_a=1,
+                     F_b=1,
+                     G_a=3,
                      G_b=1.2,
                      w_max=1,           # Maximum wage possible
-                     w_grid_size=100, 
+                     w_grid_size=100,
                      π_grid_size=100,
                      mc_size=500):
 
             self.β, self.c, self.w_max = β, c, w_max
-            
+
             self.f = beta_function_factory(F_a, F_b)
             self.g = beta_function_factory(G_a, G_b)
-            
+
             self.π_min, self.π_max = 1e-3, 1-1e-3    # Avoids instability
             self.w_grid = np.linspace(0, w_max, w_grid_size)
             self.π_grid = np.linspace(self.π_min, self.π_max, π_grid_size)
-            
+
             self.mc_size = mc_size
-            
+
             self.w_f = np.random.beta(F_a, F_b, mc_size)
             self.w_g = np.random.beta(G_a, G_b, mc_size)
 
@@ -285,12 +285,12 @@ optimal policy from a guess ``v`` of the value function
 .. code-block:: python3
 
     def operator_factory(sp, parallel_flag=True):
-        
+
         f, g = sp.f, sp.g
         w_f, w_g = sp.w_f, sp.w_g
         β, c = sp.β, sp.c
         mc_size = sp.mc_size
-        w_grid, π_grid = sp.w_grid, sp.π_grid    
+        w_grid, π_grid = sp.w_grid, sp.π_grid
 
         @njit
         def κ(w, π):
@@ -299,9 +299,9 @@ optimal policy from a guess ``v`` of the value function
             """
             pf, pg = π * f(w), (1 - π) * g(w)
             π_new = pf / (pf + pg)
-            
+
             return π_new
-        
+
         @njit(parallel=parallel_flag)
         def T(v):
             """
@@ -315,7 +315,7 @@ optimal policy from a guess ``v`` of the value function
                 for j in prange(len(π_grid)):
                     w = w_grid[i]
                     π = π_grid[j]
-                    
+
                     v_1 = w / (1 - β)
 
                     integral_f, integral_g = 0.0, 0.0
@@ -328,7 +328,7 @@ optimal policy from a guess ``v`` of the value function
                     v_new[i, j] = max(v_1, v_2)
 
             return v_new
-        
+
         @njit(parallel=parallel_flag)
         def get_greedy(v):
             """"
@@ -343,7 +343,7 @@ optimal policy from a guess ``v`` of the value function
                 for j in prange(len(π_grid)):
                     w = w_grid[i]
                     π = π_grid[j]
-                    
+
                     v_1 = w / (1 - β)
 
                     integral_f, integral_g = 0.0, 0.0
@@ -353,14 +353,14 @@ optimal policy from a guess ``v`` of the value function
                     integral = (π * integral_f + (1 - π) * integral_g) / mc_size
 
                     v_2 = c + β * integral
-                    
+
                     σ[i, j] = v_1 > v_2  # Evaluates to 1 or 0
 
             return σ
 
         return T, get_greedy
 
-We will omit a detailed discussion of the code because there is a 
+We will omit a detailed discussion of the code because there is a
 more efficient solution method that we will use later
 
 To solve the model we will use the following function that iterates using
@@ -374,10 +374,10 @@ To solve the model we will use the following function that iterates using
                     max_iter=1000,
                     verbose=True,
                     print_skip=5):
-                    
+
         """
         Solves for the value function
-        
+
         * sp is an instance of SearchProblem
         """
 
@@ -387,7 +387,7 @@ To solve the model we will use the following function that iterates using
         i = 0
         error = tol + 1
         m, n = len(sp.w_grid), len(sp.π_grid)
-        
+
         # Initialize v
         v = np.zeros((m, n)) + sp.c / (1 - sp.β)
 
@@ -421,7 +421,7 @@ Let's look at solutions computed from value function iteration
     ax.set(xlabel='$\pi$', ylabel='$w$')
 
     plt.show()
-  
+
 .. _odu_pol_vfi:
 
 We will also plot the optimal policy
@@ -430,7 +430,7 @@ We will also plot the optimal policy
 
     T, get_greedy = operator_factory(sp)
     σ_star = get_greedy(v_star)
-    
+
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.contourf(sp.π_grid, sp.w_grid, σ_star, 1, alpha=0.6, cmap=cm.jet)
     ax.contour(sp.π_grid, sp.w_grid, σ_star, 1, colors="black")
@@ -440,7 +440,7 @@ We will also plot the optimal policy
     ax.text(0.7, 0.9, 'accept')
 
     plt.show()
-  
+
 
 The results fit well with our intuition from section :ref:`looking forward <looking_forward>`
 
@@ -461,7 +461,7 @@ We will use iteration with an operator that has the same contraction rate as the
 
 As a consequence, the algorithm is orders of magnitude faster than VFI
 
-This section illustrates the point that when it comes to programming, a bit of 
+This section illustrates the point that when it comes to programming, a bit of
 mathematical analysis goes a long way
 
 
@@ -503,7 +503,7 @@ Combining :eq:`odu_mvf2` and :eq:`odu_mvf3`, we obtain
     \, q_{\pi}(w') \, dw'
 
 
-Multiplying by :math:`1 - \beta`, substituting in :math:`\pi' = \kappa(w', \pi)` 
+Multiplying by :math:`1 - \beta`, substituting in :math:`\pi' = \kappa(w', \pi)`
 and using :math:`\circ` for composition of functions yields
 
 .. math::
@@ -555,7 +555,7 @@ triangle inequality for integrals tells us that
     |(Q \omega)(\pi) - (Q \omega')(\pi)|
     \leq \beta \int
     \left|
-    \max \left\{w', \omega \circ \kappa(w', \pi) \right\} - 
+    \max \left\{w', \omega \circ \kappa(w', \pi) \right\} -
     \max \left\{w', \omega' \circ \kappa(w', \pi) \right\}
     \right|
     \, q_{\pi}(w') \, dw'
@@ -608,12 +608,12 @@ operator ``Q``
 .. code-block:: python3
 
     def Q_factory(sp, parallel_flag=True):
-        
+
         f, g = sp.f, sp.g
         w_f, w_g = sp.w_f, sp.w_g
         β, c = sp.β, sp.c
         mc_size = sp.mc_size
-        w_grid, π_grid = sp.w_grid, sp.π_grid    
+        w_grid, π_grid = sp.w_grid, sp.π_grid
 
         @njit
         def κ(w, π):
@@ -622,7 +622,7 @@ operator ``Q``
             """
             pf, pg = π * f(w), (1 - π) * g(w)
             π_new = pf / (pf + pg)
-            
+
             return π_new
 
         @njit
@@ -644,11 +644,11 @@ operator ``Q``
                     integral_f += max(w_f[m], ω_func(κ(w_f[m], π)))
                     integral_g += max(w_g[m], ω_func(κ(w_g[m], π)))
                 integral = (π * integral_f + (1 - π) * integral_g) / mc_size
-                    
+
                 ω_new[i] = (1 - β) * c + β * integral
 
             return ω_new
-        
+
         return Q
 
 In the next exercise you are asked to compute an approximation to :math:`\bar w`
@@ -682,7 +682,7 @@ Exercise 1
 This code solves the "Offer Distribution Unknown" model by iterating on
 a guess of the reservation wage function
 
-You should find that the run time is shorter than that of the value 
+You should find that the run time is shorter than that of the value
 function approach
 
 Similar to above, we set up a function to iterate with ``Q`` to find the fixed point
@@ -702,7 +702,7 @@ Similar to above, we set up a function to iterate with ``Q`` to find the fixed p
         i = 0
         error = tol + 1
         m, n = len(sp.w_grid), len(sp.π_grid)
-        
+
         # Initialize w
         w = np.ones_like(sp.π_grid)
 
@@ -728,7 +728,7 @@ The solution can be plotted as follows
 
     sp = SearchProblem()
     w_bar = solve_wbar(sp)
-    
+
     fig, ax = plt.subplots(figsize=(9, 7))
 
     ax.plot(sp.π_grid, w_bar, color='k')
@@ -739,7 +739,7 @@ The solution can be plotted as follows
     ax.set(xlabel='$\pi$', ylabel='$w$')
     ax.grid()
     plt.show()
-   
+
 
 Appendix
 =========
@@ -749,7 +749,7 @@ underlying distribution on the unemployment rate is
 
 At a point in the simulation, the distribution becomes significantly worse
 
-It takes a while for agents to learn this, and in the meantime they are too optimistic, 
+It takes a while for agents to learn this, and in the meantime they are too optimistic,
 and turn down too many jobs
 
 As a result, the unemployment rate spikes

@@ -596,7 +596,7 @@ is not quite as good as knowing the full distribution
 However, there are some situations where these moments alone tell us all we
 need to know
 
-These are situations in which the mean vector and covariance matrix are **sufficient statistics** for the population distribution 
+These are situations in which the mean vector and covariance matrix are **sufficient statistics** for the population distribution
 
 (Sufficient statistics form a list of objects that characterize a population distribution)
 
@@ -946,11 +946,11 @@ regardless of the initial conditions :math:`\mu_0` and :math:`\Sigma_0`
 
 .. only:: html
 
-    This is the *globally stable case* --- see :download:`these notes </_static/pdfs/iteration_notes.pdf>` for more a theoretical treatment
+    This is the *globally stable case* --- see :download:`these notes <_static/pdfs/iteration_notes.pdf>` for more a theoretical treatment
 
 .. only:: latex
 
-    This is the *globally stable case* --- see `these notes <https://lectures.quantecon.org/_downloads/iteration_notes.pdf>`__ for more a theoretical treatment    
+    This is the *globally stable case* --- see `these notes <https://lectures.quantecon.org/_downloads/iteration_notes.pdf>`__ for more a theoretical treatment
 
 However, global stability is more than we need for stationary solutions, and often more than we want
 
@@ -1205,7 +1205,7 @@ With a bit of algebra we obtain
 
 .. math::
 
-    x_{t+j} = A^j x_t + A^{j-1} C w_{t+1} + A^{j-2} C w_{t+2} + 
+    x_{t+j} = A^j x_t + A^{j-1} C w_{t+1} + A^{j-2} C w_{t+2} +
     \cdots + A^0 C w_{t+j}
 
 
@@ -1419,16 +1419,16 @@ Exercise 1
 .. code-block:: python3
 
     ϕ_0, ϕ_1, ϕ_2 = 1.1, 0.8, -0.8
-    
+
     A = [[1,     0,     0  ],
          [ϕ_0,   ϕ_1,   ϕ_2],
          [0,     1,     0  ]]
     C = np.zeros((3, 1))
     G = [0, 1, 0]
-    
+
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(3))
     x, y = ar.simulate(ts_length=50)
-    
+
     fig, ax = plt.subplots(figsize=(10, 6))
     y = y.flatten()
     ax.plot(y, 'b-', lw=2, alpha=0.7)
@@ -1445,20 +1445,20 @@ Exercise 2
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.2
-    
+
     A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
          [1,     0,     0,     0  ],
          [0,     1,     0,     0  ],
          [0,     0,     1,     0  ]]
-    C = [[σ], 
-         [0], 
-         [0], 
+    C = [[σ],
+         [0],
+         [0],
          [0]]
     G = [1, 0, 0, 0]
-    
+
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
     x, y = ar.simulate(ts_length=200)
-    
+
     fig, ax = plt.subplots(figsize=(10, 6))
     y = y.flatten()
     ax.plot(y, 'b-', lw=2, alpha=0.7)
@@ -1474,41 +1474,41 @@ Exercise 3
 
     from scipy.stats import norm
     import random
-    
+
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.1
-    
+
     A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
          [1,     0,     0,     0  ],
          [0,     1,     0,     0  ],
          [0,     0,     1,     0  ]]
-    C = [[σ], 
-         [0], 
-         [0], 
+    C = [[σ],
+         [0],
+         [0],
          [0]]
     G = [1, 0, 0, 0]
-    
+
     I = 20
     T = 50
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
     ymin, ymax = -0.5, 1.15
-    
+
     fig, ax = plt.subplots(figsize=(8, 5))
-    
+
     ax.set_ylim(ymin, ymax)
     ax.set_xlabel('time', fontsize=16)
     ax.set_ylabel('$y_t$', fontsize=16)
-    
+
     ensemble_mean = np.zeros(T)
     for i in range(I):
         x, y = ar.simulate(ts_length=T)
         y = y.flatten()
         ax.plot(y, 'c-', lw=0.8, alpha=0.5)
         ensemble_mean = ensemble_mean + y
-    
+
     ensemble_mean = ensemble_mean / I
     ax.plot(ensemble_mean, color='b', lw=2, alpha=0.8, label='$\\bar y_t$')
-    
+
     m = ar.moment_sequence()
     population_means = []
     for t in range(T):
@@ -1525,22 +1525,22 @@ Exercise 4
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.1
-    
+
     A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
          [1,     0,     0,     0  ],
          [0,     1,     0,     0  ],
          [0,     0,     1,     0  ]]
-    C = [[σ], 
-         [0], 
-         [0], 
+    C = [[σ],
+         [0],
+         [0],
          [0]]
     G = [1, 0, 0, 0]
-    
+
     T0 = 10
     T1 = 50
     T2 = 75
     T4 = 100
-    
+
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(4), Sigma_0=Σ_x)
     ymin, ymax = -0.6, 0.6
 
@@ -1557,7 +1557,7 @@ Exercise 4
     μ_x, μ_y, Σ_x, Σ_y = ar.stationary_distributions()
     ar.mu_0 = μ_x
     ar.Sigma_0 = Σ_x
-    
+
     for i in range(80):
         rcolor = random.choice(('c', 'g', 'b'))
         x, y = ar.simulate(ts_length=T4)
