@@ -132,8 +132,8 @@
 				<div class="breadcrumbs clearfix">
 					<ul>
 						<li><a href="https://quantecon.org/">Org</a> •</li>
-						<li><a href="https://lectures.quantecon.org">Lectures</a> &raquo;</li>
-						<li><a href="https://lectures.quantecon.org/{{nb_lang}}/">{{nb_kernel}} </a> &raquo;</li>
+						<li><a href="">Lectures</a> &raquo;</li>
+						<li><a href="{{nb_lang}}/">{{nb_kernel}} </a> &raquo;</li>
 				      	<li>{{nb_title}}</li>
 					</ul>
 				</div>

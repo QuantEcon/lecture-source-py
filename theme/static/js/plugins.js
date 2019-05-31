@@ -1039,7 +1039,7 @@ function insertNewRow(newRow)
         color = "lightgrey";
     }
 
-    link = '/' + newRow['extension'] + '/' + newRow['name'] + '.html';
+    link = '/' + newRow['name'] + '.html';
 
     badge = '<a href="' + link + '"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
 
