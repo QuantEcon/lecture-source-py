@@ -385,7 +385,7 @@ First, we describe the basic idea, and after that we give the code
 
 The essential idea is to
 
-#. Transform the data in order to make the estimation of the spectral density more efficient
+#. Transform the data in order to make estimation of the spectral density more efficient
 #. Compute the periodogram associated with the transformed data
 #. Reverse the effect of the transformation on the periodogram, so that it now
    estimates the spectral density of the original process
