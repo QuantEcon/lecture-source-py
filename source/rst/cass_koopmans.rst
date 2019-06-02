@@ -629,7 +629,7 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting :math:`K_0` Equal to steady state :math:`K`
+Setting :math:`K_0` Equal to Steady State :math:`K`
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
