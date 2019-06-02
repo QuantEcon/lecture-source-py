@@ -422,7 +422,7 @@ Our intuition for this result is that
 
 * policy functions generally have less curvature than value functions, and hence admit more accurate approximations based on grid point information
 
-First, we'll store the parameters of the model is a class ``OptimalGrowthModel``
+First, we'll store the parameters of the model in a class ``OptimalGrowthModel``
 
 .. code-block:: python3
 
