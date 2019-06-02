@@ -344,7 +344,7 @@ It is required that time :math:`t` components :math:`(m_t, x_t, h_t) \in E`
 **Definition:**
 
 Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system :math:`\vec q`, and allocation
-:math:`(\vec c, \vec m, \vec y)` is said to be a *competitive equilibrium* if
+:math:`(\vec c, \vec m, \vec y)` are said to be a *competitive equilibrium* if
 
 * :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`
 
