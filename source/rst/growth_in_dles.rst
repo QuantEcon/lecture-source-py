@@ -127,8 +127,7 @@ and
 
 .. math:: d_t = U_dz_t
 
-The DLE class in Python maps this planning problem into a linear-
-quadratic dynamic programming problem and then solves it by using
+The DLE class in Python maps this planning problem into a linear-quadratic dynamic programming problem and then solves it by using
 QuantEcon's LQ class
 
 (See Section 5.5 of Hansen & Sargent (2013) :cite:`HS2013` for a full
