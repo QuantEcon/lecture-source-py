@@ -30,9 +30,9 @@ Markov chains are one of the most useful classes of stochastic processes, being
 
 You will find them in many of the workhorse models of economics and finance
 
-In this lecture we review some of the theory of Markov chains
+In this lecture, we review some of the theory of Markov chains
 
-We will also introduce some of the high quality routines for working with Markov chains available in `QuantEcon.py <http://quantecon.org/python_index.html>`__
+We will also introduce some of the high-quality routines for working with Markov chains available in `QuantEcon.py <http://quantecon.org/python_index.html>`__
 
 Prerequisite knowledge is basic probability and linear algebra
 
@@ -224,7 +224,7 @@ Nice functionality for simulating Markov chains exists in `QuantEcon.py <http://
 
 However, it's also a good exercise to roll our own routines --- let's do that first and then come back to the methods in `QuantEcon.py <http://quantecon.org/python_index.html>`__
 
-In these exercises we'll take the state space to be :math:`S = 0,\ldots, n-1`
+In these exercises, we'll take the state space to be :math:`S = 0,\ldots, n-1`
 
 
 
@@ -240,9 +240,9 @@ The Markov chain is then constructed as discussed above.  To repeat:
 
 #. At each subsequent time :math:`t`, the new state :math:`X_{t+1}` is drawn from :math:`P(X_t, \cdot)`
 
-In order to implement this simulation procedure, we need a method for generating draws from a discrete distributions
+In order to implement this simulation procedure, we need a method for generating draws from a discrete distribution
 
-For this task we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/python_index.html>`__
+For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/python_index.html>`__
 
 
 
@@ -538,9 +538,9 @@ Example 2: Cross-Sectional Distributions
 The marginal distributions we have been studying can be viewed either as
 probabilities or as cross-sectional frequencies in large samples
 
-To illustrate, recall our model of employment / unemployment dynamics for a given worker :ref:`discussed above <mc_eg1>`
+To illustrate, recall our model of employment/unemployment dynamics for a given worker :ref:`discussed above <mc_eg1>`
 
-Consider a large (i.e., tending to infinite) population of workers, each of whose lifetime experiences are described by the specified dynamics, independently of one another
+Consider a large (i.e., tending to infinite) population of workers, each of whose lifetime experience is described by the specified dynamics, independent of one another
 
 Let :math:`\psi` be the current *cross-sectional* distribution over :math:`\{ 0, 1 \}`
 
@@ -773,7 +773,7 @@ Such distributions are called **stationary**, or **invariant**
 
 Formally, a distribution :math:`\psi^*` on :math:`S` is called **stationary** for :math:`P` if :math:`\psi^* = \psi^* P`
 
-From this equality we immediately get :math:`\psi^* = \psi^* P^t` for all :math:`t`
+From this equality, we immediately get :math:`\psi^* = \psi^* P^t` for all :math:`t`
 
 This tells us an important fact: If the distribution of :math:`X_0` is a stationary distribution, then :math:`X_t` will have this same distribution for all :math:`t`
 
@@ -785,7 +785,7 @@ Mathematically, a stationary distribution is a fixed point of :math:`P` when :ma
 
 (We are assuming here that the state space :math:`S` is finite; if not more assumptions are required)
 
-For a proof of this result you can apply `Brouwer's fixed point theorem <https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem>`_, or see `EDTC <http://johnstachurski.net/edtc.html>`_, theorem 4.3.5
+For proof of this result, you can apply `Brouwer's fixed point theorem <https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem>`_, or see `EDTC <http://johnstachurski.net/edtc.html>`_, theorem 4.3.5
 
 There may in fact be many stationary distributions corresponding to a given stochastic matrix :math:`P`
 
@@ -823,7 +823,7 @@ One easy sufficient condition for aperiodicity and irreducibility is that every 
 Example
 ----------
 
-Recall our model of employment / unemployment dynamics for a given worker :ref:`discussed above <mc_eg1>`
+Recall our model of employment/unemployment dynamics for a given worker :ref:`discussed above <mc_eg1>`
 
 Assuming :math:`\alpha \in (0,1)` and :math:`\beta \in (0,1)`, the uniform ergodicity condition is satisfied
 
@@ -994,7 +994,7 @@ The convergence in :eq:`llnfmc0` is a special case of a law of large numbers res
 Example
 ---------
 
-Recall our cross-sectional interpretation of the employment / unemployment model :ref:`discussed above <mc_eg1-1>`
+Recall our cross-sectional interpretation of the employment/unemployment model :ref:`discussed above <mc_eg1-1>`
 
 Assume that :math:`\alpha \in (0,1)` and :math:`\beta \in (0,1)`, so that irreducibility and aperiodicity both hold
 
@@ -1216,7 +1216,7 @@ Imagine that this is a miniature version of the WWW, with
 
 Now let's think about which pages are likely to be important, in the sense of being valuable to a search engine user
 
-One possible criterion for importance of a page is the number of inbound links --- an indication of popularity
+One possible criterion for the importance of a page is the number of inbound links --- an indication of popularity
 
 By this measure, ``m`` and ``j`` are the most important pages, with 5 inbound links each
 
@@ -1266,7 +1266,7 @@ Let's think of :math:`P(i, j)` as the probability of "moving" from page :math:`i
 
 The value :math:`P(i, j)` has the interpretation
 
-* :math:`P(i, j) = 1/k` if :math:`i` has :math:`k` outbound links, and :math:`j` is one of them
+* :math:`P(i, j) = 1/k` if :math:`i` has :math:`k` outbound links and :math:`j` is one of them
 * :math:`P(i, j) = 0` if :math:`i` has no direct link to :math:`j`
 
 Thus, motion from page to page is that of a web surfer who moves from one page to another by randomly clicking on one of the links on that page
@@ -1275,7 +1275,7 @@ Here "random" means that each link is selected with equal probability
 
 Since :math:`r` is the stationary distribution of :math:`P`, assuming that the uniform ergodicity condition is valid, we :ref:`can interpret <new_interp_sd>` :math:`r_j` as the fraction of time that a (very persistent) random surfer spends at page :math:`j`
 
-Your exercise is to apply this ranking algorithm to the graph pictured above,
+Your exercise is to apply this ranking algorithm to the graph pictured above
 and return the list of pages ordered by rank
 
 The data for this graph is in the ``web_graph_data.txt`` file --- you can also view it `here <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/finite_markov/web_graph_data.txt>`__
@@ -1317,7 +1317,7 @@ When you solve for the ranking, you will find that the highest ranked node is in
 Exercise 3
 ------------
 
-In numerical work it is sometimes convenient to replace a continuous model with a discrete one
+In numerical work, it is sometimes convenient to replace a continuous model with a discrete one
 
 In particular, Markov chains are routinely generated as discrete approximations to AR(1) processes of the form
 
@@ -1339,12 +1339,12 @@ Tauchen's method :cite:`Tauchen1986` is the most common method for approximating
 
 A routine for this already exists in `QuantEcon.py <http://quantecon.org/python_index.html>`__ but let's write our own version as an exercise
 
-As a first step we choose
+As a first step, we choose
 
 * :math:`n`, the number of states for the discrete approximation
 * :math:`m`, an integer that parameterizes the width of the state space
 
-Next we create a state space :math:`\{x_0, \ldots, x_{n-1}\} \subset \mathbb R`
+Next, we create a state space :math:`\{x_0, \ldots, x_{n-1}\} \subset \mathbb R`
 and a stochastic :math:`n \times n` matrix :math:`P` such that
 
 * :math:`x_0 = - m \, \sigma_y`
@@ -1433,7 +1433,7 @@ compare it to the stationary probability
 Exercise 2
 ----------
 
-First save the data into a file called ``web_graph_data.txt`` by
+First, save the data into a file called ``web_graph_data.txt`` by
 executing the next cell
 
 .. code-block:: ipython
@@ -1530,4 +1530,4 @@ can be found `here <https://github.com/QuantEcon/QuantEcon.py/blob/master/quante
 
 .. rubric:: Footnotes
 
-.. [#pm] Hint: First show that if :math:`P` and :math:`Q` are stochastic matrices then so is their product --- to check the row sums, try postmultiplying by a column vector of ones.  Finally, argue that :math:`P^n` is a stochastic matrix using induction.
+.. [#pm] Hint: First show that if :math:`P` and :math:`Q` are stochastic matrices then so is their product --- to check the row sums, try post multiplying by a column vector of ones.  Finally, argue that :math:`P^n` is a stochastic matrix using induction.
