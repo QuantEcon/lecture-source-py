@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-Next we study an optimal savings problem for an infinitely lived consumer---the "common ancestor" described in :cite:`Ljungqvist2012`, section 1.3
+Next, we study an optimal savings problem for an infinitely lived consumer---the "common ancestor" described in :cite:`Ljungqvist2012`, section 1.3
 
 This is an essential sub-problem for many representative macroeconomic models
 
@@ -79,7 +79,7 @@ The Optimal Savings Problem
 
 Let's write down the model and then discuss how to solve it
 
-Set Up
+Set-Up
 ---------
 
 Consider a household that chooses a state-contingent consumption plan :math:`\{c_t\}_{t \geq 0}` to maximize
@@ -161,7 +161,7 @@ The *value function* :math:`V \colon S \to \mathbb{R}` is defined by
     \right\}
 
 
-where the supremum is over all feasible consumption paths from :math:`(a,z)`
+where the supremum is overall feasible consumption paths from :math:`(a,z)`
 
 
 An *optimal consumption path* from :math:`(a,z)` is a feasible consumption path from :math:`(a,z)` that attains the supremum in :eq:`eqvf`
@@ -385,7 +385,7 @@ We have to be careful with VFI (i.e., iterating with
 
 * In fact typically unbounded both above and below --- e.g. :math:`u(c) = \log c`
 * In which case, the standard DP theory does not apply
-* :math:`T^n v` is not guaranteed to converge to the value function for arbitrary continous bounded :math:`v`
+* :math:`T^n v` is not guaranteed to converge to the value function for arbitrary continuous bounded :math:`v`
 
 Nonetheless, we can always try the popular strategy "iterate and hope"
 
@@ -400,7 +400,7 @@ Implementation
 .. index::
     single: Optimal Savings; Programming Implementation
 
-First we build a class called ``ConsumerProblem`` that stores the model primitives
+First, we build a class called ``ConsumerProblem`` that stores the model primitives
 
 .. code-block:: python3
 
@@ -447,7 +447,7 @@ The function ``operator_factory`` returns the operator ``K`` as specified above
         @njit
         def euler_diff(c, a, z, i_z, σ):
             """
-            The difference of the left hand side and the right hand side
+            The difference of the left-hand side and the right-hand side
             of the Euler Equation.
             """
             lhs = du(c)
@@ -554,7 +554,7 @@ Exercises
 Exercise 1
 ------------
 
-Next let's consider how the interest rate affects consumption
+Next, let's consider how the interest rate affects consumption
 
 Reproduce the following figure, which shows (approximately) optimal consumption policies for different interest rates
 
