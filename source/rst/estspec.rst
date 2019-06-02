@@ -8,7 +8,7 @@
 Estimation of :index:`Spectra`
 ******************************************
 
-.. index:: 
+.. index::
     single: Spectra; Estimation
 
 .. contents:: :depth: 2
@@ -23,13 +23,13 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In a :ref:`previous lecture <arma>` we covered some fundamental properties of covariance stationary linear stochastic processes
+In a :ref:`previous lecture <arma>`, we covered some fundamental properties of covariance stationary linear stochastic processes
 
 One objective for that lecture was to introduce spectral densities --- a standard and very useful technique for analyzing such processes
 
-In this lecture we turn to the problem of estimating spectral densities and other related quantities from data
+In this lecture, we turn to the problem of estimating spectral densities and other related quantities from data
 
-.. index:: 
+.. index::
     single: Spectra, Estimation; Fast Fourier Transform
 
 Estimates of the spectral density are computed using what is known as a periodogram --- which in
@@ -47,7 +47,7 @@ For supplementary reading, see :cite:`Sargent1987` or :cite:`CryerChan2008`
 =====================
 
 :ref:`Recall that <arma_specd>` the spectral density :math:`f` of a covariance stationary process with
-autocorrelation function :math:`\gamma` can be written 
+autocorrelation function :math:`\gamma` can be written
 
 .. math::
 
@@ -97,7 +97,7 @@ The next section helps to explain the connection between the periodogram and the
 Interpretation
 ----------------
 
-.. index:: 
+.. index::
     single: Periodograms; Interpretation
 
 To interpret the periodogram, it is convenient to focus on its values at the *Fourier frequencies*
@@ -112,7 +112,7 @@ In what sense is :math:`I(\omega_j)` an estimate of :math:`f(\omega_j)`?
 
 The answer is straightforward, although it does involve some algebra
 
-With a bit of effort one can show that, for any integer :math:`j > 0`,
+With a bit of effort, one can show that for any integer :math:`j > 0`,
 
 .. math::
 
@@ -134,7 +134,7 @@ By carefully working through the sums, one can transform this to
 
 .. math::
 
-    n I(\omega_j) = \sum_{t=0}^{n-1} (X_t - \bar X)^2 + 
+    n I(\omega_j) = \sum_{t=0}^{n-1} (X_t - \bar X)^2 +
     2 \sum_{k=1}^{n-1} \sum_{t=k}^{n-1} (X_t - \bar X)(X_{t-k} - \bar X)
     \cos(\omega_j k)
 
@@ -156,7 +156,7 @@ With this notation, we can now write
 
 .. math::
 
-    I(\omega_j) = \hat \gamma(0) + 
+    I(\omega_j) = \hat \gamma(0) +
     2 \sum_{k=1}^{n-1} \hat \gamma(k) \cos(\omega_j k)
 
 
@@ -167,7 +167,7 @@ we see that :math:`I(\omega_j)` is just a sample analog of :math:`f(\omega_j)`
 Calculation
 --------------
 
-.. index:: 
+.. index::
     single: Periodograms; Computation
 
 Let's now consider how to compute the periodogram as defined in :eq:`estspec_p`
@@ -191,7 +191,7 @@ Fourier transform computes the sequence
 
 With ``numpy.fft.fft`` imported as ``fft`` and :math:`a_0, \ldots, a_{n-1}` stored in NumPy array ``a``, the function call ``fft(a)`` returns the values :math:`A_0, \ldots, A_{n-1}` as a NumPy array
 
-It follows that, when the data :math:`X_0, \ldots, X_{n-1}` are stored in array ``X``, the values :math:`I(\omega_j)` at the Fourier frequencies, which are given by
+It follows that when the data :math:`X_0, \ldots, X_{n-1}` are stored in array ``X``, the values :math:`I(\omega_j)` at the Fourier frequencies, which are given by
 
 .. math::
 
@@ -256,7 +256,7 @@ This brings us to our next topic
 :index:`Smoothing`
 ==================
 
-.. index:: 
+.. index::
     single: Spectra, Estimation; Smoothing
 
 There are two related issues here
@@ -270,7 +270,7 @@ In other words, although we have more data, we are also using it to estimate mor
 A second issue is that densities of all types are fundamentally hard to
 estimate without parametric assumptions
 
-.. index:: 
+.. index::
     single: Nonparametric Estimation
 
 Typically, nonparametric estimation of densities requires some degree of smoothing
@@ -297,7 +297,7 @@ This weighted average can be written as
 where the weights :math:`w(-p), \ldots, w(p)` are a sequence of :math:`2p + 1` nonnegative
 values summing to one
 
-In generally, larger values of :math:`p` indicate more smoothing --- more on
+In general, larger values of :math:`p` indicate more smoothing --- more on
 this below
 
 The next figure shows the kind of sequence typically used
@@ -309,7 +309,7 @@ Note the smaller weights towards the edges and larger weights in the center, so 
 .. code-block:: python3
 
     import numpy as np
-    
+
     def hanning_window(M):
         w = [0.5 - 0.5 * np.cos(2 * np.pi * n/(M-1)) for n in range(M)]
         return w
@@ -329,7 +329,7 @@ Note the smaller weights towards the edges and larger weights in the center, so 
 Estimation with Smoothing
 ------------------------------
 
-.. index:: 
+.. index::
     single: Spectra, Estimation; Smoothing
 
 Our next step is to provide code that will not only estimate the periodogram but also provide smoothing as required
@@ -348,7 +348,7 @@ The next three figures each show smoothed and unsmoothed periodograms, as well a
 
 (The model is the same as before --- see equation :eq:`esp_arma` --- and there are 400 observations)
 
-From top figure to bottom, the window length is varied from small to large
+From the top figure to bottom, the window length is varied from small to large
 
 .. _fig_window_smoothing:
 
@@ -361,7 +361,7 @@ window length chosen in the middle figure provides the best fit
 Relative to this value, the first window length provides insufficient
 smoothing, while the third gives too much smoothing
 
-Of course in real estimation problems the true spectral density is not visible
+Of course in real estimation problems, the true spectral density is not visible
 and the choice of appropriate smoothing will have to be made based on
 judgement/priors or some other theory
 
@@ -371,21 +371,21 @@ judgement/priors or some other theory
 Pre-Filtering and Smoothing
 ------------------------------
 
-.. index:: 
+.. index::
     single: Spectra, Estimation; Pre-Filtering
 
-.. index:: 
+.. index::
     single: Spectra, Estimation; Smoothing
 
-In the `code listing <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/estspec.py>`__ we showed three functions from the file ``estspec.py``
+In the `code listing <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/estspec.py>`__, we showed three functions from the file ``estspec.py``
 
 The third function in the file (``ar_periodogram()``) adds a pre-processing step to periodogram smoothing
 
-First we describe the basic idea, and after that we give the code
+First, we describe the basic idea, and after that we give the code
 
 The essential idea is to
 
-#. Transform the data in order to make estimation of the spectral density more efficient
+#. Transform the data in order to make the estimation of the spectral density more efficient
 #. Compute the periodogram associated with the transformed data
 #. Reverse the effect of the transformation on the periodogram, so that it now
    estimates the spectral density of the original process
@@ -418,7 +418,7 @@ Another way to put this is that if :math:`I` is relatively constant, then we can
 The AR(1) Setting
 -------------------
 
-.. index:: 
+.. index::
     single: Spectra, Estimation; AR(1) Setting
 
 Let's examine this idea more carefully in a particular setting --- where
@@ -537,27 +537,27 @@ Exercise 1
 
 .. code-block:: python3
 
-    
+
     ## Data
     n = 400
     ϕ = 0.5
     θ = 0, -0.8
     lp = ARMA(ϕ, θ)
     X = lp.simulation(ts_length=n)
-    
+
     fig, ax = plt.subplots(3, 1, figsize=(10, 12))
-    
+
     for i, wl in enumerate((15, 55, 175)):  # window lengths
-        
+
         x, y = periodogram(X)
         ax[i].plot(x, y, 'b-', lw=2, alpha=0.5, label='periodogram')
-    
+
         x_sd, y_sd = lp.spectral_density(two_pi=False, res=120)
         ax[i].plot(x_sd, y_sd, 'r-', lw=2, alpha=0.8, label='spectral density')
-    
+
         x, y_smoothed = periodogram(X, window='hamming', window_len=wl)
         ax[i].plot(x, y_smoothed, 'k-', lw=2, label='smoothed periodogram')
-    
+
         ax[i].legend()
         ax[i].set_title(f'window length = {wl}')
     plt.show()
@@ -569,26 +569,22 @@ Exercise 2
 
     lp = ARMA(-0.9)
     wl = 65
-    
-    
+
+
     fig, ax = plt.subplots(3, 1, figsize=(10,12))
-    
+
     for i in range(3):
         X = lp.simulation(ts_length=150)
         ax[i].set_xlim(0, np.pi)
-    
+
         x_sd, y_sd = lp.spectral_density(two_pi=False, res=180)
         ax[i].semilogy(x_sd, y_sd, 'r-', lw=2, alpha=0.75, label='spectral density')
-    
+
         x, y_smoothed = periodogram(X, window='hamming', window_len=wl)
         ax[i].semilogy(x, y_smoothed, 'k-', lw=2, alpha=0.75, label='standard smoothed periodogram')
-    
+
         x, y_ar = ar_periodogram(X, window='hamming', window_len=wl)
         ax[i].semilogy(x, y_ar, 'b-', lw=2, alpha=0.75, label='AR smoothed periodogram')
-    
+
         ax[i].legend(loc='upper left')
     plt.show()
-
-
-
-
