@@ -333,7 +333,7 @@ This can be written more succinctly in operator notation as
     T_{\sigma} v = r_{\sigma} + \beta Q_{\sigma} v
 
 
-The two operators are both monotones
+The two operators are both monotone
 
 * :math:`v \leq w`  implies :math:`Tv \leq Tw` pointwise on :math:`S`, and
   similarly for :math:`T_\sigma`
