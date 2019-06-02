@@ -78,7 +78,7 @@ Our example economies have the following features
    where :math:`c_t` is a vector of consumption goods, :math:`g_t` is a
    vector of intermediate goods, :math:`i_t` is a vector of investment
    goods, :math:`k_t` is a vector of physical capital goods, and
-   :math:`l_t` is the amount of labour supplied by the representative
+   :math:`l_t` is the amount of labor supplied by the representative
    household
 
 -  Preferences of a representative household are described by
@@ -89,7 +89,7 @@ Our example economies have the following features
 
    .. math::  h_t = \Delta_h h_{t-1} + \Theta_h c_t
 
-   where :math:`s_t` is a vector of consumption services, and
+   where :math:`s_t` is a vector of consumption services and
    :math:`h_t` is a vector of household capital stocks
 
 Thus, an instance of this class of economies is described by the
@@ -105,7 +105,7 @@ A Planning Problem
 The first welfare theorem asserts that a competitive equilibrium
 allocation solves the following planning problem
 
-Choose :math:`\{c_t, s_t, i_t, h_t, k_t, g_t\}_{t=0}^\infty` to maximise
+Choose :math:`\{c_t, s_t, i_t, h_t, k_t, g_t\}_{t=0}^\infty` to maximize
 
    .. math:: - \frac{1}{2}\mathbb{E}\sum_{t=0}^\infty \beta^t [(s_t-b_t)\cdot(s_t - b_t) + g_t \cdot g_t]
 
@@ -127,8 +127,7 @@ and
 
 .. math:: d_t = U_dz_t
 
-The DLE class in Python maps this planning problem into a linear
-quadratic dynamic programming problem and then solves it by using
+The DLE class in Python maps this planning problem into a linear-quadratic dynamic programming problem and then solves it by using
 QuantEcon's LQ class
 
 (See Section 5.5 of Hansen & Sargent (2013) :cite:`HS2013` for a full
@@ -570,7 +569,7 @@ Consumption and investment explode downwards, as a lower value of
 :math:`\beta` causes the representative consumer to front-load
 consumption
 
-This explosive path shows up in the second endogeous eigenvalue now
+This explosive path shows up in the second endogenous eigenvalue now
 being larger than one
 
 .. code-block:: python3
