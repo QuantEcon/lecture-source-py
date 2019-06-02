@@ -77,7 +77,7 @@ positions
 Mean-variance Portfolio Choice
 -------------------------------
 
-A risk free security earns one-period net return :math:`r_f`
+A risk-free security earns one-period net return :math:`r_f`
 
 An :math:`n \times 1` vector of risky securities earns
 an :math:`n \times 1` vector :math:`\vec r - r_f {\bf 1}` of *excess
@@ -274,7 +274,7 @@ market portfolio
     # Observed mean excess market return
     r_m = w_m @ μ_est
 
-    # Estimated variance of market portfolio
+    # Estimated variance of the market portfolio
     σ_m = w_m @ Σ_est @ w_m
 
     # Sharpe-ratio
@@ -283,7 +283,7 @@ market portfolio
     # Risk aversion of market portfolio holder
     d_m = r_m / σ_m
 
-    # Derive "view" which would induce market portfolio
+    # Derive "view" which would induce the market portfolio
     μ_m = (d_m * Σ_est @ w_m).reshape(N, 1)
 
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -302,7 +302,7 @@ Adding *Views*
 -------------------
 
 Black and Litterman start with a baseline customer who asserts that he
-or she shares the **market's views**, which means that his or her
+or she shares the **market's views**, which means that he or she
 believes that excess returns are governed by
 
 .. math::
@@ -336,7 +336,7 @@ mix the views :math:`\hat \mu` and :math:`\mu_{\bf BL}`
 
   \tilde \mu = (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1} \mu_{BL}  + (\tau \Sigma)^{-1} \hat \mu)
 
-Black and Litterman would then advice the customer to hold the portfolio
+Black and Litterman would then advise the customer to hold the portfolio
 associated with these views implied by rule :eq:`risky-portfolio`:
 
 .. math:: \tilde w = (\delta \Sigma)^{-1} \tilde \mu
@@ -410,7 +410,7 @@ Consider the following Bayesian interpretation of the Black-Litterman
 recommendation
 
 The prior belief over the mean excess returns is consistent with the
-market porfolio and is given by
+market portfolio and is given by
 
 .. math:: \mu \sim \mathcal{N}(\mu_{BL}, \Sigma)
 
@@ -476,7 +476,7 @@ where :math:`\bar d\in\mathbb{R}_+` denotes the (transformation) of a
 particular density value
 
 The curves defined by equation :eq:`ellipse` can be
-labelled as iso-likelihood ellipses
+labeled as iso-likelihood ellipses
 
     **Remark:** More generally there is a class of density functions
     that possesses this feature, i.e.
@@ -519,7 +519,7 @@ Dickey (1975) :cite:`Dickey1975` calls it a *curve decolletage*
 
 Leamer (1978) :cite:`leamer1978specification` calls it an *information contract curve* and
 describes it by the following program: maximize the likelihood of one
-view, say the Black-Litterman recommendation, while keeping the
+view, say the Black-Litterman recommendation while keeping the
 likelihood of the other view at least at a prespecified constant
 :math:`\bar d_2`
 
@@ -696,7 +696,7 @@ which yields the solution
 A common performance measure of estimators is the *mean squared error
 (MSE)*
 
-An estimator is "good" if its MSE is realtively small. Suppose
+An estimator is "good" if its MSE is relatively small. Suppose
 that :math:`\beta_0` is the "true" value of the coefficient, then the MSE
 of the OLS estimator is
 
@@ -707,7 +707,7 @@ of the OLS estimator is
   \beta_{OLS}\Vert^2}_{\text{variance}} +
   \underbrace{\Vert \mathbb E \hat\beta_{OLS} - \beta_0\Vert^2}_{\text{bias}}
 
-From this decomposition one can see that in order for the MSE to be
+From this decomposition, one can see that in order for the MSE to be
 small, both the bias and the variance terms must be small
 
 For example,
@@ -731,7 +731,7 @@ substantially reduce the variance so overall the MSE gets smaller
 A typical scenario when this proves to be useful is when the number of
 coefficients to be estimated is large relative to the sample size
 
-In these cases one approach to handle the bias-variance trade-off is the
+In these cases, one approach to handle the bias-variance trade-off is the
 so called *Tikhonov regularization*
 
 A general form with regularization matrix :math:`\Gamma` can be written as
@@ -811,7 +811,7 @@ write the regularized version of the mean excess return estimation
 
 Given that
 :math:`\hat \beta_{OLS} = \hat \mu` and :math:`\tilde \beta = \mu_{BL}`
-in the Black-Litterman model we have the following interpretation of the
+in the Black-Litterman model, we have the following interpretation of the
 model's recommendation
 
 The estimated (personal) view of the mean excess returns,
@@ -861,7 +861,7 @@ satisfies
 
 -  :math:`\int m(\epsilon,\mu) \phi(\epsilon) d \epsilon =1`
 
-That is, :math:`m(\epsilon, \mu)` is a nonnegative random variable with
+That is, :math:`m(\epsilon, \mu)` is a non-negative random variable with
 mean 1
 
 Multiplying :math:`\phi(\epsilon)`
@@ -885,7 +885,7 @@ That is, relative entropy is the expected value of the likelihood ratio
 :math:`m` where the expectation is taken with respect to the twisted
 density :math:`\tilde \phi`
 
-Relative entropy is nonnegative. It is a measure of the discrepancy
+Relative entropy is non-negative. It is a measure of the discrepancy
 between two probability distributions
 
 As such, it plays an important
@@ -952,7 +952,7 @@ which equals
 
 .. math:: w'\mu - \frac{\delta}{2} w' \Sigma w
 
-A robust decision maker can be modelled as replacing the mean return
+A robust decision maker can be modeled as replacing the mean return
 :math:`E [w ( \vec r - r_f {\bf 1})]` with the risk-sensitive
 
 .. math:: {\sf T} [w ( \vec r - r_f {\bf 1})] = w' \mu - \frac{1}{2 \theta} w' \Sigma w
@@ -1027,7 +1027,7 @@ and
 .. math:: \lim_{N\to \infty} \ \ P \left\{ \left| S_N - \mathbb V X \right| > \varepsilon \right\} = 0
 
 A necessary condition for these convergence results is that the
-associated MSEs vanish as :math:`N` goes to infintiy, or in other words,
+associated MSEs vanish as :math:`N` goes to infinity, or in other words,
 
 .. math:: \text{MSE}(\bar X_N, \mathbb E X) = o(1) \quad \quad  \text{and} \quad \quad \text{MSE}(S_N, \mathbb V X) = o(1)
 
@@ -1127,7 +1127,7 @@ by :math:`\gamma_h(0) = \frac{\sigma^2}{2\kappa}` irrespective of the
 sampling frequency
 
 The following figure illustrates how the dependence between the
-observations is related to sampling frequency
+observations is related to the sampling frequency
 
 -  For any given :math:`h`, the autocorrelation converges to zero as we increase the distance -- :math:`n`-- between the observations. This represents the "weak dependence" of the :math:`X` process
 
@@ -1185,11 +1185,11 @@ The variance of the sample mean is given by
 It is explicit in the above equation that time dependence in the data
 inflates the variance of the mean estimator through the covariance
 terms. Moreover, as we can see, a higher sampling frequency---smaller
-:math:`h`---makes all the covariance terms larger everything else being
+:math:`h`---makes all the covariance terms larger, everything else being
 fixed. This implies a relatively slower rate of convergence of the
-sample average for high frequency data
+sample average for high-frequency data
 
-Intuitively, the stronger dependence across observations for high frequency data reduces the
+Intuitively, the stronger dependence across observations for high-frequency data reduces the
 "information content" of each observation relative to the IID case
 
 We can upper bound the variance term in the following way
@@ -1212,7 +1212,7 @@ This long run factor is larger the higher is the frequency (the smaller
 is :math:`h`)
 
 Therefore, we expect the asymptotic relative MSEs, :math:`B`, to change
-with time dependent data. We just saw that the mean estimator's rate is
+with time-dependent data. We just saw that the mean estimator's rate is
 roughly changing by a factor of
 
 .. math:: \left(1 + 2 \frac{1}{1 - \exp(-\kappa h)} \right)
@@ -1286,7 +1286,7 @@ compute in closed form
 The above figure illustrates the relationship between the asymptotic
 relative MSEs and the sampling frequency
 
--  We can see that with low frequency data -- large values of :math:`h`
+-  We can see that with low-frequency data -- large values of :math:`h`
    -- the ratio of asymptotic rates approaches the IID case
 
 -  As :math:`h` gets smaller -- the higher the frequency -- the relative
