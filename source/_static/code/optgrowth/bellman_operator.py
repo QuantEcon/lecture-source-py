@@ -12,7 +12,7 @@ def operator_factory(og, parallel_flag=True):
     @njit
     def objective(c, v, y):
         """
-        The right hand side of the Bellman equation
+        The right-hand side of the Bellman equation
         """
         # First turn v into a function via interpolation
         v_func = lambda x: interp(grid, v, x)

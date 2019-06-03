@@ -24,7 +24,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this section we solve a simple on-the-job search model
+In this section, we solve a simple on-the-job search model
 
 * based on :cite:`Ljungqvist2012`, exercise 6.18, and :cite:`Jovanovic1979`
 
@@ -48,7 +48,7 @@ Model Features
 
 * job-specific human capital accumulation combined with on-the-job search
 
-* infinite horizon dynamic programming with one state variable and two controls
+* infinite-horizon dynamic programming with one state variable and two controls
 
 
 Model
@@ -153,7 +153,7 @@ capital and hence wages:
 
 Since wages are :math:`x (1 - s - \phi)`, marginal cost of investment via either :math:`\phi` or :math:`s` is identical
 
-Our risk neutral worker should focus on whatever instrument has the highest expected return
+Our risk-neutral worker should focus on whatever instrument has the highest expected return
 
 The relative expected return will depend on :math:`x`
 
@@ -166,7 +166,7 @@ For example, suppose first that :math:`x = 0.05`
 
 Both rates of return are good, but the return from search is better
 
-Next suppose that :math:`x = 0.4`
+Next, suppose that :math:`x = 0.4`
 
 * If :math:`s=1` and :math:`\phi = 0`, then expected next period capital is again :math:`0.5`
 * If :math:`s=0` and :math:`\phi = 1`, then :math:`g(x, \phi) = g(0.4, 1) \approx 0.8`
@@ -175,9 +175,9 @@ Return from investment via :math:`\phi` dominates expected return from search
 
 Combining these observations gives us two informal predictions:
 
-#. At any given state :math:`x`, the two controls :math:`\phi` and :math:`s` will 
+#. At any given state :math:`x`, the two controls :math:`\phi` and :math:`s` will
    function primarily as substitutes --- worker will focus on whichever instrument has the higher expected return
-#. For sufficiently small :math:`x`, search will be preferable to investment in 
+#. For sufficiently small :math:`x`, search will be preferable to investment in
    job-specific human capital.  For larger :math:`x`, the reverse will be true
 
 Now let's turn to implementation, and see if we can match our predictions
@@ -199,9 +199,9 @@ We will set up a class ``JVWorker`` that holds the parameters of the model descr
 
         """
 
-        def __init__(self, 
+        def __init__(self,
                      A=1.4,
-                     α=0.6, 
+                     α=0.6,
                      β=0.96,         # Discount factor
                      π=np.sqrt,      # Search effort function
                      a=2,            # Parameter of f
@@ -209,18 +209,18 @@ We will set up a class ``JVWorker`` that holds the parameters of the model descr
                      grid_size=50,
                      mc_size=100,
                      ɛ=1e-4):
-            
+
             self.A, self.α, self.β, self.π = A, α, β, π
             self.mc_size, self.ɛ = mc_size, ɛ
 
             self.g = njit(lambda x, ϕ: A * (x * ϕ)**α)     # Transition function
             self.f_rvs = np.random.beta(a, b, mc_size)
-           
+
             # Max of grid is the max of a large quantile value for f and the
             # fixed point y = g(y, 1)
             ɛ = 1e-4
             grid_max = max(A**(1 / (1 - α)), stats.beta(a, b).ppf(1 - ɛ))
-            
+
             # Human capital
             self.x_grid = np.linspace(ɛ, grid_max, grid_size)
 
@@ -242,7 +242,7 @@ where
      w(s, \phi)
      := x (1 - s - \phi) + \beta (1 - \pi(s)) v[g(x, \phi)] +
              \beta \pi(s) \int v[g(x, \phi) \vee u] f(du)
-    
+
 
 
 When we represent :math:`v`, it will be with a NumPy array ``v`` giving values on grid ``x_grid``
@@ -262,23 +262,23 @@ given a value function
 .. code-block:: python3
 
     def operator_factory(jv, parallel_flag=True):
-        
+
         """
         Returns a jitted version of the Bellman operator T
-        
+
         jv is an instance of JVWorker
 
         """
-        
+
         π, β = jv.π, jv.β
         x_grid, ɛ, mc_size = jv.x_grid, jv.ɛ, jv.mc_size
         f_rvs, g = jv.f_rvs, jv.g
-        
+
         @njit
         def objective(z, x, v):
-            s, ϕ = z  
+            s, ϕ = z
             v_func = lambda x: interp(x_grid, v, x)
-            
+
             integral = 0
             for m in range(mc_size):
                 u = f_rvs[m]
@@ -293,7 +293,7 @@ given a value function
             """
             The Bellman operator
             """
-            
+
             v_new = np.empty_like(v)
             for i in prange(len(x_grid)):
                 x = x_grid[i]
@@ -307,16 +307,16 @@ given a value function
                         if current_val > max_val:
                             max_val = current_val
                 v_new[i] = max_val
-                
+
             return v_new
-        
+
         @njit
         def get_greedy(v):
             """
             Computes the v-greedy policy of a given function v
             """
             s_policy, ϕ_policy = np.empty_like(v), np.empty_like(v)
-            
+
             for i in range(len(x_grid)):
                 x = x_grid[i]
                 # === Search on a grid === #
@@ -330,7 +330,7 @@ given a value function
                             max_s, max_ϕ = s, ϕ
                             s_policy[i], ϕ_policy[i] = max_s, max_ϕ
             return s_policy, ϕ_policy
-                    
+
         return T, get_greedy
 
 To solve the model, we will write a function that uses the Bellman operator
@@ -344,11 +344,11 @@ and iterates to find a fixed point
                     max_iter=1000,
                     verbose=True,
                     print_skip=25):
-                    
+
         """
         Solves the model by value function iteration
 
-        * jv is an instance of JVWorker 
+        * jv is an instance of JVWorker
 
         """
 
@@ -471,7 +471,7 @@ Argue that at the steady state, :math:`s_t \approx 0` and :math:`\phi_t \approx 
 Exercise 2
 ----------------
 
-In the preceding exercise we found that :math:`s_t` converges to zero
+In the preceding exercise, we found that :math:`s_t` converges to zero
 and :math:`\phi_t` converges to about 0.6
 
 Since these results were calculated at a value of :math:`\beta` close to
@@ -513,21 +513,21 @@ Here’s code to produce the 45 degree diagram
     T, get_greedy = operator_factory(jv)
     v_star = solve_model(jv, verbose=False)
     s_policy, ϕ_policy = get_greedy(v_star)
-    
+
     # Turn the policy function arrays into actual functions
     s = lambda y: interp(x_grid, s_policy, y)
     ϕ = lambda y: interp(x_grid, ϕ_policy, y)
 
     def h(x, b, u):
         return (1 - b) * g(x, ϕ(x)) + b * max(g(x, ϕ(x)), u)
-        
-    
+
+
     plot_grid_max, plot_grid_size = 1.2, 100
     plot_grid = np.linspace(0, plot_grid_max, plot_grid_size)
     fig, ax = plt.subplots(figsize=(8, 8))
     ticks = (0.25, 0.5, 0.75, 1.0)
-    ax.set(xticks=ticks, yticks=ticks, 
-           xlim=(0, plot_grid_max), 
+    ax.set(xticks=ticks, yticks=ticks,
+           xlim=(0, plot_grid_max),
            ylim=(0, plot_grid_max),
            xlabel='$x_t$', ylabel='$x_{t+1}$')
 
@@ -560,7 +560,7 @@ The figure can be produced as follows
 
 
 .. code-block:: python3
-    
+
     jv = JVWorker()
 
     def xbar(ϕ):
@@ -578,13 +578,11 @@ The figure can be produced as follows
 
 Observe that the maximizer is around 0.6
 
-This this is similar to the long run value for :math:`\phi` obtained in
+This is similar to the long-run value for :math:`\phi` obtained in
 exercise 1
 
-Hence the behaviour of the infinitely patent worker is similar to that
+Hence the behavior of the infinitely patent worker is similar to that
 of the worker with :math:`\beta = 0.96`
 
-This seems reasonable, and helps us confirm that our dynamic programming
+This seems reasonable and helps us confirm that our dynamic programming
 solutions are probably correct
-
-

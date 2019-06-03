@@ -47,7 +47,7 @@ let's pretend that we are rocket scientists
 A missile has been launched from country Y and our mission is to track it
 
 Let :math:`x  \in \mathbb{R}^2` denote the current location of the missile---a
-pair indicating latitude-longitute coordinates on a map
+pair indicating latitude-longitude coordinates on a map
 
 At the present moment in time, the precise location :math:`x` is unknown, but
 we do have some beliefs about :math:`x`
@@ -313,7 +313,7 @@ What have we achieved so far?
 
 We have obtained probabilities for the current location of the state (missile) given prior and current information
 
-This is called "filtering" rather than forecasting, because we are filtering
+This is called "filtering" rather than forecasting because we are filtering
 out noise rather than looking into the future
 
 * :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` is called the *filtering distribution*
@@ -499,9 +499,9 @@ A fixed point of :eq:`kalman_sdy` is a constant matrix :math:`\Sigma` such that
     \Sigma = A \Sigma A' -  A \Sigma G' (G \Sigma G' + R)^{-1} G \Sigma A' + Q
 
 
-Equation :eq:`kalman_sdy` is known as a discrete time Riccati difference equation
+Equation :eq:`kalman_sdy` is known as a discrete-time Riccati difference equation
 
-Equation :eq:`kalman_dare` is known as a `discrete time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
+Equation :eq:`kalman_dare` is known as a `discrete-time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
 
 Conditions under which a fixed point exists and the sequence :math:`\{\Sigma_t\}` converges to it are discussed in :cite:`AHMS1996` and :cite:`AndersonMoore2005`, chapter 4
 
@@ -509,7 +509,7 @@ A sufficient (but not necessary) condition is that all the eigenvalues :math:`\l
 
 (This strong condition assures that the unconditional  distribution of :math:`x_t`  converges as :math:`t \rightarrow + \infty`)
 
-In this case, for any initial choice of :math:`\Sigma_0` that is both nonnegative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy` converges to a nonnegative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare`
+In this case, for any initial choice of :math:`\Sigma_0` that is both non-negative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy` converges to a non-negative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare`
 
 
 
@@ -778,7 +778,7 @@ Exercise 2
     y = y.flatten()
 
     for t in range(T):
-        # Record the current predicted mean and variance, and plot their densities
+        # Record the current predicted mean and variance and plot their densities
         m, v = [float(temp) for temp in (kalman.x_hat, kalman.Sigma)]
 
         f = lambda x: norm.pdf(x, loc=m, scale=np.sqrt(v))

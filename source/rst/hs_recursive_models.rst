@@ -77,7 +77,7 @@ In saying that "complete markets are all alike", Robert E. Lucas, Jr. was noting
 
 - a concept of competitive equilibrium
 
-- theorems connecting competive equilibrium allocations to allocations that would be chosen by a benevolent social planner
+- theorems connecting competitive equilibrium allocations to allocations that would be chosen by a benevolent social planner
 
 
 The models have **no frictions** such as :math:`\ldots`
@@ -107,7 +107,7 @@ case of the analysis of trade under certainty**
 
 The :cite:`HS2013` class of models specify the commodity space, preferences, technologies, stochastic shocks and information flows in ways
 that allow the models to be analyzed completely using only the tools of linear time series models and linear-quadratic optimal control described
-in the the two lectures  :doc:`Linear State Space Models<linear_models>` and :doc:`Linear Quadratic Control<lqcontrol>`
+in the two lectures  :doc:`Linear State Space Models<linear_models>` and :doc:`Linear Quadratic Control<lqcontrol>`
 
 There are costs and benefits associated with the simplifications and specializations needed to make a particular model fit within the
 :cite:`HS2013` class
@@ -213,7 +213,7 @@ The models are flexible enough to express alternative senses of a representative
    aggregation but are still susceptible to aggregation into a single
    representative household via ‘non-Gorman' or 'mongrel' aggregation’
 
-These three alternative types of aggregation have different consequences in terms how  prices and allocations can be computed
+These three alternative types of aggregation have different consequences in terms of how  prices and allocations can be computed
 
 In particular, can prices and an aggregate allocation be computed before the
 equilibrium allocation to individual heterogeneous households is computed?
@@ -228,14 +228,14 @@ are
 -  Deeper understandings that come from recognizing common underlying
    structures
 
--  Speed and ease of computation that come from unleashing a common suite of Python programs
+-  Speed and ease of computation that comes from unleashing a common suite of Python programs
 
 We'll use the following **mathematical tools**
 
 
 -  Stochastic Difference Equations (Linear)
 
--  Duality: LQ Dynamic Programming and Linear Filtering  are the same thing
+-  Duality: LQ Dynamic Programming and Linear Filtering  are the same things
    mathematically
 
 -  The Spectral Factorization Identity (for understanding vector
@@ -438,7 +438,7 @@ matrix :math:`A_{22}` have absolute values that are less than or equal
 to one
 
 
-Thus, in summary our model of **information and shocks** is
+Thus, in summary, our model of **information and shocks** is
 
 .. math::
 
@@ -470,7 +470,7 @@ a vector intermediate productions goods, :math:`d_t` is a vector of technology s
     \Phi_c c_t +  \Phi_g g_t + \Phi_i i_t &=\Gamma k_{t-1} + d_t \\
    k_t &=\Delta_k k_{t-1} + \Theta_k i_t \\ g_t \cdot g_t &=\ell_t^2 \end{align}
 
-Here :math:`\Phi_c, \Phi_g, \Phi_i, \Gamma, \Delta_k, \Theta_k` are all matrices comformable to the vectors they multiply and
+Here :math:`\Phi_c, \Phi_g, \Phi_i, \Gamma, \Delta_k, \Theta_k` are all matrices conformable to the vectors they multiply and
 :math:`\ell_t` is a disutility generating resource supplied by the household
 
 
@@ -514,7 +514,7 @@ stochastic processes of consumption services :math:`s_t` according to
 
 We now proceed to give examples of production and household technologies that appear in various models that appear in the literature
 
-First we give examples of production Technologies
+First, we give examples of production Technologies
 
 
 .. math:: \Phi_c c_t + \Phi_g g_t + \Phi_i i_t = \Gamma k_{t-1} + d_t
@@ -771,7 +771,7 @@ so that
 .. math:: s_{2t} = \lambda (c_t - c_{t-1} )
 
 We set the first component :math:`b_{1t}` of :math:`b_t` to capture the
-stochastic bliss process, and set the second component identically equal
+stochastic bliss process and set the second component identically equal
 to zero.
 
 Thus, we set :math:`\Delta_h = 0, \Theta_h = 1`
@@ -915,7 +915,7 @@ Thus, we require that each component of :math:`h_t` and each component of
 :math:`k_t` belong to :math:`L_0^2`
 
 
-We shall compare and utiliize two approaches to solving the planning problem
+We shall compare and utilize two approaches to solving the planning problem
 
 -  Lagrangian
 
@@ -976,7 +976,7 @@ and also transversality conditions
 
 The system formed by the FONCs and the transition equations can be  handed over to Python
 
-Python will solve planning problem for fixed parameter values
+Python will solve the planning problem for fixed parameter values
 
 
 Here are the **Python  Ready Equations**
@@ -1029,7 +1029,7 @@ The Lagrange multipliers or **shadow prices** satisfy
    {\cal M}_t^i =
    \Theta _k^\prime {\cal M}_t^k
 
-Although it is possible use matrix operator methods to solve the above **Python ready equations**, that is not
+Although it is possible to use matrix operator methods to solve the above **Python ready equations**, that is not
 the approach we'll use
 
 Instead, we'll use dynamic programming to get recursive representations for both quantities and shadow prices
@@ -1045,7 +1045,7 @@ Thus, let :math:`V(x_0)` be the optimal value function for the
 
 (Thus, in essence, dynamic programming amounts to an application of a **guess and verify** method in which we begin with a guess about the answer
 to the problem we want to solve. That's why we start with **let** :math:`V(x_0)` be the (value of the) answer to the problem, then establish and
-verity a bunch of conditions :math:`V(x_0)` has to satisfy if indeed it is the answer)
+verify a bunch of conditions :math:`V(x_0)` has to satisfy if indeed it is the answer)
 
 The optimal value function :math:`V(x)` satisfies the **Bellman equation**
 
@@ -1234,7 +1234,7 @@ We will use this fact and these equations to compute competitive equilibrium pri
 
 Let's start with describing the **commodity space** and **pricing functional** for our competitive equilibrium
 
-For the  **commodity space** we use
+For the  **commodity space**, we use
 
 .. math::
 
@@ -1242,7 +1242,7 @@ For the  **commodity space** we use
    variable in } \  J_t \ \hbox{ and } \  E \sum_{t=0}^\infty \beta^t
    y_t^2 \mid J_0 < + \infty]
 
-For **pricing functionals** we express  values as inner products
+For **pricing functionals**, we express  values as inner products
 
 .. math:: \pi (c) = E \sum_{t=0}^\infty \beta^t p_t^0 \cdot c_t \mid J_0
 
@@ -1283,7 +1283,7 @@ subject to
    \hbox{ given}
 
 
-We now desribe the problems faced by two types of firms called type I and type II
+We now describe the problems faced by two types of firms called type I and type II
 
 Type I Firm
 -------------
@@ -1342,11 +1342,11 @@ that satisfy the following conditions:
 
 Versions of the two classical welfare theorems prevail under our assumptions
 
-We exploit that fact in our algorithm for computing a competiive equilibrium
+We exploit that fact in our algorithm for computing a competitive equilibrium
 
  **Step 1:** Solve the planning problem by using dynamic programming
 
- The allocation (i.e., **quantitites**) that solve the planning problem **are** the
+ The allocation (i.e., **quantities**) that solve the planning problem **are** the
  competitive equilibrium quantities
 
  **Step 2:** use the following formulas to compute the **equilibrium price system**
@@ -1378,7 +1378,7 @@ multipliers for each of our three classes of agents that cause all
 first-order necessary conditions to be satisfied at these prices and at
 the quantities associated with the optimum of the planning problem
 
-An important use of an equilbrium pricing system is to do asset pricing
+An important use of an equilibrium pricing system is to do asset pricing
 
 Thus, imagine that we are presented a dividend stream: :math:`\{y_t\} \in L^2_0`
 and want to compute the value of a perpetual claim to this stream
@@ -1443,7 +1443,7 @@ price system
 Econometrics
 ==============
 
-Up to now we have described how to solve the **direct problem** that maps model parameters into an (equilibrium) stochastic process
+Up to now, we have described how to solve the **direct problem** that maps model parameters into an (equilibrium) stochastic process
 of prices and quantities
 
 Recall the **inverse problem** of inferring model parameters from a single realization of a time series of some of the prices and quantities
@@ -1621,7 +1621,7 @@ Wold and Vector Autoregressive Representations
 Let's start with some lag operator arithmetic
 
 The lag operator :math:`L` and the inverse lag operator  :math:`L^{-1}` each map an infinite sequence into an infinite sequence according to the
-tranformation rules
+transformation rules
 
 
 .. math:: L x_t \equiv x_{t-1}
@@ -1669,7 +1669,7 @@ if
   - the absolute values of the eigenvalues of :math:`\color{blue}{(\Delta_h - \Theta_h \Pi^{-1}\Lambda)}` are strictly less than :math:`1/\sqrt\beta`.
 
 .
-**Key invertiblility property:** A canonical household service
+**Key invertibility property:** A canonical household service
 technology maps a service process :math:`\{s_t\}` in :math:`L_0^2`
 into a corresponding consumption process :math:`\{c_t\}` for which the
 implied household capital stock process :math:`\{h_t\}` is also in
@@ -1808,7 +1808,7 @@ Dynamic Demand
 Define a time :math:`t` continuation of a sequence
 :math:`\{z_t\}_{t=0}^\infty` as the sequence
 :math:`\{z_\tau\}_{\tau=t}^\infty`. The demand system indicates that the
-time :math:`t` vector of demands for :math:`c_t` are influenced by:
+time :math:`t` vector of demands for :math:`c_t` is influenced by:
 
 Through the multiplier :math:`\mu^w_t`, the time :math:`t` continuation
 of the preference shock process :math:`\{b_t\}` and the time :math:`t`
@@ -1978,7 +1978,7 @@ The law of motion for cattle stocks is
 
 .. math:: \tilde x_t = (1-\delta) \tilde x_{t-1} + g \tilde x_{t-3} - c_t
 
-where :math:`c_t` is a rate of slaughtering. The total head count of
+where :math:`c_t` is a rate of slaughtering. The total head-count of
 cattle
 
 .. math:: \tilde y_t = \tilde x_t + g \tilde x_{t-1} + g \tilde x_{t-2}
@@ -2221,10 +2221,10 @@ and by Attanasio and Pavoni (2011) :cite:`attanasio2011risk`
 Gorman Heterogeneous Households
 ================================
 
-We now assume that there is a finite number of households, each with its own household  technology and 
+We now assume that there is a finite number of households, each with its own household  technology and
 preferences over consumption services
 
-Household :math:`j` orders preferences over consumption processes according to 
+Household :math:`j` orders preferences over consumption processes according to
 
 .. math::
 
@@ -2277,7 +2277,7 @@ initial conditions for household capital stocks
 
 We can use the representative consumer to compute a competitive equilibrium **aggregate** allocation and price system
 
-With the equilibrium aggregate allocation and price system in hand, we can then compute allocations to each household 
+With the equilibrium aggregate allocation and price system in hand, we can then compute allocations to each household
 
 **Computing  Allocations to Individuals:**
 
@@ -2421,9 +2421,9 @@ We now describe how to extend mongrel aggregation to a dynamic setting
 
 The key comparison is
 
--  Static: factor a covariance matrix like object
+-  Static: factor a covariance matrix-like object
 
--  Dynamic: factor a spectral-density matrix like object
+-  Dynamic: factor a spectral-density matrix-like object
 
 Programming Problem for Dynamic Mongrel Aggregation:
 

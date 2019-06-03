@@ -24,13 +24,13 @@ In this lecture we discuss a family of dynamic programming problems with the fol
 
 #. a discrete state space and discrete choices (actions)
 
-#. an infinite horizon 
+#. an infinite horizon
 
 #. discounted rewards
 
-#. Markov state transitions 
+#. Markov state transitions
 
-We call such problems discrete dynamic programs, or discrete DPs 
+We call such problems discrete dynamic programs or discrete DPs
 
 Discrete DPs are the workhorses in much of modern quantitative economics, including
 
@@ -53,15 +53,15 @@ This lecture covers
 
 * the theory of dynamic programming in a discrete setting, plus examples and
   applications
-  
-* a powerful set of routines for solving discrete DPs from the `QuantEcon code libary <http://quantecon.org/python_index.html>`_ 
+
+* a powerful set of routines for solving discrete DPs from the `QuantEcon code library <http://quantecon.org/python_index.html>`_
 
 
 
 How to Read this Lecture
 ---------------------------
 
-We use dynamic programming many applied lectures, such as 
+We use dynamic programming many applied lectures, such as
 
 * The :doc:`shortest path lecture <short_path>`
 
@@ -69,7 +69,7 @@ We use dynamic programming many applied lectures, such as
 
 * The :doc:`optimal growth lecture <optgrowth>`
 
-The objective of this lecture is to provide a more systematic and theoretical treatment, including algorithms and implementation, while focusing on the discrete case
+The objective of this lecture is to provide a more systematic and theoretical treatment, including algorithms and implementation while focusing on the discrete case
 
 
 
@@ -81,15 +81,15 @@ The code discussed below was authored primarily by `Daisuke Oyama <https://githu
 
 Among other things, it offers
 
-* a flexible, well designed interface
+* a flexible, well-designed interface
 
 * multiple solution methods, including value function and policy function iteration
 
-* high speed operations via carefully optimized JIT-compiled functions
+* high-speed operations via carefully optimized JIT-compiled functions
 
 * the ability to scale to large problems by minimizing vectorized operators and allowing operations on sparse matrices
 
-JIT compilation relies on `Numba <http://numba.pydata.org/>`_, which should work 
+JIT compilation relies on `Numba <http://numba.pydata.org/>`_, which should work
 seamlessly if you are using `Anaconda <https://www.anaconda.com/download/>`_ as :doc:`suggested <getting_started>`
 
 
@@ -155,7 +155,7 @@ Examples:
 
 * accepting a job offer today vs seeking a better one in the future
 
-* exercising an option now vs waiting 
+* exercising an option now vs waiting
 
 
 Policies
@@ -191,7 +191,7 @@ Formally, a discrete dynamic program consists of the following components:
 #. A finite set of *states* :math:`S = \{0, \ldots, n-1\}`
 
 #. A finite set of *feasible actions* :math:`A(s)` for each state :math:`s \in S`, and a corresponding set of *feasible state-action pairs*
-   
+
     .. math::
 
             \mathit{SA} := \{(s, a) \mid s \in S, \; a \in A(s)\}
@@ -212,14 +212,14 @@ A policy is called *feasible* if it satisfies :math:`\sigma(s) \in A(s)` for all
 
 Denote the set of all feasible policies by :math:`\Sigma`
 
-If a decision maker uses  a policy :math:`\sigma \in \Sigma`, then 
+If a decision-maker uses  a policy :math:`\sigma \in \Sigma`, then
 
 * the current reward at time :math:`t` is :math:`r(s_t, \sigma(s_t))`
 
 * the probability that :math:`s_{t+1} = s'` is :math:`Q(s_t, \sigma(s_t), s')`
 
 
-For each :math:`\sigma \in \Sigma`, define 
+For each :math:`\sigma \in \Sigma`, define
 
 * :math:`r_{\sigma}` by :math:`r_{\sigma}(s) := r(s, \sigma(s))`)
 
@@ -255,9 +255,9 @@ Value and Optimality
 ----------------------
 
 Let :math:`v_{\sigma}(s)` denote the discounted sum of expected reward flows from policy :math:`\sigma`
-when the initial state is :math:`s` 
+when the initial state is :math:`s`
 
-To calculate this quantity we pass the expectation through the sum in 
+To calculate this quantity we pass the expectation through the sum in
 :eq:`dp_objective` and use :eq:`ddp_expec` to get
 
 .. math::
@@ -272,7 +272,7 @@ The *optimal value function*, or simply *value function*, is the function :math:
 
 .. math::
 
-    v^*(s) = \max_{\sigma \in \Sigma} v_{\sigma}(s) 
+    v^*(s) = \max_{\sigma \in \Sigma} v_{\sigma}(s)
     \qquad (s \in S)
 
 
@@ -286,10 +286,10 @@ Given any :math:`w \colon S \to \mathbb R`, a policy :math:`\sigma \in \Sigma` i
 
 .. math::
 
-    \sigma(s) \in \operatorname*{arg\,max}_{a \in A(s)} 
+    \sigma(s) \in \operatorname*{arg\,max}_{a \in A(s)}
     \left\{
         r(s, a) +
-        \beta \sum_{s' \in S} w(s') Q(s, a, s') 
+        \beta \sum_{s' \in S} w(s') Q(s, a, s')
     \right\}
     \qquad (s \in S)
 
@@ -310,9 +310,9 @@ It is useful to define the following operators:
 
 .. math::
 
-    (T v)(s) = \max_{a \in A(s)} 
+    (T v)(s) = \max_{a \in A(s)}
     \left\{
-        r(s, a) + \beta \sum_{s' \in S} v(s') Q(s, a, s') 
+        r(s, a) + \beta \sum_{s' \in S} v(s') Q(s, a, s')
     \right\}
     \qquad (s \in S)
 
@@ -321,25 +321,25 @@ It is useful to define the following operators:
 
 .. math::
 
-    (T_{\sigma} v)(s) = r(s, \sigma(s)) + 
-        \beta \sum_{s' \in S} v(s') Q(s, \sigma(s), s') 
+    (T_{\sigma} v)(s) = r(s, \sigma(s)) +
+        \beta \sum_{s' \in S} v(s') Q(s, \sigma(s), s')
     \qquad (s \in S)
 
 
-This can be written more succinctly in operator notation as 
+This can be written more succinctly in operator notation as
 
 .. math::
 
     T_{\sigma} v = r_{\sigma} + \beta Q_{\sigma} v
 
 
-The two operators are both monotone 
+The two operators are both monotone
 
 * :math:`v \leq w`  implies :math:`Tv \leq Tw` pointwise on :math:`S`, and
   similarly for :math:`T_\sigma`
 
 
-They are also contraction mappings with modulus :math:`\beta` 
+They are also contraction mappings with modulus :math:`\beta`
 
 
 * :math:`\lVert Tv - Tw \rVert \leq \beta \lVert v - w \rVert` and similarly for :math:`T_\sigma`, where :math:`\lVert \cdot\rVert` is the max norm
@@ -361,24 +361,24 @@ The main principle of the theory of dynamic programming is that
 
 .. math::
 
-   v(s) = \max_{a \in A(s)} 
+   v(s) = \max_{a \in A(s)}
        \left\{
-           r(s, a) + \beta \sum_{s' \in S} v(s') Q(s, a, s') 
+           r(s, a) + \beta \sum_{s' \in S} v(s') Q(s, a, s')
        \right\}
    \qquad (s \in S)
 
 or in other words, :math:`v^*` is the unique fixed point of :math:`T`, and
-   
+
 -  :math:`\sigma^*` is an optimal policy function if and only if it is :math:`v^*`-greedy
 
 
-By the definition of greedy policies given above, this means that 
+By the definition of greedy policies given above, this means that
 
 .. math::
 
-    \sigma^*(s) \in \operatorname*{arg\,max}_{a \in A(s)} 
+    \sigma^*(s) \in \operatorname*{arg\,max}_{a \in A(s)}
         \left\{
-        r(s, a) + \beta \sum_{s' \in S} v^*(s') Q(s, \sigma(s), s') 
+        r(s, a) + \beta \sum_{s' \in S} v^*(s') Q(s, \sigma(s), s')
         \right\}
     \qquad (s \in S)
 
@@ -388,17 +388,17 @@ Solving Discrete DPs
 
 Now that the theory has been set out, let's turn to solution methods
 
-Code for solving discrete DPs is available in `ddp.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ code library
+The code for solving discrete DPs is available in `ddp.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ code library
 
 It implements the three most important solution methods for discrete dynamic programs, namely
 
 -  value function iteration
 
--  policy function iteration 
+-  policy function iteration
 
 -  modified policy function iteration
 
-Let's briefly review these algorithms and their implementation 
+Let's briefly review these algorithms and their implementation
 
 
 
@@ -425,13 +425,13 @@ Policy Function Iteration
 
 This routine, also known as Howard's policy improvement algorithm, exploits more closely the particular structure of a discrete DP problem
 
-Each iteration consists of 
+Each iteration consists of
 
 #. A policy evaluation step that computes the value :math:`v_{\sigma}` of a policy :math:`\sigma` by solving the linear equation :math:`v = T_{\sigma} v`
-   
+
 #. A policy improvement step that computes a :math:`v_{\sigma}`-greedy policy
 
-In the current setting policy iteration computes an exact optimal policy in finitely many iterations
+In the current setting, policy iteration computes an exact optimal policy in finitely many iterations
 
 * See theorem 10.2.6 of `EDTC <http://johnstachurski.net/edtc.html>`_ for a proof
 
@@ -444,7 +444,7 @@ Modified Policy Function Iteration
 ----------------------------------
 
 
-Modified policy iteration replaces the policy evaluation step in policy iteration with "partial policy evaluation" 
+Modified policy iteration replaces the policy evaluation step in policy iteration with "partial policy evaluation"
 
 
 The latter computes an approximation to the value of a policy :math:`\sigma` by iterating :math:`T_{\sigma}` for a specified number of times
@@ -463,7 +463,7 @@ The details of the algorithm can be found in :ref:`the appendix <ddp_algorithms>
 Example: A Growth Model
 =============================
 
-Let's consider a simple consumption-saving model 
+Let's consider a simple consumption-saving model
 
 A single household either consumes or stores its own output of a single consumption good
 
@@ -473,11 +473,11 @@ Next, the household chooses a quantity :math:`a` to store and consumes :math:`c 
 
 * Storage is limited by a global upper bound :math:`M`
 
-* Flow utility is :math:`u(c) = c^{\alpha}` 
+* Flow utility is :math:`u(c) = c^{\alpha}`
 
 Output is drawn from a discrete uniform distribution on :math:`\{0, \ldots, B\}`
 
-The next period stock is therefore 
+The next period stock is therefore
 
 .. math::
 
@@ -495,16 +495,16 @@ Discrete DP Representation
 
 We want to represent this model in the format of a discrete dynamic program
 
-To this end, we take 
+To this end, we take
 
-* the state variable to be the stock :math:`s` 
+* the state variable to be the stock :math:`s`
 
 * the state space to be :math:`S = \{0, \ldots, M + B\}`
-  
+
     * hence :math:`n = M + B + 1`
-  
+
 * the action to be the storage quantity :math:`a`
-  
+
 
 * the set of feasible actions at :math:`s` to be :math:`A(s) = \{0, \ldots, \min\{s, M\}\}`
 
@@ -517,7 +517,7 @@ To this end, we take
 .. math::
     :label: ddp_def_ogq
 
-    Q(s, a, s') := 
+    Q(s, a, s') :=
     \begin{cases}
         \frac{1}{B + 1} & \text{if } a \leq s' \leq a + B
         \\
@@ -531,15 +531,15 @@ Defining a DiscreteDP Instance
 This information will be used to create an instance of `DiscreteDP` by passing
 the following information
 
-#.  An :math:`n \times m` reward array :math:`R` 
-    
+#.  An :math:`n \times m` reward array :math:`R`
+
 #. An :math:`n \times m \times n` transition probability array :math:`Q`
-   
+
 #. A discount factor :math:`\beta`
 
 
 For :math:`R` we set :math:`R[s, a] = u(s - a)` if :math:`a \leq s` and :math:`-\infty` otherwise
-      
+
 For :math:`Q` we follow the rule in :eq:`ddp_def_ogq`
 
 Note:
@@ -548,7 +548,7 @@ Note:
 
 * Probability distributions for :math:`(s, a)` with :math:`a \notin A(s)` can be arbitrary
 
-The following code sets up these objects for us 
+The following code sets up these objects for us
 
 .. literalinclude:: /_static/code/discrete_dp/finite_dp_og_example.py
 
@@ -557,7 +557,7 @@ Let's run this code and create an instance of ``SimpleOG``
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     g = SimpleOG()  # Use default parameters
 
@@ -567,11 +567,11 @@ Let's run this code and create an instance of ``SimpleOG``
 
 Instances of ``DiscreteDP`` are created using the signature ``DiscreteDP(R, Q, β)``
 
-Let's create an instance using the objects stored in ``g`` 
+Let's create an instance using the objects stored in ``g``
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     import quantecon as qe
 
@@ -584,7 +584,7 @@ Now that we have an instance ``ddp`` of ``DiscreteDP`` we can solve it as follow
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     results = ddp.solve(method='policy_iteration')
 
@@ -597,10 +597,10 @@ Let's see what we've got here
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     dir(results)
-    
+
 
 (In IPython version 4.0 and above you can also type ``results.`` and hit the tab key)
 
@@ -612,15 +612,15 @@ The most important attributes are ``v``, the value function, and ``σ``, the opt
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     results.v
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     results.sigma
-    
+
 
 
 
@@ -630,15 +630,15 @@ Let's make sure this didn't happen
 
 
 
-.. code-block:: python3 
-    
+.. code-block:: python3
+
     results.max_iter
-    
-    
-.. code-block:: python3 
-    
+
+
+.. code-block:: python3
+
     results.num_iter
-    
+
 
 
 
@@ -652,7 +652,7 @@ can easily simulate it, compute its stationary distribution and so on
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     results.mc.stationary_distributions
 
@@ -668,7 +668,7 @@ What happens if the agent is more patient?
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     ddp = qe.markov.DiscreteDP(g.R, g.Q, 0.99)  # Increase β to 0.99
     results = ddp.solve(method='policy_iteration')
@@ -685,9 +685,9 @@ If we look at the bar graph we can see the rightward shift in probability mass
 State-Action Pair Formulation
 --------------------------------
 
-The ``DiscreteDP`` class in fact provides a second interface to setting up an instance
+The ``DiscreteDP`` class in fact, provides a second interface to set up an instance
 
-One of the advantages of this alternative set up is that it permits use of a sparse matrix for ``Q``
+One of the advantages of this alternative set up is that it permits the use of a sparse matrix for ``Q``
 
 (An example of using sparse matrices is given in the exercises below)
 
@@ -705,7 +705,7 @@ Here's how we could set up these objects for the preceding example
 
 
 
-For larger problems you might need to write this code more efficiently by vectorizing or using Numba
+For larger problems, you might need to write this code more efficiently by vectorizing or using Numba
 
 
 
@@ -715,7 +715,7 @@ Exercises
 In the stochastic optimal growth lecture :doc:`dynamic programming lecture <optgrowth>`, we solve a
 :ref:`benchmark model <benchmark_growth_mod>` that has an analytical solution to check we could replicate it numerically
 
-The exercise is to replicate this solution using ``DiscreteDP`` 
+The exercise is to replicate this solution using ``DiscreteDP``
 
 
 Solutions
@@ -727,7 +727,7 @@ Written jointly with `Diasuke Oyama <https://github.com/oyamad>`__
 
 Let's start with some imports
 
-.. code-block:: ipython 
+.. code-block:: ipython
 
     import scipy.sparse as sparse
     import matplotlib.pyplot as plt
@@ -743,7 +743,7 @@ Details of the model can be found in :doc:`the lecture on optimal growth <optgro
 As in the lecture, we let :math:`f(k) = k^{\alpha}` with :math:`\alpha = 0.65`,
 :math:`u(c) = \log c`, and :math:`\beta = 0.95`
 
-.. code-block:: python3 
+.. code-block:: python3
 
     α = 0.65
     f = lambda k: k**α
@@ -755,7 +755,7 @@ Here we want to solve a finite state version of the continuous state model above
 We discretize the state space into a grid of size ``grid_size=500``, from :math:`10^{-6}` to ``grid_max=2``
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     grid_max = 2
     grid_size = 500
@@ -785,14 +785,14 @@ format <http://docs.scipy.org/doc/scipy/reference/sparse.html>`__
 
 We first construct indices for state-action pairs:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     # Consumption matrix, with nonpositive consumption included
     C = f(grid).reshape(grid_size, 1) - grid.reshape(1, grid_size)
-    
+
     # State-action indices
     s_indices, a_indices = np.where(C > 0)
-    
+
     # Number of state-action pairs
     L = len(s_indices)
 
@@ -803,13 +803,13 @@ We first construct indices for state-action pairs:
 
 Reward vector ``R`` (of length ``L``):
 
-.. code-block:: python3 
+.. code-block:: python3
 
     R = u(C[s_indices, a_indices])
 
 (Degenerate) transition probability matrix ``Q`` (of shape ``(L, grid_size)``), where we choose the `scipy.sparse.lil\_matrix <http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.lil_matrix.html>`__ format, while any format will do (internally it will be converted to the csr format):
 
-.. code-block:: python3 
+.. code-block:: python3
 
     Q = sparse.lil_matrix((L, grid_size))
     Q[np.arange(L), a_indices] = 1
@@ -817,7 +817,7 @@ Reward vector ``R`` (of length ``L``):
 (If you are familiar with the data structure of `scipy.sparse.csr\_matrix <http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html>`__, the following is the most efficient way to create the ``Q`` matrix in
 the current case)
 
-.. code-block:: python3 
+.. code-block:: python3
 
     # data = np.ones(L)
     # indptr = np.arange(L+1)
@@ -825,7 +825,7 @@ the current case)
 
 Discrete growth model:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     ddp = DiscreteDP(R, Q, β, s_indices, a_indices)
 
@@ -841,7 +841,7 @@ Solving the Model
 
 Solve the dynamic optimization problem:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     res = ddp.solve(method='policy_iteration')
     v, σ, num_iter = res.v, res.sigma, res.num_iter
@@ -853,7 +853,7 @@ Note that ``sigma`` contains the *indices* of the optimal *capital
 stocks* to save for the next period. The following translates ``sigma``
 to the corresponding consumption vector
 
-.. code-block:: python3 
+.. code-block:: python3
 
     # Optimal consumption in the discrete version
     c = f(grid) - grid[σ]
@@ -862,33 +862,33 @@ to the corresponding consumption vector
     ab = α * β
     c1 = (np.log(1 - ab) + np.log(ab) * ab / (1 - ab)) / (1 - β)
     c2 = α / (1 - ab)
-    
+
     def v_star(k):
         return c1 + c2 * np.log(k)
-    
+
     def c_star(k):
         return (1 - ab) * k**α
 
 Let us compare the solution of the discrete model with that of the
 original continuous model
 
-.. code-block:: python3 
+.. code-block:: python3
 
     fig, ax = plt.subplots(1, 2, figsize=(14, 4))
     ax[0].set_ylim(-40, -32)
     ax[0].set_xlim(grid[0], grid[-1])
     ax[1].set_xlim(grid[0], grid[-1])
-    
+
     lb0 = 'discrete value function'
     ax[0].plot(grid, v, lw=2, alpha=0.6, label=lb0)
-    
+
     lb0 = 'continuous value function'
     ax[0].plot(grid, v_star(grid), 'k-', lw=1.5, alpha=0.8, label=lb0)
     ax[0].legend(loc='upper left')
-    
+
     lb1 = 'discrete optimal consumption'
     ax[1].plot(grid, c, 'b-', lw=2, alpha=0.6, label=lb1)
-    
+
     lb1 = 'continuous optimal consumption'
     ax[1].plot(grid, c_star(grid), 'k-', lw=1.5, alpha=0.8, label=lb1)
     ax[1].legend(loc='upper left')
@@ -899,13 +899,13 @@ The outcomes appear very close to those of the continuous version
 
 Except for the "boundary" point, the value functions are very close:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     np.abs(v - v_star(grid)).max()
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     np.abs(v - v_star(grid))[1:].max()
 
@@ -913,29 +913,29 @@ Except for the "boundary" point, the value functions are very close:
 
 The optimal consumption functions are close as well:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     np.abs(c - c_star(grid)).max()
 
 
 
 In fact, the optimal consumption obtained in the discrete version is not
-really monotone, but the decrements are quit small:
+really monotone, but the decrements are quite small:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     diff = np.diff(c)
     (diff >= 0).all()
 
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     dec_ind = np.where(diff < 0)[0]
     len(dec_ind)
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     np.abs(diff[dec_ind]).max()
 
@@ -943,7 +943,7 @@ really monotone, but the decrements are quit small:
 
 The value function is monotone:
 
-.. code-block:: python3 
+.. code-block:: python3
 
     (np.diff(v) > 0).all()
 
@@ -951,12 +951,12 @@ The value function is monotone:
 Comparison of the Solution Methods
 ----------------------------------
 
-Let us solve the problem by the other two methods
+Let us solve the problem with the other two methods
 
 Value Iteration
 ~~~~~~~~~~~~~~~
 
-.. code-block:: python3 
+.. code-block:: python3
 
     ddp.epsilon = 1e-4
     ddp.max_iter = 500
@@ -964,7 +964,7 @@ Value Iteration
     res1.num_iter
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     np.array_equal(σ, res1.sigma)
 
@@ -972,13 +972,13 @@ Value Iteration
 Modified Policy Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: python3 
+.. code-block:: python3
 
     res2 = ddp.solve(method='modified_policy_iteration')
     res2.num_iter
 
 
-.. code-block:: python3 
+.. code-block:: python3
 
     np.array_equal(σ, res2.sigma)
 
@@ -1008,7 +1008,7 @@ Let us first visualize the convergence of the value iteration algorithm
 as in the lecture, where we use ``ddp.bellman_operator`` implemented as
 a method of ``DiscreteDP``
 
-.. code-block:: python3 
+.. code-block:: python3
 
     w = 5 * np.log(grid) - 25  # Initial condition
     n = 35
@@ -1023,37 +1023,37 @@ a method of ``DiscreteDP``
     lb = 'true value function'
     ax.plot(grid, v_star(grid), 'k-', lw=2, alpha=0.8, label=lb)
     ax.legend(loc='upper left')
-    
+
     plt.show()
 
 
-We next plot the consumption policies along the value iteration
+We next plot the consumption policies along with the value iteration
 
-.. code-block:: python3 
+.. code-block:: python3
 
     w = 5 * u(grid) - 25           # Initial condition
-    
+
     fig, ax = plt.subplots(3, 1, figsize=(8, 10))
     true_c = c_star(grid)
-    
+
     for i, n in enumerate((2, 4, 6)):
         ax[i].set_ylim(0, 1)
         ax[i].set_xlim(0, 2)
         ax[i].set_yticks((0, 1))
         ax[i].set_xticks((0, 2))
-    
+
         w = 5 * u(grid) - 25       # Initial condition
         compute_fixed_point(ddp.bellman_operator, w, max_iter=n, print_skip=1)
         σ = ddp.compute_greedy(w)  # Policy indices
         c_policy = f(grid) - grid[σ]
-    
+
         ax[i].plot(grid, c_policy, 'b-', lw=2, alpha=0.8,
                    label='approximate optimal consumption policy')
         ax[i].plot(grid, true_c, 'k-', lw=2, alpha=0.8,
                    label='true optimal consumption policy')
         ax[i].legend(loc='upper left')
         ax[i].set_title(f'{n} value function iterations')
-    plt.show()      
+    plt.show()
 
 
 Dynamics of the Capital Stock
@@ -1065,31 +1065,31 @@ the trajectories of the capital stock for three different discount
 factors, :math:`0.9`, :math:`0.94`, and :math:`0.98`, with initial
 condition :math:`k_0 = 0.1`
 
-.. code-block:: python3 
+.. code-block:: python3
 
     discount_factors = (0.9, 0.94, 0.98)
     k_init = 0.1
-    
+
     # Search for the index corresponding to k_init
     k_init_ind = np.searchsorted(grid, k_init)
-    
+
     sample_size = 25
-    
+
     fig, ax = plt.subplots(figsize=(8,5))
     ax.set_xlabel("time")
     ax.set_ylabel("capital")
     ax.set_ylim(0.10, 0.30)
-    
+
     # Create a new instance, not to modify the one used above
     ddp0 = DiscreteDP(R, Q, β, s_indices, a_indices)
-    
+
     for beta in discount_factors:
         ddp0.beta = beta
         res0 = ddp0.solve()
         k_path_ind = res0.mc.simulate(init=k_init_ind, ts_length=sample_size)
         k_path = grid[k_path_ind]
         ax.plot(k_path, 'o-', lw=2, alpha=0.75, label=f'$\\beta = {beta}$')
-    
+
     ax.legend(loc='lower right')
     plt.show()
 
@@ -1100,7 +1100,7 @@ condition :math:`k_0 = 0.1`
 Appendix: Algorithms
 ==========================
 
-This appendix covers the details of the solution algorithms implemented for ``DiscreteDP`` 
+This appendix covers the details of the solution algorithms implemented for ``DiscreteDP``
 
 We will make use of the following notions of approximate optimality:
 
@@ -1125,10 +1125,10 @@ follows
 
 4. Compute a :math:`v^{i+1}`-greedy policy :math:`\sigma`, and return :math:`v^{i+1}` and :math:`\sigma`
 
-Given :math:`\varepsilon > 0`, the value iteration algorithm 
+Given :math:`\varepsilon > 0`, the value iteration algorithm
 
 * terminates in a finite number of iterations
-  
+
 * returns an :math:`\varepsilon/2`-approximation of the optimal value function and an :math:`\varepsilon`-optimal policy function (unless ``iter_max`` is reached)
 
 (While not explicit, in the actual implementation each algorithm is
@@ -1184,5 +1184,3 @@ terminates in a finite number of iterations
 It returns an :math:`\varepsilon/2`-approximation of the optimal value function and an :math:`\varepsilon`-optimal policy function (unless ``iter_max`` is reached)
 
 See also the documentation for ``DiscreteDP``
-
-

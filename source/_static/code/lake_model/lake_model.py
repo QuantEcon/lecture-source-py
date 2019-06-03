@@ -98,7 +98,7 @@ class LakeModel:
 
     def simulate_stock_path(self, X0, T):
         """
-        Simulates the the sequence of Employment and Unemployent stocks
+        Simulates the sequence of Employment and Unemployment stocks
 
         Parameters
         ------------
@@ -120,7 +120,7 @@ class LakeModel:
 
     def simulate_rate_path(self, x0, T):
         """
-        Simulates the the sequence of employment and unemployent rates.
+        Simulates the sequence of employment and unemployment rates
 
         Parameters
         ------------
@@ -139,4 +139,3 @@ class LakeModel:
         for t in range(T):
             yield x
             x = self.A_hat @ x
-

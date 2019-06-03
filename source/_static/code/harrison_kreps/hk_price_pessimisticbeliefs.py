@@ -12,7 +12,7 @@ def price_pessimistic_beliefs(transitions, dividend_payoff, β=.75,
         p_old = p_new
         p_new = β * np.min([q @ p_old + q @ dividend_payoff for q in transitions], 1)
 
-        # If we succed in converging, break out of for loop
+        # If we succeed in converging, break out of for loop
         if np.max(np.sqrt((p_new - p_old)**2)) < 1e-12:
             break
 
