@@ -100,7 +100,7 @@ Let's think about it from a simulation perspective, imagining for a moment that
 our computer can generate perfect random samples (which of course `it can't
 <https://en.wikipedia.org/wiki/Pseudorandom_number_generator>`_)
 
-Let's also imagine that we can generate infinite sequences, so that the
+Let's also imagine that we can generate infinite sequences so that the
 statement :math:`\bar X_n \to \mu` can be evaluated
 
 In this setting, :eq:`lln_as` should be interpreted as meaning that the
@@ -281,7 +281,7 @@ Infinite Mean
 
 What happens if the condition :math:`\mathbb E | X | < \infty` in the statement of the LLN is not satisfied?
 
-This might be the case if the underlying distribution is heavy tailed --- the best
+This might be the case if the underlying distribution is heavy-tailed --- the best-
 known example is the Cauchy distribution, which has density
 
 .. math::
@@ -393,7 +393,7 @@ CLT
 .. index::
     single: Central Limit Theorem
 
-Next we turn to the central limit theorem, which tells us about the distribution of the deviation between sample averages and population means
+Next, we turn to the central limit theorem, which tells us about the distribution of the deviation between sample averages and population means
 
 
 Statement of the Theorem
@@ -433,11 +433,11 @@ working with characteristic functions (see, e.g., theorem 9.5.6 of :cite:`Dudley
 
 The proof is elegant but almost anticlimactic, and it provides surprisingly little intuition
 
-In fact all of the proofs of the CLT that we know are similar in this respect
+In fact, all of the proofs of the CLT that we know are similar in this respect
 
 Why does adding independent copies produce a bell-shaped distribution?
 
-Part of the answer can be obtained by investigating addition of independent Bernoulli
+Part of the answer can be obtained by investigating the addition of independent Bernoulli
 random variables
 
 In particular, let :math:`X_i` be binary, with :math:`\mathbb P\{X_i = 0\} = \mathbb P\{X_i =
@@ -462,8 +462,8 @@ The next figure plots the probability mass function of :math:`Y_n` for :math:`n 
     for ax, n in zip(axes, ns):
         b = binom(n, 0.5)
         ax.bar(dom, b.pmf(dom), alpha=0.6, align='center')
-        ax.set(xlim=(-0.5, 8.5), ylim=(0, 0.55), 
-               xticks=list(range(9)), yticks=(0, 0.2, 0.4), 
+        ax.set(xlim=(-0.5, 8.5), ylim=(0, 0.55),
+               xticks=list(range(9)), yticks=(0, 0.2, 0.4),
                title=f'$n = {n}$')
 
     plt.show()
@@ -495,7 +495,7 @@ For :math:`n = 4` and :math:`n = 8` we again get a peak at the "middle" value (h
 
 The intuition is the same --- there are simply more ways to get these middle outcomes
 
-If we continue, the bell-shaped curve becomes ever more pronounced
+If we continue, the bell-shaped curve becomes even more pronounced
 
 We are witnessing the `binomial approximation of the normal distribution <https://en.wikipedia.org/wiki/De_Moivre%E2%80%93Laplace_theorem>`_
 
@@ -522,7 +522,7 @@ To this end, we now perform the following simulation
 Here's some code that does exactly this for the exponential distribution
 :math:`F(x) = 1 - e^{- \lambda x}`
 
-(Please experiment with other choices of :math:`F`, but remember that, to conform with the conditions of the CLT, the distribution must have finite second moment)
+(Please experiment with other choices of :math:`F`, but remember that to conform with the conditions of the CLT, the distribution must have a finite second moment)
 
 
 
@@ -566,7 +566,7 @@ Notice the absence of for loops --- every operation is vectorized, meaning that 
 
 
 
-The fit to the normal density is already tight, and can be further improved by increasing ``n``
+The fit to the normal density is already tight and can be further improved by increasing ``n``
 
 You can also experiment with other specifications of :math:`F`
 
@@ -583,7 +583,7 @@ Simulation 2
 
 Our next simulation is somewhat like the first, except that we aim to track the distribution of :math:`Y_n := \sqrt{n} ( \bar X_n - \mu )` as :math:`n` increases
 
-In the simulation we'll be working with random variables having :math:`\mu = 0`
+In the simulation, we'll be working with random variables having :math:`\mu = 0`
 
 Thus, when :math:`n=1`, we have :math:`Y_1 = X_1`, so the first distribution is just
 the distribution of the underlying random variable
@@ -591,7 +591,7 @@ the distribution of the underlying random variable
 For :math:`n=2`, the distribution of :math:`Y_2` is that of :math:`(X_1 + X_2) / \sqrt{2}`, and so on
 
 What we expect is that, regardless of the distribution of the underlying
-random variable, the distribution of :math:`Y_n` will smooth out into a bell
+random variable, the distribution of :math:`Y_n` will smooth out into a bell-
 shaped curve
 
 The next figure shows this process for :math:`X_i \sim f`, where :math:`f` was
@@ -665,8 +665,8 @@ In the figure, the closest density is that of :math:`Y_1`, while the furthest is
     poly.set_alpha(0.85)
     ax.add_collection3d(poly, zs=ns, zdir='x')
 
-    ax.set(xlim3d=(1, nmax), xticks=(ns), ylabel='$Y_n$', zlabel='$p(y_n)$', 
-           xlabel=("n"), yticks=((-3, 0, 3)), ylim3d=(a, b), 
+    ax.set(xlim3d=(1, nmax), xticks=(ns), ylabel='$Y_n$', zlabel='$p(y_n)$',
+           xlabel=("n"), yticks=((-3, 0, 3)), ylim3d=(a, b),
            zlim3d=(0, 0.4), zticks=((0.2, 0.4)))
     ax.invert_xaxis()
     ax.view_init(30, 45)  # Rotates the plot 30 deg on z axis and 45 deg on x axis
@@ -773,7 +773,7 @@ Expanding this out, we get
 The :math:`j,k`-th term is the scalar covariance between :math:`X_j` and
 :math:`X_k`
 
-With this notation we can proceed to the multivariate LLN and CLT
+With this notation, we can proceed to the multivariate LLN and CLT
 
 Let :math:`\mathbf X_1, \ldots, \mathbf X_n` be a sequence of independent and
 identically distributed random vectors, each one taking values in
@@ -873,7 +873,7 @@ Assume the setting of the multivariate CLT :ref:`discussed above <multivariate_c
 
 is valid
 
-In a statistical setting, one often wants the right hand side to be **standard** normal, so that confidence intervals are easily computed
+In a statistical setting, one often wants the right-hand side to be **standard** normal so that confidence intervals are easily computed
 
 This normalization can be achieved on the basis of three observations
 
@@ -963,7 +963,7 @@ where
 Hints:
 
 #. ``scipy.linalg.sqrtm(A)`` computes the square root of ``A``.  You still need to invert it
-#. You should be able to work out :math:`\Sigma` from the proceding information
+#. You should be able to work out :math:`\Sigma` from the proceeding information
 
 
 Solutions
@@ -981,24 +981,24 @@ Here is one solution
     """
     Illustrates the delta method, a consequence of the central limit theorem.
     """
-    
+
     from scipy.stats import uniform
-    
- 
+
+
     # == Set parameters == #
     n = 250
     replications = 100000
     distribution = uniform(loc=0, scale=(np.pi / 2))
     μ, s = distribution.mean(), distribution.std()
-    
+
     g = np.sin
     g_prime = np.cos
-    
+
     # == Generate obs of sqrt{n} (g(X_n) - g(μ)) == #
-    data = distribution.rvs((replications, n)) 
+    data = distribution.rvs((replications, n))
     sample_means = data.mean(axis=1)  # Compute mean of each row
     error_obs = np.sqrt(n) * (g(sample_means) - g(μ))
-    
+
     # == Plot == #
     asymptotic_sd = g_prime(μ) * s
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -1029,7 +1029,7 @@ First we want to verify the claim that
 
 
        \sqrt{n} \mathbf Q ( \bar{\mathbf X}_n - \boldsymbol \mu )
-       \stackrel{d}{\to} 
+       \stackrel{d}{\to}
        N(\mathbf 0, \mathbf I)
 
 This is straightforward given the facts presented in the exercise
@@ -1048,14 +1048,14 @@ By the multivariate CLT and the continuous mapping theorem, we have
 .. math::
 
 
-       \mathbf Q \mathbf Y_n 
-       \stackrel{d}{\to} 
+       \mathbf Q \mathbf Y_n
+       \stackrel{d}{\to}
        \mathbf Q \mathbf Y
 
 Since linear combinations of normal random variables are normal, the
 vector :math:`\mathbf Q \mathbf Y` is also normal
 
-Its mean is clearly :math:`\mathbf 0`, and its variance covariance
+Its mean is clearly :math:`\mathbf 0`, and its variance-covariance
 matrix is
 
 .. math::
@@ -1078,7 +1078,7 @@ Our solution is as follows
 
     from scipy.stats import chi2
     from scipy.linalg import inv, sqrtm
-    
+
     # == Set parameters == #
     n = 250
     replications = 50000
@@ -1088,10 +1088,10 @@ Our solution is as follows
     vw, vu = sw**2, su**2
     Σ = ((vw, vw), (vw, vw + vu))
     Σ = np.array(Σ)
-    
+
     # == Compute Σ^{-1/2} == #
-    Q = inv(sqrtm(Σ))  
-    
+    Q = inv(sqrtm(Σ))
+
     # == Generate observations of the normalized sample mean == #
     error_obs = np.empty((2, replications))
     for i in range(replications):
@@ -1104,11 +1104,11 @@ Our solution is as follows
         X[1, :] = W + U
         # == Construct the i-th observation of Y_n == #
         error_obs[:, i] = np.sqrt(n) * X.mean(axis=1)
-    
+
     # == Premultiply by Q and then take the squared norm == #
     temp = Q @ error_obs
     chisq_obs = np.sum(temp**2, axis=0)
-    
+
     # == Plot == #
     fig, ax = plt.subplots(figsize=(10, 6))
     xmax = 8
@@ -1119,12 +1119,3 @@ Our solution is as follows
     ax.legend()
     ax.hist(chisq_obs, bins=50, density=True)
     plt.show()
-
-
-
-
-
-
-
-
-
