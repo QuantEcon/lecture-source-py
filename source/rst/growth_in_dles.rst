@@ -89,8 +89,10 @@ Our example economies have the following features
 
    .. math::  h_t = \Delta_h h_{t-1} + \Theta_h c_t
 
-   where :math:`s_t` is a vector of consumption services and
-   :math:`h_t` is a vector of household capital stocks
+
+where :math:`s_t` is a vector of consumption services, and
+:math:`h_t` is a vector of household capital stocks
+
 
 Thus, an instance of this class of economies is described by the
 matrices
