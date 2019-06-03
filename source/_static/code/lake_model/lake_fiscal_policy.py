@@ -63,7 +63,7 @@ def compute_steady_state_quantities(c, τ):
 
 def find_balanced_budget_tax(c):
     """
-    Find tax level that will induce a balanced budget.
+    Find the tax level that will induce a balanced budget.
 
     """
     def steady_state_budget(t):
