@@ -23,9 +23,9 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-Next we study a computational problem concerning career and job choices
+Next, we study a computational problem concerning career and job choices
 
-The model is originally due to Derek Neal :cite:`Neal1999` 
+The model is originally due to Derek Neal :cite:`Neal1999`
 
 This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5
 
@@ -65,8 +65,8 @@ For workers, wages can be decomposed into the contribution of job and career
 
 * :math:`w_t = \theta_t + \epsilon_t`, where
 
-    * :math:`\theta_t` is contribution of career at time :math:`t`
-    * :math:`\epsilon_t` is contribution of job at time :math:`t`
+    * :math:`\theta_t` is the contribution of career at time :math:`t`
+    * :math:`\epsilon_t` is the contribution of the job at time :math:`t`
 
 At the start of time :math:`t`, a worker has the following options
 
@@ -97,7 +97,7 @@ A young worker aims to maximize the expected sum of discounted wages
 subject to the choice restrictions specified above
 
 Let :math:`v(\theta, \epsilon)` denote the value function, which is the
-maximum of :eq:`exw` over all feasible (career, job) policies, given the
+maximum of :eq:`exw` overall feasible (career, job) policies, given the
 initial state :math:`(\theta, \epsilon)`
 
 The value function obeys
@@ -126,8 +126,8 @@ Parameterization
 
 As in :cite:`Ljungqvist2012`, section 6.5, we will focus on a discrete version of the model, parameterized as follows:
 
-* both :math:`\theta` and :math:`\epsilon` take values in the set 
-  ``np.linspace(0, B, grid_size)`` --- an even grid of points between 
+* both :math:`\theta` and :math:`\epsilon` take values in the set
+  ``np.linspace(0, B, grid_size)`` --- an even grid of points between
   :math:`0` and :math:`B` inclusive
 * ``grid_size = 50``
 * ``B = 5``
@@ -176,14 +176,14 @@ Here's a figure showing the effect on the pmf of different shape parameters when
         ax.plot(list(range(0, n+1)), gen_probs(n, a, b), '-o', label=ab_label)
     ax.legend()
     plt.show()
-    
+
 
 
 
 Implementation
 ==============================================
 
-We will first create a class ``CareerWorkerProblem`` which will hold the 
+We will first create a class ``CareerWorkerProblem`` which will hold the
 default parameterizations of the model and an initial guess for the value function
 
 .. code-block:: python3
@@ -191,20 +191,20 @@ default parameterizations of the model and an initial guess for the value functi
 
     class CareerWorkerProblem:
 
-        def __init__(self, 
+        def __init__(self,
                      B=5.0,          # Upper bound
                      β=0.95,         # Discount factor
                      grid_size=50,   # Grid size
                      F_a=1,
-                     F_b=1, 
+                     F_b=1,
                      G_a=1,
                      G_b=1):
-            
+
             self.β, self.grid_size, self.B = β, grid_size, B
-            
+
             self.θ = np.linspace(0, B, grid_size)     # set of θ values
             self.ϵ = np.linspace(0, B, grid_size)     # set of ϵ values
-            
+
             self.F_probs = BetaBinomial(grid_size - 1, F_a, F_b).pdf()
             self.G_probs = BetaBinomial(grid_size - 1, G_a, G_b).pdf()
             self.F_mean = np.sum(self.θ * self.F_probs)
@@ -213,22 +213,22 @@ default parameterizations of the model and an initial guess for the value functi
             # Store these parameters for str and repr methods
             self._F_a, self._F_b = F_a, F_b
             self._G_a, self._G_b = G_a, G_b
-              
-  
-The following function takes and instance of ``CareerWorkerProblem`` and returns
+
+
+The following function takes an instance of ``CareerWorkerProblem`` and returns
 the corresponding Bellman operator :math:`T` and the greedy policy function
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
 :math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
-          
+
 .. code-block:: python3
 
     def operator_factory(cw, parallel_flag=True):
-    
+
         """
         Returns jitted versions of the Bellman operator and the
         greedy policy function
-        
+
         cw is an instance of ``CareerWorkerProblem``
         """
 
@@ -239,7 +239,7 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
         @njit(parallel=parallel_flag)
         def T(v):
             "The Bellman operator"
-            
+
             v_new = np.empty_like(v)
 
             for i in prange(len(v)):
@@ -250,13 +250,13 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
                     v_new[i, j] = max(v1, v2, v3)
 
             return v_new
-        
+
         @njit
         def get_greedy(v):
             "Computes the v-greedy policy"
-            
+
             σ = np.empty(v.shape)
-            
+
             for i in range(len(v)):
                 for j in range(len(v)):
                     v1 = θ[i] + ϵ[j] + β * v[i, j]
@@ -269,13 +269,13 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
                     else:
                         action = 3
                     σ[i, j] = action
-                    
+
             return σ
 
         return T, get_greedy
-      
+
 Lastly, ``solve_model`` will  take an instance of ``CareerWorkerProblem`` and
-iterate using the Bellman operator to find the fixed point of the value function 
+iterate using the Bellman operator to find the fixed point of the value function
 
 .. code-block:: python3
 
@@ -319,7 +319,7 @@ Here's the solution to the model -- an approximate value function
     T, get_greedy = operator_factory(cw)
     v_star = solve_model(cw, verbose=False)
     greedy_star = get_greedy(v_star)
-    
+
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
     tg, eg = np.meshgrid(cw.θ, cw.ϵ)
@@ -332,11 +332,11 @@ Here's the solution to the model -- an approximate value function
     ax.set(xlabel='θ', ylabel='ϵ', zlim=(150, 200))
     ax.view_init(ax.elev, 225)
     plt.show()
-    
+
 And here is the optimal policy
-    
+
 .. code-block:: python3
-    
+
     fig, ax = plt.subplots(figsize=(6, 6))
     tg, eg = np.meshgrid(cw.θ, cw.ϵ)
     lvls = (0.5, 1.5, 2.5, 3.5)
@@ -351,7 +351,7 @@ And here is the optimal policy
 
 Interpretation:
 
-* If both job and career are poor or mediocre, the worker will experiment with new job and new career
+* If both job and career are poor or mediocre, the worker will experiment with a new job and new career
 
 * If career is sufficiently good, the worker will hold it and experiment with new jobs until a sufficiently good one is found
 
@@ -420,7 +420,7 @@ Repeat the exercise with :math:`\beta=0.99` and interpret the change
 Exercise 3
 ----------------
 
-Set the parametization to ``G_a = G_b = 100`` and generate a new optimal policy
+Set the parameterization to ``G_a = G_b = 100`` and generate a new optimal policy
 figure -- interpret
 
 
@@ -431,7 +431,7 @@ Solutions
 Exercise 1
 ----------
 
-Simulate job / career paths
+Simulate job/career paths
 
 In reading the code, recall that ``optimal_policy[i, j]`` = policy at
 :math:`(\theta_i, \epsilon_j)` = either 1, 2 or 3; meaning 'stay put',
@@ -459,8 +459,8 @@ In reading the code, recall that ``optimal_policy[i, j]`` = policy at
             θ_index.append(i)
             ϵ_index.append(j)
         return cw.θ[θ_index], cw.ϵ[ϵ_index]
-        
-        
+
+
     fig, axes = plt.subplots(2, 1, figsize=(10, 8))
     for ax in axes:
         θ_path, ϵ_path = gen_path(greedy_star, F, G)
@@ -498,14 +498,14 @@ The median for the original parameterization can be computed as follows
             else:                            # New life
                 i, j  = int(qe.random.draw(F)), int(qe.random.draw(G))
             t += 1
-            
+
     @njit(parallel=True)
     def median_time(optimal_policy, F, G, M=25000):
         samples = np.empty(M)
         for i in prange(M):
             samples[i] = passage_time(optimal_policy, F, G)
         return np.median(samples)
-        
+
     median_time(greedy_star, F, G)
 
 
@@ -513,7 +513,7 @@ To compute the median with :math:`\beta=0.99` instead of the default
 value :math:`\beta=0.95`, replace ``cw = CareerWorkerProblem()`` with
 ``cw = CareerWorkerProblem(β=0.99)``
 
-The medians are subject to randomness, but should be about 7 and 14 respectively
+The medians are subject to randomness but should be about 7 and 14 respectively
 
 Not surprisingly, more patient workers will wait longer to settle down to their final job
 
@@ -526,7 +526,7 @@ Exercise 3
     T, get_greedy = operator_factory(cw)
     v_star = solve_model(cw, verbose=False)
     greedy_star = get_greedy(v_star)
-    
+
     fig, ax = plt.subplots(figsize=(6, 6))
     tg, eg = np.meshgrid(cw.θ, cw.ϵ)
     lvls = (0.5, 1.5, 2.5, 3.5)
@@ -543,4 +543,3 @@ In the new figure, you see that the region for which the worker
 stays put has grown because the distribution for :math:`\epsilon`
 has become more concentrated around the mean, making high-paying jobs
 less realistic
-

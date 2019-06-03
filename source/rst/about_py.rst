@@ -14,13 +14,13 @@ About Python
 Overview
 ============
 
-In this lecture we will 
+In this lecture we will
 
-* Outline what Python is 
+* Outline what Python is
 * Showcase some of its abilities
 * Compare it to some other languages
 
-At this stage it's **not** our intention that you try to replicate all you see
+At this stage, it's **not** our intention that you try to replicate all you see
 
 We will work through what follows at a slow pace later in the lecture series
 
@@ -31,23 +31,23 @@ Our only objective for this lecture is to give you some feel of what Python is, 
 What's Python?
 ============================
 
-`Python <https://www.python.org>`_ is a general purpose programming language conceived in 1989 by Dutch programmer `Guido van Rossum <https://en.wikipedia.org/wiki/Guido_van_Rossum>`_
+`Python <https://www.python.org>`_ is a general-purpose programming language conceived in 1989 by Dutch programmer `Guido van Rossum <https://en.wikipedia.org/wiki/Guido_van_Rossum>`_
 
 Python is free and open source, with development coordinated through the `Python Software Foundation <https://www.python.org/psf/>`_
 
-Python has experienced rapid adoption in the last decade, and is now one of the most popular programming languages 
+Python has experienced rapid adoption in the last decade and is now one of the most popular programming languages
 
 
 Common Uses
 ------------
 
-:index:`Python <single: Python; common uses>` is a general purpose language used in almost all application domains
+:index:`Python <single: Python; common uses>` is a general-purpose language used in almost all application domains
 
 * communications
 
 * web development
 
-* CGI and graphical user interfaces 
+* CGI and graphical user interfaces
 
 * games
 
@@ -106,9 +106,9 @@ Overall, it's clear that
 Features
 ----------
 
-Python is a `high level language <https://en.wikipedia.org/wiki/High-level_programming_language>`_ suitable for rapid development
+Python is a `high-level language <https://en.wikipedia.org/wiki/High-level_programming_language>`_ suitable for rapid development
 
-It has a relatively small core language supported by many libraries 
+It has a relatively small core language supported by many libraries
 
 Other features:
 
@@ -128,9 +128,9 @@ One nice feature of Python is its elegant syntax --- we'll see many examples lat
 
 Elegant code might sound superfluous but in fact it's highly beneficial because it makes the syntax easy to read and easy to remember
 
-Remembering how to read from files, sort dictionaries and other such routine tasks means that you don't need to break your flow in order to hunt down correct syntax 
+Remembering how to read from files, sort dictionaries and other such routine tasks means that you don't need to break your flow in order to hunt down correct syntax
 
-Closely related to elegant syntax is elegant design 
+Closely related to elegant syntax is an elegant design
 
 Features like iterators, generators, decorators, list comprehensions, etc. make Python highly expressive, allowing you to get more done with less code
 
@@ -145,9 +145,9 @@ Scientific Programming
 .. index::
     single: scientific programming
 
-Python has become one of the core languages of scientific computing 
+Python has become one of the core languages of scientific computing
 
-It's either the dominant player or a major player in 
+It's either the dominant player or a major player in
 
 * `Machine learning and data science <http://scikit-learn.org/stable/>`_
 * `Astronomy <http://www.astropy.org/>`_
@@ -170,7 +170,7 @@ Numerical Programming
 .. index::
     single: scientific programming; numeric
 
-Fundamental matrix and array processing capabilities are provided by the excellent `NumPy <http://www.numpy.org/>`_ library 
+Fundamental matrix and array processing capabilities are provided by the excellent `NumPy <http://www.numpy.org/>`_ library
 
 NumPy provides the basic array data type plus some simple processing operations
 
@@ -190,7 +190,7 @@ Now let's take the inner product:
 
 .. code-block:: python3
 
-    b @ c             
+    b @ c
 
 The number you see here might vary slightly but it's essentially zero
 
@@ -205,7 +205,7 @@ The `SciPy <http://www.scipy.org>`_ library is built on top of NumPy and provide
 
 .. _tuple_unpacking_example:
 
-For example, let's calculate :math:`\int_{-2}^2 \phi(z) dz` where :math:`\phi` is the standard normal density 
+For example, let's calculate :math:`\int_{-2}^2 \phi(z) dz` where :math:`\phi` is the standard normal density
 
 .. code-block:: python3
 
@@ -239,7 +239,7 @@ Graphics
 --------------------
 
 .. index::
-    single: Matplotlib 
+    single: Matplotlib
 
 The most popular and comprehensive Python library for creating figures and graphs is `Matplotlib <http://matplotlib.org/>`_
 
@@ -279,7 +279,7 @@ It's useful to be able to manipulate symbolic expressions, as in Mathematica or 
 .. index::
     single: SymPy
 
-The `SymPy <http://www.sympy.org/>`_ library provides this functionality from within the Python shell 
+The `SymPy <http://www.sympy.org/>`_ library provides this functionality from within the Python shell
 
 .. code-block:: python3
 
@@ -287,24 +287,24 @@ The `SymPy <http://www.sympy.org/>`_ library provides this functionality from wi
 
     x, y = Symbol('x'), Symbol('y')  # Treat 'x' and 'y' as algebraic symbols
     x + x + x + y
-    
 
-We can manipulate expressions 
+
+We can manipulate expressions
 
 .. code-block:: python3
 
     expression = (x + y)**2
     expression.expand()
-    
 
-solve polynomials 
+
+solve polynomials
 
 .. code-block:: python3
 
     from sympy import solve
 
     solve(x**2 + x + 2)
-    
+
 
 and calculate limits, derivatives and integrals
 
@@ -313,17 +313,17 @@ and calculate limits, derivatives and integrals
     from sympy import limit, sin, diff
 
     limit(1 / x, x, 0)
-    
-    
+
+
 .. code-block:: python3
 
     limit(sin(x) / x, x, 0)
-    
-    
+
+
 .. code-block:: python3
 
     diff(sin(x), x)
-    
+
 
 The beauty of importing this functionality into Python is that we are working within a fully fledged programming language
 
@@ -341,7 +341,7 @@ Pandas
 .. index::
     single: Pandas
 
-One of the most popular libraries for working with data is `pandas <http://pandas.pydata.org/>`_ 
+One of the most popular libraries for working with data is `pandas <http://pandas.pydata.org/>`_
 
 Pandas is fast, efficient, flexible and well designed
 
@@ -357,12 +357,12 @@ Here's a simple example, using some fake data
 
     df = pd.DataFrame(data, columns=('price', 'weight'), index=dates)
     print(df)
-    
-    
+
+
 .. code-block:: python3
-    
+
     df.mean()
-    
+
 
 
 Other Useful Statistics Libraries
@@ -392,7 +392,7 @@ Other Useful Statistics Libraries
 Networks and Graphs
 --------------------
 
-Python has many libraries for studying graphs 
+Python has many libraries for studying graphs
 
 .. index::
     single: NetworkX
@@ -414,10 +414,10 @@ Here's some example code that generates and plots a random graph, with node colo
   %matplotlib inline
   np.random.seed(1234)
 
-  # Generate random graph
+  # Generate a random graph
   p = dict((i,(np.random.uniform(0, 1),np.random.uniform(0, 1))) for i in range(200))
-  G = nx.random_geometric_graph(200, 0.12, pos=p)  
-  pos = nx.get_node_attributes(G, 'pos')    
+  G = nx.random_geometric_graph(200, 0.12, pos=p)
+  pos = nx.get_node_attributes(G, 'pos')
 
   # find node nearest the center point (0.5, 0.5)
   dists = [(x - 0.5)**2 + (y - 0.5)**2 for x, y in list(pos.values())]
@@ -427,14 +427,14 @@ Here's some example code that generates and plots a random graph, with node colo
   p = nx.single_source_shortest_path_length(G, ncenter)
   plt.figure()
   nx.draw_networkx_edges(G, pos, alpha=0.4)
-  nx.draw_networkx_nodes(G, 
-                         pos, 
+  nx.draw_networkx_nodes(G,
+                         pos,
                          nodelist=list(p.keys()),
                          node_size=120, alpha=0.5,
-                         node_color=list(p.values()), 
+                         node_color=list(p.values()),
                          cmap=plt.cm.jet_r)
   plt.show()
- 
+
 
 Cloud Computing
 --------------------------------
@@ -447,14 +447,14 @@ Running your Python code on massive servers in the cloud is becoming easier and 
 .. index::
     single: cloud computing; anaconda enterprise
 
-A nice example is `Anaconda Enterprise <https://www.anaconda.com/enterprise/>`_ 
+A nice example is `Anaconda Enterprise <https://www.anaconda.com/enterprise/>`_
 
 See also
 
 .. index::
     single: cloud computing; amazon ec2
 
-* `Amazon Elastic Compute Cloud <http://aws.amazon.com/ec2/>`_ 
+* `Amazon Elastic Compute Cloud <http://aws.amazon.com/ec2/>`_
 
 .. index::
     single: cloud computing; google app engine
@@ -497,7 +497,7 @@ Apart from the cloud computing options listed above, you might like to consider
     single: parallel computing; pycuda
 
 * GPU programming through `PyCuda <https://wiki.tiker.net/PyCuda>`_, `PyOpenCL <https://mathema.tician.de/software/pyopencl/>`_, `Theano <http://deeplearning.net/software/theano/>`_ or similar
-  
+
 
 
 .. _intfc:
@@ -520,7 +520,7 @@ Some representative examples include
     single: scientific programming; Numba
 
 * `Numba <http://numba.pydata.org/>`_ --- Make Python run at the same speed as native machine code!
-  
+
 
 .. index::
     single: scientific programming; Blaze
@@ -554,8 +554,6 @@ Learn More
 
 * Visit the `Python Package Index <https://pypi.org/>`_
 
-* View some of the question people are asking about Python on `Stackoverflow <http://stackoverflow.com/questions/tagged/python>`_
+* View some of the questions people are asking about Python on `Stackoverflow <http://stackoverflow.com/questions/tagged/python>`_
 
 * Keep up to date on what's happening in the Python community with the `Python subreddit <https://www.reddit.com:443/r/Python/>`_
-
-

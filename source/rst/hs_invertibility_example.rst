@@ -114,7 +114,7 @@ Specifically:
 .. math::  d_{2t} = 4w_{2t} + 0.8(4w_{2t-1})+ 0.6(4w_{2t-2})+ 0.4(4w_{2t-3})
 
 :math:`d_{1t}` is a first-order AR process, while :math:`d_{2t}` is a
-third order pure moving average process
+third-order pure moving average process
 
 .. code-block:: python3
 

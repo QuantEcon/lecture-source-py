@@ -143,7 +143,7 @@ It can be seen that the endowment shock has permanent effects on the
 level of both consumption and investment, consistent with the endogenous
 unit eigenvalue in this economy
 
-Investment is much more response to the endowment shock at shorter time
+Investment is much more responsive to the endowment shock at shorter time
 horizons
 
 Example 2: Higher Adjustment Costs
@@ -203,7 +203,7 @@ Because the largest endogenous eigenvalue is still close to 1, the
 economy heads only slowly towards these mean values
 
 The impulse response functions now show that an endowment shock does not
-a have permanent effect on the levels of either consumption or
+have a permanent effect on the levels of either consumption or
 investment
 
 Example 3: Durable Consumption Goods

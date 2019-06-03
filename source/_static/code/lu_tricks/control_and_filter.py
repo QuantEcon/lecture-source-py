@@ -112,7 +112,7 @@ class LQFilter:
                 M[i, j] = D_m1[i - j - 1, m]
 
         #----------------------------------------------
-        # Euler equations for t = 0, 1, ..., N-(m+1)  
+        # Euler equations for t = 0, 1, ..., N-(m+1)
         #----------------------------------------------
         ϕ = self.ϕ
 
@@ -132,7 +132,7 @@ class LQFilter:
 
     def roots_of_characteristic(self):
         """
-        This function calculates z_0 and the 2m roots of the characteristic equation 
+        This function calculates z_0 and the 2m roots of the characteristic equation
         associated with the Euler equation (1.7)
 
         Note:
@@ -143,7 +143,7 @@ class LQFilter:
         """
         m = self.m
         ϕ = self.ϕ
-        
+
         # Calculate the roots of the 2m-polynomial
         roots = np.roots(ϕ)
         # sort the roots according to their length (in descending order)
@@ -203,7 +203,7 @@ class LQFilter:
 
     def simulate_a(self, N):
         """
-        Assuming that the u's are normal, this method draws a random path 
+        Assuming that the u's are normal, this method draws a random path
         for x^N
         """
         V = self.construct_V(N + 1)
@@ -213,8 +213,8 @@ class LQFilter:
 
     def predict(self, a_hist, t):
         """
-        This function implements the prediction formula discussed is section 6 (1.59)
-        It takes a realization for a^N, and the period in which the prediciton is formed
+        This function implements the prediction formula discussed in section 6 (1.59)
+        It takes a realization for a^N, and the period in which the prediction is formed
 
         Output:  E[abar | a_t, a_{t-1}, ..., a_1, a_0]
         """
@@ -236,13 +236,13 @@ class LQFilter:
         - if t is given, it solves the combined control prediction problem (section 7)
           (by default, t == None -> deterministic)
 
-        for a given sequence of a_t (either determinstic or a particular realization), 
+        for a given sequence of a_t (either deterministic or a particular realization),
         it calculates the optimal y_t sequence using the method of the lecture
 
         Note:
         ------
         scipy.linalg.lu normalizes L, U so that L has unit diagonal elements
-        To make things cosistent with the lecture, we need an auxiliary diagonal 
+        To make things consistent with the lecture, we need an auxiliary diagonal
         matrix D which renormalizes L and U
         """
 
@@ -261,7 +261,7 @@ class LQFilter:
             a_hist = J @ np.asarray(a_hist).reshape(N + 1, 1)
 
             #--------------------------------------------
-            # Transform the a sequence if β is given
+            # Transform the 'a' sequence if β is given
             #--------------------------------------------
             if self.β != 1:
                 a_hist =  a_hist * (self.β**(np.arange(N + 1) / 2))[::-1].reshape(N + 1, 1)
@@ -296,4 +296,3 @@ class LQFilter:
             y_hist = J @ np.vstack([y_bar, self.y_m])     # y_hist : concatenated y_m and y_bar
 
             return y_hist, L, U, y_bar
-

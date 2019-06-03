@@ -13,7 +13,7 @@ A Lake Model of Employment and Unemployment
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -37,9 +37,9 @@ It is a good model for interpreting monthly labor department reports on gross an
 
 The "lakes" in the model are the pools of employed and unemployed
 
-The "flows" between the lakes are caused by 
+The "flows" between the lakes are caused by
 
-* firing and hiring 
+* firing and hiring
 
 * entry and exit from the labor force
 
@@ -50,7 +50,7 @@ Later, we'll determine some of these transition rates endogenously using the :do
 
 We'll also use some nifty concepts like ergodicity, which provides a fundamental link between *cross-sectional* and *long run time series* distributions
 
-These concepts will help us build an equilibrium model of ex ante homogeneous workers whose different luck generates variations in their ex post experiences 
+These concepts will help us build an equilibrium model of ex-ante homogeneous workers whose different luck generates variations in their ex post experiences
 
 
 Prerequisites
@@ -67,7 +67,7 @@ You will also need some basic :doc:`linear algebra <linear_algebra>` and probabi
 The Model
 ==========
 
-The economy is inhabited by a very large number of ex ante identical workers
+The economy is inhabited by a very large number of ex-ante identical workers
 
 The workers live forever, spending their lives moving between unemployment and employment
 
@@ -99,7 +99,7 @@ We also want to know the values of the following objects
 
 * The employment rate :math:`e_t := E_t/N_t`
 
-* The unemployment rate :math:`u_t := U_t/N_t` 
+* The unemployment rate :math:`u_t := U_t/N_t`
 
 
 (Here and below, capital letters represent stocks and lowercase letters represent flows)
@@ -111,13 +111,13 @@ Laws of Motion for Stock Variables
 
 We begin by constructing laws of motion for the aggregate variables :math:`E_t,U_t, N_t`
 
-Of the mass of workers :math:`E_t` who are employed at date :math:`t`, 
+Of the mass of workers :math:`E_t` who are employed at date :math:`t`,
 
 * :math:`(1-d)E_t` will remain in the labor force
 
 * of these, :math:`(1-\alpha)(1-d)E_t` will remain employed
 
-Of the mass of workers :math:`U_t` workers who are currently unemployed, 
+Of the mass of workers :math:`U_t` workers who are currently unemployed,
 
 * :math:`(1-d)U_t` will remain in the labor force
 
@@ -152,7 +152,7 @@ Letting :math:`X_t := \left(\begin{matrix}U_t\\E_t\end{matrix}\right)`, the law 
 
     X_{t+1} = A X_t
     \quad \text{where} \quad
-    A := 
+    A :=
     \begin{pmatrix}
         (1-d)(1-\lambda) + b & (1-d)\alpha + b  \\
         (1-d)\lambda & (1-d)(1-\alpha)
@@ -172,31 +172,31 @@ To get these we can divide both sides of :math:`X_{t+1} = A X_t` by  :math:`N_{t
 .. math::
 
     \begin{pmatrix}
-        U_{t+1}/N_{t+1} \\ 
+        U_{t+1}/N_{t+1} \\
         E_{t+1}/N_{t+1}
-    \end{pmatrix} = 
+    \end{pmatrix} =
     \frac1{1+g} A
     \begin{pmatrix}
         U_{t}/N_{t}
-        \\ 
+        \\
         E_{t}/N_{t}
     \end{pmatrix}
 
 
-Letting 
+Letting
 
 .. math::
 
-    x_t := 
+    x_t :=
     \left(\begin{matrix}
         u_t\\ e_t
-    \end{matrix}\right) = 
+    \end{matrix}\right) =
     \left(\begin{matrix}
         U_t/N_t\\ E_t/N_t
     \end{matrix}\right)
 
 
-we can also write this as 
+we can also write this as
 
 .. math::
 
@@ -220,7 +220,7 @@ Let's code up these equations
 
 To do this we're going to use a class that we'll call `LakeModel`
 
-This class will 
+This class will
 
 #. store the primitives :math:`\alpha, \lambda, b, d`
 
@@ -231,7 +231,7 @@ This class will
 #. provide a method to compute the state state of the rate
 
 
-To write an nice implementation, there's an issue we have to address
+To write a nice implementation, there's an issue we have to address
 
 Derived data such as :math:`A` depend on the primitives like :math:`\alpha`
 and :math:`\lambda`
@@ -252,7 +252,7 @@ Here's the code:
 
 .. literalinclude:: /_static/code/lake_model/lake_model.py
 
-    
+
 
 As desired, if we create an instance and update a primitive like
 :math:`\alpha`, derived objects like :math:`A` will also change
@@ -271,7 +271,7 @@ As desired, if we create an instance and update a primitive like
     lm.α = 2
     lm.A
 
-    
+
 
 
 Aggregate Dynamics
@@ -321,10 +321,10 @@ Let's run a simulation under the default parameters (see above) starting from :m
 The aggregates :math:`E_t` and :math:`U_t` don't converge because  their sum :math:`E_t + U_t` grows at rate :math:`g`
 
 
-On the other hand, the vector of employment and unemployment rates :math:`x_t` can be in a steady state :math:`\bar x` if 
+On the other hand, the vector of employment and unemployment rates :math:`x_t` can be in a steady state :math:`\bar x` if
 there exists an :math:`\bar x`  such that
 
-* :math:`\bar x = \hat A \bar x` 
+* :math:`\bar x = \hat A \bar x`
 
 * the components satisfy :math:`\bar e + \bar u = 1`
 
@@ -370,14 +370,14 @@ The associated transition matrix is then
 .. math::
 
     P = \left(
-            \begin{matrix} 
-                1 - \lambda & \lambda \\ 
-                \alpha & 1 - \alpha  
+            \begin{matrix}
+                1 - \lambda & \lambda \\
+                \alpha & 1 - \alpha
             \end{matrix}
         \right)
 
 
-Let :math:`\psi_t` denote the :ref:`marginal distribution <mc_md>` over employment / unemployment states for the worker at time :math:`t`
+Let :math:`\psi_t` denote the :ref:`marginal distribution <mc_md>` over employment/unemployment states for the worker at time :math:`t`
 
 As usual, we regard it as a row vector
 
@@ -396,11 +396,11 @@ The unique stationary distribution satisfies
 
 .. math::
 
-    \psi^*[0] = \frac{\alpha}{\alpha + \lambda}    
+    \psi^*[0] = \frac{\alpha}{\alpha + \lambda}
 
 
 Not surprisingly, probability mass on the unemployment state increases with
-the dismissal rate and falls with the job finding rate rate
+the dismissal rate and falls with the job finding rate
 
 
 
@@ -430,7 +430,7 @@ and
 
 (As usual, :math:`\mathbb 1\{Q\} = 1` if statement :math:`Q` is true and 0 otherwise)
 
-These are the fraction of time a worker spends unemployed and employed, respectively, up until period :math:`T` 
+These are the fraction of time a worker spends unemployed and employed, respectively, up until period :math:`T`
 
 If :math:`\alpha \in (0, 1)` and :math:`\lambda \in (0, 1)`, then :math:`P` is :ref:`ergodic <ergodicity>`, and hence we have
 
@@ -452,9 +452,9 @@ Thus, the percentages of time that an  infinitely lived worker  spends employed 
 Convergence Rate
 ------------------
 
-How long does it take for time series sample averages to converge to cross sectional averages?
+How long does it take for time series sample averages to converge to cross-sectional averages?
 
-We can use `QuantEcon.py's <http://quantecon.org/python_index.html>`__ 
+We can use `QuantEcon.py's <http://quantecon.org/python_index.html>`__
 `MarkovChain` class to investigate this
 
 Let's plot the path of the sample averages over 5,000 periods
@@ -466,9 +466,9 @@ Let's plot the path of the sample averages over 5,000 periods
 
 The stationary probabilities are given by the dashed red line
 
-In this case it takes much of the sample for these two objects to converge 
+In this case it takes much of the sample for these two objects to converge
 
-This is largely due to the high persistence in the Markov chain 
+This is largely due to the high persistence in the Markov chain
 
 
 
@@ -510,18 +510,18 @@ As we saw in :doc:`our discussion of the model <mccall_model>`, the reservation 
 Linking the McCall Search Model to the Lake Model
 --------------------------------------------------
 
-Suppose that  all workers inside a lake model behave according to the McCall search model 
+Suppose that  all workers inside a lake model behave according to the McCall search model
 
 The exogenous probability of leaving employment remains :math:`\alpha`
 
-But their optimal decision rules determine the probability :math:`\lambda` of leaving unemployment 
+But their optimal decision rules determine the probability :math:`\lambda` of leaving unemployment
 
-This is now 
+This is now
 
 .. math::
     :label: lake_lamda
 
-    \lambda 
+    \lambda
     = \gamma \mathbb P \{ w_t \geq \bar w\}
     = \gamma \sum_{w' \geq \bar w} p(w')
 
@@ -533,7 +533,7 @@ We can use the McCall search version of the Lake Model  to find an optimal level
 
 We assume that  the government sets unemployment compensation :math:`c`
 
-The government imposes a lump sum tax :math:`\tau` sufficient to finance total unemployment payments
+The government imposes a lump-sum tax :math:`\tau` sufficient to finance total unemployment payments
 
 To attain a balanced budget at a steady state, taxes, the steady state unemployment rate :math:`u`, and the unemployment compensation rate must satisfy
 
@@ -542,13 +542,13 @@ To attain a balanced budget at a steady state, taxes, the steady state unemploym
     \tau = u c
 
 
-The lump sum tax applies to everyone, including unemployed workers
+The lump-sum tax applies to everyone, including unemployed workers
 
 Thus, the post-tax income of an employed worker with wage :math:`w` is :math:`w - \tau`
 
 The post-tax income of an unemployed worker is :math:`c - \tau`
 
-For each specification :math:`(c, \tau)` of government policy, we can solve for the worker's optimal reservation wage  
+For each specification :math:`(c, \tau)` of government policy, we can solve for the worker's optimal reservation wage
 
 This determines :math:`\lambda` via :eq:`lake_lamda` evaluated at post tax wages, which in turn determines a steady state unemployment rate :math:`u(c, \tau)`
 
@@ -565,7 +565,7 @@ We use a steady state welfare criterion
 
 .. math::
 
-    W := e \,  {\mathbb E} [V \, | \,  \text{employed}] + u \,  U 
+    W := e \,  {\mathbb E} [V \, | \,  \text{employed}] + u \,  U
 
 
 where the notation :math:`V` and :math:`U` is as defined in the :doc:`McCall search model lecture <mccall_model>`
@@ -577,13 +577,13 @@ The wage offer distribution will be a discretized version of the lognormal distr
 
 We take a period to be a month
 
-We set :math:`b` and :math:`d` to match monthly `birth <http://www.cdc.gov/nchs/fastats/births.htm>`_ and `death rates <http://www.cdc.gov/nchs/fastats/deaths.htm>`_, respectively, in the U.S. population 
+We set :math:`b` and :math:`d` to match monthly `birth <http://www.cdc.gov/nchs/fastats/births.htm>`_ and `death rates <http://www.cdc.gov/nchs/fastats/deaths.htm>`_, respectively, in the U.S. population
 
 * :math:`b = 0.0124`
 
 * :math:`d = 0.00822`
 
-Following :cite:`davis2006flow`, we set :math:`\alpha`, the hazard rate of leaving employment, to   
+Following :cite:`davis2006flow`, we set :math:`\alpha`, the hazard rate of leaving employment, to
 
 * :math:`\alpha = 0.013`
 
@@ -600,14 +600,14 @@ The first piece of code, repeated below, implements value function iteration
 .. literalinclude:: /_static/code/mccall/mccall_bellman_iteration.py
     :class: collapse
 
-The second piece of code repeated from :doc:`the McCall model lecture <mccall_model>` is used to complete the reservation wage 
+The second piece of code repeated from :doc:`the McCall model lecture <mccall_model>` is used to complete the reservation wage
 
 
 .. literalinclude:: /_static/code/mccall/compute_reservation_wage.py
     :class: collapse
 
 Now let's compute and plot welfare, employment, unemployment, and tax revenue as a
-function of the unemployment compensation rate 
+function of the unemployment compensation rate
 
 
 .. literalinclude:: /_static/code/lake_model/lake_fiscal_policy.py
@@ -623,7 +623,7 @@ Exercises
 Exercise 1
 ----------------
 
-Consider an economy with initial stock  of workers :math:`N_0 = 100` at the
+Consider an economy with an initial stock  of workers :math:`N_0 = 100` at the
 steady state level of employment in the baseline parameterization
 
 * :math:`\alpha = 0.013`
@@ -642,7 +642,7 @@ Plot the transition dynamics of the unemployment and employment stocks for 50 pe
 
 Plot the transition dynamics for the rates
 
-How long does the economy take to converge to its new steady state?  
+How long does the economy take to converge to its new steady state?
 
 What is the new steady state level of employment?
 
@@ -652,7 +652,7 @@ What is the new steady state level of employment?
 Exercise 2
 -----------------
 
-Consider an economy with initial stock  of workers :math:`N_0 = 100` at the
+Consider an economy with an initial stock  of workers :math:`N_0 = 100` at the
 steady state level of employment in the baseline parameterization
 
 Suppose that for 20 periods the birth rate was temporarily high (:math:`b = 0.0025`) and then returned to its original level
@@ -669,7 +669,7 @@ How long does the economy take to return to its original steady state?
 Solutions
 ==========
 
- 
+
 
 
 Lake Model Solutions
@@ -684,7 +684,7 @@ steady state values to `x0`
 .. code-block:: python3
 
     lm = LakeModel()
-    x0 = lm.rate_steady_state()  
+    x0 = lm.rate_steady_state()
     print(f"Initial Steady State: {x0}")
 
 Initialize the simulation values
@@ -701,7 +701,7 @@ New legislation changes :math:`\lambda` to :math:`0.2`
     lm.lmda = 0.2
 
     xbar = lm.rate_steady_state()  # new steady state
-    X_path = np.vstack(lm.simulate_stock_path(x0 * N0, T)) 
+    X_path = np.vstack(lm.simulate_stock_path(x0 * N0, T))
     x_path = np.vstack(lm.simulate_rate_path(x0, T))
     print(f"New Steady State: {xbar}")
 
@@ -789,7 +789,7 @@ additional 30 periods
     X_path2 = np.vstack(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)) # simulate stocks
     x_path2 = np.vstack(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1))  # simulate rates
 
-Finally we combine these two paths and plot
+Finally, we combine these two paths and plot
 
 .. code-block:: python3
 
@@ -806,9 +806,9 @@ Finally we combine these two paths and plot
 
   axes[2].plot(X_path.sum(1))
   axes[2].set_title('Labor force')
-                      
+
   for ax in axes:
-      ax.grid()        
+      ax.grid()
 
   plt.tight_layout()
   plt.show()
@@ -830,7 +830,3 @@ And the rates
 
   plt.tight_layout()
   plt.show()
-
-
-
- 

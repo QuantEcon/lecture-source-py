@@ -15,7 +15,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   :class: hide-output
 
   !pip install quantecon
-  
+
 Overview
 =========
 
@@ -27,7 +27,7 @@ and for all by the Stackelberg leader at time :math:`0`
 To facilitate computation and interpretation, we formulate things in a
 context that allows us to apply linear optimal dynamic programming
 
-From the beginning we carry along a linear-quadratic model of duopoly in
+From the beginning, we carry along a linear-quadratic model of duopoly in
 which firms face adjustment costs that make them want to forecast
 actions of other firms that influence future prices
 
@@ -39,7 +39,7 @@ Time is discrete and is indexed by :math:`t = 0, 1, \ldots`
 Two firms produce a single good whose demand is governed by the linear
 inverse demand curve
 
-.. math::  p_t = a_0 - a_1 (q_{1t}+ q_{2t} ) 
+.. math::  p_t = a_0 - a_1 (q_{1t}+ q_{2t} )
 
 where :math:`q_{it}` is output of firm :math:`i` at time :math:`t` and
 :math:`a_0` and :math:`a_1` are both positive
@@ -49,20 +49,20 @@ conditions at time :math:`0`
 
 By incurring a cost of change
 
-.. math::  \gamma v_{it}^2  
+.. math::  \gamma v_{it}^2
 
 where :math:`\gamma > 0`, firm :math:`i` can change its output according
 to
 
-.. math::  q_{it+1} = q_{it} + v_{it}  
+.. math::  q_{it+1} = q_{it} + v_{it}
 
 Firm :math:`i`'s profits at time :math:`t` equal
 
-.. math::  \pi_{it} = p_t q_{it} - \gamma v_{it}^2 
+.. math::  \pi_{it} = p_t q_{it} - \gamma v_{it}^2
 
 Firm :math:`i` wants to maximize the present value of its profits
 
-.. math::  \sum_{t=0}^\infty \beta^t \pi_{it}  
+.. math::  \sum_{t=0}^\infty \beta^t \pi_{it}
 
 where :math:`\beta \in (0,1)` is a time discount factor
 
@@ -95,20 +95,20 @@ Abstract Statement of the Leader's and Follower's Problems
 
 We can express firm 1's problem as
 
-.. math::  \max_{\vec q_1} \Pi_1(\vec q_1; \vec q_2)  
+.. math::  \max_{\vec q_1} \Pi_1(\vec q_1; \vec q_2)
 
-where the appearance behind the semi-colon indicates thata
+where the appearance behind the semi-colon indicates that
 :math:`\vec q_2` is given
 
-Firm 1's problem induces a best response mapping
+Firm 1's problem induces the best response mapping
 
-.. math::  \vec q_1 = B(\vec q_2) 
+.. math::  \vec q_1 = B(\vec q_2)
 
 (Here :math:`B` maps a sequence into a sequence)
 
 The Stackelberg leader's problem is
 
-.. math::  \max_{\vec q_2} \Pi_2 (B(\vec q_2), \vec q_2) 
+.. math::  \max_{\vec q_2} \Pi_2 (B(\vec q_2), \vec q_2)
 
 whose maximizer is a sequence :math:`\vec q_2` that depends on the
 initial conditions :math:`q_{10}, q_{20}` and the parameters of the
@@ -141,7 +141,7 @@ given and beyond its control
 Firm 2 knows that firm 1 chooses second and takes this into account in
 choosing :math:`\{q_{2t+1}\}_{t=0}^\infty`
 
-In the spirit of *working backwards*, we study firm 1's problem first,
+In the spirit of *working backward*, we study firm 1's problem first,
 taking :math:`\{q_{2t+1}\}_{t=0}^\infty` as given
 
 We can formulate firm 1's optimum problem in terms of the Lagrangian
@@ -170,11 +170,11 @@ These first-order conditions and the constraint :math:`q_{1t+1} = q_{1t} + v_{1t
 
     \eqalign{ v_{1t} & = \beta v_{1t+1} + \frac{\beta a_0}{2 \gamma} - \frac{\beta a_1}{\gamma} q_{1t+1} -
                           \frac{\beta a_1}{2 \gamma} q_{2t+1} \cr
-                q_{t+1} & = q_{1t} + v_{1t} } 
+                q_{t+1} & = q_{1t} + v_{1t} }
 
 We can substitute the second equation into the first equation to obtain
 
-.. math::  (q_{1t+1} - q_{1t} ) = \beta (q_{1t+2} - q_{1t+1}) + c_0 - c_1 q_{1t+1} - c_2 q_{2t+1}  
+.. math::  (q_{1t+1} - q_{1t} ) = \beta (q_{1t+2} - q_{1t+1}) + c_0 - c_1 q_{1t+1} - c_2 q_{2t+1}
 
 where
 :math:`c_0 = \frac{\beta a_0}{2 \gamma}, c_1 = \frac{\beta a_1}{\gamma}, c_2 = \frac{\beta a_1}{2 \gamma}`
@@ -184,11 +184,11 @@ difference equation
 
 .. math::
     :label: sstack1
-  
+
     q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
 
 Equation :eq:`sstack1` is a second-order difference equation in the sequence
-:math:`\vec q_1` whose solution we want 
+:math:`\vec q_1` whose solution we want
 
 It satisfies **two boundary conditions:**
 
@@ -208,8 +208,8 @@ as
 
 .. math::
     :label: sstack2
-    
-    (1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 )  = ( 1 - \delta_1 L ) (1 - \delta_2 L) 
+
+    (1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 )  = ( 1 - \delta_1 L ) (1 - \delta_2 L)
 
 where :math:`0 < \delta_1 < 1 < \frac{1}{\sqrt{\beta}} < \delta_2`
 
@@ -219,11 +219,11 @@ Because :math:`\delta_2 > \frac{1}{\sqrt{\beta}}` the operator
 
 Mechanically, write
 
-.. math::  (1- \delta_2 L) = -\delta_{2} L (1 - \delta_2^{-1} L^{-1} ) 
+.. math::  (1- \delta_2 L) = -\delta_{2} L (1 - \delta_2^{-1} L^{-1} )
 
 and compute the following inverse operator
 
-.. math::  \left[-\delta_{2} L (1 - \delta_2^{-1} L^{-1} )\right]^{-1} = - \delta_2 (1 - {\delta_2}^{-1} )^{-1} L^{-1} 
+.. math::  \left[-\delta_{2} L (1 - \delta_2^{-1} L^{-1} )\right]^{-1} = - \delta_2 (1 - {\delta_2}^{-1} )^{-1} L^{-1}
 
 Operating on both sides of equation :eq:`sstack2` with
 :math:`\beta^{-1}` times this inverse operator gives the follower's
@@ -232,13 +232,13 @@ decision rule for setting :math:`q_{1t+1}` in the
 
 .. math::
     :label: sstack3
-  
-    q_{1t+1} = \delta_1 q_{1t} - c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}}  + c_2 \delta_2^{-1} \beta^{-1} \sum_{j=0}^\infty \delta_2^j q_{2t+j+1} ,  \quad t \geq 0 
+
+    q_{1t+1} = \delta_1 q_{1t} - c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}}  + c_2 \delta_2^{-1} \beta^{-1} \sum_{j=0}^\infty \delta_2^j q_{2t+j+1} ,  \quad t \geq 0
 
 The problem of the Stackelberg leader firm 2 is to choose the sequence
 :math:`\{q_{2t+1}\}_{t=0}^\infty` to maximize its discounted profits
 
-.. math::  \sum_{t=0}^\infty \beta^t \{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \} 
+.. math::  \sum_{t=0}^\infty \beta^t \{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \}
 
 subject to the sequence of constraints :eq:`sstack3` for :math:`t \geq 0`
 
@@ -299,7 +299,7 @@ The :math:`z_t` vector is inherited physically from the past
 
 But :math:`x_t` is a decision made by the Stackelberg follower at time
 :math:`t` that is the follower's best response to the choice of an
-entire sequence of decisions made by the Stackelberg leader at time 
+entire sequence of decisions made by the Stackelberg leader at time
 :math:`t=0`
 
 Let
@@ -368,7 +368,7 @@ equations summarize the follower’s best response to the sequence of
 actions by the leader
 
 The Stackelberg leader maximizes :eq:`maxeq` by
-choosing sequences :math:`{u_t, x_t, z_{t+1}}\_{t=0}^{\infty}`
+choosing sequences :math:`\{u_t, x_t, z_{t+1}\}_{t=0}^{\infty}`
 subject to :eq:`constrainteq` and an initial condition for :math:`z_0`
 
 Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
@@ -384,7 +384,7 @@ More Mechanical Details
 --------------------------
 
 For any vector :math:`a_t`, define :math:`\vec a_t = [a_t,
-a\_{t+1} \ldots ]`
+a_{t+1} \ldots ]`
 
 Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
 
@@ -531,9 +531,9 @@ Stackelberg Plan
 
 Now let's map our duopoly model into the above setup.
 
-We we'll formulate a state space system
+We will formulate a state space system
 
-.. math::  y_t = \begin{bmatrix} z_t \cr x_t \end{bmatrix} 
+.. math::  y_t = \begin{bmatrix} z_t \cr x_t \end{bmatrix}
 
 where in this instance :math:`x_t = v_{1t}`, the time :math:`t` decision
 of the follower firm 1
@@ -577,7 +577,7 @@ q_{1t} + v_{1t}` can be rearranged to take the form
 
     \eqalign{ v_{1t} & = \beta v_{1t+1} + \frac{\beta a_0}{2 \gamma} - \frac{\beta a_1}{\gamma} q_{1t+1} -
                           \frac{\beta a_1}{2 \gamma} q_{2t+1} \cr
-                q_{t+1} & = q_{1t} + v_{1t} } 
+                q_{t+1} & = q_{1t} + v_{1t} }
 
 We use these two equations as components of the following linear system
 that confronts a Stackelberg continuation leader at time :math:`t`
@@ -588,12 +588,12 @@ that confronts a Stackelberg continuation leader at time :math:`t`
                            0 & 1 & 0 & 0 \cr
                            0 & 0 & 1 & 0 \cr
            \frac{\beta a_0}{2 \gamma} & - \frac{\beta a_1}{2 \gamma} & -\frac{\beta a_1}{\gamma} & \beta \end{bmatrix}
-           \begin{bmatrix} 1 \cr q_{2t+1} \cr q_{1t+1} \cr v_{1t+1} \end{bmatrix} 
+           \begin{bmatrix} 1 \cr q_{2t+1} \cr q_{1t+1} \cr v_{1t+1} \end{bmatrix}
            = \begin{bmatrix} 1 & 0 & 0 & 0 \cr
                              0 & 1 & 0 & 0 \cr
                               0 & 0 & 1 & 1 \cr
-                              0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t} \cr v_{1t} \end{bmatrix} 
-           + \begin{bmatrix} 0 \cr 1 \cr 0 \cr 0 \end{bmatrix} v_{2t} 
+                              0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t} \cr v_{1t} \end{bmatrix}
+           + \begin{bmatrix} 0 \cr 1 \cr 0 \cr 0 \end{bmatrix} v_{2t}
 
 Time :math:`t` revenues of firm 2 are
 :math:`\pi_{2t} = a_0 q_{2t} - a_1 q_{2t}^2 - a_1 q_{1t} q_{2t}` which
@@ -601,16 +601,16 @@ evidently equal
 
 .. math::
 
-    z_t' R_1 z_t \equiv \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t}  \end{bmatrix}' 
+    z_t' R_1 z_t \equiv \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t}  \end{bmatrix}'
       \begin{bmatrix} 0 & \frac{a_0}{2}& 0 \cr
                       \frac{a_0}{2} & -a_1 & -\frac{a_1}{2}\cr
-                      0 & -\frac{a_1}{2} & 0 \end{bmatrix} 
-   \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t}  \end{bmatrix} 
+                      0 & -\frac{a_1}{2} & 0 \end{bmatrix}
+   \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t}  \end{bmatrix}
 
 If we set :math:`Q = \gamma`, then firm 2's period :math:`t` profits can
 then be written
 
-.. math::  y_t' R y_t - Q v_{2t}^2  
+.. math::  y_t' R y_t - Q v_{2t}^2
 
 where
 
@@ -626,17 +626,17 @@ with :math:`x_t = v_{1t}` and
 
 We'll report results of implementing this code soon
 
-But first we want to represent the Stackelberg leader's optimal choices
+But first, we want to represent the Stackelberg leader's optimal choices
 recursively
 
 It is important to do this for several reasons:
 
--  properly to interpret a representation of the Stackelberg leaders's
+-  properly to interpret a representation of the Stackelberg leader's
    choice as a sequence of history-dependent functions
 
 -  to formulate a recursive version of the follower's choice problem
 
-First let's get a recursive representation of the Stackelberg leader's
+First, let's get a recursive representation of the Stackelberg leader's
 choice of :math:`\vec q_2` for our duopoly model
 
 
@@ -672,9 +672,9 @@ We have demonstrated that a Stackelberg plan for
 
     \eqalign{ \check x_0 & = - P_{22}^{-1} P_{21} z_0 \cr
                 u_t & = - F \check y_t, \quad t \geq 0 \cr
-                \check y_{t+1} & = (A - BF) \check y_t, \quad t \geq 0 } 
+                \check y_{t+1} & = (A - BF) \check y_t, \quad t \geq 0 }
 
-From this representation we can deduce the sequence of functions
+From this representation, we can deduce the sequence of functions
 :math:`\sigma = \{\sigma_t(\check z^t)\}_{t=0}^\infty` that comprise a
 Stackelberg plan
 
@@ -695,7 +695,7 @@ imply that for :math:`t \geq 1`
 
 .. math::
 
-    x_t = \sum_{j=1}^t H_j^t \check z_{t-j}  
+    x_t = \sum_{j=1}^t H_j^t \check z_{t-j}
 
 where
 
@@ -705,14 +705,14 @@ where
                H^t_2 & = \check A_{22} \check A_{21} \cr
               \ \   \vdots \  \  &  \  \ \quad \vdots \cr
               H^t_{t-1} & = \check A_{22}^{t-2} \check A_{21} \cr
-               H^t_t & = \check A_{22}^{t-1}(\check A_{21} + \check A_{22} H^0_0 ) }  
+               H^t_t & = \check A_{22}^{t-1}(\check A_{21} + \check A_{22} H^0_0 ) }
 
 An optimal decision rule for the Stackelberg's choice of :math:`u_t` is
 
 .. math::
 
-    u_t  = - F \check y_t \equiv - \begin{bmatrix} F_z & F_x \cr \end{bmatrix} 
-   \begin{bmatrix}\check z_t \cr x_t \cr \end{bmatrix} 
+    u_t  = - F \check y_t \equiv - \begin{bmatrix} F_z & F_x \cr \end{bmatrix}
+   \begin{bmatrix}\check z_t \cr x_t \cr \end{bmatrix}
 
 or
 
@@ -723,7 +723,7 @@ or
 
 Representation :eq:`finalrule` confirms that whenever
 :math:`F_x \neq 0`, the typical situation, the time :math:`t` component
-:math:`\sigma_t` of a Stackelberg plan is **history dependent**, meaning
+:math:`\sigma_t` of a Stackelberg plan is **history-dependent**, meaning
 that the Stackelberg leader's choice :math:`u_t` depends not just on
 :math:`\check z_t` but on components of :math:`\check z^{t-1}`
 
@@ -775,7 +775,7 @@ output price at :math:`t` satisfies
 
 .. math::
 
-    p_t  = a_0 - a_1 ( q_{1t} + q_{2t})  , \quad t \geq 0 
+    p_t  = a_0 - a_1 ( q_{1t} + q_{2t})  , \quad t \geq 0
 
 Our challenge is to represent :math:`\{q_{2t}\}_{t=0}^\infty` as
 a given sequence
@@ -787,7 +787,7 @@ according to the :math:`q_{2t}` component of
 
 which is governed by
 
-.. math::  y_{t+1} = (A - BF) y_t 
+.. math::  y_{t+1} = (A - BF) y_t
 
 To obtain a recursive representation of a :math:`\{q_{2t}\}` sequence
 that is exogenous to firm 1, we define a state :math:`\tilde y_t`
@@ -796,7 +796,7 @@ that is exogenous to firm 1, we define a state :math:`\tilde y_t`
 
 that evolves according to
 
-.. math::  \tilde y_{t+1} = (A - BF) \tilde y_t 
+.. math::  \tilde y_{t+1} = (A - BF) \tilde y_t
 
 subject to the initial condition :math:`\tilde q_{10} = q_{10}` and
 :math:`\tilde x_0 = x_0` where :math:`x_0 = - P_{22}^{-1} P_{21}` as
@@ -804,7 +804,7 @@ stated above
 
 Firm 1's state vector is
 
-.. math::  X_t = \begin{bmatrix} \tilde y_t \cr q_{1t}  \end{bmatrix} 
+.. math::  X_t = \begin{bmatrix} \tilde y_t \cr q_{1t}  \end{bmatrix}
 
 It follows that the follower firm 1 faces law of motion
 
@@ -816,7 +816,7 @@ It follows that the follower firm 1 faces law of motion
     0  & 1 \end{bmatrix}  \begin{bmatrix} \tilde y_{t} \\
     q_{1t} \end{bmatrix} + \begin{bmatrix} 0 \cr 1 \end{bmatrix} x_t
 
-This specfification assures that from the point of the view of a firm 1,
+This specification assures that from the point of the view of a firm 1,
 :math:`q_{2t}` is an exogenous process
 
 Here
@@ -828,32 +828,32 @@ The time :math:`t` component of firm 1's objective is
 
 .. math::
 
-    \tilde X_t' \tilde R x_t - x_t^2 \tilde Q = \begin{bmatrix} 1 \cr q_{2t} \cr \tilde q_{1t} \cr \tilde x_t \cr q_{1t} \end{bmatrix}' 
+    \tilde X_t' \tilde R x_t - x_t^2 \tilde Q = \begin{bmatrix} 1 \cr q_{2t} \cr \tilde q_{1t} \cr \tilde x_t \cr q_{1t} \end{bmatrix}'
      \begin{bmatrix} 0 & 0 & 0 & 0 & \frac{a_0}{2} \cr
                      0 & 0 & 0 & 0 & - \frac{a_1}{2} \cr
                      0 & 0 & 0 & 0 & 0 \cr
                      0 & 0 & 0 & 0 & 0 \cr
-                     \frac{a_0}{2} &  -\frac{a_1}{2} & 0 & 0 & - a_1 \end{bmatrix} 
+                     \frac{a_0}{2} &  -\frac{a_1}{2} & 0 & 0 & - a_1 \end{bmatrix}
      \begin{bmatrix} 1 \cr q_{2t} \cr \tilde q_{1t} \cr \tilde x_t \cr q_{1t} \end{bmatrix} - \gamma
-        x_t^2 
+        x_t^2
 
 Firm 1's optimal decision rule is
 
-.. math::  x_t = - \tilde F X_t 
+.. math::  x_t = - \tilde F X_t
 
 and it's state evolves according to
 
-.. math::  \tilde X_{t+1} = (\tilde A - \tilde B \tilde F) X_t 
+.. math::  \tilde X_{t+1} = (\tilde A - \tilde B \tilde F) X_t
 
 under its optimal decision rule
 
 Later we shall compute :math:`\tilde F` and verify that when we set
 
-.. math::  X_0 = \begin{bmatrix} 1 \cr q_{20} \cr  q_{10} \cr  x_0 \cr q_{10} \end{bmatrix} 
+.. math::  X_0 = \begin{bmatrix} 1 \cr q_{20} \cr  q_{10} \cr  x_0 \cr q_{10} \end{bmatrix}
 
 we recover
 
-.. math::  x_0 = - \tilde F \tilde X_0  
+.. math::  x_0 = - \tilde F \tilde X_0
 
 which will verify that we have properly set up a recursive
 representation of the follower's problem facing the Stackelberg leader's
@@ -899,8 +899,8 @@ dynamic program as outlined above
     n = 300
     tol0 = 1e-8
     tol1 = 1e-16
-    tol2 = 1e-2 
-    
+    tol2 = 1e-2
+
     βs = np.ones(n)
     βs[1:] = β
     βs = βs.cumprod()
@@ -909,51 +909,51 @@ dynamic program as outlined above
 
     # == In LQ form == #
     Alhs = np.eye(4)
-    
+
     # Euler equation coefficients
     Alhs[3, :] = β * a0 / (2 * γ), -β * a1 / (2 * γ), -β * a1 / γ, β
-    
+
     Arhs = np.eye(4)
     Arhs[2, 3] = 1
-    
+
     Alhsinv = la.inv(Alhs)
-    
+
     A = Alhsinv @ Arhs
-    
+
     B = Alhsinv @ np.array([[0, 1, 0, 0]]).T
-    
+
     R = np.array([[0,      -a0 / 2,      0, 0],
                   [-a0 / 2,     a1, a1 / 2, 0],
                   [0,       a1 / 2,      0, 0],
                   [0,            0,      0, 0]])
-    
+
     Q = np.array([[γ]])
-    
+
     # == Solve using QE's LQ class == #
-    # LQ solves minimization problems which is why the sign of R and Q was changed 
-    lq = LQ(Q, R, A, B, beta=β) 
+    # LQ solves minimization problems which is why the sign of R and Q was changed
+    lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values(method='doubling')
-    
+
     P22 = P[3:, 3:]
     P21 = P[3:, :3]
     P22inv = la.inv(P22)
     H_0_0 = -P22inv @ P21
-    
+
     # == Simulate forward == #
-    
+
     π_leader = np.zeros(n)
-    
+
     z0 = np.array([[1, 1, 1]]).T
     x0 = H_0_0 @ z0
     y0 = np.vstack((z0, x0))
-    
+
     yt, ut = lq.compute_sequence(y0, ts_length=n)[:2]
-    
-    π_matrix = (R + F. T @ Q @ F) 
-    
+
+    π_matrix = (R + F. T @ Q @ F)
+
     for t in range(n):
         π_leader[t] = -(yt[:, t].T @ π_matrix @ yt[:, t])
-        
+
     # == Display policies == #
     print("Computed policy for Stackelberg leader\n")
     print(f"F = {F}")
@@ -970,7 +970,7 @@ The following code plots the price and quantities
     q_follower = yt[2, :-1]
     q = q_leader + q_follower       # Total output, Stackelberg
     p = a0 - a1 * q                 # Price, Stackelberg
-    
+
     fig, ax = plt.subplots(figsize=(9, 5.8))
     ax.plot(range(n), q_leader, 'b-', lw=2, label='leader output')
     ax.plot(range(n), q_follower, 'r-', lw=2, label='follower output')
@@ -993,7 +993,7 @@ on coding and thinking)
 
     v_leader_forward = np.sum(βs * π_leader)
     v_leader_direct = -yt[:, 0].T @ P @ yt[:, 0]
-    
+
     # == Display values == #
     print("Computed values for the Stackelberg leader at t=0:\n")
     print(f"v_leader_forward(forward sim) = {v_leader_forward:.4f}")
@@ -1008,9 +1008,9 @@ on coding and thinking)
 
 .. code:: python3
 
-    # Manually checks whether two different ways of computing the 
+    # Manually checks whether two different ways of computing the
     # value function give approximately the same answer
-    v_expanded = -((y0.T @ R @ y0 + ut[:, 0].T @ Q @ ut[:, 0] + 
+    v_expanded = -((y0.T @ R @ y0 + ut[:, 0].T @ Q @ ut[:, 0] +
                    β * (y0.T @ (A - B @ F).T @ P @ (A - B @ F) @ y0)))
     (v_leader_direct - v_expanded < tol0)[0, 0]
 
@@ -1031,13 +1031,13 @@ inconsistency of the Stackelberg plan
 
 .. code:: python3
 
-    # Compute value function over time with reset at time t
+    # Compute value function over time with a reset at time t
     vt_leader = np.zeros(n)
     vt_reset_leader = np.empty_like(vt_leader)
-    
+
     yt_reset = yt.copy()
     yt_reset[-1, :] = (H_0_0 @ yt[:3, :])
-    
+
     for t in range(n):
         vt_leader[t] = -yt[:, t].T @ P @ yt[:, t]
         vt_reset_leader[t] = -yt_reset[:, t].T @ P @ yt_reset[:, t]
@@ -1045,20 +1045,20 @@ inconsistency of the Stackelberg plan
 .. code:: python3
 
     fig, axes = plt.subplots(3, 1, figsize=(10, 7))
-    
+
     axes[0].plot(range(n+1), (- F @ yt).flatten(), 'bo', label='Stackelberg leader', ms=2)
     axes[0].plot(range(n+1), (- F @ yt_reset).flatten(), 'ro', label='continuation leader at t', ms=2)
     axes[0].set(title=r'Leader control variable $u_{t}$', xlabel='t')
     axes[0].legend()
-    
+
     axes[1].plot(range(n+1), yt[3, :], 'bo', ms=2)
     axes[1].plot(range(n+1), yt_reset[3, :], 'ro', ms=2)
     axes[1].set(title=r'Follower control variable $x_{t}$', xlabel='t')
-    
+
     axes[2].plot(range(n), vt_leader, 'bo', ms=2)
     axes[2].plot(range(n), vt_reset_leader, 'ro', ms=2)
     axes[2].set(title=r'Leader value function $v(y_{t})$', xlabel='t')
-    
+
     plt.tight_layout()
     plt.show()
 
@@ -1076,19 +1076,19 @@ We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation
 
     A_tilde = np.eye(5)
     A_tilde[:4, :4] = A - B @ F
-    
+
     R_tilde = np.array([[0,            0, 0,    0, -a0 / 2],
                         [0,            0, 0,    0,  a1 / 2],
                         [0,            0, 0,    0,       0],
                         [0,            0, 0,    0,       0],
                         [-a0 / 2, a1 / 2, 0,    0,      a1]])
-    
+
     Q_tilde = Q
     B_tilde = np.array([[0, 0, 0, 0, 1]]).T
-    
+
     lq_tilde = LQ(Q_tilde, R_tilde, A_tilde, B_tilde, beta=β)
     P_tilde, F_tilde, d_tilde = lq_tilde.stationary_values(method='doubling')
-    
+
     y0_tilde = np.vstack((y0, y0[2]))
     yt_tilde = lq_tilde.compute_sequence(y0_tilde, ts_length=n)[0]
 
@@ -1164,10 +1164,10 @@ Hint: remember the components of :math:`X_t`
     # Compute `P_guess` using `F_tilde_star`
     F_tilde_star = -np.array([[0, 0, 0, 1, 0]])
     P_guess = np.zeros((5, 5))
-    
+
     for i in range(1000):
-        P_guess = ((R_tilde + F_tilde_star.T @ Q @ F_tilde_star) + 
-                   β * (A_tilde - B_tilde @ F_tilde_star).T @ P_guess 
+        P_guess = ((R_tilde + F_tilde_star.T @ Q @ F_tilde_star) +
+                   β * (A_tilde - B_tilde @ F_tilde_star).T @ P_guess
                    @ (A_tilde - B_tilde @ F_tilde_star))
 
 
@@ -1187,32 +1187,32 @@ Hint: remember the components of :math:`X_t`
 .. code:: python3
 
     # Compute policy using policy iteration algorithm
-    F_iter = (β * la.inv(Q + β * B_tilde.T @ P_guess @ B_tilde) 
+    F_iter = (β * la.inv(Q + β * B_tilde.T @ P_guess @ B_tilde)
               @ B_tilde.T @ P_guess @ A_tilde)
-    
+
     for i in range(100):
         # Compute P_iter
         P_iter = np.zeros((5, 5))
         for j in range(1000):
-            P_iter = ((R_tilde + F_iter.T @ Q @ F_iter) + β * 
-                      (A_tilde - B_tilde @ F_iter).T @ P_iter @ 
+            P_iter = ((R_tilde + F_iter.T @ Q @ F_iter) + β *
+                      (A_tilde - B_tilde @ F_iter).T @ P_iter @
                       (A_tilde - B_tilde @ F_iter))
-    
+
         # Update F_iter
-        F_iter = (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) 
+        F_iter = (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde)
                   @ B_tilde.T @ P_iter @ A_tilde)
-        
-    dist_vec = (P_iter - ((R_tilde + F_iter.T @ Q @ F_iter) + 
-                β * (A_tilde - B_tilde @ F_iter).T @ P_iter @ 
+
+    dist_vec = (P_iter - ((R_tilde + F_iter.T @ Q @ F_iter) +
+                β * (A_tilde - B_tilde @ F_iter).T @ P_iter @
                 (A_tilde - B_tilde @ F_iter)))
-    
+
     if np.max(np.abs(dist_vec)) < 1e-8:
-        dist_vec2 = (F_iter - (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde) 
+        dist_vec2 = (F_iter - (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde)
                      @ B_tilde.T @ P_iter @ A_tilde))
-                     
-        if np.max(np.abs(dist_vec)) < 1e-8:
+
+        if np.max(np.abs(dist_vec2)) < 1e-8:
             F_iter
-        else: 
+        else:
             print("The policy didn't converge: try increasing the number of outer loop iterations")
     else:
         print("`P_iter` didn't converge: try increasing the number of inner loop iterations")
@@ -1220,13 +1220,13 @@ Hint: remember the components of :math:`X_t`
 .. code:: python3
 
     # Simulate the system using `F_tilde_star` and check that it gives the same result as the original solution
-    
+
     yt_tilde_star = np.zeros((n, 5))
     yt_tilde_star[0, :] = y0_tilde.flatten()
-    
+
     for t in range(n-1):
         yt_tilde_star[t+1, :] = (A_tilde - B_tilde @ F_tilde_star) @ yt_tilde_star[t, :]
-        
+
     plt.plot(yt_tilde_star[:, 4], 'r', label="q_tilde")
     plt.plot(yt_tilde[2], 'b', label="q")
     plt.legend()
@@ -1243,26 +1243,26 @@ Markov Perfect Equilibrium
 
 The **state** vector is
 
-.. math::  z_t = \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t} \end{bmatrix} 
+.. math::  z_t = \begin{bmatrix} 1 \cr q_{2t} \cr q_{1t} \end{bmatrix}
 
 and the state transition dynamics are
 
-.. math::  z_{t+1} = A z_t + B_1 v_{1t}  +  B_2 v_{2t}   
+.. math::  z_{t+1} = A z_t + B_1 v_{1t}  +  B_2 v_{2t}
 
 where :math:`A` is a :math:`3 \times 3` identity matrix and
 
-.. math::  
+.. math::
 
-    B_1 = \begin{bmatrix} 0 \cr 0 \cr 1 \end{bmatrix} , 
-    \quad B_2 = \begin{bmatrix} 0 \cr 1 \cr 0 \end{bmatrix} 
+    B_1 = \begin{bmatrix} 0 \cr 0 \cr 1 \end{bmatrix} ,
+    \quad B_2 = \begin{bmatrix} 0 \cr 1 \cr 0 \end{bmatrix}
 
 The Markov perfect decision rules are
 
-.. math::  v_{1t} = - F_1 z_t , \quad v_{2t} = - F_2 z_t  
+.. math::  v_{1t} = - F_1 z_t , \quad v_{2t} = - F_2 z_t
 
-and in the Markov perfect equilibrium the state evolves according to
+and in the Markov perfect equilibrium, the state evolves according to
 
-.. math::  z_{t+1} = (A - B_1 F_1 - B_2 F_2) z_t 
+.. math::  z_{t+1} = (A - B_1 F_1 - B_2 F_2) z_t
 
 .. code:: python3
 
@@ -1270,34 +1270,34 @@ and in the Markov perfect equilibrium the state evolves according to
     A = np.eye(3)
     B1 = np.array([[0], [0], [1]])
     B2 = np.array([[0], [1], [0]])
-    
+
     R1 = np.array([[0,            0, -a0 / 2],
                    [0,            0,  a1 / 2],
                    [-a0 / 2, a1 / 2,      a1]])
-    
+
     R2 = np.array([[0,       -a0 / 2,      0],
                    [-a0 / 2,      a1, a1 / 2],
                    [0,        a1 / 2,      0]])
-    
+
     Q1 = Q2 = γ
     S1 = S2 = W1 = W2 = M1 = M2 = 0.0
-    
+
     # == Solve using QE's nnash function == #
     F1, F2, P1, P2 = qe.nnash(A, B1, B2, R1, R2, Q1,
                               Q2, S1, S2, W1, W2, M1,
                               M2, beta=β, tol=tol1)
-    
+
     # == Simulate forward == #
     AF = A - B1 @ F1 - B2 @ F2
     z = np.empty((3, n))
     z[:, 0] = 1, 1, 1
     for t in range(n-1):
         z[:, t+1] = AF @ z[:, t]
-                  
+
     # == Display policies == #
     print("Computed policies for firm 1 and firm 2:\n")
     print(f"F1 = {F1}")
-    print(f"F2 = {F2}")    
+    print(f"F2 = {F2}")
 
 
 .. code:: python3
@@ -1306,7 +1306,7 @@ and in the Markov perfect equilibrium the state evolves according to
     q2 = z[2, :]
     q = q1 + q2       # Total output, MPE
     p = a0 - a1 * q   # Price, MPE
-    
+
     fig, ax = plt.subplots(figsize=(9, 5.8))
     ax.plot(range(n), q, 'b-', lw=2, label='total output')
     ax.plot(range(n), p, 'g-', lw=2, label='price')
@@ -1325,19 +1325,19 @@ and in the Markov perfect equilibrium the state evolves according to
 
 .. code:: python3
 
-    # Compute values 
+    # Compute values
     u1 = (- F1 @ z).flatten()
     u2 = (- F2 @ z).flatten()
-    
+
     π_1 = p * q1 - γ * (u1) ** 2
     π_2 = p * q2 - γ * (u2) ** 2
-    
+
     v1_forward = np.sum(βs * π_1)
     v2_forward = np.sum(βs * π_2)
-    
+
     v1_direct = (- z[:, 0].T @ P1 @ z[:, 0])
     v2_direct = (- z[:, 0].T @ P2 @ z[:, 0])
-    
+
     # == Display values == #
     print("Computed values for firm 1 and firm 2:\n")
     print(f"v1(forward sim) = {v1_forward:.4f}; v1 (direct) = {v1_direct:.4f}")
@@ -1350,9 +1350,9 @@ and in the Markov perfect equilibrium the state evolves according to
     Λ1 = A - B2 @ F2
     lq1 = qe.LQ(Q1, R1, Λ1, B1, beta=β)
     P1_ih, F1_ih, d = lq1.stationary_values()
-    
+
     v2_direct_alt = - z[:, 0].T @ lq1.P @ z[:, 0] + lq1.d
-    
+
     (np.abs(v2_direct - v2_direct_alt) < tol2).all()
 
 
@@ -1363,11 +1363,11 @@ MPE vs. Stackelberg
 
     vt_MPE = np.zeros(n)
     vt_follower = np.zeros(n)
-    
+
     for t in range(n):
         vt_MPE[t] = -z[:, t].T @ P1 @ z[:, t]
         vt_follower[t] = -yt_tilde[:, t].T @ P_tilde @ yt_tilde[:, t]
-        
+
     plt.plot(vt_MPE, 'b', label='MPE')
     plt.plot(vt_leader, 'r', label='Stackelberg leader')
     plt.plot(vt_follower, 'g', label='Stackelberg follower')

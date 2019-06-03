@@ -39,7 +39,7 @@ Its many applications include:
 
 * predicting a geometric sum of future values of a variable like
 
-    * non financial income
+    * non-financial income
 
     * dividends on a stock
 
@@ -200,7 +200,7 @@ To map :eq:`st_ex_1` into our state space system :eq:`st_space_rep`, we set
 You can confirm that under these definitions, :eq:`st_space_rep` and :eq:`st_ex_1` agree
 
 
-The next figure shows dynamics of this process when :math:`\phi_0 = 1.1, \phi_1=0.8, \phi_2 = -0.8, y_0 = y_{-1} = 1`
+The next figure shows the dynamics of this process when :math:`\phi_0 = 1.1, \phi_1=0.8, \phi_2 = -0.8, y_0 = y_{-1} = 1`
 
 .. _lss_sode_fig:
 
@@ -254,7 +254,7 @@ To put this in the linear state space format we take :math:`x_t = \begin{bmatrix
 The matrix :math:`A` has the form of the *companion matrix* to the vector
 :math:`\begin{bmatrix}\phi_1 &  \phi_2 & \phi_3 & \phi_4 \end{bmatrix}`
 
-The next figure shows dynamics of this process when
+The next figure shows the dynamics of this process when
 
 
 .. math::
@@ -334,7 +334,7 @@ We can use :eq:`st_space_rep` to represent
 
 #. the *indeterministic seasonal* :math:`y_t = \phi_4 y_{t-4} + w_t`
 
-In fact both are special cases of :eq:`eq_ar_rep`
+In fact, both are special cases of :eq:`eq_ar_rep`
 
 With the deterministic seasonal, the transition matrix becomes
 
@@ -395,7 +395,7 @@ We can represent this model in the linear state space form by taking
 and starting at initial condition :math:`x_0 = \begin{bmatrix} 0 & 1\end{bmatrix}'`
 
 
-In fact it's possible to use the state-space system to represent polynomial trends of any order
+In fact, it's possible to use the state-space system to represent polynomial trends of any order
 
 For instance, let
 
@@ -501,7 +501,7 @@ Substituting into the moving average representation :eq:`eqob5`, we obtain
 
 where :math:`x_{1t}` is the first entry of :math:`x_t`
 
-The first term on the right is a cumulated sum of martingale differences, and is therefore a `martingale <https://en.wikipedia.org/wiki/Martingale_%28probability_theory%29>`_
+The first term on the right is a cumulated sum of martingale differences and is therefore a `martingale <https://en.wikipedia.org/wiki/Martingale_%28probability_theory%29>`_
 
 The second term is a translated linear function of time
 
@@ -557,7 +557,7 @@ As a matter of terminology, we will sometimes call
 
 * :math:`\mu_t` the *unconditional mean*  of :math:`x_t`
 
-* :math:`\Sigma_t` the *unconditional variance-convariance matrix*  of :math:`x_t`
+* :math:`\Sigma_t` the *unconditional variance-covariance matrix*  of :math:`x_t`
 
 This is to distinguish :math:`\mu_t` and :math:`\Sigma_t` from related objects that use conditioning
 information, to be defined below
@@ -596,7 +596,7 @@ is not quite as good as knowing the full distribution
 However, there are some situations where these moments alone tell us all we
 need to know
 
-These are situations in which the mean vector and covariance matrix are **sufficient statistics** for the population distribution 
+These are situations in which the mean vector and covariance matrix are **sufficient statistics** for the population distribution
 
 (Sufficient statistics form a list of objects that characterize a population distribution)
 
@@ -698,7 +698,7 @@ the distribution's sufficient statistics
 Ensemble Means
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the preceding figure we approximated the population distribution of :math:`y_T` by
+In the preceding figure, we approximated the population distribution of :math:`y_T` by
 
 #. generating :math:`I` sample paths (i.e., time series) where :math:`I` is a large number
 
@@ -749,10 +749,10 @@ Another application of the law of large numbers assures us that
 Joint Distributions
 -----------------------------
 
-In the preceding discussion we looked at the distributions of :math:`x_t` and
+In the preceding discussion, we looked at the distributions of :math:`x_t` and
 :math:`y_t` in isolation
 
-This gives us useful information, but doesn't allow us to answer questions like
+This gives us useful information but doesn't allow us to answer questions like
 
 * what's the probability that :math:`x_t \geq 0` for all :math:`t`?
 
@@ -864,7 +864,7 @@ In our setting, a distribution :math:`\psi_{\infty}` is said to be *stationary* 
 
 Since
 
-#. in the present case all distributions are Gaussian
+#. in the present case, all distributions are Gaussian
 
 #. a Gaussian distribution is pinned down by its mean and variance-covariance matrix
 
@@ -946,11 +946,11 @@ regardless of the initial conditions :math:`\mu_0` and :math:`\Sigma_0`
 
 .. only:: html
 
-    This is the *globally stable case* --- see :download:`these notes </_static/pdfs/iteration_notes.pdf>` for more a theoretical treatment
+    This is the *globally stable case* --- see :download:`these notes <_static/pdfs/iteration_notes.pdf>` for more a theoretical treatment
 
 .. only:: latex
 
-    This is the *globally stable case* --- see `these notes <https://lectures.quantecon.org/_downloads/iteration_notes.pdf>`__ for more a theoretical treatment    
+    This is the *globally stable case* --- see `these notes <https://lectures.quantecon.org/_downloads/iteration_notes.pdf>`__ for more a theoretical treatment
 
 However, global stability is more than we need for stationary solutions, and often more than we want
 
@@ -1058,7 +1058,7 @@ Ergodicity
 
 Let's suppose that we're working with a covariance stationary process
 
-In this case we know that the ensemble mean will converge to :math:`\mu_{\infty}` as the sample size :math:`I` approaches infinity
+In this case, we know that the ensemble mean will converge to :math:`\mu_{\infty}` as the sample size :math:`I` approaches infinity
 
 
 
@@ -1066,9 +1066,9 @@ In this case we know that the ensemble mean will converge to :math:`\mu_{\infty}
 Averages over Time
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Ensemble averages across simulations are interesting theoretically, but in real life we usually observe only a *single* realization :math:`\{x_t, y_t\}_{t=0}^T`
+Ensemble averages across simulations are interesting theoretically, but in real life, we usually observe only a *single* realization :math:`\{x_t, y_t\}_{t=0}^T`
 
-So now let's take a single realization and form the time series averages
+So now let's take a single realization and form the time-series averages
 
 .. math::
 
@@ -1102,7 +1102,7 @@ In our linear Gaussian setting, any covariance stationary process is also ergodi
 Noisy Observations
 ===================
 
-In some settings the observation equation :math:`y_t = Gx_t` is modified to
+In some settings, the observation equation :math:`y_t = Gx_t` is modified to
 include an error term
 
 Often this error term represents the idea that the true state can only be
@@ -1201,11 +1201,11 @@ The covariance matrix of the forecast error is
 
 More generally, we'd like to compute the :math:`j`-step ahead forecasts :math:`\mathbb{E}_t [x_{t+j}]` and :math:`\mathbb{E}_t [y_{t+j}]`
 
-With a bit of algebra we obtain
+With a bit of algebra, we obtain
 
 .. math::
 
-    x_{t+j} = A^j x_t + A^{j-1} C w_{t+1} + A^{j-2} C w_{t+2} + 
+    x_{t+j} = A^j x_t + A^{j-1} C w_{t+1} + A^{j-2} C w_{t+2} +
     \cdots + A^0 C w_{t+j}
 
 
@@ -1419,16 +1419,16 @@ Exercise 1
 .. code-block:: python3
 
     ϕ_0, ϕ_1, ϕ_2 = 1.1, 0.8, -0.8
-    
+
     A = [[1,     0,     0  ],
          [ϕ_0,   ϕ_1,   ϕ_2],
          [0,     1,     0  ]]
     C = np.zeros((3, 1))
     G = [0, 1, 0]
-    
+
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(3))
     x, y = ar.simulate(ts_length=50)
-    
+
     fig, ax = plt.subplots(figsize=(10, 6))
     y = y.flatten()
     ax.plot(y, 'b-', lw=2, alpha=0.7)
@@ -1445,20 +1445,20 @@ Exercise 2
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.2
-    
+
     A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
          [1,     0,     0,     0  ],
          [0,     1,     0,     0  ],
          [0,     0,     1,     0  ]]
-    C = [[σ], 
-         [0], 
-         [0], 
+    C = [[σ],
+         [0],
+         [0],
          [0]]
     G = [1, 0, 0, 0]
-    
+
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
     x, y = ar.simulate(ts_length=200)
-    
+
     fig, ax = plt.subplots(figsize=(10, 6))
     y = y.flatten()
     ax.plot(y, 'b-', lw=2, alpha=0.7)
@@ -1474,41 +1474,41 @@ Exercise 3
 
     from scipy.stats import norm
     import random
-    
+
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.1
-    
+
     A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
          [1,     0,     0,     0  ],
          [0,     1,     0,     0  ],
          [0,     0,     1,     0  ]]
-    C = [[σ], 
-         [0], 
-         [0], 
+    C = [[σ],
+         [0],
+         [0],
          [0]]
     G = [1, 0, 0, 0]
-    
+
     I = 20
     T = 50
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
     ymin, ymax = -0.5, 1.15
-    
+
     fig, ax = plt.subplots(figsize=(8, 5))
-    
+
     ax.set_ylim(ymin, ymax)
     ax.set_xlabel('time', fontsize=16)
     ax.set_ylabel('$y_t$', fontsize=16)
-    
+
     ensemble_mean = np.zeros(T)
     for i in range(I):
         x, y = ar.simulate(ts_length=T)
         y = y.flatten()
         ax.plot(y, 'c-', lw=0.8, alpha=0.5)
         ensemble_mean = ensemble_mean + y
-    
+
     ensemble_mean = ensemble_mean / I
     ax.plot(ensemble_mean, color='b', lw=2, alpha=0.8, label='$\\bar y_t$')
-    
+
     m = ar.moment_sequence()
     population_means = []
     for t in range(T):
@@ -1525,22 +1525,22 @@ Exercise 4
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.1
-    
+
     A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
          [1,     0,     0,     0  ],
          [0,     1,     0,     0  ],
          [0,     0,     1,     0  ]]
-    C = [[σ], 
-         [0], 
-         [0], 
+    C = [[σ],
+         [0],
+         [0],
          [0]]
     G = [1, 0, 0, 0]
-    
+
     T0 = 10
     T1 = 50
     T2 = 75
     T4 = 100
-    
+
     ar = LinearStateSpace(A, C, G, mu_0=np.ones(4), Sigma_0=Σ_x)
     ymin, ymax = -0.6, 0.6
 
@@ -1557,7 +1557,7 @@ Exercise 4
     μ_x, μ_y, Σ_x, Σ_y = ar.stationary_distributions()
     ar.mu_0 = μ_x
     ar.Sigma_0 = Σ_x
-    
+
     for i in range(80):
         rcolor = random.choice(('c', 'g', 'b'))
         x, y = ar.simulate(ts_length=T4)
@@ -1578,4 +1578,4 @@ Exercise 4
     :math:`x_t` is Gaussian.  Then :eq:`st_space_rep` and
     :eq:`lss_glig` imply that :math:`x_{t+1}` is Gaussian.  Since :math:`x_0`
     is assumed to be Gaussian, it follows that every :math:`x_t` is Gaussian.
-    Evidently this implies that each :math:`y_t` is Gaussian.
+    Evidently, this implies that each :math:`y_t` is Gaussian.

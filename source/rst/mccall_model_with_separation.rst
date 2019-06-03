@@ -286,36 +286,29 @@ The default utility function is a CRRA utility function
                 self.ϕ_vals = ϕ_vals
 
 
-The following function returns jitted versions of the Bellman operators :math:`h` and :math:`v`
+The following defines jitted versions of the Bellman operators :math:`h` and :math:`v`
 
 .. code-block:: python3
 
-    def operator_factory(mcm, parallel_flag=True):
+    @njit
+    def Q(v, h, paras):
         """
-        mcm is an instance of McCallModel
+        A jitted function to update the Bellman equations
+
         """
+        
+        α, β, γ, c, σ, w_vals, ϕ_vals = paras
 
-        α, β, γ, c = mcm.α, mcm.β, mcm.γ, mcm.c
-        σ, w_vals, ϕ_vals = mcm.σ, mcm.w_vals, mcm.ϕ_vals
+        v_new = np.empty_like(v)
 
-        @njit
-        def Q(v, h):
-            """
-            A jitted function to update the Bellman equations
+        for i in range(len(w_vals)):
+            w = w_vals[i]
+            v_new[i] = u(w, σ) + β * ((1 - α) * v[i] + α * h)
 
-            """
-            v_new = np.empty_like(v)
+        h_new = u(c, σ) + β * (1 - γ) * h + \
+                        β * γ * np.sum(np.maximum(h, v) * ϕ_vals)
 
-            for i in range(len(w_vals)):
-                w = w_vals[i]
-                v_new[i] = u(w, σ) + β * ((1 - α) * v[i] + α * h)
-
-            h_new = u(c, σ) + β * (1 - γ) * h + \
-                            β * γ * np.sum(np.maximum(h, v) * ϕ_vals)
-
-            return v_new, h_new
-
-        return Q
+        return v_new, h_new
 
 
 The approach is to iterate until successive iterates are closer together than some small tolerance level
@@ -324,14 +317,12 @@ We then return the current iterate as an approximate solution
 
 .. code-block:: python3
 
-    def solve_model(mcm, use_parallel=True, tol=1e-5, max_iter=2000):
+    def solve_model(mcm, tol=1e-5, max_iter=2000):
         """
         Iterates to convergence on the Bellman equations
 
         mcm is an instance of McCallModel
         """
-
-        Q = operator_factory(mcm, use_parallel)
 
         v = np.ones_like(mcm.w_vals)   # Initial guess of v
         h = 1                          # Initial guess of h
@@ -339,7 +330,9 @@ We then return the current iterate as an approximate solution
         error = tol + 1
 
         while error > tol and i < max_iter:
-            v_new, h_new = Q(v, h)
+            v_new, h_new = Q(v, h, (mcm.α, mcm.β, mcm.γ, mcm.c, mcm.σ, \
+                                    mcm.w_vals, mcm.ϕ_vals)
+                            )
             error_1 = np.max(np.abs(v_new - v))
             error_2 = np.abs(h_new - h)
             error = max(error_1, error_2)

@@ -8,7 +8,7 @@ Fiscal Risk and Government Debt
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -153,7 +153,7 @@ Here it is
 .. literalinclude:: /_static/code/amss/utilities.py
     :class: collapse
 
-Next, we show code that we use to generate a very long simulation starting from initial
+Next, we show the code that we use to generate a very long simulation starting from initial
 government debt equal to :math:`-.5`
 
 Here is a graph of a long simulation of 102000 periods
@@ -207,11 +207,11 @@ approximations to rates of convergence that appear in :cite:`BEGS1` and that we 
 We discard the first 2000 observations of the simulation and construct the histogram of
 the part value of government debt
 
-We obtain the following graph for the historgram of the last 100,000 observations on the par value of government debt
+We obtain the following graph for the histogram of the last 100,000 observations on the par value of government debt
 
 .. figure:: /_static/figures/amss3_g3.png
 
-The  black vertical line denotes the sample mean for the last 100,000 observations included in the historgram; the  green vertical line denots the
+The  black vertical line denotes the sample mean for the last 100,000 observations included in the histogram; the  green vertical line denotes the
 value of :math:`\frac{ {\mathcal B}^*}{E u_c}`, associated with the sample (presumably) from
 the ergodic  where :math:`{\mathcal B}^*` is the regression coefficient described below;  the red vertical line denotes an approximation by :cite:`BEGS1` to the mean of the ergodic
 distribution that can be precomputed before sampling from the ergodic distribution, as described below
@@ -256,7 +256,7 @@ these early observations
 Asymptotic Mean and Rate of Convergence
 ================================================================================
 
-We apply results of :cite:`BEGS1` to interpret
+We apply the results of :cite:`BEGS1` to interpret
 
   * the mean of the ergodic distribution of government debt
 
@@ -517,7 +517,7 @@ In this economy, :math:`\hat b` given by the above formula approximates the mean
 
    *  the approximation is fairly accurate but not perfect
 
-   *  so while the approximation circumvents the chicken and egg problem surrounding 
+   *  so while the approximation circumvents the chicken and egg problem surrounding
       the much better approximation associated with the green vertical line, it does so by enlarging the approximation error
 
 Execution

@@ -25,7 +25,7 @@ In this lecture, we describe the structure of a class of models that build on wo
 
 .. only:: html
 
-    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari </_static/pdfs/aiyagari_obit.pdf>`
+    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/pdfs/aiyagari_obit.pdf>`
 
 .. only:: latex
 
@@ -226,6 +226,7 @@ In reading the code, the following information will be helpful
 * ``R`` needs to be a matrix where ``R[s, a]`` is the reward at state ``s`` under action ``a``
 
 * ``Q`` needs to be a three-dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a``
+
 
 (For a detailed discussion of ``DiscreteDP`` see :doc:`this lecture <discrete_dp>`)
 

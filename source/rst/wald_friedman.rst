@@ -67,8 +67,6 @@ We'll begin with some imports
 
     import numpy as np
     import matplotlib.pyplot as plt
-    from scipy.stats import beta
-    import quantecon as qe
     from numba import njit, prange, vectorize
     from interpolation import interp
     from math import gamma
@@ -397,7 +395,7 @@ To make our computations simpler, using :eq:`optdec`, we can write the continuat
     \begin{align}
     h(\pi) &= c + \mathbb E [J(\pi')] \\
     &= c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \} \\
-    &= c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    &= c + \int \min \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_\pi (z') dz'
     \end{align}
     
 The equality
@@ -406,7 +404,7 @@ The equality
     :label: funceq
 
     h(\pi) = 
-    c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    c + \int \min \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_\pi (z') dz'
     
 can be understood as a functional equation, where :math:`h` is the unknown
 
@@ -421,7 +419,7 @@ In other words, we iterate with an operator :math:`Q`, where
 .. math::
 
     Q h(\pi) = 
-    c + \min \int \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_0 (z') dz'
+    c + \int \min \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_\pi (z') dz'
 
 
 Implementation
@@ -491,7 +489,7 @@ The function ``operator_factory`` returns the operator ``Q``
 
             return π_new
 
-        @njit(parallel=True)
+        @njit(parallel=parallel_flag)
         def Q(h):
             h_new = np.empty_like(π_grid)
             h_func = lambda p: interp(π_grid, h, p)

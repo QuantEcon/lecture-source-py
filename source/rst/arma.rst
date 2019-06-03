@@ -37,9 +37,9 @@ We will focus much of our attention on linear covariance stationary models with 
 
 In particular, we will study stationary ARMA processes, which form a cornerstone of the standard theory of time series analysis
 
-Every ARMA processes can be represented in :doc:`linear state space <linear_models>` form
+Every ARMA process can be represented in :doc:`linear state space <linear_models>` form
 
-However, ARMA have some important structure that makes it valuable to study them separately
+However, ARMA processes have some important structure that makes it valuable to study them separately
 
 
 
@@ -53,7 +53,7 @@ autocovariance function of a covariance stationary process
 
 Having a second representation of this important object
 
-* shines light on the dynamics of the process in question
+* shines a light on the dynamics of the process in question
 
 * allows for a simpler, more tractable representation in some important cases
 
@@ -94,7 +94,7 @@ As in other fields, successful economic modeling typically assumes the existence
 
 If these assumptions are correct, then each new observation :math:`X_t, X_{t+1},\ldots` can provide additional information about the time-invariant features, allowing us to  learn from as data arrive
 
-For this reason, we will focus in what follows on processes that are *stationary* --- or become so after a transformation 
+For this reason, we will focus in what follows on processes that are *stationary* --- or become so after a transformation
 (see for example :doc:`this lecture <additive_functionals>` and :doc:`this lecture <multiplicative_functionals>`)
 
 
@@ -118,7 +118,7 @@ The function :math:`\gamma \colon \mathbb Z \to \mathbb R` is called the *autoco
 
 Throughout this lecture, we will work exclusively with zero-mean (i.e., :math:`\mu = 0`) covariance stationary processes
 
-The zero-mean assumption costs nothing in terms of generality, since working with non-zero-mean processes involves no more than adding a constant
+The zero-mean assumption costs nothing in terms of generality since working with non-zero-mean processes involves no more than adding a constant
 
 
 Example 1: :index:`White Noise`
@@ -158,9 +158,9 @@ where
 
 The sequence :math:`\{\psi_t\}` is often called a *linear filter*
 
-Equation :eq:`ma_inf` is said to present  a **moving average** process or a moving average representation 
+Equation :eq:`ma_inf` is said to present  a **moving average** process or a moving average representation
 
-With some manipulations it is possible to confirm that the autocovariance function for :eq:`ma_inf` is
+With some manipulations, it is possible to confirm that the autocovariance function for :eq:`ma_inf` is
 
 .. math::
     :label: ma_inf_ac
@@ -168,7 +168,7 @@ With some manipulations it is possible to confirm that the autocovariance functi
     \gamma(k) = \sigma^2 \sum_{j=0}^{\infty} \psi_j \psi_{j+k}
 
 
-By the `Cauchy-Schwartz inequality <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality>`_ one can show that :math:`\gamma(k)` satisfies equation :eq:`ma_inf_ac`
+By the `Cauchy-Schwartz inequality <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality>`_, one can show that :math:`\gamma(k)` satisfies equation :eq:`ma_inf_ac`
 
 Evidently, :math:`\gamma(k)` does not depend on :math:`t`
 
@@ -246,7 +246,7 @@ The next figure plots an example of this function for :math:`\phi = 0.8` and :ma
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
-    
+
     num_rows, num_cols = 2, 1
     fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 8))
     plt.subplots_adjust(hspace=0.4)
@@ -260,9 +260,9 @@ The next figure plots an example of this function for :math:`\phi = 0.8` and :ma
         ax.set(xlabel='time', xlim=(0, 15))
         ax.hlines(0, 0, 15, linestyle='--', alpha=0.5)
     plt.show()
-    
 
-   
+
+
 Another very simple process is the MA(1) process (here MA means "moving average")
 
 .. math::
@@ -328,7 +328,7 @@ If we let :math:`\phi(z)` and :math:`\theta(z)` be the polynomials
     \theta(z) := 1 + \theta_1 z + \cdots + \theta_q z^q
 
 
-then :eq:`arma_lag`  becomes 
+then :eq:`arma_lag`  becomes
 
 .. math::
     :label: arma_lag1
@@ -338,9 +338,9 @@ then :eq:`arma_lag`  becomes
 
 In what follows we **always assume** that the roots of the polynomial :math:`\phi(z)` lie outside the unit circle in the complex plane
 
-This condition is sufficient to guarantee that the ARMA(:math:`p,q`) process is convariance stationary
+This condition is sufficient to guarantee that the ARMA(:math:`p,q`) process is covariance stationary
 
-In fact it implies that the process falls within the class of general linear processes :ref:`described above <generalized_lps>`
+In fact, it implies that the process falls within the class of general linear processes :ref:`described above <generalized_lps>`
 
 That is, given an ARMA(:math:`p,q`) process :math:`\{ X_t \}` satisfying the unit circle condition, there exists a square summable sequence :math:`\{\psi_t\}` with :math:`X_t = \sum_{j=0}^{\infty} \psi_j \epsilon_{t-j}` for all :math:`t`
 
@@ -378,7 +378,7 @@ The product of two complex numbers :math:`(x, y)` and :math:`(u, v)` is defined 
 
 When endowed with these notions of multiplication and addition, the set of complex numbers forms a `field <https://en.wikipedia.org/wiki/Field_%28mathematics%29>`_ --- addition and multiplication play well together, just as they do in :math:`\mathbb R`
 
-The complex number :math:`(x, y)` is often written as :math:`x + i y`, where :math:`i` is called the *imaginary unit*, and is understood to obey :math:`i^2 = -1`
+The complex number :math:`(x, y)` is often written as :math:`x + i y`, where :math:`i` is called the *imaginary unit* and is understood to obey :math:`i^2 = -1`
 
 The :math:`x + i y` notation provides an easy way to remember the definition of multiplication given above, because, proceeding naively,
 
@@ -387,9 +387,9 @@ The :math:`x + i y` notation provides an easy way to remember the definition of 
     (x + i y) (u + i v) = xu - yv + i (xv + yu)
 
 
-Converted back to our first notation, this becomes :math:`(xu - vy, xv + yu)` as promised 
+Converted back to our first notation, this becomes :math:`(xu - vy, xv + yu)` as promised
 
-Complex numbers can be represented in  the polar form :math:`r e^{i \omega}` where 
+Complex numbers can be represented in  the polar form :math:`r e^{i \omega}` where
 
 .. math::
 
@@ -432,7 +432,7 @@ It is not difficult to confirm that :math:`f` is
 It follows that the values of :math:`f` on :math:`[0, \pi]` determine the values of :math:`f` on
 all of :math:`\mathbb R` --- the proof is an exercise
 
-For this reason it is standard to plot the spectral density only on the interval :math:`[0, \pi]`
+For this reason, it is standard to plot the spectral density only on the interval :math:`[0, \pi]`
 
 .. _arma_wnsd:
 
@@ -451,7 +451,7 @@ As we will see, this can be interpreted as meaning that "all frequencies are equ
 Example 2: :index:`AR` and :index:`MA` and :index:`ARMA`
 ---------------------------------------------------------
 
-It is an exercise to show that the MA(1) process :math:`X_t = \theta \epsilon_{t-1} + \epsilon_t` has spectral density
+It is an exercise to show that the MA(1) process :math:`X_t = \theta \epsilon_{t-1} + \epsilon_t` has a spectral density
 
 .. math::
     :label: ma1_sd_ed
@@ -519,7 +519,7 @@ Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1)
         ax.legend(loc='upper center')
         ax.set(xlabel='frequency', xlim=(0, np.pi))
     plt.show()
-    
+
 
 
 
@@ -571,7 +571,7 @@ These ideas are illustrated in the next figure, which has :math:`k` on the horiz
     ax.set(xlim=(0, 15), yticks=(-2, 0, 2))
     ax.hlines(0, 0, 15, linestyle='--', alpha=0.5)
 
-    # Cycles at frequence π
+    # Cycles at frequency π
     ax = axes[1]
     ax.plot(times, y2, 'bo-', alpha=0.6, label='$\cos(\pi k)$')
     ax.legend(loc='upper right')
@@ -587,7 +587,7 @@ These ideas are illustrated in the next figure, which has :math:`k` on the horiz
     ax.set_xlabel("k")
 
     plt.show()
-    
+
 
 
 On the other hand, if we evaluate :math:`f(\omega)` at :math:`\omega = \pi / 3`, then the cycles are
@@ -615,7 +615,7 @@ both positive and negative terms, and hence the sum of these terms is much small
     ax.set(xlim=(0, 15), yticks=(-2, 0, 2))
     ax.hlines(0, 0, 15, linestyle='--', alpha=0.5)
 
-    # Cycles at frequence π
+    # Cycles at frequency π
     ax = axes[1]
     ax.plot(times, y2, 'bo-', alpha=0.6, label='$\cos(\pi k/3)$')
     ax.legend(loc='upper right')
@@ -631,7 +631,7 @@ both positive and negative terms, and hence the sum of these terms is much small
     ax.set_xlabel("$k$")
 
     plt.show()
-    
+
 
 
 In summary, the spectral density is large at frequencies :math:`\omega` where the autocovariance function exhibits damped cycles
@@ -701,7 +701,7 @@ Using elementary results from Hilbert space theory, it can be shown that
 
 * :math:`T` is one-to-one --- if :math:`\alpha` and :math:`\beta` are distinct in :math:`\ell_2`, then so are their expansions in :math:`H`
 * :math:`T` is onto --- if :math:`f \in H` then its preimage in :math:`\ell_2` is the sequence :math:`\alpha` given by :math:`\alpha_k = \langle f, h_k \rangle`
-* :math:`T` is a linear isometry --- in particular :math:`\langle \alpha, \beta \rangle = \langle T\alpha, T\beta \rangle`
+* :math:`T` is a linear isometry --- in particular, :math:`\langle \alpha, \beta \rangle = \langle T\alpha, T\beta \rangle`
 
 Summarizing these results, we say that any separable Hilbert space is isometrically isomorphic to :math:`\ell_2`
 
@@ -725,12 +725,12 @@ Using the definition of :math:`T` from above and the fact that :math:`f` is even
 .. math::
     :label: arma_it
 
-    T \gamma 
-    = \sum_{k \in \mathbb Z} 
+    T \gamma
+    = \sum_{k \in \mathbb Z}
     \gamma(k) \frac{e^{i \omega k}}{\sqrt{2 \pi}} = \frac{1}{\sqrt{2 \pi}} f(\omega)
 
 
-In other words, apart from a scalar multiple, the spectral density is just an transformation of :math:`\gamma \in \ell_2` under a certain linear isometry --- a different way to view :math:`\gamma`
+In other words, apart from a scalar multiple, the spectral density is just a transformation of :math:`\gamma \in \ell_2` under a certain linear isometry --- a different way to view :math:`\gamma`
 
 In particular, it is an expansion of the autocovariance function with respect to the trigonometric basis functions in :math:`L_2`
 
@@ -749,7 +749,7 @@ Implementation
 
 Most code for working with covariance stationary models deals with ARMA models
 
-Python code for studying ARMA models can be found in the ``tsa`` submodule of `statsmodels <http://statsmodels.sourceforge.net/>`_ 
+Python code for studying ARMA models can be found in the ``tsa`` submodule of `statsmodels <http://statsmodels.sourceforge.net/>`_
 
 Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/python_index.html>`_ package
 
@@ -783,7 +783,7 @@ Here are some functions to generate the plots
             ax = plt.gca()
         yi = arma.impulse_response()
         ax.stem(list(range(len(yi))), yi)
-        ax.set(xlim=(-0.5), ylim=(min(yi)-0.1, max(yi)+0.1), 
+        ax.set(xlim=(-0.5), ylim=(min(yi)-0.1, max(yi)+0.1),
                      title='Impulse response', xlabel='time', ylabel='response')
         return ax
 
@@ -849,16 +849,16 @@ As a warmup, let's make sure things look right when we for the pure white noise 
     quad_plot(arma)
 
 
-If we look carefully, things look good: the spectrum is the flat line at :math:`10^0` at the very top of the specturm graphs,
+If we look carefully, things look good: the spectrum is the flat line at :math:`10^0` at the very top of the spectrum graphs,
 which is at it should be
 
-Also 
+Also
 
    * the variance  equals :math:`1 = \frac{1}{2 \pi} \int_{-\pi}^\pi 1 d \omega` as it should
 
    * the covariogram and impulse response look as they should
 
-   * it is actually challenging to visualize a time series realization of a white noise -- a sequence of surprises -- but this too looks pretty good
+   * it is actually challenging to visualize a time series realization of white noise -- a sequence of surprises -- but this too looks pretty good
 
 
 To get some more examples, as our laboratory
@@ -876,24 +876,24 @@ Ljunqvist and Sargent's first  model is  :math:`X_t = 1.3 X_{t-1} - .7 X_{t-2} +
     θ = 0.0
     arma = qe.ARMA(ϕ, θ)
     quad_plot(arma)
-  
- 
 
 
-Ljungqvist and Sargent's second model is :math:`X_t = .9 X_{t-1} + \epsilon_t` 
+
+
+Ljungqvist and Sargent's second model is :math:`X_t = .9 X_{t-1} + \epsilon_t`
 
 .. code-block:: python3
-   
+
     ϕ = 0.9
     θ = -0.0
     arma = qe.ARMA(ϕ, θ)
     quad_plot(arma)
 
 
-Ljungqvist and Sargent's third  model is  :math:`X_t = .8 X_{t-4} + \epsilon_t` 
+Ljungqvist and Sargent's third  model is  :math:`X_t = .8 X_{t-4} + \epsilon_t`
 
 .. code-block:: python3
-   
+
     ϕ = 0., 0., 0., .8
     θ = -0.0
     arma = qe.ARMA(ϕ, θ)
@@ -901,15 +901,15 @@ Ljungqvist and Sargent's third  model is  :math:`X_t = .8 X_{t-4} + \epsilon_t`
 
 
 
-Ljungqvist and Sargent's fourth  model is  :math:`X_t = .98 X_{t-1}  + \epsilon_t -.7 \epsilon_{t-1}` 
+Ljungqvist and Sargent's fourth  model is  :math:`X_t = .98 X_{t-1}  + \epsilon_t -.7 \epsilon_{t-1}`
 
 
 .. code-block:: python3
-   
+
     ϕ = .98
     θ = -0.7
     arma = qe.ARMA(ϕ, θ)
-    quad_plot(arma)    
+    quad_plot(arma)
 
 Explanation
 --------------------
@@ -919,7 +919,7 @@ The call
 
 
     ``arma = ARMA(ϕ, θ, σ)``
-    
+
 
 
 creates an instance ``arma`` that represents the ARMA(:math:`p, q`) model
@@ -964,7 +964,7 @@ where ``ma_poly`` and ``ar_poly`` correspond to the polynomials in :eq:`arma_pol
 
 To this end, we also maintain the arrays ``ma_poly`` and ``ar_poly`` as instance data, with their values computed automatically from the values of ``phi`` and ``theta`` supplied by the user
 
-If the user decides to change the value of either ``theta`` or ``phi`` ex-post by assignments 
+If the user decides to change the value of either ``theta`` or ``phi`` ex-post by assignments
 such as ``arma.phi = (0.5, 0.2)`` or ``arma.theta = (0, -0.1)``
 
 then ``ma_poly`` and ``ar_poly`` should update automatically to reflect these new parameters
@@ -1022,6 +1022,4 @@ For :math:`n` sufficiently large, we then have
 
 (You can check the last equality)
 
-In view of :eq:`ift` we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute
-
-
+In view of :eq:`ift`, we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute

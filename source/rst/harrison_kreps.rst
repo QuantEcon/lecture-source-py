@@ -41,7 +41,7 @@ The model features
 References
 ----------
 
-Prior to reading the following you might like to review our lectures on
+Prior to reading the following, you might like to review our lectures on
 
 * :doc:`Markov chains <finite_markov>`
 
@@ -157,7 +157,7 @@ We’ll eventually study the consequences of two different assumptions about the
 
 Case 1 is the case studied in Harrison and Kreps
 
-In case 2, both types of investor always hold at least some of the asset
+In case 2, both types of investors always hold at least some of the asset
 
 
 Short Sales Prohibited
@@ -234,9 +234,9 @@ assumptions about beliefs:
 
 #. There is only one type of agent, either :math:`a` or :math:`b`
 
-#. There are two types of agent differentiated only by their beliefs. Each type of agent has sufficient resources to purchase all of the asset (Harrison and Kreps's setting)
+#. There are two types of agents differentiated only by their beliefs. Each type of agent has sufficient resources to purchase all of the asset (Harrison and Kreps's setting)
 
-#. There are two types of agent with different beliefs, but because of limited wealth and/or limited leverage, both types of investors hold the asset each period
+#. There are two types of agents with different beliefs, but because of limited wealth and/or limited leverage, both types of investors hold the asset each period
 
 
 
@@ -308,7 +308,7 @@ These equations imply that the equilibrium price vector is
     = \beta [I - \beta P_h]^{-1} P_h \begin{bmatrix} 0 \cr 1 \end{bmatrix}
 
 
-The first two rows of of the table report :math:`p_a(s)` and :math:`p_b(s)`
+The first two rows of the table report :math:`p_a(s)` and :math:`p_b(s)`
 
 Here's a function that can be used to compute these values
 
@@ -332,9 +332,9 @@ Pricing under Heterogeneous Beliefs
 
 There are several cases to consider
 
-The first is when both types of agent have sufficient wealth to purchase all of the asset themselves
+The first is when both types of agents have sufficient wealth to purchase all of the asset themselves
 
-In this case the marginal investor who prices the asset is the more optimistic type, so that the equilibrium price :math:`\bar p` satisfies Harrison and Kreps's key equation:
+In this case, the marginal investor who prices the asset is the more optimistic type so that the equilibrium price :math:`\bar p` satisfies Harrison and Kreps's key equation:
 
 .. math::
     :label: hakr2
@@ -502,7 +502,7 @@ Scheinkman takes this as a strength of the model because he observes high volume
 
 * If optimistic investors finance purchases by borrowing, tightening leverage constraints can extinguish a bubble
 
-Scheinkman extracts insights about effects of financial regulations on bubbles
+Scheinkman extracts insights about the effects of financial regulations on bubbles
 
 He emphasizes how limiting short sales and limiting leverage have opposite effects
 
@@ -540,7 +540,7 @@ Solutions
 Exercise 1
 -----------
 
-First we will obtain equilibrium price vectors with homogeneous beliefs, including when all
+First, we will obtain equilibrium price vectors with homogeneous beliefs, including when all
 investors are optimistic or pessimistic
 
 
@@ -551,12 +551,12 @@ investors are optimistic or pessimistic
     qb = np.array([[2/3, 1/3], [1/4, 3/4]])    # Type b transition matrix
     qopt = np.array([[1/2, 1/2], [1/4, 3/4]])  # Optimistic investor transition matrix
     qpess = np.array([[2/3, 1/3], [2/3, 1/3]]) # Pessimistic investor transition matrix
-    
+
     dividendreturn = np.array([[0], [1]])
 
     transitions = [qa, qb, qopt, qpess]
     labels = ['p_a', 'p_b', 'p_optimistic', 'p_pessimistic']
-    
+
     for transition, label in zip(transitions, labels):
         print(label)
         print("=" * 20)
@@ -564,10 +564,10 @@ investors are optimistic or pessimistic
         print(f"State 0: {s0}")
         print(f"State 1: {s1}")
         print("-" * 20)
-        
-  
-    
-We will use the `price_optimistic_beliefs` function to find the price under 
+
+
+
+We will use the `price_optimistic_beliefs` function to find the price under
 heterogeneous beliefs
 
 
@@ -584,13 +584,13 @@ heterogeneous beliefs
         print(f"State 0: {s0}")
         print(f"State 1: {s1}")
         print("-" * 20)
-        
 
 
-    
+
+
 Notice that the equilibrium price with heterogeneous beliefs is equal to the price under single beliefs
 with optimistic investors - this is due to the marginal investor being the temporarily optimistic type
 
 .. rubric:: Footnotes
 
-.. [#f1] By assuming that both types of agent always have "deep enough pockets" to purchase all of the asset, the model takes wealth dynamics off the table. The Harrison-Kreps model generates high trading volume when the state changes either from 0 to 1 or from 1 to 0.
+.. [#f1] By assuming that both types of agents always have "deep enough pockets" to purchase all of the asset, the model takes wealth dynamics off the table. The Harrison-Kreps model generates high trading volume when the state changes either from 0 to 1 or from 1 to 0.

@@ -13,7 +13,7 @@ d = 0.00822
 # The default wage distribution --- a discretized lognormal
 log_wage_mean, wage_grid_size, max_wage = 20, 200, 170
 logw_dist = norm(np.log(log_wage_mean), 1)
-w_vec = np.linspace(0, max_wage, wage_grid_size + 1)
+w_vec = np.linspace(1e-8, max_wage, wage_grid_size + 1)
 cdf = logw_dist.cdf(np.log(w_vec))
 pdf = cdf[1:] - cdf[:-1]
 p_vec = pdf / pdf.sum()
@@ -63,7 +63,7 @@ def compute_steady_state_quantities(c, τ):
 
 def find_balanced_budget_tax(c):
     """
-    Find tax level that will induce a balanced budget.
+    Find the tax level that will induce a balanced budget.
 
     """
     def steady_state_budget(t):

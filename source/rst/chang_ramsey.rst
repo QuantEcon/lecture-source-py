@@ -275,7 +275,7 @@ Given :math:`M_{-1}` and :math:`\{q_t\}_{t=0}^\infty`, the household’s problem
    \begin{aligned}
    \mathcal{L} & = \max_{\vec c, \vec M}
    \min_{\vec \lambda, \vec \mu} \sum_{t=0}^\infty \beta^t
-   \bigl\{ u(c_t) + v(M_t q_t) + 
+   \bigl\{ u(c_t) + v(M_t q_t) +
    \lambda_t [ y_t - c_t - x_t + q_t M_{t-1} - q_t M_t ]  \\
    & \quad \quad \quad  + \mu_t [\bar m - q_t  M_t] \bigr\}
    \end{aligned}
@@ -378,12 +378,12 @@ Chang constructs the following objects
 
      .. math::
         :label: Chang500
-        
-        \begin{split} 
+
+        \begin{split}
         h_t & = h(\theta_t) \\
         m_t & = m(\theta_t) \\
         x_t & = x(\theta_t) \\
-        \theta_{t+1} & = \Psi(\theta_t) 
+        \theta_{t+1} & = \Psi(\theta_t)
         \end{split}
 
      starting from :math:`\theta_0`
@@ -845,14 +845,6 @@ equilibrium set, once with :math:`\beta = 0.3` and once with
 
 (Here we have set the number of subgradients to 10 in order to speed up the
 code for now - we can increase accuracy by increasing the number of subgradients)
-
-Note: this code requires the `polytope <https://pypi.python.org/pypi/polytope/0.2.1>`__ package
-
-The package can be installed in a terminal/command prompt with pip
-
-.. code-block:: ipython
-
-    !pip install polytope
 
 .. literalinclude:: /_static/code/chang_credible/changecon.py
 

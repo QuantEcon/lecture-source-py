@@ -107,7 +107,7 @@ The following figure represents three vectors in this manner
                   width=0.5))
       ax.text(1.1 * v[0], 1.1 * v[1], str(v))
   plt.show()
-  
+
 
 
 
@@ -120,7 +120,7 @@ Vector Operations
 
 The two most common operators for vectors are addition and scalar multiplication, which we now describe
 
-As a matter of definition, when we add two vectors, we add them element by element
+As a matter of definition, when we add two vectors, we add them element-by-element
 
 .. math::
 
@@ -205,7 +205,7 @@ Scalar multiplication is illustrated in the next figure
                   width=0.5))
       ax.text(v[0] + 0.4, v[1] - 0.2, f'${s} x$', fontsize='16')
   plt.show()
-  
+
 
 
 
@@ -220,13 +220,13 @@ One advantage of NumPy arrays is that scalar multiplication and addition have ve
     x = np.ones(3)            # Vector of three ones
     y = np.array((2, 4, 6))   # Converts tuple (2, 4, 6) into array
     x + y
-  
+
 
 .. code-block:: python3
-    
+
     4 * x
-    
-    
+
+
 
 
 
@@ -266,17 +266,17 @@ follows
 .. code-block:: python3
 
     np.sum(x * y)          # Inner product of x and y
-    
-    
+
+
 .. code-block:: python3
 
     np.sqrt(np.sum(x**2))  # Norm of x, take one
-    
-  
+
+
 .. code-block:: python3
 
     np.linalg.norm(x)      # Norm of x, take two
-    
+
 
 
 
@@ -305,7 +305,7 @@ The set of linear combinations of :math:`A` is called the *span* of :math:`A`
 
 The next figure shows the span of :math:`A = \{a_1, a_2\}` in :math:`\mathbb R ^3`
 
-The span is a 2 dimensional plane passing through these two points and the origin
+The span is a two-dimensional plane passing through these two points and the origin
 
 .. _la_3dvec:
 
@@ -364,7 +364,7 @@ The span is a 2 dimensional plane passing through these two points and the origi
   ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.jet,
                   linewidth=0, antialiased=True, alpha=0.2)
   plt.show()
-  
+
 
 
 
@@ -439,7 +439,7 @@ In particular, a collection of vectors :math:`A := \{a_1, \ldots, a_k\}` in :mat
 
 * *linearly independent* if it is not linearly dependent
 
-Put differently, a set of vectors is linearly independent if no vector is redundant to the span, and linearly dependent otherwise
+Put differently, a set of vectors is linearly independent if no vector is redundant to the span and linearly dependent otherwise
 
 To illustrate the idea, recall :ref:`the figure <la_3dvec>` that showed the span of vectors :math:`\{a_1, a_2\}` in :math:`\mathbb R ^3` as a plane through the origin
 
@@ -523,7 +523,7 @@ In the former case, :math:`A` is called a *row vector*, while in the latter it i
 
 If :math:`n = k`, then :math:`A` is called *square*
 
-The matrix formed by replacing :math:`a_{ij}` by :math:`a_{ji}` for every :math:`i` and :math:`j` is called the *transpose* of :math:`A`, and denoted :math:`A'` or :math:`A^{\top}`
+The matrix formed by replacing :math:`a_{ij}` by :math:`a_{ji}` for every :math:`i` and :math:`j` is called the *transpose* of :math:`A` and denoted :math:`A'` or :math:`A^{\top}`
 
 If :math:`A = A'`, then :math:`A` is called *symmetric*
 
@@ -531,7 +531,7 @@ For a square matrix :math:`A`, the :math:`i` elements of the form :math:`a_{ii}`
 
 :math:`A` is called *diagonal* if the only nonzero entries are on the principal diagonal
 
-If, in addition to being diagonal, each element along the principal diagonal is equal to 1, then :math:`A` is called the *identity matrix*, and denoted by :math:`I`
+If, in addition to being diagonal, each element along the principal diagonal is equal to 1, then :math:`A` is called the *identity matrix* and denoted by :math:`I`
 
 
 
@@ -598,7 +598,7 @@ In the latter case, the matrices must have the same shape in order for the defin
 
 We also have a convention for *multiplying* two matrices
 
-The rule for matrix multiplication generalizes the idea of inner products discussed above,
+The rule for matrix multiplication generalizes the idea of inner products discussed above
 and is designed to make multiplication play well with basic linear operations
 
 If :math:`A` and :math:`B` are two matrices, then their product :math:`A B` is formed by taking as its
@@ -672,19 +672,19 @@ You can create them manually from tuples of tuples (or lists of lists) as follow
          (3, 4))
 
     type(A)
-    
-    
+
+
 .. code-block:: python3
 
     A = np.array(A)
 
     type(A)
-    
+
 
 .. code-block:: python3
-    
+
     A.shape
-    
+
 
 The ``shape`` attribute is a tuple giving the number of rows and columns ---
 see :ref:`here <numpy_shape_dim>` for more discussion
@@ -704,17 +704,17 @@ Since operations are performed elementwise by default, scalar multiplication and
     A = np.identity(3)
     B = np.ones((3, 3))
     2 * A
-  
+
 
 .. code-block:: python3
-    
+
     A + B
-  
+
 
 
 To multiply matrices we use the ``@`` symbol
 
-In particular, ``A @ B`` is matrix multiplication, whereas ``A * B`` is element by element multiplication
+In particular, ``A @ B`` is matrix multiplication, whereas ``A * B`` is element-by-element multiplication
 
 See :ref:`here <numpy_matrix_multiplication>` for more discussion
 
@@ -741,7 +741,7 @@ A function :math:`f \colon \mathbb R ^k \to \mathbb R ^n` is called *linear* if,
     f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)
 
 
-You can check that this holds for the function :math:`f(x) = A x + b` when :math:`b` is the zero vector, and fails when :math:`b` is nonzero
+You can check that this holds for the function :math:`f(x) = A x + b` when :math:`b` is the zero vector and fails when :math:`b` is nonzero
 
 In fact, it's `known <https://en.wikipedia.org/wiki/Linear_map#Matrices>`_ that :math:`f` is linear if and *only if* there exists a matrix :math:`A` such that :math:`f(x) = Ax` for all :math:`x`
 
@@ -798,7 +798,7 @@ The answer to both these questions is negative, as the next figure shows
       for spine in ['right', 'top']:
           ax.spines[spine].set_color('none')
 
-      ax.set(ylim=(-0.6, 3.2), xlim=(xmin, xmax), 
+      ax.set(ylim=(-0.6, 3.2), xlim=(xmin, xmax),
              yticks=(), xticks=())
 
       ax.plot(x, y, 'k-', lw=2, label='$f$')
@@ -828,7 +828,7 @@ The answer to both these questions is negative, as the next figure shows
 
 
 
-In the first plot there are multiple solutions, as the function is not one-to-one, while
+In the first plot, there are multiple solutions, as the function is not one-to-one, while
 in the second there are no solutions, since :math:`y` lies outside the range of :math:`f`
 
 Can we impose conditions on :math:`A` in :eq:`la_se2` that rule out these problems?
@@ -845,7 +845,7 @@ In particular, if :math:`a_1, \ldots, a_k` are the columns of :math:`A`, then
 
 Hence the range of :math:`f(x) = Ax` is exactly the span of the columns of :math:`A`
 
-We want the range to be large, so that it contains arbitrary :math:`y`
+We want the range to be large so that it contains arbitrary :math:`y`
 
 As you might recall, the condition that we want for the span to be large is :ref:`linear independence <la_li>`
 
@@ -927,7 +927,7 @@ This case is very important in many settings, not least in the setting of linear
 
 Given arbitrary :math:`y \in \mathbb R ^n`, we seek an :math:`x \in \mathbb R ^k` such that :math:`y = Ax`
 
-In this setting, existence of a solution is highly unlikely
+In this setting, the existence of a solution is highly unlikely
 
 Without much loss of generality, let's go over the intuition focusing on the case where the columns of
 :math:`A` are linearly independent
@@ -938,15 +938,15 @@ This span is very "unlikely" to contain arbitrary :math:`y \in \mathbb R ^n`
 
 To see why, recall the :ref:`figure above <la_3dvec>`, where :math:`k=2` and :math:`n=3`
 
-Imagine an arbitrarily chosen :math:`y \in \mathbb R ^3`, located somewhere in that three dimensional space
+Imagine an arbitrarily chosen :math:`y \in \mathbb R ^3`, located somewhere in that three-dimensional space
 
 What's the likelihood that :math:`y` lies in the span of :math:`\{a_1, a_2\}` (i.e., the two dimensional plane through these points)?
 
-In a sense it must be very small, since this plane has zero "thickness"
+In a sense, it must be very small, since this plane has zero "thickness"
 
 As a result, in the :math:`n > k` case we usually give up on existence
 
-However, we can still seek a best approximation, for example an
+However, we can still seek the best approximation, for example, an
 :math:`x` that makes the distance :math:`\| y - Ax\|` as small as possible
 
 To solve this problem, one can use either calculus or the theory of orthogonal
@@ -955,7 +955,7 @@ projections
 .. only:: html
 
     The solution is known to be :math:`\hat x = (A'A)^{-1}A'y` --- see for example
-    chapter 3 of :download:`these notes </_static/pdfs/course_notes.pdf>`
+    chapter 3 of :download:`these notes <_static/pdfs/course_notes.pdf>`
 
 .. only:: latex
 
@@ -1016,31 +1016,31 @@ All of these routines are Python front ends to time-tested and highly optimized 
     A = np.array(A)
     y = np.ones((2, 1))  # Column vector
     det(A)  # Check that A is nonsingular, and hence invertible
-    
-    
+
+
 .. code-block:: python3
 
     A_inv = inv(A)  # Compute the inverse
     A_inv
-  
-           
+
+
 .. code-block:: python3
 
     x = A_inv @ y  # Solution
     A @ x          # Should equal y
-    
-           
+
+
 .. code-block:: python3
 
-    solve(A, y)  # Produces same solution
-  
+    solve(A, y)  # Produces the same solution
+
 
 
 Observe how we can solve for :math:`x = A^{-1} y` by either via ``inv(A) @ y``, or using ``solve(A, y)``
 
 The latter method uses a different algorithm (LU decomposition) that is numerically more stable, and hence should almost always be preferred
 
-To obtain the least squares solution :math:`\hat x = (A'A)^{-1}A'y`, use ``scipy.linalg.lstsq(A, y)``
+To obtain the least-squares solution :math:`\hat x = (A'A)^{-1}A'y`, use ``scipy.linalg.lstsq(A, y)``
 
 
 
@@ -1123,7 +1123,7 @@ As expected, the image :math:`Av` of each :math:`v` is just a scaled version of 
       ax.plot(x, a * x, 'b-', lw=0.4)
 
   plt.show()
-  
+
 
 
 
@@ -1168,12 +1168,12 @@ follows
     A = np.array(A)
     evals, evecs = eig(A)
     evals
-    
+
 
 .. code-block:: python3
 
     evecs
-  
+
 
 
 
@@ -1195,7 +1195,7 @@ matrices :math:`A` and :math:`B`, seeks generalized eigenvalues
     A v = \lambda B v
 
 
-This can be solved in SciPy via ``scipy.linalg.eig(A, B)`` 
+This can be solved in SciPy via ``scipy.linalg.eig(A, B)``
 
 Of course, if :math:`B` is square and invertible, then we can treat the
 generalized eigenvalue problem as an ordinary eigenvalue problem :math:`B^{-1}
@@ -1423,15 +1423,15 @@ Solution to Exercise 1
 
 We have an optimization problem:
 
-.. math::  
+.. math::
 
-    v(x) = \max_{y,u} \{ -y'Py - u'Qu \} 
+    v(x) = \max_{y,u} \{ -y'Py - u'Qu \}
 
 s.t.
 
-.. math::  
+.. math::
 
-    y = Ax + Bu 
+    y = Ax + Bu
 
 with primitives
 
@@ -1447,7 +1447,7 @@ with primitives
 
 The associated Lagrangian is :
 
-.. math:: 
+.. math::
 
     L = -y'Py - u'Qu + \lambda' \lbrack Ax + Bu - y \rbrack
 
@@ -1457,7 +1457,7 @@ The associated Lagrangian is :
 Differentiating Lagrangian equation w.r.t y and setting its derivative
 equal to zero yields
 
-.. math::  
+.. math::
 
     \frac{ \partial L}{\partial y} = - (P + P') y - \lambda = - 2 P y - \lambda = 0 \:,
 
@@ -1465,7 +1465,7 @@ since P is symmetric
 
 Accordingly, the first-order condition for maximizing L w.r.t. y implies
 
-.. math::  
+.. math::
 
     \lambda = -2 Py \:
 
@@ -1475,32 +1475,32 @@ Accordingly, the first-order condition for maximizing L w.r.t. y implies
 Differentiating Lagrangian equation w.r.t. u and setting its derivative
 equal to zero yields
 
-.. math::  
+.. math::
 
     \frac{ \partial L}{\partial u} = - (Q + Q') u - B'\lambda = - 2Qu + B'\lambda = 0 \:
 
 Substituting :math:`\lambda = -2 P y` gives
 
-.. math::  
+.. math::
 
     Qu + B'Py = 0 \:
 
 Substituting the linear constraint :math:`y = Ax + Bu` into above
 equation gives
 
-.. math::  
+.. math::
 
-    Qu + B'P(Ax + Bu) = 0  
+    Qu + B'P(Ax + Bu) = 0
 
-.. math::  
+.. math::
 
-    (Q + B'PB)u + B'PAx = 0 
+    (Q + B'PB)u + B'PAx = 0
 
 which is the first-order condition for maximizing L w.r.t. u
 
 Thus, the optimal choice of u must satisfy
 
-.. math::  
+.. math::
 
     u = -(Q + B'PB)^{-1}B'PAx \:,
 
@@ -1513,16 +1513,16 @@ Lagrangian equation
 Rewriting our problem by substituting the constraint into the objective
 function, we get
 
-.. math::  
+.. math::
 
     v(x) = \max_{u} \{ -(Ax+ Bu)'P(Ax+Bu) - u'Qu \} \:
 
 Since we know the optimal choice of u satisfies $ u = -(Q +
 B'PB)^{-1}B'PAx $, then
 
-.. math::  
+.. math::
 
-    v(x) =  -(Ax+ B u)'P(Ax+B u) - u'Q u  \,\,\,\, with \,\,\,\, u = -(Q + B'PB)^{-1}B'PAx 
+    v(x) =  -(Ax+ B u)'P(Ax+B u) - u'Q u  \,\,\,\, with \,\,\,\, u = -(Q + B'PB)^{-1}B'PAx
 
 To evaluate the function
 
@@ -1587,4 +1587,3 @@ Therefore, the solution to the optimization problem
 
 
 .. [#cfn] Suppose that :math:`\|S \| < 1`. Take any nonzero vector :math:`x`, and let :math:`r := \|x\|`. We have :math:`\| Sx \| = r \| S (x/r) \| \leq r \| S \| < r = \| x\|`. Hence every point is pulled towards the origin.
-
