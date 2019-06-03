@@ -11,7 +11,7 @@ The Aiyagari Model
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -21,7 +21,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 Overview
 ============
 
-In this lecture we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`
+In this lecture, we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`
 
 .. only:: html
 
@@ -76,7 +76,7 @@ Households
 
 Infinitely lived households / consumers face idiosyncratic income shocks
 
-A unit interval of  *ex ante* identical households face a common borrowing constraint
+A unit interval of  *ex-ante* identical households face a common borrowing constraint
 
 The savings problem faced by a typical  household is
 
@@ -225,7 +225,8 @@ In reading the code, the following information will be helpful
 
 * ``R`` needs to be a matrix where ``R[s, a]`` is the reward at state ``s`` under action ``a``
 
-* ``Q`` needs to be a three dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a``
+* ``Q`` needs to be a three-dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a``
+
 
 (For a detailed discussion of ``DiscreteDP`` see :doc:`this lecture <discrete_dp>`)
 
