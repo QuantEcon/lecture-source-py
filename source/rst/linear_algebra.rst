@@ -120,7 +120,7 @@ Vector Operations
 
 The two most common operators for vectors are addition and scalar multiplication, which we now describe
 
-As a matter of definition, when we add two vectors, we add them element by element
+As a matter of definition, when we add two vectors, we add them element-by-element
 
 .. math::
 
@@ -305,7 +305,7 @@ The set of linear combinations of :math:`A` is called the *span* of :math:`A`
 
 The next figure shows the span of :math:`A = \{a_1, a_2\}` in :math:`\mathbb R ^3`
 
-The span is a 2 dimensional plane passing through these two points and the origin
+The span is a two-dimensional plane passing through these two points and the origin
 
 .. _la_3dvec:
 
@@ -439,7 +439,7 @@ In particular, a collection of vectors :math:`A := \{a_1, \ldots, a_k\}` in :mat
 
 * *linearly independent* if it is not linearly dependent
 
-Put differently, a set of vectors is linearly independent if no vector is redundant to the span, and linearly dependent otherwise
+Put differently, a set of vectors is linearly independent if no vector is redundant to the span and linearly dependent otherwise
 
 To illustrate the idea, recall :ref:`the figure <la_3dvec>` that showed the span of vectors :math:`\{a_1, a_2\}` in :math:`\mathbb R ^3` as a plane through the origin
 
@@ -523,7 +523,7 @@ In the former case, :math:`A` is called a *row vector*, while in the latter it i
 
 If :math:`n = k`, then :math:`A` is called *square*
 
-The matrix formed by replacing :math:`a_{ij}` by :math:`a_{ji}` for every :math:`i` and :math:`j` is called the *transpose* of :math:`A`, and denoted :math:`A'` or :math:`A^{\top}`
+The matrix formed by replacing :math:`a_{ij}` by :math:`a_{ji}` for every :math:`i` and :math:`j` is called the *transpose* of :math:`A` and denoted :math:`A'` or :math:`A^{\top}`
 
 If :math:`A = A'`, then :math:`A` is called *symmetric*
 
@@ -531,7 +531,7 @@ For a square matrix :math:`A`, the :math:`i` elements of the form :math:`a_{ii}`
 
 :math:`A` is called *diagonal* if the only nonzero entries are on the principal diagonal
 
-If, in addition to being diagonal, each element along the principal diagonal is equal to 1, then :math:`A` is called the *identity matrix*, and denoted by :math:`I`
+If, in addition to being diagonal, each element along the principal diagonal is equal to 1, then :math:`A` is called the *identity matrix* and denoted by :math:`I`
 
 
 
@@ -598,7 +598,7 @@ In the latter case, the matrices must have the same shape in order for the defin
 
 We also have a convention for *multiplying* two matrices
 
-The rule for matrix multiplication generalizes the idea of inner products discussed above,
+The rule for matrix multiplication generalizes the idea of inner products discussed above
 and is designed to make multiplication play well with basic linear operations
 
 If :math:`A` and :math:`B` are two matrices, then their product :math:`A B` is formed by taking as its
@@ -714,7 +714,7 @@ Since operations are performed elementwise by default, scalar multiplication and
 
 To multiply matrices we use the ``@`` symbol
 
-In particular, ``A @ B`` is matrix multiplication, whereas ``A * B`` is element by element multiplication
+In particular, ``A @ B`` is matrix multiplication, whereas ``A * B`` is element-by-element multiplication
 
 See :ref:`here <numpy_matrix_multiplication>` for more discussion
 
@@ -741,7 +741,7 @@ A function :math:`f \colon \mathbb R ^k \to \mathbb R ^n` is called *linear* if,
     f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)
 
 
-You can check that this holds for the function :math:`f(x) = A x + b` when :math:`b` is the zero vector, and fails when :math:`b` is nonzero
+You can check that this holds for the function :math:`f(x) = A x + b` when :math:`b` is the zero vector and fails when :math:`b` is nonzero
 
 In fact, it's `known <https://en.wikipedia.org/wiki/Linear_map#Matrices>`_ that :math:`f` is linear if and *only if* there exists a matrix :math:`A` such that :math:`f(x) = Ax` for all :math:`x`
 
@@ -828,7 +828,7 @@ The answer to both these questions is negative, as the next figure shows
 
 
 
-In the first plot there are multiple solutions, as the function is not one-to-one, while
+In the first plot, there are multiple solutions, as the function is not one-to-one, while
 in the second there are no solutions, since :math:`y` lies outside the range of :math:`f`
 
 Can we impose conditions on :math:`A` in :eq:`la_se2` that rule out these problems?
@@ -845,7 +845,7 @@ In particular, if :math:`a_1, \ldots, a_k` are the columns of :math:`A`, then
 
 Hence the range of :math:`f(x) = Ax` is exactly the span of the columns of :math:`A`
 
-We want the range to be large, so that it contains arbitrary :math:`y`
+We want the range to be large so that it contains arbitrary :math:`y`
 
 As you might recall, the condition that we want for the span to be large is :ref:`linear independence <la_li>`
 
@@ -927,7 +927,7 @@ This case is very important in many settings, not least in the setting of linear
 
 Given arbitrary :math:`y \in \mathbb R ^n`, we seek an :math:`x \in \mathbb R ^k` such that :math:`y = Ax`
 
-In this setting, existence of a solution is highly unlikely
+In this setting, the existence of a solution is highly unlikely
 
 Without much loss of generality, let's go over the intuition focusing on the case where the columns of
 :math:`A` are linearly independent
@@ -938,15 +938,15 @@ This span is very "unlikely" to contain arbitrary :math:`y \in \mathbb R ^n`
 
 To see why, recall the :ref:`figure above <la_3dvec>`, where :math:`k=2` and :math:`n=3`
 
-Imagine an arbitrarily chosen :math:`y \in \mathbb R ^3`, located somewhere in that three dimensional space
+Imagine an arbitrarily chosen :math:`y \in \mathbb R ^3`, located somewhere in that three-dimensional space
 
 What's the likelihood that :math:`y` lies in the span of :math:`\{a_1, a_2\}` (i.e., the two dimensional plane through these points)?
 
-In a sense it must be very small, since this plane has zero "thickness"
+In a sense, it must be very small, since this plane has zero "thickness"
 
 As a result, in the :math:`n > k` case we usually give up on existence
 
-However, we can still seek a best approximation, for example an
+However, we can still seek the best approximation, for example, an
 :math:`x` that makes the distance :math:`\| y - Ax\|` as small as possible
 
 To solve this problem, one can use either calculus or the theory of orthogonal
@@ -1032,7 +1032,7 @@ All of these routines are Python front ends to time-tested and highly optimized 
 
 .. code-block:: python3
 
-    solve(A, y)  # Produces same solution
+    solve(A, y)  # Produces the same solution
 
 
 
@@ -1040,7 +1040,7 @@ Observe how we can solve for :math:`x = A^{-1} y` by either via ``inv(A) @ y``, 
 
 The latter method uses a different algorithm (LU decomposition) that is numerically more stable, and hence should almost always be preferred
 
-To obtain the least squares solution :math:`\hat x = (A'A)^{-1}A'y`, use ``scipy.linalg.lstsq(A, y)``
+To obtain the least-squares solution :math:`\hat x = (A'A)^{-1}A'y`, use ``scipy.linalg.lstsq(A, y)``
 
 
 
