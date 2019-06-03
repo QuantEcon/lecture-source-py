@@ -120,7 +120,7 @@ Vector Operations
 
 The two most common operators for vectors are addition and scalar multiplication, which we now describe
 
-As a matter of definition, when we add two vectors, we add them element by element
+As a matter of definition, when we add two vectors, we add them element-by-element
 
 .. math::
 
@@ -714,7 +714,7 @@ Since operations are performed elementwise by default, scalar multiplication and
 
 To multiply matrices we use the ``@`` symbol
 
-In particular, ``A @ B`` is matrix multiplication, whereas ``A * B`` is an element by element multiplication
+In particular, ``A @ B`` is matrix multiplication, whereas ``A * B`` is element-by-element multiplication
 
 See :ref:`here <numpy_matrix_multiplication>` for more discussion
 
