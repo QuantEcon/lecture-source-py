@@ -522,7 +522,7 @@ To this end, we now perform the following simulation
 Here's some code that does exactly this for the exponential distribution
 :math:`F(x) = 1 - e^{- \lambda x}`
 
-(Please experiment with other choices of :math:`F`, but remember that to conform with the conditions of the CLT, the distribution must have a finite second moment)
+(Please experiment with other choices of :math:`F`, but remember that, to conform with the conditions of the CLT, the distribution must have a finite second moment)
 
 
 
@@ -591,8 +591,7 @@ the distribution of the underlying random variable
 For :math:`n=2`, the distribution of :math:`Y_2` is that of :math:`(X_1 + X_2) / \sqrt{2}`, and so on
 
 What we expect is that, regardless of the distribution of the underlying
-random variable, the distribution of :math:`Y_n` will smooth out into a bell-
-shaped curve
+random variable, the distribution of :math:`Y_n` will smooth out into a bell-shaped curve
 
 The next figure shows this process for :math:`X_i \sim f`, where :math:`f` was
 specified as the convex combination of three different beta densities
@@ -963,7 +962,7 @@ where
 Hints:
 
 #. ``scipy.linalg.sqrtm(A)`` computes the square root of ``A``.  You still need to invert it
-#. You should be able to work out :math:`\Sigma` from the proceeding information
+#. You should be able to work out :math:`\Sigma` from the preceding information
 
 
 Solutions
