@@ -194,7 +194,7 @@ Define the **output per-capita production function**
 
 .. math::
 
-  f(\frac{K_t}{N_t}) = A\left(\frac{K_t}{N_t}\right)^\alpha
+  f\left(\frac{K_t}{N_t}\right) = A\left(\frac{K_t}{N_t}\right)^\alpha
 
 whose argument is **capital per-capita**
 
