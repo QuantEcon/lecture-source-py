@@ -219,7 +219,7 @@ one-period and five-period risk-free bonds:
     plt.show()
 
 From the above plot, we can see the tendency of the term structure to
-slope up when rates are low, and to slope down when rates are high
+slope up when rates are low and to slope down when rates are high
 
 Comparing it to the previous plot of the price of the "Lucas tree", we
 can also see that net rates of return are low when the price of the tree
