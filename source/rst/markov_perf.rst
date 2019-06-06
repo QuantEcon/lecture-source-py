@@ -268,7 +268,7 @@ where
 * :math:`\Pi_{it} := R_i + F_{-it}' S_i F_{-it}`
 * :math:`\Gamma_{it} := W_i' - M_i' F_{-it}`
 
-This is an LQ dynamic programming problem that can be solved by working backward
+This is an LQ dynamic programming problem that can be solved by working backwards
 
 The policy rule that solves this problem is
 
