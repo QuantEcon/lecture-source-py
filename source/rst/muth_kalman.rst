@@ -13,7 +13,7 @@ Reverse Engineering a la Muth
 
 **Co-author: Chase Coleman**
 
-In addition what's in Anaconda, this lecture uses the quantecon library
+In addition to what's in Anaconda, this lecture uses the quantecon library
 
 .. code-block:: ipython
   :class: hide-output
@@ -63,7 +63,7 @@ scheme :eq:`expectations` informally, noting  that it seemed a plausible way to 
 past income to forecast future income
 
 In his first paper about rational expectations, John F. Muth :cite:`Muth1960`
-reverse engineered a univariate stochastic process
+reverse-engineered a univariate stochastic process
 :math:`\{y_t\}_{t=- \infty}^\infty` for which Milton Friedman’s adaptive
 expectations scheme gives linear least forecasts of :math:`y_{t+j}` for
 any horizon :math:`i`
@@ -75,7 +75,7 @@ That is, Muth asked for what optimal forecasting **question** is Milton
 Friedman’s adaptive expectation scheme the **answer**
 
 Muth (1960) used classical prediction methods based on lag-operators and
-:math:`z`-tranforms to find the answer to his question
+:math:`z`-transforms to find the answer to his question
 
 Please see lectures :doc:`Classical Control with Linear Algebra<lu_tricks>` and
 :doc:`Classical Filtering and Prediction with Linear Algebra<classical_filtering>` for an introduction to the classical
@@ -96,7 +96,7 @@ Suppose that an observable :math:`y_t` is the sum of an unobserved
 random walk :math:`x_t` and an IID shock :math:`\epsilon_{2,t}`:
 
 .. math::
-  :label: statespace
+  :label: state-space
 
   \eqalign{ x_{t+1} & = x_t + \sigma_x \epsilon_{1,t+1} \cr
             y_t & = x_t + \sigma_y \epsilon_{2,t} }
@@ -107,9 +107,9 @@ where
 
 is an IID process
 
-**Note:** A property of the statespace representation :eq:`statespace` is that in
+**Note:** A property of the state-space representation :eq:`state-space` is that in
 general neither :math:`\epsilon_{1,t}` nor :math:`\epsilon_{2,t}` is in
-the space spanned by square-summable lineary combinations of
+the space spanned by square-summable linear combinations of
 :math:`y_t, y_{t-1}, \ldots`
 
 In general
@@ -118,7 +118,7 @@ has more information about future :math:`y_{t+j}`\ ’s than is contained
 in :math:`y_t, y_{t-1}, \ldots`
 
 We can use the asymptotic or stationary values of the Kalman gain and
-the one-step ahead conditional state covarariance matrix to compute a
+the one-step-ahead conditional state covariance matrix to compute a
 time-invariant *innovations representation*
 
 .. math::
@@ -134,13 +134,13 @@ where :math:`\hat x_t = E [x_t | y_{t-1}, y_{t-2}, \ldots ]` and
 :math:`a_t` is in the space spanned by square summable linear
 combinations of :math:`y_t, y_{t-1}, \ldots`
 
-For more ramifications of this property, see the lectures  :doc:`Shock Non Invertibility<hs_invertibility_example>`  and
+For more ramifications of this property, see the lectures  :doc:`Shock Non-Invertibility<hs_invertibility_example>`  and
 :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`
 
-Later we’ll stack these statespace systems :eq:`statespace` and :eq:`innovations` to display some
+Later we’ll stack these state-space systems :eq:`state-space` and :eq:`innovations` to display some
 classic findings of Muth
 
-But first let’s create an instance of the statespace system :eq:`statespace` then
+But first, let’s create an instance of the state-space system :eq:`state-space` then
 apply the quantecon ``Kalman`` class, then uses it to construct the associated "innovations representation"
 
 .. code-block:: python3
@@ -160,24 +160,24 @@ apply the quantecon ``Kalman`` class, then uses it to construct the associated "
     # Computes stationary values which we need for the innovation representation
     S1, K1 = kmuth.stationary_values()
 
-    # Form innovation representation state space
+    # Form innovation representation state-space
     Ak, Ck, Gk, Hk = A, K1, G, 1
 
     ssk = LinearStateSpace(Ak, Ck, Gk, Hk, mu_0=x_hat_0)
 
-Some Useful Statespace Math
+Some Useful State-Space Math
 -----------------------------
 
 Now we want to map the time-invariant innovations representation :eq:`innovations` and
-the original statespace system :eq:`statespace` into a convenient form for deducing
+the original state-space system :eq:`state-space` into a convenient form for deducing
 the impulse responses from the original shocks to the :math:`x_t` and
 :math:`\hat x_t`
 
-Putting both of these representations into a single state space system
+Putting both of these representations into a single state-space system
 is yet another application of the insight that “finding the state is an
 art”
 
-We’ll define a state vector and appropriate statespace matrices that
+We’ll define a state vector and appropriate state-space matrices that
 allow us to represent both systems in one fell swoop
 
 Note that
@@ -206,7 +206,7 @@ The stacked system
     \left[ \matrix{ y_t \cr a_t } \right] = \left[\matrix{ 1 & 0 & \sigma_y \cr
                                           1 & -1 & \sigma_y } \right]  \left[ \matrix{ x_{t} \cr \hat x_t \cr \epsilon_{2,t} } \right]
 
-is a statespace system that tells us how the shocks
+is a state-space system that tells us how the shocks
 :math:`\left[ \matrix{ \epsilon_{1,t+1} \cr \epsilon_{2,t+1} } \right]`
 affect states :math:`\hat x_{t+1}, x_t`, the observable :math:`y_t`, and
 the innovation :math:`a_t`
@@ -216,7 +216,7 @@ simulate it
 
 .. code-block:: python3
 
-    # Create grand state space for y_t, a_t as observed vars -- Use stacking trick above
+    # Create grand state-space for y_t, a_t as observed vars -- Use stacking trick above
     Af = np.array([[ 1,      0,        0],
                    [K1, 1 - K1, K1 * σ_y],
                    [ 0,      0,        0]])
@@ -229,10 +229,10 @@ simulate it
     μ_true, μ_prior = 10, 10
     μ_f = np.array([μ_true, μ_prior, 0]).reshape(3, 1)
 
-    # Create the state space
+    # Create the state-space
     ssf = LinearStateSpace(Af, Cf, Gf, mu_0=μ_f)
 
-    # Draw observations of y from state space model
+    # Draw observations of y from the state-space model
     N = 50
     xf, yf = ssf.simulate(N)
 
@@ -311,8 +311,8 @@ Now we shall extract from the ``Kalman`` instance ``kmuth`` coefficients of
    :math:`y_t` as a one-sided moving sum of current and past
    :math:`a_t`\ s that are square summable linear combinations of :math:`y_t, y_{t-1}, \ldots`
 
--  a univariate autogression representation that depicts the
-   coefficients in a linear least squares projection of :math:`y_t` on
+-  a univariate autoregression representation that depicts the
+   coefficients in a linear least-square projection of :math:`y_t` on
    the semi-infinite history :math:`y_{t-1}, y_{t-2}, \ldots`
 
 Then we’ll plot each of them
@@ -323,8 +323,8 @@ Then we’ll plot each of them
     coefs_ma = kmuth.stationary_coefficients(5, "ma")
     coefs_var = kmuth.stationary_coefficients(5, "var")
 
-    # Coefficients come in a list of arrays; but we
-    # want to plot them and so need to stack into array
+    # Coefficients come in a list of arrays, but we
+    # want to plot them and so need to stack into an array
     coefs_ma_array = np.vstack(coefs_ma)
     coefs_var_array = np.vstack(coefs_var)
 
@@ -338,8 +338,8 @@ Then we’ll plot each of them
 
 
 The **moving average** coefficients in the top panel show tell-tale
-signs of :math:`y_t` being a process whose first difference is a first
-order autoregression
+signs of :math:`y_t` being a process whose first difference is a first-order
+autoregression
 
 The **autoregressive coefficients** decline geometrically with decay
 rate :math:`(1-K)`
