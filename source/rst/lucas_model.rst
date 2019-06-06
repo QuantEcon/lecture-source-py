@@ -29,13 +29,13 @@ As stated in an :doc:`earlier lecture <markov_asset>`, an asset is a claim on a 
 
 What is the correct price to pay for such a claim?
 
-The elegant asset pricing model of Lucas :cite:`Lucas1978` attempts to answer this question in an equilibrium setting with risk averse agents
+The elegant asset pricing model of Lucas :cite:`Lucas1978` attempts to answer this question in an equilibrium setting with risk-averse agents
 
-While we mentioned some consequences of Lucas' model :ref:`earlier <mass_pra>`, it is now time to work through the model more carefully, and try to understand where the fundamental asset pricing equation comes from
+While we mentioned some consequences of Lucas' model :ref:`earlier <mass_pra>`, it is now time to work through the model more carefully and try to understand where the fundamental asset pricing equation comes from
 
 A side benefit of studying Lucas' model is that it provides a beautiful illustration of model building in general and equilibrium pricing in competitive models in particular
 
-Another difference to our :doc:`first asset pricing lecture <markov_asset>` is that the state space and shock will be continous rather than discrete
+Another difference to our :doc:`first asset pricing lecture <markov_asset>` is that the state space and shock will be continuous rather than discrete
 
 Let's start with some imports
 
@@ -75,7 +75,7 @@ This makes it very easy to compute competitive equilibrium prices
 Basic Setup
 --------------------------
 
-Let's review the set up
+Let's review the setup
 
 Assets
 ^^^^^^^^^^^^^^^
@@ -137,7 +137,7 @@ Pricing a Lucas Tree
 
 What is an appropriate price for a claim on the consumption endowment?
 
-We'll price an *ex dividend* claim, meaning that
+We'll price an *ex-dividend* claim, meaning that
 
 * the seller retains this period's dividend
 
@@ -150,7 +150,7 @@ We'll price an *ex dividend* claim, meaning that
 Since this is a competitive model, the first step is to pin down consumer
 behavior, taking prices as given
 
-Next we'll impose equilibrium constraints and try to back out prices
+Next, we'll impose equilibrium constraints and try to back out prices
 
 In the consumer problem, the consumer's control variable is the share :math:`\pi_t` of the claim held in each period
 
@@ -179,7 +179,7 @@ We can write the consumer problem as a dynamic programming problem
 
 Our first observation is that prices depend on current information, and current information is really just the endowment process up until the current period
 
-In fact the endowment process is Markovian, so that the only relevant
+In fact, the endowment process is Markovian, so that the only relevant
 information is the current state :math:`y \in \mathbb R_+` (dropping the time subscript)
 
 This leads us to guess an equilibrium where price is a function :math:`p` of :math:`y`
@@ -188,9 +188,9 @@ Remarks on the solution method
 
 * Since this is a competitive (read: price taking) model, the consumer will take this function :math:`p` as given
 
-* In this way we determine consumer behavior given :math:`p` and then use equilibrium conditions to recover :math:`p`
+* In this way, we determine consumer behavior given :math:`p` and then use equilibrium conditions to recover :math:`p`
 
-* This is the standard way to solve competitive equilibrum models
+* This is the standard way to solve competitive equilibrium models
 
 Using the assumption that price is a given function :math:`p` of :math:`y`, we write the value function and constraint as
 
@@ -233,7 +233,7 @@ What we need to do now is determine equilibrium prices
 
 It seems that to obtain these, we will have to
 
-#. Solve this two dimensional dynamic programming problem for the optimal policy
+#. Solve this two-dimensional dynamic programming problem for the optimal policy
 
 #. Impose equilibrium constraints
 
@@ -264,7 +264,7 @@ The Equilibrium Price Function
 .. index::
     single: Lucas Model; Equilibrium Price Function
 
-Now observe that the first order condition for :eq:`ltbe` can be written as
+Now observe that the first-order condition for :eq:`ltbe` can be written as
 
 .. math::
 
@@ -273,7 +273,7 @@ Now observe that the first order condition for :eq:`ltbe` can be written as
 
 where :math:`v'_1` is the derivative of :math:`v` with respect to its first argument
 
-To obtain :math:`v'_1` we can simply differentiate the right hand side of
+To obtain :math:`v'_1` we can simply differentiate the right-hand side of
 :eq:`ltbe` with respect to :math:`\pi`, yielding
 
 .. math::
@@ -281,7 +281,7 @@ To obtain :math:`v'_1` we can simply differentiate the right hand side of
     v'_1(\pi, y) = u'(c) (y + p(y))
 
 
-Next we impose the equilibrium constraints while combining the last two
+Next, we impose the equilibrium constraints while combining the last two
 equations to get
 
 .. math::
@@ -343,7 +343,7 @@ The plan is to solve out for :math:`f` and convert back to :math:`p` via :eq:`lt
 
 To solve :eq:`lteeq2` we'll use a standard method: convert it to a fixed point problem
 
-First we introduce the operator :math:`T` mapping :math:`f` into :math:`Tf` as defined by
+First, we introduce the operator :math:`T` mapping :math:`f` into :math:`Tf` as defined by
 
 .. math::
     :label: lteeqT
@@ -411,8 +411,8 @@ inside,
     \end{aligned}
 
 
-Since the right hand side is an upper bound, taking the sup over all :math:`y`
-on the left hand side gives :eq:`ltbc` with :math:`\alpha := \beta`
+Since the right-hand side is an upper bound, taking the sup over all :math:`y`
+on the left-hand side gives :eq:`ltbc` with :math:`\alpha := \beta`
 
 
 .. _lt_comp_eg:
@@ -438,7 +438,7 @@ We will set up a ``LucasTree`` class to hold parameters of the model
 
     class LucasTree:
         """
-        Class to store parameters of a the Lucas tree model.
+        Class to store parameters of the Lucas tree model.
 
         """
 
