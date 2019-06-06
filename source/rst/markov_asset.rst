@@ -42,12 +42,12 @@ The spot price of an asset depends primarily on
 
 * the anticipated dynamics for the stream of income accruing to the owners
 
-* attitudes to risk 
-  
+* attitudes to risk
+
 * rates of time preference
 
 
-In this lecture we consider some standard pricing models and dividend stream specifications
+In this lecture, we consider some standard pricing models and dividend stream specifications
 
 We study how prices and dividend-price ratios respond in these different scenarios
 
@@ -75,19 +75,19 @@ In what follows let :math:`\{d_t\}_{t \geq 0}` be a stream of dividends
 * A time-:math:`t` **ex-dividend** asset is a claim to the stream :math:`d_{t+1}, d_{t+2}, \ldots`
 
 
-Let's look at some equations that we expect to hold for prices of assets under ex-dividend contracts 
+Let's look at some equations that we expect to hold for prices of assets under ex-dividend contracts
 (we will consider cum-dividend pricing in the exercises)
 
 
-Risk Neutral Pricing
+Risk-Neutral Pricing
 ------------------------
 
 .. index::
-    single: Pricing Models; Risk Neutral
+    single: Pricing Models; Risk-Neutral
 
 Our first scenario is risk-neutral pricing
 
-Let :math:`\beta = 1/(1+\rho)` be an intertemporal discount factor, where 
+Let :math:`\beta = 1/(1+\rho)` be an intertemporal discount factor, where
 :math:`\rho` is the rate at which agents discount the future
 
 The basic risk-neutral asset pricing equation for pricing one unit of an ex-dividend asset is
@@ -116,8 +116,8 @@ Pricing with Random Discount Factor
 
 What happens if for some reason traders discount payouts differently depending on the state of the world?
 
-Michael Harrison and David Kreps :cite:`HarrisonKreps1979` and Lars Peter Hansen 
-and Scott Richard :cite:`HansenRichard1987` showed that in quite general 
+Michael Harrison and David Kreps :cite:`HarrisonKreps1979` and Lars Peter Hansen
+and Scott Richard :cite:`HansenRichard1987` showed that in quite general
 settings the price of an ex-dividend asset obeys
 
 .. math::
@@ -126,7 +126,7 @@ settings the price of an ex-dividend asset obeys
     p_t = {\mathbb E}_t \left[ m_{t+1}  ( d_{t+1} + p_{t+1} ) \right]
 
 
-for some  **stochastic discount factor** :math:`m_{t+1}` 
+for some  **stochastic discount factor** :math:`m_{t+1}`
 
 The fixed discount factor :math:`\beta` in :eq:`rnapex` has been replaced by the random variable :math:`m_{t+1}`
 
@@ -189,7 +189,7 @@ Below we'll discuss the implication of this equation
 
 
 
-Prices in the Risk Neutral Case
+Prices in the Risk-Neutral Case
 ===================================
 
 What can we say about price dynamics on the basis of the models described above?
@@ -200,14 +200,14 @@ The answer to this question depends on
 
 #. the stochastic discount factor and how it correlates with dividends
 
-For now let's focus on the risk neutral case, where the stochastic discount factor is constant, and study how prices depend on the dividend process
+For now let's focus on the risk-neutral case, where the stochastic discount factor is constant, and study how prices depend on the dividend process
 
 
 
 Example 1: Constant Dividends
 ---------------------------------
 
-The simplest case is risk neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`
+The simplest case is risk-neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`
 
 Removing the expectation from :eq:`rnapex` and iterating forward gives
 
@@ -263,7 +263,7 @@ The price is then
     p_t = \frac{\beta g}{1 - \beta g } d_t
 
 
-If, in this example, we take :math:`g = 1+\kappa` and let 
+If, in this example, we take :math:`g = 1+\kappa` and let
 :math:`\rho := 1/\beta - 1`, then the price becomes
 
 .. math::
@@ -275,10 +275,10 @@ This is called the *Gordon formula*
 
 .. _mass_mg:
 
-Example 3: Markov Growth, Risk Neutral Pricing
+Example 3: Markov Growth, Risk-Neutral Pricing
 ------------------------------------------------
 
-Next we consider a dividend process 
+Next, we consider a dividend process
 
 .. math::
     :label: mass_fmce
@@ -286,28 +286,28 @@ Next we consider a dividend process
     d_{t+1} = g_{t+1} d_t
 
 
-The stochastic growth factor :math:`\{g_t\}` is given by 
+The stochastic growth factor :math:`\{g_t\}` is given by
 
 .. math::
 
     g_t = g(X_t), \quad t = 1, 2, \ldots
 
 
-where 
+where
 
 #. :math:`\{X_t\}` is a finite Markov chain with state space :math:`S` and
    transition probabilities
 
 .. math::
 
-    P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \} 
+    P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
     \qquad (x, y \in S)
 
 
 #. :math:`g` is a given function on :math:`S` taking positive values
 
 
-You can think of 
+You can think of
 
 * :math:`S` as :math:`n` possible "states of the world" and :math:`X_t` as the
   current state
@@ -320,11 +320,11 @@ You can think of
 
 (For a refresher on notation and theory for finite Markov chains see :doc:`this lecture <finite_markov>`)
 
-The next figure shows a simulation, where 
+The next figure shows a simulation, where
 
 * :math:`\{X_t\}` evolves as a discretized AR1 process produced using :ref:`Tauchen's method <mc_ex3>`
 
-* :math:`g_t = \exp(X_t)`, so that :math:`\ln g_t = X_t` is the growth rate 
+* :math:`g_t = \exp(X_t)`, so that :math:`\ln g_t = X_t` is the growth rate
 
 
 
@@ -335,7 +335,7 @@ The next figure shows a simulation, where
     %matplotlib inline
     import quantecon as qe
 
-    mc = qe.tauchen(0.96, 0.25, n=25)  
+    mc = qe.tauchen(0.96, 0.25, n=25)
     sim_length = 80
 
     x_series = mc.simulate(sim_length, init=np.median(mc.state_values))
@@ -362,13 +362,13 @@ Pricing
 
 To obtain asset prices in this setting, let's adapt our analysis from the case of deterministic growth
 
-In that case we found that :math:`v` is constant
+In that case, we found that :math:`v` is constant
 
 This encourages us to guess that, in the current case, :math:`v_t` is constant given the state :math:`X_t`
 
 In other words, we are looking for a fixed function :math:`v` such that the price-dividend ratio satisfies  :math:`v_t = v(X_t)`
 
-We can substitute this guess into :eq:`pdex` to get 
+We can substitute this guess into :eq:`pdex` to get
 
 .. math::
 
@@ -382,7 +382,7 @@ If we condition on :math:`X_t = x`, this becomes
     v(x) = \beta \sum_{y \in S}  g(y) (1 + v(y)) P(x, y)
 
 
-or 
+or
 
 .. math::
     :label: pstack
@@ -394,7 +394,7 @@ or
 
 Suppose that there are :math:`n` possible states :math:`x_1, \ldots, x_n`
 
-We can then think of :eq:`pstack` as :math:`n` stacked equations, one for each state, and write it in matrix form as 
+We can then think of :eq:`pstack` as :math:`n` stacked equations, one for each state, and write it in matrix form as
 
 .. math::
     :label: vcumrn
@@ -438,7 +438,7 @@ Here's the code, including a test of the spectral radius condition
 .. code-block:: python3
 
     from numpy.linalg import eigvals, solve
-    
+
     n = 25  # size of state space
     β = 0.9
     mc = qe.tauchen(0.96, 0.02, n=n)
@@ -469,7 +469,7 @@ current states suggest high future states
 
 Moreover, dividend growth is increasing in the state
 
-Anticipation of high future dividend growth leads to a high price-dividend ratio
+The anticipation of high future dividend growth leads to a high price-dividend ratio
 
 
 
@@ -517,7 +517,7 @@ where :math:`u` is a concave utility function and :math:`c_t` is time :math:`t` 
 (A derivation of this expression is given in a :doc:`later lecture <lucas_model>`)
 
 Assume the existence of an endowment that follows :eq:`mass_fmce`
-  
+
 The asset being priced is a claim on the endowment process
 
 Following :cite:`Lucas1978`, suppose further that in equilibrium, consumption
@@ -532,14 +532,14 @@ specification
     u(c) = \frac{c^{1-\gamma}}{1 - \gamma} \ {\rm with} \ \gamma > 0
 
 
-When :math:`\gamma =1` we let :math:`u(c) = \ln c` 
+When :math:`\gamma =1` we let :math:`u(c) = \ln c`
 
 Inserting the CRRA specification into :eq:`lucsdf` and using :math:`c_t = d_t` gives
 
 .. math::
     :label: lucsdf2
 
-    m_{t+1} 
+    m_{t+1}
     = \beta \left(\frac{c_{t+1}}{c_t}\right)^{-\gamma}
     = \beta g_{t+1}^{-\gamma}
 
@@ -549,7 +549,7 @@ formula
 
 .. math::
 
-    v(X_t) 
+    v(X_t)
     = \beta {\mathbb E}_t
     \left[
         g(X_{t+1})^{1-\gamma} (1 + v(X_{t+1}) )
@@ -560,22 +560,22 @@ Conditioning on :math:`X_t = x`, we can write this as
 
 .. math::
 
-    v(x) 
+    v(x)
     = \beta \sum_{y \in S} g(y)^{1-\gamma} (1 + v(y) ) P(x, y)
 
 
-If we let 
+If we let
 
 .. math::
 
-    J(x, y) := g(y)^{1-\gamma}  P(x, y) 
+    J(x, y) := g(y)^{1-\gamma}  P(x, y)
 
 
 then we can rewrite in vector form as
 
 .. math::
 
-    v = \beta J ({\mathbb 1} + v ) 
+    v = \beta J ({\mathbb 1} + v )
 
 
 Assuming that the spectral radius of :math:`J` is strictly less than :math:`\beta^{-1}`, this equation has the unique solution
@@ -584,7 +584,7 @@ Assuming that the spectral radius of :math:`J` is strictly less than :math:`\bet
     :label: resolvent2
 
     v = (I - \beta J)^{-1} \beta  J {\mathbb 1}
-    
+
 We will define a function `tree_price` to solve for $v$ given parameters stored in
 the class `AssetPriceModel`
 
@@ -662,10 +662,10 @@ the class `AssetPriceModel`
         v = solve(I - β * J, β * J @ Ones)
 
         return v
-        
 
 
-Here's a plot of :math:`v` as a function of the state for several values of :math:`\gamma`, 
+
+Here's a plot of :math:`v` as a function of the state for several values of :math:`\gamma`,
 with a positively correlated Markov process and :math:`g(x) = \exp(x)`
 
 
@@ -711,7 +711,7 @@ Recalling that :math:`P^i {\mathbb 1} = {\mathbb 1}` for all :math:`i` and apply
 
 .. math::
 
-    v = \beta(I-\beta P)^{-1} {\mathbb 1} 
+    v = \beta(I-\beta P)^{-1} {\mathbb 1}
     = \beta \sum_{i=0}^{\infty} \beta^i P^i {\mathbb 1}
     = \beta \frac{1}{1 - \beta} {\mathbb 1}
 
@@ -720,9 +720,9 @@ Thus, with log preferences, the price-dividend ratio for a Lucas tree is constan
 
 
 Alternatively, if :math:`\gamma = 0`, then :math:`J = K` and we recover the
-risk neutral solution :eq:`rned`
+risk-neutral solution :eq:`rned`
 
-This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and hence agents are risk neutral)
+This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and hence agents are risk-neutral)
 
 
 
@@ -749,11 +749,11 @@ The price satisfies :eq:`lteeqs0` with :math:`d_t = \zeta`, or
 
 
 We maintain the stochastic discount factor :eq:`lucsdf2`, so this becomes
-    
+
 .. math::
     :label: consolguess1
 
-    p_t 
+    p_t
     = {\mathbb E}_t \left[ \beta g_{t+1}^{-\gamma}  ( \zeta + p_{t+1} ) \right]
 
 
@@ -773,7 +773,7 @@ yields the solution
     :label: consol_price
 
     p = (I - \beta M)^{-1} \beta M \zeta {\mathbb 1}
-    
+
 The above is implemented in the function `consol_price`
 
 
@@ -811,7 +811,7 @@ The above is implemented in the function `consol_price`
         p = solve(I - β * M, β * ζ * M @ Ones)
 
         return p
-        
+
 
 
 
@@ -832,7 +832,7 @@ The option entitles the owner at the beginning of a period either to
 
 #. Not to exercise the option now but to retain the right to exercise it later
 
-Thus, the owner either *exercises* the option now, or chooses *not to exercise* and wait until next period
+Thus, the owner either *exercises* the option now or chooses *not to exercise* and wait until next period
 
 This is termed an infinite-horizon *call option* with *strike price* :math:`p_S`
 
@@ -938,7 +938,7 @@ We can find the solution with the following function `call_option`
             w = w_new
 
         return w
-        
+
 
 
 Here's a plot of :math:`w` compared to the consol price when :math:`P_S = 40`
@@ -965,20 +965,20 @@ Here's a plot of :math:`w` compared to the consol price when :math:`P_S = 40`
 
 
 
-In large states the value of the option is close to zero
+In large states, the value of the option is close to zero
 
 This is despite the fact the Markov chain is irreducible and low states ---
-where the consol prices is high --- will eventually be visited
+where the consol prices are high --- will eventually be visited
 
 The reason is that :math:`\beta=0.9`, so the future is discounted relatively rapidly
 
 
 
 
-Risk Free Rates
+Risk-Free Rates
 -----------------
 
-Let's look at risk free interest rates over different periods
+Let's look at risk-free interest rates over different periods
 
 
 
@@ -994,7 +994,7 @@ It follows that the reciprocal :math:`R_t^{-1}` of the gross risk-free interest 
     {\mathbb E}_t m_{t+1} = \beta \sum_{y \in S} P(x, y) g(y)^{-\gamma}
 
 
-We can write this as 
+We can write this as
 
 .. math::
 
@@ -1013,7 +1013,7 @@ Let :math:`m_j` be an :math:`n \times 1` vector whose :math:`i` th component is 
 Then :math:`m_1 = \beta M`, and :math:`m_{j+1} = M m_j` for :math:`j \geq 1`
 
 
- 
+
 Exercises
 ==============
 
@@ -1024,7 +1024,7 @@ In the lecture, we considered **ex-dividend assets**
 
 A **cum-dividend** asset is a claim to the stream :math:`d_t, d_{t+1}, \ldots`
 
-Following :eq:`rnapex`, find the risk-neutral asset pricing equation for 
+Following :eq:`rnapex`, find the risk-neutral asset pricing equation for
 one unit of a cum-dividend asset
 
 With a constant, non-random dividend stream :math:`d_t = d > 0`, what is the equilibrium
@@ -1053,7 +1053,7 @@ Consider the following primitives
 
 Let :math:`g` be defined by :math:`g(x) = x`  (that is, :math:`g` is the identity map)
 
-Compute the price of the Lucas tree 
+Compute the price of the Lucas tree
 
 Do the same for
 
@@ -1133,33 +1133,33 @@ With constant dividends, the equilibrium price is
 .. math::
 
     p_t = \frac{1}{1-\beta} d_t
-    
+
 With a growing, non-random dividend process, the equilibrium price is
 
 .. math::
 
     p_t = \frac{1}{1 - \beta g} d_t
-    
+
 Exercise 2
 -----------
 
-First let's enter the parameters:
+First, let's enter the parameters:
 
 .. code-block:: python3
 
-    
+
     n = 5
     P = 0.0125 * np.ones((n, n))
     P += np.diag(0.95 - 0.0125 * np.ones(5))
     s = np.array([0.95, 0.975, 1.0, 1.025, 1.05])  # state values
     mc = qe.MarkovChain(P, state_values=s)
-    
+
     γ = 2.0
     β = 0.94
     ζ = 1.0
     p_s = 150.0
 
-Next we'll create an instance of ``AssetPriceModel`` to feed into the
+Next, we'll create an instance of ``AssetPriceModel`` to feed into the
 functions
 
 .. code-block:: python3
@@ -1206,7 +1206,7 @@ Exercise 3
 Here's a suitable function:
 
 .. code-block:: python3
-    
+
     def finite_horizon_call_option(ap, ζ, p_s, k):
         """
         Computes k period option value.
@@ -1214,18 +1214,18 @@ Here's a suitable function:
         # == Simplify names, set up matrices  == #
         β, γ, P, y = ap.β, ap.γ, ap.mc.P, ap.mc.state_values
         M = P * ap.g(y)**(- γ)
-    
+
         # == Make sure that a unique solution exists == #
         ap.test_stability(M)
-    
-    
+
+
         # == Compute option price == #
         p = consol_price(ap, ζ)
         w = np.zeros(ap.n)
         for i in range(k):
             # == Maximize across columns == #
             w = np.maximum(β * M @ w, p - p_s)
-            
+
         return w
 
 
