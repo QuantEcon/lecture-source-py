@@ -30,7 +30,7 @@ Path = namedtuple('path',
                    'τ',            # Tax rate
                    'rvn',          # Revenue
                    'B',            # Govt debt
-                   'R',            # Risk free gross return
+                   'R',            # Risk-free gross return
                    'π',            # One-period risk-free interest rate
                    'Π',            # Cumulative rate of return, adjusted
                    'ξ'))           # Adjustment factor for Π
@@ -67,7 +67,7 @@ def compute_paths(T, econ):
          τ            - Tax rate
          rvn          - Revenue
          B            - Govt debt
-         R            - Risk free gross return
+         R            - Risk-free gross return
          π            - One-period risk-free interest rate
          Π            - Cumulative rate of return, adjusted
          ξ            - Adjustment factor for Π
@@ -219,7 +219,7 @@ def gen_fig_1(path):
     ax.plot(list(range(1, T)), path.B[1:T], label='$B_{t+1}$', **p_args)
     ax.legend(ncol=3, **legend_args)
 
-    # == Plot risk free return == #
+    # == Plot risk-free return == #
     ax = axes[1, 0]
     ax.plot(list(range(1, T+1)), path.R - 1, label='$R_t - 1$', **p_args)
     ax.legend(ncol=1, **legend_args)
