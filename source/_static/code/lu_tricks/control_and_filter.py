@@ -41,7 +41,7 @@ class LQFilter:
             raise ValueError("y_m must be of length m = {self.m:d}")
 
         #---------------------------------------------
-        # Define the coefficients of ϕ up front
+        # Define the coefficients of ϕ upfront
         #---------------------------------------------
         ϕ = np.zeros(2 * self.m + 1)
         for i in range(- self.m, self.m + 1):

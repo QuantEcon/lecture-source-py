@@ -4,7 +4,7 @@
 
 .. highlight:: python3
 
-**************************************************** 
+****************************************************
 Classical Control with Linear Algebra
 ****************************************************
 
@@ -14,7 +14,7 @@ Classical Control with Linear Algebra
 Overview
 ============
 
-In an earlier lecture :doc:`Linear Quadratic Dynamic Programming Problems<lqcontrol>` we have studied how to solve a special
+In an earlier lecture :doc:`Linear Quadratic Dynamic Programming Problems<lqcontrol>`, we have studied how to solve a special
 class of dynamic optimization and prediction problems by applying the method of dynamic programming. In this class of problems
 
   * the objective function is **quadratic** in **states** and **controls**
@@ -23,15 +23,15 @@ class of dynamic optimization and prediction problems by applying the method of 
 
   * shocks are IID Gaussian or martingale differences
 
-In this lecture and a companion lecture :doc:`Classical Filtering with Linear Algebra<classical_filtering>`, we study the classical theory of linear-quadratic (LQ) optimal control problems. 
+In this lecture and a companion lecture :doc:`Classical Filtering with Linear Algebra<classical_filtering>`, we study the classical theory of linear-quadratic (LQ) optimal control problems.
 
 The classical approach does not use the two closely related methods -- dynamic programming and  Kalman filtering -- that we describe in other lectures, namely, :doc:`Linear Quadratic Dynamic Programming Problems<lqcontrol>` and :doc:`A First Look at the Kalman Filter<kalman>`
 
-Instead they use either 
+Instead, they use either
 
  * :math:`z`-transform and lag operator methods, or
 
- * matrix decompositions applied to linear systems of first-order conditions for optimum problems. 
+ * matrix decompositions applied to linear systems of first-order conditions for optimum problems.
 
 In this lecture and the sequel :doc:`Classical Filtering with Linear Algebra<classical_filtering>`, we mostly rely on  elementary linear algebra
 
@@ -39,11 +39,11 @@ The main tool from linear algebra we'll put to work here is `LU decomposition <h
 
 We'll begin with discrete horizon problems
 
-Then we'll view infinite horizon problems as appropriate limits of these finite horizon problems  
+Then we'll view infinite horizon problems as appropriate limits of these finite horizon problems
 
-Later, we will examine the close connection between LQ control and least squares prediction and filtering problems 
+Later, we will examine the close connection between LQ control and least-squares prediction and filtering problems
 
-These classes of problems are connected in the sense that to solve each, essentially the same mathematics is used 
+These classes of problems are connected in the sense that to solve each, essentially the same mathematics is used
 
 
 References
@@ -55,7 +55,7 @@ Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfani
 A Control Problem
 ====================================
 
-Let :math:`L` be the **lag operator**, so that, for sequence :math:`\{x_t\}` we have :math:`L x_t = x_{t-1}` 
+Let :math:`L` be the **lag operator**, so that, for sequence :math:`\{x_t\}` we have :math:`L x_t = x_{t-1}`
 
 More generally, let :math:`L^k x_t = x_{t-k}` with :math:`L^0 x_t = x_t` and
 
@@ -66,27 +66,27 @@ More generally, let :math:`L^k x_t = x_{t-k}` with :math:`L^0 x_t = x_t` and
 
 where :math:`d_0, d_1, \ldots, d_m` is a given scalar sequence
 
-Consider the discrete time control problem
+Consider the discrete-time control problem
 
 .. math::
     :label: oneone
 
-    \max_{\{y_t\}} 
-    \lim_{N \to \infty} \sum^N_{t=0} \beta^t\, 
+    \max_{\{y_t\}}
+    \lim_{N \to \infty} \sum^N_{t=0} \beta^t\,
     \left\{
-         a_t y_t - {1 \over 2}\, hy^2_t - {1 \over 2} \, 
-             \left[ d(L)y_t \right]^2 
+         a_t y_t - {1 \over 2}\, hy^2_t - {1 \over 2} \,
+             \left[ d(L)y_t \right]^2
     \right\},
 
 
-where 
+where
 
 * :math:`h` is a positive parameter and :math:`\beta \in (0,1)` is a discount factor
 
 * :math:`\{a_t\}_{t \geq 0}` is a sequence of exponential order less than :math:`\beta^{-1/2}`, by which we mean :math:`\lim_{t \rightarrow \infty} \beta^{\frac{t}{2}} a_t = 0`
 
 
-Maximization in :eq:`oneone` is subject to  initial conditions for :math:`y_{-1}, y_{-2} \ldots, y_{-m}` 
+Maximization in :eq:`oneone` is subject to  initial conditions for :math:`y_{-1}, y_{-2} \ldots, y_{-m}`
 
 Maximization is over infinite sequences :math:`\{y_t\}_{t \geq 0}`
 
@@ -129,7 +129,7 @@ You will be able to confirm that the objective function can be rewritten as :eq:
 
 * :math:`d(L) := \sqrt{2 \gamma}(I - L)`
 
-Further examples of this problem for factor demand, economic growth, and government policy problems are given in ch. IX of :cite:`Sargent1987` 
+Further examples of this problem for factor demand, economic growth, and government policy problems are given in ch. IX of :cite:`Sargent1987`
 
 
 Finite Horizon Theory
@@ -137,21 +137,21 @@ Finite Horizon Theory
 
 We first study a finite :math:`N` version of the problem
 
-Later we will study an infinite horizon problem solution as a limiting version of a finite horizon problem 
+Later we will study an infinite horizon problem solution as a limiting version of a finite horizon problem
 
 (This will require being careful because the limits as :math:`N \to \infty` of the necessary and sufficient conditions for maximizing finite :math:`N` versions of :eq:`oneone`
 are not sufficient for maximizing :eq:`oneone`)
 
-We begin by 
+We begin by
 
-#. fixing :math:`N > m`, 
-   
-#. differentiating the finite version of :eq:`oneone` with respect to :math:`y_0, y_1, \ldots, y_N`, and 
-   
-#. setting these derivatives to zero 
+#. fixing :math:`N > m`,
+
+#. differentiating the finite version of :eq:`oneone` with respect to :math:`y_0, y_1, \ldots, y_N`, and
+
+#. setting these derivatives to zero
 
 For :math:`t=0, \ldots, N-m` these first-order necessary conditions are the
-*Euler equations* 
+*Euler equations*
 
 For :math:`t = N-m + 1, \ldots, N`, the first-order conditions are a set of
 *terminal conditions*
@@ -161,12 +161,12 @@ Consider the term
 .. math::
 
     \begin{aligned}
-    J 
+    J
     & = \sum^N_{t=0} \beta^t [d(L) y_t] [d(L) y_t]
     \\
-    & = \sum^N_{t=0} 
-        \beta^t \, (d_0 \, y_t + d_1 \, y_{t-1} + \cdots + d_m \, y_{t-m}) \, 
-                   (d_0 \, y_t + d_1 \, y_{t-1} + \cdots  + d_m\, y_{t-m}) 
+    & = \sum^N_{t=0}
+        \beta^t \, (d_0 \, y_t + d_1 \, y_{t-1} + \cdots + d_m \, y_{t-m}) \,
+                   (d_0 \, y_t + d_1 \, y_{t-1} + \cdots  + d_m\, y_{t-m})
     \end{aligned}
 
 
@@ -175,22 +175,22 @@ Differentiating :math:`J` with respect to :math:`y_t` for
 
 .. math::
 
-    \begin{aligned} 
-    {\partial {J} \over \partial y_t} 
-       & = 2 \beta^t \, d_0 \, d(L)y_t + 
-           2 \beta^{t+1} \, d_1\, d(L)y_{t+1} + \cdots + 
+    \begin{aligned}
+    {\partial {J} \over \partial y_t}
+       & = 2 \beta^t \, d_0 \, d(L)y_t +
+           2 \beta^{t+1} \, d_1\, d(L)y_{t+1} + \cdots +
            2 \beta^{t+m}\, d_m\, d(L) y_{t+m} \\
-       & = 2\beta^t\, \bigl(d_0 + d_1 \, \beta L^{-1} + d_2 \, \beta^2\, L^{-2} + 
-           \cdots + d_m \, \beta^m \, L^{-m}\bigr)\, d (L) y_t\ 
+       & = 2\beta^t\, \bigl(d_0 + d_1 \, \beta L^{-1} + d_2 \, \beta^2\, L^{-2} +
+           \cdots + d_m \, \beta^m \, L^{-m}\bigr)\, d (L) y_t\
     \end{aligned}
 
 
-We can write this more succinctly as 
+We can write this more succinctly as
 
 .. math::
     :label: onetwo
 
-    {\partial {J} \over \partial y_t} 
+    {\partial {J} \over \partial y_t}
         = 2 \beta^t \, d(\beta L^{-1}) \, d (L) y_t
 
 
@@ -200,15 +200,15 @@ Differentiating :math:`J` with respect to :math:`y_t` for :math:`t = N-m + 1, \l
     :label: onethree
 
     \begin{aligned}
-     {\partial J \over \partial y_N} 
+     {\partial J \over \partial y_N}
      &= 2 \beta^N\, d_0 \, d(L) y_N \cr
-       {\partial J \over \partial y_{N-1}} 
-     &= 2\beta^{N-1} \,\bigl[d_0 + \beta \, 
-       d_1\, L^{-1}\bigr] \, d(L)y_{N-1} \cr 
-       \vdots 
+       {\partial J \over \partial y_{N-1}}
+     &= 2\beta^{N-1} \,\bigl[d_0 + \beta \,
+       d_1\, L^{-1}\bigr] \, d(L)y_{N-1} \cr
+       \vdots
      & \quad \quad \vdots \cr
-       {\partial {J} \over \partial y_{N-m+1}} 
-     &= 2 \beta^{N-m+1}\,\bigl[d_0 + \beta 
+       {\partial {J} \over \partial y_{N-m+1}}
+     &= 2 \beta^{N-m+1}\,\bigl[d_0 + \beta
        L^{-1} \,d_1 + \cdots + \beta^{m-1}\, L^{-m+1}\, d_{m-1}\bigr]  d(L)y_{N-m+1}
     \end{aligned}
 
@@ -221,11 +221,11 @@ Differentiating :eq:`oneone` with respect to :math:`y_t` for :math:`t=0, \ldots,
     :label: onefour
 
     \bigl[h+d\,(\beta L^{-1})\,d(L)\bigr] y_t = a_t,
-    \quad t=0,\, 1,\, \ldots, N-m 
+    \quad t=0,\, 1,\, \ldots, N-m
 
 
-The system of equations :eq:`onefour` form  a  :math:`2 \times m` order linear *difference
-equation* that must hold for the values of :math:`t` indicated.     
+The system of equations :eq:`onefour` forms  a  :math:`2 \times m` order linear *difference
+equation* that must hold for the values of :math:`t` indicated.
 
 Differentiating :eq:`oneone` with respect to :math:`y_t` for :math:`t = N-m + 1, \ldots, N` gives the terminal conditions
 
@@ -233,29 +233,29 @@ Differentiating :eq:`oneone` with respect to :math:`y_t` for :math:`t = N-m + 1,
     :label: onefive
 
     \begin{aligned}
-    \beta^N  (a_N - hy_N - d_0\,d(L)y_N)  
+    \beta^N  (a_N - hy_N - d_0\,d(L)y_N)
     &= 0  \cr
-      \beta^{N-1} \left(a_{N-1}-hy_{N-1}-\Bigl(d_0 + \beta \, d_1\, 
-    L^{-1}\Bigr)\, d(L)\, y_{N-1}\right) 
+      \beta^{N-1} \left(a_{N-1}-hy_{N-1}-\Bigl(d_0 + \beta \, d_1\,
+    L^{-1}\Bigr)\, d(L)\, y_{N-1}\right)
     & = 0 \cr
      \vdots & \vdots\cr
     \beta^{N-m+1} \biggl(a_{N-m+1} - h y_{N-m+1} -(d_0+\beta L^{-1}
-    d_1+\cdots\  +\beta^{m-1} L^{-m+1} d_{m-1}) d(L) y_{N-m+1}\biggr) 
-    & = 0 
+    d_1+\cdots\  +\beta^{m-1} L^{-m+1} d_{m-1}) d(L) y_{N-m+1}\biggr)
+    & = 0
     \end{aligned}
 
 
 In the finite :math:`N` problem, we want simultaneously to solve :eq:`onefour` subject to the :math:`m` initial conditions
 :math:`y_{-1}, \ldots, y_{-m}` and the :math:`m` terminal conditions
-:eq:`onefive` 
+:eq:`onefive`
 
-These conditions uniquely pin down the solution of the finite :math:`N` problem 
+These conditions uniquely pin down the solution of the finite :math:`N` problem
 
 That is, for the finite :math:`N` problem,
 conditions :eq:`onefour` and :eq:`onefive` are necessary and sufficient for a maximum,
 by concavity of the objective function
 
-Next we describe how to obtain the solution using matrix methods
+Next, we describe how to obtain the solution using matrix methods
 
 
 
@@ -279,7 +279,7 @@ We want to solve the system of :math:`N+1` linear equations
     \begin{aligned}
     \bigl[h & + d\, (\beta L^{-1})\, d\, (L) ] y_t = a_t, \quad
     t = 0,\ 1,\ \ldots,\, N-1\cr
-    \beta^N & \bigl[a_N-h\, y_N-d_0\, d\, (L) y_N\bigr] = 0 
+    \beta^N & \bigl[a_N-h\, y_N-d_0\, d\, (L) y_N\bigr] = 0
     \end{aligned}
 
 
@@ -289,13 +289,13 @@ These equations are to be solved for
 :math:`y_0, y_1, \ldots, y_N` as functions of
 :math:`a_0, a_1, \ldots,  a_N` and :math:`y_{-1}`
 
-Let 
+Let
 
 .. math::
 
-    \phi (L) 
-    = \phi_0 + \phi_1 L + \beta \phi_1 L^{-1} 
-    = h + d (\beta L^{-1}) d(L) 
+    \phi (L)
+    = \phi_0 + \phi_1 L + \beta \phi_1 L^{-1}
+    = h + d (\beta L^{-1}) d(L)
     = (h + d_0^2 + d_1^2) + d_1 d_0 L+ d_1 d_0 \beta L^{-1}
 
 
@@ -311,21 +311,21 @@ Then we can represent :eq:`oneff` as the matrix equation
             0 & \beta \phi_1 & \phi_0 & \phi_1 & \ldots & \ldots & 0 \cr
             \vdots &\vdots & \vdots & \ddots & \vdots & \vdots & \vdots \cr
             0 & \ldots & \ldots & \ldots & \beta \phi_1 & \phi_0 &\phi_1 \cr
-            0 & \ldots & \ldots & \ldots & 0 & \beta \phi_1 & \phi_0 
+            0 & \ldots & \ldots & \ldots & 0 & \beta \phi_1 & \phi_0
         \end{matrix}
     \right]
-    \left [ 
-        \begin{matrix} 
-            y_N \cr y_{N-1} \cr y_{N-2} \cr \vdots \cr 
-            y_1 \cr y_0 
+    \left [
+        \begin{matrix}
+            y_N \cr y_{N-1} \cr y_{N-2} \cr \vdots \cr
+            y_1 \cr y_0
         \end{matrix}
-    \right ] = 
+    \right ] =
     \left[
-    \begin{matrix} 
-        a_N \cr a_{N-1} \cr a_{N-2} \cr \vdots \cr a_1 \cr 
+    \begin{matrix}
+        a_N \cr a_{N-1} \cr a_{N-2} \cr \vdots \cr a_1 \cr
         a_0 - \phi_1 y_{-1}
     \end{matrix}
-    \right] 
+    \right]
 
 
 or
@@ -337,17 +337,17 @@ or
 
 
 Notice how we have chosen to arrange the :math:`y_t`\ ’s in reverse
-time order. 
+time order.
 
-The matrix :math:`W` on the left side of :eq:`onefourfive` is "almost" a 
+The matrix :math:`W` on the left side of :eq:`onefourfive` is "almost" a
 `Toeplitz matrix <https://en.wikipedia.org/wiki/Toeplitz_matrix>`_ (where each
 descending diagonal is constant)
 
 There are two sources of deviation from the  form  of a Toeplitz matrix
 
-#. The first element differs from the remaining diagonal elements, reflecting the terminal condition 
+#. The first element differs from the remaining diagonal elements, reflecting the terminal condition
 
-#. The subdiagonal elements equal :math:`\beta` time the superdiagonal elements
+#. The sub-diagonal elements equal :math:`\beta` time the super-diagonal elements
 
 The solution of :eq:`onefoursix` can be expressed in the form
 
@@ -357,7 +357,7 @@ The solution of :eq:`onefoursix` can be expressed in the form
     \bar y = W^{-1} \bar a
 
 
-which represents each element :math:`y_t` of :math:`\bar y` as a function of the entire vector :math:`\bar a` 
+which represents each element :math:`y_t` of :math:`\bar y` as a function of the entire vector :math:`\bar a`
 
 That is, :math:`y_t` is a function of past, present, and future values of :math:`a`'s, as well as of the initial condition :math:`y_{-1}`
 
@@ -365,20 +365,20 @@ An Alternative Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An alternative way to express the solution to :eq:`onefourfive` or
-:eq:`onefoursix` is in so called **feedback-feedforward** form
+:eq:`onefoursix` is in so-called **feedback-feedforward** form
 
 The idea here is to find a solution expressing :math:`y_t` as a function of *past* :math:`y`'s and *current* and *future* :math:`a`'s
 
 To achieve this solution, one can use an `LU decomposition <https://en.wikipedia.org/wiki/LU_decomposition>`_ of :math:`W`
 
-There always exists a decomposition of :math:`W` of the form :math:`W= LU` 
-where 
+There always exists a decomposition of :math:`W` of the form :math:`W= LU`
+where
 
-* :math:`L` is an :math:`(N+1) \times (N+1)` lower trangular matrix
+* :math:`L` is an :math:`(N+1) \times (N+1)` lower triangular matrix
 
-* :math:`U` is an :math:`(N+1) \times (N+1)` upper trangular matrix.
+* :math:`U` is an :math:`(N+1) \times (N+1)` upper triangular matrix.
 
-The factorization can be normalized so that the diagonal elements of :math:`U` are unity 
+The factorization can be normalized so that the diagonal elements of :math:`U` are unity
 
 Using the LU representation in :eq:`onefourseven`, we obtain
 
@@ -388,20 +388,20 @@ Using the LU representation in :eq:`onefourseven`, we obtain
     U \bar y = L^{-1} \bar a
 
 
-Since :math:`L^{-1}` is lower trangular, this representation expresses
-:math:`y_t` as a function of 
+Since :math:`L^{-1}` is lower triangular, this representation expresses
+:math:`y_t` as a function of
 
-* lagged :math:`y`'s (via the term :math:`U \bar y`), and 
-  
+* lagged :math:`y`'s (via the term :math:`U \bar y`), and
+
 * current and future :math:`a`\ ’s (via the term :math:`L^{-1} \bar a`)
 
 Because there are zeros everywhere in the matrix
-on the left of :eq:`onefourfive` except on the diagonal, superdiagonal, and
-subdiagonal, the :math:`LU` decomposition takes 
+on the left of :eq:`onefourfive` except on the diagonal, super-diagonal, and
+sub-diagonal, the :math:`LU` decomposition takes
 
-* :math:`L` to be zero except in the diagional and the leading subdiagonal
-  
-* :math:`U` to be zero except on the diagonal and the superdiagional 
+* :math:`L` to be zero except in the diagonal  and the leading sub-diagonal
+
+* :math:`U` to be zero except on the diagonal and the super-diagonal
 
 Thus, :eq:`onefournine` has the form
 
@@ -415,12 +415,12 @@ Thus, :eq:`onefournine` has the form
         0 & 0 & 0 & 1 & \ldots & 0 & 0\cr
         \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots\cr
         0 & 0 & 0 & 0 & \ldots & 1 & U_{N,N+1} \cr
-        0 & 0 & 0 & 0 & \ldots & 0 & 1 
+        0 & 0 & 0 & 0 & \ldots & 0 & 1
     \end{matrix}
     \right] \ \ \
     \left[
     \begin{matrix}
-        y_N \cr y_{N-1} \cr y_{N-2} \cr y_{N-3} \cr \vdots \cr y_1 \cr y_0 
+        y_N \cr y_{N-1} \cr y_{N-2} \cr y_{N-3} \cr \vdots \cr y_1 \cr y_0
     \end{matrix}
     \right] =
 
@@ -428,21 +428,21 @@ Thus, :eq:`onefournine` has the form
 .. math::
 
     \quad
-    \left[ 
+    \left[
     \begin{matrix}
         L^{-1}_{11} & 0 & 0 & \ldots & 0 \cr
         L^{-1}_{21} & L^{-1}_{22} & 0 & \ldots & 0 \cr
         L^{-1}_{31} & L^{-1}_{32} & L^{-1}_{33}& \ldots & 0 \cr
         \vdots & \vdots & \vdots & \ddots & \vdots\cr
-        L^{-1}_{N,1} & L^{-1}_{N,2} & L^{-1}_{N,3} & \ldots & 0 \cr 
-        L^{-1}_{N+1,1} & L^{-1}_{N+1,2} & L^{-1}_{N+1,3} & \ldots & 
+        L^{-1}_{N,1} & L^{-1}_{N,2} & L^{-1}_{N,3} & \ldots & 0 \cr
+        L^{-1}_{N+1,1} & L^{-1}_{N+1,2} & L^{-1}_{N+1,3} & \ldots &
         L^{-1}_{N+1\, N+1}
     \end{matrix}
-    \right] 
+    \right]
     \left[
     \begin{matrix}
-        a_N \cr a_{N-1} \cr a_{N-2} \cr \vdots \cr a_1 \cr a_0 - 
-        \phi_1 y_{-1} 
+        a_N \cr a_{N-1} \cr a_{N-2} \cr \vdots \cr a_1 \cr a_0 -
+        \phi_1 y_{-1}
     \end{matrix}
     \right ]
 
@@ -464,29 +464,29 @@ determined from the following formula:
 
 .. math::
 
-    D_{jk} = d_0 d_{k-j} + d_1 d_{k-j+1} + \ldots + d_{j-1} d_{k-1}, \qquad k 
+    D_{jk} = d_0 d_{k-j} + d_1 d_{k-j+1} + \ldots + d_{j-1} d_{k-1}, \qquad k
     \geq j
 
 
 Let :math:`I_{m+1}` be the :math:`(m+1) \times (m+1)` identity matrix
 
-Let :math:`\phi_j` be the coefficients in the expansion :math:`\phi (L) = h + d (L^{-1}) d (L)` 
+Let :math:`\phi_j` be the coefficients in the expansion :math:`\phi (L) = h + d (L^{-1}) d (L)`
 
 Then the first order conditions :eq:`onefour` and :eq:`onefive` can be expressed as:
 
 .. math::
 
-    (D_{m+1} + hI_{m+1})\ \ 
+    (D_{m+1} + hI_{m+1})\ \
     \left[
     \begin{matrix}
         y_N \cr y_{N-1} \cr \vdots \cr y_{N-m}
     \end{matrix}
-    \right]\ 
+    \right]\
     = \ \left[
     \begin{matrix}
-         a_N \cr a_{N-1} \cr \vdots \cr a_{N-m} 
+         a_N \cr a_{N-1} \cr \vdots \cr a_{N-m}
      \end{matrix}
-    \right] + M\ 
+    \right] + M\
     \left[
         \begin{matrix}
             y_{N-m+1}\cr y_{N-m-2}\cr \vdots\cr y_{N-2m}
@@ -494,37 +494,37 @@ Then the first order conditions :eq:`onefour` and :eq:`onefive` can be expressed
     \right]
 
 
-where :math:`M` is :math:`(m+1)\times m` and 
+where :math:`M` is :math:`(m+1)\times m` and
 
 .. math::
 
-    M_{ij} = \begin{cases} 
+    M_{ij} = \begin{cases}
     D_{i-j,\,m+1} \textrm{ for } i>j  \\
-     0  \textrm{ for }  i\leq j\end{cases} 
+     0  \textrm{ for }  i\leq j\end{cases}
 
 
 .. math::
 
     \begin{aligned}
-    \phi_m y_{N-1} &+ \phi_{m-1} y_{N-2} + \ldots + \phi_0 y_{N-m-1} + 
+    \phi_m y_{N-1} &+ \phi_{m-1} y_{N-2} + \ldots + \phi_0 y_{N-m-1} +
     \phi_1 y_{N-m-2} +\cr
     &\hskip.75in \ldots + \phi_m y_{N-2m-1} = a_{N-m-1} \cr
-    \phi_m y_{N-2} &+ \phi_{m-1} y_{N-3} + \ldots + \phi_0 y_{N-m-2} + \phi_1 
+    \phi_m y_{N-2} &+ \phi_{m-1} y_{N-3} + \ldots + \phi_0 y_{N-m-2} + \phi_1
     y_{N-m-3} +\cr
     &\hskip.75in \ldots + \phi_m y_{N-2m-2} = a_{N-m-2} \cr
     &\qquad \vdots \cr
-    \phi_m y_{m+1} &+ \phi_{m-1} y_m + + \ldots + \phi_0 y_1 + \phi_1 y_0 + 
+    \phi_m y_{m+1} &+ \phi_{m-1} y_m + + \ldots + \phi_0 y_1 + \phi_1 y_0 +
     \phi_m y_{-m+1} = a_1 \cr
-    \phi_m y_m + \phi_{m-1}& y_{m-1} + \phi_{m-2} + \ldots + \phi_0 y_0 + \phi_1 
-    y_{-1} + \ldots + \phi_m y_{-m} = a_0 
+    \phi_m y_m + \phi_{m-1}& y_{m-1} + \phi_{m-2} + \ldots + \phi_0 y_0 + \phi_1
+    y_{-1} + \ldots + \phi_m y_{-m} = a_0
     \end{aligned}
 
 
 As before, we can express this equation as :math:`W \bar y = \bar a`
 
 The matrix on the left of this equation is "almost" Toeplitz, the
-exception being the leading :math:`m \times m` sub matrix in the upper
-left hand corner 
+exception being the leading :math:`m \times m` submatrix in the upper
+left-hand corner
 
 
 We can represent the solution in feedback-feedforward form by obtaining a decomposition :math:`LU = W`, and obtain
@@ -537,7 +537,7 @@ We can represent the solution in feedback-feedforward form by obtaining a decomp
 
 .. math::
 
-    \begin{aligned} \sum^t_{j=0}\, U_{-t+N+1,\,-t+N+j+1}\,y_{t-j} &= \sum^{N-t}_{j=0}\, 
+    \begin{aligned} \sum^t_{j=0}\, U_{-t+N+1,\,-t+N+j+1}\,y_{t-j} &= \sum^{N-t}_{j=0}\,
     L_{-t+N+1,\, -t+N+1-j}\, \bar a_{t+j}\ ,\cr
     &\qquad t=0,1,\ldots, N
     \end{aligned}
@@ -547,11 +547,11 @@ where :math:`L^{-1}_{t,s}` is the element in the :math:`(t,s)` position
 of :math:`L`, and similarly for :math:`U`
 
 The left side of equation :eq:`onefivetwo` is the "feedback" part of the optimal
-control law for :math:`y_t`, while the right-hand side is the "feedforward" part 
+control law for :math:`y_t`, while the right-hand side is the "feedforward" part
 
 We note that there is a different control law for each :math:`t`
 
-Thus, in the finite horizon case, the optimal control law is time dependent
+Thus, in the finite horizon case, the optimal control law is time-dependent
 
 It is natural to suspect that as :math:`N \rightarrow\infty`, :eq:`onefivetwo`
 becomes equivalent to the solution of our infinite horizon problem,
@@ -563,9 +563,9 @@ which below we shall show can be expressed as
 
 
 so that as :math:`N \rightarrow \infty` we expect that for each fixed
-:math:`t, U^{-1}_{t, t-j} 
+:math:`t, U^{-1}_{t, t-j}
 \rightarrow c_j` and :math:`L_{t,t+j}` approaches the coefficient on
-:math:`L^{-j}` in the expansion of :math:`c(\beta L^{-1})^{-1}` 
+:math:`L^{-j}` in the expansion of :math:`c(\beta L^{-1})^{-1}`
 
 This suspicion is true under general conditions that we shall study later
 
@@ -583,11 +583,11 @@ For the infinite horizon problem, we propose to discover first-order
 necessary conditions by taking the limits of :eq:`onefour` and :eq:`onefive` as
 :math:`N \to \infty`
 
-This approach is valid, and the limits of :eq:`onefour` and :eq:`onefive` as :math:`N` approaches infinity are first-order necessary conditions for a maximum 
+This approach is valid, and the limits of :eq:`onefour` and :eq:`onefive` as :math:`N` approaches infinity are first-order necessary conditions for a maximum
 
-However, for the infinite horizon problem with :math:`\beta < 1`, the limits of :eq:`onefour` and :eq:`onefive` are, in general, not sufficient for a maximum 
+However, for the infinite horizon problem with :math:`\beta < 1`, the limits of :eq:`onefour` and :eq:`onefive` are, in general, not sufficient for a maximum
 
-That is, the limits of :eq:`onefive` do not provide enough information uniquely to determine the solution of the Euler equation :eq:`onefour` that maximizes :eq:`oneone` 
+That is, the limits of :eq:`onefive` do not provide enough information uniquely to determine the solution of the Euler equation :eq:`onefour` that maximizes :eq:`oneone`
 
 As we shall see below, a side condition on the path of :math:`y_t` that together with :eq:`onefour` is sufficient for an optimum is
 
@@ -610,17 +610,17 @@ Consider the *characteristic equation* associated with the Euler equation
     h+d \, (\beta z^{-1})\, d \, (z) = 0
 
 
-Notice that if :math:`\tilde z` is a root of equation :eq:`oneseven`, then so is :math:`\beta \tilde z^{-1}` 
+Notice that if :math:`\tilde z` is a root of equation :eq:`oneseven`, then so is :math:`\beta \tilde z^{-1}`
 
 Thus, the roots of :eq:`oneseven` come in ":math:`\beta`-reciprocal" pairs
 
-Assume that the roots of :eq:`oneseven` are distinct 
+Assume that the roots of :eq:`oneseven` are distinct
 
 Let the roots be, in descending order according to their moduli, :math:`z_1, z_2, \ldots, z_{2m}`
 
 From the reciprocal pairs property and the assumption of distinct
-roots, it follows that :math:`\vert z_j \vert > \sqrt \beta\ \hbox{ for } j\leq m \hbox 
-{ and } \vert z_j \vert < \sqrt\beta\ \hbox { for } j > m` 
+roots, it follows that :math:`\vert z_j \vert > \sqrt \beta\ \hbox{ for } j\leq m \hbox
+{ and } \vert z_j \vert < \sqrt\beta\ \hbox { for } j > m`
 
 It also follows that :math:`z_{2m-j} = \beta z^{-1}_{j+1}, j=0, 1, \ldots, m-1`
 
@@ -630,24 +630,24 @@ Therefore, the characteristic polynomial on the left side of :eq:`oneseven` can 
     :label: oneeight
 
     \begin{aligned}
-    h+d(\beta z^{-1})d(z) 
-    &= z^{-m} z_0(z-z_1)\cdots 
+    h+d(\beta z^{-1})d(z)
+    &= z^{-m} z_0(z-z_1)\cdots
     (z-z_m)(z-z_{m+1}) \cdots (z-z_{2m}) \cr
     &= z^{-m} z_0 (z-z_1)(z-z_2)\cdots (z-z_m)(z-\beta z_m^{-1})
-    \cdots  (z-\beta z^{-1}_2)(z-\beta z_1^{-1}) 
+    \cdots  (z-\beta z^{-1}_2)(z-\beta z_1^{-1})
     \end{aligned}
 
 
-where :math:`z_0` is a constant 
+where :math:`z_0` is a constant
 
 In :eq:`oneeight`, we substitute :math:`(z-z_j) = -z_j (1- {1 \over z_j}z)` and
 :math:`(z-\beta z_j^{-1}) = z(1 - {\beta \over z_j} z^{-1})` for :math:`j = 1, \ldots, m` to get
 
 .. math::
 
-    h+d(\beta z^{-1})d(z) 
+    h+d(\beta z^{-1})d(z)
     = (-1)^m(z_0z_1\cdots z_m)
-    (1- {1\over z_1} z) \cdots (1-{1\over z_m} z)(1- {1\over z_1} \beta z^{-1}) 
+    (1- {1\over z_1} z) \cdots (1-{1\over z_m} z)(1- {1\over z_1} \beta z^{-1})
     \cdots(1-{1\over z_m} \beta z^{-1})
 
 
@@ -665,7 +665,7 @@ Notice that :eq:`oneeight` can be written
 .. math::
     :label: oneten
 
-    h + d \ (\beta z^{-1})\ d\ (z) = c\,(\beta z^{-1})\,c\,(z) 
+    h + d \ (\beta z^{-1})\ d\ (z) = c\,(\beta z^{-1})\,c\,(z)
 
 
 It is useful to write :eq:`onenine` as
@@ -673,28 +673,28 @@ It is useful to write :eq:`onenine` as
 .. math::
     :label: oneeleven
 
-    c(z) = c_0(1-\lambda_1\, z) \ldots (1-\lambda_m z) 
+    c(z) = c_0(1-\lambda_1\, z) \ldots (1-\lambda_m z)
 
 
 where
 
 .. math::
 
-    c_0 
-    = \left[(-1)^m\, z_0\, z_1 \cdots z_m\right]^{1/2}; 
+    c_0
+    = \left[(-1)^m\, z_0\, z_1 \cdots z_m\right]^{1/2};
     \quad \lambda_j={1 \over z_j},\,\  j=1, \ldots, m
 
 
 Since :math:`\vert z_j \vert > \sqrt \beta \hbox { for } j = 1, \ldots, m` it
-follows that :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for :math:`j = 1, 
+follows that :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for :math:`j = 1,
 \ldots, m`
 
 Using :eq:`oneeleven`, we can express the factorization :eq:`oneten` as
 
 .. math::
 
-    h+d (\beta z^{-1})d(z) = c^2_0 (1-\lambda_1 z) \cdots 
-    (1 - \lambda_m z) (1-\lambda_1 \beta z^{-1}) 
+    h+d (\beta z^{-1})d(z) = c^2_0 (1-\lambda_1 z) \cdots
+    (1 - \lambda_m z) (1-\lambda_1 \beta z^{-1})
     \cdots (1 - \lambda_m \beta z^{-1})
 
 
@@ -711,16 +711,16 @@ Using :eq:`oneten`, we now write the Euler equation as
 
 
 The unique solution of the Euler equation that satisfies condition :eq:`onesix`
-is 
+is
 
 .. math::
     :label: onethirteen
 
-    c(L)\,y_t = c\,(\beta L^{-1})^{-1}a_t  
+    c(L)\,y_t = c\,(\beta L^{-1})^{-1}a_t
 
 
 This can be established by using an argument paralleling that in
-chapter IX of :cite:`Sargent1987`  
+chapter IX of :cite:`Sargent1987`
 
 To exhibit the solution in a form
 paralleling that of :cite:`Sargent1987`, we use :eq:`oneeleven` to write
@@ -746,7 +746,7 @@ Then :eq:`JUNK` can be written
 
 .. math::
 
-    (1-\lambda_1 L) \cdots (1-\lambda_m L) y_t = \sum^m_{j=1} \, {A_j \over 1 - 
+    (1-\lambda_1 L) \cdots (1-\lambda_m L) y_t = \sum^m_{j=1} \, {A_j \over 1 -
     \lambda_j \, \beta L^{-1}} a_t
 
 
@@ -755,19 +755,19 @@ or
 .. math::
     :label: onefifteen
 
-    (1 - \lambda_1 L) \cdots (1 - \lambda_m L) y_t = \sum^m_{j=1}\, A_j 
+    (1 - \lambda_1 L) \cdots (1 - \lambda_m L) y_t = \sum^m_{j=1}\, A_j
     \sum^\infty_{k=0}\, (\lambda_j\beta)^k\, a_{t+k}
 
 
 Equation :eq:`onefifteen` expresses the optimum sequence for :math:`y_t` in terms
 of :math:`m` lagged :math:`y`'s, and :math:`m` weighted infinite
-geometric sums of future :math:`a_t`'s 
+geometric sums of future :math:`a_t`'s
 
 Furthermore, :eq:`onefifteen` is the unique solution of the Euler equation that satisfies the initial conditions and condition :eq:`onesix`
 
 In effect, condition :eq:`onesix` compels us to
 solve the "unstable" roots of :math:`h+d (\beta z^{-1})d(z)` forward
-(see :cite:`Sargent1987`) 
+(see :cite:`Sargent1987`)
 
 The step of factoring the polynomial :math:`h+d (\beta z^{-1})\, d(z)` into
 :math:`c\, (\beta z^{-1})c\,(z)`, where the zeros of :math:`c\,(z)` all
@@ -775,9 +775,9 @@ have modulus exceeding :math:`\sqrt\beta`, is central to solving the problem
 
 We note two features of the solution :eq:`onefifteen`
 
-* Since :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for all :math:`j`, it follows that :math:`(\lambda_j \ \beta) < \sqrt \beta` 
+* Since :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for all :math:`j`, it follows that :math:`(\lambda_j \ \beta) < \sqrt \beta`
 
-* The assumption that :math:`\{ a_t \}` is of exponential order less than :math:`1 /\sqrt \beta` is sufficient to guarantee that the geometric sums of future :math:`a_t`'s on the right side of :eq:`onefifteen` converge 
+* The assumption that :math:`\{ a_t \}` is of exponential order less than :math:`1 /\sqrt \beta` is sufficient to guarantee that the geometric sums of future :math:`a_t`'s on the right side of :eq:`onefifteen` converge
 
 We immediately see that those sums will
 converge under the weaker condition that :math:`\{ a_t\}` is of
@@ -790,16 +790,16 @@ rate given by :math:`\max_i \vert \lambda_i \vert`
 
 The condition
 :math:`\max_i \vert \lambda_i \vert <1 /\sqrt \beta` guarantees that
-condition :eq:`onesix` is satisfied 
+condition :eq:`onesix` is satisfied
 
-In fact, :math:`\max_i \vert \lambda_i 
-\vert < 1 /\sqrt \beta` is a necessary condition for :eq:`onesix` to hold 
+In fact, :math:`\max_i \vert \lambda_i
+\vert < 1 /\sqrt \beta` is a necessary condition for :eq:`onesix` to hold
 
 Were :eq:`onesix` not satisfied, the objective function would diverge to :math:`- \infty`, implying that the :math:`y_t` path could not be optimal
 
 For example, with :math:`a_t = 0`, for all :math:`t`, it is easy to describe a naive (nonoptimal) policy for :math:`\{y_t, t\geq 0\}` that gives a finite value of :eq:`oneeleven`
 
-We can simply let :math:`y_t = 0 \hbox { for } t\geq 0` 
+We can simply let :math:`y_t = 0 \hbox { for } t\geq 0`
 
 This policy involves at most :math:`m` nonzero values of
 :math:`hy^2_t` and :math:`[d(L)y_t]^2`, and so yields a finite value of
@@ -829,7 +829,7 @@ The factorization of the characteristic polynomial :eq:`oneten` becomes
 
 .. math::
 
-    \Bigl(h+d \, (z^{-1})d(z)\Bigr) = c\,(z^{-1})\, c\,(z) 
+    \Bigl(h+d \, (z^{-1})d(z)\Bigr) = c\,(z^{-1})\, c\,(z)
 
 
 where
@@ -841,7 +841,7 @@ where
     c_0 &= \Bigl[(-1)^m z_0 z_1 \ldots z_m\Bigr ] \cr
     \vert \lambda_j \vert &< 1 \, \hbox { for } \, j = 1, \ldots, m\cr
     \lambda_j &= \frac{1}{z_j} \hbox{ for } j=1,\ldots, m\cr
-    z_0 &= \hbox{ constant} 
+    z_0 &= \hbox{ constant}
     \end{aligned}
 
 
@@ -849,14 +849,14 @@ The solution of the problem becomes
 
 .. math::
 
-    (1 - \lambda_1 L) \cdots (1 - \lambda_m L) y_t = \sum^m_{j=1} A_j 
+    (1 - \lambda_1 L) \cdots (1 - \lambda_m L) y_t = \sum^m_{j=1} A_j
     \sum^\infty_{k=0} \lambda^k_j a_{t+k}
 
 
 Transforming Discounted to Undiscounted Problem
 -------------------------------------------------
 
-Discounted problems can always be converted into undiscounted problems via a simple transformation 
+Discounted problems can always be converted into undiscounted problems via a simple transformation
 
 Consider problem :eq:`oneone` with :math:`0 < \beta < 1`
 
@@ -869,7 +869,7 @@ Define the transformed variables
 
 
 Then notice that :math:`\beta^t\,[d\, (L) y_t ]^2=[\tilde d\,(L)\tilde y_t]^2` with
-:math:`\tilde d \,(L)=\sum^m_{j=0} \tilde d_j\, L^j` and :math:`\tilde d_j = \beta^{j/2} 
+:math:`\tilde d \,(L)=\sum^m_{j=0} \tilde d_j\, L^j` and :math:`\tilde d_j = \beta^{j/2}
 d_j`
 
 Then the original criterion function :eq:`oneone` is equivalent to
@@ -877,13 +877,13 @@ Then the original criterion function :eq:`oneone` is equivalent to
 .. math::
     :label: oneoneprime
 
-    \lim_{N \rightarrow \infty} 
-    \sum^N_{t=0} 
-    \{\tilde a_t\, \tilde y_t - {1 \over 2} h\,\tilde y^2_t - {1\over 2} 
-    [ \tilde d\,(L)\, \tilde y_t]^2 \} 
+    \lim_{N \rightarrow \infty}
+    \sum^N_{t=0}
+    \{\tilde a_t\, \tilde y_t - {1 \over 2} h\,\tilde y^2_t - {1\over 2}
+    [ \tilde d\,(L)\, \tilde y_t]^2 \}
 
 
-which is to be maximized over sequences :math:`\{\tilde y_t,\  t=0, \ldots\}` subject to 
+which is to be maximized over sequences :math:`\{\tilde y_t,\  t=0, \ldots\}` subject to
 :math:`\tilde y_{-1}, \cdots, \tilde y_{-m}` given and :math:`\{\tilde a_t,\  t=1, \ldots\}` a known bounded sequence
 
 The Euler equation for this problem is :math:`[h+\tilde d \,(L^{-1}) \, \tilde d\, (L) ]\, \tilde y_t = \tilde a_t`
@@ -892,7 +892,7 @@ The solution is
 
 .. math::
 
-    (1 - \tilde \lambda_1 L) \cdots (1 - \tilde \lambda_m L)\,\tilde y_t = 
+    (1 - \tilde \lambda_1 L) \cdots (1 - \tilde \lambda_m L)\,\tilde y_t =
     \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j \, \tilde a_{t+k}
 
 
@@ -902,25 +902,25 @@ or
     :label: onetwentyone
 
     \tilde y_t = \tilde f_1 \, \tilde y_{t-1} + \cdots + \tilde f_m\,
-    \tilde y_{t-m} + \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j 
-    \, \tilde a_{t+k}, 
+    \tilde y_{t-m} + \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j
+    \, \tilde a_{t+k},
 
 
 where :math:`\tilde c \,(z^{-1}) \tilde c\,(z) = h + \tilde d\,(z^{-1}) \tilde d \,(z)`, and where
 
 .. math::
 
-    \bigl[(-1)^m\, \tilde z_0 \tilde z_1 \ldots \tilde z_m \bigr]^{1/2} 
+    \bigl[(-1)^m\, \tilde z_0 \tilde z_1 \ldots \tilde z_m \bigr]^{1/2}
     (1 - \tilde \lambda_1\, z) \ldots (1 - \tilde \lambda_m\, z) = \tilde c\,(z),
-    \hbox { where } \ \vert \tilde \lambda_j \vert < 1 
+    \hbox { where } \ \vert \tilde \lambda_j \vert < 1
 
 
 We leave it to the reader to show that :eq:`onetwentyone` implies the equivalent form of the solution
 
 .. math::
 
-    y_t = f_1\, y_{t-1} + \cdots + f_m\, y_{t-m} + \sum^m_{j=1} A_j 
-    \sum^\infty_{k=0} \, (\lambda_j\, \beta)^k \, a_{t+k} 
+    y_t = f_1\, y_{t-1} + \cdots + f_m\, y_{t-m} + \sum^m_{j=1} A_j
+    \sum^\infty_{k=0} \, (\lambda_j\, \beta)^k \, a_{t+k}
 
 
 where
@@ -928,7 +928,7 @@ where
 .. math::
     :label: onetwentythree
 
-    f_j = \tilde f_j\, \beta^{-j/2},\  A_j = \tilde A_j,\  \lambda_j = \tilde 
+    f_j = \tilde f_j\, \beta^{-j/2},\  A_j = \tilde A_j,\  \lambda_j = \tilde
     \lambda_j \, \beta^{-1/2}
 
 
@@ -952,7 +952,7 @@ Here's how it looks
 Example
 ---------
 
-In this application we'll have one lag, with 
+In this application, we'll have one lag, with
 
 .. math::
 
@@ -980,7 +980,7 @@ Here's some code that generates a plot when :math:`\gamma = 0.8`
 
 
 .. code-block:: ipython
-    
+
     import matplotlib.pyplot as plt
     %matplotlib inline
 
@@ -1011,7 +1011,7 @@ Here's some code that generates a plot when :math:`\gamma = 0.8`
         plt.show()
 
     plot_simulation()
-    
+
 
 
 
@@ -1022,7 +1022,7 @@ Here's what happens when we change :math:`\gamma` to 5.0
 .. code-block:: python3
 
   plot_simulation(γ=5)
-  
+
 
 
 And here's :math:`\gamma = 10`
@@ -1032,7 +1032,7 @@ And here's :math:`\gamma = 10`
 .. code-block:: python3
 
   plot_simulation(γ=10)
-  
+
 
 
 
@@ -1046,13 +1046,13 @@ Exercise 1
 Consider solving a discounted version :math:`(\beta < 1)` of problem
 :eq:`oneone`, as follows
 
-Convert :eq:`oneone` to the undiscounted problem :eq:`oneoneprime` 
+Convert :eq:`oneone` to the undiscounted problem :eq:`oneoneprime`
 
 Let the solution of :eq:`oneoneprime` in feedback form be
 
 .. math::
 
-    (1 - \tilde \lambda_1 L)\, \cdots\, (1 - \tilde \lambda_m L) \tilde y_t = 
+    (1 - \tilde \lambda_1 L)\, \cdots\, (1 - \tilde \lambda_m L) \tilde y_t =
     \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j \tilde a_{t+k}
 
 
@@ -1061,23 +1061,23 @@ or
 .. math::
     :label: estar
 
-    \tilde y_t = \tilde f_1 \tilde y_{t-1} + \cdots + \tilde f_m \tilde y_{t-m} + 
-    \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j \tilde a_{t+k} 
+    \tilde y_t = \tilde f_1 \tilde y_{t-1} + \cdots + \tilde f_m \tilde y_{t-m} +
+    \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j \tilde a_{t+k}
 
 
-Here 
+Here
 
 * :math:`h + \tilde d (z^{-1}) \tilde d (z) = \tilde c (z^{-1}) \tilde c (z)`
-  
+
 * :math:`\tilde c (z) = [(-1)^m \tilde z_0 \tilde z_1 \cdots \tilde z_m ]^{1/2} (1 - \tilde \lambda_1 z) \cdots (1 - \tilde \lambda_m z)`
-  
-where the :math:`\tilde z_j` are the zeros of :math:`h +\tilde d (z^{-1})\, \tilde d(z)` 
+
+where the :math:`\tilde z_j` are the zeros of :math:`h +\tilde d (z^{-1})\, \tilde d(z)`
 
 Prove that :eq:`estar` implies that the solution for :math:`y_t` in feedback form is
 
 .. math::
 
-    y_t = f_1 y_{t-1} + \ldots + f_m y_{t-m} + \sum^m_{j=1} A_j 
+    y_t = f_1 y_{t-1} + \ldots + f_m y_{t-m} + \sum^m_{j=1} A_j
     \sum^\infty_{k=0} \beta^k \lambda^k_j a_{t+k}
 
 
@@ -1107,7 +1107,7 @@ Make sure that the boundary conditions :eq:`onefive` are satisfied
 Exercise 3
 --------------
 
-Solve the infinite time optimal control problem to maximize
+Solve the infinite time-optimal control problem to maximize
 
 .. math::
 
@@ -1129,7 +1129,7 @@ Solve the infinite time problem, to maximize
 
 .. math::
 
-    \lim_{N \rightarrow \infty}\ \sum^N_{t=0}\ (.0000001)\, y^2_t - {1 \over 2} 
+    \lim_{N \rightarrow \infty}\ \sum^N_{t=0}\ (.0000001)\, y^2_t - {1 \over 2}
     [(1 - 2 L) y_t]^2
 
 
