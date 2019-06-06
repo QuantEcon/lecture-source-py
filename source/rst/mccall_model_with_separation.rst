@@ -14,7 +14,7 @@ Job Search II: Search and Separation
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -29,7 +29,7 @@ Previously :doc:`we looked <mccall_model>` at the McCall job search model :cite:
 
 One unrealistic feature of the model is that every job is permanent
 
-In this lecture we extend the McCall model by introducing job separation
+In this lecture, we extend the McCall model by introducing job separation
 
 Once separation enters the picture, the agent comes to view
 
@@ -135,9 +135,9 @@ and
 
 Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
 
-* The left hand sides of equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the values of a worker in a particular situation *today*
+* The left-hand sides of equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the values of a worker in a particular situation *today*
 
-* The right hand sides of the equations are the discounted (by :math:`\beta`) expected values of the possible situations that worker can be in *tomorrow*
+* The right-hand sides of the equations are the discounted (by :math:`\beta`) expected values of the possible situations that worker can be in *tomorrow*
 
 *  But *tomorrow* the worker can be in only one of the situations whose values *today* are on the left sides of our two equations
 
@@ -167,7 +167,7 @@ If our worker does receive an offer, the wage offer is drawn from :math:`\phi` a
 
 He either accepts or rejects the offer
 
-Otherwise the model is the same
+Otherwise, the model is the same
 
 
 With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy
@@ -199,9 +199,9 @@ Here this amounts to
 
 #. make guesses for :math:`h` and :math:`v`
 
-#. plug these guesses into the right hand sides of :eq:`bell01_mccall` and :eq:`bell02_mccall`
+#. plug these guesses into the right-hand sides of :eq:`bell01_mccall` and :eq:`bell02_mccall`
 
-#. update the left hand sides from this rule and then repeat
+#. update the left-hand sides from this rule and then repeat
 
 
 In other words, we are iterating using the rules
@@ -238,7 +238,7 @@ Implementation
 
 Let's implement this iterative process
 
-In the code you'll see that we use a class to store the various parameters and other
+In the code, you'll see that we use a class to store the various parameters and other
 objects associated with a given model
 
 This helps to tidy up the code and provides an object that's easy to pass to functions
@@ -296,7 +296,7 @@ The following defines jitted versions of the Bellman operators :math:`h` and :ma
         A jitted function to update the Bellman equations
 
         """
-        
+
         α, β, γ, c, σ, w_vals, ϕ_vals = paras
 
         v_new = np.empty_like(v)
@@ -426,7 +426,7 @@ If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
 
 Let's use it to look at how the reservation wage varies with parameters
 
-In each instance below we'll show you a figure and then ask you to reproduce it in the exercises
+In each instance below, we'll show you a figure and then ask you to reproduce it in the exercises
 
 
 
@@ -450,7 +450,7 @@ In effect, the cost of continuing job search is reduced
 The Reservation Wage and Discounting
 ----------------------------------------------------
 
-Next let's investigate how :math:`\bar w` varies with the discount factor
+Next, let's investigate how :math:`\bar w` varies with the discount factor
 
 The next figure plots the reservation wage associated with different values of
 :math:`\beta`
