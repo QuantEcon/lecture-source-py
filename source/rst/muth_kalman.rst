@@ -312,7 +312,7 @@ Now we shall extract from the ``Kalman`` instance ``kmuth`` coefficients of
    :math:`a_t`\ s that are square summable linear combinations of :math:`y_t, y_{t-1}, \ldots`
 
 -  a univariate autoregression representation that depicts the
-   coefficients in a linear least-square projection of :math:`y_t` on
+   coefficients in a linear least square projection of :math:`y_t` on
    the semi-infinite history :math:`y_{t-1}, y_{t-2}, \ldots`
 
 Then we’ll plot each of them
