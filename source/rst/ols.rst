@@ -21,12 +21,12 @@ Overview
 
 Linear regression is a standard tool for analyzing the relationship between two or more variables
 
-In this lecture we'll use the Python package ``statsmodels`` to estimate, interpret, and visualize linear regression models
+In this lecture, we'll use the Python package ``statsmodels`` to estimate, interpret, and visualize linear regression models
 
-Along the way we'll discuss a variety of topics, including
+Along the way, we'll discuss a variety of topics, including
 
 -  simple and multivariate linear regression
--  visualization 
+-  visualization
 -  endogeneity and omitted variable bias
 -  two-stage least squares
 
@@ -38,14 +38,14 @@ In the paper, the authors emphasize the importance of institutions in economic d
 
 The main contribution is the use of settler mortality rates as a source of *exogenous* variation in institutional differences
 
-Such variation is needed to determine whether it is institutions that give rise to greater economic growth, rather than the other way around 
+Such variation is needed to determine whether it is institutions that give rise to greater economic growth, rather than the other way around
 
 
 
 Prerequisites
 -------------
 
-This lecture assumes you are familiar with basic econometrics 
+This lecture assumes you are familiar with basic econometrics
 
 For an introductory text covering these topics, see, for example,
 :cite:`Wooldridge2015`
@@ -80,7 +80,7 @@ We will use pandas' ``.read_stata()`` function to read in data contained in the 
 .. code-block:: python3
 
     import pandas as pd
-    
+
     df1 = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/ols/maketable1.dta')
     df1.head()
 
@@ -88,14 +88,14 @@ We will use pandas' ``.read_stata()`` function to read in data contained in the 
 
 Let's use a scatterplot to see whether any obvious relationship exists
 between GDP per capita and the protection against
-expropriation index 
+expropriation index
 
 .. code-block:: ipython
 
     import matplotlib.pyplot as plt
     %matplotlib inline
     plt.style.use('seaborn')
-    
+
     df1.plot(x='avexpr', y='logpgp95', kind='scatter')
     plt.show()
 
@@ -134,28 +134,28 @@ fits the data, as in the following plot (Figure 2 in :cite:`Acemoglu2001`)
 .. code-block:: python3
 
     import numpy as np
-    
+
     # Dropping NA's is required to use numpy's polyfit
     df1_subset = df1.dropna(subset=['logpgp95', 'avexpr'])
-    
+
     # Use only 'base sample' for plotting purposes
     df1_subset = df1_subset[df1_subset['baseco'] == 1]
-    
+
     X = df1_subset['avexpr']
     y = df1_subset['logpgp95']
     labels = df1_subset['shortnam']
-    
+
     # Replace markers with country labels
     plt.scatter(X, y, marker='')
-    
+
     for i, label in enumerate(labels):
         plt.annotate(label, (X.iloc[i], y.iloc[i]))
-    
+
     # Fit a linear trend line
-    plt.plot(np.unique(X), 
-             np.poly1d(np.polyfit(X, y, 1))(np.unique(X)), 
+    plt.plot(np.unique(X),
+             np.poly1d(np.polyfit(X, y, 1))(np.unique(X)),
              color='black')
-    
+
     plt.xlim([3.3,10.5])
     plt.ylim([4,10.5])
     plt.xlabel('Average Expropriation Risk 1985-95')
@@ -195,7 +195,7 @@ We will use ``pandas`` dataframes with ``statsmodels``, however standard arrays 
 .. code-block:: python3
 
     import statsmodels.api as sm
-    
+
     reg1 = sm.OLS(endog=df1['logpgp95'], exog=df1[['const', 'avexpr']], missing='drop')
     type(reg1)
 
@@ -207,7 +207,7 @@ We need to use ``.fit()`` to obtain parameter estimates
 :math:`\hat{\beta}_0` and :math:`\hat{\beta}_1`
 
 .. code-block:: python3
-    
+
     results = reg1.fit()
     type(results)
 
@@ -293,17 +293,17 @@ comparison purposes
 .. code-block:: python3
 
     # Drop missing observations from whole sample
-    
+
     df1_plot = df1.dropna(subset=['logpgp95', 'avexpr'])
-    
+
     # Plot predicted values
-    
+
     plt.scatter(df1_plot['avexpr'], results.predict(), alpha=0.5, label='predicted')
-    
+
     # Plot observed values
-    
+
     plt.scatter(df1_plot['avexpr'], df1_plot['logpgp95'], alpha=0.5, label='observed')
-    
+
     plt.legend()
     plt.title('OLS predicted values')
     plt.xlabel('avexpr')
@@ -338,15 +338,15 @@ Let's estimate some of the extended models considered in the paper
 .. code-block:: python3
 
     df2 = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/ols/maketable2.dta')
-    
+
     # Add constant term to dataset
     df2['const'] = 1
-    
+
     # Create lists of variables to be used in each regression
     X1 = ['const', 'avexpr']
     X2 = ['const', 'avexpr', 'lat_abst']
     X3 = ['const', 'avexpr', 'lat_abst', 'asia', 'africa', 'other']
-    
+
     # Estimate an OLS regression for each set of variables
     reg1 = sm.OLS(df2['logpgp95'], df2[X1], missing='drop').fit()
     reg2 = sm.OLS(df2['logpgp95'], df2[X2], missing='drop').fit()
@@ -359,10 +359,10 @@ in the paper)
 .. code-block:: python3
 
     from statsmodels.iolib.summary2 import summary_col
-    
+
     info_dict={'R-squared' : lambda x: f"{x.rsquared:.2f}",
                'No. observations' : lambda x: f"{int(x.nobs):d}"}
-    
+
     results_table = summary_col(results=[reg1,reg2,reg3],
                                 float_format='%0.2f',
                                 stars = True,
@@ -373,11 +373,11 @@ in the paper)
                                 regressor_order=['const',
                                                  'avexpr',
                                                  'lat_abst',
-                                                 'asia', 
+                                                 'asia',
                                                  'africa'])
-                                
+
     results_table.add_title('Table 2 - OLS Regressions')
-    
+
     print(results_table)
 
 Endogeneity
@@ -429,23 +429,23 @@ condition of a valid instrument
 .. code-block:: python3
 
     # Dropping NA's is required to use numpy's polyfit
-    df1_subset2 = df1.dropna(subset=['logem4', 'avexpr']) 
-    
+    df1_subset2 = df1.dropna(subset=['logem4', 'avexpr'])
+
     X = df1_subset2['logem4']
     y = df1_subset2['avexpr']
     labels = df1_subset2['shortnam']
-    
+
     # Replace markers with country labels
     plt.scatter(X, y, marker='')
-    
+
     for i, label in enumerate(labels):
         plt.annotate(label, (X.iloc[i], y.iloc[i]))
-        
+
     # Fit a linear trend line
-    plt.plot(np.unique(X), 
+    plt.plot(np.unique(X),
              np.poly1d(np.polyfit(X, y, 1))(np.unique(X)),
              color='black')
-    
+
     plt.xlim([1.8,8.4])
     plt.ylim([3.3,10.4])
     plt.xlabel('Log of Settler Mortality')
@@ -461,8 +461,8 @@ For example, settler mortality rates may be related to the current disease envir
 
 :cite:`Acemoglu2001` argue this is unlikely because:
 
--  The majority of settler deaths were due to malaria and yellow fever,
-   and had limited effect on local people
+-  The majority of settler deaths were due to malaria and yellow fever
+   and had a limited effect on local people
 
 -  The disease burden on local people in Africa or India, for example,
    did not appear to be higher than average, supported by relatively
@@ -498,13 +498,13 @@ used for estimation)
     # Import and select the data
     df4 = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/ols/maketable4.dta')
     df4 = df4[df4['baseco'] == 1]
-    
+
     # Add a constant variable
     df4['const'] = 1
-    
+
     # Fit the first stage regression and print summary
-    results_fs = sm.OLS(df4['avexpr'], 
-                        df4[['const', 'logem4']], 
+    results_fs = sm.OLS(df4['avexpr'],
+                        df4[['const', 'logem4']],
                         missing='drop').fit()
     print(results_fs.summary())
 
@@ -527,8 +527,8 @@ Our second stage regression is thus
 .. code-block:: python3
 
     df4['predicted_avexpr'] = results_fs.predict()
-    
-    results_ss = sm.OLS(df4['logpgp95'], 
+
+    results_ss = sm.OLS(df4['logpgp95'],
                         df4[['const', 'predicted_avexpr']]).fit()
     print(results_ss.summary())
 
@@ -563,7 +563,7 @@ included exogenous variables)
                 exog=df4['const'],
                 endog=df4['avexpr'],
                 instruments=df4['logem4']).fit(cov_type='unadjusted')
-    
+
     print(iv.summary)
 
 
@@ -585,7 +585,7 @@ Summary
 
 We have demonstrated basic OLS and 2SLS regression in ``statsmodels`` and ``linearmodels``
 
-If you are familiar with R, you may want use the `formula interface <http://www.statsmodels.org/dev/example_formulas.html>`__ to ``statsmodels``, or consider using `r2py <https://rpy2.bitbucket.io/>`__ to call R from within Python
+If you are familiar with R, you may want to use the `formula interface <http://www.statsmodels.org/dev/example_formulas.html>`__ to ``statsmodels``, or consider using `r2py <https://rpy2.bitbucket.io/>`__ to call R from within Python
 
 
 
@@ -650,7 +650,7 @@ The linear equation we want to estimate is (written in matrix form)
 
    y = X\beta + u
 
-To solve for the unknown parameter :math:`\beta`, we want to minimise
+To solve for the unknown parameter :math:`\beta`, we want to minimize
 the sum of squared residuals
 
 .. math::
@@ -672,7 +672,7 @@ Solving this optimization problem gives the solution for the
 .. math::
 
 
-   \hat{\beta} = (X'X)^{-1}X'y 
+   \hat{\beta} = (X'X)^{-1}X'y
 
 Using the above information, compute :math:`\hat{\beta}` from model 1
 using ``numpy`` - your results should be the same as those in the
@@ -694,23 +694,23 @@ Exercise 1
 
     # Load in data
     df4 = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/ols/maketable4.dta')
-    
+
     # Add a constant term
     df4['const'] = 1
-    
+
     # Estimate the first stage regression
-    reg1 = sm.OLS(endog=df4['avexpr'], 
-                  exog=df4[['const', 'logem4']], 
+    reg1 = sm.OLS(endog=df4['avexpr'],
+                  exog=df4[['const', 'logem4']],
                   missing='drop').fit()
-    
+
     # Retrieve the residuals
     df4['resid'] = reg1.resid
-    
+
     # Estimate the second stage residuals
-    reg2 = sm.OLS(endog=df4['logpgp95'], 
-                  exog=df4[['const', 'avexpr', 'resid']], 
+    reg2 = sm.OLS(endog=df4['logpgp95'],
+                  exog=df4[['const', 'avexpr', 'resid']],
                   missing='drop').fit()
-    
+
     print(reg2.summary())
 
 
@@ -725,14 +725,14 @@ Exercise 2
     # Load in data
     df1 = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/ols/maketable1.dta')
     df1 = df1.dropna(subset=['logpgp95', 'avexpr'])
-    
+
     # Add a constant term
     df1['const'] = 1
-    
+
     # Define the X and y variables
     y = np.asarray(df1['logpgp95'])
     X = np.asarray(df1[['const', 'avexpr']])
-    
+
     # Compute β_hat
     β_hat = np.linalg.solve(X.T @ X, X.T @ y)
 
