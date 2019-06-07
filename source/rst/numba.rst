@@ -179,7 +179,7 @@ Such an array is stored in a single contiguous block of memory
 
 * For example, a 64 bit integer is stored in 8 bytes of memory
 
-* An array of :math:`n` such integers occupy :math:`8n` **consecutive** memory slots
+* An array of :math:`n` such integers occupies :math:`8n` **consecutive** memory slots
 
 Moreover, the compiler is made aware of the data type by the programmer
 
