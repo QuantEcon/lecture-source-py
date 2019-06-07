@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture we consider an extension of the :doc:`previously studied <mccall_model>` job search model of McCall :cite:`McCall1970`
+In this lecture, we consider an extension of the :doc:`previously studied <mccall_model>` job search model of McCall :cite:`McCall1970`
 
 In the McCall model, an unemployed worker decides when to accept a permanent position at a specified wage, given
 
@@ -218,7 +218,7 @@ Intuitively, if we accept at :math:`w_a` and :math:`w_a \leq w_b`, then --- all 
 
 This suggests a policy of accepting whenever :math:`w` exceeds some threshold value :math:`\bar w`
 
-But :math:`\bar w` should depend on :math:`\pi` --- in fact it should be decreasing in :math:`\pi` because
+But :math:`\bar w` should depend on :math:`\pi` --- in fact, it should be decreasing in :math:`\pi` because
 
 * :math:`f` is a less attractive offer distribution than :math:`g`
 * larger :math:`\pi` means more weight on :math:`f` and less on :math:`g`
@@ -651,7 +651,7 @@ operator ``Q``
 
         return Q
 
-In the next exercise you are asked to compute an approximation to :math:`\bar w`
+In the next exercise, you are asked to compute an approximation to :math:`\bar w`
 
 
 Exercises
@@ -749,7 +749,7 @@ underlying distribution on the unemployment rate is
 
 At a point in the simulation, the distribution becomes significantly worse
 
-It takes a while for agents to learn this, and in the meantime they are too optimistic,
+It takes a while for agents to learn this, and in the meantime, they are too optimistic
 and turn down too many jobs
 
 As a result, the unemployment rate spikes
@@ -770,7 +770,7 @@ As a result, the unemployment rate spikes
 
     @njit
     def update(a, b, e, π):
-        "Update e and π by drawing wage offer from beta distribution with parameters a and b."
+        "Update e and π by drawing wage offer from beta distribution with parameters a and b"
 
         if e == False:
             w = np.random.beta(a, b)       # Draw random wage
@@ -791,7 +791,7 @@ As a result, the unemployment rate spikes
                       d=200,        # Change date
                       s=0.025):     # Separation rate
 
-        """Simulates path of employment for N number of works over T periods."""
+        """Simulates path of employment for N number of works over T periods"""
 
         e = np.ones((N, T+1))
         π = np.ones((N, T+1)) * 1e-3
