@@ -174,7 +174,7 @@ To begin, we set :math:`k = 4` and :math:`\alpha_d = 0.1`
 
 .. code-block:: python3
 
-    k = 4  # Number of periods of schooling required to become engineer
+    k = 4  # Number of periods of schooling required to become an engineer
 
     β = np.array([[1 / 1.05]])
     α_d = np.array([[0.1]])
