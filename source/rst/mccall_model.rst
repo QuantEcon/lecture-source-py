@@ -1,4 +1,4 @@
-In addition to what's in Anaconda,.. _mccall:
+.. _mccall:
 
 .. include:: /_static/includes/header.raw
 
