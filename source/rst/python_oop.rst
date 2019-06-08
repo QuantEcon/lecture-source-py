@@ -7,7 +7,7 @@
 ********************************************
 
 .. index::
-    single: Python; Object Oriented Programming
+    single: Python; Object-Oriented Programming
 
 .. contents:: :depth: 2
 
@@ -16,21 +16,21 @@
 Overview
 ============
 
-In an :doc:`earlier lecture <oop_intro>` we learned some foundations of object oriented programming
+In an :doc:`earlier lecture <oop_intro>`, we learned some foundations of object-oriented programming
 
 The objectives of this lecture are
 
-* cover OOP in more depth 
+* cover OOP in more depth
 
 * learn how to build our own objects, specialized to our needs
 
-For example, you already know how to 
+For example, you already know how to
 
 * create lists, strings and other Python objects
-  
+
 * use their methods to modify their contents
 
-So imagine now you want to write a program with consumers, who can 
+So imagine now you want to write a program with consumers, who can
 
 * hold and spend cash
 
@@ -74,12 +74,12 @@ Key Concepts
 ---------------
 
 .. index::
-    single: Object Oriented Programming; Key Concepts
+    single: Object-Oriented Programming; Key Concepts
 
 
 As discussed an :doc:`earlier lecture <oop_intro>`, in the OOP paradigm, data and functions are **bundled together** into "objects"
 
-An example is a Python list, which not only stores data, but also knows how to sort itself, etc.
+An example is a Python list, which not only stores data but also knows how to sort itself, etc.
 
 .. code-block:: python3
 
@@ -135,7 +135,7 @@ Why is OOP Useful?
 ----------------------
 
 
-OOP is useful for the same reason that abstraction is useful: for recognizing and exploiting common structure
+OOP is useful for the same reason that abstraction is useful: for recognizing and exploiting the common structure
 
 For example,
 
@@ -147,7 +147,7 @@ For example,
 
 These are all abstractions that collect together "objects" of the same "type"
 
-Recognizing common structure allows us to employ common tools 
+Recognizing common structure allows us to employ common tools
 
 In economic theory, this might be a proposition that applies to all games of a certain type
 
@@ -162,7 +162,7 @@ Defining Your Own Classes
 ==============================
 
 .. index::
-    single: Object Oriented Programming; Classes
+    single: Object-Oriented Programming; Classes
 
 Let's build some simple classes to start off
 
@@ -173,7 +173,7 @@ Let's build some simple classes to start off
 Example: A Consumer Class
 -------------------------------------
 
-First we'll build a ``Consumer`` class with  
+First, we'll build a ``Consumer`` class with
 
 * a ``wealth`` attribute that stores the consumer's wealth (data)
 
@@ -189,15 +189,15 @@ Here's one implementation
 .. code-block:: python3
 
     class Consumer:
-        
+
         def __init__(self, w):
             "Initialize consumer with w dollars of wealth"
             self.wealth = w
-            
+
         def earn(self, y):
-            "The consumer earns y dollars" 
+            "The consumer earns y dollars"
             self.wealth += y
-            
+
         def spend(self, x):
             "The consumer spends x dollars if feasible"
             new_wealth = self.wealth - x
@@ -260,7 +260,7 @@ We can of course create multiple instances each with its own data
     c1.wealth
 
 
-In fact each instance stores its data in a separate namespace dictionary
+In fact, each instance stores its data in a separate namespace dictionary
 
 .. code-block:: python3
 
@@ -296,7 +296,7 @@ There are no examples of the last rule in the preceding code but we will see som
 Details
 ^^^^^^^
 
-In this section we look at some more formal details related to classes and ``self``
+In this section, we look at some more formal details related to classes and ``self``
 
 *  You might wish to skip to :ref:`the next section <oop_solow_growth>` on first pass of this lecture
 
@@ -321,7 +321,7 @@ Consider the following code
 
 When you call ``earn`` via ``c1.earn(10)`` the interpreter passes the instance ``c1`` and the argument ``10`` to ``Consumer.earn``
 
-In fact the following are equivalent
+In fact, the following are equivalent
 
 * ``c1.earn(10)``
 
@@ -350,7 +350,7 @@ Example: The Solow Growth Model
 -------------------------------------
 
 .. index::
-    single: Object Oriented Programming; Methods
+    single: Object-Oriented Programming; Methods
 
 
 For our next example, let's write a simple class to implement the Solow growth model
@@ -381,22 +381,22 @@ Some points of interest in the code are
 
 * An instance maintains a record of its current capital stock in the variable ``self.k``
 
-* The ``h`` method implements the right hand side of :eq:`solow_lom`
+* The ``h`` method implements the right-hand side of :eq:`solow_lom`
 
 * The ``update`` method uses ``h`` to update capital as per :eq:`solow_lom`
 
     * Notice how inside ``update`` the reference to the local method ``h`` is ``self.h``
 
-The methods ``steady_state`` and ``generate_sequence`` are fairly self explanatory
+The methods ``steady_state`` and ``generate_sequence`` are fairly self-explanatory
 
 .. code-block:: python3
 
     class Solow:
         r"""
-        Implements the Solow growth model with update rule
-    
+        Implements the Solow growth model with the update rule
+
             k_{t+1} = [(s z k^α_t) + (1 - δ)k_t] /(1 + n)
-        
+
         """
         def __init__(self, n=0.05,  # population growth rate
                            s=0.25,  # savings rate
@@ -404,28 +404,28 @@ The methods ``steady_state`` and ``generate_sequence`` are fairly self explanato
                            α=0.3,   # share of labor
                            z=2.0,   # productivity
                            k=1.0):  # current capital stock
-    
+
             self.n, self.s, self.δ, self.α, self.z = n, s, δ, α, z
             self.k = k
-    
+
         def h(self):
             "Evaluate the h function"
             # Unpack parameters (get rid of self to simplify notation)
             n, s, δ, α, z = self.n, self.s, self.δ, self.α, self.z
             # Apply the update rule
             return (s * z * self.k**α + (1 - δ) * self.k) / (1 + n)
-    
+
         def update(self):
             "Update the current state (i.e., the capital stock)."
             self.k =  self.h()
-            
+
         def steady_state(self):
             "Compute the steady state value of capital."
             # Unpack parameters (get rid of self to simplify notation)
             n, s, δ, α, z = self.n, self.s, self.δ, self.α, self.z
             # Compute and return steady state
             return ((s * z) / (n + δ))**(1 / (1 - α))
-         
+
         def generate_sequence(self, t):
             "Generate and return a time series of length t"
             path = []
@@ -443,21 +443,21 @@ The common steady state is also plotted for comparison
 
     import matplotlib.pyplot as plt
     %matplotlib inline
-    
-    s1 = Solow()  
+
+    s1 = Solow()
     s2 = Solow(k=8.0)
-    
+
     T = 60
     fig, ax = plt.subplots(figsize=(9, 6))
-    
+
     # Plot the common steady state value of capital
     ax.plot([s1.steady_state()]*T, 'k-', label='steady state')
-    
+
     # Plot time series for each economy
     for s in s1, s2:
         lb = f'capital series from initial state {s.k}'
         ax.plot(s.generate_sequence(T), 'o-', lw=2, alpha=0.6, label=lb)
-    
+
     ax.legend()
     plt.show()
 
@@ -466,7 +466,7 @@ The common steady state is also plotted for comparison
 Example: A Market
 ------------------------------
 
-Next let's write a class for a simple one good market where agents are price takers
+Next, let's write a class for a simple one good market where agents are price takers
 
 The market consists of the following objects:
 
@@ -476,11 +476,11 @@ The market consists of the following objects:
 
 Here
 
-* :math:`p` is price paid by the consumer,  :math:`Q` is quantity, and :math:`t` is a per unit tax
+* :math:`p` is price paid by the consumer,  :math:`Q` is quantity and :math:`t` is a per-unit tax
 
 * Other symbols are demand and supply parameters
 
-The class provides methods to compute various values of interest, including competitive equlibrium price and quantity, tax revenue raised, consumer surplus and producer surplus
+The class provides methods to compute various values of interest, including competitive equilibrium price and quantity, tax revenue raised, consumer surplus and producer surplus
 
 Here's our implementation
 
@@ -499,41 +499,41 @@ Here's our implementation
             self.ad, self.bd, self.az, self.bz, self.tax = ad, bd, az, bz, tax
             if ad < az:
                 raise ValueError('Insufficient demand.')
-            
+
         def price(self):
             "Return equilibrium price"
-            return  (self.ad - self.az + self.bz * self.tax) / (self.bd + self.bz) 
-        
+            return  (self.ad - self.az + self.bz * self.tax) / (self.bd + self.bz)
+
         def quantity(self):
             "Compute equilibrium quantity"
             return  self.ad - self.bd * self.price()
-            
+
         def consumer_surp(self):
             "Compute consumer surplus"
             # == Compute area under inverse demand function == #
             integrand = lambda x: (self.ad / self.bd) - (1 / self.bd) * x
             area, error = quad(integrand, 0, self.quantity())
             return area - self.price() * self.quantity()
-        
+
         def producer_surp(self):
             "Compute producer surplus"
             #  == Compute area above inverse supply curve, excluding tax == #
             integrand = lambda x: -(self.az / self.bz) + (1 / self.bz) * x
-            area, error = quad(integrand, 0, self.quantity())  
+            area, error = quad(integrand, 0, self.quantity())
             return (self.price() - self.tax) * self.quantity() - area
-        
+
         def taxrev(self):
             "Compute tax revenue"
             return self.tax * self.quantity()
-            
+
         def inverse_demand(self, x):
             "Compute inverse demand"
             return self.ad / self.bd - (1 / self.bd)* x
-        
+
         def inverse_supply(self, x):
             "Compute inverse supply curve"
             return -(self.az / self.bz) + (1 / self.bz) * x + self.tax
-        
+
         def inverse_supply_no_tax(self, x):
             "Compute inverse supply curve without tax"
             return -(self.az / self.bz) + (1 / self.bz) * x
@@ -560,17 +560,17 @@ supply curves  with and without taxes
 
     # Baseline ad, bd, az, bz, tax
     baseline_params = 15, .5, -2, .5, 3
-    m = Market(*baseline_params) 
+    m = Market(*baseline_params)
 
     q_max = m.quantity() * 2
     q_grid = np.linspace(0.0, q_max, 100)
     pd = m.inverse_demand(q_grid)
     ps = m.inverse_supply(q_grid)
-    psno = m.inverse_supply_no_tax(q_grid)    
+    psno = m.inverse_supply_no_tax(q_grid)
 
     fig, ax = plt.subplots()
     ax.plot(q_grid, pd, lw=2, alpha=0.6, label='demand')
-    ax.plot(q_grid, ps, lw=2, alpha=0.6, label='supply') 
+    ax.plot(q_grid, ps, lw=2, alpha=0.6, label='supply')
     ax.plot(q_grid, psno, '--k', lw=2, alpha=0.6, label='supply without tax')
     ax.set_xlabel('quantity', fontsize=14)
     ax.set_xlim(0, q_max)
@@ -589,9 +589,9 @@ The next program provides a function that
     def deadw(m):
         "Computes deadweight loss for market m."
         # == Create analogous market with no tax == #
-        m_no_tax = Market(m.ad, m.bd, m.az, m.bz, 0)   
+        m_no_tax = Market(m.ad, m.bd, m.az, m.bz, 0)
         # == Compare surplus, return difference == #
-        surp1 = m_no_tax.consumer_surp() + m_no_tax.producer_surp()  
+        surp1 = m_no_tax.consumer_surp() + m_no_tax.producer_surp()
         surp2 = m.consumer_surp() + m.producer_surp() + m.taxrev()
         return surp1 - surp2
 
@@ -632,14 +632,14 @@ Here's one implementation
       """
       def __init__(self, x0, r):
           """
-          Initialize with state x0 and parameter r 
+          Initialize with state x0 and parameter r
           """
           self.x, self.r = x0, r
-          
+
       def update(self):
           "Apply the map to update state."
           self.x =  self.r * self.x *(1 - self.x)
-          
+
       def generate_sequence(self, n):
           "Generate and return a sequence of length n."
           path = []
@@ -715,11 +715,11 @@ Special Methods
 =================
 
 .. index::
-    single: Object Oriented Programming; Special Methods
+    single: Object-Oriented Programming; Special Methods
 
 Python provides special methods with which some neat tricks can be performed
 
-For example, recall that lists and tuples have a notion of length, and that this length can be queried via the ``len`` function
+For example, recall that lists and tuples have a notion of length and that this length can be queried via the ``len`` function
 
 .. code-block:: python3
 
@@ -870,7 +870,7 @@ Exercise 1
 .. code-block:: python3
 
     # == test == #
-    
+
     from random import uniform
 
     samples = [uniform(0, 1) for i in range(10)]
@@ -916,4 +916,3 @@ Exercise 2
             # And reset coefficients data to new values
             self.coefficients = new_coefficients
             return new_coefficients
-
