@@ -13,7 +13,7 @@
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -61,7 +61,7 @@ The Savings Problem
 .. index::
     single: Permanent Income Model; Savings Problem
 
-In this section we state and solve the savings and consumption problem faced
+In this section, we state and solve the savings and consumption problem faced
 by the consumer
 
 Preliminaries
@@ -70,7 +70,7 @@ Preliminaries
 We use a class of stochastic processes called
 `martingales <https://en.wikipedia.org/wiki/Martingale_%28probability_theory%29>`_
 
-A discrete time martingale is a stochastic process (i.e., a  sequence of random variables)
+A discrete-time martingale is a stochastic process (i.e., a  sequence of random variables)
 :math:`\{X_t\}` with finite mean at each :math:`t` and satisfying
 
 .. math::
@@ -102,7 +102,7 @@ A **random walk** is  a stochastic process :math:`\{X_t\}` that satisfies
 
 for some IID zero mean *innovation* sequence :math:`\{w_t\}`
 
-Evidently :math:`X_t` can also be expressed as
+Evidently, :math:`X_t` can also be expressed as
 
 .. math::
 
@@ -229,7 +229,7 @@ With our quadratic preference specification, :eq:`sprob4` has the striking impli
     \mathbb{E}_t [c_{t+1}] = c_t
 
 
-(In fact quadratic preferences are *necessary* for this conclusion [#f2]_)
+(In fact, quadratic preferences are *necessary* for this conclusion [#f2]_)
 
 One way to interpret :eq:`sprob5` is that consumption will change only when
 "new information" about permanent income is revealed
@@ -332,7 +332,7 @@ be expressible as functions of :math:`z_t` and :math:`b_t`
 This is indeed the case
 
 
-In fact, from :ref:`this discussion <lm_fgs>` we see that
+In fact, from :ref:`this discussion <lm_fgs>`, we see that
 
 .. math::
 
@@ -505,7 +505,7 @@ In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be IID and scalar standard n
 
 Finally, let :math:`b_0 = z^1_0 = 0`
 
-Under these assumptions we have :math:`y_t = \mu + \sigma w_t \sim N(\mu, \sigma^2)`
+Under these assumptions, we have :math:`y_t = \mu + \sigma w_t \sim N(\mu, \sigma^2)`
 
 Further, if you work through the state space representation, you will see that
 
@@ -557,7 +557,7 @@ The next figure shows a typical realization with :math:`r = 0.05`, :math:`\mu = 
     ax.set_xlabel('Time')
 
     plt.show()
-  
+
 
 
 Observe that consumption is considerably smoother than income
@@ -580,14 +580,14 @@ The figure below shows the consumption paths of 250 consumers with independent i
     ax.set(xlabel='Time', ylabel='Consumption')
 
     plt.show()
-  
+
 
 
 
 Alternative Representations
 ================================
 
-In this section we shed more light on the evolution of savings, debt and
+In this section, we shed more light on the evolution of savings, debt and
 consumption by representing their dynamics in several different ways
 
 
@@ -751,7 +751,7 @@ where
 
 When :math:`\hat \sigma > 0`, :math:`\{c_t\}` has no asymptotic distribution
 
-Let's consider what this means for a cross-section of ex ante identical consumers born at time :math:`0`
+Let's consider what this means for a cross-section of ex-ante identical consumers born at time :math:`0`
 
 Let the distribution of :math:`c_0` represent the cross-section of initial consumption values
 
@@ -1022,7 +1022,7 @@ Equation :eq:`incomemaar` indicates that the consumer regards
 
 The consumer permanently increases his consumption by the full amount of his estimate of the permanent part of :math:`a_{t+1}`, but by only :math:`(1-\beta)` times his estimate of the purely transitory part of :math:`a_{t+1}`
 
-Therefore, in total he permanently increments his consumption by a fraction :math:`K + (1-\beta) (1-K) = 1 - \beta (1-K)` of :math:`a_{t+1}`
+Therefore, in total, he permanently increments his consumption by a fraction :math:`K + (1-\beta) (1-K) = 1 - \beta (1-K)` of :math:`a_{t+1}`
 
 He saves the remaining fraction :math:`\beta (1-K)`
 
@@ -1061,9 +1061,9 @@ Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker
 Appendix: The Euler Equation
 ================================
 
-Where does the first order condition :eq:`sprob4` come from?
+Where does the first-order condition :eq:`sprob4` come from?
 
-Here we'll give a proof for the two period case, which is representative of
+Here we'll give a proof for the two-period case, which is representative of
 the general argument
 
 The finite horizon equivalent of the no-Ponzi condition is that the agent
@@ -1080,25 +1080,25 @@ From the budget constraint :eq:`sprob2` we then have
 
 Here :math:`b_0` and :math:`y_0` are given constants
 
-Substituting these constraints into our two period objective :math:`u(c_0) + \beta \mathbb{E}_0 [u(c_1)]` gives
+Substituting these constraints into our two-period objective :math:`u(c_0) + \beta \mathbb{E}_0 [u(c_1)]` gives
 
 .. math::
 
      \max_{b_1}
      \left\{
-         u \left(\frac{b_1}{R} - b_0 + y_0 \right) + 
+         u \left(\frac{b_1}{R} - b_0 + y_0 \right) +
          \beta \, \mathbb{E}_0 [ u (y_1 - b_1) ]
     \right\}
 
 
-You will be able to verify that the first order condition is
+You will be able to verify that the first-order condition is
 
 .. math::
 
     u'(c_0) = \beta R  \,\mathbb{E}_0 [u'(c_1)]
 
 
-Using :math:`\beta R = 1` gives :eq:`sprob4` in the two period case
+Using :math:`\beta R = 1` gives :eq:`sprob4` in the two-period case
 
 The proof for the general case is similar
 
@@ -1110,7 +1110,7 @@ The proof for the general case is similar
 
 .. [#f2] A linear marginal utility is essential for deriving :eq:`sprob5` from :eq:`sprob4`.  Suppose instead that we had imposed the following more standard assumptions on the utility function: :math:`u'(c) >0, u''(c)<0, u'''(c) > 0` and required that :math:`c \geq 0`.  The Euler equation remains :eq:`sprob4`. But the fact that :math:`u''' <0` implies via Jensen's inequality that :math:`\mathbb{E}_t [u'(c_{t+1})] >  u'(\mathbb{E}_t [c_{t+1}])`.  This inequality together with :eq:`sprob4` implies that :math:`\mathbb{E}_t [c_{t+1}] > c_t` (consumption is said to be a 'submartingale'), so that consumption stochastically diverges to :math:`+\infty`.  The consumer's savings also diverge to :math:`+\infty`.
 
-.. [#fod] An optimal decision rule is a map from current state into current actions---in this case, consumption
+.. [#fod] An optimal decision rule is a map from the current state into current actions---in this case, consumption
 
 .. [#f4] Representation :eq:`sprob15ab` implies that :math:`d(L) = U (I - A L)^{-1} C`.
 
