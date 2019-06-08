@@ -11,7 +11,7 @@
 
 .. contents:: :depth: 2
 
-`SciPy <http://www.scipy.org>`_ builds on top of NumPy to provide common tools for scientific programming, such as
+`SciPy <http://www.scipy.org>`_ builds on top of NumPy to provide common tools for scientific programming such as
 
 
 * `linear algebra <http://docs.scipy.org/doc/scipy/reference/linalg.html>`_
@@ -31,7 +31,7 @@ It's not really necessary to "learn" SciPy as a whole
 
 A more common approach is to get some idea of what's in the library and then look up `documentation <http://docs.scipy.org/doc/scipy/reference/index.html>`_ as required
 
-In this lecture we aim only to highlight some useful parts of the package
+In this lecture, we aim only to highlight some useful parts of the package
 
 
 :index:`SciPy` versus :index:`NumPy`
@@ -43,7 +43,7 @@ In fact, when we import SciPy we also get NumPy, as can be seen from the SciPy i
 
 .. code-block:: python3
 
-    # Import numpy symbols to scipy name space
+    # Import numpy symbols to scipy namespace
     import numpy as _num
     linalg = None
     from numpy import *
@@ -61,7 +61,7 @@ In fact, when we import SciPy we also get NumPy, as can be seen from the SciPy i
     del linalg
     __all__.remove('linalg')
 
-However, it's more common and better practice to use NumPy functionality explicitly 
+However, it's more common and better practice to use NumPy functionality explicitly
 
 .. code-block:: python3
 
@@ -69,11 +69,11 @@ However, it's more common and better practice to use NumPy functionality explici
 
     a = np.identity(3)
 
-What is useful in SciPy is the functionality in its subpackages
+What is useful in SciPy is the functionality in its sub-packages
 
 * ``scipy.optimize``, ``scipy.integrate``, ``scipy.stats``, etc.
 
-These subpackages and their attributes need to be imported separately
+These sub-packages and their attributes need to be imported separately
 
 .. code-block:: python3
 
@@ -81,7 +81,7 @@ These subpackages and their attributes need to be imported separately
     from scipy.optimize import brentq
     # etc
 
-Let's explore some of the major subpackages
+Let's explore some of the major sub-packages
 
 Statistics
 =============
@@ -116,7 +116,7 @@ This generates a draw from the distribution below when ``a, b = 5, 5``
 
 Sometimes we need access to the density itself, or the cdf, the quantiles, etc.
 
-For this we can use ``scipy.stats``, which provides all of this functionality as well as random number generation in a single consistent interface
+For this, we can use ``scipy.stats``, which provides all of this functionality as well as random number generation in a single consistent interface
 
 Here's an example of usage
 
@@ -135,26 +135,26 @@ Here's an example of usage
     ax.plot(grid, q.pdf(grid), 'k-', linewidth=2)
     plt.show()
 
-In this code we created a so-called ``rv_frozen`` object, via the call ``q = beta(5, 5)``
+In this code, we created a so-called ``rv_frozen`` object, via the call ``q = beta(5, 5)``
 
 The "frozen" part of the notation implies that ``q`` represents a particular distribution with a particular set of parameters
 
 Once we've done so, we can then generate random numbers, evaluate the density, etc., all from this fixed distribution
 
 .. code-block:: python3
-    
+
     q.cdf(0.4)      # Cumulative distribution function
-    
+
 .. code-block:: python3
-    
+
     q.pdf(0.4)      # Density function
-    
+
 .. code-block:: python3
-    
+
     q.ppf(0.8)      # Quantile (inverse cdf) function
-    
+
 .. code-block:: python3
-    
+
     q.mean()
 
 The general syntax for creating these objects is
@@ -177,7 +177,7 @@ For example, the previous code can be replaced by
 
 .. code-block:: python3
 
-    obs = beta.rvs(5, 5, size=2000)   
+    obs = beta.rvs(5, 5, size=2000)
     grid = np.linspace(0.01, 0.99, 100)
 
     fig, ax = plt.subplots()
@@ -243,9 +243,9 @@ Let's consider some numerical techniques for finding roots
 .. index::
     single: SciPy; Bisection
 
-One of the most common algorithms for numerical root finding is *bisection*
+One of the most common algorithms for numerical root-finding is *bisection*
 
-To understand the idea, recall the well known game where
+To understand the idea, recall the well-known game where
 
 * Player A thinks of a secret number between 1 and 100
 
@@ -266,7 +266,7 @@ It works for all sufficiently well behaved increasing continuous functions with 
 .. literalinclude:: /_static/code/scipy/bisection.py
 
 
-In fact SciPy provides it's own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f`
+In fact, SciPy provides its own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f`
 
 .. code-block:: python3
 
@@ -302,7 +302,7 @@ Let's investigate this using the same function :math:`f`, first looking at poten
     from scipy.optimize import newton
 
     newton(f, 0.2)   # Start the search at initial condition x = 0.2
-    
+
 .. code-block:: python3
 
     newton(f, 0.7)   # Start the search at x = 0.7 instead
@@ -314,7 +314,7 @@ On the other hand, using IPython's ``timeit`` magic, we see that ``newton`` can 
 .. code-block:: ipython
 
     %timeit bisect(f, 0, 1)
-    
+
 .. code-block:: ipython
 
     %timeit newton(f, 0.2)
@@ -331,9 +331,9 @@ This illustrates a general principle
 
 * If you have specific knowledge about your function, you might be able to exploit it to generate efficiency
 
-* If not, then the algorithm choice involves a trade-off between speed of convergence and robustness
+* If not, then the algorithm choice involves a trade-off between the speed of convergence and robustness
 
-In practice, most default algorithms for root finding, optimization and fixed points use *hybrid* methods
+In practice, most default algorithms for root-finding, optimization and fixed points use *hybrid* methods
 
 These methods typically combine a fast method with a robust method in the following manner:
 
@@ -341,12 +341,12 @@ These methods typically combine a fast method with a robust method in the follow
 #. Check diagnostics
 #. If diagnostics are bad, then switch to a more robust algorithm
 
-In ``scipy.optimize``, the function ``brentq`` is such a hybrid method, and a good default
+In ``scipy.optimize``, the function ``brentq`` is such a hybrid method and a good default
 
 .. code-block:: python3
 
     brentq(f, 0, 1)
-    
+
 .. code-block:: ipython
 
     %timeit brentq(f, 0, 1)
@@ -354,11 +354,11 @@ In ``scipy.optimize``, the function ``brentq`` is such a hybrid method, and a go
 Here the correct solution is found and the speed is almost the same as ``newton``
 
 
-Multivariate Root Finding
+Multivariate Root-Finding
 ----------------------------
 
 .. index::
-    single: SciPy; Multivariate Root Finding
+    single: SciPy; Multivariate Root-Finding
 
 Use ``scipy.optimize.fsolve``, a wrapper for a hybrid method in MINPACK
 
@@ -397,7 +397,7 @@ Most numerical packages provide only functions for *minimization*
 Maximization can be performed by recalling that the maximizer of a function :math:`f` on domain :math:`D` is
 the minimizer of :math:`-f` on :math:`D`
 
-Minimization is closely related to root finding: For smooth functions, interior optima correspond to roots of the first derivative
+Minimization is closely related to root-finding: For smooth functions, interior optima correspond to roots of the first derivative
 
 The speed/robustness trade-off described above is present with numerical optimization too
 
@@ -448,7 +448,7 @@ A good default for univariate integration is ``quad``
     integral
 
 
-In fact ``quad`` is an interface to a very standard numerical integration routine in the Fortran library QUADPACK
+In fact, ``quad`` is an interface to a very standard numerical integration routine in the Fortran library QUADPACK
 
 It uses `Clenshaw-Curtis quadrature <https://en.wikipedia.org/wiki/Clenshaw-Curtis_quadrature>`_,  based on expansion in terms of Chebychev polynomials
 
@@ -508,7 +508,7 @@ Here's a reasonable solution:
 
     def bisect(f, a, b, tol=10e-5):
         """
-        Implements the bisection root finding algorithm, assuming that f is a
+        Implements the bisection root-finding algorithm, assuming that f is a
         real-valued function on [a, b] satisfying f(a) < 0 < f(b).
         """
         lower, upper = a, b
@@ -529,10 +529,3 @@ We can test it as follows
 
     f = lambda x: np.sin(4 * (x - 0.25)) + x + x**20 - 1
     bisect(f, 0, 1)
-
-
-
-
-
-
-
