@@ -30,7 +30,7 @@ This lecture describes the concept of Markov perfect equilibrium
 
 Markov perfect equilibrium is a key notion for analyzing economic problems involving dynamic strategic interaction, and a cornerstone of applied game theory
 
-In this lecture we teach Markov perfect equilibrium by example
+In this lecture, we teach Markov perfect equilibrium by example
 
 We will focus on settings with
 
@@ -55,7 +55,7 @@ Background
 
 Markov perfect equilibrium is a refinement of the concept of Nash equilibrium
 
-It is used to study settings where multiple decision makers interact non-cooperatively over time, each seeking to pursue its own objective
+It is used to study settings where multiple decision-makers interact non-cooperatively over time, each seeking to pursue its own objective
 
 The agents in the model face a common state vector, the time path of which is influenced by -- and influences -- their decisions
 
@@ -177,7 +177,7 @@ Linear Markov Perfect Equilibria
 
 As we saw in the duopoly example, the study of Markov perfect equilibria in games with two players leads us to an interrelated pair of Bellman equations
 
-In linear quadratic dynamic games, these "stacked Bellman equations" become "stacked Riccati equations" with a tractable mathematical structure
+In linear-quadratic dynamic games, these "stacked Bellman equations" become "stacked Riccati equations" with a tractable mathematical structure
 
 We'll lay out that structure in a general setup and then apply it to some simple problems
 
@@ -185,7 +185,7 @@ We'll lay out that structure in a general setup and then apply it to some simple
 Coupled Linear Regulator Problems
 -----------------------------------
 
-We consider a general linear quadratic regulator game with two players
+We consider a general linear-quadratic regulator game with two players
 
 For convenience, we'll start with a finite horizon formulation, where :math:`t_0` is the initial date and :math:`t_1` is the common terminal date
 
@@ -197,10 +197,10 @@ Player :math:`i` takes :math:`\{u_{-it}\}` as given and minimizes
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
     \left\{
-        x_t' R_i x_t + 
-        u_{it}' Q_i u_{it} + 
-        u_{-it}' S_i u_{-it} + 
-        2 x_t' W_i u_{it} + 
+        x_t' R_i x_t +
+        u_{it}' Q_i u_{it} +
+        u_{-it}' S_i u_{-it} +
+        2 x_t' W_i u_{it} +
         2 u_{-it}' M_i u_{it}
     \right\}
 
@@ -248,8 +248,8 @@ If we take :math:`u_{2t} = - F_{2t} x_t` and substitute it into :eq:`orig-1` and
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
         \left\{
-        x_t' \Pi_{1t} x_t + 
-        u_{1t}' Q_1 u_{1t} + 
+        x_t' \Pi_{1t} x_t +
+        u_{1t}' Q_1 u_{1t} +
         2 u_{1t}' \Gamma_{1t} x_t
         \right\}
 
@@ -286,9 +286,9 @@ where :math:`P_{1t}` solves the matrix Riccati difference equation
     :label: orig-4
 
     P_{1t} =
-    \Pi_{1t} - (\beta B_1' P_{1t+1} \Lambda_{1t} + 
+    \Pi_{1t} - (\beta B_1' P_{1t+1} \Lambda_{1t} +
     \Gamma_{1t})' (Q_1 + \beta B_1' P_{1t+1} B_1)^{-1}
-    (\beta B_1' P_{1t+1} \Lambda_{1t} + \Gamma_{1t}) + 
+    (\beta B_1' P_{1t+1} \Lambda_{1t} + \Gamma_{1t}) +
     \beta \Lambda_{1t}' P_{1t+1} \Lambda_{1t}
 
 
@@ -307,9 +307,9 @@ where :math:`P_{2t}` solves
     :label: orig-6
 
     P_{2t} =
-    \Pi_{2t} - (\beta B_2' P_{2t+1} \Lambda_{2t} + 
+    \Pi_{2t} - (\beta B_2' P_{2t+1} \Lambda_{2t} +
     \Gamma_{2t})' (Q_2 + \beta B_2' P_{2t+1} B_2)^{-1}
-    (\beta B_2' P_{2t+1} \Lambda_{2t} + \Gamma_{2t}) + 
+    (\beta B_2' P_{2t+1} \Lambda_{2t} + \Gamma_{2t}) +
     \beta \Lambda_{2t}' P_{2t+1} \Lambda_{2t}
 
 
@@ -317,12 +317,12 @@ Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions a
 
 The solution procedure is to use equations :eq:`orig-3`, :eq:`orig-4`, :eq:`orig-5`, and :eq:`orig-6`, and "work backwards" from time :math:`t_1 - 1`
 
-Since we're working backwards, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage
+Since we're working backward, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage
 
 Moreover, since
 
-* some terms on the right hand side of :eq:`orig-3` contain :math:`F_{2t}`
-* some terms on the right hand side of :eq:`orig-5` contain :math:`F_{1t}`
+* some terms on the right-hand side of :eq:`orig-3` contain :math:`F_{2t}`
+* some terms on the right-hand side of :eq:`orig-5` contain :math:`F_{1t}`
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
@@ -343,7 +343,7 @@ After these equations have been solved, we can take  :math:`F_{it}` and solve fo
 Infinite Horizon
 ^^^^^^^^^^^^^^^^^^^^
 
-We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time invariant as :math:`t_1 \rightarrow +\infty`
+We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`
 
 In practice, we usually fix :math:`t_1` and compute the equilibrium of an infinite horizon game by driving :math:`t_0 \rightarrow - \infty`
 
@@ -354,7 +354,7 @@ This is the approach we adopt in the next section
 Implementation
 ----------------
 
-We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear quadratic dynamic game in the manner described above
+We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear-quadratic dynamic game in the manner described above
 
 
 
@@ -440,7 +440,7 @@ The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1
     \end{bmatrix}
 
 
-The optimal decision rule of firm :math:`i` will take the form :math:`u_{it} = - F_i x_t`, inducing the following closed loop system for the evolution of :math:`x` in the Markov perfect equilibrium:
+The optimal decision rule of firm :math:`i` will take the form :math:`u_{it} = - F_i x_t`, inducing the following closed-loop system for the evolution of :math:`x` in the Markov perfect equilibrium:
 
 .. math::
     :label: eq_mpe_cle
@@ -458,7 +458,7 @@ Consider the previously presented duopoly model with parameter values of:
 * :math:`\beta = 0.96`
 * :math:`\gamma = 12`
 
-From these we compute the infinite horizon MPE using the preceding code
+From these, we compute the infinite horizon MPE using the preceding code
 
 .. literalinclude:: /_static/code/markov_perf/duopoly_mpe.py
 
@@ -552,9 +552,9 @@ The optimal policy in the monopolist case can be computed using `QuantEcon.py <h
 Exercise 2
 ---------------
 
-In this exercise we consider a slightly more sophisticated duopoly problem
+In this exercise, we consider a slightly more sophisticated duopoly problem
 
-It takes the form of infinite horizon linear quadratic game proposed by Judd :cite:`Judd1990`
+It takes the form of infinite horizon linear-quadratic game proposed by Judd :cite:`Judd1990`
 
 Two firms set prices and quantities of two goods interrelated through their demand curves
 
@@ -608,7 +608,7 @@ Firm :math:`i` maximizes the undiscounted sum
     \lim_{T \to \infty}\ {1 \over T}\   \sum^T_{t=0}\   \left( p_{it} S_{it} - E_{it} - C_{it} \right)
 
 
-We can convert this to a linear quadratic problem by taking
+We can convert this to a linear-quadratic problem by taking
 
 .. math::
 
@@ -664,7 +664,7 @@ Solutions
 Exercise 1
 -------------
 
-First let's compute the duopoly MPE under the stated parameters
+First, let's compute the duopoly MPE under the stated parameters
 
 
 
@@ -718,9 +718,9 @@ initial condition :math:`q_{10} = q_{20} = 1`
 
 
 
-Next let's have a look at the monopoly solution
+Next, let's have a look at the monopoly solution
 
-For the state and control we take
+For the state and control, we take
 
 .. math::
 
@@ -912,5 +912,3 @@ corresponding to :math:`\delta = 0.02`
     ax.set_title(rf'$\delta = {δ}$')
     ax.legend()
     plt.show()
-
-
