@@ -23,7 +23,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture we study optimal fiscal policy in a linear quadratic setting
+In this lecture, we study optimal fiscal policy in a linear quadratic setting
 
 We slightly modify a well-known model of Robert Lucas and Nancy Stokey :cite:`LucasStokey1983` so that convenient formulas for
 solving linear-quadratic models can be applied to simplify the calculations
@@ -174,7 +174,7 @@ We consider two specifications for :math:`\{x_t\}`
 
 #. Discrete case: :math:`\{x_t\}` is a discrete state Markov chain with transition matrix :math:`P`
 
-#. VAR case: :math:`\{x_t\}` obeys :math:`x_{t+1} = A x_t + C w_{t+1}` where :math:`\{w_t\}` is independent zero mean Gaussian with identify covariance matrix
+#. VAR case: :math:`\{x_t\}` obeys :math:`x_{t+1} = A x_t + C w_{t+1}` where :math:`\{w_t\}` is independent zero-mean Gaussian with identify covariance matrix
 
 
 Feasibility
@@ -283,7 +283,7 @@ The associated Lagrangian is
     \right\}
 
 
-The first order conditions associated with :math:`c_t` and :math:`\ell_t` are
+The first-order conditions associated with :math:`c_t` and :math:`\ell_t` are
 
 .. math::
 
@@ -424,13 +424,13 @@ In this case, the formula for computing :math:`q(x_0)` is known to be :math:`q(x
 * :math:`Q` is the solution to :math:`Q = H + \beta A' Q A`, and
 * :math:`v = \text{trace} \, (C' Q C) \beta / (1 - \beta)`
 
-The first equation is known as a discrete Lyapunov equation, and can be solved
+The first equation is known as a discrete Lyapunov equation and can be solved
 using `this function <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/matrix_eqn.py#L25>`_
 
 Finite State Markov Case
 -------------------------
 
-Next suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`
+Next, suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`
 
 Suppose further that each :math:`x_t` takes values in the state space :math:`\{x^1, \ldots, x^N\} \subset \mathbb R^k`
 
@@ -459,7 +459,7 @@ Here
 * :math:`h` is, with some abuse of notation, the vector :math:`(h(x^1), \ldots, h(x^N))`
 * :math:`(P^t h)[j]` indicates the :math:`j`-th element of :math:`P^t h`
 
-It can be show that :eq:`lq_ise` is in fact equal to the :math:`j`-th element of
+It can be shown that :eq:`lq_ise` is in fact equal to the :math:`j`-th element of
 the vector :math:`(I - \beta P)^{-1} h`
 
 This last fact is applied in the calculations below
@@ -481,7 +481,7 @@ To prepare the way for this, we define
 
 as the scaled Arrow-Debreu time :math:`t` price of a history contingent claim on one unit of consumption at time :math:`t+j`
 
-These are prices that would prevail at time :math:`t` if market were reopened at time :math:`t`
+These are prices that would prevail at time :math:`t` if markets were reopened at time :math:`t`
 
 These prices are constituents of the present value of government obligations outstanding at time :math:`t`, which can be expressed as
 
@@ -513,7 +513,7 @@ Using the equation
     p^t_{t+j} = p^t_{t+1} p^{t+1}_{t+j}
 
 
-it is possible to verity that :eq:`lq_cb` implies that
+it is possible to verify that :eq:`lq_cb` implies that
 
 
 .. math::
@@ -565,7 +565,7 @@ The term :math:`\pi_{t+1}` is the difference between two quantities:
   * :math:`R_t [B_t + g_t - \tau_t ]`, which is what the government would have owed at the beginning of
     period :math:`t+1` if it had simply borrowed at the one-period risk-free rate rather than selling state-contingent securities
 
-Thus, :math:`\pi_{t+1}` is the excess payout on the actual portfolio of state contingent government debt  relative to an alternative
+Thus, :math:`\pi_{t+1}` is the excess payout on the actual portfolio of state-contingent government debt  relative to an alternative
 portfolio sufficient to finance :math:`B_t + g_t - \tau_t \ell_t` and consisting entirely of risk-free one-period bonds
 
 Use expressions :eq:`lq_cb22` and :eq:`lq_rfr` to obtain
