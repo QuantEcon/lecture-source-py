@@ -52,7 +52,7 @@ we shall define the state vector artfully
 In particular, we shall include forward-looking variables that summarize  optimal
 responses of private agents to a Ramsey plan
 
-See :doc:`Optimal taxation <lqramsey>` for an analysis within a linear-quadratic setting
+See :doc:`Optimal taxation <lqramsey>` for analysis within a linear-quadratic setting
 
 
 A Competitive Equilibrium with Distorting Taxes
@@ -113,7 +113,7 @@ The government has a sequence of budget constraints whose time :math:`t \geq 0` 
 .. math::
     :label: TS_govr
 
-    g_t(s^t) =   \tau_t(s^t)  n_t(s^t) + \sum_{s_{t+1}} p_{t+1}(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t) - 
+    g_t(s^t) =   \tau_t(s^t)  n_t(s^t) + \sum_{s_{t+1}} p_{t+1}(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t) -
     b_t(s_t | s^{t-1})
 
 
@@ -229,7 +229,7 @@ another, we can obtain the household's present-value budget constraint:
     :label: TS_bcPV2
 
     \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) c_t(s^t) =
-    \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t) + 
+    \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t) +
     b_0
 
 
@@ -274,7 +274,7 @@ taxes and prices from :eq:`TS_bcPV2`, we derive the *implementability condition*
     :label: TSs_cham1
 
     \sum_{t=0}^\infty  \sum_{s^t} \beta^t \pi_t(s^t)
-             [u_c(s^t) c_t(s^t) - u_\ell(s^t) n_t(s^t)] - 
+             [u_c(s^t) c_t(s^t) - u_\ell(s^t) n_t(s^t)] -
              u_c(s^0) b_0 = 0
 
 
@@ -292,14 +292,14 @@ subject to  :eq:`TSs_cham1`
 Solution Details
 ^^^^^^^^^^^^^^^^^
 
-First define a "pseudo utility function"
+First, define a "pseudo utility function"
 
 .. math::
     :label: TS_cham17
 
     V\left[c_t(s^t), n_t(s^t), \Phi\right] =
-    u[c_t(s^t),1-n_t(s^t)] + 
-    \Phi \left[ u_c(s^t) c_t(s^t) - 
+    u[c_t(s^t),1-n_t(s^t)] +
+    \Phi \left[ u_c(s^t) c_t(s^t) -
     u_\ell(s^t) n_t(s^t) \right]
 
 
@@ -332,11 +332,11 @@ The first-order conditions for the Ramsey problem for periods :math:`t \geq 1` a
 
      \begin{aligned}
         c_t(s^t)\rm{:} &
-        \; (1+\Phi) u_c(s^t) + \Phi \left[u_{cc}(s^t) c_t(s^t) - 
+        \; (1+\Phi) u_c(s^t) + \Phi \left[u_{cc}(s^t) c_t(s^t) -
         u_{\ell c}(s^t) n_t(s^t) \right]  - \theta_t(s^t) = 0, \quad t \geq 1
         \\
         n_t(s^t)\rm{:} &
-        \; -(1+\Phi) u_{\ell}(s^t) - \Phi \left[u_{c\ell}(s^t) c_t(s^t) - 
+        \; -(1+\Phi) u_{\ell}(s^t) - \Phi \left[u_{c\ell}(s^t) c_t(s^t) -
         u_{\ell \ell}(s^t) n_t(s^t) \right] + \theta_t(s^t) = 0, \quad t \geq 1
     \end{aligned}
 
@@ -348,12 +348,12 @@ and
 
     \begin{aligned}
         c_0(s^0, b_0)\rm{:} &
-        \; (1+\Phi) u_c(s^0, b_0) + \Phi \left[u_{cc}(s^0, b_0) c_0(s^0, b_0) - 
+        \; (1+\Phi) u_c(s^0, b_0) + \Phi \left[u_{cc}(s^0, b_0) c_0(s^0, b_0) -
         u_{\ell c}(s^0, b_0) n_0(s^0, b_0) \right]  - \theta_0(s^0, b_0)   \\
            & \quad \quad \quad \quad \quad \quad  - \Phi u_{cc}(s^0, b_0) b_0 = 0
         \\
         n_0(s^0, b_0)\rm{:} &
-        \; -(1+\Phi) u_{\ell}(s^0, b_0) - \Phi \left[u_{c\ell}(s^0, b_0) c_0(s^0, b_0) - 
+        \; -(1+\Phi) u_{\ell}(s^0, b_0) - \Phi \left[u_{c\ell}(s^0, b_0) c_0(s^0, b_0) -
         u_{\ell \ell}(s^0, b_0) n_0(s^0, b_0) \right] + \theta_0(s^0, b_0) \\
           & \quad \quad \quad \quad \quad \quad + \Phi u_{c \ell}(s^0, b_0) b_0 = 0
     \end{aligned}
@@ -369,10 +369,10 @@ For convenience, we suppress the time subscript and the index :math:`s^t` and ob
     :label: TS_barg
 
     \begin{aligned}
-      (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) - 
+      (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
       (c+g) u_{\ell c}(c,1-c-g) \bigr]
         \\
-        &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) - 
+        &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) -
         (c+g) u_{\ell \ell}(c,1-c-g)  \bigr]
     \end{aligned}
 
@@ -389,10 +389,10 @@ We also know that  time :math:`t=0` quantities :math:`c_0` and :math:`n_0` satis
     :label: TS_barg_aust
 
     \begin{aligned}
-          (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) - 
+          (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
           (c+g) u_{\ell c}(c,1-c-g) \bigr]
             \\
-            &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) - 
+            &= (1+\Phi) u_{\ell}(c,1-c-g) + \Phi \bigl[c u_{c\ell}(c,1-c-g) -
             (c+g) u_{\ell \ell}(c,1-c-g)  \bigr] + \Phi (u_{cc} - u_{c,\ell}) b_0
     \end{aligned}
 
@@ -509,8 +509,8 @@ the household budget constraint gives
     :label: LSA_budget
 
     \begin{aligned}
-        u_c(s^t) [ n_t(s^t) - g_t(s^t)] + 
-        \beta \sum_{s_{t+1}} \Pi (s_{t+1}| s_t) u_c(s^{t+1}) b_{t+1}(s_{t+1} | s^t) \\ = 
+        u_c(s^t) [ n_t(s^t) - g_t(s^t)] +
+        \beta \sum_{s_{t+1}} \Pi (s_{t+1}| s_t) u_c(s^{t+1}) b_{t+1}(s_{t+1} | s^t) \\ =
         u_l (s^t) n_t(s^t) + u_c(s^t) b_t(s_t | s^{t-1})
     \end{aligned}
 
@@ -578,7 +578,7 @@ state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equa
     \vec b = {\frac{ \vec x }{\vec u_c}}
 
 
-where division here means element-by-element division of the respective
+where division here means an element-by-element division of the respective
 components of the :math:`S \times 1` vectors :math:`\vec x` and
 :math:`\vec u_c`
 
@@ -610,7 +610,7 @@ Here is a computational algorithm:
    labor from :eq:`LSA_taxr` and the implied one-period Arrow securities
    prices from :eq:`LS101`
 
-In summary, when :math:`g_t` is a time invariant function of a Markov state
+In summary, when :math:`g_t` is a time-invariant function of a Markov state
 :math:`s_t`, a Ramsey plan can be constructed by solving :math:`3S +3`
 equations in :math:`S` components each of :math:`\vec c`, :math:`\vec n`, and
 :math:`\vec x` together with :math:`n_0, c_0`, and :math:`\Phi`
@@ -812,7 +812,7 @@ variables confronting the time :math:`t` **continuation Ramsey planner** are
 
 * Let :math:`W(b, s)` be the value of a **Ramsey plan** at time :math:`0` at :math:`b_0=b` and :math:`s_0 = s`
 
-We work backwards by presenting a Bellman equation for
+We work backward by presenting a Bellman equation for
 :math:`V(x,s)` first, then a Bellman equation for :math:`W(b,s)`
 
 The Continuation Ramsey Problem
@@ -839,7 +839,7 @@ where maximization over :math:`n` and the :math:`S` elements of
 
 Here :math:`u_c` and :math:`u_l` are today’s values of the marginal utilities
 
-For each given value of :math:`x, s`, the continuation Ramsey planner chooses :math:`n` and an :math:`x'(s')`
+For each given value of :math:`x, s`, the continuation Ramsey planner chooses :math:`n` and :math:`x'(s')`
 for each :math:`s' \in {\cal S}`
 
 Associated with a value function :math:`V(x,s)` that solves Bellman equation :eq:`LSA_Bellman1`
@@ -973,7 +973,7 @@ An additional term is present in :eq:`LSAn0` except in  three special cases
 * :math:`u_c` is constant (i.e., preferences are quasi-linear in consumption), or
 
 * initial government assets are sufficiently large to finance all government
-  purchases with interest earnings from those assets, so that :math:`\Phi_0= 0`
+  purchases with interest earnings from those assets so that :math:`\Phi_0= 0`
 
 Except in these special cases, the allocation and the labor tax rate as
 functions of :math:`s_t` differ between dates :math:`t=0` and subsequent
@@ -1033,19 +1033,19 @@ and the time :math:`t \geq 1` continuation Ramsey planners
   :math:`u_{c,t} b_t`, that they inherit from a preceding Ramsey planner or
   continuation Ramsey planner
 
-When government expenditures :math:`g_t` are a time invariant function
+When government expenditures :math:`g_t` are a time-invariant function
 of a Markov state :math:`s_t`, a Ramsey plan and associated Ramsey
 allocation feature marginal utilities of consumption :math:`u_c(s_t)`
 that, given :math:`\Phi`, for :math:`t \geq 1` depend only on
 :math:`s_t`, but that for :math:`t=0` depend on :math:`b_0` as well
 
-This means that :math:`u_c(s_t)` will be a time invariant function of
+This means that :math:`u_c(s_t)` will be a time-invariant function of
 :math:`s_t` for :math:`t \geq 1`, but except when :math:`b_0 = 0`, a
 different function for :math:`t=0`
 
 This in turn means that prices of
-one period Arrow securities :math:`p_{t+1}(s_{t+1} | s_t) = p(s_{t+1}|s_t)`
-will be the *same* time invariant functions of :math:`(s_{t+1}, s_t)`
+one-period Arrow securities :math:`p_{t+1}(s_{t+1} | s_t) = p(s_{t+1}|s_t)`
+will be the *same* time-invariant functions of :math:`(s_{t+1}, s_t)`
 for :math:`t \geq 1`, but a different function :math:`p_0(s_1|s_0)` for
 :math:`t=0`, except when :math:`b_0=0`
 
@@ -1070,7 +1070,7 @@ The above steps are implemented in a class called `RecursiveAllocation`
 Examples
 =============
 
-Anticipated One Period War
+Anticipated One-Period War
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This example illustrates in a simple setting how a Ramsey planner manages risk
@@ -1079,7 +1079,7 @@ Government expenditures are known for sure in all periods except one
 
 * For :math:`t<3` and :math:`t > 3` we assume that :math:`g_t = g_l = 0.1`
 
-* At :math:`t = 3` a war occcurs with probability 0.5
+* At :math:`t = 3` a war occurs with probability 0.5
 
   *  If there is war, :math:`g_3 = g_h = 0.2`
 
@@ -1217,7 +1217,7 @@ Raising the time :math:`t=0` risk-free interest rate makes time :math:`t=0`
 consumption goods cheaper relative to consumption goods at later dates, thereby
 lowering the value :math:`u_{c,0} b_0` of initial government debt :math:`b_0`
 
-We see this in a figure below that plots the time path for the risk free interest
+We see this in a figure below that plots the time path for the risk-free interest
 rate under both realizations of the time :math:`t=3` government expenditure shock
 
 The following plot illustrates how the government lowers the interest rate at
@@ -1409,7 +1409,7 @@ The complete tax smoothing for :math:`t \geq 1` in the preceding example is a
 consequence of our having assumed CRRA preferences
 
 To see what is driving this outcome, we begin by noting that the Ramsey tax rate for :math:`t\geq 1` is
-a time invariant function :math:`\tau(\Phi,g)` of the Lagrange multiplier on
+a time-invariant function :math:`\tau(\Phi,g)` of the Lagrange multiplier on
 the implementability constraint and government expenditures
 
 For CRRA preferences, we can exploit the relations :math:`U_{cc}c = -\sigma U_c`
@@ -1436,7 +1436,7 @@ We will create a new class `LogUtility` to represent this utility function
 
 .. literalinclude:: /_static/code/opt_tax_recur/log_utility.py
 
-Also suppose that :math:`g_t` follows a two state IID. process with equal
+Also, suppose that :math:`g_t` follows a two-state IID process with equal
 probabilities attached to :math:`g_l` and :math:`g_h`
 
 To compute the tax rate, we will use both the sequential and recursive approaches described above
@@ -1491,7 +1491,7 @@ identical allocations
 
 Unlike outcomes with CRRA preferences, the tax rate is not perfectly smoothed
 
-Instead the government raises the tax rate when :math:`g_t` is high
+Instead, the government raises the tax rate when :math:`g_t` is high
 
 
 Further Comments
