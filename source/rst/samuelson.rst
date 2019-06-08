@@ -10,7 +10,7 @@ OOP III: Samuelson Multiplier Accelerator
 
 **Co-author: Natasha Watkins**
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -22,7 +22,7 @@ Overview
 
 
 
-This lecture creates nonstochastic and stochastic versions of Paul Samuelson's celebrated multiplier accelerator model :cite:`Samuelson1939`
+This lecture creates non-stochastic and stochastic versions of Paul Samuelson's celebrated multiplier accelerator model :cite:`Samuelson1939`
 
 In doing so, we extend the example of the Solow model class in :doc:`our second OOP lecture <python_oop>`
 
@@ -115,7 +115,7 @@ Let's assume that
 -  :math:`\{\epsilon_{t}\}` is an IID sequence standard normal random variables
 
 -  :math:`\sigma \geq 0` is a "volatility"
-   parameter --- setting :math:`\sigma = 0` recovers the nonstochastic case
+   parameter --- setting :math:`\sigma = 0` recovers the non-stochastic case
    that we'll start with
 
 The model combines the consumption function
@@ -312,7 +312,7 @@ oscillations with **period** :math:`\check p =
 
 We say that :math:`\check p` is the **period** because in that amount of time the cosine wave :math:`\cos(\omega t + \theta)` goes through exactly one complete cycles
 
-(Draw a cosine funtion to convince yourself of this please)
+(Draw a cosine function to convince yourself of this please)
 
 **Remark:** Following :cite:`Samuelson1939`, we want to choose the parameters
 :math:`a, b` of the model so that the absolute values (of the possibly
@@ -359,11 +359,11 @@ This involves a little more bookkeeping than is required in the Solow model clas
 
 We use the Samuelson multiplier-accelerator model as a vehicle for teaching how we can gradually add more features to the class
 
-We want to have a method in the class that automatically generates a simulation, either nonstochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`)
+We want to have a method in the class that automatically generates a simulation, either non-stochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`)
 
 We also show how to map the Samuelson model into a simple instance of the ``LinearStateSpace`` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__
 
-We can use a ``LinearStateSpace`` instance to do various things that we did above with our homemade function and class 
+We can use a ``LinearStateSpace`` instance to do various things that we did above with our homemade function and class
 
 Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the ``LinearStateSpace`` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
 
@@ -541,7 +541,7 @@ that we set
 
     def y_nonstochastic(y_0=100, y_1=80, α=.92, β=.5, γ=10, n=80):
 
-        """Takes values of parameters and computes roots of characteristic polynomial.
+        """Takes values of parameters and computes the roots of characteristic polynomial.
            It tells whether they are real or complex and whether they are less than unity in absolute value.
            It also computes a simulation of length n starting from the two given initial conditions for national income"""
 
@@ -587,7 +587,7 @@ that we set
     plot_y(y_nonstochastic())
 
 
-Reverse Engineering Parameters to Generate Damped Cycles
+Reverse-Engineering Parameters to Generate Damped Cycles
 -----------------------------------------------------------------
 
 The next cell writes code that takes as inputs the modulus :math:`r` and
@@ -597,12 +597,12 @@ phase :math:`\phi` of a conjugate pair of complex numbers in polar form
 
 -  The code assumes that these two complex numbers are the roots of the
    characteristic polynomial
--  It then reverse engineers :math:`(a,b)` and :math:`(\rho_1, \rho_2)`,
+-  It then reverses engineers :math:`(a,b)` and :math:`(\rho_1, \rho_2)`,
    pairs that would generate those roots
 
 .. code-block:: python3
 
-    ### code to reverse engineer a  cycle
+    ### code to reverse-engineer a cycle
     ### y_t = r^t (c_1 cos(ϕ t) + c2 sin(ϕ t))
     ###
 
@@ -622,12 +622,12 @@ phase :math:`\phi` of a conjugate pair of complex numbers in polar form
         g2 = cmath.rect(r, -ϕ)
         ρ1 = g1 + g2           # Implied ρ1, ρ2
         ρ2 = -g1 * g2
-        b = -ρ2                # Reverse engineer a and b that validate these
+        b = -ρ2                # Reverse-engineer a and b that validate these
         a = ρ1 - b
         return ρ1, ρ2, a, b
 
     ## Now let's use the function in an example
-    ## Here are the example paramters
+    ## Here are the example parameters
 
     r = .95
     period = 10                # Length of cycle in units of time
@@ -718,10 +718,10 @@ polynomial
     plot_y(y_nonstochastic())
 
 
-Reverse Engineered Complex Roots: Example
+Reverse-Engineered Complex Roots: Example
 --------------------------------------------------
 
-The next cell studies the implications of reverse engineered complex
+The next cell studies the implications of reverse-engineered complex
 roots
 
 We'll generate an **undamped** cycle of period 10
@@ -733,7 +733,7 @@ We'll generate an **undamped** cycle of period 10
     period = 10   #  length of cycle in units of time
     ϕ = 2 * math.pi/period
 
-    ## Apply the reverse engineering function f
+    ## Apply the reverse-engineering function f
 
     ρ1, ρ2, a, b = f(r, ϕ)
 
@@ -856,7 +856,7 @@ Let's do a simulation in which there are shocks and the characteristic polynomia
     period = 10   #  length of cycle in units of time
     ϕ = 2 * math.pi/period
 
-    ### apply the  reverse engineering function f
+    ### apply the  reverse-engineering function f
 
     ρ1, ρ2, a, b = f(r, ϕ)
 
@@ -972,10 +972,10 @@ We can also see the response to a one time jump in government expenditures
 Wrapping Everything Into a Class
 =================================
 
-Up to now we have written functions to do the work
+Up to now, we have written functions to do the work
 
 Now we'll roll up our sleeves and write a Python class called ``Samuelson``
-for the Samuleson model
+for the Samuelson model
 
 .. code-block:: python3
 
@@ -1004,8 +1004,8 @@ for the Samuleson model
         n : int
             Number of iterations
         σ : scalar
-            Volatility parameter. Must be greater than or equal to 0. Set
-            equal to 0 for non-stochastic model.
+            Volatility parameter. It must be greater than or equal to 0. Set
+            equal to 0 for a non-stochastic model.
         g : scalar
             Government spending shock
         g_t : int
@@ -1326,7 +1326,7 @@ methods and attributes) to add more functions to use
             self.C = np.zeros((3, 1))
             self.C[1] = σ  # stochastic
 
-            # Initialize LSS with parameters from Samuleson model
+            # Initialize LSS with parameters from Samuelson model
             LinearStateSpace.__init__(self, self.A, self.C, self.G, mu_0=self.μ_0)
 
         def plot_simulation(self, ts_length=100, stationary=True):
