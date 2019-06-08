@@ -38,7 +38,7 @@ In particular, as trade costs fall and international competition increases, inno
 Background
 -------------
 
-The model builds on work by Judd :cite:`Judd1985`, Deneckner and Judd :cite:`Deneckere1992` and Helpman and Krugman :cite:`Helpman1985` by developing a two country model with trade and innovation
+The model builds on work by Judd :cite:`Judd1985`, Deneckner and Judd :cite:`Deneckere1992` and Helpman and Krugman :cite:`Helpman1985` by developing a two-country model with trade and innovation
 
 On the technical side, the paper introduces the concept of `coupled oscillators <https://en.wikipedia.org/wiki/Oscillation#Coupled_oscillations>`__ to economic modeling
 
@@ -86,7 +86,7 @@ This will be the case when trade costs are prohibitively high
 
 If trade costs fall, then goods produced in each country penetrate each other's markets
 
-As illustrated below, this leads to synchonization of business cycles across the two countries
+As illustrated below, this leads to synchronization of business cycles across the two countries
 
 
 
@@ -388,14 +388,14 @@ Here's the function
 
 In the first case, innovation in the two countries does not synchronize
 
-In the second case different initial conditions are chosen, and the cycles
+In the second case, different initial conditions are chosen, and the cycles
 become synchronized
 
 
 Basin of Attraction
 -----------------------
 
-Next let's study the initial conditions that lead to synchronized cycles more
+Next, let's study the initial conditions that lead to synchronized cycles more
 systematically
 
 We generate time series from a large collection of different initial
@@ -498,9 +498,9 @@ Interactive Version
 
 Additionally, instead of just seeing 4 plots at once, we might want to
 manually be able to change :math:`\rho` and see how it affects the plot
-in real time. Below we use an interactive plot to do this
+in real-time. Below we use an interactive plot to do this
 
-Note, interactive ploting requires the `ipywidgets <https://github.com/jupyter-widgets/ipywidgets>`__ module to be installed and enabled
+Note, interactive plotting requires the `ipywidgets <https://github.com/jupyter-widgets/ipywidgets>`__ module to be installed and enabled
 
 .. code-block:: python3
 

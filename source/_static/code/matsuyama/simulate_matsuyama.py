@@ -9,7 +9,7 @@ from numba import jit, vectorize
 def _hj(j, nk, s1, s2, θ, δ, ρ):
     """
     If we expand the implicit function for h_j(n_k) then we find that
-    it is a quadratic. We know that h_j(n_k) > 0 so we can get its
+    it is quadratic. We know that h_j(n_k) > 0 so we can get its
     value by using the quadratic form
     """
     # Find out who's h we are evaluating
@@ -91,7 +91,7 @@ def _pers_till_sync(n1_0, n2_0, s1_ρ, s2_ρ, s1, s2, θ, δ, ρ, maxiter, npers
     the histories eventually end up in sync.
 
     If countries are symmetric then as soon as the two countries have the
-    same measure of firms then they will by synchronized -- However, if
+    same measure of firms then they will be synchronized -- However, if
     they are not symmetric then it is possible they have the same measure
     of firms but are not yet synchronized. To address this, we check whether
     firms stay synchronized for `npers` periods with Euclidean norm
@@ -111,7 +111,7 @@ def _pers_till_sync(n1_0, n2_0, s1_ρ, s2_ρ, s1, s2, θ, δ, ρ, maxiter, npers
     Returns
     -------
     synchronized : scalar(Bool)
-        Did they two economies end up synchronized
+        Did the two economies end up synchronized
     pers_2_sync : scalar(Int)
         The number of periods required until they synchronized
     """
@@ -171,12 +171,12 @@ def _create_attraction_basis(s1_ρ, s2_ρ, s1, s2, θ, δ, ρ, maxiter, npers, n
 class MSGSync:
     """
     The paper "Globalization and Synchronization of Innovation Cycles" presents
-    a two country model with endogenous innovation cycles. Combines elements
+    a two-country model with endogenous innovation cycles. Combines elements
     from Deneckere Judd (1985) and Helpman Krugman (1985) to allow for a
     model with trade that has firms who can introduce new varieties into
     the economy.
 
-    We focus on being able to determine whether two countries eventually
+    We focus on being able to determine whether the two countries eventually
     synchronize their innovation cycles. To do this, we only need a few
     of the many parameters. In particular, we need the parameters listed
     below
@@ -186,7 +186,7 @@ class MSGSync:
     s1 : scalar(Float)
         Amount of total labor in country 1 relative to total worldwide labor
     θ : scalar(Float)
-        A measure of how mcuh more of the competitive variety is used in
+        A measure of how much more of the competitive variety is used in
         production of final goods
     δ : scalar(Float)
         Percentage of firms that are not exogenously destroyed every period
@@ -262,11 +262,11 @@ class MSGSync:
         the histories eventually end up in sync.
 
         If countries are symmetric then as soon as the two countries have the
-        same measure of firms then they will by synchronized -- However, if
+        same measure of firms then they will be synchronized -- However, if
         they are not symmetric then it is possible they have the same measure
         of firms but are not yet synchronized. To address this, we check whether
         firms stay synchronized for `npers` periods with Euclidean norm
-        
+
         Parameters
         ----------
         n1_0 : scalar(Float)
@@ -282,14 +282,14 @@ class MSGSync:
         Returns
         -------
         synchronized : scalar(Bool)
-            Did they two economies end up synchronized
+            Did the two economies end up synchronized
         pers_2_sync : scalar(Int)
             The number of periods required until they synchronized
         """
         # Unpack parameters
         s1, s2, θ, δ, ρ = self._unpack_params()
         s1_ρ, s2_ρ = self.s1_ρ, self.s2_ρ
-    
+
         return _pers_till_sync(n1_0, n2_0, s1_ρ, s2_ρ, s1, s2, θ, δ, ρ, maxiter, npers)
 
     def create_attraction_basis(self, maxiter=250, npers=3, npts=50):
