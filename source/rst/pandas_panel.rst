@@ -15,7 +15,7 @@
 Overview
 =====================
 
-In an :doc:`earlier lecture on pandas <pandas>` we looked at working with simple data sets
+In an :doc:`earlier lecture on pandas <pandas>`, we looked at working with simple data sets
 
 Econometricians often need to work with more complex data sets, such as panels
 
@@ -38,7 +38,7 @@ In what follows, we will use a panel data set of real minimum wages from the OEC
 
 * kernel density estimates of wages by continent
 
-We will begin by reading in our long format panel data from a csv file and
+We will begin by reading in our long format panel data from a ..csvfile and
 reshaping the resulting ``DataFrame`` with ``pivot_table`` to build a ``MultiIndex``
 
 Additional detail will be added to our ``DataFrame`` using pandas'
@@ -85,7 +85,7 @@ Let's have a look at what we've got to work with
 
     realwage.head()  # Show first 5 rows
 
-The data is currently in long format, which is difficult to analyse when there are several dimensions to the data
+The data is currently in long format, which is difficult to analyze when there are several dimensions to the data
 
 We will use ``pivot_table`` to create a wide format panel, with a ``MultiIndex`` to handle higher dimensional data
 
@@ -100,7 +100,7 @@ By passing a list in columns, we can create a ``MultiIndex`` in our column axis
                                   columns=['Country', 'Series', 'Pay period'])
   realwage.head()
 
-To more easily filter our time series data later on, we will convert the index into a ``DateTimeIndex``
+To more easily filter our time series data, later on, we will convert the index into a ``DateTimeIndex``
 
 .. code-block:: python3
 
@@ -193,12 +193,12 @@ function
 
 .. only:: html
 
-    The csv file can be found in ``pandas_panel/countries.csv``, and can be downloaded
+    The .csvfile can be found in ``pandas_panel/countries.csv`` and can be downloaded
     :download:`here <_static/code/pandas_panel/countries.csv>`
 
 .. only:: latex
 
-    The csv file can be found in ``pandas_panel/countries.csv``, and can be downloaded
+    The .csvfile can be found in ``pandas_panel/countries.csv`` and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/countries.csv>`__
 
 .. code-block:: python3
@@ -207,7 +207,7 @@ function
     worlddata.head()
 
 
-First we'll select just the country and continent variables from
+First, we'll select just the country and continent variables from
 ``worlddata`` and rename the column to 'Country'
 
 .. code-block:: python3
@@ -542,7 +542,7 @@ Exercises
 Exercise 1
 -------------
 
-In these exercises you'll work with a dataset of employment rates
+In these exercises, you'll work with a dataset of employment rates
 in Europe by age and sex from `Eurostat <http://ec.europa.eu/eurostat/data/database>`__
 
 .. only:: html
@@ -555,7 +555,7 @@ in Europe by age and sex from `Eurostat <http://ec.europa.eu/eurostat/data/datab
     The dataset ``pandas_panel/employ.csv`` can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/employ.csv>`__
 
-Reading in the csv file returns a panel dataset in long format. Use ``.pivot_table()`` to construct
+Reading in the .csvfile returns a panel dataset in long format. Use ``.pivot_table()`` to construct
 a wide format dataframe with a ``MultiIndex`` in the columns
 
 
