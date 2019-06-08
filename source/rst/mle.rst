@@ -131,7 +131,7 @@ We can plot the Poisson distribution over :math:`y` for different values of :mat
 
 Notice that the Poisson distribution begins to resemble a normal distribution as the mean of :math:`y` increases
 
-Let's have a look at the distribution of the data we'll be working with-in this lecture
+Let's have a look at the distribution of the data we'll be working with in this lecture
 
 Treisman's main source of data is *Forbes'* annual rankings of billionaires and their estimated net worth
 
