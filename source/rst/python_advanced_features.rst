@@ -34,7 +34,7 @@ Iterables and Iterators
 
 We've :ref:`already said something <iterating_version_1>` about iterating in Python
 
-Now let's look more closely at how it all works, focusing in Python's implementation of the ``for`` loop
+Now let's look more closely at how it all works, focusing on Python's implementation of the ``for`` loop
 
 
 Iterators
@@ -49,7 +49,7 @@ Here we'll talk about using iterators---later we'll learn how to build our own
 
 Formally, an *iterator* is an object with a ``__next__`` method
 
-For example, file objects are iterators 
+For example, file objects are iterators
 
 To see this, let's have another look at the :ref:`US cities data <us_cities_data>`,
 which is written to the present working directory in the following cell
@@ -65,7 +65,7 @@ which is written to the present working directory in the following cell
     phoenix: 1469471
     san antonio: 1359758
     san diego: 1326179
-    dallas: 1223229 
+    dallas: 1223229
 
 
 .. code-block:: python3
@@ -73,11 +73,11 @@ which is written to the present working directory in the following cell
     f = open('us_cities.txt')
     f.__next__()
 
-    
+
 .. code-block:: python3
 
     f.__next__()
-    
+
 
 
 We see that file objects do indeed have a ``__next__`` method, and that calling this method returns the next line in the file
@@ -89,18 +89,18 @@ which directly calls this method
 
     next(f)
 
-The objects returned by ``enumerate()`` are also iterators 
+The objects returned by ``enumerate()`` are also iterators
 
 .. code-block:: python3
-    
+
     e = enumerate(['foo', 'bar'])
     next(e)
-    
+
 .. code-block:: python3
-    
+
     next(e)
 
-as are the reader objects from the ``csv`` module 
+as are the reader objects from the ``csv`` module
 
 Let's create a small csv file that contains data from the NIKKEI index
 
@@ -123,10 +123,10 @@ Let's create a small csv file that contains data from the NIKKEI index
 
     from csv import reader
 
-    f = open('test_table.csv', 'r')  
-    nikkei_data = reader(f) 
+    f = open('test_table.csv', 'r')
+    nikkei_data = reader(f)
     next(nikkei_data)
-    
+
 .. code-block:: python3
 
 
@@ -141,7 +141,7 @@ Iterators in For Loops
 
 All iterators can be placed to the right of the ``in`` keyword in ``for`` loop statements
 
-In fact this is how the ``for`` loop works:  If we write
+In fact, this is how the ``for`` loop works:  If we write
 
 .. code-block:: python3
     :class: no-execute
@@ -165,7 +165,7 @@ So now you know how this magical looking syntax works
         # do something
 
 
-The interpreter just keeps 
+The interpreter just keeps
 
 #. calling ``f.__next__()`` and binding ``line`` to the result
 #. executing the body of the loop
@@ -181,7 +181,7 @@ Iterables
 .. index::
     single: Python; Iterables
 
-You already know that we can put a Python list to the right of ``in`` in a ``for`` loop 
+You already know that we can put a Python list to the right of ``in`` in a ``for`` loop
 
 .. code-block:: python3
 
@@ -196,13 +196,13 @@ The answer is no
 
     x = ['foo', 'bar']
     type(x)
-    
-    
+
+
 .. code-block:: python3
     :class: skip-test
 
     next(x)
-    
+
 
 So why can we iterate over a list in a ``for`` loop?
 
@@ -210,37 +210,37 @@ The reason is that a list is *iterable* (as opposed to an iterator)
 
 Formally, an object is iterable if it can be converted to an iterator using the built-in function ``iter()``
 
-Lists are one such object 
+Lists are one such object
 
 .. code-block:: python3
 
     x = ['foo', 'bar']
     type(x)
-    
-    
-.. code-block:: python3
-    
-    y = iter(x)
-    type(y)
-    
-    
+
+
 .. code-block:: python3
 
-    next(y)  
-    
+    y = iter(x)
+    type(y)
+
+
 .. code-block:: python3
 
     next(y)
-    
+
+.. code-block:: python3
+
+    next(y)
+
 .. code-block:: python3
     :class: skip-test
 
-    next(y)    
+    next(y)
 
 
 Many other objects are iterable, such as dictionaries and tuples
 
-Of course, not all objects are iterable 
+Of course, not all objects are iterable
 
 .. code-block:: python3
     :class: skip-test
@@ -265,20 +265,20 @@ Some built-in functions that act on sequences also work with iterables
 * ``max()``, ``min()``, ``sum()``, ``all()``, ``any()``
 
 
-For example 
+For example
 
 .. code-block:: python3
 
     x = [10, -10]
     max(x)
-    
+
 .. code-block:: python3
-    
+
     y = iter(x)
-    type(y)    
-    
+    type(y)
+
 .. code-block:: python3
-    
+
     max(y)
 
 
@@ -293,9 +293,9 @@ One thing to remember about iterators is that they are depleted by use
 
 .. code-block:: python3
     :class: skip-test
-    
+
     max(y)
-    
+
 
 .. _name_res:
 
@@ -310,7 +310,7 @@ Variable Names in Python
 .. index::
     single: Python; Variable Names
 
-Consider the Python statement 
+Consider the Python statement
 
 .. code-block:: python3
 
@@ -328,7 +328,7 @@ In Python, ``x`` is called a *name*, and the statement ``x = 42`` *binds* the na
 
 Under the hood, this process of binding names to objects is implemented as a dictionary---more about this in a moment
 
-There is no problem binding two or more names to the one object, regardless of what that object is 
+There is no problem binding two or more names to the one object, regardless of what that object is
 
 .. code-block:: python3
 
@@ -337,7 +337,7 @@ There is no problem binding two or more names to the one object, regardless of w
 
     g = f
     id(g) == id(f)
-    
+
 .. code-block:: python3
 
     g('test')
@@ -348,20 +348,20 @@ After binding the name ``g`` to the same object, we can use it anywhere we would
 
 What happens when the number of names bound to an object goes to zero?
 
-Here's an example of this situation, where the name ``x`` is first bound to one object and then rebound to another 
+Here's an example of this situation, where the name ``x`` is first bound to one object and then rebound to another
 
 .. code-block:: python3
 
     x = 'foo'
     id(x)
-    
+
 .. code-block:: python3
 
     x = 'bar'  # No names bound to the first object
 
 What happens here is that the first object is garbage collected
 
-In other words, the memory slot that stores that object is deallocated, and returned to the operating system
+In other words, the memory slot that stores that object is deallocated and returned to the operating system
 
 
 
@@ -385,7 +385,7 @@ This dictionary is called a *namespace*
 
 **Definition:** A namespace is a symbol table that maps names to objects in memory
 
-Python uses multiple namespaces, creating them on the fly as necessary 
+Python uses multiple namespaces, creating them on the fly as necessary
 
 For example, every time we import a module, Python creates a namespace for that module
 
@@ -396,13 +396,13 @@ To see this in action, suppose we write a script ``math2.py`` with a single line
     %%file math2.py
     pi = 'foobar'
 
-Now we start the Python interpreter and import it 
+Now we start the Python interpreter and import it
 
 .. code-block:: python3
 
     import math2
 
-Next let's import the ``math`` module from the standard library 
+Next, let's import the ``math`` module from the standard library
 
 .. code-block:: python3
 
@@ -413,21 +413,21 @@ Both of these modules have an attribute called ``pi``
 .. code-block:: python3
 
     math.pi
-    
+
 .. code-block:: python3
 
     math2.pi
 
 These two different bindings of ``pi`` exist in different namespaces, each one implemented as a dictionary
 
-We can look at the dictionary directly, using ``module_name.__dict__`` 
+We can look at the dictionary directly, using ``module_name.__dict__``
 
 .. code-block:: python3
 
     import math
 
     math.__dict__.items()
-    
+
 .. code-block:: python3
 
     import math2
@@ -435,13 +435,13 @@ We can look at the dictionary directly, using ``module_name.__dict__``
     math2.__dict__.items()
 
 
-As you know, we access elements of the namespace using the dotted attribute notation 
+As you know, we access elements of the namespace using the dotted attribute notation
 
 .. code-block:: python3
 
     math.pi
 
-In fact this is entirely equivalent to ``math.__dict__['pi']`` 
+In fact this is entirely equivalent to ``math.__dict__['pi']``
 
 .. code-block:: python3
 
@@ -475,7 +475,7 @@ These are initialized in the namespace when any module is imported
 .. code-block:: python3
 
     print(math.__doc__)
-    
+
 .. code-block:: python3
 
     math.__name__
@@ -507,19 +507,19 @@ To see this, let's create a file ``mod.py`` that prints its own ``__name__`` att
     %%file mod.py
     print(__name__)
 
-Now let's look at two different ways of running it in IPython 
+Now let's look at two different ways of running it in IPython
 
 .. code-block:: python3
 
     import mod  # Standard import
-    
+
 .. code-block:: ipython
-    
+
     %run mod.py  # Run interactively
-  
+
 In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
 
-To see the contents of the namespace of ``__main__`` we use ``vars()`` rather than ``vars(__main__)`` 
+To see the contents of the namespace of ``__main__`` we use ``vars()`` rather than ``vars(__main__)``
 
 If you do this in IPython, you will see a whole lot of variables that IPython
 needs, and has initialized when you started up your session
@@ -545,11 +545,11 @@ Python documentation often makes reference to the "global namespace"
 
 The global namespace is *the namespace of the module currently being executed*
 
-For example, suppose that we start the interpreter and begin making assignments 
+For example, suppose that we start the interpreter and begin making assignments
 
 We are now working in the module ``__main__``, and hence the namespace for ``__main__`` is the global namespace
 
-Next, we import a module called ``amodule`` 
+Next, we import a module called ``amodule``
 
 .. code-block:: python3
     :class: no-execute
@@ -562,7 +562,7 @@ While this occurs, the namespace ``amodule.__dict__`` is the global namespace
 
 Once execution of the module finishes, the interpreter returns to the module from where the import statement was made
 
-In this case it's ``__main__``, so the namespace of ``__main__`` again becomes the global namespace
+In this case, it's ``__main__``, so the namespace of ``__main__`` again becomes the global namespace
 
 
 Local Namespaces
@@ -577,10 +577,10 @@ The reason for this will be explained in just a moment
 
 Variables in the local namespace are called *local variables*
 
-After the function returns, the namespace is deallocated and lost 
+After the function returns, the namespace is deallocated and lost
 
-While the function is executing, we can view the contents of the local namespace with ``locals()`` 
- 
+While the function is executing, we can view the contents of the local namespace with ``locals()``
+
 For example, consider
 
 .. code-block:: python3
@@ -591,7 +591,7 @@ For example, consider
         return a * x
 
 
-Now let's call the function 
+Now let's call the function
 
 .. code-block:: python3
 
@@ -614,28 +614,28 @@ We have been using various built-in functions, such as ``max(), dir(), str(), li
 How does access to these names work?
 
 * These definitions are stored in a module called ``__builtin__``
-* They have there own namespace called ``__builtins__``
+* They have their own namespace called ``__builtins__``
 
 .. code-block:: python3
 
     dir()[0:10]
-    
+
 .. code-block:: python3
-    
+
     dir(__builtins__)[0:10]
 
-We can access elements of the namespace as follows 
+We can access elements of the namespace as follows
 
 .. code-block:: python3
 
     __builtins__.max
 
-But ``__builtins__`` is special, because we can always access them directly as well 
+But ``__builtins__`` is special, because we can always access them directly as well
 
 .. code-block:: python3
 
     max
-    
+
 .. code-block:: python3
 
     __builtins__.max == max
@@ -654,18 +654,18 @@ Namespaces are great because they help us organize variable names
 
 (Type ``import this`` at the prompt and look at the last item that's printed)
 
-However, we do need to understand how the Python interpreter works with multiple namespaces 
+However, we do need to understand how the Python interpreter works with multiple namespaces
 
 At any point of execution, there are in fact at least two namespaces that can be accessed directly
 
 ("Accessed directly" means without using a dot, as in  ``pi`` rather than ``math.pi``)
 
-These namespaces are 
+These namespaces are
 
 * The global namespace (of the module being executed)
 * The builtin namespace
 
-If the interpreter is executing a function, then the directly accessible namespaces are 
+If the interpreter is executing a function, then the directly accessible namespaces are
 
 * The local namespace of the function
 * The global namespace (of the module being executed)
@@ -699,7 +699,7 @@ If the name is not in any of these namespaces, the interpreter raises a ``NameEr
 
 This is called the **LEGB rule** (local, enclosing, global, builtin)
 
-Here's an example that helps to illustrate 
+Here's an example that helps to illustrate
 
 Consider a script ``test.py`` that looks as follows
 
@@ -710,13 +710,13 @@ Consider a script ``test.py`` that looks as follows
         a = 1
         x = x + a
         return x
-    
+
     a = 0
     y = g(10)
     print("a = ", a, "y = ", y)
 
 
-What happens when we run this script?  
+What happens when we run this script?
 
 .. code-block:: ipython
 
@@ -726,20 +726,20 @@ What happens when we run this script?
     :class: skip-test
 
     x
-    
+
 
 
 First,
 
 * The global namespace ``{}`` is created
-* The function object is created, and ``g`` is bound to it within the global namespace 
-* The name ``a`` is bound to ``0``, again in the global namespace 
+* The function object is created, and ``g`` is bound to it within the global namespace
+* The name ``a`` is bound to ``0``, again in the global namespace
 
 Next ``g`` is called via ``y = g(10)``, leading to the following sequence of actions
 
 * The local namespace for the function is created
 * Local names ``x`` and ``a`` are bound, so that the local namespace becomes ``{'x': 10, 'a': 1}``
-* Statement ``x = x + a`` uses the local ``a`` and local ``x`` to compute ``x + a``, and binds local name ``x`` to the result
+* Statement ``x = x + a`` uses the local ``a`` and local ``x`` to compute ``x + a`` and binds local name ``x`` to the result
 * This value is returned, and ``y`` is bound to it in the global namespace
 * Local ``x`` and ``a`` are discarded (and the local namespace is deallocated)
 
@@ -766,7 +766,7 @@ Consider the code segment
 
 We now understand what will happen here: The code prints ``2`` as the value of ``f(x)`` and ``1`` as the value of ``x``
 
-First ``f`` and ``x`` are registered in the global namespace
+First, ``f`` and ``x`` are registered in the global namespace
 
 The call ``f(x)`` creates a local namespace and adds ``x`` to it, bound to ``1``
 
@@ -846,7 +846,7 @@ Why?
 
 * Because errors causing execution to stop are frustrating if you're in the middle of a large computation
 
-* Because it's reduces confidence in your code on the part of your users (if you are writing for others)
+* Because it reduces confidence in your code on the part of your users (if you are writing for others)
 
 
 
@@ -875,7 +875,7 @@ print our error message
     :class: skip-test
 
     var([1])
-    
+
 
 
 The advantage is that we can
@@ -890,7 +890,7 @@ Handling Errors During Runtime
 .. index::
     single: Python; Runtime Errors
 
-The approach used above is a bit limited, because it always leads to
+The approach used above is a bit limited because it always leads to
 termination
 
 Sometimes we can handle errors more gracefully, by treating special cases
@@ -907,7 +907,7 @@ Here's an example of a common error type
 
 .. code-block:: python3
     :class: skip-test
-    
+
     def f:
 
 
@@ -974,11 +974,11 @@ When we call ``f`` we get the following output
 .. code-block:: python3
 
     f(2)
-    
+
 .. code-block:: python3
 
     f(0)
-    
+
 .. code-block:: python3
 
     f(0.0)
@@ -1006,11 +1006,11 @@ Here's what happens
 .. code-block:: python3
 
     f(2)
-    
+
 .. code-block:: python3
-    
+
     f(0)
-    
+
 .. code-block:: python3
 
     f('foo')
@@ -1034,11 +1034,11 @@ Here's what happens
 .. code-block:: python3
 
     f(2)
-    
+
 .. code-block:: python3
 
     f(0)
-    
+
 .. code-block:: python3
 
     f('foo')
@@ -1055,7 +1055,7 @@ If we feel extra lazy we can catch all error types as follows
             print('Error.  Returned None')
         return None
 
-In general it's better to be specific
+In general, it's better to be specific
 
 
 
@@ -1086,7 +1086,7 @@ Decorators are a bit of syntactic sugar that, while easily avoided, have turned 
 
 It's very easy to say what decorators do
 
-On the other hand it takes a bit of effort to explain *why* you might use them
+On the other hand, it takes a bit of effort to explain *why* you might use them
 
 An Example
 ^^^^^^^^^^^^^^
@@ -1107,14 +1107,14 @@ Suppose we are working on a program that looks something like this
 
 Now suppose there's a problem: occasionally negative numbers get fed to ``f`` and ``g`` in the calculations that follow
 
-If you try it, you'll see that when these functions are called with negative numbers they return a NumPy object called ``nan`` 
+If you try it, you'll see that when these functions are called with negative numbers they return a NumPy object called ``nan``
 
 This stands for "not a number" (and indicates that you are trying to evaluate
 a mathematical function at a point where it is not defined)
 
 Perhaps this isn't what we want, because it causes other problems that are hard to pick up later on
 
-Suppose that instead we want the program to terminate whenever this happens, with a sensible error message
+Suppose that instead, we want the program to terminate whenever this happens, with a sensible error message
 
 This change is easy enough to implement
 
@@ -1144,7 +1144,7 @@ This means we need to repeat the test logic (i.e., the ``assert`` line testing n
 
 The situation is still worse if the test logic is longer and more complicated
 
-In this kind of scenario the following approach would be neater
+In this kind of scenario, the following approach would be neater
 
 .. code-block:: python3
 
@@ -1274,18 +1274,18 @@ variables but not the other
 
     car = Car()
     car.miles
-    
+
 .. code-block:: python3
 
     car.kms
-    
+
 .. code-block:: python3
 
     car.miles = 6000
     car.kms
 
 
-In the last two lines we see that ``miles`` and ``kms`` are out of sync
+In the last two lines, we see that ``miles`` and ``kms`` are out of sync
 
 What we really want is some mechanism whereby each time a user sets one of these variables, *the other is automatically updated*
 
@@ -1328,13 +1328,13 @@ Consider this alternative version of the ``Car`` class
         kms = property(get_kms, set_kms)
 
 
-First let's check that we get the desired behavior
+First, let's check that we get the desired behavior
 
 .. code-block:: python3
 
     car = Car()
     car.miles
-    
+
 .. code-block:: python3
 
     car.miles = 6000
@@ -1359,7 +1359,7 @@ The builtin Python function ``property`` takes getter and setter methods and cre
 For example, after ``car`` is created as an instance of ``Car``, the object ``car.miles`` is a property
 
 Being a property, when we set its value via ``car.miles = 6000`` its setter
-method is triggered --- in this case ``set_miles``
+method is triggered --- in this case, ``set_miles``
 
 
 
@@ -1372,7 +1372,7 @@ Decorators and Properties
 .. index::
     single: Python; Properties
 
-These days its very common to see the ``property`` function used via a decorator
+These days it's very common to see the ``property`` function used via a decorator
 
 Here's another version of our ``Car`` class that works as before but now uses
 decorators to set up the properties
@@ -1406,7 +1406,7 @@ decorators to set up the properties
 
 We won't go through all the details here
 
-For further information you can refer to the `descriptor documentation <https://docs.python.org/3/howto/descriptor.html>`_
+For further information, you can refer to the `descriptor documentation <https://docs.python.org/3/howto/descriptor.html>`_
 
 
 .. _paf_generators:
@@ -1440,9 +1440,9 @@ Here is the list comprehension:
 
     plural = [string + 's' for string in singular]
     plural
-    
+
 .. code-block:: python3
-    
+
     type(plural)
 
 And here is the generator expression
@@ -1452,17 +1452,17 @@ And here is the generator expression
     singular = ('dog', 'cat', 'bird')
     plural = (string + 's' for string in singular)
     type(plural)
-    
+
 .. code-block:: python3
-    
+
     next(plural)
-    
+
 .. code-block:: python3
-    
+
     next(plural)
-    
+
 .. code-block:: python3
-    
+
     next(plural)
 
 Since ``sum()`` can be called on iterators, we can do this
@@ -1503,14 +1503,14 @@ Here's a very simple example of a generator function
         yield 'end'
 
 
-It looks like a function, but uses a keyword ``yield`` that we haven't met before
+It looks like a function but uses a keyword ``yield`` that we haven't met before
 
 Let's see how it works after running this code
 
 .. code-block:: python3
 
     type(f)
-    
+
 .. code-block:: python3
 
     gen = f()
@@ -1519,15 +1519,15 @@ Let's see how it works after running this code
 .. code-block:: python3
 
     next(gen)
-    
+
 .. code-block:: python3
 
     next(gen)
-    
+
 .. code-block:: python3
 
     next(gen)
-    
+
 .. code-block:: python3
     :class: skip-test
 
@@ -1537,7 +1537,7 @@ Let's see how it works after running this code
 
 The generator function ``f()`` is used to create generator objects (in this case ``gen``)
 
-Generators are iterators, because they support a ``next`` method
+Generators are iterators because they support a ``next`` method
 
 The first call to ``next(gen)``
 
@@ -1555,7 +1555,7 @@ The second call to ``next(gen)`` starts executing *from the next line*
 
 and continues until the next ``yield`` statement
 
-At that point it returns the value following ``yield`` to the caller of ``next(gen)``, and so on
+At that point, it returns the value following ``yield`` to the caller of ``next(gen)``, and so on
 
 When the code block ends, the generator throws a ``StopIteration`` error
 
@@ -1575,29 +1575,29 @@ Our next example receives an argument ``x`` from the caller
 Let's see how it works
 
 .. code-block:: python3
-    
+
     g
-    
+
 .. code-block:: python3
-    
+
     gen = g(2)
     type(gen)
-    
+
 .. code-block:: python3
-    
+
     next(gen)
-    
+
 .. code-block:: python3
-    
+
     next(gen)
-    
+
 .. code-block:: python3
-    
+
     next(gen)
-    
+
 .. code-block:: python3
     :class: skip-test
-    
+
     next(gen)
 
 
@@ -1681,7 +1681,7 @@ Now let's do the sum
     n = 10000000
     draws = f(n)
     draws
-    
+
 .. code-block:: python3
 
     sum(draws)
@@ -1714,7 +1714,7 @@ For example, consider the problem of computing :math:`x_t` for some t when
     x_{t+1} = 2 x_t, \quad x_0 = 1
 
 
-Obviously the answer is :math:`2^t`
+Obviously, the answer is :math:`2^t`
 
 We can compute this easily enough with a loop
 
@@ -1737,7 +1737,7 @@ We can also use a recursive solution, as follows
             return 2 * x(t-1)
 
 
-What happens here is that each successive call uses it's own *frame* in the *stack*
+What happens here is that each successive call uses its own *frame* in the *stack*
 
 * a frame is where the local variables of a given function call are held
 * stack is memory used to process function calls
@@ -1847,8 +1847,8 @@ One solution is as follows
 
     def column_iterator(target_file, column_number):
         """A generator function for CSV files.
-        When called with a file name target_file (string) and column number 
-        column_number (integer), the generator function returns a generator 
+        When called with a file name target_file (string) and column number
+        column_number (integer), the generator function returns a generator
         which steps through the elements of column column_number in file
         target_file.
         """
@@ -1856,9 +1856,9 @@ One solution is as follows
         for line in f:
             yield line.split(',')[column_number - 1]
         f.close()
-    
-    dates = column_iterator('test_table.csv', 1) 
-    
+
+    dates = column_iterator('test_table.csv', 1)
+
     i = 1
     for date in dates:
         print(date)
@@ -1878,7 +1878,7 @@ Let's save the data first
     prices
     3
     8
-    
+
     7
     21
 
@@ -1886,20 +1886,14 @@ Let's save the data first
 .. code-block:: python3
 
     f = open('numbers.txt')
-    
-    total = 0.0 
+
+    total = 0.0
     for line in f:
         try:
             total += float(line)
         except ValueError:
             pass
-    
+
     f.close()
-    
+
     print(total)
-
-
-
-
-
-
