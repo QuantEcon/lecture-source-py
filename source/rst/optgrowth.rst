@@ -11,7 +11,7 @@
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -22,7 +22,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 Overview
 ============
 
-In this lecture we're going to study a simple optimal growth model with one agent
+In this lecture, we're going to study a simple optimal growth model with one agent
 
 The model is a version of the standard one sector infinite horizon growth model studied in
 
@@ -157,7 +157,7 @@ In summary, the agent's aim is to select a path :math:`c_0, c_1, c_2, \ldots` fo
 #. optimal, in the sense that it maximizes :eq:`texs0_og2` relative to all other feasible consumption sequences, and
 
 #. *adapted*, in the sense that the action :math:`c_t` depends only on
-   observable outcomes, not future outcomes such as :math:`\xi_{t+1}`
+   observable outcomes, not on future outcomes such as :math:`\xi_{t+1}`
 
 
 In the present context
@@ -466,7 +466,7 @@ In practice economists often work with unbounded utility functions --- and so wi
 
 In the unbounded setting, various optimality theories exist
 
-Unfortunately, they tend to be case specific, as opposed to valid for a large range of applications
+Unfortunately, they tend to be case-specific, as opposed to valid for a large range of applications
 
 Nevertheless, their main conclusions are usually in line with those stated for
 the bounded case just above (as long as we drop the word "bounded")
@@ -513,7 +513,7 @@ Even if :math:`v` is a known function, unless :math:`Tv` can be shown to have
 some special structure, the only way to store it is to record the
 value :math:`Tv(y)` for every :math:`y \in \mathbb R_+`
 
-Clearly this is impossible
+Clearly, this is impossible
 
 What we will do instead is use **fitted value function iteration**
 
@@ -578,7 +578,7 @@ function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
     plt.show()
 
 Another advantage of piecewise linear interpolation is that it preserves
-useful shape properties such as monotonicity and concavity / convexity
+useful shape properties such as monotonicity and concavity/convexity
 
 Optimal Growth Model
 ---------------------
@@ -617,7 +617,7 @@ Here's a function that generates a Bellman operator using linear interpolation
 .. literalinclude:: /_static/code/optgrowth/bellman_operator.py
 
 optgro
-The function ``operator_factory`` takes a class that represents the growth model,
+The function ``operator_factory`` takes a class that represents the growth model
 and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model
 
 Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
@@ -669,7 +669,7 @@ The optimal consumption policy is
 
     \sigma^*(y) = (1 - \alpha \beta ) y
 
-We will define functions to compute the closed form solutions to check our answers
+We will define functions to compute the closed-form solutions to check our answers
 
 .. code-block:: python3
 
@@ -734,7 +734,7 @@ As one preliminary test, let's see what happens when we apply our Bellman operat
 
 In theory, the resulting function should again be :math:`v^*`
 
-In practice we expect some small numerical error
+In practice, we expect some small numerical error
 
 .. code-block:: python3
 
@@ -872,7 +872,7 @@ The discount factors are ``discount_factors = (0.8, 0.9, 0.98)``
 
 We have also dialed down the shocks a bit with ``s = 0.05``
 
-Otherwise, the parameters and primitives are the same as the log linear model discussed earlier in the lecture
+Otherwise, the parameters and primitives are the same as the log-linear model discussed earlier in the lecture
 
 Notice that more patient agents typically have higher wealth
 
