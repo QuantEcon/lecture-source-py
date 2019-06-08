@@ -46,7 +46,7 @@ as `statsmodels <http://www.statsmodels.org/>`__ and `scikit-learn <http://sciki
 
 This lecture will provide a basic introduction to pandas
 
-Throughout the lecture we will assume that the following imports have taken
+Throughout the lecture, we will assume that the following imports have taken
 place
 
 .. code-block:: python3
@@ -81,7 +81,7 @@ Let's start with `Series`
 Here you can imagine the indices ``0, 1, 2, 3`` as indexing four listed
 companies, and the values being daily returns on their shares
 
-Pandas ``Series`` are built on top of NumPy arrays, and support many similar
+Pandas ``Series`` are built on top of NumPy arrays and support many similar
 operations
 
 .. code-block:: python3
@@ -146,10 +146,10 @@ Thus, it is a powerful tool for representing and analyzing data that are natural
 
 .. only:: latex
 
-    Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv``, and can be downloaded
+    Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv`` and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas/data/test_pwt.csv>`__
 
-Here's the contents of ``test_pwt.csv``
+Here's the content of ``test_pwt.csv``
 
 .. code-block:: none
 
@@ -189,7 +189,7 @@ To select columns, we can pass a list containing the names of the desired column
 
     df[['country', 'tcgdp']]
 
-To select both rows and columns using integers, the ``iloc`` attribute should be used with the format ``.iloc[rows,columns]``
+To select both rows and columns using integers, the ``iloc`` attribute should be used with the format ``.iloc[rows, columns]``
 
 .. code-block:: python3
 
@@ -210,7 +210,7 @@ One way to strip the data frame ``df`` down to only these variables is to overwr
     df = df[['country', 'POP', 'tcgdp']]
     df
 
-Here the index ``0, 1,..., 7`` is redundant, because we can use the country names as an index
+Here the index ``0, 1,..., 7`` is redundant because we can use the country names as an index
 
 To do this, we set the index to be the ``country`` variable in the dataframe
 
@@ -233,7 +233,7 @@ Population is in thousands, let's revert to single units
     df['population'] = df['population'] * 1e3
     df
 
-Next we're going to add a column showing real GDP per capita, multiplying by 1,000,000 as we go because total GDP is in millions
+Next, we're going to add a column showing real GDP per capita, multiplying by 1,000,000 as we go because total GDP is in millions
 
 .. code-block:: python3
 
@@ -274,7 +274,7 @@ On-Line Data Sources
 .. index::
     single: Data Sources
 
-Python makes it straightforward to query on line databases programmatically
+Python makes it straightforward to query online databases programmatically
 
 An important database for economists is `FRED <https://research.stlouisfed.org/fred2/>`_ --- a vast collection of time series data maintained by the St. Louis Fed
 
@@ -295,7 +295,7 @@ Alternatively, we can access the CSV file from within a Python program
 
 This can be done with a variety of methods
 
-We start with a relatively low level method, and then return to pandas
+We start with a relatively low-level method and then return to pandas
 
 Accessing Data with :index:`requests`
 -------------------------------------------
@@ -317,7 +317,7 @@ If there's no error message, then the call has succeeded
 
 If you do get an error, then there are two likely causes
 
-#. You are not connected to the Internet --- hopefully this isn't the case
+#. You are not connected to the Internet --- hopefully, this isn't the case
 
 #. Your machine is accessing the Internet through a proxy server, and Python isn't aware of this
 
@@ -327,7 +327,7 @@ In the second case, you can either
 
 * solve your proxy problem by reading `the documentation <http://docs.python-requests.org/en/master/>`_
 
-Assuming that all is working, you can now proceed to using the ``source`` object returned by the call ``requests.get('http://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv')``
+Assuming that all is working, you can now proceed to use the ``source`` object returned by the call ``requests.get('http://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv')``
 
 .. code-block:: python3
 
@@ -436,12 +436,12 @@ Write a program to calculate the percentage price change over 2013 for the follo
 
 .. only:: html
 
-    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv``, and can be downloaded
+    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
     :download:`here <_static/code/pandas/data/ticker_data.csv>`
 
 .. only:: latex
 
-    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv``, and can be downloaded
+    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas/data/ticker_data.csv>`__
 
 Plot the result as a bar graph like follows
