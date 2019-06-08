@@ -19,16 +19,16 @@ Overview
 ============
 
 
-In our lecture on :doc:`NumPy <numpy>` we learned one method to improve speed and efficiency in numerical work
+In our lecture on :doc:`NumPy <numpy>`, we learned one method to improve speed and efficiency in numerical work
 
-That method, called *vectorization*, involved sending array processing operations in batch to efficient low level code
+That method, called *vectorization*, involved sending array processing operations in batch to efficient low-level code
 
 This clever idea dates back to Matlab, which uses it extensively
 
 
 Unfortunately, vectorization is limited and has several weaknesses
 
-One weakness is that it is highly memory intensive
+One weakness is that it is highly memory-intensive
 
 Another problem is that only some algorithms can be vectorized
 
@@ -49,17 +49,17 @@ The Need for Speed
 
 To understand what Numba does and why, we need some background knowledge
 
-Let's start by thinking about higher level languages, such as Python
+Let's start by thinking about higher-level languages, such as Python
 
 These languages are optimized for humans
 
 This means that the programmer can leave many details to the runtime environment
 
 * specifying variable types
-  
+
 * memory allocation/deallocation, etc.
 
-The upside is that, compared to low-level languages, Python is typically faster to write, less error prone and  easier to debug
+The upside is that, compared to low-level languages, Python is typically faster to write, less error-prone and  easier to debug
 
 The downside is that Python is harder to optimize --- that is, turn into fast machine code --- than languages like C or Fortran
 
@@ -67,9 +67,9 @@ Indeed, the standard implementation of Python (called CPython) cannot match the 
 
 Does that mean that we should just switch to C or Fortran for everything?
 
-The answer is no, no and one hundred times no 
+The answer is no, no and one hundred times no
 
-High productivity languages should be chosen over high speed languages for the great majority of scientific computing tasks
+High productivity languages should be chosen over high-speed languages for the great majority of scientific computing tasks
 
 This is because
 
@@ -86,7 +86,7 @@ This lecture provides a guide
 Where are the Bottlenecks?
 =============================
 
-Let's start by trying to understand why high level languages like Python are slower than compiled code
+Let's start by trying to understand why high-level languages like Python are slower than compiled code
 
 
 Dynamic Typing
@@ -163,7 +163,7 @@ Hence, the meaning of addition here is completely unambiguous
 Data Access
 --------------------
 
-Another drag on speed for high level languages is data access
+Another drag on speed for high-level languages is data access
 
 To illustrate, let's consider the problem of summing some data --- say, a collection of integers
 
@@ -229,7 +229,7 @@ Operations on Arrays
 .. index::
     single: Vectorization; Operations on Arrays
 
-First let's run some imports
+First, let's run some imports
 
 .. code-block:: python3
 
@@ -306,7 +306,7 @@ For example, ``np.cos`` is a ufunc:
 .. code-block:: python3
 
     np.cos(1.0)
-    
+
 .. code-block:: python3
 
     np.cos(np.linspace(0, 1, 3))
@@ -369,14 +369,14 @@ Here's a non-vectorized version that uses Python loops
 
     grid = np.linspace(-3, 3, 1000)
     m = -np.inf
-    
+
     qe.tic()
     for x in grid:
         for y in grid:
             z = f(x, y)
             if z > m:
                 m = z
-                
+
     qe.toc()
 
 And here's a vectorized version
@@ -388,7 +388,7 @@ And here's a vectorized version
 
     grid = np.linspace(-3, 3, 1000)
     x, y = np.meshgrid(grid, grid)
-    
+
     qe.tic()
     np.max(f(x, y))
     qe.toc()
@@ -396,9 +396,9 @@ And here's a vectorized version
 
 In the vectorized version, all the looping takes place in compiled code
 
-As you can see, the second version is **much** faster 
+As you can see, the second version is **much** faster
 
-(We'll make it even faster again below, when we discuss Numba)
+(We'll make it even faster again below when we discuss Numba)
 
 
 .. _numba-p_c_vectorization:
@@ -410,7 +410,7 @@ At its best, vectorization yields fast, simple code
 
 However, it's not without disadvantages
 
-One issue is that it can be highly memory intensive
+One issue is that it can be highly memory-intensive
 
 For example, the vectorized maximization routine above is far more memory
 intensive than the non-vectorized version that preceded it
@@ -442,7 +442,7 @@ The process isn't flawless, since Numba needs to infer type information on all v
 
 Such inference isn't possible in every setting
 
-But for simple routines Numba infers types very well
+But for simple routines, Numba infers types very well
 
 Moreover, the "hot loops" at the heart of our code that we need to speed up are often such simple routines
 
@@ -507,8 +507,8 @@ Let's time and compare identical function calls across these two versions:
     qe.util.tic()
     qm(0.1, int(10**5))
     time1 = qe.util.toc()
-  
-    
+
+
 .. code-block:: python3
 
     qe.util.tic()
@@ -516,7 +516,7 @@ Let's time and compare identical function calls across these two versions:
     time2 = qe.util.toc()
 
 
-The first execution is relatively slow because of JIT compilation (see below) 
+The first execution is relatively slow because of JIT compilation (see below)
 
 Next time and all subsequent times it runs much faster:
 
@@ -527,7 +527,7 @@ Next time and all subsequent times it runs much faster:
     qe.util.tic()
     qm_numba(0.1, int(10**5))
     time2 = qe.util.toc()
-    
+
 .. code-block:: python3
 
     time1 / time2  # Calculate speed gain
@@ -541,7 +541,7 @@ Nonetheless, two orders of magnitude is huge relative to how simple and clear th
 Decorator Notation
 ^^^^^^^^^^^^^^^^^^^
 
-If you don't need a separate name for the "numbafied" version of ``qm``, 
+If you don't need a separate name for the "numbafied" version of ``qm``,
 you can just put ``@jit`` before the function
 
 .. code-block:: python3
@@ -577,7 +577,7 @@ In an ideal setting, Numba can infer all necessary type information
 
 This allows it to generate native machine code, without having to call the Python runtime environment
 
-In such a setting, Numba will be on par with machine code from low level languages
+In such a setting, Numba will be on par with machine code from low-level languages
 
 When Numba cannot infer all type information, some Python objects are given generic ``object`` status, and some code is generated using the Python runtime
 
@@ -606,9 +606,9 @@ Consider the following example
 .. code-block:: python3
 
     a = 2
-    
+
     print(add_x(10))
-    
+
 
 Notice that changing the global had no effect on the value returned by the
 function
@@ -618,11 +618,11 @@ When Numba compiles machine code for functions, it treats global variables as co
 
 
 Numba for Vectorization
---------------------------    
+--------------------------
 
 Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator
 
-To illustrate the advantage of using Numba to vectorize a function, we 
+To illustrate the advantage of using Numba to vectorize a function, we
 return to a maximization problem :ref:`discussed above <ufuncs>`
 
 
@@ -633,30 +633,30 @@ return to a maximization problem :ref:`discussed above <ufuncs>`
     @vectorize
     def f_vec(x, y):
         return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
-        
+
     grid = np.linspace(-3, 3, 1000)
     x, y = np.meshgrid(grid, grid)
 
     np.max(f_vec(x, y))  # Run once to compile
-    
+
     qe.tic()
     np.max(f_vec(x, y))
     qe.toc()
-    
 
-This is faster than our vectorized version using NumPy's ufuncs 
+
+This is faster than our vectorized version using NumPy's ufuncs
 
 Why should that be?  After all, anything vectorized with NumPy will be running in fast C or Fortran code
 
-The reason is that it's much less memory intensive
+The reason is that it's much less memory-intensive
 
 For example, when NumPy computes ``np.cos(x**2 + y**2)`` it first creates the
 intermediate arrays ``x**2`` and ``y**2``, then it creates the array ``np.cos(x**2 + y**2)``
 
 In our ``@vectorize`` version using Numba, the entire operator is reduced to a
 single vectorized process and none of these intermediate arrays are created
-    
-We can gain further speed improvements using Numba's automatic parallelization 
+
+We can gain further speed improvements using Numba's automatic parallelization
 feature by specifying ``target='parallel'``
 
 In this case, we need to specify the types of our inputs and outputs
@@ -668,9 +668,9 @@ In this case, we need to specify the types of our inputs and outputs
         return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
 
     np.max(f_vec(x, y))  # Run once to compile
-    
+
     qe.tic()
     np.max(f_vec(x, y))
     qe.toc()
-    
-This is a striking speed up with very little effort 
+
+This is a striking speed up with very little effort
