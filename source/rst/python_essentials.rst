@@ -8,7 +8,7 @@ Python Essentials
 
 .. contents:: :depth: 2
 
-In this lecture we'll cover features of the language that are essential to reading and writing Python code
+In this lecture, we'll cover features of the language that are essential to reading and writing Python code
 
 
 
@@ -19,7 +19,7 @@ Data Types
     single: Python; Data Types
 
 
-We've already met several built in Python data types, such as strings, integers, floats and lists
+We've already met several built-in Python data types, such as strings, integers, floats and lists
 
 
 Let's learn a bit more about them
@@ -40,7 +40,7 @@ In the next line of code, the interpreter evaluates the expression on the right 
 
 .. code-block:: python3
 
-    y = 100 < 10   
+    y = 100 < 10
     y
 
 .. code-block:: python3
@@ -93,7 +93,7 @@ As long as you're using Python 3.x, division of integers yields floats
 
 .. code-block:: python3
 
-    1 / 2     
+    1 / 2
 
 
 But be careful! If you're still using Python 2.x, division of two integers returns only the integer part
@@ -119,7 +119,7 @@ Containers
 
 Python has several basic types for storing collections of (possibly heterogeneous) data
 
-We've :ref:`already discussed lists <lists_ref>` 
+We've :ref:`already discussed lists <lists_ref>`
 
 .. index::
     single: Python; Tuples
@@ -140,12 +140,12 @@ In Python, an object is called **immutable** if, once created, the object cannot
 
 Conversely, an object is **mutable** if it can still be altered after creation
 
-Python lists are mutable 
+Python lists are mutable
 
 .. code-block:: python3
 
-    x = [1, 2]  
-    x[0] = 10   
+    x = [1, 2]
+    x[0] = 10
     x
 
 But tuples are not
@@ -153,8 +153,8 @@ But tuples are not
 .. code-block:: python3
     :class: skip-test
 
-    x = (1, 2)  
-    x[0] = 10  
+    x = (1, 2)
+    x[0] = 10
 
 
 We'll say more about the role of mutable and immutable data a bit later
@@ -240,7 +240,7 @@ The names ``'name'`` and ``'age'`` are called the *keys*
 The objects that the keys are mapped to (``'Frodo'`` and ``33``) are called the ``values``
 
 Sets are unordered collections without duplicates, and set methods provide the
-usual set theoretic operations
+usual set-theoretic operations
 
 .. code-block:: python3
 
@@ -320,7 +320,7 @@ Paths
 
 Note that if ``newfile.txt`` is not in the present working directory then this call to ``open()`` fails
 
-In this case you can shift the file to the pwd or specify the `full path <https://en.wikipedia.org/wiki/Path_%28computing%29>`_ to the file
+In this case, you can shift the file to the pwd or specify the `full path <https://en.wikipedia.org/wiki/Path_%28computing%29>`_ to the file
 
 .. code-block:: python3
     :class: no-execute
@@ -347,7 +347,7 @@ the ``for`` loop
 Looping over Different Objects
 ---------------------------------
 
-Many Python objects are "iterable", in the sense that they can looped over
+Many Python objects are "iterable", in the sense that they can be looped over
 
 To give an example, let's write the file `us_cities.txt`, which lists US cities and their population, to the present working directory
 
@@ -358,7 +358,7 @@ To give an example, let's write the file `us_cities.txt`, which lists US cities 
     %%file us_cities.txt
     new york: 8244910
     los angeles: 3819702
-    chicago: 2707120 
+    chicago: 2707120
     houston: 2145146
     philadelphia: 1536471
     phoenix: 1469471
@@ -576,7 +576,7 @@ More Functions
 .. index::
     single: Python; Functions
 
-Let's talk a bit more about functions, which are all-important for good programming style
+Let's talk a bit more about functions, which are all important for good programming style
 
 Python has a number of built-in functions that are available without ``import``
 
@@ -624,14 +624,14 @@ Now let's talk some more about user-defined functions constructed using the keyw
 Why Write Functions?
 --------------------------
 
-User defined functions are important for improving the clarity of your code by
+User-defined functions are important for improving the clarity of your code by
 
 * separating different strands of logic
 * facilitating code reuse
 
 (Writing the same thing twice is `almost always a bad idea <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_)
 
-The basics of user defined functions were discussed :ref:`here <user_defined_functions>`
+The basics of user-defined functions were discussed :ref:`here <user_defined_functions>`
 
 
 The Flexibility of Python Functions
@@ -683,7 +683,7 @@ Try running this
         """
         return x**2
 
-After running this code, the docstring is available 
+After running this code, the docstring is available
 
 .. code-block:: ipython
 
@@ -760,7 +760,7 @@ To create the function :math:`f(x) = x^3` we can use ``lambda`` as follows
 
     quad(lambda x: x**3, 0, 2)
 
-Here the function created by ``lambda`` is said to be *anonymous*, because it was never given a name
+Here the function created by ``lambda`` is said to be *anonymous* because it was never given a name
 
 
 Keyword Arguments
@@ -788,7 +788,7 @@ is determined by order
 
 Keyword arguments are particularly useful when a function has a lot of arguments, in which case it's hard to remember the right order
 
-You can adopt keyword arguments in user defined functions with no difficulty
+You can adopt keyword arguments in user-defined functions with no difficulty
 
 The next example illustrates the syntax
 
@@ -805,7 +805,7 @@ The keyword argument values we supplied in the definition of ``f`` become the de
     f(2)
 
 
-They can by modified as follows
+They can be modified as follows
 
 .. code-block:: python3
 
@@ -842,7 +842,7 @@ Exercises
 
 Solve the following exercises
 
-(For some, the built in function ``sum()`` comes in handy)
+(For some, the built-in function ``sum()`` comes in handy)
 
 .. _pyess_ex1:
 
@@ -1062,14 +1062,14 @@ Here's a solution:
             if a not in seq_b:
                 is_subset = False
         return is_subset
-    
+
     # == test == #
-    
+
     print(f([1, 2], [1, 2, 3]))
     print(f([1, 2, 3], [1, 2]))
 
 
-Of course if we use the ``sets`` data type then the solution is easier
+Of course, if we use the ``sets`` data type then the solution is easier
 
 .. code-block:: python3
 
@@ -1083,37 +1083,35 @@ Exercise 5
 
     def linapprox(f, a, b, n, x):
         """
-        Evaluates the piecewise linear interpolant of f at x on the interval 
+        Evaluates the piecewise linear interpolant of f at x on the interval
         [a, b], with n evenly spaced grid points.
-    
-        Parameters 
+
+        Parameters
         ===========
             f : function
                 The function to approximate
-    
-            x, a, b : scalars (floats or integers) 
+
+            x, a, b : scalars (floats or integers)
                 Evaluation point and endpoints, with a <= x <= b
-    
+
             n : integer
                 Number of grid points
-    
+
         Returns
         =========
             A float. The interpolant evaluated at x
-    
+
         """
         length_of_interval = b - a
         num_subintervals = n - 1
-        step = length_of_interval / num_subintervals  
-    
+        step = length_of_interval / num_subintervals
+
         # === find first grid point larger than x === #
         point = a
         while point <= x:
             point += step
-    
+
         # === x must lie between the gridpoints (point - step) and point === #
-        u, v = point - step, point  
-    
+        u, v = point - step, point
+
         return f(u) + (x - u) * (f(v) - f(u)) / (v - u)
-
-
