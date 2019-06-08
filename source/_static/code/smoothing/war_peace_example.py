@@ -46,10 +46,10 @@ print(f"Peace = {G1}")
 print(f"War = {G2}")
 
 print("\n")
-print("Let's see ex post and ex ante returns on Arrow securities")
+print("Let's see ex-post and ex-ante returns on Arrow securities")
 
 Π = np.reciprocal(Q)
 exret = Π
-print(f"Ex post returns to purchase of Arrow securities = {exret}")
+print(f"Ex-post returns to purchase of Arrow securities = {exret}")
 exant = Π * P
-print(f"Ex ante returns to purchase of Arrow securities {exant}")
+print(f"Ex-ante returns to purchase of Arrow securities {exant}")

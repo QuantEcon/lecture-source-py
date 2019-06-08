@@ -15,7 +15,7 @@ Consumption and Tax Smoothing with Complete and Incomplete Markets
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -28,7 +28,7 @@ Overview
 
 
 
-This lecture describes two types of consumption-smoothing  and tax-smoothing models 
+This lecture describes two types of consumption-smoothing and tax-smoothing models
 
 * one is in the **complete markets** tradition of Lucas and Stokey :cite:`LucasStokey1983`
 
@@ -49,17 +49,17 @@ Barro :cite:`Barro1979` made an analogous assumption about the risk-free interes
 rate in a tax-smoothing model that we regard as isomorphic to Hall's
 consumption-smoothing model
 
-We maintain Hall and Barro's assumption about the interest rate when we describe an 
-incomplete markets version of our model 
+We maintain Hall and Barro's assumption about the interest rate when we describe an
+incomplete markets version of our model
 
-In addition, we extend their assumption about the interest rate to an appropriate counterpart that we use in a "complete markets" model in the style of 
+In addition, we extend their assumption about the interest rate to an appropriate counterpart that we use in a "complete markets" model in the style of
 Lucas and Stokey :cite:`LucasStokey1983`
 
 While we are equally interested in consumption-smoothing and tax-smoothing
-models, for the most part we focus explicitly on consumption-smoothing
-versions of these models 
+models, for the most part, we focus explicitly on consumption-smoothing
+versions of these models
 
-But for each version of the consumption-smoothing model there is a natural tax-smoothing counterpart obtained simply by
+But for each version of the consumption-smoothing model, there is a natural tax-smoothing counterpart obtained simply by
 
 *  relabeling consumption as tax collections and nonfinancial income as government expenditures
 
@@ -84,17 +84,17 @@ We'll spend most of this lecture studying the finite-state Markov specification,
 Relationship to Other Lectures
 ------------------------------
 
-This lecture can be viewed as a followup to :doc:`perm_income_cons` and  a warm up for a model of tax smoothing described in :doc:`opt_tax_recur`
+This lecture can be viewed as a followup to :doc:`perm_income_cons` and  a warm-up for a model of tax smoothing described in :doc:`opt_tax_recur`
 
-Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`  
+Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`
 
 The key difference between those lectures and this one is
 
-* Here the decision maker  takes all prices as exogenous, meaning that his decisions do not affect them
+* Here the decision-maker  takes all prices as exogenous, meaning that his decisions do not affect them
 
-* In :doc:`lqramsey` and :doc:`opt_tax_recur`, the decision maker -- the government in the case of these lectures -- recognizes that his decisions affect prices
-  
-So these later lectures are partly about how the government should  manipulate prices of government debt  
+* In :doc:`lqramsey` and :doc:`opt_tax_recur`, the decision-maker -- the government in the case of these lectures -- recognizes that his decisions affect prices
+
+So these later lectures are partly about how the government should  manipulate prices of government debt
 
 
 
@@ -104,7 +104,7 @@ Background
 Outcomes in consumption-smoothing (or tax-smoothing) models emerge from two
 sources:
 
-*  a decision maker -- a consumer in the consumption-smoothing model or
+*  a decision-maker -- a consumer in the consumption-smoothing model or
    a government in the tax-smoothing model -- who wants to maximize an
    intertemporal objective function that expresses its preference for
    paths of consumption (or tax collections) that are *smooth* in the
@@ -131,7 +131,7 @@ In the incomplete markets version of the model, the consumer can buy and sell on
 
 Finite State Markov Income Process
 ----------------------------------
-                                  
+
 
 In each version of the consumption-smoothing model, nonfinancial income is governed by a two-state Markov chain (it's easy to generalize this to an :math:`N` state Markov chain)
 
@@ -154,25 +154,25 @@ Nonfinancial income :math:`\{y_t\}` obeys
     \end{cases}
 
 
-A consumer wishes to maximize 
+A consumer wishes to maximize
 
 .. math::
     :label: cs_1
 
-    \mathbb E 
+    \mathbb E
     \left[
         \sum_{t=0}^\infty \beta^t u(c_t)
     \right]
-    \quad 
+    \quad
     \text{where} \quad
     u(c_t) = - (c_t -\gamma)^2
     \quad \text{and} \quad
-     0 < \beta < 1 
+     0 < \beta < 1
 
 
 Remark About Isomorphism
 ^^^^^^^^^^^^^^^^^^^^^^^^
-                        
+
 
 We can regard these as Barro :cite:`Barro1979`  tax-smoothing models if we set
 :math:`c_t = T_t` and :math:`G_t = y_t`, where :math:`T_t` is total tax
@@ -208,7 +208,7 @@ Arrow securities**
 We assume that prices of these securities are exogenous to the consumer
 (or in the tax-smoothing version of the model, to the government)
 
-*Exogenous* means that they are unaffected by the  decision maker
+*Exogenous* means that they are unaffected by the  decision-maker
 
 In Markov state :math:`s_t` at time :math:`t`, one unit of consumption
 in state :math:`s_{t+1}` at time :math:`t+1` costs :math:`q(s_{t+1} \,|\, s_t)` units of the time :math:`t` consumption good
@@ -222,21 +222,21 @@ state :math:`s_t` is
 
 .. math::
 
-    c_t + b_t  
-    \leq y(s_t) + 
-    \sum_j  q(\bar s_j \,|\, s_t ) \, b_{t+1}(\bar s_j \,|\, s_t) 
+    c_t + b_t
+    \leq y(s_t) +
+    \sum_j  q(\bar s_j \,|\, s_t ) \, b_{t+1}(\bar s_j \,|\, s_t)
 
 
 where :math:`b_t` is the consumer's one-period debt that falls due at time :math:`t` and  :math:`b_{t+1}(\bar s_j\,|\, s_t)` are the consumer's time
 :math:`t` sales of the  time :math:`t+1` consumption good in Markov state :math:`\bar s_j`, a source of time :math:`t` revenues
 
-An analogue of Hall's assumption that the one-period risk-free gross
+An analog of Hall's assumption that the one-period risk-free gross
 interest rate is :math:`\beta^{-1}` is
 
 .. math::
     :label: cs_2
 
-    q(\bar s_j \,|\, \bar s_i) = \beta P_{ij}  
+    q(\bar s_j \,|\, \bar s_i) = \beta P_{ij}
 
 
 To understand this, observe that in state :math:`\bar s_i` it costs :math:`\sum_j q(\bar s_j \,|\, \bar s_i)`  to purchase one unit of consumption next period *for sure*, i.e., meaning no matter what state of the world  occurs at :math:`t+1`
@@ -246,10 +246,10 @@ period is
 
 .. math::
 
-    \sum_j q(\bar s_j \,|\, \bar s_i) =  \sum_j \beta P_{ij} =  \beta  
+    \sum_j q(\bar s_j \,|\, \bar s_i) =  \sum_j \beta P_{ij} =  \beta
 
 
-This confirms that :eq:`cs_2` is a natural analogue of Hall's assumption about the
+This confirms that :eq:`cs_2` is a natural analog of Hall's assumption about the
 risk-free one-period interest rate
 
 First-order necessary conditions for maximizing the consumer's expected utility are
@@ -257,7 +257,7 @@ First-order necessary conditions for maximizing the consumer's expected utility 
 .. math::
 
     \beta \frac{u'(c_{t+1})}{u'(c_t) } \mathbb P\{s_{t+1}\,|\, s_t \}
-        = q(s_{t+1} \,|\, s_t) 
+        = q(s_{t+1} \,|\, s_t)
 
 
 or, under our assumption :eq:`cs_2` on Arrow security prices,
@@ -265,23 +265,23 @@ or, under our assumption :eq:`cs_2` on Arrow security prices,
 .. math::
     :label: cs_3
 
-    c_{t+1} = c_t   
+    c_{t+1} = c_t
 
 
 Thus, our consumer sets :math:`c_t = \bar c` for all :math:`t \geq 0` for some value :math:`\bar c` that it is our job now to determine
 
-**Guess:** We'll make the plausible guess that 
+**Guess:** We'll make the plausible guess that
 
 .. math::
     :label: eq_guess
 
-    b_{t+1}(\bar s_j \,|\, s_t = \bar s_i) = b(\bar s_j) , 
-            \quad i=1,2; \;\; j= 1,2 
+    b_{t+1}(\bar s_j \,|\, s_t = \bar s_i) = b(\bar s_j) ,
+            \quad i=1,2; \;\; j= 1,2
 
 
 so that the amount borrowed today turns out to depend only on *tomorrow's* Markov state. (Why is this is a plausible guess?)
 
-To determine :math:`\bar c`, we shall pursue the implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess` about the consumer's debt level choices 
+To determine :math:`\bar c`, we shall pursue the implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess` about the consumer's debt level choices
 
 For :math:`t \geq 1`, these imply
 
@@ -290,7 +290,7 @@ For :math:`t \geq 1`, these imply
 
     \begin{aligned}
         \bar c + b(\bar s_1) & = y(\bar s_1) + q(\bar s_1\,|\, \bar s_1) b(\bar s_1) + q(\bar s_2 \,|\, \bar s_1)  b(\bar s_2) \cr
-        \bar c + b(\bar s_2) & = y(\bar s_2) + q(\bar s_1\,|\, \bar s_2) b(\bar s_1) + q(\bar s_2 \,|\, \bar s_2) b(\bar s_2), 
+        \bar c + b(\bar s_2) & = y(\bar s_2) + q(\bar s_1\,|\, \bar s_2) b(\bar s_1) + q(\bar s_2 \,|\, \bar s_2) b(\bar s_2),
     \end{aligned}
 
 
@@ -298,22 +298,22 @@ or
 
 .. math::
 
-    \begin{bmatrix} 
-       b(\bar s_1) \cr b(\bar s_2) 
-    \end{bmatrix} + 
-    \begin{bmatrix}  
-    \bar c \cr \bar c 
-    \end{bmatrix} = 
-    \begin{bmatrix} 
-        y(\bar s_1) \cr y(\bar s_2) 
-    \end{bmatrix} + 
-    \beta 
-    \begin{bmatrix} 
-        P_{11} & P_{12} \cr P_{21} & P_{22} 
-    \end{bmatrix} 
-    \begin{bmatrix} 
-        b(\bar s_1) \cr b(\bar s_2)  
-    \end{bmatrix}   
+    \begin{bmatrix}
+       b(\bar s_1) \cr b(\bar s_2)
+    \end{bmatrix} +
+    \begin{bmatrix}
+    \bar c \cr \bar c
+    \end{bmatrix} =
+    \begin{bmatrix}
+        y(\bar s_1) \cr y(\bar s_2)
+    \end{bmatrix} +
+    \beta
+    \begin{bmatrix}
+        P_{11} & P_{12} \cr P_{21} & P_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+        b(\bar s_1) \cr b(\bar s_2)
+    \end{bmatrix}
 
 
 These are :math:`2` equations in the :math:`3` unknowns
@@ -337,7 +337,7 @@ discover that
 .. math::
     :label: cs_6
 
-    b(\bar s_1) = b_0  
+    b(\bar s_1) = b_0
 
 
 We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
@@ -345,8 +345,8 @@ We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
 .. math::
     :label: cs_7
 
-    y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0 + 
-    [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 , 
+    y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0 +
+    [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 ,
 
 
 an equation in the unknown :math:`b(\bar s_2)`
@@ -360,37 +360,37 @@ The preceding calculations indicate that in the complete markets version
 of our model, we obtain the following striking results:
 
 *  The consumer chooses to make consumption perfectly constant across
-   time and Markov states 
-   
- 
-We computed the constant level of consumption :math:`\bar c` and indicated how that level depends on the underlying specifications of preferences, Arrow securities prices,  the stochastic process of exogenous nonfinancial income, and the initial debt level :math:`b_0` 
+   time and Markov states
+
+
+We computed the constant level of consumption :math:`\bar c` and indicated how that level depends on the underlying specifications of preferences, Arrow securities prices,  the stochastic process of exogenous nonfinancial income, and the initial debt level :math:`b_0`
 
 *  The consumer's debt neither accumulates, nor decumulates, nor drifts --
-   instead the debt level each period is an exact function of the Markov
+   instead, the debt level each period is an exact function of the Markov
    state, so in the two-state Markov case, it switches between two
    values
 
 *  We have verified guess :eq:`eq_guess`
-   
+
 We computed how one of those debt levels depends entirely on initial debt -- it equals it -- and how the other value depends on virtually all  remaining parameters of the model
 
 
 
 Code
 -----
-           
-Here's some code that, among other things, contains a function called `consumption_complete()` 
+
+Here's some code that, among other things, contains a function called `consumption_complete()`
 
 This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes given a set of parameters, under the assumption of complete markets
 
 .. literalinclude:: /_static/code/smoothing/smoothing_actions.py
 
-Let's test by checking that :math:`\bar c` and :math:`b_2` satisfy the budget constraint 
+Let's test by checking that :math:`\bar c` and :math:`b_2` satisfy the budget constraint
 
 
 
 .. code-block:: python3
-    
+
     cp = ConsumptionProblem()
     c_bar, b1, b2 = consumption_complete(cp)
     debt_complete = np.asarray([b1, b2])
@@ -406,12 +406,12 @@ from an incomplete markets model in the spirit of Hall :cite:`Hall1978` and Barr
 
 
 
-Model 2 (One-Period Risk Free Debt Only)
+Model 2 (One-Period Risk-Free Debt Only)
 ========================================
-                                        
+
 
 This is a version of the original models of Hall (1978) and Barro (1979)
-in which the decision maker's ability to substitute intertemporally is
+in which the decision-maker's ability to substitute intertemporally is
 constrained by his ability to buy or sell only one security, a risk-free
 one-period bond bearing a constant gross interest rate that equals
 :math:`\beta^{-1}`
@@ -421,7 +421,7 @@ consumer faces a sequence of budget constraints
 
 .. math::
 
-    c_t + b_t = y_t + \beta b_{t+1}, \quad t \geq 0  
+    c_t + b_t = y_t + \beta b_{t+1}, \quad t \geq 0
 
 
 where :math:`\beta` is the price at time :math:`t` of a risk-free claim
@@ -431,7 +431,7 @@ First-order conditions for the consumer's  problem are
 
 .. math::
 
-    \sum_{j} u'(c_{t+1,j}) P_{ij} = u'(c_{t, i})  
+    \sum_{j} u'(c_{t+1,j}) P_{ij} = u'(c_{t, i})
 
 
 For our assumed quadratic utility function this implies
@@ -439,17 +439,17 @@ For our assumed quadratic utility function this implies
 .. math::
     :label: cs_8
 
-    \sum_j c_{t+1,j} P_{ij} = c_{t,i}    
+    \sum_j c_{t+1,j} P_{ij} = c_{t,i}
 
 
 which is Hall's (1978) conclusion that consumption follows a random walk
 
-As we saw in our first lecture on the :doc:`permanent income model <perm_income>`, this leads to 
+As we saw in our first lecture on the :doc:`permanent income model <perm_income>`, this leads to
 
 .. math::
     :label: cs_9
 
-    b_t = \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j} - (1 -\beta)^{-1} c_t   
+    b_t = \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j} - (1 -\beta)^{-1} c_t
 
 
 and
@@ -457,10 +457,10 @@ and
 .. math::
     :label: cs_10
 
-    c_t = (1-\beta) 
-        \left[ 
+    c_t = (1-\beta)
+        \left[
             \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j} - b_t
-        \right]   
+        \right]
 
 
 Equation :eq:`cs_10` expresses :math:`c_t` as a net interest rate factor :math:`1 - \beta` times the sum
@@ -471,9 +471,9 @@ Substituting :eq:`cs_10`  into the one-period budget constraint and rearranging 
 .. math::
     :label: cs_11
 
-    b_{t+1} - b_t 
-    = \beta^{-1} \left[ (1-\beta) 
-    \mathbb E_t \sum_{j=0}^\infty\beta^j y_{t+j} - y_t    \right]   
+    b_{t+1} - b_t
+    = \beta^{-1} \left[ (1-\beta)
+    \mathbb E_t \sum_{j=0}^\infty\beta^j y_{t+j} - y_t    \right]
 
 
 Now let's do a useful calculation that will yield a convenient expression for the key term :math:`\mathbb E_t \sum_{j=0}^\infty\beta^j y_{t+j}` in our finite Markov chain setting
@@ -482,7 +482,7 @@ Define
 
 .. math::
 
-    v_t := \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j}  
+    v_t := \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j}
 
 
 In our finite Markov chain setting, :math:`v_t = v(1)` when :math:`s_t= \bar s_1` and :math:`v_t = v(2)` when :math:`s_t=\bar s_2`
@@ -492,9 +492,9 @@ Therefore, we can write
 .. math::
 
     \begin{aligned}
-        v(1) & = y(1) + \beta P_{11} v(1) + \beta P_{12} v(2) 
+        v(1) & = y(1) + \beta P_{11} v(1) + \beta P_{12} v(2)
         \\
-        v(2) & = y(2) + \beta P_{21} v(1) + \beta P_{22} v(2) 
+        v(2) & = y(2) + \beta P_{21} v(1) + \beta P_{22} v(2)
     \end{aligned}
 
 
@@ -511,7 +511,7 @@ We can also write the last expression as
 
 .. math::
 
-    \vec v = (I - \beta P)^{-1} \vec y 
+    \vec v = (I - \beta P)^{-1} \vec y
 
 
 In our finite Markov chain setting, from expression  :eq:`cs_10`,  consumption at date :math:`t` when debt is :math:`b_t` and the Markov state today is :math:`s_t = i` is evidently
@@ -519,7 +519,7 @@ In our finite Markov chain setting, from expression  :eq:`cs_10`,  consumption a
 .. math::
     :label: cs_12
 
-    c(b_t, i) =  (1 - \beta) \left( [(I - \beta P)^{-1} \vec y]_i - b_t \right) 
+    c(b_t, i) =  (1 - \beta) \left( [(I - \beta P)^{-1} \vec y]_i - b_t \right)
 
 
 and the increment in debt is
@@ -527,7 +527,7 @@ and the increment in debt is
 .. math::
     :label: cs_13
 
-    b_{t+1} - b_t = \beta^{-1} [ (1- \beta) v(i) - y(i) ]  
+    b_{t+1} - b_t = \beta^{-1} [ (1- \beta) v(i) - y(i) ]
 
 
 Summary of Outcomes
@@ -560,7 +560,7 @@ The code above also contains a function called `consumption_incomplete()` that u
 
 *  simulate paths of :math:`y_t, c_t, b_{t+1}`
 
-*  plot these against values of of :math:`\bar c, b(s_1), b(s_2)` found in a corresponding  complete markets economy
+*  plot these against values of :math:`\bar c, b(s_1), b(s_2)` found in a corresponding  complete markets economy
 
 Let's try this, using the same parameters in both complete and incomplete markets economies
 
@@ -582,7 +582,7 @@ income :math:`y_t`, notice that
 
 Using the Isomorphism
 ^^^^^^^^^^^^^^^^^^^^^
-                          
+
 
 We can simply relabel variables to acquire tax-smoothing interpretations of our two models
 
@@ -610,7 +610,7 @@ We can simply relabel variables to acquire tax-smoothing interpretations of our 
     ax[1].set_xlabel('Periods')
 
     plt.show()
-    
+
 
 
 
@@ -621,10 +621,10 @@ Example: Tax Smoothing with Complete Markets
 
 It is useful to focus on a simple tax-smoothing example with complete markets
 
-This example will illustrate how, in a complete markets model like that of Lucas and Stokey :cite:`LucasStokey1983`, the government purchases 
-insurance from the private sector. 
+This example will illustrate how, in a complete markets model like that of Lucas and Stokey :cite:`LucasStokey1983`, the government purchases
+insurance from the private sector.
 
-    * Purchasing insurance  protects the government against the need to raise taxes too high or issue too much debt in the high government expenditure event.  
+    * Purchasing insurance  protects the government against the need to raise taxes too high or issue too much debt in the high government expenditure event.
 
 We assume that government expenditures move between two values :math:`G_1 < G_2`, where Markov state :math:`1` means "peace" and Markov state :math:`2` means "war"
 
@@ -632,14 +632,14 @@ The government budget constraint in Markov state :math:`i` is
 
 .. math::
 
-    T_i + b_i = G_i + \sum_j Q_{ij} b_j 
+    T_i + b_i = G_i + \sum_j Q_{ij} b_j
 
 
 where
 
 .. math::
 
-    Q_{ij} = \beta P_{ij} 
+    Q_{ij} = \beta P_{ij}
 
 
 is the price of one unit of output next period in state :math:`j` when
@@ -685,10 +685,10 @@ the possibility that war breaks out or continues
 
 .. math::
 
-    P = \begin{bmatrix} 
+    P = \begin{bmatrix}
             1 & 0 \\
-           .2 & .8 
-        \end{bmatrix} 
+           .2 & .8
+        \end{bmatrix}
 
 
 Also, start the system in Markov state :math:`2` (war) with initial
@@ -701,15 +701,15 @@ war in debt and :math:`b_2 = -10`
 Linear State Space Version of Complete Markets Model
 =====================================================
 
-Now we'll use a setting like that in  :doc:`first lecture on the permanent income model <perm_income>`
+Now we'll use a setting like that in the :doc:`first lecture on the permanent income model <perm_income>`
 
-In that model, there were 
+In that model, there were
 
 * incomplete markets: the consumer could trade only a single risk-free one-period bond bearing gross one-period risk-free interest rate equal to :math:`\beta^{-1}`
 
-* the consumer's exogenous nonfinancial income was governed by a linear state space model driven by Gaussian shocks, the kind of model studied in an earlier lecture about :doc:`linear state space models <linear_models>` 
-                                                
-We'll write down a complete markets counterpart of that model 
+* the consumer's exogenous nonfinancial income was governed by a linear state space model driven by Gaussian shocks, the kind of model studied in an earlier lecture about :doc:`linear state space models <linear_models>`
+
+We'll write down a complete markets counterpart of that model
 
 So now we'll  suppose that nonfinancial income is governed by the state
 space system
@@ -718,7 +718,7 @@ space system
 
     \begin{aligned}
          x_{t+1} & = A x_t + C w_{t+1} \cr
-         y_t & = S_y x_t 
+         y_t & = S_y x_t
     \end{aligned}
 
 
@@ -731,22 +731,22 @@ of one-period ahead Arrow securities are
 .. math::
     :label: cs_14
 
-    p_{t+1}(x_{t+1} \,|\, x_t) = \beta \phi(x_{t+1} \,|\, A x_t, CC')    
+    p_{t+1}(x_{t+1} \,|\, x_t) = \beta \phi(x_{t+1} \,|\, A x_t, CC')
 
 
 where :math:`\phi(\cdot \,|\, \mu, \Sigma)` is a multivariate Gaussian
 distribution with mean vector :math:`\mu` and covariance matrix
 :math:`\Sigma`
 
-Let :math:`b(x_{t+1})` be a vector of state-contingent debt due at :math:`t+1` 
-as a function of the :math:`t+1` state :math:`x_{t+1}`. 
+Let :math:`b(x_{t+1})` be a vector of state-contingent debt due at :math:`t+1`
+as a function of the :math:`t+1` state :math:`x_{t+1}`.
 
 Using the pricing function assumed in :eq:`cs_14`, the value at
 :math:`t` of :math:`b(x_{t+1})` is
 
 .. math::
 
-    \beta \int b(x_{t+1}) \phi(x_{t+1} \,|\, A x_t, CC') d x_{t+1} = \beta  \mathbb E_t b_{t+1}  
+    \beta \int b(x_{t+1}) \phi(x_{t+1} \,|\, A x_t, CC') d x_{t+1} = \beta  \mathbb E_t b_{t+1}
 
 
 In the complete markets setting, the consumer faces a sequence of budget
@@ -754,14 +754,14 @@ constraints
 
 .. math::
 
-    c_t + b_t = y_t + \beta \mathbb E_t b_{t+1}, t \geq 0 
+    c_t + b_t = y_t + \beta \mathbb E_t b_{t+1}, t \geq 0
 
 
 We can solve the time :math:`t` budget constraint forward to obtain
 
 .. math::
 
-    b_t = \mathbb E_t  \sum_{j=0}^\infty \beta^j (y_{t+j} - c_{t+j} ) 
+    b_t = \mathbb E_t  \sum_{j=0}^\infty \beta^j (y_{t+j} - c_{t+j} )
 
 
 We assume as before that the consumer cares about the expected value
@@ -769,7 +769,7 @@ of
 
 .. math::
 
-    \sum_{t=0}^\infty \beta^t u(c_t), \quad 0 < \beta < 1 
+    \sum_{t=0}^\infty \beta^t u(c_t), \quad 0 < \beta < 1
 
 
 In the incomplete markets version of the model, we assumed that
@@ -778,7 +778,7 @@ became
 
 .. math::
 
-    -\sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1   
+    -\sum_{t=0}^\infty \beta^t ( c_t - \gamma)^2, \quad 0 < \beta < 1
 
 
 But in the complete markets version, we can assume a more general form
@@ -789,7 +789,7 @@ markets and our assumption about Arrow securities prices is
 
 .. math::
 
-    u'(c_{t+1}) = u'(c_t) \quad \text{for all }  t\geq 0 
+    u'(c_{t+1}) = u'(c_t) \quad \text{for all }  t\geq 0
 
 
 which again implies :math:`c_t = \bar c` for some :math:`\bar c`
@@ -798,7 +798,7 @@ So it follows that
 
 .. math::
 
-    b_t = \mathbb E_t \sum_{j=0}^\infty \beta^j (y_{t+j} - \bar c) 
+    b_t = \mathbb E_t \sum_{j=0}^\infty \beta^j (y_{t+j} - \bar c)
 
 
 or
@@ -806,7 +806,7 @@ or
 .. math::
     :label: cs_15
 
-    b_t = S_y (I - \beta A)^{-1} x_t - \frac{1}{1-\beta} \bar c   
+    b_t = S_y (I - \beta A)^{-1} x_t - \frac{1}{1-\beta} \bar c
 
 
 where the value of :math:`\bar c` satisfies
@@ -814,7 +814,7 @@ where the value of :math:`\bar c` satisfies
 .. math::
     :label: cs_16
 
-    \bar b_0 = S_y (I - \beta A)^{-1} x_0 - \frac{1}{1 - \beta } \bar c 
+    \bar b_0 = S_y (I - \beta A)^{-1} x_0 - \frac{1}{1 - \beta } \bar c
 
 
 where :math:`\bar b_0` is an initial level of the consumer's debt, specified
@@ -842,18 +842,18 @@ In the above graph, please note that:
 -  consumption is completely constant
 
 -  the consumer's debt fluctuates in a stationary manner; in fact, in
-   this case because nonfinancial income is a first-order
+   this case, because nonfinancial income is a first-order
    autoregressive process, the consumer's debt is an exact affine function
    (meaning linear plus a constant) of the consumer's nonfinancial
    income
 
 Incomplete Markets Version
 --------------------------
-                          
 
-The incomplete markets version of the model with nonfinancial income being governed by a linear state space system 
-is described in the first lecture on the :doc:`permanent income model <perm_income>` and the followup 
-lecture on  the :doc:`permanent income model <perm_income_cons>` 
+
+The incomplete markets version of the model with nonfinancial income being governed by a linear state space system
+is described in the first lecture on the :doc:`permanent income model <perm_income>` and the followup
+lecture on  the :doc:`permanent income model <perm_income_cons>`
 
 In that version, consumption follows a random walk and the consumer's debt follows a process with a unit root
 
@@ -864,8 +864,8 @@ We leave it to the reader to apply the usual isomorphism to deduce the correspon
 Government Manipulation of Arrow Securities Prices
 ----------------------------------------------------
 
-In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optimal taxation <opt_tax_recur>`, we study **complete-markets** 
-models in which the government recognizes that it can manipulate  Arrow securities prices  
+In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optimal taxation <opt_tax_recur>`, we study **complete-markets**
+models in which the government recognizes that it can manipulate  Arrow securities prices
 
 
 In :doc:`optimal taxation with incomplete markets <amss>`, we study an **incomplete-markets** model in which the government  manipulates asset prices
