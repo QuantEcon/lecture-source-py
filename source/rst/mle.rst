@@ -14,11 +14,11 @@ Overview
 
 
 In a :doc:`previous lecture <ols>` we estimated the relationship between
-dependent and explanatory variables using linear regression 
+dependent and explanatory variables using linear regression
 
 But what if a linear relationship is not an appropriate assumption for our model?
 
-One widely used alternative is maximum likelihood estimation, which 
+One widely used alternative is maximum likelihood estimation, which
 involves specifying a class of distributions, indexed by unknown parameters, and then using the data to pin down these parameter values
 
 The benefit relative to linear regression is that it allows more flexibility in the probabilistic relationships between variables
@@ -56,7 +56,7 @@ Flow of Ideas
 
 The first step with maximum likelihood estimation is to choose the probability distribution believed to be generating the data
 
-More precisely, we need to make an assumption as to which *parametric class* of distributions is generating the data 
+More precisely, we need to make an assumption as to which *parametric class* of distributions is generating the data
 
 * e.g., the class of all normal distributions, or the class of all gamma distributions
 
@@ -68,7 +68,7 @@ Each such class is a family of distributions indexed by a finite number of param
 
 We'll let the data pick out a particular element of the class by pinning down the parameters
 
-The parameter estimates so produced will be called **maximum likelihood estimates** 
+The parameter estimates so produced will be called **maximum likelihood estimates**
 
 
 Counting Billionaires
@@ -77,7 +77,7 @@ Counting Billionaires
 
 Treisman :cite:`Treisman2016` is interested in estimating the number of billionaires in different countries
 
-The number of billionaires is integer valued 
+The number of billionaires is integer valued
 
 Hence we consider distributions that take values only in the nonnegative integers
 
@@ -89,8 +89,8 @@ One integer distribution is the `Poisson distribution <https://en.wikipedia.org/
 
 .. math::
 
-    f(y) = \frac{\mu^{y}}{y!} e^{-\mu}, 
-    \qquad y = 0, 1, 2, \ldots, \infty 
+    f(y) = \frac{\mu^{y}}{y!} e^{-\mu},
+    \qquad y = 0, 1, 2, \ldots, \infty
 
 We can plot the Poisson distribution over :math:`y` for different values of :math:`\mu` as follows
 
@@ -102,23 +102,23 @@ We can plot the Poisson distribution over :math:`y` for different values of :mat
     from scipy.special import factorial
     import matplotlib.pyplot as plt
     %matplotlib inline
-    
+
     poisson_pmf = lambda y, μ: μ**y / factorial(y) * exp(-μ)
     y_values = range(0, 25)
-    
+
     fig, ax = plt.subplots(figsize=(12, 8))
-    
+
     for μ in [1, 5, 10]:
         distribution = []
         for y_i in y_values:
             distribution.append(poisson_pmf(y_i, μ))
-        ax.plot(y_values, 
+        ax.plot(y_values,
                 distribution,
                 label=f'$\mu$={μ}',
-                alpha=0.5, 
-                marker='o', 
+                alpha=0.5,
+                marker='o',
                 markersize=8)
-    
+
     ax.grid()
     ax.set_xlabel('$y$', fontsize=14)
     ax.set_ylabel('$f(y \mid \mu)$', fontsize=14)
@@ -137,19 +137,19 @@ Treisman's main source of data is *Forbes'* annual rankings of billionaires and 
 
 .. only:: html
 
-    The dataset ``mle/fp.dta`` can be downloaded :download:`here </_static/code/mle/fp.dta>` 
+    The dataset ``mle/fp.dta`` can be downloaded :download:`here </_static/code/mle/fp.dta>`
     or from its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__
 
 .. only:: latex
 
-    The dataset ``mle/fp.dta`` can be downloaded from `here <https://lectures.quantecon.org/_downloads/mle/fp.dta>`__ 
+    The dataset ``mle/fp.dta`` can be downloaded from `here <https://lectures.quantecon.org/_downloads/mle/fp.dta>`__
     or its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__
 
 .. code-block:: python3
 
     import pandas as pd
     pd.options.display.max_columns = 10
-    
+
     # Load in data and view
     df = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/mle/fp.dta')
     df.head()
@@ -164,7 +164,7 @@ dropped for plotting purposes)
 
     numbil0_2008 = df[(df['year'] == 2008) & (
         df['country'] != 'United States')].loc[:, 'numbil0']
-    
+
     plt.subplots(figsize=(12, 8))
     plt.hist(numbil0_2008, bins=30)
     plt.xlim(xmin=0)
@@ -191,16 +191,16 @@ The standard formulation --- the so-called *poisson regression* model --- is as 
 
 .. math::
     :label: poissonreg
-    
+
     f(y_i \mid \mathbf{x}_i) = \frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i}; \qquad y_i = 0, 1, 2, \ldots , \infty .
-   
+
 .. math::
-   
-   \text{where}\ \mu_i 
+
+   \text{where}\ \mu_i
         = \exp(\mathbf{x}_i' \boldsymbol{\beta})
         = \exp(\beta_0 + \beta_1 x_{i1} + \ldots + \beta_k x_{ik})
-   
-                       
+
+
 To illustrate the idea that the distribution of :math:`y_i` depends on
 :math:`\mathbf{x}_i` let's run a simple simulation
 
@@ -285,16 +285,16 @@ we can visualize the joint pmf like so
 .. code-block:: python3
 
     from mpl_toolkits.mplot3d import Axes3D
-    
+
     def plot_joint_poisson(μ=7, y_n=20):
         yi_values = np.arange(0, y_n, 1)
-    
+
         # Create coordinate points of X and Y
         X, Y = np.meshgrid(yi_values, yi_values)
-    
+
         # Multiply distributions together
         Z = poisson_pmf(X, μ) * poisson_pmf(Y, μ)
-    
+
         fig = plt.figure(figsize=(12, 8))
         ax = fig.add_subplot(111, projection='3d')
         ax.plot_surface(X, Y, Z.T, cmap='terrain', alpha=0.6)
@@ -302,7 +302,7 @@ we can visualize the joint pmf like so
         ax.set(xlabel='$y_1$', ylabel='$y_2$')
         ax.set_zlabel('$f(y_1, y_2)$', labelpad=10)
         plt.show()
-    
+
     plot_joint_poisson(μ=7, y_n=20)
 
 
@@ -311,7 +311,7 @@ conditional Poisson distribution) can be written as
 
 .. math::
 
-   f(y_1, y_2, \ldots, y_n \mid \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n; \boldsymbol{\beta}) 
+   f(y_1, y_2, \ldots, y_n \mid \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n; \boldsymbol{\beta})
        = \prod_{i=1}^{n} \frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i}
 
 :math:`y_i` is conditional on both the values of :math:`\mathbf{x}_i` and the
@@ -326,7 +326,7 @@ parameter :math:`\boldsymbol{\beta}` as a random variable and takes the observat
 
    \begin{split}
    \mathcal{L}(\beta \mid y_1, y_2, \ldots, y_n \ ; \ \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = &
-   \prod_{i=1}^{n} \frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i} \\ = & 
+   \prod_{i=1}^{n} \frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i} \\ = &
    f(y_1, y_2, \ldots, y_n \mid  \ \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n ; \beta)
    \end{split}
 
@@ -336,45 +336,45 @@ Now that we have our likelihood function, we want to find the :math:`\hat{\bolds
 
    \underset{\boldsymbol{\beta}}{\max} \mathcal{L}(\boldsymbol{\beta})
 
-In doing so it is generally easier to maximize the log-likelihood (consider 
+In doing so it is generally easier to maximize the log-likelihood (consider
 differentiating :math:`f(x) = x \exp(x)`  vs.  :math:`f(x) = \log(x) + x`)
 
 Given that taking a logarithm is a monotone increasing transformation, a maximizer of the likelihood function will also be a maximizer of the log-likelihood function
 
-In our case the log-likelihood is 
+In our case the log-likelihood is
 
 .. math::
 
    \begin{split}
-   \log{ \mathcal{L}} (\boldsymbol{\beta}) = \ & 
+   \log{ \mathcal{L}} (\boldsymbol{\beta}) = \ &
        \log \Big(
-           f(y_1 ; \boldsymbol{\beta}) 
-           \cdot 
-           f(y_2 ; \boldsymbol{\beta}) 
-           \cdot \ldots \cdot 
-           f(y_n ; \boldsymbol{\beta}) 
-           \Big) \\  
+           f(y_1 ; \boldsymbol{\beta})
+           \cdot
+           f(y_2 ; \boldsymbol{\beta})
+           \cdot \ldots \cdot
+           f(y_n ; \boldsymbol{\beta})
+           \Big) \\
            = &
-           \sum_{i=1}^{n} \log{f(y_i ; \boldsymbol{\beta})} \\ 
+           \sum_{i=1}^{n} \log{f(y_i ; \boldsymbol{\beta})} \\
            = &
-           \sum_{i=1}^{n} 
-           \log \Big( {\frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i}} \Big) \\ 
+           \sum_{i=1}^{n}
+           \log \Big( {\frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i}} \Big) \\
            = &
-           \sum_{i=1}^{n} y_i \log{\mu_i} - 
+           \sum_{i=1}^{n} y_i \log{\mu_i} -
            \sum_{i=1}^{n} \mu_i -
            \sum_{i=1}^{n} \log y!
    \end{split}
-   
+
 The MLE of the Poisson to the Poisson  for :math:`\hat{\beta}` can be obtained by solving
 
 .. math::
 
-  \underset{\beta}{\max} \Big(        
-  \sum_{i=1}^{n} y_i \log{\mu_i} - 
+  \underset{\beta}{\max} \Big(
+  \sum_{i=1}^{n} y_i \log{\mu_i} -
   \sum_{i=1}^{n} \mu_i -
   \sum_{i=1}^{n} \log y! \Big)
 
-However, no analytical solution exists to the above problem -- to find the MLE 
+However, no analytical solution exists to the above problem -- to find the MLE
 we need to use numerical methods
 
 MLE with Numerical Methods
@@ -402,12 +402,12 @@ Let's illustrate this by supposing
     β = np.linspace(1, 20)
     logL = -(β - 10) ** 2 - 10
     dlogL = -2 * β + 20
-    
+
     fig, (ax1, ax2) = plt.subplots(2, sharex=True, figsize=(12, 8))
-    
+
     ax1.plot(β, logL, lw=2)
     ax2.plot(β, dlogL, lw=2)
-    
+
     ax1.set_ylabel(r'$log \mathcal{L(\beta)}$',
                    rotation=0,
                    labelpad=35,
@@ -505,9 +505,9 @@ The algorithm will update the parameter vector according to the updating
 rule, and recalculate the gradient and Hessian matrices at the new
 parameter estimates
 
-Iteration will end when either: 
+Iteration will end when either:
 
-* The difference between the parameter and the updated parameter is below a tolerance level 
+* The difference between the parameter and the updated parameter is below a tolerance level
 * The maximum number of iterations has been achieved (meaning convergence is not achieved)
 
 So we can get an idea of what's going on while the algorithm is running,
@@ -558,15 +558,15 @@ variables in :math:`\mathbf{X}`
                   [1, 4, 2],
                   [1, 5, 2],
                   [1, 3, 1]])
-    
+
     y = np.array([1, 0, 1, 1, 0])
-    
+
     # Take a guess at initial βs
     init_β = np.array([0.1, 0.1, 0.1])
-    
+
     # Create an object with Poisson model values
     poi = PoissonRegression(y, X, β=init_β)
-    
+
     # Use newton_raphson to find the MLE
     β_hat = newton_raphson(poi, display=True)
 
@@ -600,18 +600,18 @@ the maximum is found at :math:`\beta = 10`
   :class: collapse
 
   logL = lambda x: -(x - 10) ** 2 - 10
-  
+
   def find_tangent(β, a=0.01):
       y1 = logL(β)
       y2 = logL(β+a)
       x = np.array([[β, 1], [β+a, 1]])
       m, c = np.linalg.lstsq(x, np.array([y1, y2]), rcond=None)[0]
       return m, c
-  
+
   β = np.linspace(2, 18)
   fig, ax = plt.subplots(figsize=(12, 8))
   ax.plot(β, logL(β), lw=2, c='black')
-  
+
   for β in [7, 8.5, 9.5, 10]:
       β_line = np.linspace(β-2, β+2)
       m, c = find_tangent(β)
@@ -620,7 +620,7 @@ the maximum is found at :math:`\beta = 10`
       ax.text(β+2.05, y[-1], f'$G({β}) = {abs(m):.0f}$', fontsize=12)
       ax.vlines(β, -24, logL(β), linestyles='--', alpha=0.5)
       ax.hlines(logL(β), 6, β, linestyles='--', alpha=0.5)
-  
+
   ax.set(ylim=(-24, -4), xlim=(6, 13))
   ax.set_xlabel(r'$\beta$', fontsize=15)
   ax.set_ylabel(r'$log \mathcal{L(\beta)}$',
@@ -632,8 +632,8 @@ the maximum is found at :math:`\beta = 10`
 
 
 Note that our implementation of the Newton-Raphson algorithm is rather
-basic --- for more robust implementations see, 
-for example, `scipy.optimize <https://docs.scipy.org/doc/scipy/reference/optimize.html>`__ 
+basic --- for more robust implementations see,
+for example, `scipy.optimize <https://docs.scipy.org/doc/scipy/reference/optimize.html>`__
 
 
 
@@ -659,15 +659,15 @@ to confirm we obtain the same coefficients and log-likelihood value
     from statsmodels.api import Poisson
     from scipy import stats
     stats.chisqprob = lambda chisq, df: stats.chi2.sf(chisq, df)
-    
+
     X = np.array([[1, 2, 5],
                   [1, 1, 3],
                   [1, 4, 2],
                   [1, 5, 2],
                   [1, 3, 1]])
-    
+
     y = np.array([1, 0, 1, 1, 0])
-    
+
     stats_poisson = Poisson(y, X).fit()
     print(stats_poisson.summary())
 
@@ -693,10 +693,10 @@ data assigned to ``df`` from earlier in the lecture)
 
     # Keep only year 2008
     df = df[df['year'] == 2008]
-    
+
     # Add a constant
     df['const'] = 1
-    
+
     # Variable sets
     reg1 = ['const', 'lngdppc', 'lnpop', 'gattwto08']
     reg2 = ['const', 'lngdppc', 'lnpop',
@@ -712,28 +712,14 @@ We'll use robust standard errors as in the author's paper
 .. code-block:: python3
 
     import statsmodels.api as sm
-    
+
     # Specify model
     poisson_reg = sm.Poisson(df[['numbil0']], df[reg1],
                              missing='drop').fit(cov_type='HC0')
     print(poisson_reg.summary())
 
 
-Here we received a warning message saying "Maximum number of iterations has been exceeded."
-
-Let's try increasing the maximum number of iterations that the algorithm
-is allowed (the ``.fit()`` docstring tells us the default number of
-iterations is 35)
-
-.. code-block:: python3
-
-    poisson_reg = sm.Poisson(df[['numbil0']], df[reg1],
-                             missing='drop').fit(cov_type='HC0', maxiter=100)
-    print(poisson_reg.summary())
-
-
-
-Success! The algorithm was able to achieve convergence in 36 iterations
+Success! The algorithm was able to achieve convergence in 9 iterations
 
 Our output indicates that GDP per capita, population, and years of
 membership in the General Agreement in Tariffs and Trade (GATT) are
@@ -746,7 +732,7 @@ them in a single table
 .. code-block:: python3
 
     from statsmodels.iolib.summary2 import summary_col
-    
+
     regs = [reg1, reg2, reg3]
     reg_names = ['Model 1', 'Model 2', 'Model 3']
     info_dict = {'Pseudo R-squared': lambda x: f"{x.prsquared:.2f}",
@@ -761,12 +747,12 @@ them in a single table
                        'nrrents',
                        'roflaw']
     results = []
-    
+
     for reg in regs:
         result = sm.Poisson(df[['numbil0']], df[reg],
                             missing='drop').fit(cov_type='HC0', maxiter=100, disp=0)
         results.append(result)
-    
+
     results_table = summary_col(results=results,
                                 float_format='%0.3f',
                                 stars=True,
@@ -791,16 +777,16 @@ plot the first 15
     data = ['const', 'lngdppc', 'lnpop', 'gattwto08', 'lnmcap08', 'rintr',
             'topint08', 'nrrents', 'roflaw', 'numbil0', 'country']
     results_df = df[data].dropna()
-    
+
     # Use last model (model 3)
     results_df['prediction'] = results[-1].predict()
-    
+
     # Calculate difference
     results_df['difference'] = results_df['numbil0'] - results_df['prediction']
-    
+
     # Sort in descending order
-    results_df.sort_values('difference', ascending=False, inplace=True) 
-    
+    results_df.sort_values('difference', ascending=False, inplace=True)
+
     # Plot the first 15 data points
     results_df[:15].plot('country', 'difference', kind='bar', figsize=(12,8), legend=False)
     plt.ylabel('Number of billionaires above predicted level')
@@ -890,7 +876,7 @@ the lecture
    1 & 3 & 5
    \end{bmatrix}
    \quad
-   y = 
+   y =
    \begin{bmatrix}
    1 \\
    0 \\
@@ -899,7 +885,7 @@ the lecture
    0
    \end{bmatrix}
    \quad
-   \boldsymbol{\beta}_{(0)} = 
+   \boldsymbol{\beta}_{(0)} =
    \begin{bmatrix}
    0.1 \\
    0.1 \\
@@ -930,7 +916,7 @@ The log-likelihood can be written as
 
    \log \mathcal{L} = \sum_{i=1}^n
    \big[
-   y_i \log \Phi(\mathbf{x}_i' \boldsymbol{\beta}) + 
+   y_i \log \Phi(\mathbf{x}_i' \boldsymbol{\beta}) +
    (1 - y_i) \log (1 - \Phi(\mathbf{x}_i' \boldsymbol{\beta})) \big]
 
 Using the **fundamental theorem of calculus**, the derivative of a
@@ -1014,15 +1000,15 @@ Exercise 2
                   [1, 4, 3],
                   [1, 5, 6],
                   [1, 3, 5]])
-    
+
     y = np.array([1, 0, 1, 1, 0])
-    
+
     # Take a guess at initial βs
     β = np.array([0.1, 0.1, 0.1])
-    
+
     # Create instance of Probit regression class
     prob = ProbitRegression(y, X, β)
-    
+
     # Run Newton-Raphson algorithm
     newton_raphson(prob)
 
@@ -1031,6 +1017,5 @@ Exercise 2
 .. code-block:: python3
 
     # Use statsmodels to verify results
-    
-    print(Probit(y, X).fit().summary())
 
+    print(Probit(y, X).fit().summary())
