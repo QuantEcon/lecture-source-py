@@ -30,7 +30,7 @@ In particular, it shows that relatively mild preference for neighbors of similar
 
 In recognition of this and other research, Schelling was awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann)
 
-In this lecture we (in fact you) will build and run a version of Schelling's model
+In this lecture, we (in fact you) will build and run a version of Schelling's model
 
 
 
@@ -39,7 +39,7 @@ The Model
 
 We will cover a variation of Schelling's model that is easy to program and captures the main idea
 
-Set Up
+Set-Up
 ---------
 
 Suppose we have two types of people: orange people and green people
@@ -101,7 +101,7 @@ As discussed above, agents are initially mixed randomly together
 
 .. figure:: /_static/figures/schelling_fig1.png
 
-But after several cycles they become segregated into distinct regions
+But after several cycles, they become segregated into distinct regions
 
 .. figure:: /_static/figures/schelling_fig2.png
 
@@ -148,7 +148,7 @@ Here's an indication of how they might look
 
     * Methods:
 
-        * Determine whether happy or not given locations of other agents
+        * determine whether happy or not given locations of other agents
 
         * If not happy, move
 
@@ -182,7 +182,7 @@ Exercise 1
 
 Here's one solution that does the job we want
 
-If you feel like a further exercise you can probably speed up some of the computations and
+If you feel like a further exercise, you can probably speed up some of the computations and
 then increase the number of agents
 
 .. code-block:: ipython
@@ -191,24 +191,24 @@ then increase the number of agents
     from math import sqrt
     import matplotlib.pyplot as plt
     %matplotlib inline
-    
+
     seed(10)  # for reproducible random numbers
-    
+
     class Agent:
-    
+
         def __init__(self, type):
             self.type = type
             self.draw_location()
-    
+
         def draw_location(self):
             self.location = uniform(0, 1), uniform(0, 1)
-    
+
         def get_distance(self, other):
-            "Computes euclidean distance between self and other agent."
+            "Computes the euclidean distance between self and other agent."
             a = (self.location[0] - other.location[0])**2
             b = (self.location[1] - other.location[1])**2
             return sqrt(a + b)
-    
+
         def happy(self, agents):
             "True if sufficient number of nearest neighbors are of the same type."
             distances = []
@@ -225,13 +225,13 @@ then increase the number of agents
             # == Count how many neighbors have the same type as self == #
             num_same_type = sum(self.type == agent.type for agent in neighbors)
             return num_same_type >= require_same_type
-    
+
         def update(self, agents):
             "If not happy, then randomly choose new locations until happy."
             while not self.happy(agents):
                 self.draw_location()
-    
-                
+
+
     def plot_distribution(agents, cycle_num):
         "Plot the distribution of agents after cycle_num rounds of the loop."
         x_values_0, y_values_0 = [], []
@@ -252,19 +252,19 @@ then increase the number of agents
         ax.plot(x_values_1, y_values_1, 'o', markerfacecolor='green', **plot_args)
         ax.set_title(f'Cycle {cycle_num-1}')
         plt.show()
-    
+
     # == Main == #
-    
+
     num_of_type_0 = 250
     num_of_type_1 = 250
     num_neighbors = 10      # Number of agents regarded as neighbors
     require_same_type = 5   # Want at least this many neighbors to be same type
-    
+
     # == Create a list of agents == #
     agents = [Agent(0) for i in range(num_of_type_0)]
     agents.extend(Agent(1) for i in range(num_of_type_1))
-    
-    
+
+
     count = 1
     # ==  Loop until none wishes to move == #
     while True:
@@ -279,9 +279,5 @@ then increase the number of agents
                 no_one_moved = False
         if no_one_moved:
             break
-            
+
     print('Converged, terminating.')
-
-
-
-
