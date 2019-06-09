@@ -190,7 +190,7 @@ This violates a fundamental tenet of programming: Don't repeat yourself (DRY)
 
 Yes, we realize that you can just cut and paste and change a few symbols
 
-But as a programmer your aim should be to **automate** repetition, **not** do it yourself
+But as a programmer, your aim should be to **automate** repetition, **not** do it yourself
 
 More importantly, repeating the same logic in different places means that eventually one of them will likely be wrong
 
