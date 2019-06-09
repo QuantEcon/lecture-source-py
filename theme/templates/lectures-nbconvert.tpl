@@ -40,10 +40,10 @@
 		<meta property="og:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski." />
 		<meta property="og:site_name" content="Quantitative Economics" />
 
-        <link rel="stylesheet" href="/_static/css/basic.css">
-        <link rel="stylesheet" href="/_static/css/qe.css?v=2.16">
+        <link rel="stylesheet" href="_static/css/basic.css">
+        <link rel="stylesheet" href="_static/css/qe.css?v=2.16">
         <link rel="stylesheet" href="https://assets.quantecon.org/css/qe-menubar.css">
-        <link rel="icon" href="/_static/img/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="_static/img/favicon.ico" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Source+Sans+Pro:400,700" rel="stylesheet">
 
@@ -148,10 +148,10 @@
 {% if nb_lang == 'py' and not indexPage %}
 
 						<ul class="badges">
-							<li><a href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-run-FDD935.svg" id="notebook_run_badge"></a></li>
+							<li><a href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="_static/img/jupyter-notebook-run-FDD935.svg" id="notebook_run_badge"></a></li>
 							{% if download_nb == True %}
-								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
-								<li><a href="{{download_nb_path}}_downloads/pdf/py/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
+								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
+								<li><a href="{{download_nb_path}}_downloads/pdf/py/{{nb_filename_with_path}}.pdf"><img src="_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
 							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 						</ul>
@@ -171,8 +171,8 @@
 
 						<ul class="badges">
 							{% if download_nb == True %}
-								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
-								<li><a href="{{download_nb_path}}_downloads/pdf/jl/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
+								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
+								<li><a href="{{download_nb_path}}_downloads/pdf/jl/{{nb_filename_with_path}}.pdf"><img src="_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
 							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 						</ul>
@@ -488,11 +488,11 @@ var element = $('#{{ div_id }}');
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <script src="/_static/js/plugins.js"></script>
-        <script src="/_static/js/qe.js?v=2.4"></script>
+        <script src="_static/js/plugins.js"></script>
+        <script src="_static/js/qe.js?v=2.4"></script>
 
 	    <script>
 	      var DOCUMENTATION_OPTIONS = {

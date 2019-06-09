@@ -36,10 +36,10 @@
 		<meta property="og:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski." />
 		<meta property="og:site_name" content="Quantitative Economics" />
 
-        <link rel="stylesheet" href="/_static/css/basic.css">
-        <link rel="stylesheet" href="/_static/css/qe.css">
-        <link rel="stylesheet" href="/_static/css/qe-menubar.css">
-        <link rel="icon" href="/_static/img/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="_static/css/basic.css">
+        <link rel="stylesheet" href="_static/css/qe.css">
+        <link rel="stylesheet" href="_static/css/qe-menubar.css">
+        <link rel="icon" href="_static/img/favicon.ico" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Source+Sans+Pro:400,700" rel="stylesheet">
 
@@ -50,7 +50,7 @@
 
         <div class="qe-menubar">
         
-            <p class="qe-menubar-logo"><a href="https://quantecon.org/" title="quantecon.org"><img src="/_static/img/qe-menubar-logo.svg" alt="QuantEcon"></a></p>
+            <p class="qe-menubar-logo"><a href="https://quantecon.org/" title="quantecon.org"><img src="_static/img/qe-menubar-logo.svg" alt="QuantEcon"></a></p>
         
             <ul class="qe-menubar-nav">
                 <li><a href="https://lectures.quantecon.org/" title="Lectures"><span>Lectures</span></a></li>
@@ -435,11 +435,11 @@ var element = $('#{{ div_id }}');
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <script src="/_static/js/plugins.js"></script>
-        <script src="/_static/js/qe.js?v=1.5"></script>
+        <script src="_static/js/plugins.js"></script>
+        <script src="_static/js/qe.js?v=1.5"></script>
 
 	    <script>
 	      var DOCUMENTATION_OPTIONS = {
