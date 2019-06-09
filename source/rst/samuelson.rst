@@ -597,7 +597,7 @@ phase :math:`\phi` of a conjugate pair of complex numbers in polar form
 
 -  The code assumes that these two complex numbers are the roots of the
    characteristic polynomial
--  It then reverses engineers :math:`(a,b)` and :math:`(\rho_1, \rho_2)`,
+-  It then reverse-engineers :math:`(a,b)` and :math:`(\rho_1, \rho_2)`,
    pairs that would generate those roots
 
 .. code-block:: python3
