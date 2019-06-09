@@ -75,7 +75,7 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 Finding Least-Cost Paths
 ===========================
 
-For large graphs we need a systematic solution
+For large graphs, we need a systematic solution
 
 Let :math:`J(v)` denote the minimum cost-to-go from node :math:`v`, understood as the total cost from :math:`v` if we take the best route
 
@@ -293,7 +293,7 @@ Exercise 1
 
     def read_graph(in_file):
         """ Read in the graph from the data file.  The graph is stored
-        as a dictionary, where the keys are the nodes, and the values
+        as a dictionary, where the keys are the nodes and the values
         are a list of pairs (d, c), where d is a node and c is a number.
         If (d, c) is in the list for node n, then d can be reached from
         n at cost c.
@@ -362,5 +362,3 @@ Exercise 1
             J = next_J
 
     print_best_path(J, graph)
-
-
