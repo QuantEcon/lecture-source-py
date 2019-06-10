@@ -211,7 +211,7 @@ First
 .. math::
   :label: useful-calc1
 
-  \begin{aligned}
+  \begin{align}
   \frac{\partial F}{\partial K}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial K_t}
@@ -220,13 +220,13 @@ First
   \\ &=
   f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &= f'(K_t)
-  \end{aligned}
+  \end{align}
 
 Also
 
 .. math::
 
-  \begin{aligned}
+  \begin{align}
   \frac{\partial F}{\partial N}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \tag{Product rule}
@@ -236,7 +236,7 @@ Also
   f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &=
   f(K_t) - f'(K_t) K_t
-  \end{aligned}
+  \end{align}
 
 
 Back to Solving the Problem
