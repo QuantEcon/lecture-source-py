@@ -1147,7 +1147,7 @@ such prices in some of their important work
 
 Evidently,
 
-.. math:: q^0_t=\frac{\text{# of time 0 goods}}{\text{# of time t goods}}
+.. math:: q^0_t=\frac{\text{number of time 0 goods}}{\text{number of time t goods}}
 
 Because :math:`q^0_t` is a **relative price**, the units in terms of
 which prices are quoted are arbitrary -- we can normalize them
