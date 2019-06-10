@@ -554,14 +554,14 @@ Scalar multiplication and addition are immediate generalizations of the vector c
     \begin{array}{ccc}
         a_{11} &  \cdots & a_{1k} \\
         \vdots & \vdots  & \vdots \\
-        a_{n1} &  \cdots & a_{nk} \\
+        a_{n1} &  \cdots & a_{nk}
     \end{array}
     \right] :=
     \left[
     \begin{array}{ccc}
         \gamma a_{11} & \cdots & \gamma a_{1k} \\
         \vdots & \vdots & \vdots \\
-        \gamma a_{n1} & \cdots & \gamma a_{nk} \\
+        \gamma a_{n1} & \cdots & \gamma a_{nk}
     \end{array}
     \right]
 
@@ -575,21 +575,21 @@ and
     \begin{array}{ccc}
         a_{11} & \cdots & a_{1k} \\
         \vdots & \vdots & \vdots \\
-        a_{n1} & \cdots & a_{nk} \\
+        a_{n1} & \cdots & a_{nk}
     \end{array}
     \right] +
     \left[
     \begin{array}{ccc}
         b_{11} & \cdots & b_{1k} \\
         \vdots & \vdots & \vdots \\
-        b_{n1} & \cdots & b_{nk} \\
+        b_{n1} & \cdots & b_{nk}
     \end{array}
     \right] :=
     \left[
     \begin{array}{ccc}
         a_{11} + b_{11} &  \cdots & a_{1k} + b_{1k} \\
         \vdots & \vdots & \vdots \\
-        a_{n1} + b_{n1} &  \cdots & a_{nk} + b_{nk} \\
+        a_{n1} + b_{n1} &  \cdots & a_{nk} + b_{nk}
     \end{array}
     \right]
 

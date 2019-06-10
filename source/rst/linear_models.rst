@@ -996,7 +996,7 @@ It follows  that
 .. math::
 
     \begin{aligned}
-    x_{1,t+1} & = A_1 x_{1t} + a + C_1 w_{t+1} \\
+    x_{1,t+1} & = A_1 x_{1t} + a + C_1 w_{t+1}
     \end{aligned}
 
 

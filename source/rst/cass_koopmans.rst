@@ -258,22 +258,22 @@ minimization with respect to :math:`\vec \mu`):
 .. math::
     :label: constraint1
 
-    C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T \\
+    C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T
 
 .. math::
     :label: constraint2
 
-    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T \\
+    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T
 
 .. math::
     :label: constraint3
 
-    \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T \\
+    \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T
 
 .. math::
     :label: constraint4
 
-    K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
+    K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0
 
 Note that in :eq:`constraint2` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
@@ -1176,7 +1176,7 @@ Household Problem
 
 The household faces the constrained optimization problem:
 
-.. math:: \begin {align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
+.. math:: \begin{align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
 
 Definitions
 ------------
@@ -1254,16 +1254,16 @@ must occur that
 .. math::
     :label: ge1
 
-    k_t^*  = \tilde k_t^* \\
+    k_t^*  = \tilde k_t^*
 
 .. math::
     :label: ge2
 
-    1   = \tilde n_t^* \\
+    1   = \tilde n_t^*
 
 .. math::
 
-    c_t^* + k_{t+1}^* - (1-\delta) k_t^*  = F(\tilde k_t^*, \tilde n_t^*) \\
+    c_t^* + k_{t+1}^* - (1-\delta) k_t^*  = F(\tilde k_t^*, \tilde n_t^*)
 
 
 We shall verify that for :math:`t=0,\dots,T` the allocations chosen

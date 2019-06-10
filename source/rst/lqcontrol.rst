@@ -1005,7 +1005,7 @@ Thus, for the dynamics we set
     1 + r & -\bar c & m_1 & m_2 \\
     0     & 1       & 0   & 0   \\
     0     & 1       & 1   & 0   \\
-    0     & 1       & 2   & 1   \\
+    0     & 1       & 2   & 1
     \end{array}
     \right),
     \quad
@@ -1101,7 +1101,7 @@ by
     y_t =
     \begin{cases}
     p(t) + \sigma w_{t+1} & \quad \text{if } t \leq K  \\
-    s                     & \quad \text{otherwise }  \\
+    s                     & \quad \text{otherwise }
     \end{cases}
 
 

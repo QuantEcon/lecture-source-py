@@ -263,7 +263,7 @@ We will label our entire parameter vector as :math:`\boldsymbol{\beta}` where
                                \beta_0 \\
                                \beta_1 \\
                                \beta_2 \\
-                               \beta_3 \\
+                               \beta_3
                          \end{bmatrix}
 
 To estimate the model using MLE, we want to maximize the likelihood that

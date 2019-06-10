@@ -1017,7 +1017,7 @@ The Lagrange multipliers or **shadow prices** satisfy
 
    {\cal M}_t^d = \begin{bmatrix}\Phi_c^\prime\\ \Phi_g^\prime\\\end{bmatrix}^{-1}\
    \begin{bmatrix} \Theta_h^\prime {\cal M}_t^h  + \Pi^\prime {\cal M}_t^s \\
-   -g_t \\  \end{bmatrix}
+   -g_t \end{bmatrix}
 
 .. math::
 
@@ -1220,7 +1220,7 @@ For us a useful fact is that Lagrange multipliers equal gradients of the  planne
 
    {\mathcal M}_t^d = M_d x_t\ \hbox{ where }\ M_d = \begin{bmatrix}
    \Phi_c^\prime \\ \Phi_g^\prime \\ \end{bmatrix} ^{-1}
-   \begin{bmatrix}\Theta_h^\prime M_h + \Pi^\prime M_s \\ -S_g \\ \end{bmatrix}
+   \begin{bmatrix}\Theta_h^\prime M_h + \Pi^\prime M_s \\ -S_g \end{bmatrix}
 
 .. math::
 
@@ -1887,7 +1887,7 @@ subject to given :math:`k_{-1}` and
       k_t& =   \Delta_k k_{t-1} + \Theta_k i_t . \\
     %  x_{t+1}& = A^o x_t + C w_{t+1}  \\
     %  d_t& = S_d x_t  \\
-    %  p_t& = M_c x_t \\
+    %  p_t& = M_c x_t
                      \end{align}
 
 Equilibrium Investment Under Uncertainty
