@@ -151,7 +151,7 @@ Next we construct a linear system
      \begin{bmatrix}
         1 & 0 & 0  \\
         0  & A & 0 \\
-        \nu & D' &  1 \\
+        \nu & D' &  1
     \end{bmatrix}
     \begin{bmatrix}
         1 \\

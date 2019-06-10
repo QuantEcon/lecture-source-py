@@ -199,7 +199,7 @@ In equation :eq:`eqn_AMSS2_10`, it is understood that
 
     \begin{gather*}
     \tau_0 = 1 - \frac{u_{l,0}}{u_{c,0}} \\
-    R_0^{-1} =  \beta  \sum_{s=1}^S \Pi(s | s_0) \frac{u_c(s)}{u_{c,0}} \\
+    R_0^{-1} =  \beta  \sum_{s=1}^S \Pi(s | s_0) \frac{u_c(s)}{u_{c,0}}
     \end{gather*}
 
 
@@ -236,7 +236,7 @@ The analysis of Lucas and Stokey prevails once we make the following replacement
         u_c(c,\ell) &\sim u_c(c,n) \\
         u_{\ell,\ell}(c,\ell) &\sim u_{nn}(c,n) \\
         u_{c,c}(c,\ell)& \sim u_{c,c}(c,n) \\
-        u_{c,\ell} (c,\ell) &\sim 0 \\
+        u_{c,\ell} (c,\ell) &\sim 0
         \end{aligned}
 
 With these understandings, equations :eq:`TS_barg10a` and :eq:`TS_barg11b` simplify in the case of the CRRA utility function

@@ -488,7 +488,7 @@ In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be IID and scalar standard n
     A =
     \begin{bmatrix}
         0 & 0 \\
-        0 & 1 \\
+        0 & 1
     \end{bmatrix},
     \quad
     U =
@@ -557,7 +557,7 @@ The next figure shows a typical realization with :math:`r = 0.05`, :math:`\mu = 
     ax.set_xlabel('Time')
 
     plt.show()
-  
+
 
 
 Observe that consumption is considerably smoother than income
@@ -580,7 +580,7 @@ The figure below shows the consumption paths of 250 consumers with independent i
     ax.set(xlabel='Time', ylabel='Consumption')
 
     plt.show()
-  
+
 
 
 
@@ -1086,7 +1086,7 @@ Substituting these constraints into our two period objective :math:`u(c_0) + \be
 
      \max_{b_1}
      \left\{
-         u \left(\frac{b_1}{R} - b_0 + y_0 \right) + 
+         u \left(\frac{b_1}{R} - b_0 + y_0 \right) +
          \beta \, \mathbb{E}_0 [ u (y_1 - b_1) ]
     \right\}
 
