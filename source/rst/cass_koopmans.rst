@@ -405,7 +405,7 @@ We have no initial condition for the Lagrange multiplier
 
 If we did, solving for the allocation would be simple:
 
--  Given :math:`\mu_0` and :math:`k_0`, we could compute $c_0 $ from
+-  Given :math:`\mu_0` and :math:`k_0`, we could compute :math:`c_0` from
    equation :eq:`constraint1` and then :math:`k_1` from equation
    :eq:`constraint3` and :math:`\mu_1` from equation
    :eq:`constraint2`
