@@ -525,10 +525,10 @@ likelihood of the other view at least at a prespecified constant
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
     \bar d_1(\bar d_2) &\equiv \max_{\vec r_e} \ \ (\vec r_e - \mu_{BL})'\Sigma^{-1}(\vec r_e - \mu_{BL}) \\
    \text{subject to }  \quad  &(\vec r_e - \hat\mu)'(\tau\Sigma)^{-1}(\vec r_e - \hat \mu) \geq \bar d_2
-   \end{align*}
+   \end{aligned}
 
 Denoting the multiplier on the constraint by :math:`\lambda`, the
 first-order condition is
@@ -777,11 +777,11 @@ To this end, simplify first the equation :eq:`mix-views` characterizing the Blac
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    \tilde \mu &= (\Sigma^{-1} + (\tau \Sigma)^{-1})^{-1} (\Sigma^{-1}\mu_{BL}  + (\tau \Sigma)^{-1}\hat \mu) \\
    &= (1 + \tau^{-1})^{-1}\Sigma \Sigma^{-1} (\mu_{BL}  + \tau ^{-1}\hat \mu) \\
    &= (1 + \tau^{-1})^{-1} ( \mu_{BL}  + \tau ^{-1}\hat \mu)
-   \end{align*}
+   \end{aligned}
 
 In our case, :math:`\hat \mu` is the estimated mean excess returns of
 securities. This could be written as a vector autoregression where
@@ -802,12 +802,12 @@ write the regularized version of the mean excess return estimation
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    \hat{\beta}_{Reg} &= (X'X + \Gamma'\Gamma)^{-1}(X'X\hat{\beta}_{OLS} + \Gamma'\Gamma\tilde \beta) \\
    &= (1 + \tau)^{-1}X'X (X'X)^{-1} (\hat \beta_{OLS}  + \tau \tilde \beta) \\
    &= (1 + \tau)^{-1} (\hat \beta_{OLS}  + \tau \tilde \beta) \\
    &= (1 + \tau^{-1})^{-1} ( \tau^{-1}\hat \beta_{OLS}  +  \tilde \beta)
-   \end{align*}
+   \end{aligned}
 
 Given that
 :math:`\hat \beta_{OLS} = \hat \mu` and :math:`\tilde \beta = \mu_{BL}`
