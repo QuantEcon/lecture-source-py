@@ -211,7 +211,7 @@ First
 .. math::
   :label: useful-calc1
 
-  \begin{align}
+  \begin{aligned}
   \frac{\partial F}{\partial K}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial K_t}
@@ -220,13 +220,13 @@ First
   \\ &=
   f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &= f'(K_t)
-  \end{align}
+  \end{aligned}
 
 Also
 
 .. math::
 
-  \begin{align}
+  \begin{aligned}
   \frac{\partial F}{\partial N}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \quad \text{(Product rule)}
@@ -236,7 +236,7 @@ Also
   f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &=
   f(K_t) - f'(K_t) K_t
-  \end{align}
+  \end{aligned}
 
 
 Back to Solving the Problem
@@ -321,9 +321,9 @@ or using our utility function :eq:`utility-oneperiod`
 
 .. math::
 
-  \begin{align} C_{t+1} =\left(\beta C_t^{\gamma}[f'(K_{t+1}) +
+  \begin{aligned} C_{t+1} =\left(\beta C_t^{\gamma}[f'(K_{t+1}) +
   (1-\delta)]\right)^{1/\gamma} \notag\\= C_t\left(\beta [f'(K_{t+1}) +
-  (1-\delta)]\right)^{1/\gamma} \end{align}
+  (1-\delta)]\right)^{1/\gamma} \end{aligned}
 
 The above first-order condition for consumption is called an **Euler
 equation**

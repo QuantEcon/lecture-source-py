@@ -392,11 +392,11 @@ To make our computations simpler, using :eq:`optdec`, we can write the continuat
 .. math::
     :label: optdec2
 
-    \begin{align}
+    \begin{aligned}
     h(\pi) &= c + \mathbb E [J(\pi')] \\
     &= c + \mathbb E_{\pi'} \min \{ (1 - \pi') L_0, \pi' L_1, h(\pi') \} \\
     &= c + \int \min \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_\pi (z') dz'
-    \end{align}
+    \end{aligned}
 
 The equality
 
