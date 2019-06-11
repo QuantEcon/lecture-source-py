@@ -229,9 +229,9 @@ Also
   \begin{align}
   \frac{\partial F}{\partial N}
   &=
-  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \tag{Product rule}
+  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \quad \text{(Product rule)}
   \\ &=
-  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2} \tag{Chain rule}
+  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2} \quad \text{(Chain rule)}
   \\ &=
   f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &=
