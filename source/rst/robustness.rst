@@ -13,7 +13,7 @@ Robustness
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -26,13 +26,13 @@ Overview
 .. index::
     single: Bellman Equation
 
-This lecture modifies a Bellman equation to express a decision maker's doubts about  transition dynamics
+This lecture modifies a Bellman equation to express a decision-maker's doubts about  transition dynamics
 
-His specification doubts make the decision maker want a *robust* decision rule
+His specification doubts make the decision-maker want a *robust* decision rule
 
 *Robust* means insensitive to misspecification of transition dynamics
 
-The decision maker has a single *approximating model*
+The decision-maker has a single *approximating model*
 
 He calls it *approximating* to acknowledge that he doesn't completely trust it
 
@@ -54,13 +54,13 @@ This may  sound like too much to ask for, but :math:`\ldots`
 
 The secret weapon is max-min control theory
 
-A value-maximizing decision maker enlists the aid of an (imaginary) value-minimizing model chooser to construct *bounds* on the value attained by a given decision rule under different models of the transition dynamics
+A value-maximizing decision-maker enlists the aid of an (imaginary) value-minimizing model chooser to construct *bounds* on the value attained by a given decision rule under different models of the transition dynamics
 
-The original decision maker uses those bounds to construct a decision rule with an assured performance level, no matter which model actually governs outcomes
+The original decision-maker uses those bounds to construct a decision rule with an assured performance level, no matter which model actually governs outcomes
 
 .. note::
 
-    In reading this lecture, please don't think that our decision maker is paranoid when he conducts a worst-case analysis. By designing a rule that works well against a worst-case, his intention is to construct a rule that will work well across a *set* of models.
+    In reading this lecture, please don't think that our decision-maker is paranoid when he conducts a worst-case analysis. By designing a rule that works well against a worst-case, his intention is to construct a rule that will work well across a *set* of models.
 
 
 .. _rb_vec:
@@ -68,7 +68,7 @@ The original decision maker uses those bounds to construct a decision rule with 
 Sets of Models Imply Sets Of Values
 ----------------------------------------
 
-Our "robust" decision maker wants to know how well a given rule will work when he does not *know* a single transition law  :math:`\ldots`
+Our "robust" decision-maker wants to know how well a given rule will work when he does not *know* a single transition law  :math:`\ldots`
 
 :math:`\ldots` he wants to know  *sets* of values that will be attained by a given decision rule :math:`F` under a *set* of transition laws
 
@@ -80,17 +80,17 @@ With this in mind, consider the following graph, which relates to a particular d
 
 The figure shows a *value-entropy correspondence* for a particular decision rule :math:`F`
 
-The shaded set is the graph of the correspondence, which maps entropy to a set of values associated with a set of models that surround the decision maker's approximating model
+The shaded set is the graph of the correspondence, which maps entropy to a set of values associated with a set of models that surround the decision-maker's approximating model
 
 Here
 
 * *Value* refers to a sum of discounted rewards obtained by applying the decision rule :math:`F` when the state starts at some fixed initial state :math:`x_0`
 
-* *Entropy* is a nonnegative number that measures the size of a set of models surrounding the decision maker's approximating model
+* *Entropy* is a non-negative number that measures the size of a set of models surrounding the decision-maker's approximating model
 
-    * Entropy is zero when the set includes only the approximating model, indicating that the decision maker completely trusts the approximating model
+    * Entropy is zero when the set includes only the approximating model, indicating that the decision-maker completely trusts the approximating model
 
-    * Entropy is bigger, and the set of surrounding models is bigger, the less the decision maker trusts the approximating model
+    * Entropy is bigger, and the set of surrounding models is bigger, the less the decision-maker trusts the approximating model
 
 The shaded region indicates that for **all** models having entropy less than or equal to the number on the horizontal axis, the value obtained will be somewhere within the indicated set of values
 
@@ -191,11 +191,11 @@ As before,
 
 Here :math:`x_t` is the state, :math:`u_t` is the control,  and :math:`w_t` is a shock vector
 
-For now we take :math:`\{ w_t \} := \{ w_t \}_{t=1}^{\infty}` to be deterministic --- a single fixed sequence
+For now, we take :math:`\{ w_t \} := \{ w_t \}_{t=1}^{\infty}` to be deterministic --- a single fixed sequence
 
 We also allow for *model uncertainty* on the part of the agent solving this optimization problem
 
-In particular, the agent takes :math:`w_t = 0` for all :math:`t \geq 0` as a benchmark model, but admits the possibility that this model might be wrong
+In particular, the agent takes :math:`w_t = 0` for all :math:`t \geq 0` as a benchmark model but admits the possibility that this model might be wrong
 
 As a consequence, she also considers a set of alternative models expressed in terms of  sequences :math:`\{ w_t \}` that are "close" to the zero sequence
 
@@ -352,7 +352,7 @@ Hence, when :math:`\theta` is large,  :math:`\hat P` and :math:`\hat F` are appr
 
 Furthermore, when :math:`\theta` is large, :math:`\hat K` is approximately equal to zero
 
-Conversely, smaller :math:`\theta` is associated with greater fear of model misspecification, and greater concern for robustness
+Conversely, smaller :math:`\theta` is associated with greater fear of model misspecification and greater concern for robustness
 
 
 
@@ -500,7 +500,7 @@ This inequality in turn implies the inequality
 .. math::
     :label: rob_bound
 
-    R_\theta(x_0, F) - \theta \ {\rm ent} 
+    R_\theta(x_0, F) - \theta \ {\rm ent}
     \leq \sum_{t=0}^\infty \beta^t \left\{  - x_t' (R + F' Q F) x_t \right\}
 
 
@@ -658,7 +658,7 @@ it by :math:`\tilde F`
 Nash Equilibrium
 -----------------
 
-Clearly the :math:`\tilde F` we have obtained depends on :math:`K`, which, in agent 2's problem,
+Clearly, the :math:`\tilde F` we have obtained depends on :math:`K`, which, in agent 2's problem,
 depended on an initial policy :math:`F`
 
 Holding all other parameters fixed, we can represent this relationship as a mapping :math:`\Phi`, where
@@ -712,7 +712,7 @@ For densities :math:`p, q`, the Kullback-Leibler divergence of :math:`q` from :m
     D_{KL} (p, q) := \int \ln \left[ \frac{p(x)}{q(x)} \right] p(x) \, dx
 
 
-Using this notation, we replace :eq:`rb_wcb0` with the stochastic analogue
+Using this notation, we replace :eq:`rb_wcb0` with the stochastic analog
 
 .. math::
     :label: rb_wcb1
@@ -816,7 +816,7 @@ In addition, we take :math:`\hat d` as the real number solving :math:`d = \beta 
 The robust policy in this stochastic case is the minimizer in
 :eq:`rb_wcb2`, which is once again :math:`u  = - \hat F x` for :math:`\hat F` given by :eq:`rb_oc_ih`
 
-Substituting the robust policy into :eq:`rb_md` we obtain the worst case shock
+Substituting the robust policy into :eq:`rb_md` we obtain the worst-case shock
 distribution:
 
 .. math::
@@ -914,7 +914,7 @@ Here is a brief description of the methods of the class
 
     * ``robust_rule_simple()`` is more transparent and easier to follow
 
-* ``K_to_F()`` and ``F_to_K()`` solve the decision problems 
+* ``K_to_F()`` and ``F_to_K()`` solve the decision problems
   of :ref:`agent 1 <rb_a1>` and :ref:`agent 2 <rb_a2>` respectively
 
 * ``compute_deterministic_entropy()`` computes the left-hand side of :eq:`rb_pdt`
@@ -977,7 +977,7 @@ Setting :math:`b := (a_0 - c) / 2` we define
     Q = \gamma / 2
 
 
-For the transition matrices we set
+For the transition matrices, we set
 
 .. math::
 
@@ -1059,9 +1059,9 @@ This is the content of the next lemma
 .. math::
     :label: rb_a2be
 
-    \tilde P = -R - \hat F' Q \hat F - 
-    \beta^2 (A - B \hat F)' \tilde P C 
-    (\beta \theta I + \beta C' \tilde P C)^{-1} C' \tilde P (A - B \hat F) + 
+    \tilde P = -R - \hat F' Q \hat F -
+    \beta^2 (A - B \hat F)' \tilde P C
+    (\beta \theta I + \beta C' \tilde P C)^{-1} C' \tilde P (A - B \hat F) +
     \beta (A - B \hat F)' \tilde P (A - B \hat F)
 
 
@@ -1075,7 +1075,7 @@ This is the content of the next lemma
 
 Suppose for a moment that :math:`- \hat P` solves the Bellman equation :eq:`rb_a2be`
 
-In this case the policy becomes
+In this case, the policy becomes
 
 .. math::
 
@@ -1090,9 +1090,9 @@ or, in other words,
 .. math::
 
     \hat  P =
-    R + \hat F' Q \hat F + 
+    R + \hat F' Q \hat F +
     \beta (A - B \hat F)' \hat P C
-    (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F) + 
+    (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F) +
     \beta (A - B \hat F)' \hat P (A - B \hat F)
 
 
@@ -1101,7 +1101,7 @@ side more simply as
 
 .. math::
 
-    R + \hat F' Q \hat F + 
+    R + \hat F' Q \hat F +
     \beta (A - B \hat F)' \mathcal D(\hat P) (A - B \hat F)
 
 
