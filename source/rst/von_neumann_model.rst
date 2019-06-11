@@ -528,10 +528,10 @@ the economy:
 and a number :math:`\alpha\in\mathbb{R}`, s.t.
 
 .. math::
-  \begin{align*}
+  \begin{aligned}
     &\max_{\alpha} \hspace{2mm} \alpha\\
     &\text{s.t. }\hspace{2mm}x^T B \geq \alpha x^T A
-    \end{align*}
+    \end{aligned}
 
 Theorem 9.3 of David Gale’s book :cite:`gale1989theory` assets that if Assumptions I and II are
 both satisfied, then a maximum value of :math:`\alpha` exists and it is
@@ -546,10 +546,10 @@ by :math:`\alpha_0`. The associated intensity vector :math:`x_0` is the
 and a number :math:`\beta\in\mathbb{R}`, such that
 
 .. math::
-  \begin{align*}
+  \begin{aligned}
     &\min_{\beta} \hspace{2mm} \beta\\
     &\text{s.t. }\hspace{2mm}Bp \leq \beta Ap
-    \end{align*}
+    \end{aligned}
 
 Assumptions I and II imply existence of a minimum value
 :math:`\beta_0>0` called the *economic expansion rate*
@@ -583,11 +583,11 @@ following holds true
 
 .. math::
 
-  \begin{align*}
+  \begin{aligned}
   x_0^T B &\geq \gamma^{* } x_0^T A \\
   Bp_0 &\leq \gamma^{* } Ap_0 \\
   x_0^T\left(B-\gamma^{* } A\right)p_0 &= 0
-  \end{align*}
+  \end{aligned}
 
 ..
 
