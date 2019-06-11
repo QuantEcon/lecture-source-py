@@ -230,8 +230,7 @@ Using standard formulas for expectations of `lognormal <https://en.wikipedia.org
                 -a \mu + a F_m +
                 \frac{a^2 \left( \frac{1}{\gamma} + \frac{1}{\gamma_x} \right)}{2}
                     \right)
-        \right) - c
-            > 0
+        \right) - c  > 0
 
 
 Implementation
