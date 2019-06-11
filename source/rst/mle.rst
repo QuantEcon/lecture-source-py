@@ -13,7 +13,7 @@ Overview
 ============
 
 
-In a :doc:`previous lecture <ols>` we estimated the relationship between
+In a :doc:`previous lecture <ols>`, we estimated the relationship between
 dependent and explanatory variables using linear regression
 
 But what if a linear relationship is not an appropriate assumption for our model?
@@ -40,7 +40,7 @@ We assume familiarity with basic probability and multivariate calculus
 Comments
 -------------
 
-This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__
+This lecture is co-authored with `Natasha Watkins <https://github.com/natashawatkins>`__
 
 
 
@@ -77,7 +77,8 @@ Counting Billionaires
 
 Treisman :cite:`Treisman2016` is interested in estimating the number of billionaires in different countries
 
-The number of billionaires is integer valued
+
+The number of billionaires is integer-valued
 
 Hence we consider distributions that take values only in the nonnegative integers
 
@@ -271,7 +272,7 @@ our estimate :math:`\hat{\boldsymbol{\beta}}` is the true parameter :math:`\bold
 
 Intuitively, we want to find the :math:`\hat{\boldsymbol{\beta}}` that best fits our data
 
-First we need to construct the likelihood function :math:`\mathcal{L}(\boldsymbol{\beta})`, which is similar to a joint probability density function
+First, we need to construct the likelihood function :math:`\mathcal{L}(\boldsymbol{\beta})`, which is similar to a joint probability density function
 
 Assume we have some data :math:`y_i = \{y_1, y_2\}` and
 :math:`y_i \sim f(y_i)`
@@ -385,7 +386,7 @@ numerical methods to solve for parameter estimates
 
 One such numerical method is the Newton-Raphson algorithm
 
-Our goal is find the maximum likelihood estimate :math:`\hat{\boldsymbol{\beta}}`
+Our goal is to find the maximum likelihood estimate :math:`\hat{\boldsymbol{\beta}}`
 
 At :math:`\hat{\boldsymbol{\beta}}`, the first derivative of the log-likelihood
 function will be equal to 0
@@ -579,7 +580,7 @@ You can see that with each iteration, the log-likelihood value increased
 Remember, our objective was to maximize the log-likelihood function,
 which the algorithm has worked to achieve
 
-Also note that the increase in :math:`\log \mathcal{L}(\boldsymbol{\beta}_{(k)})`
+Also, note that the increase in :math:`\log \mathcal{L}(\boldsymbol{\beta}_{(k)})`
 becomes smaller with each iteration
 
 This is because the gradient is approaching 0 as we reach the maximum,
@@ -644,7 +645,7 @@ Maximum Likelihood Estimation with ``statsmodels``
 Now that we know what's going on under the hood, we can apply MLE to an interesting application
 
 We'll use the Poisson regression model in ``statsmodels`` to obtain
-richer output with standard errors, test values, and more
+a richer output with standard errors, test values, and more
 
 ``statsmodels`` uses the same algorithm as above to find the maximum
 likelihood estimates
@@ -722,7 +723,7 @@ We'll use robust standard errors as in the author's paper
 Success! The algorithm was able to achieve convergence in 9 iterations
 
 Our output indicates that GDP per capita, population, and years of
-membership in the General Agreement in Tariffs and Trade (GATT) are
+membership in the General Agreement on Tariffs and Trade (GATT) are
 positively related to the number of billionaires a country has, as
 expected
 
@@ -806,7 +807,7 @@ years after the USSR
 Summary
 =======
 
-In this lecture we used Maximum Likelihood Estimation to estimate the
+In this lecture, we used Maximum Likelihood Estimation to estimate the
 parameters of a Poisson model
 
 ``statsmodels`` contains other built-in likelihood models such as
