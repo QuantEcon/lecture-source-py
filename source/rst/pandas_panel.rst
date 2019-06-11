@@ -38,7 +38,7 @@ In what follows, we will use a panel data set of real minimum wages from the OEC
 
 * kernel density estimates of wages by continent
 
-We will begin by reading in our long format panel data from a ..csvfile and
+We will begin by reading in our long format panel data from a CSV file and
 reshaping the resulting ``DataFrame`` with ``pivot_table`` to build a ``MultiIndex``
 
 Additional detail will be added to our ``DataFrame`` using pandas'
@@ -193,12 +193,12 @@ function
 
 .. only:: html
 
-    The .csvfile can be found in ``pandas_panel/countries.csv`` and can be downloaded
+    The CSV file can be found in ``pandas_panel/countries.csv`` and can be downloaded
     :download:`here <_static/code/pandas_panel/countries.csv>`
 
 .. only:: latex
 
-    The .csvfile can be found in ``pandas_panel/countries.csv`` and can be downloaded
+    The CSV file can be found in ``pandas_panel/countries.csv`` and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/countries.csv>`__
 
 .. code-block:: python3
@@ -555,7 +555,7 @@ in Europe by age and sex from `Eurostat <http://ec.europa.eu/eurostat/data/datab
     The dataset ``pandas_panel/employ.csv`` can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas_panel/employ.csv>`__
 
-Reading in the .csvfile returns a panel dataset in long format. Use ``.pivot_table()`` to construct
+Reading in the CSV file returns a panel dataset in long format. Use ``.pivot_table()`` to construct
 a wide format dataframe with a ``MultiIndex`` in the columns
 
 
