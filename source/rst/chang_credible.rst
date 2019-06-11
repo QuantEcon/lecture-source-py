@@ -766,13 +766,6 @@ code for now. We can increase accuracy by increasing the number of subgradients)
 
 The following code computes sustainable plans
 
-Note: this code requires the `polytope <https://pypi.python.org/pypi/polytope/0.2.1>`__ package
-
-The package can be installed in a terminal/command prompt with pip
-
-.. code-block:: ipython
-
-    !pip install polytope
 
 .. literalinclude:: /_static/code/chang_credible/changecon.py
   :class: collapse
