@@ -1052,7 +1052,7 @@ where
     \begin{array}{c}
         h(x_1) \\
         \vdots \\
-        h(x_n) \\
+        h(x_n)
     \end{array}
       \right)
 

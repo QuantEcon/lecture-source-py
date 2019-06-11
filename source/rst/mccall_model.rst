@@ -1,4 +1,4 @@
-In addition to what's in Anaconda,.. _mccall:
+.. _mccall:
 
 .. include:: /_static/includes/header.raw
 
@@ -32,7 +32,7 @@ Overview
 
 The McCall search model :cite:`McCall1970` helped transform economists' way of thinking about labor markets
 
-To clarify vague notions such as "involuntary" unemployment, McCall modeled the decision problem of unemployed agents directly, in terms of factors such as 
+To clarify vague notions such as "involuntary" unemployment, McCall modeled the decision problem of unemployed agents directly, in terms of factors such as
 
 *  current and likely future wages
 
@@ -40,7 +40,7 @@ To clarify vague notions such as "involuntary" unemployment, McCall modeled the 
 
 *  unemployment compensation
 
-To solve the decision problem he used dynamic programming 
+To solve the decision problem he used dynamic programming
 
 Here we set up McCall's model and adopt the same solution method
 
@@ -75,7 +75,7 @@ The wage sequence is assumed to be IID with probability mass function :math:`\ph
 
 Thus :math:`\phi (w)` is the probability of observing wage offer :math:`w` in the set :math:`w_1, \ldots, w_n`
 
-The worker is infinitely lived and aims to maximize the expected discounted sum of earnings 
+The worker is infinitely lived and aims to maximize the expected discounted sum of earnings
 
 .. math::
     \mathbb{E} \sum_{t=0}^{\infty} \beta^t Y_t
@@ -93,7 +93,7 @@ The variable  :math:`Y_t` is income, equal to
 
 
 
-A Trade Off
+A Trade-Off
 --------------------
 
 
@@ -103,12 +103,12 @@ The worker faces a trade-off:
 
 * Accepting too early is costly, since better offers might arrive in the future
 
-To decide optimally in the face of this trade off, we use dynamic programming
+To decide optimally in the face of this trade-off, we use dynamic programming
 
-Dynamic programming can be thought of as a two step procedure that
+Dynamic programming can be thought of as a two-step procedure that
 
-#. first assigns values to "states" and 
-   
+#. first assigns values to "states" and
+
 #. then deduces optimal actions given those values
 
 We'll go through these steps in turn
@@ -118,11 +118,11 @@ We'll go through these steps in turn
 The Value Function
 ---------------------
 
-In order to optimally trade off current and future rewards, we need to think about two things:
+In order to optimally trade-off current and future rewards, we need to think about two things:
 
 #. the current payoffs we get from different choices
 
-#. the different states that those choices will lead to next period (in this case, either employment or unemployment)
+#. the different states that those choices will lead to in next period (in this case, either employment or unemployment)
 
 To weigh these two aspects of the decision problem, we need to assign *values* to states
 
@@ -168,10 +168,10 @@ The Optimal Policy
 -------------------
 
 Suppose for now that we are able to solve :eq:`odu_pv` for the unknown
-function :math:`v^*` 
+function :math:`v^*`
 
 Once we have this function in hand we can behave optimally (i.e., make the
-right choice between accept and reject) 
+right choice between accept and reject)
 
 All we have to do is select the maximal choice on the r.h.s. of :eq:`odu_pv`
 
@@ -188,9 +188,9 @@ Thus, we have a map from :math:`\mathbb R` to :math:`\{0, 1\}`, with 1 meaning a
 We can write the policy as follows
 
 .. math::
-    \sigma(w) := \mathbf{1} 
-        \left\{ 
-            \frac{w}{1 - \beta} \geq c + \beta \sum_{w'} v^*(w') \phi (w') 
+    \sigma(w) := \mathbf{1}
+        \left\{
+            \frac{w}{1 - \beta} \geq c + \beta \sum_{w'} v^*(w') \phi (w')
         \right\}
 
 Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals 0 otherwise
@@ -205,7 +205,7 @@ where
 .. math::
     \bar w := (1 - \beta) \left\{ c + \beta \sum_{w'} v^*(w') \phi (w') \right\}
 
-Here :math:`\bar w` is a constant depending on :math:`\beta, c` and the wage distribution, called the *reservation wage*
+Here :math:`\bar w` is a constant depending on :math:`\beta, c` and the wage distribution called the *reservation wage*
 
 The agent should accept if and only if the current wage offer exceeds the reservation wage
 
@@ -241,7 +241,7 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 The Algorithm
 -------------
 
-To compute this vector, we proceed as follows: 
+To compute this vector, we proceed as follows:
 
 Step 1: pick an arbitrary initial guess :math:`v \in \mathbb R^n`
 
@@ -322,35 +322,35 @@ Here's the distribution of wage offers we'll work with
     w_vals = np.linspace(w_min, w_max, n+1)
     dist = BetaBinomial(n, a, b)
     ϕ_vals = dist.pdf()
-    
+
     fig, ax = plt.subplots(figsize=(9, 6.5))
     ax.stem(w_vals, ϕ_vals, label='$\phi (w\')$')
     ax.set_xlabel('wages')
     ax.set_ylabel('probabilities')
-    
+
     plt.show()
 
 
 
 
-First let's have a look at the sequence of approximate value functions that
+First, let's have a look at the sequence of approximate value functions that
 the algorithm above generates
 
 Default parameter values are embedded in the function
 
 Our initial guess :math:`v` is the value of accepting at every given wage
 
- 
+
 
 .. code-block:: python3
 
     def plot_value_function_seq(ax,
-                                c=25, 
+                                c=25,
                                 β=0.99,
                                 w_vals=w_vals,
                                 ϕ_vals=ϕ_vals,
                                 num_plots=6):
-        
+
         v = w_vals / (1 - β)
         v_next = np.empty_like(v)
         for i in range(num_plots):
@@ -361,10 +361,10 @@ Our initial guess :math:`v` is the value of accepting at every given wage
                 cont_val = c + β * np.sum(v * ϕ_vals)
                 v_next[j] = max(stop_val, cont_val)
             v[:] = v_next
-            
+
         ax.legend(loc='lower right')
-    
-    
+
+
     fig, ax = plt.subplots(figsize=(9, 6.5))
     plot_value_function_seq(ax)
     plt.show()
@@ -381,33 +381,33 @@ We'll be using JIT compilation via Numba to turbo charge our loops
 .. code-block:: python3
 
     @jit(nopython=True)
-    def compute_reservation_wage(c=25, 
+    def compute_reservation_wage(c=25,
                                  β=0.99,
                                  w_vals=w_vals,
                                  ϕ_vals=ϕ_vals,
-                                 max_iter=500, 
+                                 max_iter=500,
                                  tol=1e-6):
-        
+
         # == First compute the value function == #
-        
+
         v = w_vals / (1 - β)
         v_next = np.empty_like(v)
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
-            
+
             for j, w in enumerate(w_vals):
                 stop_val = w / (1 - β)
                 cont_val = c + β * np.sum(v * ϕ_vals)
                 v_next[j] = max(stop_val, cont_val)
-                
+
             error = np.max(np.abs(v_next - v))
             i += 1
-            
+
             v[:] = v_next  # copy contents into v
-            
+
         # == Now compute the reservation wage == #
-        
+
         return (1 - β) * (c + β * np.sum(v * ϕ_vals))
 
 
@@ -415,7 +415,7 @@ We'll be using JIT compilation via Numba to turbo charge our loops
 
 Let's compute the reservation wage at the default parameters
 
- 
+
 
 .. code-block:: python3
 
@@ -423,7 +423,7 @@ Let's compute the reservation wage at the default parameters
 
 
 
- 
+
 
 
 
@@ -442,16 +442,16 @@ In particular, let's look at what happens when we change :math:`\beta` and
 :math:`c`
 
 
- 
+
 
 .. code-block:: python3
 
     grid_size = 25
     R = np.empty((grid_size, grid_size))
-    
+
     c_vals = np.linspace(10.0, 30.0, grid_size)
     β_vals = np.linspace(0.9, 0.99, grid_size)
-    
+
     for i, c in enumerate(c_vals):
         for j, β in enumerate(β_vals):
             R[i, j] = compute_reservation_wage(c=c, β=β)
@@ -459,25 +459,25 @@ In particular, let's look at what happens when we change :math:`\beta` and
 
 
 
- 
+
 
 .. code-block:: python3
 
     fig, ax = plt.subplots(figsize=(10, 5.7))
-    
+
     cs1 = ax.contourf(c_vals, β_vals, R.T, alpha=0.75)
     ctr1 = ax.contour(c_vals, β_vals, R.T)
-    
+
     plt.clabel(ctr1, inline=1, fontsize=13)
     plt.colorbar(cs1, ax=ax)
-    
-    
+
+
     ax.set_title("reservation wage")
     ax.set_xlabel("$c$", fontsize=16)
     ax.set_ylabel("$β$", fontsize=16)
-    
+
     ax.ticklabel_format(useOffset=False)
-    
+
     plt.show()
 
 
@@ -503,7 +503,7 @@ For this particular problem, there's also an easier way, which circumvents the
 need to compute the value function
 
 Let :math:`h` denote the value of not accepting a job in this period but
-then behaving optimally in all subsequent periods 
+then behaving optimally in all subsequent periods
 
 That is,
 
@@ -574,35 +574,35 @@ The big difference here, however, is that we're iterating on a single number, ra
 
 Here's an implementation:
 
- 
+
 
 .. code-block:: python3
 
     @jit(nopython=True)
-    def compute_reservation_wage_two(c=25, 
+    def compute_reservation_wage_two(c=25,
                                      β=0.99,
                                      w_vals=w_vals,
                                      ϕ_vals=ϕ_vals,
-                                     max_iter=500, 
+                                     max_iter=500,
                                      tol=1e-5):
-        
+
         # == First compute ϕ == #
-        
+
         h = np.sum(w_vals * ϕ_vals) / (1 - β)
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
-            
+
             s = np.maximum(w_vals / (1 - β), h)
             h_next = c + β * np.sum(s * ϕ_vals)
-                
+
             error = np.abs(h_next - h)
             i += 1
-            
+
             h = h_next
-            
+
         # == Now compute the reservation wage == #
-        
+
         return (1 - β) * h
 
 
@@ -640,7 +640,7 @@ Exercise 1
 
 Here's one solution
 
- 
+
 
 .. code-block:: python3
 
@@ -676,11 +676,9 @@ Here's one solution
         stop_times[i] = compute_mean_stopping_time(w_bar)
 
     fig, ax = plt.subplots(figsize=(9, 6.5))
-        
+
     ax.plot(c_vals, stop_times, label="mean unemployment duration")
     ax.set(xlabel="unemployment compensation", ylabel="months")
     ax.legend()
-    
+
     plt.show()
-
-

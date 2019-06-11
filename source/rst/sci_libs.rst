@@ -8,7 +8,7 @@ Other Scientific Libraries
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -20,7 +20,7 @@ Overview
 
 
 
-In this lecture we review some other scientific libraries that are useful for
+In this lecture, we review some other scientific libraries that are useful for
 economic research and analysis
 
 We have, however, already picked most of the low hanging fruit in terms of
@@ -121,7 +121,7 @@ type definitions
 
 * ``int`` means integer
 
-* ``double`` means double precision floating point number
+* ``double`` means double precision floating-point number
 
 * the ``double`` in ``double geo_prog(...`` indicates that the function will
   return a double
@@ -154,7 +154,7 @@ In the next cell, we execute the following
             sum = sum + current
         return sum
 
-Here ``cdef`` is a Cython keyword indicating a variable declaration, and is followed by a type
+Here ``cdef`` is a Cython keyword indicating a variable declaration and is followed by a type
 
 The ``%%cython`` line at the top is not actually Cython code --- it's a Jupyter cell magic indicating the start of Cython code
 
@@ -210,7 +210,7 @@ array
         return np.asarray(x)
 
 
-If you run this code and time it, you will see that it's performance is disappointing --- nothing like the speed gain we got from Numba
+If you run this code and time it, you will see that its performance is disappointing --- nothing like the speed gain we got from Numba
 
 .. code-block:: python3
 
@@ -328,7 +328,7 @@ Let's look at a toy example, related to the quadratic map model discussed :ref:`
 Let's say we want to generate a long trajectory from a certain initial
 condition :math:`x_0` and see what fraction of the sample is below 0.1
 
-(We'll omit JIT compilation or other speed ups for simplicity)
+(We'll omit JIT compilation or other speedups for simplicity)
 
 Here's our code
 
@@ -412,7 +412,7 @@ Exercises
 Exercise 1
 -------------
 
-Later we'll learn all about :doc:`finite state Markov chains <finite_markov>`
+Later we'll learn all about :doc:`finite-state Markov chains <finite_markov>`
 
 For now, let's just concentrate on simulating a very simple example of such a chain
 
@@ -572,4 +572,4 @@ Now let's implement a Cython version
     qe.util.toc()
 
 
-The Cython implementation is fast, but not as fast as Numba
+The Cython implementation is fast but not as fast as Numba

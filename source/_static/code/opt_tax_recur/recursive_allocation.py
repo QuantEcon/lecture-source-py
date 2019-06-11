@@ -200,7 +200,7 @@ class BellmanEquation:
 
     def __call__(self, Vf):
         '''
-        Given continuation value function next period return value function this
+        Given continuation value function, next period return value function, this
         period return T(V) and optimal policies
         '''
         if not self.time_0:
@@ -231,13 +231,13 @@ class BellmanEquation:
             return np.hstack([x - Uc(c, n) * c - Un(c, n) * n - β * π[s] @ xprime,
                               (Θ * n - c - G)[s]])
 
-        out, fx, _, imode, smode = fmin_slsqp(objf, 
-                                              self.z0[x, s], 
+        out, fx, _, imode, smode = fmin_slsqp(objf,
+                                              self.z0[x, s],
                                               f_eqcons=cons,
                                               bounds=[(0, 100), (0, 100)] +
                                               [self.xbar] * S,
-                                              full_output=True, 
-                                              iprint=0, 
+                                              full_output=True,
+                                              iprint=0,
                                               acc=1e-10)
 
         if imode > 0:

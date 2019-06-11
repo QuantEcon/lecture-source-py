@@ -13,7 +13,7 @@
 
 .. contents:: :depth: 2
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
 
@@ -22,7 +22,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 Overview
 ============
 
-In a :doc:`previous lecture <finite_markov>` we learned about finite Markov chains, a relatively elementary class of stochastic dynamic models
+In a :doc:`previous lecture <finite_markov>`, we learned about finite Markov chains, a relatively elementary class of stochastic dynamic models
 
 The present lecture extends this analysis to continuous (i.e., uncountable) state Markov chains
 
@@ -30,11 +30,11 @@ Most stochastic dynamic models studied by economists either fit directly into th
 
 In this lecture, our focus will be on continuous Markov models that
 
-* evolve in discrete time
+* evolve in discrete-time
 * are often nonlinear
 
 The fact that we accommodate nonlinear models here is significant, because
-linear stochastic models have their own highly developed tool set, as we'll
+linear stochastic models have their own highly developed toolset, as we'll
 see :doc:`later on <arma>`
 
 The question that interests us most is: Given a particular stochastic dynamic
@@ -46,7 +46,7 @@ In particular,
 
 * Is there anything we can say about the "average behavior" of these variables?
 
-* Is there a notion of "steady state" or "long run equilibrium" that's applicable to the model?
+* Is there a notion of "steady state" or "long-run equilibrium" that's applicable to the model?
 
     * If so, how can we compute it?
 
@@ -73,7 +73,7 @@ and some cannot
 (For example, distributions on the real numbers :math:`\mathbb R` that put positive probability
 on individual points have no density representation)
 
-We are going to start our analysis by looking at Markov chains where the one step transition probabilities have density representations
+We are going to start our analysis by looking at Markov chains where the one-step transition probabilities have density representations
 
 The benefit is that the density case offers a very direct parallel to the finite case in terms of notation and intuition
 
@@ -84,7 +84,7 @@ Once we've built some intuition we'll cover the general case
 Definitions and Basic Properties
 ---------------------------------
 
-In our :doc:`lecture on finite Markov chains <finite_markov>`, we studied discrete time Markov chains that evolve on a finite state space :math:`S`
+In our :doc:`lecture on finite Markov chains <finite_markov>`, we studied discrete-time Markov chains that evolve on a finite state space :math:`S`
 
 In this setting, the dynamics of the model are described by a stochastic matrix --- a nonnegative square matrix :math:`P = P[i, j]` such that each row :math:`P[i, \cdot]` sums to one
 
@@ -162,7 +162,7 @@ Connection to Stochastic Difference Equations
 In the previous section, we made the connection between stochastic difference
 equation :eq:`statd_rw` and stochastic kernel :eq:`statd_rwsk`
 
-In economics and time series analysis we meet stochastic difference equations of all different shapes and sizes
+In economics and time-series analysis we meet stochastic difference equations of all different shapes and sizes
 
 It will be useful for us if we have some systematic methods for converting stochastic difference equations into stochastic kernels
 
@@ -374,7 +374,7 @@ would need to integrate at every :math:`y`, and there is a continuum of such
 
 Another possibility is to discretize the model, but this introduces errors of unknown size
 
-A nicer alternative in the present setting is to combine simulation with an elegant estimator called the *look ahead* estimator
+A nicer alternative in the present setting is to combine simulation with an elegant estimator called the *look-ahead* estimator
 
 Let's go over the ideas with reference to the growth model :ref:`discussed above <solow_swan>`, the dynamics of which we repeat here for convenience:
 
@@ -402,7 +402,7 @@ With these draws in hand, the next step is to generate some kind of representati
 
 A naive approach would be to use a histogram, or perhaps a `smoothed histogram <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_ using  SciPy's ``gaussian_kde`` function
 
-However, in the present setting there is a much better way to do this, based on the look-ahead estimator
+However, in the present setting, there is a much better way to do this, based on the look-ahead estimator
 
 With this estimator, to construct an estimate of :math:`\psi_t`, we
 actually generate :math:`n` observations of :math:`k_{t-1}`, rather than :math:`k_t`
@@ -441,11 +441,11 @@ converges almost surely to :math:`\psi_t(y)`, which is just what we want to comp
 
 .. only:: html
 
-    In fact much stronger convergence results are true (see, for example, :download:`this paper </_static/pdfs/ECTA6180.pdf>`)
+    In fact, much stronger convergence results are true (see, for example, :download:`this paper </_static/pdfs/ECTA6180.pdf>`)
 
 .. only:: latex
 
-    In fact much stronger convergence results are true (see, for example, `this paper <https://lectures.quantecon.org/_downloads/ECTA6180.pdf>`__)
+    In fact, much stronger convergence results are true (see, for example, `this paper <https://lectures.quantecon.org/_downloads/ECTA6180.pdf>`__)
 
 
 
@@ -491,7 +491,7 @@ would be in C or Fortran
 Example
 ---------------
 
-The following code is example of usage for the stochastic growth model :ref:`described above <solow_swan>`
+The following code is an example of usage for the stochastic growth model :ref:`described above <solow_swan>`
 
 
 
@@ -547,13 +547,13 @@ The following code is example of usage for the stochastic growth model :ref:`des
 
 
 The figure shows part of the density sequence :math:`\{\psi_t\}`, with each
-density computed via the look ahead estimator
+density computed via the look-ahead estimator
 
 Notice that the sequence of densities shown in the figure seems to be
 converging --- more on this in just a moment
 
 Another quick comment is that each of these distributions could be interpreted
-as a cross sectional distribution (recall :ref:`this discussion <mc_eg1-1>`)
+as a cross-sectional distribution (recall :ref:`this discussion <mc_eg1-1>`)
 
 
 
@@ -590,7 +590,7 @@ To illustrate the issues, recall that Hopenhayn and Rogerson :cite:`HopenhaynRog
 
 As is, this fits into the density case we treated above
 
-However, the authors wanted this process to take values in :math:`[0, 1]`, so they added boundaries at the end points 0 and 1
+However, the authors wanted this process to take values in :math:`[0, 1]`, so they added boundaries at the endpoints 0 and 1
 
 One way to write this is
 
@@ -650,7 +650,7 @@ One good option is simulation as before, combined with the `empirical distributi
 Stability
 ===========
 
-In our :doc:`lecture <finite_markov>` on finite Markov chains we also studied stationarity, stability and ergodicity
+In our :doc:`lecture <finite_markov>` on finite Markov chains, we also studied stationarity, stability and ergodicity
 
 Here we will cover the same topics for the continuous case
 
@@ -717,7 +717,7 @@ for any (`measurable <https://en.wikipedia.org/wiki/Measurable_function>`_) func
 
 Note that the convergence in :eq:`statd_lln` does not depend on the distribution (or value) of :math:`X_0`
 
-This is actually very important for simulation --- it means we can learn about :math:`\psi^*` (i.e., approximate the right hand side of :eq:`statd_lln` via the left hand side) without requiring any special knowledge about what to do with :math:`X_0`
+This is actually very important for simulation --- it means we can learn about :math:`\psi^*` (i.e., approximate the right-hand side of :eq:`statd_lln` via the left-hand side) without requiring any special knowledge about what to do with :math:`X_0`
 
 So what are these conditions we require to get global stability and ergodicity?
 
@@ -733,7 +733,7 @@ In addition
 
 * :cite:`StokeyLucas1989`  contains a classic (but slightly outdated) treatment of these topics
 
-* From the mathematical literature, :cite:`LasotaMackey1994`  and :cite:`MeynTweedie2009` give outstanding in depth treatments
+* From the mathematical literature, :cite:`LasotaMackey1994`  and :cite:`MeynTweedie2009` give outstanding in-depth treatments
 
 * Section 8.1.2 of `EDTC <http://johnstachurski.net/edtc.html>`_ provides detailed intuition, and section 8.3 gives additional references
 
@@ -773,10 +773,10 @@ Computing Stationary Densities
 
 In the preceding figure, each sequence of densities is converging towards the unique stationary density :math:`\psi^*`
 
-Even from this figure we can get a fair idea what :math:`\psi^*` looks like, and where its mass is located
+Even from this figure, we can get a fair idea what :math:`\psi^*` looks like, and where its mass is located
 
 However, there is a much more direct way to estimate the stationary density,
-and it involves only a slight modification of the look ahead estimator
+and it involves only a slight modification of the look-ahead estimator
 
 Let's say that we have a model of the form :eq:`statd_srs` that is stable and
 ergodic
@@ -784,7 +784,7 @@ ergodic
 Let :math:`p` be the corresponding stochastic kernel, as given in :eq:`statd_srssk`
 
 To approximate the stationary density :math:`\psi^*`, we can simply generate a
-long time series :math:`X_0, X_1, \ldots, X_n` and estimate :math:`\psi^*` via
+long time-series :math:`X_0, X_1, \ldots, X_n` and estimate :math:`\psi^*` via
 
 .. math::
     :label: statd_lae2
@@ -792,9 +792,9 @@ long time series :math:`X_0, X_1, \ldots, X_n` and estimate :math:`\psi^*` via
     \psi_n^*(y) = \frac{1}{n} \sum_{t=1}^n p(X_t, y)
 
 
-This is essentially the same as the look ahead estimator :eq:`statd_lae1`,
-except that now the observations we generate are a single time series, rather
-than a cross section
+This is essentially the same as the look-ahead estimator :eq:`statd_lae1`,
+except that now the observations we generate are a single time-series, rather
+than a cross-section
 
 The justification for :eq:`statd_lae2` is that, with probability one as :math:`n \to \infty`,
 
@@ -809,10 +809,10 @@ The justification for :eq:`statd_lae2` is that, with probability one as :math:`n
 where the convergence is by :eq:`statd_lln` and the equality on the right is by
 :eq:`statd_dsd`
 
-The right hand side is exactly what we want to compute
+The right-hand side is exactly what we want to compute
 
 On top of this asymptotic result, it turns out that the rate of convergence
-for the look ahead estimator is very good
+for the look-ahead estimator is very good
 
 The first exercise helps illustrate this point
 
@@ -855,7 +855,7 @@ stationary density :math:`\psi^*` given by
 
 Here :math:`\phi` is the standard normal density and :math:`\Phi` is the standard normal cdf
 
-As an exercise, compute the look ahead estimate of :math:`\psi^*`, as defined
+As an exercise, compute the look-ahead estimate of :math:`\psi^*`, as defined
 in :eq:`statd_lae2`, and compare it with :math:`\psi^*`  in :eq:`statd_tar_ts` to see whether they
 are indeed close for large :math:`n`
 
@@ -869,7 +869,7 @@ The additional density (black line) is a `nonparametric kernel density estimate 
 
 (You can try to replicate it before looking at the solution if you want to)
 
-As you can see, the look ahead estimator is a much tighter fit than the kernel
+As you can see, the look-ahead estimator is a much tighter fit than the kernel
 density estimator
 
 If you repeat the simulation you will see that this is consistently the case
@@ -958,7 +958,7 @@ In particular, the exercise is to generate `J` boxplot figures, one for each ini
 
 For each :math:`X_0` in this set,
 
-#. Generate :math:`k` time series of length :math:`n`, each starting at :math:`X_0` and obeying :eq:`statd_tar`
+#. Generate :math:`k` time-series of length :math:`n`, each starting at :math:`X_0` and obeying :eq:`statd_tar`
 
 #. Create a boxplot representing :math:`n` distributions, where the :math:`t`-th distribution shows the :math:`k` observations of :math:`X_t`
 
@@ -978,7 +978,7 @@ Solutions
 Exercise 1
 ----------
 
-Look ahead estimation of a TAR stationary density, where the TAR model
+Look-ahead estimation of a TAR stationary density, where the TAR model
 is
 
 .. math::     X_{t+1} = \theta |X_t| + (1 - \theta^2)^{1/2} \xi_{t+1}
@@ -1016,7 +1016,7 @@ Try running at ``n = 10, 100, 1000, 10000`` to get an idea of the speed of conve
     fig, ax = plt.subplots(figsize=(10, 7))
     ys = np.linspace(-3, 3, 200)
     ax.plot(ys, ψ_star(ys), 'b-', lw=2, alpha=0.6, label='true')
-    ax.plot(ys, ψ_est(ys), 'g-', lw=2, alpha=0.6, label='look ahead estimate')
+    ax.plot(ys, ψ_est(ys), 'g-', lw=2, alpha=0.6, label='look-ahead estimate')
     ax.plot(ys, k_est(ys), 'k-', lw=2, alpha=0.6, label='kernel based estimate')
     ax.legend(loc='upper left')
     plt.show()

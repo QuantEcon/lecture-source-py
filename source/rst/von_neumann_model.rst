@@ -63,14 +63,14 @@ The code below provides the ``Neumann`` class
       B ... output matrix is m-by-n
           b_{i,j} - amount of good j produced by activity i
 
-      x ... intensity vector (m-vector) with nonnegative entries
+      x ... intensity vector (m-vector) with non-negative entries
           x'B - the vector of goods produced
           x'A - the vector of goods consumed
-      p ... price vector (n-vector) with nonnegative entries
+      p ... price vector (n-vector) with non-negative entries
           Bp - the revenue vector for every activity
           Ap - the cost of each activity
 
-      Both A and B have nonnegative entries. Moreover, we assume that
+      Both A and B have non-negative entries. Moreover, we assume that
       (1) Assumption I (every good which is consumed is also produced):
           for all j, b_{.,j} > 0, i.e. at least one entry is strictly positive
       (2) Assumption II (no free lunch):
@@ -91,7 +91,7 @@ The code below provides the ``Neumann`` class
 
           # Check if (A, B) satisfy the basic assumptions
           assert self.A.shape == self.B.shape, 'The input and output matrices must have the same dimensions!'
-          assert (self.A >= 0).all() and (self.B >= 0).all(), 'The input and output matrices must have only nonnegative entries!'
+          assert (self.A >= 0).all() and (self.B >= 0).all(), 'The input and output matrices must have only non-negative entries!'
 
           # (1) Check whether Assumption I is satisfied:
           if (np.sum(B, 0) <= 0).any():
@@ -127,7 +127,7 @@ The code below provides the ``Neumann`` class
       def convert(self, x):
           """
           Convert array_like objects (lists of lists, floats, etc.) into
-          well formed 2D NumPy arrays
+          well-formed 2D NumPy arrays
           """
           return np.atleast_2d(np.asarray(x))
 
@@ -194,9 +194,9 @@ The code below provides the ``Neumann`` class
               c = np.hstack([np.zeros(m), -1])
 
               # (2) Add constraints :
-              # ... non-negativity constaints
+              # ... non-negativity constraints
               bounds = tuple(m * [(0, None)] + [(None, None)])
-              # ... inequality constaints
+              # ... inequality constraints
               A_iq = np.hstack([-M.T, np.ones((n, 1))])
               b_iq = np.zeros((n, 1))
               # ... normalization
@@ -212,9 +212,9 @@ The code below provides the ``Neumann`` class
               c = np.hstack([np.zeros(n), 1])
 
               # (2) Add constraints :
-              # ... non-negativity constaints
+              # ... non-negativity constraints
               bounds = tuple(n * [(0, None)] + [(None, None)])
-              # ... inequality constaints
+              # ... inequality constraints
               A_iq = np.hstack([M, -np.ones((m, 1))])
               b_iq = np.zeros((m, 1))
               # ... normalization
@@ -311,11 +311,11 @@ We use the following notation
 :math:`\mathbf{0}` denotes
 a vector of zeros. We call an :math:`n`-vector - positive or
 :math:`x\gg \mathbf{0}` if :math:`x_i>0` for all :math:`i=1,2,\dots,n`
-- nonnegative or :math:`x\geq \mathbf{0}` if :math:`x_i\geq 0` for
-all :math:`i=1,2,\dots,n` - semipositive or :math:`x > \mathbf{0}` if
+- non-negative or :math:`x\geq \mathbf{0}` if :math:`x_i\geq 0` for
+all :math:`i=1,2,\dots,n` - semi-positive or :math:`x > \mathbf{0}` if
 :math:`x\geq \mathbf{0}` and :math:`x\neq \mathbf{0}`
 
-For two comformable vectors :math:`x` and :math:`y`, :math:`x\gg y`,
+For two conformable vectors :math:`x` and :math:`y`, :math:`x\gg y`,
 :math:`x\geq y` and :math:`x> y` mean :math:`x-y\gg \mathbf{0}`,
 :math:`x-y \geq \mathbf{0}`, and :math:`x-y > \mathbf{0}`
 
@@ -341,7 +341,7 @@ respectively
 Model Ingredients and Assumptions
 ====================================
 
-A pair :math:`(A,B)` of :math:`m\times n` nonnegative matrices defines
+A pair :math:`(A,B)` of :math:`m\times n` non-negative matrices defines
 an economy.
 
 -  :math:`m` is the number of *activities* (or sectors)
@@ -365,7 +365,7 @@ Two key assumptions restrict economy :math:`(A,B)`:
 
 .. math:: a_{i,.} > \mathbf{0}\hspace{5mm}\forall i=1,2,\dots,m
 
-A semipositive :math:`m`-vector:math:`x` denotes the levels at which
+A semi-positive :math:`m`-vector:math:`x` denotes the levels at which
 activities are operated (*intensity vector*)
 
 Therefore,
@@ -376,10 +376,10 @@ Therefore,
 -  vector :math:`x^TB` gives *total outputs*
 
 An economy :math:`(A,B)` is said to be *productive*, if there exists a
-nonnegative intensity vector :math:`x \geq 0` such
+non-negative intensity vector :math:`x \geq 0` such
 that :math:`x^T B > x^TA`
 
-The semipositive :math:`n`-vector :math:`p` contains prices assigned to
+The semi-positive :math:`n`-vector :math:`p` contains prices assigned to
 the :math:`n` goods
 
 The :math:`p` vector implies *cost* and *revenue* vectors
@@ -453,10 +453,10 @@ as a dynamic system, and study sequences
 An interesting special case holds the technology process constant and
 investigates the dynamics of quantities and prices only
 
-Accordingly, in the rest of this notebook we assume that
+Accordingly, in the rest of this notebook, we assume that
 :math:`(A_t,B_t)=(A,B)` for all :math:`t\geq 0`
 
-A crucial element of the dynamic iterpretation involves the timing of
+A crucial element of the dynamic interpretation involves the timing of
 production
 
 We assume that production (consumption of inputs) takes place in period
@@ -464,13 +464,13 @@ We assume that production (consumption of inputs) takes place in period
 :math:`t+1`, i.e. consumption of :math:`x_{t}^TA` in period :math:`t`
 results in :math:`x^T_{t}B` amounts of output in period :math:`t+1`
 
-These timing conventions imply the following feasibiliy condition:
+These timing conventions imply the following feasibility condition:
 
 .. math::
 
-  \begin{align}
+  \begin{aligned}
   x^T_{t}B \geq x^T_{t+1} A \hspace{1cm}\forall t\geq 1
-  \end{align}
+  \end{aligned}
 
 which asserts that no more goods can be used today than were produced
 yesterday
@@ -483,7 +483,7 @@ Balanced Growth
 
 We follow John von Neumann in studying “balanced growth”
 
-Let :math:`./` denote elementwise division of one vector by another and let
+Let :math:`./` denote an elementwise division of one vector by another and let
 :math:`\alpha >0` be a scalar
 
 Then *balanced growth* is a situation in which
@@ -523,8 +523,8 @@ The following two problems are connected by a remarkable dual
 relationship between the technological and valuation characteristics of
 the economy:
 
-**Definition:** The *technological expansion problem* (TEP) for economy
-:math:`(A,B)` is to find a semipositive :math:`m`-vector :math:`x>0`
+**Definition:** The *technological expansion problem* (TEP) for the economy
+:math:`(A,B)` is to find a semi-positive :math:`m`-vector :math:`x>0`
 and a number :math:`\alpha\in\mathbb{R}`, s.t.
 
 .. math::
@@ -542,7 +542,7 @@ by :math:`\alpha_0`. The associated intensity vector :math:`x_0` is the
 *optimal intensity vector*
 
 **Definition:** The *economical expansion problem* (EEP) for
-:math:`(A,B)` is to find a semipositive :math:`n`-vector :math:`p>0`
+:math:`(A,B)` is to find a semi-positive :math:`n`-vector :math:`p>0`
 and a number :math:`\beta\in\mathbb{R}`, such that
 
 .. math::
@@ -592,18 +592,18 @@ following holds true
 ..
 
    *Proof (Sketch):* Assumption I and II imply that there exist :math:`(\alpha_0,
-   x_0)` and :math:`(\beta_0, p_0)` solving the TEP and EEP, repspectively. If
-   :math:`\gamma^*>\alpha_0`, then by defintion of :math:`\alpha_0`, there cannot
-   exist a semipositive :math:`x` that satisfies :math:`x^T B \geq \gamma^{* }
-   x^T A`.  Similarly, if :math:`\gamma^*<\beta_0`, there is no semipositive
+   x_0)` and :math:`(\beta_0, p_0)` solving the TEP and EEP, respectively. If
+   :math:`\gamma^*>\alpha_0`, then by definition of :math:`\alpha_0`, there cannot
+   exist a semi-positive :math:`x` that satisfies :math:`x^T B \geq \gamma^{* }
+   x^T A`.  Similarly, if :math:`\gamma^*<\beta_0`, there is no semi-positive
    :math:`p` so that :math:`Bp \leq \gamma^{* } Ap`. Let :math:`\gamma^{*
    }\in[\beta_0, \alpha_0]`, then :math:`x_0^T B \geq \alpha_0 x_0^T A \geq
    \gamma^{* } x_0^T A`.  Moreover, :math:`Bp_0\leq \beta_0 A p_0\leq \gamma^* A
-   p_0`. This two inequalities imply :math:`x_0\left(B - \gamma^{* } A\right)p_0
+   p_0`. These two inequalities imply :math:`x_0\left(B - \gamma^{* } A\right)p_0
    = 0`.
 
 Here the constant :math:`\gamma^{*}` is both expansion and interest
-factor (not neccessarily optimal)
+factor (not necessarily optimal)
 
 We have already encountered and
 discussed the first two inequalities that represent feasibility and
@@ -615,14 +615,14 @@ requirements that if any good grows at a rate larger than
 must be zero; and that if any activity provides negative profit, it must
 be unused
 
-Therefore, these expressions encode all equilbrium conditions
+Therefore, these expressions encode all equilibrium conditions
 and Theorem I essentially states that under Assumptions I and II there
 always exists an equilibrium :math:`\left(\gamma^{*}, x_0, p_0\right)`
 with balanced growth
 
 Note that Theorem I is silent about uniqueness of the equilibrium. In
 fact, it does not rule out (trivial) cases with :math:`x_0^TBp_0 = 0` so
-that nothing of value is produce
+that nothing of value is produced
 
 To exclude such uninteresting cases,
 Kemeny, Morgenstern and Thomspson (1956) add an extra requirement
@@ -657,10 +657,10 @@ s.t. :math:`\iota_n^T p = 1`
 *solution* :math:`(x^*, p^*, V(C))` in mixed strategies, if
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   (x^* )^T C e^j \geq V(C)\quad \forall j\in\{1, \dots, n\}\quad \quad
   \text{and}\quad\quad (e^i)^T C p^* \leq V(C)\quad \forall i\in\{1, \dots, m\}
-  \end{align}
+  \end{aligned}
 
 The number :math:`V(C)` is called the *value* of the game
 
@@ -704,23 +704,23 @@ Then the *max-min problem* (the game from the maximizing player’s point
 of view) can be written as the *primal* LP
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   V(C) = & \max \hspace{2mm} v \\
   \text{s.t. } \hspace{2mm} v \iota_n^T &\leq x^T C  \\
   x &\geq \mathbf{0} \\
   \iota_n^T x & = 1
-  \end{align}
+  \end{aligned}
 
 while the *min-max problem* (the game from the minimizing player’s point
 of view) is the *dual* LP
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   V(C) = &\min \hspace{2mm} u \\
   \text{s.t. } \hspace{2mm}u \iota_m &\geq Cp  \\
   p &\geq \mathbf{0} \\
   \iota_m^T p & = 1
-  \end{align}
+  \end{aligned}
 
 
 Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` view the input-output pair of the
@@ -763,9 +763,9 @@ we can calculate the solution of the game
    satisfy
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   x_0^T M(\gamma) \geq \mathbf{0}^T \quad \quad \text{and}\quad\quad M(\gamma) p_0 \leq \mathbf{0}
-  \end{align}
+  \end{aligned}
 
 That is, :math:`(x_0, p_0, 0)` is a solution of the game
 :math:`M(\gamma)` so
@@ -873,7 +873,7 @@ Compute :math:`\alpha_0` and :math:`\beta_0`
    at least one :math:`\gamma\in[LB, UB]`, s.t. :math:`V(M(\gamma))=0`
 
 The *zerosum* method calculates the value and optimal strategies
-assocaited with a given :math:`\gamma`
+associated with a given :math:`\gamma`
 
 .. code-block:: python3
 
@@ -959,7 +959,7 @@ input-output pair :math:`(A, B)`
     print(f'The corresponding x from the primal = {x}')
 
 As we can see, with a reducible :math:`(A,B)`, the roots found by the
-bisection alhorithms might differ, so there might be multiple
+bisection algorithms might differ, so there might be multiple
 :math:`\gamma^*` that make the value of the game
 with :math:`M(\gamma^*)` zero. (see the figure above)
 
@@ -985,7 +985,7 @@ A Special Case
 
 There is a special :math:`(A,B)` that allows us to simplify the solution
 method significantly by invoking the powerful Perron-Frobenius theorem
-for nonnegative matrices
+for non-negative matrices
 
 **Definition:** We call an economy *simple* if it satisfies 1.
 :math:`n=m` 2. Each activity produces exactly one good 3. Each good is
@@ -1003,11 +1003,11 @@ with :math:`(A,I_n)`, then
   A=\left(\frac{1}{\alpha_0}\right)x_0^T
 
 The latter shows that :math:`1/\alpha_0` is a positive eigenvalue of
-:math:`A` and :math:`x_0` is the correponding nonnegative left
+:math:`A` and :math:`x_0` is the corresponding non-negative left
 eigenvector
 
 The classical result of **Perron and Frobenius** implies
-that a nonnegative matrix always has a nonnegative
+that a non-negative matrix always has a non-negative
 eigenvalue-eigenvector pair
 
 Moreover, if :math:`A` is irreducible, then

@@ -33,9 +33,9 @@ Moreover, while the linear-quadratic structure is restrictive, it is in fact far
 
 These themes appear repeatedly below
 
-Mathematically, LQ control problems are closely related to :doc:`the Kalman filter <kalman>` 
-  
-* Recursive formulations of linear-quadratic control problems and Kalman filtering problems both involve matrix **Riccati equations** 
+Mathematically, LQ control problems are closely related to :doc:`the Kalman filter <kalman>`
+
+* Recursive formulations of linear-quadratic control problems and Kalman filtering problems both involve matrix **Riccati equations**
 
 * Classical formulations of linear control and linear filtering problems make use of similar matrix decompositions (see for example :doc:`this lecture <lu_tricks>` and :doc:`this lecture <classical_filtering>`)
 
@@ -86,7 +86,7 @@ Suppose that :math:`x_t` follows a linear law of motion given by
 
 Here
 
-* :math:`u_t` is a "control" vector, incorporating choices available to a decision maker confronting the current state :math:`x_t`
+* :math:`u_t` is a "control" vector, incorporating choices available to a decision-maker confronting the current state :math:`x_t`
 
 * :math:`\{w_t\}` is an uncorrelated zero mean shock process satisfying :math:`\mathbb E w_t w_t' = I`, where the right-hand side is the identity matrix
 
@@ -132,7 +132,7 @@ One unrealistic feature of the previous model is that non-financial income has a
 
 This can easily be overcome by adding a sufficiently large mean
 
-Hence in this example we take :math:`y_t = \sigma w_{t+1} + \mu` for some positive real number :math:`\mu`
+Hence in this example, we take :math:`y_t = \sigma w_{t+1} + \mu` for some positive real number :math:`\mu`
 
 Another alteration that's useful to introduce (we'll see why soon) is to
 change the control variable from consumption
@@ -203,7 +203,7 @@ In particular, if we write
 
 then the first row is equivalent to :eq:`lq_lomwc`
 
-Moreover, the model is now linear, and can be written in the form of
+Moreover, the model is now linear and can be written in the form of
 :eq:`lq_lom` by setting
 
 .. math::
@@ -249,7 +249,7 @@ In effect, we've bought ourselves linearity by adding another state
 Preferences
 --------------
 
-In the LQ model, the aim is to minimize a flow of losses, where time-:math:`t` loss is given by the quadratic expression
+In the LQ model, the aim is to minimize flow of losses, where time-:math:`t` loss is given by the quadratic expression
 
 .. math::
     :label: lq_pref_flow
@@ -271,7 +271,7 @@ Example 1
 ^^^^^^^^^
 
 A very simple example that satisfies these assumptions is to take :math:`R`
-and :math:`Q` to be identity matrices, so that current loss is
+and :math:`Q` to be identity matrices so that current loss is
 
 .. math::
 
@@ -280,7 +280,7 @@ and :math:`Q` to be identity matrices, so that current loss is
 
 Thus, for both the state and the control, loss is measured as squared distance from the origin
 
-(In fact the general case :eq:`lq_pref_flow` can also be understood in this
+(In fact, the general case :eq:`lq_pref_flow` can also be understood in this
 way, but with :math:`R` and :math:`Q` identifying other -- non-Euclidean -- notions of "distance" from the zero vector)
 
 Intuitively, we can often think of the state :math:`x_t` as representing deviation from a target, such
@@ -356,12 +356,12 @@ Information
 --------------
 
 There's one constraint we've neglected to mention so far, which is that the
-decision maker who solves this LQ problem knows only the present and the past,
+decision-maker who solves this LQ problem knows only the present and the past,
 not the future
 
 To clarify this point, consider the sequence of controls :math:`\{u_0, \ldots, u_{T-1}\}`
 
-When choosing these controls, the decision maker is permitted to take into account the effects of the shocks
+When choosing these controls, the decision-maker is permitted to take into account the effects of the shocks
 :math:`\{w_1, \ldots, w_T\}` on the system
 
 However, it is typically assumed --- and will be assumed here --- that the
@@ -378,7 +378,7 @@ so, for the purposes of intuition, you can read that last phrase as "for some fu
 
 Now note that :math:`x_t` will ultimately depend on the realizations of :math:`x_0, w_1, w_2, \ldots, w_t`
 
-In fact it turns out that :math:`x_t` summarizes all the information about  these historical  shocks that the decision maker needs to set controls optimally
+In fact, it turns out that :math:`x_t` summarizes all the information about  these historical  shocks that the decision-maker needs to set controls optimally
 
 More precisely, it can be shown that any optimal control :math:`u_t` can always be written as a function of the current state alone
 
@@ -394,16 +394,16 @@ Solution
 
 
 To solve the finite horizon LQ problem we can use a dynamic programming
-strategy based on backwards induction that is conceptually similar to the approach adopted in :doc:`this lecture <short_path>`
+strategy based on backward induction that is conceptually similar to the approach adopted in :doc:`this lecture <short_path>`
 
 For reasons that will soon become clear, we first introduce the notation :math:`J_T(x) = x' R_f x`
 
-Now consider the problem of the decision maker in the second to last period
+Now consider the problem of the decision-maker in the second to last period
 
 In particular, let the time be :math:`T-1`, and suppose that the
 state is :math:`x_{T-1}`
 
-The decision maker must trade off current and (discounted) final losses, and hence
+The decision-maker must trade-off current and (discounted) final losses, and hence
 solves
 
 .. math::
@@ -426,15 +426,15 @@ At this stage, it is convenient to define the function
     \}
 
 
-The function :math:`J_{T-1}` will be called the :math:`T-1` value function, and :math:`J_{T-1}(x)` can be thought of as representing total "loss-to-go" from state :math:`x` at time :math:`T-1` when the decision maker behaves optimally
+The function :math:`J_{T-1}` will be called the :math:`T-1` value function, and :math:`J_{T-1}(x)` can be thought of as representing total "loss-to-go" from state :math:`x` at time :math:`T-1` when the decision-maker behaves optimally
 
 Now let's step back to :math:`T-2`
 
-For a decision maker at :math:`T-2`, the value :math:`J_{T-1}(x)` plays a role analogous to that played by the terminal loss :math:`J_T(x) = x' R_f x` for the decision maker at :math:`T-1`
+For a decision-maker at :math:`T-2`, the value :math:`J_{T-1}(x)` plays a role analogous to that played by the terminal loss :math:`J_T(x) = x' R_f x` for the decision-maker at :math:`T-1`
 
 That is, :math:`J_{T-1}(x)` summarizes the future loss associated with moving to state :math:`x`
 
-The decision maker chooses her control :math:`u` to trade off current loss against future loss, where
+The decision-maker chooses her control :math:`u` to trade off current loss against future loss, where
 
 * the next period state is :math:`x_{T-1} = Ax_{T-2} + B u + C w_{T-1}`, and hence depends on the choice of current control
 
@@ -463,7 +463,7 @@ Letting
     \}
 
 
-the pattern for backwards induction is now clear
+the pattern for backward induction is now clear
 
 In particular, we define a sequence of value functions :math:`\{J_0, \ldots, J_T\}` via
 
@@ -523,7 +523,7 @@ where
 .. math::
     :label: lq_finr
 
-    P_{T-1} = R - \beta^2 A' P_T B (Q + \beta B' P_T B)^{-1} B' P_T A + 
+    P_{T-1} = R - \beta^2 A' P_T B (Q + \beta B' P_T B)^{-1} B' P_T A +
     \beta A' P_T A
 
 
@@ -542,7 +542,7 @@ If we continue working backwards in this manner, it soon becomes clear that :mat
 .. math::
     :label: lq_pr
 
-    P_{t-1} = R - \beta^2 A' P_t B (Q + \beta B' P_t B)^{-1} B' P_t A + 
+    P_{t-1} = R - \beta^2 A' P_t B (Q + \beta B' P_t B)^{-1} B' P_t A +
     \beta A' P_t A
     \quad \text{with } \quad
     P_T = R_f
@@ -587,12 +587,12 @@ for :math:`t = 0, \ldots, T-1` attains the minimum of :eq:`lq_object` subject to
 Implementation
 ====================
 
-We will use code from `lqcontrol.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`__ 
-in `QuantEcon.py <http://quantecon.org/python_index.html>`_ 
+We will use code from `lqcontrol.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`__
+in `QuantEcon.py <http://quantecon.org/python_index.html>`_
 to solve finite and infinite horizon linear quadratic control problems
 
-In the module, the various updating, simulation and fixed point methods  
-are wrapped in a class  called ``LQ``, which includes 
+In the module, the various updating, simulation and fixed point methods
+are wrapped in a class  called ``LQ``, which includes
 
 * Instance data:
 
@@ -687,7 +687,7 @@ by applying :eq:`lq_pr` and :eq:`lq_oc`
 After generating shocks :math:`w_1, \ldots, w_T`, the dynamics for assets and
 consumption can be simulated via :eq:`lq_xud`
 
-The following figure was computed using :math:`r = 0.05, \beta = 1 / (1+ r), 
+The following figure was computed using :math:`r = 0.05, \beta = 1 / (1+ r),
 \bar c = 2,  \mu = 1, \sigma = 0.25, T = 45` and :math:`q = 10^6`
 
 The shocks :math:`\{w_t\}` were taken to be IID and standard normal
@@ -762,11 +762,11 @@ relatively more weight on later consumption values
       ax.legend(ncol=2, **legend_args)
 
   plt.show()
-  
 
 
-We now have a slowly rising consumption stream and a hump-shaped build
-up of assets in the middle periods to fund rising consumption
+
+We now have a slowly rising consumption stream and a hump-shaped build-up
+of assets in the middle periods to fund rising consumption
 
 However, the essential features are the same: consumption is smooth relative to income, and assets are strongly positively correlated with cumulative unanticipated income
 
@@ -781,7 +781,7 @@ Let's now consider a number of standard extensions to the LQ problem treated abo
 Time-Varying Parameters
 ------------------------
 
-In some settings it can be desirable to allow :math:`A, B, C, R` and :math:`Q` to depend on :math:`t`
+In some settings, it can be desirable to allow :math:`A, B, C, R` and :math:`Q` to depend on :math:`t`
 
 For the sake of simplicity, we've chosen not to treat this extension in our implementation given below
 
@@ -818,8 +818,8 @@ The sequence :math:`\{P_t\}` from :eq:`lq_pr` becomes
 .. math::
     :label: lq_pr_cp
 
-    P_{t-1} = R - (\beta B' P_t A + N)' 
-    (Q + \beta B' P_t B)^{-1} (\beta B' P_t A + N) + 
+    P_{t-1} = R - (\beta B' P_t A + N)'
+    (Q + \beta B' P_t B)^{-1} (\beta B' P_t A + N) +
     \beta A' P_t A
     \quad \text{with } \quad
     P_T = R_f
@@ -869,21 +869,21 @@ only if time itself is a component of the  state vector :math:`x_t`
 In other words, there exists a fixed matrix :math:`F` such that :math:`u_t = -
 F x_t` for all :math:`t`
 
-That decision rules are constant over time is intuitive --- after all, the decision maker faces the
+That decision rules are constant over time is intuitive --- after all, the decision-maker faces the
 same infinite horizon at every stage, with only the current state changing
 
 Not surprisingly, :math:`P` and :math:`d` are also constant
 
 The stationary matrix :math:`P` is the solution to the
-`discrete time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
+`discrete-time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
 
 .. _riccati_equation:
 
 .. math::
     :label: lq_pr_ih
 
-    P = R - (\beta B' P A + N)' 
-    (Q + \beta B' P B)^{-1} (\beta B' P A + N) + 
+    P = R - (\beta B' P A + N)'
+    (Q + \beta B' P B)^{-1} (\beta B' P A + N) +
     \beta A' P A
 
 
@@ -922,7 +922,7 @@ Certainty Equivalence
 
 Linear quadratic control problems of the class discussed above have the property of *certainty equivalence*
 
-By this we mean that the optimal policy :math:`F` is not affected by the parameters in :math:`C`, which specify the shock process 
+By this, we mean that the optimal policy :math:`F` is not affected by the parameters in :math:`C`, which specify the shock process
 
 This can be confirmed by inspecting :eq:`lq_oc_ih` or :eq:`lq_oc_cp`
 
@@ -944,7 +944,7 @@ Application 1: Age-Dependent Income Process
 
 One unrealistic feature of that model is the assumption that the mean of the random income process does not depend on the consumer's age
 
-A more realistic income profile is one that rises in early working life, peaks towards the middle and maybe declines toward end of working life, and falls more during retirement
+A more realistic income profile is one that rises in early working life, peaks towards the middle and maybe declines toward the end of working life and falls more during retirement
 
 In this section, we will model this rise and fall as a symmetric inverted "U" using a polynomial in age
 
@@ -1005,7 +1005,7 @@ Thus, for the dynamics we set
     1 + r & -\bar c & m_1 & m_2 \\
     0     & 1       & 0   & 0   \\
     0     & 1       & 1   & 0   \\
-    0     & 1       & 2   & 1   \\
+    0     & 1       & 2   & 1
     \end{array}
     \right),
     \quad
@@ -1031,7 +1031,7 @@ Thus, for the dynamics we set
 
 
 If you expand the expression :math:`x_{t+1} = A x_t + B u_t + C w_{t+1}` using
-this specification, you will find that assets follow :eq:`lq_hib` as desired,
+this specification, you will find that assets follow :eq:`lq_hib` as desired
 and that the other state variables also update appropriately
 
 To implement preference specification :eq:`lq_pip` we take
@@ -1082,7 +1082,7 @@ Exercise 1 gives the full set of parameters used here and asks you to replicate 
 Application 2: A Permanent Income Model with Retirement
 --------------------------------------------------------
 
-In the :ref:`previous application <lq_nsi>`, we generated income dynamics with an inverted U shape using polynomials, and placed them in an LQ framework
+In the :ref:`previous application <lq_nsi>`, we generated income dynamics with an inverted U shape using polynomials and placed them in an LQ framework
 
 It is arguably the case that this income process still contains unrealistic features
 
@@ -1101,7 +1101,7 @@ by
     y_t =
     \begin{cases}
     p(t) + \sigma w_{t+1} & \quad \text{if } t \leq K  \\
-    s                     & \quad \text{otherwise }  \\
+    s                     & \quad \text{otherwise }
     \end{cases}
 
 
@@ -1117,13 +1117,13 @@ The budget constraint is also unchanged and given by :math:`a_{t+1} = (1 + r) a_
 
 Our aim is to solve this problem and simulate paths using the LQ techniques described in this lecture
 
-In fact this is a nontrivial problem, as the kink in the dynamics :eq:`lq_cases` at :math:`K` makes it very difficult to express the law of motion as a fixed-coefficient linear system
+In fact, this is a nontrivial problem, as the kink in the dynamics :eq:`lq_cases` at :math:`K` makes it very difficult to express the law of motion as a fixed-coefficient linear system
 
-However, we can still use our LQ methods here by suitably linking two component LQ problems
+However, we can still use our LQ methods here by suitably linking two-component LQ problems
 
 These two LQ problems describe the consumer's behavior during her working life (``lq_working``) and retirement (``lq_retired``)
 
-(This is possible because in the two separate periods of life, the respective income processes
+(This is possible because, in the two separate periods of life, the respective income processes
 [polynomial trend and constant] each fit the LQ framework)
 
 The basic idea is that although the whole problem is not a single time-invariant LQ problem, it is
@@ -1132,11 +1132,11 @@ every stage
 
 Based on this logic, we can
 
-#. solve ``lq_retired`` by the usual backwards induction procedure, iterating back to the start of retirement
+#. solve ``lq_retired`` by the usual backward induction procedure, iterating back to the start of retirement
 
 #. take the start-of-retirement value function generated by this process, and use it as  the terminal condition :math:`R_f` to feed into the ``lq_working`` specification
 
-#. solve ``lq_working`` by backwards induction from this choice of :math:`R_f`, iterating back to the start of working life
+#. solve ``lq_working`` by backward induction from this choice of :math:`R_f`, iterating back to the start of working life
 
 This process gives the entire life-time sequence of value functions and optimal policies
 
@@ -1248,7 +1248,7 @@ Let's now replace :math:`\pi_t` in :eq:`lq_object_mp` with :math:`\hat \pi_t := 
 
 This makes no difference to the solution, since :math:`a_1 \bar q_t^2` does not depend on the controls
 
-(In fact we are just adding a constant term to :eq:`\lq_object_mp`, and optimizers are not affected by constant terms)
+(In fact, we are just adding a constant term to :eq:`\lq_object_mp`, and optimizers are not affected by constant terms)
 
 The reason for making this substitution is that, as you will be able to
 verify, :math:`\hat \pi_t` reduces to the simple quadratic
@@ -1361,7 +1361,7 @@ use simpler ones
 The model is an LQ permanent income / life-cycle model with hump-shaped
 income
 
-.. math::     y_t = m_1 t + m_2 t^2 + \sigma w_{t+1} 
+.. math::     y_t = m_1 t + m_2 t^2 + \sigma w_{t+1}
 
 where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
 :math:`m_1` and :math:`m_2` are chosen so that
@@ -1382,13 +1382,13 @@ where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
     q = 1e4
     m1 = T * (μ/(T/2)**2)
     m2 = -(μ/(T/2)**2)
-    
+
     # == Formulate as an LQ problem == #
     Q = 1
-    R = np.zeros((4, 4)) 
+    R = np.zeros((4, 4))
     Rf = np.zeros((4, 4))
     Rf[0, 0] = q
-    A = [[1 + r, -c_bar, m1, m2], 
+    A = [[1 + r, -c_bar, m1, m2],
          [0,          1,  0,  0],
          [0,          1,  1,  0],
          [0,          1,  2,  1]]
@@ -1400,40 +1400,40 @@ where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
          [0],
          [0],
          [0]]
-    
+
     # == Compute solutions and simulate == #
     lq = LQ(Q, R, A, B, C, beta=β, T=T, Rf=Rf)
     x0 = (0, 1, 0, 0)
     xp, up, wp = lq.compute_sequence(x0)
-    
+
     # == Convert results back to assets, consumption and income == #
     ap = xp[0, :]               # Assets
     c = up.flatten() + c_bar    # Consumption
     time = np.arange(1, T+1)
     income = σ * wp[0, 1:] + m1 * time + m2 * time**2  # Income
-    
-    
+
+
     # == Plot results == #
     n_rows = 2
     fig, axes = plt.subplots(n_rows, 1, figsize=(12, 10))
-    
+
     plt.subplots_adjust(hspace=0.5)
 
     bbox = (0., 1.02, 1., .102)
     legend_args = {'bbox_to_anchor': bbox, 'loc': 3, 'mode': 'expand'}
     p_args = {'lw': 2, 'alpha': 0.7}
-    
+
     axes[0].plot(range(1, T+1), income, 'g-', label="non-financial income", **p_args)
     axes[0].plot(range(T), c, 'k-', label="consumption", **p_args)
-    
+
     axes[1].plot(range(T+1), ap.flatten(), 'b-', label="assets", **p_args)
     axes[1].plot(range(T+1), np.zeros(T+1), 'k-')
-    
+
     for ax in axes:
         ax.grid()
         ax.set_xlabel('Time')
         ax.legend(ncol=2, **legend_args)
-    
+
     plt.show()
 
 Exercise 2
@@ -1459,13 +1459,13 @@ the lecture
     s = 1
     m1 = 2 * μ/K
     m2 = -μ/K**2
-    
+
     # == Formulate LQ problem 1 (retirement) == #
     Q = 1
-    R = np.zeros((4, 4)) 
+    R = np.zeros((4, 4))
     Rf = np.zeros((4, 4))
     Rf[0, 0] = q
-    A = [[1 + r, s - c_bar, 0, 0], 
+    A = [[1 + r, s - c_bar, 0, 0],
          [0,             1, 0, 0],
          [0,             1, 1, 0],
          [0,             1, 2, 1]]
@@ -1477,17 +1477,17 @@ the lecture
          [0],
          [0],
          [0]]
-    
+
     # == Initialize LQ instance for retired agent == #
     lq_retired = LQ(Q, R, A, B, C, beta=β, T=T-K, Rf=Rf)
     # == Iterate back to start of retirement, record final value function == #
     for i in range(T-K):
         lq_retired.update_values()
     Rf2 = lq_retired.P
-    
+
     # == Formulate LQ problem 2 (working life) == #
-    R = np.zeros((4, 4)) 
-    A = [[1 + r, -c_bar, m1, m2], 
+    R = np.zeros((4, 4))
+    A = [[1 + r, -c_bar, m1, m2],
          [0,          1,  0,  0],
          [0,          1,  1,  0],
          [0,          1,  2,  1]]
@@ -1499,49 +1499,49 @@ the lecture
          [0],
          [0],
          [0]]
-    
+
     # == Set up working life LQ instance with terminal Rf from lq_retired == #
     lq_working = LQ(Q, R, A, B, C, beta=β, T=K, Rf=Rf2)
-    
+
     # == Simulate working state / control paths == #
     x0 = (0, 1, 0, 0)
     xp_w, up_w, wp_w = lq_working.compute_sequence(x0)
     # == Simulate retirement paths (note the initial condition) == #
-    xp_r, up_r, wp_r = lq_retired.compute_sequence(xp_w[:, K]) 
-    
+    xp_r, up_r, wp_r = lq_retired.compute_sequence(xp_w[:, K])
+
     # == Convert results back to assets, consumption and income == #
     xp = np.column_stack((xp_w, xp_r[:, 1:]))
     assets = xp[0, :]                  # Assets
-    
+
     up = np.column_stack((up_w, up_r))
     c = up.flatten() + c_bar           # Consumption
-    
+
     time = np.arange(1, K+1)
     income_w = σ * wp_w[0, 1:K+1] + m1 * time + m2 * time**2  # Income
     income_r = np.ones(T-K) * s
     income = np.concatenate((income_w, income_r))
-    
+
     # == Plot results == #
     n_rows = 2
     fig, axes = plt.subplots(n_rows, 1, figsize=(12, 10))
-    
+
     plt.subplots_adjust(hspace=0.5)
 
     bbox = (0., 1.02, 1., .102)
     legend_args = {'bbox_to_anchor': bbox, 'loc': 3, 'mode': 'expand'}
     p_args = {'lw': 2, 'alpha': 0.7}
-    
+
     axes[0].plot(range(1, T+1), income, 'g-', label="non-financial income", **p_args)
     axes[0].plot(range(T), c, 'k-', label="consumption", **p_args)
-    
+
     axes[1].plot(range(T+1), assets, 'b-', label="assets", **p_args)
     axes[1].plot(range(T+1), np.zeros(T+1), 'k-')
-    
+
     for ax in axes:
         ax.grid()
         ax.set_xlabel('Time')
         ax.legend(ncol=2, **legend_args)
-    
+
     plt.show()
 
 Exercise 3
@@ -1575,8 +1575,8 @@ function, which we repeat here for convenience:
 
        \min
        \mathbb E \,
-       \left\{ 
-           \sum_{t=0}^{\infty} \beta^t 
+       \left\{
+           \sum_{t=0}^{\infty} \beta^t
            a_1 ( q_t - \bar q_t)^2 + \gamma u_t^2
        \right\}
 
@@ -1593,11 +1593,11 @@ Our solution code is
     β = 0.95
     c = 2
     T = 120
-    
+
     # == Useful constants == #
     m0 = (a0-c)/(2 * a1)
     m1 = 1/(2 * a1)
-    
+
     # == Formulate LQ problem == #
     Q = γ
     R = [[ a1, -a1,  0],
@@ -1606,30 +1606,30 @@ Our solution code is
     A = [[ρ, 0, m0 * (1 - ρ)],
          [0, 1,            0],
          [0, 0,            1]]
-    
+
     B = [[0],
          [1],
          [0]]
     C = [[m1 * σ],
          [     0],
          [     0]]
-    
+
     lq = LQ(Q, R, A, B, C=C, beta=β)
-    
+
     # == Simulate state / control paths == #
     x0 = (m0, 2, 1)
     xp, up, wp = lq.compute_sequence(x0, ts_length=150)
-    q_bar = xp[0, :] 
+    q_bar = xp[0, :]
     q = xp[1, :]
-    
+
     # == Plot simulation results == #
     fig, ax = plt.subplots(figsize=(10, 6.5))
-    
+
     # == Some fancy plotting stuff -- simplify if you prefer == #
     bbox = (0., 1.01, 1., .101)
     legend_args = {'bbox_to_anchor': bbox, 'loc': 3, 'mode': 'expand'}
     p_args = {'lw': 2, 'alpha': 0.6}
-    
+
     time = range(len(q))
     ax.set(xlabel='Time', xlim=(0, max(time)))
     ax.plot(time, q_bar, 'k-', lw=2, alpha=0.6, label=r'$\bar q_t$')
@@ -1638,5 +1638,3 @@ Our solution code is
     s = f'dynamics with $\gamma = {γ}$'
     ax.text(max(time) * 0.6, 1 * q_bar.max(), s, fontsize=14)
     plt.show()
-
-

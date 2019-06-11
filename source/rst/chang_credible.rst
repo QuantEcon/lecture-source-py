@@ -599,7 +599,7 @@ ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, w
       m_t & = m(h_t, w_t,\theta_t) \\
       x_t & = x(h_t, w_t,\theta_t) \\
       w_{t+1} & = \chi(h_t, w_t,\theta_t)  \\
-      \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)  \\
+      \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)
       \end{aligned}
 
 Calculating Set of Sustainable :math:`(w,\theta)` Pairs

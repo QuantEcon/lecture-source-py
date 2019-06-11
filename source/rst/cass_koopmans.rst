@@ -211,7 +211,7 @@ First
 .. math::
   :label: useful-calc1
 
-  \begin{align}
+  \begin{aligned}
   \frac{\partial F}{\partial K}
   &=
   \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial K_t}
@@ -220,23 +220,23 @@ First
   \\ &=
   f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &= f'(K_t)
-  \end{align}
+  \end{aligned}
 
 Also
 
 .. math::
 
-  \begin{align}
+  \begin{aligned}
   \frac{\partial F}{\partial N}
   &=
-  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \tag{Product rule}
+  \frac{\partial N_t f\left( \frac{K_t}{N_t}\right)}{\partial N_t} \quad \text{(Product rule)}
   \\ &=
-  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2} \tag{Chain rule}
+  f\left(\frac{K_t}{N_t}\right){+} N_t f'\left(\frac{K_t}{N_t}\right) \frac{-K_t}{N_t^2} \quad \text{(Chain rule)}
   \\ &=
   f\left(\frac{K_t}{N_t}\right){-}\frac{K_t}{N_t}f'\left.\left(\frac{K_t}{N_t}\right)\right|_{N_t=1}
   \\ &=
   f(K_t) - f'(K_t) K_t
-  \end{align}
+  \end{aligned}
 
 
 Back to Solving the Problem
@@ -258,22 +258,22 @@ minimization with respect to :math:`\vec \mu`):
 .. math::
     :label: constraint1
 
-    C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T \\
+    C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T
 
 .. math::
     :label: constraint2
 
-    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T \\
+    K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T
 
 .. math::
     :label: constraint3
 
-    \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T \\
+    \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T
 
 .. math::
     :label: constraint4
 
-    K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0  \\
+    K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0
 
 Note that in :eq:`constraint2` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
@@ -321,9 +321,9 @@ or using our utility function :eq:`utility-oneperiod`
 
 .. math::
 
-  \begin{align} C_{t+1} =\left(\beta C_t^{\gamma}[f'(K_{t+1}) +
+  \begin{aligned} C_{t+1} =\left(\beta C_t^{\gamma}[f'(K_{t+1}) +
   (1-\delta)]\right)^{1/\gamma} \notag\\= C_t\left(\beta [f'(K_{t+1}) +
-  (1-\delta)]\right)^{1/\gamma} \end{align}
+  (1-\delta)]\right)^{1/\gamma} \end{aligned}
 
 The above first-order condition for consumption is called an **Euler
 equation**
@@ -405,7 +405,7 @@ We have no initial condition for the Lagrange multiplier
 
 If we did, solving for the allocation would be simple:
 
--  Given :math:`\mu_0` and :math:`k_0`, we could compute $c_0 $ from
+-  Given :math:`\mu_0` and :math:`k_0`, we could compute :math:`c_0` from
    equation :eq:`constraint1` and then :math:`k_1` from equation
    :eq:`constraint3` and :math:`\mu_1` from equation
    :eq:`constraint2`
@@ -1147,7 +1147,7 @@ such prices in some of their important work
 
 Evidently,
 
-.. math:: q^0_t=\frac{\text{# of time 0 goods}}{\text{# of time t goods}}
+.. math:: q^0_t=\frac{\text{number of time 0 goods}}{\text{number of time t goods}}
 
 Because :math:`q^0_t` is a **relative price**, the units in terms of
 which prices are quoted are arbitrary -- we can normalize them
@@ -1176,7 +1176,7 @@ Household Problem
 
 The household faces the constrained optimization problem:
 
-.. math:: \begin {align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
+.. math:: \begin{align*}& \max_{\vec c, \vec k}  \sum_{t=0}^T \beta^t u(c_t) \\ \text{subject to} \ \   & \sum_{t=0}^T q_t^0\left(c_t +\left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right) \leq 0  \notag \end{align*}
 
 Definitions
 ------------
@@ -1254,16 +1254,16 @@ must occur that
 .. math::
     :label: ge1
 
-    k_t^*  = \tilde k_t^* \\
+    k_t^*  = \tilde k_t^*
 
 .. math::
     :label: ge2
 
-    1   = \tilde n_t^* \\
+    1   = \tilde n_t^*
 
 .. math::
 
-    c_t^* + k_{t+1}^* - (1-\delta) k_t^*  = F(\tilde k_t^*, \tilde n_t^*) \\
+    c_t^* + k_{t+1}^* - (1-\delta) k_t^*  = F(\tilde k_t^*, \tilde n_t^*)
 
 
 We shall verify that for :math:`t=0,\dots,T` the allocations chosen

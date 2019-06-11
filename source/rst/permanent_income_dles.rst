@@ -27,7 +27,7 @@ In addition to what's included in  Anaconda, this lecture uses the quantecon  li
 
 This lecture adds a third solution method for the
 linear-quadratic-Gaussian permanent income model with
-:math:`\beta R = 1`, complementing the other two solution methods described in in
+:math:`\beta R = 1`, complementing the other two solution methods described in
 :doc:`Optimal Savings I: The Permanent Income Model <perm_income>` and
 :doc:`Optimal Savings II: LQ Techniques <perm_income_cons>` and this Jupyter
 notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/permanent_income.ipynb>`__
@@ -252,7 +252,7 @@ notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob
 
 
 The plot below quickly replicates the first two figures of
-that that lecture and that  notebook to confirm that the solutions are the same
+that lecture and that  notebook to confirm that the solutions are the same
 
 .. code-block:: python3
 

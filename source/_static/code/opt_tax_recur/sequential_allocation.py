@@ -64,7 +64,7 @@ class SequentialAllocation:
                               Θ * Ξ,  # FOC of n
                               Θ * n - c - G])
 
-        # Find the root of the first order condition
+        # Find the root of the first-order condition
         res = root(FOC, self.zFB)
         if not res.success:
             raise Exception('Could not find LS allocation.')

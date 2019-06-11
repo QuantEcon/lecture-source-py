@@ -18,13 +18,13 @@ We've already generated quite a few figures in these lectures using `Matplotlib 
 
 Matplotlib is an outstanding graphics library, designed for scientific computing, with
 
-* high quality 2D and 3D plots
+* high-quality 2D and 3D plots
 
 * output in all the usual formats (PDF, PNG, etc.)
 
 * LaTeX integration
 
-* fine grained control over all aspects of presentation
+* fine-grained control over all aspects of presentation
 
 * animation, etc.
 
@@ -34,7 +34,7 @@ Matplotlib's Split Personality
 ---------------------------------
 
 
-Matplotlib is unusual in that it offers two different interfaces to plotting 
+Matplotlib is unusual in that it offers two different interfaces to plotting
 
 One is a simple MATLAB-style API (Application Programming Interface) that was written to help MATLAB refugees find a ready home
 
@@ -77,9 +77,9 @@ For example, in the function calls, a lot of objects get created and passed arou
 
 Python programmers tend to prefer a more explicit style of programming (run ``import this`` in a code block and look at the second line)
 
-This leads us to the alternative, object oriented Matplotlib API
+This leads us to the alternative, object-oriented Matplotlib API
 
-The Object Oriented API
+The Object-Oriented API
 -----------------------
 
 Here's the code corresponding to the preceding figure using the object-oriented API
@@ -107,7 +107,7 @@ This will become more clear as we go along
 Tweaks
 --------------
 
-Here we've changed the line to red and added a legend 
+Here we've changed the line to red and added a legend
 
 .. code-block:: python3
 
@@ -127,7 +127,7 @@ The location of the legend can be changed by replacing ``ax.legend()`` with ``ax
     ax.legend(loc='upper center')
     plt.show()
 
-If everything is properly configured, then adding LaTeX is trivial 
+If everything is properly configured, then adding LaTeX is trivial
 
 .. code-block:: python3
 
@@ -163,9 +163,9 @@ Multiple Plots on One Axis
 .. index::
     single: Matplotlib; Multiple Plots on One Axis
 
-It's straightforward to generate multiple plots on the same axes 
+It's straightforward to generate multiple plots on the same axes
 
-Here's an example that randomly generates three normal densities and adds a label with their mean 
+Here's an example that randomly generates three normal densities and adds a label with their mean
 
 .. code-block:: python3
 
@@ -191,7 +191,7 @@ Multiple Subplots
 
 Sometimes we want multiple subplots in one figure
 
-Here's an example that generates 6 histograms 
+Here's an example that generates 6 histograms
 
 .. code-block:: python3
 
@@ -257,7 +257,7 @@ Read carefully through the code and see if you can follow what's going on
 .. code-block:: python3
 
     def subplots():
-        "Custom subplots with axes throught the origin"
+        "Custom subplots with axes through the origin"
         fig, ax = plt.subplots()
 
         # Set the axes through the origin
@@ -277,12 +277,12 @@ Read carefully through the code and see if you can follow what's going on
     ax.legend(loc='lower right')
     plt.show()
 
-The custom ``subplots`` function 
+The custom ``subplots`` function
 
-#. calls the standard ``plt.subplots`` function internally to generate the ``fig, ax`` pair, 
+#. calls the standard ``plt.subplots`` function internally to generate the ``fig, ax`` pair,
 
-#. makes the desired customizations to ``ax``, and 
-   
+#. makes the desired customizations to ``ax``, and
+
 #. passes the ``fig, ax`` pair back to the calling code
 
 
@@ -343,9 +343,8 @@ Here's one solution
     θ_vals = np.linspace(0, 2, 10)
     x = np.linspace(0, 5, 200)
     fig, ax = plt.subplots()
-    
+
     for θ in θ_vals:
         ax.plot(x, np.cos(np.pi * θ * x) * np.exp(- x))
-        
+
     plt.show()
-    

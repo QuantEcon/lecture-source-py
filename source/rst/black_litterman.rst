@@ -497,10 +497,10 @@ given by
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    (\vec r_e - \mu_{BL})'\Sigma^{-1}(\vec r_e - \mu_{BL}) &= \bar d_1 \\
    (\vec r_e - \hat \mu)'\left(\tau \Sigma\right)^{-1}(\vec r_e - \hat \mu) &= \bar d_2
-   \end{align}
+   \end{aligned}
 
 Notice that for particular :math:`\bar d_1` and :math:`\bar d_2` values
 the two ellipses have a tangency point
@@ -1175,12 +1175,12 @@ The variance of the sample mean is given by
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    \mathbb{V}\left(\bar X_N\right) &= \mathbb{V}\left(\frac{1}{N}\sum_{i = 1}^N X_i\right) \\
    &= \frac{1}{N^2} \left(\sum_{i = 1}^N \mathbb{V}(X_i) + 2 \sum_{i = 1}^{N-1} \sum_{s = i+1}^N \text{cov}(X_i, X_s) \right) \\
    &= \frac{1}{N^2} \left( N \gamma(0) + 2 \sum_{i=1}^{N-1} i \cdot \gamma\left(h\cdot (N - i)\right) \right) \\
    &= \frac{1}{N^2} \left( N \frac{\sigma^2}{2\kappa} + 2 \sum_{i=1}^{N-1} i \cdot \exp(-\kappa h (N - i)) \frac{\sigma^2}{2\kappa} \right)
-   \end{align}
+   \end{aligned}
 
 It is explicit in the above equation that time dependence in the data
 inflates the variance of the mean estimator through the covariance
@@ -1196,11 +1196,11 @@ We can upper bound the variance term in the following way
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    \mathbb{V}(\bar X_N) &= \frac{1}{N^2} \left( N \sigma^2 + 2 \sum_{i=1}^{N-1} i \cdot \exp(-\kappa h (N - i)) \sigma^2 \right) \\
    &\leq \frac{\sigma^2}{2\kappa N} \left(1 + 2 \sum_{i=1}^{N-1} \cdot \exp(-\kappa h (i)) \right) \\
    &= \underbrace{\frac{\sigma^2}{2\kappa N}}_{\text{IID  case}} \left(1 + 2 \frac{1 - \exp(-\kappa h)^{N-1}}{1 - \exp(-\kappa h)} \right)
-   \end{align}
+   \end{aligned}
 
 Asymptotically the :math:`\exp(-\kappa h)^{N-1}` vanishes and the
 dependence in the data inflates the benchmark IID variance by a factor

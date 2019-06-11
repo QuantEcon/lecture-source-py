@@ -13,25 +13,25 @@ Uncertainty Traps
 Overview
 ============
 
-In this lecture we study a simplified version of an uncertainty traps model of Fajgelbaum, Schaal and Taschereau-Dumouchel :cite:`fun`
+In this lecture, we study a simplified version of an uncertainty traps model of Fajgelbaum, Schaal and Taschereau-Dumouchel :cite:`fun`
 
 The model features self-reinforcing uncertainty that has big impacts on economic activity
 
-In the model, 
+In the model,
 
 * Fundamentals  vary stochastically and are not fully observable
 
 * At any moment there are both active and inactive entrepreneurs; only active entrepreneurs produce
 
-* Agents -- active and inactive entrepreuneurs --  have beliefs about the fundamentals expressed as probability distributions
+* Agents -- active and inactive entrepreneurs --  have beliefs about the fundamentals expressed as probability distributions
 
 * Greater uncertainty means greater dispersions of these distributions
 
-* Entrepreneurs are risk averse and hence less inclined to be active  when uncertainty is high
+* Entrepreneurs are risk-averse and hence less inclined to be active  when uncertainty is high
 
 * The output of active entrepreneurs is observable, supplying a noisy signal that helps everyone inside the model infer fundamentals
 
-* Entrepreneurs update their beliefs about fundamentals using Bayes' Law, implemented via :doc:`Kalman filtering <kalman>` 
+* Entrepreneurs update their beliefs about fundamentals using Bayes' Law, implemented via :doc:`Kalman filtering <kalman>`
 
 
 Uncertainty traps emerge because:
@@ -52,7 +52,7 @@ The Model
 ===============
 
 
-The original model described in :cite:`fun` has many interesting moving parts 
+The original model described in :cite:`fun` has many interesting moving parts
 
 Here we examine a simplified version that nonetheless captures many of the key ideas
 
@@ -68,7 +68,7 @@ The evolution of the fundamental process :math:`\{\theta_t\}` is given by
     \theta_{t+1} = \rho \theta_t + \sigma_{\theta} w_{t+1}
 
 
-where 
+where
 
 * :math:`\sigma_\theta > 0` and :math:`0 < \rho < 1`
 
@@ -81,15 +81,15 @@ The random variable :math:`\theta_t` is not observable at any time
 Output
 -----------
 
-There is a total :math:`\bar M` of risk averse entrepreneurs
+There is a total :math:`\bar M` of risk-averse entrepreneurs
 
 Output of the :math:`m`-th entrepreneur, conditional on being active in the market at
-time :math:`t`, is equal to 
+time :math:`t`, is equal to
 
 .. math::
     :label: xgt
 
-    x_m = \theta + \epsilon_m 
+    x_m = \theta + \epsilon_m
     \quad \text{where} \quad
     \epsilon_m \sim N \left(0, \gamma_x^{-1} \right)
 
@@ -118,13 +118,13 @@ distribution :math:`N(\mu, \gamma^{-1})`
 
 Here :math:`\gamma` is the precision of beliefs; its inverse is the degree of uncertainty
 
-These parameters are updated by Kalman filtering 
+These parameters are updated by Kalman filtering
 
 Let
 
-* :math:`\mathbb M \subset \{1, \ldots, \bar M\}` denote the set of currently active firms 
+* :math:`\mathbb M \subset \{1, \ldots, \bar M\}` denote the set of currently active firms
 
-* :math:`M := |\mathbb M|` denote the number of currently active firms 
+* :math:`M := |\mathbb M|` denote the number of currently active firms
 
 * :math:`X` be the average output :math:`\frac{1}{M} \sum_{m \in \mathbb M} x_m` of the active firms
 
@@ -140,7 +140,7 @@ With this notation and primes for next period values, we can write the updating 
 .. math::
     :label: update_prec
 
-    \gamma' = 
+    \gamma' =
         \left(
         \frac{\rho^2}{\gamma + M \gamma_x} + \sigma_\theta^2
         \right)^{-1}
@@ -148,7 +148,7 @@ With this notation and primes for next period values, we can write the updating 
 
 These are standard Kalman filtering results applied to the current setting
 
-Exercise 1 provides more details on how :eq:`update_mean` and :eq:`update_prec` are derived, and then asks you to fill in remaining steps
+Exercise 1 provides more details on how :eq:`update_mean` and :eq:`update_prec` are derived and then asks you to fill in remaining steps
 
 The next figure plots the law of motion for the precision in :eq:`update_prec`
 as a 45 degree diagram, with one curve for each :math:`M \in \{0, \ldots, 6\}`
@@ -158,7 +158,7 @@ The other parameter values are :math:`\rho = 0.99, \gamma_x = 0.5, \sigma_\theta
 .. figure:: /_static/figures/uncertainty_traps_45.png
 
 
-Points where the curves hit the 45 degree lines are  long run steady
+Points where the curves hit the 45 degree lines are  long-run steady
 states for precision for different values of :math:`M`
 
 Thus, if one of these values for :math:`M` remains fixed, a corresponding steady state is the equilibrium level of precision
@@ -186,11 +186,11 @@ Here
 
 * the mathematical expectation of :math:`x_m` is based on :eq:`xgt` and beliefs :math:`N(\mu, \gamma^{-1})` for :math:`\theta`
 
-* :math:`F_m` is a stochastic but previsible fixed cost, independent across time and firms
+* :math:`F_m` is a stochastic but pre-visible fixed cost, independent across time and firms
 
 * :math:`c` is a constant reflecting opportunity costs
 
-The statement that :math:`F_m` is previsible means that it is realized at the start of the period and treated as a constant in :eq:`pref1`
+The statement that :math:`F_m` is pre-visible means that it is realized at the start of the period and treated as a constant in :eq:`pref1`
 
 
 
@@ -209,7 +209,7 @@ Combining :eq:`pref1` and :eq:`pref2`, entrepreneur :math:`m` participates in th
 
 .. math::
 
-    \frac{1}{a} 
+    \frac{1}{a}
         \left\{
             1 - \mathbb E [ \exp \left(
                 -a (\theta + \epsilon_m -  F_m)
@@ -223,15 +223,14 @@ Using standard formulas for expectations of `lognormal <https://en.wikipedia.org
 .. math::
     :label: firm_test
 
-    \psi(\mu, \gamma, F_m) := 
-    \frac{1}{a} 
+    \psi(\mu, \gamma, F_m) :=
+    \frac{1}{a}
         \left(
             1 - \exp \left(
-                -a \mu + a F_m + 
+                -a \mu + a F_m +
                 \frac{a^2 \left( \frac{1}{\gamma} + \frac{1}{\gamma_x} \right)}{2}
-                    \right) 
-        \right) - c
-            > 0
+                    \right)
+        \right) - c  > 0
 
 
 Implementation
@@ -240,10 +239,10 @@ Implementation
 
 We want to simulate this economy
 
-As a first step, let's put together a class that bundles 
+As a first step, let's put together a class that bundles
 
 * the parameters, the current value of :math:`\theta` and the current values of the
-  two belief parameters :math:`\mu` and :math:`\gamma` 
+  two belief parameters :math:`\mu` and :math:`\gamma`
 
 * methods to update :math:`\theta`, :math:`\mu` and :math:`\gamma`, as well as to determine the number of active firms and their outputs
 
@@ -309,7 +308,7 @@ the following standard result (see, e.g., p. 24 of :cite:`young2005`)
 from common distribution :math:`N(\theta, 1/\gamma_x)`
 and let :math:`\bar x` be the sample mean.  If :math:`\gamma_x`
 is known and the prior for :math:`\theta` is :math:`N(\mu, 1/\gamma)`, then the posterior
-distribution of :math:`\theta` given :math:`\mathbf x` is 
+distribution of :math:`\theta` given :math:`\mathbf x` is
 
 .. math::
 
@@ -377,13 +376,13 @@ expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture
 Exercise 2
 -----------
 
-First let's replicate the plot that illustrates the law of motion for
+First, let's replicate the plot that illustrates the law of motion for
 precision, which is
 
 .. math::
 
 
-       \gamma_{t+1} = 
+       \gamma_{t+1} =
            \left(
            \frac{\rho^2}{\gamma_t + M \gamma_x} + \sigma_\theta^2
            \right)^{-1}
@@ -410,10 +409,10 @@ different values of :math:`M`
     ax.grid()
     plt.show()
 
-The points where the curves hit the 45 degree lines are the long run
+The points where the curves hit the 45 degree lines are the long-run
 steady states corresponding to each :math:`M`, if that value of
 :math:`M` was to remain fixed. As the number of firms falls, so does the
-long run steady state of precision
+long-run steady state of precision
 
 Next let's generate time series for beliefs and the aggregates -- that
 is, the number of active firms and average output
@@ -421,37 +420,37 @@ is, the number of active firms and average output
 .. code-block:: python3
 
     sim_length=2000
-    
+
     μ_vec = np.empty(sim_length)
     θ_vec = np.empty(sim_length)
     γ_vec = np.empty(sim_length)
     X_vec = np.empty(sim_length)
     M_vec = np.empty(sim_length)
-    
+
     μ_vec[0] = econ.μ
     γ_vec[0] = econ.γ
     θ_vec[0] = 0
-    
+
     w_shocks = np.random.randn(sim_length)
-    
+
     for t in range(sim_length-1):
         X, M = econ.gen_aggregates()
         X_vec[t] = X
         M_vec[t] = M
-    
+
         econ.update_beliefs(X, M)
         econ.update_θ(w_shocks[t])
-    
+
         μ_vec[t+1] = econ.μ
         γ_vec[t+1] = econ.γ
         θ_vec[t+1] = econ.θ
-    
+
     # Record final values of aggregates
     X, M = econ.gen_aggregates()
     X_vec[-1] = X
     M_vec[-1] = M
 
-First let's see how well :math:`\mu` tracks :math:`\theta` in these
+First, let's see how well :math:`\mu` tracks :math:`\theta` in these
 simulations
 
 .. code-block:: python3
@@ -470,10 +469,10 @@ Now let's plot the whole thing together
     fig, axes = plt.subplots(4, 1, figsize=(12, 20))
     # Add some spacing
     fig.subplots_adjust(hspace=0.3)
-    
+
     series = (θ_vec, μ_vec, γ_vec, M_vec)
     names = r'$\theta$', r'$\mu$', r'$\gamma$', r'$M$'
-    
+
     for ax, vals, name in zip(axes, series, names):
         # determine suitable y limits
         s_max, s_min = max(vals), min(vals)
@@ -485,7 +484,7 @@ Now let's plot the whole thing together
         ax.plot(range(sim_length), vals, alpha=0.6, lw=2)
         ax.set_title(f"time series for {name}", fontsize=16)
         ax.grid()
-    
+
     plt.show()
 
 If you run the code above you'll get different plots, of course
@@ -496,6 +495,3 @@ series
 (It would also be interesting to experiment with non-Gaussian
 distributions for the shocks, but this is a big exercise since it takes
 us outside the world of the standard Kalman filter)
-
-
-

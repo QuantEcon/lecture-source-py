@@ -77,6 +77,7 @@ Counting Billionaires
 
 Treisman :cite:`Treisman2016` is interested in estimating the number of billionaires in different countries
 
+
 The number of billionaires is integer-valued
 
 Hence we consider distributions that take values only in the nonnegative integers
@@ -263,7 +264,7 @@ We will label our entire parameter vector as :math:`\boldsymbol{\beta}` where
                                \beta_0 \\
                                \beta_1 \\
                                \beta_2 \\
-                               \beta_3 \\
+                               \beta_3
                          \end{bmatrix}
 
 To estimate the model using MLE, we want to maximize the likelihood that
@@ -719,21 +720,7 @@ We'll use robust standard errors as in the author's paper
     print(poisson_reg.summary())
 
 
-Here we received a warning message saying "Maximum number of iterations has been exceeded."
-
-Let's try increasing the maximum number of iterations that the algorithm
-is allowed (the ``.fit()`` docstring tells us the default number of
-iterations is 35)
-
-.. code-block:: python3
-
-    poisson_reg = sm.Poisson(df[['numbil0']], df[reg1],
-                             missing='drop').fit(cov_type='HC0', maxiter=100)
-    print(poisson_reg.summary())
-
-
-
-Success! The algorithm was able to achieve convergence in 36 iterations
+Success! The algorithm was able to achieve convergence in 9 iterations
 
 Our output indicates that GDP per capita, population, and years of
 membership in the General Agreement on Tariffs and Trade (GATT) are

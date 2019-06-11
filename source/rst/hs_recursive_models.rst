@@ -338,10 +338,10 @@ A nonrecursive expression for :math:`x_t` as a function of
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     x_t &= Ax_{t-1} + Cw_t \\
    &= A^2 x_{t-2} + ACw_{t-1} + Cw_t \\
-   &= \Bigl[\sum_{\tau=0}^{t-1} A^\tau Cw_{t-\tau} \Bigr] + A^t x_0 \end{align}
+   &= \Bigl[\sum_{\tau=0}^{t-1} A^\tau Cw_{t-\tau} \Bigr] + A^t x_0 \end{aligned}
 
 .. _prediction-theory-1:
 
@@ -379,16 +379,16 @@ Evidently,
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     v_1 &= CC^\prime \\
-    v_j &= CC^\prime + A v_{j-1} A^\prime, \quad j \geq 2 \end{align}
+    v_j &= CC^\prime + A v_{j-1} A^\prime, \quad j \geq 2 \end{aligned}
 
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     v_1 &=  CC^\prime \\
-    v_j &=   CC^\prime + A v_{j-1} A^\prime, \quad j \geq 2 \end{align}
+    v_j &=   CC^\prime + A v_{j-1} A^\prime, \quad j \geq 2 \end{aligned}
 
 Orthogonal Decomposition
 ---------------------------
@@ -442,9 +442,9 @@ Thus, in summary, our model of **information and shocks** is
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     z_{t+1} &=A_{22} z_t + C_2 w_{t+1}
-   \\  b_t &= U_b z_t \\ d_t &= U_d z_t .\end{align}
+   \\  b_t &= U_b z_t \\ d_t &= U_d z_t .\end{aligned}
 
 
 We can now briefly summarize other components of our economies, in particular
@@ -466,9 +466,9 @@ a vector intermediate productions goods, :math:`d_t` is a vector of technology s
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \Phi_c c_t +  \Phi_g g_t + \Phi_i i_t &=\Gamma k_{t-1} + d_t \\
-   k_t &=\Delta_k k_{t-1} + \Theta_k i_t \\ g_t \cdot g_t &=\ell_t^2 \end{align}
+   k_t &=\Delta_k k_{t-1} + \Theta_k i_t \\ g_t \cdot g_t &=\ell_t^2 \end{aligned}
 
 Here :math:`\Phi_c, \Phi_g, \Phi_i, \Gamma, \Delta_k, \Theta_k` are all matrices conformable to the vectors they multiply and
 :math:`\ell_t` is a disutility generating resource supplied by the household
@@ -487,9 +487,9 @@ and a vector :math:`s_t` of utility generating  house services
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     s_t &=  \Lambda h_{t-1} + \Pi c_t \\
-    h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{align}
+    h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{aligned}
 
 where :math:`\Lambda, \Pi, \Delta_h, \Theta_h` are matrices that pin down the household technology
 
@@ -576,11 +576,11 @@ The technology is described by
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    c_t &=\gamma k_{t-1} + d_{1t} ,\ \ \gamma > 0 \\
    \phi_1 i_t &= g_t + d_{2t}, \ \ \phi_1 > 0 \\
    \ell^2_t &=  g^2_t \\
-   k_t &= \delta_k k_{t-1} + i_t ,\ 0< \delta_k < 1 \end{align}
+   k_t &= \delta_k k_{t-1} + i_t ,\ 0< \delta_k < 1 \end{aligned}
 
 Set
 
@@ -833,25 +833,25 @@ To summarize, our economic structure consists of the matrices that define the fo
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    z_{t+1} &=A_{22} z_t + C_2 w_{t+1}
-   \\  b_t &= U_b z_t \\ d_t &= U_d z_t \end{align}
+   \\  b_t &= U_b z_t \\ d_t &= U_d z_t \end{aligned}
 
 **Production Technology**
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    \Phi_c c_t &+ \Phi_g g_t + \Phi_i i_t = \Gamma k_{t-1} + d_t \\
-   k_t &=\Delta_k k_{t-1} + \Theta_k i_t \\ g_t \cdot g_t &=\ell_t^2 \end{align}
+   k_t &=\Delta_k k_{t-1} + \Theta_k i_t \\ g_t \cdot g_t &=\ell_t^2 \end{aligned}
 
 **Household Technology**
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    s_t &=
-   \Lambda h_{t-1} + \Pi c_t \\ h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{align}
+   \Lambda h_{t-1} + \Pi c_t \\ h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{aligned}
 
 **Preferences**
 
@@ -882,14 +882,14 @@ subject to the constraints
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \Phi_c c_t &+ \Phi_g \, g_t + \Phi_i i_t = \Gamma k_{t-1} + d_t,
    \\
    k_t &= \Delta_k k_{t-1} + \Theta_k i_t , \\
    h_t &= \Delta_h h_{t-1} + \Theta_h c_t , \\
    s_t &=\Lambda h_{t-1} + \Pi c_t , \\
      z _{t+1} &= A_{22} z_t + C_2 w_{t+1} , \ b_t = U_b z_t,  \  \hbox{ and } \
-   d_t = U_d z_t \end{align}
+   d_t = U_d z_t \end{aligned}
 
 and initial conditions for :math:`h_{-1}, k_{-1}`, and :math:`z_0`
 
@@ -928,7 +928,7 @@ Form the Lagrangian
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     {\mathcal L} &= - E \sum_{t=0}^\infty \beta^t \biggl[
    \Bigl( {1 \over 2} \Bigr) [ (s_t - b_t) \cdot (s_t - b_t) + g_t
    \cdot g_t] \\ &+   {\cal M}_t^{d \prime} \cdot ( \Phi _cc_t  +
@@ -936,7 +936,7 @@ Form the Lagrangian
    \prime} \cdot (k_t - \Delta_k k_{t-1} - \Theta_k i_t ) \\ &+ {\cal
    M}_t^{h \prime} \cdot (h_t - \Delta_h h_{t-1} - \Theta_h c_t) \\ &+
    {\cal M}_t^{s \prime} \cdot (s_t - \Lambda h_{t-1} - \Pi c_t )
-   \biggr] \Bigl| J_0 \end{align}
+   \biggr] \Bigl| J_0 \end{aligned}
 
 The planner maximizes :math:`{\mathcal L}` with respect to the quantities :math:`\{c_t, i_t, g_t\}_{t=0}^\infty`
 and minimizes with respect to the Lagrange multipliers :math:`{\cal M}_t^d, {\cal M}_t^k, {\cal M}_t^h, {\cal M}_t^s`
@@ -947,7 +947,7 @@ h_t, i_t, k_t`, and :math:`s_t`, respectively, are:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     - \Phi_c^\prime  {\cal M}_t^d &+\Theta_h^\prime {\cal
    M}_t^h + \Pi^\prime {\cal M}_t^s = 0 , \\
    &- g_t - \Phi_g^\prime  {\cal M}_t^d = 0 , \\
@@ -956,7 +956,7 @@ h_t, i_t, k_t`, and :math:`s_t`, respectively, are:
    &- \Phi_i^\prime {\cal M}_t^d + \Theta_k^\prime {\cal M}_t^k = 0 , \\
    - {\cal M}_t^k &+ \beta E ( \Delta_k^\prime {\cal M}^k_{t+1} + \Gamma^\prime
    {\cal M}_{t+1}^d) \mid J_t = 0 , \\
-   &- s_t + b_t - {\cal M}_t^s = 0 \end{align}
+   &- s_t + b_t - {\cal M}_t^s = 0 \end{aligned}
 
 for :math:`t=0,1, \ldots`
 
@@ -966,11 +966,11 @@ and also transversality conditions
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \lim_{t \to \infty}& \beta^t  E [ {\cal M}_t^{k \prime} k_t ]
    \mid J_0 = 0  \\
     \lim_{t \to \infty}& \beta^t   E [ {\cal M}_t^{h \prime} h_t ]
-   \mid J_0 = 0\end{align}
+   \mid J_0 = 0\end{aligned}
 
 
 
@@ -983,7 +983,7 @@ Here are the **Python  Ready Equations**
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     - \Phi_c^\prime  {\cal M}_t^d &+\Theta_h^\prime {\cal
    M}_t^h + \Pi^\prime {\cal M}_t^s = 0 , \\
    &- g_t - \Phi_g^\prime  {\cal M}_t^d = 0 , \\
@@ -999,7 +999,7 @@ Here are the **Python  Ready Equations**
    h_t &= \Delta_h h_{t-1} + \Theta_h c_t , \\
    s_t &=\Lambda h_{t-1} + \Pi c_t , \\
      z _{t+1} &= A_{22} z_t + C_2 w_{t+1} , \ b_t = U_b z_t,  \  \hbox{ and } \
-   d_t = U_d z_t  \end{align}
+   d_t = U_d z_t  \end{aligned}
 
 
 
@@ -1017,7 +1017,7 @@ The Lagrange multipliers or **shadow prices** satisfy
 
    {\cal M}_t^d = \begin{bmatrix}\Phi_c^\prime\\ \Phi_g^\prime\\\end{bmatrix}^{-1}\
    \begin{bmatrix} \Theta_h^\prime {\cal M}_t^h  + \Pi^\prime {\cal M}_t^s \\
-   -g_t \\  \end{bmatrix}
+   -g_t \end{bmatrix}
 
 .. math::
 
@@ -1059,13 +1059,13 @@ subject to the linear constraints
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \Phi _cc_0 &+ \Phi_g g_0 + \Phi_ii_0 = \Gamma k_{-1} + d_0 ,\\
    k_0 &= \Delta_k k_{-1} + \Theta_k i_0 , \\
    h_0 &= \Delta_h h_{-1} + \Theta_h c_0 , \\
    s_0 &= \Lambda h_{-1} + \Pi c_0 , \\
     z_1 &= A_{22} z_0 + C_2 w_1,\ b_0 = U_b z_0 \ \hbox{ and }\  d_0 =
-   U_d z_0 \end{align}
+   U_d z_0 \end{aligned}
 
 .. math:: V(x) = x' P x + \rho
 
@@ -1142,10 +1142,10 @@ where :math:`P_{j}` and :math:`\rho_{j}` satisfy the equations
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     P_{j+1} &= R + \beta A^\prime P_{j} A - (\beta
    A^\prime P_{j} B + W)  (Q + \beta B^\prime P_{j} B)^{-1} (\beta B^\prime P_{j}
-   A + W')\\  \rho_{j+1} &=\beta \rho_{j} + \beta \ {\rm trace} \ P_{j} C C^\prime\end{align}
+   A + W')\\  \rho_{j+1} &=\beta \rho_{j} + \beta \ {\rm trace} \ P_{j} C C^\prime\end{aligned}
 
 
 We can now state the planning problem as a dynamic programming problem
@@ -1170,13 +1170,13 @@ More details XXXXX
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     A &=\begin{bmatrix} \Delta_h & \Theta_h U_c [ \Phi_c \ \
    \Phi_g]^{-1} \Gamma & \Theta_h U_c [ \Phi_c \ \ \Phi_g]^{-1}  U_d \\ 0
    & \Delta_k & 0 \\ 0 & 0 & A_{22} \\  \end{bmatrix} \\
    B &= \begin{bmatrix} - \Theta_h U_c [ \Phi_c \ \ \Phi_g]^{-1} \Phi_i
    \\ \Theta_k \\ 0 \end{bmatrix}  \ ,\ C = \begin{bmatrix} 0 \\ 0 \\
-   C_2 \end{bmatrix} \end{align}
+   C_2 \end{bmatrix} \end{aligned}
 
 .. math::
 
@@ -1205,11 +1205,11 @@ For us a useful fact is that Lagrange multipliers equal gradients of the  planne
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    {\mathcal M}_t^k &= M_k x_t\ \hbox{ and }\ {\cal M}_t^h = M_h
    x_t \ \hbox{ where } \\
    M_k &= 2 \beta [ 0 \ I \ 0 ] P A^o  \\
-   M_h &= 2 \beta [ I \ 0 \ 0 ] P A^o \end{align}
+   M_h &= 2 \beta [ I \ 0 \ 0 ] P A^o \end{aligned}
 
 .. math::
 
@@ -1220,7 +1220,7 @@ For us a useful fact is that Lagrange multipliers equal gradients of the  planne
 
    {\mathcal M}_t^d = M_d x_t\ \hbox{ where }\ M_d = \begin{bmatrix}
    \Phi_c^\prime \\ \Phi_g^\prime \\ \end{bmatrix} ^{-1}
-   \begin{bmatrix}\Theta_h^\prime M_h + \Pi^\prime M_s \\ -S_g \\ \end{bmatrix}
+   \begin{bmatrix}\Theta_h^\prime M_h + \Pi^\prime M_s \\ -S_g \end{bmatrix}
 
 .. math::
 
@@ -1423,10 +1423,10 @@ price system
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     L^2_t &= [\{y_s\}^\infty_{s=t} : \ y_s \ \hbox{ is a random variable
    in }\ J_s\ \hbox{ for }\ s \geq t \\
-   &\hbox {and } E\, \sum^\infty_{s=t}\, \beta^{s-t}\ y^2_s \mid J_t < + \infty] .\end{align}
+   &\hbox {and } E\, \sum^\infty_{s=t}\, \beta^{s-t}\ y^2_s \mid J_t < + \infty] .\end{aligned}
 
 .. math:: p^t_s = M_c x_s / [\bar e_j M_c x_t ], \qquad s \geq t
 
@@ -1463,9 +1463,9 @@ Here they are:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     x_{t+1} &= A^o x_t + Cw_{t+1} \\
-   y_t & =  Gx_t + v_t\end{align}
+   y_t & =  Gx_t + v_t\end{aligned}
 
 where :math:`v_t` is a martingale difference sequence of measurement
 errors that satisfies :math:`Ev_t
@@ -1477,9 +1477,9 @@ v_t' = R, E w_{t+1} v_s' = 0` for all :math:`t+1 \geq s` and
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    \hat x_{t+1} &=A^o \hat x_t + K_t a_t \\
-   y_t &= G \hat x_t + a_t,\end{align}
+   y_t &= G \hat x_t + a_t,\end{aligned}
 
 where :math:`a_t = y_t - E[y_t | y^{t-1}], E a_t a_t^\prime \equiv \Omega_t =  G \Sigma_t G^\prime + R`
 
@@ -1510,9 +1510,9 @@ Riccati Difference Equation:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \Sigma_{t+1} &= A^o \Sigma_t A^{o \prime} + CC^\prime \\
-   &- A^o \Sigma_t G^\prime (G \Sigma_t G^\prime + R)^{-1} G \Sigma_t A^{o \prime}\end{align}
+   &- A^o \Sigma_t G^\prime (G \Sigma_t G^\prime + R)^{-1} G \Sigma_t A^{o \prime}\end{aligned}
 
 **Innovations Representation as Whitener**
 
@@ -1521,9 +1521,9 @@ Whitening Filter:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     a_t &=y_t - G \hat x_t \\
-   \hat x_{t+1} &=  A^o \hat x_t + K_t  a_t \end{align}
+   \hat x_{t+1} &=  A^o \hat x_t + K_t  a_t \end{aligned}
 
 can be used recursively to construct a record of innovations
 :math:`\{ a_t \}^T_{t=0}` from an :math:`(\hat x_0, \Sigma_0)` and a
@@ -1534,16 +1534,16 @@ record of observations :math:`\{ y_t \}^T_{t=0}`
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \Sigma &= A^o \Sigma A^{o \prime} + CC^\prime \\
    &- A^o \Sigma G^\prime (G \Sigma G^\prime + R)^{-1} G \Sigma A^{o \prime} \\
-    K &= A^o \Sigma_t G^\prime (G \Sigma G^\prime + R)^{-1}\end{align}
+    K &= A^o \Sigma_t G^\prime (G \Sigma G^\prime + R)^{-1}\end{aligned}
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \hat x_{t+1} &= A^o \hat x_t + K a_t \\
-   y_t &= G \hat x_t + a_t\end{align}
+   y_t &= G \hat x_t + a_t\end{aligned}
 
 where :math:`E a_t a_t^\prime \equiv \Omega =  G \Sigma G^\prime + R`
 
@@ -1555,11 +1555,11 @@ Sample of observations :math:`\{y_s\}_{s=0}^T` on a
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     f(y_T, y_{T-1}, \ldots, y_0 )&=
          f_T(y_T \vert y_{T-1}, \ldots, y_0) f_{T-1}(y_{T-1} \vert
          y_{T-2}, \ldots, y_0) \cdots   f_1(y_1 \vert y_0)  f_0(y_0 )  \\
-    &= g_T(a_T) g_{T-1} (a_{T-1}) \ldots g_1(a_1) f_0(y_0).\end{align}
+    &= g_T(a_T) g_{T-1} (a_{T-1}) \ldots g_1(a_1) f_0(y_0).\end{aligned}
 
 Gaussian Log-Likelihood:
 
@@ -1600,10 +1600,10 @@ Equating these two leads to:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     & G (zI -  A^o)^{-1} C C^\prime (z^{-1} I - A^{o\prime})^{-1} G^\prime + R = \\
    & [G(zI-A^o)^{-1}K +I] [G \Sigma G^\prime + R] [K'(z^{-1} I -A^{o\prime})^{-1}
-   G^\prime + I] .\end{align}
+   G^\prime + I] .\end{aligned}
 
 **Key Insight:** The zeros of the polynomial
 :math:`\det [G(zI-A^o)^{-1}K +I]` all lie inside the unit circle, which
@@ -1655,10 +1655,10 @@ Canonical Household Technologies
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     h_t &=\Delta_h h_{t-1} + \Theta_h  c_t \\
                 s_t &= \Lambda h_{t-1} + \Pi c_t  \\
-                b_t  &=U_b z_t\end{align}
+                b_t  &=U_b z_t\end{aligned}
 
 **Definition:** A household service technology
 :math:`(\Delta_h, \Theta_h, \Pi,\Lambda, U_b)` is said to be **canonical**
@@ -1679,10 +1679,10 @@ An inverse household technology:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     c_t &= - \Pi^{-1} \Lambda h_{t-1} + \Pi^{-1} s_t\\
    h_t &= (\Delta_h - \Theta_h\Pi^{-1} \Lambda) h_{t-1} + \Theta_h \Pi^{-1}
-   s_t \end{align}
+   s_t \end{aligned}
 
 The restriction  on the eigenvalues of the matrix
 :math:`(\Delta_h - \Theta_h \Pi^{-1}
@@ -1705,9 +1705,9 @@ Dynamic Demand Functions
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    s_{i,t}&= \Lambda h_{i,t-1} \\
-   h_{i,t}&= \Delta _h h_{i,t-1}\end{align}
+   h_{i,t}&= \Delta _h h_{i,t-1}\end{aligned}
 
 where :math:`h_{i,-1} = h_{-1}`
 
@@ -1724,12 +1724,12 @@ where :math:`h_{i,-1} = h_{-1}`
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     c_t &= -\Pi^{-1} \Lambda h_{t-1} + \Pi ^{-1} b_t
     - \Pi^{-1} \mu_0^w E_t \{ \Pi^{\prime\, -1} - \Pi^{\prime\, -1}\Theta_h ' \\
    & \qquad [I - (\Delta_h ' - \Lambda ' \Pi^{\prime \, -1} \Theta_h ')\beta L^{-1}]
       ^{-1} \Lambda ' \Pi^{\prime -1} \beta L^{-1} \}  p_t^0  \\
-       h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{align}
+       h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{aligned}
 
 
 
@@ -1778,9 +1778,9 @@ Re-Opened Markets
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     s_{i,t}&= \Lambda h_{i,t-1} \\
-   h_{i,t}&= \Delta _h h_{i,t-1},\end{align}
+   h_{i,t}&= \Delta _h h_{i,t-1},\end{aligned}
 
 where now :math:`h_{i,t-1} = h_{t-1}`. Define time :math:`t` wealth
 :math:`W_t`
@@ -1795,12 +1795,12 @@ where now :math:`h_{i,t-1} = h_{t-1}`. Define time :math:`t` wealth
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     c_t &= -\Pi^{-1} \Lambda h_{t-1} + \Pi ^{-1} b_t
     - \Pi^{-1} \mu_t^w E_t \{ \Pi^{\prime\, -1} - \Pi^{\prime\, -1}\Theta_h ' \\
     & \qquad [I - (\Delta_h ' - \Lambda ' \Pi^{\prime \, -1} \Theta_h ')\beta L^{-1}]
       ^{-1} \Lambda ' \Pi^{\prime -1} \beta L^{-1} \}  p_t^t  \\
-       h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{align}
+       h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{aligned}
 
 Dynamic Demand
 -------------------------------
@@ -1832,14 +1832,14 @@ Apply the following version of a factorization identity:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     [\Pi &+ \beta^{1/2} L^{-1} \Lambda (I - \beta^{1/2} L^{-1}
    \Delta_h)^{-1} \Theta_h]^\prime [\Pi + \beta^{1/2} L
    \Lambda (I - \beta^{1/2} L \Delta_h)^{-1} \Theta_h]\\
    &= [\hat\Pi + \beta^{1/2} L^{-1} \hat\Lambda
    (I - \beta^{1/2} L^{-1} \Delta_h)^{-1} \Theta_h]^\prime
    [\hat\Pi + \beta^{1/2} L \hat\Lambda
-   (I - \beta^{1/2} L \Delta_h)^{-1} \Theta_h]\end{align}
+   (I - \beta^{1/2} L \Delta_h)^{-1} \Theta_h]\end{aligned}
 
 The factorization identity guarantees that the
 :math:`[\hat \Lambda, \hat \Pi]` representation satisfies both
@@ -1854,12 +1854,12 @@ Demand:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
      c_t &=  -\Pi^{-1} \Lambda h_{t-1} + \Pi ^{-1} b_t - \Pi^{-1}
        \mu_0^w E_t \{ \Pi^{\prime\, -1} - \Pi^{\prime\, -1}\Theta_h' \\
      & \qquad[I - (\Delta_h' - \Lambda' \Pi^{\prime\, -1} \Theta_h')\beta
         L^{-1}]^{-1} \Lambda' \Pi^{\prime -1} \beta L^{-1} \}  p_t  \\
-     h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{align}
+     h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{aligned}
 
 
 Reverse engineer preferences that generate this demand system:
@@ -1882,13 +1882,13 @@ subject to given :math:`k_{-1}` and
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
    \Phi_c c_t  +  \Phi_i i_t + \Phi_g g_t &=\Gamma k_{t-1} + d_t  \\
       k_t& =   \Delta_k k_{t-1} + \Theta_k i_t . \\
     %  x_{t+1}& = A^o x_t + C w_{t+1}  \\
     %  d_t& = S_d x_t  \\
-    %  p_t& = M_c x_t \\
-                     \end{align}
+    %  p_t& = M_c x_t
+                     \end{aligned}
 
 Equilibrium Investment Under Uncertainty
 --------------------------------------------------------------
@@ -1901,10 +1901,10 @@ subject to the technology
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     c_t &= \gamma k_{t-1} \\
                 k_t &= \delta_k k_{t-1} + i_t \\
-                g_t &= f_1 i_t + f_2 d_t \end{align}
+                g_t &= f_1 i_t + f_2 d_t \end{aligned}
 
 where :math:`d_t` is a cost shifter, :math:`\gamma> 0`, and
 :math:`f_1 >0` is a cost parameter and :math:`f_2 =1`. Demand is
@@ -1922,10 +1922,10 @@ A Rosen-Topel Housing Model
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     R_t &= b_t + \alpha h_t \\
                 p_t &= E_t \sum_{\tau =0}^\infty (\beta \delta_h)^\tau
-                          R_{t+\tau} \end{align}
+                          R_{t+\tau} \end{aligned}
 
 where :math:`h_t` is the stock of housing at time :math:`t`
 :math:`R_t` is the rental rate for housing, :math:`p_t` is the price of
@@ -1993,13 +1993,13 @@ A representative farmer chooses :math:`\{c_t, \tilde x_t\}` to maximize
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     E_0 \sum_{t=0}^\infty \beta^t \{ p_t c_t &-
         \tilde h_t \tilde x_t
            -(\gamma_0 \tilde h_t) (g \tilde x_{t-1}) - (\gamma_1 \tilde h_t)
             (g \tilde x_{t-2}) - m_t c_t \\
             &-   \Psi(\tilde x_t, \tilde x_{t-1},
-            \tilde x_{t-2}, c_t) \}\end{align}
+            \tilde x_{t-2}, c_t) \}\end{aligned}
 
 where
 
@@ -2067,7 +2067,7 @@ the technology for producing goods
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     s_t &= [\lambda_1 \ 0 \ \ldots \ 0]\ \begin{bmatrix}
    h_{1t-1}\\ h_{2t-1}\\ \vdots \\ h_{k+1,t-1}\end{bmatrix} + 0 \cdot c_t \\
    \begin{bmatrix} h_{1t}\\ h_{2t}\\ \vdots\\ h_{k,t} \\
@@ -2077,7 +2077,7 @@ the technology for producing goods
    0 & 0 & 0 & \cdots & 0 \end{bmatrix} \begin{bmatrix}h_{1t-1}\\ h_{2t-1}\\ \vdots\\ h_{k,t-1} \\
          h_{k+1,t-1}\end{bmatrix} + \begin{bmatrix}0\\ 0\\ \vdots\\  0\\ 1\\\end{bmatrix}  c_t \\
    %b_t &= \epsilon_{1t}
-    \end{align}
+    \end{aligned}
 
 This specification sets Rosen’s :math:`N_t = h_{1t-1}, n_t = c_t,
 h_{\tau+1,t-1} = n_{t-\tau}, \tau=1, \ldots, k`, and uses the
@@ -2114,9 +2114,9 @@ respectively:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     N_{st+k} &=\delta_N N_{st+k-1} + n_{st} \\
-                N_{ut} &=\delta_N N_{ut-1} + n_{ut} ; \end{align}
+                N_{ut} &=\delta_N N_{ut-1} + n_{ut} ; \end{aligned}
 
 where :math:`N_{st}, N_{ut}` are stocks of the two types of labor, and
 :math:`n_{st}, n_{ut}` are entry rates into the two occupations
@@ -2129,11 +2129,11 @@ skilled and unskilled occupations, respectively:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     v_{st} &= E_t \beta^k \sum_{j=0}^\infty (\beta \delta_N)^j
             w_{st+k+j} \\
                 v_{ut} &=E_t \sum_{j=0}^\infty (\beta \delta_N)^j
-       w_{ut+j}\end{align}
+       w_{ut+j}\end{aligned}
 
 where :math:`w_{ut}, w_{st}` are wage rates for the two occupations;
 and fourth, supply curves for new entrants:
@@ -2161,9 +2161,9 @@ Permanent Income Models
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     \phi_c \cdot c_t+i_t&=\gamma k_{t-1}+e_t \\
-               k_t&= k_{t-1} + i_t \end{align}
+               k_t&= k_{t-1} + i_t \end{aligned}
 
 .. math:: \phi_ii_t-g_t=0
 
@@ -2197,9 +2197,9 @@ Martingales
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     {\mathcal M}_t^k  &= E ({\mathcal M}_{t+1}^k | J_t) \\
-   {\mathcal M}_t^e  &= E ({\mathcal M}_{t+1}^e | J_t) \end{align}
+   {\mathcal M}_t^e  &= E ({\mathcal M}_{t+1}^e | J_t) \end{aligned}
 
 and
 
@@ -2300,10 +2300,10 @@ Then solve the following equation for :math:`\mu_{0j}^{w}`:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     c_{jt} &= - \Pi^{-1} \Lambda h_{j,t-1} + \Pi^{-1}s_{jt} \\
    h_{jt} &= (\Delta_h - \Theta_h \Pi^{-1}\Lambda) h_{j,t-1} + \Pi^{-1}
-       \Theta_h  s_{jt} \end{align}
+       \Theta_h  s_{jt} \end{aligned}
 
 Here :math:`h_{j,-1}` given
 
@@ -2324,9 +2324,9 @@ Preferences and Household Technologies:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     s_{it} &= \Lambda_i h_{i t-1} + \Pi_i\, c_{it} \\
-   h_{it} &=\Delta_{h_i}\, h_{i t-1} + \Theta_{h_i} c_{it}\ ,\ i=1,2 .\end{align}
+   h_{it} &=\Delta_{h_i}\, h_{i t-1} + \Theta_{h_i} c_{it}\ ,\ i=1,2 .\end{aligned}
 
 .. math:: b_{it} = U_{bi} z_t
 
@@ -2353,12 +2353,12 @@ Preferences and Household Technologies:
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     & - {1\over 2}\, \lambda E_0 \sum^\infty_{t=0}\, \beta^t [ (s_{1t}
    - b_{1t})\cdot (s_{1t} - b_{1t}) + \ell^2_{1t}]\\
     &
    - {1\over 2}\, (1-\lambda) E_0 \sum^\infty_{t=0}\, \beta^t [ (s_{2t} -
-   b_{2t}) \cdot (s_{2t} - b_{2t}) + \ell^2_{2t}] \end{align}
+   b_{2t}) \cdot (s_{2t} - b_{2t}) + \ell^2_{2t}] \end{aligned}
 
 **Mongrel Aggregation: Static**
 
@@ -2398,13 +2398,13 @@ Setting :math:`c_{1t} + c_{2t} = c_t` and solving for :math:`p_t` gives
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     p_t &= (\mu_{01} \Pi_1^{-1} \Pi_1^{-1 \prime} + \mu_{02}
        \Pi_2^{-1} \Pi_2^{-1 \prime})^{-1}
          (\Pi_1^{-1} b_{1t} + \Pi_2^{-1} b_{2t}) \\
      &- (\mu_{01} \Pi_1^{-1} \Pi_1^{-1 \prime} +
         \mu_{02} \Pi_2^{-1} \Pi_2^{-1 \prime}
-         )^{-1} c_t\end{align}
+         )^{-1} c_t\end{aligned}
 
 **Punchline:** choose :math:`\Pi` associated with the aggregate ordering to
 satisfy
@@ -2440,10 +2440,10 @@ subject to
 
 .. math::
 
-   \begin{align}
+   \begin{aligned}
     h_{jt} &= \Delta_{hj}\, h_{jt-1} + \Theta_{hj}\, c_{jt}, j=1,2\\
    s_{jt} &=\Delta_j h_{jt-1} + \Pi_j c_{jt}\ , j=1,2\\
-   c_{1t} +   c_{2t} &=c_t\end{align}
+   c_{1t} +   c_{2t} &=c_t\end{aligned}
 
 subject to :math:`(h_{1, -1},\, h_{2, -1})` given and
 :math:`\{b_{1t}\},\, \{b_{2t}\},\, \{c_t\}` being known and fixed

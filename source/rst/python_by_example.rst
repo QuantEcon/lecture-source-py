@@ -15,7 +15,7 @@ An Introductory Example
 
 We're now ready to start learning the Python language itself
 
-The level of this and the next few lectures will suit those with some basic knowledge of programming 
+The level of this and the next few lectures will suit those with some basic knowledge of programming
 
 But don't give up if you have none---you are not excluded
 
@@ -23,7 +23,7 @@ You just need to cover a few of the fundamentals of programming before returning
 
 Good references for first time programmers include:
 
-* The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_ 
+* The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_
 
 * `Automate the Boring Stuff with Python <https://automatetheboringstuff.com/>`_
 
@@ -37,7 +37,7 @@ You'll then have an outstanding scientific computing environment (Anaconda) and 
 Overview
 ============
 
-In this lecture we will write and then pick apart small Python programs
+In this lecture, we will write and then pick apart small Python programs
 
 The objective is to introduce you to basic Python syntax and data structures
 
@@ -63,7 +63,7 @@ In other words, we want to generate figures that look something like this:
 
 .. figure:: /_static/figures/test_program_1_updated.png
 
-We'll do this several different ways
+We'll do this in several different ways
 
 Version 1
 ==============
@@ -71,7 +71,7 @@ Version 1
 
 .. _ourfirstprog:
 
-Here's a few lines of code that perform the task we set
+Here are a few lines of code that perform the task we set
 
 .. code-block:: ipython
 
@@ -92,7 +92,7 @@ Let's break this program down and see how it works
 Import Statements
 -------------------
 
-The first two lines of the program import functionality 
+The first two lines of the program import functionality
 
 The first line imports :doc:`NumPy <numpy>`, a favorite Python package for tasks like
 
@@ -105,9 +105,9 @@ The first line imports :doc:`NumPy <numpy>`, a favorite Python package for tasks
 * linear algebra, etc.
 
 
-After ``import numpy as np`` we have access to these attributes via the syntax ``np.`` 
+After ``import numpy as np`` we have access to these attributes via the syntax ``np.``
 
-Here's another example 
+Here's another example
 
 .. code-block:: python3
 
@@ -128,7 +128,7 @@ But the former method is convenient and more standard
 Why all the Imports?
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Remember that Python is a general purpose language
+Remember that Python is a general-purpose language
 
 The core language is quite small so it's easy to learn and maintain
 
@@ -145,11 +145,11 @@ Packages
 .. index::
     single: Python; Packages
 
-As stated above, NumPy is a Python *package* 
+As stated above, NumPy is a Python *package*
 
-Packages are used by developers to organize a code library 
+Packages are used by developers to organize a code library
 
-In fact a package is just a directory containing
+In fact, a package is just a directory containing
 
 #. files with Python code --- called **modules** in Python speak
 
@@ -157,9 +157,9 @@ In fact a package is just a directory containing
 
 #. a file called ``__init__.py`` that specifies what will be executed when we type ``import package_name``
 
-In fact you can find and explore the directory for NumPy on your computer easily enough if you look around
+In fact, you can find and explore the directory for NumPy on your computer easily enough if you look around
 
-On this machine it's located in
+On this machine, it's located in
 
 .. code-block:: ipython
     :class: no-execute
@@ -179,7 +179,7 @@ Here ``np`` refers to the package NumPy, while ``random`` is a **subpackage** of
 
 You can see the contents `here <https://github.com/numpy/numpy/tree/master/numpy/random>`__
 
-Subpackages are just packages that are subdirectories of another package 
+Subpackages are just packages that are subdirectories of another package
 
 
 
@@ -212,7 +212,7 @@ The advantage is less typing if we use ``sqrt`` often in our code
 The disadvantage is that, in a long program, these two lines might be
 separated by many other lines
 
-Then it's harder for readers to know where ``sqrt`` came from, should they wish to 
+Then it's harder for readers to know where ``sqrt`` came from, should they wish to
 
 
 
@@ -245,7 +245,7 @@ Here's a version that illustrates loops and Python lists
     for i in range(ts_length):
         e = np.random.randn()
         ϵ_values.append(e)
-        
+
     plt.plot(ϵ_values)
     plt.show()
 
@@ -283,7 +283,7 @@ For example, try
 
     x = [10, 'foo', False]  # We can include heterogeneous data inside a list
     type(x)
-    
+
 The first element of ``x`` is an `integer <https://en.wikipedia.org/wiki/Integer_%28computer_science%29>`_, the next is a `string <https://en.wikipedia.org/wiki/String_%28computer_science%29>`_ and the third is a `Boolean value <https://en.wikipedia.org/wiki/Boolean_data_type>`_
 
 When adding a value to a list, we can use the syntax ``list_name.append(some_value)``
@@ -291,7 +291,7 @@ When adding a value to a list, we can use the syntax ``list_name.append(some_val
 .. code-block:: python3
 
     x
-    
+
 .. code-block:: python3
 
     x.append(2.5)
@@ -314,27 +314,27 @@ Another useful list method is ``pop()``
     x
 
 .. code-block:: python3
-    
+
     x.pop()
-    
+
 .. code-block:: python3
-    
+
     x
 
 The full set of list methods can be found `here <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_
 
-Following C, C++, Java, etc., lists in Python are zero based
+Following C, C++, Java, etc., lists in Python are zero-based
 
 .. code-block:: python3
 
     x
-    
+
 .. code-block:: python3
-    
+
     x[0]
-    
+
 .. code-block:: python3
-    
+
     x[1]
 
 
@@ -344,7 +344,7 @@ The For Loop
 .. index::
     single: Python; For loop
 
-Now let's consider the ``for`` loop from :ref:`the program above <firstloopprog>`, which was 
+Now let's consider the ``for`` loop from :ref:`the program above <firstloopprog>`, which was
 
 .. code-block:: python3
 
@@ -361,7 +361,7 @@ Unlike most other languages, Python knows the extent of the code block *only fro
 
 In our program, indentation decreases after line ``ϵ_values.append(e)``, telling Python that this line marks the lower limit of the code block
 
-More on indentation below---for now let's look at another example of a ``for`` loop
+More on indentation below---for now, let's look at another example of a ``for`` loop
 
 .. code-block:: python3
 
@@ -380,7 +380,7 @@ loop of the form
 
 The Python interpreter performs the following:
 
-* For each element of ``sequence``, it "binds" the name ``variable_name`` to that element and then executes the code block
+* For each element of the ``sequence``, it "binds" the name ``variable_name`` to that element and then executes the code block
 
 The ``sequence`` object can in fact be a very general object, as we'll see
 soon enough
@@ -394,7 +394,7 @@ Code Blocks and Indentation
 
 In discussing the ``for`` loop, we explained that the code blocks being looped over are delimited by indentation
 
-In fact, in Python **all** code blocks (i.e., those occurring inside loops, if clauses, function definitions, etc.) are delimited by indentation
+In fact, in Python, **all** code blocks (i.e., those occurring inside loops, if clauses, function definitions, etc.) are delimited by indentation
 
 Thus, unlike most other languages, whitespace in Python code affects the output of the program
 
@@ -428,7 +428,7 @@ You can use your ``Tab`` key to insert 4 spaces, but you need to make sure it's 
 
 If you are using a Jupyter notebook you will have no problems here
 
-Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- trying searching on line
+Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- trying searching online
 
 
 While Loops
@@ -456,7 +456,7 @@ But, for the purpose of illustration, let's modify :ref:`the program above <firs
     plt.show()
 
 
-Note that 
+Note that
 
 * the code block for the ``while`` loop is again delimited only by indentation
 
@@ -509,8 +509,8 @@ how they work
 We have defined a function called ``generate_data()`` as follows
 
 * ``def`` is a Python keyword used to start function definitions
-* ``def generate_data(n):`` indicates that the function is called ``generate_data``, and that it has a single argument ``n``
-* The indented code is a code block called the *function body*---in this case it creates an IID list of random draws using the same logic as before
+* ``def generate_data(n):`` indicates that the function is called ``generate_data`` and that it has a single argument ``n``
+* The indented code is a code block called the *function body*---in this case, it creates an IID list of random draws using the same logic as before
 * The ``return`` keyword indicates that ``ϵ_values`` is the object that should be returned to the calling code
 
 This whole function definition is read by the Python interpreter and stored in memory
@@ -553,7 +553,7 @@ This is achieved the next piece of code
     plt.plot(data)
     plt.show()
 
-Hopefully the syntax of the if/else clause is self-explanatory, with indentation again delimiting the extent of the code blocks
+Hopefully, the syntax of the if/else clause is self-explanatory, with indentation again delimiting the extent of the code blocks
 
 Notes
 
@@ -600,11 +600,11 @@ When the function call  ``generate_data(100, np.random.uniform)`` is executed, P
 This principle works more generally---for example, consider the following piece of code
 
 .. code-block:: python3
-    
+
     max(7, 2, 4)   # max() is a built-in Python function
-    
+
 .. code-block:: python3
-    
+
     m = max
     m(7, 2, 4)
 
@@ -638,7 +638,7 @@ Here's another example
 .. code-block:: python3
 
     range(8)
-    
+
 .. code-block:: python3
 
     doubles = [2 * x for x in range(8)]
@@ -713,7 +713,7 @@ Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besid
 Your hints are as follows:
 
 * If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`
-* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that fall in :math:`B` converges to the probability of landing in :math:`B`
+* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`
 * For a circle, area = pi * radius^2
 
 
@@ -823,7 +823,7 @@ Exercise 1
         for i in range(n):
             k = k * (i + 1)
         return k
-    
+
     factorial(4)
 
 
@@ -834,7 +834,7 @@ Exercise 2
 .. code-block:: python3
 
     from numpy.random import uniform
-    
+
     def binomial_rv(n, p):
         count = 0
         for i in range(n):
@@ -842,7 +842,7 @@ Exercise 2
             if U < p:
                 count = count + 1    # Or count += 1
         return count
-    
+
     binomial_rv(10, 0.5)
 
 
@@ -864,21 +864,21 @@ Summary: If we can estimate the area of the unit circle, then dividing
 by :math:`r^2 = (1/2)^2 = 1/4` gives an estimate of :math:`\pi`
 
 We estimate the area by sampling bivariate uniforms and looking at the
-fraction that fall into the unit circle
+fraction that falls into the unit circle
 
 .. code-block:: python3
 
     n = 100000
-    
+
     count = 0
     for i in range(n):
         u, v = np.random.uniform(), np.random.uniform()
         d = np.sqrt((u - 0.5)**2 + (v - 0.5)**2)
         if d < 0.5:
             count += 1
-    
+
     area_estimate = count / n
-    
+
     print(area_estimate * 4)  # dividing by radius**2
 
 Exercise 4
@@ -887,16 +887,16 @@ Exercise 4
 .. code-block:: python3
 
     from numpy.random import uniform
-    
+
     payoff = 0
     count = 0
-    
+
     for i in range(10):
         U = uniform()
         count = count + 1 if U < 0.5 else 0
         if count == 3:
             payoff = 1
-    
+
     print(payoff)
 
 
@@ -907,11 +907,11 @@ The next line embeds all subsequent figures in the browser itself
 
 .. code-block:: python3
 
-    
+
     α = 0.9
     ts_length = 200
     current_x = 0
-    
+
     x_values = []
     for i in range(ts_length + 1):
         x_values.append(current_x)
@@ -926,7 +926,7 @@ Exercise 6
 
     αs = [0.0, 0.8, 0.98]
     ts_length = 200
-    
+
     for α in αs:
         x_values = []
         current_x = 0
@@ -936,8 +936,3 @@ Exercise 6
         plt.plot(x_values, label=f'α = {α}')
     plt.legend()
     plt.show()
-
-
-
-
-
