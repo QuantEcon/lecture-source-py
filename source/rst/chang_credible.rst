@@ -604,7 +604,7 @@ ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, w
       \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)
       \end{aligned}
 
-Calculating Set of Sustainable :math:`(w,\theta)` Pairs
+Calculating Set of Sustainable Promised-Value Pairs
 ==================================================================================
 
 Above we defined the :math:`\tilde D(Z)` operator as :eq:`chang_operator`
