@@ -10,7 +10,7 @@ Robust Markov Perfect Equilibrium
 
 **Co-author: Dongchen Zou**
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -44,9 +44,9 @@ Basic Setup
 Decisions of two agents affect the motion of a  state vector
 that appears as an argument of   payoff functions of both agents
 
-As described in :doc:`Markov perfect equilibrium<markov_perf>`, when decision makers have no concerns about the robustness of their decision rules
+As described in :doc:`Markov perfect equilibrium<markov_perf>`, when decision-makers have no concerns about the robustness of their decision rules
 to misspecifications of the state dynamics, a Markov perfect equilibrium  can be computed via
-backwards recursion  on  two sets of equations
+backward recursion  on  two sets of equations
 
  * a pair of Bellman equations, one for each agent
 
@@ -55,7 +55,7 @@ backwards recursion  on  two sets of equations
 
 
 This lecture shows how  a similar equilibrium concept and similar computational  procedures
-apply when we impute concerns about robustness to both decision makers
+apply when we impute concerns about robustness to both decision-makers
 
 A Markov perfect equilibrium with robust agents will be characterized by
 
@@ -71,7 +71,7 @@ A Markov perfect equilibrium with robust agents will be characterized by
 
 
 
-Below, we'll construct robust firms version of the   classic duopoly model with
+Below, we'll construct a robust firms version of the classic duopoly model with
 adjustment costs analyzed in :doc:`Markov perfect equilibrium<markov_perf>`
 
 
@@ -93,7 +93,7 @@ In linear quadratic dynamic games, these "stacked Bellman equations" become "sta
 Modified Coupled Linear Regulator Problems
 -----------------------------------------------
 
-We consider a general linear quadratic regulator game with two players, each of whom fears model misspecificationyers
+We consider a general linear quadratic regulator game with two players, each of whom fears model misspecifications
 
 We often call the players agents
 
@@ -208,7 +208,7 @@ where
 * :math:`\Gamma_{it} := W_i' - M_i' F_{-it}`
 
 This is an LQ robust dynamic programming problem of the type studied in the :doc:`Robustness<robustness>` lecture,
-which can be solved by working backwards
+which can be solved by working backward
 
 Maximization with respect to distortion  :math:`v_{1t}` leads to  the following version of the :math:`\mathcal D` operator from
 the :doc:`Robustness<robustness>` lecture, namely
@@ -266,8 +266,8 @@ Since we're working backwards, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken a
 
 Moreover, since
 
-* some terms on the right hand side of :eq:`rmp-orig-3` contain :math:`F_{2t}`
-* some terms on the right hand side of :eq:`rmp-orig-5` contain :math:`F_{1t}`
+* some terms on the right-hand side of :eq:`rmp-orig-3` contain :math:`F_{2t}`
+* some terms on the right-hand side of :eq:`rmp-orig-5` contain :math:`F_{1t}`
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
@@ -306,7 +306,7 @@ where
 Infinite Horizon
 -----------------
 
-We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time invariant as :math:`t_1 \rightarrow +\infty`
+We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`
 
 In practice, we usually fix :math:`t_1` and compute the equilibrium of an infinite horizon game by driving :math:`t_0 \rightarrow - \infty`
 
@@ -455,7 +455,7 @@ The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1
     \end{bmatrix}
 
 
-A robust  decision rule of firm :math:`i` will take the form :math:`u_{it} = - F_i x_t`, inducing the following closed loop system for the evolution of :math:`x` in the Markov perfect equilibrium:
+A robust  decision rule of firm :math:`i` will take the form :math:`u_{it} = - F_i x_t`, inducing the following closed-loop system for the evolution of :math:`x` in the Markov perfect equilibrium:
 
 .. math::
     :label: rmp-eq_mpe_cle
@@ -473,7 +473,7 @@ Consider the  duopoly model with parameter values of:
 * :math:`\beta = 0.96`
 * :math:`\gamma = 12`
 
-From these we computed the infinite horizon MPE without robustness  using the  code
+From these, we computed the infinite horizon MPE without robustness  using the  code
 
 .. literalinclude:: /_static/code/markov_perf/duopoly_mpe.py
 
@@ -784,7 +784,7 @@ Comparative Dynamics under Baseline Transition Dynamics
 We want to compare the dynamics of price and output under the baseline
 MPE model with those under the baseline model under the robust decision rules within the robust MPE
 
-This means that we simulate the state dynamics under the MPE  equilibrium **closed loop** transition matrix
+This means that we simulate the state dynamics under the MPE  equilibrium **closed-loop** transition matrix
 
 .. math::
 
@@ -793,7 +793,7 @@ This means that we simulate the state dynamics under the MPE  equilibrium **clos
 where :math:`F_1` and :math:`F_2` are the firms' robust decision rules within the robust markov_perfect equilibrium
 
   - by simulating under the baseline model transition dynamics and the robust MPE rules we are in assuming that at the end of the day
-    firms' concerns about misspcification of the baseline model do not materialize
+    firms' concerns about misspecification of the baseline model do not materialize
 
   - a short way of saying this is that misspecification fears are all 'just in the minds' of the firms
 
@@ -887,7 +887,7 @@ Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that
 
 
 The following code prepares graphs that compare market-wide output :math:`q_{1t} + q_{2t}` and  the price of the good
-:math:`p_t` under equilibrium decision rules :math:`F_i, i = 1, 2` from an ordinary Markov perfect equilibrium and a the decision rules
+:math:`p_t` under equilibrium decision rules :math:`F_i, i = 1, 2` from an ordinary Markov perfect equilibrium and the decision rules
 under a  Markov perfect equilibrium with robust firms with multiplier parameters :math:`\theta_i, i = 1,2` set as described above
 
 Both industry output and price  are under the transition dynamics associated with the baseline model; only the decision rules :math:`F_i` differ across the two
@@ -954,9 +954,9 @@ misspecification of the baseline model substantially more than does firm 2
 
 Larger  concerns about misspecification induce firm 1 to be more cautious than firm 2 in predicting market price and the output of the other firm
 
-To explore this, we study next how *ex post* the two firms' beliefs about state dynamics differ in  the Markov perfect equilibrium with robust firms
+To explore this, we study next how *ex-post* the two firms' beliefs about state dynamics differ in  the Markov perfect equilibrium with robust firms
 
-(by *ex post* we mean *after* extremization of each firm's intertemporal objective)
+(by *ex-post* we mean *after* extremization of each firm's intertemporal objective)
 
 Heterogeneous Beliefs
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -967,7 +967,7 @@ Worst-case forecasts of  :math:`x_t` starting from :math:`t=0` differ between th
 
 This means that  worst-case forecasts of industry output :math:`q_{1t} + q_{2t}` and price :math:`p_t` also differ between the two firms
 
-To find these worst-case beliefs, we compute the following three "closed loop" transition    matrices
+To find these worst-case beliefs, we compute the following three "closed-loop" transition    matrices
 
    -  :math:`A^o`
 
@@ -980,7 +980,7 @@ We call the first transition law, namely, :math:`A^o`,  the baseline transition 
 We call the second and third worst-case transitions under robust decision
 rules for firms 1 and 2
 
-From :math:`\{x_t\}` paths generated by  each of these transition laws, we  pull off  associated price and total output sequences
+From :math:`\{x_t\}` paths generated by  each of these transition laws, we pull off the associated price and total output sequences
 
 The following code plots them
 
