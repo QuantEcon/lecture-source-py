@@ -12,7 +12,7 @@
 
     "If you're so smart, why aren't you rich?"
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries
 
 .. code-block:: ipython
   :class: hide-output
@@ -76,7 +76,7 @@ A Simple Static Example of the Big :math:`Y`, Little :math:`y` Trick
 
 Consider a static model in which a collection of :math:`n` firms produce a homogeneous good that is sold in a competitive market
 
-Each of these :math:`n` firms sells output :math:`y`
+Each of these :math:`n` firms sell output :math:`y`
 
 The price :math:`p` of the good lies on an inverse demand curve
 
@@ -92,7 +92,7 @@ where
 
 * :math:`Y = n y` is the market-wide level of output
 
-Each firm has total cost function
+Each firm has a total cost function
 
 .. math::
 
@@ -119,7 +119,7 @@ to :math:`y` in problem :eq:`max_problem/_static`
 
 This assures that the firm is a price taker
 
-The first order condition for problem :eq:`max_problem/_static` is
+The first-order condition for problem :eq:`max_problem/_static` is
 
 .. math::
     :label: BigYsimpleFONC
@@ -136,7 +136,7 @@ to obtain the following linear equation
     a_0 - c_1 - (a_1 + n^{-1} c_2) Y = 0
 
 
-to be solved for the competitive equilibrium market wide output :math:`Y`
+to be solved for the competitive equilibrium market-wide output :math:`Y`
 
 After solving for :math:`Y`, we can compute the competitive equilibrium price :math:`p` from the inverse demand curve :eq:`ree_comp3d/_static`
 
@@ -184,7 +184,7 @@ Competitive Equilibrium with Adjustment Costs
 
 To illustrate, consider a collection of :math:`n` firms producing a homogeneous good that is sold in a competitive market
 
-Each of these :math:`n` firms sells output :math:`y_t`
+Each of these :math:`n` firms sell output :math:`y_t`
 
 The price :math:`p_t` of the good lies on the inverse demand curve
 
@@ -238,7 +238,7 @@ Regarding the parameters,
 
 * :math:`\gamma > 0` measures the cost of adjusting the rate of output
 
-Regarding timing, the firm observes :math:`p_t` and :math:`y_t` when it chooses :math:`y_{t+1}` at at time :math:`t`
+Regarding timing, the firm observes :math:`p_t` and :math:`y_t` when it chooses :math:`y_{t+1}` at time :math:`t`
 
 To state the firm's optimization problem completely requires that we specify dynamics for all state variables
 
@@ -281,7 +281,7 @@ The *belief function* :math:`H` is an equilibrium object, and hence remains to b
 Optimal Behavior Given Beliefs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For now let's fix a particular belief :math:`H` in :eq:`ree_hlom` and investigate the firm's response to it
+For now, let's fix a particular belief :math:`H` in :eq:`ree_hlom` and investigate the firm's response to it
 
 Let :math:`v` be the optimal value function for the firm's problem given :math:`H`
 
@@ -315,14 +315,14 @@ Evidently :math:`v` and :math:`h` both depend on :math:`H`
 First-Order Characterization of :math:`h`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In what follows it will be helpful to have a second characterization of :math:`h`, based on first order conditions
+In what follows it will be helpful to have a second characterization of :math:`h`, based on first-order conditions
 
 The first-order necessary condition for choosing :math:`y'` is
 
 
 .. math::
     :label: comp5
-    
+
     -\gamma (y' - y) + \beta v_y(y', H(Y) ) = 0
 
 
@@ -446,7 +446,7 @@ The optimal quantities from the planning problem are rational expectations equil
 
 The rational expectations equilibrium price can be obtained as a shadow price in the planning problem
 
-For convenience, in this section we set :math:`n=1`
+For convenience, in this section, we set :math:`n=1`
 
 We first compute a sum of  consumer and producer surplus at time :math:`t`
 
@@ -484,7 +484,7 @@ As a result, the Bellman equation for the planning problem is
     \left\{a_0  Y - {a_1 \over 2} Y^2 - \frac{ \gamma (Y' - Y)^2}{2} + \beta V(Y') \right\}
 
 
-The associated first order condition is
+The associated first-order condition is
 
 .. math::
     :label: comp14
@@ -701,7 +701,7 @@ problem <https://lectures.quantecon.org/py/lqcontrol.html>`__, we need to define
 -  matrices :math:`A, B, Q, R` that define preferences and the law of
    motion for the state
 
-For the state and control vectors we choose
+For the state and control vectors, we choose
 
 .. math::
 
@@ -715,20 +715,20 @@ For :math:`B, Q, R` we set
 .. math::
 
 
-       A = 
-       \begin{bmatrix} 
+       A =
+       \begin{bmatrix}
            1 & 0 & 0 \\
-           0 & \kappa_1 & \kappa_0 \\ 
-           0 & 0 & 1 
+           0 & \kappa_1 & \kappa_0 \\
+           0 & 0 & 1
        \end{bmatrix},
        \quad
        B = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} ,
        \quad
-       R = 
-       \begin{bmatrix} 
-           0 & a_1/2 & -a_0/2 \\ 
-           a_1/2 & 0 & 0 \\ 
-           -a_0/2 & 0 & 0 
+       R =
+       \begin{bmatrix}
+           0 & a_1/2 & -a_0/2 \\
+           a_1/2 & 0 & 0 \\
+           -a_0/2 & 0 & 0
        \end{bmatrix},
        \quad
        Q = \gamma / 2
@@ -762,36 +762,36 @@ Here's our solution
 
 .. code-block:: python3
 
-    
+
     # == Model parameters == #
-    
+
     a0 = 100
     a1 = 0.05
     β = 0.95
     γ = 10.0
-    
+
     # == Beliefs == #
-    
+
     κ0 = 95.5
     κ1 = 0.95
-    
+
     # == Formulate the LQ problem == #
-    
+
     A = np.array([[1, 0, 0], [0, κ1, κ0], [0, 0, 1]])
     B = np.array([1, 0, 0])
     B.shape = 3, 1
     R = np.array([[0, a1/2, -a0/2], [a1/2, 0, 0], [-a0/2, 0, 0]])
     Q = 0.5 * γ
-    
+
     # == Solve for the optimal policy == #
-    
+
     lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values()
     F = F.flatten()
     out1 = f"F = [{F[0]:.3f}, {F[1]:.3f}, {F[2]:.3f}]"
     h0, h1, h2 = -F[2], 1 - F[0], -F[1]
     out2 = f"(h0, h1, h2) = ({h0:.3f}, {h1:.3f}, {h2:.3f})"
-    
+
     print(out1)
     print(out2)
 
@@ -809,9 +809,9 @@ combined with the previous equation, yields
 .. math::
 
 
-       Y_{t+1} 
-       = n \left( 96.949 + y_t - 0.046 \, Y_t \right)  
-       = n 96.949 + (1 - n 0.046) Y_t 
+       Y_{t+1}
+       = n \left( 96.949 + y_t - 0.046 \, Y_t \right)
+       = n 96.949 + (1 - n 0.046) Y_t
 
 Exercise 2
 ----------
@@ -827,7 +827,7 @@ equilibrium, we can proceed as follows:
    ::math:`Y_{t+1} = n h(Y_t/n, Y_t)` evaluates to
    :math:`Y_{t+1} = \kappa_0 + \kappa_1 Y_t`
 
-In the second step we can use :math:`Y_t = n y_t = y_t`, so that
+In the second step, we can use :math:`Y_t = n y_t = y_t`, so that
 :math:`Y_{t+1} = n h(Y_t/n, Y_t)` becomes
 
 .. math::
@@ -842,22 +842,22 @@ The following code implements this test
 
 .. code-block:: python3
 
-    
+
     candidates = ((94.0886298678, 0.923409232937),
                   (93.2119845412, 0.984323478873),
                   (95.0818452486, 0.952459076301))
-    
+
     for κ0, κ1 in candidates:
-    
+
         # == Form the associated law of motion == #
         A = np.array([[1, 0, 0], [0, κ1, κ0], [0, 0, 1]])
-    
+
         # == Solve the LQ problem for the firm == #
         lq = LQ(Q, R, A, B, beta=β)
         P, F, d = lq.stationary_values()
         F = F.flatten()
         h0, h1, h2 = -F[2], 1 - F[0], -F[1]
-    
+
         # == Test the equilibrium condition == #
         if np.allclose((κ0, κ1), (h0, h1 + h2)):
             print(f'Equilibrium pair = {κ0}, {κ1}')
@@ -868,7 +868,7 @@ The following code implements this test
 The output tells us that the answer is pair (iii), which implies
 :math:`(h_0, h_1, h_2) = (95.0819, 1.0000, -.0475)`
 
-(Notice we use ``np.allclose`` to test equality of floating point
+(Notice we use ``np.allclose`` to test equality of floating-point
 numbers, since exact equality is too strict)
 
 Regarding the iterative algorithm, one could loop from a given
@@ -886,7 +886,7 @@ Exercise 3
 
 We are asked to write the planner problem as an LQ problem
 
-For the state and control vectors we choose
+For the state and control vectors, we choose
 
 .. math::
 
@@ -895,7 +895,7 @@ For the state and control vectors we choose
        \quad
        u_t = Y_{t+1} - Y_{t}
 
-For the LQ matrices we set
+For the LQ matrices, we set
 
 .. math::
 
@@ -919,7 +919,7 @@ By obtaining the optimal policy and using :math:`u_t = - F x_t` or
 .. math::
 
 
-       Y_{t+1} - Y_t = -F_0 Y_t - F_1 
+       Y_{t+1} - Y_t = -F_0 Y_t - F_1
 
 we can obtain the implied aggregate law of motion via
 :math:`\kappa_0 = -F_1` and :math:`\kappa_1 = 1-F_0`
@@ -928,21 +928,21 @@ The Python code to solve this problem is below:
 
 .. code-block:: python3
 
-    
+
     # == Formulate the planner's LQ problem == #
-    
+
     A = np.array([[1, 0], [0, 1]])
     B = np.array([[1], [0]])
     R = np.array([[a1 / 2, -a0 / 2], [-a0 / 2, 0]])
     Q = γ / 2
-    
+
     # == Solve for the optimal policy == #
-    
+
     lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values()
-    
+
     # == Print the results == #
-    
+
     F = F.flatten()
     κ0, κ1 = -F[1], 1 - F[0]
     print(κ0, κ1)
@@ -960,24 +960,24 @@ from the previous exercise, except that
 .. math::
 
 
-       R = \begin{bmatrix} 
-           a_1 & -a_0/2 \\ 
-           -a_0/2 & 0 
-       \end{bmatrix} 
+       R = \begin{bmatrix}
+           a_1 & -a_0/2 \\
+           -a_0/2 & 0
+       \end{bmatrix}
 
 The problem can be solved as follows
 
 .. code-block:: python3
 
-    
+
     A = np.array([[1, 0], [0, 1]])
     B = np.array([[1], [0]])
     R = np.array([[a1, -a0 / 2], [-a0 / 2, 0]])
     Q = γ / 2
-    
+
     lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values()
-    
+
     F = F.flatten()
     m0, m1 = -F[1], 1 - F[0]
     print(m0, m1)
@@ -986,17 +986,17 @@ The problem can be solved as follows
 We see that the law of motion for the monopolist is approximately
 :math:`Y_{t+1} = 73.4729 + 0.9265 Y_t`
 
-In the rational expectations case the law of motion was approximately
+In the rational expectations case, the law of motion was approximately
 :math:`Y_{t+1} = 95.0818 + 0.9525 Y_t`
 
 One way to compare these two laws of motion is by their fixed points,
-which give long run equilibrium output in each case
+which give long-run equilibrium output in each case
 
 For laws of the form :math:`Y_{t+1} = c_0 + c_1 Y_t`, the fixed point is
 :math:`c_0 / (1 - c_1)`
 
 If you crunch the numbers, you will see that the monopolist adopts a
-lower long run quantity than obtained by the competitive market,
+lower long-run quantity than obtained by the competitive market,
 implying a higher market price
 
 This is analogous to the elementary static-case results
@@ -1015,5 +1015,5 @@ This is analogous to the elementary static-case results
     identity operator and :math:`\gamma \in (0,1)` is a *relaxation parameter*.
     See :cite:`MarcetSargent1989` and :cite:`EvansHonkapohja2001` for statements
     and applications of this approach to establish conditions under which
-    collections of adaptive agents who use least squares learning converge to a
+    collections of adaptive agents who use least squares learning to converge to a
     rational expectations equilibrium.
