@@ -468,9 +468,9 @@ These timing conventions imply the following feasibility condition:
 
 .. math::
 
-  \begin{align}
+  \begin{aligned}
   x^T_{t}B \geq x^T_{t+1} A \hspace{1cm}\forall t\geq 1
-  \end{align}
+  \end{aligned}
 
 which asserts that no more goods can be used today than were produced
 yesterday
@@ -657,10 +657,10 @@ s.t. :math:`\iota_n^T p = 1`
 *solution* :math:`(x^*, p^*, V(C))` in mixed strategies, if
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   (x^* )^T C e^j \geq V(C)\quad \forall j\in\{1, \dots, n\}\quad \quad
   \text{and}\quad\quad (e^i)^T C p^* \leq V(C)\quad \forall i\in\{1, \dots, m\}
-  \end{align}
+  \end{aligned}
 
 The number :math:`V(C)` is called the *value* of the game
 
@@ -704,23 +704,23 @@ Then the *max-min problem* (the game from the maximizing player’s point
 of view) can be written as the *primal* LP
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   V(C) = & \max \hspace{2mm} v \\
   \text{s.t. } \hspace{2mm} v \iota_n^T &\leq x^T C  \\
   x &\geq \mathbf{0} \\
   \iota_n^T x & = 1
-  \end{align}
+  \end{aligned}
 
 while the *min-max problem* (the game from the minimizing player’s point
 of view) is the *dual* LP
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   V(C) = &\min \hspace{2mm} u \\
   \text{s.t. } \hspace{2mm}u \iota_m &\geq Cp  \\
   p &\geq \mathbf{0} \\
   \iota_m^T p & = 1
-  \end{align}
+  \end{aligned}
 
 
 Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` view the input-output pair of the
@@ -763,9 +763,9 @@ we can calculate the solution of the game
    satisfy
 
 .. math::
-  \begin{align}
+  \begin{aligned}
   x_0^T M(\gamma) \geq \mathbf{0}^T \quad \quad \text{and}\quad\quad M(\gamma) p_0 \leq \mathbf{0}
-  \end{align}
+  \end{aligned}
 
 That is, :math:`(x_0, p_0, 0)` is a solution of the game
 :math:`M(\gamma)` so
