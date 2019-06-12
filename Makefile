@@ -35,7 +35,7 @@ endif
 preview:
 	cd _build/jupyter_html/ && python -m http.server
 
-jupyter_parallel:
+jupyter-parallel:
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_number_workers=$(CORES)
 
 # Catch-all target: route all unknown targets to Sphinx using the new
