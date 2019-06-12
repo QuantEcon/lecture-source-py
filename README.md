@@ -98,6 +98,10 @@ The use of align environments can be done using the `\begin{algined} ... \end{al
 
 "Independent and identically distributed" is abbreviated to "IID".
 
+The headings should not use math-environment.
+
+Labels must be written in all small alphabetical letters. Avoiding use of special characters in labels will be much appreciated. 
+
 ### Emphasis and Definitions
 
 Use **bold** for definitions and _italic_ for emphasis. For example,
