@@ -528,9 +528,11 @@ Define the following operator:
 .. math::
     :label: chang_operator
 
+    \begin{aligned}
     \tilde D(Z) = \Bigl\{
     (w,\theta): \text{there is } \hat h \in CE_\pi^0 \text{ and for each } h \in CE_\pi^0 \\
     \text{ a four-tuple } (m(h), x(h), w'(h), \theta'(h)) \in [0,\bar m] \times X \times Z
+    \end{aligned}
 
 such that
 
@@ -602,7 +604,7 @@ ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, w
       \theta_{t+1}  & = \Psi(h_t, w_t,\theta_t)
       \end{aligned}
 
-Calculating Set of Sustainable :math:`(w,\theta)` Pairs
+Calculating the Set of Sustainable Promise-Value Pairs
 ==================================================================================
 
 Above we defined the :math:`\tilde D(Z)` operator as :eq:`chang_operator`
