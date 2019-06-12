@@ -409,8 +409,8 @@ This is true: If :math:`b \in \mathbb R^K`, then
 The proof is now complete
 
 
-Starting with :math:`X`
------------------------
+Starting with the Basis
+------------------------
 
 It is common in applications to start with :math:`n \times k` matrix :math:`X`  with linearly independent columns and let
 

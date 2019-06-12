@@ -121,8 +121,8 @@ This is known as the *Bellman equation*, after the mathematician Richard Bellman
 
 
 
-Solving for :math:`J`
-=========================
+Solving for Minimum Cost-to-Go
+================================
 
 The standard algorithm for finding :math:`J` is to start with
 

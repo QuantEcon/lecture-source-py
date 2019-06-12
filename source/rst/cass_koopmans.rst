@@ -629,7 +629,7 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting :math:`K_0` Equal to Steady State :math:`K`
+Setting Intial Capital to the Steady State 
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
@@ -846,7 +846,7 @@ Let's calculate it
         plot_savings(paths, k_ss=k_ss, axes=axes)
 
 
-:math:`T=+\infty` Economy
+The Limiting Economy
 --------------------------
 
 We now consider an economy in which :math:`T = +\infty`
@@ -1475,11 +1475,11 @@ Now we calculate and plot for each :math:`T`
     plt.tight_layout()
     plt.show()
 
-Varying :math:`\gamma`
+Varying Curvature
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-Now we see how our results change if we keep T constant, but allow
+Now we see how our results change if we keep :math:`T` constant, but allow
 the curvature parameter, :math:`\gamma` to vary, starting
 with :math:`K_0` below the steady state.
 

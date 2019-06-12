@@ -122,7 +122,7 @@ which implies the following design of a risky portfolio:
 
   w = (\delta \Sigma)^{-1} \mu
 
-Estimating :math:`\mu` and :math:`\Sigma`
+Estimating the Mean and Variance
 --------------------------------------------
 
 The key inputs into the portfolio choice model :eq:`risky-portfolio` are
@@ -823,8 +823,8 @@ So the Black-Litterman procedure results in a recommendation that is a
 compromise between the conservative market portfolio and the more
 extreme portfolio that is implied by estimated "personal" views
 
-Digression on :math:`{\sf T}` Operator
----------------------------------------
+Digression on A Robust Control Operator
+----------------------------------------
 
 The Black-Litterman approach is partly inspired by the econometric
 insight that it is easier to estimate covariances of excess returns than

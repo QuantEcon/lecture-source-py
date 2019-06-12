@@ -429,7 +429,7 @@ currently realized quantity of government purchases :math:`g` only and does
 
 
 
-The Ramsey Allocation for a Given :math:`\Phi`
+The Ramsey Allocation for a Given Multiplier
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Temporarily take  :math:`\Phi` as given
@@ -477,8 +477,8 @@ Also, assume that government purchases :math:`g` are an exact time-invariant fun
 We maintain these assumptions throughout the remainder of this lecture
 
 
-Determining :math:`\Phi`
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Determining the Multiplier
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We complete the Ramsey plan by computing the Lagrange multiplier :math:`\Phi`
 on the implementability constraint :eq:`TSs_cham1`

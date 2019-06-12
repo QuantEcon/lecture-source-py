@@ -392,7 +392,7 @@ As an example, notice how we used the formula for the mean of :math:`{\mathcal B
 
 
 
-Approximating :math:`{\mathcal B}^*`
+Approximating the Ergodic Mean
 ------------------------------------------
 
 :cite:`BEGS1` propose  an approximation to  :math:`{\mathcal B}^*` that can be computed without first knowing the

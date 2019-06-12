@@ -854,7 +854,7 @@ A happy fact is that linear independence of the columns of :math:`A` also gives 
 Indeed, it follows from our :ref:`earlier discussion <la_unique_reps>` that if :math:`\{a_1, \ldots, a_k\}` are linearly independent and :math:`y = Ax = x_1 a_1 + \cdots + x_k a_k`, then no :math:`z \not= x` satisfies :math:`y = Az`
 
 
-The :math:`n \times n` Case
+The Square Matrix Case
 --------------------------------
 
 Let's discuss some more details, starting with the case where :math:`A` is :math:`n \times n`

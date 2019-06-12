@@ -89,7 +89,7 @@ The lecture :doc:`First Look at Kalman Filter<kalman>` describes the Kalman filt
 
 We'll use limiting versions of the Kalman filter corresponding to what are called **stationary values** in that lecture
 
-A :math:`\{y_t\}` Process for Which Adaptive Expectations are Optimal
+A Process for Which Adaptive Expectations are Optimal
 ------------------------------------------------------------------------
 
 Suppose that an observable :math:`y_t` is the sum of an unobserved

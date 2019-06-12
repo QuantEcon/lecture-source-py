@@ -506,10 +506,11 @@ Function to Describe Implications of Characteristic Polynomial
 
     categorize_solution(1.3, -.4)
 
-Function for Plotting :math:`Y_t` Paths
+
+Function for Plotting Paths
 -------------------------------------------
 
-A useful function for our work below
+A useful function for our work below is
 
 .. code-block:: python3
 

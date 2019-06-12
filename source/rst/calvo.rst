@@ -474,7 +474,7 @@ that alter either
 
 - assumptions about how government decision makers think their decisions affect private agents' beliefs about future government decisions
 
-A Constrained-to-a-Constant-:math:`\mu` Ramsey Government
+A Constrained-to-a-Constant-Growth-Rate Ramsey Government
 ==========================================================
 
 We now consider the following peculiar model of optimal government behavior

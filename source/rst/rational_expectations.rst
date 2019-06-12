@@ -48,7 +48,7 @@ Except that for us
 * Instead of "little :math:`k`" it will be "little :math:`y`"
 
 
-The Big :math:`Y`, Little :math:`y` Trick
+The Big Y, Little y Trick
 --------------------------------------------------
 
 This widely used method applies in contexts in which a "representative firm" or agent is a "price taker" operating within a competitive equilibrium
@@ -70,7 +70,7 @@ Please watch for how this strategy is applied as the lecture unfolds
 We begin by applying the  Big :math:`Y`, little :math:`y` trick in a very simple static context
 
 
-A Simple Static Example of the Big :math:`Y`, Little :math:`y` Trick
+A Simple Static Example of the Big Y, Little y Trick
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -312,7 +312,7 @@ where
 
 Evidently :math:`v` and :math:`h` both depend on :math:`H`
 
-First-Order Characterization of :math:`h`
+A First-Order Characterization 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In what follows it will be helpful to have a second characterization of :math:`h`, based on first-order conditions
@@ -358,7 +358,7 @@ a decision rule that automatically imposes both the Euler equation :eq:`ree_comp
 
 
 
-The Actual Law of Motion for :math:`\{Y_t\}`
+The Actual Law of Motion for Output
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As we've seen, a given belief translates into a particular decision rule :math:`h`
@@ -407,11 +407,10 @@ Computation of an Equilibrium
 .. index::
     single: Rational Expectations Equilibrium; Computation
 
-Now let's consider the problem of computing the rational expectations
-equilibrium
+Now let's consider the problem of computing the rational expectations equilibrium
 
 
-Misbehavior of :math:`\Phi`
+Failure of Contractivity
 -------------------------------------------------
 
 Readers accustomed to dynamic programming arguments might try to address this problem by choosing some guess :math:`H_0` for the aggregate law of motion and then iterating with :math:`\Phi`

@@ -516,8 +516,10 @@ The other unit eigenvalue results from setting :math:`\lambda = -1`
 To show the importance of both of these for generating growth, we
 consider the following experiments
 
-Example 3.1: Raise :math:`\lambda` to -0.7
+Example 3.1: Varying Sensitivity
 -------------------------------------------
+
+Next we raise :math:`\lambda` to -0.7
 
 .. code-block:: python3
 
@@ -546,9 +548,10 @@ eigenvalues is now less than 1
 
 
 
-
-Example 3.2: Lower :math:`\beta` to 0.94
+Example 3.2: More Impatience
 -----------------------------------------
+
+Next let's lower :math:`\beta` to 0.94
 
 .. code-block:: python3
 

@@ -724,7 +724,7 @@ As a very useful by-product, the algorithm that finds the largest fixed
 point :math:`S = D(S)` also produces the Ramsey plan, its value
 :math:`w`, and the associated competitive equilibrium
 
-Calculating all :math:`(w,\theta)` Pairs in :math:`CE`
+Calculating all Promise-Value Pairs in CE
 =============================================================
 
 Above we have defined the :math:`D(Z)` operator as:
