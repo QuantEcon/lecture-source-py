@@ -607,9 +607,10 @@ We want to test for correlation between the endogenous variable,
 
 .. math::
 
-
+  \begin{aligned}
    H_0 : Cov(avexpr_i, u_i) = 0  \quad (no\ endogeneity) \\
    H_1 : Cov(avexpr_i, u_i) \neq 0 \quad (endogeneity)
+   \end{aligned}
 
 This test is run is two stages
 
