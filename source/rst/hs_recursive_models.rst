@@ -1079,7 +1079,7 @@ maximize
 .. math::
 
    - E \sum_{t=0}^\infty  \beta^t [ x_t^\prime  R x_t + u_t^\prime  Q
-   u_t + 2 u_t^\prime  W x_t ], \ 0 < \beta < 1
+   u_t + 2 u_t^\prime  W' x_t ], \ 0 < \beta < 1
 
 subject to
 
@@ -1154,7 +1154,7 @@ We can now state the planning problem as a dynamic programming problem
 .. math::
 
    \max_{ \{u_t, x_{t+1}\} }\ - E \sum_{t=0}^\infty \beta^t [x_t^\prime
-   Rx_t + u_t^\prime Q u_t + 2u_t^\prime Wx_t ] , \quad 0 < \beta < 1
+   Rx_t + u_t^\prime Q u_t + 2u_t^\prime W 'x_t ] , \quad 0 < \beta < 1
 
 where  maximization is subject to
 
@@ -1165,7 +1165,7 @@ where  maximization is subject to
    x_t = \begin{bmatrix} h_{t-1} \\ k_{t-1} \\ z_t \end{bmatrix} , \qquad
     u_t = i_t
 
-More details XXXXX
+where 
 
 
 .. math::
@@ -1182,7 +1182,7 @@ More details XXXXX
 
    \begin{bmatrix} x_t \\ u_t  \end{bmatrix}^\prime S \begin{bmatrix} x_t
    \\ u_t \end{bmatrix} = \begin{bmatrix} x_t \\ u_t \end{bmatrix}^\prime\ \
-   \begin{bmatrix} R & W' \\ W & Q  \end{bmatrix}\ \ \begin{bmatrix} x_t
+   \begin{bmatrix} R & W \\ W' & Q  \end{bmatrix}\ \ \begin{bmatrix} x_t
    \\ u_t \end{bmatrix}
 
 :math:`S = (G^\prime G + H^\prime H) / 2`
