@@ -519,7 +519,7 @@ But their optimal decision rules determine the probability :math:`\lambda` of le
 This is now
 
 .. math::
-    :label: lake_lamda
+    :label: lake_lamda_lake_model
 
     \lambda
     = \gamma \mathbb P \{ w_t \geq \bar w\}
@@ -550,7 +550,7 @@ The post-tax income of an unemployed worker is :math:`c - \tau`
 
 For each specification :math:`(c, \tau)` of government policy, we can solve for the worker's optimal reservation wage
 
-This determines :math:`\lambda` via :eq:`lake_lamda` evaluated at post tax wages, which in turn determines a steady state unemployment rate :math:`u(c, \tau)`
+This determines :math:`\lambda` via :eq:`lake_lamda_lake_model` evaluated at post tax wages, which in turn determines a steady state unemployment rate :math:`u(c, \tau)`
 
 For a given level of unemployment benefit :math:`c`, we can solve for a tax that balances the budget in the steady state
 

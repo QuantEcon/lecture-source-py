@@ -89,13 +89,13 @@ The demand for real balances is governed by a perfect foresight
 version of the Cagan :cite:`Cagan` demand function:
 
 .. math::
-    :label: eq_old1
+    :label: eq_old1_calvo
 
     m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha > 0
 
 for :math:`t \geq 0`
 
-Equation :eq:`eq_old1` asserts that the demand for real balances is inversely
+Equation :eq:`eq_old1_calvo` asserts that the demand for real balances is inversely
 related to the public's expected rate of inflation, which here equals
 the actual rate of inflation
 
@@ -111,7 +111,7 @@ function at :math:`t+1` gives:
 or
 
 .. math::
-    :label: eq_old2
+    :label: eq_old2_calvo
 
      \theta_t = \frac{\alpha}{1+\alpha} \theta_{t+1} + \frac{1}{1+\alpha} \mu_t
 
@@ -127,14 +127,14 @@ We say that a sequence that belongs to :math:`L^2`   is **square summable**
 
 When we assume that the sequence :math:`\vec \mu = \{\mu_t\}_{t=0}^\infty` is square summable and we require that the sequence
 :math:`\vec \theta = \{\theta_t\}_{t=0}^\infty` is square summable,
-the linear  difference equation :eq:`eq_old2` can be solved forward to get:
+the linear  difference equation :eq:`eq_old2_calvo` can be solved forward to get:
 
 .. math::
-    :label: eq_old3
+    :label: eq_old3_calvo
 
      \theta_t = \frac{1}{1+\alpha} \sum_{j=0}^\infty \left(\frac{\alpha}{1+\alpha}\right)^j \mu_{t+j}
 
-**Insight:** In the spirit of Chang :cite:`chang1998credible`, note that equations :eq:`eq_old1` and :eq:`eq_old3` show that :math:`\theta_t` intermediates
+**Insight:** In the spirit of Chang :cite:`chang1998credible`, note that equations :eq:`eq_old1_calvo` and :eq:`eq_old3_calvo` show that :math:`\theta_t` intermediates
 how choices of :math:`\mu_{t+j}, \ j=0, 1, \ldots` impinge on time :math:`t`
 real balances :math:`m_t - p_t = -\alpha \theta_t`
 
@@ -169,26 +169,26 @@ We can rewrite the model  as:
 or
 
 .. math::
-    :label: eq_old4
+    :label: eq_old4_calvo
 
      x_{t+1} = A x_t + B \mu_t
 
-We write the model in the state-space form :eq:`eq_old4` even though :math:`\theta_0` is to be determined and so is not an initial condition
+We write the model in the state-space form :eq:`eq_old4_calvo` even though :math:`\theta_0` is to be determined and so is not an initial condition
 as it ordinarily would be in the state-space model described in :doc:`Linear Quadratic Control<lqcontrol>`
 
-We write the model in the form :eq:`eq_old4` because we want to apply an approach described in  :doc:`Stackelberg problems<dyn_stack>`
+We write the model in the form :eq:`eq_old4_calvo` because we want to apply an approach described in  :doc:`Stackelberg problems<dyn_stack>`
 
 Assume that a representative household's utility of real balances at
 time :math:`t` is:
 
 .. math::
-    :label: eq_old5
+    :label: eq_old5_calvo
 
     U(m_t - p_t) = a_0 + a_1 (m_t - p_t) - \frac{a_2}{2} (m_t - p_t)^2, \quad a_0 > 0, a_1 > 0, a_2 > 0
 
 The "bliss level" of real balances is then :math:`\frac{a_1}{a_2}`
 
-The money demand function :eq:`eq_old1` and the utility function :eq:`eq_old5`
+The money demand function :eq:`eq_old1_calvo` and the utility function :eq:`eq_old5_calvo`
 imply that utility maximizing or  bliss level of real balances is attained when:
 
 .. math::  \theta_t = \theta^* = -\frac{a_1}{a_2 \alpha}
@@ -200,7 +200,7 @@ both use to discount future utilities
 regard a recommendation to set :math:`\theta_t = \theta^*` as a "poor
 man's Friedman rule" that attains Milton Friedman's **optimal quantity of money**)
 
-Via equation :eq:`eq_old3`, a government plan
+Via equation :eq:`eq_old3_calvo`, a government plan
 :math:`\vec \mu = \{\mu_t \}_{t=0}^\infty` leads to an equilibrium
 sequence of inflation outcomes
 :math:`\vec \theta = \{ \theta_t \}_{t=0}^\infty`
@@ -213,21 +213,21 @@ Therefore, the one-period welfare function of a benevolent government
 is:
 
 .. math::
-    :label: eq_old6
+    :label: eq_old6_calvo
 
     -s(\theta_t, \mu_t) \equiv - r(x_t,\mu_t) = \begin{bmatrix} 1 \\ \theta_t \end{bmatrix}' \begin{bmatrix} a_0 & -\frac{a_1 \alpha}{2} \\ -\frac{a_1 \alpha}{2} & -\frac{a_2 \alpha^2}{2} \end{bmatrix} \begin{bmatrix} 1 \\ \theta_t \end{bmatrix} - \frac{c}{2} \mu_t^2 =  - x_t'Rx_t - Q \mu_t^2
 
 Household welfare is summarized by:
 
 .. math::
-    :label: eq_old7
+    :label: eq_old7_calvo
 
     v_0 = - \sum_{t=0}^\infty \beta^t r(x_t,\mu_t) = - \sum_{t=0}^\infty \beta^t s(\theta_t,\mu_t)
 
 We can represent the dependence of  :math:`v_0` on :math:`(\vec \theta, \vec \mu)` recursively via
 
 .. math::
-    :label: eq_old8
+    :label: eq_old8_calvo
 
     v_t = s(\theta_t, \mu_t) + \beta v_{t+1}
 
@@ -236,10 +236,10 @@ Structure
 
 
 The following structure is induced by private agents'
-behavior as summarized by the demand function for money :eq:`eq_old1` that leads to equation :eq:`eq_old3` that tells how future
+behavior as summarized by the demand function for money :eq:`eq_old1_calvo` that leads to equation :eq:`eq_old3_calvo` that tells how future
 settings of :math:`\mu` affect the current value of :math:`\theta`
 
-Equation :eq:`eq_old3` maps a **policy** sequence of money growth rates
+Equation :eq:`eq_old3_calvo` maps a **policy** sequence of money growth rates
 :math:`\vec \mu =\{\mu_t\}_{t=0}^\infty \in L^2`  into an inflation sequence
 :math:`\vec \theta = \{\theta_t\}_{t=0}^\infty \in L^2`
 
@@ -266,7 +266,7 @@ decisions
 Intertemporal Influences
 =========================
 
-Criterion function :eq:`eq_old7` and the constraint system :eq:`eq_old4` exhibit the following
+Criterion function :eq:`eq_old7_calvo` and the constraint system :eq:`eq_old4_calvo` exhibit the following
 structure:
 
 -  Setting :math:`\mu_t \neq 0` imposes costs
@@ -338,8 +338,8 @@ A Ramsey Planner
 ===================
 
 First, we consider a Ramsey planner that  chooses
-:math:`\{\mu_t, \theta_t\}_{t=0}^\infty` to maximize :eq:`eq_old7`
-subject to the law of motion :eq:`eq_old4`
+:math:`\{\mu_t, \theta_t\}_{t=0}^\infty` to maximize :eq:`eq_old7_calvo`
+subject to the law of motion :eq:`eq_old4_calvo`
 
 We can split this problem into two stages, as in :doc:`Stackelberg problems<dyn_stack>` and  :cite:`Ljungqvist2012` Chapter 19
 
@@ -420,7 +420,7 @@ The preceding calculations indicate that we can represent a Ramsey plan
 :math:`\vec \mu` recursively with the following system created in the spirit of Chang :cite:`chang1998credible`:
 
 .. math::
-    :label: eq_old9
+    :label: eq_old9_calvo
 
     \begin{aligned}
     \theta_0 & = \theta_0^* \\
@@ -432,12 +432,12 @@ To interpret this system, think of the  sequence
 :math:`\{\theta_t\}_{t=0}^\infty` as a sequence of
 synthetic **promised inflation rates** that are just computational devices for
 generating a sequence :math:`\vec\mu` of money growth rates that are to
-be substituted into equation :eq:`eq_old3` to form actual rates of inflation
+be substituted into equation :eq:`eq_old3_calvo` to form actual rates of inflation
 
 It can be verified that if we substitute a plan
 :math:`\vec \mu = \{\mu_t\}_{t=0}^\infty` that satisfies these equations
-into equation :eq:`eq_old3`, we obtain the same sequence :math:`\vec \theta`
-generated by the system :eq:`eq_old9`
+into equation :eq:`eq_old3_calvo`, we obtain the same sequence :math:`\vec \theta`
+generated by the system :eq:`eq_old9_calvo`
 
 (Here an application of the **Big $K$, little $k$** trick could once again be enlightening)
 
@@ -446,16 +446,16 @@ inflation** equals **actual inflation**
 
 ### Multiple roles of :math:`\theta_t`
 
-The inflation rate :math:`\theta_t` that appears in the system :eq:`eq_old9` and
-equation :eq:`eq_old3` plays three roles simultaneously:
+The inflation rate :math:`\theta_t` that appears in the system :eq:`eq_old9_calvo` and
+equation :eq:`eq_old3_calvo` plays three roles simultaneously:
 
--  In equation :eq:`eq_old3`, :math:`\theta_t` is the actual rate of inflation
+-  In equation :eq:`eq_old3_calvo`, :math:`\theta_t` is the actual rate of inflation
    between :math:`t` and :math:`t+1`
 
--  In equation  :eq:`eq_old2` and :eq:`eq_old3`, :math:`\theta_t` is also the public's
+-  In equation  :eq:`eq_old2_calvo` and :eq:`eq_old3_calvo`, :math:`\theta_t` is also the public's
    expected rate of inflation between :math:`t` and :math:`t+1`
 
--  In system :eq:`eq_old9`, :math:`\theta_t` is a promised rate of inflation
+-  In system :eq:`eq_old9_calvo`, :math:`\theta_t` is a promised rate of inflation
    chosen by the Ramsey planner at time :math:`0`
 
 
@@ -488,11 +488,11 @@ at time :math:`0`, a Ramsey  government at time :math:`0` once and for all  choo
 
 .. math::  U(-\alpha \check \mu) - \frac{c}{2} \check \mu^2
 
-Here we have imposed the perfect foresight outcome implied by equation :eq:`eq_old2` that
+Here we have imposed the perfect foresight outcome implied by equation :eq:`eq_old2_calvo` that
 :math:`\theta_t = \check \mu` when the government chooses a constant
 :math:`\mu` for all :math:`t \geq 0`
 
-With the quadratic form :eq:`eq_old5` for the utility function :math:`U`, the
+With the quadratic form :eq:`eq_old5_calvo` for the utility function :math:`U`, the
 maximizing :math:`\bar \mu` is
 
 .. math::  \check \mu = - \frac{\alpha a_1}{\alpha^2 a_2 + c }
@@ -527,7 +527,7 @@ maximize:
 .. math::  W = U(-\alpha \theta_t) - \frac{c}{2} \mu_t^2 + \beta V(\bar \mu)
 
 where :math:`V(\bar \mu)` is the time :math:`0` value :math:`v_0` of
-recursion :eq:`eq_old8` under a money supply growth rate that is forever constant
+recursion :eq:`eq_old8_calvo` under a money supply growth rate that is forever constant
 at :math:`\bar \mu`
 
 Substituting for :math:`U` and :math:`\theta_t` gives:
@@ -880,7 +880,7 @@ is a symptom of time inconsistency
 
 -  These benefits are intermediated by reductions in expected inflation
    that precede the  reductions in money creation rates that rationalize them, as indicated by
-   equation :eq:`eq_old3`
+   equation :eq:`eq_old3_calvo`
 
 -  A government authority offered the opportunity to ignore effects on
    past utilities and to reoptimize at date :math:`t \geq 1` would, if allowed, want
@@ -982,7 +982,7 @@ Temptation to Deviate from Plan
 --------------------------------
 
 The government's one-period return function :math:`s(\theta,\mu)`
-described in equation :eq:`eq_old6` above has the property that for all
+described in equation :eq:`eq_old6_calvo` above has the property that for all
 :math:`\theta`
 
 .. math::  s(\theta, 0 ) \geq s(\theta, \mu) \quad
@@ -1057,7 +1057,7 @@ More precisely, a government plan :math:`\vec \mu^A` is
 **self-enforcing** if
 
 .. math::
-    :label: eq_old10
+    :label: eq_old1_calvo0
 
     \begin{aligned}
     v_j^A & = s(\theta^A_j, \mu^A_j) + \beta v_{j+1}^A \\
@@ -1201,7 +1201,7 @@ beginning, i.e., :math:`\theta^A_{t+10} =\theta^R_t \ \ \forall t \geq 0`
 
 
 To confirm that the plan :math:`\vec \mu^A` is **self-enforcing**,  we
-plot an object that we call :math:`V_t^{A,D}`, defined in the second line of equation :eq:`eq_old10` above
+plot an object that we call :math:`V_t^{A,D}`, defined in the second line of equation :eq:`eq_old1_calvo0` above
 
 :math:`V_t^{A,D}` is the value at :math:`t` of deviating from the
 self-enforcing plan :math:`\vec \mu^A` by setting :math:`\mu_t = 0` and
@@ -1247,7 +1247,7 @@ continuation value :math:`v_t` as a state variable
 We form the following 3-tuple of functions:
 
 .. math::
-    :label: eq_old11
+    :label: eq_old1_calvo1
 
     \begin{aligned}
     \hat \mu_t & = \nu_\mu(v_t) \\
@@ -1258,13 +1258,13 @@ We form the following 3-tuple of functions:
 In addition to these equations, we need an initial value :math:`v_0` to
 characterize a sustainable plan
 
-The first equation of :eq:`eq_old11` tells the recommended value of
+The first equation of :eq:`eq_old1_calvo1` tells the recommended value of
 :math:`\hat \mu_t` as a function of the promised value :math:`v_t`
 
-The second equation of :eq:`eq_old11`  tells the inflation rate as a function of
+The second equation of :eq:`eq_old1_calvo1`  tells the inflation rate as a function of
 :math:`v_t`
 
-The third equation of :eq:`eq_old11`  updates the continuation value in a way that
+The third equation of :eq:`eq_old1_calvo1`  updates the continuation value in a way that
 depends on whether the government at :math:`t` confirms private agents'
 expectations by setting :math:`\mu_t` equal to the recommended value
 :math:`\hat \mu_t`, or whether it disappoints those expectations
@@ -1325,10 +1325,10 @@ The nickname refers to the fact that a value satisfying one Bellman equation is 
 
 Thus, our models have involved two Bellman equations:
 
--  equation :eq:`eq_old1` expresses how :math:`\theta_t` depends on :math:`\mu_t`
+-  equation :eq:`eq_old1_calvo` expresses how :math:`\theta_t` depends on :math:`\mu_t`
    and :math:`\theta_{t+1}`
 
--  equation :eq:`eq_old4` expresses how value :math:`v_t` depends on
+-  equation :eq:`eq_old4_calvo` expresses how value :math:`v_t` depends on
    :math:`(\mu_t, \theta_t)` and :math:`v_{t+1}`
 
 A value :math:`\theta` from one Bellman equation appears as an argument of a second Bellman equation for another value :math:`v`

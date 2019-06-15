@@ -359,7 +359,7 @@ The Solow growth model is a neoclassical growth model where the amount of
 capital stock per capita :math:`k_t` evolves according to the rule
 
 .. math::
-    :label: solow_lom
+    :label: solow_lom_python_oop
 
     k_{t+1} = \frac{s z k_t^{\alpha} + (1 - \delta) k_t}{1 + n}
 
@@ -372,7 +372,7 @@ Here
 * :math:`n` is the population growth rate
 * :math:`\delta` is the depreciation rate
 
-The **steady state** of the model is the :math:`k` that solves :eq:`solow_lom` when :math:`k_{t+1} = k_t = k`
+The **steady state** of the model is the :math:`k` that solves :eq:`solow_lom_python_oop` when :math:`k_{t+1} = k_t = k`
 
 Here's a class that implements this model
 
@@ -381,9 +381,9 @@ Some points of interest in the code are
 
 * An instance maintains a record of its current capital stock in the variable ``self.k``
 
-* The ``h`` method implements the right-hand side of :eq:`solow_lom`
+* The ``h`` method implements the right-hand side of :eq:`solow_lom_python_oop`
 
-* The ``update`` method uses ``h`` to update capital as per :eq:`solow_lom`
+* The ``update`` method uses ``h`` to update capital as per :eq:`solow_lom_python_oop`
 
     * Notice how inside ``update`` the reference to the local method ``h`` is ``self.h``
 
@@ -613,7 +613,7 @@ Let's look at one more example, related to chaotic dynamics in nonlinear systems
 One simple transition rule that can generate complex dynamics is the logistic map
 
 .. math::
-    :label: quadmap2
+    :label: quadmap2_python_oop
 
     x_{t+1} = r x_t(1 - x_t) ,
     \quad x_0 \in [0, 1],
@@ -686,7 +686,7 @@ The next piece of code provides a bifurcation diagram
     ax.set_xlabel('$r$', fontsize=16)
     plt.show()
 
-On the horizontal axis is the parameter :math:`r` in :eq:`quadmap2`
+On the horizontal axis is the parameter :math:`r` in :eq:`quadmap2_python_oop`
 
 The vertical axis is the state space :math:`[0, 1]`
 
@@ -780,7 +780,7 @@ Exercise 1
 The `empirical cumulative distribution function (ecdf) <https://en.wikipedia.org/wiki/Empirical_distribution_function>`_ corresponding to a sample :math:`\{X_i\}_{i=1}^n` is defined as
 
 .. math::
-    :label: emdist
+    :label: emdist_python_oop
 
     F_n(x) := \frac{1}{n}  \sum_{i=1}^n \mathbf{1}\{X_i \leq x\}
       \qquad (x \in \mathbb{R})
@@ -822,24 +822,24 @@ Aim for clarity, not efficiency
 Exercise 2
 -------------------------
 
-In an :ref:`earlier exercise <pyess_ex2>`, you wrote a function for evaluating polynomials
+In an :ref:`earlier exercise <pyess_ex2>`, you wrote a function for evaluating polynom_python_oopials
 
-This exercise is an extension, where the task is to build a simple class called ``Polynomial`` for representing and manipulating polynomial functions such as
+This exercise is an extension, where the task is to build a simple class called ``Polynomial`` for representing and manipulating polynom_python_oopial functions such as
 
 .. math::
-    :label: polynom
+    :label: polynom_python_oop
 
     p(x) = a_0 + a_1 x + a_2 x^2 + \cdots a_N x^N = \sum_{n=0}^N a_n x^n
         \qquad (x \in \mathbb{R})
 
 
-The instance data for the class ``Polynomial`` will be the coefficients (in the case of :eq:`polynom`, the numbers :math:`a_0, \ldots, a_N`)
+The instance data for the class ``Polynomial`` will be the coefficients (in the case of :eq:`polynom_python_oop`, the numbers :math:`a_0, \ldots, a_N`)
 
 Provide methods that
 
-#. Evaluate the polynomial :eq:`polynom`, returning :math:`p(x)` for any :math:`x`
+#. Evaluate the polynom_python_oopial :eq:`polynom_python_oop`, returning :math:`p(x)` for any :math:`x`
 
-#. Differentiate the polynomial, replacing the original coefficients with those of its derivative :math:`p'`
+#. Differentiate the polynom_python_oopial, replacing the original coefficients with those of its derivative :math:`p'`
 
 
 Avoid using any ``import`` statements
@@ -900,7 +900,7 @@ Exercise 2
             self.coefficients = coefficients
 
         def __call__(self, x):
-            "Evaluate the polynomial at x."
+            "Evaluate the polynom_python_oopial at x."
             y = 0
             for i, a in enumerate(self.coefficients):
                 y += a * x**i

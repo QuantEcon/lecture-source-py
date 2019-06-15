@@ -302,7 +302,7 @@ The price today equals the expected discounted value of tomorrow's dividend and 
 These equations imply that the equilibrium price vector is
 
 .. math::
-    :label: HarrKrep1
+    :label: HarrKrep1_harrison_kreps
 
     \begin{bmatrix} p_h(0) \cr p_h(1) \end{bmatrix}
     = \beta [I - \beta P_h]^{-1} P_h \begin{bmatrix} 0 \cr 1 \end{bmatrix}
@@ -337,7 +337,7 @@ The first is when both types of agents have sufficient wealth to purchase all of
 In this case, the marginal investor who prices the asset is the more optimistic type so that the equilibrium price :math:`\bar p` satisfies Harrison and Kreps's key equation:
 
 .. math::
-    :label: hakr2
+    :label: hakr2_harrison_kreps
 
     \bar p(s) =
     \beta
@@ -369,15 +369,15 @@ The marginal investor is of type  :math:`b` if
 
 **Thus the marginal investor is the (temporarily) optimistic type**
 
-Equation :eq:`hakr2` is a functional equation that, like a Bellman equation, can be solved by
+Equation :eq:`hakr2_harrison_kreps` is a functional equation that, like a Bellman equation, can be solved by
 
 * starting with a guess for the price vector :math:`\bar p` and
 
 * iterating to convergence on the operator that maps a guess :math:`\bar p^j` into an updated guess
-  :math:`\bar p^{j+1}` defined by the right side of :eq:`hakr2`, namely
+  :math:`\bar p^{j+1}` defined by the right side of :eq:`hakr2_harrison_kreps`, namely
 
 .. math::
-    :label: HarrKrep3
+    :label: HarrKrep3_harrison_kreps
 
     \bar  p^{j+1}(s)
      = \beta \max
@@ -448,10 +448,10 @@ Outcomes differ when the more optimistic type of investor has insufficient wealt
 
 In this case, the asset price must adjust to attract pessimistic investors
 
-Instead of equation :eq:`hakr2`, the equilibrium price satisfies
+Instead of equation :eq:`hakr2_harrison_kreps`, the equilibrium price satisfies
 
 .. math::
-    :label: HarrKrep4
+    :label: HarrKrep4_harrison_kreps
 
     \check p(s)
     = \beta \min
@@ -467,13 +467,13 @@ Now the marginal investor is always the (temporarily) pessimistic type
 
 Notice from the sixth row of that the pessimistic price :math:`\underline p` is lower than the homogeneous belief prices :math:`p_a` and :math:`p_b` in both states
 
-When pessimistic investors price the asset according to :eq:`HarrKrep4`, optimistic investors think that the asset is underpriced
+When pessimistic investors price the asset according to :eq:`HarrKrep4_harrison_kreps`, optimistic investors think that the asset is underpriced
 
 If they could, optimistic investors would willingly borrow at the one-period gross interest rate :math:`\beta^{-1}` to purchase more of the asset
 
 Implicit constraints on leverage prohibit them from doing so
 
-When optimistic investors price the asset as in equation :eq:`hakr2`, pessimistic investors think that the asset is overpriced and would like to sell the asset short
+When optimistic investors price the asset as in equation :eq:`hakr2_harrison_kreps`, pessimistic investors think that the asset is overpriced and would like to sell the asset short
 
 Constraints on short sales prevent that
 

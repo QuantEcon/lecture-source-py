@@ -295,7 +295,7 @@ To see this, observe that since :math:`x \in \mathop{\mathrm{span}}\{u_1, \ldots
 scalars :math:`\alpha_1, \ldots, \alpha_k` that verify
 
 .. math::
-    :label: pob
+    :label: pob_orth_proj
 
     x = \sum_{j=1}^k \alpha_j u_j
 
@@ -309,7 +309,7 @@ Taking the inner product with respect to :math:`u_i` gives
     = \alpha_i
 
 
-Combining this result with :eq:`pob` verifies the claim
+Combining this result with :eq:`pob_orth_proj` verifies the claim
 
 
 
@@ -322,14 +322,14 @@ When the subspace onto which are projecting is orthonormal, computing the projec
 **Theorem** If :math:`\{u_1, \ldots, u_k\}` is an orthonormal basis for :math:`S`, then
 
 .. math::
-    :label: exp_for_op
+    :label: exp_for_op_orth_proj
 
     P y = \sum_{i=1}^k \langle y, u_i \rangle u_i,
     \quad
     \forall \; y \in \mathbb R^n
 
 
-Proof: Fix :math:`y \in \mathbb R^n` and let :math:`P y` be  defined as in :eq:`exp_for_op`
+Proof: Fix :math:`y \in \mathbb R^n` and let :math:`P y` be  defined as in :eq:`exp_for_op_orth_proj`
 
 Clearly, :math:`P y \in S`
 

@@ -59,14 +59,14 @@ One way to summarize our knowledge is a point prediction :math:`\hat x`
 
     * :math:`\int_E p(x)dx` indicates the probability that we attach to the missile being in region :math:`E`
 
-The density :math:`p` is called our *prior* for the random variable :math:`x`
+The density :math:`p` is called our *prior_kalman* for the random variable :math:`x`
 
-To keep things tractable in our example,  we  assume that our prior is Gaussian
+To keep things tractable in our example,  we  assume that our prior_kalman is Gaussian
 
 In particular, we take
 
 .. math::
-    :label: prior
+    :label: prior_kalman
 
     p = N(\hat x, \Sigma)
 
@@ -75,7 +75,7 @@ where :math:`\hat x` is the mean of the distribution and :math:`\Sigma` is a
 :math:`2 \times 2` covariance matrix.  In our simulations, we will suppose that
 
 .. math::
-    :label: kalman_dhxs
+    :label: kalman_dhxs_kalman
 
     \hat x
     = \left(
@@ -107,7 +107,7 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
   import matplotlib.pyplot as plt
   %matplotlib inline
 
-  # == Set up the Gaussian prior density p == #
+  # == Set up the Gaussian prior_kalman density p == #
   Σ = [[0.4, 0.3], [0.3, 0.45]]
   Σ = np.matrix(Σ)
   x_hat = np.matrix([0.2, -0.2]).T
@@ -194,7 +194,7 @@ We are now presented with some good news and some bad news
 
 The good news is that the missile has been located by our sensors, which report that the current location is :math:`y = (2.3, -1.9)`
 
-The next figure shows the original prior :math:`p(x)` and the new reported
+The next figure shows the original prior_kalman :math:`p(x)` and the new reported
 location :math:`y`
 
 
@@ -220,7 +220,7 @@ In particular, we should interpret the output of our sensor not as
 :math:`y=x`, but rather as
 
 .. math::
-    :label: kl_measurement_model
+    :label: kl_measurement_model_kalman
 
     y = G x + v, \quad \text{where} \quad v \sim N(0, R)
 
@@ -229,12 +229,12 @@ Here :math:`G` and :math:`R` are :math:`2 \times 2` matrices with :math:`R`
 positive definite.  Both are assumed known, and the noise term :math:`v` is assumed
 to be independent of :math:`x`
 
-How then should we combine our prior :math:`p(x) = N(\hat x, \Sigma)` and this
+How then should we combine our prior_kalman :math:`p(x) = N(\hat x, \Sigma)` and this
 new information :math:`y` to improve our understanding of the location of the
 missile?
 
 As you may have guessed, the answer is to use Bayes' theorem, which tells
-us to  update our prior :math:`p(x)` to :math:`p(x \,|\, y)` via
+us to  update our prior_kalman :math:`p(x)` to :math:`p(x \,|\, y)` via
 
 .. math::
 
@@ -246,7 +246,7 @@ where :math:`p(y) = \int p(y \,|\, x) \, p(x) dx`
 In solving for :math:`p(x \,|\, y)`, we observe that
 
 * :math:`p(x) = N(\hat x, \Sigma)`
-* In view of :eq:`kl_measurement_model`, the conditional density :math:`p(y \,|\, x)` is :math:`N(Gx, R)`
+* In view of :eq:`kl_measurement_model_kalman`, the conditional density :math:`p(y \,|\, x)` is :math:`N(Gx, R)`
 * :math:`p(y)` does not depend on :math:`x`, and enters into the calculations only as a normalizing constant
 
 Because we are in a linear and Gaussian framework, the updated density can be computed by calculating population linear regressions
@@ -261,7 +261,7 @@ In particular, the solution is known [#f1]_ to be
 where
 
 .. math::
-    :label: kl_filter_exp
+    :label: kl_filter_exp_kalman
 
     \hat x^F := \hat x + \Sigma G' (G \Sigma G' + R)^{-1}(y - G \hat x)
     \quad \text{and} \quad
@@ -297,10 +297,10 @@ The original density is left in as contour lines for comparison
 
 
 
-Our new density twists the prior :math:`p(x)` in a direction determined by  the new
+Our new density twists the prior_kalman :math:`p(x)` in a direction determined by  the new
 information :math:`y - G \hat x`
 
-In generating the figure, we set :math:`G` to the identity matrix and :math:`R = 0.5 \Sigma` for :math:`\Sigma` defined in :eq:`kalman_dhxs`
+In generating the figure, we set :math:`G` to the identity matrix and :math:`R = 0.5 \Sigma` for :math:`\Sigma` defined in :eq:`kalman_dhxs_kalman`
 
 
 .. _kl_forecase_step:
@@ -311,7 +311,7 @@ The Forecast Step
 
 What have we achieved so far?
 
-We have obtained probabilities for the current location of the state (missile) given prior and current information
+We have obtained probabilities for the current location of the state (missile) given prior_kalman and current information
 
 This is called "filtering" rather than forecasting because we are filtering
 out noise rather than looking into the future
@@ -325,18 +325,18 @@ To do this we need a model of how the state evolves
 Let's suppose that we have one, and that it's linear and Gaussian. In particular,
 
 .. math::
-    :label: kl_xdynam
+    :label: kl_xdynam_kalman
 
     x_{t+1} = A x_t + w_{t+1}, \quad \text{where} \quad w_t \sim N(0, Q)
 
 
 Our aim is to combine this law of motion and our current distribution :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` to come up with a new *predictive* distribution for the location in one unit of time
 
-In view of :eq:`kl_xdynam`, all we have to do is introduce a random vector :math:`x^F \sim N(\hat x^F, \Sigma^F)` and work out the distribution of :math:`A x^F + w` where :math:`w` is independent of :math:`x^F` and has distribution :math:`N(0, Q)`
+In view of :eq:`kl_xdynam_kalman`, all we have to do is introduce a random vector :math:`x^F \sim N(\hat x^F, \Sigma^F)` and work out the distribution of :math:`A x^F + w` where :math:`w` is independent of :math:`x^F` and has distribution :math:`N(0, Q)`
 
 Since linear combinations of Gaussians are Gaussian, :math:`A x^F + w` is Gaussian
 
-Elementary calculations and the expressions in :eq:`kl_filter_exp` tell us that
+Elementary calculations and the expressions in :eq:`kl_filter_exp_kalman` tell us that
 
 .. math::
 
@@ -366,7 +366,7 @@ Using this notation, we can summarize our results as follows
 Our updated prediction is the density :math:`N(\hat x_{new}, \Sigma_{new})` where
 
 .. math::
-    :label: kl_mlom0
+    :label: kl_mlom0_kalman
 
     \begin{aligned}
         \hat x_{new} &:= A \hat x + K_{\Sigma} (y - G \hat x) \\
@@ -434,27 +434,27 @@ The Recursive Procedure
 
 Let's look back at what we've done
 
-We started the current period with a prior :math:`p(x)` for the location :math:`x` of the missile
+We started the current period with a prior_kalman :math:`p(x)` for the location :math:`x` of the missile
 
 We then used the current measurement :math:`y` to update to :math:`p(x \,|\, y)`
 
-Finally, we used the law of motion :eq:`kl_xdynam` for :math:`\{x_t\}` to update to :math:`p_{new}(x)`
+Finally, we used the law of motion :eq:`kl_xdynam_kalman` for :math:`\{x_t\}` to update to :math:`p_{new}(x)`
 
 If we now step into the next period, we are ready to go round again, taking :math:`p_{new}(x)`
-as the current prior
+as the current prior_kalman
 
 Swapping notation :math:`p_t(x)` for :math:`p(x)` and :math:`p_{t+1}(x)` for :math:`p_{new}(x)`, the full recursive procedure is:
 
-1. Start the current period with prior :math:`p_t(x) = N(\hat x_t, \Sigma_t)`
+1. Start the current period with prior_kalman :math:`p_t(x) = N(\hat x_t, \Sigma_t)`
 2. Observe current measurement :math:`y_t`
-3. Compute the filtering distribution :math:`p_t(x \,|\, y) = N(\hat x_t^F, \Sigma_t^F)` from :math:`p_t(x)` and :math:`y_t`, applying Bayes rule and the conditional distribution :eq:`kl_measurement_model`
-4. Compute the predictive distribution :math:`p_{t+1}(x) = N(\hat x_{t+1}, \Sigma_{t+1})` from the filtering distribution and :eq:`kl_xdynam`
+3. Compute the filtering distribution :math:`p_t(x \,|\, y) = N(\hat x_t^F, \Sigma_t^F)` from :math:`p_t(x)` and :math:`y_t`, applying Bayes rule and the conditional distribution :eq:`kl_measurement_model_kalman`
+4. Compute the predictive distribution :math:`p_{t+1}(x) = N(\hat x_{t+1}, \Sigma_{t+1})` from the filtering distribution and :eq:`kl_xdynam_kalman`
 5. Increment :math:`t` by one and go to step 1
 
-Repeating :eq:`kl_mlom0`, the dynamics for :math:`\hat x_t` and :math:`\Sigma_t` are as follows
+Repeating :eq:`kl_mlom0_kalman`, the dynamics for :math:`\hat x_t` and :math:`\Sigma_t` are as follows
 
 .. math::
-    :label: kalman_lom
+    :label: kalman_lom_kalman
 
     \begin{aligned}
         \hat x_{t+1} &= A \hat x_t + K_{\Sigma_t} (y_t - G \hat x_t) \\
@@ -475,33 +475,33 @@ Apart from special cases, this uncertainty will never be fully resolved, regardl
 
 One reason is that our prediction :math:`\hat x_t` is made based on information available at :math:`t-1`, not :math:`t`
 
-Even if we know the precise value of :math:`x_{t-1}` (which we don't), the transition equation :eq:`kl_xdynam` implies that :math:`x_t = A x_{t-1} + w_t`
+Even if we know the precise value of :math:`x_{t-1}` (which we don't), the transition equation :eq:`kl_xdynam_kalman` implies that :math:`x_t = A x_{t-1} + w_t`
 
 Since the shock :math:`w_t` is not observable at :math:`t-1`, any time :math:`t-1` prediction of :math:`x_t` will incur some error (unless :math:`w_t` is degenerate)
 
 However, it is certainly possible that :math:`\Sigma_t` converges to a constant matrix as :math:`t \to \infty`
 
-To study this topic, let's expand the second equation in :eq:`kalman_lom`:
+To study this topic, let's expand the second equation in :eq:`kalman_lom_kalman`:
 
 .. math::
-    :label: kalman_sdy
+    :label: kalman_sdy_kalman
 
     \Sigma_{t+1} = A \Sigma_t A' -  A \Sigma_t G' (G \Sigma_t G' + R)^{-1} G \Sigma_t A' + Q
 
 
 This is a nonlinear difference equation in :math:`\Sigma_t`
 
-A fixed point of :eq:`kalman_sdy` is a constant matrix :math:`\Sigma` such that
+A fixed point of :eq:`kalman_sdy_kalman` is a constant matrix :math:`\Sigma` such that
 
 .. math::
-    :label: kalman_dare
+    :label: kalman_dare_kalman
 
     \Sigma = A \Sigma A' -  A \Sigma G' (G \Sigma G' + R)^{-1} G \Sigma A' + Q
 
 
-Equation :eq:`kalman_sdy` is known as a discrete-time Riccati difference equation
+Equation :eq:`kalman_sdy_kalman` is known as a discrete-time Riccati difference equation
 
-Equation :eq:`kalman_dare` is known as a `discrete-time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
+Equation :eq:`kalman_dare_kalman` is known as a `discrete-time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
 
 Conditions under which a fixed point exists and the sequence :math:`\{\Sigma_t\}` converges to it are discussed in :cite:`AHMS1996` and :cite:`AndersonMoore2005`, chapter 4
 
@@ -509,7 +509,7 @@ A sufficient (but not necessary) condition is that all the eigenvalues :math:`\l
 
 (This strong condition assures that the unconditional  distribution of :math:`x_t`  converges as :math:`t \rightarrow + \infty`)
 
-In this case, for any initial choice of :math:`\Sigma_0` that is both non-negative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy` converges to a non-negative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare`
+In this case, for any initial choice of :math:`\Sigma_0` that is both non-negative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy_kalman` converges to a non-negative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare_kalman`
 
 
 
@@ -529,7 +529,7 @@ The class ``Kalman`` from the `QuantEcon.py`_ package implements the Kalman filt
 
 * Instance data consists of:
 
-    * the moments :math:`(\hat x_t, \Sigma_t)` of the current prior
+    * the moments :math:`(\hat x_t, \Sigma_t)` of the current prior_kalman
 
     * An instance of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_
 
@@ -560,13 +560,13 @@ To connect this with the notation of this lecture we set
 
 * Methods pertinent for this lecture  are:
 
-    * ``prior_to_filtered``, which updates :math:`(\hat x_t, \Sigma_t)` to :math:`(\hat x_t^F, \Sigma_t^F)`
+    * ``prior_kalman_to_filtered``, which updates :math:`(\hat x_t, \Sigma_t)` to :math:`(\hat x_t^F, \Sigma_t^F)`
 
-    * ``filtered_to_forecast``, which updates the filtering distribution to the predictive distribution -- which becomes the new prior :math:`(\hat x_{t+1}, \Sigma_{t+1})`
+    * ``filtered_to_forecast``, which updates the filtering distribution to the predictive distribution -- which becomes the new prior_kalman :math:`(\hat x_{t+1}, \Sigma_{t+1})`
 
     * ``update``, which combines the last two methods
 
-    * a ``stationary_values``, which computes the solution to :eq:`kalman_dare` and the corresponding (stationary) Kalman gain
+    * a ``stationary_values``, which computes the solution to :eq:`kalman_dare_kalman` and the corresponding (stationary) Kalman gain
 
 
 You can view the program `on GitHub <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/kalman.py>`__
@@ -590,7 +590,7 @@ Suppose that
 * all variables are scalars
 * the hidden state :math:`\{x_t\}` is in fact constant, equal to some :math:`\theta \in \mathbb{R}` unknown to the modeler
 
-State dynamics are therefore given by :eq:`kl_xdynam` with :math:`A=1`, :math:`Q=0` and :math:`x_0 = \theta`
+State dynamics are therefore given by :eq:`kl_xdynam_kalman` with :math:`A=1`, :math:`Q=0` and :math:`x_0 = \theta`
 
 The measurement equation is :math:`y_t = \theta + v_t` where :math:`v_t` is :math:`N(0,1)` and IID
 
@@ -670,7 +670,7 @@ Set
       \right)
 
 
-To initialize the prior density, set
+To initialize the prior_kalman density, set
 
 .. math::
 
@@ -703,7 +703,7 @@ Exercise 4
 
 Try varying the coefficient :math:`0.3` in :math:`Q = 0.3 I` up and down
 
-Observe how the diagonal values in the stationary solution :math:`\Sigma` (see :eq:`kalman_dare`) increase and decrease in line with this coefficient
+Observe how the diagonal values in the stationary solution :math:`\Sigma` (see :eq:`kalman_dare_kalman`) increase and decrease in line with this coefficient
 
 The interpretation is that more randomness in the law of motion for :math:`x_t` causes more (permanent) uncertainty in prediction
 
@@ -732,7 +732,7 @@ Exercise 1
     A, C, G, H = 1, 0, 1, 1
     ss = LinearStateSpace(A, C, G, H, mu_0=θ)
 
-    # == set prior, initialize kalman filter == #
+    # == set prior_kalman, initialize kalman filter == #
     x_hat_0, Σ_0 = 8, 1
     kalman = Kalman(ss, x_hat_0, Σ_0)
 
@@ -815,7 +815,7 @@ Exercise 3
     # === Set up state space mode, initial value x_0 set to zero === #
     ss = LinearStateSpace(A, C, G, H, mu_0 = np.zeros(2))
 
-    # === Define the prior density === #
+    # === Define the prior_kalman density === #
     Σ = [[0.9, 0.3],
          [0.3, 0.9]]
     Σ = np.array(Σ)

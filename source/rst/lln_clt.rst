@@ -1,4 +1,4 @@
-.. _lln_clt:
+.. _lln_clt_lln_clt:
 
 .. include:: /_static/includes/header.raw
 
@@ -89,7 +89,7 @@ In addition, let
 Kolmogorov's strong law states that, if :math:`\mathbb E |X|` is finite, then
 
 .. math::
-    :label: lln_as
+    :label: lln_as_lln_clt_lln_clt
 
     \mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1
 
@@ -103,7 +103,7 @@ our computer can generate perfect random samples (which of course `it can't
 Let's also imagine that we can generate infinite sequences so that the
 statement :math:`\bar X_n \to \mu` can be evaluated
 
-In this setting, :eq:`lln_as` should be interpreted as meaning that the
+In this setting, :eq:`lln_as_lln_clt_lln_clt` should be interpreted as meaning that the
 probability of the computer producing a sequence where :math:`\bar X_n \to \mu` fails to occur
 is zero
 
@@ -122,7 +122,7 @@ The version we prove is as follows: If :math:`X_1, \ldots, X_n` is IID with :mat
 then, for any :math:`\epsilon > 0`, we have
 
 .. math::
-    :label: lln_ip
+    :label: lln_ip_lln_clt_lln_clt
 
     \mathbb P \left\{ | \bar X_n - \mu | \geq \epsilon \right\} \to 0
     \quad \text{as} \quad
@@ -136,7 +136,7 @@ To see that this is so, fix :math:`\epsilon > 0`, and let :math:`\sigma^2` be th
 Recall the `Chebyshev inequality <https://en.wikipedia.org/wiki/Chebyshev%27s_inequality>`_, which tells us that
 
 .. math::
-    :label: lln_cheb
+    :label: lln_cheb_lln_clt_lln_clt
 
     \mathbb P \left\{ | \bar X_n - \mu | \geq \epsilon \right\}
     \leq \frac{\mathbb E [ (\bar X_n - \mu)^2]}{\epsilon^2}
@@ -167,16 +167,16 @@ Independence means that if :math:`i \not= j`, then the covariance term :math:`\m
 
 As a result, :math:`n^2 - n` terms vanish, leading us to a final expression that goes to zero in :math:`n`
 
-Combining our last result with :eq:`lln_cheb`, we come to the estimate
+Combining our last result with :eq:`lln_cheb_lln_clt_lln_clt`, we come to the estimate
 
 .. math::
-    :label: lln_cheb2
+    :label: lln_cheb_lln_clt_lln_clt2
 
     \mathbb P \left\{ | \bar X_n - \mu | \geq \epsilon \right\}
     \leq \frac{\sigma^2}{n \epsilon^2}
 
 
-The claim in :eq:`lln_ip` is now clear
+The claim in :eq:`lln_ip_lln_clt_lln_clt` is now clear
 
 Of course, if the sequence :math:`X_1, \ldots, X_n` is correlated, then the cross-product terms
 :math:`\mathbb E (X_i - \mu)(X_j - \mu)` are not necessarily zero
@@ -356,7 +356,7 @@ The answer is no
 To see this, recall that the `characteristic function <https://en.wikipedia.org/wiki/Characteristic_function_%28probability_theory%29>`_ of the Cauchy distribution is
 
 .. math::
-    :label: lln_cch
+    :label: lln_cch_lln_clt_lln_clt
 
     \phi(t) = \mathbb E e^{itX} = \int e^{i t x} f(x) dx = e^{-|t|}
 
@@ -376,7 +376,7 @@ Using independence, the characteristic function of the sample mean becomes
     \end{aligned}
 
 
-In view of :eq:`lln_cch`, this is just :math:`e^{-|t|}`
+In view of :eq:`lln_cch_lln_clt_lln_clt`, this is just :math:`e^{-|t|}`
 
 Thus, in the case of the Cauchy distribution, the sample mean itself has the very same Cauchy distribution, regardless of :math:`n`
 
@@ -409,7 +409,7 @@ If the sequence :math:`X_1, \ldots, X_n` is IID, with common mean
 :math:`\mu` and common variance :math:`\sigma^2 \in (0, \infty)`, then
 
 .. math::
-    :label: lln_clt
+    :label: lln_clt_lln_clt
 
     \sqrt{n} ( \bar X_n - \mu ) \stackrel { d } {\to} N(0, \sigma^2)
     \quad \text{as} \quad
@@ -791,7 +791,7 @@ Interpreting vector addition and scalar multiplication in the usual way (i.e., p
 In this setting, the LLN tells us that
 
 .. math::
-    :label: lln_asmv
+    :label: lln_as_lln_clt_lln_cltmv_lln_clt
 
     \mathbb P \left\{ \bar{\mathbf X}_n \to \boldsymbol \mu \text{ as } n \to \infty \right\} = 1
 
@@ -801,7 +801,7 @@ Here :math:`\bar{\mathbf X}_n \to \boldsymbol \mu` means that :math:`\| \bar{\ma
 The CLT tells us that, provided :math:`\Sigma` is finite,
 
 .. math::
-    :label: lln_cltmv
+    :label: lln_clt_lln_cltmv_lln_clt
 
     \sqrt{n} ( \bar{\mathbf X}_n - \boldsymbol \mu ) \stackrel { d } {\to} N(\mathbf 0, \Sigma)
     \quad \text{as} \quad
@@ -824,7 +824,7 @@ Assume the conditions of the CLT as :ref:`stated above <statement_clt>`
 If :math:`g \colon \mathbb R \to \mathbb R` is differentiable at :math:`\mu` and :math:`g'(\mu) \not= 0`, then
 
 .. math::
-    :label: lln_dm
+    :label: lln_dm_lln_clt
 
     \sqrt{n} \{ g(\bar X_n) - g(\mu) \}
     \stackrel { d } {\to} N(0, g'(\mu)^2 \sigma^2)
@@ -865,7 +865,7 @@ Assume the setting of the multivariate CLT :ref:`discussed above <multivariate_c
 #. The convergence
 
 .. math::
-    :label: lln_cltmv2
+    :label: lln_clt_lln_cltmv_lln_clt2
 
     \sqrt{n} ( \bar{\mathbf X}_n - \boldsymbol \mu ) \stackrel { d } {\to} N(\mathbf 0, \Sigma)
 
@@ -925,7 +925,7 @@ Applying the continuous mapping theorem one more time tells us that
 Given the distribution of :math:`\mathbf Z`, we conclude that
 
 .. math::
-    :label: lln_ctc
+    :label: lln_ctc_lln_clt
 
     n \| \mathbf Q ( \bar{\mathbf X}_n - \boldsymbol \mu ) \|^2
     \stackrel{d}{\to}
@@ -937,7 +937,7 @@ of freedom
 
 (Recall that :math:`k` is the dimension of :math:`\mathbf X_i`, the underlying random vectors)
 
-Your second exercise is to illustrate the convergence in :eq:`lln_ctc` with a simulation
+Your second exercise is to illustrate the convergence in :eq:`lln_ctc_lln_clt` with a simulation
 
 In doing so, let
 

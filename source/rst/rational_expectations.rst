@@ -81,7 +81,7 @@ Each of these :math:`n` firms sell output :math:`y`
 The price :math:`p` of the good lies on an inverse demand curve
 
 .. math::
-    :label: ree_comp3d/_static
+    :label: ree_comp3d_rational_expectations/_static_rational_expectations
 
     p = a_0 - a_1 Y
 
@@ -102,43 +102,43 @@ Each firm has a total cost function
 
 The profits of a representative firm are :math:`p y - c(y)`
 
-Using :eq:`ree_comp3d/_static`, we can express the problem of the representative firm as
+Using :eq:`ree_comp3d_rational_expectations/_static_rational_expectations`, we can express the problem of the representative firm as
 
 .. math::
-    :label: max_problem/_static
+    :label: max_problem/_static_rational_expectations
 
     \max_{y} \Bigl[ (a_0 - a_1 Y) y - c_1 y - 0.5 c_2 y^2 \Bigr]
 
 
-In posing problem :eq:`max_problem/_static`, we want the firm to be a *price taker*
+In posing problem :eq:`max_problem/_static_rational_expectations`, we want the firm to be a *price taker*
 
 We do that by regarding :math:`p` and therefore :math:`Y` as exogenous to the firm
 
 The essence of the Big :math:`Y`, little :math:`y` trick is *not* to set :math:`Y = n y` *before* taking the first-order condition with respect
-to :math:`y` in problem :eq:`max_problem/_static`
+to :math:`y` in problem :eq:`max_problem/_static_rational_expectations`
 
 This assures that the firm is a price taker
 
-The first-order condition for problem :eq:`max_problem/_static` is
+The first-order condition for problem :eq:`max_problem/_static_rational_expectations` is
 
 .. math::
-    :label: BigYsimpleFONC
+    :label: BigYsimpleFONC_rational_expectations
 
     a_0 - a_1 Y - c_1 - c_2 y = 0
 
 
-At this point, *but not before*, we substitute :math:`Y = ny` into :eq:`BigYsimpleFONC`
+At this point, *but not before*, we substitute :math:`Y = ny` into :eq:`BigYsimpleFONC_rational_expectations`
 to obtain the following linear equation
 
 .. math::
-    :label: staticY
+    :label: staticY_rational_expectations
 
     a_0 - c_1 - (a_1 + n^{-1} c_2) Y = 0
 
 
 to be solved for the competitive equilibrium market-wide output :math:`Y`
 
-After solving for :math:`Y`, we can compute the competitive equilibrium price :math:`p` from the inverse demand curve :eq:`ree_comp3d/_static`
+After solving for :math:`Y`, we can compute the competitive equilibrium price :math:`p` from the inverse demand curve :eq:`ree_comp3d_rational_expectations/_static_rational_expectations`
 
 
 Further Reading
@@ -189,7 +189,7 @@ Each of these :math:`n` firms sell output :math:`y_t`
 The price :math:`p_t` of the good lies on the inverse demand curve
 
 .. math::
-    :label: ree_comp3d
+    :label: ree_comp3d_rational_expectations
 
     p_t = a_0 - a_1 Y_t
 
@@ -218,7 +218,7 @@ While it faces no uncertainty, it does face adjustment costs
 In particular, it chooses a production plan to maximize
 
 .. math::
-    :label: ree_obj
+    :label: ree_obj_rational_expectations
 
     \sum_{t=0}^\infty \beta^t r_t
 
@@ -226,7 +226,7 @@ In particular, it chooses a production plan to maximize
 where
 
 .. math::
-    :label: ree_comp2
+    :label: ree_comp2_rational_expectations
 
     r_t := p_t y_t - \frac{ \gamma (y_{t+1} - y_t )^2 }{2},
     \qquad  y_0 \text{ given}
@@ -251,7 +251,7 @@ Prices and Aggregate Output
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-In view of :eq:`ree_comp3d`, the firm's incentive to forecast the market price translates into an incentive to forecast aggregate output :math:`Y_t`
+In view of :eq:`ree_comp3d_rational_expectations`, the firm's incentive to forecast the market price translates into an incentive to forecast aggregate output :math:`Y_t`
 
 Aggregate output depends on the choices of other firms
 
@@ -267,7 +267,7 @@ The Firm's Beliefs
 We suppose the firm believes that market-wide output :math:`Y_t` follows the law of motion
 
 .. math::
-    :label: ree_hlom
+    :label: ree_hlom_rational_expectations
 
     Y_{t+1} =  H(Y_t)
 
@@ -281,14 +281,14 @@ The *belief function* :math:`H` is an equilibrium object, and hence remains to b
 Optimal Behavior Given Beliefs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For now, let's fix a particular belief :math:`H` in :eq:`ree_hlom` and investigate the firm's response to it
+For now, let's fix a particular belief :math:`H` in :eq:`ree_hlom_rational_expectations` and investigate the firm's response to it
 
 Let :math:`v` be the optimal value function for the firm's problem given :math:`H`
 
 The value function satisfies the Bellman equation
 
 .. math::
-    :label: comp4
+    :label: comp4_rational_expectations
 
     v(y,Y) = \max_{y'} \left\{ a_0 y - a_1 y Y - \frac{ \gamma (y' - y)^2}{2}   + \beta v(y', H(Y))\right\}
 
@@ -296,7 +296,7 @@ The value function satisfies the Bellman equation
 Let's denote the firm's optimal policy function by :math:`h`, so that
 
 .. math::
-    :label: comp9
+    :label: comp9_rational_expectations
 
     y_{t+1} = h(y_t, Y_t)
 
@@ -304,7 +304,7 @@ Let's denote the firm's optimal policy function by :math:`h`, so that
 where
 
 .. math::
-    :label: ree_opbe
+    :label: ree_opbe_rational_expectations
 
     h(y, Y) := \argmax_{y'}
     \left\{ a_0 y - a_1 y Y - \frac{ \gamma (y' - y)^2}{2}   + \beta v(y', H(Y))\right\}
@@ -321,29 +321,29 @@ The first-order necessary condition for choosing :math:`y'` is
 
 
 .. math::
-    :label: comp5
+    :label: comp5_rational_expectations
 
     -\gamma (y' - y) + \beta v_y(y', H(Y) ) = 0
 
 
 An important useful envelope result of Benveniste-Scheinkman  :cite:`BenvenisteScheinkman1979` implies that to
 differentiate :math:`v` with respect to :math:`y` we can naively differentiate
-the right side of :eq:`comp4`, giving
+the right side of :eq:`comp4_rational_expectations`, giving
 
 .. math::
 
     v_y(y,Y) = a_0 - a_1 Y + \gamma (y' - y)
 
 
-Substituting this equation into :eq:`comp5` gives the *Euler equation*
+Substituting this equation into :eq:`comp5_rational_expectations` gives the *Euler equation*
 
 .. math::
-    :label: ree_comp7
+    :label: ree_comp7_rational_expectations
 
     -\gamma (y_{t+1} - y_t) + \beta [a_0 - a_1 Y_{t+1} + \gamma (y_{t+2} - y_{t+1} )] =0
 
 
-The firm optimally sets  an output path that satisfies :eq:`ree_comp7`, taking :eq:`ree_hlom` as given, and  subject to
+The firm optimally sets  an output path that satisfies :eq:`ree_comp7_rational_expectations`, taking :eq:`ree_hlom_rational_expectations` as given, and  subject to
 
 * the initial conditions for :math:`(y_0, Y_0)`
 
@@ -351,10 +351,10 @@ The firm optimally sets  an output path that satisfies :eq:`ree_comp7`, taking :
 
 This last condition is called the *transversality condition*, and acts as a first-order necessary condition "at infinity"
 
-The firm's decision rule solves the difference equation :eq:`ree_comp7` subject to the given initial condition :math:`y_0` and the transversality condition
+The firm's decision rule solves the difference equation :eq:`ree_comp7_rational_expectations` subject to the given initial condition :math:`y_0` and the transversality condition
 
-Note that solving the Bellman equation :eq:`comp4` for :math:`v` and then :math:`h` in :eq:`ree_opbe` yields
-a decision rule that automatically imposes both the Euler equation :eq:`ree_comp7` and the transversality condition
+Note that solving the Bellman equation :eq:`comp4_rational_expectations` for :math:`v` and then :math:`h` in :eq:`ree_opbe_rational_expectations` yields
+a decision rule that automatically imposes both the Euler equation :eq:`ree_comp7_rational_expectations` and the transversality condition
 
 
 
@@ -366,12 +366,12 @@ As we've seen, a given belief translates into a particular decision rule :math:`
 Recalling that :math:`Y_t = ny_t`, the *actual law of motion* for market-wide output is then
 
 .. math::
-    :label: ree_comp9a
+    :label: ree_comp9_rational_expectationsa
 
     Y_{t+1} = n h(Y_t/n, Y_t)
 
 
-Thus, when firms believe that the law of motion for market-wide output is :eq:`ree_hlom`, their optimizing behavior makes the actual law of motion be :eq:`ree_comp9a`
+Thus, when firms believe that the law of motion for market-wide output is :eq:`ree_hlom_rational_expectations`, their optimizing behavior makes the actual law of motion be :eq:`ree_comp9_rational_expectationsa`
 
 .. _ree_def:
 
@@ -387,7 +387,7 @@ A *rational expectations equilibrium* or *recursive competitive equilibrium*  of
     :math:`Y`
 
 
-Thus, a rational expectations equilibrium equates the perceived and actual laws of motion :eq:`ree_hlom` and :eq:`ree_comp9a`
+Thus, a rational expectations equilibrium equates the perceived and actual laws of motion :eq:`ree_hlom_rational_expectations` and :eq:`ree_comp9_rational_expectationsa`
 
 
 Fixed Point Characterization
@@ -395,7 +395,7 @@ Fixed Point Characterization
 
 As we've seen, the firm's optimum problem induces a mapping :math:`\Phi` from a perceived law of motion :math:`H` for market-wide output to an actual law of motion :math:`\Phi(H)`
 
-The mapping :math:`\Phi` is the composition of two operations, taking a perceived law of motion into a decision rule via :eq:`comp4`--:eq:`ree_opbe`, and a decision rule into an actual law via :eq:`ree_comp9a`
+The mapping :math:`\Phi` is the composition of two operations, taking a perceived law of motion into a decision rule via :eq:`comp4_rational_expectations`--:eq:`ree_opbe_rational_expectations`, and a decision rule into an actual law via :eq:`ree_comp9_rational_expectationsa`
 
 The :math:`H` component of a rational expectations equilibrium is a fixed point of :math:`\Phi`
 
@@ -450,7 +450,7 @@ For convenience, in this section, we set :math:`n=1`
 We first compute a sum of  consumer and producer surplus at time :math:`t`
 
 .. math::
-    :label: comp10
+    :label: comp10_rational_expectations
 
     s(Y_t, Y_{t+1})
     := \int_0^{Y_t} (a_0 - a_1 x) \, dx - \frac{ \gamma (Y_{t+1} - Y_t)^2}{2}
@@ -471,13 +471,13 @@ subject to an initial condition for :math:`Y_0`
 Solution of the Planning Problem
 ----------------------------------------------
 
-Evaluating the integral in :eq:`comp10` yields the quadratic form :math:`a_0
+Evaluating the integral in :eq:`comp10_rational_expectations` yields the quadratic form :math:`a_0
 Y_t - a_1 Y_t^2 / 2`
 
 As a result, the Bellman equation for the planning problem is
 
 .. math::
-    :label: comp12
+    :label: comp12_rational_expectations
 
     V(Y) = \max_{Y'}
     \left\{a_0  Y - {a_1 \over 2} Y^2 - \frac{ \gamma (Y' - Y)^2}{2} + \beta V(Y') \right\}
@@ -486,7 +486,7 @@ As a result, the Bellman equation for the planning problem is
 The associated first-order condition is
 
 .. math::
-    :label: comp14
+    :label: comp14_rational_expectations
 
     -\gamma (Y' - Y) + \beta V'(Y') = 0
 
@@ -498,11 +498,11 @@ Applying the same Benveniste-Scheinkman formula gives
     V'(Y) = a_0 - a_1 Y + \gamma (Y' - Y)
 
 
-Substituting this into equation :eq:`comp14` and rearranging leads to the Euler
+Substituting this into equation :eq:`comp14_rational_expectations` and rearranging leads to the Euler
 equation
 
 .. math::
-    :label: comp16
+    :label: comp16_rational_expectations
 
     \beta a_0 + \gamma Y_t - [\beta a_1 + \gamma (1+ \beta)]Y_{t+1} + \gamma \beta Y_{t+2} =0
 
@@ -510,12 +510,12 @@ equation
 The Key Insight
 ------------------
 
-Return to equation :eq:`ree_comp7` and set :math:`y_t = Y_t` for all :math:`t`
+Return to equation :eq:`ree_comp7_rational_expectations` and set :math:`y_t = Y_t` for all :math:`t`
 
 (Recall that for this section we've set :math:`n=1` to simplify the
 calculations)
 
-A small amount of algebra will convince you that when :math:`y_t=Y_t`, equations :eq:`comp16` and :eq:`ree_comp7` are identical
+A small amount of algebra will convince you that when :math:`y_t=Y_t`, equations :eq:`comp16_rational_expectations` and :eq:`ree_comp7_rational_expectations` are identical
 
 Thus, the Euler equation for the planning problem matches the second-order difference equation
 that we derived by
@@ -526,9 +526,9 @@ that we derived by
 
 If it is appropriate to apply the same terminal conditions for these two difference equations, which it is, then we have verified that a solution of the planning problem is also a rational expectations equilibrium quantity sequence
 
-.. Setting :math:`y_t = Y_t` in equation :eq:`ree_comp7` amounts to dropping equation :eq:`ree_hlom` and instead solving for the coefficients :math:`\kappa_0, \kappa_1` that make :math:`y_t = Y_t` true and that jointly solve equations :eq:`ree_hlom` and :eq:`ree_comp7`
+.. Setting :math:`y_t = Y_t` in equation :eq:`ree_comp7_rational_expectations` amounts to dropping equation :eq:`ree_hlom_rational_expectations` and instead solving for the coefficients :math:`\kappa_0, \kappa_1` that make :math:`y_t = Y_t` true and that jointly solve equations :eq:`ree_hlom_rational_expectations` and :eq:`ree_comp7_rational_expectations`
 
-It follows that for this example we can compute equilibrium quantities by forming the optimal linear regulator problem corresponding to the Bellman equation :eq:`comp12`
+It follows that for this example we can compute equilibrium quantities by forming the optimal linear regulator problem corresponding to the Bellman equation :eq:`comp12_rational_expectations`
 
 The optimal policy function for the planning problem is the aggregate law of motion
 :math:`H` that the representative firm faces within a rational expectations equilibrium
@@ -542,7 +542,7 @@ problem is an LQ problem implies an optimal policy --- and hence aggregate law
 of motion --- taking the form
 
 .. math::
-    :label: ree_hlom2
+    :label: ree_hlom_rational_expectations2
 
     Y_{t+1}
     = \kappa_0 + \kappa_1 Y_t
@@ -552,20 +552,20 @@ for some parameter pair :math:`\kappa_0, \kappa_1`
 
 
 Now that we know the aggregate law of motion is linear, we can see from the
-firm's Bellman equation :eq:`comp4` that the firm's problem can also be framed as
+firm's Bellman equation :eq:`comp4_rational_expectations` that the firm's problem can also be framed as
 an LQ problem
 
 As you're asked to show in the exercises, the LQ formulation of the firm's
 problem implies a law of motion that looks as follows
 
 .. math::
-    :label: ree_ex5
+    :label: ree_ex5_rational_expectations
 
     y_{t+1} = h_0 + h_1 y_t + h_2 Y_t
 
 
 Hence a rational expectations equilibrium will be defined by the parameters
-:math:`(\kappa_0, \kappa_1, h_0, h_1, h_2)` in :eq:`ree_hlom2`--:eq:`ree_ex5`
+:math:`(\kappa_0, \kappa_1, h_0, h_1, h_2)` in :eq:`ree_hlom_rational_expectations2`--:eq:`ree_ex5_rational_expectations`
 
 
 Exercises
@@ -578,7 +578,7 @@ Exercise 1
 
 Consider the firm problem :ref:`described above <ree_fp>`
 
-Let the firm's belief function :math:`H` be as given in :eq:`ree_hlom2`
+Let the firm's belief function :math:`H` be as given in :eq:`ree_hlom_rational_expectations2`
 
 
 Formulate the firm's problem as a discounted optimal linear regulator problem, being careful to describe all of the objects needed
@@ -591,9 +591,9 @@ Use the class ``LQ`` from the `QuantEcon.py <http://quantecon.org/python_index.h
     a_0= 100, a_1= 0.05, \beta = 0.95, \gamma=10, \kappa_0 = 95.5, \kappa_1 = 0.95
 
 
-Express the solution of the firm's problem in the form :eq:`ree_ex5` and give the values for each :math:`h_j`
+Express the solution of the firm's problem in the form :eq:`ree_ex5_rational_expectations` and give the values for each :math:`h_j`
 
-If there were :math:`n` identical competitive firms all behaving according to :eq:`ree_ex5`, what would :eq:`ree_ex5`  imply for the *actual* law of motion :eq:`ree_hlom` for market supply
+If there were :math:`n` identical competitive firms all behaving according to :eq:`ree_ex5_rational_expectations`, what would :eq:`ree_ex5_rational_expectations`  imply for the *actual* law of motion :eq:`ree_hlom_rational_expectations` for market supply
 
 
 
@@ -604,7 +604,7 @@ Exercise 2
 
 Consider the following :math:`\kappa_0, \kappa_1` pairs as candidates for the
 aggregate law of motion component of a rational expectations equilibrium (see
-:eq:`ree_hlom2`)
+:eq:`ree_hlom_rational_expectations2`)
 
 Extending the program that you wrote for exercise 1, determine which if any
 satisfy :ref:`the definition <ree_def>` of a rational expectations equilibrium
@@ -649,7 +649,7 @@ Recall the planner's problem :ref:`described above <ree_pp>`
 Exercise 4
 ------------
 
-A monopolist faces the industry demand curve :eq:`ree_comp3d`  and chooses :math:`\{Y_t\}` to maximize :math:`\sum_{t=0}^{\infty} \beta^t r_t` where
+A monopolist faces the industry demand curve :eq:`ree_comp3d_rational_expectations`  and chooses :math:`\{Y_t\}` to maximize :math:`\sum_{t=0}^{\infty} \beta^t r_t` where
 
 .. math::
 

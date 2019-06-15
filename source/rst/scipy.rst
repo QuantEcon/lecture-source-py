@@ -107,7 +107,7 @@ Recall that ``numpy.random`` provides functions for generating random variables
 This generates a draw from the distribution below when ``a, b = 5, 5``
 
 .. math::
-    :label: betadist2
+    :label: betadist2_scipy
 
     f(x; a, b) = \frac{x^{(a - 1)} (1 - x)^{(b - 1)}}
         {\int_0^1 u^{(a - 1)} (1 - u)^{(b - 1)} du}
@@ -216,7 +216,7 @@ A *root* of a real function :math:`f` on :math:`[a,b]` is an :math:`x \in [a, b]
 For example, if we plot the function
 
 .. math::
-    :label: root_f
+    :label: root_f_scipy
 
     f(x) = \sin(4 (x - 1/4)) + x + x^{20} - 1
 
@@ -266,7 +266,7 @@ It works for all sufficiently well behaved increasing continuous functions with 
 .. literalinclude:: /_static/code/scipy/bisection.py
 
 
-In fact, SciPy provides its own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f`
+In fact, SciPy provides its own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f_scipy`
 
 .. code-block:: python3
 

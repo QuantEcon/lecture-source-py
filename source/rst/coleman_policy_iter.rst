@@ -73,7 +73,7 @@ The last two conditions are usually called **Inada conditions**
 Recall the Bellman equation
 
 .. math::
-    :label: cpi_fpb30
+    :label: cpi_fpb30_coleman_policy_iter
 
     v^*(y) = \max_{0 \leq c \leq y}
         \left\{
@@ -85,7 +85,7 @@ Recall the Bellman equation
 
 Let the optimal consumption policy be denoted by :math:`\sigma^*`
 
-We know that :math:`\sigma^*` is a :math:`v^*` greedy policy so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30`
+We know that :math:`\sigma^*` is a :math:`v^*` greedy policy so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30_coleman_policy_iter`
 
 The conditions above imply that
 
@@ -96,13 +96,13 @@ The conditions above imply that
 * the value function is strictly concave and continuously differentiable, with
 
 .. math::
-    :label: cpi_env
+    :label: cpi_env_coleman_policy_iter
 
     (v^*)'(y) = u' (\sigma^*(y) ) := (u' \circ \sigma^*)(y)
 
 The last result is called the **envelope condition** due to its relationship with the `envelope theorem <https://en.wikipedia.org/wiki/Envelope_theorem>`_
 
-To see why :eq:`cpi_env` might be valid, write the Bellman equation in the equivalent
+To see why :eq:`cpi_env_coleman_policy_iter` might be valid, write the Bellman equation in the equivalent
 form
 
 .. math::
@@ -120,18 +120,18 @@ Section 12.1 of `EDTC <http://johnstachurski.net/edtc.html>`_ contains full proo
 
 Differentiability of the value function and interiority of the optimal policy
 imply that optimal consumption satisfies the first order condition associated
-with :eq:`cpi_fpb30`, which is
+with :eq:`cpi_fpb30_coleman_policy_iter`, which is
 
 .. math::
-    :label: cpi_foc
+    :label: cpi_foc_coleman_policy_iter
 
     u'(\sigma^*(y)) = \beta \int (v^*)'(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
 
 
-Combining :eq:`cpi_env` and the first-order condition :eq:`cpi_foc` gives the famous **Euler equation**
+Combining :eq:`cpi_env_coleman_policy_iter` and the first-order condition :eq:`cpi_foc_coleman_policy_iter` gives the famous **Euler equation**
 
 .. math::
-    :label: cpi_euler
+    :label: cpi_euler_coleman_policy_iter
 
     (u'\circ \sigma^*)(y)
     = \beta \int (u'\circ \sigma^*)(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
@@ -140,7 +140,7 @@ Combining :eq:`cpi_env` and the first-order condition :eq:`cpi_foc` gives the fa
 We can think of the Euler equation as a functional equation
 
 .. math::
-    :label: cpi_euler_func
+    :label: cpi_euler_coleman_policy_iter_func
 
     (u'\circ \sigma)(y)
     = \beta \int (u'\circ \sigma)(f(y - \sigma(y)) z) f'(y - \sigma(y)) z \phi(dz)
@@ -148,7 +148,7 @@ We can think of the Euler equation as a functional equation
 
 over interior consumption policies :math:`\sigma`, one solution of which is the optimal policy :math:`\sigma^*`
 
-Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtain :math:`\sigma^*`
+Our aim is to solve the functional equation :eq:`cpi_euler_coleman_policy_iter_func` and hence obtain :math:`\sigma^*`
 
 
 
@@ -158,7 +158,7 @@ The Coleman-Reffett Operator
 Recall the Bellman operator
 
 .. math::
-    :label: fcbell20_coleman
+    :label: fcbell20_coleman_coleman_policy_iter
 
     Tw(y) := \max_{0 \leq c \leq y}
     \left\{
@@ -180,7 +180,7 @@ Henceforth we denote this set of policies by :math:`\mathscr P`
 #. returns a new function :math:`K\sigma`,  where :math:`K\sigma(y)` is the :math:`c \in (0, y)` that solves
 
 .. math::
-    :label: cpi_coledef
+    :label: cpi_coledef_coleman_policy_iter
 
     u'(c)
     = \beta \int (u' \circ \sigma) (f(y - c) z ) f'(y - c) z \phi(dz)
@@ -194,7 +194,7 @@ you to choose today when your future consumption policy is :math:`\sigma`
 
 The  important thing to note about :math:`K` is that, by
 construction, its fixed points coincide with solutions to the functional
-equation :eq:`cpi_euler_func`
+equation :eq:`cpi_euler_coleman_policy_iter_func`
 
 In particular, the optimal policy :math:`\sigma^*` is a fixed point
 
@@ -216,18 +216,18 @@ Is the Coleman-Reffett Operator Well Defined?
 -----------------------------------------------
 
 In particular, is there always a unique :math:`c \in (0, y)` that solves
-:eq:`cpi_coledef`?
+:eq:`cpi_coledef_coleman_policy_iter`?
 
 The answer is yes, under our assumptions
 
-For any :math:`\sigma \in \mathscr P`, the right side of :eq:`cpi_coledef`
+For any :math:`\sigma \in \mathscr P`, the right side of :eq:`cpi_coledef_coleman_policy_iter`
 
 * is continuous and strictly increasing in :math:`c` on :math:`(0, y)`
 
 * diverges to :math:`+\infty` as :math:`c \uparrow y`
 
 
-The left side of :eq:`cpi_coledef`
+The left side of :eq:`cpi_coledef_coleman_policy_iter`
 
 * is continuous and strictly decreasing in :math:`c` on :math:`(0, y)`
 
@@ -312,7 +312,7 @@ The last statement can be written more simply as
 or, by applying :math:`\tau^{-1}` to both sides
 
 .. math::
-    :label: cpi_ghcom
+    :label: cpi_ghcom_coleman_policy_iter
 
     g = \tau^{-1} \circ h \circ \tau
 
@@ -327,7 +327,7 @@ Here's a similar figure that traces out the action of the maps on a point
 
 .. figure:: /_static/figures/col_pol_bij2.png
 
-Now, it's easy to check from :eq:`cpi_ghcom` that :math:`g^2 = \tau^{-1} \circ h^2 \circ \tau` holds
+Now, it's easy to check from :eq:`cpi_ghcom_coleman_policy_iter` that :math:`g^2 = \tau^{-1} \circ h^2 \circ \tau` holds
 
 In fact, if you like proofs by induction, you won't have trouble showing that
 
@@ -390,7 +390,7 @@ Commutative Operators
 It is an additional solved exercise (see below) to show that :math:`T` and :math:`K` commute under :math:`M`, in the sense that
 
 .. math::
-    :label: cpi_ed_tk
+    :label: cpi_ed_tk_coleman_policy_iter
 
     M \circ T = K \circ M
 
@@ -603,7 +603,7 @@ Exercises
 Exercise 1
 -----------
 
-Show that :eq:`cpi_ed_tk` is valid.  In particular,
+Show that :eq:`cpi_ed_tk_coleman_policy_iter` is valid.  In particular,
 
 * Let :math:`v` be strictly concave and continuously differentiable on :math:`(0, \infty)`
 
@@ -658,7 +658,7 @@ Using the envelope theorem, one can show that :math:`(Tv)'(y) = u'(\sigma(y))`
 where :math:`\sigma(y)` solves
 
 .. math::
-    :label: cpi_foo
+    :label: cpi_foo_coleman_policy_iter
 
     u'(\sigma(y))
     = \beta \int v' (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)

@@ -69,7 +69,7 @@ where :math:`d_0, d_1, \ldots, d_m` is a given scalar sequence
 Consider the discrete-time control problem
 
 .. math::
-    :label: oneone
+    :label: oneone_lu_tricks
 
     \max_{\{y_t\}}
     \lim_{N \to \infty} \sum^N_{t=0} \beta^t\,
@@ -86,7 +86,7 @@ where
 * :math:`\{a_t\}_{t \geq 0}` is a sequence of exponential order less than :math:`\beta^{-1/2}`, by which we mean :math:`\lim_{t \rightarrow \infty} \beta^{\frac{t}{2}} a_t = 0`
 
 
-Maximization in :eq:`oneone` is subject to  initial conditions for :math:`y_{-1}, y_{-2} \ldots, y_{-m}`
+Maximization in :eq:`oneone_lu_tricks` is subject to  initial conditions for :math:`y_{-1}, y_{-2} \ldots, y_{-m}`
 
 Maximization is over infinite sequences :math:`\{y_t\}_{t \geq 0}`
 
@@ -121,7 +121,7 @@ In this expression, :math:`q_t` is output, :math:`c` is average cost of producti
 
 The term :math:`\gamma (q_{t+1} - q_t)^2` represents adjustment costs
 
-You will be able to confirm that the objective function can be rewritten as :eq:`oneone` when
+You will be able to confirm that the objective function can be rewritten as :eq:`oneone_lu_tricks` when
 
 * :math:`a_t := \alpha_0 + d_t - c`
 
@@ -139,14 +139,14 @@ We first study a finite :math:`N` version of the problem
 
 Later we will study an infinite horizon problem solution as a limiting version of a finite horizon problem
 
-(This will require being careful because the limits as :math:`N \to \infty` of the necessary and sufficient conditions for maximizing finite :math:`N` versions of :eq:`oneone`
-are not sufficient for maximizing :eq:`oneone`)
+(This will require being careful because the limits as :math:`N \to \infty` of the necessary and sufficient conditions for maximizing finite :math:`N` versions of :eq:`oneone_lu_tricks`
+are not sufficient for maximizing :eq:`oneone_lu_tricks`)
 
 We begin by
 
 #. fixing :math:`N > m`,
 
-#. differentiating the finite version of :eq:`oneone` with respect to :math:`y_0, y_1, \ldots, y_N`, and
+#. differentiating the finite version of :eq:`oneone_lu_tricks` with respect to :math:`y_0, y_1, \ldots, y_N`, and
 
 #. setting these derivatives to zero
 
@@ -188,7 +188,7 @@ Differentiating :math:`J` with respect to :math:`y_t` for
 We can write this more succinctly as
 
 .. math::
-    :label: onetwo
+    :label: onetwo_lu_tricks
 
     {\partial {J} \over \partial y_t}
         = 2 \beta^t \, d(\beta L^{-1}) \, d (L) y_t
@@ -197,7 +197,7 @@ We can write this more succinctly as
 Differentiating :math:`J` with respect to :math:`y_t` for :math:`t = N-m + 1, \ldots, N` gives
 
 .. math::
-    :label: onethree
+    :label: onethree_lu_tricks
 
     \begin{aligned}
      {\partial J \over \partial y_N}
@@ -213,24 +213,24 @@ Differentiating :math:`J` with respect to :math:`y_t` for :math:`t = N-m + 1, \l
     \end{aligned}
 
 
-With these preliminaries under our belts, we are ready to differentiate :eq:`oneone`
+With these preliminaries under our belts, we are ready to differentiate :eq:`oneone_lu_tricks`
 
-Differentiating :eq:`oneone` with respect to :math:`y_t` for :math:`t=0, \ldots, N-m` gives the Euler equations
+Differentiating :eq:`oneone_lu_tricks` with respect to :math:`y_t` for :math:`t=0, \ldots, N-m` gives the Euler equations
 
 .. math::
-    :label: onefour
+    :label: onefour_lu_tricks
 
     \bigl[h+d\,(\beta L^{-1})\,d(L)\bigr] y_t = a_t,
     \quad t=0,\, 1,\, \ldots, N-m
 
 
-The system of equations :eq:`onefour` forms  a  :math:`2 \times m` order linear *difference
+The system of equations :eq:`onefour_lu_tricks` forms  a  :math:`2 \times m` order linear *difference
 equation* that must hold for the values of :math:`t` indicated.
 
-Differentiating :eq:`oneone` with respect to :math:`y_t` for :math:`t = N-m + 1, \ldots, N` gives the terminal conditions
+Differentiating :eq:`oneone_lu_tricks` with respect to :math:`y_t` for :math:`t = N-m + 1, \ldots, N` gives the terminal conditions
 
 .. math::
-    :label: onefive
+    :label: onefive_lu_tricks
 
     \begin{aligned}
     \beta^N  (a_N - hy_N - d_0\,d(L)y_N)
@@ -245,14 +245,14 @@ Differentiating :eq:`oneone` with respect to :math:`y_t` for :math:`t = N-m + 1,
     \end{aligned}
 
 
-In the finite :math:`N` problem, we want simultaneously to solve :eq:`onefour` subject to the :math:`m` initial conditions
+In the finite :math:`N` problem, we want simultaneously to solve :eq:`onefour_lu_tricks` subject to the :math:`m` initial conditions
 :math:`y_{-1}, \ldots, y_{-m}` and the :math:`m` terminal conditions
-:eq:`onefive`
+:eq:`onefive_lu_tricks`
 
 These conditions uniquely pin down the solution of the finite :math:`N` problem
 
 That is, for the finite :math:`N` problem,
-conditions :eq:`onefour` and :eq:`onefive` are necessary and sufficient for a maximum,
+conditions :eq:`onefour_lu_tricks` and :eq:`onefive_lu_tricks` are necessary and sufficient for a maximum,
 by concavity of the objective function
 
 Next, we describe how to obtain the solution using matrix methods
@@ -274,7 +274,7 @@ Let's begin with the special case in which :math:`m=1`
 We want to solve the system of :math:`N+1` linear equations
 
 .. math::
-    :label: oneff
+    :label: oneff_lu_tricks
 
     \begin{aligned}
     \bigl[h & + d\, (\beta L^{-1})\, d\, (L) ] y_t = a_t, \quad
@@ -299,10 +299,10 @@ Let
     = (h + d_0^2 + d_1^2) + d_1 d_0 L+ d_1 d_0 \beta L^{-1}
 
 
-Then we can represent :eq:`oneff` as the matrix equation
+Then we can represent :eq:`oneff_lu_tricks` as the matrix equation
 
 .. math::
-    :label: onefourfive
+    :label: onefour_lu_tricksfive
 
     \left[
         \begin{matrix}
@@ -331,7 +331,7 @@ Then we can represent :eq:`oneff` as the matrix equation
 or
 
 .. math::
-    :label: onefoursix
+    :label: onefour_lu_trickssix
 
     W\bar y = \bar a
 
@@ -339,7 +339,7 @@ or
 Notice how we have chosen to arrange the :math:`y_t`\ ’s in reverse
 time order.
 
-The matrix :math:`W` on the left side of :eq:`onefourfive` is "almost" a
+The matrix :math:`W` on the left side of :eq:`onefour_lu_tricksfive` is "almost" a
 `Toeplitz matrix <https://en.wikipedia.org/wiki/Toeplitz_matrix>`_ (where each
 descending diagonal is constant)
 
@@ -349,10 +349,10 @@ There are two sources of deviation from the  form  of a Toeplitz matrix
 
 #. The sub-diagonal elements equal :math:`\beta` time the super-diagonal elements
 
-The solution of :eq:`onefoursix` can be expressed in the form
+The solution of :eq:`onefour_lu_trickssix` can be expressed in the form
 
 .. math::
-    :label: onefourseven
+    :label: onefour_lu_tricksseven
 
     \bar y = W^{-1} \bar a
 
@@ -364,8 +364,8 @@ That is, :math:`y_t` is a function of past, present, and future values of :math:
 An Alternative Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An alternative way to express the solution to :eq:`onefourfive` or
-:eq:`onefoursix` is in so-called **feedback-feedforward** form
+An alternative way to express the solution to :eq:`onefour_lu_tricksfive` or
+:eq:`onefour_lu_trickssix` is in so-called **feedback-feedforward** form
 
 The idea here is to find a solution expressing :math:`y_t` as a function of *past* :math:`y`'s and *current* and *future* :math:`a`'s
 
@@ -380,10 +380,10 @@ where
 
 The factorization can be normalized so that the diagonal elements of :math:`U` are unity
 
-Using the LU representation in :eq:`onefourseven`, we obtain
+Using the LU representation in :eq:`onefour_lu_tricksseven`, we obtain
 
 .. math::
-    :label: onefournine
+    :label: onefour_lu_tricksnine
 
     U \bar y = L^{-1} \bar a
 
@@ -396,14 +396,14 @@ Since :math:`L^{-1}` is lower triangular, this representation expresses
 * current and future :math:`a`\ ’s (via the term :math:`L^{-1} \bar a`)
 
 Because there are zeros everywhere in the matrix
-on the left of :eq:`onefourfive` except on the diagonal, super-diagonal, and
+on the left of :eq:`onefour_lu_tricksfive` except on the diagonal, super-diagonal, and
 sub-diagonal, the :math:`LU` decomposition takes
 
 * :math:`L` to be zero except in the diagonal  and the leading sub-diagonal
 
 * :math:`U` to be zero except on the diagonal and the super-diagonal
 
-Thus, :eq:`onefournine` has the form
+Thus, :eq:`onefour_lu_tricksnine` has the form
 
 .. math::
 
@@ -472,7 +472,7 @@ Let :math:`I_{m+1}` be the :math:`(m+1) \times (m+1)` identity matrix
 
 Let :math:`\phi_j` be the coefficients in the expansion :math:`\phi (L) = h + d (L^{-1}) d (L)`
 
-Then the first order conditions :eq:`onefour` and :eq:`onefive` can be expressed as:
+Then the first order conditions :eq:`onefour_lu_tricks` and :eq:`onefive_lu_tricks` can be expressed as:
 
 .. math::
 
@@ -530,7 +530,7 @@ left-hand corner
 We can represent the solution in feedback-feedforward form by obtaining a decomposition :math:`LU = W`, and obtain
 
 .. math::
-    :label: onefivetwo
+    :label: onefive_lu_trickstwo
 
     U \bar y = L^{-1} \bar a
 
@@ -546,14 +546,14 @@ We can represent the solution in feedback-feedforward form by obtaining a decomp
 where :math:`L^{-1}_{t,s}` is the element in the :math:`(t,s)` position
 of :math:`L`, and similarly for :math:`U`
 
-The left side of equation :eq:`onefivetwo` is the "feedback" part of the optimal
+The left side of equation :eq:`onefive_lu_trickstwo` is the "feedback" part of the optimal
 control law for :math:`y_t`, while the right-hand side is the "feedforward" part
 
 We note that there is a different control law for each :math:`t`
 
 Thus, in the finite horizon case, the optimal control law is time-dependent
 
-It is natural to suspect that as :math:`N \rightarrow\infty`, :eq:`onefivetwo`
+It is natural to suspect that as :math:`N \rightarrow\infty`, :eq:`onefive_lu_trickstwo`
 becomes equivalent to the solution of our infinite horizon problem,
 which below we shall show can be expressed as
 
@@ -580,41 +580,41 @@ The Infinite Horizon Limit
 ===========================
 
 For the infinite horizon problem, we propose to discover first-order
-necessary conditions by taking the limits of :eq:`onefour` and :eq:`onefive` as
+necessary conditions by taking the limits of :eq:`onefour_lu_tricks` and :eq:`onefive_lu_tricks` as
 :math:`N \to \infty`
 
-This approach is valid, and the limits of :eq:`onefour` and :eq:`onefive` as :math:`N` approaches infinity are first-order necessary conditions for a maximum
+This approach is valid, and the limits of :eq:`onefour_lu_tricks` and :eq:`onefive_lu_tricks` as :math:`N` approaches infinity are first-order necessary conditions for a maximum
 
-However, for the infinite horizon problem with :math:`\beta < 1`, the limits of :eq:`onefour` and :eq:`onefive` are, in general, not sufficient for a maximum
+However, for the infinite horizon problem with :math:`\beta < 1`, the limits of :eq:`onefour_lu_tricks` and :eq:`onefive_lu_tricks` are, in general, not sufficient for a maximum
 
-That is, the limits of :eq:`onefive` do not provide enough information uniquely to determine the solution of the Euler equation :eq:`onefour` that maximizes :eq:`oneone`
+That is, the limits of :eq:`onefive_lu_tricks` do not provide enough information uniquely to determine the solution of the Euler equation :eq:`onefour_lu_tricks` that maximizes :eq:`oneone_lu_tricks`
 
-As we shall see below, a side condition on the path of :math:`y_t` that together with :eq:`onefour` is sufficient for an optimum is
+As we shall see below, a side condition on the path of :math:`y_t` that together with :eq:`onefour_lu_tricks` is sufficient for an optimum is
 
 .. math::
-    :label: onesix
+    :label: onesix_lu_tricks
 
     \sum^\infty_{t=0}\ \beta^t\, hy^2_t < \infty
 
 
 All paths that satisfy the Euler equations, except the one that we shall
 select below, violate this condition and, therefore, evidently lead to
-(much) lower values of :eq:`oneone` than does the
+(much) lower values of :eq:`oneone_lu_tricks` than does the
 optimal path selected by the solution procedure below
 
 Consider the *characteristic equation* associated with the Euler equation
 
 .. math::
-    :label: oneseven
+    :label: oneseven_lu_tricks
 
     h+d \, (\beta z^{-1})\, d \, (z) = 0
 
 
-Notice that if :math:`\tilde z` is a root of equation :eq:`oneseven`, then so is :math:`\beta \tilde z^{-1}`
+Notice that if :math:`\tilde z` is a root of equation :eq:`oneseven_lu_tricks`, then so is :math:`\beta \tilde z^{-1}`
 
-Thus, the roots of :eq:`oneseven` come in ":math:`\beta`-reciprocal" pairs
+Thus, the roots of :eq:`oneseven_lu_tricks` come in ":math:`\beta`-reciprocal" pairs
 
-Assume that the roots of :eq:`oneseven` are distinct
+Assume that the roots of :eq:`oneseven_lu_tricks` are distinct
 
 Let the roots be, in descending order according to their moduli, :math:`z_1, z_2, \ldots, z_{2m}`
 
@@ -624,10 +624,10 @@ roots, it follows that :math:`\vert z_j \vert > \sqrt \beta\ \hbox{ for } j\leq 
 
 It also follows that :math:`z_{2m-j} = \beta z^{-1}_{j+1}, j=0, 1, \ldots, m-1`
 
-Therefore, the characteristic polynomial on the left side of :eq:`oneseven` can be expressed as
+Therefore, the characteristic polynomial on the left side of :eq:`oneseven_lu_tricks` can be expressed as
 
 .. math::
-    :label: oneeight
+    :label: oneeight_lu_tricks
 
     \begin{aligned}
     h+d(\beta z^{-1})d(z)
@@ -640,7 +640,7 @@ Therefore, the characteristic polynomial on the left side of :eq:`oneseven` can 
 
 where :math:`z_0` is a constant
 
-In :eq:`oneeight`, we substitute :math:`(z-z_j) = -z_j (1- {1 \over z_j}z)` and
+In :eq:`oneeight_lu_tricks`, we substitute :math:`(z-z_j) = -z_j (1- {1 \over z_j}z)` and
 :math:`(z-\beta z_j^{-1}) = z(1 - {\beta \over z_j} z^{-1})` for :math:`j = 1, \ldots, m` to get
 
 .. math::
@@ -654,24 +654,24 @@ In :eq:`oneeight`, we substitute :math:`(z-z_j) = -z_j (1- {1 \over z_j}z)` and
 Now define :math:`c(z) = \sum^m_{j=0} c_j \, z^j` as
 
 .. math::
-    :label: onenine
+    :label: onenine_lu_tricks
 
     c\,(z)=\Bigl[(-1)^m z_0\, z_1 \cdots z_m\Bigr]^{1/2} (1-{z\over z_1}) \,
     (1-{z\over z_2}) \cdots (1- {z\over z_m})
 
 
-Notice that :eq:`oneeight` can be written
+Notice that :eq:`oneeight_lu_tricks` can be written
 
 .. math::
-    :label: oneten
+    :label: oneten_lu_tricks
 
     h + d \ (\beta z^{-1})\ d\ (z) = c\,(\beta z^{-1})\,c\,(z)
 
 
-It is useful to write :eq:`onenine` as
+It is useful to write :eq:`onenine_lu_tricks` as
 
 .. math::
-    :label: oneeleven
+    :label: oneeleven_lu_tricks
 
     c(z) = c_0(1-\lambda_1\, z) \ldots (1-\lambda_m z)
 
@@ -689,7 +689,7 @@ Since :math:`\vert z_j \vert > \sqrt \beta \hbox { for } j = 1, \ldots, m` it
 follows that :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for :math:`j = 1,
 \ldots, m`
 
-Using :eq:`oneeleven`, we can express the factorization :eq:`oneten` as
+Using :eq:`oneeleven_lu_tricks`, we can express the factorization :eq:`oneten_lu_tricks` as
 
 .. math::
 
@@ -698,23 +698,23 @@ Using :eq:`oneeleven`, we can express the factorization :eq:`oneten` as
     \cdots (1 - \lambda_m \beta z^{-1})
 
 
-In sum, we have constructed a factorization :eq:`oneten` of the characteristic
+In sum, we have constructed a factorization :eq:`oneten_lu_tricks` of the characteristic
 polynomial for the Euler equation in which the zeros of :math:`c(z)`
 exceed :math:`\beta^{1/2}` in modulus, and the zeros of
 :math:`c\,(\beta z^{-1})` are less than :math:`\beta^{1/2}` in modulus
 
-Using :eq:`oneten`, we now write the Euler equation as
+Using :eq:`oneten_lu_tricks`, we now write the Euler equation as
 
 .. math::
 
     c(\beta L^{-1})\,c\,(L)\, y_t = a_t
 
 
-The unique solution of the Euler equation that satisfies condition :eq:`onesix`
+The unique solution of the Euler equation that satisfies condition :eq:`onesix_lu_tricks`
 is
 
 .. math::
-    :label: onethirteen
+    :label: onethirteen_lu_tricks
 
     c(L)\,y_t = c\,(\beta L^{-1})^{-1}a_t
 
@@ -723,17 +723,17 @@ This can be established by using an argument paralleling that in
 chapter IX of :cite:`Sargent1987`
 
 To exhibit the solution in a form
-paralleling that of :cite:`Sargent1987`, we use :eq:`oneeleven` to write
-:eq:`onethirteen` as
+paralleling that of :cite:`Sargent1987`, we use :eq:`oneeleven_lu_tricks` to write
+:eq:`onethirteen_lu_tricks` as
 
 .. math::
-    :label: JUNK
+    :label: JUNK_lu_tricks
 
     (1-\lambda_1 L) \cdots (1 - \lambda_mL)y_t = {c^{-2}_0 a_t \over (1-\beta \lambda_1 L^{-1}) \cdots (1 - \beta \lambda_m L^{-1})}
 
 
 Using `partial fractions <https://en.wikipedia.org/wiki/Partial_fraction_decomposition>`_, we can write the characteristic polynomial on
-the right side of :eq:`JUNK` as
+the right side of :eq:`JUNK_lu_tricks` as
 
 .. math::
 
@@ -742,7 +742,7 @@ the right side of :eq:`JUNK` as
     A_j := {c^{-2}_0 \over \prod_{i \not= j}(1-{\lambda_i \over \lambda_j})}
 
 
-Then :eq:`JUNK` can be written
+Then :eq:`JUNK_lu_tricks` can be written
 
 .. math::
 
@@ -753,19 +753,19 @@ Then :eq:`JUNK` can be written
 or
 
 .. math::
-    :label: onefifteen
+    :label: onefifteen_lu_tricks
 
     (1 - \lambda_1 L) \cdots (1 - \lambda_m L) y_t = \sum^m_{j=1}\, A_j
     \sum^\infty_{k=0}\, (\lambda_j\beta)^k\, a_{t+k}
 
 
-Equation :eq:`onefifteen` expresses the optimum sequence for :math:`y_t` in terms
+Equation :eq:`onefifteen_lu_tricks` expresses the optimum sequence for :math:`y_t` in terms
 of :math:`m` lagged :math:`y`'s, and :math:`m` weighted infinite
 geometric sums of future :math:`a_t`'s
 
-Furthermore, :eq:`onefifteen` is the unique solution of the Euler equation that satisfies the initial conditions and condition :eq:`onesix`
+Furthermore, :eq:`onefifteen_lu_tricks` is the unique solution of the Euler equation that satisfies the initial conditions and condition :eq:`onesix_lu_tricks`
 
-In effect, condition :eq:`onesix` compels us to
+In effect, condition :eq:`onesix_lu_tricks` compels us to
 solve the "unstable" roots of :math:`h+d (\beta z^{-1})d(z)` forward
 (see :cite:`Sargent1987`)
 
@@ -773,39 +773,39 @@ The step of factoring the polynomial :math:`h+d (\beta z^{-1})\, d(z)` into
 :math:`c\, (\beta z^{-1})c\,(z)`, where the zeros of :math:`c\,(z)` all
 have modulus exceeding :math:`\sqrt\beta`, is central to solving the problem
 
-We note two features of the solution :eq:`onefifteen`
+We note two features of the solution :eq:`onefifteen_lu_tricks`
 
 * Since :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for all :math:`j`, it follows that :math:`(\lambda_j \ \beta) < \sqrt \beta`
 
-* The assumption that :math:`\{ a_t \}` is of exponential order less than :math:`1 /\sqrt \beta` is sufficient to guarantee that the geometric sums of future :math:`a_t`'s on the right side of :eq:`onefifteen` converge
+* The assumption that :math:`\{ a_t \}` is of exponential order less than :math:`1 /\sqrt \beta` is sufficient to guarantee that the geometric sums of future :math:`a_t`'s on the right side of :eq:`onefifteen_lu_tricks` converge
 
 We immediately see that those sums will
 converge under the weaker condition that :math:`\{ a_t\}` is of
 exponential order less than :math:`\phi^{-1}` where
 :math:`\phi = \max \, \{\beta \lambda_i, i=1,\ldots,m\}`
 
-Note that with :math:`a_t` identically zero, :eq:`onefifteen` implies that
+Note that with :math:`a_t` identically zero, :eq:`onefifteen_lu_tricks` implies that
 in general :math:`\vert y_t \vert` eventually grows exponentially at a
 rate given by :math:`\max_i \vert \lambda_i \vert`
 
 The condition
 :math:`\max_i \vert \lambda_i \vert <1 /\sqrt \beta` guarantees that
-condition :eq:`onesix` is satisfied
+condition :eq:`onesix_lu_tricks` is satisfied
 
 In fact, :math:`\max_i \vert \lambda_i
-\vert < 1 /\sqrt \beta` is a necessary condition for :eq:`onesix` to hold
+\vert < 1 /\sqrt \beta` is a necessary condition for :eq:`onesix_lu_tricks` to hold
 
-Were :eq:`onesix` not satisfied, the objective function would diverge to :math:`- \infty`, implying that the :math:`y_t` path could not be optimal
+Were :eq:`onesix_lu_tricks` not satisfied, the objective function would diverge to :math:`- \infty`, implying that the :math:`y_t` path could not be optimal
 
-For example, with :math:`a_t = 0`, for all :math:`t`, it is easy to describe a naive (nonoptimal) policy for :math:`\{y_t, t\geq 0\}` that gives a finite value of :eq:`oneeleven`
+For example, with :math:`a_t = 0`, for all :math:`t`, it is easy to describe a naive (nonoptimal) policy for :math:`\{y_t, t\geq 0\}` that gives a finite value of :eq:`oneeleven_lu_tricks`
 
 We can simply let :math:`y_t = 0 \hbox { for } t\geq 0`
 
 This policy involves at most :math:`m` nonzero values of
 :math:`hy^2_t` and :math:`[d(L)y_t]^2`, and so yields a finite value of
-:eq:`oneone`
+:eq:`oneone_lu_tricks`
 
-Therefore it is easy to dominate a path that violates :eq:`onesix`
+Therefore it is easy to dominate a path that violates :eq:`onesix_lu_tricks`
 
 
 
@@ -825,7 +825,7 @@ In this case, the Euler equation is
     \Bigl( h + d(L^{-1})d(L) \Bigr)\, y_t = a_t
 
 
-The factorization of the characteristic polynomial :eq:`oneten` becomes
+The factorization of the characteristic polynomial :eq:`oneten_lu_tricks` becomes
 
 .. math::
 
@@ -858,12 +858,12 @@ Transforming Discounted to Undiscounted Problem
 
 Discounted problems can always be converted into undiscounted problems via a simple transformation
 
-Consider problem :eq:`oneone` with :math:`0 < \beta < 1`
+Consider problem :eq:`oneone_lu_tricks` with :math:`0 < \beta < 1`
 
 Define the transformed variables
 
 .. math::
-    :label: onetwenty
+    :label: onetwenty_lu_tricks
 
     \tilde a_t = \beta^{t/2} a_t,\ \tilde y_t = \beta^{t/2} y_t
 
@@ -872,10 +872,10 @@ Then notice that :math:`\beta^t\,[d\, (L) y_t ]^2=[\tilde d\,(L)\tilde y_t]^2` w
 :math:`\tilde d \,(L)=\sum^m_{j=0} \tilde d_j\, L^j` and :math:`\tilde d_j = \beta^{j/2}
 d_j`
 
-Then the original criterion function :eq:`oneone` is equivalent to
+Then the original criterion function :eq:`oneone_lu_tricks` is equivalent to
 
 .. math::
-    :label: oneoneprime
+    :label: oneone_lu_tricksprime
 
     \lim_{N \rightarrow \infty}
     \sum^N_{t=0}
@@ -899,7 +899,7 @@ The solution is
 or
 
 .. math::
-    :label: onetwentyone
+    :label: onetwenty_lu_tricksone
 
     \tilde y_t = \tilde f_1 \, \tilde y_{t-1} + \cdots + \tilde f_m\,
     \tilde y_{t-m} + \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j
@@ -915,7 +915,7 @@ where :math:`\tilde c \,(z^{-1}) \tilde c\,(z) = h + \tilde d\,(z^{-1}) \tilde d
     \hbox { where } \ \vert \tilde \lambda_j \vert < 1
 
 
-We leave it to the reader to show that :eq:`onetwentyone` implies the equivalent form of the solution
+We leave it to the reader to show that :eq:`onetwenty_lu_tricksone` implies the equivalent form of the solution
 
 .. math::
 
@@ -926,14 +926,14 @@ We leave it to the reader to show that :eq:`onetwentyone` implies the equivalent
 where
 
 .. math::
-    :label: onetwentythree
+    :label: onetwenty_lu_tricksthree
 
     f_j = \tilde f_j\, \beta^{-j/2},\  A_j = \tilde A_j,\  \lambda_j = \tilde
     \lambda_j \, \beta^{-1/2}
 
 
-The transformations :eq:`onetwenty` and the inverse formulas
-:eq:`onetwentythree` allow us to solve a discounted problem by first
+The transformations :eq:`onetwenty_lu_tricks` and the inverse formulas
+:eq:`onetwenty_lu_tricksthree` allow us to solve a discounted problem by first
 solving a related undiscounted problem
 
 
@@ -1044,11 +1044,11 @@ Exercise 1
 ------------
 
 Consider solving a discounted version :math:`(\beta < 1)` of problem
-:eq:`oneone`, as follows
+:eq:`oneone_lu_tricks`, as follows
 
-Convert :eq:`oneone` to the undiscounted problem :eq:`oneoneprime`
+Convert :eq:`oneone_lu_tricks` to the undiscounted problem :eq:`oneone_lu_tricksprime`
 
-Let the solution of :eq:`oneoneprime` in feedback form be
+Let the solution of :eq:`oneone_lu_tricksprime` in feedback form be
 
 .. math::
 
@@ -1059,7 +1059,7 @@ Let the solution of :eq:`oneoneprime` in feedback form be
 or
 
 .. math::
-    :label: estar
+    :label: estar_lu_tricks
 
     \tilde y_t = \tilde f_1 \tilde y_{t-1} + \cdots + \tilde f_m \tilde y_{t-m} +
     \sum^m_{j=1} \tilde A_j \sum^\infty_{k=0} \tilde \lambda^k_j \tilde a_{t+k}
@@ -1073,7 +1073,7 @@ Here
 
 where the :math:`\tilde z_j` are the zeros of :math:`h +\tilde d (z^{-1})\, \tilde d(z)`
 
-Prove that :eq:`estar` implies that the solution for :math:`y_t` in feedback form is
+Prove that :eq:`estar_lu_tricks` implies that the solution for :math:`y_t` in feedback form is
 
 .. math::
 
@@ -1097,11 +1097,11 @@ Solve the optimal control problem, maximize
 
 subject to :math:`y_{-1}` given, and :math:`\{ a_t\}` a known bounded sequence
 
-Express the solution in the "feedback form" :eq:`onefifteen`, giving numerical values for the coefficients
+Express the solution in the "feedback form" :eq:`onefifteen_lu_tricks`, giving numerical values for the coefficients
 
-Make sure that the boundary conditions :eq:`onefive` are satisfied
+Make sure that the boundary conditions :eq:`onefive_lu_tricks` are satisfied
 
-(Note: this problem differs from the problem in the text in one important way: instead of :math:`h > 0` in :eq:`oneone`, :math:`h = 0`. This has an important influence on the solution.)
+(Note: this problem differs from the problem in the text in one important way: instead of :math:`h > 0` in :eq:`oneone_lu_tricks`, :math:`h = 0`. This has an important influence on the solution.)
 
 
 Exercise 3
@@ -1133,7 +1133,7 @@ Solve the infinite time problem, to maximize
     [(1 - 2 L) y_t]^2
 
 
-subject to :math:`y_{-1}` given. Prove that the solution :math:`y_t = 2y_{t-1}`  violates condition :eq:`onesix`, and so
+subject to :math:`y_{-1}` given. Prove that the solution :math:`y_t = 2y_{t-1}`  violates condition :eq:`onesix_lu_tricks`, and so
 is not optimal
 
 Prove that the optimal solution is approximately :math:`y_t = .5 y_{t-1}`

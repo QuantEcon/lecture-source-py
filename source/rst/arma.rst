@@ -1,4 +1,4 @@
-.. _arma:
+.. _arma_arma:
 
 .. include:: /_static/includes/header.raw
 
@@ -100,7 +100,7 @@ For this reason, we will focus in what follows on processes that are *stationary
 
 
 
-.. _arma_defs:
+.. _arma_arma_defs:
 
 Definitions
 --------------
@@ -145,7 +145,7 @@ Example 2: :index:`General Linear Processes`
 From the simple building block provided by white noise, we can construct a very flexible family of covariance stationary processes --- the *general linear processes*
 
 .. math::
-    :label: ma_inf
+    :label: ma_inf_arma_arma
 
     X_t = \sum_{j=0}^{\infty} \psi_j \epsilon_{t-j},
     \qquad t \in \mathbb Z
@@ -158,17 +158,17 @@ where
 
 The sequence :math:`\{\psi_t\}` is often called a *linear filter*
 
-Equation :eq:`ma_inf` is said to present  a **moving average** process or a moving average representation
+Equation :eq:`ma_inf_arma_arma` is said to present  a **moving average** process or a moving average representation
 
-With some manipulations, it is possible to confirm that the autocovariance function for :eq:`ma_inf` is
+With some manipulations, it is possible to confirm that the autocovariance function for :eq:`ma_inf_arma_arma` is
 
 .. math::
-    :label: ma_inf_ac
+    :label: ma_inf_arma_arma_ac
 
     \gamma(k) = \sigma^2 \sum_{j=0}^{\infty} \psi_j \psi_{j+k}
 
 
-By the `Cauchy-Schwartz inequality <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality>`_, one can show that :math:`\gamma(k)` satisfies equation :eq:`ma_inf_ac`
+By the `Cauchy-Schwartz inequality <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality>`_, one can show that :math:`\gamma(k)` satisfies equation :eq:`ma_inf_arma_arma_ac`
 
 Evidently, :math:`\gamma(k)` does not depend on :math:`t`
 
@@ -216,7 +216,7 @@ It often pays to specialize to those for which there exists a representation hav
 One very simple example of such a model is the first-order autoregressive or AR(1) process
 
 .. math::
-    :label: ar1_rep
+    :label: ar1_rep_arma_arma
 
     X_t = \phi X_{t-1} + \epsilon_t
     \quad \text{where} \quad
@@ -228,10 +228,10 @@ By direct substitution, it is easy to verify that :math:`X_t = \sum_{j=0}^{\inft
 
 Hence :math:`\{X_t\}` is a general linear process
 
-Applying :eq:`ma_inf_ac` to the previous expression for :math:`X_t`, we get the AR(1) autocovariance function
+Applying :eq:`ma_inf_arma_arma_ac` to the previous expression for :math:`X_t`, we get the AR(1) autocovariance function
 
 .. math::
-    :label: ar_acov
+    :label: ar_acov_arma_arma
 
     \gamma(k) = \phi^k \frac{\sigma^2}{1 - \phi^2},
     \qquad k = 0, 1, \ldots
@@ -292,7 +292,7 @@ A stochastic process :math:`\{X_t\}` is called an *autoregressive moving
 average process*, or ARMA(:math:`p,q`), if it can be written as
 
 .. math::
-    :label: arma
+    :label: arma_arma
 
     X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p} +
         \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}
@@ -309,10 +309,10 @@ It turns out that
 * lag operators facilitate  succinct representations for linear stochastic processes
 * algebraic manipulations that treat the lag operator as an ordinary scalar  are legitimate
 
-Using :math:`L`, we can rewrite :eq:`arma` as
+Using :math:`L`, we can rewrite :eq:`arma_arma` as
 
 .. math::
-    :label: arma_lag
+    :label: arma_arma_lag_arma
 
     L^0 X_t - \phi_1 L^1 X_t - \cdots - \phi_p L^p X_t
     = L^0 \epsilon_t + \theta_1 L^1 \epsilon_t + \cdots + \theta_q L^q \epsilon_t
@@ -321,17 +321,17 @@ Using :math:`L`, we can rewrite :eq:`arma` as
 If we let :math:`\phi(z)` and :math:`\theta(z)` be the polynomials
 
 .. math::
-    :label: arma_poly
+    :label: arma_arma_poly_arma
 
     \phi(z) := 1 - \phi_1 z - \cdots - \phi_p z^p
     \quad \text{and} \quad
     \theta(z) := 1 + \theta_1 z + \cdots + \theta_q z^q
 
 
-then :eq:`arma_lag`  becomes
+then :eq:`arma_arma_lag_arma`  becomes
 
 .. math::
-    :label: arma_lag1
+    :label: arma_arma_lag_arma1
 
     \phi(L) X_t = \theta(L) \epsilon_t
 
@@ -366,7 +366,7 @@ At times, the spectral density is easier to derive, easier to manipulate, and pr
 :index:`Complex Numbers`
 -------------------------
 
-Before discussing the spectral density, we invite you to recall the main properties of complex numbers (or :ref:`skip to the next section <arma_specd>`)
+Before discussing the spectral density, we invite you to recall the main properties of complex numbers (or :ref:`skip to the next section <arma_arma_specd>`)
 
 It can be helpful to remember that, in a formal sense, complex numbers are just points :math:`(x, y) \in \mathbb R^2` endowed with a specific notion of multiplication
 
@@ -398,7 +398,7 @@ Complex numbers can be represented in  the polar form :math:`r e^{i \omega}` whe
 where :math:`x = r \cos(\omega), y = r \sin(\omega)`, and :math:`\omega = \arctan(y/z)` or :math:`\tan(\omega) = y/x`
 
 
-.. _arma_specd:
+.. _arma_arma_specd:
 
 :index:`Spectral Densities`
 ---------------------------------
@@ -418,7 +418,7 @@ The *spectral density* :math:`f` of :math:`\{ X_t \}` is defined as the `discret
 Using the fact that :math:`\gamma` is *even*, in the sense that :math:`\gamma(t) = \gamma(-t)` for all :math:`t`, we can show that
 
 .. math::
-    :label: arma_sd_cos
+    :label: arma_arma_sd_arma_cos_arma
 
     f(\omega) = \gamma(0) + 2 \sum_{k \geq 1} \gamma(k) \cos(\omega k)
 
@@ -434,7 +434,7 @@ all of :math:`\mathbb R` --- the proof is an exercise
 
 For this reason, it is standard to plot the spectral density only on the interval :math:`[0, \pi]`
 
-.. _arma_wnsd:
+.. _arma_arma_wnsd:
 
 Example 1: :index:`White Noise`
 ---------------------------------
@@ -454,7 +454,7 @@ Example 2: :index:`AR` and :index:`MA` and :index:`ARMA`
 It is an exercise to show that the MA(1) process :math:`X_t = \theta \epsilon_{t-1} + \epsilon_t` has a spectral density
 
 .. math::
-    :label: ma1_sd_ed
+    :label: ma1_sd_ed_arma
 
     f(\omega)
     = \sigma^2 ( 1 + 2 \theta \cos(\omega) + \theta^2 )
@@ -463,18 +463,18 @@ It is an exercise to show that the MA(1) process :math:`X_t = \theta \epsilon_{t
 With a bit more effort, it's possible to show (see, e.g., p. 261 of :cite:`Sargent1987`) that the spectral density of the AR(1) process :math:`X_t = \phi X_{t-1} + \epsilon_t` is
 
 .. math::
-    :label: ar1_sd_ed
+    :label: ar1_sd_ed_arma
 
     f(\omega)
     = \frac{\sigma^2}{ 1 - 2 \phi \cos(\omega) + \phi^2 }
 
 
-More generally, it can be shown that the spectral density of the ARMA process :eq:`arma` is
+More generally, it can be shown that the spectral density of the ARMA process :eq:`arma_arma` is
 
-.. _arma_spec_den:
+.. _arma_arma_spec_den:
 
 .. math::
-    :label: arma_sd
+    :label: arma_arma_sd_arma
 
     f(\omega) = \left| \frac{\theta(e^{i\omega})}{\phi(e^{i\omega})} \right|^2 \sigma^2
 
@@ -482,13 +482,13 @@ More generally, it can be shown that the spectral density of the ARMA process :e
 where
 
 * :math:`\sigma` is the standard deviation of the white noise process :math:`\{\epsilon_t\}`
-* the polynomials :math:`\phi(\cdot)` and :math:`\theta(\cdot)` are as defined in :eq:`arma_poly`
+* the polynomials :math:`\phi(\cdot)` and :math:`\theta(\cdot)` are as defined in :eq:`arma_arma_poly_arma`
 
-The derivation of :eq:`arma_sd` uses the fact that convolutions become products under Fourier transformations
+The derivation of :eq:`arma_arma_sd_arma` uses the fact that convolutions become products under Fourier transformations
 
 The proof is elegant and can be found in many places --- see, for example, :cite:`Sargent1987`, chapter 11, section 4
 
-It's a nice exercise to verify that :eq:`ma1_sd_ed` and :eq:`ar1_sd_ed` are indeed special cases of :eq:`arma_sd`
+It's a nice exercise to verify that :eq:`ma1_sd_ed_arma` and :eq:`ar1_sd_ed_arma` are indeed special cases of :eq:`arma_arma_sd_arma`
 
 
 Interpreting the :index:`Spectral Density`
@@ -497,7 +497,7 @@ Interpreting the :index:`Spectral Density`
 .. index::
     single: Spectral Density; interpretation
 
-Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1) model when :math:`\phi` takes the values 0.8 and -0.8 respectively
+Plotting :eq:`ar1_sd_ed_arma` reveals the shape of the spectral density for the AR(1) model when :math:`\phi` takes the values 0.8 and -0.8 respectively
 
 
 
@@ -534,7 +534,7 @@ To see the idea, let's consider why, in the lower panel of the preceding figure,
 Recall that the spectral density can be expressed as
 
 .. math::
-    :label: sumpr
+    :label: sumpr_arma
 
     f(\omega)
     = \gamma(0) + 2 \sum_{k \geq 1} \gamma(k) \cos(\omega k)
@@ -546,7 +546,7 @@ When we evaluate this at :math:`\omega = \pi`, we get a large number because
 positive, and large in absolute value and negative when :math:`(-0.8)^k` is negative
 
 Hence the product is always large and positive, and hence the sum of the
-products on the right-hand side of :eq:`sumpr` is large
+products on the right-hand side of :eq:`sumpr_arma` is large
 
 These ideas are illustrated in the next figure, which has :math:`k` on the horizontal axis
 
@@ -650,14 +650,14 @@ Another reason that the spectral density is useful is that it can be "inverted" 
 In particular, for all :math:`k \in \mathbb Z`, we have
 
 .. math::
-    :label: ift
+    :label: ift_arma
 
     \gamma(k) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(\omega) e^{i \omega k} d\omega
 
 
 This is convenient in situations where the spectral density is easier to calculate and manipulate than the autocovariance function
 
-(For example, the expression :eq:`arma_sd` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance)
+(For example, the expression :eq:`arma_arma_sd_arma` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance)
 
 
 Mathematical Theory
@@ -671,14 +671,14 @@ This section is loosely based on :cite:`Sargent1987`, p. 249-253, and included f
 * would like a bit more insight into spectral densities
 * and have at least some background in `Hilbert space <https://en.wikipedia.org/wiki/Hilbert_space>`_ theory
 
-Others should feel free to skip to the :ref:`next section <arma_imp>` --- none of this material is necessary to progress to computation
+Others should feel free to skip to the :ref:`next section <arma_arma_imp>` --- none of this material is necessary to progress to computation
 
 Recall that every `separable <https://en.wikipedia.org/wiki/Separable_space>`_ Hilbert space :math:`H` has a countable orthonormal basis :math:`\{ h_k \}`
 
 The nice thing about such a basis is that every :math:`f \in H` satisfies
 
 .. math::
-    :label: arma_fc
+    :label: arma_arma_fc_arma
 
     f = \sum_k \alpha_k h_k
     \quad \text{where} \quad
@@ -723,7 +723,7 @@ With this in mind, let's specialize to a setting where
 Using the definition of :math:`T` from above and the fact that :math:`f` is even, we now have
 
 .. math::
-    :label: arma_it
+    :label: arma_arma_it_arma
 
     T \gamma
     = \sum_{k \in \mathbb Z}
@@ -737,12 +737,12 @@ In particular, it is an expansion of the autocovariance function with respect to
 As discussed above, the Fourier coefficients of :math:`T \gamma` are given by the sequence :math:`\gamma`, and,
 in particular, :math:`\gamma(k) = \langle T \gamma, h_k \rangle`
 
-Transforming this inner product into its integral expression and using :eq:`arma_it` gives
-:eq:`ift`, justifying our earlier expression for the inverse transform
+Transforming this inner product into its integral expression and using :eq:`arma_arma_it_arma` gives
+:eq:`ift_arma`, justifying our earlier expression for the inverse transform
 
 
 
-.. _arma_imp:
+.. _arma_arma_imp:
 
 Implementation
 =================================
@@ -751,7 +751,7 @@ Most code for working with covariance stationary models deals with ARMA models
 
 Python code for studying ARMA models can be found in the ``tsa`` submodule of `statsmodels <http://statsmodels.sourceforge.net/>`_
 
-Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/python_index.html>`_ package
+Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma_arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma_arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/python_index.html>`_ package
 
 The module provides functions for mapping ARMA(:math:`p,q`) models into their
 
@@ -778,42 +778,42 @@ Here are some functions to generate the plots
 
 .. code-block:: python3
 
-    def plot_impulse_response(arma, ax=None):
+    def plot_impulse_response(arma_arma, ax=None):
         if ax is None:
             ax = plt.gca()
-        yi = arma.impulse_response()
+        yi = arma_arma.impulse_response()
         ax.stem(list(range(len(yi))), yi)
         ax.set(xlim=(-0.5), ylim=(min(yi)-0.1, max(yi)+0.1),
                      title='Impulse response', xlabel='time', ylabel='response')
         return ax
 
-    def plot_spectral_density(arma, ax=None):
+    def plot_spectral_density(arma_arma, ax=None):
         if ax is None:
             ax = plt.gca()
-        w, spect = arma.spectral_density(two_pi=False)
+        w, spect = arma_arma.spectral_density(two_pi=False)
         ax.semilogy(w, spect)
         ax.set(xlim=(0, np.pi), ylim=(0, np.max(spect)),
                title='Spectral density', xlabel='frequency', ylabel='spectrum')
         return ax
 
-    def plot_autocovariance(arma, ax=None):
+    def plot_autocovariance(arma_arma, ax=None):
         if ax is None:
             ax = plt.gca()
-        acov = arma.autocovariance()
+        acov = arma_arma.autocovariance()
         ax.stem(list(range(len(acov))), acov)
         ax.set(xlim=(-0.5, len(acov) - 0.5), title='Autocovariance',
                xlabel='time', ylabel='autocovariance')
         return ax
 
-    def plot_simulation(arma, ax=None):
+    def plot_simulation(arma_arma, ax=None):
         if ax is None:
             ax = plt.gca()
-        x_out = arma.simulation()
+        x_out = arma_arma.simulation()
         ax.plot(x_out)
         ax.set(title='Sample path', xlabel='time', ylabel='state space')
         return ax
 
-    def quad_plot(arma):
+    def quad_plot(arma_arma):
         """
         Plots the impulse response, spectral_density, autocovariance,
         and one realization of the process.
@@ -826,7 +826,7 @@ Here are some functions to generate the plots
                           plot_autocovariance,
                           plot_simulation]
         for plot_func, ax in zip(plot_functions, axes.flatten()):
-            plot_func(arma, ax)
+            plot_func(arma_arma, ax)
         plt.tight_layout()
         plt.show()
 
@@ -845,8 +845,8 @@ As a warmup, let's make sure things look right when we for the pure white noise 
 
     ϕ = 0.0
     θ = 0.0
-    arma = qe.ARMA(ϕ, θ)
-    quad_plot(arma)
+    arma_arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma_arma)
 
 
 If we look carefully, things look good: the spectrum is the flat line at :math:`10^0` at the very top of the spectrum graphs,
@@ -874,8 +874,8 @@ Ljunqvist and Sargent's first  model is  :math:`X_t = 1.3 X_{t-1} - .7 X_{t-2} +
 
     ϕ = 1.3, -.7
     θ = 0.0
-    arma = qe.ARMA(ϕ, θ)
-    quad_plot(arma)
+    arma_arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma_arma)
 
 
 
@@ -886,8 +886,8 @@ Ljungqvist and Sargent's second model is :math:`X_t = .9 X_{t-1} + \epsilon_t`
 
     ϕ = 0.9
     θ = -0.0
-    arma = qe.ARMA(ϕ, θ)
-    quad_plot(arma)
+    arma_arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma_arma)
 
 
 Ljungqvist and Sargent's third  model is  :math:`X_t = .8 X_{t-4} + \epsilon_t`
@@ -896,8 +896,8 @@ Ljungqvist and Sargent's third  model is  :math:`X_t = .8 X_{t-4} + \epsilon_t`
 
     ϕ = 0., 0., 0., .8
     θ = -0.0
-    arma = qe.ARMA(ϕ, θ)
-    quad_plot(arma)
+    arma_arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma_arma)
 
 
 
@@ -908,8 +908,8 @@ Ljungqvist and Sargent's fourth  model is  :math:`X_t = .98 X_{t-1}  + \epsilon_
 
     ϕ = .98
     θ = -0.7
-    arma = qe.ARMA(ϕ, θ)
-    quad_plot(arma)
+    arma_arma = qe.ARMA(ϕ, θ)
+    quad_plot(arma_arma)
 
 Explanation
 --------------------
@@ -918,11 +918,11 @@ The call
 
 
 
-    ``arma = ARMA(ϕ, θ, σ)``
+    ``arma_arma = ARMA(ϕ, θ, σ)``
 
 
 
-creates an instance ``arma`` that represents the ARMA(:math:`p, q`) model
+creates an instance ``arma_arma`` that represents the ARMA(:math:`p, q`) model
 
 .. math::
 
@@ -950,13 +950,13 @@ The two numerical packages most useful for working with ARMA models are ``scipy.
 
 
 
-The package ``scipy.signal`` expects the parameters to be passed into its functions in a manner consistent with the alternative ARMA notation :eq:`arma_lag1`
+The package ``scipy.signal`` expects the parameters to be passed into its functions in a manner consistent with the alternative ARMA notation :eq:`arma_arma_lag_arma1`
 
 For example, the impulse response sequence :math:`\{\psi_t\}` discussed above can be obtained using ``scipy.signal.dimpulse``, and the function call should be of the form
 
     ``times, ψ = dimpulse((ma_poly, ar_poly, 1), n=impulse_length)``
 
-where ``ma_poly`` and ``ar_poly`` correspond to the polynomials in :eq:`arma_poly` --- that is,
+where ``ma_poly`` and ``ar_poly`` correspond to the polynomials in :eq:`arma_arma_poly_arma` --- that is,
 
 * ``ma_poly`` is the vector :math:`(1, \theta_1, \theta_2, \ldots, \theta_q)`
 * ``ar_poly`` is the vector :math:`(1, -\phi_1, -\phi_2, \ldots, - \phi_p)`
@@ -965,7 +965,7 @@ where ``ma_poly`` and ``ar_poly`` correspond to the polynomials in :eq:`arma_pol
 To this end, we also maintain the arrays ``ma_poly`` and ``ar_poly`` as instance data, with their values computed automatically from the values of ``phi`` and ``theta`` supplied by the user
 
 If the user decides to change the value of either ``theta`` or ``phi`` ex-post by assignments
-such as ``arma.phi = (0.5, 0.2)`` or ``arma.theta = (0, -0.1)``
+such as ``arma_arma.phi = (0.5, 0.2)`` or ``arma_arma.theta = (0, -0.1)``
 
 then ``ma_poly`` and ``ar_poly`` should update automatically to reflect these new parameters
 
@@ -978,7 +978,7 @@ This is achieved in our implementation by using :ref:`descriptors<descriptors>`
 Computing the Autocovariance Function
 -----------------------------------------
 
-As discussed above, for ARMA processes the spectral density has a :ref:`simple representation <arma_spec_den>` that is relatively easy to calculate
+As discussed above, for ARMA processes the spectral density has a :ref:`simple representation <arma_arma_spec_den>` that is relatively easy to calculate
 
 Given this fact, the easiest way to obtain the autocovariance function is to recover it from the spectral
 density via the inverse Fourier transform
@@ -1022,4 +1022,4 @@ For :math:`n` sufficiently large, we then have
 
 (You can check the last equality)
 
-In view of :eq:`ift`, we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute
+In view of :eq:`ift_arma`, we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute

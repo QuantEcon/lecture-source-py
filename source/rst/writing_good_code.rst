@@ -41,7 +41,7 @@ Let's have a look at some poorly written code
 The job of the code is to generate and plot time series of the simplified Solow model
 
 .. math::
-    :label: gc_solmod
+    :label: gc_solmod_writing_good_code
 
     k_{t+1} = s k_t^{\alpha} + (1 - \delta) k_t,
     \quad t = 0, 1, 2, \ldots
@@ -57,7 +57,7 @@ For each parameterization, the code
 
 #. sets :math:`k_0 = 1`
 
-#. iterates using :eq:`gc_solmod` to produce a sequence :math:`k_0, k_1, k_2 \ldots , k_T`
+#. iterates using :eq:`gc_solmod_writing_good_code` to produce a sequence :math:`k_0, k_1, k_2 \ldots , k_T`
 
 #. plots the sequence
 

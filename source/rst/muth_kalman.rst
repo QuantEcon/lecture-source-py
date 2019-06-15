@@ -119,10 +119,10 @@ in :math:`y_t, y_{t-1}, \ldots`
 
 We can use the asymptotic or stationary values of the Kalman gain and
 the one-step-ahead conditional state covariance matrix to compute a
-time-invariant *innovations representation*
+time-invariant *innovations_muth_kalman representation*
 
 .. math::
-    :label: innovations
+    :label: innovations_muth_kalman
 
     \eqalign{ \hat x_{t+1} & = \hat x_t + K a_t  \cr
                y_t & = \hat x_t + a_t  }
@@ -130,18 +130,18 @@ time-invariant *innovations representation*
 where :math:`\hat x_t = E [x_t | y_{t-1}, y_{t-2}, \ldots ]` and
 :math:`a_t = y_t - E[y_t |y_{t-1}, y_{t-2}, \ldots ]`
 
-**Note:** A key property about an *innovations representation* is that
+**Note:** A key property about an *innovations_muth_kalman representation* is that
 :math:`a_t` is in the space spanned by square summable linear
 combinations of :math:`y_t, y_{t-1}, \ldots`
 
 For more ramifications of this property, see the lectures  :doc:`Shock Non-Invertibility<hs_invertibility_example>`  and
 :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`
 
-Later we’ll stack these state-space systems :eq:`state-space` and :eq:`innovations` to display some
+Later we’ll stack these state-space systems :eq:`state-space` and :eq:`innovations_muth_kalman` to display some
 classic findings of Muth
 
 But first, let’s create an instance of the state-space system :eq:`state-space` then
-apply the quantecon ``Kalman`` class, then uses it to construct the associated "innovations representation"
+apply the quantecon ``Kalman`` class, then uses it to construct the associated "innovations_muth_kalman representation"
 
 .. code-block:: python3
 
@@ -168,7 +168,7 @@ apply the quantecon ``Kalman`` class, then uses it to construct the associated "
 Some Useful State-Space Math
 -----------------------------
 
-Now we want to map the time-invariant innovations representation :eq:`innovations` and
+Now we want to map the time-invariant innovations_muth_kalman representation :eq:`innovations_muth_kalman` and
 the original state-space system :eq:`state-space` into a convenient form for deducing
 the impulse responses from the original shocks to the :math:`x_t` and
 :math:`\hat x_t`
@@ -291,7 +291,7 @@ Innovations
 ------------
 
 Recall that we wrote down the innovation representation that depended on
-:math:`a_t`. We now plot the innovations :math:`\{a_t\}`:
+:math:`a_t`. We now plot the innovations_muth_kalman :math:`\{a_t\}`:
 
 .. code-block:: python3
 

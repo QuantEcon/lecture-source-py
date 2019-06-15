@@ -161,7 +161,7 @@ To fit in with :doc:`our earlier lecture on LQ control <lqcontrol>`, we will tre
 To begin, recall the :ref:`infinite horizon LQ problem <lq_ih>`, where an agent chooses a sequence of controls :math:`\{u_t\}` to minimize
 
 .. math::
-    :label: rob_sih
+    :label: rob_sih_robustness
 
     \sum_{t=0}^{\infty} \beta^t
        \left\{
@@ -172,7 +172,7 @@ To begin, recall the :ref:`infinite horizon LQ problem <lq_ih>`, where an agent 
 subject to the linear law of motion
 
 .. math::
-    :label: rob_lom
+    :label: rob_lom_robustness
 
     x_{t+1} = A x_t + B u_t + C w_{t+1},
     \qquad t = 0, 1, 2, \ldots
@@ -229,7 +229,7 @@ In our framework, "adverse" means "loss increasing"
 As we'll see, this will eventually lead us to construct the Bellman equation
 
 .. math::
-    :label: rb_wcb0
+    :label: rb_wcb0_robustness
 
     J (x) =
     \min_u
@@ -254,7 +254,7 @@ So bigger :math:`\theta` is implicitly associated with smaller distortion sequen
 Analyzing the Bellman Equation
 -------------------------------
 
-So what does :math:`J` in :eq:`rb_wcb0` look like?
+So what does :math:`J` in :eq:`rb_wcb0_robustness` look like?
 
 As with the :doc:`ordinary LQ control model <lqcontrol>`, :math:`J` takes the form :math:`J(x) = x' P x` for some symmetric positive definite matrix :math:`P`
 
@@ -265,7 +265,7 @@ Related tasks will be to study associated feedback rules for :math:`u_t` and :ma
 First, using :ref:`matrix calculus <la_mcalc>`, you will be able to verify that
 
 .. math::
-    :label: rb_mp0
+    :label: rb_mp0_robustness
 
     \begin{aligned}
     \max_w
@@ -280,15 +280,15 @@ First, using :ref:`matrix calculus <la_mcalc>`, you will be able to verify that
 where
 
 .. math::
-    :label: rb_d
+    :label: rb_d_robustness
 
     \mathcal D(P) := P + PC (\theta I - C' P C)^{-1} C' P
 
 
-and :math:`I` is a :math:`j \times j` identity matrix.  Substituting this expression for the maximum into :eq:`rb_wcb0` yields
+and :math:`I` is a :math:`j \times j` identity matrix.  Substituting this expression for the maximum into :eq:`rb_wcb0_robustness` yields
 
 .. math::
-    :label: rb_owb
+    :label: rb_owb_robustness
 
     x'Px =
     \min_u
@@ -300,7 +300,7 @@ and :math:`I` is a :math:`j \times j` identity matrix.  Substituting this expres
 
 Using similar mathematics, the solution to this minimization problem is :math:`u  = - F x` where :math:`F := (Q + \beta B' \mathcal D (P) B)^{-1} \beta B' \mathcal D(P) A`
 
-Substituting this minimizer back into :eq:`rb_owb` and working through the algebra gives
+Substituting this minimizer back into :eq:`rb_owb_robustness` and working through the algebra gives
 :math:`x' P x = x' \mathcal B ( \mathcal D( P )) x` for all :math:`x`, or, equivalently,
 
 .. math::
@@ -308,7 +308,7 @@ Substituting this minimizer back into :eq:`rb_owb` and working through the algeb
     P = \mathcal B ( \mathcal D( P ))
 
 
-where :math:`\mathcal D` is the operator defined in :eq:`rb_d` and
+where :math:`\mathcal D` is the operator defined in :eq:`rb_d_robustness` and
 
 .. math::
 
@@ -325,7 +325,7 @@ has a unique positive definite fixed point, which we denote below by :math:`\hat
 A robust policy, indexed by :math:`\theta`, is :math:`u  = - \hat F x` where
 
 .. math::
-    :label: rb_oc_ih
+    :label: rb_oc_ih_robustness
 
     \hat F
     := (Q + \beta B' \mathcal D (\hat P) B)^{-1} \beta B' \mathcal D(\hat P) A
@@ -334,13 +334,13 @@ A robust policy, indexed by :math:`\theta`, is :math:`u  = - \hat F x` where
 We also define
 
 .. math::
-    :label: rb_kd
+    :label: rb_kd_robustness
 
     \hat K
     := (\theta I - C' \hat PC)^{-1} C'  \hat P (A - B \hat F)
 
 
-The interpretation of :math:`\hat K` is that :math:`w_{t+1} = \hat K x_t` on the worst-case path of :math:`\{x_t \}`, in the sense that this vector is the maximizer of :eq:`rb_mp0` evaluated at the fixed rule :math:`u  = - \hat F x`
+The interpretation of :math:`\hat K` is that :math:`w_{t+1} = \hat K x_t` on the worst-case path of :math:`\{x_t \}`, in the sense that this vector is the maximizer of :eq:`rb_mp0_robustness` evaluated at the fixed rule :math:`u  = - \hat F x`
 
 Note that :math:`\hat P, \hat F, \hat K` are all determined by the
 primitives and :math:`\theta`
@@ -388,7 +388,7 @@ However, to obtain a time-invariant recursive formulation, it turns out to be co
 restrict a  discounted inner product
 
 .. math::
-    :label: rb_dec
+    :label: rb_d_robustnessec
 
     \sum_{t=1}^{\infty} \beta^t w_t' w_t \leq \eta
 
@@ -397,10 +397,10 @@ Now let :math:`F` be a fixed policy, and let :math:`J_F(x_0, \mathbf w)` be the
 present-value cost of that policy given sequence :math:`\mathbf w := \{w_t\}`
 and initial condition :math:`x_0 \in \mathbb R^n`
 
-Substituting :math:`-F x_t` for :math:`u_t` in :eq:`rob_sih`, this value can be written as
+Substituting :math:`-F x_t` for :math:`u_t` in :eq:`rob_sih_robustness`, this value can be written as
 
 .. math::
-    :label: rob_fpv
+    :label: rob_fpv_robustness
 
     J_F(x_0, \mathbf w) :=
         \sum_{t=0}^{\infty} \beta^t
@@ -410,14 +410,14 @@ Substituting :math:`-F x_t` for :math:`u_t` in :eq:`rob_sih`, this value can be 
 where
 
 .. math::
-    :label: rob_lomf
+    :label: rob_lom_robustnessf
 
     x_{t+1} = (A - B F) x_t + C w_{t+1}
 
 
-and the initial condition :math:`x_0` is as specified in the left side of :eq:`rob_fpv`
+and the initial condition :math:`x_0` is as specified in the left side of :eq:`rob_fpv_robustness`
 
-Agent 2 chooses :math:`{\mathbf w}` to maximize agent 1's loss :math:`J_F(x_0, \mathbf w)` subject to :eq:`rb_dec`
+Agent 2 chooses :math:`{\mathbf w}` to maximize agent 1's loss :math:`J_F(x_0, \mathbf w)` subject to :eq:`rb_d_robustnessec`
 
 Using a Lagrangian formulation, we can express this problem as
 
@@ -430,7 +430,7 @@ Using a Lagrangian formulation, we can express this problem as
       \right\}
 
 
-where :math:`\{x_t\}` satisfied  :eq:`rob_lomf` and :math:`\theta` is a Lagrange multiplier on constraint :eq:`rb_dec`
+where :math:`\{x_t\}` satisfied  :eq:`rob_lom_robustnessf` and :math:`\theta` is a Lagrange multiplier on constraint :eq:`rb_d_robustnessec`
 
 For the moment, let's take :math:`\theta` as fixed, allowing us to drop the constant :math:`\beta \theta \eta` term in the objective function, and hence write the problem as
 
@@ -446,7 +446,7 @@ For the moment, let's take :math:`\theta` as fixed, allowing us to drop the cons
 or, equivalently,
 
 .. math::
-    :label: rb_a2o
+    :label: rb_a2o_robustness
 
     \min_{\mathbf w}
     \sum_{t=0}^{\infty} \beta^t
@@ -455,7 +455,7 @@ or, equivalently,
     \right\}
 
 
-subject to :eq:`rob_lomf`
+subject to :eq:`rob_lom_robustnessf`
 
 What's striking about this optimization problem is that it is once again an LQ discounted dynamic programming problem, with :math:`\mathbf w = \{ w_t \}` as the sequence of controls
 
@@ -463,15 +463,15 @@ The expression for the optimal policy can be found by applying the usual LQ form
 
 We denote it by :math:`K(F, \theta)`, with the interpretation :math:`w_{t+1} = K(F, \theta) x_t`
 
-The remaining step for agent 2's problem is to set :math:`\theta` to enforce the constraint :eq:`rb_dec`, which can be done by choosing :math:`\theta = \theta_{\eta}` such that
+The remaining step for agent 2's problem is to set :math:`\theta` to enforce the constraint :eq:`rb_d_robustnessec`, which can be done by choosing :math:`\theta = \theta_{\eta}` such that
 
 .. math::
-    :label: rb_pdt
+    :label: rb_pdt_robustness
 
     \beta \sum_{t=0}^{\infty} \beta^t x_t' K(F, \theta_\eta)' K(F, \theta_\eta) x_t = \eta
 
 
-Here :math:`x_t` is given by :eq:`rob_lomf` --- which in this case becomes :math:`x_{t+1} = (A - B F + CK(F, \theta)) x_t`
+Here :math:`x_t` is given by :eq:`rob_lom_robustnessf` --- which in this case becomes :math:`x_{t+1} = (A - B F + CK(F, \theta)) x_t`
 
 .. _rb_a1:
 
@@ -483,7 +483,7 @@ Using Agent 2's Problem to Construct Bounds on the Value Sets
 The Lower Bound
 ^^^^^^^^^^^^^^^^
 
-Define the minimized object on the right side of problem :eq:`rb_a2o` as :math:`R_\theta(x_0, F)`
+Define the minimized object on the right side of problem :eq:`rb_a2o_robustness` as :math:`R_\theta(x_0, F)`
 
 Because "minimizers minimize" we have
 
@@ -498,7 +498,7 @@ where :math:`x_{t+1} = (A - B F + CK(F, \theta)) x_t` and :math:`x_0` is a given
 This inequality in turn implies the inequality
 
 .. math::
-    :label: rob_bound
+    :label: rob_bound_robustness
 
     R_\theta(x_0, F) - \theta \ {\rm ent}
     \leq \sum_{t=0}^\infty \beta^t \left\{  - x_t' (R + F' Q F) x_t \right\}
@@ -511,26 +511,26 @@ where
     {\rm ent} := \beta \sum_{t=0}^\infty \beta^t w_{t+1}' w_{t+1}
 
 
-The left side of inequality :eq:`rob_bound` is a straight line with slope :math:`-\theta`
+The left side of inequality :eq:`rob_bound_robustness` is a straight line with slope :math:`-\theta`
 
 Technically, it is  a "separating hyperplane"
 
 At a particular value of entropy, the line is tangent to the lower bound of values  as a function of entropy
 
-In particular, the lower bound on the left side of :eq:`rob_bound` is attained when
+In particular, the lower bound on the left side of :eq:`rob_bound_robustness` is attained when
 
 
 .. math::
-    :label: rb_pdt22
+    :label: rb_pdt_robustness22
 
     {\rm ent} =  \beta \sum_{t=0}^{\infty} \beta^t x_t' K(F, \theta)' K(F, \theta) x_t
 
 
-To construct the *lower bound* on the set of values associated with all perturbations :math:`{\mathbf w}` satisfying the entropy constraint :eq:`rb_dec` at a  given entropy level, we proceed as follows:
+To construct the *lower bound* on the set of values associated with all perturbations :math:`{\mathbf w}` satisfying the entropy constraint :eq:`rb_d_robustnessec` at a  given entropy level, we proceed as follows:
 
-    *  For a given :math:`\theta`, solve the minimization problem :eq:`rb_a2o`
+    *  For a given :math:`\theta`, solve the minimization problem :eq:`rb_a2o_robustness`
 
-    *  Compute the minimizer :math:`R_\theta(x_0, F)` and the associated entropy using :eq:`rb_pdt22`
+    *  Compute the minimizer :math:`R_\theta(x_0, F)` and the associated entropy using :eq:`rb_pdt_robustness22`
 
     *  Compute the lower bound on the value function :math:`R_\theta(x_0, F) - \theta \ {\rm  ent}` and plot it against :math:`{\rm ent}`
 
@@ -544,11 +544,11 @@ The Upper Bound
 
 To construct an *upper bound* we use a very similar procedure
 
-We simply replace the *minimization* problem :eq:`rb_a2o` with the *maximization* problem
+We simply replace the *minimization* problem :eq:`rb_a2o_robustness` with the *maximization* problem
 
 
 .. math::
-    :label: rba2omax
+    :label: rba2omax_robustness
 
     V_{\tilde \theta}(x_0, F) =  \max_{\mathbf w}
       \sum_{t=0}^{\infty} \beta^t
@@ -559,7 +559,7 @@ We simply replace the *minimization* problem :eq:`rb_a2o` with the *maximization
 
 where now :math:`\tilde \theta  >0`  penalizes the choice of :math:`{\mathbf w}` with larger entropy
 
-(Notice that :math:`\tilde \theta = - \theta` in problem :eq:`rb_a2o`)
+(Notice that :math:`\tilde \theta = - \theta` in problem :eq:`rb_a2o_robustness`)
 
 Because "maximizers maximize" we have
 
@@ -571,7 +571,7 @@ Because "maximizers maximize" we have
 which in turn implies the inequality
 
 .. math::
-    :label: robboundmax
+    :label: robboundmax_robustness
 
     V_{\tilde \theta}(x_0, F) + \tilde \theta \ {\rm ent} \geq \sum_{t=0}^\infty \beta^t \left\{  - x_t' (R + F' Q F) x_t \right\}
 
@@ -583,22 +583,22 @@ where
     {\rm ent} \equiv \beta \sum_{t=0}^\infty \beta^t w_{t+1}' w_{t+1}
 
 
-The left side of inequality :eq:`robboundmax` is a straight line with slope :math:`\tilde \theta`
+The left side of inequality :eq:`robboundmax_robustness` is a straight line with slope :math:`\tilde \theta`
 
-The upper bound on the left side of :eq:`robboundmax` is attained when
+The upper bound on the left side of :eq:`robboundmax_robustness` is attained when
 
 
 .. math::
-    :label: rbpdt223
+    :label: rbpdt223_robustness
 
     {\rm ent} =  \beta \sum_{t=0}^{\infty} \beta^t x_t' K(F, \tilde \theta)' K(F, \tilde \theta) x_t
 
 
 To construct the *upper bound* on the set of values associated all perturbations :math:`{\mathbf w}` with a given entropy we proceed much as we did for the lower bound
 
-    *  For a given :math:`\tilde \theta`, solve the maximization problem :eq:`rba2omax`
+    *  For a given :math:`\tilde \theta`, solve the maximization problem :eq:`rba2omax_robustness`
 
-    *  Compute the maximizer :math:`V_{\tilde \theta}(x_0, F)` and the associated entropy using :eq:`rbpdt223`
+    *  Compute the maximizer :math:`V_{\tilde \theta}(x_0, F)` and the associated entropy using :eq:`rbpdt223_robustness`
 
     *  Compute the upper bound on the value function :math:`V_{\tilde \theta}(x_0, F) + \tilde \theta \ {\rm ent}` and plot it against :math:`{\rm ent}`
 
@@ -617,7 +617,7 @@ Agent 1's Problem
 Now we turn to agent 1, who solves
 
 .. math::
-    :label: rob_sihk
+    :label: rob_sih_robustnessk
 
     \min_{\{u_t\}}
         \sum_{t=0}^{\infty} \beta^t
@@ -631,7 +631,7 @@ where  :math:`\{ w_{t+1} \}`  satisfies :math:`w_{t+1} = K x_t`
 In other words, agent 1 minimizes
 
 .. math::
-    :label: rob_sihk2
+    :label: rob_sih_robustnessk2
 
     \sum_{t=0}^{\infty} \beta^t
         \left\{
@@ -642,7 +642,7 @@ In other words, agent 1 minimizes
 subject to
 
 .. math::
-    :label: rob_lomk
+    :label: rob_lom_robustnessk
 
     x_{t+1} = (A + C K) x_t + B u_t
 
@@ -676,11 +676,11 @@ The map :math:`F \mapsto \Phi (K(F, \theta))` corresponds to a situation in whic
 
 #. agent 1 best responds to agent 2 by choosing :math:`\tilde F = \Phi (K(F, \theta))`
 
-As you may have already guessed, the robust policy :math:`\hat F` defined in :eq:`rb_oc_ih` is a fixed point of the mapping :math:`\Phi`
+As you may have already guessed, the robust policy :math:`\hat F` defined in :eq:`rb_oc_ih_robustness` is a fixed point of the mapping :math:`\Phi`
 
 In particular, for any given :math:`\theta`,
 
-#. :math:`K(\hat F, \theta) = \hat K`, where :math:`\hat K` is as given in :eq:`rb_kd`
+#. :math:`K(\hat F, \theta) = \hat K`, where :math:`\hat K` is as given in :eq:`rb_kd_robustness`
 
 #. :math:`\Phi(\hat K) = \hat F`
 
@@ -712,10 +712,10 @@ For densities :math:`p, q`, the Kullback-Leibler divergence of :math:`q` from :m
     D_{KL} (p, q) := \int \ln \left[ \frac{p(x)}{q(x)} \right] p(x) \, dx
 
 
-Using this notation, we replace :eq:`rb_wcb0` with the stochastic analog
+Using this notation, we replace :eq:`rb_wcb0_robustness` with the stochastic analog
 
 .. math::
-    :label: rb_wcb1
+    :label: rb_wcb1_robustness
 
     J (x) =
     \min_u
@@ -732,14 +732,14 @@ Here :math:`\mathcal P` represents the set of all densities on :math:`\mathbb R^
 
 The distribution :math:`\phi` is chosen as the least desirable conditional distribution in terms of next period outcomes, while taking into account the penalty term :math:`\theta D_{KL}(\psi, \phi)`
 
-This penalty term plays a role analogous to the one played by the deterministic penalty :math:`\theta w'w` in :eq:`rb_wcb0`, since it discourages large deviations from the benchmark
+This penalty term plays a role analogous to the one played by the deterministic penalty :math:`\theta w'w` in :eq:`rb_wcb0_robustness`, since it discourages large deviations from the benchmark
 
 
 
 Solving the Model
 --------------------
 
-The maximization problem in :eq:`rb_wcb1` appears highly nontrivial --- after all,
+The maximization problem in :eq:`rb_wcb1_robustness` appears highly nontrivial --- after all,
 we are maximizing over an infinite dimensional space consisting of the entire set of densities
 
 However, it turns out that the solution is  tractable, and in fact also falls within the class of normal distributions
@@ -749,7 +749,7 @@ First, we note that :math:`J` has the form :math:`J(x) = x' P x + d` for some po
 Moreover, it turns out that if :math:`(I - \theta^{-1} C' P C)^{-1}` is nonsingular, then
 
 .. math::
-    :label: rb_mls
+    :label: rb_mls_robustness
 
     \begin{aligned}
     \max_{\psi \in \mathcal P}
@@ -771,7 +771,7 @@ where
 and the maximizer is the Gaussian distribution
 
 .. math::
-    :label: rb_md
+    :label: rb_md_robustness
 
     \psi = N
     \left(
@@ -780,10 +780,10 @@ and the maximizer is the Gaussian distribution
 
 
 Substituting the expression for the maximum into  Bellman equation
-:eq:`rb_wcb1` and using :math:`J(x) = x'Px + d` gives
+:eq:`rb_wcb1_robustness` and using :math:`J(x) = x'Px + d` gives
 
 .. math::
-    :label: rb_wcb2
+    :label: rb_wcb2_robustness
 
     x' P x + d =
     \min_u
@@ -794,7 +794,7 @@ Substituting the expression for the maximum into  Bellman equation
 
 
 Since constant terms do not affect minimizers, the solution is the same as
-:eq:`rb_owb`, leading to
+:eq:`rb_owb_robustness`, leading to
 
 .. math::
 
@@ -808,15 +808,15 @@ To solve this Bellman equation, we take :math:`\hat P` to be the positive defini
 In addition, we take :math:`\hat d` as the real number solving :math:`d = \beta \, [d + \kappa(\theta, P)]`, which is
 
 .. math::
-    :label: rb_hatd
+    :label: rb_hatd_robustness
 
     \hat d := \frac{\beta}{1 - \beta} \kappa(\theta, P)
 
 
 The robust policy in this stochastic case is the minimizer in
-:eq:`rb_wcb2`, which is once again :math:`u  = - \hat F x` for :math:`\hat F` given by :eq:`rb_oc_ih`
+:eq:`rb_wcb2_robustness`, which is once again :math:`u  = - \hat F x` for :math:`\hat F` given by :eq:`rb_oc_ih_robustness`
 
-Substituting the robust policy into :eq:`rb_md` we obtain the worst-case shock
+Substituting the robust policy into :eq:`rb_md_robustness` we obtain the worst-case shock
 distribution:
 
 .. math::
@@ -825,7 +825,7 @@ distribution:
     N( \hat K x_t, (I - \theta^{-1} C' \hat PC)^{-1} )
 
 
-where :math:`\hat K` is given by :eq:`rb_kd`
+where :math:`\hat K` is given by :eq:`rb_kd_robustness`
 
 Note that the mean of the worst-case shock distribution is equal to the same  worst-case :math:`w_{t+1}` as in the earlier deterministic setting
 
@@ -845,7 +845,7 @@ One thing we will be interested in doing is holding a policy fixed and
 computing the discounted loss associated with that policy
 
 So let :math:`F` be a given policy and let :math:`J_F(x)` be
-the associated loss, which, by analogy with :eq:`rb_wcb1`, satisfies
+the associated loss, which, by analogy with :eq:`rb_wcb1_robustness`, satisfies
 
 .. math::
 
@@ -860,7 +860,7 @@ the associated loss, which, by analogy with :eq:`rb_wcb1`, satisfies
 
 
 Writing :math:`J_F(x) = x'P_Fx + d_F` and applying the same argument used to
-derive :eq:`rb_mls` we get
+derive :eq:`rb_mls_robustness` we get
 
 .. math::
 
@@ -881,7 +881,7 @@ To solve this we take :math:`P_F` to be the fixed point
 and
 
 .. math::
-    :label: rb_hatd2
+    :label: rb_hatd_robustness2
 
     d_F
     := \frac{\beta}{1 - \beta} \kappa(\theta, P_F)
@@ -908,7 +908,7 @@ Here is a brief description of the methods of the class
   and :math:`\mathcal B` respectively
 
 * ``robust_rule()`` and ``robust_rule_simple()`` both solve for the
-  triple :math:`\hat F, \hat K, \hat P`, as described in equations :eq:`rb_oc_ih` -- :eq:`rb_kd` and the surrounding discussion
+  triple :math:`\hat F, \hat K, \hat P`, as described in equations :eq:`rb_oc_ih_robustness` -- :eq:`rb_kd_robustness` and the surrounding discussion
 
     * ``robust_rule()`` is more efficient
 
@@ -917,7 +917,7 @@ Here is a brief description of the methods of the class
 * ``K_to_F()`` and ``F_to_K()`` solve the decision problems
   of :ref:`agent 1 <rb_a1>` and :ref:`agent 2 <rb_a2>` respectively
 
-* ``compute_deterministic_entropy()`` computes the left-hand side of :eq:`rb_pdt`
+* ``compute_deterministic_entropy()`` computes the left-hand side of :eq:`rb_pdt_robustness`
 
 * ``evaluate_F()`` computes the loss and entropy associated with a given
   policy --- see :ref:`this discussion <rb_coq>`
@@ -1042,22 +1042,22 @@ Appendix
 
 We sketch the proof only of the first claim in :ref:`this section <rb_eq>`,
 which is that, for any given :math:`\theta`, :math:`K(\hat F, \theta) = \hat K`,
-where :math:`\hat K` is as given in :eq:`rb_kd`
+where :math:`\hat K` is as given in :eq:`rb_kd_robustness`
 
 This is the content of the next lemma
 
-**Lemma.** If :math:`\hat P` is the fixed point of the map :math:`\mathcal B \circ \mathcal D` and :math:`\hat F` is the robust policy as given in :eq:`rb_oc_ih`, then
+**Lemma.** If :math:`\hat P` is the fixed point of the map :math:`\mathcal B \circ \mathcal D` and :math:`\hat F` is the robust policy as given in :eq:`rb_oc_ih_robustness`, then
 
 .. math::
-    :label: rb_kft
+    :label: rb_kft_robustness
 
     K(\hat F, \theta) = (\theta I - C'\hat P C)^{-1} C' \hat P  (A - B \hat F)
 
 
-*Proof:* As a first step, observe that when :math:`F = \hat F`, the Bellman equation associated with the LQ problem  :eq:`rob_lomf` -- :eq:`rb_a2o` is
+*Proof:* As a first step, observe that when :math:`F = \hat F`, the Bellman equation associated with the LQ problem  :eq:`rob_lom_robustnessf` -- :eq:`rb_a2o_robustness` is
 
 .. math::
-    :label: rb_a2be
+    :label: rb_a2be_robustness
 
     \tilde P = -R - \hat F' Q \hat F -
     \beta^2 (A - B \hat F)' \tilde P C
@@ -1065,7 +1065,7 @@ This is the content of the next lemma
     \beta (A - B \hat F)' \tilde P (A - B \hat F)
 
 
-(revisit :ref:`this discussion <lq_ih>` if you don't know where :eq:`rb_a2be` comes from) and the optimal policy is
+(revisit :ref:`this discussion <lq_ih>` if you don't know where :eq:`rb_a2be_robustness` comes from) and the optimal policy is
 
 .. math::
 
@@ -1073,7 +1073,7 @@ This is the content of the next lemma
     C' \tilde P (A - B \hat F) x_t
 
 
-Suppose for a moment that :math:`- \hat P` solves the Bellman equation :eq:`rb_a2be`
+Suppose for a moment that :math:`- \hat P` solves the Bellman equation :eq:`rb_a2be_robustness`
 
 In this case, the policy becomes
 
@@ -1082,9 +1082,9 @@ In this case, the policy becomes
     w_{t+1} = (\theta I - C' \hat P C)^{-1} C' \hat P (A - B \hat F) x_t
 
 
-which is exactly the claim in :eq:`rb_kft`
+which is exactly the claim in :eq:`rb_kft_robustness`
 
-Hence it remains only to show that :math:`- \hat P` solves :eq:`rb_a2be`,
+Hence it remains only to show that :math:`- \hat P` solves :eq:`rb_a2be_robustness`,
 or, in other words,
 
 .. math::

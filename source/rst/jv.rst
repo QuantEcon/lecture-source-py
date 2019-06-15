@@ -82,7 +82,7 @@ In particular, :math:`x_{t+1} = u_{t+1}` if accepts and :math:`x_{t+1} = g(x_t, 
 Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicating an offer, we can write
 
 .. math::
-    :label: jd
+    :label: jd_jv
 
     x_{t+1}
     = (1 - b_{t+1}) g(x_t, \phi_t) + b_{t+1}
@@ -91,11 +91,11 @@ Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicatin
 
 Agent's objective: maximize expected discounted sum of wages via controls :math:`\{s_t\}` and :math:`\{\phi_t\}`
 
-Taking the expectation of :math:`v(x_{t+1})` and using :eq:`jd`,
+Taking the expectation of :math:`v(x_{t+1})` and using :eq:`jd_jv`,
 the Bellman equation for this problem can be written as
 
 .. math::
-    :label: jvbell
+    :label: jvbell_jv
 
     v(x)
     = \max_{s + \phi \leq 1}
@@ -160,7 +160,7 @@ The relative expected return will depend on :math:`x`
 For example, suppose first that :math:`x = 0.05`
 
 * If :math:`s=1` and :math:`\phi = 0`, then since :math:`g(x,\phi) = 0`,
-  taking expectations of :eq:`jd` gives expected next period capital equal to :math:`\pi(s) \mathbb{E} u
+  taking expectations of :eq:`jd_jv` gives expected next period capital equal to :math:`\pi(s) \mathbb{E} u
   = \mathbb{E} u = 0.5`
 * If :math:`s=0` and :math:`\phi=1`, then next period capital is :math:`g(x, \phi) = g(0.05, 1) \approx 0.23`
 
@@ -237,7 +237,7 @@ jitted version of the Bellman operator ``T``, ie.
 where
 
 .. math::
-    :label: defw
+    :label: defw_jv
 
      w(s, \phi)
      := x (1 - s - \phi) + \beta (1 - \pi(s)) v[g(x, \phi)] +
@@ -247,12 +247,12 @@ where
 
 When we represent :math:`v`, it will be with a NumPy array ``v`` giving values on grid ``x_grid``
 
-But to evaluate the right-hand side of :eq:`defw`, we need a function, so
+But to evaluate the right-hand side of :eq:`defw_jv`, we need a function, so
 we replace the arrays ``v`` and ``x_grid`` with a function ``v_func`` that gives linear
 interpolation of ``v`` on ``x_grid``
 
 Inside the ``for`` loop, for each ``x`` in the grid over the state space, we
-set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`
+set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw_jv`
 
 The function is maximized over all feasible :math:`(s, \phi)` pairs
 
@@ -427,7 +427,7 @@ Exercise 1
 
 Let's look at the dynamics for the state process :math:`\{x_t\}` associated with these policies
 
-The dynamics are given by :eq:`jd` when :math:`\phi_t` and :math:`s_t` are
+The dynamics are given by :eq:`jd_jv` when :math:`\phi_t` and :math:`s_t` are
 chosen according to the optimal policies, and :math:`\mathbb{P}\{b_{t+1} = 1\}
 = \pi(s_t)`
 

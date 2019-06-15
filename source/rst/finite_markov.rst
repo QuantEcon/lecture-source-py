@@ -82,7 +82,7 @@ A **Markov chain** :math:`\{X_t\}` on :math:`S` is a sequence of random variable
 This means that, for any date :math:`t` and any state :math:`y \in S`,
 
 .. math::
-    :label: fin_markov_mp
+    :label: fin_markov_mp_finite_markov
 
     \mathbb P \{ X_{t+1} = y  \,|\, X_t \}
     = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}
@@ -93,7 +93,7 @@ In other words, knowing the current state is enough to know probabilities for fu
 In particular, the dynamics of a Markov chain are fully determined by the set of values
 
 .. math::
-    :label: mpp
+    :label: mpp_finite_markov
 
     P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
     \qquad (x, y \in S)
@@ -121,7 +121,7 @@ chain :math:`\{X_t\}` as follows:
 * for each :math:`t = 0, 1, \ldots`, draw :math:`X_{t+1}` from :math:`P(X_t,\cdot)`
 
 
-By construction, the resulting process satisfies :eq:`mpp`
+By construction, the resulting process satisfies :eq:`mpp_finite_markov`
 
 
 
@@ -294,7 +294,7 @@ We'll write our code as a function that takes the following three arguments
 Let's see how it works using the small matrix
 
 .. math::
-    :label: fm_smat
+    :label: fm_smat_finite_markov
 
     P :=
     \left(
@@ -441,7 +441,7 @@ If we think of :math:`\psi_{t+1}` and :math:`\psi_t` as *row vectors* (as is tra
 .. _mc_fddv:
 
 .. math::
-    :label: fin_mc_fr
+    :label: fin_mc_fr_finite_markov
 
     \psi_{t+1} = \psi_t P
 
@@ -450,7 +450,7 @@ In other words, to move the distribution forward one unit of time, we postmultip
 
 By repeating this :math:`m` times we move forward :math:`m` steps into the future
 
-Hence, iterating on :eq:`fin_mc_fr`, the expression :math:`\psi_{t+m} = \psi_t P^m` is also valid --- here :math:`P^m` is the :math:`m`-th power of :math:`P`
+Hence, iterating on :eq:`fin_mc_fr_finite_markov`, the expression :math:`\psi_{t+m} = \psi_t P^m` is also valid --- here :math:`P^m` is the :math:`m`-th power of :math:`P`
 
 .. _mc_exfmar:
 
@@ -461,7 +461,7 @@ which :math:`X_0` is drawn, then :math:`\psi_0 P^m` is the distribution of
 This is very important, so let's repeat it
 
 .. math::
-    :label: mdfmc
+    :label: mdfmc_finite_markov
 
     X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m
 
@@ -469,7 +469,7 @@ This is very important, so let's repeat it
 and, more generally,
 
 .. math::
-    :label: mdfmc2
+    :label: mdfmc_finite_markov2
 
     X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 
@@ -486,11 +486,11 @@ It turns out that the probability of transitioning from :math:`x` to :math:`y` i
 :math:`m` steps is :math:`P^m(x,y)`, the :math:`(x,y)`-th element of the
 :math:`m`-th power of :math:`P`
 
-To see why, consider again :eq:`mdfmc2`, but now with :math:`\psi_t` putting all probability on state :math:`x`
+To see why, consider again :eq:`mdfmc_finite_markov2`, but now with :math:`\psi_t` putting all probability on state :math:`x`
 
 * 1 in the :math:`x`-th position and zero elsewhere
 
-Inserting this into :eq:`mdfmc2`, we see that, conditional on :math:`X_t = x`, the distribution of :math:`X_{t+m}` is the :math:`x`-th row of :math:`P^m`
+Inserting this into :eq:`mdfmc_finite_markov2`, we see that, conditional on :math:`X_t = x`, the distribution of :math:`X_{t+m}` is the :math:`x`-th row of :math:`P^m`
 
 In particular
 
@@ -753,7 +753,7 @@ We can confirm that the stochastic matrix is periodic as follows
 .. index::
     single: Markov Chains; Stationary Distributions
 
-As seen in :eq:`fin_mc_fr`, we can shift probabilities forward one unit of time via postmultiplication by :math:`P`
+As seen in :eq:`fin_mc_fr_finite_markov`, we can shift probabilities forward one unit of time via postmultiplication by :math:`P`
 
 Some distributions are invariant under this updating process --- for example,
 
@@ -962,7 +962,7 @@ The code for the figure can be found `here <https://github.com/QuantEcon/QuantEc
 Under irreducibility, yet another important result obtains: For all :math:`x \in S`,
 
 .. math::
-    :label: llnfmc0
+    :label: llnfmc0_finite_markov
 
     \frac{1}{n} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
         \quad \text{as } m \to \infty
@@ -980,9 +980,9 @@ The result tells us that the fraction of time the chain spends at state :math:`x
 
 .. _new_interp_sd:
 
-This gives us another way to interpret the stationary distribution --- provided that the convergence result in :eq:`llnfmc0` is valid
+This gives us another way to interpret the stationary distribution --- provided that the convergence result in :eq:`llnfmc0_finite_markov` is valid
 
-The convergence in :eq:`llnfmc0` is a special case of a law of large numbers result for Markov chains --- see `EDTC <http://johnstachurski.net/edtc.html>`_, section 4.3.4 for some additional information
+The convergence in :eq:`llnfmc0_finite_markov` is a special case of a law of large numbers result for Markov chains --- see `EDTC <http://johnstachurski.net/edtc.html>`_, section 4.3.4 for some additional information
 
 
 
@@ -1025,7 +1025,7 @@ Computing Expectations
 We are interested in computing expectations of the form
 
 .. math::
-    :label: mc_une
+    :label: mc_une_finite_markov
 
     \mathbb E [ h(X_t) ]
 
@@ -1033,7 +1033,7 @@ We are interested in computing expectations of the form
 and conditional expectations such as
 
 .. math::
-    :label: mc_cce
+    :label: mc_cce_finite_markov
 
     \mathbb E [ h(X_{t + k})  \mid X_t = x]
 
@@ -1057,7 +1057,7 @@ where
       \right)
 
 
-The unconditional expectation :eq:`mc_une` is easy: We just sum over the
+The unconditional expectation :eq:`mc_une_finite_markov` is easy: We just sum over the
 distribution of :math:`X_t` to get
 
 .. math::
@@ -1077,13 +1077,13 @@ write this as
     =  \psi P^t h
 
 
-For the conditional expectation :eq:`mc_cce`, we need to sum over
+For the conditional expectation :eq:`mc_cce_finite_markov`, we need to sum over
 the conditional distribution of :math:`X_{t + k}` given :math:`X_t = x`
 
 We already know that this is :math:`P^k(x, \cdot)`, so
 
 .. math::
-    :label: mc_cce2
+    :label: mc_cce_finite_markov2
 
     \mathbb E [ h(X_{t + k})  \mid X_t = x]
     = (P^k h)(x)

@@ -114,7 +114,7 @@ Consumers
 A representative consumer ranks consumption streams :math:`\{c_t\}` according to the time separable utility functional
 
 .. math::
-    :label: lt_uf
+    :label: lt_uf_lucas_model
 
     \mathbb{E} \sum_{t=0}^\infty \beta^t u(c_t)
 
@@ -154,7 +154,7 @@ Next, we'll impose equilibrium constraints and try to back out prices
 
 In the consumer problem, the consumer's control variable is the share :math:`\pi_t` of the claim held in each period
 
-Thus, the consumer problem is to maximize :eq:`lt_uf` subject to
+Thus, the consumer problem is to maximize :eq:`lt_uf_lucas_model` subject to
 
 .. math::
 
@@ -205,15 +205,15 @@ Using the assumption that price is a given function :math:`p` of :math:`y`, we w
 subject to
 
 .. math::
-    :label: preltbe
+    :label: preltbe_lucas_model_lucas_model
 
     c + \pi' p(y) \leq \pi y + \pi p(y)
 
 
-We can invoke the fact that utility is increasing to claim equality in :eq:`preltbe` and hence eliminate the constraint, obtaining
+We can invoke the fact that utility is increasing to claim equality in :eq:`preltbe_lucas_model_lucas_model` and hence eliminate the constraint, obtaining
 
 .. math::
-    :label: ltbe
+    :label: ltbe_lucas_model
 
     v(\pi, y) = \max_{\pi'}
         \left\{
@@ -264,7 +264,7 @@ The Equilibrium Price Function
 .. index::
     single: Lucas Model; Equilibrium Price Function
 
-Now observe that the first-order condition for :eq:`ltbe` can be written as
+Now observe that the first-order condition for :eq:`ltbe_lucas_model` can be written as
 
 .. math::
 
@@ -274,7 +274,7 @@ Now observe that the first-order condition for :eq:`ltbe` can be written as
 where :math:`v'_1` is the derivative of :math:`v` with respect to its first argument
 
 To obtain :math:`v'_1` we can simply differentiate the right-hand side of
-:eq:`ltbe` with respect to :math:`\pi`, yielding
+:eq:`ltbe_lucas_model` with respect to :math:`\pi`, yielding
 
 .. math::
 
@@ -285,7 +285,7 @@ Next, we impose the equilibrium constraints while combining the last two
 equations to get
 
 .. math::
-    :label: lteeq
+    :label: lteeq_lucas_model
 
     p(y)  = \beta \int \frac{u'[G(y, z)]}{u'(y)} [G(y, z) + p(G(y, z))]  \phi(dz)
 
@@ -293,7 +293,7 @@ equations to get
 In sequential rather than functional notation, we can also write this as
 
 .. math::
-    :label: lteeqs
+    :label: lteeq_lucas_models
 
     p_t = \mathbb{E}_t \left[ \beta \frac{u'(c_{t+1})}{u'(c_t)} ( y_{t+1} + p_{t+1} ) \right]
 
@@ -309,7 +309,7 @@ Solving the Model
 .. index::
     single: Lucas Model; Solving
 
-Equation :eq:`lteeq` is a *functional equation* in the unknown function :math:`p`
+Equation :eq:`lteeq_lucas_model` is a *functional equation* in the unknown function :math:`p`
 
 The solution is an equilibrium price function :math:`p^*`
 
@@ -321,15 +321,15 @@ Setting up the Problem
 Instead of solving for it directly we'll follow Lucas' indirect approach, first setting
 
 .. math::
-    :label: ltffp
+    :label: ltffp_lucas_model
 
     f(y) := u'(y) p(y)
 
 
-so that :eq:`lteeq` becomes
+so that :eq:`lteeq_lucas_model` becomes
 
 .. math::
-    :label: lteeq2
+    :label: lteeq_lucas_model2
 
     f(y) = h(y) + \beta \int f[G(y, z)] \phi(dz)
 
@@ -337,23 +337,23 @@ so that :eq:`lteeq` becomes
 Here :math:`h(y) := \beta \int u'[G(y, z)] G(y, z)  \phi(dz)` is a function that
 depends only on the primitives
 
-Equation :eq:`lteeq2` is a functional equation in :math:`f`
+Equation :eq:`lteeq_lucas_model2` is a functional equation in :math:`f`
 
-The plan is to solve out for :math:`f` and convert back to :math:`p` via :eq:`ltffp`
+The plan is to solve out for :math:`f` and convert back to :math:`p` via :eq:`ltffp_lucas_model`
 
-To solve :eq:`lteeq2` we'll use a standard method: convert it to a fixed point problem
+To solve :eq:`lteeq_lucas_model2` we'll use a standard method: convert it to a fixed point problem
 
 First, we introduce the operator :math:`T` mapping :math:`f` into :math:`Tf` as defined by
 
 .. math::
-    :label: lteeqT
+    :label: lteeq_lucas_modelT
 
     (Tf)(y) = h(y) + \beta \int f[G(y, z)] \phi(dz)
 
 In what follows, we refer to :math:`T` as the Lucas operator
 
 
-The reason we do this is that a solution to :eq:`lteeq2` now corresponds to a
+The reason we do this is that a solution to :eq:`lteeq_lucas_model2` now corresponds to a
 function :math:`f^*` satisfying :math:`(Tf^*)(y) = f^*(y)` for all :math:`y`
 
 In other words, a solution is a *fixed point* of :math:`T`
@@ -383,7 +383,7 @@ It tells us that the previous statements will be true if we can find an
 :math:`\alpha < 1` such that
 
 .. math::
-    :label: ltbc
+    :label: ltbc_lucas_model
 
     \| Tf - Tg \| \leq \alpha \| f - g \|,
     \qquad \forall \, f, g \in cb\mathbb{R}_+
@@ -391,7 +391,7 @@ It tells us that the previous statements will be true if we can find an
 
 Here :math:`\|h\| := \sup_{x \in \mathbb{R}_+} |h(x)|`
 
-To see that :eq:`ltbc` is valid, pick any :math:`f,g \in cb\mathbb{R}_+` and any :math:`y \in \mathbb{R}_+`
+To see that :eq:`ltbc_lucas_model` is valid, pick any :math:`f,g \in cb\mathbb{R}_+` and any :math:`y \in \mathbb{R}_+`
 
 Observe that, since integrals get larger when absolute values are moved to the
 inside,
@@ -412,7 +412,7 @@ inside,
 
 
 Since the right-hand side is an upper bound, taking the sup over all :math:`y`
-on the left-hand side gives :eq:`ltbc` with :math:`\alpha := \beta`
+on the left-hand side gives :eq:`ltbc_lucas_model` with :math:`\alpha := \beta`
 
 
 .. _lt_comp_eg:

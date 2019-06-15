@@ -95,7 +95,7 @@ Consider a representative household who chooses a path :math:`\{\ell_t, c_t\}`
 for labor and consumption to maximize
 
 .. math::
-    :label: lq_hu
+    :label: lq_hu_lqramsey
 
     -\mathbb E \frac{1}{2} \sum_{t=0}^{\infty} \beta^t
     \left[
@@ -106,7 +106,7 @@ for labor and consumption to maximize
 subject to the budget constraint
 
 .. math::
-    :label: lq_hc
+    :label: lq_hc_lqramsey
 
     \mathbb E \sum_{t=0}^{\infty} \beta^t p^0_t
     \left[
@@ -138,7 +138,7 @@ Thus, our scaled Arrow-Debreu price is the ordinary Arrow-Debreu price multiplie
 by an appropriate probability
 
 
-The budget constraint :eq:`lq_hc` requires that the present value of consumption be restricted to equal the present value of endowments, labor income and coupon payments on bond holdings
+The budget constraint :eq:`lq_hc_lqramsey` requires that the present value of consumption be restricted to equal the present value of endowments, labor income and coupon payments on bond holdings
 
 
 
@@ -183,12 +183,12 @@ Feasibility
 The period-by-period feasibility restriction for this economy is
 
 .. math::
-    :label: lq_feasible
+    :label: lq_feasible_lqramsey
 
     c_t + g_t = d_t + \ell_t
 
 
-A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:`lq_feasible` holds for all :math:`t`
+A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:`lq_feasible_lqramsey` holds for all :math:`t`
 
 
 Government Budget Constraint
@@ -197,7 +197,7 @@ Government Budget Constraint
 Where :math:`p_t^0` is again a scaled Arrow-Debreu price, the time zero government budget constraint is
 
 .. math::
-    :label: lq_gc
+    :label: lq_gc_lqramsey
 
     \mathbb E \sum_{t=0}^{\infty} \beta^t p^0_t
     (s_t + g_t - \tau_t \ell_t ) = 0
@@ -211,7 +211,7 @@ of prices :math:`\{p_t^0\}`, and a tax system :math:`\{\tau_t\}` such that
 
 #.  The allocation :math:`\{\ell_t, c_t\}` is optimal for the household given :math:`\{p_t^0\}` and :math:`\{\tau_t\}`
 
-#.  The government's budget constraint :eq:`lq_gc` is satisfied
+#.  The government's budget constraint :eq:`lq_gc_lqramsey` is satisfied
 
 The *Ramsey problem* is to choose the equilibrium :math:`\{\ell_t, c_t, \tau_t, p_t^0\}` that maximizes the
 household's welfare
@@ -225,11 +225,11 @@ The solution procedure we adopt is
    prices and allocations given :math:`\{\tau_t\}`
 
 #. Use these expressions to rewrite the government budget constraint
-   :eq:`lq_gc` in terms of exogenous variables and allocations
+   :eq:`lq_gc_lqramsey` in terms of exogenous variables and allocations
 
-#. Maximize the household's objective function :eq:`lq_hu` subject to the
+#. Maximize the household's objective function :eq:`lq_hu_lqramsey` subject to the
    constraint constructed in step 2 and the feasibility constraint
-   :eq:`lq_feasible`
+   :eq:`lq_feasible_lqramsey`
 
 The solution to this maximization problem pins down all quantities of interest
 
@@ -240,7 +240,7 @@ Solution
 Step one is to obtain the first-conditions for the household's problem,
 taking taxes and prices as given
 
-Letting :math:`\mu` be the Lagrange multiplier on :eq:`lq_hc`, the first-order
+Letting :math:`\mu` be the Lagrange multiplier on :eq:`lq_hc_lqramsey`, the first-order
 conditions are :math:`p_t^0 = (c_t - b_t) / \mu` and :math:`\ell_t = (c_t - b_t)
 (1 - \tau_t)`
 
@@ -248,31 +248,31 @@ Rearranging and normalizing at :math:`\mu = b_0 - c_0`, we can write these
 conditions as
 
 .. math::
-    :label: lq_hfoc
+    :label: lq_hfoc_lqramsey
 
     p_t^0 = \frac{b_t - c_t}{b_0 - c_0}
     \quad \text{and} \quad
     \tau_t = 1 - \frac{\ell_t}{b_t - c_t}
 
 
-Substituting :eq:`lq_hfoc` into the government's budget constraint :eq:`lq_gc`
+Substituting :eq:`lq_hfoc_lqramsey` into the government's budget constraint :eq:`lq_gc_lqramsey`
 yields
 
 
 .. math::
-    :label: lq_gc2
+    :label: lq_gc_lqramsey2
 
     \mathbb E \sum_{t=0}^{\infty} \beta^t
     \left[ (b_t - c_t)(s_t + g_t - \ell_t) + \ell_t^2 \right] = 0
 
 
-The Ramsey problem now amounts to maximizing :eq:`lq_hu` subject to
-:eq:`lq_gc2` and :eq:`lq_feasible`
+The Ramsey problem now amounts to maximizing :eq:`lq_hu_lqramsey` subject to
+:eq:`lq_gc_lqramsey2` and :eq:`lq_feasible_lqramsey`
 
 The associated Lagrangian is
 
 .. math::
-    :label: lq_rp
+    :label: lq_rp_lqramsey
 
     \mathscr L =
     \mathbb E  \sum_{t=0}^{\infty} \beta^t
@@ -297,11 +297,11 @@ and
     \ell_t - \lambda [(b_t - c_t) - 2 \ell_t ] = \mu_t
 
 
-Combining these last two equalities with :eq:`lq_feasible` and working
+Combining these last two equalities with :eq:`lq_feasible_lqramsey` and working
 through the algebra, one can show that
 
 .. math::
-    :label: lq_lcex
+    :label: lq_lcex_lqramsey
 
     \ell_t = \bar \ell_t - \nu m_t
     \quad \text{and} \quad
@@ -319,9 +319,9 @@ Apart from :math:`\nu`, all of these quantities are expressed in terms of exogen
 
 To solve for :math:`\nu`, we can use the government's budget constraint again
 
-The term inside the brackets in :eq:`lq_gc2` is :math:`(b_t - c_t)(s_t + g_t) - (b_t - c_t) \ell_t + \ell_t^2`
+The term inside the brackets in :eq:`lq_gc_lqramsey2` is :math:`(b_t - c_t)(s_t + g_t) - (b_t - c_t) \ell_t + \ell_t^2`
 
-Using :eq:`lq_lcex`, the definitions above and the fact that :math:`\bar \ell
+Using :eq:`lq_lcex_lqramsey`, the definitions above and the fact that :math:`\bar \ell
 = b - \bar c`, this term can be rewritten as
 
 .. math::
@@ -329,10 +329,10 @@ Using :eq:`lq_lcex`, the definitions above and the fact that :math:`\bar \ell
     (b_t - \bar c_t) (g_t + s_t ) + 2 m_t^2 ( \nu^2 - \nu)
 
 
-Reinserting into :eq:`lq_gc2`, we get
+Reinserting into :eq:`lq_gc_lqramsey2`, we get
 
 .. math::
-    :label: lq_gc22
+    :label: lq_gc_lqramsey22
 
     \mathbb E
     \left\{
@@ -347,25 +347,25 @@ Reinserting into :eq:`lq_gc2`, we get
 
 Although it might not be clear yet, we are nearly there because:
 
-* The two expectations terms in :eq:`lq_gc22` can be solved for in terms of model primitives
+* The two expectations terms in :eq:`lq_gc_lqramsey22` can be solved for in terms of model primitives
 
 * This in turn allows us to solve for the Lagrange multiplier :math:`\nu`
 
-* With :math:`\nu` in hand, we can go back and solve for the allocations via :eq:`lq_lcex`
+* With :math:`\nu` in hand, we can go back and solve for the allocations via :eq:`lq_lcex_lqramsey`
 
 * Once we have the allocations, prices and the tax system can be derived from
-  :eq:`lq_hfoc`
+  :eq:`lq_hfoc_lqramsey`
 
 
 Computing the Quadratic Term
 -------------------------------
 
-Let's consider how to obtain the term :math:`\nu` in :eq:`lq_gc22`
+Let's consider how to obtain the term :math:`\nu` in :eq:`lq_gc_lqramsey22`
 
 If we can compute the two expected geometric sums
 
 .. math::
-    :label: lq_gc3
+    :label: lq_gc_lqramsey3
 
     b_0 := \mathbb E
     \left\{
@@ -391,7 +391,7 @@ for :math:`\nu`
 Provided that :math:`4 b_0 < a_0`, there is a unique solution :math:`\nu \in
 (0, 1/2)`, and a unique corresponding :math:`\lambda > 0`
 
-Let's work out how to compute mathematical expectations  in :eq:`lq_gc3`
+Let's work out how to compute mathematical expectations  in :eq:`lq_gc_lqramsey3`
 
 For the first one, the random variable :math:`(b_t - \bar c_t) (g_t + s_t )` inside the summation can be expressed as
 
@@ -400,7 +400,7 @@ For the first one, the random variable :math:`(b_t - \bar c_t) (g_t + s_t )` ins
     \frac{1}{2} x_t' (S_b - S_d + S_g)' (S_g + S_s) x_t
 
 
-For the second expectation in :eq:`lq_gc3`, the random variable :math:`2 m_t^2` can be written as
+For the second expectation in :eq:`lq_gc_lqramsey3`, the random variable :math:`2 m_t^2` can be written as
 
 .. math::
 
@@ -410,7 +410,7 @@ For the second expectation in :eq:`lq_gc3`, the random variable :math:`2 m_t^2` 
 It follows that both objects of interest are special cases of the expression
 
 .. math::
-    :label: lq_eqs
+    :label: lq_eqs_lqramsey
 
     q(x_0) = \mathbb E \sum_{t=0}^{\infty} \beta^t x_t' H x_t
 
@@ -448,7 +448,7 @@ For example, in the discussion above, :math:`h(x_t) = x_t' H x_t`
 It is legitimate to pass the expectation through the sum, leading to
 
 .. math::
-    :label: lq_ise
+    :label: lq_ise_lqramsey
 
     q(x_0) = \sum_{t=0}^{\infty} \beta^t (P^t h)[j]
 
@@ -459,7 +459,7 @@ Here
 * :math:`h` is, with some abuse of notation, the vector :math:`(h(x^1), \ldots, h(x^N))`
 * :math:`(P^t h)[j]` indicates the :math:`j`-th element of :math:`P^t h`
 
-It can be shown that :eq:`lq_ise` is in fact equal to the :math:`j`-th element of
+It can be shown that :eq:`lq_ise_lqramsey` is in fact equal to the :math:`j`-th element of
 the vector :math:`(I - \beta P)^{-1} h`
 
 This last fact is applied in the calculations below
@@ -486,7 +486,7 @@ These are prices that would prevail at time :math:`t` if markets were reopened a
 These prices are constituents of the present value of government obligations outstanding at time :math:`t`, which can be expressed as
 
 .. math::
-    :label: lq_cb
+    :label: lq_cb_lqramsey
 
     B_t :=
     \mathbb E_t \sum_{j=0}^{\infty} \beta^j p^t_{t+j}
@@ -513,7 +513,7 @@ Using the equation
     p^t_{t+j} = p^t_{t+1} p^{t+1}_{t+j}
 
 
-it is possible to verify that :eq:`lq_cb` implies that
+it is possible to verify that :eq:`lq_cb_lqramsey` implies that
 
 
 .. math::
@@ -524,7 +524,7 @@ it is possible to verify that :eq:`lq_cb` implies that
 and
 
 .. math::
-    :label: lq_cb22
+    :label: lq_cb_lqramsey22
 
     B_t =   (\tau_t \ell_t - g_t) + \beta E_t p^t_{t+1} B_{t+1}
 
@@ -532,7 +532,7 @@ and
 Define
 
 .. math::
-    :label: lq_rfr
+    :label: lq_rfr_lqramsey
 
     R^{-1}_{t} := \mathbb E_t \beta^j p^t_{t+1}
 
@@ -568,7 +568,7 @@ The term :math:`\pi_{t+1}` is the difference between two quantities:
 Thus, :math:`\pi_{t+1}` is the excess payout on the actual portfolio of state-contingent government debt  relative to an alternative
 portfolio sufficient to finance :math:`B_t + g_t - \tau_t \ell_t` and consisting entirely of risk-free one-period bonds
 
-Use expressions :eq:`lq_cb22` and :eq:`lq_rfr` to obtain
+Use expressions :eq:`lq_cb_lqramsey22` and :eq:`lq_rfr_lqramsey` to obtain
 
 .. math::
 
@@ -578,7 +578,7 @@ Use expressions :eq:`lq_cb22` and :eq:`lq_rfr` to obtain
 or
 
 .. math::
-    :label: lq_pidist
+    :label: lq_pidist_lqramsey
 
     \pi_{t+1} = B_{t+1} - \tilde E_t B_{t+1}
 
@@ -591,7 +591,7 @@ that has been formed by multiplying the original transition density with the lik
     m^t_{t+1} = \frac{p^t_{t+1}}{E_t p^t_{t+1}}
 
 
-It follows from equation :eq:`lq_pidist` that
+It follows from equation :eq:`lq_pidist_lqramsey` that
 
 .. math::
 
@@ -623,7 +623,7 @@ Description and clarifications are given below
 Comments on the Code
 ------------------------
 
-The function ``var_quadratic_sum`` imported from ``quadsums`` is for computing the value of :eq:`lq_eqs`
+The function ``var_quadratic_sum`` imported from ``quadsums`` is for computing the value of :eq:`lq_eqs_lqramsey`
 when the exogenous process :math:`\{ x_t \}` is of the VAR type described :ref:`above <lq_twospec>`
 
 Below the definition of the function, you will see definitions of two ``namedtuple`` objects, ``Economy`` and ``Path``

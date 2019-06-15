@@ -90,7 +90,7 @@ The worker aims to maximize the expected discounted sum of earnings :math:`\math
 The function :math:`V` satisfies the recursion
 
 .. math::
-    :label: odu_odu_pv
+    :label: odu_odu_pv_odu
 
     v(w)
     = \max \left\{
@@ -123,7 +123,7 @@ This choice is not observed by the worker, who puts prior probability :math:`\pi
 Update rule: worker's time :math:`t` estimate of the distribution is :math:`\pi_t f + (1 - \pi_t) g`, where :math:`\pi_t` updates via
 
 .. math::
-    :label: odu_pi_rec
+    :label: odu_pi_rec_odu
 
     \pi_{t+1}
     = \frac{\pi_t f(w_{t+1})}{\pi_t f(w_{t+1}) + (1 - \pi_t) g(w_{t+1})}
@@ -140,7 +140,7 @@ This last expression follows from Bayes' rule, which tells us that
     \mathbb{P}\{W = w\} = \sum_{\omega \in \{f, g\}} \mathbb{P}\{W = w \,|\, q = \omega\} \mathbb{P}\{q = \omega\}
 
 
-The fact that :eq:`odu_pi_rec` is recursive allows us to progress to a recursive solution method
+The fact that :eq:`odu_pi_rec_odu` is recursive allows us to progress to a recursive solution method
 
 
 Letting
@@ -156,7 +156,7 @@ we can express the value function for the unemployed worker recursively as
 follows
 
 .. math::
-    :label: odu_mvf
+    :label: odu_mvf_odu
 
     v(w, \pi)
     = \max \left\{
@@ -212,7 +212,7 @@ The densities :math:`f` and :math:`g` have the following shape
 Looking Forward
 ------------------
 
-What kind of optimal policy might result from :eq:`odu_mvf` and the parameterization specified above?
+What kind of optimal policy might result from :eq:`odu_mvf_odu` and the parameterization specified above?
 
 Intuitively, if we accept at :math:`w_a` and :math:`w_a \leq w_b`, then --- all other things being given --- we should also accept at :math:`w_b`
 
@@ -471,19 +471,19 @@ Another Functional Equation
 To begin, note that when :math:`w = \bar w(\pi)`, the worker is indifferent
 between accepting and rejecting
 
-Hence the two choices on the right-hand side of :eq:`odu_mvf` have equal value:
+Hence the two choices on the right-hand side of :eq:`odu_mvf_odu` have equal value:
 
 .. math::
-    :label: odu_mvf2
+    :label: odu_mvf_odu2
 
     \frac{\bar w(\pi)}{1 - \beta}
     = c + \beta \int v(w', \pi') \, q_{\pi}(w') \, dw'
 
 
-Together, :eq:`odu_mvf` and :eq:`odu_mvf2` give
+Together, :eq:`odu_mvf_odu` and :eq:`odu_mvf_odu2` give
 
 .. math::
-    :label: odu_mvf3
+    :label: odu_mvf_odu3
 
     v(w, \pi) =
     \max
@@ -492,7 +492,7 @@ Together, :eq:`odu_mvf` and :eq:`odu_mvf2` give
     \right\}
 
 
-Combining :eq:`odu_mvf2` and :eq:`odu_mvf3`, we obtain
+Combining :eq:`odu_mvf_odu2` and :eq:`odu_mvf_odu3`, we obtain
 
 .. math::
 
@@ -507,14 +507,14 @@ Multiplying by :math:`1 - \beta`, substituting in :math:`\pi' = \kappa(w', \pi)`
 and using :math:`\circ` for composition of functions yields
 
 .. math::
-    :label: odu_mvf4
+    :label: odu_mvf_odu4
 
     \bar w(\pi)
     = (1 - \beta) c +
     \beta \int \max \left\{ w', \bar w \circ \kappa(w', \pi) \right\} \, q_{\pi}(w') \, dw'
 
 
-Equation :eq:`odu_mvf4` can be understood as a functional equation, where :math:`\bar w` is the unknown function
+Equation :eq:`odu_mvf_odu4` can be understood as a functional equation, where :math:`\bar w` is the unknown function
 
 * Let's call it the *reservation wage functional equation* (RWFE)
 * The solution :math:`\bar w` to the RWFE is the object that we wish to compute
@@ -535,22 +535,22 @@ Consider the operator :math:`Q` mapping :math:`\omega \in b[0,1]` into :math:`Q\
 
 
 .. math::
-    :label: odu_dq
+    :label: odu_dq_odu
 
     (Q \omega)(\pi)
     = (1 - \beta) c +
     \beta \int \max \left\{ w', \omega \circ \kappa(w', \pi) \right\} \, q_{\pi}(w') \, dw'
 
 
-Comparing :eq:`odu_mvf4` and :eq:`odu_dq`, we see that the set of fixed points of :math:`Q` exactly coincides with the set of solutions to the RWFE
+Comparing :eq:`odu_mvf_odu4` and :eq:`odu_dq_odu`, we see that the set of fixed points of :math:`Q` exactly coincides with the set of solutions to the RWFE
 
-* If :math:`Q \bar w = \bar w` then :math:`\bar w` solves :eq:`odu_mvf4` and vice versa
+* If :math:`Q \bar w = \bar w` then :math:`\bar w` solves :eq:`odu_mvf_odu4` and vice versa
 
 Moreover, for any :math:`\omega, \omega' \in b[0,1]`, basic algebra and the
 triangle inequality for integrals tells us that
 
 .. math::
-    :label: odu_nt
+    :label: odu_nt_odu
 
     |(Q \omega)(\pi) - (Q \omega')(\pi)|
     \leq \beta \int
@@ -564,15 +564,15 @@ triangle inequality for integrals tells us that
 Working case by case, it is easy to check that for real numbers :math:`a, b, c` we always have
 
 .. math::
-    :label: odu_nt2
+    :label: odu_nt_odu2
 
     | \max\{a, b\} - \max\{a, c\}| \leq | b - c|
 
 
-Combining :eq:`odu_nt` and :eq:`odu_nt2` yields
+Combining :eq:`odu_nt_odu` and :eq:`odu_nt_odu2` yields
 
 .. math::
-    :label: odu_nt3
+    :label: odu_nt_odu3
 
     |(Q \omega)(\pi) - (Q \omega')(\pi)|
     \leq \beta \int
@@ -584,7 +584,7 @@ Combining :eq:`odu_nt` and :eq:`odu_nt2` yields
 Taking the supremum over :math:`\pi` now gives us
 
 .. math::
-    :label: odu_rwc
+    :label: odu_rwc_odu
 
     \|Q \omega - Q \omega'\|
     \leq \beta \| \omega - \omega' \|

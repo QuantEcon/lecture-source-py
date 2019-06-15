@@ -90,7 +90,7 @@ where :math:`f \colon \mathbb R_+ \to \mathbb R_+` is called the production func
 The resource constraint is
 
 .. math::
-    :label: outcsdp0
+    :label: outcsdp0_optgrowth
 
     k_{t+1} + c_t \leq y_t
 
@@ -124,7 +124,7 @@ Optimization
 Taking :math:`y_0` as given, the agent wishes to maximize
 
 .. math::
-    :label: texs0_og2
+    :label: texs0_og2_optgrowth
 
     \mathbb E \left[ \sum_{t = 0}^{\infty} \beta^t u(c_t) \right]
 
@@ -132,7 +132,7 @@ Taking :math:`y_0` as given, the agent wishes to maximize
 subject to
 
 .. math::
-    :label: og_conse
+    :label: og_conse_optgrowth
 
     y_{t+1} = f(y_t - c_t) \xi_{t+1}
     \quad \text{and} \quad
@@ -146,15 +146,15 @@ where
 
 * :math:`\beta \in (0, 1)` is a discount factor
 
-In :eq:`og_conse` we are assuming that the resource constraint :eq:`outcsdp0` holds with equality --- which is reasonable because :math:`u` is strictly increasing and no output will be wasted at the optimum
+In :eq:`og_conse_optgrowth` we are assuming that the resource constraint :eq:`outcsdp0_optgrowth` holds with equality --- which is reasonable because :math:`u` is strictly increasing and no output will be wasted at the optimum
 
 In summary, the agent's aim is to select a path :math:`c_0, c_1, c_2, \ldots` for consumption that is
 
 #. nonnegative,
 
-#. feasible in the sense of :eq:`outcsdp0`,
+#. feasible in the sense of :eq:`outcsdp0_optgrowth`,
 
-#. optimal, in the sense that it maximizes :eq:`texs0_og2` relative to all other feasible consumption sequences, and
+#. optimal, in the sense that it maximizes :eq:`texs0_og2_optgrowth` relative to all other feasible consumption sequences, and
 
 #. *adapted*, in the sense that the action :math:`c_t` depends only on
    observable outcomes, not on future outcomes such as :math:`\xi_{t+1}`
@@ -204,7 +204,7 @@ In our context, a Markov policy is a function :math:`\sigma \colon
 In what follows, we will call :math:`\sigma` a *feasible consumption policy* if it satisfies
 
 .. math::
-    :label: idp_fp_og2
+    :label: idp_fp_og2_optgrowth
 
     0 \leq \sigma(y) \leq y
     \quad \text{for all} \quad
@@ -218,7 +218,7 @@ The set of all feasible consumption policies will be denoted by :math:`\Sigma`
 Each :math:`\sigma \in \Sigma` determines a :doc:`continuous state Markov process <stationary_densities>` :math:`\{y_t\}` for output via
 
 .. math::
-    :label: firstp0_og2
+    :label: firstp0_og2_optgrowth
 
     y_{t+1} = f(y_t - \sigma(y_t)) \xi_{t+1},
     \quad y_0 \text{ given}
@@ -229,7 +229,7 @@ This is the time path for output when we choose and stick with the policy :math:
 We insert this process into the objective function to get
 
 .. math::
-    :label: texss
+    :label: texss_optgrowth
 
     \mathbb E
     \left[ \,
@@ -256,13 +256,13 @@ Optimality
 The :math:`\sigma`**-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
 
 .. math::
-    :label: vfcsdp00
+    :label: vfcsdp0_optgrowth0_optgrowth
 
     v_{\sigma}(y) =
     \mathbb E \left[ \sum_{t = 0}^{\infty} \beta^t u(\sigma(y_t)) \right]
 
 
-when :math:`\{y_t\}` is given by :eq:`firstp0_og2` with :math:`y_0 = y`
+when :math:`\{y_t\}` is given by :eq:`firstp0_og2_optgrowth` with :math:`y_0 = y`
 
 In other words, it is the lifetime value of following policy :math:`\sigma`
 starting at initial condition :math:`y`
@@ -270,7 +270,7 @@ starting at initial condition :math:`y`
 The **value function** is then defined as
 
 .. math::
-    :label: vfcsdp0
+    :label: vfcsdp0_optgrowth
 
     v^*(y) := \sup_{\sigma \in \Sigma} \; v_{\sigma}(y)
 
@@ -278,18 +278,18 @@ The **value function** is then defined as
 The value function gives the maximal value that can be obtained from state :math:`y`, after considering all feasible policies
 
 
-A policy :math:`\sigma \in \Sigma` is called **optimal** if it attains the supremum in :eq:`vfcsdp0` for all :math:`y \in \mathbb R_+`
+A policy :math:`\sigma \in \Sigma` is called **optimal** if it attains the supremum in :eq:`vfcsdp0_optgrowth` for all :math:`y \in \mathbb R_+`
 
 
 The Bellman Equation
 ----------------------
 
-With our assumptions on utility and production function, the value function as defined in :eq:`vfcsdp0` also satisfies a **Bellman equation**
+With our assumptions on utility and production function, the value function as defined in :eq:`vfcsdp0_optgrowth` also satisfies a **Bellman equation**
 
 For this problem, the Bellman equation takes the form
 
 .. math::
-    :label: fpb30
+    :label: fpb30_optgrowth
 
     v(y) = \max_{0 \leq c \leq y}
         \left\{
@@ -312,7 +312,7 @@ As shown in `EDTC <http://johnstachurski.net/edtc.html>`_, theorem 10.1.11 and a
 
     *The value function* :math:`v^*` *satisfies the Bellman equation*
 
-In other words, :eq:`fpb30` holds when :math:`v=v^*`
+In other words, :eq:`fpb30_optgrowth` holds when :math:`v=v^*`
 
 The intuition is that maximal value from a given state can be obtained by optimally trading off
 
@@ -336,7 +336,7 @@ Given a continuous function :math:`v` on :math:`\mathbb R_+`, we say that
 :math:`\sigma \in \Sigma` is :math:`v`-**greedy** if :math:`\sigma(y)` is a solution to
 
 .. math::
-    :label: defgp20
+    :label: defgp20_optgrowth
 
     \max_{0 \leq c \leq y}
         \left\{
@@ -355,7 +355,7 @@ In our setting, we have the following key result
     * A feasible consumption policy is optimal if and only it is :math:`v^*`-greedy
 
 The intuition is similar to the intuition for the Bellman equation, which was
-provided after :eq:`fpb30`
+provided after :eq:`fpb30_optgrowth`
 
 See, for example, theorem 10.1.11 of `EDTC <http://johnstachurski.net/edtc.html>`__
 
@@ -380,7 +380,7 @@ One way is to use the so-called **Bellman operator**
 The Bellman operator is denoted by :math:`T` and defined by
 
 .. math::
-    :label: fcbell20_optgrowth
+    :label: fcbell20_optgrowth_optgrowth
 
     Tv(y) := \max_{0 \leq c \leq y}
     \left\{
@@ -390,10 +390,10 @@ The Bellman operator is denoted by :math:`T` and defined by
 
 
 In other words, :math:`T` sends the function :math:`v` into the new function
-:math:`Tv` defined by :eq:`fcbell20_optgrowth`
+:math:`Tv` defined by :eq:`fcbell20_optgrowth_optgrowth`
 
 By construction, the set of solutions to the Bellman equation
-:eq:`fpb30` *exactly coincides with* the set of fixed points of :math:`T`
+:eq:`fpb30_optgrowth` *exactly coincides with* the set of fixed points of :math:`T`
 
 For example, if :math:`Tv = v`, then, for any :math:`y \geq 0`,
 
@@ -498,7 +498,7 @@ In theory, the algorithm is as follows
 
 #. Begin with a function :math:`v` --- an initial condition
 
-#. Solving :eq:`fcbell20_optgrowth`, obtain the function :math:`Tv`
+#. Solving :eq:`fcbell20_optgrowth_optgrowth`, obtain the function :math:`Tv`
 
 #. Unless some stopping condition is satisfied, set :math:`v = Tv` and go to step 2
 
@@ -507,7 +507,7 @@ This generates the sequence :math:`v, Tv, T^2v, \ldots`
 However, there is a problem we must confront before we implement this procedure:
 The iterates can neither be calculated exactly nor stored on a computer
 
-To see the issue, consider :eq:`fcbell20_optgrowth`
+To see the issue, consider :eq:`fcbell20_optgrowth_optgrowth`
 
 Even if :math:`v` is a known function, unless :math:`Tv` can be shown to have
 some special structure, the only way to store it is to record the
@@ -531,7 +531,7 @@ More precisely, the algorithm will be
    interpolation or approximation, based on these data points
 
 #. Obtain and record the value :math:`T \hat v(y_i)` on each grid point
-   :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth`
+   :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth_optgrowth`
 
 #. Unless some stopping condition is satisfied, set
    :math:`\{ v_1, \ldots, v_I \} = \{ T \hat v(y_1), \ldots, T \hat v(y_I) \}` and go to step 2
@@ -620,7 +620,7 @@ optgro
 The function ``operator_factory`` takes a class that represents the growth model
 and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model
 
-Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
+Notice that the expectation in :eq:`fcbell20_optgrowth_optgrowth` is computed via Monte Carlo, using the approximation
 
 .. math::
 
@@ -652,7 +652,7 @@ Let's test out our operator when
 As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this particular problem an exact analytical solution is available, with
 
 .. math::
-    :label: dpi_tv
+    :label: dpi_tv_optgrowth
 
     v^*(y) =
     \frac{\ln (1 - \alpha \beta) }{ 1 - \beta} +
@@ -859,7 +859,7 @@ Exercises
 Exercise 1
 ------------
 
-Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`
+Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2_optgrowth`
 
 The next figure shows a simulation of 100 elements of this sequence for three
 different discount factors (and hence three different policies)

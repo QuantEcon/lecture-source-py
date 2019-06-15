@@ -874,14 +874,14 @@ Exercise 2
 Consider the polynomial
 
 .. math::
-    :label: polynom0
+    :label: polynom0_python_essentials
 
     p(x)
     = a_0 + a_1 x + a_2 x^2 + \cdots a_n x^n
     = \sum_{i=0}^n a_i x^i
 
 
-Write a function ``p`` such that ``p(x, coeff)`` that computes the value in :eq:`polynom0` given a point ``x`` and a list of coefficients ``coeff``
+Write a function ``p`` such that ``p(x, coeff)`` that computes the value in :eq:`polynom0_python_essentials` given a point ``x`` and a list of coefficients ``coeff``
 
 Try to use ``enumerate()`` in your loop
 

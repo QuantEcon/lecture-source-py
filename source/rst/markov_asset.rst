@@ -95,7 +95,7 @@ The basic risk-neutral asset pricing equation for pricing one unit of an ex-divi
 .. _mass_pra:
 
 .. math::
-    :label: rnapex
+    :label: rnapex_markov_asset
 
     p_t = \beta {\mathbb E}_t [d_{t+1} + p_{t+1}]
 
@@ -121,14 +121,14 @@ and Scott Richard :cite:`HansenRichard1987` showed that in quite general
 settings the price of an ex-dividend asset obeys
 
 .. math::
-    :label: lteeqs0
+    :label: lteeqs0_markov_asset
 
     p_t = {\mathbb E}_t \left[ m_{t+1}  ( d_{t+1} + p_{t+1} ) \right]
 
 
 for some  **stochastic discount factor** :math:`m_{t+1}`
 
-The fixed discount factor :math:`\beta` in :eq:`rnapex` has been replaced by the random variable :math:`m_{t+1}`
+The fixed discount factor :math:`\beta` in :eq:`rnapex_markov_asset` has been replaced by the random variable :math:`m_{t+1}`
 
 The way anticipated future payoffs are evaluated can now depend on various random outcomes
 
@@ -146,26 +146,26 @@ Asset Pricing and Covariances
 Recall that, from the definition of a conditional covariance :math:`{\rm cov}_t (x_{t+1}, y_{t+1})`, we have
 
 .. math::
-    :label: lteeqs101
+    :label: lteeqs101_markov_asset
 
     {\mathbb E}_t (x_{t+1} y_{t+1}) = {\rm cov}_t (x_{t+1}, y_{t+1}) + {\mathbb E}_t x_{t+1} {\mathbb E}_t y_{t+1}
 
 
-If we apply this definition to the asset pricing equation :eq:`lteeqs0` we obtain
+If we apply this definition to the asset pricing equation :eq:`lteeqs0_markov_asset` we obtain
 
 .. math::
-    :label: lteeqs102
+    :label: lteeqs102_markov_asset
 
     p_t = {\mathbb E}_t m_{t+1} {\mathbb E}_t (d_{t+1} + p_{t+1}) + {\rm cov}_t (m_{t+1}, d_{t+1}+ p_{t+1})
 
 
-It is useful to regard equation :eq:`lteeqs102`   as a generalization of equation :eq:`rnapex`
+It is useful to regard equation :eq:`lteeqs102_markov_asset`   as a generalization of equation :eq:`rnapex_markov_asset`
 
-* In equation :eq:`rnapex`, the stochastic discount factor :math:`m_{t+1} = \beta`,  a constant
+* In equation :eq:`rnapex_markov_asset`, the stochastic discount factor :math:`m_{t+1} = \beta`,  a constant
 
-* In equation :eq:`rnapex`, the covariance term :math:`{\rm cov}_t (m_{t+1}, d_{t+1}+ p_{t+1})` is zero because :math:`m_{t+1} = \beta`
+* In equation :eq:`rnapex_markov_asset`, the covariance term :math:`{\rm cov}_t (m_{t+1}, d_{t+1}+ p_{t+1})` is zero because :math:`m_{t+1} = \beta`
 
-Equation :eq:`lteeqs102` asserts that the covariance of the stochastic discount factor with the one period payout :math:`d_{t+1} + p_{t+1}` is an important determinant of the price :math:`p_t`
+Equation :eq:`lteeqs102_markov_asset` asserts that the covariance of the stochastic discount factor with the one period payout :math:`d_{t+1} + p_{t+1}` is an important determinant of the price :math:`p_t`
 
 We give examples of some models of stochastic discount factors that have been proposed later in this lecture and also in a :doc:`later lecture <lucas_model>`
 
@@ -178,10 +178,10 @@ Aside from prices, another quantity of interest is the **price-dividend ratio** 
 
 Let's write down an expression that this ratio should satisfy
 
-We can divide both sides of :eq:`lteeqs0` by :math:`d_t` to get
+We can divide both sides of :eq:`lteeqs0_markov_asset` by :math:`d_t` to get
 
 .. math::
-    :label: pdex
+    :label: pdex_markov_asset
 
     v_t = {\mathbb E}_t \left[ m_{t+1} \frac{d_{t+1}}{d_t} (1 + v_{t+1}) \right]
 
@@ -209,7 +209,7 @@ Example 1: Constant Dividends
 
 The simplest case is risk-neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`
 
-Removing the expectation from :eq:`rnapex` and iterating forward gives
+Removing the expectation from :eq:`rnapex_markov_asset` and iterating forward gives
 
 .. math::
 
@@ -227,7 +227,7 @@ Removing the expectation from :eq:`rnapex` and iterating forward gives
 Unless prices explode in the future, this sequence converges to
 
 .. math::
-    :label: ddet
+    :label: ddet_markov_asset
 
     \bar p := \frac{\beta d}{1-\beta}
 
@@ -247,7 +247,7 @@ where :math:`0 < g \beta < 1`
 While prices are not usually constant when dividends grow over time, the price
 dividend-ratio might be
 
-If we guess this, substituting :math:`v_t = v` into :eq:`pdex` as well as our
+If we guess this, substituting :math:`v_t = v` into :eq:`pdex_markov_asset` as well as our
 other assumptions, we get :math:`v = \beta g (1 + v)`
 
 Since :math:`\beta g < 1`, we have a unique positive solution:
@@ -281,7 +281,7 @@ Example 3: Markov Growth, Risk-Neutral Pricing
 Next, we consider a dividend process
 
 .. math::
-    :label: mass_fmce
+    :label: mass_fmce_markov_asset
 
     d_{t+1} = g_{t+1} d_t
 
@@ -368,7 +368,7 @@ This encourages us to guess that, in the current case, :math:`v_t` is constant g
 
 In other words, we are looking for a fixed function :math:`v` such that the price-dividend ratio satisfies  :math:`v_t = v(X_t)`
 
-We can substitute this guess into :eq:`pdex` to get
+We can substitute this guess into :eq:`pdex_markov_asset` to get
 
 .. math::
 
@@ -385,7 +385,7 @@ If we condition on :math:`X_t = x`, this becomes
 or
 
 .. math::
-    :label: pstack
+    :label: pstack_markov_asset
 
     v(x) = \beta \sum_{y \in S}   K(x, y) (1 + v(y))
     \quad \text{where} \quad
@@ -394,10 +394,10 @@ or
 
 Suppose that there are :math:`n` possible states :math:`x_1, \ldots, x_n`
 
-We can then think of :eq:`pstack` as :math:`n` stacked equations, one for each state, and write it in matrix form as
+We can then think of :eq:`pstack_markov_asset` as :math:`n` stacked equations, one for each state, and write it in matrix form as
 
 .. math::
-    :label: vcumrn
+    :label: vcumrn_markov_asset
 
     v = \beta K (\mathbb 1 + v)
 
@@ -410,7 +410,7 @@ Here
 
 * :math:`{\mathbb 1}` is a column vector of ones
 
-When does :eq:`vcumrn` have a unique solution?
+When does :eq:`vcumrn_markov_asset` have a unique solution?
 
 From the :ref:`Neumann series lemma <la_neumann>` and Gelfand's formula, this will be the case if :math:`\beta K` has spectral radius strictly less than one
 
@@ -419,7 +419,7 @@ In other words, we require that the eigenvalues of :math:`K`  be strictly less t
 The solution is then
 
 .. math::
-    :label: rned
+    :label: rned_markov_asset
 
     v = (I - \beta K)^{-1} \beta K{\mathbb 1}
 
@@ -506,7 +506,7 @@ Let's start with a version of the celebrated asset pricing model of Robert E. Lu
 As in :cite:`Lucas1978`, suppose that the stochastic discount factor takes the form
 
 .. math::
-    :label: lucsdf
+    :label: lucsdf_markov_asset
 
     m_{t+1} = \beta \frac{u'(c_{t+1})}{u'(c_t)}
 
@@ -516,7 +516,7 @@ where :math:`u` is a concave utility function and :math:`c_t` is time :math:`t` 
 
 (A derivation of this expression is given in a :doc:`later lecture <lucas_model>`)
 
-Assume the existence of an endowment that follows :eq:`mass_fmce`
+Assume the existence of an endowment that follows :eq:`mass_fmce_markov_asset`
 
 The asset being priced is a claim on the endowment process
 
@@ -527,24 +527,24 @@ For utility, we'll assume the **constant relative risk aversion** (CRRA)
 specification
 
 .. math::
-    :label: eqCRRA
+    :label: eqCRRA_markov_asset
 
     u(c) = \frac{c^{1-\gamma}}{1 - \gamma} \ {\rm with} \ \gamma > 0
 
 
 When :math:`\gamma =1` we let :math:`u(c) = \ln c`
 
-Inserting the CRRA specification into :eq:`lucsdf` and using :math:`c_t = d_t` gives
+Inserting the CRRA specification into :eq:`lucsdf_markov_asset` and using :math:`c_t = d_t` gives
 
 .. math::
-    :label: lucsdf2
+    :label: lucsdf_markov_asset2
 
     m_{t+1}
     = \beta \left(\frac{c_{t+1}}{c_t}\right)^{-\gamma}
     = \beta g_{t+1}^{-\gamma}
 
 
-Substituting this into :eq:`pdex` gives the price-dividend ratio
+Substituting this into :eq:`pdex_markov_asset` gives the price-dividend ratio
 formula
 
 .. math::
@@ -581,7 +581,7 @@ then we can rewrite in vector form as
 Assuming that the spectral radius of :math:`J` is strictly less than :math:`\beta^{-1}`, this equation has the unique solution
 
 .. math::
-    :label: resolvent2
+    :label: resolvent2_markov_asset
 
     v = (I - \beta J)^{-1} \beta  J {\mathbb 1}
 
@@ -697,7 +697,7 @@ Notice that :math:`v` is decreasing in each case
 
 This is because, with a positively correlated state process, higher states suggest higher future consumption growth
 
-In the stochastic discount factor :eq:`lucsdf2`, higher growth decreases the
+In the stochastic discount factor :eq:`lucsdf_markov_asset2`, higher growth decreases the
 discount factor, lowering the weight placed on future returns
 
 
@@ -720,7 +720,7 @@ Thus, with log preferences, the price-dividend ratio for a Lucas tree is constan
 
 
 Alternatively, if :math:`\gamma = 0`, then :math:`J = K` and we recover the
-risk-neutral solution :eq:`rned`
+risk-neutral solution :eq:`rned_markov_asset`
 
 This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and hence agents are risk-neutral)
 
@@ -741,17 +741,17 @@ An ex-coupon claim to the consol entitles the owner at the end of period :math:`
 
 * the right to sell the claim for :math:`p_{t+1}` next period
 
-The price satisfies :eq:`lteeqs0` with :math:`d_t = \zeta`, or
+The price satisfies :eq:`lteeqs0_markov_asset` with :math:`d_t = \zeta`, or
 
 .. math::
 
     p_t = {\mathbb E}_t \left[ m_{t+1}  ( \zeta + p_{t+1} ) \right]
 
 
-We maintain the stochastic discount factor :eq:`lucsdf2`, so this becomes
+We maintain the stochastic discount factor :eq:`lucsdf_markov_asset2`, so this becomes
 
 .. math::
-    :label: consolguess1
+    :label: consolguess1_markov_asset
 
     p_t
     = {\mathbb E}_t \left[ \beta g_{t+1}^{-\gamma}  ( \zeta + p_{t+1} ) \right]
@@ -770,17 +770,17 @@ Letting :math:`M(x, y) = P(x, y) g(y)^{-\gamma}` and rewriting in vector notatio
 yields the solution
 
 .. math::
-    :label: consol_price
+    :label: consol_price_markov_asset
 
     p = (I - \beta M)^{-1} \beta M \zeta {\mathbb 1}
 
-The above is implemented in the function `consol_price`
+The above is implemented in the function `consol_price_markov_asset`
 
 
 
 .. code-block:: python3
 
-    def consol_price(ap, ζ):
+    def consol_price_markov_asset(ap, ζ):
         """
         Computes price of a consol bond with payoff ζ
 
@@ -859,7 +859,7 @@ The first term on the right is the value of waiting, while the second is the val
 We can also write this as
 
 .. math::
-    :label: FEoption0
+    :label: FEoption_markov_asset0_markov_asset
 
     w(x, p_S)
     = \max \left\{
@@ -870,15 +870,15 @@ We can also write this as
 
 
 With :math:`M(x, y) = P(x, y) g(y)^{-\gamma}` and :math:`w` as the vector of
-values :math:`(w(x_i), p_S)_{i = 1}^n`, we can express :eq:`FEoption0` as the nonlinear vector equation
+values :math:`(w(x_i), p_S)_{i = 1}^n`, we can express :eq:`FEoption_markov_asset0_markov_asset` as the nonlinear vector equation
 
 .. math::
-    :label: FEoption
+    :label: FEoption_markov_asset
 
     w = \max \{ \beta M w, \; p - p_S {\mathbb 1} \}
 
 
-To solve :eq:`FEoption`, form the operator :math:`T` mapping vector :math:`w`
+To solve :eq:`FEoption_markov_asset`, form the operator :math:`T` mapping vector :math:`w`
 into vector :math:`Tw` via
 
 .. math::
@@ -927,7 +927,7 @@ We can find the solution with the following function `call_option`
         ap.test_stability(M)
 
         # == Compute option price == #
-        p = consol_price(ap, ζ)
+        p = consol_price_markov_asset(ap, ζ)
         w = np.zeros(ap.n)
         error = ϵ + 1
         while error > ϵ:
@@ -952,7 +952,7 @@ Here's a plot of :math:`w` compared to the consol price when :math:`P_S = 40`
     strike_price = 40
 
     x = ap.mc.state_values
-    p = consol_price(ap, ζ)
+    p = consol_price_markov_asset(ap, ζ)
     w = call_option(ap, ζ, strike_price)
 
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -1024,7 +1024,7 @@ In the lecture, we considered **ex-dividend assets**
 
 A **cum-dividend** asset is a claim to the stream :math:`d_t, d_{t+1}, \ldots`
 
-Following :eq:`rnapex`, find the risk-neutral asset pricing equation for
+Following :eq:`rnapex_markov_asset`, find the risk-neutral asset pricing equation for
 one unit of a cum-dividend asset
 
 With a constant, non-random dividend stream :math:`d_t = d > 0`, what is the equilibrium
@@ -1069,7 +1069,7 @@ Exercise 3
 Let's consider finite horizon call options, which are more common than the
 infinite horizon variety
 
-Finite horizon options obey functional equations closely related to :eq:`FEoption0`
+Finite horizon options obey functional equations closely related to :eq:`FEoption_markov_asset0_markov_asset`
 
 A :math:`k` period option expires after :math:`k` periods
 
@@ -1177,7 +1177,7 @@ Now we just need to call the relevant functions on the data:
 
 .. code-block:: python3
 
-    consol_price(apm, ζ)
+    consol_price_markov_asset(apm, ζ)
 
 
 
@@ -1193,7 +1193,7 @@ Let's show the last two functions as a plot
 .. code-block:: python3
 
     fig, ax = plt.subplots()
-    ax.plot(s, consol_price(apm, ζ), label='consol')
+    ax.plot(s, consol_price_markov_asset(apm, ζ), label='consol')
     ax.plot(s, call_option(apm, ζ, p_s), label='call option')
     ax.legend()
     plt.show()
@@ -1220,7 +1220,7 @@ Here's a suitable function:
 
 
         # == Compute option price == #
-        p = consol_price(ap, ζ)
+        p = consol_price_markov_asset(ap, ζ)
         w = np.zeros(ap.n)
         for i in range(k):
             # == Maximize across columns == #

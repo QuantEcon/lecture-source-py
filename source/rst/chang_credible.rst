@@ -164,7 +164,7 @@ and
 
 .. math::
      q_t M_t  \leq \bar m
-    :label: eqn_chang3
+    :label: eqn_chang3_chang_credible
 
 
 Here :math:`q_t` is the reciprocal of the price level at :math:`t`,
@@ -188,7 +188,7 @@ It tells how real balances :math:`q_t M_t` carried out of period :math:`t` depen
 on income, consumption, taxes, and real balances :math:`q_t M_{t-1}`
 carried into the period
 
-Equation :eq:`eqn_chang3` imposes an exogenous upper bound
+Equation :eq:`eqn_chang3_chang_credible` imposes an exogenous upper bound
 :math:`\bar m` on the choice of real balances, where
 :math:`\bar m \geq m^f`
 
@@ -222,7 +222,7 @@ To represent the idea that taxes are distorting, Chang makes the following
 assumption about outcomes for per capita output:
 
 .. math:: y_t = f(x_t)
-   :label: eqn_chang3a
+   :label: eqn_chang3_chang_crediblea
 
 where :math:`f: \mathbb{R}\rightarrow \mathbb{R}` satisfies :math:`f(x)  > 0`,
 is twice continuously differentiable, :math:`f''(x) < 0`, and
@@ -526,7 +526,7 @@ continuation value, promised marginal utility pairs
 Define the following operator:
 
 .. math::
-    :label: chang_operator
+    :label: chang_operator_chang_credible
 
     \begin{aligned}
     \tilde D(Z) = \Bigl\{
@@ -607,7 +607,7 @@ ii. generate a sustainable outcome recursively by iterating on :eq:`chang501`, w
 Calculating the Set of Sustainable Promise-Value Pairs
 ==================================================================================
 
-Above we defined the :math:`\tilde D(Z)` operator as :eq:`chang_operator`
+Above we defined the :math:`\tilde D(Z)` operator as :eq:`chang_operator_chang_credible`
 
 Chang (1998) provides a method for dealing with the final three
 constraints

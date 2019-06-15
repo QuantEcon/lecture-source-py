@@ -78,7 +78,7 @@ The sequence :math:`\{y_t\}` is described by a Markov process with stochastic de
 Households within the country are identical and rank stochastic consumption streams according to
 
 .. math::
-    :label: utility
+    :label: utility_arellano
 
     \mathbb E \sum_{t=0}^{\infty} \beta^t u(c_t)
 
@@ -87,11 +87,11 @@ Here
 
 * :math:`0 < \beta < 1` is a time discount factor
 
-* :math:`u` is an increasing and strictly concave utility function
+* :math:`u` is an increasing and strictly concave utility_arellano function
 
 Consumption sequences enjoyed by households are affected by the government's decision to borrow or lend internationally
 
-The government is benevolent in the sense that its aim is to maximize :eq:`utility`
+The government is benevolent in the sense that its aim is to maximize :eq:`utility_arellano`
 
 The government is the only domestic actor with access to foreign credit
 
@@ -129,7 +129,7 @@ Earnings on the government portfolio are distributed (or, if negative, taxed) lu
 When the government is not excluded from financial markets, the one-period national budget constraint is
 
 .. math::
-    :label: resource
+    :label: resource_arellano
 
     c = y + B - q(B', y) B'
 
@@ -156,17 +156,17 @@ Foreign creditors
 
 * receive zero if the government defaults on its one-period debt due
 
-When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`
+When a government is expected to default next period with  probability :math:`\delta_arellano`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta_arellano`
 
 Therefore, the discounted expected value of a promise to pay :math:`B` next period is
 
 .. math::
-    :label: epc
+    :label: epc_arellano
 
-    q = \frac{1 - \delta}{1 + r}
+    q = \frac{1 - \delta_arellano}{1 + r}
 
 
-Next we turn to how the government in effect chooses the default probability :math:`\delta`
+Next we turn to how the government in effect chooses the default probability :math:`\delta_arellano`
 
 
 Government's Decisions
@@ -208,9 +208,9 @@ Informally, an equilibrium is a sequence of interest rates on its sovereign debt
 
 #. Consumption and assets satisfy the national budget constraint
 
-#. The government maximizes household utility taking into account
+#. The government maximizes household utility_arellano taking into account
 
-   * the resource constraint
+   * the resource_arellano constraint
 
    * the effect of its choices on the price of bonds
 
@@ -284,18 +284,18 @@ The government chooses to default when
 and hence given :math:`B'` the probability of default next period  is
 
 .. math::
-    :label: delta
+    :label: delta_arellano
 
-    \delta(B', y) := \int \mathbb 1\{v_c(B', y') < v_d(y') \} p(y, y') dy'
+    \delta_arellano(B', y) := \int \mathbb 1\{v_c(B', y') < v_d(y') \} p(y, y') dy'
 
 
-Given zero profits for foreign creditors in equilibrium, we can combine :eq:`epc` and :eq:`delta` to pin down
+Given zero profits for foreign creditors in equilibrium, we can combine :eq:`epc_arellano` and :eq:`delta_arellano` to pin down
 the bond price function:
 
 .. math::
-    :label: bondprice
+    :label: bondprice_arellano
 
-    q(B', y) = \frac{1 - \delta(B', y)}{1 + r}
+    q(B', y) = \frac{1 - \delta_arellano(B', y)}{1 + r}
 
 
 Definition of Equilibrium
@@ -317,7 +317,7 @@ such that
 
 * Given the price function :math:`q(B',y)`, the default decision rule and the asset accumulation decision rule attain the optimal value function  :math:`v(B,y)`, and
 
-* The price function :math:`q(B',y)` satisfies equation :eq:`bondprice`
+* The price function :math:`q(B',y)` satisfies equation :eq:`bondprice_arellano`
 
 
 
@@ -416,7 +416,7 @@ The next figure plots value functions and replicates the right hand panel of Fig
 
 
 We can use the results of the computation to study the default probability
-:math:`\delta(B', y)` defined in :eq:`delta`
+:math:`\delta_arellano(B', y)` defined in :eq:`delta_arellano`
 
 The next plot shows these default probabilities over :math:`(B', y)` as a heat
 map

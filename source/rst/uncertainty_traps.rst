@@ -87,7 +87,7 @@ Output of the :math:`m`-th entrepreneur, conditional on being active in the mark
 time :math:`t`, is equal to
 
 .. math::
-    :label: xgt
+    :label: xgt_uncertainty_traps
 
     x_m = \theta + \epsilon_m
     \quad \text{where} \quad
@@ -132,13 +132,13 @@ With this notation and primes for next period values, we can write the updating 
 
 
 .. math::
-    :label: update_mean
+    :label: update_mean_uncertainty_traps
 
     \mu' = \rho \frac{\gamma \mu + M \gamma_x X}{\gamma + M \gamma_x}
 
 
 .. math::
-    :label: update_prec
+    :label: update_prec_uncertainty_traps
 
     \gamma' =
         \left(
@@ -148,9 +148,9 @@ With this notation and primes for next period values, we can write the updating 
 
 These are standard Kalman filtering results applied to the current setting
 
-Exercise 1 provides more details on how :eq:`update_mean` and :eq:`update_prec` are derived and then asks you to fill in remaining steps
+Exercise 1 provides more details on how :eq:`update_mean_uncertainty_traps` and :eq:`update_prec_uncertainty_traps` are derived and then asks you to fill in remaining steps
 
-The next figure plots the law of motion for the precision in :eq:`update_prec`
+The next figure plots the law of motion for the precision in :eq:`update_prec_uncertainty_traps`
 as a 45 degree diagram, with one curve for each :math:`M \in \{0, \ldots, 6\}`
 
 The other parameter values are :math:`\rho = 0.99, \gamma_x = 0.5, \sigma_\theta =0.5`
@@ -177,34 +177,34 @@ Participation
 Omitting time subscripts once more, entrepreneurs enter the market in the current period if
 
 .. math::
-    :label: pref1
+    :label: pref1_uncertainty_traps
 
     \mathbb E [ u(x_m - F_m) ] > c
 
 
 Here
 
-* the mathematical expectation of :math:`x_m` is based on :eq:`xgt` and beliefs :math:`N(\mu, \gamma^{-1})` for :math:`\theta`
+* the mathematical expectation of :math:`x_m` is based on :eq:`xgt_uncertainty_traps` and beliefs :math:`N(\mu, \gamma^{-1})` for :math:`\theta`
 
 * :math:`F_m` is a stochastic but pre-visible fixed cost, independent across time and firms
 
 * :math:`c` is a constant reflecting opportunity costs
 
-The statement that :math:`F_m` is pre-visible means that it is realized at the start of the period and treated as a constant in :eq:`pref1`
+The statement that :math:`F_m` is pre-visible means that it is realized at the start of the period and treated as a constant in :eq:`pref1_uncertainty_traps`
 
 
 
 The utility function has the constant absolute risk aversion form
 
 .. math::
-    :label: pref2
+    :label: pref2_uncertainty_traps
 
     u(x) = \frac{1}{a} \left(1 - \exp(-a x) \right)
 
 
 where :math:`a` is a positive parameter
 
-Combining :eq:`pref1` and :eq:`pref2`, entrepreneur :math:`m` participates in the market (or is said to be active) when
+Combining :eq:`pref1_uncertainty_traps` and :eq:`pref2_uncertainty_traps`, entrepreneur :math:`m` participates in the market (or is said to be active) when
 
 
 .. math::
@@ -221,7 +221,7 @@ Combining :eq:`pref1` and :eq:`pref2`, entrepreneur :math:`m` participates in th
 Using standard formulas for expectations of `lognormal <https://en.wikipedia.org/wiki/Log-normal_distribution>`_ random variables, this is equivalent to the condition
 
 .. math::
-    :label: firm_test
+    :label: firm_test_uncertainty_traps
 
     \psi(\mu, \gamma, F_m) :=
     \frac{1}{a}
@@ -249,7 +249,7 @@ As a first step, let's put together a class that bundles
 The updating methods follow the laws of motion for :math:`\theta`, :math:`\mu` and :math:`\gamma` given above
 
 The method to evaluate the number of active firms generates :math:`F_1,
-\ldots, F_{\bar M}` and tests condition :eq:`firm_test` for each firm
+\ldots, F_{\bar M}` and tests condition :eq:`firm_test_uncertainty_traps` for each firm
 
 The `__init__` method encodes as default values the parameters we'll use in the simulations below
 
@@ -301,7 +301,7 @@ Exercises
 Exercise 1
 ------------
 
-Fill in the details behind :eq:`update_mean` and :eq:`update_prec` based on
+Fill in the details behind :eq:`update_mean_uncertainty_traps` and :eq:`update_prec_uncertainty_traps` based on
 the following standard result (see, e.g., p. 24 of :cite:`young2005`)
 
 **Fact** Let :math:`\mathbf x = (x_1, \ldots, x_M)` be a vector of IID draws

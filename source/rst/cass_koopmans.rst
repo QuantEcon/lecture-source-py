@@ -113,7 +113,7 @@ The representative household has preferences over consumption bundles
 ordered by the utility functional:
 
 .. math::
-    :label: utility-functional
+    :label: utility-functional_cass_koopmans
 
     U(\vec{C}) = \sum_{t=0}^{T} \beta^t \frac{C_t^{1-\gamma}}{1-\gamma}
 
@@ -123,7 +123,7 @@ governs the curvature of the one-period utility function
 Note that
 
 .. math::
-    :label: utility-oneperiod
+    :label: utility-oneperiod_cass_koopmans
 
     u(C_t) = \frac{C_t^{1-\gamma}}{1-\gamma}
 
@@ -159,7 +159,7 @@ Planning Problem
 ------------------
 
 A planner chooses an allocation :math:`\{\vec{C},\vec{K}\}` to
-maximize :eq:`utility-functional` subject to :eq:`allocation`
+maximize :eq:`utility-functional_cass_koopmans` subject to :eq:`allocation`
 
 Let :math:`\vec{\mu}=\{\mu_0,\dots,\mu_T\}` be a sequence of
 nonnegative **Lagrange multipliers**
@@ -256,48 +256,48 @@ minimization with respect to :math:`\vec \mu`):
 
 
 .. math::
-    :label: constraint1
+    :label: constraint1_cass_koopmans
 
     C_t: \qquad u'(C_t)-\mu_t=0 \qquad \text{for all} \quad t= 0,1,\dots,T
 
 .. math::
-    :label: constraint2
+    :label: constraint2_cass_koopmans
 
     K_t: \qquad \beta \mu_t\left[(1-\delta)+f'(K_t)\right] - \mu_{t-1}=0 \qquad \text{for all } \quad t=1,2,\dots,T
 
 .. math::
-    :label: constraint3
+    :label: constraint3_cass_koopmans
 
     \mu_t:\qquad F(K_t,1)+ (1-\delta) K_t  - C_t - K_{t+1}=0 \qquad \text{for all } \quad t=0,1,\dots,T
 
 .. math::
-    :label: constraint4
+    :label: constraint4_cass_koopmans
 
     K_{T+1}: \qquad -\mu_T \leq 0, \ \leq 0 \text{ if } K_{T+1}=0; \ =0 \text{ if } K_{T+1}>0
 
-Note that in :eq:`constraint2` we plugged in for
+Note that in :eq:`constraint2_cass_koopmans` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
 above
 
 Because :math:`N_t = 1` for :math:`t = 1, \ldots, T`, need not
 differentiate with respect to those arguments
 
-Note that :eq:`constraint3` comes from the occurrence
+Note that :eq:`constraint3_cass_koopmans` comes from the occurrence
 of :math:`K_t` in both the period :math:`t` and period :math:`t-1`
 feasibility constraints
 
-:eq:`constraint4` comes from differentiating with respect
+:eq:`constraint4_cass_koopmans` comes from differentiating with respect
 to :math:`K_{T+1}` in the last period and applying the following
 condition called a **Karush-Kuhn-Tucker condition** (KKT):
 
 .. math::
-    :label: kkt
+    :label: kkt_cass_koopmans
 
     \mu_T K_{T+1}=0
 
 See `Karush-Kuhn-Tucker conditions <https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions>`__
 
-Combining :eq:`constraint1` and :eq:`constraint2` gives
+Combining :eq:`constraint1_cass_koopmans` and :eq:`constraint2_cass_koopmans` gives
 
 .. math::
   u'\left(C_t\right)\left[(1-\delta)+f'\left(K_t\right)\right]-u'\left(C_{t-1}\right)=0
@@ -306,7 +306,7 @@ Combining :eq:`constraint1` and :eq:`constraint2` gives
 Rewriting gives
 
 .. math::
-    :label: l12
+    :label: l12_cass_koopmans
 
     u'\left(C_{t+1}\right)\left[(1-\delta)+f'\left(K_{t+1}\right)\right]=
     u'\left(C_{t}\right) \quad \text{ for all } t=0,1,\dots, T
@@ -317,7 +317,7 @@ equation gives
 .. math::
   C_{t+1} =u'^{-1}\left(\left(\frac{\beta}{u'(C_t)}[f'(K_{t+1}) +(1-\delta)]\right)^{-1}\right)
 
-or using our utility function :eq:`utility-oneperiod`
+or using our utility function :eq:`utility-oneperiod_cass_koopmans`
 
 .. math::
 
@@ -390,15 +390,15 @@ We shall use a **shooting method** to compute an optimal allocation
 :math:`\vec \mu`
 
 The first-order necessary conditions for the planning problem,
-namely, equations :eq:`constraint1`, :eq:`constraint2`, and
-:eq:`constraint3`, form a system of **difference equations** with
+namely, equations :eq:`constraint1_cass_koopmans`, :eq:`constraint2_cass_koopmans`, and
+:eq:`constraint3_cass_koopmans`, form a system of **difference equations** with
 two boundary conditions:
 
 -  :math:`K_0` is a given **initial condition** for capital
 
 -  :math:`K_{T+1} =0` is a **terminal condition** for capital that we
    deduced from the first-order necessary condition for :math:`K_{T+1}`
-   the KKT condition :eq:`kkt`
+   the KKT condition :eq:`kkt_cass_koopmans`
 
 We have no initial condition for the Lagrange multiplier
 :math:`\mu_0`
@@ -406,9 +406,9 @@ We have no initial condition for the Lagrange multiplier
 If we did, solving for the allocation would be simple:
 
 -  Given :math:`\mu_0` and :math:`k_0`, we could compute :math:`c_0` from
-   equation :eq:`constraint1` and then :math:`k_1` from equation
-   :eq:`constraint3` and :math:`\mu_1` from equation
-   :eq:`constraint2`
+   equation :eq:`constraint1_cass_koopmans` and then :math:`k_1` from equation
+   :eq:`constraint3_cass_koopmans` and :math:`\mu_1` from equation
+   :eq:`constraint2_cass_koopmans`
 
 -  We could then iterate on to compute the remaining elements of
    :math:`\vec C, \vec K, \vec \mu`
@@ -642,12 +642,12 @@ In a steady state :math:`K_{t+1} = K_t=\bar{K}` for all very
 large :math:`t` the feasibility constraint :eq:`allocation` is
 
 .. math::
-    :label: feasibility-constraint
+    :label: feasibility-constraint_cass_koopmans
 
     f(\bar{K})-\delta \bar{K} = \bar{C}
 
 Substituting :math:`K_t = \bar K` and :math:`C_t=\bar C` for
-all :math:`t` into :eq:`l12` gives
+all :math:`t` into :eq:`l12_cass_koopmans` gives
 
 .. math:: 1=\beta \frac{u'(\bar{C})}{u'(\bar{C})}[f'(\bar{K})+(1-\delta)]
 
@@ -852,7 +852,7 @@ The Limiting Economy
 We now consider an economy in which :math:`T = +\infty`
 
 The appropriate thing to do is to replace terminal condition
-:eq:`constraint4` with
+:eq:`constraint4_cass_koopmans` with
 
 .. math::
 
@@ -874,7 +874,7 @@ savings rate
 We know that in the steady state that the saving rate must be fixed
 and that :math:`\bar s= \frac{f(\bar K)-\bar C}{f(\bar K)}`
 
-From :eq:`feasibility-constraint` the steady state saving rate equals
+From :eq:`feasibility-constraint_cass_koopmans` the steady state saving rate equals
 
 .. math::
 
@@ -1011,14 +1011,14 @@ As in the planned economy model
 Zero Profit Conditions
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Zero-profits condition for capital and labor are
+Zero-profits_cass_koopmans condition for capital and labor are
 
 .. math:: F_k(\tilde k_t, \tilde n_t) =\eta_t
 
 and
 
 .. math::
-    :label: Zero-profits
+    :label: Zero-profits_cass_koopmans
 
     F_n(\tilde k_t, \tilde n_t) =w_t
 
@@ -1220,25 +1220,25 @@ price system
 In particular, we guess that for :math:`t=0,\dots,T`:
 
 .. math::
-    :label: eq-price
+    :label: eq-price_cass_koopmans
 
     \lambda q_t^0 = \beta^t u'(K_t) =\beta^t \mu_t
 
 
 .. math::
-    :label: eq-price2
+    :label: eq-price_cass_koopmans2
 
     w_t = f(K_t) -K_t f'(K_t)
 
 .. math::
-    :label: eq-price3
+    :label: eq-price_cass_koopmans3
 
     \eta_t = f'(K_t)
 
 At these prices, let the capital chosen by the household be
 
 .. math::
-    :label: eq-pr4
+    :label: eq-pr4_cass_koopmans
 
     k^*_t(\vec q, \vec w, \vec \eta) , \quad t \geq 0
 
@@ -1252,12 +1252,12 @@ If our guess for the equilibrium price system is correct, then it
 must occur that
 
 .. math::
-    :label: ge1
+    :label: ge1_cass_koopmans
 
     k_t^*  = \tilde k_t^*
 
 .. math::
-    :label: ge2
+    :label: ge2_cass_koopmans
 
     1   = \tilde n_t^*
 
@@ -1271,7 +1271,7 @@ by the household and the firm both equal the allocation that solves
 the planning problem:
 
 .. math::
-    :label: eq-pl
+    :label: eq-pl_cass_koopmans
 
     k^*_t = \tilde k^*_t=K_t, \tilde n_t=1, c^*_t=C_t
 
@@ -1300,45 +1300,45 @@ Lagrangian and pose the min-max problem:
 First-order conditions are
 
 .. math::
-    :label: cond1
+    :label: cond1_cass_koopmans
 
     c_t: \quad \beta^t u'(c_t)-\lambda q_t^0=0 \quad  t=0,1,\dots,T
 
 .. math::
-    :label: cond2
+    :label: cond2_cass_koopmans
 
     k_t: \quad -\lambda q_t^0 \left[(1-\delta)+\eta_t \right]+\lambda q^0_{t-1}=0 \quad  t=1,2,\dots,T+1
 
 
 .. math::
-    :label: cond3
+    :label: cond3_cass_koopmans
 
     \lambda:  \quad \left(\sum_{t=0}^T q_t^0\left(c_t + \left(k_{t+1}-(1-\delta) k_t\right) -w_t -\eta_t k_t\right)\right) \leq 0
 
 .. math::
-    :label: cond4
+    :label: cond4_cass_koopmans
 
     k_{T+1}: \quad -\lambda q_0^{T+1} \leq 0, \ \leq 0 \text{ if } k_{T+1}=0; \ =0 \text{ if } k_{T+1}>0
 
 
 Now we plug in for our guesses of prices and derive all the FONC of
-the planner problem :eq:`constraint1`-:eq:`constraint4`:
+the planner problem :eq:`constraint1_cass_koopmans`-:eq:`constraint4_cass_koopmans`:
 
-Combining :eq:`cond1` and :eq:`eq-price`, we get:
+Combining :eq:`cond1_cass_koopmans` and :eq:`eq-price_cass_koopmans`, we get:
 
 .. math:: u'(C_t) = \mu_t
 
-which is :eq:`constraint1`.
+which is :eq:`constraint1_cass_koopmans`.
 
-Combining :eq:`cond2`, :eq:`eq-price`, and
-:eq:`eq-price3` we get:
+Combining :eq:`cond2_cass_koopmans`, :eq:`eq-price_cass_koopmans`, and
+:eq:`eq-price_cass_koopmans3` we get:
 
 .. math::
-    :label: co-re
+    :label: co-re_cass_koopmans
 
     -\lambda \beta^t \mu_t\left[(1-\delta) +f'(K_t)\right] +\lambda \beta^{t-1}\mu_{t-1}=0
 
-Rewriting :eq:`co-re` by dividing by :math:`\lambda` on
+Rewriting :eq:`co-re_cass_koopmans` by dividing by :math:`\lambda` on
 both sides (which is nonzero due to u'>0) we get:
 
 .. math:: \beta^t \mu_t [(1-\delta+f'(K_t)] = \beta^{t-1} \mu_{t-1}
@@ -1347,11 +1347,11 @@ or
 
 .. math:: \beta \mu_t [(1-\delta+f'(K_t)] = \mu_{t-1}
 
-which is :eq:`constraint2`.
+which is :eq:`constraint2_cass_koopmans`.
 
-Combining :eq:`cond3`, :eq:`eq-price`, :eq:`eq-price2`
-and :eq:`eq-price3` after multiplying both sides of
-:eq:`cond3` by :math:`\lambda`, we get:
+Combining :eq:`cond3_cass_koopmans`, :eq:`eq-price_cass_koopmans`, :eq:`eq-price_cass_koopmans2`
+and :eq:`eq-price_cass_koopmans3` after multiplying both sides of
+:eq:`cond3_cass_koopmans` by :math:`\lambda`, we get:
 
 .. math:: \sum_{t=0}^T \beta^t \mu_{t} \left(C_t+ (K_{t+1} -(1-\delta)K_t)-f(K_t)+K_t f'(K_t)-f'(K_t)K_t\right) \leq 0
 
@@ -1364,9 +1364,9 @@ Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 
 .. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T
 
-\ which is :eq:`constraint3`
+\ which is :eq:`constraint3_cass_koopmans`
 
-Combining :eq:`cond4` and :eq:`eq-price`, we get:
+Combining :eq:`cond4_cass_koopmans` and :eq:`eq-price_cass_koopmans`, we get:
 
 .. math:: - \beta^{T+1} \mu_{T+1} \leq 0
 
@@ -1375,7 +1375,7 @@ positive here, we get:
 
 .. math:: -\mu_{T+1} \leq 0
 
-\ which is the :eq:`constraint4` of our planning problem
+\ which is the :eq:`constraint4_cass_koopmans` of our planning problem
 
 **Thus, at our guess of the equilibrium price system, the allocation
 that solves the planning problem also solves the problem faced by a
@@ -1384,25 +1384,25 @@ representative household living in a competitive equilibrium**
 We now consider the problem faced by a firm in a competitive
 equilibrium:
 
-If we plug in :eq:`eq-pl` into :eq:`Zero-profits` for all t, we
+If we plug in :eq:`eq-pl_cass_koopmans` into :eq:`Zero-profits_cass_koopmans` for all t, we
 get
 
 .. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t
 
-\ which is :eq:`eq-price3`
+\ which is :eq:`eq-price_cass_koopmans3`
 
-If we now plug :eq:`eq-pl` into :eq:`Zero-profits` for all t, we
+If we now plug :eq:`eq-pl_cass_koopmans` into :eq:`Zero-profits_cass_koopmans` for all t, we
 get:
 
 .. math:: \frac{\partial F(\tilde K_t, 1)}{\partial \tilde L} = f(K_t)-f'(K_t)K_t=w_t
 
-\ which is exactly :eq:`eq-pr4`
+\ which is exactly :eq:`eq-pr4_cass_koopmans`
 
 **Thus, at our guess of the equilibrium price system, the allocation
 that solves the planning problem also solves the problem faced by a firm
 within a competitive equilibrium**
 
-By :eq:`ge1` and :eq:`ge2` this allocation is
+By :eq:`ge1_cass_koopmans` and :eq:`ge2_cass_koopmans` this allocation is
 identical to the one that solves the consumer's problem
 
 **Note:** Because budget sets are affected only by relative prices,

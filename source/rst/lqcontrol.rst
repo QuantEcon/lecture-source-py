@@ -78,7 +78,7 @@ Let :math:`x_t` be a vector describing the state of some economic system
 Suppose that :math:`x_t` follows a linear law of motion given by
 
 .. math::
-    :label: lq_lom
+    :label: lq_lom_lqcontrol
 
     x_{t+1} = A x_t + B u_t + C w_{t+1},
     \qquad t = 0, 1, 2, \ldots
@@ -121,7 +121,7 @@ the system as
     a_{t+1} = (1 + r) a_t - c_t + \sigma w_{t+1}
 
 
-This is clearly a special case of :eq:`lq_lom`, with assets being the state and consumption being the control
+This is clearly a special case of :eq:`lq_lom_lqcontrol`, with assets being the state and consumption being the control
 
 .. _lq_hhp:
 
@@ -145,12 +145,12 @@ For this reason, we now take our control to be :math:`u_t := c_t - \bar c`
 In terms of these variables, the budget constraint :math:`a_{t+1} = (1 + r) a_t - c_t + y_t` becomes
 
 .. math::
-    :label: lq_lomwc
+    :label: lq_lom_lqcontrolwc
 
     a_{t+1} = (1 + r) a_t - u_t - \bar c + \sigma w_{t+1} + \mu
 
 
-How can we write this new system in the form of equation :eq:`lq_lom`?
+How can we write this new system in the form of equation :eq:`lq_lom_lqcontrol`?
 
 If, as in the previous example, we take :math:`a_t` as the state, then we run into a problem:
 the law of motion contains some constant terms on the right-hand side
@@ -165,7 +165,7 @@ In particular, if we write
 
 
 .. math::
-    :label: lq_lowmc
+    :label: lq_lowmc_lqcontrol
 
     \left(
     \begin{array}{c}
@@ -201,13 +201,13 @@ In particular, if we write
     w_{t+1}
 
 
-then the first row is equivalent to :eq:`lq_lomwc`
+then the first row is equivalent to :eq:`lq_lom_lqcontrolwc`
 
 Moreover, the model is now linear and can be written in the form of
-:eq:`lq_lom` by setting
+:eq:`lq_lom_lqcontrol` by setting
 
 .. math::
-    :label: lq_lowmc2
+    :label: lq_lowmc_lqcontrol2
 
     x_t :=
     \left(
@@ -252,7 +252,7 @@ Preferences
 In the LQ model, the aim is to minimize flow of losses, where time-:math:`t` loss is given by the quadratic expression
 
 .. math::
-    :label: lq_pref_flow
+    :label: lq_pr_lqcontrolef_flow_lqcontrol
 
     x_t' R x_t + u_t' Q u_t
 
@@ -280,7 +280,7 @@ and :math:`Q` to be identity matrices so that current loss is
 
 Thus, for both the state and the control, loss is measured as squared distance from the origin
 
-(In fact, the general case :eq:`lq_pref_flow` can also be understood in this
+(In fact, the general case :eq:`lq_pr_lqcontrolef_flow_lqcontrol` can also be understood in this
 way, but with :math:`R` and :math:`Q` identifying other -- non-Euclidean -- notions of "distance" from the zero vector)
 
 Intuitively, we can often think of the state :math:`x_t` as representing deviation from a target, such
@@ -327,7 +327,7 @@ We will begin with the finite horizon case, with terminal time :math:`T \in \mat
 In this case, the aim is to choose a sequence of controls :math:`\{u_0, \ldots, u_{T-1}\}` to minimize the objective
 
 .. math::
-    :label: lq_object
+    :label: lq_object_lqcontrol
 
     \mathbb E \,
     \left\{
@@ -335,7 +335,7 @@ In this case, the aim is to choose a sequence of controls :math:`\{u_0, \ldots, 
     \right\}
 
 
-subject to the law of motion :eq:`lq_lom` and initial state :math:`x_0`
+subject to the law of motion :eq:`lq_lom_lqcontrol` and initial state :math:`x_0`
 
 
 The new objects introduced here are :math:`\beta` and the matrix :math:`R_f`
@@ -417,7 +417,7 @@ solves
 At this stage, it is convenient to define the function
 
 .. math::
-    :label: lq_lsm
+    :label: lq_lsm_lqcontrol
 
     J_{T-1} (x) =
     \min_u \{
@@ -489,10 +489,10 @@ It turns out that every :math:`J_t` has the form :math:`J_t(x) = x' P_t x + d_t`
 
 We can show this by induction, starting from :math:`P_T := R_f` and :math:`d_T = 0`
 
-Using this notation, :eq:`lq_lsm` becomes
+Using this notation, :eq:`lq_lsm_lqcontrol` becomes
 
 .. math::
-    :label: lq_fswb
+    :label: lq_fswb_lqcontrol
 
     J_{T-1} (x) =
     \min_u \{
@@ -506,12 +506,12 @@ To obtain the minimizer, we can take the derivative of the r.h.s. with respect t
 Applying the relevant rules of :ref:`matrix calculus <la_mcalc>`, this gives
 
 .. math::
-    :label: lq_oc0
+    :label: lq_oc_lqcontrol0_lqcontrol
 
     u  = - (Q + \beta B' P_T B)^{-1} \beta B' P_T A x
 
 
-Plugging this back into :eq:`lq_fswb` and rearranging yields
+Plugging this back into :eq:`lq_fswb_lqcontrol` and rearranging yields
 
 .. math::
 
@@ -521,7 +521,7 @@ Plugging this back into :eq:`lq_fswb` and rearranging yields
 where
 
 .. math::
-    :label: lq_finr
+    :label: lq_finr_lqcontrol
 
     P_{T-1} = R - \beta^2 A' P_T B (Q + \beta B' P_T B)^{-1} B' P_T A +
     \beta A' P_T A
@@ -530,7 +530,7 @@ where
 and
 
 .. math::
-    :label: lq_finrd
+    :label: lq_finr_lqcontrold
 
     d_{T-1} := \beta \mathop{\mathrm{trace}}(C' P_T C)
 
@@ -540,7 +540,7 @@ and
 If we continue working backwards in this manner, it soon becomes clear that :math:`J_t (x) = x' P_t x + d_t` as claimed, where :math:`\{P_t\}` and :math:`\{d_t\}` satisfy the recursions
 
 .. math::
-    :label: lq_pr
+    :label: lq_pr_lqcontrol
 
     P_{t-1} = R - \beta^2 A' P_t B (Q + \beta B' P_t B)^{-1} B' P_t A +
     \beta A' P_t A
@@ -551,17 +551,17 @@ If we continue working backwards in this manner, it soon becomes clear that :mat
 and
 
 .. math::
-    :label: lq_dd
+    :label: lq_dd_lqcontrol
 
     d_{t-1} = \beta (d_t + \mathop{\mathrm{trace}}(C' P_t C))
     \quad \text{with } \quad
     d_T = 0
 
 
-Recalling :eq:`lq_oc0`, the minimizers from these backward steps are
+Recalling :eq:`lq_oc_lqcontrol0_lqcontrol`, the minimizers from these backward steps are
 
 .. math::
-    :label: lq_oc
+    :label: lq_oc_lqcontrol
 
     u_t  = - F_t x_t
     \quad \text{where} \quad
@@ -570,19 +570,19 @@ Recalling :eq:`lq_oc0`, the minimizers from these backward steps are
 
 These are the linear optimal control policies we :ref:`discussed above <lq_cp>`
 
-In particular,  the sequence of controls given by :eq:`lq_oc` and :eq:`lq_lom` solves our finite horizon LQ problem
+In particular,  the sequence of controls given by :eq:`lq_oc_lqcontrol` and :eq:`lq_lom_lqcontrol` solves our finite horizon LQ problem
 
 Rephrasing this more precisely, the sequence :math:`u_0, \ldots, u_{T-1}` given by
 
 .. math::
-    :label: lq_xud
+    :label: lq_xud_lqcontrol
 
     u_t = - F_t x_t
     \quad \text{with} \quad
     x_{t+1} = (A - BF_t) x_t + C w_{t+1}
 
 
-for :math:`t = 0, \ldots, T-1` attains the minimum of :eq:`lq_object` subject to our constraints
+for :math:`t = 0, \ldots, T-1` attains the minimum of :eq:`lq_object_lqcontrol` subject to our constraints
 
 Implementation
 ====================
@@ -610,7 +610,7 @@ are wrapped in a class  called ``LQ``, which includes
 
 * Methods:
 
-    * ``update_values`` --- shifts :math:`d_t, P_t, F_t` to their :math:`t-1` values via :eq:`lq_pr`, :eq:`lq_dd` and :eq:`lq_oc`
+    * ``update_values`` --- shifts :math:`d_t, P_t, F_t` to their :math:`t-1` values via :eq:`lq_pr_lqcontrol`, :eq:`lq_dd_lqcontrol` and :eq:`lq_oc_lqcontrol`
 
     * ``stationary_values`` --- computes :math:`P, d, F` in the infinite horizon case
 
@@ -638,7 +638,7 @@ The household savings problem :ref:`outlined above <lq_hhp>` captures these idea
 The optimization problem for the household is to choose a consumption sequence in order to minimize
 
 .. math::
-    :label: lq_pio
+    :label: lq_pio_lqcontrol
 
     \mathbb E \,
     \left\{
@@ -652,13 +652,13 @@ Here :math:`q` is a large positive constant, the role of which is to induce the 
 
 (Without such a constraint, the optimal choice is to choose :math:`c_t = \bar c` in each period, letting assets adjust accordingly)
 
-As before we set :math:`y_t = \sigma w_{t+1} + \mu` and :math:`u_t := c_t - \bar c`, after which the constraint can be written as in :eq:`lq_lomwc`
+As before we set :math:`y_t = \sigma w_{t+1} + \mu` and :math:`u_t := c_t - \bar c`, after which the constraint can be written as in :eq:`lq_lom_lqcontrolwc`
 
 We saw how this constraint could be manipulated into the LQ formulation :math:`x_{t+1} =
-Ax_t + Bu_t + Cw_{t+1}` by setting :math:`x_t = (a_t \; 1)'` and using the definitions in :eq:`lq_lowmc2`
+Ax_t + Bu_t + Cw_{t+1}` by setting :math:`x_t = (a_t \; 1)'` and using the definitions in :eq:`lq_lowmc_lqcontrol2`
 
-To match with this state and control, the objective function :eq:`lq_pio` can
-be written in the form of :eq:`lq_object` by choosing
+To match with this state and control, the objective function :eq:`lq_pio_lqcontrol` can
+be written in the form of :eq:`lq_object_lqcontrol` by choosing
 
 .. math::
 
@@ -682,10 +682,10 @@ be written in the form of :eq:`lq_object` by choosing
 
 
 Now that the problem is expressed in LQ form, we can proceed to the solution
-by applying :eq:`lq_pr` and :eq:`lq_oc`
+by applying :eq:`lq_pr_lqcontrol` and :eq:`lq_oc_lqcontrol`
 
 After generating shocks :math:`w_1, \ldots, w_T`, the dynamics for assets and
-consumption can be simulated via :eq:`lq_xud`
+consumption can be simulated via :eq:`lq_xud_lqcontrol`
 
 The following figure was computed using :math:`r = 0.05, \beta = 1 / (1+ r),
 \bar c = 2,  \mu = 1, \sigma = 0.25, T = 45` and :math:`q = 10^6`
@@ -803,7 +803,7 @@ Adding a Cross-Product Term
 In some LQ problems, preferences include a cross-product term :math:`u_t' N x_t`, so that the objective function becomes
 
 .. math::
-    :label: lq_object_cp
+    :label: lq_object_lqcontrol_cp
 
     \mathbb E \,
     \left\{
@@ -813,10 +813,10 @@ In some LQ problems, preferences include a cross-product term :math:`u_t' N x_t`
 
 Our results extend to this case in a straightforward way
 
-The sequence :math:`\{P_t\}` from :eq:`lq_pr` becomes
+The sequence :math:`\{P_t\}` from :eq:`lq_pr_lqcontrol` becomes
 
 .. math::
-    :label: lq_pr_cp
+    :label: lq_pr_lqcontrol_cp
 
     P_{t-1} = R - (\beta B' P_t A + N)'
     (Q + \beta B' P_t B)^{-1} (\beta B' P_t A + N) +
@@ -825,17 +825,17 @@ The sequence :math:`\{P_t\}` from :eq:`lq_pr` becomes
     P_T = R_f
 
 
-The policies in :eq:`lq_oc` are modified to
+The policies in :eq:`lq_oc_lqcontrol` are modified to
 
 .. math::
-    :label: lq_oc_cp
+    :label: lq_oc_lqcontrol_cp
 
     u_t  = - F_t x_t
     \quad \text{where} \quad
     F_t := (Q + \beta B' P_{t+1} B)^{-1} (\beta B' P_{t+1} A + N)
 
 
-The sequence :math:`\{d_t\}` is unchanged from :eq:`lq_dd`
+The sequence :math:`\{d_t\}` is unchanged from :eq:`lq_dd_lqcontrol`
 
 We leave interested readers to confirm these results (the calculations are long but not overly difficult)
 
@@ -855,7 +855,7 @@ Finally, we consider the infinite horizon case, with :ref:`cross-product term <l
 objective function given by
 
 .. math::
-    :label: lq_object_ih
+    :label: lq_object_lqcontrol_ih
 
     \mathbb E \,
     \left\{
@@ -880,31 +880,31 @@ The stationary matrix :math:`P` is the solution to the
 .. _riccati_equation:
 
 .. math::
-    :label: lq_pr_ih
+    :label: lq_pr_lqcontrol_ih
 
     P = R - (\beta B' P A + N)'
     (Q + \beta B' P B)^{-1} (\beta B' P A + N) +
     \beta A' P A
 
 
-Equation :eq:`lq_pr_ih` is also called the *LQ Bellman equation*, and the map
-that sends a given :math:`P` into the right-hand side of :eq:`lq_pr_ih` is
+Equation :eq:`lq_pr_lqcontrol_ih` is also called the *LQ Bellman equation*, and the map
+that sends a given :math:`P` into the right-hand side of :eq:`lq_pr_lqcontrol_ih` is
 called the *LQ Bellman operator*
 
 The stationary optimal policy for this model is
 
 .. math::
-    :label: lq_oc_ih
+    :label: lq_oc_lqcontrol_ih
 
     u  = - F x
     \quad \text{where} \quad
     F = (Q + \beta B' P B)^{-1} (\beta B' P A + N)
 
 
-The sequence :math:`\{d_t\}` from :eq:`lq_dd` is replaced by the constant value
+The sequence :math:`\{d_t\}` from :eq:`lq_dd_lqcontrol` is replaced by the constant value
 
 .. math::
-    :label: lq_dd_ih
+    :label: lq_dd_lqcontrol_ih
 
     d
     := \mathop{\mathrm{trace}}(C' P C) \frac{\beta}{1 - \beta}
@@ -924,7 +924,7 @@ Linear quadratic control problems of the class discussed above have the property
 
 By this, we mean that the optimal policy :math:`F` is not affected by the parameters in :math:`C`, which specify the shock process
 
-This can be confirmed by inspecting :eq:`lq_oc_ih` or :eq:`lq_oc_cp`
+This can be confirmed by inspecting :eq:`lq_oc_lqcontrol_ih` or :eq:`lq_oc_lqcontrol_cp`
 
 It follows that we can ignore uncertainty when solving for optimal behavior, and plug it back in when examining optimal state dynamics
 
@@ -951,7 +951,7 @@ In this section, we will model this rise and fall as a symmetric inverted "U" us
 As before, the consumer seeks to minimize
 
 .. math::
-    :label: lq_pip
+    :label: lq_pip_lqcontrol
 
     \mathbb E \,
     \left\{
@@ -972,7 +972,7 @@ You can confirm that the specification :math:`m_0 = 0, m_1 = T \mu / (T/2)^2, m_
 To put this into an LQ setting, consider the budget constraint, which becomes
 
 .. math::
-    :label: lq_hib
+    :label: lq_hib_lqcontrol
 
     a_{t+1} = (1 + r) a_t - u_t - \bar c + m_1 t + m_2 t^2 + \sigma w_{t+1}
 
@@ -987,7 +987,7 @@ has been made, the remaining specifications fall into place relatively easily
 Thus, for the dynamics we set
 
 .. math::
-    :label: lq_lowmc3
+    :label: lq_lowmc_lqcontrol3
 
     x_t :=
     \left(
@@ -1031,13 +1031,13 @@ Thus, for the dynamics we set
 
 
 If you expand the expression :math:`x_{t+1} = A x_t + B u_t + C w_{t+1}` using
-this specification, you will find that assets follow :eq:`lq_hib` as desired
+this specification, you will find that assets follow :eq:`lq_hib_lqcontrol` as desired
 and that the other state variables also update appropriately
 
-To implement preference specification :eq:`lq_pip` we take
+To implement preference specification :eq:`lq_pip_lqcontrol` we take
 
 .. math::
-    :label: lq_4sp
+    :label: lq_4sp_lqcontrol
 
     Q := 1,
     \quad
@@ -1096,7 +1096,7 @@ Letting :math:`K` be the retirement date, we can express these income dynamics
 by
 
 .. math::
-    :label: lq_cases
+    :label: lq_cases_lqcontrol
 
     y_t =
     \begin{cases}
@@ -1111,13 +1111,13 @@ Here
 
 * :math:`s` is retirement income
 
-We suppose that preferences are unchanged and given by :eq:`lq_pio`
+We suppose that preferences are unchanged and given by :eq:`lq_pio_lqcontrol`
 
 The budget constraint is also unchanged and given by :math:`a_{t+1} = (1 + r) a_t - c_t + y_t`
 
 Our aim is to solve this problem and simulate paths using the LQ techniques described in this lecture
 
-In fact, this is a nontrivial problem, as the kink in the dynamics :eq:`lq_cases` at :math:`K` makes it very difficult to express the law of motion as a fixed-coefficient linear system
+In fact, this is a nontrivial problem, as the kink in the dynamics :eq:`lq_cases_lqcontrol` at :math:`K` makes it very difficult to express the law of motion as a fixed-coefficient linear system
 
 However, we can still use our LQ methods here by suitably linking two-component LQ problems
 
@@ -1183,7 +1183,7 @@ where :math:`\{w_t\}` is IID and standard normal
 The monopolist maximizes the expected discounted sum of present and future profits
 
 .. math::
-    :label: lq_object_mp
+    :label: lq_object_lqcontrol_mp
 
     \mathbb E \,
     \left\{
@@ -1242,13 +1242,13 @@ Here we take :math:`x_t = (\bar q_t \;\, q_t \;\, 1)'`, while the control is cho
 
 We also manipulated the profit function slightly
 
-In :eq:`lq_object_mp`, current profits are :math:`\pi_t := p_t q_t - c q_t - \gamma (q_{t+1} - q_t)^2`
+In :eq:`lq_object_lqcontrol_mp`, current profits are :math:`\pi_t := p_t q_t - c q_t - \gamma (q_{t+1} - q_t)^2`
 
-Let's now replace :math:`\pi_t` in :eq:`lq_object_mp` with :math:`\hat \pi_t := \pi_t - a_1 \bar q_t^2`
+Let's now replace :math:`\pi_t` in :eq:`lq_object_lqcontrol_mp` with :math:`\hat \pi_t := \pi_t - a_1 \bar q_t^2`
 
 This makes no difference to the solution, since :math:`a_1 \bar q_t^2` does not depend on the controls
 
-(In fact, we are just adding a constant term to :eq:`\lq_object_mp`, and optimizers are not affected by constant terms)
+(In fact, we are just adding a constant term to :eq:`\lq_object_lqcontrol_mp`, and optimizers are not affected by constant terms)
 
 The reason for making this substitution is that, as you will be able to
 verify, :math:`\hat \pi_t` reduces to the simple quadratic
@@ -1261,7 +1261,7 @@ verify, :math:`\hat \pi_t` reduces to the simple quadratic
 After negation to convert to a minimization problem, the objective becomes
 
 .. math::
-    :label: lq_object_mp2
+    :label: lq_object_lqcontrol_mp2
 
     \min
     \mathbb E \,
@@ -1272,9 +1272,9 @@ After negation to convert to a minimization problem, the objective becomes
 
 
 It's now relatively straightforward to find :math:`R` and :math:`Q` such that
-:eq:`lq_object_mp2` can be written as :eq:`lq_object_ih`
+:eq:`lq_object_lqcontrol_mp2` can be written as :eq:`lq_object_lqcontrol_ih`
 
-Furthermore, the matrices :math:`A, B` and :math:`C` from :eq:`lq_lom`
+Furthermore, the matrices :math:`A, B` and :math:`C` from :eq:`lq_lom_lqcontrol`
 can be found by writing down the dynamics of each element of the state
 
 :ref:`Exercise 3 <lqc_ex3>` asks you to complete this process, and reproduce the preceding figures
@@ -1314,13 +1314,13 @@ First, in order to make our approach work, we must ensure that both LQ problems 
 
 As with previous applications, the control can be set to :math:`u_t = c_t - \bar c`
 
-For ``lq_working``, :math:`x_t, A, B, C` can be chosen as in :eq:`lq_lowmc3`
+For ``lq_working``, :math:`x_t, A, B, C` can be chosen as in :eq:`lq_lowmc_lqcontrol3`
 
 * Recall that :math:`m_1, m_2` are chosen so that :math:`p(K) = \mu` and :math:`p(2K)=0`
 
 For ``lq_retired``, use the same definition of :math:`x_t` and :math:`u_t`, but modify :math:`A, B, C` to correspond to constant income :math:`y_t = s`
 
-For ``lq_retired``, set preferences as in :eq:`lq_4sp`
+For ``lq_retired``, set preferences as in :eq:`lq_4sp_lqcontrol`
 
 For ``lq_working``, preferences are the same, except that :math:`R_f` should
 be replaced by the final value function that emerges from iterating ``lq_retired``

@@ -78,19 +78,19 @@ Let's recall the basic features of the model discussed in the :doc:`permanent in
 Consumer preferences are ordered  by
 
 .. math::
-    :label: old1
+    :label: old1_perm_income_cons
 
     E_0 \sum_{t=0}^\infty \beta^t u(c_t)
 
 
 where :math:`u(c) = -(c - \gamma)^2`
 
-The consumer maximizes :eq:`old1` by choosing a
+The consumer maximizes :eq:`old1_perm_income_cons` by choosing a
 consumption, borrowing plan :math:`\{c_t, b_{t+1}\}_{t=0}^\infty`
 subject to the sequence of budget constraints
 
 .. math::
-    :label: old2
+    :label: old2_perm_income_cons
 
     c_t + b_t = \frac{1}{1 + r} b_{t+1}  + y_t,
     \quad t \geq 0
@@ -99,7 +99,7 @@ subject to the sequence of budget constraints
 and the no-Ponzi condition
 
 .. math::
-    :label: old42
+    :label: old42_perm_income_cons
 
     E_0 \sum_{t=0}^\infty \beta^t b_t^2 < \infty
 
@@ -112,7 +112,7 @@ We continue to assume that :math:`(1 + r) \beta = 1`
 The dynamics of :math:`\{y_t\}` again follow the linear state space model
 
 .. math::
-    :label: sprob15ab2
+    :label: sprob15ab2_perm_income_cons
 
     \begin{aligned}
         z_{t+1} & = A z_t + C w_{t+1}
@@ -174,7 +174,7 @@ For the purposes of this lecture, let's assume :math:`\{y_t\}` is a second-order
     y_{t+1} = \alpha + \rho_1 y_t + \rho_2 y_{t-1} + \sigma w_{t+1}
 
 
-We can map this into the linear state space framework in :eq:`sprob15ab2`, as
+We can map this into the linear state space framework in :eq:`sprob15ab2_perm_income_cons`, as
 discussed in our lecture on  :doc:`linear models<linear_models>`
 
 To do so we take
@@ -243,7 +243,7 @@ a decision rule for :math:`u_t` to minimize
 subject to :math:`x_0` given and the law of motion
 
 .. math::
-    :label: pilqsd
+    :label: pilqsd_perm_income_cons
 
     x_{t+1} =  \tilde A x_t+ \tilde B u_t+ \tilde C w_{t+1},
     \qquad t\geq 0,
@@ -251,7 +251,7 @@ subject to :math:`x_0` given and the law of motion
 
 where :math:`w_{t+1}` is IID with mean vector zero and :math:`\mathbb E w_t w'_t= I`
 
-The tildes in :math:`\tilde A, \tilde B, \tilde C` are to avoid clashing with notation in :eq:`sprob15ab2`
+The tildes in :math:`\tilde A, \tilde B, \tilde C` are to avoid clashing with notation in :eq:`sprob15ab2_perm_income_cons`
 
 The value function for this problem is :math:`v(x) = - x'Px - d`, where
 
@@ -289,7 +289,7 @@ To map into the LQ framework, we'll use
 as the state vector and :math:`u_t := c_t - \gamma` as the control
 
 With this notation and :math:`U_\gamma := \begin{bmatrix} \gamma & 0 & 0
-\end{bmatrix}`, we can write the state dynamics as in :eq:`pilqsd` when
+\end{bmatrix}`, we can write the state dynamics as in :eq:`pilqsd_perm_income_cons` when
 
 .. math::
 
@@ -312,7 +312,7 @@ With this notation and :math:`U_\gamma := \begin{bmatrix} \gamma & 0 & 0
        w_{t+1}
 
 
-Please confirm for yourself that, with these definitions, the LQ dynamics :eq:`pilqsd`  match the dynamics of :math:`z_t` and :math:`b_t` described above
+Please confirm for yourself that, with these definitions, the LQ dynamics :eq:`pilqsd_perm_income_cons`  match the dynamics of :math:`z_t` and :math:`b_t` described above
 
 To map utility into the quadratic form :math:`x_t' R x_t + u_t'Q u_t` we can set
 
@@ -322,7 +322,7 @@ To map utility into the quadratic form :math:`x_t' R x_t + u_t'Q u_t` we can set
 
 However, there is one problem remaining
 
-We have no direct way to capture the non-recursive restriction :eq:`old42`
+We have no direct way to capture the non-recursive restriction :eq:`old42_perm_income_cons`
 on the debt sequence :math:`\{b_t\}` from within the LQ framework
 
 To try to enforce it, we're going to use a trick: put a small penalty on :math:`b_t^2` in the criterion function
@@ -752,7 +752,7 @@ Because :math:`y_{-1} = y_{-2} = 0`, nonfinancial income :math:`y_t` starts far 
 Recall from  the :doc:`previous lecture <perm_income>` that we can represent the optimal decision rule for consumption in terms of the **co-integrating relationship**
 
 .. math::
-    :label: old12
+    :label: old1_perm_income_cons2
 
     (1-\beta) b_t + c_t = (1-\beta) E_t \sum_{j=0}^\infty \beta^j y_{t+j}
 
@@ -784,7 +784,7 @@ Cointegration Residual
 
 
 
-The following figure plots realizations of the left side of :eq:`old12`, which,
+The following figure plots realizations of the left side of :eq:`old1_perm_income_cons2`, which,
 :ref:`as discussed in our last lecture <coint_pi>`, is called the **cointegrating residual**
 
 As mentioned above, the right side can be thought of as an

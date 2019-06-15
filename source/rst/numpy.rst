@@ -820,12 +820,12 @@ Exercise 1
 Consider the polynomial expression
 
 .. math::
-    :label: np_polynom
+    :label: np_polynom_numpy
 
     p(x) = a_0 + a_1 x + a_2 x^2 + \cdots a_N x^N = \sum_{n=0}^N a_n x^n
 
 
-:ref:`Earlier <pyess_ex2>`, you wrote a simple function ``p(x, coeff)`` to evaluate :eq:`np_polynom` without considering efficiency
+:ref:`Earlier <pyess_ex2>`, you wrote a simple function ``p(x, coeff)`` to evaluate :eq:`np_polynom_numpy` without considering efficiency
 
 Now write a new function that does the same job, but uses NumPy arrays and array operations for its computations, rather than any form of Python loop
 

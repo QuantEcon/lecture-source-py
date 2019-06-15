@@ -129,7 +129,7 @@ For example, let :math:`S = \mathbb R` and consider the particular stochastic
 kernel :math:`p_w` defined by
 
 .. math::
-    :label: statd_rwsk
+    :label: statd_rw_stationary_densitiessk_stationary_densities
 
     p_w(x, y) := \frac{1}{\sqrt{2 \pi}} \exp \left\{ - \frac{(y - x)^2}{2} \right\}
 
@@ -139,20 +139,20 @@ What kind of model does :math:`p_w` represent?
 The answer is, the (normally distributed) random walk
 
 .. math::
-    :label: statd_rw
+    :label: statd_rw_stationary_densities
 
     X_{t+1} = X_t + \xi_{t+1}
     \quad \text{where} \quad
     \{ \xi_t \} \stackrel {\textrm{ IID }} {\sim} N(0, 1)
 
 
-To see this, let's find the stochastic kernel :math:`p` corresponding to :eq:`statd_rw`
+To see this, let's find the stochastic kernel :math:`p` corresponding to :eq:`statd_rw_stationary_densities`
 
 Recall that :math:`p(x, \cdot)` represents the distribution of :math:`X_{t+1}` given :math:`X_t = x`
 
-Letting :math:`X_t = x` in :eq:`statd_rw` and considering the distribution of :math:`X_{t+1}`, we see that :math:`p(x, \cdot) = N(x, 1)`
+Letting :math:`X_t = x` in :eq:`statd_rw_stationary_densities` and considering the distribution of :math:`X_{t+1}`, we see that :math:`p(x, \cdot) = N(x, 1)`
 
-In other words, :math:`p` is exactly :math:`p_w`, as defined in :eq:`statd_rwsk`
+In other words, :math:`p` is exactly :math:`p_w`, as defined in :eq:`statd_rw_stationary_densitiessk_stationary_densities`
 
 
 
@@ -160,7 +160,7 @@ Connection to Stochastic Difference Equations
 -------------------------------------------------
 
 In the previous section, we made the connection between stochastic difference
-equation :eq:`statd_rw` and stochastic kernel :eq:`statd_rwsk`
+equation :eq:`statd_rw_stationary_densities` and stochastic kernel :eq:`statd_rw_stationary_densitiessk_stationary_densities`
 
 In economics and time-series analysis we meet stochastic difference equations of all different shapes and sizes
 
@@ -169,7 +169,7 @@ It will be useful for us if we have some systematic methods for converting stoch
 To this end, consider the generic (scalar) stochastic difference equation given by
 
 .. math::
-    :label: statd_srs
+    :label: statd_srs_stationary_densities
 
     X_{t+1} = \mu(X_t) + \sigma(X_t) \, \xi_{t+1}
 
@@ -180,7 +180,7 @@ Here we assume that
 
 * :math:`\mu` and :math:`\sigma` are given functions on :math:`S`, with :math:`\sigma(x) > 0` for all :math:`x`
 
-**Example 1:** The random walk :eq:`statd_rw` is a special case of :eq:`statd_srs`, with :math:`\mu(x) = x` and :math:`\sigma(x) = 1`
+**Example 1:** The random walk :eq:`statd_rw_stationary_densities` is a special case of :eq:`statd_srs_stationary_densities`, with :math:`\mu(x) = x` and :math:`\sigma(x) = 1`
 
 **Example 2:** Consider the `ARCH model <https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity>`_
 
@@ -194,19 +194,19 @@ Here we assume that
 Alternatively, we can write the model as
 
 .. math::
-    :label: statd_arch
+    :label: statd_arch_stationary_densities
 
     X_{t+1} = \alpha X_t + (\beta + \gamma X_t^2)^{1/2} \xi_{t+1}
 
 
-This is a special case of :eq:`statd_srs` with :math:`\mu(x) = \alpha x` and :math:`\sigma(x) = (\beta + \gamma x^2)^{1/2}`
+This is a special case of :eq:`statd_srs_stationary_densities` with :math:`\mu(x) = \alpha x` and :math:`\sigma(x) = (\beta + \gamma x^2)^{1/2}`
 
 .. _solow_swan:
 
 **Example 3:** With stochastic production and a constant savings rate, the one-sector neoclassical growth model leads to a law of motion for capital per worker such as
 
 .. math::
-    :label: statd_ss
+    :label: statd_ss_stationary_densities
 
     k_{t+1} = s  A_{t+1} f(k_t) + (1 - \delta) k_t
 
@@ -226,16 +226,16 @@ Here
 (The fixed savings rate can be rationalized as the optimal policy for a particular set of technologies and preferences (see :cite:`Ljungqvist2012`, section
 3.1.2), although we omit the details here)
 
-Equation :eq:`statd_ss` is a special case of :eq:`statd_srs` with :math:`\mu(x) = (1 - \delta)x` and :math:`\sigma(x) = s f(x)`
+Equation :eq:`statd_ss_stationary_densities` is a special case of :eq:`statd_srs_stationary_densities` with :math:`\mu(x) = (1 - \delta)x` and :math:`\sigma(x) = s f(x)`
 
-Now let's obtain the stochastic kernel corresponding to the generic model :eq:`statd_srs`
+Now let's obtain the stochastic kernel corresponding to the generic model :eq:`statd_srs_stationary_densities`
 
 To find it, note first that if :math:`U` is a random variable with
 density :math:`f_U`, and :math:`V = a + b U` for some constants :math:`a,b`
 with :math:`b > 0`, then the density of :math:`V` is given by
 
 .. math::
-    :label: statd_dv
+    :label: statd_dv_stationary_densities
 
     f_V(v)
     = \frac{1}{b}
@@ -245,27 +245,27 @@ with :math:`b > 0`, then the density of :math:`V` is given by
 (The proof is :ref:`below <statd_appendix>`.  For a multidimensional version
 see `EDTC <http://johnstachurski.net/edtc.html>`_, theorem 8.1.3)
 
-Taking :eq:`statd_dv` as given for the moment, we can
-obtain the stochastic kernel :math:`p` for :eq:`statd_srs` by recalling that
+Taking :eq:`statd_dv_stationary_densities` as given for the moment, we can
+obtain the stochastic kernel :math:`p` for :eq:`statd_srs_stationary_densities` by recalling that
 :math:`p(x, \cdot)` is the conditional density of :math:`X_{t+1}` given
 :math:`X_t = x`
 
 In the present case, this is equivalent to stating that :math:`p(x, \cdot)` is the density of :math:`Y := \mu(x) + \sigma(x) \, \xi_{t+1}` when :math:`\xi_{t+1} \sim \phi`
 
-Hence, by :eq:`statd_dv`,
+Hence, by :eq:`statd_dv_stationary_densities`,
 
 .. math::
-    :label: statd_srssk
+    :label: statd_srs_stationary_densitiessk
 
     p(x, y)
     = \frac{1}{\sigma(x)}
     \phi \left( \frac{y - \mu(x)}{\sigma(x)} \right)
 
 
-For example, the growth model in :eq:`statd_ss` has stochastic kernel
+For example, the growth model in :eq:`statd_ss_stationary_densities` has stochastic kernel
 
 .. math::
-    :label: statd_sssk
+    :label: statd_ss_stationary_densitiessk
 
     p(x, y)
     = \frac{1}{sf(x)}
@@ -306,7 +306,7 @@ In the density case, we just replace the sum with an integral and probability
 mass functions with densities, yielding
 
 .. math::
-    :label: statd_fdd
+    :label: statd_fdd_stationary_densities
 
     \psi_{t+1}(y) = \int p(x,y) \psi_t(x) \, dx,
     \qquad \forall y \in S
@@ -322,7 +322,7 @@ Let :math:`\mathscr D` be the set of all densities on :math:`S`, and let
 defined by
 
 .. math::
-    :label: def_dmo
+    :label: def_dmo_stationary_densities
 
     (\psi P)(y) = \int p(x,y) \psi(x) dx
 
@@ -336,21 +336,21 @@ This operator is usually called the *Markov operator* corresponding to :math:`p`
     This is a common convention, with the intention being to maintain the
     parallel with the finite case --- see :ref:`here <mc_fddv>`
 
-With this notation, we can write :eq:`statd_fdd` more succinctly as :math:`\psi_{t+1}(y) = (\psi_t P)(y)` for all :math:`y`, or, dropping the :math:`y` and letting ":math:`=`" indicate equality of functions,
+With this notation, we can write :eq:`statd_fdd_stationary_densities` more succinctly as :math:`\psi_{t+1}(y) = (\psi_t P)(y)` for all :math:`y`, or, dropping the :math:`y` and letting ":math:`=`" indicate equality of functions,
 
 .. math::
-    :label: statd_p
+    :label: statd_p_stationary_densities
 
     \psi_{t+1} = \psi_t P
 
 
-Equation :eq:`statd_p` tells us that if we specify a distribution for :math:`\psi_0`, then the entire sequence
+Equation :eq:`statd_p_stationary_densities` tells us that if we specify a distribution for :math:`\psi_0`, then the entire sequence
 of future distributions can be obtained by iterating with :math:`P`
 
-It's interesting to note that :eq:`statd_p` is a deterministic difference equation
+It's interesting to note that :eq:`statd_p_stationary_densities` is a deterministic difference equation
 
 Thus, by converting a stochastic difference equation such as
-:eq:`statd_srs` into a stochastic kernel :math:`p` and hence an operator
+:eq:`statd_srs_stationary_densities` into a stochastic kernel :math:`p` and hence an operator
 :math:`P`, we convert a stochastic difference equation into a deterministic
 one (albeit in a much higher dimensional space)
 
@@ -366,9 +366,9 @@ Computation
 
 To learn about the dynamics of a given process, it's useful to compute and study the sequences of densities generated by the model
 
-One way to do this is to try to implement the iteration described by :eq:`def_dmo` and :eq:`statd_p` using numerical integration
+One way to do this is to try to implement the iteration described by :eq:`def_dmo_stationary_densities` and :eq:`statd_p_stationary_densities` using numerical integration
 
-However, to produce :math:`\psi P` from :math:`\psi` via :eq:`def_dmo`, you
+However, to produce :math:`\psi P` from :math:`\psi` via :eq:`def_dmo_stationary_densities`, you
 would need to integrate at every :math:`y`, and there is a continuum of such
 :math:`y`
 
@@ -379,7 +379,7 @@ A nicer alternative in the present setting is to combine simulation with an eleg
 Let's go over the ideas with reference to the growth model :ref:`discussed above <solow_swan>`, the dynamics of which we repeat here for convenience:
 
 .. math::
-    :label: statd_ss2
+    :label: statd_ss_stationary_densities2
 
     k_{t+1} = s  A_{t+1} f(k_t) + (1 - \delta) k_t
 
@@ -394,7 +394,7 @@ If we wish to generate observations of this random variable,  all we need to do 
 
 #. draw the shocks :math:`A_1, \ldots, A_t` from their specified density :math:`\phi`
 
-#. compute :math:`k_t` iteratively via :eq:`statd_ss2`
+#. compute :math:`k_t` iteratively via :eq:`statd_ss_stationary_densities2`
 
 If we repeat this :math:`n` times, we get :math:`n` independent observations :math:`k_t^1, \ldots, k_t^n`
 
@@ -411,12 +411,12 @@ Now we take these :math:`n` observations :math:`k_{t-1}^1, \ldots,
 k_{t-1}^n` and form the estimate
 
 .. math::
-    :label: statd_lae1
+    :label: statd_lae1_stationary_densities
 
     \psi_t^n(y) = \frac{1}{n} \sum_{i=1}^n p(k_{t-1}^i, y)
 
 
-where :math:`p` is the growth model stochastic kernel in :eq:`statd_sssk`
+where :math:`p` is the growth model stochastic kernel in :eq:`statd_ss_stationary_densitiessk`
 
 What is the justification for this slightly surprising estimator?
 
@@ -434,9 +434,9 @@ The idea is that, by the strong :ref:`law of large numbers <lln_ksl>`,
 with probability one as :math:`n \to \infty`
 
 Here the first equality is by the definition of :math:`\psi_{t-1}`, and the
-second is by :eq:`statd_fdd`
+second is by :eq:`statd_fdd_stationary_densities`
 
-We have just shown that our estimator :math:`\psi_t^n(y)` in :eq:`statd_lae1`
+We have just shown that our estimator :math:`\psi_t^n(y)` in :eq:`statd_lae1_stationary_densities`
 converges almost surely to :math:`\psi_t(y)`, which is just what we want to compute
 
 .. only:: html
@@ -467,7 +467,7 @@ Given our use of the ``__call__`` method, an instance  of ``LAE`` acts as a call
 
 
 
-This function returns the right-hand side of :eq:`statd_lae1` using
+This function returns the right-hand side of :eq:`statd_lae1_stationary_densities` using
 
 
 
@@ -619,17 +619,17 @@ To this end, set
 
 This family of cdfs :math:`G(x, \cdot)` plays a role analogous to the stochastic kernel in the density case
 
-The distribution dynamics in :eq:`statd_fdd` are then replaced by
+The distribution dynamics in :eq:`statd_fdd_stationary_densities` are then replaced by
 
 .. math::
-    :label: statd_fddc
+    :label: statd_fdd_stationary_densitiesc
 
     F_{t+1}(y) = \int G(x,y) F_t(dx)
 
 
 Here :math:`F_t` and :math:`F_{t+1}` are cdfs representing the distribution of the current state and next period state
 
-The intuition behind :eq:`statd_fddc` is essentially the same as for :eq:`statd_fdd`
+The intuition behind :eq:`statd_fdd_stationary_densitiesc` is essentially the same as for :eq:`statd_fdd_stationary_densities`
 
 
 
@@ -664,13 +664,13 @@ Theoretical Results
 --------------------
 
 Analogous to :ref:`the finite case <mc_stat_dd>`, given a stochastic kernel :math:`p` and corresponding Markov operator as
-defined in :eq:`def_dmo`, a density :math:`\psi^*` on :math:`S` is called
+defined in :eq:`def_dmo_stationary_densities`, a density :math:`\psi^*` on :math:`S` is called
 *stationary* for :math:`P` if it is a fixed point of the operator :math:`P`
 
 In other words,
 
 .. math::
-    :label: statd_dsd
+    :label: statd_dsd_stationary_densities
 
     \psi^*(y) = \int p(x,y) \psi^*(x) \, dx,
     \qquad \forall y \in S
@@ -678,7 +678,7 @@ In other words,
 
 As with the finite case, if :math:`\psi^*` is stationary for :math:`P`, and
 the distribution of :math:`X_0` is :math:`\psi^*`, then, in view of
-:eq:`statd_p`, :math:`X_t` will have this same distribution for all :math:`t`
+:eq:`statd_p_stationary_densities`, :math:`X_t` will have this same distribution for all :math:`t`
 
 Hence :math:`\psi^*` is the stochastic equivalent of a steady state
 
@@ -695,19 +695,19 @@ However, there are well-known conditions under which a stationary density :math:
 With additional conditions, we can also get a unique stationary density (:math:`\psi \in \mathscr D \text{ and } \psi = \psi P \implies \psi = \psi^*`),  and also global convergence in the sense that
 
 .. math::
-    :label: statd_dca
+    :label: statd_dca_stationary_densities
 
     \forall \, \psi \in \mathscr D, \quad \psi P^t \to \psi^*
         \quad \text{as} \quad t \to \infty
 
 
 This combination of existence, uniqueness and global convergence in the sense
-of :eq:`statd_dca` is often referred to as *global stability*
+of :eq:`statd_dca_stationary_densities` is often referred to as *global stability*
 
 Under very similar conditions, we get *ergodicity*, which means that
 
 .. math::
-    :label: statd_lln
+    :label: statd_lln_stationary_densities
 
     \frac{1}{n} \sum_{t = 1}^n h(X_t)  \to \int h(x) \psi^*(x) dx
         \quad \text{as } n \to \infty
@@ -715,9 +715,9 @@ Under very similar conditions, we get *ergodicity*, which means that
 
 for any (`measurable <https://en.wikipedia.org/wiki/Measurable_function>`_) function :math:`h \colon S \to \mathbb R`  such that the right-hand side is finite
 
-Note that the convergence in :eq:`statd_lln` does not depend on the distribution (or value) of :math:`X_0`
+Note that the convergence in :eq:`statd_lln_stationary_densities` does not depend on the distribution (or value) of :math:`X_0`
 
-This is actually very important for simulation --- it means we can learn about :math:`\psi^*` (i.e., approximate the right-hand side of :eq:`statd_lln` via the left-hand side) without requiring any special knowledge about what to do with :math:`X_0`
+This is actually very important for simulation --- it means we can learn about :math:`\psi^*` (i.e., approximate the right-hand side of :eq:`statd_lln_stationary_densities` via the left-hand side) without requiring any special knowledge about what to do with :math:`X_0`
 
 So what are these conditions we require to get global stability and ergodicity?
 
@@ -753,7 +753,7 @@ on the primitives
 
 * See `EDTC <http://johnstachurski.net/edtc.html>`_, section 11.3.4 for more details
 
-We can see this stability in action --- in particular, the convergence in :eq:`statd_dca` --- by simulating the path of densities from various initial conditions
+We can see this stability in action --- in particular, the convergence in :eq:`statd_dca_stationary_densities` --- by simulating the path of densities from various initial conditions
 
 Here is such a figure
 
@@ -778,25 +778,25 @@ Even from this figure, we can get a fair idea what :math:`\psi^*` looks like, an
 However, there is a much more direct way to estimate the stationary density,
 and it involves only a slight modification of the look-ahead estimator
 
-Let's say that we have a model of the form :eq:`statd_srs` that is stable and
+Let's say that we have a model of the form :eq:`statd_srs_stationary_densities` that is stable and
 ergodic
 
-Let :math:`p` be the corresponding stochastic kernel, as given in :eq:`statd_srssk`
+Let :math:`p` be the corresponding stochastic kernel, as given in :eq:`statd_srs_stationary_densitiessk`
 
 To approximate the stationary density :math:`\psi^*`, we can simply generate a
 long time-series :math:`X_0, X_1, \ldots, X_n` and estimate :math:`\psi^*` via
 
 .. math::
-    :label: statd_lae2
+    :label: statd_lae2_stationary_densities
 
     \psi_n^*(y) = \frac{1}{n} \sum_{t=1}^n p(X_t, y)
 
 
-This is essentially the same as the look-ahead estimator :eq:`statd_lae1`,
+This is essentially the same as the look-ahead estimator :eq:`statd_lae1_stationary_densities`,
 except that now the observations we generate are a single time-series, rather
 than a cross-section
 
-The justification for :eq:`statd_lae2` is that, with probability one as :math:`n \to \infty`,
+The justification for :eq:`statd_lae2_stationary_densities` is that, with probability one as :math:`n \to \infty`,
 
 .. math::
 
@@ -806,8 +806,8 @@ The justification for :eq:`statd_lae2` is that, with probability one as :math:`n
     = \psi^*(y)
 
 
-where the convergence is by :eq:`statd_lln` and the equality on the right is by
-:eq:`statd_dsd`
+where the convergence is by :eq:`statd_lln_stationary_densities` and the equality on the right is by
+:eq:`statd_dsd_stationary_densities`
 
 The right-hand side is exactly what we want to compute
 
@@ -831,7 +831,7 @@ Exercise 1
 Consider the simple threshold autoregressive model
 
 .. math::
-    :label: statd_tar
+    :label: statd_tar_stationary_densities
 
     X_{t+1} = \theta |X_t| + (1- \theta^2)^{1/2} \xi_{t+1}
     \qquad \text{where} \quad
@@ -845,7 +845,7 @@ In particular, provided that :math:`|\theta| < 1`, there is a unique
 stationary density :math:`\psi^*` given by
 
 .. math::
-    :label: statd_tar_ts
+    :label: statd_tar_stationary_densities_ts
 
     \psi^*(y) = 2 \, \phi(y) \, \Phi
     \left[
@@ -856,7 +856,7 @@ stationary density :math:`\psi^*` given by
 Here :math:`\phi` is the standard normal density and :math:`\Phi` is the standard normal cdf
 
 As an exercise, compute the look-ahead estimate of :math:`\psi^*`, as defined
-in :eq:`statd_lae2`, and compare it with :math:`\psi^*`  in :eq:`statd_tar_ts` to see whether they
+in :eq:`statd_lae2_stationary_densities`, and compare it with :math:`\psi^*`  in :eq:`statd_tar_stationary_densities_ts` to see whether they
 are indeed close for large :math:`n`
 
 In doing so, set :math:`\theta = 0.8` and :math:`n = 500`
@@ -936,9 +936,9 @@ The boxes give some indication as to
 
 Now let's put these ideas to use in a simulation
 
-Consider the threshold autoregressive model in :eq:`statd_tar`
+Consider the threshold autoregressive model in :eq:`statd_tar_stationary_densities`
 
-We know that the distribution of :math:`X_t` will converge to :eq:`statd_tar_ts` whenever :math:`|\theta| < 1`
+We know that the distribution of :math:`X_t` will converge to :eq:`statd_tar_stationary_densities_ts` whenever :math:`|\theta| < 1`
 
 Let's observe this convergence from different initial conditions using
 boxplots
@@ -958,7 +958,7 @@ In particular, the exercise is to generate `J` boxplot figures, one for each ini
 
 For each :math:`X_0` in this set,
 
-#. Generate :math:`k` time-series of length :math:`n`, each starting at :math:`X_0` and obeying :eq:`statd_tar`
+#. Generate :math:`k` time-series of length :math:`n`, each starting at :math:`X_0` and obeying :eq:`statd_tar_stationary_densities`
 
 #. Create a boxplot representing :math:`n` distributions, where the :math:`t`-th distribution shows the :math:`k` observations of :math:`X_t`
 
@@ -1115,7 +1115,7 @@ Appendix
 
 .. _statd_appendix:
 
-Here's the proof of :eq:`statd_dv`
+Here's the proof of :eq:`statd_dv_stationary_densities`
 
 Let :math:`F_U` and :math:`F_V` be the cumulative distributions of :math:`U` and :math:`V` respectively
 
@@ -1123,4 +1123,4 @@ By the definition of :math:`V`, we have :math:`F_V(v) = \mathbb P \{ a + b U \le
 
 In other words, :math:`F_V(v) = F_U ( (v - a)/b )`
 
-Differentiating with respect to :math:`v` yields :eq:`statd_dv`
+Differentiating with respect to :math:`v` yields :eq:`statd_dv_stationary_densities`

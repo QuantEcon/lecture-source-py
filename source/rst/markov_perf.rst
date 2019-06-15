@@ -81,14 +81,14 @@ Example: A Duopoly Model
 Two firms are the only producers of a good the demand for which is governed by a linear inverse demand function
 
 .. math::
-    :label: game2
+    :label: game2_markov_perf
 
     p = a_0 - a_1 (q_1 +  q_2)
 
 
 Here :math:`p = p_t` is the price of the good, :math:`q_i = q_{it}` is the output of firm :math:`i=1,2` at time :math:`t` and :math:`a_0 > 0, a_1 >0`
 
-In :eq:`game2` and what follows,
+In :eq:`game2_markov_perf` and what follows,
 
 * the time subscript is suppressed when possible to simplify notation
 
@@ -99,15 +99,15 @@ Each firm recognizes that its output affects total output and therefore the mark
 The one-period payoff function of firm :math:`i` is price times quantity minus adjustment costs:
 
 .. math::
-    :label: game1
+    :label: game1_markov_perf
 
     \pi_i = p q_i - \gamma (\hat q_i - q_i)^2, \quad \gamma > 0 ,
 
 
-Substituting the inverse demand curve :eq:`game2` into :eq:`game1` lets us express the one-period payoff as
+Substituting the inverse demand curve :eq:`game2_markov_perf` into :eq:`game1_markov_perf` lets us express the one-period payoff as
 
 .. math::
-    :label: game3
+    :label: game3_markov_perf
 
     \pi_i(q_i, q_{-i}, \hat q_i) = a_0 q_i - a_1 q_i^2 - a_1 q_i q_{-i} - \gamma (\hat q_i - q_i)^2 ,
 
@@ -124,7 +124,7 @@ An essential aspect of a Markov perfect equilibrium is that each firm takes the 
 Given :math:`f_{-i}`, the Bellman equation of firm :math:`i` is
 
 .. math::
-    :label: game4
+    :label: game4_markov_perf
 
     v_i(q_i, q_{-i}) = \max_{\hat q_i}
        \left\{\pi_i (q_i, q_{-i}, \hat q_i) + \beta v_i(\hat q_i, f_{-i}(q_{-i}, q_i)) \right\}
@@ -132,9 +132,9 @@ Given :math:`f_{-i}`, the Bellman equation of firm :math:`i` is
 
 **Definition**  A *Markov perfect equilibrium* of the duopoly model is a pair of value functions :math:`(v_1, v_2)` and a pair of policy functions :math:`(f_1, f_2)` such that, for each :math:`i \in \{1, 2\}` and each possible state,
 
-* The value function :math:`v_i` satisfies the Bellman equation :eq:`game4`
+* The value function :math:`v_i` satisfies the Bellman equation :eq:`game4_markov_perf`
 
-* The maximizer on the right side of :eq:`game4` is equal to :math:`f_i(q_i, q_{-i})`
+* The maximizer on the right side of :eq:`game4_markov_perf` is equal to :math:`f_i(q_i, q_{-i})`
 
 
 The adjective "Markov" denotes that the equilibrium decision rules depend only on the current values of the state variables, not other parts of their histories
@@ -156,7 +156,7 @@ In particular, let :math:`v_i^j,f_i^j` be the value function and policy function
 Imagine constructing the iterates
 
 .. math::
-    :label: game6
+    :label: game6_markov_perf
 
     v_i^{j+1}(q_i, q_{-i}) = \max_{\hat q_i}
        \left\{\pi_i (q_i, q_{-i}, \hat q_i) + \beta v^j_i(\hat q_i, f_{-i}(q_{-i}, q_i)) \right\}
@@ -192,7 +192,7 @@ For convenience, we'll start with a finite horizon formulation, where :math:`t_0
 Player :math:`i` takes :math:`\{u_{-it}\}` as given and minimizes
 
 .. math::
-    :label: orig-1
+    :label: orig-1_markov_perf
 
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
@@ -208,7 +208,7 @@ Player :math:`i` takes :math:`\{u_{-it}\}` as given and minimizes
 while the state evolves according to
 
 .. math::
-    :label: orig-0
+    :label: orig-0_markov_perf
 
     x_{t+1} = A x_t + B_1 u_{1t} + B_2 u_{2t}
 
@@ -240,10 +240,10 @@ A Markov perfect equilibrium is a pair of sequences :math:`\{F_{1t}, F_{2t}\}` o
 
 * :math:`\{F_{2t}\}` solves player 2's problem, taking :math:`\{F_{1t}\}` as given
 
-If we take :math:`u_{2t} = - F_{2t} x_t` and substitute it into :eq:`orig-1` and :eq:`orig-0`, then player 1's problem becomes minimization of
+If we take :math:`u_{2t} = - F_{2t} x_t` and substitute it into :eq:`orig-1_markov_perf` and :eq:`orig-0_markov_perf`, then player 1's problem becomes minimization of
 
 .. math::
-    :label: eq_mpe_p1p
+    :label: eq_mpe_p1p_markov_perf
 
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
@@ -257,7 +257,7 @@ If we take :math:`u_{2t} = - F_{2t} x_t` and substitute it into :eq:`orig-1` and
 subject to
 
 .. math::
-    :label: eq_mpe_p1d
+    :label: eq_mpe_p1d_markov_perf
 
     x_{t+1} = \Lambda_{1t} x_t + B_1 u_{1t},
 
@@ -273,7 +273,7 @@ This is an LQ dynamic programming problem that can be solved by working backward
 The policy rule that solves this problem is
 
 .. math::
-    :label: orig-3
+    :label: orig-3_markov_perf
 
     F_{1t}
     = (Q_1 + \beta B_1' P_{1t+1} B_1)^{-1}
@@ -283,7 +283,7 @@ The policy rule that solves this problem is
 where :math:`P_{1t}` solves the matrix Riccati difference equation
 
 .. math::
-    :label: orig-4
+    :label: orig-4_markov_perf
 
     P_{1t} =
     \Pi_{1t} - (\beta B_1' P_{1t+1} \Lambda_{1t} +
@@ -295,7 +295,7 @@ where :math:`P_{1t}` solves the matrix Riccati difference equation
 Similarly, the policy that solves player 2's problem is
 
 .. math::
-    :label: orig-5
+    :label: orig-5_markov_perf
 
     F_{2t} = (Q_2 + \beta B_2' P_{2t+1} B_2)^{-1}
     (\beta B_2' P_{2t+1} \Lambda_{2t} + \Gamma_{2t})
@@ -304,7 +304,7 @@ Similarly, the policy that solves player 2's problem is
 where :math:`P_{2t}` solves
 
 .. math::
-    :label: orig-6
+    :label: orig-6_markov_perf
 
     P_{2t} =
     \Pi_{2t} - (\beta B_2' P_{2t+1} \Lambda_{2t} +
@@ -315,23 +315,23 @@ where :math:`P_{2t}` solves
 
 Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`
 
-The solution procedure is to use equations :eq:`orig-3`, :eq:`orig-4`, :eq:`orig-5`, and :eq:`orig-6`, and "work backwards" from time :math:`t_1 - 1`
+The solution procedure is to use equations :eq:`orig-3_markov_perf`, :eq:`orig-4_markov_perf`, :eq:`orig-5_markov_perf`, and :eq:`orig-6_markov_perf`, and "work backwards" from time :math:`t_1 - 1`
 
 Since we're working backward, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage
 
 Moreover, since
 
-* some terms on the right-hand side of :eq:`orig-3` contain :math:`F_{2t}`
-* some terms on the right-hand side of :eq:`orig-5` contain :math:`F_{1t}`
+* some terms on the right-hand side of :eq:`orig-3_markov_perf` contain :math:`F_{2t}`
+* some terms on the right-hand side of :eq:`orig-5_markov_perf` contain :math:`F_{1t}`
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
 Key Insight
 ^^^^^^^^^^^^
 
-A key insight is that  equations  :eq:`orig-3` and :eq:`orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
+A key insight is that  equations  :eq:`orig-3_markov_perf` and :eq:`orig-5_markov_perf` are linear in :math:`F_{1t}` and :math:`F_{2t}`
 
-After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`orig-4` and :eq:`orig-6`
+After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`orig-4_markov_perf` and :eq:`orig-6_markov_perf`
 
 
 .. Notice how :math:`j`\ 's control law :math:`F_{jt}` is a function of :math:`\{F_{is}, s \geq t, i \neq j \}`.
@@ -412,7 +412,7 @@ where :math:`Q_1 = Q_2 = \gamma`,
     \end{bmatrix}
 
 
-then we recover the  one-period  payoffs in expression :eq:`game3`
+then we recover the  one-period  payoffs in expression :eq:`game3_markov_perf`
 
 The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1t} + B_2 u_{2t}` where
 
@@ -443,7 +443,7 @@ The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1
 The optimal decision rule of firm :math:`i` will take the form :math:`u_{it} = - F_i x_t`, inducing the following closed-loop system for the evolution of :math:`x` in the Markov perfect equilibrium:
 
 .. math::
-    :label: eq_mpe_cle
+    :label: eq_mpe_cle_markov_perf
 
     x_{t+1} = (A - B_1 F_1 -B_1 F_2 ) x_t
 
@@ -472,7 +472,7 @@ Running the code produces the following output
 
 One way to see that :math:`F_i` is indeed optimal for firm :math:`i` taking :math:`F_2` as given is to use `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class
 
-In particular, let's take `F2` as computed above, plug it into :eq:`eq_mpe_p1p` and :eq:`eq_mpe_p1d` to get firm 1's problem and solve it using `LQ`
+In particular, let's take `F2` as computed above, plug it into :eq:`eq_mpe_p1p_markov_perf` and :eq:`eq_mpe_p1d_markov_perf` to get firm 1's problem and solve it using `LQ`
 
 We hope that the resulting policy will agree with `F1` as computed above
 
@@ -505,13 +505,13 @@ Dynamics
 
 Let's now investigate the dynamics of price and output in this simple duopoly model under the MPE policies
 
-Given our optimal policies :math:`F1` and :math:`F2`, the state evolves according to :eq:`eq_mpe_cle`
+Given our optimal policies :math:`F1` and :math:`F2`, the state evolves according to :eq:`eq_mpe_cle_markov_perf`
 
 The following program
 
 * imports :math:`F1` and :math:`F2` from the previous program along with all parameters
 
-* computes the evolution of :math:`x_t` using :eq:`eq_mpe_cle`
+* computes the evolution of :math:`x_t` using :eq:`eq_mpe_cle_markov_perf`
 
 * extracts and plots industry output :math:`q_t = q_{1t} + q_{2t}` and price :math:`p_t = a_0 - a_1 q_t`
 

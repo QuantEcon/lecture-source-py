@@ -71,7 +71,7 @@ A representative  household is endowed with one unit of time that can be divided
 between leisure :math:`\ell_t` and labor :math:`n_t`:
 
 .. math::
-    :label: feas1_opt_tax
+    :label: feas1_opt_tax_opt_tax_recur
 
     n_t(s^t) + \ell_t(s^t) = 1
 
@@ -79,7 +79,7 @@ between leisure :math:`\ell_t` and labor :math:`n_t`:
 Output equals :math:`n_t(s^t)` and can be divided between :math:`c_t(s^t)` and :math:`g_t(s^t)`
 
 .. math::
-    :label: TSs_techr_opt_tax
+    :label: TSs_techr_opt_tax_opt_tax_recur
 
     c_t(s^t) + g_t(s^t) = n_t(s^t)
 
@@ -87,7 +87,7 @@ Output equals :math:`n_t(s^t)` and can be divided between :math:`c_t(s^t)` and :
 A representative household's preferences over :math:`\{c_t(s^t), \ell_t(s^t)\}_{t=0}^\infty` are ordered by
 
 .. math::
-    :label: TS_prefr_opt_tax
+    :label: TS_prefr_opt_tax_opt_tax_recur
 
     \sum_{t=0}^\infty \sum_{s^t} \beta^t \pi_t(s^t) u[c_t(s^t), \ell_t(s^t)]
 
@@ -111,7 +111,7 @@ The government issues one-period Arrow securities each period
 The government has a sequence of budget constraints whose time :math:`t \geq 0` component is
 
 .. math::
-    :label: TS_govr
+    :label: TS_govr_opt_tax_recur
 
     g_t(s^t) =   \tau_t(s^t)  n_t(s^t) + \sum_{s_{t+1}} p_{t+1}(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t) -
     b_t(s_t | s^{t-1})
@@ -130,7 +130,7 @@ Government debt :math:`b_0(s_0)` is an exogenous initial condition
 The representative household has a sequence of budget constraints whose time :math:`t\geq 0` component is
 
 .. math::
-    :label: TS_bcr
+    :label: TS_bcr_opt_tax_recur
 
     c_t(s^t) + \sum_{s_{t+1}} p_t(s_{t+1} | s^t) b_{t+1}(s_{t+1} | s^t)
     =  \left[1-\tau_t(s^t)\right]  n_t(s^t) + b_t(s_t | s^{t-1}) \quad \forall t \geq 0
@@ -140,13 +140,13 @@ A  **government policy** is an exogenous sequence :math:`\{g(s_t)\}_{t=0}^\infty
 a tax rate sequence :math:`\{\tau_t(s^t)\}_{t=0}^\infty`, and a government debt sequence :math:`\{b_{t+1}(s^{t+1})\}_{t=0}^\infty`
 
 A **feasible allocation** is a consumption-labor supply plan :math:`\{c_t(s^t), n_t(s^t)\}_{t=0}^\infty`
-that satisfies :eq:`TSs_techr_opt_tax` at all :math:`t, s^t`
+that satisfies :eq:`TSs_techr_opt_tax_opt_tax_recur` at all :math:`t, s^t`
 
 A **price system** is a sequence of Arrow security prices :math:`\{p_{t+1}(s_{t+1} | s^t) \}_{t=0}^\infty`
 
 The household faces the price system as a price-taker and takes the government policy as given
 
-The household chooses :math:`\{c_t(s^t), \ell_t(s^t)\}_{t=0}^\infty` to maximize :eq:`TS_prefr_opt_tax` subject to :eq:`TS_bcr` and :eq:`feas1_opt_tax` for all :math:`t, s^t`
+The household chooses :math:`\{c_t(s^t), \ell_t(s^t)\}_{t=0}^\infty` to maximize :eq:`TS_prefr_opt_tax_opt_tax_recur` subject to :eq:`TS_bcr_opt_tax_recur` and :eq:`feas1_opt_tax_opt_tax_recur` for all :math:`t, s^t`
 
 A **competitive equilibrium with distorting taxes** is a feasible allocation,
 a price system, and a government policy such that
@@ -162,7 +162,7 @@ Note: There are many competitive equilibria with distorting taxes
 They are indexed by different government policies
 
 The **Ramsey problem** or **optimal taxation problem** is to choose a competitive
-equilibrium with distorting taxes that maximizes :eq:`TS_prefr_opt_tax`
+equilibrium with distorting taxes that maximizes :eq:`TS_prefr_opt_tax_opt_tax_recur`
 
 Arrow-Debreu Version of Price System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -178,7 +178,7 @@ The following recursion relates Arrow-Debreu prices :math:`\{q_t^0(s^t)\}_{t=0}^
 to Arrow securities prices :math:`\{p_{t+1}(s_{t+1}|s^t)\}_{t=0}^\infty`
 
 .. math::
-    :label: TS_foc
+    :label: TS_foc_opt_tax_recur
 
     q^0_{t+1}(s^{t+1}) = p_{t+1}(s_{t+1}|s^t) q^0_t(s^t) \quad s.t. \quad q_0^0(s^0) = 1
 
@@ -210,8 +210,8 @@ The primal approach uses four steps:
      as an *implementability constraint*
 
 3. Find the allocation that maximizes the utility of the representative household
-   :eq:`TS_prefr_opt_tax` subject to  the feasibility constraints :eq:`feas1_opt_tax`
-   and :eq:`TSs_techr_opt_tax`  and the implementability condition derived in step 2
+   :eq:`TS_prefr_opt_tax_opt_tax_recur` subject to  the feasibility constraints :eq:`feas1_opt_tax_opt_tax_recur`
+   and :eq:`TSs_techr_opt_tax_opt_tax_recur`  and the implementability condition derived in step 2
 
    *  This optimal allocation is called the **Ramsey allocation**
 
@@ -222,11 +222,11 @@ The primal approach uses four steps:
 The Implementability Constraint
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By sequential substitution of one one-period budget constraint :eq:`TS_bcr` into
+By sequential substitution of one one-period budget constraint :eq:`TS_bcr_opt_tax_recur` into
 another, we can obtain the household's present-value budget constraint:
 
 .. math::
-    :label: TS_bcPV2
+    :label: TS_bcPV2_opt_tax_recur
 
     \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) c_t(s^t) =
     \sum_{t=0}^\infty \sum_{s^t} q^0_t(s^t) [1-\tau_t(s^t)] n_t(s^t) +
@@ -242,7 +242,7 @@ First-order conditions for the household’s problem for :math:`\ell_t(s^t)`
 and :math:`b_t(s_{t+1}| s^t)`, respectively, imply
 
 .. math::
-    :label: LSA_taxr
+    :label: LSA_ta_opt_tax_recurxr_opt_tax_recur
 
     (1 - \tau_t(s^t)) = {\frac{u_l(s^t)}{u_c(s^t)}}
 
@@ -250,7 +250,7 @@ and :math:`b_t(s_{t+1}| s^t)`, respectively, imply
 and
 
 .. math::
-    :label: LS101
+    :label: LS101_opt_tax_recur
 
     p_{t+1}(s_{t+1}| s^t) = \beta \pi(s_{t+1} | s^t) \left({\frac{u_c(s^{t+1})}{u_c({s^t})}} \right)
 
@@ -258,20 +258,20 @@ and
 where :math:`\pi(s_{t+1} | s^t)` is the probability distribution of :math:`s_{t+1}`
 conditional on history :math:`s^t`
 
-Equation :eq:`LS101` implies that the Arrow-Debreu price system satisfies
+Equation :eq:`LS101_opt_tax_recur` implies that the Arrow-Debreu price system satisfies
 
 .. math::
-    :label: LS102
+    :label: LS102_opt_tax_recur
 
     q_t^0(s^t) = \beta^{t} \pi_{t}(s^{t})
                                 {u_c(s^{t})  \over u_c(s^0)}
 
 
-Using the first-order conditions :eq:`LSA_taxr` and :eq:`LS101` to eliminate
-taxes and prices from :eq:`TS_bcPV2`, we derive the *implementability condition*
+Using the first-order conditions :eq:`LSA_ta_opt_tax_recurxr_opt_tax_recur` and :eq:`LS101_opt_tax_recur` to eliminate
+taxes and prices from :eq:`TS_bcPV2_opt_tax_recur`, we derive the *implementability condition*
 
 .. math::
-    :label: TSs_cham1
+    :label: TSs_cham1_opt_tax_recur
 
     \sum_{t=0}^\infty  \sum_{s^t} \beta^t \pi_t(s^t)
              [u_c(s^t) c_t(s^t) - u_\ell(s^t) n_t(s^t)] -
@@ -281,12 +281,12 @@ taxes and prices from :eq:`TS_bcPV2`, we derive the *implementability condition*
 The **Ramsey problem** is to choose a feasible  allocation  that maximizes
 
 .. math::
-    :label: TS_prefr2
+    :label: TS_prefr2_opt_tax_recur
 
     \sum_{t=0}^\infty \sum_{s^t} \beta^t \pi_t(s^t) u[c_t(s^t), 1 - n_t(s^t)]
 
 
-subject to  :eq:`TSs_cham1`
+subject to  :eq:`TSs_cham1_opt_tax_recur`
 
 
 Solution Details
@@ -295,7 +295,7 @@ Solution Details
 First, define a "pseudo utility function"
 
 .. math::
-    :label: TS_cham17
+    :label: TS_cham17_opt_tax_recur
 
     V\left[c_t(s^t), n_t(s^t), \Phi\right] =
     u[c_t(s^t),1-n_t(s^t)] +
@@ -303,12 +303,12 @@ First, define a "pseudo utility function"
     u_\ell(s^t) n_t(s^t) \right]
 
 
-where :math:`\Phi` is a Lagrange multiplier on the implementability condition :eq:`TS_bcPV2`
+where :math:`\Phi` is a Lagrange multiplier on the implementability condition :eq:`TS_bcPV2_opt_tax_recur`
 
 Next form the Lagrangian
 
 .. math::
-    :label: TS_chamlag
+    :label: TS_chamlag_opt_tax_recur
 
     J  = \sum_{t=0}^\infty
     \sum_{s^t} \beta^t \pi_t(s^t)
@@ -319,7 +319,7 @@ Next form the Lagrangian
 
 
 where  :math:`\{\theta_t(s^t); \forall s^t\}_{t\geq0}` is a sequence of Lagrange
-multipliers on the feasible conditions :eq:`TSs_techr_opt_tax`
+multipliers on the feasible conditions :eq:`TSs_techr_opt_tax_opt_tax_recur`
 
 Given an initial government debt :math:`b_0`,  we want to maximize :math:`J`
 with respect to :math:`\{c_t(s^t), n_t(s^t); \forall s^t \}_{t\geq0}`   and to minimize with respect
@@ -328,7 +328,7 @@ to :math:`\{\theta(s^t); \forall s^t \}_{t\geq0}`
 The first-order conditions for the Ramsey problem for periods :math:`t \geq 1` and :math:`t=0`, respectively, are
 
 .. math::
-    :label: eqFONCRamsey1
+    :label: eqFONCRamsey1_opt_tax_recur
 
      \begin{aligned}
         c_t(s^t)\rm{:} &
@@ -344,7 +344,7 @@ The first-order conditions for the Ramsey problem for periods :math:`t \geq 1` a
 and
 
 .. math::
-    :label: eqFONCRamsey0
+    :label: eqFONCRamsey0_opt_tax_recur
 
     \begin{aligned}
         c_0(s^0, b_0)\rm{:} &
@@ -360,13 +360,13 @@ and
 
 Please note how these first-order conditions differ between :math:`t=0` and :math:`t \geq 1`
 
-It is instructive to use first-order conditions :eq:`eqFONCRamsey1` for
+It is instructive to use first-order conditions :eq:`eqFONCRamsey1_opt_tax_recur` for
 :math:`t \geq 1` to eliminate the multipliers :math:`\theta_t(s^t)`
 
 For convenience, we suppress the time subscript and the index :math:`s^t` and obtain
 
 .. math::
-    :label: TS_barg
+    :label: TS_barg_opt_tax_recur
 
     \begin{aligned}
       (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
@@ -377,16 +377,16 @@ For convenience, we suppress the time subscript and the index :math:`s^t` and ob
     \end{aligned}
 
 
-where we have imposed conditions :eq:`feas1_opt_tax` and :eq:`TSs_techr_opt_tax`
+where we have imposed conditions :eq:`feas1_opt_tax_opt_tax_recur` and :eq:`TSs_techr_opt_tax_opt_tax_recur`
 
-Equation :eq:`TS_barg` is one equation that can be solved to express the
+Equation :eq:`TS_barg_opt_tax_recur` is one equation that can be solved to express the
 unknown :math:`c` as a function of the  exogenous variable :math:`g`
 
 
 We also know that  time :math:`t=0` quantities :math:`c_0` and :math:`n_0` satisfy
 
 .. math::
-    :label: TS_barg_aust
+    :label: TS_barg_opt_tax_recur_aust
 
     \begin{aligned}
           (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
@@ -397,11 +397,11 @@ We also know that  time :math:`t=0` quantities :math:`c_0` and :math:`n_0` satis
     \end{aligned}
 
 Notice that a counterpart to :math:`b_0` does *not* appear
-in :eq:`TS_barg`, so :math:`c` does not depend on it for :math:`t \geq 1`
+in :eq:`TS_barg_opt_tax_recur`, so :math:`c` does not depend on it for :math:`t \geq 1`
 
 But things are different for time :math:`t=0`
 
-An analogous argument for the :math:`t=0` equations :eq:`eqFONCRamsey0` leads
+An analogous argument for the :math:`t=0` equations :eq:`eqFONCRamsey0_opt_tax_recur` leads
 to one equation that can be solved for :math:`c_0` as a function of the
 pair :math:`(g(s_0), b_0)`
 
@@ -418,7 +418,7 @@ If government purchases are equal after two histories
     g_t(s^t) = g^\tau(\tilde s^\tau) = g
 
 
-then it follows from :eq:`TS_barg` that the Ramsey  choices of consumption and leisure,
+then it follows from :eq:`TS_barg_opt_tax_recur` that the Ramsey  choices of consumption and leisure,
 :math:`(c_t(s^t),\ell_t(s^t))` and :math:`(c_j(\tilde s^\tau),\ell_j(\tilde
 s^\tau))`, are identical
 
@@ -435,7 +435,7 @@ The Ramsey Allocation for a Given Multiplier
 Temporarily take  :math:`\Phi` as given
 
 We shall compute :math:`c_0(s^0, b_0)` and :math:`n_0(s^0, b_0)` from the first-order
-conditions :eq:`eqFONCRamsey0`
+conditions :eq:`eqFONCRamsey0_opt_tax_recur`
 
 Evidently, for :math:`t \geq 1`, :math:`c` and
 :math:`n` depend on the time :math:`t` realization of :math:`g` only
@@ -481,14 +481,14 @@ Determining the Multiplier
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We complete the Ramsey plan by computing the Lagrange multiplier :math:`\Phi`
-on the implementability constraint :eq:`TSs_cham1`
+on the implementability constraint :eq:`TSs_cham1_opt_tax_recur`
 
 Government budget balance restricts :math:`\Phi` via the following line of reasoning
 
 The household's first-order conditions imply
 
 .. math::
-    :label: LSA_ta
+    :label: LSA_ta_opt_tax_recur
 
     (1 - \tau_t(s^t)) = {\frac{u_l(s^t)}{u_c(s^t)} }
 
@@ -496,17 +496,17 @@ The household's first-order conditions imply
 and the  implied one-period Arrow securities prices
 
 .. math::
-    :label: LSA_Arro
+    :label: LSA_Arro_opt_tax_recur
 
     p_{t+1}(s_{t+1}| s^t) = \beta \Pi(s_{t+1} | s_t) {\frac{u_c(s^{t+1})}{u_c({s^t})}}
 
 
-Substituting from  :eq:`LSA_ta`, :eq:`LSA_Arro`, and the feasibility
-condition :eq:`TSs_techr_opt_tax`  into the recursive version :eq:`TS_bcr` of
+Substituting from  :eq:`LSA_ta_opt_tax_recur`, :eq:`LSA_Arro_opt_tax_recur`, and the feasibility
+condition :eq:`TSs_techr_opt_tax_opt_tax_recur`  into the recursive version :eq:`TS_bcr_opt_tax_recur` of
 the household budget constraint gives
 
 .. math::
-    :label: LSA_budget
+    :label: LSA_budget_opt_tax_recur
 
     \begin{aligned}
         u_c(s^t) [ n_t(s^t) - g_t(s^t)] +
@@ -517,7 +517,7 @@ the household budget constraint gives
 
 Define :math:`x_t(s^t) = u_c(s^t) b_t(s_t | s^{t-1})`
 
-Notice that :math:`x_t(s^t)` appears on the right side of :eq:`LSA_budget` while
+Notice that :math:`x_t(s^t)` appears on the right side of :eq:`LSA_budget_opt_tax_recur` while
 :math:`\beta` times the conditional expectation of
 :math:`x_{t+1}(s^{t+1})` appears on the left side
 
@@ -529,10 +529,10 @@ We learned earlier that for a Ramsey allocation
 also :math:`x_t(s^t)`, are each functions of :math:`s_t` only,  being
 independent of the history :math:`s^{t-1}` for :math:`t \geq 1`
 
-That means that we can express equation :eq:`LSA_budget` as
+That means that we can express equation :eq:`LSA_budget_opt_tax_recur` as
 
 .. math::
-    :label: LSA_budget2
+    :label: LSA_budget_opt_tax_recur2
 
     u_c(s)
     [ n(s) - g(s)]  + \beta
@@ -542,17 +542,17 @@ That means that we can express equation :eq:`LSA_budget` as
 where :math:`s'` denotes a next period value of :math:`s` and
 :math:`x'(s')` denotes a next period value of :math:`x`
 
-Equation :eq:`LSA_budget2` is easy to solve for :math:`x(s)` for
+Equation :eq:`LSA_budget_opt_tax_recur2` is easy to solve for :math:`x(s)` for
 :math:`s = 1, \ldots , S`
 
 If we let :math:`\vec n, \vec g, \vec x`
 denote :math:`S \times 1` vectors whose :math:`i`\ th elements are the
 respective :math:`n, g`, and :math:`x` values when :math:`s=i`, and let
 :math:`\Pi` be the transition matrix for the Markov state :math:`s`,
-then we can express :eq:`LSA_budget2` as the matrix equation
+then we can express :eq:`LSA_budget_opt_tax_recur2` as the matrix equation
 
 .. math::
-    :label: LSA_budget20
+    :label: LSA_budget_opt_tax_recur20
 
     \vec u_c(\vec n - \vec g) + \beta \Pi \vec x = \vec u_l \vec n + \vec x
 
@@ -561,7 +561,7 @@ This is a system of :math:`S` linear equations in the :math:`S \times 1`
 vector :math:`x`, whose solution is
 
 .. math::
-    :label: LSA_xsol
+    :label: LSA_xsol_opt_tax_recur
 
     \vec x= (I - \beta \Pi )^{-1} [ \vec u_c (\vec n-\vec g) - \vec u_l \vec n]
 
@@ -573,7 +573,7 @@ After solving for :math:`\vec x`, we can find :math:`b(s_t|s^{t-1})` in Markov
 state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equation
 
 .. math::
-    :label: LSA_bsol
+    :label: LSA_bsol_opt_tax_recur
 
     \vec b = {\frac{ \vec x }{\vec u_c}}
 
@@ -591,7 +591,7 @@ Here is a computational algorithm:
 
     * these are :math:`2  (S+1)` equations in :math:`2  (S+1)` unknowns
 
-2. Solve the :math:`S` equations :eq:`LSA_xsol` for the :math:`S` elements
+2. Solve the :math:`S` equations :eq:`LSA_xsol_opt_tax_recur` for the :math:`S` elements
    of :math:`\vec x`
 
    * these depend on :math:`\Phi`
@@ -607,8 +607,8 @@ Here is a computational algorithm:
    exceeds the right side and lowering :math:`\Phi` if the left side is less than the right side
 
 4. After computing a Ramsey allocation,  recover the flat tax rate on
-   labor from :eq:`LSA_taxr` and the implied one-period Arrow securities
-   prices from :eq:`LS101`
+   labor from :eq:`LSA_ta_opt_tax_recurxr_opt_tax_recur` and the implied one-period Arrow securities
+   prices from :eq:`LS101_opt_tax_recur`
 
 In summary, when :math:`g_t` is a time-invariant function of a Markov state
 :math:`s_t`, a Ramsey plan can be constructed by solving :math:`3S +3`
@@ -692,29 +692,29 @@ With these adjustments, the analysis of Lucas and Stokey prevails once we make t
         \end{aligned}
 
 
-With these understandings, equations :eq:`TS_barg` and :eq:`TS_barg_aust` simplify in the case of the CRRA utility function
+With these understandings, equations :eq:`TS_barg_opt_tax_recur` and :eq:`TS_barg_opt_tax_recur_aust` simplify in the case of the CRRA utility function
 
 They become
 
 .. math::
-    :label: TS_barg10
+    :label: TS_barg_opt_tax_recur10
 
     (1+\Phi) [u_c(c) + u_n(c+g)] + \Phi[c u_{cc}(c) + (c+g) u_{nn}(c+g)] = 0
 
 and
 
 .. math::
-    :label: TS_barg11
+    :label: TS_barg_opt_tax_recur11
 
     (1+\Phi) [u_c(c_0) + u_n(c_0+g_0)] + \Phi[c_0 u_{cc}(c_0) + (c_0+g_0) u_{nn}(c_0+g_0)] - \Phi u_{cc}(c_0) b_0 = 0
 
-In equation :eq:`TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
+In equation :eq:`TS_barg_opt_tax_recur10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
 
 In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` and initial government debt
 :math:`b_0`:
 
 .. math::
-    :label: opt_tax_eqn_10
+    :label: opt_tax_eqn_10_opt_tax_recur
 
     b_0 + g_0 = \tau_0 (c_0 + g_0) + \frac{\bar b}{R_0}
 
@@ -722,7 +722,7 @@ where :math:`R_0` is the gross interest rate for the Markov state :math:`s_0` th
 and :math:`\tau_0` is the time :math:`t=0` tax rate
 
 
-In equation :eq:`opt_tax_eqn_10`, it is understood that
+In equation :eq:`opt_tax_eqn_10_opt_tax_recur`, it is understood that
 
 .. math::
     :nowrap:
@@ -752,7 +752,7 @@ The above steps are implemented in a class called `SequentialAllocation`
 Recursive Formulation of the Ramsey Problem
 =============================================
 
-:math:`x_t(s^t) = u_c(s^t) b_t(s_t | s^{t-1})` in equation :eq:`LSA_budget`
+:math:`x_t(s^t) = u_c(s^t) b_t(s_t | s^{t-1})` in equation :eq:`LSA_budget_opt_tax_recur`
 appears to be a purely “forward-looking” variable
 
 But :math:`x_t(s^t)` is a also a  natural candidate for a state variable in
@@ -822,7 +822,7 @@ The Bellman equation for a time :math:`t \geq 1` continuation Ramsey
 planner is
 
 .. math::
-    :label: LSA_Bellman1
+    :label: LSA_Bellman1_opt_tax_recur
 
     V(x, s) = \max_{n, \{x'(s')\}} u(n-g(s), 1-n) + \beta \sum_{s'\in S} \Pi(s'| s) V(x', s')
 
@@ -832,7 +832,7 @@ where maximization over :math:`n` and the :math:`S` elements of
 :math:`t \geq 1`
 
 .. math::
-    :label: LSA_Bellman1cons
+    :label: LSA_Bellman1_opt_tax_recurcons
 
     x = u_c(n-g(s)) -  u_l n + \beta \sum_{s' \in {\cal S}} \Pi(s' | s) x'(s')
 
@@ -842,11 +842,11 @@ Here :math:`u_c` and :math:`u_l` are today’s values of the marginal utilities
 For each given value of :math:`x, s`, the continuation Ramsey planner chooses :math:`n` and :math:`x'(s')`
 for each :math:`s' \in {\cal S}`
 
-Associated with a value function :math:`V(x,s)` that solves Bellman equation :eq:`LSA_Bellman1`
+Associated with a value function :math:`V(x,s)` that solves Bellman equation :eq:`LSA_Bellman1_opt_tax_recur`
 are :math:`S+1` time-invariant policy functions
 
 .. math::
-    :label: RRpolicyt
+    :label: RRpolicyt_opt_tax_recur
 
     \begin{aligned}
         n_t & = f(x_t, s_t), \quad t \geq 1
@@ -861,7 +861,7 @@ The Ramsey Problem
 The Bellman equation for the time :math:`0` Ramsey planner is
 
 .. math::
-    :label: LSA_Bellman2
+    :label: LSA_Bellman2_opt_tax_recur
 
     W(b_0, s_0) = \max_{n_0, \{x'(s_1)\}} u(n_0 - g_0, 1 - n_0) + \beta \sum_{s_1 \in {\cal S}} \Pi(s_1| s_0) V( x'(s_1), s_1)
 
@@ -871,18 +871,18 @@ where maximization over :math:`n_0` and the :math:`S` elements of
 constraint
 
 .. math::
-    :label: Bellman2cons2
+    :label: Bellman2cons2_opt_tax_recur
 
     u_{c,0} b_0 = u_{c,0} (n_0 - g_0) - u_{l,0} n_0  + \beta \sum_{s_1\in {\cal S}} \Pi(s_1 | s_0) x'(s_1)
 
 
 coming from restriction :eq:`Bellman2cons`
 
-Associated with a value function :math:`W(b_0, n_0)` that solves  Bellman equation :eq:`LSA_Bellman2` are
+Associated with a value function :math:`W(b_0, n_0)` that solves  Bellman equation :eq:`LSA_Bellman2_opt_tax_recur` are
 :math:`S +1` time :math:`0` policy functions
 
 .. math::
-    :label: RRpolicy0
+    :label: RRpolicy0_opt_tax_recur
 
     \begin{aligned}
         n_0
@@ -894,7 +894,7 @@ Associated with a value function :math:`W(b_0, n_0)` that solves  Bellman equati
 
 Notice the appearance of state variables :math:`(b_0, s_0)` in the time
 :math:`0` policy functions for the Ramsey planner as compared to
-:math:`(x_t, s_t)` in the policy functions :eq:`RRpolicyt` for the time :math:`t \geq 1`
+:math:`(x_t, s_t)` in the policy functions :eq:`RRpolicyt_opt_tax_recur` for the time :math:`t \geq 1`
 continuation Ramsey planners
 
 The value function :math:`V(x_t, s_t)` of the time :math:`t`
@@ -906,15 +906,15 @@ time :math:`0` Ramsey plan
 First-Order Conditions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Attach a Lagrange multiplier :math:`\Phi_1(x,s)` to constraint :eq:`LSA_Bellman1cons` and a
+Attach a Lagrange multiplier :math:`\Phi_1(x,s)` to constraint :eq:`LSA_Bellman1_opt_tax_recurcons` and a
 Lagrange multiplier :math:`\Phi_0` to constraint :eq:`Bellman2cons`
 
 Time :math:`t \geq 1`: the first-order conditions for the time :math:`t \geq 1` constrained
 maximization problem on the right side of the continuation Ramsey
-planner’s Bellman equation :eq:`LSA_Bellman1` are
+planner’s Bellman equation :eq:`LSA_Bellman1_opt_tax_recur` are
 
 .. math::
-    :label: LSARxt
+    :label: LSARxt_opt_tax_recur
 
     \beta \Pi(s' | s) V_x (x', s') - \beta \Pi(s' | s) \Phi_1 = 0
 
@@ -922,30 +922,30 @@ planner’s Bellman equation :eq:`LSA_Bellman1` are
 for :math:`x'(s')` and
 
 .. math::
-    :label: LSARnt
+    :label: LSARnt_opt_tax_recur
 
     (1 + \Phi_1) (u_c - u_l ) + \Phi_1 \left[ n (u_{ll} - u_{lc}) + (n-g(s)) (u_{cc} - u_{lc})  \right] = 0
 
 
 for :math:`n`
 
-Given :math:`\Phi_1`, equation :eq:`LSARnt` is one equation to be
+Given :math:`\Phi_1`, equation :eq:`LSARnt_opt_tax_recur` is one equation to be
 solved for :math:`n` as a function of :math:`s` (or of :math:`g(s)`)
 
-Equation :eq:`LSARxt` implies :math:`V_x(x', s')= \Phi_1`, while an envelope
+Equation :eq:`LSARxt_opt_tax_recur` implies :math:`V_x(x', s')= \Phi_1`, while an envelope
 condition is :math:`V_x(x,s) = \Phi_1`, so it follows that
 
 .. math::
-    :label: LSAenv
+    :label: LSAenv_opt_tax_recur
 
     V_x(x', s') = V_x(x,s) = \Phi_1(x,s)
 
 
 Time :math:`t=0`: For the time :math:`0` problem on the right side of the Ramsey planner’s
-Bellman equation :eq:`LSA_Bellman2`,  first-order conditions are
+Bellman equation :eq:`LSA_Bellman2_opt_tax_recur`,  first-order conditions are
 
 .. math::
-    :label: LSAx0
+    :label: LSAx0_opt_tax_recur
 
     V_x(x(s_1), s_1) = \Phi_0
 
@@ -953,7 +953,7 @@ Bellman equation :eq:`LSA_Bellman2`,  first-order conditions are
 for :math:`x(s_1), s_1 \in  {\cal S}`, and
 
 .. math::
-    :label: LSAn0
+    :label: LSAn0_opt_tax_recur
 
     \begin{aligned}
         (1 + \Phi_0) (u_{c,0} - u_{n,0})
@@ -966,7 +966,7 @@ for :math:`x(s_1), s_1 \in  {\cal S}`, and
 Notice  similarities and differences between the first-order
 conditions for :math:`t \geq 1` and for :math:`t=0`
 
-An additional term is present in :eq:`LSAn0` except in  three special cases
+An additional term is present in :eq:`LSAn0_opt_tax_recur` except in  three special cases
 
 * :math:`b_0 = 0`, or
 
@@ -988,11 +988,11 @@ formulated the Ramsey plan in the space of sequences
 State Variable Degeneracy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Equations :eq:`LSAx0` and :eq:`LSAn0` imply that :math:`\Phi_0 = \Phi_1`
+Equations :eq:`LSAx0_opt_tax_recur` and :eq:`LSAn0_opt_tax_recur` imply that :math:`\Phi_0 = \Phi_1`
 and that
 
 .. math::
-    :label: FONCx
+    :label: FONCx_opt_tax_recur
 
     V_x(x_t, s_t) = \Phi_0
 
@@ -1004,7 +1004,7 @@ along a Ramsey plan in the sense that for :math:`t \geq 1`, :math:`x_t` will be
 a time-invariant function of :math:`s_t`
 
 Given :math:`\Phi_0`, this function mapping :math:`s_t` into :math:`x_t`
-can be expressed as a vector :math:`\vec x` that solves equation :eq:`Bellman2cons2`
+can be expressed as a vector :math:`\vec x` that solves equation :eq:`Bellman2cons2_opt_tax_recur`
 for :math:`n` and :math:`c` as functions of :math:`g` that are associated
 with :math:`\Phi = \Phi_0`
 

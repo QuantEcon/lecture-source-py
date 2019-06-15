@@ -115,7 +115,7 @@ For convenience, we'll start with a finite horizon formulation, where :math:`t_0
 Player :math:`i` takes a sequence :math:`\{u_{-it}\}` as given and chooses a sequence :math:`\{u_{it}\}` to minimize and :math:`\{v_{it}\}` to maximize
 
 .. math::
-    :label: rmp-orig-1
+    :label: rmp-orig-1_rob_markov_perf
 
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
@@ -132,7 +132,7 @@ Player :math:`i` takes a sequence :math:`\{u_{-it}\}` as given and chooses a seq
 while  thinking that the state evolves according to
 
 .. math::
-    :label: rmp-orig-0
+    :label: rmp-orig-0_rob_markov_perf
 
     x_{t+1} = A x_t + B_1 u_{1t} + B_2 u_{2t} + C v_{it}
 
@@ -178,10 +178,10 @@ A robust Markov perfect equilibrium is a pair of sequences :math:`\{F_{1t}, F_{2
 * :math:`\{F_{2t}, K_{2t}\}` solves player 2's robust decision problem, taking :math:`\{F_{1t}\}` as given
 
 
-If we substitute :math:`u_{2t} = - F_{2t} x_t`  into :eq:`rmp-orig-1` and :eq:`rmp-orig-0`, then player 1's problem becomes minimization-maximization of
+If we substitute :math:`u_{2t} = - F_{2t} x_t`  into :eq:`rmp-orig-1_rob_markov_perf` and :eq:`rmp-orig-0_rob_markov_perf`, then player 1's problem becomes minimization-maximization of
 
 .. math::
-    :label: rmp-eq_mpe_p1p
+    :label: rmp-eq_mpe_p1p_rob_markov_perf
 
     \sum_{t=t_0}^{t_1 - 1}
     \beta^{t - t_0}
@@ -196,7 +196,7 @@ If we substitute :math:`u_{2t} = - F_{2t} x_t`  into :eq:`rmp-orig-1` and :eq:`r
 subject to
 
 .. math::
-    :label: rmp-eq_mpe_p1d
+    :label: rmp-eq_mpe_p1d_rob_markov_perf
 
     x_{t+1} = \Lambda_{1t} x_t + B_1 u_{1t} + C v_{1t}
 
@@ -214,14 +214,14 @@ Maximization with respect to distortion  :math:`v_{1t}` leads to  the following 
 the :doc:`Robustness<robustness>` lecture, namely
 
 .. math::
-    :label: rmp-rb_d
+    :label: rmp-rb_d_rob_markov_perf
 
     \mathcal D_1(P) := P + PC (\theta_1 I - C' P C)^{-1} C' P
 
 The matrix :math:`F_{1t}` in the policy rule :math:`u_{1t} = - F_{1t} x_t` that solves agent 1's  problem satisfies
 
 .. math::
-    :label: rmp-orig-3
+    :label: rmp-orig-3_rob_markov_perf
 
     F_{1t}
     = (Q_1 + \beta B_1' {\mathcal D}_1( P_{1t+1}) B_1)^{-1}
@@ -230,7 +230,7 @@ The matrix :math:`F_{1t}` in the policy rule :math:`u_{1t} = - F_{1t} x_t` that 
 where :math:`P_{1t}` solves the matrix Riccati difference equation
 
 .. math::
-    :label: rmp-orig-4
+    :label: rmp-orig-4_rob_markov_perf
 
     P_{1t} =
     \Pi_{1t} -
@@ -242,7 +242,7 @@ where :math:`P_{1t}` solves the matrix Riccati difference equation
 Similarly, the policy that solves player 2's problem is
 
 .. math::
-    :label: rmp-orig-5
+    :label: rmp-orig-5_rob_markov_perf
 
     F_{2t} = (Q_2 + \beta B_2' {\mathcal D}_2( P_{2t+1} ) B_2)^{-1}
     (\beta B_2' {\mathcal D}_2 (P_{2t+1}) \Lambda_{2t} + \Gamma_{2t})
@@ -251,7 +251,7 @@ Similarly, the policy that solves player 2's problem is
 where :math:`P_{2t}` solves
 
 .. math::
-    :label: rmp-orig-6
+    :label: rmp-orig-6_rob_markov_perf
 
     P_{2t} =
     \Pi_{2t} - (\beta B_2' {\mathcal D}_2 ( P_{2t+1}) \Lambda_{2t} + \Gamma_{2t})' (Q_2 + \beta B_2' {\mathcal D}_2 ( P_{2t+1}) B_2)^{-1}
@@ -260,23 +260,23 @@ where :math:`P_{2t}` solves
 
 Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`
 
-The solution procedure is to use equations :eq:`rmp-orig-3`, :eq:`rmp-orig-4`, :eq:`rmp-orig-5`, and :eq:`rmp-orig-6`, and "work backwards" from time :math:`t_1 - 1`
+The solution procedure is to use equations :eq:`rmp-orig-3_rob_markov_perf`, :eq:`rmp-orig-4_rob_markov_perf`, :eq:`rmp-orig-5_rob_markov_perf`, and :eq:`rmp-orig-6_rob_markov_perf`, and "work backwards" from time :math:`t_1 - 1`
 
 Since we're working backwards, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage
 
 Moreover, since
 
-* some terms on the right-hand side of :eq:`rmp-orig-3` contain :math:`F_{2t}`
-* some terms on the right-hand side of :eq:`rmp-orig-5` contain :math:`F_{1t}`
+* some terms on the right-hand side of :eq:`rmp-orig-3_rob_markov_perf` contain :math:`F_{2t}`
+* some terms on the right-hand side of :eq:`rmp-orig-5_rob_markov_perf` contain :math:`F_{1t}`
 
 we need to solve these :math:`k_1 + k_2` equations simultaneously
 
 Key Insight
 ------------
 
-As in :doc:`Markov perfect equilibrium<markov_perf>`, a key insight here  is that  equations  :eq:`rmp-orig-3` and :eq:`rmp-orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
+As in :doc:`Markov perfect equilibrium<markov_perf>`, a key insight here  is that  equations  :eq:`rmp-orig-3_rob_markov_perf` and :eq:`rmp-orig-5_rob_markov_perf` are linear in :math:`F_{1t}` and :math:`F_{2t}`
 
-After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`rmp-orig-4` and :eq:`rmp-orig-6`
+After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`rmp-orig-4_rob_markov_perf` and :eq:`rmp-orig-6_rob_markov_perf`
 
 
 Notice how :math:`j`\ 's control law :math:`F_{jt}` is a function of :math:`\{F_{is}, s \geq t, i \neq j \}`
@@ -342,14 +342,14 @@ To begin, we briefly review the structure of that model
 Two firms are the only producers of a good the demand for which is governed by a linear inverse demand function
 
 .. math::
-    :label: rgame2
+    :label: rgame2_rob_markov_perf
 
     p = a_0 - a_1 (q_1 +  q_2)
 
 
 Here :math:`p = p_t` is the price of the good, :math:`q_i = q_{it}` is the output of firm :math:`i=1,2` at time :math:`t` and :math:`a_0 > 0, a_1 >0`
 
-In :eq:`rgame2` and what follows,
+In :eq:`rgame2_rob_markov_perf` and what follows,
 
 * the time subscript is suppressed when possible to simplify notation
 
@@ -360,15 +360,15 @@ Each firm recognizes that its output affects total output and therefore the mark
 The one-period payoff function of firm :math:`i` is price times quantity minus adjustment costs:
 
 .. math::
-    :label: rgame1
+    :label: rgame1_rob_markov_perf
 
     \pi_i = p q_i - \gamma (\hat q_i - q_i)^2, \quad \gamma > 0 ,
 
 
-Substituting the inverse demand curve :eq:`rgame2` into :eq:`rgame1` lets us express the one-period payoff as
+Substituting the inverse demand curve :eq:`rgame2_rob_markov_perf` into :eq:`rgame1_rob_markov_perf` lets us express the one-period payoff as
 
 .. math::
-    :label: rgame3
+    :label: rgame3_rob_markov_perf
 
     \pi_i(q_i, q_{-i}, \hat q_i) = a_0 q_i - a_1 q_i^2 - a_1 q_i q_{-i} - \gamma (\hat q_i - q_i)^2 ,
 
@@ -427,7 +427,7 @@ where :math:`Q_1 = Q_2 = \gamma`,
     \end{bmatrix}
 
 
-then we recover the  one-period  payoffs :eq:`rgame1` for the two firms in the duopoly model
+then we recover the  one-period  payoffs :eq:`rgame1_rob_markov_perf` for the two firms in the duopoly model
 
 The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1t} + B_2 u_{2t}` where
 
@@ -458,7 +458,7 @@ The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1
 A robust  decision rule of firm :math:`i` will take the form :math:`u_{it} = - F_i x_t`, inducing the following closed-loop system for the evolution of :math:`x` in the Markov perfect equilibrium:
 
 .. math::
-    :label: rmp-eq_mpe_cle
+    :label: rmp-eq_mpe_cle_rob_markov_perf
 
     x_{t+1} = (A - B_1 F_1 -B_1 F_2 ) x_t
 

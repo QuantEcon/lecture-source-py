@@ -89,7 +89,7 @@ a career --- starting a new career always requires starting a new job
 A young worker aims to maximize the expected sum of discounted wages
 
 .. math::
-    :label: exw
+    :label: exw_career
 
     \mathbb{E} \sum_{t=0}^{\infty} \beta^t w_t
 
@@ -97,7 +97,7 @@ A young worker aims to maximize the expected sum of discounted wages
 subject to the choice restrictions specified above
 
 Let :math:`v(\theta, \epsilon)` denote the value function, which is the
-maximum of :eq:`exw` overall feasible (career, job) policies, given the
+maximum of :eq:`exw_career` overall feasible (career, job) policies, given the
 initial state :math:`(\theta, \epsilon)`
 
 The value function obeys
@@ -110,7 +110,7 @@ The value function obeys
 where
 
 .. math::
-    :label: eyes
+    :label: eyes_career
 
     \begin{aligned}
     & I = \theta + \epsilon + \beta v(\theta, \epsilon) \\
@@ -219,7 +219,7 @@ The following function takes an instance of ``CareerWorkerProblem`` and returns
 the corresponding Bellman operator :math:`T` and the greedy policy function
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
-:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
+:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes_career`
 
 .. code-block:: python3
 

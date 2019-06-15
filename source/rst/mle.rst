@@ -191,7 +191,7 @@ Hence, the distribution of :math:`y_i` needs to be conditioned on the vector of 
 The standard formulation --- the so-called *poisson regression* model --- is as follows:
 
 .. math::
-    :label: poissonreg
+    :label: poissonreg_mle
 
     f(y_i \mid \mathbf{x}_i) = \frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i}; \qquad y_i = 0, 1, 2, \ldots , \infty .
 
@@ -678,7 +678,7 @@ Now let's replicate results from Daniel Treisman's paper, `Russia's
 Billionaires <http://pubs.aeaweb.org/doi/pdfplus/10.1257/aer.p20161068>`__,
 mentioned earlier in the lecture
 
-Treisman starts by estimating equation :eq:`poissonreg`, where:
+Treisman starts by estimating equation :eq:`poissonreg_mle`, where:
 
 * :math:`y_i` is :math:`{number\ of\ billionaires}_i`
 * :math:`x_{i1}` is :math:`\log{GDP\ per\ capita}_i`

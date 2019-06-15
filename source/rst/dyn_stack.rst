@@ -183,11 +183,11 @@ This equation can in turn be rearranged to become the second-order
 difference equation
 
 .. math::
-    :label: sstack1
+    :label: sstack1_dyn_stack
 
     q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
 
-Equation :eq:`sstack1` is a second-order difference equation in the sequence
+Equation :eq:`sstack1_dyn_stack` is a second-order difference equation in the sequence
 :math:`\vec q_1` whose solution we want
 
 It satisfies **two boundary conditions:**
@@ -199,7 +199,7 @@ It satisfies **two boundary conditions:**
 
 Using the lag operators described in chapter IX of *Macroeconomic
 Theory, Second edition (1987)*, difference equation
-:eq:`sstack1` can be written as
+:eq:`sstack1_dyn_stack` can be written as
 
 .. math::  \beta(1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 ) q_{1t+2} = - c_0 + c_2 q_{2t+1}
 
@@ -207,7 +207,7 @@ The polynomial in the lag operator on the left side can be **factored**
 as
 
 .. math::
-    :label: sstack2
+    :label: sstack2_dyn_stack
 
     (1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 )  = ( 1 - \delta_1 L ) (1 - \delta_2 L)
 
@@ -225,13 +225,13 @@ and compute the following inverse operator
 
 .. math::  \left[-\delta_{2} L (1 - \delta_2^{-1} L^{-1} )\right]^{-1} = - \delta_2 (1 - {\delta_2}^{-1} )^{-1} L^{-1}
 
-Operating on both sides of equation :eq:`sstack2` with
+Operating on both sides of equation :eq:`sstack2_dyn_stack` with
 :math:`\beta^{-1}` times this inverse operator gives the follower's
 decision rule for setting :math:`q_{1t+1}` in the
 **feedback-feedforward** form
 
 .. math::
-    :label: sstack3
+    :label: sstack3_dyn_stack
 
     q_{1t+1} = \delta_1 q_{1t} - c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}}  + c_2 \delta_2^{-1} \beta^{-1} \sum_{j=0}^\infty \delta_2^j q_{2t+j+1} ,  \quad t \geq 0
 
@@ -240,15 +240,15 @@ The problem of the Stackelberg leader firm 2 is to choose the sequence
 
 .. math::  \sum_{t=0}^\infty \beta^t \{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \}
 
-subject to the sequence of constraints :eq:`sstack3` for :math:`t \geq 0`
+subject to the sequence of constraints :eq:`sstack3_dyn_stack` for :math:`t \geq 0`
 
 We can put a sequence :math:`\{\theta_t\}_{t=0}^\infty` of Lagrange
-multipliers on the sequence of equations :eq:`sstack3`
+multipliers on the sequence of equations :eq:`sstack3_dyn_stack`
 and formulate the following Lagrangian for the Stackelberg leader firm
 2's problem
 
 .. math::
-    :label: sstack4
+    :label: sstack4_dyn_stack
 
     \eqalign{ \tilde L & = \sum_{t=0}^\infty  \beta^t\{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \} \cr
      &  + \sum_{t=0}^\infty \beta^t \theta_t \{ \delta_1 q_{1t} -  c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}} +  c_2 \delta_2^{-1} \beta^{-1}
@@ -260,7 +260,7 @@ subject to initial conditions for :math:`q_{1t}, q_{2t}` at :math:`t=0`
 sequences
 
 The max-min problem associated with Lagrangian
-:eq:`sstack4` is unpleasant because the time :math:`t`
+:eq:`sstack4_dyn_stack` is unpleasant because the time :math:`t`
 component of firm :math:`1`'s payoff function depends on the entire
 future of its choices of :math:`\{q_{1t+j}\}_{j=0}^\infty`
 
@@ -318,14 +318,14 @@ Subject to an initial condition for :math:`z_0`, but not for :math:`x_0`, the
 Stackelberg leader wants to maximize
 
 .. math::
-    :label: maxeq
+    :label: maxeq_dyn_stack
 
     -\sum_{t=0}^\infty \beta^t r(y_t, u_t)
 
 The Stackelberg leader faces the model
 
 .. math::
-    :label: new2
+    :label: new2_dyn_stack
 
     \begin{bmatrix} I & 0 \\ G_{21} & G_{22} \end{bmatrix}
     \begin{bmatrix}    z_{t+1} \\  x_{t+1} \end{bmatrix}
@@ -333,11 +333,11 @@ The Stackelberg leader faces the model
 
 We assume that the matrix
 :math:`\begin{bmatrix} I & 0 \\ G_{21} & G_{22} \end{bmatrix}` on the
-left side of equation :eq:`new2` is invertible, so that we
+left side of equation :eq:`new2_dyn_stack` is invertible, so that we
 can multiply both sides by its inverse to obtain
 
 .. math::
-    :label: new3
+    :label: new3_dyn_stack
 
     \begin{bmatrix}    z_{t+1} \\  x_{t+1} \end{bmatrix}
     = \begin{bmatrix}  A_{11}  &   A_{12} \\ A_{21} &  A_{22}  \end{bmatrix}
@@ -346,7 +346,7 @@ can multiply both sides by its inverse to obtain
 or
 
 .. math::
-    :label: constrainteq
+    :label: constrainteq_dyn_stack
 
     y_{t+1} = A y_t + B u_t
 
@@ -354,7 +354,7 @@ Interpretation of the Second Block of Equations
 -------------------------------------------------
 
 The Stackelberg follower's best response mapping is summarized by the
-second block of equations of :eq:`new3`
+second block of equations of :eq:`new3_dyn_stack`
 
 In particular, these equations are the first-order conditions of the
 Stackelberg follower's optimization problem (i.e., its Euler equations)
@@ -367,9 +367,9 @@ When combined with a stability condition to be imposed below, the Euler
 equations summarize the follower’s best response to the sequence of
 actions by the leader
 
-The Stackelberg leader maximizes :eq:`maxeq` by
+The Stackelberg leader maximizes :eq:`maxeq_dyn_stack` by
 choosing sequences :math:`\{u_t, x_t, z_{t+1}\}_{t=0}^{\infty}`
-subject to :eq:`constrainteq` and an initial condition for :math:`z_0`
+subject to :eq:`constrainteq_dyn_stack` and an initial condition for :math:`z_0`
 
 Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
 
@@ -377,7 +377,7 @@ Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
 Stackelberg leader
 
 The Stackelberg leader uses its understanding of the responses
-restricted by :eq:`constrainteq` to manipulate the follower's
+restricted by :eq:`constrainteq_dyn_stack` to manipulate the follower's
 decisions
 
 More Mechanical Details
@@ -465,7 +465,7 @@ The value function :math:`v(y)` in subproblem 1 satisfies the Bellman
 equation
 
 .. math::
-    :label: bellman-stack
+    :label: bellman-stack_dyn_stack
 
     v(y) = \max_{u, y^*}  \left\{ - r(y,u) + \beta v(y^*) \right\}
 
@@ -477,7 +477,7 @@ where the maximization is subject to
 
 and :math:`y^*` denotes next period’s value
 
-Substituting :math:`v(y) = - y'P y` into Bellman equation :eq:`bellman-stack` gives
+Substituting :math:`v(y) = - y'P y` into Bellman equation :eq:`bellman-stack_dyn_stack` gives
 
 .. math::
 
@@ -717,11 +717,11 @@ An optimal decision rule for the Stackelberg's choice of :math:`u_t` is
 or
 
 .. math::
-    :label: finalrule
+    :label: finalrule_dyn_stack
 
     u_t  = - F_z \check z_t - F_x \sum_{j=1}^t H^t_j z_{t-j} = \sigma_t(\check z^t)
 
-Representation :eq:`finalrule` confirms that whenever
+Representation :eq:`finalrule_dyn_stack` confirms that whenever
 :math:`F_x \neq 0`, the typical situation, the time :math:`t` component
 :math:`\sigma_t` of a Stackelberg plan is **history-dependent**, meaning
 that the Stackelberg leader's choice :math:`u_t` depends not just on
@@ -741,7 +741,7 @@ Then why did we distinguish :math:`\check z_t` from :math:`z_t`?
 The answer is that if we want to present to the Stackelberg **follower**
 a history-dependent representation of the Stackelberg **leader's**
 sequence :math:`\vec q_2`, we must use representation
-:eq:`finalrule` cast in terms of the history
+:eq:`finalrule_dyn_stack` cast in terms of the history
 :math:`\check z^t` and **not** a corresponding representation cast in
 terms of :math:`z^t`
 
@@ -809,7 +809,7 @@ Firm 1's state vector is
 It follows that the follower firm 1 faces law of motion
 
 .. math::
-    :label: law-motion
+    :label: law-motion_dyn_stack
 
     \begin{bmatrix} \tilde y_{t+1} \\
     q_{1t+1} \end{bmatrix} = \begin{bmatrix} A - BF & 0 \\

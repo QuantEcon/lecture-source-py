@@ -155,7 +155,7 @@ Recall first-order conditions for a Ramsey allocation for the Lucas-Stokey econo
 For :math:`t \geq 1`, these take the form
 
 .. math::
-    :label: TS_barg10a
+    :label: TS_barg10a_amss2
 
     \begin{aligned}
       (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
@@ -170,7 +170,7 @@ There is one such equation for each value of the Markov state :math:`s_t`
 In addition, given an initial Markov state, the time :math:`t=0` quantities :math:`c_0` and :math:`b_0` satisfy
 
 .. math::
-    :label: TS_barg11b
+    :label: TS_barg11b_amss2
 
     \begin{aligned}
           (1+\Phi) &u_c(c,1-c-g) + \Phi \bigl[c u_{cc}(c,1-c-g) -
@@ -184,7 +184,7 @@ In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` 
 :math:`b_0`:
 
 .. math::
-    :label: eqn_AMSS2_10
+    :label: eqn_AMSS2_10_amss2
 
     b_0 + g_0 = \tau_0 (c_0 + g_0) + \frac{\bar b}{R_0}
 
@@ -192,7 +192,7 @@ where :math:`R_0` is the gross interest rate for the Markov state :math:`s_0` th
 and :math:`\tau_0` is the time :math:`t=0` tax rate
 
 
-In equation :eq:`eqn_AMSS2_10`, it is understood that
+In equation :eq:`eqn_AMSS2_10_amss2`, it is understood that
 
 .. math::
     :nowrap:
@@ -239,23 +239,23 @@ The analysis of Lucas and Stokey prevails once we make the following replacement
         u_{c,\ell} (c,\ell) &\sim 0
         \end{aligned}
 
-With these understandings, equations :eq:`TS_barg10a` and :eq:`TS_barg11b` simplify in the case of the CRRA utility function
+With these understandings, equations :eq:`TS_barg10a_amss2` and :eq:`TS_barg11b_amss2` simplify in the case of the CRRA utility function
 
 They become
 
 .. math::
-    :label: amss2_TS_barg10
+    :label: amss2_TS_barg10_amss2
 
     (1+\Phi) [u_c(c) + u_n(c+g)] + \Phi[c u_{cc}(c) + (c+g) u_{nn}(c+g)] = 0
 
 and
 
 .. math::
-    :label: amss2_TS_barg11
+    :label: amss2_TS_barg11_amss2
 
     (1+\Phi) [u_c(c_0) + u_n(c_0+g_0)] + \Phi[c_0 u_{cc}(c_0) + (c_0+g_0) u_{nn}(c_0+g_0)] - \Phi u_{cc}(c_0) b_0 = 0
 
-In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
+In equation :eq:`amss2_TS_barg10_amss2`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
 
 The CRRA utility function is represented in the following class
 
@@ -322,13 +322,13 @@ We use the following steps
 
 **Step 1:**  Pick an initial :math:`\Phi`
 
-**Step 2:** Given that :math:`\Phi`, jointly solve two versions of equation :eq:`amss2_TS_barg10` for :math:`c(s), s=1, 2` associated with the two values
+**Step 2:** Given that :math:`\Phi`, jointly solve two versions of equation :eq:`amss2_TS_barg10_amss2` for :math:`c(s), s=1, 2` associated with the two values
 for :math:`g(s), s=1,2`
 
 **Step 3:**  Solve the following equation for :math:`\vec x`
 
 .. math::
-    :label: LSA_xsola
+    :label: LSA_xsola_amss2
 
     \vec x= (I - \beta \Pi )^{-1} [ \vec u_c (\vec n-\vec g) - \vec u_l \vec n]
 
@@ -336,7 +336,7 @@ for :math:`g(s), s=1,2`
 state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equation
 
 .. math::
-    :label: amss2_LSA_bsol
+    :label: amss2_LSA_bsol_amss2
 
     \vec b = {\frac{ \vec x }{\vec u_c}}
 
@@ -346,7 +346,7 @@ state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equa
 
 
 **Step 7:** At the value of :math:`\Phi` and the value of :math:`\bar b` that emerged from step 6, solve equations
-:eq:`amss2_TS_barg11` and :eq:`eqn_AMSS2_10` jointly for :math:`c_0, b_0`
+:eq:`amss2_TS_barg11_amss2` and :eq:`eqn_AMSS2_10_amss2` jointly for :math:`c_0, b_0`
 
 
 Code for Reverse Engineering
@@ -590,13 +590,13 @@ BEGS work with objects :math:`B_t, {\mathcal B}_t, {\mathcal R}_t, {\mathcal X}_
 In terms of their notation, equation (44) of :cite:`BEGS1` expresses the time :math:`t` state :math:`s` government budget constraint as
 
 .. math::
-    :label: eq_fiscal_risk
+    :label: eq_fiscal_risk_amss2
 
     {\mathcal B}(s) = {\mathcal R}_\tau(s, s_{-}) {\mathcal B}_{-} + {\mathcal X}_{\tau(s)} (s)
 
 where the dependence on :math:`\tau` is to remind us that these objects depend on the tax rate and :math:`s_{-}` is last period's Markov state
 
-BEGS interpret random variations in the right side of :eq:`eq_fiscal_risk` as a measure of **fiscal risk** composed of
+BEGS interpret random variations in the right side of :eq:`eq_fiscal_risk_amss2` as a measure of **fiscal risk** composed of
 
 - interest-rate-driven fluctuations in time :math:`t` effective payments due on the government portfolio, namely,
   :math:`{\mathcal R}_\tau(s, s_{-}) {\mathcal B}_{-}`,  and
@@ -626,7 +626,7 @@ This regression coefficient emerges as the minimizer for a variance-minimization
    {\mathcal B}^* = {\rm argmin}_{\mathcal B}  {\rm var} ({\mathcal R} {\mathcal B} + {\mathcal X})
 
 The minimand in criterion :eq:`eq_criterion_fiscal` is the  measure of fiscal risk associated with a given tax-debt policy that appears on the right side
-of equation :eq:`eq_fiscal_risk`
+of equation :eq:`eq_fiscal_risk_amss2`
 
 
 Expressing formula :eq:`prelim_formula` in terms of  our notation tells us that :math:`\bar b` should approximately equal
@@ -642,7 +642,7 @@ Rate of Convergence
 BEGS also derive the following  approximation to the rate of convergence to :math:`{\mathcal B}^{*}` from an arbitrary initial condition
 
  .. math::
-    :label: rate_of_convergence
+    :label: rate_of_convergence_amss2
 
     \frac{ E_t  ( {\mathcal B}_{t+1} - {\mathcal B}^{*} )} { ( {\mathcal B}_{t} - {\mathcal B}^{*} )} \approx \frac{1}{1 + \beta^2 {\rm var} ({\mathcal R} )}
 
@@ -683,10 +683,10 @@ After we compute these moments, we  compute the BEGS approximation to the asympt
 
 After that, we move on to compute :math:`{\mathcal B}^*` in formula :eq:`prelim_formula`
 
-We'll also evaluate  the BEGS criterion :eq:`eq_fiscal_risk` at the limiting value :math:`{\mathcal B}^*`
+We'll also evaluate  the BEGS criterion :eq:`eq_fiscal_risk_amss2` at the limiting value :math:`{\mathcal B}^*`
 
 .. math::
-    :label: eqn_Jcriterion
+    :label: eqn_Jcriterion_amss2
 
     J ( {\mathcal B}^*)=  {\rm var}(\mathcal{R}) \left( {\mathcal B}^* \right)^2 + 2 {\mathcal B}^* {\rm cov}(\mathcal{R},\mathcal{X}) + {\rm var}(\mathcal X)
 
@@ -764,7 +764,7 @@ Next, let's compute the BEGS fiscal criterion that :math:`\hat b` is minimizing
     Jmin
 
 This is *machine zero*, a verification that :math:`\hat b` succeeds in minimizing the nonnegative fiscal cost criterion :math:`J ( {\mathcal B}^*)` defined in
-BEGS and in equation :eq:`eqn_Jcriterion` above
+BEGS and in equation :eq:`eqn_Jcriterion_amss2` above
 
 
 Let's push our luck and compute the mean reversion speed in the formula above equation (47) in :cite:`BEGS1`

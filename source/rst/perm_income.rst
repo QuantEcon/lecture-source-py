@@ -118,7 +118,7 @@ The Decision Problem
 A consumer has preferences over consumption streams that are ordered by the utility functional
 
 .. math::
-    :label: sprob1
+    :label: sprob1_perm_income
 
     \mathbb{E}_0 \left[ \sum_{t=0}^\infty \beta^t u(c_t) \right]
 
@@ -133,10 +133,10 @@ where
 
 *  :math:`\beta \in (0,1)` is a discount factor
 
-The consumer maximizes :eq:`sprob1` by choosing a consumption, borrowing plan :math:`\{c_t, b_{t+1}\}_{t=0}^\infty` subject to the sequence of budget constraints
+The consumer maximizes :eq:`sprob1_perm_income` by choosing a consumption, borrowing plan :math:`\{c_t, b_{t+1}\}_{t=0}^\infty` subject to the sequence of budget constraints
 
 .. math::
-    :label: sprob2
+    :label: sprob2_perm_income
 
     c_t + b_t = \frac{1}{1 + r} b_{t+1} +  y_t   \quad t \geq 0
 
@@ -162,7 +162,7 @@ For the remainder of this lecture, we follow Friedman and Hall in assuming that 
 Regarding the endowment process, we assume it has the :doc:`state-space representation <linear_models>`
 
 .. math::
-    :label: sprob15ab
+    :label: sprob1_perm_income5ab
 
     \begin{aligned}
         z_{t+1} & = A z_t + C w_{t+1}
@@ -196,7 +196,7 @@ where :math:`\gamma` is a bliss level of consumption
 Finally, we impose the *no Ponzi scheme* condition
 
 .. math::
-    :label: sprob3
+    :label: sprob3_perm_income
 
     \mathbb{E}_0 \left[ \sum_{t=0}^\infty \beta^t b_t^2 \right] < \infty
 
@@ -208,10 +208,10 @@ First-Order Conditions
 -------------------------
 
 
-First-order conditions for maximizing :eq:`sprob1` subject to :eq:`sprob2` are
+First-order conditions for maximizing :eq:`sprob1_perm_income` subject to :eq:`sprob2_perm_income` are
 
 .. math::
-    :label: sprob4
+    :label: sprob4_perm_income
 
     \mathbb{E}_t [u'(c_{t+1})] = u'(c_t) , \qquad t = 0, 1, \ldots
 
@@ -221,17 +221,17 @@ These optimality conditions are also known as  *Euler equations*
 If you're not sure where they come from, you can find a proof sketch in the
 :ref:`appendix <perm_income_appendix>`
 
-With our quadratic preference specification, :eq:`sprob4` has the striking implication that consumption follows a martingale:
+With our quadratic preference specification, :eq:`sprob4_perm_income` has the striking implication that consumption follows a martingale:
 
 .. math::
-    :label: sprob5
+    :label: sprob5_perm_income
 
     \mathbb{E}_t [c_{t+1}] = c_t
 
 
 (In fact, quadratic preferences are *necessary* for this conclusion [#f2]_)
 
-One way to interpret :eq:`sprob5` is that consumption will change only when
+One way to interpret :eq:`sprob5_perm_income` is that consumption will change only when
 "new information" about permanent income is revealed
 
 These ideas will be clarified below
@@ -254,27 +254,27 @@ Now let's deduce the optimal decision rule [#fod]_
 
 In doing so, we need to combine
 
-#. the optimality condition :eq:`sprob5`
+#. the optimality condition :eq:`sprob5_perm_income`
 
-#. the period-by-period budget constraint :eq:`sprob2`, and
+#. the period-by-period budget constraint :eq:`sprob2_perm_income`, and
 
-#. the boundary condition :eq:`sprob3`
+#. the boundary condition :eq:`sprob3_perm_income`
 
 
-To accomplish this, observe first that :eq:`sprob3` implies :math:`\lim_{t \to \infty} \beta^{\frac{t}{2}} b_{t+1}= 0`
+To accomplish this, observe first that :eq:`sprob3_perm_income` implies :math:`\lim_{t \to \infty} \beta^{\frac{t}{2}} b_{t+1}= 0`
 
-Using this restriction on the debt path and solving :eq:`sprob2` forward yields
+Using this restriction on the debt path and solving :eq:`sprob2_perm_income` forward yields
 
 .. math::
-    :label: sprob6
+    :label: sprob6_perm_income
 
     b_t = \sum_{j=0}^\infty \beta^j (y_{t+j} - c_{t+j})
 
 
-Take conditional expectations on both sides of :eq:`sprob6` and use the martingale property of consumption and the *law of iterated expectations* to deduce
+Take conditional expectations on both sides of :eq:`sprob6_perm_income` and use the martingale property of consumption and the *law of iterated expectations* to deduce
 
 .. math::
-    :label: sprob7
+    :label: sprob7_perm_income
 
     b_t = \sum_{j=0}^\infty \beta^j \mathbb{E}_t [y_{t+j}] - \frac{c_t}{1-\beta}
 
@@ -282,7 +282,7 @@ Take conditional expectations on both sides of :eq:`sprob6` and use the martinga
 Expressed in terms of :math:`c_t` we get
 
 .. math::
-    :label: sprob8
+    :label: sprob8_perm_income
 
     c_t
      = (1-\beta) \left[ \sum_{j=0}^\infty \beta^j \mathbb{E}_t [y_{t+j}] - b_t\right]
@@ -341,10 +341,10 @@ In fact, from :ref:`this discussion <lm_fgs>`, we see that
     = U(I - \beta A)^{-1} z_t
 
 
-Combining this with :eq:`sprob8` gives
+Combining this with :eq:`sprob8_perm_income` gives
 
 .. math::
-    :label: pi_cpa
+    :label: pi_cpa_perm_income
 
     c_t
      = {r \over 1+r}
@@ -353,7 +353,7 @@ Combining this with :eq:`sprob8` gives
          \right]
 
 
-Using this equality to eliminate :math:`c_t` in the budget constraint :eq:`sprob2` gives
+Using this equality to eliminate :math:`c_t` in the budget constraint :eq:`sprob2_perm_income` gives
 
 .. math::
 
@@ -382,7 +382,7 @@ A State-Space Representation
 We can summarize our dynamics in the form of a linear state-space system governing consumption, debt and income:
 
 .. math::
-    :label: pi_ssr
+    :label: pi_ssr_perm_income
 
     \begin{aligned}
       z_{t+1} & = A z_t + C w_{t+1} \\
@@ -431,10 +431,10 @@ and
       \end{bmatrix}
 
 
-Then we can express equation  :eq:`pi_ssr` as
+Then we can express equation  :eq:`pi_ssr_perm_income` as
 
 .. math::
-    :label: pi_stsp
+    :label: pi_stsp_perm_income
 
     \begin{aligned}
       x_{t+1} & = \tilde A x_t + \tilde C w_{t+1} \\
@@ -446,14 +446,14 @@ We can use the following formulas from :doc:`linear state space models <linear_m
 
 
 .. math::
-    :label: lss_mut_perm_income
+    :label: lss_mut_perm_income_perm_income
 
     \mu_{t+1} = \tilde A \mu_t
     \quad \text{with} \quad \mu_0 \text{ given}
 
 
 .. math::
-    :label: eqsigmalaw
+    :label: eqsigmalaw_perm_income
 
     \Sigma_{t+1}  = \tilde A  \Sigma_t \tilde A' + \tilde C \tilde C'
     \quad \text{with} \quad \Sigma_0 \text{ given}
@@ -462,7 +462,7 @@ We can use the following formulas from :doc:`linear state space models <linear_m
 We can then compute the mean and covariance of :math:`\tilde y_t` from
 
 .. math::
-    :label: eqymoments
+    :label: eqymoments_perm_income
 
     \mu_{y,t} = \tilde U \mu_t \\
     \Sigma_{y,t} = \tilde U \Sigma_t \tilde U'
@@ -471,7 +471,7 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
 A Simple Example with IID Income
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just IID
+To gain some preliminary intuition on the implications of :eq:`pi_ssr_perm_income`, let's look at a highly stylized example where income is just IID
 
 (Later examples will investigate more realistic income streams)
 
@@ -599,7 +599,7 @@ Hall's Representation
 
 Hall :cite:`Hall1978` suggested an insightful way to summarize the implications of LQ permanent income theory
 
-First, to represent the solution for :math:`b_t`, shift :eq:`sprob8` forward one period and eliminate :math:`b_{t+1}` by using :eq:`sprob2` to obtain
+First, to represent the solution for :math:`b_t`, shift :eq:`sprob8_perm_income` forward one period and eliminate :math:`b_{t+1}` by using :eq:`sprob2_perm_income` to obtain
 
 .. math::
 
@@ -610,7 +610,7 @@ First, to represent the solution for :math:`b_t`, shift :eq:`sprob8` forward one
 If we add and subtract :math:`\beta^{-1} (1-\beta) \sum_{j=0}^\infty \beta^j \mathbb{E}_t y_{t+j}` from the right side of the preceding equation and rearrange, we obtain
 
 .. math::
-    :label: sprob11
+    :label: sprob1_perm_income1
 
     c_{t+1} - c_t = (1-\beta) \sum_{j=0}^\infty \beta^j
         \left\{ \mathbb{E}_{t+1} [y_{t+j+1}] - \mathbb{E}_t [y_{t+j+1}] \right\}
@@ -619,15 +619,15 @@ If we add and subtract :math:`\beta^{-1} (1-\beta) \sum_{j=0}^\infty \beta^j \ma
 The right side is the time :math:`t+1` *innovation to the expected present value* of the endowment process :math:`\{y_t\}`
 
 
-We can represent the optimal decision rule for :math:`(c_t, b_{t+1})` in the form of :eq:`sprob11` and :eq:`sprob7`, which we repeat:
+We can represent the optimal decision rule for :math:`(c_t, b_{t+1})` in the form of :eq:`sprob1_perm_income1` and :eq:`sprob7_perm_income`, which we repeat:
 
 .. math::
-    :label: sprob7aa
+    :label: sprob7_perm_incomeaa
 
     b_t = \sum_{j=0}^\infty \beta^j \mathbb{E}_t [y_{t+j}] - {1 \over 1-\beta} c_t
 
 
-Equation :eq:`sprob7aa` asserts that the consumer's debt due at :math:`t` equals the expected present value of its endowment minus the expected present value of its consumption stream
+Equation :eq:`sprob7_perm_incomeaa` asserts that the consumer's debt due at :math:`t` equals the expected present value of its endowment minus the expected present value of its consumption stream
 
 A high debt thus indicates a large expected present value of surpluses :math:`y_t - c_t`
 
@@ -642,10 +642,10 @@ Recalling again our discussion on :ref:`forecasting geometric sums <lm_fgs>`, we
     \end{aligned}
 
 
-Using  these formulas together with :eq:`sprob15ab` and substituting  into :eq:`sprob11` and :eq:`sprob7aa`  gives the following representation for the consumer's optimum decision rule:
+Using  these formulas together with :eq:`sprob1_perm_income5ab` and substituting  into :eq:`sprob1_perm_income1` and :eq:`sprob7_perm_incomeaa`  gives the following representation for the consumer's optimum decision rule:
 
 .. math::
-    :label: sprob16abcd
+    :label: sprob1_perm_income6abcd
 
     \begin{aligned}
         c_{t+1} & = c_t + (1-\beta) U  (I-\beta A)^{-1} C w_{t+1} \\
@@ -655,7 +655,7 @@ Using  these formulas together with :eq:`sprob15ab` and substituting  into :eq:`
     \end{aligned}
 
 
-Representation :eq:`sprob16abcd` makes clear that
+Representation :eq:`sprob1_perm_income6abcd` makes clear that
 
 * The state can be taken as :math:`(c_t, z_t)`
 
@@ -665,7 +665,7 @@ Representation :eq:`sprob16abcd` makes clear that
 
 * Consumption is a random walk with innovation :math:`(1-\beta) U  (I-\beta A)^{-1} C w_{t+1}`
 
-    * This is a more explicit representation of the martingale result in :eq:`sprob5`
+    * This is a more explicit representation of the martingale result in :eq:`sprob5_perm_income`
 
 
 .. _coint_pi:
@@ -673,20 +673,20 @@ Representation :eq:`sprob16abcd` makes clear that
 Cointegration
 --------------
 
-Representation :eq:`sprob16abcd` reveals that the joint process :math:`\{c_t, b_t\}` possesses the property that Engle and Granger :cite:`EngleGranger1987` called `cointegration <https://en.wikipedia.org/wiki/Cointegration>`_
+Representation :eq:`sprob1_perm_income6abcd` reveals that the joint process :math:`\{c_t, b_t\}` possesses the property that Engle and Granger :cite:`EngleGranger1987` called `cointegration <https://en.wikipedia.org/wiki/Cointegration>`_
 
 Cointegration is a tool that allows us to apply powerful results from the theory of stationary stochastic processes to (certain transformations of) nonstationary models
 
 To apply cointegration in the present context, suppose that :math:`z_t` is asymptotically stationary [#fn_as]_
 
-Despite this, both :math:`c_t` and :math:`b_t` will be non-stationary because they have unit roots (see :eq:`pi_ssr` for :math:`b_t`)
+Despite this, both :math:`c_t` and :math:`b_t` will be non-stationary because they have unit roots (see :eq:`pi_ssr_perm_income` for :math:`b_t`)
 
 Nevertheless, there is a linear combination of :math:`c_t, b_t` that *is* asymptotically stationary
 
-In particular, from the second equality in :eq:`sprob16abcd` we have
+In particular, from the second equality in :eq:`sprob1_perm_income6abcd` we have
 
 .. math::
-    :label: pi_spr
+    :label: pi_spr_perm_income
 
     (1-\beta) b_t + c_t = (1 - \beta) U (I-\beta A)^{-1} z_t
 
@@ -697,28 +697,28 @@ Accordingly, Granger and Engle would call :math:`\begin{bmatrix} (1-\beta) & 1 \
 
 When applied to the nonstationary vector process :math:`\begin{bmatrix} b_t  & c_t \end{bmatrix}'`, it yields a process that is asymptotically stationary
 
-Equation :eq:`pi_spr` can be rearranged to take the form
+Equation :eq:`pi_spr_perm_income` can be rearranged to take the form
 
 .. math::
-    :label: sprob77
+    :label: sprob7_perm_income7
 
     (1-\beta) b_t + c_t = (1-\beta) \mathbb{E}_t \sum_{j=0}^\infty \beta^j y_{t+j}
 
 
-Equation :eq:`sprob77`  asserts that the *cointegrating residual*  on the left side equals the conditional expectation of the geometric sum of future incomes on the right [#f8]_
+Equation :eq:`sprob7_perm_income7`  asserts that the *cointegrating residual*  on the left side equals the conditional expectation of the geometric sum of future incomes on the right [#f8]_
 
 
 
 Cross-Sectional Implications
 -----------------------------------
 
-Consider again :eq:`sprob16abcd`, this time in light of our discussion of
+Consider again :eq:`sprob1_perm_income6abcd`, this time in light of our discussion of
 distribution dynamics in the :doc:`lecture on linear systems <linear_models>`
 
 The dynamics of :math:`c_t` are given by
 
 .. math::
-    :label: pi_crw
+    :label: pi_crw_perm_income
 
     c_{t+1} = c_t + (1-\beta) U  (I-\beta A)^{-1} C w_{t+1}
 
@@ -737,7 +737,7 @@ The unit root affecting :math:`c_t` causes the time :math:`t` variance of :math:
 In particular, since :math:`\{ \hat w_t \}` is IID, we have
 
 .. math::
-    :label: pi_vt
+    :label: pi_vt_perm_income
 
     \mathrm{Var}[c_t] = \mathrm{Var}[c_0] + t \, \hat \sigma^2
 
@@ -755,7 +755,7 @@ Let's consider what this means for a cross-section of ex-ante identical consumer
 
 Let the distribution of :math:`c_0` represent the cross-section of initial consumption values
 
-Equation :eq:`pi_vt` tells us that the variance of :math:`c_t` increases over time at a rate proportional to :math:`t`
+Equation :eq:`pi_vt_perm_income` tells us that the variance of :math:`c_t` increases over time at a rate proportional to :math:`t`
 
 A number of different studies have investigated this prediction and found some support for it
 (see, e.g., :cite:`DeatonPaxton1994`, :cite:`STY2004`)
@@ -777,10 +777,10 @@ Moving Average Representation
 
 It's useful to express the innovation to the expected present value of the endowment process in terms of a moving average representation for income :math:`y_t`
 
-The endowment process defined by :eq:`sprob15ab` has the moving average representation
+The endowment process defined by :eq:`sprob1_perm_income5ab` has the moving average representation
 
 .. math::
-    :label: sprob12
+    :label: sprob1_perm_income2
 
     y_{t+1} = d(L) w_{t+1}
 
@@ -801,15 +801,15 @@ Notice that
 It follows that
 
 .. math::
-    :label: sprob120
+    :label: sprob1_perm_income20
 
     \mathbb{E}_{t+1} [y_{t+j}] - \mathbb{E}_t [y_{t+j}] = d_{j-1} w_{t+1}
 
 
-Using :eq:`sprob120` in :eq:`sprob11` gives
+Using :eq:`sprob1_perm_income20` in :eq:`sprob1_perm_income1` gives
 
 .. math::
-    :label: sprob13
+    :label: sprob1_perm_income3
 
     c_{t+1} - c_t = (1-\beta) d(\beta) w_{t+1}
 
@@ -868,15 +868,15 @@ Example 1
 
 Assume as before that the consumer observes the state :math:`z_t` at time :math:`t`
 
-In view of :eq:`sprob16abcd` we have
+In view of :eq:`sprob1_perm_income6abcd` we have
 
 .. math::
-    :label: consexample1
+    :label: consexample1_perm_income
 
     c_{t+1} - c_t = \sigma_1 w_{1t+1} + (1-\beta) \sigma_2 w_{2t+1}
 
 
-Formula :eq:`consexample1` shows how an increment :math:`\sigma_1 w_{1t+1}` to the permanent component of income :math:`z_{1t+1}` leads to
+Formula :eq:`consexample1_perm_income` shows how an increment :math:`\sigma_1 w_{1t+1}` to the permanent component of income :math:`z_{1t+1}` leads to
 
 * a permanent one-for-one increase in consumption and
 
@@ -886,10 +886,10 @@ But the purely transitory component of income :math:`\sigma_2 w_{2t+1}` leads to
 
 The remaining fraction :math:`\beta` is saved, leading to a permanent increment in :math:`-b_{t+1}`
 
-Application of the formula for debt in :eq:`pi_ssr` to this example shows that
+Application of the formula for debt in :eq:`pi_ssr_perm_income` to this example shows that
 
 .. math::
-    :label: consexample1a
+    :label: consexample1_perm_incomea
 
     b_{t+1} - b_t = - z_{2t} = - \sigma_2 w_{2t}
 
@@ -948,7 +948,7 @@ Example 2
 
 Assume now that at time :math:`t` the consumer observes :math:`y_t`, and its history up to :math:`t`, but not :math:`z_t`
 
-Under this assumption, it is appropriate to use an *innovation representation* to form :math:`A, C, U` in :eq:`sprob16abcd`
+Under this assumption, it is appropriate to use an *innovation representation* to form :math:`A, C, U` in :eq:`sprob1_perm_income6abcd`
 
 The discussion in sections 2.9.1 and 2.11.3 of :cite:`Ljungqvist2012` shows that the pertinent state space representation for :math:`y_t` is
 
@@ -998,10 +998,10 @@ In other words, :math:`K` increases as the ratio of the standard deviation of th
 
 Please see  :doc:`first look at the Kalman filter <kalman>`
 
-Applying formulas :eq:`sprob16abcd` implies
+Applying formulas :eq:`sprob1_perm_income6abcd` implies
 
 .. math::
-    :label: consexample2
+    :label: consexample2_perm_income
 
     c_{t+1} - c_t = [1-\beta(1-K) ] a_{t+1}
 
@@ -1009,12 +1009,12 @@ Applying formulas :eq:`sprob16abcd` implies
 where the endowment process can now be represented in terms of the univariate innovation to :math:`y_t` as
 
 .. math::
-    :label: incomemaar
+    :label: incomemaar_perm_income
 
     y_{t+1} - y_t = a_{t+1} - (1-K) a_t
 
 
-Equation :eq:`incomemaar` indicates that the consumer regards
+Equation :eq:`incomemaar_perm_income` indicates that the consumer regards
 
 * fraction :math:`K` of an innovation :math:`a_{t+1}` to :math:`y_{t+1}` as *permanent*
 
@@ -1026,14 +1026,14 @@ Therefore, in total, he permanently increments his consumption by a fraction :ma
 
 He saves the remaining fraction :math:`\beta (1-K)`
 
-According to equation :eq:`incomemaar`, the first difference of income is a first-order moving average
+According to equation :eq:`incomemaar_perm_income`, the first difference of income is a first-order moving average
 
-Equation  :eq:`consexample2` asserts that the first difference of consumption is IID
+Equation  :eq:`consexample2_perm_income` asserts that the first difference of consumption is IID
 
 Application of formula to this example shows that
 
 .. math::
-    :label: consexample1b
+    :label: consexample1_perm_incomeb
 
     b_{t+1} - b_t = (K-1) a_t
 
@@ -1061,7 +1061,7 @@ Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker
 Appendix: The Euler Equation
 ================================
 
-Where does the first-order condition :eq:`sprob4` come from?
+Where does the first-order condition :eq:`sprob4_perm_income` come from?
 
 Here we'll give a proof for the two-period case, which is representative of
 the general argument
@@ -1069,7 +1069,7 @@ the general argument
 The finite horizon equivalent of the no-Ponzi condition is that the agent
 cannot end her life in debt, so :math:`b_2 = 0`
 
-From the budget constraint :eq:`sprob2` we then have
+From the budget constraint :eq:`sprob2_perm_income` we then have
 
 .. math::
 
@@ -1098,7 +1098,7 @@ You will be able to verify that the first-order condition is
     u'(c_0) = \beta R  \,\mathbb{E}_0 [u'(c_1)]
 
 
-Using :math:`\beta R = 1` gives :eq:`sprob4` in the two-period case
+Using :math:`\beta R = 1` gives :eq:`sprob4_perm_income` in the two-period case
 
 The proof for the general case is similar
 
@@ -1108,11 +1108,11 @@ The proof for the general case is similar
 
 .. rubric:: Footnotes
 
-.. [#f2] A linear marginal utility is essential for deriving :eq:`sprob5` from :eq:`sprob4`.  Suppose instead that we had imposed the following more standard assumptions on the utility function: :math:`u'(c) >0, u''(c)<0, u'''(c) > 0` and required that :math:`c \geq 0`.  The Euler equation remains :eq:`sprob4`. But the fact that :math:`u''' <0` implies via Jensen's inequality that :math:`\mathbb{E}_t [u'(c_{t+1})] >  u'(\mathbb{E}_t [c_{t+1}])`.  This inequality together with :eq:`sprob4` implies that :math:`\mathbb{E}_t [c_{t+1}] > c_t` (consumption is said to be a 'submartingale'), so that consumption stochastically diverges to :math:`+\infty`.  The consumer's savings also diverge to :math:`+\infty`.
+.. [#f2] A linear marginal utility is essential for deriving :eq:`sprob5_perm_income` from :eq:`sprob4_perm_income`.  Suppose instead that we had imposed the following more standard assumptions on the utility function: :math:`u'(c) >0, u''(c)<0, u'''(c) > 0` and required that :math:`c \geq 0`.  The Euler equation remains :eq:`sprob4_perm_income`. But the fact that :math:`u''' <0` implies via Jensen's inequality that :math:`\mathbb{E}_t [u'(c_{t+1})] >  u'(\mathbb{E}_t [c_{t+1}])`.  This inequality together with :eq:`sprob4_perm_income` implies that :math:`\mathbb{E}_t [c_{t+1}] > c_t` (consumption is said to be a 'submartingale'), so that consumption stochastically diverges to :math:`+\infty`.  The consumer's savings also diverge to :math:`+\infty`.
 
 .. [#fod] An optimal decision rule is a map from the current state into current actions---in this case, consumption
 
-.. [#f4] Representation :eq:`sprob15ab` implies that :math:`d(L) = U (I - A L)^{-1} C`.
+.. [#f4] Representation :eq:`sprob1_perm_income5ab` implies that :math:`d(L) = U (I - A L)^{-1} C`.
 
 .. [#fn_as] This would be the case if, for example, the :ref:`spectral radius <la_neumann_remarks>` of :math:`A` is strictly less than one
 

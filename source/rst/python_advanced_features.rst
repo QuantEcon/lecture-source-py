@@ -1709,7 +1709,7 @@ Basically, a recursive function is a function that calls itself
 For example, consider the problem of computing :math:`x_t` for some t when
 
 .. math::
-    :label: xseqdoub
+    :label: xseqdoub_python_advanced_features
 
     x_{t+1} = 2 x_t, \quad x_0 = 1
 
@@ -1757,7 +1757,7 @@ Exercise 1
 The Fibonacci numbers are defined by
 
 .. math::
-    :label: fib
+    :label: fib_python_advanced_features
 
     x_{t+1} = x_t + x_{t-1}, \quad x_0 = 0, \; x_1 = 1
 

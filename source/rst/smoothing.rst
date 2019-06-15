@@ -157,7 +157,7 @@ Nonfinancial income :math:`\{y_t\}` obeys
 A consumer wishes to maximize
 
 .. math::
-    :label: cs_1
+    :label: cs_1_smoothing
 
     \mathbb E
     \left[
@@ -234,7 +234,7 @@ An analog of Hall's assumption that the one-period risk-free gross
 interest rate is :math:`\beta^{-1}` is
 
 .. math::
-    :label: cs_2
+    :label: cs_2_smoothing
 
     q(\bar s_j \,|\, \bar s_i) = \beta P_{ij}
 
@@ -249,7 +249,7 @@ period is
     \sum_j q(\bar s_j \,|\, \bar s_i) =  \sum_j \beta P_{ij} =  \beta
 
 
-This confirms that :eq:`cs_2` is a natural analog of Hall's assumption about the
+This confirms that :eq:`cs_2_smoothing` is a natural analog of Hall's assumption about the
 risk-free one-period interest rate
 
 First-order necessary conditions for maximizing the consumer's expected utility are
@@ -260,10 +260,10 @@ First-order necessary conditions for maximizing the consumer's expected utility 
         = q(s_{t+1} \,|\, s_t)
 
 
-or, under our assumption :eq:`cs_2` on Arrow security prices,
+or, under our assumption :eq:`cs_2_smoothing` on Arrow security prices,
 
 .. math::
-    :label: cs_3
+    :label: cs_3_smoothing
 
     c_{t+1} = c_t
 
@@ -273,7 +273,7 @@ Thus, our consumer sets :math:`c_t = \bar c` for all :math:`t \geq 0` for some v
 **Guess:** We'll make the plausible guess that
 
 .. math::
-    :label: eq_guess
+    :label: eq_guess_smoothing
 
     b_{t+1}(\bar s_j \,|\, s_t = \bar s_i) = b(\bar s_j) ,
             \quad i=1,2; \;\; j= 1,2
@@ -281,12 +281,12 @@ Thus, our consumer sets :math:`c_t = \bar c` for all :math:`t \geq 0` for some v
 
 so that the amount borrowed today turns out to depend only on *tomorrow's* Markov state. (Why is this is a plausible guess?)
 
-To determine :math:`\bar c`, we shall pursue the implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess` about the consumer's debt level choices
+To determine :math:`\bar c`, we shall pursue the implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess_smoothing` about the consumer's debt level choices
 
 For :math:`t \geq 1`, these imply
 
 .. math::
-    :label: cs_4a
+    :label: cs_4a_smoothing
 
     \begin{aligned}
         \bar c + b(\bar s_1) & = y(\bar s_1) + q(\bar s_1\,|\, \bar s_1) b(\bar s_1) + q(\bar s_2 \,|\, \bar s_1)  b(\bar s_2) \cr
@@ -326,24 +326,24 @@ state is :math:`\bar s_1`
 Then the budget constraint at time :math:`t=0` is
 
 .. math::
-    :label: cs_5
+    :label: cs_5_smoothing
 
     \bar c + b_0 = y(\bar s_1) + q(\bar s_1 \,|\, \bar s_1) b(\bar s_1) + q(\bar s_2\,|\,\bar s_1) b(\bar s_2)
 
 
-If we substitute  :eq:`cs_5` into the first equation of :eq:`cs_4a` and rearrange, we
+If we substitute  :eq:`cs_5_smoothing` into the first equation of :eq:`cs_4a_smoothing` and rearrange, we
 discover that
 
 .. math::
-    :label: cs_6
+    :label: cs_6_smoothing
 
     b(\bar s_1) = b_0
 
 
-We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
+We can then use the second equation of :eq:`cs_4a_smoothing`  to deduce the restriction
 
 .. math::
-    :label: cs_7
+    :label: cs_7_smoothing
 
     y(\bar s_1) - y(\bar s_2) + [q(\bar s_1\,|\, \bar s_1) - q(\bar s_1\,|\, \bar s_2) - 1 ] b_0 +
     [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 ,
@@ -351,7 +351,7 @@ We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
 
 an equation in the unknown :math:`b(\bar s_2)`
 
-Knowing :math:`b(\bar s_1)` and :math:`b(\bar s_2)`, we can solve equation :eq:`cs_5`  for the constant level of consumption :math:`\bar c`
+Knowing :math:`b(\bar s_1)` and :math:`b(\bar s_2)`, we can solve equation :eq:`cs_5_smoothing`  for the constant level of consumption :math:`\bar c`
 
 Key Outcomes
 ------------
@@ -370,7 +370,7 @@ We computed the constant level of consumption :math:`\bar c` and indicated how t
    state, so in the two-state Markov case, it switches between two
    values
 
-*  We have verified guess :eq:`eq_guess`
+*  We have verified guess :eq:`eq_guess_smoothing`
 
 We computed how one of those debt levels depends entirely on initial debt -- it equals it -- and how the other value depends on virtually all  remaining parameters of the model
 
@@ -437,7 +437,7 @@ First-order conditions for the consumer's  problem are
 For our assumed quadratic utility function this implies
 
 .. math::
-    :label: cs_8
+    :label: cs_8_smoothing
 
     \sum_j c_{t+1,j} P_{ij} = c_{t,i}
 
@@ -447,7 +447,7 @@ which is Hall's (1978) conclusion that consumption follows a random walk
 As we saw in our first lecture on the :doc:`permanent income model <perm_income>`, this leads to
 
 .. math::
-    :label: cs_9
+    :label: cs_9_smoothing
 
     b_t = \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j} - (1 -\beta)^{-1} c_t
 
@@ -455,7 +455,7 @@ As we saw in our first lecture on the :doc:`permanent income model <perm_income>
 and
 
 .. math::
-    :label: cs_10
+    :label: cs_1_smoothing0
 
     c_t = (1-\beta)
         \left[
@@ -463,13 +463,13 @@ and
         \right]
 
 
-Equation :eq:`cs_10` expresses :math:`c_t` as a net interest rate factor :math:`1 - \beta` times the sum
+Equation :eq:`cs_1_smoothing0` expresses :math:`c_t` as a net interest rate factor :math:`1 - \beta` times the sum
 of the expected present value of nonfinancial income :math:`\mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j}` and financial wealth :math:`-b_t`
 
-Substituting :eq:`cs_10`  into the one-period budget constraint and rearranging leads to
+Substituting :eq:`cs_1_smoothing0`  into the one-period budget constraint and rearranging leads to
 
 .. math::
-    :label: cs_11
+    :label: cs_1_smoothing1
 
     b_{t+1} - b_t
     = \beta^{-1} \left[ (1-\beta)
@@ -514,10 +514,10 @@ We can also write the last expression as
     \vec v = (I - \beta P)^{-1} \vec y
 
 
-In our finite Markov chain setting, from expression  :eq:`cs_10`,  consumption at date :math:`t` when debt is :math:`b_t` and the Markov state today is :math:`s_t = i` is evidently
+In our finite Markov chain setting, from expression  :eq:`cs_1_smoothing0`,  consumption at date :math:`t` when debt is :math:`b_t` and the Markov state today is :math:`s_t = i` is evidently
 
 .. math::
-    :label: cs_12
+    :label: cs_1_smoothing2
 
     c(b_t, i) =  (1 - \beta) \left( [(I - \beta P)^{-1} \vec y]_i - b_t \right)
 
@@ -525,7 +525,7 @@ In our finite Markov chain setting, from expression  :eq:`cs_10`,  consumption a
 and the increment in debt is
 
 .. math::
-    :label: cs_13
+    :label: cs_1_smoothing3
 
     b_{t+1} - b_t = \beta^{-1} [ (1- \beta) v(i) - y(i) ]
 
@@ -556,7 +556,7 @@ The Incomplete Markets Model
 -------------------------------------
 
 
-The code above also contains a function called `consumption_incomplete()` that uses :eq:`cs_12` and :eq:`cs_13` to
+The code above also contains a function called `consumption_incomplete()` that uses :eq:`cs_1_smoothing2` and :eq:`cs_1_smoothing3` to
 
 *  simulate paths of :math:`y_t, c_t, b_{t+1}`
 
@@ -729,7 +729,7 @@ gross interest rate is :math:`\beta^{-1}`, we assume the scaled prices
 of one-period ahead Arrow securities are
 
 .. math::
-    :label: cs_14
+    :label: cs_1_smoothing4
 
     p_{t+1}(x_{t+1} \,|\, x_t) = \beta \phi(x_{t+1} \,|\, A x_t, CC')
 
@@ -741,7 +741,7 @@ distribution with mean vector :math:`\mu` and covariance matrix
 Let :math:`b(x_{t+1})` be a vector of state-contingent debt due at :math:`t+1`
 as a function of the :math:`t+1` state :math:`x_{t+1}`.
 
-Using the pricing function assumed in :eq:`cs_14`, the value at
+Using the pricing function assumed in :eq:`cs_1_smoothing4`, the value at
 :math:`t` of :math:`b(x_{t+1})` is
 
 .. math::
@@ -804,7 +804,7 @@ So it follows that
 or
 
 .. math::
-    :label: cs_15
+    :label: cs_1_smoothing5
 
     b_t = S_y (I - \beta A)^{-1} x_t - \frac{1}{1-\beta} \bar c
 
@@ -812,7 +812,7 @@ or
 where the value of :math:`\bar c` satisfies
 
 .. math::
-    :label: cs_16
+    :label: cs_1_smoothing6
 
     \bar b_0 = S_y (I - \beta A)^{-1} x_0 - \frac{1}{1 - \beta } \bar c
 
@@ -821,9 +821,9 @@ where :math:`\bar b_0` is an initial level of the consumer's debt, specified
 as a parameter of the problem
 
 Thus, in the complete markets version of the consumption-smoothing
-model, :math:`c_t = \bar c, \forall t \geq 0` is determined by :eq:`cs_16`
+model, :math:`c_t = \bar c, \forall t \geq 0` is determined by :eq:`cs_1_smoothing6`
 and the consumer's debt is a fixed function of
-the state :math:`x_t` described by :eq:`cs_15`
+the state :math:`x_t` described by :eq:`cs_1_smoothing5`
 
 
 Here's an example that shows how in this setting the availability of insurance against fluctuating nonfinancial income

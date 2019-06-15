@@ -63,7 +63,7 @@ The worker can be in one of two states: employed or unemployed
 He wants to maximize
 
 .. math::
-    :label: objective
+    :label: objective_mccall_model_with_separation
 
     {\mathbb E} \sum_{t=0}^\infty \beta^t u(Y_t)
 
@@ -113,14 +113,14 @@ Let
 
 * :math:`h` be the total lifetime value accruing to a worker who is *unemployed* this period
 
-Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time
+Here *value* means the value of the objective_mccall_model_with_separation function :eq:`objective_mccall_model_with_separation` when the worker makes optimal decisions at all future points in time
 
 Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`h` and use them in his decision making
 
 Then :math:`v` and :math:`h`  should satisfy
 
 .. math::
-    :label: bell1_mccall
+    :label: bell1_mccall_mccall_model_with_separation
 
     v(w) = u(w) + \beta [(1-\alpha)v(w) + \alpha h ]
 
@@ -128,27 +128,27 @@ Then :math:`v` and :math:`h`  should satisfy
 and
 
 .. math::
-    :label: bell2_mccall
+    :label: bell2_mccall_mccall_model_with_separation
 
     h = u(c) + \beta \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
 
 
 Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
 
-* The left-hand sides of equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the values of a worker in a particular situation *today*
+* The left-hand sides of equations :eq:`bell1_mccall_mccall_model_with_separation` and :eq:`bell2_mccall_mccall_model_with_separation` are the values of a worker in a particular situation *today*
 
 * The right-hand sides of the equations are the discounted (by :math:`\beta`) expected values of the possible situations that worker can be in *tomorrow*
 
 *  But *tomorrow* the worker can be in only one of the situations whose values *today* are on the left sides of our two equations
 
-Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare
+Equation :eq:`bell2_mccall_mccall_model_with_separation` incorporates the fact that a currently unemployed worker will maximize his own welfare
 
 In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`h < v(w')`
 
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations
+Equations :eq:`bell1_mccall_mccall_model_with_separation` and :eq:`bell2_mccall_mccall_model_with_separation` are the Bellman equations
 for this model
 
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`v` and :math:`h`
+Equations :eq:`bell1_mccall_mccall_model_with_separation` and :eq:`bell2_mccall_mccall_model_with_separation` provide enough information to solve out for both :math:`v` and :math:`h`
 
 Before discussing this, however, let's make a small extension to the model
 
@@ -173,7 +173,7 @@ Otherwise, the model is the same
 With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy
 
 .. math::
-    :label: bell01_mccall
+    :label: bell01_mccall_mccall_model_with_separation
 
     v(w) = u(w) + \beta [(1-\alpha)v(w) + \alpha h ]
 
@@ -181,7 +181,7 @@ With some thought, you  will be able to convince yourself that :math:`v` and :ma
 and
 
 .. math::
-    :label: bell02_mccall
+    :label: bell02_mccall_mccall_model_with_separation
 
     h = u(c) +
       \beta (1 - \gamma) h +
@@ -199,7 +199,7 @@ Here this amounts to
 
 #. make guesses for :math:`h` and :math:`v`
 
-#. plug these guesses into the right-hand sides of :eq:`bell01_mccall` and :eq:`bell02_mccall`
+#. plug these guesses into the right-hand sides of :eq:`bell01_mccall_mccall_model_with_separation` and :eq:`bell02_mccall_mccall_model_with_separation`
 
 #. update the left-hand sides from this rule and then repeat
 
@@ -208,7 +208,7 @@ In other words, we are iterating using the rules
 
 
 .. math::
-    :label: bell1001
+    :label: bell1001_mccall_model_with_separation
 
     v_{n+1} (w') = u(w') + \beta [(1-\alpha)v_n (w') + \alpha h_n ]
 
@@ -216,7 +216,7 @@ In other words, we are iterating using the rules
 and
 
 .. math::
-    :label: bell2001
+    :label: bell2001_mccall_model_with_separation
 
     h_{n+1} = u(c) +
         \beta (1 - \gamma) h_n +
@@ -226,7 +226,7 @@ and
 starting from some initial conditions :math:`h_0, v_0`
 
 As before, the system always converges to the true solutions---in this case,
-the :math:`v` and :math:`h` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`
+the :math:`v` and :math:`h` that solve :eq:`bell01_mccall_mccall_model_with_separation` and :eq:`bell02_mccall_mccall_model_with_separation`
 
 A proof can be obtained via the Banach contraction mapping theorem
 

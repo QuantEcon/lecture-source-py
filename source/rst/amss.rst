@@ -62,7 +62,7 @@ Each period a representative  household is endowed with one unit of time that ca
 :math:`\ell_t` and labor :math:`n_t`:
 
 .. math::
-    :label: feas1_amss
+    :label: feas1_amss_amss
 
     n_t(s^t) + \ell_t(s^t) = 1
 
@@ -70,7 +70,7 @@ Each period a representative  household is endowed with one unit of time that ca
 Output equals :math:`n_t(s^t)` and can be divided between consumption :math:`c_t(s^t)` and :math:`g(s_t)`
 
 .. math::
-    :label: TSs_techr_amss
+    :label: TSs_techr_amss_amss
 
     c_t(s^t) + g(s_t) = n_t(s^t)
 
@@ -83,7 +83,7 @@ The technology pins down a pre-tax wage rate to unity for all :math:`t, s^t`
 A representative  household’s preferences over :math:`\{c_t(s^t), \ell_t(s^t)\}_{t=0}^\infty` are ordered by
 
 .. math::
-    :label: TS_prefr_amss
+    :label: TS_prefr_amss_amss
 
     \sum_{t=0}^\infty \sum_{s^t} \beta^t \pi_t(s^t) u[c_t(s^t), \ell_t(s^t)]
 
@@ -124,7 +124,7 @@ The market value at time :math:`t` of government debt maturing at time :math:`t+
 The government’s budget constraint in period :math:`t` at history :math:`s^t` is
 
 .. math::
-    :label: TS_gov_wo
+    :label: TS_gov_wo_amss
 
     \begin{aligned}
     b_t(s^{t-1})
@@ -149,11 +149,11 @@ with one-period gross interest rate :math:`R_t(s^t)` is
                             { u_c(s^{t+1}) \over u_c(s^{t}) }
 
 
-Substituting this expression into the government’s budget constraint :eq:`TS_gov_wo`
+Substituting this expression into the government’s budget constraint :eq:`TS_gov_wo_amss`
 yields:
 
 .. math::
-    :label: TS_gov_wo2
+    :label: TS_gov_wo_amss2
 
     b_t(s^{t-1}) =  z(s^t) + \beta  \sum_{s^{t+1}\vert s^t}  \pi_{t+1}(s^{t+1} | s^t)
                            { u_c(s^{t+1}) \over u_c(s^{t}) } \; b_{t+1}(s^t)
@@ -162,11 +162,11 @@ Components of :math:`z(s^t)` on the right side depend on :math:`s^t`, but the le
 
 **This is what it means for one-period government debt to be risk-free**
 
-Therefore, the sum on the right side of equation :eq:`TS_gov_wo2` also has to depend only on :math:`s^{t-1}`
+Therefore, the sum on the right side of equation :eq:`TS_gov_wo_amss2` also has to depend only on :math:`s^{t-1}`
 
 This requirement will give rise to **measurability constraints** on the Ramsey allocation to be discussed soon
 
-If we replace :math:`b_{t+1}(s^t)` on the right side of equation :eq:`TS_gov_wo2` by the right
+If we replace :math:`b_{t+1}(s^t)` on the right side of equation :eq:`TS_gov_wo_amss2` by the right
 side of next period’s budget constraint (associated with a
 particular realization :math:`s_{t}`) we get
 
@@ -182,7 +182,7 @@ government indebtedness, and by invoking the natural debt limit, we
 arrive at:
 
 .. math::
-    :label: TS_gov_wo3
+    :label: TS_gov_wo_amss3
 
     \begin{aligned}
     b_t(s^{t-1})
@@ -200,20 +200,20 @@ Now let's
 so that we can express the net-of-interest government surplus :math:`z(s^t)` as
 
 .. math::
-    :label: AMSS_44_2
+    :label: AMSS_44_amss_2_amss
 
     z(s^t)
         = \left[1 - {u_{\ell}(s^t) \over u_c(s^t)}\right] \left[c_t(s^t)+g_t(s_t)\right]
             -g_t(s_t) - T_t(s^t)\,.
 
-If we substitute the  appropriate versions of the right side of :eq:`AMSS_44_2` for :math:`z(s^{t+j})` into equation :eq:`TS_gov_wo3`,
+If we substitute the  appropriate versions of the right side of :eq:`AMSS_44_amss_2_amss` for :math:`z(s^{t+j})` into equation :eq:`TS_gov_wo_amss3`,
 we obtain a sequence of *implementability constraints* on a Ramsey allocation in an AMSS economy
 
-Expression :eq:`TS_gov_wo3` at time :math:`t=0` and initial state :math:`s^0`
+Expression :eq:`TS_gov_wo_amss3` at time :math:`t=0` and initial state :math:`s^0`
 was also  an *implementability constraint* on a Ramsey allocation in a Lucas-Stokey economy:
 
 .. math::
-    :label: TS_gov_wo4
+    :label: TS_gov_wo_amss4
 
     b_0(s^{-1}) = \mathbb E_0 \sum_{j=0}^\infty \beta^j
                    { u_c(s^{j}) \over u_c(s^{0}) } \;z(s^{j})
@@ -223,17 +223,17 @@ Indeed, it was the *only* implementability constraint there
 But now we also have a large number of additional implementability constraints
 
 .. math::
-    :label: TS_gov_wo4a
+    :label: TS_gov_wo_amss4a
 
      b_t(s^{t-1}) =  \mathbb E_t \sum_{j=0}^\infty \beta^j
                   { u_c(s^{t+j}) \over u_c(s^{t}) } \;z(s^{t+j})
 
-Equation :eq:`TS_gov_wo4a` must hold for each :math:`s^t` for each :math:`t \geq 1`
+Equation :eq:`TS_gov_wo_amss4a` must hold for each :math:`s^t` for each :math:`t \geq 1`
 
 Comparison with Lucas-Stokey Economy
 -------------------------------------
 
-The expression on the right side of :eq:`TS_gov_wo4a` in the Lucas-Stokey (1983) economy would  equal the present value of a continuation stream of government surpluses evaluated at what would be competitive equilibrium Arrow-Debreu prices at date :math:`t`
+The expression on the right side of :eq:`TS_gov_wo_amss4a` in the Lucas-Stokey (1983) economy would  equal the present value of a continuation stream of government surpluses evaluated at what would be competitive equilibrium Arrow-Debreu prices at date :math:`t`
 
 In the Lucas-Stokey economy, that present value is measurable with respect to :math:`s^t`
 
@@ -257,7 +257,7 @@ After we have substituted the resource constraint into the utility function, we 
 where the maximization is subject to
 
 .. math::
-    :label: AMSS_44
+    :label: AMSS_44_amss
 
     \mathbb E_{0} \sum_{j=0}^\infty \beta^j
           { u_c(s^{j}) \over u_c(s^{0}) } \;z(s^{j}) \geq b_0(s^{-1})
@@ -266,7 +266,7 @@ where the maximization is subject to
 and
 
 .. math::
-    :label: AMSS_46
+    :label: AMSS_46_amss
 
     \mathbb E_{t} \sum_{j=0}^\infty \beta^j
         { u_c(s^{t+j}) \over u_c(s^{t}) } \;
@@ -281,13 +281,13 @@ given :math:`b_0(s^{-1})`
 Lagrangian Formulation
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Let :math:`\gamma_0(s^0)` be a non-negative Lagrange multiplier on constraint :eq:`AMSS_44`
+Let :math:`\gamma_0(s^0)` be a non-negative Lagrange multiplier on constraint :eq:`AMSS_44_amss`
 
 As in the Lucas-Stokey economy, this multiplier is strictly positive when the government must resort to
 distortionary taxation; otherwise it equals zero
 
 A consequence of the assumption that there are no markets in state-contingent securities  and that a market exists only in a risk-free security is that we have to attach stochastic processes :math:`\{\gamma_t(s^t)\}_{t=1}^\infty` of
-Lagrange multipliers to the implementability constraints :eq:`AMSS_46`
+Lagrange multipliers to the implementability constraints :eq:`AMSS_46_amss`
 
 Depending on how the constraints  bind, these multipliers can be positive or negative:
 
@@ -303,7 +303,7 @@ Depending on how the constraints  bind, these multipliers can be positive or neg
 
 
 A negative multiplier :math:`\gamma_t(s^t)<0` means that if we could
-relax constraint :eq:`AMSS_46`, we would like to *increase* the beginning-of-period
+relax constraint :eq:`AMSS_46_amss`, we would like to *increase* the beginning-of-period
 indebtedness for that particular realization of history :math:`s^t`
 
 That would let us reduce the beginning-of-period indebtedness for some other history [#fn_b]_
@@ -316,12 +316,12 @@ Some Calculations
 
 It is helpful to apply two transformations to the Lagrangian
 
-Multiply constraint :eq:`AMSS_44` by :math:`u_c(s^0)` and the constraints :eq:`AMSS_46` by :math:`\beta^t u_c(s^{t})`
+Multiply constraint :eq:`AMSS_44_amss` by :math:`u_c(s^0)` and the constraints :eq:`AMSS_46_amss` by :math:`\beta^t u_c(s^{t})`
 
 Then a Lagrangian for the Ramsey problem can  be represented as
 
 .. math::
-    :label: AMSS_lagr;a
+    :label: AMSS_lagr;_amssa_amss
 
     \begin{aligned}
        J &= \mathbb E_{0} \sum_{t=0}^\infty \beta^t
@@ -340,14 +340,14 @@ Then a Lagrangian for the Ramsey problem can  be represented as
 where
 
 .. math::
-    :label: AMSS_lagr;
+    :label: AMSS_lagr;_amss
 
     \Psi_t(s^t)=\Psi_{t-1}(s^{t-1})+\gamma_t(s^t)
      \quad \text{and} \quad
     \Psi_{-1}(s^{-1})=0
 
 
-In :eq:`AMSS_lagr;a`,  the second equality uses  the law of iterated expectations
+In :eq:`AMSS_lagr;_amssa_amss`,  the second equality uses  the law of iterated expectations
 and Abel’s summation formula (also called *summation by parts*, see
 `this page <https://en.wikipedia.org/wiki/Abel%27s_summation_formula>`__)
 
@@ -356,7 +356,7 @@ First-order conditions with respect
 to :math:`c_t(s^t)` can be expressed as
 
 .. math::
-    :label: AMSS_foc;a
+    :label: AMSS_foc;a_amss
 
     \begin{aligned}
       u_c(s^t)-u_{\ell}(s^t) &+ \Psi_t(s^t)\left\{ \left[
@@ -371,18 +371,18 @@ to :math:`c_t(s^t)` can be expressed as
 and with respect to :math:`b_t(s^t)` as
 
 .. math::
-    :label: AMSS_foc;b
+    :label: AMSS_foc;b_amss
 
     \mathbb E_{t} \left[\gamma_{t+1}(s^{t+1})\,u_c(s^{t+1})\right] = 0
 
 
-If we substitute :math:`z(s^t)` from :eq:`AMSS_44_2` and its derivative
-:math:`z_c(s^t)` into the first-order condition :eq:`AMSS_foc;a`, we  find  two
+If we substitute :math:`z(s^t)` from :eq:`AMSS_44_amss_2_amss` and its derivative
+:math:`z_c(s^t)` into the first-order condition :eq:`AMSS_foc;a_amss`, we  find  two
 differences from the corresponding condition for the optimal allocation
 in a Lucas-Stokey economy with state-contingent government debt
 
 1. The term involving :math:`b_t(s^{t-1})` in the first-order condition
-   :eq:`AMSS_foc;a` does not appear in the corresponding expression
+   :eq:`AMSS_foc;a_amss` does not appear in the corresponding expression
    for the Lucas-Stokey economy
 
     * This term reflects the constraint that
@@ -391,7 +391,7 @@ in a Lucas-Stokey economy with state-contingent government debt
       government debt could be state contingent
 
 2. The Lagrange multiplier :math:`\Psi_t(s^t)` in the first-order condition
-   :eq:`AMSS_foc;a` may change over time in response to realizations of the state,
+   :eq:`AMSS_foc;a_amss` may change over time in response to realizations of the state,
    while the multiplier :math:`\Phi` in the Lucas-Stokey economy is time-invariant
 
 
@@ -417,9 +417,9 @@ We have noted that from the point of view of the Ramsey planner, the restriction
 to one-period risk-free securities
 
 * leaves intact the single implementability constraint on allocations
-  :eq:`TS_gov_wo4` from the Lucas-Stokey economy, but
+  :eq:`TS_gov_wo_amss4` from the Lucas-Stokey economy, but
 
-* adds measurability constraints :eq:`TS_gov_wo3` on functions of tails of
+* adds measurability constraints :eq:`TS_gov_wo_amss3` on functions of tails of
   allocations at each time and history
 
 We now explore how these constraints alter  Bellman equations for a time
@@ -448,7 +448,7 @@ to be non-negative)
 In this case, the household faces a sequence of budget constraints
 
 .. math::
-    :label: eqn:AMSSapp1
+    :label: eqn:AMSSapp1_amss
 
     b_t(s^{t-1}) + (1-\tau_t(s^t)) n_t(s^t) = c_t(s^t) + b_{t+1}(s^t)/R_t(s^t)
 
@@ -457,10 +457,10 @@ The household’s first-order conditions are :math:`u_{c,t} = \beta R_t \mathbb 
 and :math:`(1-\tau_t) u_{c,t} = u_{l,t}`
 
 Using these to eliminate :math:`R_t` and :math:`\tau_t` from  budget constraint
-:eq:`eqn:AMSSapp1` gives
+:eq:`eqn:AMSSapp1_amss` gives
 
 .. math::
-    :label: eqn:AMSSapp2a
+    :label: eqn:AMSSapp2_amssa_amss
 
     b_t(s^{t-1}) + \frac{u_{l,t}(s^t)}{u_{c,t}(s^t)} n_t(s^t)
     = c_t(s^t) + {\frac{\beta (\mathbb E_t u_{c,t+1}) b_{t+1}(s^t)}{u_{c,t}(s^t)}}
@@ -469,7 +469,7 @@ Using these to eliminate :math:`R_t` and :math:`\tau_t` from  budget constraint
 or
 
 .. math::
-    :label: eqn:AMSSapp2
+    :label: eqn:AMSSapp2_amss
 
     u_{c,t}(s^t) b_t(s^{t-1}) + u_{l,t}(s^t) n_t(s^t)
     = u_{c,t}(s^t) c_t(s^t) + \beta (\mathbb E_t u_{c,t+1}) b_{t+1}(s^t)
@@ -478,7 +478,7 @@ or
 Now define
 
 .. math::
-    :label: eqn:AMSSapp3
+    :label: eqn:AMSSapp3_amss
 
     x_t \equiv \beta b_{t+1}(s^t) \mathbb E_t u_{c,t+1} = u_{c,t} (s^t) {\frac{b_{t+1}(s^t)}{R_t(s^t)}}
 
@@ -487,7 +487,7 @@ and represent the household’s budget constraint at time :math:`t`,
 history :math:`s^t` as
 
 .. math::
-    :label: eqn:AMSSapp4
+    :label: eqn:AMSSapp4_amss
 
     {\frac{u_{c,t} x_{t-1}}{\beta \mathbb E_{t-1} u_{c,t}}} = u_{c,t} c_t - u_{l,t} n_t + x_t
 
@@ -497,25 +497,25 @@ for :math:`t \geq 1`
 Measurability Constraints
 --------------------------
 
-Write equation :eq:`eqn:AMSSapp2` as
+Write equation :eq:`eqn:AMSSapp2_amss` as
 
 .. math::
-    :label: eqn:AMSSapp2b
+    :label: eqn:AMSSapp2_amssb
 
     b_t(s^{t-1})  = c_t(s^t) -  { \frac{u_{l,t}(s^t)}{u_{c,t}(s^t)}} n_t(s^t) +
     {\frac{\beta (\mathbb E_t u_{c,t+1}) b_{t+1}(s^t)}{u_{c,t}}}
 
 
-The right side of equation :eq:`eqn:AMSSapp2b` expresses the time :math:`t` value of government debt
+The right side of equation :eq:`eqn:AMSSapp2_amssb` expresses the time :math:`t` value of government debt
 in terms of a linear combination of terms whose individual components
 are measurable with respect to :math:`s^t`
 
-The sum  of terms on the right side  of equation :eq:`eqn:AMSSapp2b` must equal
+The sum  of terms on the right side  of equation :eq:`eqn:AMSSapp2_amssb` must equal
 :math:`b_t(s^{t-1})`
 
 That implies that it has to be *measurable* with respect to :math:`s^{t-1}`
 
-Equations :eq:`eqn:AMSSapp2b` are the *measurability constraints* that the AMSS model adds to the single time :math:`0` implementation
+Equations :eq:`eqn:AMSSapp2_amssb` are the *measurability constraints* that the AMSS model adds to the single time :math:`0` implementation
 constraint imposed in the Lucas and Stokey model
 
 Two Bellman Equations
@@ -537,7 +537,7 @@ For :math:`t \geq 1`, the value function for a **continuation Ramsey planner**
 satisfies the Bellman equation
 
 .. math::
-    :label: eqn:AMSSapp5
+    :label: eqn:AMSSapp5_amss
 
     V(x_-,s_-) = \max_{\{n(s), x(s)\}} \sum_s \Pi(s|s_-) \left[ u(n(s) -
     g(s), 1-n(s)) + \beta V(x(s),s) \right]
@@ -547,7 +547,7 @@ subject to the following collection of implementability constraints, one
 for each :math:`s \in {\cal S}`:
 
 .. math::
-    :label: eqn:AMSSapp6
+    :label: eqn:AMSSapp6_amss
 
     {\frac{u_c(s) x_- }{\beta \sum_{\tilde s} \Pi(\tilde s|s_-) u_c(\tilde s) }}
     = u_c(s) (n(s) - g(s)) - u_l(s) n(s) + x(s)
@@ -565,14 +565,14 @@ The value function :math:`W(b_0, s_0)`   for the time :math:`t=0` Ramsey planner
 satisfies the Bellman equation
 
 .. math::
-    :label: eqn:AMSSapp100
+    :label: eqn:AMSSapp1_amss00
 
     W(b_0, s_0) = \max_{n_0, x_0} u(n_0 - g_0, 1-n_0) + \beta V(x_0,s_0)
 
 where maximization is subject to
 
 .. math::
-    :label: eqn:AMMSSapp101
+    :label: eqn:AMMSSapp101_amss
 
     u_{c,0} b_0 = u_{c,0} (n_0-g_0) - u_{l,0} n_0 + x_0
 
@@ -580,37 +580,37 @@ where maximization is subject to
 Martingale Supercedes State-Variable Degeneracy
 ------------------------------------------------
 
-Let :math:`\mu(s|s_-) \Pi(s|s_-)` be a Lagrange multiplier on the constraint :eq:`eqn:AMSSapp6`
+Let :math:`\mu(s|s_-) \Pi(s|s_-)` be a Lagrange multiplier on the constraint :eq:`eqn:AMSSapp6_amss`
 for state :math:`s`
 
 After forming an appropriate Lagrangian, we find that the continuation Ramsey planner’s first-order
 condition with respect to :math:`x(s)` is
 
 .. math::
-    :label: eqn:AMSSapp7
+    :label: eqn:AMSSapp7_amss
 
     \beta V_x(x(s),s) = \mu(s|s_-)
 
 
-Applying the envelope theorem to Bellman equation :eq:`eqn:AMSSapp5` gives
+Applying the envelope theorem to Bellman equation :eq:`eqn:AMSSapp5_amss` gives
 
 .. math::
-    :label: eqn:AMSSapp8
+    :label: eqn:AMSSapp8_amss
 
     V_x(x_-,s_-) = \sum_s \Pi(s|s_-) \mu(s|s_-) {\frac{u_c(s)}{\beta \sum_{\tilde s}
     \Pi(\tilde s|s_-) u_c(\tilde s) }}
 
 
-Equations :eq:`eqn:AMSSapp7` and :eq:`eqn:AMSSapp8` imply that
+Equations :eq:`eqn:AMSSapp7_amss` and :eq:`eqn:AMSSapp8_amss` imply that
 
 .. math::
-    :label: eqn:AMSSapp9
+    :label: eqn:AMSSapp9_amss
 
     V_x(x_-, s_-) = \sum_{s} \left( \Pi(s|s_-) {\frac{u_c(s)}{\sum_{\tilde s}
     \Pi(\tilde s| s_-) u_c(\tilde s)}} \right) V_x(x(s), s)
 
 
-Equation :eq:`eqn:AMSSapp9` states that :math:`V_x(x, s)` is a *risk-adjusted martingale*
+Equation :eq:`eqn:AMSSapp9_amss` states that :math:`V_x(x, s)` is a *risk-adjusted martingale*
 
 Saying that :math:`V_x(x, s)` is a risk-adjusted martingale  means  that
 :math:`V_x(x, s)`  is a martingale with respect to the probability distribution
@@ -1024,5 +1024,5 @@ the two policies over 200 periods
     From the first-order conditions for the Ramsey
     problem, there exists another realization :math:`\tilde s^t` with
     the same history up until the previous period, i.e., :math:`\tilde s^{t-1}=
-    s^{t-1}`, but where the multiplier on constraint :eq:`AMSS_46` takes  a positive value, so
+    s^{t-1}`, but where the multiplier on constraint :eq:`AMSS_46_amss` takes  a positive value, so
     :math:`\gamma_t(\tilde s^t)>0`.

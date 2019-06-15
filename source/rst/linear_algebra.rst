@@ -29,7 +29,7 @@ For example, many applied problems in economics and finance require the solution
 or, more generally,
 
 .. math::
-    :label: la_se
+    :label: la_se_linear_algebra
 
     \begin{array}{c}
         y_1 = a_{11} x_1 + a_{12} x_2 + \cdots + a_{1k} x_k \\
@@ -616,7 +616,7 @@ As perhaps the most important special case, consider multiplying :math:`n \times
 According to the preceding rule, this gives us an :math:`n \times 1` column vector
 
 .. math::
-    :label: la_atx
+    :label: la_atx_linear_algebra
 
     A x =
     \left[
@@ -754,18 +754,18 @@ Solving Systems of Equations
 .. index::
     single: Matrix; Solving Systems of Equations
 
-Recall again the system of equations :eq:`la_se`
+Recall again the system of equations :eq:`la_se_linear_algebra`
 
-If we compare :eq:`la_se` and :eq:`la_atx`, we see that :eq:`la_se` can now be
+If we compare :eq:`la_se_linear_algebra` and :eq:`la_atx_linear_algebra`, we see that :eq:`la_se_linear_algebra` can now be
 written more conveniently as
 
 .. math::
-    :label: la_se2
+    :label: la_se_linear_algebra2
 
     y = Ax
 
 
-The problem we face is to determine a vector :math:`x \in \mathbb R ^k` that solves :eq:`la_se2`, taking :math:`y` and :math:`A` as given
+The problem we face is to determine a vector :math:`x \in \mathbb R ^k` that solves :eq:`la_se_linear_algebra2`, taking :math:`y` and :math:`A` as given
 
 This is a special case of a more general problem: Find an :math:`x` such that :math:`y = f(x)`
 
@@ -831,7 +831,7 @@ The answer to both these questions is negative, as the next figure shows
 In the first plot, there are multiple solutions, as the function is not one-to-one, while
 in the second there are no solutions, since :math:`y` lies outside the range of :math:`f`
 
-Can we impose conditions on :math:`A` in :eq:`la_se2` that rule out these problems?
+Can we impose conditions on :math:`A` in :eq:`la_se_linear_algebra2` that rule out these problems?
 
 In this context, the most important thing to recognize about the expression
 :math:`Ax` is that it corresponds to a linear combination of the columns of :math:`A`
@@ -1242,7 +1242,7 @@ the left-hand side is a *matrix norm* --- in this case, the so-called
 
 For example, for a square matrix :math:`S`, the condition :math:`\| S \| < 1` means that :math:`S` is *contractive*, in the sense that it pulls all vectors towards the origin [#cfn]_
 
-.. _la_neumann:
+.. _la_neumann_linear_algebra:
 
 :index:`Neumann's Theorem`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1258,12 +1258,12 @@ Neumann's theorem states the following: If :math:`\| A^k \| < 1` for some
 :math:`k \in \mathbb{N}`, then :math:`I - A` is invertible, and
 
 .. math::
-    :label: la_neumann
+    :label: la_neumann_linear_algebra
 
     (I - A)^{-1} = \sum_{k=0}^{\infty} A^k
 
 
-.. _la_neumann_remarks:
+.. _la_neumann_linear_algebra_remarks:
 
 :index:`Spectral Radius`
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1283,7 +1283,7 @@ Here :math:`\rho(A)` is the *spectral radius*, defined as :math:`\max_i |\lambda
 As a consequence of Gelfand's formula, if all eigenvalues are strictly less than one in modulus,
 there exists a :math:`k` with :math:`\| A^k \| < 1`
 
-In which case :eq:`la_neumann` is valid
+In which case :eq:`la_neumann_linear_algebra` is valid
 
 
 :index:`Positive Definite Matrices`

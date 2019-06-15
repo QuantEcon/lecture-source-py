@@ -62,7 +62,7 @@ A consumer has preferences over consumption streams that are ordered by
 the utility functional
 
 .. math::
-    :label: perm-utility
+    :label: perm-utility_permanent_income_dles
 
     E_0 \sum_{t=0}^\infty \beta^t u(c_t)
 
@@ -78,7 +78,7 @@ function :math:`u` is quadratic:
 
 where :math:`\gamma>0` is a bliss level of consumption
 
-The consumer maximizes the utility functional :eq:`perm-utility` by choosing a
+The consumer maximizes the utility functional :eq:`perm-utility_permanent_income_dles` by choosing a
 consumption, borrowing plan :math:`\{c_t, b_{t+1}\}_{t=0}^\infty`
 subject to the sequence of budget constraints
 
@@ -87,7 +87,7 @@ subject to the sequence of budget constraints
 
   c_t + b_t = R^{-1} b_{t+1}  + y_t, t \geq 0
 
-where :math:`y_t` is an exogenous stationary endowment process,
+where :math:`y_t` is an exogenous stationary endowment_permanent_income_dles process,
 :math:`R` is a constant gross risk-free interest rate, :math:`b_t` is
 one-period risk-free debt maturing at :math:`t`, and :math:`b_0` is a
 given initial condition
@@ -96,13 +96,13 @@ We shall assume that :math:`R^{-1} = \beta`
 
 Equation :eq:`max-utility` is linear
 
-We use another set of linear equations to model the endowment process
+We use another set of linear equations to model the endowment_permanent_income_dles process
 
-In particular, we assume that the endowment process has the state-space
+In particular, we assume that the endowment_permanent_income_dles process has the state-space
 representation
 
 .. math::
-    :label: endowment
+    :label: endowment_permanent_income_dles
 
     \eqalign{ z_{t+1} & = A_{22} z_t + C_2 w_{t+1}  \cr
                   y_t & = U_y  z_t  \cr}
@@ -131,7 +131,7 @@ The state vector confronting the household at :math:`t` is
 
 where :math:`b_t` is its one-period debt falling due at the beginning of
 period :math:`t` and :math:`z_t` contains all variables useful for
-forecasting its future endowment
+forecasting its future endowment_permanent_income_dles
 
 We assume that :math:`\{y_t\}` follows a second order univariate
 autoregressive process:

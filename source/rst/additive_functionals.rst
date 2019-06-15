@@ -84,7 +84,7 @@ by using linear state-space tools
 We construct our  additive functional from two pieces, the first of which is a **first-order vector autoregression** (VAR)
 
 .. math::
-    :label: old1_additive_functionals
+    :label: old1_additive_functionals_additive_functionals
 
     x_{t+1} = A x_t + B z_{t+1}
 
@@ -108,12 +108,12 @@ of :math:`\{y_t\}_{t=0}^\infty` as linear functions of
 
 * the vector :math:`x_t`, and
 
-* the same Gaussian vector :math:`z_{t+1}` that appears in the VAR :eq:`old1_additive_functionals`
+* the same Gaussian vector :math:`z_{t+1}` that appears in the VAR :eq:`old1_additive_functionals_additive_functionals`
 
 In particular,
 
 .. math::
-    :label: old2_additive_functionals
+    :label: old2_additive_functionals_additive_functionals
 
     y_{t+1} - y_{t} = \nu + D x_{t} + F z_{t+1}
 
@@ -208,7 +208,7 @@ Let's run some simulations to build intuition
 In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x_t` follows a 4th-order scalar autoregression
 
 .. math::
-    :label: ftaf
+    :label: ftaf_additive_functionals
 
     \tilde x_{t+1} = \phi_1 \tilde x_{t} + \phi_2 \tilde x_{t-1} +
     \phi_3 \tilde x_{t-2} +
@@ -233,12 +233,12 @@ Let the increment in :math:`\{y_t\}` obey
 
 with an initial condition for :math:`y_0`
 
-While :eq:`ftaf` is not a first order system like :eq:`old1_additive_functionals`, we know that it can be mapped  into a first order system
+While :eq:`ftaf_additive_functionals` is not a first order system like :eq:`old1_additive_functionals_additive_functionals`, we know that it can be mapped  into a first order system
 
 * for an example of such a mapping, see :ref:`this example <lss_sode>`
 
 
-In fact, this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals` -- :eq:`old2_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`
+In fact, this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals_additive_functionals` -- :eq:`old2_additive_functionals_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`
 
 You can try writing these matrices down now as an exercise --- correct expressions appear in the code below
 
@@ -314,7 +314,7 @@ an additive functional into four parts:
 -  an (asymptotically) stationary component
 
 To attain this decomposition for the particular class of additive
-functionals defined by :eq:`old1_additive_functionals` and :eq:`old2_additive_functionals`, we first construct the matrices
+functionals defined by :eq:`old1_additive_functionals_additive_functionals` and :eq:`old2_additive_functionals_additive_functionals`, we first construct the matrices
 
 .. math::
 
@@ -338,7 +338,7 @@ Then the Hansen-Scheinkman :cite:`Hans_Scheink_2009` decomposition is
     \end{aligned}
 
 
-At this stage, you should pause and verify that :math:`y_{t+1} - y_t` satisfies :eq:`old2_additive_functionals`
+At this stage, you should pause and verify that :math:`y_{t+1} - y_t` satisfies :eq:`old2_additive_functionals_additive_functionals`
 
 It is convenient for us to introduce the following notation:
 
@@ -354,7 +354,7 @@ A convenient way to do this is to construct an appropriate instance of a :doc:`l
 
 This will allow us to use the routines in `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ to study dynamics
 
-To start, observe that, under the dynamics in :eq:`old1_additive_functionals` and :eq:`old2_additive_functionals` and with the
+To start, observe that, under the dynamics in :eq:`old1_additive_functionals_additive_functionals` and :eq:`old2_additive_functionals_additive_functionals` and with the
 definitions just given,
 
 .. math::

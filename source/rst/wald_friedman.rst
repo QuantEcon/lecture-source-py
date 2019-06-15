@@ -308,7 +308,7 @@ Let :math:`J(\pi)` be the total loss for a decision-maker with current belief :m
 With some thought, you will agree that :math:`J` should satisfy the Bellman equation
 
 .. math::
-    :label: new1
+    :label: new1_wald_friedman
 
     J(\pi) =
         \min
@@ -342,7 +342,7 @@ In the Bellman equation, minimization is over three actions:
 We can represent the  Bellman equation as
 
 .. math::
-    :label: optdec
+    :label: optdec_wald_friedman
 
     J(\pi) =
     \min \left\{ (1-\pi) L_0, \; \pi L_1, \; h(\pi) \right\}
@@ -387,10 +387,10 @@ The optimal decision rule is then
 Our aim is to compute the value function :math:`J`, and from it the associated cutoffs :math:`\alpha`
 and :math:`\beta`
 
-To make our computations simpler, using :eq:`optdec`, we can write the continuation value :math:`h(\pi)` as
+To make our computations simpler, using :eq:`optdec_wald_friedman`, we can write the continuation value :math:`h(\pi)` as
 
 .. math::
-    :label: optdec2
+    :label: optdec_wald_friedman2
 
     \begin{aligned}
     h(\pi) &= c + \mathbb E [J(\pi')] \\
@@ -401,15 +401,15 @@ To make our computations simpler, using :eq:`optdec`, we can write the continuat
 The equality
 
 .. math::
-    :label: funceq
+    :label: funceq_wald_friedman
 
     h(\pi) =
     c + \int \min \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_\pi (z') dz'
 
 can be understood as a functional equation, where :math:`h` is the unknown
 
-Using the functional equation, :eq:`funceq`, for the continuation value, we can back out
-optimal choices using the RHS of :eq:`optdec`
+Using the functional equation, :eq:`funceq_wald_friedman`, for the continuation value, we can back out
+optimal choices using the RHS of :eq:`optdec_wald_friedman`
 
 This functional equation can be solved by taking an initial guess and iterating
 to find the fixed point

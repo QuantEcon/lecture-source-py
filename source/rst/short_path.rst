@@ -93,7 +93,7 @@ The best path can now be found as follows
 * From node v, move to any node that solves
 
 .. math::
-    :label: spprebell
+    :label: spprebell_short_path
 
     \min_{w \in F_v} \{ c(v, w) + J(w) \}
 
@@ -112,7 +112,7 @@ Some thought will convince you that, for every node :math:`v`,
 the function :math:`J` satisfies
 
 .. math::
-    :label: spbell
+    :label: spbell_short_path
 
     J(v) = \min_{w \in F_v} \{ c(v, w) + J(w) \}
 
@@ -127,7 +127,7 @@ Solving for Minimum Cost-to-Go
 The standard algorithm for finding :math:`J` is to start with
 
 .. math::
-    :label: spguess
+    :label: spguess_short_path
 
     J_0(v) = M \text{ if } v \not= \text{ destination, else } J_0(v) = 0
 

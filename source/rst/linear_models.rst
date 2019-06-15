@@ -88,7 +88,7 @@ The objects in play are:
 Here is the linear state-space system
 
 .. math::
-    :label: st_space_rep
+    :label: st_space_rep_linear_models
 
     \begin{aligned}
         x_{t+1} & =  A x_t + C w_{t+1}   \\
@@ -112,7 +112,7 @@ The primitives of the model are
 
 
 Given :math:`A, C, G` and draws of :math:`x_0` and :math:`w_1, w_2, \ldots`, the
-model :eq:`st_space_rep` pins down the values of the sequences :math:`\{x_t\}` and :math:`\{y_t\}`
+model :eq:`st_space_rep_linear_models` pins down the values of the sequences :math:`\{x_t\}` and :math:`\{y_t\}`
 
 Even without these draws, the primitives 1--3 pin down the *probability distributions* of :math:`\{x_t\}` and :math:`\{y_t\}`
 
@@ -164,14 +164,14 @@ Second-order Difference Equation
 Let :math:`\{y_t\}` be a deterministic sequence that satisfies
 
 .. math::
-    :label: st_ex_1
+    :label: st_ex_1_linear_models
 
     y_{t+1} =  \phi_0 + \phi_1 y_t + \phi_2 y_{t-1}
     \quad \text{s.t.} \quad
     y_0, y_{-1} \text{ given}
 
 
-To map :eq:`st_ex_1` into our state space system :eq:`st_space_rep`, we set
+To map :eq:`st_ex_1_linear_models` into our state space system :eq:`st_space_rep_linear_models`, we set
 
 .. math::
 
@@ -197,7 +197,7 @@ To map :eq:`st_ex_1` into our state space system :eq:`st_space_rep`, we set
     G = \begin{bmatrix} 0 & 1 & 0 \end{bmatrix}
 
 
-You can confirm that under these definitions, :eq:`st_space_rep` and :eq:`st_ex_1` agree
+You can confirm that under these definitions, :eq:`st_space_rep_linear_models` and :eq:`st_ex_1_linear_models` agree
 
 
 The next figure shows the dynamics of this process when :math:`\phi_0 = 1.1, \phi_1=0.8, \phi_2 = -0.8, y_0 = y_{-1} = 1`
@@ -217,10 +217,10 @@ Univariate Autoregressive Processes
 .. index::
     single: Linear State Space Models; Univariate Autoregressive Processes
 
-We can use :eq:`st_space_rep` to represent the model
+We can use :eq:`st_space_rep_linear_models` to represent the model
 
 .. math::
-    :label: eq_ar_rep
+    :label: eq_ar_rep_linear_models
 
     y_{t+1} = \phi_1 y_{t} + \phi_2 y_{t-1} + \phi_3 y_{t-2} + \phi_4  y_{t-3} + \sigma w_{t+1}
 
@@ -282,9 +282,9 @@ Now suppose that
 
 * :math:`w_t` is :math:`k \times 1`
 
-Then :eq:`eq_ar_rep` is termed a *vector autoregression*
+Then :eq:`eq_ar_rep_linear_models` is termed a *vector autoregression*
 
-To map this into :eq:`st_space_rep`, we set
+To map this into :eq:`st_space_rep_linear_models`, we set
 
 .. math::
 
@@ -328,13 +328,13 @@ Seasonals
 .. index::
     single: Linear State Space Models; Seasonals
 
-We can use :eq:`st_space_rep` to represent
+We can use :eq:`st_space_rep_linear_models` to represent
 
 #. the *deterministic seasonal* :math:`y_t = y_{t-4}`
 
 #. the *indeterministic seasonal* :math:`y_t = \phi_4 y_{t-4} + w_t`
 
-In fact, both are special cases of :eq:`eq_ar_rep`
+In fact, both are special cases of :eq:`eq_ar_rep_linear_models`
 
 With the deterministic seasonal, the transition matrix becomes
 
@@ -372,7 +372,7 @@ The model :math:`y_t = a t + b` is known as a *linear time trend*
 We can represent this model in the linear state space form by taking
 
 .. math::
-    :label: lss_ltt
+    :label: lss_ltt_linear_models
 
     A
     = \begin{bmatrix}
@@ -447,10 +447,10 @@ Moving Average Representations
     single: Linear State Space Models; Moving Average Representations
 
 A nonrecursive expression for :math:`x_t` as a function of
-:math:`x_0, w_1, w_2, \ldots,  w_t` can be found by using :eq:`st_space_rep` repeatedly to obtain
+:math:`x_0, w_1, w_2, \ldots,  w_t` can be found by using :eq:`st_space_rep_linear_models` repeatedly to obtain
 
 .. math::
-    :label: eqob5
+    :label: eqob5_linear_models
 
     \begin{aligned}
        x_t & = Ax_{t-1} + Cw_t \\
@@ -460,7 +460,7 @@ A nonrecursive expression for :math:`x_t` as a function of
     \end{aligned}
 
 
-Representation :eq:`eqob5` is a  *moving average* representation
+Representation :eq:`eqob5_linear_models` is a  *moving average* representation
 
 It expresses :math:`\{x_t\}` as a linear function of
 
@@ -488,7 +488,7 @@ As an example of a moving average representation, let the model be
 
 You will be able to show that :math:`A^t = \begin{bmatrix} 1 & t \cr 0 & 1 \end{bmatrix}` and  :math:`A^j C = \begin{bmatrix} 1 & 0 \end{bmatrix}'`
 
-Substituting into the moving average representation :eq:`eqob5`, we obtain
+Substituting into the moving average representation :eq:`eqob5_linear_models`, we obtain
 
 .. math::
 
@@ -522,7 +522,7 @@ Distributions and Moments
 Unconditional Moments
 --------------------------------------
 
-Using :eq:`st_space_rep`, it's easy to obtain expressions for the
+Using :eq:`st_space_rep_linear_models`, it's easy to obtain expressions for the
 (unconditional) means of :math:`x_t` and :math:`y_t`
 
 We'll explain what *unconditional* and *conditional* mean soon
@@ -531,13 +531,13 @@ Letting :math:`\mu_t := \mathbb{E} [x_t]` and using linearity of expectations, w
 find that
 
 .. math::
-    :label: lss_mut_linear_models
+    :label: lss_mut_linear_models_linear_models
 
     \mu_{t+1} = A \mu_t
     \quad \text{with} \quad \mu_0 \text{ given}
 
 
-Here :math:`\mu_0` is a primitive given in :eq:`st_space_rep`
+Here :math:`\mu_0` is a primitive given in :eq:`st_space_rep_linear_models`
 
 The variance-covariance matrix of :math:`x_t` is :math:`\Sigma_t := \mathbb{E} [ (x_t - \mu_t) (x_t - \mu_t)']`
 
@@ -545,13 +545,13 @@ Using :math:`x_{t+1} - \mu_{t+1} = A (x_t - \mu_t) + C w_{t+1}`, we can
 determine this matrix recursively via
 
 .. math::
-    :label: eqsigmalaw_linear_models
+    :label: eqsigmalaw_linear_models_linear_models
 
     \Sigma_{t+1}  = A \Sigma_t A' + C C'
     \quad \text{with} \quad \Sigma_0 \text{ given}
 
 
-As with :math:`\mu_0`, the matrix :math:`\Sigma_0` is a primitive given in :eq:`st_space_rep`
+As with :math:`\mu_0`, the matrix :math:`\Sigma_0` is a primitive given in :eq:`st_space_rep_linear_models`
 
 As a matter of terminology, we will sometimes call
 
@@ -571,7 +571,7 @@ Moments of the Observations
 Using linearity of expectations again we have
 
 .. math::
-    :label: lss_umy
+    :label: lss_umy_linear_models
 
     \mathbb{E} [y_t] = \mathbb{E} [G x_t] = G \mu_t
 
@@ -579,7 +579,7 @@ Using linearity of expectations again we have
 The variance-covariance matrix of :math:`y_t` is easily shown to be
 
 .. math::
-    :label: lss_uvy
+    :label: lss_uvy_linear_models
 
     \textrm{Var} [y_t] = \textrm{Var} [G x_t] = G \Sigma_t G'
 
@@ -613,7 +613,7 @@ In fact, it's `well-known
 <https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Affine_transformation>`_ that
 
 .. math::
-    :label: lss_glig
+    :label: lss_glig_linear_models
 
     u \sim N(\bar u, S)
     \quad \text{and} \quad
@@ -623,27 +623,27 @@ In fact, it's `well-known
 
 
 In particular, given our Gaussian assumptions on the primitives and the
-linearity of :eq:`st_space_rep` we can see immediately that  both :math:`x_t` and
+linearity of :eq:`st_space_rep_linear_models` we can see immediately that  both :math:`x_t` and
 :math:`y_t` are  Gaussian for all :math:`t \geq 0` [#fn_ag]_
 
 Since :math:`x_t` is Gaussian, to find the distribution, all we need to do is
 find its mean and variance-covariance matrix
 
-But in fact we've already done this, in :eq:`lss_mut_linear_models` and :eq:`eqsigmalaw_linear_models`
+But in fact we've already done this, in :eq:`lss_mut_linear_models_linear_models` and :eq:`eqsigmalaw_linear_models_linear_models`
 
 Letting :math:`\mu_t` and :math:`\Sigma_t` be as defined by these equations,
 we have
 
 .. math::
-    :label: lss_mgs_x
+    :label: lss_mgs_x_linear_models
 
     x_t \sim N(\mu_t, \Sigma_t)
 
 
-By similar reasoning combined with :eq:`lss_umy` and :eq:`lss_uvy`,
+By similar reasoning combined with :eq:`lss_umy_linear_models` and :eq:`lss_uvy_linear_models`,
 
 .. math::
-    :label: lss_mgs_y
+    :label: lss_mgs_y_linear_models
 
     y_t \sim N(G \mu_t, G \Sigma_t G')
 
@@ -651,7 +651,7 @@ By similar reasoning combined with :eq:`lss_umy` and :eq:`lss_uvy`,
 Ensemble Interpretations
 ------------------------------
 
-How should we interpret the distributions defined by :eq:`lss_mgs_x`--:eq:`lss_mgs_y`?
+How should we interpret the distributions defined by :eq:`lss_mgs_x_linear_models`--:eq:`lss_mgs_y_linear_models`?
 
 Intuitively, the probabilities in a distribution correspond to relative frequencies in a large population drawn from that distribution
 
@@ -663,7 +663,7 @@ shocks each time
 
 The next figure shows 20 simulations, producing 20 time series for :math:`\{y_t\}`, and hence 20 draws of :math:`y_T`
 
-The system in question is the univariate autoregressive model :eq:`eq_ar_rep`
+The system in question is the univariate autoregressive model :eq:`eq_ar_rep_linear_models`
 
 The values of :math:`y_T` are represented by black dots in the left-hand figure
 
@@ -686,7 +686,7 @@ Let's now try with 500,000 observations, showing only the histogram (without rot
 .. figure::
     /_static/figures/tsh_hg.png
 
-The black line is the population density of :math:`y_T` calculated from :eq:`lss_mgs_y`
+The black line is the population density of :math:`y_T` calculated from :eq:`lss_mgs_y_linear_models`
 
 The histogram and population distribution are close, as expected
 
@@ -782,7 +782,7 @@ The Markov property :math:`p(x_t \,|\, x_{t-1}, \ldots, x_0) =  p(x_t \,|\, x_{t
 
 The marginal :math:`p(x_0)` is just the primitive :math:`N(\mu_0, \Sigma_0)`
 
-In view of :eq:`st_space_rep`, the conditional densities are
+In view of :eq:`st_space_rep_linear_models`, the conditional densities are
 
 .. math::
 
@@ -796,7 +796,7 @@ An important object related to the joint distribution is the *autocovariance fun
 
 
 .. math::
-    :label: eqnautodeff
+    :label: eqnautodeff_linear_models
 
     \Sigma_{t+j, t} := \mathbb{E} [ (x_{t+j} - \mu_{t+j})(x_t - \mu_t)' ]
 
@@ -804,7 +804,7 @@ An important object related to the joint distribution is the *autocovariance fun
 Elementary calculations show that
 
 .. math::
-    :label: eqnautocov
+    :label: eqnautocov_linear_models
 
     \Sigma_{t+j,t} = A^j \Sigma_t
 
@@ -876,7 +876,7 @@ we can restate the definition as follows: :math:`\psi_{\infty}` is stationary fo
     = N(\mu_{\infty}, \Sigma_{\infty})
 
 
-where :math:`\mu_{\infty}` and :math:`\Sigma_{\infty}` are fixed points of :eq:`lss_mut_linear_models` and :eq:`eqsigmalaw_linear_models` respectively
+where :math:`\mu_{\infty}` and :math:`\Sigma_{\infty}` are fixed points of :eq:`lss_mut_linear_models_linear_models` and :eq:`eqsigmalaw_linear_models_linear_models` respectively
 
 Covariance Stationary Processes
 ---------------------------------
@@ -894,7 +894,7 @@ By
 
 * our choosing :math:`x_0 \sim N(\mu_{\infty}, \Sigma_{\infty})`
 
-* the definitions of :math:`\mu_{\infty}` and :math:`\Sigma_{\infty}` as fixed points of :eq:`lss_mut_linear_models` and :eq:`eqsigmalaw_linear_models` respectively
+* the definitions of :math:`\mu_{\infty}` and :math:`\Sigma_{\infty}` as fixed points of :eq:`lss_mut_linear_models_linear_models` and :eq:`eqsigmalaw_linear_models_linear_models` respectively
 
 
 we've ensured that
@@ -907,7 +907,7 @@ we've ensured that
     \quad \text{for all } t
 
 
-Moreover, in view of :eq:`eqnautocov`, the autocovariance function takes the form :math:`\Sigma_{t+j,t} = A^j \Sigma_\infty`, which depends on :math:`j` but not on :math:`t`
+Moreover, in view of :eq:`eqnautocov_linear_models`, the autocovariance function takes the form :math:`\Sigma_{t+j,t} = A^j \Sigma_\infty`, which depends on :math:`j` but not on :math:`t`
 
 This motivates the following definition
 
@@ -932,7 +932,7 @@ fixed point :math:`\mu_{\infty} = 0` if all eigenvalues of :math:`A` have moduli
 
 That is, if  ``(np.absolute(np.linalg.eigvals(A)) < 1).all() == True``
 
-The difference equation :eq:`eqsigmalaw_linear_models` also has a unique fixed point in this case, and, moreover
+The difference equation :eq:`eqsigmalaw_linear_models_linear_models` also has a unique fixed point in this case, and, moreover
 
 .. math::
 
@@ -1003,14 +1003,14 @@ It follows  that
 Let :math:`\mu_{1t} = \mathbb{E} [x_{1t}]` and take expectations on both sides of this expression to get
 
 .. math::
-    :label: eqob29
+    :label: eqob29_linear_models
 
     \mu_{1,t+1} = A_1 \mu_{1,t} + a
 
 
 Assume now that the moduli of the eigenvalues of :math:`A_1` are all strictly less than one
 
-Then :eq:`eqob29` has a unique stationary solution, namely,
+Then :eq:`eqob29_linear_models` has a unique stationary solution, namely,
 
 .. math::
 
@@ -1023,7 +1023,7 @@ The stationary value of :math:`\mu_t` itself is then :math:`\mu_\infty := \begin
 The stationary values of :math:`\Sigma_t` and :math:`\Sigma_{t+j,t}` satisfy
 
 .. math::
-    :label: eqnSigmainf
+    :label: eqnSigmainf_linear_models
 
     \begin{aligned}
     \Sigma_\infty  & = A \Sigma_\infty A' + C C' \\
@@ -1046,8 +1046,8 @@ component
    If the eigenvalues of :math:`A_1` are less than unity in modulus, then
    (a) starting from any initial value, the mean and variance-covariance
    matrix both converge to their stationary values; and (b)
-   iterations on :eq:`eqsigmalaw_linear_models` converge to the fixed point of the *discrete
-   Lyapunov equation* in the first line of :eq:`eqnSigmainf`
+   iterations on :eq:`eqsigmalaw_linear_models_linear_models` converge to the fixed point of the *discrete
+   Lyapunov equation* in the first line of :eq:`eqnSigmainf_linear_models`
 
 
 
@@ -1117,7 +1117,7 @@ To include an error term in the observation we introduce
 and extend the linear state-space system to
 
 .. math::
-    :label: st_space_rep_noisy
+    :label: st_space_rep_linear_models_noisy
 
     \begin{aligned}
         x_{t+1} & =  A x_t + C w_{t+1}   \\
@@ -1131,11 +1131,11 @@ The sequence :math:`\{v_t\}` is assumed to be independent of :math:`\{w_t\}`
 The process :math:`\{x_t\}` is not modified by noise in the observation
 equation and its moments, distributions and stability properties remain the same
 
-The unconditional moments of :math:`y_t` from :eq:`lss_umy` and :eq:`lss_uvy`
+The unconditional moments of :math:`y_t` from :eq:`lss_umy_linear_models` and :eq:`lss_uvy_linear_models`
 now become
 
 .. math::
-    :label: lss_umy_2
+    :label: lss_umy_linear_models_2
 
     \mathbb{E} [y_t] = \mathbb{E} [G x_t + H v_t] = G \mu_t
 
@@ -1143,7 +1143,7 @@ now become
 The variance-covariance matrix of :math:`y_t` is easily shown to be
 
 .. math::
-    :label: lss_uvy_2
+    :label: lss_uvy_linear_models_2
 
     \textrm{Var} [y_t] = \textrm{Var} [G x_t + H v_t] = G \Sigma_t G' + HH'
 
@@ -1235,7 +1235,7 @@ Covariance of Prediction Errors
 It is useful to obtain the covariance matrix of the vector of  :math:`j`-step-ahead prediction errors
 
 .. math::
-    :label: eqob8
+    :label: eqob8_linear_models
 
     x_{t+j} - \mathbb{E}_t [ x_{t+j}] = \sum^{j-1}_{s=0} A^s C w_{t-s+j}
 
@@ -1243,15 +1243,15 @@ It is useful to obtain the covariance matrix of the vector of  :math:`j`-step-ah
 Evidently,
 
 .. math::
-    :label: eqob9a
+    :label: eqob9a_linear_models
 
     V_j := \mathbb{E}_t [ (x_{t+j} - \mathbb{E}_t [x_{t+j}] ) (x_{t+j} - \mathbb{E}_t [x_{t+j}] )^\prime ] =   \sum^{j-1}_{k=0} A^k C C^\prime A^{k^\prime}
 
 
-:math:`V_j` defined in :eq:`eqob9a` can be calculated recursively via :math:`V_1 = CC'` and
+:math:`V_j` defined in :eq:`eqob9a_linear_models` can be calculated recursively via :math:`V_1 = CC'` and
 
 .. math::
-    :label: eqob9b
+    :label: eqob9b_linear_models
 
     V_j = CC^\prime + A V_{j-1} A^\prime, \quad j \geq 2
 
@@ -1262,12 +1262,12 @@ Evidently,
 Under particular conditions, :math:`V_j` converges to
 
 .. math::
-    :label: eqob10
+    :label: eqob10_linear_models
 
     V_\infty = CC' + A V_\infty A'
 
 
-Equation :eq:`eqob10` is an example of a *discrete Lyapunov* equation in the covariance matrix :math:`V_\infty`
+Equation :eq:`eqob10_linear_models` is an example of a *discrete Lyapunov* equation in the covariance matrix :math:`V_\infty`
 
 A sufficient condition for :math:`V_j` to converge is that the eigenvalues of :math:`A` be strictly less than one in modulus
 
@@ -1278,7 +1278,7 @@ Weaker sufficient conditions for convergence  associate eigenvalues equaling or 
 Forecasts of Geometric Sums
 -------------------------------
 
-In several contexts, we want to compute forecasts of  geometric sums of future random variables governed by the linear state-space system :eq:`st_space_rep`
+In several contexts, we want to compute forecasts of  geometric sums of future random variables governed by the linear state-space system :eq:`st_space_rep_linear_models`
 
 We want the following objects
 
@@ -1575,7 +1575,7 @@ Exercise 4
 .. [#foot1]  The eigenvalues of :math:`A` are :math:`(1,-1, i,-i)`.
 
 .. [#fn_ag]  The correct way to argue this is by induction.  Suppose that
-    :math:`x_t` is Gaussian.  Then :eq:`st_space_rep` and
-    :eq:`lss_glig` imply that :math:`x_{t+1}` is Gaussian.  Since :math:`x_0`
+    :math:`x_t` is Gaussian.  Then :eq:`st_space_rep_linear_models` and
+    :eq:`lss_glig_linear_models` imply that :math:`x_{t+1}` is Gaussian.  Since :math:`x_0`
     is assumed to be Gaussian, it follows that every :math:`x_t` is Gaussian.
     Evidently, this implies that each :math:`y_t` is Gaussian.

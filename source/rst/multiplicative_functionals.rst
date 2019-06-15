@@ -458,7 +458,7 @@ Here :math:`\{z_{t+1}\}_{t=0}^\infty` is an IID sequence of :math:`{\cal N}(0,I)
 A representative household ranks consumption processes :math:`\{c_t\}_{t=0}^\infty` with a utility functional :math:`\{V_t\}_{t=0}^\infty` that satisfies
 
 .. math::
-    :label: old1mf
+    :label: old1mf_multiplicative_functionals
 
     \log V_t - \log c_t = U \cdot x_t + {\sf u}
 
@@ -491,7 +491,7 @@ Consumption as a Multiplicative Process
 We begin by showing that consumption is a **multiplicative functional** with representation
 
 .. math::
-    :label: old2mf
+    :label: old2mf_multiplicative_functionals
 
     \frac{c_t}{c_0}
     = \exp(\tilde{\nu}t )
@@ -725,14 +725,14 @@ Welfare Benefits of Reduced Random Aggregate Fluctuations
 
 Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`Lucas_2003`) we want to estimate the welfare benefits from removing random fluctuations around trend growth
 
-We shall  compute how much initial consumption :math:`c_0` a representative consumer who ranks consumption streams according to :eq:`old1mf` would be willing to sacrifice to enjoy the consumption stream
+We shall  compute how much initial consumption :math:`c_0` a representative consumer who ranks consumption streams according to :eq:`old1mf_multiplicative_functionals` would be willing to sacrifice to enjoy the consumption stream
 
 .. math::
 
     \frac{c_t}{c_0} = \exp (\tilde{\nu} t)
 
 
-rather than the stream described by equation :eq:`old2mf`
+rather than the stream described by equation :eq:`old2mf_multiplicative_functionals`
 
 We want to compute the implied percentage reduction in :math:`c_0` that the representative consumer would accept
 

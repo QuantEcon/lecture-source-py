@@ -66,7 +66,7 @@ Take the model set out in :doc:`the time iteration lecture <coleman_policy_iter>
 The Euler equation is
 
 .. math::
-    :label: egm_euler
+    :label: egm_euler_egm_policy_iter
 
     (u'\circ \sigma^*)(y)
     = \beta \int (u'\circ \sigma^*)(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
@@ -79,7 +79,7 @@ It takes as its argument a continuous strictly increasing consumption policy :ma
 It returns a new function :math:`K \sigma`,  where :math:`(K \sigma)(y)` is the :math:`c \in (0, \infty)` that solves
 
 .. math::
-    :label: egm_coledef
+    :label: egm_coledef_egm_policy_iter
 
     u'(c)
     = \beta \int (u' \circ \sigma) (f(y - c) z ) f'(y - c) z \phi(dz)
@@ -101,7 +101,7 @@ The function itself is reconstructed from this representation when necessary, us
 * fixed a grid of income points :math:`\{y_i\}`
 
 * calculated the consumption value :math:`c_i` corresponding to each
-  :math:`y_i` using :eq:`egm_coledef` and a root-finding routine
+  :math:`y_i` using :eq:`egm_coledef_egm_policy_iter` and a root-finding routine
 
 Each :math:`c_i` is then interpreted as the value of the function :math:`K \sigma` at :math:`y_i`
 
@@ -133,7 +133,7 @@ First, we fix an *exogenous* grid :math:`\{k_i\}` for capital (:math:`k = y - c`
 Then we obtain  :math:`c_i` via
 
 .. math::
-    :label: egm_getc
+    :label: egm_getc_egm_policy_iter
 
     c_i =
     (u')^{-1}
@@ -145,7 +145,7 @@ where :math:`(u')^{-1}` is the inverse function of :math:`u'`
 
 Finally, for each :math:`c_i` we set :math:`y_i = c_i + k_i`
 
-It is clear that each :math:`(y_i, c_i)` pair constructed in this manner satisfies :eq:`egm_coledef`
+It is clear that each :math:`(y_i, c_i)` pair constructed in this manner satisfies :eq:`egm_coledef_egm_policy_iter`
 
 With the points :math:`\{y_i, c_i\}` in hand, we can reconstruct :math:`K \sigma` via approximation as before
 

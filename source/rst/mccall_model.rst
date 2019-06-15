@@ -137,7 +137,7 @@ But think of :math:`v^*` as a function that assigns to each possible wage :math:
 A crucial observation is that this function :math:`v^*` must satisfy the recursion
 
 .. math::
-    :label: odu_pv
+    :label: odu_pv_mccall_model
 
     v^*(w)
     = \max \left\{
@@ -160,20 +160,20 @@ The intuition behind it is as follows:
 
 If we optimize and pick the best of these two options, we obtain maximal lifetime value from today, given current offer :math:`w`
 
-But this is precisely :math:`v^*(w)`, which is the l.h.s. of :eq:`odu_pv`
+But this is precisely :math:`v^*(w)`, which is the l.h.s. of :eq:`odu_pv_mccall_model`
 
 
 
 The Optimal Policy
 -------------------
 
-Suppose for now that we are able to solve :eq:`odu_pv` for the unknown
+Suppose for now that we are able to solve :eq:`odu_pv_mccall_model` for the unknown
 function :math:`v^*`
 
 Once we have this function in hand we can behave optimally (i.e., make the
 right choice between accept and reject)
 
-All we have to do is select the maximal choice on the r.h.s. of :eq:`odu_pv`
+All we have to do is select the maximal choice on the r.h.s. of :eq:`odu_pv_mccall_model`
 
 The optimal action is best thought of as a **policy**, which is, in general, a map from
 states to actions
@@ -181,7 +181,7 @@ states to actions
 In our case, the state is the current wage offer :math:`w`
 
 Given *any* :math:`w`, we can read off the corresponding best choice (accept or
-reject) by picking the max on the r.h.s. of :eq:`odu_pv`
+reject) by picking the max on the r.h.s. of :eq:`odu_pv_mccall_model`
 
 Thus, we have a map from :math:`\mathbb R` to :math:`\{0, 1\}`, with 1 meaning accept and 0 meaning reject
 
@@ -224,11 +224,11 @@ points :math:`w_1, \ldots, w_n`
 
 In doing so, we can identify these values with the vector :math:`v^* = (v^*_i)` where :math:`v^*_i := v^*(w_i)`
 
-In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
+In view of :eq:`odu_pv_mccall_model`, this vector satisfies the nonlinear system of equations
 
 
 .. math::
-    :label: odu_pv2
+    :label: odu_pv_mccall_model2
 
     v^*_i
     = \max \left\{
@@ -249,7 +249,7 @@ Step 2: compute a new vector :math:`v' \in \mathbb R^n` via
 
 
 .. math::
-    :label: odu_pv2p
+    :label: odu_pv_mccall_model2p
 
     v'_i
     = \max \left\{
@@ -265,7 +265,7 @@ Step 4: if the deviation is larger than some fixed tolerance, set :math:`v = v'`
 Step 5: return :math:`v`
 
 This algorithm returns an arbitrarily good approximation to the true solution
-to :eq:`odu_pv2`, which represents the value function
+to :eq:`odu_pv_mccall_model2`, which represents the value function
 
 (Arbitrarily good means here that the approximation converges to the true
 solution as the tolerance goes to zero)
@@ -280,7 +280,7 @@ First, one defines a mapping :math:`T` from :math:`\mathbb R^n` to
 itself via
 
 .. math::
-    :label: odu_pv3
+    :label: odu_pv_mccall_model3
 
     (Tv)_i
     = \max \left\{
@@ -508,7 +508,7 @@ then behaving optimally in all subsequent periods
 That is,
 
 .. math::
-    :label: j1
+    :label: j1_mccall_model
 
     h
     = c + \beta
@@ -524,11 +524,11 @@ By the Bellman equation, we then have
     v^*(w')
     = \max \left\{ \frac{w'}{1 - \beta}, \, h \right\}
 
-Substituting this last equation into :eq:`j1` gives
+Substituting this last equation into :eq:`j1_mccall_model` gives
 
 
 .. math::
-    :label: j2
+    :label: j2_mccall_model
 
     h
     = c + \beta
@@ -549,7 +549,7 @@ Step 1: pick an initial guess :math:`h`
 Step 2: compute the update :math:`h'` via
 
 .. math::
-    :label: j3
+    :label: j3_mccall_model
 
     h'
     = c + \beta
