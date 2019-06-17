@@ -278,12 +278,12 @@ Notice that
 
 .. math::
 
-   \begin{eqnarray}
+   \begin{aligned}
      Y_t & =  & c_1 (r e^{i \omega})^t + c_2 (r e^{-i \omega})^t  \\
       & = & c_1 r^t e^{i\omega t} + c_2 r^t e^{-i \omega t} \\
       & = &  c_1 r^t [\cos(\omega t) + i \sin(\omega t) ] + c_2 r^t [\cos(\omega t) - i \sin(\omega t) ] \\
       & = & (c_1 + c_2) r^t \cos(\omega t) + i (c_1 - c_2) r^t \sin(\omega t)
-    \end{eqnarray}
+    \end{aligned}
 
 The only way that :math:`Y_t` can be a  real number for each :math:`t` is if :math:`c_1 + c_2` is a real number and :math:`c_1 - c_2` is an imaginary number
 
@@ -297,11 +297,11 @@ So we can write
 
 .. math::
 
-   \begin{eqnarray}
+   \begin{aligned}
      Y_t & = & v e^{i \theta} r^t e^{i \omega t} + v e ^{- i \theta} r^t e^{-i \omega t} \\
          & = & v r^t [ e^{i(\omega t + \theta)} + e^{-i (\omega t +\theta)}]  \\
          & = & 2 v r^t  \cos (\omega t + \theta)
-    \end{eqnarray}
+    \end{aligned}
 
 where :math:`v` and :math:`\theta` are constants that must be chosen to satisfy initial conditions for :math:`Y_{-1}, Y_{-2}`
 
