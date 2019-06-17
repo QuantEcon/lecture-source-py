@@ -727,14 +727,10 @@ In equation :eq:`opt_tax_eqn_10`, it is understood that
 .. math::
     :nowrap:
 
-    \begin{gather*}
+    \begin{aligned}
     \tau_0 = 1 - \frac{u_{l,0}}{u_{c,0}} \\
     R_0 =  \beta  \sum_{s=1}^S \Pi(s | s_0) \frac{u_c(s)}{u_{c,0}}
-    \end{gather*}
-
-
-
-
+    \end{aligned}
 
 
 Sequence Implementation
