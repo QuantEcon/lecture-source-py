@@ -625,7 +625,7 @@ operator ``Q``
 
             return π_new
 
-        @njit
+        @njit(parallel=parallel_flag)
         def Q(ω):
             """
 
