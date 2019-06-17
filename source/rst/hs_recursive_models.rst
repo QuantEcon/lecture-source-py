@@ -384,12 +384,6 @@ Evidently,
     v_j &= CC^\prime + A v_{j-1} A^\prime, \quad j \geq 2 \end{aligned}
 
 
-.. math::
-
-   \begin{aligned}
-    v_1 &=  CC^\prime \\
-    v_j &=   CC^\prime + A v_{j-1} A^\prime, \quad j \geq 2 \end{aligned}
-
 Orthogonal Decomposition
 ---------------------------
 
@@ -1165,7 +1159,7 @@ where  maximization is subject to
    x_t = \begin{bmatrix} h_{t-1} \\ k_{t-1} \\ z_t \end{bmatrix} , \qquad
     u_t = i_t
 
-where 
+where
 
 
 .. math::
