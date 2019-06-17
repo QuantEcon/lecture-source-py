@@ -98,8 +98,8 @@ random walk :math:`x_t` and an IID shock :math:`\epsilon_{2,t}`:
 .. math::
   :label: state-space
 
-  \eqalign{ x_{t+1} & = x_t + \sigma_x \epsilon_{1,t+1} \cr
-            y_t & = x_t + \sigma_y \epsilon_{2,t} }
+  \begin{aligned} x_{t+1} & = x_t + \sigma_x \epsilon_{1,t+1} \cr
+            y_t & = x_t + \sigma_y \epsilon_{2,t} \end{aligned}
 
 where
 
@@ -124,8 +124,8 @@ time-invariant *innovations representation*
 .. math::
     :label: innovations
 
-    \eqalign{ \hat x_{t+1} & = \hat x_t + K a_t  \cr
-               y_t & = \hat x_t + a_t  }
+    \begin{aligned} \hat x_{t+1} & = \hat x_t + K a_t  \cr
+               y_t & = \hat x_t + a_t \end{aligned}
 
 where :math:`\hat x_t = E [x_t | y_{t-1}, y_{t-2}, \ldots ]` and
 :math:`a_t = y_t - E[y_t |y_{t-1}, y_{t-2}, \ldots ]`
@@ -188,8 +188,8 @@ so that
 
 .. math::
 
-   \eqalign{ \hat x_{t+1} & = \hat x_t + K (x_t + \sigma_y \epsilon_{2,t} - \hat x_t) \cr
-          & = (1-K) \hat x_t + K x_t + K \sigma_y \epsilon_{2,t} }
+   \begin{aligned} \hat x_{t+1} & = \hat x_t + K (x_t + \sigma_y \epsilon_{2,t} - \hat x_t) \cr
+          & = (1-K) \hat x_t + K x_t + K \sigma_y \epsilon_{2,t} \end{aligned}
 
 The stacked system
 
