@@ -20,10 +20,10 @@ For example, many applied problems in economics and finance require the solution
 
 .. math::
 
-    \begin{array}{c}
+    \begin{aligned}
         y_1 = a x_1 + b x_2 \\
         y_2 = c x_1 + d x_2
-    \end{array}
+    \end{aligned}
 
 
 or, more generally,
@@ -31,11 +31,11 @@ or, more generally,
 .. math::
     :label: la_se
 
-    \begin{array}{c}
+    \begin{aligned}
         y_1 = a_{11} x_1 + a_{12} x_2 + \cdots + a_{1k} x_k \\
         \vdots  \\
         y_n = a_{n1} x_1 + a_{n2} x_2 + \cdots + a_{nk} x_k
-    \end{array}
+    \end{aligned}
 
 
 The objective here is to solve for the "unknowns" :math:`x_1, \ldots, x_k` given :math:`a_{11}, \ldots, a_{nk}` and :math:`y_1, \ldots, y_n`
@@ -125,30 +125,24 @@ As a matter of definition, when we add two vectors, we add them element-by-eleme
 .. math::
 
     x + y =
-    \left[
-    \begin{array}{c}
+    \begin{bmatrix}
         x_1 \\
         x_2 \\
         \vdots \\
         x_n
-    \end{array}
-    \right] +
-    \left[
-    \begin{array}{c}
+    \end{bmatrix} +
+    \begin{bmatrix}
          y_1 \\
          y_2 \\
         \vdots \\
          y_n
-    \end{array}
-    \right] :=
-    \left[
-    \begin{array}{c}
+    \end{bmatrix} :=
+    \begin{bmatrix}
         x_1 + y_1 \\
         x_2 + y_2 \\
         \vdots \\
         x_n + y_n
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 Scalar multiplication is an operation that takes a number :math:`\gamma` and a
@@ -157,14 +151,12 @@ vector :math:`x` and produces
 .. math::
 
     \gamma x :=
-    \left[
-    \begin{array}{c}
+    \begin{bmatrix}
         \gamma x_1 \\
         \gamma x_2 \\
         \vdots \\
         \gamma x_n
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 Scalar multiplication is illustrated in the next figure
@@ -380,31 +372,25 @@ If :math:`A = \{e_1, e_2, e_3\}` consists  of the *canonical basis vectors* of :
 .. math::
 
     e_1 :=
-    \left[
-    \begin{array}{c}
+    \begin{bmatrix}
          1 \\
          0 \\
          0
-    \end{array}
-    \right]
+    \end{bmatrix}
     , \quad
     e_2 :=
-    \left[
-    \begin{array}{c}
+    \begin{bmatrix}
          0 \\
          1 \\
          0
-    \end{array}
-    \right]
+    \end{bmatrix}
     , \quad
     e_3 :=
-    \left[
-    \begin{array}{c}
+    \begin{bmatrix}
          0 \\
          0 \\
          1
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 then the span of :math:`A` is all of :math:`\mathbb R ^3`, because, for any
@@ -505,14 +491,12 @@ An :math:`n \times k` matrix is a rectangular array :math:`A` of numbers with :m
 .. math::
 
     A =
-    \left[
-    \begin{array}{cccc}
+    \begin{bmatrix}
         a_{11} & a_{12} & \cdots & a_{1k} \\
         a_{21} & a_{22} & \cdots & a_{2k} \\
         \vdots & \vdots &  & \vdots \\
         a_{n1} & a_{n2} & \cdots & a_{nk}
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 Often, the numbers in the matrix represent coefficients in a system of linear equations, as discussed at the start of this lecture
@@ -550,20 +534,16 @@ Scalar multiplication and addition are immediate generalizations of the vector c
 
     \gamma A =
     \gamma
-    \left[
-    \begin{array}{ccc}
+    \begin{bmatrix}
         a_{11} &  \cdots & a_{1k} \\
         \vdots & \vdots  & \vdots \\
         a_{n1} &  \cdots & a_{nk}
-    \end{array}
-    \right] :=
-    \left[
-    \begin{array}{ccc}
+    \end{bmatrix} :=
+    \begin{bmatrix}
         \gamma a_{11} & \cdots & \gamma a_{1k} \\
         \vdots & \vdots & \vdots \\
         \gamma a_{n1} & \cdots & \gamma a_{nk}
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 and
@@ -571,27 +551,21 @@ and
 .. math::
 
     A + B =
-    \left[
-    \begin{array}{ccc}
+    \begin{bmatrix}
         a_{11} & \cdots & a_{1k} \\
         \vdots & \vdots & \vdots \\
         a_{n1} & \cdots & a_{nk}
-    \end{array}
-    \right] +
-    \left[
-    \begin{array}{ccc}
+    \end{bmatrix} +
+    \begin{bmatrix}
         b_{11} & \cdots & b_{1k} \\
         \vdots & \vdots & \vdots \\
         b_{n1} & \cdots & b_{nk}
-    \end{array}
-    \right] :=
-    \left[
-    \begin{array}{ccc}
+    \end{bmatrix} :=
+    \begin{bmatrix}
         a_{11} + b_{11} &  \cdots & a_{1k} + b_{1k} \\
         \vdots & \vdots & \vdots \\
         a_{n1} + b_{n1} &  \cdots & a_{nk} + b_{nk}
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 In the latter case, the matrices must have the same shape in order for the definition to make sense
@@ -619,27 +593,21 @@ According to the preceding rule, this gives us an :math:`n \times 1` column vect
     :label: la_atx
 
     A x =
-    \left[
-    \begin{array}{ccc}
+    \begin{bmatrix}
         a_{11} &  \cdots & a_{1k} \\
         \vdots & \vdots  & \vdots \\
         a_{n1} &  \cdots & a_{nk}
-    \end{array}
-    \right]
-    \left[
-    \begin{array}{c}
+    \end{bmatrix}
+    \begin{bmatrix}
         x_{1}  \\
         \vdots  \\
         x_{k}
-    \end{array}
-    \right] :=
-    \left[
-    \begin{array}{c}
+    \end{bmatrix} :=
+    \begin{bmatrix}
         a_{11} x_1 + \cdots + a_{1k} x_k \\
         \vdots \\
         a_{n1} x_1 + \cdots + a_{nk} x_k
-    \end{array}
-    \right]
+    \end{bmatrix}
 
 
 .. note::
