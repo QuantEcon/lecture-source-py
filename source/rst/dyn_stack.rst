@@ -160,17 +160,17 @@ First-order conditions for this problem are
 
 .. math::
 
-   \eqalign{ \frac{\partial L}{\partial q_{1t}} & = a_0 - 2 a_1 q_{1t} - a_1 q_{2t} + \lambda_t - \beta^{-1}
+   \begin{aligned} \frac{\partial L}{\partial q_{1t}} & = a_0 - 2 a_1 q_{1t} - a_1 q_{2t} + \lambda_t - \beta^{-1}
                 \lambda_{t-1} = 0 , \quad t \geq 1 \cr
-                \frac{\partial L}{\partial v_{1t}} & = -2 \gamma v_{1t} +  \lambda_t = 0 , \quad t \geq 0  \cr }
+                \frac{\partial L}{\partial v_{1t}} & = -2 \gamma v_{1t} +  \lambda_t = 0 , \quad t \geq 0  \cr \end{aligned}
 
 These first-order conditions and the constraint :math:`q_{1t+1} = q_{1t} + v_{1t}` can be rearranged to take the form
 
 .. math::
 
-    \eqalign{ v_{1t} & = \beta v_{1t+1} + \frac{\beta a_0}{2 \gamma} - \frac{\beta a_1}{\gamma} q_{1t+1} -
+    \begin{aligned} v_{1t} & = \beta v_{1t+1} + \frac{\beta a_0}{2 \gamma} - \frac{\beta a_1}{\gamma} q_{1t+1} -
                           \frac{\beta a_1}{2 \gamma} q_{2t+1} \cr
-                q_{t+1} & = q_{1t} + v_{1t} }
+                q_{t+1} & = q_{1t} + v_{1t} \end{aligned}
 
 We can substitute the second equation into the first equation to obtain
 
@@ -250,9 +250,9 @@ and formulate the following Lagrangian for the Stackelberg leader firm
 .. math::
     :label: sstack4
 
-    \eqalign{ \tilde L & = \sum_{t=0}^\infty  \beta^t\{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \} \cr
+    \begin{aligned} \tilde L & = \sum_{t=0}^\infty  \beta^t\{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \} \cr
      &  + \sum_{t=0}^\infty \beta^t \theta_t \{ \delta_1 q_{1t} -  c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}} +  c_2 \delta_2^{-1} \beta^{-1}
-       \sum_{j=0}^\infty \delta_2^{-j} q_{2t+j+1} - q_{1t+1} \} }
+       \sum_{j=0}^\infty \delta_2^{-j} q_{2t+j+1} - q_{1t+1} \} \end{aligned}
 
 subject to initial conditions for :math:`q_{1t}, q_{2t}` at :math:`t=0`
 
@@ -566,18 +566,18 @@ First-order conditions for this problem are
 
 .. math::
 
-   \eqalign{ \frac{\partial L}{\partial q_{1t}} & = a_0 - 2 a_1 q_{1t} - a_1 q_{2t} + \lambda_t - \beta^{-1}
+   \begin{aligned} \frac{\partial L}{\partial q_{1t}} & = a_0 - 2 a_1 q_{1t} - a_1 q_{2t} + \lambda_t - \beta^{-1}
                 \lambda_{t-1} = 0 , \quad t \geq 1 \cr
-                \frac{\partial L}{\partial v_{1t}} & = -2 \gamma v_{1t} +  \lambda_t = 0 , \quad t \geq 0  \cr }
+                \frac{\partial L}{\partial v_{1t}} & = -2 \gamma v_{1t} +  \lambda_t = 0 , \quad t \geq 0  \cr \end{aligned}
 
 These first-order order conditions and the constraint :math:`q_{1t+1} =
 q_{1t} + v_{1t}` can be rearranged to take the form
 
 .. math::
 
-    \eqalign{ v_{1t} & = \beta v_{1t+1} + \frac{\beta a_0}{2 \gamma} - \frac{\beta a_1}{\gamma} q_{1t+1} -
+    \begin{aligned} v_{1t} & = \beta v_{1t+1} + \frac{\beta a_0}{2 \gamma} - \frac{\beta a_1}{\gamma} q_{1t+1} -
                           \frac{\beta a_1}{2 \gamma} q_{2t+1} \cr
-                q_{t+1} & = q_{1t} + v_{1t} }
+                q_{t+1} & = q_{1t} + v_{1t} \end{aligned}
 
 We use these two equations as components of the following linear system
 that confronts a Stackelberg continuation leader at time :math:`t`
@@ -670,9 +670,9 @@ We have demonstrated that a Stackelberg plan for
 
 .. math::
 
-    \eqalign{ \check x_0 & = - P_{22}^{-1} P_{21} z_0 \cr
+    \begin{aligned} \check x_0 & = - P_{22}^{-1} P_{21} z_0 \cr
                 u_t & = - F \check y_t, \quad t \geq 0 \cr
-                \check y_{t+1} & = (A - BF) \check y_t, \quad t \geq 0 }
+                \check y_{t+1} & = (A - BF) \check y_t, \quad t \geq 0 \end{aligned}
 
 From this representation, we can deduce the sequence of functions
 :math:`\sigma = \{\sigma_t(\check z^t)\}_{t=0}^\infty` that comprise a
@@ -701,11 +701,11 @@ where
 
 .. math::
 
-   \eqalign{ H^t_1 & = \check A_{21} \cr
+   \begin{aligned} H^t_1 & = \check A_{21} \cr
                H^t_2 & = \check A_{22} \check A_{21} \cr
               \ \   \vdots \  \  &  \  \ \quad \vdots \cr
               H^t_{t-1} & = \check A_{22}^{t-2} \check A_{21} \cr
-               H^t_t & = \check A_{22}^{t-1}(\check A_{21} + \check A_{22} H^0_0 ) }
+               H^t_t & = \check A_{22}^{t-1}(\check A_{21} + \check A_{22} H^0_0 ) \end{aligned}
 
 An optimal decision rule for the Stackelberg's choice of :math:`u_t` is
 
