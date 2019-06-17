@@ -110,7 +110,7 @@ Let's assume that
    consumption function :math:`C_t = a Y_{t-1} + \gamma`
 
 -  :math:`b` is the "accelerator coefficient" in the "investment
-   accelerator" $I\_t = b (Y\_{t-1} - Y\_{t-2}) $
+   accelerator" :math:`I\_t = b (Y\_{t-1} - Y\_{t-2})`
 
 -  :math:`\{\epsilon_{t}\}` is an IID sequence standard normal random variables
 
@@ -143,7 +143,7 @@ and the national income identity
    out of income - equation :eq:`consumption` asserts that people consume a fraction of
    math:`a \in (0,1)` of each additional dollar of income
 
--  The parameter $b > 0 $ is the investment accelerator coefficient - equation
+-  The parameter :math:`b > 0` is the investment accelerator coefficient - equation
    :eq:`accelerator` asserts that people invest in physical capital when
    income is increasing and disinvest when it is decreasing
 
@@ -170,7 +170,7 @@ require initial values
 
 We'll ordinarily set the parameters :math:`(a,b)` so that starting from
 an arbitrary pair of initial conditions
-:math:`(\bar Y_{-1}, \bar Y_{-2})`, national income $Y\_t $ converges to
+:math:`(\bar Y_{-1}, \bar Y_{-2})`, national income :math:`Y\_t` converges to
 a constant value as :math:`t` becomes large
 
 We are interested in studying
@@ -1188,7 +1188,7 @@ Using the Graph
 We'll use our graph to show where the roots lie and how their location
 is consistent with the behavior of the path just graphed
 
-The red $+$ sign shows the location of the roots
+The red :math:`+` sign shows the location of the roots
 
 .. code-block:: python3
 

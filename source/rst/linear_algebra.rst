@@ -1517,8 +1517,8 @@ function, we get
 
     v(x) = \max_{u} \{ -(Ax+ Bu)'P(Ax+Bu) - u'Qu \} \:
 
-Since we know the optimal choice of u satisfies $ u = -(Q +
-B'PB)^{-1}B'PAx $, then
+Since we know the optimal choice of u satisfies :math:`u = -(Q +
+B'PB)^{-1}B'PAx`, then
 
 .. math::
 

@@ -961,7 +961,7 @@ To explore this, we study next how *ex-post* the two firms' beliefs about state 
 Heterogeneous Beliefs
 ^^^^^^^^^^^^^^^^^^^^^^
 
-As before, let $A^o = A - B\_1 F\_1^r - B\_2 F\_2^r $, where in a robust MPE, :math:`F_i^r` is a robust decision rule for firm :math:`i`
+As before, let :math:`A^o = A - B\_1 F\_1^r - B\_2 F\_2^r`, where in a robust MPE, :math:`F_i^r` is a robust decision rule for firm :math:`i`
 
 Worst-case forecasts of  :math:`x_t` starting from :math:`t=0` differ between the two firms
 
@@ -971,9 +971,9 @@ To find these worst-case beliefs, we compute the following three "closed-loop" t
 
    -  :math:`A^o`
 
-   -  $A^o + C K\_1 $
+   -  :math:`A^o + C K\_1`
 
-   -  $A^o + C K\_2 $
+   -  :math:`A^o + C K\_2`
 
 We call the first transition law, namely, :math:`A^o`,  the baseline transition under firms' robust decision rules
 
