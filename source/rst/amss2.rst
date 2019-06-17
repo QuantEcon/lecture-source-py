@@ -197,10 +197,10 @@ In equation :eq:`eqn_AMSS2_10`, it is understood that
 .. math::
     :nowrap:
 
-    \begin{gather*}
+    \begin{aligned}
     \tau_0 = 1 - \frac{u_{l,0}}{u_{c,0}} \\
     R_0^{-1} =  \beta  \sum_{s=1}^S \Pi(s | s_0) \frac{u_c(s)}{u_{c,0}}
-    \end{gather*}
+    \end{aligned}
 
 
 It is useful to transform  some of the above equations to forms that are more natural for analyzing the
