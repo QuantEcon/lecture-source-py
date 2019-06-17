@@ -43,9 +43,8 @@ The Euclidean, polar, and trigonometric forms of a complex number :math:`z` are:
 
 .. math::
 
-   \begin{equation}
    z = x + iy = re^{i\theta} = r(\cos{\theta} + i \sin{\theta})
-   \end{equation}
+
 
 The second equality above is known as called **Euler's formula**
 
@@ -65,9 +64,8 @@ origin:
 
 .. math::
 
-   \begin{equation}
    r = |z| = \sqrt{x^2 + y^2}
-   \end{equation}
+
 
 The value :math:`\theta` is the angle of :math:`(x,y)` with respect to the real axis
 
@@ -77,19 +75,18 @@ Therefore,
 
 .. math::
 
-   \begin{equation}
    \theta = \tan^{-1} \Big( \frac{y}{x} \Big)
-   \end{equation}
+
 
 Three elementary trigonometric functions are
 
 .. math::
 
-   \begin{equation}
+   \begin{aligned}
    \cos{\theta} = \frac{x}{r} = \frac{e^{i\theta} + e^{-i\theta}}{2} , \quad
    \sin{\theta} = \frac{y}{r} = \frac{e^{i\theta} - e^{-i\theta}}{2i} , \quad
    \tan{\theta} = \frac{x}{y}
-   \end{equation}
+   \end{aligned}
 
 We'll need the following imports
 
@@ -161,11 +158,11 @@ de Moivre's theorem states that:
 
 .. math::
 
-   \begin{equation}
+   \begin{aligned}
    (r(\cos{\theta} + i \sin{\theta}))^n =
    r^n e^{in\theta} =
    r^n(\cos{n\theta} + i \sin{n\theta})
-   \end{equation}
+   \end{aligned}
 
 To prove de Moivre's theorem, note that
 
@@ -198,9 +195,8 @@ and thus
 
 .. math::
 
-   \begin{equation}
    x^2 + y^2 = r^2
-   \end{equation}
+
 
 We recognize this as a theorem of **Pythagoras**
 
@@ -274,9 +270,8 @@ the ratio of :math:`x_1` to :math:`x_0` is
 
 .. math::
 
-   \begin{equation}
    \frac{x_1}{x_0} = \frac{r \cos{(\omega + \theta)}}{\cos{\omega}}
-   \end{equation}
+
 
 We can solve this equation for :math:`\omega` then solve for :math:`p` using :math:`x_0 = 2 pr^0 \cos{(\omega + n\theta)}`
 
