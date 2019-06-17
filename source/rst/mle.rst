@@ -451,9 +451,10 @@ guess), then
 
    .. math::
 
-
+      \begin{aligned}
       G(\boldsymbol{\beta}_{(k)}) = \frac{d \log \mathcal{L(\boldsymbol{\beta}_{(k)})}}{d \boldsymbol{\beta}_{(k)}} \\
       H(\boldsymbol{\beta}_{(k)}) = \frac{d^2 \log \mathcal{L(\boldsymbol{\beta}_{(k)})}}{d \boldsymbol{\beta}_{(k)}^2}
+      \end{aligned}
 
 2. Check whether :math:`\boldsymbol{\beta}_{(k+1)} - \boldsymbol{\beta}_{(k)} < tol`
 
@@ -840,8 +841,10 @@ We could use a probit regression model, where the pmf of :math:`y_i` is
 
 .. math::
 
+   \begin{aligned}
    f(y_i; \boldsymbol{\beta}) = \mu_i^{y_i} (1-\mu_i)^{1-y_i}, \quad y_i = 0,1 \\
    \text{where} \quad \mu_i = \Phi(\mathbf{x}_i' \boldsymbol{\beta})
+   \end{aligned}
 
 :math:`\Phi` represents the *cumulative normal distribution* and
 constrains the predicted :math:`y_i` to be between 0 and 1 (as required
