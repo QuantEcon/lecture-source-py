@@ -379,9 +379,11 @@ The optimal decision rule is then
 
 .. math::
 
+    \begin{aligned}
     \textrm { accept } f=f_0 \textrm{ if } \pi \geq \alpha \\
     \textrm { accept } f=f_1 \textrm{ if } \pi \leq \beta \\
     \textrm { draw another }  z \textrm{ if }  \beta \leq \pi \leq \alpha
+    \end{aligned}
 
 
 Our aim is to compute the value function :math:`J`, and from it the associated cutoffs :math:`\alpha`
