@@ -82,11 +82,10 @@ Three elementary trigonometric functions are
 
 .. math::
 
-   \begin{aligned}
    \cos{\theta} = \frac{x}{r} = \frac{e^{i\theta} + e^{-i\theta}}{2} , \quad
    \sin{\theta} = \frac{y}{r} = \frac{e^{i\theta} - e^{-i\theta}}{2i} , \quad
    \tan{\theta} = \frac{x}{y}
-   \end{aligned}
+
 
 We'll need the following imports
 
@@ -158,11 +157,10 @@ de Moivre's theorem states that:
 
 .. math::
 
-   \begin{aligned}
    (r(\cos{\theta} + i \sin{\theta}))^n =
    r^n e^{in\theta} =
    r^n(\cos{n\theta} + i \sin{n\theta})
-   \end{aligned}
+
 
 To prove de Moivre's theorem, note that
 
@@ -456,10 +454,9 @@ and thus:
 
 .. math::
 
-   \begin{aligned}
    \int_{-\pi}^{\pi} \cos(\omega) \sin(\omega) \, d\omega =
    \frac{1}{2}\sin^2(\pi) - \frac{1}{2}\sin^2(-\pi) = 0
-   \end{aligned}
+
 
 We can verify the analytical as well as numerical results using
 ``integrate`` in the ``sympy`` package:
