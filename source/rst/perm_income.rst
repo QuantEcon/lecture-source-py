@@ -464,8 +464,10 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
 .. math::
     :label: eqymoments
 
+    \begin{aligned}
     \mu_{y,t} = \tilde U \mu_t \\
     \Sigma_{y,t} = \tilde U \Sigma_t \tilde U'
+    \end{aligned}
 
 
 A Simple Example with IID Income
