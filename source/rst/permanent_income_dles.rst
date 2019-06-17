@@ -104,8 +104,8 @@ representation
 .. math::
     :label: endowment
 
-    \eqalign{ z_{t+1} & = A_{22} z_t + C_2 w_{t+1}  \cr
-                  y_t & = U_y  z_t  \cr}
+    \begin{aligned} z_{t+1} & = A_{22} z_t + C_2 w_{t+1}  \cr
+                  y_t & = U_y  z_t  \cr \end{aligned}
 
 where :math:`w_{t+1}` is an IID process with mean zero and identity
 contemporaneous covariance matrix, :math:`A_{22}` is a stable matrix,
@@ -127,7 +127,7 @@ would allow the household to enjoy bliss consumption forever)
 
 The state vector confronting the household at :math:`t` is
 
-.. math::  x_t = \left[\matrix{z_t \cr b_t\cr}\right]
+.. math::  x_t = \begin{bmatrix} z_t \\ b_t \end{bmatrix}
 
 where :math:`b_t` is its one-period debt falling due at the beginning of
 period :math:`t` and :math:`z_t` contains all variables useful for
@@ -243,7 +243,7 @@ where :math:`k_{t-1}` = :math:`b_{t}` is set up to be :math:`b_t` in the
 permanent income model
 
 The state vector in the LQ problem is
-:math:`\left[\matrix{z_t \cr b_t\cr}\right]`
+:math:`\begin{bmatrix} z_t \\ b_t \end{bmatrix}`
 
 Consequently, the relevant elements of Econ1.Sc are the same as in
 :math:`-F` occur when we apply other approaches to the same model in the lecture
