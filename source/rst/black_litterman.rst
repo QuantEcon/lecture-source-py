@@ -900,8 +900,8 @@ Define
 
 .. math::
 
-    \eqalign{ {\sf T}\left(V(x)\right) & = \min_{m(\epsilon,\mu)} \int m(\epsilon,\mu)[V(\mu + C \epsilon) + \theta \log m(\epsilon,\mu) ] \phi(\epsilon) d \epsilon \cr
-                            & = - \log \theta \int \exp \left( \frac{- V(\mu + C \epsilon)}{\theta} \right) \phi(\epsilon) d \epsilon }
+    \begin{aligned} {\sf T}\left(V(x)\right) & = \min_{m(\epsilon,\mu)} \int m(\epsilon,\mu)[V(\mu + C \epsilon) + \theta \log m(\epsilon,\mu) ] \phi(\epsilon) d \epsilon \cr
+                            & = - \log \theta \int \exp \left( \frac{- V(\mu + C \epsilon)}{\theta} \right) \phi(\epsilon) d \epsilon \end{aligned}
 
 This asserts that :math:`{\sf T}` is an indirect utility function for a
 minimization problem in which an **evil agent** chooses a distorted
