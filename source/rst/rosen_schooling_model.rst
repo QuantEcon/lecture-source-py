@@ -66,7 +66,7 @@ The model consists of the following equations:
 
 -  a supply curve of new students driven by present value :math:`v_t`:
 
-.. math:: n_t = \\alpha_s v_t + \epsilon_{st}
+.. math:: n_t = \alpha_s v_t + \epsilon_{st}
 
 Mapping into HS2013 Framework
 ===============================================
@@ -145,7 +145,7 @@ Because we  want :math:`b_t = \epsilon_{dt}` and :math:`d_{1t} =\epsilon_{st}`, 
       \end{array} }
       \right] \
    ,   U_d =
-   \left[ {\begin{array}{c}
+   \left[ {\begin{array}{ccc}
       10 & 1 & 0 \\ 0 & 0 & 0
       \end{array} }
       \right] \
