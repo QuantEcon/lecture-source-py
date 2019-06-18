@@ -41,7 +41,7 @@
 		<meta property="og:site_name" content="Quantitative Economics" />
 
         <link rel="stylesheet" href="/_static/css/basic.css">
-        <link rel="stylesheet" href="/_static/css/qe.css?v=2.16">
+        <link rel="stylesheet" href="/_static/css/qe.css?v=2.18">
         <link rel="stylesheet" href="https://assets.quantecon.org/css/qe-menubar.css">
         <link rel="icon" href="/_static/img/favicon.ico" type="image/x-icon" />
 
@@ -132,8 +132,8 @@
 				<div class="breadcrumbs clearfix">
 					<ul>
 						<li><a href="https://quantecon.org/">Org</a> •</li>
-						<li><a href="">Lectures</a> &raquo;</li>
-						<li><a href="{{nb_lang}}/">{{nb_kernel}} </a> &raquo;</li>
+						<li><a href="https://lectures.quantecon.org">Lectures</a> &raquo;</li>
+						<li><a href="https://lectures.quantecon.org/{{nb_lang}}/">{{nb_kernel}} </a> &raquo;</li>
 				      	<li>{{nb_title}}</li>
 					</ul>
 				</div>
@@ -148,10 +148,10 @@
 {% if nb_lang == 'py' and not indexPage %}
 
 						<ul class="badges">
-							<li><a href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-run-006400.svg" id="notebook_run_badge"></a></li>
+							<li><a href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-run-FDD935.svg" id="notebook_run_badge"></a></li>
 							{% if download_nb == True %}
-								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
-								<li><a href="/_downloads/pdf/py/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
+								<li><a href="/_downloads/ipynb/py/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
+								<li><a href="{{download_nb_path}}/_downloads/pdf/py/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
 							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 						</ul>
@@ -171,8 +171,8 @@
 
 						<ul class="badges">
 							{% if download_nb == True %}
-								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
-								<li><a href="/_downloads/pdf/jl/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
+								<li><a href="/_downloads/ipynb/jl/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
+								<li><a href="{{download_nb_path}}/_downloads/pdf/jl/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
 							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 						</ul>
@@ -469,7 +469,7 @@ var element = $('#{{ div_id }}');
 
 					<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.</p>
 
-					<p>&copy; Copyright 2017, Thomas J. Sargent and John Stachurski. Created using <a href="http://www.sphinx-doc.org/">Sphinx</a>, hosted with <a href="https://aws.amazon.com/">AWS</a>.</p>
+					<p>&copy; Copyright 2019, Thomas J. Sargent and John Stachurski. Created using <a href="http://www.sphinx-doc.org/">Sphinx</a>, hosted with <a href="https://aws.amazon.com/">AWS</a>.</p>
 
 				</div>
 
