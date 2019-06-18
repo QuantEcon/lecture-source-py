@@ -975,7 +975,6 @@ function determine_page_status()
     var path = window.location.pathname;
     var filename_parts = path.split("/");
     var filename = filename_parts.pop();
-    var language_identifier = filename_parts.pop();
 
     var lecture_name = filename.split(".")[0].toLowerCase();
 
@@ -983,7 +982,7 @@ function determine_page_status()
 
     for (var i = 0; i < status_data.length; i ++)
     {
-        if (status_data[i]['name'] === lecture_name && status_data[i]['extension'] === language_identifier)
+        if (status_data[i]['name'].split('/').pop() === lecture_name)
         {
             if (status_data[i]['result'] === 0)
             {
@@ -1039,7 +1038,7 @@ function insertNewRow(newRow)
         color = "lightgrey";
     }
 
-    link = '/' + newRow['name'] + '.html';
+    link = '/' + newRow['extension'] + '/' + newRow['name'] + '.html';
 
     badge = '<a href="' + link + '"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
 
