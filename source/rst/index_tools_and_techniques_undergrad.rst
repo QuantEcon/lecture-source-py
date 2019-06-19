@@ -19,6 +19,7 @@ tools and techniques
 .. toctree::
     :maxdepth: 2
 
+    geom_series
     linear_algebra
     complex_and_trig
     lln_clt
