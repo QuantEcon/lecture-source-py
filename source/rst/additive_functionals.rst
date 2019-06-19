@@ -37,7 +37,7 @@ Asymptotic stationarity and ergodicity are key assumptions needed to make it pos
 Are there ways to model  time series having persistent growth that still enables statistical learning based on a law of large number for
 an asymptotically stationary and ergodic process?
 
-The answer provided by Hansen and Scheinkman :cite:`Hans_Scheink_2009` is yes
+The answer provided by Hansen and Scheinkman :cite:`hansen2009long` is yes
 
 They described  two classes of time series models that accommodate growth
 
@@ -51,7 +51,7 @@ These two classes of processes are closely connected
 
 If a process :math:`\{y_t\}` is an additive functional and :math:`\phi_t = \exp(y_t)`, then :math:`\{\phi_t\}` is a multiplicative functional
 
-Hansen and Sargent :cite:`Hans_Sarg_book_2016` (chs. 5 and 8) describe discrete time versions of additive and multiplicative functionals
+Hansen and Sargent :cite:`hansen2008robustness` (chs. 5 and 8) describe discrete time versions of additive and multiplicative functionals
 
 In this lecture, we describe both  additive functionals and multiplicative functionals
 
@@ -67,14 +67,14 @@ We also describe  and compute  decompositions of additive and multiplicative pro
 
 We describe how to construct,  simulate,  and interpret these components
 
-More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`Hans_Sarg_book_2016`
+More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`hansen2008robustness`
 
 
 A Particular Additive Functional
 ====================================
 
 
-Hansen and Sargent :cite:`Hans_Sarg_book_2016`  describe a general class of additive functionals
+Hansen and Sargent :cite:`hansen2008robustness`  describe a general class of additive functionals
 
 This lecture focuses on a subclass of these: a scalar process :math:`\{y_t\}_{t=0}^\infty` whose increments are driven by a Gaussian vector autoregression
 
@@ -247,7 +247,7 @@ Simulation
 
 When simulating we embed our variables into a bigger system
 
-This system also constructs the components of the decompositions of :math:`y_t` and of :math:`\exp(y_t)` proposed by Hansen and Scheinkman :cite:`Hans_Scheink_2009`
+This system also constructs the components of the decompositions of :math:`y_t` and of :math:`\exp(y_t)` proposed by Hansen and Scheinkman :cite:`hansen2009long`
 
 
 All of these objects are computed using the code below
@@ -302,7 +302,7 @@ Notice the irregular but persistent growth in :math:`y_t`
 Decomposition
 ----------------------------------
 
-Hansen and Sargent :cite:`Hans_Sarg_book_2016` describe how to construct a decomposition of
+Hansen and Sargent :cite:`hansen2008robustness` describe how to construct a decomposition of
 an additive functional into four parts:
 
 -  a constant inherited from initial values :math:`x_0` and :math:`y_0`
@@ -325,7 +325,7 @@ functionals defined by :eq:`old1_additive_functionals` and :eq:`old2_additive_fu
     \end{aligned}
 
 
-Then the Hansen-Scheinkman :cite:`Hans_Scheink_2009` decomposition is
+Then the Hansen-Scheinkman :cite:`hansen2009long` decomposition is
 
 .. math::
 
@@ -551,7 +551,7 @@ Let's see what happens when we set :math:`T = 12000` instead of :math:`150`
 Peculiar Large Sample Property
 ----------------------------------
 
-Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale component
+Hansen and Sargent :cite:`hansen2008robustness` (ch. 8) note that the martingale component
 :math:`\widetilde M_t` of the multiplicative decomposition
 
 *  While :math:`E_0 \widetilde M_t = 1` for all :math:`t \geq 0`,
@@ -563,7 +563,7 @@ Hansen and Sargent :cite:`Hans_Sarg_book_2016` (ch. 8) note that the martingale 
 The first property follows from :math:`\widetilde M_t` being a multiplicative martingale with initial condition
 :math:`\widetilde M_0 = 1`
 
-The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`Hans_Sarg_book_2016`
+The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`hansen2008robustness`
 
 The following simulation of many paths of :math:`\widetilde M_t` illustrates both properties
 

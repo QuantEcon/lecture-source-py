@@ -433,7 +433,7 @@ Now let's turn to a new example of multiplicative functionals
 
 This example illustrates  ideas in the literature on
 
-*  **long-run risk** in the consumption based asset pricing literature (e.g., :cite:`Bansal_Yaron_2004`, :cite:`HHL_2008`, :cite:`Hansen_2007`)
+*  **long-run risk** in the consumption based asset pricing literature (e.g., :cite:`bansal2004risks`, :cite:`hansen2008consumption`, :cite:`Hansen_2007`)
 
 *  **benefits of eliminating aggregate fluctuations** in representative agent macro models (e.g., :cite:`Tall2000`, :cite:`Lucas_2003`)
 

@@ -19,7 +19,7 @@ Overview
 =============
 
 This lecture studies government debt in an AMSS
-economy :cite:`AMSS_2002` of the type described in :doc:`Optimal Taxation without State-Contingent Debt<amss>`
+economy :cite:`aiyagari2002optimal` of the type described in :doc:`Optimal Taxation without State-Contingent Debt<amss>`
 
 We study the behavior of government debt  as time :math:`t \rightarrow + \infty`
 
@@ -40,7 +40,7 @@ We use these techniques
 We apply tools applicable to  more general incomplete markets economies that are presented on pages 648 - 650 in section III.D
 of :cite:`BEGS1` (BEGS)
 
-We study an  :cite:`AMSS_2002` economy with  three Markov states driving government expenditures
+We study an  :cite:`aiyagari2002optimal` economy with  three Markov states driving government expenditures
 
  * In a :doc:`previous lecture<amss2>`, we showed that with only two Markov states, it is possible that eventually endogenous
    interest rate fluctuations support complete markets allocations and Ramsey outcomes
