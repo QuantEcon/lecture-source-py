@@ -39,7 +39,7 @@ This lecture uses this special class to create and analyze two examples
 
 * A  **log-likelihood process**, an object at the foundation of both frequentist and Bayesian approaches to statistical inference
 
-* A version of Robert E. Lucas's :cite:`Lucas_2003` and Thomas Tallarini's :cite:`Tall2000` approaches to measuring the benefits of moderating aggregate fluctuations
+* A version of Robert E. Lucas's :cite:`lucas2003macroeconomic` and Thomas Tallarini's :cite:`Tall2000` approaches to measuring the benefits of moderating aggregate fluctuations
 
 
 
@@ -433,9 +433,9 @@ Now let's turn to a new example of multiplicative functionals
 
 This example illustrates  ideas in the literature on
 
-*  **long-run risk** in the consumption based asset pricing literature (e.g., :cite:`bansal2004risks`, :cite:`hansen2008consumption`, :cite:`Hansen_2007`)
+*  **long-run risk** in the consumption based asset pricing literature (e.g., :cite:`bansal2004risks`, :cite:`hansen2008consumption`, :cite:`hansen2007beliefs`)
 
-*  **benefits of eliminating aggregate fluctuations** in representative agent macro models (e.g., :cite:`Tall2000`, :cite:`Lucas_2003`)
+*  **benefits of eliminating aggregate fluctuations** in representative agent macro models (e.g., :cite:`Tall2000`, :cite:`lucas2003macroeconomic`)
 
 Let :math:`c_t` be consumption at date :math:`t \geq 0`
 
@@ -723,7 +723,7 @@ These probability density functions illustrate a **peculiar property** of log-li
 Welfare Benefits of Reduced Random Aggregate Fluctuations
 ---------------------------------------------------------------
 
-Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`Lucas_2003`) we want to estimate the welfare benefits from removing random fluctuations around trend growth
+Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`lucas2003macroeconomic`) we want to estimate the welfare benefits from removing random fluctuations around trend growth
 
 We shall  compute how much initial consumption :math:`c_0` a representative consumer who ranks consumption streams according to :eq:`old1mf` would be willing to sacrifice to enjoy the consumption stream
 
