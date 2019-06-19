@@ -98,12 +98,12 @@ random walk :math:`x_t` and an IID shock :math:`\epsilon_{2,t}`:
 .. math::
   :label: state-space
 
-  \eqalign{ x_{t+1} & = x_t + \sigma_x \epsilon_{1,t+1} \cr
-            y_t & = x_t + \sigma_y \epsilon_{2,t} }
+  \begin{aligned} x_{t+1} & = x_t + \sigma_x \epsilon_{1,t+1} \cr
+            y_t & = x_t + \sigma_y \epsilon_{2,t} \end{aligned}
 
 where
 
-.. math::  \left[\matrix{\epsilon_{1,t+1} \cr \epsilon_{2,t} } \right] \sim {\mathcal N} (0, I)
+.. math::  \begin{bmatrix} \epsilon_{1,t+1} \cr \epsilon_{2,t} \end{bmatrix} \sim {\mathcal N} (0, I)
 
 is an IID process
 
@@ -124,8 +124,8 @@ time-invariant *innovations representation*
 .. math::
     :label: innovations
 
-    \eqalign{ \hat x_{t+1} & = \hat x_t + K a_t  \cr
-               y_t & = \hat x_t + a_t  }
+    \begin{aligned} \hat x_{t+1} & = \hat x_t + K a_t  \cr
+               y_t & = \hat x_t + a_t \end{aligned}
 
 where :math:`\hat x_t = E [x_t | y_{t-1}, y_{t-2}, \ldots ]` and
 :math:`a_t = y_t - E[y_t |y_{t-1}, y_{t-2}, \ldots ]`
@@ -188,26 +188,26 @@ so that
 
 .. math::
 
-   \eqalign{ \hat x_{t+1} & = \hat x_t + K (x_t + \sigma_y \epsilon_{2,t} - \hat x_t) \cr
-          & = (1-K) \hat x_t + K x_t + K \sigma_y \epsilon_{2,t} }
+   \begin{aligned} \hat x_{t+1} & = \hat x_t + K (x_t + \sigma_y \epsilon_{2,t} - \hat x_t) \cr
+          & = (1-K) \hat x_t + K x_t + K \sigma_y \epsilon_{2,t} \end{aligned}
 
 The stacked system
 
 .. math::
 
-    \left[ \matrix{ x_{t+1} \cr \hat x_{t+1} \cr \epsilon_{2,t+1} } \right] =
-    \left[\matrix{ 1 & 0 & 0 \cr K & (1-K) & K \sigma_y \cr 0 & 0 & 0 } \right]
-    \left[ \matrix{ x_{t} \cr \hat x_t \cr \epsilon_{2,t} } \right]+
-    \left[ \matrix{ \sigma_x & 0 \cr 0 & 0 \cr 0 & 1} \right]
-    \left[ \matrix{ \epsilon_{1,t+1} \cr \epsilon_{2,t+1} } \right]
+    \begin{bmatrix} x_{t+1} \cr \hat x_{t+1} \cr \epsilon_{2,t+1} \end{bmatrix} =
+    \begin{bmatrix} 1 & 0 & 0 \cr K & (1-K) & K \sigma_y \cr 0 & 0 & 0 \end{bmatrix}
+    \begin{bmatrix} x_{t} \cr \hat x_t \cr \epsilon_{2,t} \end{bmatrix}+
+    \begin{bmatrix} \sigma_x & 0 \cr 0 & 0 \cr 0 & 1 \end{bmatrix}
+    \begin{bmatrix} \epsilon_{1,t+1} \cr \epsilon_{2,t+1} \end{bmatrix}
 
 .. math::
 
-    \left[ \matrix{ y_t \cr a_t } \right] = \left[\matrix{ 1 & 0 & \sigma_y \cr
-                                          1 & -1 & \sigma_y } \right]  \left[ \matrix{ x_{t} \cr \hat x_t \cr \epsilon_{2,t} } \right]
+    \begin{bmatrix} y_t \cr a_t \end{bmatrix} = \begin{bmatrix} 1 & 0 & \sigma_y \cr
+                                          1 & -1 & \sigma_y \end{bmatrix}  \begin{bmatrix} x_{t} \cr \hat x_t \cr \epsilon_{2,t} \end{bmatrix}
 
 is a state-space system that tells us how the shocks
-:math:`\left[ \matrix{ \epsilon_{1,t+1} \cr \epsilon_{2,t+1} } \right]`
+:math:`\begin{bmatrix} \epsilon_{1,t+1} \cr \epsilon_{2,t+1} \end{bmatrix}`
 affect states :math:`\hat x_{t+1}, x_t`, the observable :math:`y_t`, and
 the innovation :math:`a_t`
 
