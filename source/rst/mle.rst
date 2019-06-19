@@ -215,7 +215,7 @@ We use our ``poisson_pmf`` function from above and arbitrary values for
   y_values = range(0, 20)
 
   # Define a parameter vector with estimates
-  β = np.array([0.26, 0.18, 0.25, -0.1, -0.22]).T
+  β = np.array([0.26, 0.18, 0.25, -0.1, -0.22])
 
   # Create some observations X
   datasets = [np.array([0, 1, 1, 1, 2]),
@@ -445,7 +445,7 @@ guess), then
    .. math::
 
 
-      \boldsymbol{\beta}_{(k+1)} = \boldsymbol{\beta}_{(k)} - \frac{G(\boldsymbol{\beta}_{(k)})} {H(\boldsymbol{\beta}_{(k)})}
+      \boldsymbol{\beta}_{(k+1)} = \boldsymbol{\beta}_{(k)} - H^{-1}(\boldsymbol{\beta}_{(k)})G(\boldsymbol{\beta}_{(k)})
 
    where:
 
@@ -453,7 +453,7 @@ guess), then
 
       \begin{aligned}
       G(\boldsymbol{\beta}_{(k)}) = \frac{d \log \mathcal{L(\boldsymbol{\beta}_{(k)})}}{d \boldsymbol{\beta}_{(k)}} \\
-      H(\boldsymbol{\beta}_{(k)}) = \frac{d^2 \log \mathcal{L(\boldsymbol{\beta}_{(k)})}}{d \boldsymbol{\beta}_{(k)}^2}
+      H(\boldsymbol{\beta}_{(k)}) = \frac{d^2 \log \mathcal{L(\boldsymbol{\beta}_{(k)})}}{d \boldsymbol{\beta}_{(k)}d \boldsymbol{\beta}'_{(k)}}
       \end{aligned}
 
 2. Check whether :math:`\boldsymbol{\beta}_{(k+1)} - \boldsymbol{\beta}_{(k)} < tol`
@@ -480,11 +480,13 @@ for every iteration
     class PoissonRegression:
 
         def __init__(self, y, X, β):
-            self.X, self.y, self.β = X, y, β
+            self.X = X
             self.n, self.k = X.shape
+            self.y = y.reshape(self.n,1)         # Reshape y as a n_by_1 column vector
+            self.β = β.reshape(self.k,1)         # Reshape β as a k_by_1 column vector
 
         def μ(self):
-            return np.exp(self.X @ self.β.T)
+            return np.exp(self.X @ self.β)
 
         def logL(self):
             y = self.y
@@ -492,13 +494,14 @@ for every iteration
             return np.sum(y * np.log(μ) - μ - np.log(factorial(y)))
 
         def G(self):
+            y = self.y
             μ = self.μ()
-            return ((self.y - μ) @ self.X).reshape(self.k, 1)
+            return X.T @ (y - μ)
 
         def H(self):
             X = self.X
             μ = self.μ()
-            return -(μ * X.T @ X)
+            return -(X.T @ (μ * X))
 
 Our function ``newton_raphson`` will take a ``PoissonRegression`` object
 that has an initial guess of the parameter vector :math:`\boldsymbol{\beta}_0`
@@ -533,22 +536,22 @@ iteration
         # than the tolerance until max iterations are reached
         while np.any(error > tol) and i < max_iter:
             H, G = model.H(), model.G()
-            β_new = model.β - (np.linalg.inv(H) @ G).T
+            β_new = model.β - (np.linalg.inv(H) @ G)
             error = β_new - model.β
-            model.β = β_new.flatten()
+            model.β = β_new
 
             # Print iterations
             if display:
-                β_list = [f'{t:.3}' for t in list(model.β)]
+                β_list = [f'{t:.3}' for t in list(model.β.flatten())]
                 update = f'{i:<13}{model.logL():<16.8}{β_list}'
                 print(update)
 
             i += 1
 
         print(f'Number of iterations: {i}')
-        print(f'β_hat = {model.β}')
+        print(f'β_hat = {model.β.flatten()}')
 
-        return model.β
+        return model.β.flatten()        # Return a flat array for β (instead of a k_by_1 column vector)
 
 Let's try out our algorithm with a small dataset of 5 observations and 3
 variables in :math:`\mathbf{X}`
@@ -660,7 +663,6 @@ to confirm we obtain the same coefficients and log-likelihood value
 
     from statsmodels.api import Poisson
     from scipy import stats
-    stats.chisqprob = lambda chisq, df: stats.chi2.sf(chisq, df)
 
     X = np.array([[1, 2, 5],
                   [1, 1, 3],
