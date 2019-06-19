@@ -66,7 +66,7 @@ The model consists of the following equations:
 
 -  a supply curve of new students driven by present value :math:`v_t`:
 
-.. math:: n_t = \\alpha_s v_t + \epsilon_{st}
+.. math:: n_t = \alpha_s v_t + \epsilon_{st}
 
 Mapping into HS2013 Framework
 ===============================================
@@ -85,20 +85,17 @@ Preferences
 .. math::
 
     \Pi = 0, \Lambda=
-   \left[ {\begin{array}{ccccc}
+   \begin{bmatrix}
       \alpha_d & 0 & \cdots & 0
-      \end{array} }
-      \right]
+      \end{bmatrix}
    , \Delta_h =
-   \left[ {\begin{array}{ccccc}
+   \begin{bmatrix}
       \delta_N & 1 & 0 & \cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & \cdots& \cdots & 0 & 1 \\ 0 & 0 & 0 & \cdots & 0
-      \end{array} }
-      \right]
+      \end{bmatrix}
       , \Theta_h =
-   \left[ {\begin{array}{c}
+   \begin{bmatrix}
       0 \\ 0 \\ \vdots \\ 0 \\ 1
-      \end{array} }
-      \right]
+      \end{bmatrix}
 
 where :math:`\Lambda` is a k+1 x 1 matrix, :math:`\Delta_h` is a k\_1 x
 k+1 matrix, and :math:`\Theta_h` is a k+1 x 1 matrix
@@ -130,25 +127,21 @@ Because we  want :math:`b_t = \epsilon_{dt}` and :math:`d_{1t} =\epsilon_{st}`, 
 .. math::
 
     A_{22}=
-   \left[ {\begin{array}{ccc}
+   \begin{bmatrix}
       1 & 0 & 0 \\ 0 & \rho_s & 0 \\ 0 & 0 & \rho_d
-      \end{array} }
-      \right] \
+      \end{bmatrix}
    ,   C_2 =
-   \left[ {\begin{array}{ccc}
+   \begin{bmatrix}
       0 & 0 \\ 1 & 0 \\ 0 & 1
-      \end{array} }
-      \right] \
+      \end{bmatrix}
    ,   U_b =
-   \left[ {\begin{array}{cccc}
+   \begin{bmatrix}
       30 & 0 & 1
-      \end{array} }
-      \right] \
+      \end{bmatrix}
    ,   U_d =
-   \left[ {\begin{array}{c}
+   \begin{bmatrix}
       10 & 1 & 0 \\ 0 & 0 & 0
-      \end{array} }
-      \right] \
+      \end{bmatrix}
 
 where :math:`\rho_s` and :math:`\rho_d` describe the persistence of the
 supply and demand shocks
