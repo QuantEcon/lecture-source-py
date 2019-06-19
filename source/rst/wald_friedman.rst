@@ -607,8 +607,8 @@ and plot these on our value function plot
 
         # The cutoff points can be found by differencing these costs with
         # the Bellman equation (J is always less than or equal to p_c_i)
-        β = π_grid[np.searchsorted(payoff_f1 - h, 1e-10) - 1]
-        α = π_grid[np.searchsorted(h - payoff_f0, -1e-10)]
+        β = π_grid[np.searchsorted(payoff_f1 - np.minimum(h, payoff_f0), 1e-10) - 1]
+        α = π_grid[np.searchsorted(np.minimum(h, payoff_f1) - payoff_f0, 1e-10) - 1]
 
         return (β, α)
 
