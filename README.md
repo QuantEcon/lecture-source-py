@@ -100,7 +100,9 @@ The use of align environments can be done using the `\begin{algined} ... \end{al
 
 The headings should not use math-environment.
 
-Labels must be written in all small alphabetical letters. Avoiding use of special characters in labels will be much appreciated. 
+Labels must be written in all small alphabetical letters. Any special character should be avoided in labels except "dash" i.e "-"
+
+All the cite key must use the default google scholar bibtex conventions. 
 
 ### Emphasis and Definitions
 
