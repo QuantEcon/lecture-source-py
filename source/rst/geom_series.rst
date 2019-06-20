@@ -6,9 +6,9 @@
     single: python
 
 
-******************************************
+*****************************************
 Geometric Series for Elementary Economics
-******************************************
+*****************************************
 
 
 .. contents:: :depth: 2
@@ -16,7 +16,7 @@ Geometric Series for Elementary Economics
 
 
 Overview
-================
+========
 
 
 The lecture describes important ideas in economics that use the mathematics of geometric series
@@ -51,7 +51,7 @@ Below we'll use the following imports
 
 
 Key Formulas
-===============================
+============
 
 To start, let :math:`c` be a real number that lies strictly between
 :math:`-1` and :math:`1`
@@ -66,7 +66,7 @@ To start, let :math:`c` be a real number that lies strictly between
 We want to evaluate geometric series of two types -- infinite and finite
 
 Infinite Geometric Series
---------------------------
+-------------------------
 
 The first type of geometric that interests us is the infinite series
 
@@ -86,7 +86,7 @@ that if :math:`c \in (-1,1)`, then the outcome is the
 equation :math:`1 = 1`
 
 Finite Geometric Series
-------------------------
+-----------------------
 
 The second series that interests us is the finite geomtric series
 
@@ -111,7 +111,7 @@ geometric series
 
 
 Example: The Money Multiplier in Fractional Reserve Banking
-============================================================
+===========================================================
 
 In a fractional reserve banking system, banks hold only a fraction
 :math:`r \in (0,1)` of cash behind each **deposit receipt** that they
@@ -149,7 +149,7 @@ The geometric series formula :eq:`infinite` is at the heart of the classic model
 
 
 A Simple Model
----------------
+--------------
 
 There is a set of banks named :math:`i = 0, 1, 2, \ldots`
 
@@ -246,7 +246,7 @@ Therefore, the sum of all deposits in our banking system
 
 
 Money Multiplier
---------------------
+----------------
 
 The **money multiplier** is a number that tells the multiplicative
 factor by which an exogenous injection of cash into bank :math:`0` leads
@@ -267,7 +267,7 @@ Equation :eq:`sumdeposits` asserts that the **money multiplier** is
 
 
 Example: The Keynesian Multiplier
-====================================
+=================================
 
 The famous economist John Maynard Keynes and his followers created a
 simple model intended to determine national income :math:`y` in
@@ -283,7 +283,7 @@ circumstances in which
 
 
 Static Version
-------------------
+--------------
 
 
 An elementary Keynesian model of national income determination consists
@@ -337,7 +337,7 @@ of the multiplier as the outcome of a dynamic process that we describe
 next
 
 Dynamic Version
--------------------
+---------------
 
 We arrive at a dynamic version by interpreting the nonnegative integer
 :math:`t` as indexing time and changing our specification of the
@@ -416,7 +416,7 @@ in government expenditures
 
 
 Example: Interest Rates and Present Values
-============================================
+==========================================
 
 We can apply our formula for geometric series to study how interest
 rates affect values of streams of dollar payments that extend over time
@@ -477,7 +477,7 @@ Sequence :eq:`geom2` tells us how to **discount** future dollars to get their
 values in terms of today's dollars
 
 Accumulation
--------------
+------------
 
 Geometric sequence :eq:`geom1` tells us how one dollar invested and re-invested
 in a project with gross one period nominal rate of return accumulates
@@ -504,7 +504,7 @@ reinvest the proceeds, then the sequence
 tells how our account accumulates at dates :math:`t=0, 1, 2, \ldots`
 
 Discounting
-------------
+-----------
 
 Geometric sequence :eq:`geom2` tells us how much future dollars are worth in terms of today's dollars
 
@@ -526,7 +526,7 @@ is worth :math:`x R^{-j}` dollars at time :math:`t` (e.g., today)
 
 
 Application to Asset Pricing
------------------------------
+----------------------------
 
 A **lease** requires a payments stream of :math:`x_t` dollars at
 times :math:`t = 0, 1, 2, \ldots` where
@@ -543,9 +543,9 @@ The **present value** of the lease is
 
 .. math::
 
-    \eqalign{ p_0  & = x_0 + x_1/R + x_2/(R^2) + \ddots \\
+    \begin{aligned} p_0  & = x_0 + x_1/R + x_2/(R^2) + \ddots \\
                      & = x_0 (1 + G R^{-1} + G^2 R^{-2} + \cdots ) \\
-                     & = x_0 \frac{1}{1 - G R^{-1}} }
+                     & = x_0 \frac{1}{1 - G R^{-1}} \end{aligned}
 
 where the last line uses the formula for an infinite geometric series
 
@@ -565,12 +565,12 @@ Use this approximation to write :math:`p_0` as
 
 .. math::
 
-    \begin{align}
+    \begin{aligned}
     p_0 &= x_0 \frac{1}{1 - G R^{-1}} \\
     &= x_0 \frac{1}{1 - (1+g) (1-r) } \\
     &= x_0 \frac{1}{1 - (1+g - r - rg)} \\
     & \approx x_0 \frac{1}{r -g }
-   \end{align}
+   \end{aligned}
 
 where the last step uses the approximation :math:`r g \approx 0`
 
@@ -591,7 +591,7 @@ Let the payment stream on the lease now be :math:`x_t` for :math:`t= 1,2, \dots,
 
 The present value of this lease is:
 
-.. math:: \begin{equation} \begin{split}p_0&=x_0 + x_1/R  + \dots +x_T/R^T \\ &= x_0(1+GR^{-1}+\dots +G^{T}R^{-T}) \\ &= \frac{x_0(1-G^{T+1}R^{-(T+1)})}{1-GR^{-1}}  \end{split}\end{equation}
+.. math:: \begin{aligned} \begin{split}p_0&=x_0 + x_1/R  + \dots +x_T/R^T \\ &= x_0(1+GR^{-1}+\dots +G^{T}R^{-T}) \\ &= \frac{x_0(1-G^{T+1}R^{-(T+1)})}{1-GR^{-1}}  \end{split}\end{aligned}
 
 Applying the Taylor series to :math:`R^{-(T+1)}` about :math:`r=0` we get:
 
@@ -607,7 +607,7 @@ Thus, we get the following approximation:
 
 Expanding:
 
-.. math::  \begin{align*}p_0 &=\frac{x_0(1-1+(T+1)^2 rg -r(T+1)+g(T+1))}{1-1+r-g+rg}  \\&=\frac{x_0(T+1)((T+1)rg+r-g)}{r-g+rg} \\ &\approx \frac{x_0(T+1)(r-g)}{r-g}+\frac{x_0rg(T+1)}{r-g}\\ &= x_0(T+1) + \frac{x_0rg(T+1)}{r-g}  \end{align*}
+.. math::  \begin{aligned} p_0 &=\frac{x_0(1-1+(T+1)^2 rg -r(T+1)+g(T+1))}{1-1+r-g+rg}  \\&=\frac{x_0(T+1)((T+1)rg+r-g)}{r-g+rg} \\ &\approx \frac{x_0(T+1)(r-g)}{r-g}+\frac{x_0rg(T+1)}{r-g}\\ &= x_0(T+1) + \frac{x_0rg(T+1)}{r-g}  \end{aligned}
 
 We could have also approximated by removing the second term
 :math:`rgx_0(T+1)` when :math:`T` is relatively small compared to
@@ -626,11 +626,11 @@ below
     def finite_lease_pv(T, g, r, x_0):
         G = (1 + g)
         R = (1 + r)
-        return (x_0 * (1 - G**(T + 1) * R**(-T - 1)))/(1 - G * R**(-1))
+        return (x_0 * (1 - G**(T + 1) * R**(-T - 1))) / (1 - G * R**(-1))
     # First approximation for our finite lease
 
     def finite_lease_pv_approx_f(T, g, r, x_0):
-        p = x_0 * (T + 1) + x_0 * r * g * (T + 1)/(r - g)
+        p = x_0 * (T + 1) + x_0 * r * g * (T + 1) / (r - g)
         return p
 
     # Second approximation for our finite lease
@@ -641,7 +641,7 @@ below
     def infinite_lease(g, r, x_0):
         G = (1 + g)
         R = (1 + r)
-        return x_0/(1 - G * R**(-1))
+        return x_0 / (1 - G * R**(-1))
 
 
 Now that we have test run our functions, we can plot some outcomes
@@ -789,20 +789,20 @@ After that, we'll use SymPy to compute derivatives
     g, r, x0 = sym.symbols('g, r, x0')
     G = (1 + g)
     R = (1 + r)
-    p0 = x0/(1 - G * R**(-1))
+    p0 = x0 / (1 - G * R**(-1))
     init_printing()
     print('Our formula is:')
     p0
 
 .. code-block:: python3
 
-    print('dp0/dg is:')
+    print('dp0 / dg is:')
     dp_dg = sym.diff(p0, g)
     dp_dg
 
 .. code-block:: python3
 
-    print('dp0/dr is:')
+    print('dp0 / dr is:')
     dp_dr = sym.diff(p0, r)
     dp_dr
 
@@ -816,7 +816,7 @@ will always be postive
 
 
 Back to the Keynesian Multiplier
-===================================
+================================
 
 We will now go back to the case of the Keynesian multiplier and plot the
 time path of :math:`y_t`, given that consumption is a constant fraction
