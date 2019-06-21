@@ -83,7 +83,7 @@ Our example economies have the following features
 
 -  Preferences of a representative household are described by
 
-   .. math:: - \frac{1}{2}\mathbb{E}\sum_{t=0}^\infty \beta^t [(s_t-b_t)\cdot(s_t - b_t) + l_t^2], 0 < \beta < 1
+   .. math::  -\frac{1}{2}\mathbb{E}\sum_{t=0}^\infty \beta^t [(s_t-b_t)\cdot(s_t - b_t) + l_t^2], 0 < \beta < 1
 
    .. math::  s_t = \Lambda h_{t-1} + \Pi c_t
 
