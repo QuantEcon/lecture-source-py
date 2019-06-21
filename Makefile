@@ -21,7 +21,7 @@ setup:
 	pip install -r requirements.txt
 	
 local:
-	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_images_urlpath=0
+	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_images_urlpath=0 -D jupyter_images_markdown=1
 
 notebooks:
 	make jupyter
