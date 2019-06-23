@@ -1503,8 +1503,7 @@ To evaluate the function
    &= - x'A'PAx - 2u'B'PAx - u'(Q + B'PB) u
    \end{aligned}
 
-For simplicity, denote by :math:`S := (Q + B'PB)^{-1} B'PA`, then $ u =
--Sx$
+For simplicity, denote by :math:`S := (Q + B'PB)^{-1} B'PA`, then :math:`u = -Sx`
 
 Regarding the second term :math:`- 2u'B'PAx`,
 
