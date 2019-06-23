@@ -326,7 +326,7 @@ Under this analogy, :math:`p` corresponds to a value function and :math:`\delta`
 But :math:`\delta > 1`, so :math:`T` is not a contraction in any obvious metric, and in fact, :math:`T^n p` diverges for many choices of :math:`p`
 
 Nevertheless, there exists a domain on which :math:`T` is well-behaved:  the set
-of convex increasing continuous functions :math:`p \colon [0,1] \to \RR` such that :math:`c'(0) s \leq p(s) \leq c(s)` for all :math:`0 \leq s \leq 1`
+of convex increasing continuous functions :math:`p \colon [0,1] \to \mathbb R` such that :math:`c'(0) s \leq p(s) \leq c(s)` for all :math:`0 \leq s \leq 1`
 
 We denote this set of functions by :math:`\mathcal P`
 
@@ -342,7 +342,7 @@ Now consider the choice function
 .. math::
     :label: coase_argmins
 
-    t^*(s) := \argmin_{ t \leq s} \{c(s - t) + \delta p^*(t) \}
+    t^*(s) := \text{ the solution to } \min_{ t \leq s} \{c(s - t) + \delta p^*(t) \}
 
 By definition, :math:`t^*(s)` is the cost-minimizing upstream boundary for a firm that
 is contracted to deliver the good at stage :math:`s` and faces the price
@@ -372,7 +372,7 @@ We label this firm (and hence the number of firms in the chain) as
 .. math::
     :label: coase_eqfn
 
-    n^* := \inf\setntn{i \in \mathbb N}{t^*_i = 0}.
+    n^* := \inf \{i \in \mathbb N \,:\, t^*_i = 0\}
 
 The task allocation corresponding to :eq:`coase_ralloc` is given by :math:`\ell_i^* := t_{i-1}^* - t_i^*` for all :math:`i`
 
