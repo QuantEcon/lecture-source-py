@@ -81,7 +81,7 @@ Each of these :math:`n` firms sell output :math:`y`
 The price :math:`p` of the good lies on an inverse demand curve
 
 .. math::
-    :label: ree_comp3d/_static
+    :label: ree_comp3d_static
 
     p = a_0 - a_1 Y
 
@@ -102,24 +102,24 @@ Each firm has a total cost function
 
 The profits of a representative firm are :math:`p y - c(y)`
 
-Using :eq:`ree_comp3d/_static`, we can express the problem of the representative firm as
+Using :eq:`ree_comp3d_static`, we can express the problem of the representative firm as
 
 .. math::
-    :label: max_problem/_static
+    :label: max_problem_static
 
     \max_{y} \Bigl[ (a_0 - a_1 Y) y - c_1 y - 0.5 c_2 y^2 \Bigr]
 
 
-In posing problem :eq:`max_problem/_static`, we want the firm to be a *price taker*
+In posing problem :eq:`max_problem_static`, we want the firm to be a *price taker*
 
 We do that by regarding :math:`p` and therefore :math:`Y` as exogenous to the firm
 
 The essence of the Big :math:`Y`, little :math:`y` trick is *not* to set :math:`Y = n y` *before* taking the first-order condition with respect
-to :math:`y` in problem :eq:`max_problem/_static`
+to :math:`y` in problem :eq:`max_problem_static`
 
 This assures that the firm is a price taker
 
-The first-order condition for problem :eq:`max_problem/_static` is
+The first-order condition for problem :eq:`max_problem_static` is
 
 .. math::
     :label: BigYsimpleFONC
@@ -138,7 +138,7 @@ to obtain the following linear equation
 
 to be solved for the competitive equilibrium market-wide output :math:`Y`
 
-After solving for :math:`Y`, we can compute the competitive equilibrium price :math:`p` from the inverse demand curve :eq:`ree_comp3d/_static`
+After solving for :math:`Y`, we can compute the competitive equilibrium price :math:`p` from the inverse demand curve :eq:`ree_comp3d_static`
 
 
 Further Reading
@@ -312,7 +312,7 @@ where
 
 Evidently :math:`v` and :math:`h` both depend on :math:`H`
 
-A First-Order Characterization 
+A First-Order Characterization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In what follows it will be helpful to have a second characterization of :math:`h`, based on first-order conditions
