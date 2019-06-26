@@ -115,7 +115,13 @@
 		        	<div class="pdf-options" id="pdf-options">
 		        		<a class="modal_close" href="#"><span class="icon icon-cross"></span></a>
 		        		<h2>Download PDF</h2>
-					<p>We are working to support a site-wide PDF but it is not yet available. You can download PDFs for individual lectures through the download badge on each lecture page.</p>
+						<ul>
+							<li>
+								<a href="/_downloads/pdf/py/Quantitative Economics with Python.pdf"><span class="thumb"><img src="/_static/img/py-logo.png"></span><h3 class="title">Python <span class="icon icon-chevron-right"></span></h3></a>
+							</li><li>
+								<a href="" title="Currently unavailable" style="cursor:default;opacity:0.2;"><span class="thumb"><img src="/_static/img/jl-logo.png"></span><h3 class="title">Julia <span class="icon icon-chevron-right"></span></h3></a>
+							</li>
+						</ul>
 		        	</div>
 
 		        	<div class="header-search"><gcse:searchbox-only></gcse:searchbox-only></div>
