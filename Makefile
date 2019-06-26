@@ -8,7 +8,7 @@ SPHINXPROJ    = lecture-source-jl
 SOURCEDIR     = source/rst
 BUILDDIR      = _build
 CORES 		  = 4
-BUILDCOVERAGE = _build/jupyter/coverage
+BUILDCOVERAGE = _build_coverage
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -36,8 +36,14 @@ endif
 preview:
 	cd _build/jupyter_html/ && python -m http.server
 
-coverage: 
-	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_make_coverage=1 -D jupyter_make_site=0 -D jupyter_generate_html=0 -D jupyter_ignore_skip_test=0
+clean-coverage:
+	rm -rf $(BUILDCOVERAGE)
+
+coverage: clean-coverage
+	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDCOVERAGE)" $(SPHINXOPTS) $(O) -D jupyter_make_coverage=1 -D jupyter_make_site=0 -D jupyter_generate_html=0 -D jupyter_ignore_skip_test=0 -D jupyter_download_nb=0 
+
+coverage-parallel: clean-coverage
+	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDCOVERAGE)" $(SPHINXOPTS) $(O) -D jupyter_make_coverage=1 -D jupyter_make_site=0 -D jupyter_generate_html=0 -D jupyter_ignore_skip_test=0 -D jupyter_download_nb=0 -D jupyter_number_workers=$(CORES)
 
 jupyter-parallel:
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_number_workers=$(CORES)
