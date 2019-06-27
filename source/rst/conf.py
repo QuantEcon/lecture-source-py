@@ -423,7 +423,7 @@ jupyter_target_html = True
 jupyter_download_nb_urlpath = "https://lectures.quantecon.org/"
 
 #allow downloading of notebooks
-jupyter_download_nb = True
+jupyter_download_nb = False
 
 #Use urlprefix images
 jupyter_images_urlpath = "https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/"
@@ -435,16 +435,16 @@ jupyter_lang_synonyms = ["ipython"]
 jupyter_ignore_skip_test = True
 
 #allow execution of notebooks
-jupyter_execute_notebooks = True
+jupyter_execute_notebooks = False
 
 # Location of template folder for coverage reports
 jupyter_template_coverage_file_path = "theme/templates/error_report_template.html"
 
 # generate html from IPYNB files
-jupyter_generate_html = True
+jupyter_generate_html = False
 
 # html template specific to your website needs
 jupyter_html_template = "theme/templates/lectures-nbconvert.tpl"
 
 #make website
-jupyter_make_site = True
+jupyter_make_site = False
