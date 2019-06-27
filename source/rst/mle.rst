@@ -168,7 +168,7 @@ dropped for plotting purposes)
 
     plt.subplots(figsize=(12, 8))
     plt.hist(numbil0_2008, bins=30)
-    plt.xlim(xmin=0)
+    plt.xlim(left=0)
     plt.grid()
     plt.xlabel('Number of billionaires in 2008')
     plt.ylabel('Count')
