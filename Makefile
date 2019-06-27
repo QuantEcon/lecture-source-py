@@ -23,18 +23,16 @@ setup:
 local:
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -D jupyter_images_urlpath=0 -D jupyter_images_markdown=1
 
-notebooks:
-	make jupyter
-
-preview-nb:
+preview:
+ifeq ($(target), website)
+	cd _build/jupyter_html/ && python -m http.server
+else
 ifdef lecture
 	cd _build/jupyter/ && jupyter notebook $(basename $(lecture)).ipynb
 else
 	cd _build/jupyter/ && jupyter notebook
 endif
-
-preview:
-	cd _build/jupyter_html/ && python -m http.server
+endif
 
 clean-coverage:
 	rm -rf $(BUILDCOVERAGE)
