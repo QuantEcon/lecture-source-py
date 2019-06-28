@@ -22,7 +22,7 @@ In addition to what's included in  Anaconda, this lecture uses the quantecon  li
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 
 This lecture adds a third solution method for the
