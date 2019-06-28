@@ -545,7 +545,7 @@ produce a good approximation to :math:`Tv`, but also combine well with the broad
 
 .. only:: html
 
-    One good choice from both respects is continuous piecewise linear interpolation (see :download:`this paper <_static/pdfs/3ndp.pdf>` for further discussion)
+    One good choice from both respects is continuous piecewise linear interpolation (see :download:`this paper <_static/lecture_specific/optgrowth/3ndp.pdf>` for further discussion)
 
 .. only:: latex
 
@@ -614,7 +614,7 @@ The Bellman Operator
 
 Here's a function that generates a Bellman operator using linear interpolation
 
-.. literalinclude:: /_static/code/optgrowth/bellman_operator.py
+.. literalinclude:: /_static/lecture_specific/optgrowth/bellman_operator.py
 
 optgro
 The function ``operator_factory`` takes a class that represents the growth model
@@ -795,7 +795,7 @@ We are clearly getting closer
 We can write a function that iterates until the difference is below a particular
 tolerance level
 
-.. literalinclude:: /_static/code/optgrowth/solve_model.py
+.. literalinclude:: /_static/lecture_specific/optgrowth/solve_model.py
 
 
 We can check our result by plotting it against the true value
@@ -864,7 +864,7 @@ Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`
 The next figure shows a simulation of 100 elements of this sequence for three
 different discount factors (and hence three different policies)
 
-.. figure:: /_static/figures/solution_og_ex2.png
+.. figure:: /_static/lecture_specific/optgrowth/solution_og_ex2.png
 
 In each sequence, the initial condition is :math:`y_0 = 0.1`
 

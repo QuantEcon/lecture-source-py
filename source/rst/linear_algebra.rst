@@ -923,7 +923,7 @@ projections
 .. only:: html
 
     The solution is known to be :math:`\hat x = (A'A)^{-1}A'y` --- see for example
-    chapter 3 of :download:`these notes <_static/pdfs/course_notes.pdf>`
+    chapter 3 of :download:`these notes <_static/lecture_specific/linear_algebra/course_notes.pdf>`
 
 .. only:: latex
 

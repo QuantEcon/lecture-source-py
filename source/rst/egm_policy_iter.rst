@@ -244,7 +244,7 @@ Note the lack of any root-finding algorithm
 
 We'll also run our original implementation, which uses an exogenous grid and requires root-finding, so we can perform some comparisons
 
-.. literalinclude:: /_static/code/coleman_policy_iter/coleman_operator.py
+.. literalinclude:: /_static/lecture_specific/coleman_policy_iter/coleman_operator.py
 
 
 

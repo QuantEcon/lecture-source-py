@@ -205,7 +205,7 @@ The next figure shows the dynamics of this process when :math:`\phi_0 = 1.1, \ph
 .. _lss_sode_fig:
 
 .. figure::
-    /_static/figures/solution_lss_ex1.png
+    /_static/lecture_specific/linear_models/solution_lss_ex1.png
 
 Later you'll be asked to recreate this figure
 
@@ -266,7 +266,7 @@ The next figure shows the dynamics of this process when
 .. _lss_uap_fig:
 
 .. figure::
-    /_static/figures/solution_lss_ex2.png
+    /_static/lecture_specific/linear_models/solution_lss_ex2.png
 
 Vector Autoregressions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -668,7 +668,7 @@ The system in question is the univariate autoregressive model :eq:`eq_ar_rep`
 The values of :math:`y_T` are represented by black dots in the left-hand figure
 
 .. figure::
-    /_static/figures/tsh0.png
+    /_static/lecture_specific/linear_models/tsh0.png
 
 
 In the right-hand figure, these values are converted into a rotated histogram
@@ -679,12 +679,12 @@ that shows relative frequencies from our sample of 20 :math:`y_T`'s
 Here is another figure, this time with 100 observations
 
 .. figure::
-    /_static/figures/tsh.png
+    /_static/lecture_specific/linear_models/tsh.png
 
 Let's now try with 500,000 observations, showing only the histogram (without rotation)
 
 .. figure::
-    /_static/figures/tsh_hg.png
+    /_static/lecture_specific/linear_models/tsh_hg.png
 
 The black line is the population density of :math:`y_T` calculated from :eq:`lss_mgs_y`
 
@@ -724,7 +724,7 @@ and the sample size is relatively small (:math:`I=20`)
 .. _lss_em_fig:
 
 .. figure::
-    /_static/figures/ensemble_mean.png
+    /_static/lecture_specific/linear_models/ensemble_mean.png
 
 The ensemble mean for :math:`x_t` is
 
@@ -836,7 +836,7 @@ This picture shows cross-sectional distributions for :math:`y` at times
 :math:`T, T', T''`
 
 .. figure::
-    /_static/figures/paths_and_stationarity.png
+    /_static/lecture_specific/linear_models/paths_and_stationarity.png
 
 Note how the time series "settle down" in the sense that the distributions at
 :math:`T'` and :math:`T''` are relatively similar to each other --- but unlike
@@ -886,7 +886,7 @@ Let's see what happens to the preceding figure if we start :math:`x_0` at the st
 .. _lss_s_fig:
 
 .. figure::
-    /_static/figures/covariance_stationary.png
+    /_static/lecture_specific/linear_models/covariance_stationary.png
 
 Now the  differences in the observed distributions at :math:`T, T'` and :math:`T''` come entirely from random fluctuations due to the finite sample size
 
@@ -946,7 +946,7 @@ regardless of the initial conditions :math:`\mu_0` and :math:`\Sigma_0`
 
 .. only:: html
 
-    This is the *globally stable case* --- see :download:`these notes <_static/pdfs/iteration_notes.pdf>` for more a theoretical treatment
+    This is the *globally stable case* --- see :download:`these notes <_static/lecture_specific/linear_models/iteration_notes.pdf>` for more a theoretical treatment
 
 .. only:: latex
 

@@ -107,7 +107,7 @@ We set preference parameters
 
 The following Python code sets up the economy
 
-.. literalinclude:: /_static/code/opt_tax_recur/crra_utility.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/crra_utility.py
 
 
 First and Second Moments
@@ -144,13 +144,13 @@ We begin by showing the code that we used in earlier lectures on the AMSS model
 
 Here it is
 
-.. literalinclude:: /_static/code/opt_tax_recur/sequential_allocation.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/sequential_allocation.py
     :class: collapse
 
-.. literalinclude:: /_static/code/amss/recursive_allocation.py
+.. literalinclude:: /_static/lecture_specific/amss/recursive_allocation.py
     :class: collapse
 
-.. literalinclude:: /_static/code/amss/utilities.py
+.. literalinclude:: /_static/lecture_specific/amss/utilities.py
     :class: collapse
 
 Next, we show the code that we use to generate a very long simulation starting from initial
@@ -196,7 +196,7 @@ Here is a graph of a long simulation of 102000 periods
     plt.show()
 
 
-.. figure:: /_static/figures/amss3_g1.png
+.. figure:: /_static/lecture_specific/amss3/amss3_g1.png
 
 
 The long simulation apparently  indicates eventual convergence to an ergodic distribution
@@ -209,7 +209,7 @@ the part value of government debt
 
 We obtain the following graph for the histogram of the last 100,000 observations on the par value of government debt
 
-.. figure:: /_static/figures/amss3_g3.png
+.. figure:: /_static/lecture_specific/amss3/amss3_g3.png
 
 The  black vertical line denotes the sample mean for the last 100,000 observations included in the histogram; the  green vertical line denotes the
 value of :math:`\frac{ {\mathcal B}^*}{E u_c}`, associated with the sample (presumably) from
@@ -241,7 +241,7 @@ respectively
     plt.tight_layout()
     plt.show()
 
-.. figure:: /_static/figures/amss3_g2.png
+.. figure:: /_static/lecture_specific/amss3/amss3_g2.png
 
 
 For the short samples early in our simulated sample of  102,000 observations, fluctuations in government debt and the tax rate

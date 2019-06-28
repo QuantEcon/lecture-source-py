@@ -460,7 +460,7 @@ Consider the previously presented duopoly model with parameter values of:
 
 From these, we compute the infinite horizon MPE using the preceding code
 
-.. literalinclude:: /_static/code/markov_perf/duopoly_mpe.py
+.. literalinclude:: /_static/lecture_specific/markov_perf/duopoly_mpe.py
 
 
 Running the code produces the following output
@@ -515,7 +515,7 @@ The following program
 
 * extracts and plots industry output :math:`q_t = q_{1t} + q_{2t}` and price :math:`p_t = a_0 - a_1 q_t`
 
-.. literalinclude:: /_static/code/markov_perf/duopoly_mpe_dynamics.py
+.. literalinclude:: /_static/lecture_specific/markov_perf/duopoly_mpe_dynamics.py
 
 Note that the initial condition has been set to :math:`q_{10} = q_{20} = 1.0`
 
@@ -527,7 +527,7 @@ The second panel shows analogous curves for price
 
 .. _mpe_vs_monopolist:
 
-.. figure:: /_static/figures/mpe_vs_monopolist.png
+.. figure:: /_static/lecture_specific/markov_perf/mpe_vs_monopolist.png
 
 Here parameters are the same as above for both the MPE and monopoly solutions
 
@@ -646,7 +646,7 @@ The first figure shows the dynamics of inventories for each firm when the parame
 
 
 
-.. figure:: /_static/figures/judd_fig2.png
+.. figure:: /_static/lecture_specific/markov_perf/judd_fig2.png
 
 Inventories trend to a common steady state
 
@@ -655,7 +655,7 @@ If we increase the depreciation rate to :math:`\delta = 0.05`, then we expect st
 This is indeed the case, as the next figure shows
 
 
-.. figure:: /_static/figures/judd_fig1.png
+.. figure:: /_static/lecture_specific/markov_perf/judd_fig1.png
 
 
 Solutions

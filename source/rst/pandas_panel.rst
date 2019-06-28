@@ -57,7 +57,7 @@ countries and assign it to ``realwage``
 .. only:: html
 
     The dataset ``pandas_panel/realwage.csv`` can be downloaded
-    :download:`here <_static/code/pandas_panel/realwage.csv>`
+    :download:`here <_static/lecture_specific/pandas_panel/realwage.csv>`
 
 .. only:: latex
 
@@ -194,7 +194,7 @@ function
 .. only:: html
 
     The CSV file can be found in ``pandas_panel/countries.csv`` and can be downloaded
-    :download:`here <_static/code/pandas_panel/countries.csv>`
+    :download:`here <_static/lecture_specific/pandas_panel/countries.csv>`
 
 .. only:: latex
 
@@ -251,7 +251,7 @@ a corresponding data entry ``realwage_f``
 
 This is illustrated by the red shading in the following diagram
 
-.. figure:: /_static/figures/venn_diag.png
+.. figure:: /_static/lecture_specific/pandas_panel/venn_diag.png
 
 
 
@@ -548,7 +548,7 @@ in Europe by age and sex from `Eurostat <http://ec.europa.eu/eurostat/data/datab
 .. only:: html
 
     The dataset ``pandas_panel/employ.csv`` can be downloaded
-    :download:`here <_static/code/pandas_panel/employ.csv>`
+    :download:`here <_static/lecture_specific/pandas_panel/employ.csv>`
 
 .. only:: latex
 

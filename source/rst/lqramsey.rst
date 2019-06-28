@@ -50,7 +50,7 @@ Because the Lucas and Stokey model features state-contingent government debt, th
 
 .. only:: html
 
-    The treatment given here closely follows :download:`this manuscript <_static/pdfs/firenze.pdf>`, prepared
+    The treatment given here closely follows :download:`this manuscript <_static/lecture_specific/lqramsey/firenze.pdf>`, prepared
     by Thomas J. Sargent and Francois R. Velde
 
 .. only:: latex
@@ -617,7 +617,7 @@ The following code provides functions for
 
 Description and clarifications are given below
 
-.. literalinclude:: /_static/code/lqramsey/lqramsey.py
+.. literalinclude:: /_static/lecture_specific/lqramsey/lqramsey.py
 
 
 Comments on the Code
@@ -674,7 +674,7 @@ with :math:`\rho = 0.7`, :math:`\mu_g = 0.35` and :math:`C_g = \mu_g \sqrt{1 - \
 
 Here's the code
 
-.. literalinclude:: /_static/code/lqramsey/lqramsey_ar1.py
+.. literalinclude:: /_static/lecture_specific/lqramsey/lqramsey_ar1.py
 
 The legends on the figures indicate the variables being tracked
 
@@ -691,7 +691,7 @@ much less variable than government expenditure
 
 .. only:: html
 
-    See the original :download:`manuscript <_static/pdfs/firenze.pdf>` for comments and interpretation
+    See the original :download:`manuscript <_static/lecture_specific/lqramsey/firenze.pdf>` for comments and interpretation
 
 .. only:: latex
 
@@ -702,7 +702,7 @@ The Discrete Case
 
 Our second example adopts a discrete Markov specification for the exogenous process
 
-.. literalinclude:: /_static/code/lqramsey/lqramsey_discrete.py
+.. literalinclude:: /_static/lecture_specific/lqramsey/lqramsey_discrete.py
 
 The call ``gen_fig_2(path)`` generates
 
@@ -716,7 +716,7 @@ The call ``gen_fig_2(path)`` generates
 
 .. only:: html
 
-    See the original :download:`manuscript <_static/pdfs/firenze.pdf>` for comments and interpretation
+    See the original :download:`manuscript <_static/lecture_specific/lqramsey/firenze.pdf>` for comments and interpretation
 
 .. only:: latex
 

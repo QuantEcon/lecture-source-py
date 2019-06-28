@@ -567,7 +567,7 @@ Here the orange line corresponds to the previous parameters and the green line i
 
 .. _mass_lt_cb:
 
-.. figure:: /_static/figures/solution_mass_ex2.png
+.. figure:: /_static/lecture_specific/lucas_model/solution_mass_ex2.png
 
 We see that when consumers are more patient the asset becomes more valuable, and the price of the Lucas tree shifts up
 

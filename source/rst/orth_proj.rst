@@ -71,19 +71,19 @@ When :math:`\langle x,  z\rangle = 0`, then :math:`\cos(\theta) = 0` and  :math:
 
 
 
-.. figure:: /_static/figures/orth_proj_def1.png
+.. figure:: /_static/lecture_specific/orth_proj/orth_proj_def1.png
 
 For a linear subspace  :math:`S \subset \mathbb R^n`, we call :math:`x \in \mathbb R^n` **orthogonal to** :math:`S` if :math:`x \perp z` for all :math:`z \in S`, and write :math:`x \perp S`
 
 
-.. figure:: /_static/figures/orth_proj_def2.png
+.. figure:: /_static/lecture_specific/orth_proj/orth_proj_def2.png
 
 
 
 The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` is the set :math:`S^{\perp} := \{x \in \mathbb R^n \,:\, x \perp S\}`
 
 
-.. figure:: /_static/figures/orth_proj_def3.png
+.. figure:: /_static/lecture_specific/orth_proj/orth_proj_def3.png
 
 
 :math:`S^\perp` is  a linear subspace of :math:`\mathbb R^n`
@@ -159,7 +159,7 @@ The vector :math:`\hat y` is called the **orthogonal projection** of :math:`y` o
 
 The next figure provides some intuition
 
-.. figure:: /_static/figures/orth_proj_thm1.png
+.. figure:: /_static/lecture_specific/orth_proj/orth_proj_thm1.png
 
 
 
@@ -210,7 +210,7 @@ In what follows we denote this operator by a matrix :math:`P`
 The operator :math:`P` is called the **orthogonal projection mapping onto** :math:`S`
 
 
-.. figure:: /_static/figures/orth_proj_thm2.png
+.. figure:: /_static/lecture_specific/orth_proj/orth_proj_thm2.png
 
 
 
@@ -263,7 +263,7 @@ This amounts to another version of the OPT:
 
 The next figure illustrates
 
-.. figure:: /_static/figures/orth_proj_thm3.png
+.. figure:: /_static/lecture_specific/orth_proj/orth_proj_thm3.png
 
 
 

@@ -201,7 +201,7 @@ In general, large values on the main diagonal indicate persistence in the proces
 This Markov process can also be represented as a directed graph, with edges labeled by transition probabilities
 
 
-.. figure:: /_static/figures/hamilton_graph.png
+.. figure:: /_static/lecture_specific/finite_markov/hamilton_graph.png
 
 Here "ng" is normal growth, "mr" is mild recession, etc.
 
@@ -592,7 +592,7 @@ For example, consider the following transition probabilities for wealth of a fic
 households
 
 
-.. figure:: /_static/figures/mc_irreducibility1.png
+.. figure:: /_static/lecture_specific/finite_markov/mc_irreducibility1.png
 
 
 
@@ -632,7 +632,7 @@ We can also test this using `QuantEcon.py <http://quantecon.org/python_index.htm
 
 Here's a more pessimistic scenario, where the poor are poor forever
 
-.. figure:: /_static/figures/mc_irreducibility2.png
+.. figure:: /_static/lecture_specific/finite_markov/mc_irreducibility2.png
 
 
 
@@ -679,7 +679,7 @@ Loosely speaking, a Markov chain is called periodic if it cycles in a predictibl
 
 Here's a trivial example with three states
 
-.. figure:: /_static/figures/mc_aperiodicity1.png
+.. figure:: /_static/lecture_specific/finite_markov/mc_aperiodicity1.png
 
 
 
@@ -716,7 +716,7 @@ A stochastic matrix is called **aperiodic** if the period of every state is 1, a
 
 For example, the stochastic matrix associated with the transition probabilities below is periodic because, for example, state :math:`a` has period 2
 
-.. figure:: /_static/figures/mc_aperiodicity2.png
+.. figure:: /_static/lecture_specific/finite_markov/mc_aperiodicity2.png
 
 
 
@@ -1174,7 +1174,7 @@ In both cases, set :math:`\alpha = \beta = 0.1`
 The result should look something like the following --- modulo randomness, of
 course
 
-.. figure:: /_static/figures/mc_ex1_plot.png
+.. figure:: /_static/lecture_specific/finite_markov/mc_ex1_plot.png
 
 (You don't need to add the fancy touches to the graph---see the solution if you're interested)
 
@@ -1207,7 +1207,7 @@ is known as `PageRank <https://en.wikipedia.org/wiki/PageRank>`_
 
 To illustrate the idea, consider the following diagram
 
-.. figure:: /_static/figures/web_graph.png
+.. figure:: /_static/lecture_specific/finite_markov/web_graph.png
 
 Imagine that this is a miniature version of the WWW, with
 

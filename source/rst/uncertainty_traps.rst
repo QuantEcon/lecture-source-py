@@ -155,7 +155,7 @@ as a 45 degree diagram, with one curve for each :math:`M \in \{0, \ldots, 6\}`
 
 The other parameter values are :math:`\rho = 0.99, \gamma_x = 0.5, \sigma_\theta =0.5`
 
-.. figure:: /_static/figures/uncertainty_traps_45.png
+.. figure:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps_45.png
 
 
 Points where the curves hit the 45 degree lines are  long-run steady
@@ -254,7 +254,7 @@ The method to evaluate the number of active firms generates :math:`F_1,
 The `__init__` method encodes as default values the parameters we'll use in the simulations below
 
 
-.. literalinclude:: /_static/code/uncertainty_traps/uncertainty_traps.py
+.. literalinclude:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps.py
 
 In the results below we use this code to simulate time series for the major variables
 
@@ -264,7 +264,7 @@ Results
 
 Let's look first at the dynamics of :math:`\mu`, which the agents use to track :math:`\theta`
 
-.. figure:: /_static/figures/uncertainty_traps_mu.png
+.. figure:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps_mu.png
 
 We see that :math:`\mu` tracks :math:`\theta` well when there are sufficient firms in the market
 
@@ -283,7 +283,7 @@ During these episodes
 To get a clearer idea of the dynamics, let's look at all the main time series
 at once, for a given set of shocks
 
-.. figure:: /_static/figures/uncertainty_traps_sim.png
+.. figure:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps_sim.png
 
 
 Notice how the traps only take hold after a sequence of bad draws for the fundamental

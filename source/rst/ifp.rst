@@ -41,7 +41,7 @@ Our presentation of the model will be relatively brief
 .. only:: html
 
     * For further details on economic intuition, implication and models, see :cite:`Ljungqvist2012`
-    * Proofs of all mathematical results stated below can be found in :download:`this paper <_static/pdfs/pi2.pdf>`
+    * Proofs of all mathematical results stated below can be found in :download:`this paper <_static/lecture_specific/ifp/pi2.pdf>`
 
 .. only:: latex
 
@@ -213,7 +213,7 @@ Optimality Results
 
 .. only:: html
 
-    Given our assumptions, it is :download:`known <_static/pdfs/pi2.pdf>` that
+    Given our assumptions, it is :download:`known <_static/lecture_specific/ifp/pi2.pdf>` that
 
 .. only:: latex
 
@@ -325,7 +325,7 @@ We refer to :math:`K` as Coleman's policy function operator :cite:`Coleman1990`
 
 .. only:: html
 
-    It is :download:`known <_static/pdfs/pi2.pdf>` that
+    It is :download:`known <_static/lecture_specific/ifp/pi2.pdf>` that
 
 .. only:: latex
 
@@ -351,7 +351,7 @@ the solutions to :eq:`eqeul1` in :math:`\mathscr{C}`
 
 .. only:: html
 
-    In particular, it :download:`can be shown <_static/pdfs/pi2.pdf>` that the path :math:`\{c_t\}`
+    In particular, it :download:`can be shown <_static/lecture_specific/ifp/pi2.pdf>` that the path :math:`\{c_t\}`
     generated from :math:`(a_0,z_0) \in S` using policy function :math:`\sigma^*` is
     the unique optimal path from :math:`(a_0,z_0) \in S`
 
@@ -558,7 +558,7 @@ Next, let's consider how the interest rate affects consumption
 
 Reproduce the following figure, which shows (approximately) optimal consumption policies for different interest rates
 
-.. figure:: /_static/figures/ifp_policies.png
+.. figure:: /_static/lecture_specific/ifp/ifp_policies.png
 
 * Other than ``r``, all parameters are at their default values
 * ``r`` steps through ``np.linspace(0, 0.04, 4)``
@@ -623,7 +623,7 @@ Ergodicity is valid here, so stationary probabilities can be calculated by avera
 
 Hence to approximate the stationary distribution we can simulate a long time series for assets and histogram, as in the following figure
 
-.. figure:: /_static/figures/ifp_histogram.png
+.. figure:: /_static/lecture_specific/ifp/ifp_histogram.png
 
 Your task is to replicate the figure
 
@@ -653,7 +653,7 @@ rate and borrowing constraint
 The next figure plots aggregate capital against the interest rate for ``b in (1, 3)``
 
 
-.. figure:: /_static/figures/ifp_agg_savings.png
+.. figure:: /_static/lecture_specific/ifp/ifp_agg_savings.png
 
 As is traditional, the price (interest rate) is on the vertical axis
 

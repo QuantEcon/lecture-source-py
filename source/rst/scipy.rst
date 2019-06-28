@@ -263,7 +263,7 @@ Here's a fairly simplistic implementation of the algorithm in Python
 
 It works for all sufficiently well behaved increasing continuous functions with :math:`f(a) < 0 < f(b)`
 
-.. literalinclude:: /_static/code/scipy/bisection.py
+.. literalinclude:: /_static/lecture_specific/scipy/bisection.py
 
 
 In fact, SciPy provides its own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f`
@@ -488,7 +488,7 @@ Previously we discussed the concept of :ref:`recursive function calls <recursive
 
 Write a recursive implementation of the bisection function described above, which we repeat here for convenience
 
-.. literalinclude:: /_static/code/scipy/bisection.py
+.. literalinclude:: /_static/lecture_specific/scipy/bisection.py
 
 Test it on the function ``f = lambda x: np.sin(4 * (x - 0.25)) + x + x**20 - 1`` discussed above
 
