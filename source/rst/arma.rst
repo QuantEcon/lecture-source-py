@@ -70,7 +70,7 @@ For supplementary reading, see
 
     * :cite:`Ljungqvist2012`, chapter 2
     * :cite:`Sargent1987`, chapter 11
-    * John Cochrane's :download:`notes on time series analysis </_static/pdfs/time_series_book.pdf>`, chapter 8
+    * John Cochrane's :download:`notes on time series analysis </_static/lecture_specific/arma/time_series_book.pdf>`, chapter 8
     * :cite:`Shiryaev1995`, chapter 6
     * :cite:`CryerChan2008`, all
 

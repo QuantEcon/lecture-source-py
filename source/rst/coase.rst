@@ -153,7 +153,7 @@ Subcontracting
 
 The subcontracting scheme by which tasks are allocated across firms is illustrated in the figure below
 
-.. figure:: /_static/figures/subcontracting.png
+.. figure:: /_static/lecture_specific/coase/subcontracting.png
 
 In this example,
 
@@ -176,7 +176,7 @@ At this point, production unfolds in the opposite direction (i.e., from upstream
 
 The length of the interval of stages (range of tasks) carried out by firm :math:`i` is denoted by :math:`\ell_i`
 
-.. figure:: /_static/figures/allocation.png
+.. figure:: /_static/lecture_specific/coase/allocation.png
 
 Each firm chooses only its *upstream* boundary, treating its downstream boundary as given
 

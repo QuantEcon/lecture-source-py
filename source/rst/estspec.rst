@@ -246,7 +246,7 @@ perhaps it's not surprising that the estimate is poor
 
 However, if we try again with ``n = 1200`` the outcome is not much better
 
-.. figure:: /_static/figures/periodogram1.png
+.. figure:: /_static/lecture_specific/estspec/periodogram1.png
 
 The periodogram is far too irregular relative to the underlying spectral density
 
@@ -352,7 +352,7 @@ From the top figure to bottom, the window length is varied from small to large
 
 .. _fig_window_smoothing:
 
-.. figure:: /_static/figures/window_smoothing.png
+.. figure:: /_static/lecture_specific/estspec/window_smoothing.png
 
 
 In looking at the figure, we can see that for this model and data size, the
@@ -481,7 +481,7 @@ The difference between the three subfigures is just randomness --- each one uses
 
 .. _fig_ar_smoothed_periodogram:
 
-.. figure:: /_static/figures/ar_smoothed_periodogram.png
+.. figure:: /_static/lecture_specific/estspec/ar_smoothed_periodogram.png
 
 In all cases, periodograms are fit with the "hamming" window and window length of 65
 

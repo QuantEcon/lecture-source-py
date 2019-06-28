@@ -138,7 +138,7 @@ Treisman's main source of data is *Forbes'* annual rankings of billionaires and 
 
 .. only:: html
 
-    The dataset ``mle/fp.dta`` can be downloaded :download:`here </_static/code/mle/fp.dta>`
+    The dataset ``mle/fp.dta`` can be downloaded :download:`here </_static/lecture_specific/mle/fp.dta>`
     or from its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__
 
 .. only:: latex

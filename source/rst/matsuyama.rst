@@ -369,7 +369,7 @@ These are the ``@jit`` statements that you see below (review :doc:`this lecture 
 Here's the main body of code
 
 
-.. literalinclude:: /_static/code/matsuyama/simulate_matsuyama.py
+.. literalinclude:: /_static/lecture_specific/matsuyama/simulate_matsuyama.py
 
 
 
@@ -384,7 +384,7 @@ The time series share parameters but differ in their initial condition
 
 Here's the function
 
-.. literalinclude:: /_static/code/matsuyama/sim_time_series.py
+.. literalinclude:: /_static/lecture_specific/matsuyama/sim_time_series.py
 
 In the first case, innovation in the two countries does not synchronize
 
@@ -409,7 +409,7 @@ Dark colors indicate synchronization, while light colors indicate failure to syn
 
 .. _matsrep:
 
-.. figure:: /_static/figures/matsuyama_14.png
+.. figure:: /_static/lecture_specific/matsuyama/matsuyama_14.png
 
 As you can see, larger values of :math:`\rho` translate to more synchronization
 
@@ -419,7 +419,7 @@ In the solution to the exercises, you'll also find a figure with sliders, allowi
 
 Here's one snapshot from the interactive figure
 
-.. figure:: /_static/figures/matsuyama_18.png
+.. figure:: /_static/lecture_specific/matsuyama/matsuyama_18.png
 
 
 Exercises

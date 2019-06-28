@@ -398,7 +398,7 @@ in a Lucas-Stokey economy with state-contingent government debt
 We need some code from our :doc:`an earlier lecture <opt_tax_recur>`
 on optimal taxation with state-contingent debt  sequential allocation implementation:
 
-.. literalinclude:: /_static/code/opt_tax_recur/sequential_allocation.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/sequential_allocation.py
     :class: collapse
 
 
@@ -695,7 +695,7 @@ Code
 
 The recursive formulation is implemented as follows
 
-.. literalinclude:: /_static/code/amss/recursive_allocation.py
+.. literalinclude:: /_static/lecture_specific/amss/recursive_allocation.py
 
 
 Examples
@@ -707,7 +707,7 @@ We now turn to some examples
 
 We will first build some useful functions for solving the model
 
-.. literalinclude:: /_static/code/amss/utilities.py
+.. literalinclude:: /_static/lecture_specific/amss/utilities.py
 
 
 
@@ -778,7 +778,7 @@ We assume the same utility parameters as in the :doc:`Lucas-Stokey economy <opt_
 
 This utility function is implemented in the following class
 
-.. literalinclude:: /_static/code/opt_tax_recur/crra_utility.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/crra_utility.py
 
 
 The following figure plots the Ramsey plan under both complete and incomplete
@@ -910,7 +910,7 @@ In addition, this example features the following preferences
 
 In accordance, we will re-define our utility function
 
-.. literalinclude:: /_static/code/opt_tax_recur/log_utility.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/log_utility.py
 
 
 With these preferences, Ramsey tax rates will vary even in the Lucas-Stokey

@@ -99,15 +99,15 @@ Let's have a look at the results we got when we coded and ran this model
 As discussed above, agents are initially mixed randomly together
 
 
-.. figure:: /_static/figures/schelling_fig1.png
+.. figure:: /_static/lecture_specific/schelling/schelling_fig1.png
 
 But after several cycles, they become segregated into distinct regions
 
-.. figure:: /_static/figures/schelling_fig2.png
+.. figure:: /_static/lecture_specific/schelling/schelling_fig2.png
 
-.. figure:: /_static/figures/schelling_fig3.png
+.. figure:: /_static/lecture_specific/schelling/schelling_fig3.png
 
-.. figure:: /_static/figures/schelling_fig4.png
+.. figure:: /_static/lecture_specific/schelling/schelling_fig4.png
 
 In this instance, the program terminated after 4 cycles through the set of
 agents, indicating that all agents had reached a state of happiness

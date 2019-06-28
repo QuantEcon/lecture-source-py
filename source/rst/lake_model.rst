@@ -250,7 +250,7 @@ If you need to refresh your understanding of how these work, consult :doc:`this 
 Here's the code:
 
 
-.. literalinclude:: /_static/code/lake_model/lake_model.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_model.py
 
 
 
@@ -347,7 +347,7 @@ This is the case for our default parameters:
 Let's look at the convergence of the unemployment and employment rate to steady state levels (dashed red line)
 
 
-.. literalinclude:: /_static/code/lake_model/lake_rate_dynamics.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_rate_dynamics.py
 
 
 
@@ -460,7 +460,7 @@ We can use `QuantEcon.py's <http://quantecon.org/python_index.html>`__
 Let's plot the path of the sample averages over 5,000 periods
 
 
-.. literalinclude:: /_static/code/lake_model/lake_agent_dynamics.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_agent_dynamics.py
 
 
 
@@ -573,7 +573,7 @@ where the notation :math:`V` and :math:`U` is as defined in the :doc:`McCall sea
 The wage offer distribution will be a discretized version of the lognormal distribution :math:`LN(\log(20),1)`, as shown in the next figure
 
 
-.. figure:: /_static/figures/lake_distribution_wages.png
+.. figure:: /_static/lecture_specific/lake_model/lake_distribution_wages.png
 
 We take a period to be a month
 
@@ -597,20 +597,20 @@ We will make use of code we wrote in the :doc:`McCall model lecture <mccall_mode
 
 The first piece of code, repeated below, implements value function iteration
 
-.. literalinclude:: /_static/code/mccall/mccall_bellman_iteration.py
+.. literalinclude:: /_static/lecture_specific/mccall/mccall_bellman_iteration.py
     :class: collapse
 
 The second piece of code repeated from :doc:`the McCall model lecture <mccall_model>` is used to complete the reservation wage
 
 
-.. literalinclude:: /_static/code/mccall/compute_reservation_wage.py
+.. literalinclude:: /_static/lecture_specific/mccall/compute_reservation_wage.py
     :class: collapse
 
 Now let's compute and plot welfare, employment, unemployment, and tax revenue as a
 function of the unemployment compensation rate
 
 
-.. literalinclude:: /_static/code/lake_model/lake_fiscal_policy.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_fiscal_policy.py
 
 Welfare first increases and then decreases as unemployment benefits rise
 

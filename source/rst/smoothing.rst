@@ -383,7 +383,7 @@ Here's some code that, among other things, contains a function called `consumpti
 
 This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes given a set of parameters, under the assumption of complete markets
 
-.. literalinclude:: /_static/code/smoothing/smoothing_actions.py
+.. literalinclude:: /_static/lecture_specific/smoothing/smoothing_actions.py
 
 Let's test by checking that :math:`\bar c` and :math:`b_2` satisfy the budget constraint
 
@@ -564,7 +564,7 @@ The code above also contains a function called `consumption_incomplete()` that u
 
 Let's try this, using the same parameters in both complete and incomplete markets economies
 
-.. literalinclude:: /_static/code/smoothing/consumption_paths.py
+.. literalinclude:: /_static/lecture_specific/smoothing/consumption_paths.py
 
 
 In the graph on the left, for the same sample path of nonfinancial
@@ -655,7 +655,7 @@ asset level to :math:`0`, so that :math:`b_1 =0`
 
 Here's our code to compute a quantitative example with zero debt in peace time:
 
-.. literalinclude:: /_static/code/smoothing/war_peace_example.py
+.. literalinclude:: /_static/lecture_specific/smoothing/war_peace_example.py
 
 
 
@@ -829,7 +829,7 @@ the state :math:`x_t` described by :eq:`cs_15`
 Here's an example that shows how in this setting the availability of insurance against fluctuating nonfinancial income
 allows the consumer completely to smooth consumption across time and across states of the world
 
-.. literalinclude:: /_static/code/smoothing/lss_example.py
+.. literalinclude:: /_static/lecture_specific/smoothing/lss_example.py
 
 
 Interpretation of Graph

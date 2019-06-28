@@ -76,7 +76,7 @@ Ultimately, he wants to design a decision rule :math:`F` that shapes these *sets
 
 With this in mind, consider the following graph, which relates to a particular decision problem to be explained below
 
-.. figure:: /_static/figures/kg0.png
+.. figure:: /_static/lecture_specific/robustness/kg0.png
 
 The figure shows a *value-entropy correspondence* for a particular decision rule :math:`F`
 
@@ -103,7 +103,7 @@ In the next figure,
 * The blue set shows the value-entropy correspondence for decision rule :math:`F_b`
 
 
-.. figure:: /_static/figures/kg.png
+.. figure:: /_static/lecture_specific/robustness/kg.png
 
 
 The blue correspondence is skinnier than the red correspondence
@@ -1024,11 +1024,11 @@ We compute value-entropy correspondences for two policies
 
 The code for producing the graph shown above, with blue being for the robust policy, is as follows
 
-.. literalinclude:: /_static/code/robustness/robust_monopolist.py
+.. literalinclude:: /_static/lecture_specific/robustness/robust_monopolist.py
 
 Here's another such figure, with :math:`\theta = 0.002` instead of :math:`0.02`
 
-.. figure:: /_static/figures/kg_small_theta.png
+.. figure:: /_static/lecture_specific/robustness/kg_small_theta.png
 
 Can you explain the different shape of the value-entropy correspondence for the robust policy?
 
