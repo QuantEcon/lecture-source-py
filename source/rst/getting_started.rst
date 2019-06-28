@@ -442,7 +442,7 @@ You can install `QuantEcon.py <http://quantecon.org/python_index.html>`__ by
 starting Jupyter and typing
 
 
-    ``!pip install quantecon``
+    ``!pip install --upgrade quantecon``
 
 into a cell
 
