@@ -242,7 +242,7 @@ Now let's try this non-vectorized code
 .. code-block:: python3
 
     qe.util.tic()   # Start timing
-    n = 100_000
+    n = 1_000_000
     sum = 0
     for i in range(n):
         x = random.uniform(0, 1)
@@ -254,7 +254,7 @@ Now compare this vectorized code
 .. code-block:: ipython
 
     qe.util.tic()
-    n = 100_000
+    n = 1_000_000
     x = np.random.uniform(0, 1, n)
     np.sum(x**2)
     qe.util.toc()
