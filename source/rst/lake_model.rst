@@ -298,7 +298,7 @@ Let's run a simulation under the default parameters (see above) starting from :m
 
   fig, axes = plt.subplots(3, 1, figsize=(10, 8))
   X_0 = (U_0, E_0)
-  X_path = np.vstack(lm.simulate_stock_path(X_0, T))
+  X_path = np.vstack(tuple(lm.simulate_stock_path(X_0, T)))
 
   axes[0].plot(X_path[:, 0], lw=2)
   axes[0].set_title('Unemployment')
@@ -701,8 +701,8 @@ New legislation changes :math:`\lambda` to :math:`0.2`
     lm.lmda = 0.2
 
     xbar = lm.rate_steady_state()  # new steady state
-    X_path = np.vstack(lm.simulate_stock_path(x0 * N0, T))
-    x_path = np.vstack(lm.simulate_rate_path(x0, T))
+    X_path = np.vstack(tuple(lm.simulate_stock_path(x0 * N0, T)))
+    x_path = np.vstack(tuple(lm.simulate_rate_path(x0, T)))
     print(f"New Steady State: {xbar}")
 
 Now plot stocks
@@ -776,8 +776,8 @@ Let's increase :math:`b` to the new value and simulate for 20 periods
 .. code-block:: python3
 
     lm.b = b_hat
-    X_path1 = np.vstack(lm.simulate_stock_path(x0 * N0, T_hat))  # simulate stocks
-    x_path1 = np.vstack(lm.simulate_rate_path(x0, T_hat))        # simulate rates
+    X_path1 = np.vstack(tuple(lm.simulate_stock_path(x0 * N0, T_hat)))  # simulate stocks
+    x_path1 = np.vstack(tuple(lm.simulate_rate_path(x0, T_hat)))        # simulate rates
 
 Now we reset :math:`b` to the original value and then, using the state
 after 20 periods for the new initial conditions, we simulate for the
@@ -786,8 +786,8 @@ additional 30 periods
 .. code-block:: python3
 
     lm.b = 0.0124
-    X_path2 = np.vstack(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)) # simulate stocks
-    x_path2 = np.vstack(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1))  # simulate rates
+    X_path2 = np.vstack(tuple(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)))  # simulate stocks
+    x_path2 = np.vstack(tuple(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1)))  # simulate rates
 
 Finally, we combine these two paths and plot
 
