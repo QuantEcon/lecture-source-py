@@ -749,7 +749,7 @@ visualization!
     T = 3
     ax = fig.gca(projection='3d')
     r = np.arange(0.01, 0.99, 0.005)
-    g = np.arange(0.01, 0.99, 0.005)
+    g = np.arange(0.011, 0.991, 0.005)
 
     rr, gg = np.meshgrid(r, g)
     z = finite_lease_pv(T, gg, rr, x_0)
