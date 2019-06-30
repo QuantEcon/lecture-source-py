@@ -4,14 +4,14 @@
 
 .. highlight:: python3
 
-**************************************************************
+***********************************
 :index:`Coase's Theory of the Firm`
-**************************************************************
+***********************************
 
 .. contents:: :depth: 2
 
 Overview
-============
+========
 
 In 1937, Ronald Coase wrote a brilliant essay on the nature of the firm :cite:`coase1937nature`
 
@@ -35,7 +35,7 @@ Couldn't the associated within-firm planning be done more efficiently by the mar
 
 
 Why Firms Exist
-----------------
+---------------
 
 On top of asking a deep and fascinating question, Coase also supplied an illuminating answer: firms exist because of transaction costs
 
@@ -65,7 +65,7 @@ So agent A decides to hire agent B and a firm of nontrivial size appears, due to
 
 
 A Trade-Off
---------------
+-----------
 
 Actually, we haven't yet come to the heart of Coase's investigation
 
@@ -99,7 +99,7 @@ Diminishing returns to management makes in-house production expensive, favoring 
 
 
 Summary
-----------
+-------
 
 Here's a summary of our discussion:
 
@@ -112,7 +112,7 @@ Here's a summary of our discussion:
 
 
 A Quantitative Interpretation
---------------------------------
+-----------------------------
 
 Coases ideas were expressed verbally, without any mathematics
 
@@ -136,7 +136,7 @@ We use the following standard imports:
 
 
 The Model
-==========================
+=========
 
 
 The model we study involves production of a single unit of a final good
@@ -149,7 +149,7 @@ have been undertaken and :math:`t=1` indicating that the good is complete
 
 
 Subcontracting
-------------------
+--------------
 
 The subcontracting scheme by which tasks are allocated across firms is illustrated in the figure below
 
@@ -160,7 +160,7 @@ In this example,
 * Firm 1 receives a contract to sell one unit of the completed good to a final buyer
 
 * Firm 1 then forms a contract with firm 2 to purchase the partially completed good at stage :math:`t_1`, with
-the intention of implementing the remaining :math:`1 - t_1` tasks in-house (i.e., processing from stage :math:`t_1` to stage :math:`1`)
+  the intention of implementing the remaining :math:`1 - t_1` tasks in-house (i.e., processing from stage :math:`t_1` to stage :math:`1`)
 
 * Firm 2 repeats this procedure, forming a contract with firm 3 to purchase the good at stage :math:`t_2`
 
@@ -189,7 +189,7 @@ We will exploit this recursive structure in our study of equilibrium
 
 
 Costs
------------------------------
+-----
 
 Recall that we are considering a trade-off between two types of costs
 
@@ -216,7 +216,7 @@ The seller receives only :math:`v`, and the difference is paid to agents outside
 
 
 Equilibrium
-============
+===========
 
 We assume that all firms are *ex-ante* identical and act as price takers
 
@@ -234,7 +234,7 @@ filling the same role in the production chain
 Profits are never negative in equilibrium because firms can freely exit
 
 Informal Definition of Equilibrium
--------------------------------------
+----------------------------------
 
 An equilibrium in this setting is an allocation of firms and a price function such that
 
@@ -247,7 +247,7 @@ An equilibrium in this setting is an allocation of firms and a price function su
 
 
 Formal Definition of Equilibrium
--------------------------------------
+--------------------------------
 
 Let's make this definition more formal
 
@@ -300,12 +300,12 @@ The rationale behind these conditions was given in our informal definition of eq
 
 
 Existence, Uniqueness and Computation of Equilibria
-====================================================
+===================================================
 
 We have defined an equilibrium but does one exist?  Is it unique?  And, if so, how can we compute it?
 
 A Fixed Point Method
------------------------------------
+--------------------
 
 To address these questions, we introduce the operator :math:`T` mapping a nonnegative function :math:`p` on :math:`[0, 1]` to :math:`Tp` via
 
@@ -398,7 +398,7 @@ From this equation, it is clear that so profits are zero for all incumbent firms
 
 
 Marginal Conditions
----------------------
+-------------------
 
 We can develop some additional insights on the behavior of firms by examining marginal conditions associated with the equilibrium
 
@@ -445,7 +445,7 @@ inter-firm efficiency by indicating how two costly forms of coordination (market
 
 
 Implementation
-===============
+==============
 
 For most specifications of primitives, there is no closed-form solution for the equilibrium as far as we are aware
 
@@ -595,12 +595,12 @@ Note that downstream firms choose to be larger, a point we return to below
 
 
 Exercises
-==============
+=========
 
 .. _lucas_asset_exer1:
 
 Exercise 1
-------------
+----------
 
 The number of firms is endogenously determined by the primitives
 
@@ -610,7 +610,7 @@ Check your intuition by computing the number of firms at `delta in (1.01, 1.05, 
 
 
 Exercise 2
-------------
+----------
 
 The **value added** of firm :math:`i` is :math:`v_i := p^*(t_{i-1}) - p^*(t_i)`
 
@@ -622,7 +622,7 @@ Try to verify this phenomenon (value added increasing with downstreamness) using
 
 
 Solutions
-==========
+=========
 
 
 Exercise 1
@@ -643,7 +643,7 @@ Exercise 1
 
 
 Exercise 2
-------------
+----------
 
 Firm size increases with downstreamness because :math:`p^*`, the equilibrium price function, is increasing and strictly convex
 
