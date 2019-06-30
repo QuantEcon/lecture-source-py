@@ -7,7 +7,7 @@ xbar = lm.rate_steady_state()
 
 fig, axes = plt.subplots(2, 1, figsize=(10, 8))
 x_0 = (u_0, e_0)
-x_path = np.vstack(lm.simulate_rate_path(x_0, T))
+x_path = np.vstack(tuple(lm.simulate_rate_path(x_0, T)))
 
 titles = ['Unemployment rate', 'Employment rate']
 
