@@ -73,7 +73,7 @@ class RecursiveAllocation:
 
         Vf, cf, nf, xprimef = {}, {}, {}, {}
         for s in range(S):
-            PFvec = np.vstack(map(lambda x: PF(x, s), xgrid))
+            PFvec = np.vstack(tuple(map(lambda x: PF(x, s), xgrid)))
             Vf[s] = UnivariateSpline(xgrid, PFvec[:, 0], s=0)
             cf[s] = UnivariateSpline(xgrid, PFvec[:, 1], s=0, k=1)
             nf[s] = UnivariateSpline(xgrid, PFvec[:, 2], s=0, k=1)
