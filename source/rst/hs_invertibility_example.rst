@@ -11,7 +11,8 @@ Shock Non Invertibility
 
 .. contents:: :depth: 2
 
-
+Overview
+========
 
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`
@@ -49,8 +50,10 @@ the shocks seen by the agent inside the econometrician's model
 This situation sets the stage for an econometrician who is unaware of the
 problem to  misinterpret  shocks and likely responses to them
 
-We consider the following modification  of Robert Hall's (1978) model :cite:`Hall1978` in which the
-endowment process is the sum of two orthogonal autoregressive processes:
+Model
+=====
+
+We consider the following modification  of Robert Hall's (1978) model :cite:`Hall1978` in which the endowment process is the sum of two orthogonal autoregressive processes:
 
 **Preferences**
 
@@ -205,6 +208,9 @@ This means that :math:`u_t` will typically be a distributed lag of
 
 Thus, the econometrician's news :math:`u_t` potentially responds
 belatedly to agents' news :math:`w_t`
+
+Code
+====
 
 We will construct Figures from Chapter 8 Appendix E of :cite:`HS2013` to
 illustrate these ideas:
