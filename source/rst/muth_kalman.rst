@@ -255,11 +255,12 @@ on the history :math:`y_{t-1}, y_{t-2}, \ldots`
 
 .. code-block:: python3
 
-    plt.plot(xf[0, :], label="$x_t$")
-    plt.plot(xf[1, :], label="Filtered $x_t$")
-    plt.legend()
-    plt.xlabel("Time")
-    plt.title(r"$x$ vs $\hat{x}$")
+    fig, ax = plt.subplots()
+    ax.plot(xf[0, :], label="$x_t$")
+    ax.plot(xf[1, :], label="Filtered $x_t$")
+    ax.legend()
+    ax.set_xlabel("Time")
+    ax.set_title(r"$x$ vs $\hat{x}$")
     plt.show()
 
 
@@ -277,11 +278,12 @@ Recall that :math:`y_t` is just :math:`x_t` plus white noise
 
 .. code-block:: python3
 
-    plt.plot(yf[0, :], label="y")
-    plt.plot(xf[0, :], label="x")
-    plt.legend()
-    plt.title(r"$x$ and $y$")
-    plt.xlabel("Time")
+    fig, ax = plt.subplots()
+    ax.plot(yf[0, :], label="y")
+    ax.plot(xf[0, :], label="x")
+    ax.legend()
+    ax.set_title(r"$x$ and $y$")
+    ax.set_xlabel("Time")
     plt.show()
 
 We see above that :math:`y` seems to look like white noise around the
@@ -295,10 +297,11 @@ Recall that we wrote down the innovation representation that depended on
 
 .. code-block:: python3
 
-    plt.plot(yf[1, :], label="a")
-    plt.legend()
-    plt.title(r"Innovation $a_t$")
-    plt.xlabel("Time")
+    fig, ax = plt.subplots()
+    ax.plot(yf[1, :], label="a")
+    ax.legend()
+    ax.set_title(r"Innovation $a_t$")
+    ax.set_xlabel("Time")
     plt.show()
 
 
