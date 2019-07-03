@@ -146,21 +146,22 @@ fits the data, as in the following plot (Figure 2 in :cite:`Acemoglu2001`)
     labels = df1_subset['shortnam']
 
     # Replace markers with country labels
-    plt.scatter(X, y, marker='')
+    fig, ax = plt.subplots()
+    ax.scatter(X, y, marker='')
 
     for i, label in enumerate(labels):
-        plt.annotate(label, (X.iloc[i], y.iloc[i]))
+        ax.annotate(label, (X.iloc[i], y.iloc[i]))
 
     # Fit a linear trend line
-    plt.plot(np.unique(X),
+    ax.plot(np.unique(X),
              np.poly1d(np.polyfit(X, y, 1))(np.unique(X)),
              color='black')
 
-    plt.xlim([3.3,10.5])
-    plt.ylim([4,10.5])
-    plt.xlabel('Average Expropriation Risk 1985-95')
-    plt.ylabel('Log GDP per capita, PPP, 1995')
-    plt.title('Figure 2: OLS relationship between expropriation risk and income')
+    ax.set_xlim([3.3,10.5])
+    ax.set_ylim([4,10.5])
+    ax.set_xlabel('Average Expropriation Risk 1985-95')
+    ax.set_ylabel('Log GDP per capita, PPP, 1995')
+    ax.set_title('Figure 2: OLS relationship between expropriation risk and income')
     plt.show()
 
 
@@ -298,16 +299,17 @@ comparison purposes
 
     # Plot predicted values
 
-    plt.scatter(df1_plot['avexpr'], results.predict(), alpha=0.5, label='predicted')
+    fix, ax = plt.subplots()
+    ax.scatter(df1_plot['avexpr'], results.predict(), alpha=0.5, label='predicted')
 
     # Plot observed values
 
-    plt.scatter(df1_plot['avexpr'], df1_plot['logpgp95'], alpha=0.5, label='observed')
+    ax.scatter(df1_plot['avexpr'], df1_plot['logpgp95'], alpha=0.5, label='observed')
 
-    plt.legend()
-    plt.title('OLS predicted values')
-    plt.xlabel('avexpr')
-    plt.ylabel('logpgp95')
+    ax.legend()
+    ax.set_title('OLS predicted values')
+    ax.set_xlabel('avexpr')
+    ax.set_ylabel('logpgp95')
     plt.show()
 
 
@@ -436,21 +438,22 @@ condition of a valid instrument
     labels = df1_subset2['shortnam']
 
     # Replace markers with country labels
-    plt.scatter(X, y, marker='')
+    fig, ax = plt.subplots()
+    ax.scatter(X, y, marker='')
 
     for i, label in enumerate(labels):
-        plt.annotate(label, (X.iloc[i], y.iloc[i]))
+        ax.annotate(label, (X.iloc[i], y.iloc[i]))
 
     # Fit a linear trend line
-    plt.plot(np.unique(X),
+    ax.plot(np.unique(X),
              np.poly1d(np.polyfit(X, y, 1))(np.unique(X)),
              color='black')
 
-    plt.xlim([1.8,8.4])
-    plt.ylim([3.3,10.4])
-    plt.xlabel('Log of Settler Mortality')
-    plt.ylabel('Average Expropriation Risk 1985-95')
-    plt.title('Figure 3: First-stage relationship between settler mortality and expropriation risk')
+    ax.set_xlim([1.8,8.4])
+    ax.set_ylim([3.3,10.4])
+    ax.set_xlabel('Log of Settler Mortality')
+    ax.set_ylabel('Average Expropriation Risk 1985-95')
+    ax.set_title('Figure 3: First-stage relationship between settler mortality and expropriation risk')
     plt.show()
 
 
