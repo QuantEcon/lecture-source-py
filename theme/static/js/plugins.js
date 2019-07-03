@@ -1064,9 +1064,9 @@ function updateTable()
 }
 
 
-function load_status_table()
+function load_status_table(lang)
 {
-    $.getJSON( "/_static/code-execution-results.json", function( data )
+    $.getJSON( lang + "/_static/code-execution-results.json", function( data )
     {
         status_data = [];
         last_test_time = data.run_time;
@@ -1162,9 +1162,9 @@ function get_badge(percentage, lang)
 }
 
 
-function load_this_page_badge()
+function load_this_page_badge(lang)
 {
-  $.getJSON( "/_static/code-execution-results.json", function( data )
+  $.getJSON( lang + "/_static/code-execution-results.json", function( data )
   {
       status_data = [];
       for (var key in data.results)
@@ -1190,14 +1190,14 @@ function load_this_page_badge()
 
 
 
-function load_percentages()
+function load_percentages(lang)
 {
   var number_of_lectures = {};
   var number_which_passed = {};
   var keys_list = [];
   var combined_percentage, py_percentage, jl_percentage;
 
-  $.getJSON( "/_static/code-execution-results.json", function( data )
+  $.getJSON(lang + "/_static/code-execution-results.json", function( data )
   {
     for (var key in data.results)
     {
