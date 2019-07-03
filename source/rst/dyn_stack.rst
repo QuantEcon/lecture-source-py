@@ -977,7 +977,7 @@ The following code plots the price and quantities
     ax.plot(range(n), p, 'g-', lw=2, label='price')
     ax.set_title('Output and prices, Stackelberg duopoly')
     ax.legend(frameon=False)
-    plt.xlabel('t')
+    ax.set_xlabel('t')
     plt.show()
 
 
@@ -1096,9 +1096,10 @@ We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation
 
     # Checks that the recursive formulation of the follower's problem gives
     # the same solution as the original Stackelberg problem
-    plt.plot(yt_tilde[4], 'r', label="q_tilde")
-    plt.plot(yt_tilde[2], 'b', label="q")
-    plt.legend()
+    fig, ax = plt.subplots()
+    ax.plot(yt_tilde[4], 'r', label="q_tilde")
+    ax.plot(yt_tilde[2], 'b', label="q")
+    ax.legend()
     plt.show()
 
 
@@ -1227,9 +1228,10 @@ Hint: remember the components of :math:`X_t`
     for t in range(n-1):
         yt_tilde_star[t+1, :] = (A_tilde - B_tilde @ F_tilde_star) @ yt_tilde_star[t, :]
 
-    plt.plot(yt_tilde_star[:, 4], 'r', label="q_tilde")
-    plt.plot(yt_tilde[2], 'b', label="q")
-    plt.legend()
+    fig, ax = plt.subplots()
+    ax.plot(yt_tilde_star[:, 4], 'r', label="q_tilde")
+    ax.plot(yt_tilde[2], 'b', label="q")
+    ax.legend()
     plt.show()
 
 .. code:: python3
@@ -1312,7 +1314,7 @@ and in the Markov perfect equilibrium, the state evolves according to
     ax.plot(range(n), p, 'g-', lw=2, label='price')
     ax.set_title('Output and prices, duopoly MPE')
     ax.legend(frameon=False)
-    plt.xlabel('t')
+    ax.set_xlabel('t')
     plt.show()
 
 
@@ -1368,12 +1370,13 @@ MPE vs. Stackelberg
         vt_MPE[t] = -z[:, t].T @ P1 @ z[:, t]
         vt_follower[t] = -yt_tilde[:, t].T @ P_tilde @ yt_tilde[:, t]
 
-    plt.plot(vt_MPE, 'b', label='MPE')
-    plt.plot(vt_leader, 'r', label='Stackelberg leader')
-    plt.plot(vt_follower, 'g', label='Stackelberg follower')
-    plt.title(r'MPE vs. Stackelberg Value Function')
-    plt.xlabel('t')
-    plt.legend(loc=(1.05, 0))
+    fig, ax = plt.subplots()
+    ax.plot(vt_MPE, 'b', label='MPE')
+    ax.plot(vt_leader, 'r', label='Stackelberg leader')
+    ax.plot(vt_follower, 'g', label='Stackelberg follower')
+    ax.set_title(r'MPE vs. Stackelberg Value Function')
+    ax.set_xlabel('t')
+    ax.legend(loc=(1.05, 0))
     plt.show()
 
 
