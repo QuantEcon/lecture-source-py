@@ -221,21 +221,19 @@ illustrate these ideas:
 
     Econ1.irf(ts_length=40, shock=None)
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(Econ1.c_irf, label='Consumption')
-    plt.plot(Econ1.c_irf - Econ1.d_irf[:,0].reshape(40,1), label='Deficit')
-    plt.legend()
-    plt.title('Response to $w_{1t}$')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(Econ1.c_irf, label='Consumption')
+    ax1.plot(Econ1.c_irf - Econ1.d_irf[:,0].reshape(40,1), label='Deficit')
+    ax1.legend()
+    ax1.set_title('Response to $w_{1t}$')
 
     shock2 = np.array([[0], [1]])
     Econ1.irf(ts_length=40, shock=shock2)
 
-    plt.subplot(122)
-    plt.plot(Econ1.c_irf, label='Consumption')
-    plt.plot(Econ1.c_irf - Econ1.d_irf[:,0].reshape(40, 1), label='Deficit')
-    plt.legend()
-    plt.title('Response to $w_{2t}$')
+    ax2.plot(Econ1.c_irf, label='Consumption')
+    ax2.plot(Econ1.c_irf - Econ1.d_irf[:,0].reshape(40, 1), label='Deficit')
+    ax2.legend()
+    ax2.set_title('Response to $w_{2t}$')
     plt.show()
 
 The above figure displays the impulse response of consumption and the
@@ -281,18 +279,16 @@ expected present value
     y1_w2 = sqrt(HS_kal.stationary_innovation_covar()[1, 1]) * y1_w2
     y2_w2 = sqrt(HS_kal.stationary_innovation_covar()[1, 1]) * y2_w2
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(y1_w1, label='Consumption')
-    plt.plot(y2_w1, label='Deficit')
-    plt.legend()
-    plt.title('Response to $u_{1t}$')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(y1_w1, label='Consumption')
+    ax1.plot(y2_w1, label='Deficit')
+    ax1.legend()
+    ax1.set_title('Response to $u_{1t}$')
 
-    plt.subplot(122)
-    plt.plot(y1_w2, label='Consumption')
-    plt.plot(y2_w2, label='Deficit')
-    plt.legend()
-    plt.title('Response to $u_{2t}$')
+    ax2.plot(y1_w2, label='Consumption')
+    ax2.plot(y2_w2, label='Deficit')
+    ax2.legend()
+    ax2.set_title('Response to $u_{2t}$')
     plt.show()
 
 
@@ -328,17 +324,15 @@ Consumption responds only to the first innovation
         a2_w1[t] = ycoefs[t][1, 0]
         a2_w2[t] = ycoefs[t][1, 1]
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(a1_w1, label='Consumption innov.')
-    plt.plot(a2_w1, label='Deficit innov.')
-    plt.title('Response to $w_{1t}$')
-    plt.legend()
-    plt.subplot(122)
-    plt.plot(a1_w2, label='Consumption innov.')
-    plt.plot(a2_w2, label='Deficit innov.')
-    plt.legend()
-    plt.title('Response to $w_{2t}$')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(a1_w1, label='Consumption innov.')
+    ax1.plot(a2_w1, label='Deficit innov.')
+    ax1.set_title('Response to $w_{1t}$')
+    ax1.legend()
+    ax2.plot(a1_w2, label='Consumption innov.')
+    ax2.plot(a2_w2, label='Deficit innov.')
+    ax2.legend()
+    ax2.set_title('Response to $w_{2t}$')
     plt.show()
 
 The above figure displays the impulse responses of :math:`u_t` to
