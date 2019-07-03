@@ -60,18 +60,22 @@ $(function () {
 		});
 	}
 
+	/* path prefix for individual lectures */
+	var lang = $('body').attr('class')
+	lang? lang = "/" + lang: ''
+
 	/* Display a notebook execution badge on lecture pages */
 	if ( $('#executability_status_badge').length > 0 ) {
-		load_this_page_badge();
+		load_this_page_badge(lang);
 	}
 
 	/* Display a notebook execution status table */
 	if ( $('#status_table').length > 0 ) {
-		load_status_table();
+		load_status_table(lang);
 	}
 
 	/* Display coverage badges */
-	load_percentages();
+	load_percentages(lang);
     
 
 });
