@@ -1066,7 +1066,7 @@ function updateTable()
 
 function load_status_table(lang)
 {
-    $.getJSON( lang + "/_static/code-execution-results.json", function( data )
+    $.getJSON( lang + "_static/code-execution-results.json", function( data )
     {
         status_data = [];
         last_test_time = data.run_time;
@@ -1164,7 +1164,7 @@ function get_badge(percentage, lang)
 
 function load_this_page_badge(lang)
 {
-  $.getJSON( lang + "/_static/code-execution-results.json", function( data )
+  $.getJSON( lang + "_static/code-execution-results.json", function( data )
   {
       status_data = [];
       for (var key in data.results)
@@ -1197,7 +1197,7 @@ function load_percentages(lang)
   var keys_list = [];
   var combined_percentage, py_percentage, jl_percentage;
 
-  $.getJSON(lang + "/_static/code-execution-results.json", function( data )
+  $.getJSON(lang + "_static/code-execution-results.json", function( data )
   {
     for (var key in data.results)
     {

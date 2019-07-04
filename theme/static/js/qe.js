@@ -63,7 +63,7 @@ $(function () {
 	/* path prefix for individual lectures */
 	var index = window.location.pathname.indexOf('/', window.location.pathname.indexOf('/') + 1);
 	var lang = window.location.pathname.substring(0, index + 1);
-	lang? lang : ''
+	lang ? lang : lang = '/'
 
 	/* Display a notebook execution badge on lecture pages */
 	if ( $('#executability_status_badge').length > 0 ) {
