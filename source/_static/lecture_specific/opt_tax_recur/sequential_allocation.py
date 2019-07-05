@@ -59,8 +59,8 @@ class SequentialAllocation:
             c = z[:S]
             n = z[S:2*S]
             Ξ = z[2*S:]
-            return np.hstack([Uc(c, n) - μ * (Ucc(c, n)*c + Uc(c, n)) - Ξ,  # FOC of c
-                              Un(c, n) - μ * (Unn(c, n)*n + Un(c, n)) + \
+            return np.hstack([Uc(c, n) - μ*(Ucc(c, n)*c + Uc(c, n)) - Ξ,  # FOC of c
+                              Un(c, n) - μ*(Unn(c, n)*n + Un(c, n)) + \
                               Θ*Ξ,  # FOC of n
                               Θ*n - c - G])
 
@@ -69,7 +69,7 @@ class SequentialAllocation:
         if not res.success:
             raise Exception('Could not find LS allocation.')
         z = res.x
-        c, n, Ξ = z[:S], z[S:2*S], z[2*S:]
+        c, n, Ξ = z[:S], z[S: 2*S], z[2*S:]
 
         # Compute x
         I = Uc(c, n)*c + Un(c, n)*n
@@ -92,7 +92,7 @@ class SequentialAllocation:
                                                       + β*π[s_0] @ xprime,
                               Uc(c, n) - μ * (Ucc(c, n) * (c - B_)
                                                 + Uc(c, n)) - Ξ,
-                              Un(c, n) - μ * (Unn(c, n) * n
+                              Un(c, n) - μ * (Unn(c, n)*n
                                                 + Un(c, n)) + Θ[s_0] * Ξ,
                               (Θ*n - c - G)[s_0]])
 
