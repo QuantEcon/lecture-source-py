@@ -413,9 +413,6 @@ jupyter_headers = {
 # Filename for the file containing the welcome block
 jupyter_welcome_block = ""
 
-#Allow .. only:: html pass through 
-jupyter_allow_html_only = False
-
 #Adjust links to target html (rather than ipynb)
 jupyter_target_html = False
 
@@ -451,3 +448,6 @@ jupyter_make_site = False
 
 #force markdown image inclusion
 jupyter_images_markdown = True
+
+#This is set true by default to pass html to the notebooks
+jupyter_allow_html_only=True
