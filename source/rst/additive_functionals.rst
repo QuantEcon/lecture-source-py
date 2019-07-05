@@ -265,13 +265,13 @@ For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a desc
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.01
-    ν = 0.01 # Growth rate
+    ν = 0.01   # Growth rate
 
     # A matrix should be n x n
     A = np.array([[ϕ_1, ϕ_2, ϕ_3, ϕ_4],
-                  [ 1,   0,    0,   0],
-                  [ 0,   1,    0,   0],
-                  [ 0,   0,    1,   0]])
+                  [  1,   0,   0,   0],
+                  [  0,   1,   0,   0],
+                  [  0,   0,   1,   0]])
 
     # B matrix should be n x k
     B = np.array([[σ, 0, 0, 0]]).T
@@ -698,7 +698,7 @@ simulations
             # Martingale component is third component
             add_mart_comp[i, :] = bar[2, :]
 
-        mul_mart_comp = np.exp(add_mart_comp - (np.arange(T) * H**2) / 2)
+        mul_mart_comp = np.exp(add_mart_comp - (np.arange(T) * H**2)/2)
 
         return add_mart_comp, mul_mart_comp
 
@@ -752,10 +752,10 @@ Here is some code that tackles these tasks
 
         # Pull out the multiplicative decomposition
         νtilde, H, g = amf.multiplicative_decomp()
-        H2 = H * H
+        H2 = H*H
 
         # The distribution
-        mdist = lognorm(np.sqrt(t * H2), scale=np.exp(-t * H2 / 2))
+        mdist = lognorm(np.sqrt(t*H2), scale=np.exp(-t*H2/2))
         x = np.linspace(xmin, xmax, npts)
         pdf = mdist.pdf(x)
 
@@ -766,10 +766,10 @@ Here is some code that tackles these tasks
 
         # Pull out the multiplicative decomposition
         νtilde, H, g = amf.multiplicative_decomp()
-        H2 = H * H
+        H2 = H*H
 
         # The distribution
-        lmdist = norm(-t * H2 / 2, np.sqrt(t * H2))
+        lmdist = norm(-t*H2/2, np.sqrt(t*H2))
         x = np.linspace(xmin, xmax, npts)
         pdf = lmdist.pdf(x)
 
@@ -777,8 +777,10 @@ Here is some code that tackles these tasks
 
 
     times_to_plot = [10, 100, 500, 1000, 2500, 5000]
-    dens_to_plot = map(lambda t: Mtilde_t_density(amf_2, t, xmin=1e-8, xmax=6.0), times_to_plot)
-    ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0, xmax=10.0), times_to_plot)
+    dens_to_plot = map(lambda t: Mtilde_t_density(amf_2, t, xmin=1e-8, xmax=6.0),
+                       times_to_plot)
+    ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0,
+                        xmax=10.0), times_to_plot)
 
     fig, ax = plt.subplots(3, 2, figsize=(8, 14))
     ax = ax.flatten()
