@@ -316,11 +316,11 @@ Note the smaller weights towards the edges and larger weights in the center, so 
 
     window = hanning_window(25) / np.abs(sum(hanning_window(25)))
     x = np.linspace(-12, 12, 25)
-    plt.figure(figsize=(9, 7))
-    plt.plot(x, window)
-    plt.title("Hanning window")
-    plt.ylabel("Weights")
-    plt.xlabel("Position in sequence of weights")
+    fig, ax = plt.subplots(figsize=(9, 7))
+    ax.plot(x, window)
+    ax.set_title("Hanning window")
+    ax.set_ylabel("Weights")
+    ax.set_xlabel("Position in sequence of weights")
     plt.show()
 
 

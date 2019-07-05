@@ -1223,10 +1223,10 @@ time 0 by raising consumption
 
 .. code-block:: python3
 
-    plt.figure(figsize=(8, 5))
-    plt.title('Gross Interest Rate')
-    plt.plot(sim_seq_l[-1], '-ok', sim_seq_h[-1], '-or', alpha=0.7)
-    plt.grid()
+    fix, ax = plt.subplots(figsize=(8, 5))
+    ax.set_title('Gross Interest Rate')
+    ax.plot(sim_seq_l[-1], '-ok', sim_seq_h[-1], '-or', alpha=0.7)
+    ax.grid()
     plt.show()
 
 

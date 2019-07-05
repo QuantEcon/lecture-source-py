@@ -126,7 +126,7 @@
 
 		        	<div class="header-search"><gcse:searchbox-only></gcse:searchbox-only></div>
 
-		        	<p id="combined_percentage" class="combined-coverage"><a href="/status.html"></a></p>
+		        	<p id="combined_percentage" class="combined-coverage"><a href="/{{nb_lang}}/status.html"></a></p>
 
 				</div>
 
@@ -154,12 +154,12 @@
 {% if nb_lang == 'py' and not indexPage %}
 
 						<ul class="badges">
-							<li><a href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-run-FDD935.svg" id="notebook_run_badge"></a></li>
+							<li><a href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-run-006400.svg" id="notebook_run_badge"></a></li>
 							{% if download_nb == True %}
 								<li><a href="/{{nb_lang}}/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
 								<li><a href="/_downloads/pdf/py/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
-							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
+							<li><a href="/{{nb_lang}}/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 						</ul>
 
 						<div class="how-to">
@@ -180,7 +180,7 @@
 								<li><a href="/{{nb_lang}}/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
 								<li><a href="/_downloads/pdf/jl/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
-							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
+							<li><a href="/{{nb_lang}}/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 						</ul>
 						
 						<div class="how-to">

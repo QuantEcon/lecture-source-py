@@ -228,9 +228,9 @@ with :math:`x \in [0,1]` we get
   f = lambda x: np.sin(4 * (x - 1/4)) + x + x**20 - 1
   x = np.linspace(0, 1, 100)
 
-  plt.figure(figsize=(10, 8))
-  plt.plot(x, f(x))
-  plt.axhline(ls='--', c='k')
+  fig, ax = plt.subplots(figsize=(10, 8))
+  ax.plot(x, f(x))
+  ax.axhline(ls='--', c='k')
   plt.show()
 
 The unique root is approximately 0.408

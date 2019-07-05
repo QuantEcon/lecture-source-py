@@ -256,21 +256,19 @@ that lecture and that  notebook to confirm that the solutions are the same
 
 .. code-block:: python3
 
-    plt.figure(figsize=(16, 5))
-    plt.subplot(121)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 5))
 
     for i in range(25):
         Econ1.compute_sequence(x0, ts_length=150)
-        plt.plot(Econ1.c[0], c='g')
-        plt.plot(Econ1.d[0], c='b')
-    plt.plot(Econ1.c[0], label='Consumption', c='g')
-    plt.plot(Econ1.d[0], label='Income', c='b')
-    plt.legend()
+        ax1.plot(Econ1.c[0], c='g')
+        ax1.plot(Econ1.d[0], c='b')
+    ax1.plot(Econ1.c[0], label='Consumption', c='g')
+    ax1.plot(Econ1.d[0], label='Income', c='b')
+    ax1.legend()
 
-    plt.subplot(122)
     for i in range(25):
         Econ1.compute_sequence(x0, ts_length=150)
-        plt.plot(Econ1.k[0], color='r')
-    plt.plot(Econ1.k[0], label='Debt', c='r')
-    plt.legend()
+        ax2.plot(Econ1.k[0], color='r')
+    ax2.plot(Econ1.k[0], label='Debt', c='r')
+    ax2.legend()
     plt.show()

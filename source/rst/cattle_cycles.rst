@@ -325,9 +325,10 @@ to generate cycles in quantities
 .. code-block:: python3
 
     TotalStock = Econ1.k[0] + g * Econ1.k[1] + g * Econ1.k[2]  # Calculation of y_t
-    plt.plot(TotalStock)
-    plt.xlim((-1, 100))
-    plt.title('Total number of cattle')
+    fig, ax = plt.subplots()
+    ax.plot(TotalStock)
+    ax.set_xlim((-1, 100))
+    ax.set_title('Total number of cattle')
     plt.show()
 
 
@@ -345,20 +346,18 @@ We replicate their Figure 3 below
     Econ2.irf(ts_length=25, shock=shock_demand)
     Econ3.irf(ts_length=25, shock=shock_demand)
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(Econ1.c_irf, label='$\\rho=0.6$')
-    plt.plot(Econ2.c_irf, label='$\\rho=1$')
-    plt.plot(Econ3.c_irf, label='$\\rho=0$')
-    plt.title('Consumption response to demand shock')
-    plt.legend()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(Econ1.c_irf, label='$\\rho=0.6$')
+    ax1.plot(Econ2.c_irf, label='$\\rho=1$')
+    ax1.plot(Econ3.c_irf, label='$\\rho=0$')
+    ax1.set_title('Consumption response to demand shock')
+    ax1.legend()
 
-    plt.subplot(122)
-    plt.plot(Econ1.k_irf[:, 0], label='$\\rho=0.6$')
-    plt.plot(Econ2.k_irf[:, 0], label='$\\rho=1$')
-    plt.plot(Econ3.k_irf[:, 0], label='$\\rho=0$')
-    plt.title('Breeding stock response to demand shock')
-    plt.legend()
+    ax2.plot(Econ1.k_irf[:, 0], label='$\\rho=0.6$')
+    ax2.plot(Econ2.k_irf[:, 0], label='$\\rho=1$')
+    ax2.plot(Econ3.k_irf[:, 0], label='$\\rho=0$')
+    ax2.set_title('Breeding stock response to demand shock')
+    ax2.legend()
     plt.show()
 
 
@@ -383,16 +382,14 @@ We replicate their Figure 4 below
     Total1_irf = Econ1.k_irf[:, 0] + g * Econ1.k_irf[:, 1] + g * Econ1.k_irf[:, 2]
     Total3_irf = Econ3.k_irf[:, 0] + g * Econ3.k_irf[:, 1] + g * Econ3.k_irf[:, 2]
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(Econ1.k_irf[:, 0], label='Breeding Stock')
-    plt.plot(Total1_irf, label='Total Stock')
-    plt.title('$\\rho=0.6$')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(Econ1.k_irf[:, 0], label='Breeding Stock')
+    ax1.plot(Total1_irf, label='Total Stock')
+    ax1.set_title('$\\rho=0.6$')
 
-    plt.subplot(122)
-    plt.plot(Econ3.k_irf[:, 0], label='Breeding Stock')
-    plt.plot(Total3_irf, label='Total Stock')
-    plt.title('$\\rho=0$')
+    ax2.plot(Econ3.k_irf[:, 0], label='Breeding Stock')
+    ax2.plot(Total3_irf, label='Total Stock')
+    ax2.set_title('$\\rho=0$')
     plt.show()
 
 
