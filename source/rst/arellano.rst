@@ -15,7 +15,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -369,7 +369,7 @@ The output process is discretized using `Tauchen's quadrature method <https://gi
 :ref:`Numba <numba_link>` has been used in two places to speed up the code
 
 
-.. literalinclude:: /_static/code/arellano/arellano_vfi.py
+.. literalinclude:: /_static/lecture_specific/arellano/arellano_vfi.py
 
 
 
@@ -391,7 +391,7 @@ Details on how to compute the figures are reported as solutions to the exercises
 
 The first figure shows the bond price schedule and replicates Figure 3 of Arellano, where :math:`y_L` and :math:`Y_H` are particular below average and above average values of output :math:`y`
 
-.. figure:: /_static/figures/arellano_bond_prices.png
+.. figure:: /_static/lecture_specific/arellano/arellano_bond_prices.png
 
 * :math:`y_L` is 5% below the mean of the :math:`y` grid values
 
@@ -401,7 +401,7 @@ The grid used to compute this figure was relatively coarse (``ny, nB = 21, 251``
 
 Here's the same relationships computed on a finer grid (``ny, nB = 51, 551``)
 
-.. figure:: /_static/figures/arellano_bond_prices_2.png
+.. figure:: /_static/lecture_specific/arellano/arellano_bond_prices_2.png
 
 In either case, the figure shows that
 
@@ -412,7 +412,7 @@ In either case, the figure shows that
 
 The next figure plots value functions and replicates the right hand panel of Figure 4 of :cite:`arellano2008default`
 
-.. figure:: /_static/figures/arellano_value_funcs.png
+.. figure:: /_static/lecture_specific/arellano/arellano_value_funcs.png
 
 
 We can use the results of the computation to study the default probability
@@ -421,7 +421,7 @@ We can use the results of the computation to study the default probability
 The next plot shows these default probabilities over :math:`(B', y)` as a heat
 map
 
-.. figure:: /_static/figures/arellano_default_probs.png
+.. figure:: /_static/lecture_specific/arellano/arellano_default_probs.png
 
 As anticipated, the probability that the government chooses to default in the
 following period increases with indebtedness and falls with income
@@ -430,7 +430,7 @@ Next let's run a time series simulation of :math:`\{y_t\}`, :math:`\{B_t\}` and 
 
 The grey vertical bars correspond to periods when the economy is excluded from financial markets because of a past default
 
-.. figure:: /_static/figures/arellano_time_series.png
+.. figure:: /_static/lecture_specific/arellano/arellano_time_series.png
 
 One notable feature of the simulated data is the nonlinear response of interest rates
 

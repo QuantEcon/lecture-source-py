@@ -846,7 +846,7 @@ equilibrium set, once with :math:`\beta = 0.3` and once with
 (Here we have set the number of subgradients to 10 in order to speed up the
 code for now - we can increase accuracy by increasing the number of subgradients)
 
-.. literalinclude:: /_static/code/chang_credible/changecon.py
+.. literalinclude:: /_static/lecture_specific/chang_credible/changecon.py
 
 .. code-block:: python3
 

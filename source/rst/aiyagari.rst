@@ -16,7 +16,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -25,7 +25,7 @@ In this lecture, we describe the structure of a class of models that build on wo
 
 .. only:: html
 
-    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/pdfs/aiyagari_obit.pdf>`
+    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/lecture_specific/aiyagari/aiyagari_obit.pdf>`
 
 .. only:: latex
 
@@ -243,11 +243,11 @@ when the parameters change
 
 The class also includes a default set of parameters that we'll adopt unless otherwise specified
 
-.. literalinclude:: /_static/code/aiyagari/aiyagari_household.py
+.. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_household.py
 
 As a first example of what we can do, let's compute and plot an optimal accumulation policy at fixed prices
 
-.. literalinclude:: /_static/code/aiyagari/aiyagari_compute_policy.py
+.. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_compute_policy.py
 
 The plot shows asset accumulation policies at different values of the exogenous state
 
@@ -262,4 +262,4 @@ The following code draws aggregate supply and demand curves
 The intersection gives equilibrium interest rates and capital
 
 
-.. literalinclude:: /_static/code/aiyagari/aiyagari_compute_equilibrium.py
+.. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_compute_equilibrium.py

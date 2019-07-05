@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ===============
@@ -250,7 +250,7 @@ If you need to refresh your understanding of how these work, consult :doc:`this 
 Here's the code:
 
 
-.. literalinclude:: /_static/code/lake_model/lake_model.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_model.py
 
 
 
@@ -298,7 +298,7 @@ Let's run a simulation under the default parameters (see above) starting from :m
 
   fig, axes = plt.subplots(3, 1, figsize=(10, 8))
   X_0 = (U_0, E_0)
-  X_path = np.vstack(lm.simulate_stock_path(X_0, T))
+  X_path = np.vstack(tuple(lm.simulate_stock_path(X_0, T)))
 
   axes[0].plot(X_path[:, 0], lw=2)
   axes[0].set_title('Unemployment')
@@ -347,7 +347,7 @@ This is the case for our default parameters:
 Let's look at the convergence of the unemployment and employment rate to steady state levels (dashed red line)
 
 
-.. literalinclude:: /_static/code/lake_model/lake_rate_dynamics.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_rate_dynamics.py
 
 
 
@@ -460,7 +460,7 @@ We can use `QuantEcon.py's <http://quantecon.org/python_index.html>`__
 Let's plot the path of the sample averages over 5,000 periods
 
 
-.. literalinclude:: /_static/code/lake_model/lake_agent_dynamics.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_agent_dynamics.py
 
 
 
@@ -573,7 +573,7 @@ where the notation :math:`V` and :math:`U` is as defined in the :doc:`McCall sea
 The wage offer distribution will be a discretized version of the lognormal distribution :math:`LN(\log(20),1)`, as shown in the next figure
 
 
-.. figure:: /_static/figures/lake_distribution_wages.png
+.. figure:: /_static/lecture_specific/lake_model/lake_distribution_wages.png
 
 We take a period to be a month
 
@@ -597,20 +597,20 @@ We will make use of code we wrote in the :doc:`McCall model lecture <mccall_mode
 
 The first piece of code, repeated below, implements value function iteration
 
-.. literalinclude:: /_static/code/mccall/mccall_bellman_iteration.py
+.. literalinclude:: /_static/lecture_specific/mccall/mccall_bellman_iteration.py
     :class: collapse
 
 The second piece of code repeated from :doc:`the McCall model lecture <mccall_model>` is used to complete the reservation wage
 
 
-.. literalinclude:: /_static/code/mccall/compute_reservation_wage.py
+.. literalinclude:: /_static/lecture_specific/mccall/compute_reservation_wage.py
     :class: collapse
 
 Now let's compute and plot welfare, employment, unemployment, and tax revenue as a
 function of the unemployment compensation rate
 
 
-.. literalinclude:: /_static/code/lake_model/lake_fiscal_policy.py
+.. literalinclude:: /_static/lecture_specific/lake_model/lake_fiscal_policy.py
 
 Welfare first increases and then decreases as unemployment benefits rise
 
@@ -701,8 +701,8 @@ New legislation changes :math:`\lambda` to :math:`0.2`
     lm.lmda = 0.2
 
     xbar = lm.rate_steady_state()  # new steady state
-    X_path = np.vstack(lm.simulate_stock_path(x0 * N0, T))
-    x_path = np.vstack(lm.simulate_rate_path(x0, T))
+    X_path = np.vstack(tuple(lm.simulate_stock_path(x0 * N0, T)))
+    x_path = np.vstack(tuple(lm.simulate_rate_path(x0, T)))
     print(f"New Steady State: {xbar}")
 
 Now plot stocks
@@ -776,8 +776,8 @@ Let's increase :math:`b` to the new value and simulate for 20 periods
 .. code-block:: python3
 
     lm.b = b_hat
-    X_path1 = np.vstack(lm.simulate_stock_path(x0 * N0, T_hat))  # simulate stocks
-    x_path1 = np.vstack(lm.simulate_rate_path(x0, T_hat))        # simulate rates
+    X_path1 = np.vstack(tuple(lm.simulate_stock_path(x0 * N0, T_hat)))  # simulate stocks
+    x_path1 = np.vstack(tuple(lm.simulate_rate_path(x0, T_hat)))        # simulate rates
 
 Now we reset :math:`b` to the original value and then, using the state
 after 20 periods for the new initial conditions, we simulate for the
@@ -786,8 +786,8 @@ additional 30 periods
 .. code-block:: python3
 
     lm.b = 0.0124
-    X_path2 = np.vstack(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)) # simulate stocks
-    x_path2 = np.vstack(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1))  # simulate rates
+    X_path2 = np.vstack(tuple(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)))  # simulate stocks
+    x_path2 = np.vstack(tuple(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1)))  # simulate rates
 
 Finally, we combine these two paths and plot
 

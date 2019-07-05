@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -692,7 +692,7 @@ The following figure was computed using :math:`r = 0.05, \beta = 1 / (1+ r),
 
 The shocks :math:`\{w_t\}` were taken to be IID and standard normal
 
-.. literalinclude:: /_static/code/lqcontrol/lq_permanent_1.py
+.. literalinclude:: /_static/lecture_specific/lqcontrol/lq_permanent_1.py
 
 The top panel shows the time path of consumption :math:`c_t` and income :math:`y_t` in the simulation
 
@@ -1067,7 +1067,7 @@ the ``compute_sequence`` method of ``lqcontrol.py`` with initial assets set to z
 
 .. _solution_lqc_ex1_fig:
 
-.. figure:: /_static/figures/solution_lqc_ex1.png
+.. figure:: /_static/lecture_specific/lqcontrol/solution_lqc_ex1.png
 
 Once again, smooth consumption is a dominant feature of the sample  paths
 
@@ -1144,7 +1144,7 @@ The next figure shows one simulation based on this procedure
 
 .. _solution_lqc_ex2_fig:
 
-.. figure:: /_static/figures/solution_lqc_ex2.png
+.. figure:: /_static/lecture_specific/lqcontrol/solution_lqc_ex2.png
 
 The full set of parameters used in the simulation is discussed in :ref:`Exercise 2 <lqc_ex2>`, where you are asked to replicate the figure
 
@@ -1228,11 +1228,11 @@ The following figures show simulations produced by solving the corresponding LQ 
 
 The only difference in parameters across the figures is the size of :math:`\gamma`
 
-.. figure:: /_static/figures/solution_lqc_ex3_g1.png
+.. figure:: /_static/lecture_specific/lqcontrol/solution_lqc_ex3_g1.png
 
-.. figure:: /_static/figures/solution_lqc_ex3_g10.png
+.. figure:: /_static/lecture_specific/lqcontrol/solution_lqc_ex3_g10.png
 
-.. figure:: /_static/figures/solution_lqc_ex3_g50.png
+.. figure:: /_static/lecture_specific/lqcontrol/solution_lqc_ex3_g50.png
 
 To produce these figures we converted the monopolist problem into an LQ problem
 

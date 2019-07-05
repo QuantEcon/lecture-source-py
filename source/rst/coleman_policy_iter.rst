@@ -15,7 +15,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
   !pip install interpolation
 
 Overview
@@ -289,7 +289,7 @@ composition of :math:`g` with itself
 
 Here's the picture
 
-.. figure:: /_static/figures/col_pol_composition.png
+.. figure:: /_static/lecture_specific/coleman_policy_iter/col_pol_composition.png
 
 Now let another function :math:`h \colon Y \to Y` where :math:`Y` is another set
 
@@ -319,13 +319,13 @@ or, by applying :math:`\tau^{-1}` to both sides
 
 Here's a commutative diagram that illustrates
 
-.. figure:: /_static/figures/col_pol_bij1.png
+.. figure:: /_static/lecture_specific/coleman_policy_iter/col_pol_bij1.png
 
 
 Here's a similar figure that traces out the action of the maps on a point
 :math:`x \in X`
 
-.. figure:: /_static/figures/col_pol_bij2.png
+.. figure:: /_static/lecture_specific/coleman_policy_iter/col_pol_bij2.png
 
 Now, it's easy to check from :eq:`cpi_ghcom` that :math:`g^2 = \tau^{-1} \circ h^2 \circ \tau` holds
 
@@ -450,7 +450,7 @@ First, we'll store the parameters of the model in a class ``OptimalGrowthModel``
 
 Here's some code that returns the Coleman-Reffett operator, :math:`K`
 
-.. literalinclude:: /_static/code/coleman_policy_iter/coleman_operator.py
+.. literalinclude:: /_static/lecture_specific/coleman_policy_iter/coleman_operator.py
 
 It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>`
 
@@ -458,7 +458,7 @@ For example, it evaluates integrals by Monte Carlo and approximates functions us
 
 Here's that Bellman operator code again, which needs to be executed because we'll use it in some tests below
 
-.. literalinclude:: /_static/code/optgrowth/bellman_operator.py
+.. literalinclude:: /_static/lecture_specific/optgrowth/bellman_operator.py
     :class: collapse
 
 
@@ -771,7 +771,7 @@ Exercise 4
 Here's is the function we need to solve the model using value function iteration,
 copied from the previous lecture
 
-.. literalinclude:: /_static/code/optgrowth/solve_model.py
+.. literalinclude:: /_static/lecture_specific/optgrowth/solve_model.py
 
 Similarly, we can write a function that uses ``K`` to solve the model
 

@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -442,7 +442,7 @@ converges almost surely to :math:`\psi_t(y)`, which is just what we want to comp
 
 .. only:: html
 
-    In fact, much stronger convergence results are true (see, for example, :download:`this paper </_static/pdfs/ECTA6180.pdf>`)
+    In fact, much stronger convergence results are true (see, for example, :download:`this paper </_static/lecture_specific/stationary_densities/ECTA6180.pdf>`)
 
 .. only:: latex
 
@@ -760,7 +760,7 @@ Here is such a figure
 
 .. _statd_egs:
 
-.. figure:: /_static/figures/solution_statd_ex2.png
+.. figure:: /_static/lecture_specific/stationary_densities/solution_statd_ex2.png
 
 All sequences are converging towards the same limit, regardless of their initial condition
 
@@ -864,7 +864,7 @@ In doing so, set :math:`\theta = 0.8` and :math:`n = 500`
 
 The next figure shows the result of such a computation
 
-.. figure:: /_static/figures/solution_statd_ex1.png
+.. figure:: /_static/lecture_specific/stationary_densities/solution_statd_ex1.png
 
 The additional density (black line) is a `nonparametric kernel density estimate <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_, added to the solution for illustration
 
@@ -922,7 +922,7 @@ The three data sets we will use are:
 Here is the code and figure:
 
 
-.. literalinclude:: /_static/code/stationary_densities/boxplot_example.py
+.. literalinclude:: /_static/lecture_specific/stationary_densities/boxplot_example.py
 
 
 

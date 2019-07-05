@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -246,7 +246,7 @@ perhaps it's not surprising that the estimate is poor
 
 However, if we try again with ``n = 1200`` the outcome is not much better
 
-.. figure:: /_static/figures/periodogram1.png
+.. figure:: /_static/lecture_specific/estspec/periodogram1.png
 
 The periodogram is far too irregular relative to the underlying spectral density
 
@@ -316,11 +316,11 @@ Note the smaller weights towards the edges and larger weights in the center, so 
 
     window = hanning_window(25) / np.abs(sum(hanning_window(25)))
     x = np.linspace(-12, 12, 25)
-    plt.figure(figsize=(9, 7))
-    plt.plot(x, window)
-    plt.title("Hanning window")
-    plt.ylabel("Weights")
-    plt.xlabel("Position in sequence of weights")
+    fig, ax = plt.subplots(figsize=(9, 7))
+    ax.plot(x, window)
+    ax.set_title("Hanning window")
+    ax.set_ylabel("Weights")
+    ax.set_xlabel("Position in sequence of weights")
     plt.show()
 
 
@@ -352,7 +352,7 @@ From the top figure to bottom, the window length is varied from small to large
 
 .. _fig_window_smoothing:
 
-.. figure:: /_static/figures/window_smoothing.png
+.. figure:: /_static/lecture_specific/estspec/window_smoothing.png
 
 
 In looking at the figure, we can see that for this model and data size, the
@@ -481,7 +481,7 @@ The difference between the three subfigures is just randomness --- each one uses
 
 .. _fig_ar_smoothed_periodogram:
 
-.. figure:: /_static/figures/ar_smoothed_periodogram.png
+.. figure:: /_static/lecture_specific/estspec/ar_smoothed_periodogram.png
 
 In all cases, periodograms are fit with the "hamming" window and window length of 65
 

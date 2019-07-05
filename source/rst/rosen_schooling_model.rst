@@ -22,7 +22,7 @@ In addition to what's included in  Anaconda, this lecture uses the quantecon  li
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 We'll also need the following imports
 
@@ -281,18 +281,17 @@ shock on :math:`N_t` is larger
 
 .. code-block:: python3
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(Econ1.c_irf,label='$\\alpha_d = 0.1$')
-    plt.plot(Econ2.c_irf,label='$\\alpha_d = 2$')
-    plt.legend()
-    plt.title('Response of $n_t$ to a demand shock')
 
-    plt.subplot(122)
-    plt.plot(Econ1.h_irf[:, 0], label='$\\alpha_d = 0.1$')
-    plt.plot(Econ2.h_irf[:, 0], label='$\\alpha_d = 24$')
-    plt.legend()
-    plt.title('Response of $N_t$ to a demand shock')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(Econ1.c_irf,label='$\\alpha_d = 0.1$')
+    ax1.plot(Econ2.c_irf,label='$\\alpha_d = 2$')
+    ax1.legend()
+    ax1.set_title('Response of $n_t$ to a demand shock')
+
+    ax2.plot(Econ1.h_irf[:, 0], label='$\\alpha_d = 0.1$')
+    ax2.plot(Econ2.h_irf[:, 0], label='$\\alpha_d = 24$')
+    ax2.legend()
+    ax2.set_title('Response of $N_t$ to a demand shock')
     plt.show()
 
 The next figure plots the impulse response of :math:`n_t` (on the left)
@@ -301,20 +300,18 @@ and :math:`N_t` (on the right) to a positive demand shock, for
 
 .. code-block:: python3
 
-    plt.figure(figsize=(12, 4))
-    plt.subplot(121)
-    plt.plot(Econ1.c_irf, label='$k=4$')
-    plt.plot(Econ3.c_irf, label='$k=7$')
-    plt.plot(Econ4.c_irf, label='$k=10$')
-    plt.legend()
-    plt.title('Response of $n_t$ to a demand shock')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(Econ1.c_irf, label='$k=4$')
+    ax1.plot(Econ3.c_irf, label='$k=7$')
+    ax1.plot(Econ4.c_irf, label='$k=10$')
+    ax1.legend()
+    ax1.set_title('Response of $n_t$ to a demand shock')
 
-    plt.subplot(122)
-    plt.plot(Econ1.h_irf[:,0], label='$k=4$')
-    plt.plot(Econ3.h_irf[:,0], label='$k=7$')
-    plt.plot(Econ4.h_irf[:,0], label='$k=10$')
-    plt.legend()
-    plt.title('Response of $N_t$ to a demand shock')
+    ax2.plot(Econ1.h_irf[:,0], label='$k=4$')
+    ax2.plot(Econ3.h_irf[:,0], label='$k=7$')
+    ax2.plot(Econ4.h_irf[:,0], label='$k=10$')
+    ax2.legend()
+    ax2.set_title('Response of $N_t$ to a demand shock')
     plt.show()
 
 

@@ -19,7 +19,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ===============
@@ -439,7 +439,7 @@ First, let's look at how :math:`\bar w` varies with unemployment compensation
 In the figure below, we use the default parameters in the ``McCallModel`` class, apart from
 `c` (which takes the values given on the horizontal axis)
 
-.. figure:: /_static/figures/mccall_resw_c.png
+.. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_c.png
 
 As expected, higher unemployment compensation causes the worker to hold out for higher wages
 
@@ -455,7 +455,7 @@ Next, let's investigate how :math:`\bar w` varies with the discount factor
 The next figure plots the reservation wage associated with different values of
 :math:`\beta`
 
-.. figure:: /_static/figures/mccall_resw_beta.png
+.. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_beta.png
 
 Again, the results are intuitive: More patient workers will hold out for higher wages
 
@@ -469,7 +469,7 @@ Finally, let's look at how :math:`\bar w` varies with the job separation rate :m
 Higher :math:`\alpha` translates to a greater chance that a worker will face termination in each period once employed
 
 
-.. figure:: /_static/figures/mccall_resw_alpha.png
+.. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_alpha.png
 
 Once more, the results are in line with our intuition
 

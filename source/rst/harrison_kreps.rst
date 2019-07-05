@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 =========
@@ -312,7 +312,7 @@ The first two rows of the table report :math:`p_a(s)` and :math:`p_b(s)`
 
 Here's a function that can be used to compute these values
 
-.. literalinclude:: /_static/code/harrison_kreps/hk_price_singlebeliefs.py
+.. literalinclude:: /_static/lecture_specific/harrison_kreps/hk_price_singlebeliefs.py
 
 
 Single Belief Prices as Benchmarks
@@ -438,7 +438,7 @@ Investors of type :math:`a` want to sell the asset in state :math:`1` while inve
 
 Here's code to solve for :math:`\bar p`, :math:`\hat p_a` and :math:`\hat p_b` using the iterative method described above
 
-.. literalinclude:: /_static/code/harrison_kreps/hk_price_optimisticbeliefs.py
+.. literalinclude:: /_static/lecture_specific/harrison_kreps/hk_price_optimisticbeliefs.py
 
 
 Insufficient Funds
@@ -479,7 +479,7 @@ Constraints on short sales prevent that
 
 Here's code to solve for :math:`\check p` using iteration
 
-.. literalinclude:: /_static/code/harrison_kreps/hk_price_pessimisticbeliefs.py
+.. literalinclude:: /_static/lecture_specific/harrison_kreps/hk_price_pessimisticbeliefs.py
 
 
 

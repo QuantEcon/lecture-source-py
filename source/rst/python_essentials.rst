@@ -371,7 +371,7 @@ Suppose that we want to make the information more readable, by capitalizing name
 
 The program `us_cities.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_essentials/us_cities.py>`__ program reads the data in and makes the conversion:
 
-.. literalinclude:: /_static/code/python_essentials/us_cities.py
+.. literalinclude:: /_static/lecture_specific/python_essentials/us_cities.py
 
 Here ``format()`` is a string method `used for inserting variables into strings <https://docs.python.org/3/library/string.html#formatspec>`_
 

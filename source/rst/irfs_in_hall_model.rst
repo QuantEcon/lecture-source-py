@@ -23,7 +23,7 @@ In addition to what's in Anaconda, this lecture uses the quantecon library
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 We'll make these imports
 

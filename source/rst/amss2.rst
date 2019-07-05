@@ -17,7 +17,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 =============
@@ -259,7 +259,7 @@ In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g`
 
 The CRRA utility function is represented in the following class
 
-.. literalinclude:: /_static/code/opt_tax_recur/crra_utility.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/crra_utility.py
 
 
 Example Economy
@@ -291,14 +291,14 @@ The code is  mostly taken or adapted from the earlier lectures :doc:`optimal tax
 :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`
 
 
-.. literalinclude:: /_static/code/opt_tax_recur/sequential_allocation.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/sequential_allocation.py
     :class: collapse
 
-.. literalinclude:: /_static/code/amss/recursive_allocation.py
+.. literalinclude:: /_static/lecture_specific/amss/recursive_allocation.py
     :class: collapse
 
 
-.. literalinclude:: /_static/code/amss/utilities.py
+.. literalinclude:: /_static/lecture_specific/amss/utilities.py
     :class: collapse
 
 

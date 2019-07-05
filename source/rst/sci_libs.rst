@@ -13,7 +13,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -420,7 +420,7 @@ Suppose that the volatility of returns on an asset can be in one of two regimes 
 
 The transition probabilities across states are as follows
 
-.. figure:: /_static/figures/nfs_ex1.png
+.. figure:: /_static/lecture_specific/sci_libs/nfs_ex1.png
 
 
 For example, let the period length be one month, and suppose the current state is high

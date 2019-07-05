@@ -199,11 +199,11 @@ The densities :math:`f` and :math:`g` have the following shape
   f = beta_function_factory(1, 1)
   g = beta_function_factory(3, 1.2)
 
-  plt.figure(figsize=(10, 8))
-  plt.plot(x_grid, f(x_grid), label='$f$', lw=2)
-  plt.plot(x_grid, g(x_grid), label='$g$', lw=2)
+  fig, ax = plt.subplots(figsize=(10, 8))
+  ax.plot(x_grid, f(x_grid), label='$f$', lw=2)
+  ax.plot(x_grid, g(x_grid), label='$g$', lw=2)
 
-  plt.legend()
+  ax.legend()
   plt.show()
 
 
@@ -819,10 +819,10 @@ As a result, the unemployment rate spikes
     d = 200  # Change distribution at time d
     unemployment_rate = 1 - simulate_path(d=d).mean(axis=0)
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(unemployment_rate)
-    plt.axvline(d, color='r', alpha=0.6, label='Change date')
-    plt.xlabel('Time')
-    plt.title('Unemployment rate')
-    plt.legend()
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(unemployment_rate)
+    ax.axvline(d, color='r', alpha=0.6, label='Change date')
+    ax.set_xlabel('Time')
+    ax.set_title('Unemployment rate')
+    ax.legend()
     plt.show()

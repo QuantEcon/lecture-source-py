@@ -15,7 +15,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -550,7 +550,7 @@ Note:
 
 The following code sets up these objects for us
 
-.. literalinclude:: /_static/code/discrete_dp/finite_dp_og_example.py
+.. literalinclude:: /_static/lecture_specific/discrete_dp/finite_dp_og_example.py
 
 Let's run this code and create an instance of ``SimpleOG``
 
@@ -660,7 +660,7 @@ can easily simulate it, compute its stationary distribution and so on
 
 Here's the same information in a bar graph
 
-.. figure:: /_static/figures/finite_dp_simple_og.png
+.. figure:: /_static/lecture_specific/discrete_dp/finite_dp_simple_og.png
 
 What happens if the agent is more patient?
 
@@ -679,7 +679,7 @@ What happens if the agent is more patient?
 
 If we look at the bar graph we can see the rightward shift in probability mass
 
-.. figure:: /_static/figures/finite_dp_simple_og2.png
+.. figure:: /_static/lecture_specific/discrete_dp/finite_dp_simple_og2.png
 
 
 State-Action Pair Formulation
@@ -701,7 +701,7 @@ The call signature of the second formulation is ``DiscreteDP(R, Q, β, s_indices
 
 Here's how we could set up these objects for the preceding example
 
-.. literalinclude:: /_static/code/discrete_dp/og_example_state_action.py
+.. literalinclude:: /_static/lecture_specific/discrete_dp/og_example_state_action.py
 
 
 

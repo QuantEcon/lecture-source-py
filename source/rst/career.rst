@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 ============
@@ -379,7 +379,7 @@ when the worker follows the optimal policy
 
 In particular, modulo randomness, reproduce the following figure (where the horizontal axis represents time)
 
-.. figure:: /_static/figures/career_solutions_ex1_py.png
+.. figure:: /_static/lecture_specific/career/career_solutions_ex1_py.png
 
 Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use ``quantecon.random.draw()``
 

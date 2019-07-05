@@ -23,7 +23,7 @@ In addition what's in Anaconda, this lecture will need the following libraries
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 Overview
 =============
@@ -253,7 +253,7 @@ This system also constructs the components of the decompositions of :math:`y_t` 
 All of these objects are computed using the code below
 
 
-.. literalinclude:: /_static/code/additive_functionals/amflss.py
+.. literalinclude:: /_static/lecture_specific/additive_functionals/amflss.py
 
 For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a description of exactly how we compute them
 
@@ -624,7 +624,7 @@ Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^
 
 We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work
 
- .. literalinclude:: /_static/code/multiplicative_functionals/amflss_scalar.py
+ .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py
 
 The heavy lifting is done inside the `AMF_LSS_VAR` class
 

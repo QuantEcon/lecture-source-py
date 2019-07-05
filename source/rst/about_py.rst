@@ -78,7 +78,7 @@ Relative Popularity
 
 The following chart, produced using Stack Overflow Trends, shows one measure of the relative popularity of Python
 
-.. figure:: /_static/figures/python_vs_rest.png
+.. figure:: /_static/lecture_specific/about_py/python_vs_rest.png
 
 The figure indicates not only that Python is widely used but also that adoption of Python has accelerated significantly since 2012
 
@@ -89,7 +89,7 @@ For example, the popularity of `pandas <http://pandas.pydata.org/>`_, a library 
 
 (The corresponding time path for MATLAB is shown for comparison)
 
-.. figure:: /_static/figures/pandas_vs_matlab.png
+.. figure:: /_static/lecture_specific/about_py/pandas_vs_matlab.png
 
 Note that pandas takes off in 2012, which is the same year that we seek
 Python's popularity begin to spike in the first figure
@@ -251,15 +251,15 @@ The most popular and comprehensive Python library for creating figures and graph
 
 Example 2D plot with embedded LaTeX annotations
 
-.. figure:: /_static/figures/qs.png
+.. figure:: /_static/lecture_specific/about_py/qs.png
 
 Example contour plot
 
-.. figure:: /_static/figures/bn_density1.png
+.. figure:: /_static/lecture_specific/about_py/bn_density1.png
 
 Example 3D plot
 
-.. figure:: /_static/figures/career_vf.png
+.. figure:: /_static/lecture_specific/about_py/career_vf.png
 
 More examples can be found in the `Matplotlib thumbnail gallery <http://matplotlib.org/gallery.html>`_
 
@@ -415,19 +415,20 @@ Here's some example code that generates and plots a random graph, with node colo
   np.random.seed(1234)
 
   # Generate a random graph
-  p = dict((i,(np.random.uniform(0, 1),np.random.uniform(0, 1))) for i in range(200))
-  G = nx.random_geometric_graph(200, 0.12, pos=p)
-  pos = nx.get_node_attributes(G, 'pos')
+  p = dict((i, (np.random.uniform(0, 1), np.random.uniform(0, 1)))
+           for i in range(200))
+  g = nx.random_geometric_graph(200, 0.12, pos=p)
+  pos = nx.get_node_attributes(g, 'pos')
 
-  # find node nearest the center point (0.5, 0.5)
+  # Find node nearest the center point (0.5, 0.5)
   dists = [(x - 0.5)**2 + (y - 0.5)**2 for x, y in list(pos.values())]
   ncenter = np.argmin(dists)
 
   # Plot graph, coloring by path length from central node
-  p = nx.single_source_shortest_path_length(G, ncenter)
+  p = nx.single_source_shortest_path_length(g, ncenter)
   plt.figure()
-  nx.draw_networkx_edges(G, pos, alpha=0.4)
-  nx.draw_networkx_nodes(G,
+  nx.draw_networkx_edges(g, pos, alpha=0.4)
+  nx.draw_networkx_nodes(g,
                          pos,
                          nodelist=list(p.keys()),
                          node_size=120, alpha=0.5,

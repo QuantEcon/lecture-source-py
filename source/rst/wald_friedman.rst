@@ -24,7 +24,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
   !pip install interpolation
 
 
@@ -287,7 +287,7 @@ Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we
 
 This reasoning suggests a decision rule such as the one shown in the figure
 
-.. figure:: /_static/figures/wald_dec_rule.png
+.. figure:: /_static/lecture_specific/wald_friedman/wald_dec_rule.png
 
 
 

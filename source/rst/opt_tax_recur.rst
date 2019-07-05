@@ -13,7 +13,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 .. code-block:: ipython
   :class: hide-output
 
-  !pip install quantecon
+  !pip install --upgrade quantecon
 
 
 Overview
@@ -740,7 +740,7 @@ Sequence Implementation
 
 The above steps are implemented in a class called `SequentialAllocation`
 
-.. literalinclude:: /_static/code/opt_tax_recur/sequential_allocation.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/sequential_allocation.py
 
 
 
@@ -1057,7 +1057,7 @@ Recursive Implementation
 
 The above steps are implemented in a class called `RecursiveAllocation`
 
-.. literalinclude:: /_static/code/opt_tax_recur/recursive_allocation.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/recursive_allocation.py
 
 
 
@@ -1119,7 +1119,7 @@ utility as a function of :math:`n` rather than leisure :math:`l`
 
 This utility function is implemented in the class `CRRAutility`
 
-.. literalinclude:: /_static/code/opt_tax_recur/crra_utility.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/crra_utility.py
 
 We set initial government debt :math:`b_0 = 1`
 
@@ -1223,10 +1223,10 @@ time 0 by raising consumption
 
 .. code-block:: python3
 
-    plt.figure(figsize=(8, 5))
-    plt.title('Gross Interest Rate')
-    plt.plot(sim_seq_l[-1], '-ok', sim_seq_h[-1], '-or', alpha=0.7)
-    plt.grid()
+    fix, ax = plt.subplots(figsize=(8, 5))
+    ax.set_title('Gross Interest Rate')
+    ax.plot(sim_seq_l[-1], '-ok', sim_seq_h[-1], '-or', alpha=0.7)
+    ax.grid()
     plt.show()
 
 
@@ -1430,7 +1430,7 @@ For example, let the period utility function be
 
 We will create a new class `LogUtility` to represent this utility function
 
-.. literalinclude:: /_static/code/opt_tax_recur/log_utility.py
+.. literalinclude:: /_static/lecture_specific/opt_tax_recur/log_utility.py
 
 Also, suppose that :math:`g_t` follows a two-state IID process with equal
 probabilities attached to :math:`g_l` and :math:`g_h`

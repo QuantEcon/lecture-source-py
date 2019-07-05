@@ -945,7 +945,7 @@ above can be found in file `control_and_filter.py <https://github.com/QuantEcon/
 
 Here's how it looks
 
-.. literalinclude:: /_static/code/lu_tricks/control_and_filter.py
+.. literalinclude:: /_static/lecture_specific/lu_tricks/control_and_filter.py
 
 
 

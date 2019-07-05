@@ -21,7 +21,7 @@ of fields such as data science and machine learning
 
 Here's a popularity comparison over time against STATA and SAS, courtesy of Stack Overflow Trends
 
-.. figure:: /_static/figures/pandas_vs_rest.png
+.. figure:: /_static/lecture_specific/pandas/pandas_vs_rest.png
 
 
 Just as `NumPy <http://www.numpy.org/>`_ provides the basic array data type plus core array operations, pandas
@@ -142,7 +142,7 @@ Thus, it is a powerful tool for representing and analyzing data that are natural
 .. only:: html
 
     Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv`` that can be downloaded
-    :download:`here <_static/code/pandas/data/test_pwt.csv>`
+    :download:`here <_static/lecture_specific/pandas/data/test_pwt.csv>`
 
 .. only:: latex
 
@@ -395,12 +395,12 @@ data as an Excel file
 The next program does this for you, reads an Excel file into a pandas
 DataFrame, and plots time series for the US and Australia
 
-.. literalinclude:: /_static/code/pandas/wb_download.py
+.. literalinclude:: /_static/lecture_specific/pandas/wb_download.py
 
 .. only:: html
 
     (The file is ``pandas/wb_download.py``, and can be downloaded
-    :download:`here <_static/code/pandas/wb_download.py>`
+    :download:`here <_static/lecture_specific/pandas/wb_download.py>`
 
 .. only:: latex
 
@@ -437,7 +437,7 @@ Write a program to calculate the percentage price change over 2013 for the follo
 .. only:: html
 
     A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    :download:`here <_static/code/pandas/data/ticker_data.csv>`
+    :download:`here <_static/lecture_specific/pandas/data/ticker_data.csv>`
 
 .. only:: latex
 
@@ -446,7 +446,7 @@ Write a program to calculate the percentage price change over 2013 for the follo
 
 Plot the result as a bar graph like follows
 
-.. figure:: /_static/figures/pandas_share_prices.png
+.. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
 
 
 
