@@ -59,7 +59,7 @@ class Arellano_Economy:
 
         # Create grids and discretize Markov process
         self.Bgrid = np.linspace(-.45, .45, nB)
-        self.mc = qe.markov.tauchen(ρ, η, 3, ny)
+        self.mc = qe.markov.tauchen(ρ, η, 0, 3, ny)
         self.ygrid = np.exp(self.mc.state_values)
         self.Py = self.mc.P
 
