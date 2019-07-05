@@ -812,9 +812,12 @@ triangle denote war
     time_example.G = np.array([0.1, 0.1, 0.1, 0.2, 0.1, 0.1])
     time_example.Θ = np.ones(6)  # Θ can in principle be random
 
-    time_example.transfers = True                                  # Government can use transfers
-    time_sequential = SequentialAllocation(time_example)           # Solve sequential problem
-    time_bellman = RecursiveAllocationAMSS(time_example, μ_grid)   # Solve recursive problem
+    # Government can use transfers
+    time_example.transfers = True
+    # Solve sequential problem
+    time_sequential = SequentialAllocation(time_example)
+    # Solve recursive problem
+    time_bellman = RecursiveAllocationAMSS(time_example, μ_grid)
 
     sHist_h = np.array([0, 1, 2, 3, 5, 5, 5])
     sHist_l = np.array([0, 1, 2, 4, 5, 5, 5])
@@ -925,8 +928,10 @@ state contingent debt (circles) and the economy with only a risk-free bond
 .. code-block:: python3
 
     log_example = LogUtility()
-    log_example.transfers = True                        # Government can use transfers
-    log_sequential = SequentialAllocation(log_example)  # Solve sequential problem
+    # Government can use transfers
+    log_example.transfers = True
+    # Solve sequential problem
+    log_sequential = SequentialAllocation(log_example)
     log_bellman = RecursiveAllocationAMSS(log_example, μ_grid)
 
     T = 20

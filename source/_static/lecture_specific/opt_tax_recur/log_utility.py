@@ -17,7 +17,7 @@ class LogUtility:
 
     # Derivatives of utility function
     def Uc(self, c, n):
-        return 1 / c
+        return 1/c
 
     def Ucc(self, c, n):
         return -c**(-2)

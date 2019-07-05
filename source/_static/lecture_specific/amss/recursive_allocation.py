@@ -36,7 +36,7 @@ class RecursiveAllocationAMSS:
             c, n, x, V = zip(*map(lambda μ: incomplete_allocation(μ, s_), μgrid0))
             c, n = np.vstack(c).T, np.vstack(n).T
             x, V = np.hstack(x), np.hstack(V)
-            xprimes = np.vstack([x] * S)
+            xprimes = np.vstack([x]*S)
             cf.append(interp(x, c))
             nf.append(interp(x, n))
             Vf.append(interp(x, V))
@@ -79,10 +79,10 @@ class RecursiveAllocationAMSS:
         for s_ in range(S):
             PFvec = np.vstack([PF(x, s_) for x in self.xgrid]).T
             Vf.append(interp(xgrid, PFvec[0, :]))
-            cf.append(interp(xgrid, PFvec[1:1 + S]))
-            nf.append(interp(xgrid, PFvec[1 + S:1 + 2 * S]))
-            xprimef.append(interp(xgrid, PFvec[1 + 2 * S:1 + 3 * S]))
-            Tf.append(interp(xgrid, PFvec[1 + 3 * S:]))
+            cf.append(interp(xgrid, PFvec[1: 1 + S]))
+            nf.append(interp(xgrid, PFvec[1 + S: 1 + 2*S]))
+            xprimef.append(interp(xgrid, PFvec[1 + 2*S: 1 + 3*S]))
+            Tf.append(interp(xgrid, PFvec[1 + 3*S:]))
         policies = fun_vstack(cf), fun_vstack(
             nf), fun_vstack(xprimef), fun_vstack(Tf)
         Vf = fun_hstack(Vf)
@@ -95,7 +95,7 @@ class RecursiveAllocationAMSS:
         model = self.model
         Uc, Un = model.Uc(c, n), model.Un(c, n)
 
-        return 1 + Un / (self.Θ * Uc)
+        return 1 + Un / (self.Θ*Uc)
 
     def time0_allocation(self, B_, s0):
         '''
@@ -179,9 +179,9 @@ class BellmanEquation:
         def res(z):
             c = z[:S]
             n = z[S:]
-            return np.hstack([Θ * Uc(c, n) + Un(c, n), Θ * n - c - G])
+            return np.hstack([Θ*Uc(c, n) + Un(c, n), Θ*n - c - G])
 
-        res = root(res, 0.5 * np.ones(2 * S))
+        res = root(res, 0.5*np.ones(2*S))
         if not res.success:
             raise Exception('Could not find first best')
 
@@ -210,34 +210,34 @@ class BellmanEquation:
 
     def get_policies_time1(self, x, s_, Vf):
         '''
-        Finds the optimal policies 
+        Finds the optimal policies
         '''
         model, β, Θ, G, S, π = self.model, self.β, self.Θ, self.G, self.S, self.π
         U, Uc, Un = model.U, model.Uc, model.Un
 
         def objf(z):
-            c, n, xprime = z[:S], z[S:2 * S], z[2 * S:3 * S]
+            c, n, xprime = z[:S], z[S: 2*S], z[2*S: 3*S]
 
             Vprime = np.empty(S)
             for s in range(S):
                 Vprime[s] = Vf[s](xprime[s])
 
-            return -π[s_] @ (U(c, n) + β * Vprime)
+            return -π[s_] @ (U(c, n) + β*Vprime)
 
         def cons(z):
-            c, n, xprime, T = z[:S], z[S:2 * S], z[2 * S:3 * S], z[3 * S:]
+            c, n, xprime, T = z[:S], z[S: 2*S], z[2*S: 3*S], z[3*S:]
             u_c = Uc(c, n)
             Eu_c = π[s_] @ u_c
             return np.hstack([
-                x * u_c / Eu_c - u_c * (c - T) - Un(c, n) * n - β * xprime,
-                Θ * n - c - G])
+                x*u_c / Eu_c - u_c*(c - T) - Un(c, n)*n - β*xprime,
+                Θ*n - c - G])
 
         if model.transfers:
-            bounds = [(0., 100)] * S + [(0., 100)] * S + \
-                [self.xbar] * S + [(0., 100.)] * S
+            bounds = [(0., 100)]*S + [(0., 100)]*S + \
+                [self.xbar]*S + [(0., 100.)]*S
         else:
-            bounds = [(0., 100)] * S + [(0., 100)] * S + \
-                [self.xbar] * S + [(0., 0.)] * S
+            bounds = [(0., 100)]*S + [(0., 100)]*S + \
+                [self.xbar]*S + [(0., 0.)]*S
         out, fx, _, imode, smode = fmin_slsqp(objf, self.z0[x, s_],
                                               f_eqcons=cons, bounds=bounds,
                                               full_output=True, iprint=0,
@@ -251,7 +251,7 @@ class BellmanEquation:
 
     def get_policies_time0(self, B_, s0, Vf):
         '''
-        Finds the optimal policies 
+        Finds the optimal policies
         '''
         model, β, Θ, G = self.model, self.β, self.Θ, self.G
         U, Uc, Un = model.U, model.Uc, model.Un
@@ -259,20 +259,21 @@ class BellmanEquation:
         def objf(z):
             c, n, xprime = z[:-1]
 
-            return -(U(c, n) + β * Vf[s0](xprime))
+            return -(U(c, n) + β*Vf[s0](xprime))
 
         def cons(z):
             c, n, xprime, T = z
             return np.hstack([
-                -Uc(c, n) * (c - B_ - T) - Un(c, n) * n - β * xprime,
-                (Θ * n - c - G)[s0]])
+                -Uc(c, n) * (c - B_ - T) - Un(c, n)*n - β*xprime,
+                (Θ*n - c - G)[s0]])
 
         if model.transfers:
             bounds = [(0., 100), (0., 100), self.xbar, (0., 100.)]
         else:
             bounds = [(0., 100), (0., 100), self.xbar, (0., 0.)]
         out, fx, _, imode, smode = fmin_slsqp(objf, self.zFB[s0], f_eqcons=cons,
-                                              bounds=bounds, full_output=True, iprint=0)
+                                              bounds=bounds, full_output=True,
+                                              iprint=0)
 
         if imode > 0:
             raise Exception(smode)

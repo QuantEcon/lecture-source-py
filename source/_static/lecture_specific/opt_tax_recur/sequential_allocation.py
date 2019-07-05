@@ -33,9 +33,9 @@ class SequentialAllocation:
         def res(z):
             c = z[:S]
             n = z[S:]
-            return np.hstack([Θ * Uc(c, n) + Un(c, n), Θ * n - c - G])
+            return np.hstack([Θ*Uc(c, n) + Un(c, n), Θ*n - c - G])
 
-        res = root(res, 0.5 * np.ones(2 * S))
+        res = root(res, 0.5 * np.ones(2*S))
 
         if not res.success:
             raise Exception('Could not find first best')
@@ -57,23 +57,23 @@ class SequentialAllocation:
 
         def FOC(z):
             c = z[:S]
-            n = z[S:2 * S]
-            Ξ = z[2 * S:]
-            return np.hstack([Uc(c, n) - μ * (Ucc(c, n) * c + Uc(c, n)) - Ξ,          # FOC of c
-                              Un(c, n) - μ * (Unn(c, n) * n + Un(c, n)) + \
-                              Θ * Ξ,  # FOC of n
-                              Θ * n - c - G])
+            n = z[S:2*S]
+            Ξ = z[2*S:]
+            return np.hstack([Uc(c, n) - μ * (Ucc(c, n)*c + Uc(c, n)) - Ξ,  # FOC of c
+                              Un(c, n) - μ * (Unn(c, n)*n + Un(c, n)) + \
+                              Θ*Ξ,  # FOC of n
+                              Θ*n - c - G])
 
         # Find the root of the first-order condition
         res = root(FOC, self.zFB)
         if not res.success:
             raise Exception('Could not find LS allocation.')
         z = res.x
-        c, n, Ξ = z[:S], z[S:2 * S], z[2 * S:]
+        c, n, Ξ = z[:S], z[S:2*S], z[2*S:]
 
         # Compute x
-        I = Uc(c, n) * c + Un(c, n) * n
-        x = np.linalg.solve(np.eye(S) - self.β * self.π, I)
+        I = Uc(c, n)*c + Un(c, n)*n
+        x = np.linalg.solve(np.eye(S) - self.β*self.π, I)
 
         return c, n, x, Ξ
 
@@ -88,12 +88,13 @@ class SequentialAllocation:
         def FOC(z):
             μ, c, n, Ξ = z
             xprime = self.time1_allocation(μ)[2]
-            return np.hstack([Uc(c, n) * (c - B_) + Un(c, n) * n + β * π[s_0] @ xprime,
-                              Uc(c, n) - μ * (Ucc(c, n) *
-                                               (c - B_) + Uc(c, n)) - Ξ,
-                              Un(c, n) - μ * (Unn(c, n) * n +
-                                               Un(c, n)) + Θ[s_0] * Ξ,
-                              (Θ * n - c - G)[s_0]])
+            return np.hstack([Uc(c, n) * (c - B_) + Un(c, n)*n
+                                                      + β*π[s_0] @ xprime,
+                              Uc(c, n) - μ * (Ucc(c, n) * (c - B_)
+                                                + Uc(c, n)) - Ξ,
+                              Un(c, n) - μ * (Unn(c, n) * n
+                                                + Un(c, n)) + Θ[s_0] * Ξ,
+                              (Θ*n - c - G)[s_0]])
 
         # Find root
         res = root(FOC, np.array(
@@ -149,7 +150,7 @@ class SequentialAllocation:
             Eu_c = π[sHist[t - 1]] @ u_c
             cHist[t], nHist[t], Bhist[t], ΤHist[t] = c[s], n[s], x[s] / \
                 u_c[s], Τ[s]
-            RHist[t - 1] = Uc(cHist[t - 1], nHist[t - 1]) / (β * Eu_c)
+            RHist[t - 1] = Uc(cHist[t - 1], nHist[t - 1]) / (β*Eu_c)
             μHist[t] = μ
 
         return np.array([cHist, nHist, Bhist, ΤHist, sHist, μHist, RHist])
