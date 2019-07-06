@@ -964,7 +964,7 @@ Under irreducibility, yet another important result obtains: For all :math:`x \in
 .. math::
     :label: llnfmc0
 
-    \frac{1}{n} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
+    \frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
         \quad \text{as } m \to \infty
 
 
