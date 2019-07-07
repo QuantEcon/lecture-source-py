@@ -201,7 +201,7 @@ The number you see here might vary slightly but it's essentially zero.
 .. index:
     single: SciPy
 
-The `SciPy <http://www.scipy.org>`_ library is built on top of NumPy and provides additional functionality
+The `SciPy <http://www.scipy.org>`_ library is built on top of NumPy and provides additional functionality.
 
 .. _tuple_unpacking_example:
 
@@ -274,7 +274,7 @@ Other graphics libraries include
 Symbolic Algebra
 --------------------
 
-It's useful to be able to manipulate symbolic expressions, as in Mathematica or Maple
+It's useful to be able to manipulate symbolic expressions, as in Mathematica or Maple.
 
 .. index::
     single: SymPy
@@ -392,7 +392,7 @@ Other Useful Statistics Libraries
 Networks and Graphs
 --------------------
 
-Python has many libraries for studying graphs
+Python has many libraries for studying graphs.
 
 .. index::
     single: NetworkX
@@ -443,7 +443,7 @@ Cloud Computing
 .. index::
     single: cloud computing
 
-Running your Python code on massive servers in the cloud is becoming easier and easier
+Running your Python code on massive servers in the cloud is becoming easier and easier.
 
 .. index::
     single: cloud computing; anaconda enterprise
