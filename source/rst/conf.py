@@ -391,14 +391,6 @@ jupyter_kernels = {
             },
         "file_extension": ".py",
     },
-    "julia": {
-        "kernelspec": {
-            "display_name": "Julia 0.6.2",
-            "language": "julia",
-            "name": "julia-0.6"
-            },
-        "file_extension": ".jl"
-    }
 }
 
 # Configure jupyter headers
