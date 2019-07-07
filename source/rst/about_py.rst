@@ -557,3 +557,4 @@ Learn More
 
 * View some of the questions people are asking about Python on `Stackoverflow <http://stackoverflow.com/questions/tagged/python>`_
 
+* Keep up to date on what's happening in the Python community with the `Python subreddit <https://www.reddit.com:443/r/Python/>`_
