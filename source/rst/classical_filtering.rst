@@ -18,12 +18,12 @@ Overview
 
 
 
-This is a sequel to the earlier lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`
+This is a sequel to the earlier lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`.
 
-That lecture used linear algebra -- in particular,  the `LU decomposition <https://en.wikipedia.org/wiki/LU_decomposition>`_  -- to formulate and solve a class of linear-quadratic optimal control problems
+That lecture used linear algebra -- in particular,  the `LU decomposition <https://en.wikipedia.org/wiki/LU_decomposition>`_  -- to formulate and solve a class of linear-quadratic optimal control problems.
 
 In this lecture, we'll be using a closely related decomposition,
-the `Cholesky decomposition <https://en.wikipedia.org/wiki/Cholesky_decomposition>`_, to solve linear prediction and filtering problems
+the `Cholesky decomposition <https://en.wikipedia.org/wiki/Cholesky_decomposition>`_, to solve linear prediction and filtering problems.
 
 We exploit the useful fact that there is an intimate connection between two superficially different classes of problems:
 
@@ -31,13 +31,13 @@ We exploit the useful fact that there is an intimate connection between two supe
 
 *  linear least squares prediction and filtering problems
 
-The first class of problems involves no randomness, while the second is all about randomness
+The first class of problems involves no randomness, while the second is all about randomness.
 
-Nevertheless,  essentially the same mathematics  solves both types of problem
+Nevertheless,  essentially the same mathematics  solves both types of problem.
 
-This connection, which is often termed "duality," is present whether one uses "classical" or "recursive" solution procedures
+This connection, which is often termed "duality," is present whether one uses "classical" or "recursive" solution procedures.
 
-In fact, we saw duality at work earlier when we formulated control and prediction problems recursively in lectures :doc:`LQ dynamic programming problems<lqcontrol>`, :doc:`A first look at the Kalman filter<kalman>`, and :doc:`The permanent income model<perm_income>`
+In fact, we saw duality at work earlier when we formulated control and prediction problems recursively in lectures :doc:`LQ dynamic programming problems<lqcontrol>`, :doc:`A first look at the Kalman filter<kalman>`, and :doc:`The permanent income model<perm_income>`.
 
 A useful consequence of duality is that
 
@@ -45,20 +45,20 @@ A useful consequence of duality is that
 
 * With every linear least squares prediction or filtering problem there is implicitly affiliated a LQ control problem
 
-An understanding of these connections has repeatedly proved useful in cracking interesting applied problems
+An understanding of these connections has repeatedly proved useful in cracking interesting applied problems.
 
 For example, Sargent :cite:`Sargent1987` [chs. IX, XIV] and Hansen and Sargent :cite:`HanSar1980` formulated
-and solved control and filtering problems using :math:`z`-transform methods
+and solved control and filtering problems using :math:`z`-transform methods.
 
-In this lecture, we begin to investigate these ideas by using mostly elementary linear algebra
+In this lecture, we begin to investigate these ideas by using mostly elementary linear algebra.
 
-This is the main purpose and focus of the lecture
+This is the main purpose and focus of the lecture.
 
 However, after showing matrix algebra formulas, we'll summarize classic infinite-horizon formulas built on :math:`z`-transform  and lag
-operator methods
+operator methods.
 
 And we'll occasionally refer to some of these formulas from the infinite dimensional problems as we present the finite time
-formulas and associated linear algebra
+formulas and associated linear algebra.
 
 
 
@@ -68,7 +68,7 @@ formulas and associated linear algebra
 References
 -------------
 
-Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfanidisoptimum1988`, :cite:`Athanasios1991`, and :cite:`Muth1960`
+Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfanidisoptimum1988`, :cite:`Athanasios1991`, and :cite:`Muth1960`.
 
 
 
@@ -79,21 +79,21 @@ Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfani
 Finite Dimensional Prediction
 ===============================
 
-Let :math:`(x_1, x_2, \ldots, x_T)^\prime = x` be a :math:`T \times 1` vector of random variables with mean :math:`\mathbb{E} x = 0` and covariance matrix :math:`\mathbb{E} xx^\prime = V`
+Let :math:`(x_1, x_2, \ldots, x_T)^\prime = x` be a :math:`T \times 1` vector of random variables with mean :math:`\mathbb{E} x = 0` and covariance matrix :math:`\mathbb{E} xx^\prime = V`.
 
-Here :math:`V` is a :math:`T \times T` positive definite matrix
+Here :math:`V` is a :math:`T \times T` positive definite matrix.
 
-The :math:`i,j` component :math:`E x_i x_j` of :math:`V` is the **inner product**   between :math:`x_i` and :math:`x_j`
+The :math:`i,j` component :math:`E x_i x_j` of :math:`V` is the **inner product**   between :math:`x_i` and :math:`x_j`.
 
 We regard the random variables as being
 ordered in time so that :math:`x_t` is thought of as the value of some
-economic variable at time :math:`t`
+economic variable at time :math:`t`.
 
 For example, :math:`x_t` could be generated by the random process described  by the Wold representation presented in equation :eq:`eq_31`
-in the section below on infinite dimensional prediction and filtering
+in the section below on infinite dimensional prediction and filtering.
 
 In that case, :math:`V_{ij}` is given by the coefficient on :math:`z^{\mid i-j \mid}` in the expansion of :math:`g_x (z) = d(z) \, d(z^{-1}) + h`, which equals
-:math:`h+\sum^\infty_{k=0} d_k d_{k+\mid i-j \mid}`
+:math:`h+\sum^\infty_{k=0} d_k d_{k+\mid i-j \mid}`.
 
 We want to  construct :math:`j` step ahead linear least squares predictors of the form
 
@@ -105,12 +105,12 @@ We want to  construct :math:`j` step ahead linear least squares predictors of th
     \right]
 
 
-where :math:`\mathbb{\hat E}` is the linear least squares projection operator
+where :math:`\mathbb{\hat E}` is the linear least squares projection operator.
 
-(Sometimes :math:`\mathbb{\hat E}` is called the wide-sense expectations operator)
+(Sometimes :math:`\mathbb{\hat E}` is called the wide-sense expectations operator).
 
 To find linear least squares predictors it is helpful  first to construct a :math:`T \times 1` vector :math:`\varepsilon`
-of random variables that form an orthonormal basis   for the vector of random variables :math:`x`
+of random variables that form an orthonormal basis   for the vector of random variables :math:`x`.
 
 The key insight here comes from noting that because the covariance matrix :math:`V` of :math:`x` is a positive definite and symmetric,
 there exists a (Cholesky) decomposition of :math:`V` such that
@@ -127,9 +127,9 @@ and
     L \, V \, L^\prime = I
 
 
-where :math:`L`  and :math:`L^{-1}` are both lower triangular
+where :math:`L`  and :math:`L^{-1}` are both lower triangular.
 
-Form the :math:`T \times 1` random vector :math:`\varepsilon = Lx`
+Form the :math:`T \times 1` random vector :math:`\varepsilon = Lx`.
 
 The random vector :math:`\varepsilon` is an orthonormal basis for :math:`x` because
 
@@ -139,7 +139,7 @@ The random vector :math:`\varepsilon` is an orthonormal basis for :math:`x` beca
 
 -  :math:`x = L^{-1} \varepsilon`
 
-It is enlightening  to write out and interpret the equations :math:`Lx = \varepsilon` and :math:`L^{-1} \varepsilon = x`
+It is enlightening  to write out and interpret the equations :math:`Lx = \varepsilon` and :math:`L^{-1} \varepsilon = x`.
 
 First, we'll write :math:`Lx = \varepsilon`
 
@@ -184,23 +184,23 @@ or
 
     x_t = \sum^{t-1}_{j=0} L^{-1}_{t,t-j}\, \varepsilon_{t-j}\
 
-where :math:`L^{-1}_{i,j}` denotes the :math:`i,j` element of :math:`L^{-1}`
+where :math:`L^{-1}_{i,j}` denotes the :math:`i,j` element of :math:`L^{-1}`.
 
 
-From :eq:`eq_54`, it follows that :math:`\varepsilon_t` is in the linear subspace spanned by :math:`x_t,\, x_{t-1}, \ldots,\, x_1`
+From :eq:`eq_54`, it follows that :math:`\varepsilon_t` is in the linear subspace spanned by :math:`x_t,\, x_{t-1}, \ldots,\, x_1`.
 
 
 
 From :eq:`eq_55` it follows that  that :math:`x_t` is in the linear subspace spanned by
-:math:`\varepsilon_t, \, \varepsilon_{t-1}, \ldots, \varepsilon_1`
+:math:`\varepsilon_t, \, \varepsilon_{t-1}, \ldots, \varepsilon_1`.
 
 
 Equation :eq:`eq_54` forms  a sequence of **autoregressions**  that for :math:`t = 1, \ldots, T` express
 :math:`x_t`  as linear functions of :math:`x_s, s = 1, \ldots, t-1` and a random variable :math:`(L_{t,t})^{-1} \varepsilon_t`
-that is orthogonal to each componenent of :math:`x_s, s = 1, \ldots, t-1`
+that is orthogonal to each componenent of :math:`x_s, s = 1, \ldots, t-1`.
 
 (Here :math:`(L_{t,t})^{-1}` denotes the reciprocal of :math:`L_{t,t}` while :math:`L_{t,t}^{-1}` denotes the :math:`t,t` element
-of :math:`L^{-1}`)
+of :math:`L^{-1}`).
 
 The equivalence of the subspaces spanned by :math:`\varepsilon_t, \ldots, \varepsilon_1` and :math:`x_t, \ldots, x_1` means that
 for :math:`t-1\geq m \geq 1`
@@ -226,7 +226,7 @@ To proceed, it is useful to drill down and note that for :math:`t-1 \geq m \geq 
 
 Representation :eq:`eq_57`  is an orthogonal decomposition of :math:`x_t` into a part :math:`\sum^{t-1}_{j=m} L_{t, t-j}^{-1}\, \varepsilon_{t-j}`
 that lies in the space spanned by :math:`[x_{t-m},\, x_{t-m+1},\, \ldots, x_1]` and an orthogonal component
-:math:`\sum^{t-1}_{j=m} L^{-1}_{t, t-j}\, \varepsilon_{t-j}` that does not line in that space but instead in a linear space knowns as its **orthogonal complement**
+:math:`\sum^{t-1}_{j=m} L^{-1}_{t, t-j}\, \varepsilon_{t-j}` that does not line in that space but instead in a linear space knowns as its **orthogonal complement**.
 
 It follows that
 
@@ -237,13 +237,13 @@ It follows that
 Implementation
 ----------------
 
-Code that computes solutions to  LQ control and filtering problems  using the methods described here and in :doc:`lu_tricks` can be found in the file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__
+Code that computes solutions to  LQ control and filtering problems  using the methods described here and in :doc:`lu_tricks` can be found in the file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__.
 
 Here's how it looks
 
 .. literalinclude:: /_static/lecture_specific/lu_tricks/control_and_filter.py
 
-Let's use this code to tackle two interesting examples
+Let's use this code to tackle two interesting examples.
 
 
 Example 1
@@ -257,10 +257,10 @@ Consider a stochastic process with moving average representation
     x_t = (1 - 2 L) \varepsilon_t
 
 
-where :math:`\varepsilon_t` is a serially uncorrelated random process with mean zero and variance unity
+where :math:`\varepsilon_t` is a serially uncorrelated random process with mean zero and variance unity.
 
 If we were to use the tools associated with infinite dimensional prediction and filtering to be described below,
-we would use the Wiener-Kolmogorov formula :eq:`eq_36` to compute the linear least squares forecasts :math:`\mathbb{E} [x_{t+j} \mid x_t, x_{t-1}, \ldots]`, for :math:`j = 1,\, 2`
+we would use the Wiener-Kolmogorov formula :eq:`eq_36` to compute the linear least squares forecasts :math:`\mathbb{E} [x_{t+j} \mid x_t, x_{t-1}, \ldots]`, for :math:`j = 1,\, 2`.
 
 But we can do everything we want by instead using our finite dimensional tools and
 setting :math:`d = r`, generating an instance of `LQFilter`, then invoking pertinent methods of `LQFilter`
@@ -278,7 +278,7 @@ setting :math:`d = r`, generating an instance of `LQFilter`, then invoking perti
 
 
 
-The Wold representation is computed by `example.coefficients_of_c()`
+The Wold representation is computed by `example.coefficients_of_c()`.
 
 Let's check that it "flips roots" as required
 
@@ -295,7 +295,7 @@ Let's check that it "flips roots" as required
 
 
 Now let's form the covariance matrix of a time series vector of length :math:`N`
-and put it in :math:`V`
+and put it in :math:`V`.
 
 Then we'll take a Cholesky decomposition of :math:`V = L^{-1} L^{-1}` and use it to form the vector of
 "moving average representations" :math:`x = L^{-1} \varepsilon` and the vector of "autoregressive representations" :math:`L x = \varepsilon`
@@ -349,13 +349,13 @@ representation
 
 
 where :math:`\varepsilon_t` is a serially uncorrelated random process
-with mean zero and variance unity
+with mean zero and variance unity.
 
 Let's find a Wold moving average representation for :math:`x_t` that will prevail in the infinite-history context to be studied in
-detail below
+detail below.
 
 To do this, we'll  use the Wiener-Kolomogorov formula :eq:`eq_36` presented below to compute the linear least squares forecasts
-:math:`\mathbb{\hat E}\left[X_{t+j} \mid X_{t-1}, \ldots\right] \hbox { for } j = 1,\, 2,\, 3`
+:math:`\mathbb{\hat E}\left[X_{t+j} \mid X_{t-1}, \ldots\right] \hbox { for } j = 1,\, 2,\, 3`.
 
 We proceed in the same way as in example 1
 
@@ -413,11 +413,11 @@ It immediately follows from the "orthogonality principle" of least squares (see 
     \end{aligned}
 
 
-This can be interpreted as a finite-dimensional version of the Wiener-Kolmogorov :math:`m`-step ahead prediction formula
+This can be interpreted as a finite-dimensional version of the Wiener-Kolmogorov :math:`m`-step ahead prediction formula.
 
 We can use :eq:`eq_58`  to represent the linear least squares projection of
 the vector :math:`x` conditioned on the first :math:`s` observations
-:math:`[x_s, x_{s-1} \ldots, x_1]`
+:math:`[x_s, x_{s-1} \ldots, x_1]`.
 
 We have
 
@@ -434,43 +434,43 @@ We have
     \right] L x
 
 
-This formula will be convenient in representing the solution of control problems under uncertainty
+This formula will be convenient in representing the solution of control problems under uncertainty.
 
-Equation :eq:`eq_55`  can be recognized as a finite dimensional version of a moving average representation
+Equation :eq:`eq_55`  can be recognized as a finite dimensional version of a moving average representation.
 
-Equation  :eq:`eq_54` can be viewed as a finite dimension version of an autoregressive representation
+Equation  :eq:`eq_54` can be viewed as a finite dimension version of an autoregressive representation.
 
 Notice that even
 if the :math:`x_t` process is covariance stationary, so that :math:`V`
 is such that :math:`V_{ij}` depends only on :math:`\vert i-j\vert`, the
 coefficients in the moving average representation are time-dependent,
-there being a different moving average for each :math:`t`
+there being a different moving average for each :math:`t`.
 
 If
 :math:`x_t` is a covariance stationary process, the last row of
 :math:`L^{-1}` converges to the coefficients in the Wold moving average
-representation for :math:`\{ x_t\}` as :math:`T \rightarrow \infty`
+representation for :math:`\{ x_t\}` as :math:`T \rightarrow \infty`.
 
 Further, if :math:`x_t` is covariance stationary, for fixed :math:`k`
 and :math:`j > 0, \, L^{-1}_{T,T-j}` converges to
-:math:`L^{-1}_{T-k, T-k-j}` as :math:`T \rightarrow \infty`
+:math:`L^{-1}_{T-k, T-k-j}` as :math:`T \rightarrow \infty`.
 
 That is,
 the “bottom” rows of :math:`L^{-1}` converge to each other and to the
-Wold moving average coefficients as :math:`T \rightarrow \infty`
+Wold moving average coefficients as :math:`T \rightarrow \infty`.
 
 This last observation gives one simple and widely-used practical way of
 forming a finite :math:`T` approximation to a Wold moving average
-representation
+representation.
 
 First, form the covariance matrix
 :math:`\mathbb{E}xx^\prime = V`, then obtain the Cholesky decomposition
 :math:`L^{-1} L^{-1^\prime}` of :math:`V`, which can be accomplished
-quickly on a computer
+quickly on a computer.
 
-The last row of :math:`L^{-1}` gives the approximate Wold moving average coefficients
+The last row of :math:`L^{-1}` gives the approximate Wold moving average coefficients.
 
-This method can readily be generalized to multivariate systems
+This method can readily be generalized to multivariate systems.
 
 
 
@@ -494,13 +494,13 @@ Consider the finite-dimensional control problem, maximize
 
 where :math:`d(L) = d_0 + d_1 L+ \ldots + d_m L^m`, :math:`L` is the
 lag operator, :math:`\bar a = [ a_N, a_{N-1} \ldots, a_1, a_0]^\prime` a
-random vector with mean zero and :math:`\mathbb{E}\,\bar a \bar a^\prime = V`
+random vector with mean zero and :math:`\mathbb{E}\,\bar a \bar a^\prime = V`.
 
-The variables :math:`y_{-1}, \ldots, y_{-m}` are given
+The variables :math:`y_{-1}, \ldots, y_{-m}` are given.
 
 Maximization is over choices of :math:`y_0,
 y_1 \ldots, y_N`, where :math:`y_t` is required to be a linear function
-of :math:`\{y_{t-s-1}, t+m-1\geq 0;\ a_{t-s}, t\geq s\geq 0\}`
+of :math:`\{y_{t-s-1}, t+m-1\geq 0;\ a_{t-s}, t\geq s\geq 0\}`.
 
 We saw in the lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`  that the solution of this problem under certainty could be represented in the feedback-feedforward form
 
@@ -517,7 +517,7 @@ We saw in the lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`  
        \right]
 
 
-for some :math:`(N+1)\times m` matrix :math:`K`
+for some :math:`(N+1)\times m` matrix :math:`K`.
 
 Using a version of formula :eq:`eq_58`, we can express :math:`\mathbb{\hat E}[\bar a \mid a_s,\, a_{s-1}, \ldots, a_0 ]` as
 
@@ -538,11 +538,11 @@ Using a version of formula :eq:`eq_58`, we can express :math:`\mathbb{\hat E}[\b
 where :math:`I_{(s + 1)}` is the :math:`(s+1) \times (s+1)` identity
 matrix, and :math:`V = \tilde U^{-1} \tilde U^{-1^{\prime}}`, where
 :math:`\tilde U` is the *upper* triangular Cholesky factor of the
-covariance matrix :math:`V`
+covariance matrix :math:`V`.
 
-(We have reversed the time axis in dating the :math:`a`'s relative to earlier)
+(We have reversed the time axis in dating the :math:`a`'s relative to earlier).
 
-The time axis can be reversed in representation :eq:`eq_59` by replacing :math:`L` with :math:`L^T`
+The time axis can be reversed in representation :eq:`eq_59` by replacing :math:`L` with :math:`L^T`.
 
 The optimal decision rule to use at time :math:`0 \leq t \leq N` is then
 given by the :math:`(N-t +1)^{\rm th}` row of
@@ -576,14 +576,14 @@ Infinite Horizon Prediction and Filtering Problems
 =====================================================
 
 It is instructive to compare the finite-horizon formulas based on linear algebra decompositions of finite-dimensional covariance matrices
-with classic formulas for infinite horizon and infinite history prediction and control problems
+with classic formulas for infinite horizon and infinite history prediction and control problems.
 
-These classic infinite horizon formulas used the mathematics of :math:`z`-transforms and lag operators
+These classic infinite horizon formulas used the mathematics of :math:`z`-transforms and lag operators.
 
-We'll meet interesting lag operator and :math:`z`-transform  counterparts to our finite horizon matrix formulas
+We'll meet interesting lag operator and :math:`z`-transform  counterparts to our finite horizon matrix formulas.
 
 
-We pose two related prediction and filtering problems
+We pose two related prediction and filtering problems.
 
 We let :math:`Y_t` be a univariate :math:`m^{\rm th}` order moving average, covariance stationary stochastic process,
 
@@ -608,7 +608,7 @@ where :math:`d(L) = \sum^m_{j=0} d_j L^j`, and :math:`u_t` is a serially uncorre
     \end{aligned}
 
 
-We impose no conditions on the zeros of :math:`d(z)`
+We impose no conditions on the zeros of :math:`d(z)`.
 
 A second covariance stationary process is :math:`X_t` given by
 
@@ -619,20 +619,20 @@ A second covariance stationary process is :math:`X_t` given by
 
 
 where :math:`\varepsilon_t` is a serially uncorrelated stationary
-random process with :math:`\mathbb{E} \varepsilon_t = 0` and :math:`\mathbb{E} \varepsilon_t \varepsilon_s` = :math:`0` for all distinct :math:`t` and :math:`s`
+random process with :math:`\mathbb{E} \varepsilon_t = 0` and :math:`\mathbb{E} \varepsilon_t \varepsilon_s` = :math:`0` for all distinct :math:`t` and :math:`s`.
 
-We also assume that :math:`\mathbb{E} \varepsilon_t u_s = 0` for all :math:`t` and :math:`s`
+We also assume that :math:`\mathbb{E} \varepsilon_t u_s = 0` for all :math:`t` and :math:`s`.
 
 The **linear least squares prediction problem** is to find the :math:`L_2`
 random variable :math:`\hat X_{t+j}` among linear combinations of
 :math:`\{ X_t,\  X_{t-1},
-\ldots \}` that minimizes :math:`\mathbb{E}(\hat X_{t+j} - X_{t+j})^2`
+\ldots \}` that minimizes :math:`\mathbb{E}(\hat X_{t+j} - X_{t+j})^2`.
 
-That is, the problem is to find a :math:`\gamma_j (L) = \sum^\infty_{k=0} \gamma_{jk}\, L^k` such that :math:`\sum^\infty_{k=0} \vert \gamma_{jk} \vert^2 < \infty` and :math:`\mathbb{E} [\gamma_j \, (L) X_t -X_{t+j}]^2` is minimized
+That is, the problem is to find a :math:`\gamma_j (L) = \sum^\infty_{k=0} \gamma_{jk}\, L^k` such that :math:`\sum^\infty_{k=0} \vert \gamma_{jk} \vert^2 < \infty` and :math:`\mathbb{E} [\gamma_j \, (L) X_t -X_{t+j}]^2` is minimized.
 
-The **linear least squares filtering problem** is to find a :math:`b\,(L) = \sum^\infty_{j=0} b_j\, L^j` such that :math:`\sum^\infty_{j=0}\vert b_j \vert^2 < \infty` and :math:`\mathbb{E} [b\, (L) X_t -Y_t ]^2` is minimized
+The **linear least squares filtering problem** is to find a :math:`b\,(L) = \sum^\infty_{j=0} b_j\, L^j` such that :math:`\sum^\infty_{j=0}\vert b_j \vert^2 < \infty` and :math:`\mathbb{E} [b\, (L) X_t -Y_t ]^2` is minimized.
 
-Interesting versions of these problems related to the permanent income theory were studied by :cite:`Muth1960`
+Interesting versions of these problems related to the permanent income theory were studied by :cite:`Muth1960`.
 
 
 
@@ -640,7 +640,7 @@ Interesting versions of these problems related to the permanent income theory we
 Problem Formulation
 --------------------
 
-These problems are solved as follows
+These problems are solved as follows.
 
 The covariograms of :math:`Y` and :math:`X` and their cross covariogram are, respectively,
 
@@ -666,11 +666,11 @@ The covariance and cross-covariance generating functions are defined as
     \end{aligned}
 
 
-The generating functions can be computed by using the following facts
+The generating functions can be computed by using the following facts.
 
-Let :math:`v_{1t}` and :math:`v_{2t}` be two mutually and serially uncorrelated white noises with unit variances
+Let :math:`v_{1t}` and :math:`v_{2t}` be two mutually and serially uncorrelated white noises with unit variances.
 
-That is, :math:`\mathbb{E}v^2_{1t} = \mathbb{E}v^2_{2t} = 1, \mathbb{E}v_{1t} = \mathbb{E}v_{2t} = 0, \mathbb{E}v_{1t} v_{2s} = 0` for all :math:`t` and :math:`s`, :math:`\mathbb{E}v_{1t} v_{1t-j} = \mathbb{E}v_{2t} v_{2t-j} = 0` for all :math:`j \not = 0`
+That is, :math:`\mathbb{E}v^2_{1t} = \mathbb{E}v^2_{2t} = 1, \mathbb{E}v_{1t} = \mathbb{E}v_{2t} = 0, \mathbb{E}v_{1t} v_{2s} = 0` for all :math:`t` and :math:`s`, :math:`\mathbb{E}v_{1t} v_{1t-j} = \mathbb{E}v_{2t} v_{2t-j} = 0` for all :math:`j \not = 0`.
 
 Let :math:`x_t` and :math:`y_t` be two random processes given by
 
@@ -706,9 +706,9 @@ Applying these formulas to :eq:`eq_24` -- :eq:`eq_27`, we have
     \end{aligned}
 
 
-The key step in obtaining solutions to our problems is to factor the covariance generating function  :math:`g_X(z)` of :math:`X`
+The key step in obtaining solutions to our problems is to factor the covariance generating function  :math:`g_X(z)` of :math:`X`.
 
-The solutions of our problems are given by formulas due to Wiener and Kolmogorov
+The solutions of our problems are given by formulas due to Wiener and Kolmogorov.
 
 These formulas utilize the Wold moving average representation of the :math:`X_t` process,
 
@@ -727,18 +727,18 @@ where :math:`c(L) = \sum^m_{j=0} c_j\, L^j`, with
     = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, X_{t-2}, \ldots]
 
 
-Here :math:`\mathbb{\hat E}` is the linear least squares projection operator
+Here :math:`\mathbb{\hat E}` is the linear least squares projection operator.
 
-Equation :eq:`eq_32`  is the condition that :math:`c_0 \eta_t` can be the one-step-ahead error in predicting :math:`X_t` from its own past values
+Equation :eq:`eq_32`  is the condition that :math:`c_0 \eta_t` can be the one-step-ahead error in predicting :math:`X_t` from its own past values.
 
 Condition :eq:`eq_32`  requires that :math:`\eta_t` lie in the closed
-linear space spanned by :math:`[X_t,\  X_{t-1}, \ldots]`
+linear space spanned by :math:`[X_t,\  X_{t-1}, \ldots]`.
 
-This will be true if and only if the zeros of :math:`c(z)` do not lie inside the unit circle
+This will be true if and only if the zeros of :math:`c(z)` do not lie inside the unit circle.
 
 It is an implication of :eq:`eq_32` that :math:`\eta_t` is a serially
 uncorrelated random process and that normalization can be imposed so
-that :math:`\mathbb{E}\eta_t^2 = 1`
+that :math:`\mathbb{E}\eta_t^2 = 1`.
 
 Consequently, an implication of :eq:`eq_31`  is
 that the covariance generating function of :math:`X_t` can be expressed
@@ -750,7 +750,7 @@ as
     g_X(z) = c\,(z)\,c\,(z^{-1})
 
 
-It remains to discuss how :math:`c(L)` is to be computed
+It remains to discuss how :math:`c(L)` is to be computed.
 
 Combining :eq:`eq_29`  and :eq:`eq_33`  gives
 
@@ -766,7 +766,7 @@ Combining :eq:`eq_29`  and :eq:`eq_33`  gives
 
 .. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`
 
-Therefore, we have already shown constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`
+Therefore, we have already shown constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`.
 
 We now introduce the **annihilation operator**:
 
@@ -779,9 +779,9 @@ We now introduce the **annihilation operator**:
     \equiv \sum^\infty_{j=0} f_j\,L^j
 
 
-In words, :math:`[\phantom{00}]_+` means "ignore negative powers of :math:`L`"
+In words, :math:`[\phantom{00}]_+` means "ignore negative powers of :math:`L`".
 
-We have defined the solution of the prediction problem as :math:`\mathbb{\hat E} [X_{t+j} \vert X_t,\, X_{t-1}, \ldots] = \gamma_j\, (L) X_t`
+We have defined the solution of the prediction problem as :math:`\mathbb{\hat E} [X_{t+j} \vert X_t,\, X_{t-1}, \ldots] = \gamma_j\, (L) X_t`.
 
 Assuming that the roots of :math:`c(z) = 0` all lie outside the unit circle, the Wiener-Kolmogorov formula for :math:`\gamma_j (L)` holds:
 
@@ -794,7 +794,7 @@ Assuming that the roots of :math:`c(z) = 0` all lie outside the unit circle, the
     \right]_+ c\,(L)^{-1}
 
 
-We have defined the solution of the filtering problem as :math:`\mathbb{\hat E}[Y_t \mid X_t, X_{t-1}, \ldots] = b (L)X_t`
+We have defined the solution of the filtering problem as :math:`\mathbb{\hat E}[Y_t \mid X_t, X_{t-1}, \ldots] = b (L)X_t`.
 
 The Wiener-Kolomogorov formula for :math:`b(L)` is
 
@@ -811,10 +811,10 @@ or
     b(L) = \left[ {d(L)d(L^{-1}) \over c(L^{-1})} \right]_+ c(L)^{-1}
 
 
-Formulas :eq:`eq_36` and :eq:`eq_37`  are discussed in detail in  :cite:`Whittle1983` and :cite:`Sargent1987`
+Formulas :eq:`eq_36` and :eq:`eq_37`  are discussed in detail in  :cite:`Whittle1983` and :cite:`Sargent1987`.
 
 The interested reader can there find several examples of the use of these formulas in economics
-Some classic examples using these formulas are due to :cite:`Muth1960`
+Some classic examples using these formulas are due to :cite:`Muth1960`.
 
 As an example of the usefulness of formula :eq:`eq_37`, we let :math:`X_t` be a stochastic process with Wold moving average representation
 
@@ -823,7 +823,7 @@ As an example of the usefulness of formula :eq:`eq_37`, we let :math:`X_t` be a 
     X_t = c(L) \eta_t
 
 
-where :math:`\mathbb{E}\eta^2_t = 1, \hbox { and } c_0 \eta_t = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, \ldots], c (L) = \sum^m_{j=0} c_j L`
+where :math:`\mathbb{E}\eta^2_t = 1, \hbox { and } c_0 \eta_t = X_t - \mathbb{\hat E} [X_t \vert X_{t-1}, \ldots], c (L) = \sum^m_{j=0} c_j L`.
 
 Suppose that at time :math:`t`, we wish to predict a geometric sum of future :math:`X`'s, namely
 
@@ -833,9 +833,9 @@ Suppose that at time :math:`t`, we wish to predict a geometric sum of future :ma
     X_t
 
 
-given knowledge of :math:`X_t, X_{t-1}, \ldots`
+given knowledge of :math:`X_t, X_{t-1}, \ldots`.
 
-We shall use :eq:`eq_37`  to obtain the answer
+We shall use :eq:`eq_37`  to obtain the answer.
 
 Using the standard formulas  :eq:`eq_29`, we have that
 
@@ -855,7 +855,7 @@ Then :eq:`eq_37`  becomes
     b(L)=\left[{c(L)\over 1-\delta L^{-1}}\right]_+ c(L)^{-1}
 
 
-In order to evaluate the term in the annihilation operator, we use the following result from :cite:`HanSar1980`
+In order to evaluate the term in the annihilation operator, we use the following result from :cite:`HanSar1980`.
 
 
 
@@ -890,7 +890,7 @@ and, alternatively,
     \right)
 
 
-where :math:`B_j = 1 / \prod^n_{k=1\atop k+j} (1 - \delta_k / \delta_j)`
+where :math:`B_j = 1 / \prod^n_{k=1\atop k+j} (1 - \delta_k / \delta_j)`.
 
 Applying formula :eq:`eq_40`  of the proposition to evaluating  :eq:`eq_38`  with :math:`g(z) = c(z)` and :math:`h(z^{-1}) = 1 - \delta z^{-1}` gives
 
@@ -926,7 +926,7 @@ Thus, we have
 
 
 This formula is useful in solving stochastic versions of problem 1 of lecture :doc:`lu_tricks` in which the randomness emerges because :math:`\{a_t\}` is a stochastic
-process
+process.
 
 The problem is to maximize
 
@@ -968,11 +968,11 @@ and
 The problem is to maximize :eq:`eq_42`  with respect to a contingency plan
 expressing :math:`y_t` as a function of information known at :math:`t`,
 which is assumed to be
-:math:`(y_{t-1},\  y_{t-2}, \ldots, a_t, \ a_{t-1}, \ldots)`
+:math:`(y_{t-1},\  y_{t-2}, \ldots, a_t, \ a_{t-1}, \ldots)`.
 
-The solution of this problem can be achieved in two steps
+The solution of this problem can be achieved in two steps.
 
-First, ignoring the uncertainty, we can solve the problem assuming that :math:`\{a_t\}` is a known sequence
+First, ignoring the uncertainty, we can solve the problem assuming that :math:`\{a_t\}` is a known sequence.
 
 The solution is, from above,
 
@@ -993,7 +993,7 @@ or
 
 Second, the solution of the problem under uncertainty is obtained by
 replacing the terms on the right-hand side of the above expressions with
-their linear least squares predictors
+their linear least squares predictors.
 
 Using :eq:`eq_41` and :eq:`eq_43`, we have
 the following solution
@@ -1010,14 +1010,14 @@ the following solution
 
 
 
-**Blaschke factors**
+**Blaschke factors**.
 
 
-The following is a useful piece of mathematics underlying "root flipping"
+The following is a useful piece of mathematics underlying "root flipping".
 
 
 Let :math:`\pi (z) = \sum^m_{j=0} \pi_j z^j` and let :math:`z_1, \ldots,
-z_k` be the zeros of :math:`\pi (z)` that are inside the unit circle, :math:`k < m`
+z_k` be the zeros of :math:`\pi (z)` that are inside the unit circle, :math:`k < m`.
 
 Then define
 
@@ -1028,7 +1028,7 @@ Then define
     (z-z_k) }\Biggr)
 
 
-The term multiplying :math:`\pi (z)` is termed a "Blaschke factor"
+The term multiplying :math:`\pi (z)` is termed a "Blaschke factor".
 
 Then it can be proved directly that
 
@@ -1037,7 +1037,7 @@ Then it can be proved directly that
     \theta (z^{-1}) \theta (z) = \pi (z^{-1}) \pi (z)
 
 
-and that the zeros of :math:`\theta (z)` are not inside the unit circle
+and that the zeros of :math:`\theta (z)` are not inside the unit circle.
 
 
 
@@ -1059,9 +1059,9 @@ white noise with :math:`\mathbb{E} u^2_t = 1`. Let
 
 where :math:`\varepsilon_t` is a serially uncorrelated white noise with
 :math:`\mathbb{E} \varepsilon^2_t = 9`, and :math:`\mathbb{E} \varepsilon_t u_s = 0` for all
-:math:`t` and :math:`s`
+:math:`t` and :math:`s`.
 
-Find the Wold moving average representation for :math:`X_t`
+Find the Wold moving average representation for :math:`X_t`.
 
 Find a formula for the :math:`A_{1j}`'s in
 
@@ -1094,19 +1094,19 @@ vector stochastic process with moving average representation
 where :math:`D(L) = \sum^m_{j=0} D_j L^J, D_j` an :math:`n \times n`
 matrix, :math:`U_t` an :math:`(n \times 1)` vector white noise with
 :math:`\mathbb{E} U_t =0` for all :math:`t`, :math:`\mathbb{E} U_t U_s' = 0` for all :math:`s \neq t`,
-and :math:`\mathbb{E} U_t U_t' = I` for all :math:`t`
+and :math:`\mathbb{E} U_t U_t' = I` for all :math:`t`.
 
-Let :math:`\varepsilon_t` be an :math:`n \times 1` vector white noise with mean :math:`0` and contemporaneous covariance matrix :math:`H`, where :math:`H` is a positive definite matrix
+Let :math:`\varepsilon_t` be an :math:`n \times 1` vector white noise with mean :math:`0` and contemporaneous covariance matrix :math:`H`, where :math:`H` is a positive definite matrix.
 
-Let :math:`X_t = Y_t +\varepsilon_t`
+Let :math:`X_t = Y_t +\varepsilon_t`.
 
 Define the covariograms as :math:`C_X
 (\tau) = \mathbb{E} X_t X^\prime_{t-\tau}, C_Y (\tau) = \mathbb{E} Y_t Y^\prime_{t-\tau},
-C_{YX} (\tau) = \mathbb{E} Y_t X^\prime_{t-\tau}`
+C_{YX} (\tau) = \mathbb{E} Y_t X^\prime_{t-\tau}`.
 
 Then define the matrix
 covariance generating function, as in :eq:`onetwenty`, only interpret all the
-objects in :eq:`onetwenty` as matrices
+objects in :eq:`onetwenty` as matrices.
 
 Show that the covariance generating functions are given by
 
@@ -1128,7 +1128,7 @@ A factorization of :math:`g_X (z)` can be found (see :cite:`Rozanov1967` or :cit
 
 
 where the zeros of :math:`\vert C(z)\vert` do not lie inside the unit
-circle
+circle.
 
 A vector Wold moving average representation of :math:`X_t` is then
 
@@ -1138,10 +1138,10 @@ A vector Wold moving average representation of :math:`X_t` is then
 
 
 where :math:`\eta_t` is an :math:`(n\times 1)` vector white noise that
-is "fundamental" for :math:`X_t`
+is "fundamental" for :math:`X_t`.
 
 That is, :math:`X_t - \mathbb{\hat E}\left[X_t \mid X_{t-1}, X_{t-2}
-\ldots\right] = C_0 \, \eta_t`
+\ldots\right] = C_0 \, \eta_t`.
 
 The optimum predictor of :math:`X_{t+j}` is
 

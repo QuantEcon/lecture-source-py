@@ -15,27 +15,27 @@ Complex Numbers and Trignometry
 Overview
 =========
 
-This lecture introduces some elementary mathematics and trigonometry
+This lecture introduces some elementary mathematics and trigonometry.
 
 Useful and interesting in its own right, these concepts reap substantial rewards when studying dynamics generated
-by linear difference equations or linear differential equations
+by linear difference equations or linear differential equations.
 
 For example, these tools are keys to understanding outcomes attained by Paul
 Samuelson (1939) :cite:`Samuelson1939` in his classic paper on interactions
 between the investment accelerator and the Keynesian consumption function, our
-topic in the lecture :doc:`Samuelson Multiplier Accelerator<samuelson>`
+topic in the lecture :doc:`Samuelson Multiplier Accelerator<samuelson>`.
 
 In addition to providing foundations for Samuelson's work and extensions of
 it, this lecture can be read as a stand-alone quick reminder of key results
-from elementary high school trigonometry
+from elementary high school trigonometry.
 
-So let's dive in
+So let's dive in.
 
 
 Complex Numbers
 ----------------
 
-A complex number has a **real part** :math:`x` and a purely **imaginary part** :math:`y`
+A complex number has a **real part** :math:`x` and a purely **imaginary part** :math:`y`.
 
 
 
@@ -55,9 +55,9 @@ The complex conjugate :math:`\bar z` of :math:`z` is defined as
 .. math:: \bar z = r e^{-i \theta} = r (\cos{\theta} - i \sin{\theta} )
 
 The value :math:`x` is the **real** part of :math:`z` and :math:`y` is the
-**imaginary** part of :math:`z`
+**imaginary** part of :math:`z`.
 
-The symbol :math:`| z |` = :math:`\bar z z = r` represents the **modulus** of :math:`z`
+The symbol :math:`| z |` = :math:`\bar z z = r` represents the **modulus** of :math:`z`.
 
 The value :math:`r` is the Euclidean distance of vector :math:`(x,y)` from the
 origin:
@@ -67,9 +67,9 @@ origin:
    r = |z| = \sqrt{x^2 + y^2}
 
 
-The value :math:`\theta` is the angle of :math:`(x,y)` with respect to the real axis
+The value :math:`\theta` is the angle of :math:`(x,y)` with respect to the real axis.
 
-Evidently, the tangent of :math:`\theta` is :math:`\left(\frac{y}{x}\right)`
+Evidently, the tangent of :math:`\theta` is :math:`\left(\frac{y}{x}\right)`.
 
 Therefore,
 
@@ -99,12 +99,12 @@ We'll need the following imports
 An Example
 -----------
 
-Consider the complex number :math:`z = 1 + \sqrt{3} i`
+Consider the complex number :math:`z = 1 + \sqrt{3} i`.
 
-For :math:`z = 1 + \sqrt{3} i`, :math:`x = 1`, :math:`y = \sqrt{3}`
+For :math:`z = 1 + \sqrt{3} i`, :math:`x = 1`, :math:`y = \sqrt{3}`.
 
 It follows that :math:`r = 2` and
-:math:`\theta = \tan^{-1}(\sqrt{3}) = \frac{\pi}{3} = 60^o`
+:math:`\theta = \tan^{-1}(\sqrt{3}) = \frac{\pi}{3} = 60^o`.
 
 Let's use Python to plot the trigonometric form of the complex number
 :math:`z = 1 + \sqrt{3} i`
@@ -166,7 +166,7 @@ To prove de Moivre's theorem, note that
 
 .. math:: (r(\cos{\theta} + i \sin{\theta}))^n = \big( re^{i\theta} \big)^n
 
-and compute
+and compute.
 
 Applications of de Moivre's Theorem
 =====================================
@@ -175,7 +175,7 @@ Example 1
 ----------
 
 We can use de Moivre's theorem to show that
-:math:`r = \sqrt{x^2 + y^2}`
+:math:`r = \sqrt{x^2 + y^2}`.
 
 We have
 
@@ -196,21 +196,21 @@ and thus
    x^2 + y^2 = r^2
 
 
-We recognize this as a theorem of **Pythagoras**
+We recognize this as a theorem of **Pythagoras**.
 
 Example 2
 ----------
 
-Let :math:`z = re^{i\theta}` and :math:`\bar{z} = re^{-i\theta}` so that :math:`\bar{z}` is the **complex conjugate** of :math:`z`
+Let :math:`z = re^{i\theta}` and :math:`\bar{z} = re^{-i\theta}` so that :math:`\bar{z}` is the **complex conjugate** of :math:`z`.
 
-:math:`(z, \bar z)` form a **complex conjugate pair** of complex numbers
+:math:`(z, \bar z)` form a **complex conjugate pair** of complex numbers.
 
 Let :math:`a = pe^{i\omega}` and :math:`\bar{a} = pe^{-i\omega}` be
-another complex conjugate pair
+another complex conjugate pair.
 
-For each element of a sequence of integers :math:`n = 0, 1, 2, \ldots, ` we want to calculate :math:`x_n = az^n + \bar{a}\bar{z}^n`
+For each element of a sequence of integers :math:`n = 0, 1, 2, \ldots, ` we want to calculate :math:`x_n = az^n + \bar{a}\bar{z}^n`.
 
-To do so, we can apply de Moivre's formula
+To do so, we can apply de Moivre's formula.
 
 Thus,
 
@@ -228,7 +228,7 @@ Thus,
 Example 3
 ----------
 
-This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model :cite:`Samuelson1939`
+This example provides  machinery that is at the heard of Samuelson's analysis of his multiplier-accelerator model :cite:`Samuelson1939`.
 
 Thus, consider a **second-order linear difference equation**
 
@@ -242,10 +242,10 @@ or
 
 .. math:: (z^2 - c_1 z - c_2 ) = (z - z_1)(z- z_2) = 0
 
-has roots :math:`z_1, z_1`
+has roots :math:`z_1, z_1`.
 
 A **solution**  is a sequence :math:`\{x_n\}_{n=0}^\infty` that satisfies
-the difference equation
+the difference equation.
 
 Under the following circumstances, we can apply our example 2 formula to
 solve the difference equation
@@ -260,7 +260,7 @@ To solve the difference equation, recall from example 2 that
 .. math:: x_n = 2 pr^n \cos{(\omega + n\theta)}
 
 where :math:`\omega, p` are coefficients to be determined from
-information encoded in the initial conditions :math:`x_1, x_0`
+information encoded in the initial conditions :math:`x_1, x_0`.
 
 Since
 :math:`x_0 = 2 p \cos{\omega}` and :math:`x_1 = 2 pr \cos{(\omega + \theta)}`
@@ -271,14 +271,14 @@ the ratio of :math:`x_1` to :math:`x_0` is
    \frac{x_1}{x_0} = \frac{r \cos{(\omega + \theta)}}{\cos{\omega}}
 
 
-We can solve this equation for :math:`\omega` then solve for :math:`p` using :math:`x_0 = 2 pr^0 \cos{(\omega + n\theta)}`
+We can solve this equation for :math:`\omega` then solve for :math:`p` using :math:`x_0 = 2 pr^0 \cos{(\omega + n\theta)}`.
 
 With the ``sympy`` package in Python, we are able to solve and plot the
-dynamics of :math:`x_n` given different values of :math:`n`
+dynamics of :math:`x_n` given different values of :math:`n`.
 
 In this example, we set the initial values: - :math:`r = 0.9` -
 :math:`\theta = \frac{1}{4}\pi` - :math:`x_0 = 4` -
-:math:`x_1 = r \cdot 2\sqrt{2} = 1.8 \sqrt{2}`
+:math:`x_1 = r \cdot 2\sqrt{2} = 1.8 \sqrt{2}`.
 
 We first numerically solve for :math:`\omega` and :math:`p` using
 ``nsolve`` in the ``sympy`` package based on the above initial
@@ -312,7 +312,7 @@ condition:
 
 
 Using the code above, we compute that
-:math:`\omega = 0` and :math:`p = 2`
+:math:`\omega = 0` and :math:`p = 2`.
 
 Then we plug in the values we solve for :math:`\omega` and :math:`p`
 and plot the dynamic
@@ -354,7 +354,7 @@ Trigonometric Identities
 ------------------------
 
 We can obtain a complete suite of trigonometric identities by
-appropriately manipulating polar forms of complex numbers
+appropriately manipulating polar forms of complex numbers.
 
 We'll get many of them by deducing implications of the equality
 
@@ -362,7 +362,7 @@ We'll get many of them by deducing implications of the equality
 
 For example, we'll calculate identities for
 
-:math:`\cos{(\omega + \theta)}` and :math:`\sin{(\omega + \theta)}`
+:math:`\cos{(\omega + \theta)}` and :math:`\sin{(\omega + \theta)}`.
 
 Using the sine and cosine formulas presented at the beginning of this
 lecture, we have:
@@ -415,7 +415,7 @@ Trigonometric Integrals
 -----------------------
 
 We can also compute the trigonometric integrals using polar forms of
-complex numbers
+complex numbers.
 
 For example, we want to solve the following integral:
 
