@@ -10,7 +10,7 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -21,35 +21,35 @@ Overview
 ============
 
 In this lecture we study covariance stationary linear stochastic processes, a
-class of models routinely used to study economic and financial time series
+class of models routinely used to study economic and financial time series.
 
 This class has the advantage of being
 
 #. simple enough to be described by an elegant and comprehensive theory
 #. relatively broad in terms of the kinds of dynamics it can represent
 
-We consider these models in both the time and frequency domain
+We consider these models in both the time and frequency domain.
 
 :index:`ARMA Processes`
 ------------------------
 
-We will focus much of our attention on linear covariance stationary models with a finite number of parameters
+We will focus much of our attention on linear covariance stationary models with a finite number of parameters.
 
-In particular, we will study stationary ARMA processes, which form a cornerstone of the standard theory of time series analysis
+In particular, we will study stationary ARMA processes, which form a cornerstone of the standard theory of time series analysis.
 
-Every ARMA process can be represented in :doc:`linear state space <linear_models>` form
+Every ARMA process can be represented in :doc:`linear state space <linear_models>` form.
 
-However, ARMA processes have some important structure that makes it valuable to study them separately
+However, ARMA processes have some important structure that makes it valuable to study them separately.
 
 
 
 :index:`Spectral Analysis`
 ---------------------------
 
-Analysis in the frequency domain is also called spectral analysis
+Analysis in the frequency domain is also called spectral analysis.
 
 In essence, spectral analysis provides an alternative representation of the
-autocovariance function of a covariance stationary process
+autocovariance function of a covariance stationary process.
 
 Having a second representation of this important object
 
@@ -57,7 +57,7 @@ Having a second representation of this important object
 
 * allows for a simpler, more tractable representation in some important cases
 
-The famous *Fourier transform* and its inverse are used to map between the two representations
+The famous *Fourier transform* and its inverse are used to map between the two representations.
 
 
 
@@ -86,16 +86,16 @@ For supplementary reading, see
 Introduction
 =================================
 
-Consider a sequence of random variables :math:`\{ X_t \}` indexed by :math:`t \in \mathbb Z` and taking values in :math:`\mathbb R`
+Consider a sequence of random variables :math:`\{ X_t \}` indexed by :math:`t \in \mathbb Z` and taking values in :math:`\mathbb R`.
 
-Thus, :math:`\{ X_t \}` begins in the infinite past and extends to the infinite future --- a convenient and standard assumption
+Thus, :math:`\{ X_t \}` begins in the infinite past and extends to the infinite future --- a convenient and standard assumption.
 
-As in other fields, successful economic modeling typically assumes the existence of features that are constant over time
+As in other fields, successful economic modeling typically assumes the existence of features that are constant over time.
 
-If these assumptions are correct, then each new observation :math:`X_t, X_{t+1},\ldots` can provide additional information about the time-invariant features, allowing us to  learn from as data arrive
+If these assumptions are correct, then each new observation :math:`X_t, X_{t+1},\ldots` can provide additional information about the time-invariant features, allowing us to  learn from as data arrive.
 
 For this reason, we will focus in what follows on processes that are *stationary* --- or become so after a transformation
-(see for example :doc:`this lecture <additive_functionals>` and :doc:`this lecture <multiplicative_functionals>`)
+(see for example :doc:`this lecture <additive_functionals>` and :doc:`this lecture <multiplicative_functionals>`).
 
 
 
@@ -114,17 +114,17 @@ A real-valued stochastic process :math:`\{ X_t \}` is called *covariance station
 #. For all :math:`k` in :math:`\mathbb Z`, the :math:`k`-th autocovariance :math:`\gamma(k) := \mathbb E (X_t - \mu)(X_{t + k} - \mu)` is finite and depends only on :math:`k`
 
 
-The function :math:`\gamma \colon \mathbb Z \to \mathbb R` is called the *autocovariance function* of the process
+The function :math:`\gamma \colon \mathbb Z \to \mathbb R` is called the *autocovariance function* of the process.
 
-Throughout this lecture, we will work exclusively with zero-mean (i.e., :math:`\mu = 0`) covariance stationary processes
+Throughout this lecture, we will work exclusively with zero-mean (i.e., :math:`\mu = 0`) covariance stationary processes.
 
-The zero-mean assumption costs nothing in terms of generality since working with non-zero-mean processes involves no more than adding a constant
+The zero-mean assumption costs nothing in terms of generality since working with non-zero-mean processes involves no more than adding a constant.
 
 
 Example 1: :index:`White Noise`
 --------------------------------
 
-Perhaps the simplest class of covariance stationary processes is the white noise processes
+Perhaps the simplest class of covariance stationary processes is the white noise processes.
 
 
 A process :math:`\{ \epsilon_t \}` is called a *white noise process* if
@@ -132,9 +132,9 @@ A process :math:`\{ \epsilon_t \}` is called a *white noise process* if
 #. :math:`\mathbb E \epsilon_t = 0`
 #. :math:`\gamma(k) = \sigma^2 \mathbf 1\{k = 0\}` for some :math:`\sigma > 0`
 
-(Here :math:`\mathbf 1\{k = 0\}` is defined to be 1 if :math:`k = 0` and zero otherwise)
+(Here :math:`\mathbf 1\{k = 0\}` is defined to be 1 if :math:`k = 0` and zero otherwise).
 
-White noise processes play the role of **building blocks** for processes with more complicated dynamics
+White noise processes play the role of **building blocks** for processes with more complicated dynamics.
 
 
 .. _generalized_lps:
@@ -156,9 +156,9 @@ where
 * :math:`\{\epsilon_t\}` is white noise
 * :math:`\{\psi_t\}` is a square summable sequence in :math:`\mathbb R` (that is, :math:`\sum_{t=0}^{\infty} \psi_t^2 < \infty`)
 
-The sequence :math:`\{\psi_t\}` is often called a *linear filter*
+The sequence :math:`\{\psi_t\}` is often called a *linear filter*.
 
-Equation :eq:`ma_inf` is said to present  a **moving average** process or a moving average representation
+Equation :eq:`ma_inf` is said to present  a **moving average** process or a moving average representation.
 
 With some manipulations, it is possible to confirm that the autocovariance function for :eq:`ma_inf` is
 
@@ -168,9 +168,9 @@ With some manipulations, it is possible to confirm that the autocovariance funct
     \gamma(k) = \sigma^2 \sum_{j=0}^{\infty} \psi_j \psi_{j+k}
 
 
-By the `Cauchy-Schwartz inequality <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality>`_, one can show that :math:`\gamma(k)` satisfies equation :eq:`ma_inf_ac`
+By the `Cauchy-Schwartz inequality <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality>`_, one can show that :math:`\gamma(k)` satisfies equation :eq:`ma_inf_ac`.
 
-Evidently, :math:`\gamma(k)` does not depend on :math:`t`
+Evidently, :math:`\gamma(k)` does not depend on :math:`t`.
 
 
 
@@ -179,7 +179,7 @@ Evidently, :math:`\gamma(k)` does not depend on :math:`t`
 ------------------------------
 
 Remarkably, the class of general linear processes goes a long way towards
-describing the entire class of zero-mean covariance stationary processes
+describing the entire class of zero-mean covariance stationary processes.
 
 In particular, `Wold's decomposition theorem <https://en.wikipedia.org/wiki/Wold%27s_theorem>`_ states that every
 zero-mean covariance stationary process :math:`\{X_t\}` can be written as
@@ -195,7 +195,7 @@ where
 * :math:`\{\psi_t\}` is square summable
 * :math:`\eta_t` can be expressed as a linear function of :math:`X_{t-1}, X_{t-2},\ldots` and is perfectly predictable over arbitrarily long horizons
 
-For intuition and further discussion, see :cite:`Sargent1987`, p. 286
+For intuition and further discussion, see :cite:`Sargent1987`, p. 286.
 
 
 AR and MA
@@ -209,9 +209,9 @@ AR and MA
 
 General linear processes are a very broad class of processes.
 
-It often pays to specialize to those for which there exists a representation having only finitely many parameters
+It often pays to specialize to those for which there exists a representation having only finitely many parameters.
 
-(Experience and theory combine to indicate that models with a relatively small number of parameters typically perform better than larger models, especially for forecasting)
+(Experience and theory combine to indicate that models with a relatively small number of parameters typically perform better than larger models, especially for forecasting).
 
 One very simple example of such a model is the first-order autoregressive or AR(1) process
 
@@ -224,9 +224,9 @@ One very simple example of such a model is the first-order autoregressive or AR(
     \quad \text{and } \{ \epsilon_t \} \text{ is white noise}
 
 
-By direct substitution, it is easy to verify that :math:`X_t = \sum_{j=0}^{\infty} \phi^j \epsilon_{t-j}`
+By direct substitution, it is easy to verify that :math:`X_t = \sum_{j=0}^{\infty} \phi^j \epsilon_{t-j}`.
 
-Hence :math:`\{X_t\}` is a general linear process
+Hence :math:`\{X_t\}` is a general linear process.
 
 Applying :eq:`ma_inf_ac` to the previous expression for :math:`X_t`, we get the AR(1) autocovariance function
 
@@ -281,9 +281,9 @@ You will be able to verify that
     \gamma(k) = 0 \quad \forall \, k > 1
 
 
-The AR(1) can be generalized to an AR(:math:`p`) and likewise for the MA(1)
+The AR(1) can be generalized to an AR(:math:`p`) and likewise for the MA(1).
 
-Putting all of this together, we get the
+Putting all of this together, we get the.
 
 :index:`ARMA` Processes
 ------------------------
@@ -298,11 +298,11 @@ average process*, or ARMA(:math:`p,q`), if it can be written as
         \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}
 
 
-where :math:`\{ \epsilon_t \}` is white noise
+where :math:`\{ \epsilon_t \}` is white noise.
 
-An alternative notation for ARMA processes uses the *lag operator* :math:`L`
+An alternative notation for ARMA processes uses the *lag operator* :math:`L`.
 
-**Def.** Given arbitrary variable :math:`Y_t`, let :math:`L^k Y_t := Y_{t-k}`
+**Def.** Given arbitrary variable :math:`Y_t`, let :math:`L^k Y_t := Y_{t-k}`.
 
 It turns out that
 
@@ -336,49 +336,49 @@ then :eq:`arma_lag`  becomes
     \phi(L) X_t = \theta(L) \epsilon_t
 
 
-In what follows we **always assume** that the roots of the polynomial :math:`\phi(z)` lie outside the unit circle in the complex plane
+In what follows we **always assume** that the roots of the polynomial :math:`\phi(z)` lie outside the unit circle in the complex plane.
 
-This condition is sufficient to guarantee that the ARMA(:math:`p,q`) process is covariance stationary
+This condition is sufficient to guarantee that the ARMA(:math:`p,q`) process is covariance stationary.
 
-In fact, it implies that the process falls within the class of general linear processes :ref:`described above <generalized_lps>`
+In fact, it implies that the process falls within the class of general linear processes :ref:`described above <generalized_lps>`.
 
-That is, given an ARMA(:math:`p,q`) process :math:`\{ X_t \}` satisfying the unit circle condition, there exists a square summable sequence :math:`\{\psi_t\}` with :math:`X_t = \sum_{j=0}^{\infty} \psi_j \epsilon_{t-j}` for all :math:`t`
+That is, given an ARMA(:math:`p,q`) process :math:`\{ X_t \}` satisfying the unit circle condition, there exists a square summable sequence :math:`\{\psi_t\}` with :math:`X_t = \sum_{j=0}^{\infty} \psi_j \epsilon_{t-j}` for all :math:`t`.
 
-The sequence :math:`\{\psi_t\}` can be obtained by a recursive procedure outlined on page 79 of :cite:`CryerChan2008`
+The sequence :math:`\{\psi_t\}` can be obtained by a recursive procedure outlined on page 79 of :cite:`CryerChan2008`.
 
-The function :math:`t \mapsto \psi_t` is often called the *impulse response function*
+The function :math:`t \mapsto \psi_t` is often called the *impulse response function*.
 
 
 
 :index:`Spectral Analysis`
 =================================
 
-Autocovariance functions provide a great deal of information about covariance stationary processes
+Autocovariance functions provide a great deal of information about covariance stationary processes.
 
-In fact, for zero-mean Gaussian processes, the autocovariance function characterizes the entire joint distribution
+In fact, for zero-mean Gaussian processes, the autocovariance function characterizes the entire joint distribution.
 
-Even for non-Gaussian processes, it provides a significant amount of information
+Even for non-Gaussian processes, it provides a significant amount of information.
 
-It turns out that there is an alternative representation of the autocovariance function of a covariance stationary process, called the *spectral density*
+It turns out that there is an alternative representation of the autocovariance function of a covariance stationary process, called the *spectral density*.
 
-At times, the spectral density is easier to derive, easier to manipulate, and provides additional intuition
+At times, the spectral density is easier to derive, easier to manipulate, and provides additional intuition.
 
 :index:`Complex Numbers`
 -------------------------
 
-Before discussing the spectral density, we invite you to recall the main properties of complex numbers (or :ref:`skip to the next section <arma_specd>`)
+Before discussing the spectral density, we invite you to recall the main properties of complex numbers (or :ref:`skip to the next section <arma_specd>`).
 
-It can be helpful to remember that, in a formal sense, complex numbers are just points :math:`(x, y) \in \mathbb R^2` endowed with a specific notion of multiplication
+It can be helpful to remember that, in a formal sense, complex numbers are just points :math:`(x, y) \in \mathbb R^2` endowed with a specific notion of multiplication.
 
-When :math:`(x, y)` is regarded as a complex number, :math:`x` is called the *real part* and :math:`y` is called the *imaginary part*
+When :math:`(x, y)` is regarded as a complex number, :math:`x` is called the *real part* and :math:`y` is called the *imaginary part*.
 
-The *modulus* or *absolute value* of a complex number :math:`z = (x, y)` is just its Euclidean norm in :math:`\mathbb R^2`, but is usually written as :math:`|z|` instead of :math:`\|z\|`
+The *modulus* or *absolute value* of a complex number :math:`z = (x, y)` is just its Euclidean norm in :math:`\mathbb R^2`, but is usually written as :math:`|z|` instead of :math:`\|z\|`.
 
-The product of two complex numbers :math:`(x, y)` and :math:`(u, v)` is defined to be :math:`(xu - vy, xv + yu)`, while addition is standard pointwise vector addition
+The product of two complex numbers :math:`(x, y)` and :math:`(u, v)` is defined to be :math:`(xu - vy, xv + yu)`, while addition is standard pointwise vector addition.
 
-When endowed with these notions of multiplication and addition, the set of complex numbers forms a `field <https://en.wikipedia.org/wiki/Field_%28mathematics%29>`_ --- addition and multiplication play well together, just as they do in :math:`\mathbb R`
+When endowed with these notions of multiplication and addition, the set of complex numbers forms a `field <https://en.wikipedia.org/wiki/Field_%28mathematics%29>`_ --- addition and multiplication play well together, just as they do in :math:`\mathbb R`.
 
-The complex number :math:`(x, y)` is often written as :math:`x + i y`, where :math:`i` is called the *imaginary unit* and is understood to obey :math:`i^2 = -1`
+The complex number :math:`(x, y)` is often written as :math:`x + i y`, where :math:`i` is called the *imaginary unit* and is understood to obey :math:`i^2 = -1`.
 
 The :math:`x + i y` notation provides an easy way to remember the definition of multiplication given above, because, proceeding naively,
 
@@ -387,7 +387,7 @@ The :math:`x + i y` notation provides an easy way to remember the definition of 
     (x + i y) (u + i v) = xu - yv + i (xv + yu)
 
 
-Converted back to our first notation, this becomes :math:`(xu - vy, xv + yu)` as promised
+Converted back to our first notation, this becomes :math:`(xu - vy, xv + yu)` as promised.
 
 Complex numbers can be represented in  the polar form :math:`r e^{i \omega}` where
 
@@ -395,7 +395,7 @@ Complex numbers can be represented in  the polar form :math:`r e^{i \omega}` whe
 
     r e^{i \omega} := r (\cos(\omega) + i \sin(\omega)) = x + i y
 
-where :math:`x = r \cos(\omega), y = r \sin(\omega)`, and :math:`\omega = \arctan(y/z)` or :math:`\tan(\omega) = y/x`
+where :math:`x = r \cos(\omega), y = r \sin(\omega)`, and :math:`\omega = \arctan(y/z)` or :math:`\tan(\omega) = y/x`.
 
 
 .. _arma_specd:
@@ -403,7 +403,7 @@ where :math:`x = r \cos(\omega), y = r \sin(\omega)`, and :math:`\omega = \arcta
 :index:`Spectral Densities`
 ---------------------------------
 
-Let :math:`\{ X_t \}` be a covariance stationary process with autocovariance function :math:`\gamma`  satisfying :math:`\sum_{k} \gamma(k)^2 < \infty`
+Let :math:`\{ X_t \}` be a covariance stationary process with autocovariance function :math:`\gamma`  satisfying :math:`\sum_{k} \gamma(k)^2 < \infty`.
 
 The *spectral density* :math:`f` of :math:`\{ X_t \}` is defined as the `discrete time Fourier transform <https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform>`_ of its autocovariance function :math:`\gamma`
 
@@ -413,7 +413,7 @@ The *spectral density* :math:`f` of :math:`\{ X_t \}` is defined as the `discret
     \qquad \omega \in \mathbb R
 
 
-(Some authors normalize the expression on the right by constants such as :math:`1/\pi` --- the convention chosen  makes little difference provided you are consistent)
+(Some authors normalize the expression on the right by constants such as :math:`1/\pi` --- the convention chosen  makes little difference provided you are consistent).
 
 Using the fact that :math:`\gamma` is *even*, in the sense that :math:`\gamma(t) = \gamma(-t)` for all :math:`t`, we can show that
 
@@ -430,22 +430,22 @@ It is not difficult to confirm that :math:`f` is
 * :math:`2\pi`-periodic, in the sense that :math:`f(2\pi + \omega) = f(\omega)` for all :math:`\omega`
 
 It follows that the values of :math:`f` on :math:`[0, \pi]` determine the values of :math:`f` on
-all of :math:`\mathbb R` --- the proof is an exercise
+all of :math:`\mathbb R` --- the proof is an exercise.
 
-For this reason, it is standard to plot the spectral density only on the interval :math:`[0, \pi]`
+For this reason, it is standard to plot the spectral density only on the interval :math:`[0, \pi]`.
 
 .. _arma_wnsd:
 
 Example 1: :index:`White Noise`
 ---------------------------------
 
-Consider a white noise process :math:`\{\epsilon_t\}` with standard deviation :math:`\sigma`
+Consider a white noise process :math:`\{\epsilon_t\}` with standard deviation :math:`\sigma`.
 
-It is easy to check that in  this case :math:`f(\omega) = \sigma^2`.  So :math:`f` is a constant function
+It is easy to check that in  this case :math:`f(\omega) = \sigma^2`.  So :math:`f` is a constant function.
 
-As we will see, this can be interpreted as meaning that "all frequencies are equally present"
+As we will see, this can be interpreted as meaning that "all frequencies are equally present".
 
-(White light has this property when frequency refers to the visible spectrum, a connection that provides the origins of the term "white noise")
+(White light has this property when frequency refers to the visible spectrum, a connection that provides the origins of the term "white noise").
 
 
 Example 2: :index:`AR` and :index:`MA` and :index:`ARMA`
@@ -469,7 +469,7 @@ With a bit more effort, it's possible to show (see, e.g., p. 261 of :cite:`Sarge
     = \frac{\sigma^2}{ 1 - 2 \phi \cos(\omega) + \phi^2 }
 
 
-More generally, it can be shown that the spectral density of the ARMA process :eq:`arma` is
+More generally, it can be shown that the spectral density of the ARMA process :eq:`arma` is.
 
 .. _arma_spec_den:
 
@@ -484,11 +484,11 @@ where
 * :math:`\sigma` is the standard deviation of the white noise process :math:`\{\epsilon_t\}`
 * the polynomials :math:`\phi(\cdot)` and :math:`\theta(\cdot)` are as defined in :eq:`arma_poly`
 
-The derivation of :eq:`arma_sd` uses the fact that convolutions become products under Fourier transformations
+The derivation of :eq:`arma_sd` uses the fact that convolutions become products under Fourier transformations.
 
-The proof is elegant and can be found in many places --- see, for example, :cite:`Sargent1987`, chapter 11, section 4
+The proof is elegant and can be found in many places --- see, for example, :cite:`Sargent1987`, chapter 11, section 4.
 
-It's a nice exercise to verify that :eq:`ma1_sd_ed` and :eq:`ar1_sd_ed` are indeed special cases of :eq:`arma_sd`
+It's a nice exercise to verify that :eq:`ma1_sd_ed` and :eq:`ar1_sd_ed` are indeed special cases of :eq:`arma_sd`.
 
 
 Interpreting the :index:`Spectral Density`
@@ -524,12 +524,12 @@ Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1)
 
 
 These spectral densities correspond to the autocovariance functions for the
-AR(1) process shown above
+AR(1) process shown above.
 
 Informally, we think of the spectral density as being large at those :math:`\omega \in [0, \pi]` at which
-the autocovariance function seems approximately to exhibit big damped cycles
+the autocovariance function seems approximately to exhibit big damped cycles.
 
-To see the idea, let's consider why, in the lower panel of the preceding figure, the spectral density for the case :math:`\phi = -0.8` is large at :math:`\omega = \pi`
+To see the idea, let's consider why, in the lower panel of the preceding figure, the spectral density for the case :math:`\phi = -0.8` is large at :math:`\omega = \pi`.
 
 Recall that the spectral density can be expressed as
 
@@ -543,10 +543,10 @@ Recall that the spectral density can be expressed as
 
 When we evaluate this at :math:`\omega = \pi`, we get a large number because
 :math:`\cos(\pi k)` is large and positive when :math:`(-0.8)^k` is
-positive, and large in absolute value and negative when :math:`(-0.8)^k` is negative
+positive, and large in absolute value and negative when :math:`(-0.8)^k` is negative.
 
 Hence the product is always large and positive, and hence the sum of the
-products on the right-hand side of :eq:`sumpr` is large
+products on the right-hand side of :eq:`sumpr` is large.
 
 These ideas are illustrated in the next figure, which has :math:`k` on the horizontal axis
 
@@ -634,7 +634,7 @@ both positive and negative terms, and hence the sum of these terms is much small
 
 
 
-In summary, the spectral density is large at frequencies :math:`\omega` where the autocovariance function exhibits damped cycles
+In summary, the spectral density is large at frequencies :math:`\omega` where the autocovariance function exhibits damped cycles.
 
 
 Inverting the Transformation
@@ -643,9 +643,9 @@ Inverting the Transformation
 .. index::
     single: Spectral Density; Inverting the Transformation
 
-We have just seen that the spectral density is useful in the sense that it provides a frequency-based perspective on the autocovariance structure of a covariance stationary process
+We have just seen that the spectral density is useful in the sense that it provides a frequency-based perspective on the autocovariance structure of a covariance stationary process.
 
-Another reason that the spectral density is useful is that it can be "inverted" to recover the autocovariance function via the *inverse Fourier transform*
+Another reason that the spectral density is useful is that it can be "inverted" to recover the autocovariance function via the *inverse Fourier transform*.
 
 In particular, for all :math:`k \in \mathbb Z`, we have
 
@@ -655,9 +655,9 @@ In particular, for all :math:`k \in \mathbb Z`, we have
     \gamma(k) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(\omega) e^{i \omega k} d\omega
 
 
-This is convenient in situations where the spectral density is easier to calculate and manipulate than the autocovariance function
+This is convenient in situations where the spectral density is easier to calculate and manipulate than the autocovariance function.
 
-(For example, the expression :eq:`arma_sd` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance)
+(For example, the expression :eq:`arma_sd` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance).
 
 
 Mathematical Theory
@@ -671,9 +671,9 @@ This section is loosely based on :cite:`Sargent1987`, p. 249-253, and included f
 * would like a bit more insight into spectral densities
 * and have at least some background in `Hilbert space <https://en.wikipedia.org/wiki/Hilbert_space>`_ theory
 
-Others should feel free to skip to the :ref:`next section <arma_imp>` --- none of this material is necessary to progress to computation
+Others should feel free to skip to the :ref:`next section <arma_imp>` --- none of this material is necessary to progress to computation.
 
-Recall that every `separable <https://en.wikipedia.org/wiki/Separable_space>`_ Hilbert space :math:`H` has a countable orthonormal basis :math:`\{ h_k \}`
+Recall that every `separable <https://en.wikipedia.org/wiki/Separable_space>`_ Hilbert space :math:`H` has a countable orthonormal basis :math:`\{ h_k \}`.
 
 The nice thing about such a basis is that every :math:`f \in H` satisfies
 
@@ -685,17 +685,17 @@ The nice thing about such a basis is that every :math:`f \in H` satisfies
     \alpha_k := \langle f, h_k \rangle
 
 
-where :math:`\langle \cdot, \cdot \rangle` denotes the inner product in :math:`H`
+where :math:`\langle \cdot, \cdot \rangle` denotes the inner product in :math:`H`.
 
-Thus, :math:`f` can be represented to any degree of precision by linearly combining basis vectors
+Thus, :math:`f` can be represented to any degree of precision by linearly combining basis vectors.
 
-The scalar sequence :math:`\alpha = \{\alpha_k\}` is called the *Fourier coefficients* of :math:`f`, and satisfies :math:`\sum_k |\alpha_k|^2 < \infty`
+The scalar sequence :math:`\alpha = \{\alpha_k\}` is called the *Fourier coefficients* of :math:`f`, and satisfies :math:`\sum_k |\alpha_k|^2 < \infty`.
 
-In other words, :math:`\alpha` is in :math:`\ell_2`, the set of square summable sequences
+In other words, :math:`\alpha` is in :math:`\ell_2`, the set of square summable sequences.
 
-Consider an operator :math:`T` that maps :math:`\alpha \in \ell_2` into its expansion :math:`\sum_k \alpha_k h_k \in H`
+Consider an operator :math:`T` that maps :math:`\alpha \in \ell_2` into its expansion :math:`\sum_k \alpha_k h_k \in H`.
 
-The Fourier coefficients of :math:`T\alpha` are just :math:`\alpha = \{ \alpha_k \}`, as you can verify by confirming that :math:`\langle T \alpha, h_k \rangle = \alpha_k`
+The Fourier coefficients of :math:`T\alpha` are just :math:`\alpha = \{ \alpha_k \}`, as you can verify by confirming that :math:`\langle T \alpha, h_k \rangle = \alpha_k`.
 
 Using elementary results from Hilbert space theory, it can be shown that
 
@@ -703,9 +703,9 @@ Using elementary results from Hilbert space theory, it can be shown that
 * :math:`T` is onto --- if :math:`f \in H` then its preimage in :math:`\ell_2` is the sequence :math:`\alpha` given by :math:`\alpha_k = \langle f, h_k \rangle`
 * :math:`T` is a linear isometry --- in particular, :math:`\langle \alpha, \beta \rangle = \langle T\alpha, T\beta \rangle`
 
-Summarizing these results, we say that any separable Hilbert space is isometrically isomorphic to :math:`\ell_2`
+Summarizing these results, we say that any separable Hilbert space is isometrically isomorphic to :math:`\ell_2`.
 
-In essence, this says that each separable Hilbert space we consider is just a different way of looking at the fundamental space :math:`\ell_2`
+In essence, this says that each separable Hilbert space we consider is just a different way of looking at the fundamental space :math:`\ell_2`.
 
 With this in mind, let's specialize to a setting where
 
@@ -730,15 +730,15 @@ Using the definition of :math:`T` from above and the fact that :math:`f` is even
     \gamma(k) \frac{e^{i \omega k}}{\sqrt{2 \pi}} = \frac{1}{\sqrt{2 \pi}} f(\omega)
 
 
-In other words, apart from a scalar multiple, the spectral density is just a transformation of :math:`\gamma \in \ell_2` under a certain linear isometry --- a different way to view :math:`\gamma`
+In other words, apart from a scalar multiple, the spectral density is just a transformation of :math:`\gamma \in \ell_2` under a certain linear isometry --- a different way to view :math:`\gamma`.
 
-In particular, it is an expansion of the autocovariance function with respect to the trigonometric basis functions in :math:`L_2`
+In particular, it is an expansion of the autocovariance function with respect to the trigonometric basis functions in :math:`L_2`.
 
 As discussed above, the Fourier coefficients of :math:`T \gamma` are given by the sequence :math:`\gamma`, and,
-in particular, :math:`\gamma(k) = \langle T \gamma, h_k \rangle`
+in particular, :math:`\gamma(k) = \langle T \gamma, h_k \rangle`.
 
 Transforming this inner product into its integral expression and using :eq:`arma_it` gives
-:eq:`ift`, justifying our earlier expression for the inverse transform
+:eq:`ift`, justifying our earlier expression for the inverse transform.
 
 
 
@@ -747,11 +747,11 @@ Transforming this inner product into its integral expression and using :eq:`arma
 Implementation
 =================================
 
-Most code for working with covariance stationary models deals with ARMA models
+Most code for working with covariance stationary models deals with ARMA models.
 
-Python code for studying ARMA models can be found in the ``tsa`` submodule of `statsmodels <http://statsmodels.sourceforge.net/>`_
+Python code for studying ARMA models can be found in the ``tsa`` submodule of `statsmodels <http://statsmodels.sourceforge.net/>`_.
 
-Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/python_index.html>`_ package
+Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/python_index.html>`_ package.
 
 The module provides functions for mapping ARMA(:math:`p,q`) models into their
 
@@ -767,7 +767,7 @@ The module provides functions for mapping ARMA(:math:`p,q`) models into their
 Application
 -----------------------------------------
 
-Let's use this code to replicate the plots on pages 68--69 of :cite:`Ljungqvist2012`
+Let's use this code to replicate the plots on pages 68--69 of :cite:`Ljungqvist2012`.
 
 
 
@@ -833,7 +833,7 @@ Here are some functions to generate the plots
 
 
 
-Now let's call these functions to generate plots
+Now let's call these functions to generate plots.
 
 As a warmup, let's make sure things look right when we for the pure white noise model :math:`X_t = \epsilon_t`
 
@@ -850,7 +850,7 @@ As a warmup, let's make sure things look right when we for the pure white noise 
 
 
 If we look carefully, things look good: the spectrum is the flat line at :math:`10^0` at the very top of the spectrum graphs,
-which is at it should be
+which is at it should be.
 
 Also
 
@@ -862,7 +862,7 @@ Also
 
 
 To get some more examples, as our laboratory
-we'll replicate quartets of graphs that :cite:`Ljungqvist2012` use to teach "how to read spectral densities"
+we'll replicate quartets of graphs that :cite:`Ljungqvist2012` use to teach "how to read spectral densities".
 
 
 Ljunqvist and Sargent's first  model is  :math:`X_t = 1.3 X_{t-1} - .7 X_{t-2} + \epsilon_t`
@@ -937,7 +937,7 @@ be
 
 * ``θ`` holds the vector of parameters :math:`(\theta_1, \theta_2,..., \theta_q)`
 
-The parameter ``σ`` is always a scalar, the standard deviation of the white noise
+The parameter ``σ`` is always a scalar, the standard deviation of the white noise.
 
 We also permit ``ϕ`` and ``θ`` to be scalars, in which case the model will be interpreted as
 
@@ -946,11 +946,11 @@ We also permit ``ϕ`` and ``θ`` to be scalars, in which case the model will be 
     X_t = \phi X_{t-1} + \epsilon_t + \theta \epsilon_{t-1}
 
 
-The two numerical packages most useful for working with ARMA models are ``scipy.signal`` and ``numpy.fft``
+The two numerical packages most useful for working with ARMA models are ``scipy.signal`` and ``numpy.fft``.
 
 
 
-The package ``scipy.signal`` expects the parameters to be passed into its functions in a manner consistent with the alternative ARMA notation :eq:`arma_lag1`
+The package ``scipy.signal`` expects the parameters to be passed into its functions in a manner consistent with the alternative ARMA notation :eq:`arma_lag1`.
 
 For example, the impulse response sequence :math:`\{\psi_t\}` discussed above can be obtained using ``scipy.signal.dimpulse``, and the function call should be of the form
 
@@ -962,14 +962,14 @@ where ``ma_poly`` and ``ar_poly`` correspond to the polynomials in :eq:`arma_pol
 * ``ar_poly`` is the vector :math:`(1, -\phi_1, -\phi_2, \ldots, - \phi_p)`
 
 
-To this end, we also maintain the arrays ``ma_poly`` and ``ar_poly`` as instance data, with their values computed automatically from the values of ``phi`` and ``theta`` supplied by the user
+To this end, we also maintain the arrays ``ma_poly`` and ``ar_poly`` as instance data, with their values computed automatically from the values of ``phi`` and ``theta`` supplied by the user.
 
 If the user decides to change the value of either ``theta`` or ``phi`` ex-post by assignments
-such as ``arma.phi = (0.5, 0.2)`` or ``arma.theta = (0, -0.1)``
+such as ``arma.phi = (0.5, 0.2)`` or ``arma.theta = (0, -0.1)``.
 
-then ``ma_poly`` and ``ar_poly`` should update automatically to reflect these new parameters
+then ``ma_poly`` and ``ar_poly`` should update automatically to reflect these new parameters.
 
-This is achieved in our implementation by using :ref:`descriptors<descriptors>`
+This is achieved in our implementation by using :ref:`descriptors<descriptors>`.
 
 
 
@@ -978,14 +978,14 @@ This is achieved in our implementation by using :ref:`descriptors<descriptors>`
 Computing the Autocovariance Function
 -----------------------------------------
 
-As discussed above, for ARMA processes the spectral density has a :ref:`simple representation <arma_spec_den>` that is relatively easy to calculate
+As discussed above, for ARMA processes the spectral density has a :ref:`simple representation <arma_spec_den>` that is relatively easy to calculate.
 
 Given this fact, the easiest way to obtain the autocovariance function is to recover it from the spectral
-density via the inverse Fourier transform
+density via the inverse Fourier transform.
 
 
 
-Here we use NumPy's Fourier transform package `np.fft`, which wraps a standard Fortran-based package called FFTPACK
+Here we use NumPy's Fourier transform package `np.fft`, which wraps a standard Fortran-based package called FFTPACK.
 
 
 
@@ -1020,6 +1020,6 @@ For :math:`n` sufficiently large, we then have
     = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(\omega) e^{i \omega k} d \omega
 
 
-(You can check the last equality)
+(You can check the last equality).
 
-In view of :eq:`ift`, we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute
+In view of :eq:`ift`, we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute.

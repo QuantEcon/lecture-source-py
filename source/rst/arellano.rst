@@ -10,7 +10,7 @@ Default Risk and Income Fluctuations
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -20,19 +20,19 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-This lecture computes versions of  Arellano's  :cite:`arellano2008default` model of sovereign default
+This lecture computes versions of  Arellano's  :cite:`arellano2008default` model of sovereign default.
 
-The model describes interactions among default risk, output,  and  an equilibrium interest rate  that includes a premium for endogenous default risk
+The model describes interactions among default risk, output,  and  an equilibrium interest rate  that includes a premium for endogenous default risk.
 
-The decision maker is a government of a small open economy that borrows from risk-neutral foreign creditors
+The decision maker is a government of a small open economy that borrows from risk-neutral foreign creditors.
 
-The foreign lenders must be compensated for default risk
+The foreign lenders must be compensated for default risk.
 
-The government borrows and lends abroad in order to  smooth the consumption of its citizens
+The government borrows and lends abroad in order to  smooth the consumption of its citizens.
 
-The government repays its debt only if it wants to, but declining to pay has adverse consequences
+The government repays its debt only if it wants to, but declining to pay has adverse consequences.
 
-The interest rate on government debt adjusts in response to the state-dependent default probability chosen by government
+The interest rate on government debt adjusts in response to the state-dependent default probability chosen by government.
 
 The model yields outcomes that help interpret sovereign default experiences, including
 
@@ -42,7 +42,7 @@ The model yields outcomes that help interpret sovereign default experiences, inc
 
 * high volatility of consumption relative to output
 
-Notably, long recessions caused by bad draws in the income process increase the government's incentive to default
+Notably, long recessions caused by bad draws in the income process increase the government's incentive to default.
 
 This can lead to
 
@@ -54,26 +54,26 @@ This can lead to
 
 * large capital outflows during recessions
 
-Such dynamics are consistent with experiences of many countries
+Such dynamics are consistent with experiences of many countries.
 
 
 
 Structure
 ===============
 
-In this section we describe the main features of the model
+In this section we describe the main features of the model.
 
 Output, Consumption and Debt
 -----------------------------
 
 
-A small open economy is endowed with an exogenous stochastically fluctuating potential output stream :math:`\{y_t\}`
+A small open economy is endowed with an exogenous stochastically fluctuating potential output stream :math:`\{y_t\}`.
 
-Potential output is realized only in periods in which the government honors its sovereign debt
+Potential output is realized only in periods in which the government honors its sovereign debt.
 
-The output good can be traded or consumed
+The output good can be traded or consumed.
 
-The sequence :math:`\{y_t\}` is described by a Markov process with stochastic density kernel :math:`p(y, y')`
+The sequence :math:`\{y_t\}` is described by a Markov process with stochastic density kernel :math:`p(y, y')`.
 
 Households within the country are identical and rank stochastic consumption streams according to
 
@@ -89,13 +89,13 @@ Here
 
 * :math:`u` is an increasing and strictly concave utility function
 
-Consumption sequences enjoyed by households are affected by the government's decision to borrow or lend internationally
+Consumption sequences enjoyed by households are affected by the government's decision to borrow or lend internationally.
 
-The government is benevolent in the sense that its aim is to maximize :eq:`utility`
+The government is benevolent in the sense that its aim is to maximize :eq:`utility`.
 
-The government is the only domestic actor with access to foreign credit
+The government is the only domestic actor with access to foreign credit.
 
-Because household are averse to consumption fluctuations, the government will try to smooth consumption by borrowing from (and lending to) foreign creditors
+Because household are averse to consumption fluctuations, the government will try to smooth consumption by borrowing from (and lending to) foreign creditors.
 
 
 
@@ -104,7 +104,7 @@ Because household are averse to consumption fluctuations, the government will tr
 Asset Markets
 ---------------
 
-The only credit instrument available to the government is a one-period bond traded in international credit markets
+The only credit instrument available to the government is a one-period bond traded in international credit markets.
 
 The bond market has the following features
 
@@ -123,7 +123,7 @@ The bond market has the following features
     * there is an equilibrium  price function :math:`q(B', y)` that makes :math:`q` depend on both :math:`B'` and :math:`y`
 
 
-Earnings on the government portfolio are distributed (or, if negative, taxed) lump sum to households
+Earnings on the government portfolio are distributed (or, if negative, taxed) lump sum to households.
 
 
 When the government is not excluded from financial markets, the one-period national budget constraint is
@@ -134,7 +134,7 @@ When the government is not excluded from financial markets, the one-period natio
     c = y + B - q(B', y) B'
 
 
-Here and below, a prime denotes a next period value or a claim maturing next period
+Here and below, a prime denotes a next period value or a claim maturing next period.
 
 To rule out Ponzi schemes, we also require that :math:`B \geq -Z` in every period
 
@@ -156,7 +156,7 @@ Foreign creditors
 
 * receive zero if the government defaults on its one-period debt due
 
-When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`
+When a government is expected to default next period with  probability :math:`\delta`,  the expected value of a promise to pay one unit of consumption next period is :math:`1 - \delta`.
 
 Therefore, the discounted expected value of a promise to pay :math:`B` next period is
 
@@ -166,7 +166,7 @@ Therefore, the discounted expected value of a promise to pay :math:`B` next peri
     q = \frac{1 - \delta}{1 + r}
 
 
-Next we turn to how the government in effect chooses the default probability :math:`\delta`
+Next we turn to how the government in effect chooses the default probability :math:`\delta`.
 
 
 Government's Decisions
@@ -179,9 +179,9 @@ At each point in time :math:`t`, the government chooses between
 
 #. meeting its current obligations and purchasing or selling an optimal quantity of  one-period sovereign debt
 
-Defaulting means declining to repay all of  its current obligations
+Defaulting means declining to repay all of  its current obligations.
 
-If the government defaults in the current period, then consumption equals current output
+If the government defaults in the current period, then consumption equals current output.
 
 But a sovereign default has two consequences:
 
@@ -196,7 +196,7 @@ Reentering International Credit Market
 
 While in a state of default, the economy regains access to
 foreign credit in each subsequent period with probability
-:math:`\theta`
+:math:`\theta`.
 
 
 
@@ -242,7 +242,7 @@ In a  recursive formulation,
 
 * :math:`v_d(y)` is the value of choosing to default
 
-:math:`v_d(y)` does not depend on :math:`B` because, when access to credit is eventually regained, net foreign assets equal :math:`0`
+:math:`v_d(y)` does not depend on :math:`B` because, when access to credit is eventually regained, net foreign assets equal :math:`0`.
 
 
 Expressed recursively, the value of defaulting is
@@ -325,15 +325,15 @@ such that
 Computation
 ===============
 
-Let's now compute an equilibrium of Arellano's model
+Let's now compute an equilibrium of Arellano's model.
 
-The equilibrium objects are the value function :math:`v(B, y)`, the associated default decision rule, and the pricing function :math:`q(B', y)`
+The equilibrium objects are the value function :math:`v(B, y)`, the associated default decision rule, and the pricing function :math:`q(B', y)`.
 
-We'll use our code to replicate Arellano's results
+We'll use our code to replicate Arellano's results.
 
-After that we'll perform some additional simulations
+After that we'll perform some additional simulations.
 
-The majority of the code below was written by `Chase Coleman <https://github.com/cc7768>`_
+The majority of the code below was written by `Chase Coleman <https://github.com/cc7768>`_.
 
 It uses a slightly modified version of the algorithm recommended by Arellano
 
@@ -342,7 +342,7 @@ It uses a slightly modified version of the algorithm recommended by Arellano
 
 * Instead, we update the bond price at every value function iteration step
 
-The second approach is faster and the two different procedures deliver very similar results
+The second approach is faster and the two different procedures deliver very similar results.
 
 
 Here is a more detailed description of our algorithm:
@@ -363,7 +363,7 @@ We use simple discretization on a grid of asset holdings and income levels
 
 .. note that the next line will need to be changed when we add a Julia version
 
-The output process is discretized using `Tauchen's quadrature method <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`_
+The output process is discretized using `Tauchen's quadrature method <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`_.
 
 
 :ref:`Numba <numba_link>` has been used in two places to speed up the code
@@ -377,16 +377,16 @@ The output process is discretized using `Tauchen's quadrature method <https://gi
 Results
 ===============
 
-Let's start by trying to replicate the results obtained in :cite:`arellano2008default`
+Let's start by trying to replicate the results obtained in :cite:`arellano2008default`.
 
-In what follows, all results are computed using Arellano's parameter values
+In what follows, all results are computed using Arellano's parameter values.
 
 The values can be seen in the ``__init__`` method of the ``Arellano_Economy`` shown above
 
 * For example, ``r=0.017`` matches the average quarterly rate on a 5 year US treasury
   over the period 1983--2001
 
-Details on how to compute the figures are reported as solutions to the exercises
+Details on how to compute the figures are reported as solutions to the exercises.
 
 
 The first figure shows the bond price schedule and replicates Figure 3 of Arellano, where :math:`y_L` and :math:`Y_H` are particular below average and above average values of output :math:`y`
@@ -397,7 +397,7 @@ The first figure shows the bond price schedule and replicates Figure 3 of Arella
 
 * :math:`y_H` is 5% above  the mean of the :math:`y` grid values
 
-The grid used to compute this figure was relatively coarse (``ny, nB = 21, 251``) in order to match Arrelano's findings
+The grid used to compute this figure was relatively coarse (``ny, nB = 21, 251``) in order to match Arrelano's findings.
 
 Here's the same relationships computed on a finer grid (``ny, nB = 51, 551``)
 
@@ -416,7 +416,7 @@ The next figure plots value functions and replicates the right hand panel of Fig
 
 
 We can use the results of the computation to study the default probability
-:math:`\delta(B', y)` defined in :eq:`delta`
+:math:`\delta(B', y)` defined in :eq:`delta`.
 
 The next plot shows these default probabilities over :math:`(B', y)` as a heat
 map
@@ -424,17 +424,17 @@ map
 .. figure:: /_static/lecture_specific/arellano/arellano_default_probs.png
 
 As anticipated, the probability that the government chooses to default in the
-following period increases with indebtedness and falls with income
+following period increases with indebtedness and falls with income.
 
-Next let's run a time series simulation of :math:`\{y_t\}`, :math:`\{B_t\}` and :math:`q(B_{t+1}, y_t)`
+Next let's run a time series simulation of :math:`\{y_t\}`, :math:`\{B_t\}` and :math:`q(B_{t+1}, y_t)`.
 
 The grey vertical bars correspond to periods when the economy is excluded from financial markets because of a past default
 
 .. figure:: /_static/lecture_specific/arellano/arellano_time_series.png
 
-One notable feature of the simulated data is the nonlinear response of interest rates
+One notable feature of the simulated data is the nonlinear response of interest rates.
 
-Periods of relative stability are followed by sharp spikes in the discount rate on government debt
+Periods of relative stability are followed by sharp spikes in the discount rate on government debt.
 
 
 Exercises

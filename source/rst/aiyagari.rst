@@ -21,15 +21,15 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture, we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`
+In this lecture, we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`.
 
 .. only:: html
 
-    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/lecture_specific/aiyagari/aiyagari_obit.pdf>`
+    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/lecture_specific/aiyagari/aiyagari_obit.pdf>`.
 
 .. only:: latex
 
-    We begin by discussing an example of a Bewley model due to `Rao Aiyagari <https://lectures.quantecon.org/_downloads/aiyagari_obit.pdf>`__
+    We begin by discussing an example of a Bewley model due to `Rao Aiyagari <https://lectures.quantecon.org/_downloads/aiyagari_obit.pdf>`__.
 
 The model features
 

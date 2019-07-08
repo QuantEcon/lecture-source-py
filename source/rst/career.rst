@@ -13,7 +13,7 @@ Job Search IV: Modeling Career Choice
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -23,11 +23,11 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-Next, we study a computational problem concerning career and job choices
+Next, we study a computational problem concerning career and job choices.
 
-The model is originally due to Derek Neal :cite:`Neal1999`
+The model is originally due to Derek Neal :cite:`Neal1999`.
 
-This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5
+This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5.
 
 We begin with some imports
 
@@ -84,7 +84,7 @@ past values, with
 * :math:`\epsilon_t \sim G`
 
 Notice that the worker does not have the option to retain a job but redraw
-a career --- starting a new career always requires starting a new job
+a career --- starting a new career always requires starting a new job.
 
 A young worker aims to maximize the expected sum of discounted wages
 
@@ -94,11 +94,11 @@ A young worker aims to maximize the expected sum of discounted wages
     \mathbb{E} \sum_{t=0}^{\infty} \beta^t w_t
 
 
-subject to the choice restrictions specified above
+subject to the choice restrictions specified above.
 
 Let :math:`v(\theta, \epsilon)` denote the value function, which is the
 maximum of :eq:`exw` overall feasible (career, job) policies, given the
-initial state :math:`(\theta, \epsilon)`
+initial state :math:`(\theta, \epsilon)`.
 
 The value function obeys
 
@@ -119,7 +119,7 @@ where
     \end{aligned}
 
 
-Evidently :math:`I`, :math:`II` and :math:`III` correspond to "stay put", "new job" and "new life", respectively
+Evidently :math:`I`, :math:`II` and :math:`III` correspond to "stay put", "new job" and "new life", respectively.
 
 Parameterization
 ------------------
@@ -134,7 +134,7 @@ As in :cite:`Ljungqvist2012`, section 6.5, we will focus on a discrete version o
 * ``β = 0.95``
 
 The distributions :math:`F` and :math:`G` are discrete distributions
-generating draws from the grid points ``np.linspace(0, B, grid_size)``
+generating draws from the grid points ``np.linspace(0, B, grid_size)``.
 
 A very useful family of discrete distributions is the Beta-binomial family,
 with probability mass function
@@ -216,7 +216,7 @@ default parameterizations of the model and an initial guess for the value functi
 
 
 The following function takes an instance of ``CareerWorkerProblem`` and returns
-the corresponding Bellman operator :math:`T` and the greedy policy function
+the corresponding Bellman operator :math:`T` and the greedy policy function.
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
 :math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
@@ -358,7 +358,7 @@ Interpretation:
 * If both job and career are good, the worker will stay put
 
 
-Notice that the worker will always hold on to a sufficiently good career, but not necessarily hold on to even the best paying job
+Notice that the worker will always hold on to a sufficiently good career, but not necessarily hold on to even the best paying job.
 
 The reason is that high lifetime wages require both variables to be large, and
 the worker cannot change careers without changing jobs
@@ -375,13 +375,13 @@ Exercise 1
 
 Using the default parameterization in the class ``CareerWorkerProblem``,
 generate and plot typical sample paths for :math:`\theta` and :math:`\epsilon`
-when the worker follows the optimal policy
+when the worker follows the optimal policy.
 
 In particular, modulo randomness, reproduce the following figure (where the horizontal axis represents time)
 
 .. figure:: /_static/lecture_specific/career/career_solutions_ex1_py.png
 
-Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use ``quantecon.random.draw()``
+Hint: To generate the draws from the distributions :math:`F` and :math:`G`, use ``quantecon.random.draw()``.
 
 
 .. _career_ex2:
@@ -390,7 +390,7 @@ Exercise 2
 ----------------
 
 Let's now consider how long it takes for the worker to settle down to a
-permanent job, given a starting point of :math:`(\theta, \epsilon) = (0, 0)`
+permanent job, given a starting point of :math:`(\theta, \epsilon) = (0, 0)`.
 
 In other words, we want to study the distribution of the random variable
 
@@ -400,7 +400,7 @@ In other words, we want to study the distribution of the random variable
 
 
 Evidently, the worker's job becomes permanent if and only if :math:`(\theta_t, \epsilon_t)` enters the
-"stay put" region of :math:`(\theta, \epsilon)` space
+"stay put" region of :math:`(\theta, \epsilon)` space.
 
 Letting :math:`S` denote this region, :math:`T^*` can be expressed as the
 first passage time to :math:`S` under the optimal policy:
@@ -410,9 +410,9 @@ first passage time to :math:`S` under the optimal policy:
     T^* := \inf\{t \geq 0 \,|\, (\theta_t, \epsilon_t) \in S\}
 
 
-Collect 25,000 draws of this random variable and compute the median (which should be about 7)
+Collect 25,000 draws of this random variable and compute the median (which should be about 7).
 
-Repeat the exercise with :math:`\beta=0.99` and interpret the change
+Repeat the exercise with :math:`\beta=0.99` and interpret the change.
 
 
 .. _career_ex3:
@@ -421,7 +421,7 @@ Exercise 3
 ----------------
 
 Set the parameterization to ``G_a = G_b = 100`` and generate a new optimal policy
-figure -- interpret
+figure -- interpret.
 
 
 Solutions
@@ -431,7 +431,7 @@ Solutions
 Exercise 1
 ----------
 
-Simulate job/career paths
+Simulate job/career paths.
 
 In reading the code, recall that ``optimal_policy[i, j]`` = policy at
 :math:`(\theta_i, \epsilon_j)` = either 1, 2 or 3; meaning 'stay put',
@@ -511,11 +511,11 @@ The median for the original parameterization can be computed as follows
 
 To compute the median with :math:`\beta=0.99` instead of the default
 value :math:`\beta=0.95`, replace ``cw = CareerWorkerProblem()`` with
-``cw = CareerWorkerProblem(β=0.99)``
+``cw = CareerWorkerProblem(β=0.99)``.
 
-The medians are subject to randomness but should be about 7 and 14 respectively
+The medians are subject to randomness but should be about 7 and 14 respectively.
 
-Not surprisingly, more patient workers will wait longer to settle down to their final job
+Not surprisingly, more patient workers will wait longer to settle down to their final job.
 
 Exercise 3
 ----------
@@ -542,4 +542,4 @@ Exercise 3
 In the new figure, you see that the region for which the worker
 stays put has grown because the distribution for :math:`\epsilon`
 has become more concentrated around the mean, making high-paying jobs
-less realistic
+less realistic.
