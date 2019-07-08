@@ -20,22 +20,22 @@ In this lecture we will
 * Showcase some of its abilities
 * Compare it to some other languages
 
-At this stage, it's **not** our intention that you try to replicate all you see
+At this stage, it's **not** our intention that you try to replicate all you see.
 
-We will work through what follows at a slow pace later in the lecture series
+We will work through what follows at a slow pace later in the lecture series.
 
-Our only objective for this lecture is to give you some feel of what Python is, and what it can do
+Our only objective for this lecture is to give you some feel of what Python is, and what it can do.
 
 
 
 What's Python?
 ============================
 
-`Python <https://www.python.org>`_ is a general-purpose programming language conceived in 1989 by Dutch programmer `Guido van Rossum <https://en.wikipedia.org/wiki/Guido_van_Rossum>`_
+`Python <https://www.python.org>`_ is a general-purpose programming language conceived in 1989 by Dutch programmer `Guido van Rossum <https://en.wikipedia.org/wiki/Guido_van_Rossum>`_.
 
-Python is free and open source, with development coordinated through the `Python Software Foundation <https://www.python.org/psf/>`_
+Python is free and open source, with development coordinated through the `Python Software Foundation <https://www.python.org/psf/>`_.
 
-Python has experienced rapid adoption in the last decade and is now one of the most popular programming languages
+Python has experienced rapid adoption in the last decade and is now one of the most popular programming languages.
 
 
 Common Uses
@@ -65,7 +65,7 @@ Used extensively by Internet service and high tech companies such as
 
 * `Walt Disney Animation <https://pydanny-event-notes.readthedocs.org/en/latest/socalpiggies/20110526-wda.html>`_, etc., etc.
 
-Often used to `teach computer science and programming <http://cacm.acm.org/blogs/blog-cacm/176450-python-is-now-the-most-popular-introductory-teaching-language-at-top-us-universities/fulltext>`_
+Often used to `teach computer science and programming <http://cacm.acm.org/blogs/blog-cacm/176450-python-is-now-the-most-popular-introductory-teaching-language-at-top-us-universities/fulltext>`_.
 
 For reasons we will discuss, Python is particularly popular within the scientific community
 
@@ -80,19 +80,19 @@ The following chart, produced using Stack Overflow Trends, shows one measure of 
 
 .. figure:: /_static/lecture_specific/about_py/python_vs_rest.png
 
-The figure indicates not only that Python is widely used but also that adoption of Python has accelerated significantly since 2012
+The figure indicates not only that Python is widely used but also that adoption of Python has accelerated significantly since 2012.
 
 We suspect this is driven at least in part by uptake in the scientific
-domain, particularly in rapidly growing fields like data science
+domain, particularly in rapidly growing fields like data science.
 
-For example, the popularity of `pandas <http://pandas.pydata.org/>`_, a library for data analysis with Python has exploded, as seen here
+For example, the popularity of `pandas <http://pandas.pydata.org/>`_, a library for data analysis with Python has exploded, as seen here.
 
 (The corresponding time path for MATLAB is shown for comparison)
 
 .. figure:: /_static/lecture_specific/about_py/pandas_vs_matlab.png
 
 Note that pandas takes off in 2012, which is the same year that we seek
-Python's popularity begin to spike in the first figure
+Python's popularity begin to spike in the first figure.
 
 Overall, it's clear that
 
@@ -106,9 +106,9 @@ Overall, it's clear that
 Features
 ----------
 
-Python is a `high-level language <https://en.wikipedia.org/wiki/High-level_programming_language>`_ suitable for rapid development
+Python is a `high-level language <https://en.wikipedia.org/wiki/High-level_programming_language>`_ suitable for rapid development.
 
-It has a relatively small core language supported by many libraries
+It has a relatively small core language supported by many libraries.
 
 Other features:
 
@@ -124,17 +124,17 @@ Syntax and Design
 .. index::
     single: Python; syntax and design
 
-One nice feature of Python is its elegant syntax --- we'll see many examples later on
+One nice feature of Python is its elegant syntax --- we'll see many examples later on.
 
-Elegant code might sound superfluous but in fact it's highly beneficial because it makes the syntax easy to read and easy to remember
+Elegant code might sound superfluous but in fact it's highly beneficial because it makes the syntax easy to read and easy to remember.
 
-Remembering how to read from files, sort dictionaries and other such routine tasks means that you don't need to break your flow in order to hunt down correct syntax
+Remembering how to read from files, sort dictionaries and other such routine tasks means that you don't need to break your flow in order to hunt down correct syntax.
 
-Closely related to elegant syntax is an elegant design
+Closely related to elegant syntax is an elegant design.
 
-Features like iterators, generators, decorators, list comprehensions, etc. make Python highly expressive, allowing you to get more done with less code
+Features like iterators, generators, decorators, list comprehensions, etc. make Python highly expressive, allowing you to get more done with less code.
 
-`Namespaces <https://en.wikipedia.org/wiki/Namespace>`_ improve productivity by cutting down on bugs and syntax errors
+`Namespaces <https://en.wikipedia.org/wiki/Namespace>`_ improve productivity by cutting down on bugs and syntax errors.
 
 
 
@@ -145,7 +145,7 @@ Scientific Programming
 .. index::
     single: scientific programming
 
-Python has become one of the core languages of scientific computing
+Python has become one of the core languages of scientific computing.
 
 It's either the dominant player or a major player in
 
@@ -157,7 +157,7 @@ It's either the dominant player or a major player in
 * `Meteorology <https://pypi.org/project/meteorology/>`_
 * etc., etc.
 
-Its popularity in economics is also beginning to rise
+Its popularity in economics is also beginning to rise.
 
 This section briefly showcases some examples of Python for scientific programming
 
@@ -170,9 +170,9 @@ Numerical Programming
 .. index::
     single: scientific programming; numeric
 
-Fundamental matrix and array processing capabilities are provided by the excellent `NumPy <http://www.numpy.org/>`_ library
+Fundamental matrix and array processing capabilities are provided by the excellent `NumPy <http://www.numpy.org/>`_ library.
 
-NumPy provides the basic array data type plus some simple processing operations
+NumPy provides the basic array data type plus some simple processing operations.
 
 For example, let's build some arrays
 
@@ -192,7 +192,7 @@ Now let's take the inner product:
 
     b @ c
 
-The number you see here might vary slightly but it's essentially zero
+The number you see here might vary slightly but it's essentially zero.
 
 (For older versions of Python and NumPy you need to use the `np.dot <http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html>`_ function)
 
@@ -201,7 +201,7 @@ The number you see here might vary slightly but it's essentially zero
 .. index:
     single: SciPy
 
-The `SciPy <http://www.scipy.org>`_ library is built on top of NumPy and provides additional functionality
+The `SciPy <http://www.scipy.org>`_ library is built on top of NumPy and provides additional functionality.
 
 .. _tuple_unpacking_example:
 
@@ -261,7 +261,7 @@ Example 3D plot
 
 .. figure:: /_static/lecture_specific/about_py/career_vf.png
 
-More examples can be found in the `Matplotlib thumbnail gallery <http://matplotlib.org/gallery.html>`_
+More examples can be found in the `Matplotlib thumbnail gallery <http://matplotlib.org/gallery.html>`_.
 
 Other graphics libraries include
 
@@ -274,7 +274,7 @@ Other graphics libraries include
 Symbolic Algebra
 --------------------
 
-It's useful to be able to manipulate symbolic expressions, as in Mathematica or Maple
+It's useful to be able to manipulate symbolic expressions, as in Mathematica or Maple.
 
 .. index::
     single: SymPy
@@ -325,25 +325,25 @@ and calculate limits, derivatives and integrals
     diff(sin(x), x)
 
 
-The beauty of importing this functionality into Python is that we are working within a fully fledged programming language
+The beauty of importing this functionality into Python is that we are working within a fully fledged programming language.
 
-Can easily create tables of derivatives, generate LaTeX output, add it to figures, etc., etc.
+Can easily create tables of derivatives, generate LaTeX output, add it to figures, etc., etc..
 
 
 Statistics
 --------------------
 
 Python's data manipulation and statistics libraries have improved rapidly over
-the last few years
+the last few years.
 
 Pandas
 ^^^^^^
 .. index::
     single: Pandas
 
-One of the most popular libraries for working with data is `pandas <http://pandas.pydata.org/>`_
+One of the most popular libraries for working with data is `pandas <http://pandas.pydata.org/>`_.
 
-Pandas is fast, efficient, flexible and well designed
+Pandas is fast, efficient, flexible and well designed.
 
 Here's a simple example, using some fake data
 
@@ -392,7 +392,7 @@ Other Useful Statistics Libraries
 Networks and Graphs
 --------------------
 
-Python has many libraries for studying graphs
+Python has many libraries for studying graphs.
 
 .. index::
     single: NetworkX
@@ -443,12 +443,12 @@ Cloud Computing
 .. index::
     single: cloud computing
 
-Running your Python code on massive servers in the cloud is becoming easier and easier
+Running your Python code on massive servers in the cloud is becoming easier and easier.
 
 .. index::
     single: cloud computing; anaconda enterprise
 
-A nice example is `Anaconda Enterprise <https://www.anaconda.com/enterprise/>`_
+A nice example is `Anaconda Enterprise <https://www.anaconda.com/enterprise/>`_.
 
 See also
 
@@ -508,7 +508,7 @@ Apart from the cloud computing options listed above, you might like to consider
 Other Developments
 ------------------------
 
-There are many other interesting developments with scientific programming in Python
+There are many other interesting developments with scientific programming in Python.
 
 Some representative examples include
 
