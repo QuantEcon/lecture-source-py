@@ -360,7 +360,7 @@ We'll get many of them by deducing implications of the equality
 
 .. math:: e^{i(\omega + \theta)} = e^{i\omega} e^{i\theta}
 
-For example, we'll calculate identities for.
+For example, we'll calculate identities for
 
 :math:`\cos{(\omega + \theta)}` and :math:`\sin{(\omega + \theta)}`.
 
