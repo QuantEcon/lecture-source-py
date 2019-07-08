@@ -22,7 +22,7 @@ setup:
 	pip install -r requirements.txt
 
 preview:
-ifeq ($(target), website)
+ifneq (,$(filter $(target),website Website))
 	cd _build/jupyter_html/ && python -m http.server
 else
 ifdef lecture
@@ -39,14 +39,14 @@ clean-website:
 	rm -rf $(BUILDWEBSITE)
 
 coverage:
-ifeq ($(parallel), True)
+ifneq (,$(filter $(parallel),true True))
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDCOVERAGE)" $(SPHINXOPTS) $(O) -D jupyter_make_coverage=1 -D jupyter_execute_notebooks=1 -D jupyter_ignore_skip_test=0 -D jupyter_template_coverage_file_path="theme/templates/error_report_template.html" -D jupyter_number_workers=$(CORES) 
 else
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDCOVERAGE)" $(SPHINXOPTS) $(O) -D jupyter_make_coverage=1 -D jupyter_execute_notebooks=1 -D jupyter_ignore_skip_test=0 -D jupyter_template_coverage_file_path="theme/templates/error_report_template.html"
 endif
 
 website:
-ifeq ($(parallel), True)
+ifneq (,$(filter $(parallel),true True))
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_images_urlpath="https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="theme/templates/lectures-nbconvert.tpl" -D jupyter_download_nb_urlpath="https://lectures.quantecon.org/" -D jupyter_number_workers=$(CORES)
 
 else
