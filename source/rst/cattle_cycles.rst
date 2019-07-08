@@ -17,7 +17,7 @@ Cattle Cycles
 
 
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
 In addition to what's in Anaconda, this lecture uses the quantecon library
 
@@ -27,10 +27,10 @@ In addition to what's in Anaconda, this lecture uses the quantecon library
   !pip install --upgrade quantecon
 
 This lecture uses the DLE class to construct instances of  the "Cattle Cycles" model
-of Rosen, Murphy and Scheinkman (1994) :cite:`rosen1994cattle`
+of Rosen, Murphy and Scheinkman (1994) :cite:`rosen1994cattle`.
 
 That paper constructs a rational expectations equilibrium model to
-understand sources of recurrent cycles in US cattle stocks and prices
+understand sources of recurrent cycles in US cattle stocks and prices.
 
 We make the following imports
 
@@ -49,19 +49,19 @@ The Model
 ==========
 
 The model features a static linear demand curve and a "time-to-grow"
-structure for cattle
+structure for cattle.
 
 Let :math:`p_t` be the price of slaughtered beef, :math:`m_t` the cost
 of preparing an animal for slaughter, :math:`h_t` the holding cost for a
 mature animal, :math:`\gamma_1 h_t` the holding cost for a yearling, and
-:math:`\gamma_0 h_t` the holding cost for a calf
+:math:`\gamma_0 h_t` the holding cost for a calf.
 
 The cost processes :math:`\{h_t, m_t \}_{t=0}^\infty` are exogenous,
 while the price process :math:`\{p_t \}_{t=0}^\infty` is determined
-within a rational expectations equilibrium
+within a rational expectations equilibrium.
 
 Let :math:`x_t` be the breeding stock, and :math:`y_t` be the total
-stock of cattle
+stock of cattle.
 
 The law of motion for the breeding stock is
 
@@ -69,14 +69,14 @@ The law of motion for the breeding stock is
 
 where :math:`g < 1` is the number of calves that each member of the
 breeding stock has each year, and :math:`c_t` is the number of cattle
-slaughtered
+slaughtered.
 
 The total headcount of cattle is
 
 .. math::  y_t = x_t + gx_{t-1} + gx_{t-2}
 
 This equation states that the total number of cattle equals the sum of
-adults, calves and yearlings, respectively
+adults, calves and yearlings, respectively.
 
 A representative farmer chooses :math:`\{c_t, x_t\}` to maximize:
 
@@ -84,17 +84,17 @@ A representative farmer chooses :math:`\{c_t, x_t\}` to maximize:
 
 subject to the law of motion for :math:`x_t`, taking as given the
 stochastic laws of motion for the exogenous processes, the equilibrium
-price process, and the initial state [:math:`x_{-1},x_{-2},x_{-3}`]
+price process, and the initial state [:math:`x_{-1},x_{-2},x_{-3}`].
 
 **Remark** The :math:`\psi_j` parameters are very small quadratic costs
 that are included for technical reasons to make well posed and well
 behaved the linear quadratic dynamic programming problem solved by the
 fictitious planner who in effect chooses equilibrium quantities and shadow
-prices
+prices.
 
 Demand for beef is government by :math:`c_t = a_0 - a_1p_t + \tilde d_t`
 where :math:`\tilde d_t` is a stochastic process with mean zero,
-representing a demand shifter
+representing a demand shifter.
 
 Mapping into HS2013 Framework
 ==============================
@@ -104,10 +104,10 @@ Preferences
 
 We set
 :math:`\Lambda = 0, \Delta_h = 0, \Theta_h = 0, \Pi = \alpha_1^{-\frac{1}{2}}`
-and :math:`b_t = \Pi \tilde d_t + \Pi \alpha_0`
+and :math:`b_t = \Pi \tilde d_t + \Pi \alpha_0`.
 
 With these settings, the FOC for the household's problem becomes the
-demand curve of the "Cattle Cycles" model
+demand curve of the "Cattle Cycles" model.
 
 Technology
 -----------
@@ -128,7 +128,7 @@ To capture the law of motion for cattle, we set
       \right]
 
 
-(where :math:`i_t = - c_t`)
+(where :math:`i_t = - c_t`).
 
 To capture the production of cattle, we set
 
@@ -267,10 +267,10 @@ We set parameters to those used by :cite:`rosen1994cattle`
                     f2 * uh, f4 * uh, f6 * uh, f8 * um))
 
 Notice that we have set :math:`\rho_1 = \rho_2 = 0`, so :math:`h_t` and
-:math:`m_t` consist of a constant and a white noise component
+:math:`m_t` consist of a constant and a white noise component.
 
 We set up the economy using tuples for information, technology and
-preference matrices below
+preference matrices below.
 
 We also construct two extra information matrices, corresponding to cases
 when :math:`\rho_3 = 1` and :math:`\rho_3 = 0` (as opposed to the
@@ -317,7 +317,7 @@ baseline case of :math:`\rho_3 = 0.6`)
     Econ1.compute_sequence(x0, ts_length=100)
 
 :cite:`rosen1994cattle` use the model to understand the
-sources of recurrent cycles in total cattle stocks
+sources of recurrent cycles in total cattle stocks.
 
 Plotting :math:`y_t` for a simulation of their model shows its ability
 to generate cycles in quantities
@@ -334,7 +334,7 @@ to generate cycles in quantities
 
 In their Figure 3, :cite:`rosen1994cattle` plot the impulse response functions
 of consumption and the breeding stock of cattle to the demand shock,
-:math:`\tilde d_t`, under the three different values of :math:`\rho_3`
+:math:`\tilde d_t`, under the three different values of :math:`\rho_3`.
 
 We replicate their Figure 3 below
 
@@ -373,7 +373,7 @@ depending on the persistence of the demand shock:
 
 In Figure 4 of their paper, :cite:`rosen1994cattle` plot the response to a demand shock
 of the breeding stock *and* the total stock, for :math:`\rho_3 = 0` and
-:math:`\rho_3 = 0.6`
+:math:`\rho_3 = 0.6`.
 
 We replicate their Figure 4 below
 
@@ -397,4 +397,4 @@ We replicate their Figure 4 below
 The fact that :math:`y_t` is a weighted moving average of :math:`x_t`
 creates a humped shape response of the total stock in response to demand
 shocks, contributing to the cyclicality seen in the first graph of this
-lecture
+lecture.

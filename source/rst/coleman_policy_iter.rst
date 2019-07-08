@@ -10,7 +10,7 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -21,23 +21,23 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture, we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model
+In this lecture, we'll continue our :doc:`earlier study <optgrowth>` of the stochastic optimal growth model.
 
-In that lecture, we solved the associated discounted dynamic programming problem using value function iteration
+In that lecture, we solved the associated discounted dynamic programming problem using value function iteration.
 
-The beauty of this technique is its broad applicability
+The beauty of this technique is its broad applicability.
 
 With numerical problems, however, we can often attain higher efficiency in specific
-applications by deriving methods that are carefully tailored to the application at hand
+applications by deriving methods that are carefully tailored to the application at hand.
 
 The stochastic optimal growth model has plenty of structure to exploit for this purpose,
-especially when we adopt some concavity and smoothness assumptions over primitives
+especially when we adopt some concavity and smoothness assumptions over primitives.
 
 We'll use this structure to obtain an **Euler equation**  based method that's more efficient
-than value function iteration for this and some other closely related applications
+than value function iteration for this and some other closely related applications.
 
 In a :doc:`subsequent lecture <egm_policy_iter>`, we'll see that the numerical implementation
-part of the Euler equation method can be further adjusted to obtain even more efficiency
+part of the Euler equation method can be further adjusted to obtain even more efficiency.
 
 Let's start with some imports
 
@@ -67,7 +67,7 @@ Let's take the model set out in :doc:`the stochastic growth model lecture <optgr
 
 #. :math:`\lim_{k \to 0} f'(k) = \infty` and :math:`\lim_{k \to \infty} f'(k) = 0`
 
-The last two conditions are usually called **Inada conditions**
+The last two conditions are usually called **Inada conditions**.
 
 
 Recall the Bellman equation
@@ -83,9 +83,9 @@ Recall the Bellman equation
     y \in \mathbb R_+
 
 
-Let the optimal consumption policy be denoted by :math:`\sigma^*`
+Let the optimal consumption policy be denoted by :math:`\sigma^*`.
 
-We know that :math:`\sigma^*` is a :math:`v^*` greedy policy so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30`
+We know that :math:`\sigma^*` is a :math:`v^*` greedy policy so that :math:`\sigma^*(y)` is the maximizer in :eq:`cpi_fpb30`.
 
 The conditions above imply that
 
@@ -100,7 +100,7 @@ The conditions above imply that
 
     (v^*)'(y) = u' (\sigma^*(y) ) := (u' \circ \sigma^*)(y)
 
-The last result is called the **envelope condition** due to its relationship with the `envelope theorem <https://en.wikipedia.org/wiki/Envelope_theorem>`_
+The last result is called the **envelope condition** due to its relationship with the `envelope theorem <https://en.wikipedia.org/wiki/Envelope_theorem>`_.
 
 To see why :eq:`cpi_env` might be valid, write the Bellman equation in the equivalent
 form
@@ -113,9 +113,9 @@ form
         \right\},
 
 
-differentiate naively with respect to :math:`y`,  and then  evaluate at the optimum
+differentiate naively with respect to :math:`y`,  and then  evaluate at the optimum.
 
-Section 12.1 of `EDTC <http://johnstachurski.net/edtc.html>`_ contains full proofs of these results, and closely related discussions can be found in many other texts
+Section 12.1 of `EDTC <http://johnstachurski.net/edtc.html>`_ contains full proofs of these results, and closely related discussions can be found in many other texts.
 
 
 Differentiability of the value function and interiority of the optimal policy
@@ -146,9 +146,9 @@ We can think of the Euler equation as a functional equation
     = \beta \int (u'\circ \sigma)(f(y - \sigma(y)) z) f'(y - \sigma(y)) z \phi(dz)
 
 
-over interior consumption policies :math:`\sigma`, one solution of which is the optimal policy :math:`\sigma^*`
+over interior consumption policies :math:`\sigma`, one solution of which is the optimal policy :math:`\sigma^*`.
 
-Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtain :math:`\sigma^*`
+Our aim is to solve the functional equation :eq:`cpi_euler_func` and hence obtain :math:`\sigma^*`.
 
 
 
@@ -168,10 +168,10 @@ Recall the Bellman operator
 
 Just as we introduced the Bellman operator to solve the Bellman equation, we
 will now introduce an operator over policies to help us solve the Euler
-equation
+equation.
 
 This operator :math:`K` will act on the set of all :math:`\sigma \in \Sigma`
-that are continuous, strictly increasing and interior (i.e., :math:`0 < \sigma(y) < y` for all strictly positive :math:`y`)
+that are continuous, strictly increasing and interior (i.e., :math:`0 < \sigma(y) < y` for all strictly positive :math:`y`).
 
 Henceforth we denote this set of policies by :math:`\mathscr P`
 
@@ -187,16 +187,16 @@ Henceforth we denote this set of policies by :math:`\mathscr P`
 
 
 We call this operator the **Coleman-Reffett operator** to acknowledge the work of
-:cite:`Coleman1990` and :cite:`Reffett1996`
+:cite:`Coleman1990` and :cite:`Reffett1996`.
 
 In essence, :math:`K\sigma` is the consumption policy that the Euler equation tells
-you to choose today when your future consumption policy is :math:`\sigma`
+you to choose today when your future consumption policy is :math:`\sigma`.
 
 The  important thing to note about :math:`K` is that, by
 construction, its fixed points coincide with solutions to the functional
-equation :eq:`cpi_euler_func`
+equation :eq:`cpi_euler_func`.
 
-In particular, the optimal policy :math:`\sigma^*` is a fixed point
+In particular, the optimal policy :math:`\sigma^*` is a fixed point.
 
 Indeed, for fixed :math:`y`, the value :math:`K\sigma^*(y)` is the :math:`c` that
 solves
@@ -207,7 +207,7 @@ solves
     = \beta \int (u' \circ \sigma^*) (f(y - c) z ) f'(y - c) z \phi(dz)
 
 
-In view of the Euler equation, this is exactly :math:`\sigma^*(y)`
+In view of the Euler equation, this is exactly :math:`\sigma^*(y)`.
 
 
 
@@ -218,7 +218,7 @@ Is the Coleman-Reffett Operator Well Defined?
 In particular, is there always a unique :math:`c \in (0, y)` that solves
 :eq:`cpi_coledef`?
 
-The answer is yes, under our assumptions
+The answer is yes, under our assumptions.
 
 For any :math:`\sigma \in \mathscr P`, the right side of :eq:`cpi_coledef`
 
@@ -234,10 +234,10 @@ The left side of :eq:`cpi_coledef`
 * diverges to :math:`+\infty` as :math:`c \downarrow 0`
 
 
-Sketching these curves and using the information above will convince you that they cross exactly once as :math:`c` ranges over :math:`(0, y)`
+Sketching these curves and using the information above will convince you that they cross exactly once as :math:`c` ranges over :math:`(0, y)`.
 
 With a bit more analysis, one can show in addition that :math:`K \sigma \in \mathscr P`
-whenever :math:`\sigma \in \mathscr P`
+whenever :math:`\sigma \in \mathscr P`.
 
 
 
@@ -249,32 +249,32 @@ How does Euler equation time iteration compare with value function iteration?
 Both can be used to compute the optimal policy, but is one faster or more
 accurate?
 
-There are two parts to this story
+There are two parts to this story.
 
-First, on a theoretical level, the two methods are essentially isomorphic
+First, on a theoretical level, the two methods are essentially isomorphic.
 
-In particular, they converge at  the same rate
+In particular, they converge at  the same rate.
 
-We'll prove this in just a moment
+We'll prove this in just a moment.
 
-The other side of the story is the accuracy of the numerical implementation
+The other side of the story is the accuracy of the numerical implementation.
 
-It turns out that, once we actually implement these two routines, time iteration is more accurate than value function iteration
+It turns out that, once we actually implement these two routines, time iteration is more accurate than value function iteration.
 
-More on this below
+More on this below.
 
 
 Equivalent Dynamics
 ---------------------
 
-Let's talk about the theory first
+Let's talk about the theory first.
 
 To explain the connection between the two algorithms, it helps to understand
-the notion of equivalent dynamics
+the notion of equivalent dynamics.
 
-(This concept is very helpful in many other contexts as well)
+(This concept is very helpful in many other contexts as well).
 
-Suppose that we have a function :math:`g \colon X \to X` where :math:`X` is a given set
+Suppose that we have a function :math:`g \colon X \to X` where :math:`X` is a given set.
 
 The pair :math:`(X, g)` is sometimes called a **dynamical system** and we
 associate it with trajectories of the form
@@ -285,13 +285,13 @@ associate it with trajectories of the form
 
 
 Equivalently, :math:`x_t = g^t(x_0)`, where :math:`g` is the :math:`t`-th
-composition of :math:`g` with itself
+composition of :math:`g` with itself.
 
 Here's the picture
 
 .. figure:: /_static/lecture_specific/coleman_policy_iter/col_pol_composition.png
 
-Now let another function :math:`h \colon Y \to Y` where :math:`Y` is another set
+Now let another function :math:`h \colon Y \to Y` where :math:`Y` is another set.
 
 
 
@@ -327,7 +327,7 @@ Here's a similar figure that traces out the action of the maps on a point
 
 .. figure:: /_static/lecture_specific/coleman_policy_iter/col_pol_bij2.png
 
-Now, it's easy to check from :eq:`cpi_ghcom` that :math:`g^2 = \tau^{-1} \circ h^2 \circ \tau` holds
+Now, it's easy to check from :eq:`cpi_ghcom` that :math:`g^2 = \tau^{-1} \circ h^2 \circ \tau` holds.
 
 In fact, if you like proofs by induction, you won't have trouble showing that
 
@@ -336,7 +336,7 @@ In fact, if you like proofs by induction, you won't have trouble showing that
     g^n = \tau^{-1} \circ h^n \circ \tau
 
 
-is valid for all :math:`n`
+is valid for all :math:`n`.
 
 What does this tell us?
 
@@ -346,7 +346,7 @@ It tells us that the following are equivalent
 
 * shift :math:`x` to :math:`Y` using :math:`\tau`,  iterate :math:`n` times with :math:`h` starting at :math:`\tau(x)` and shift the result :math:`h^n(\tau(x))` back to :math:`X` using :math:`\tau^{-1}`
 
-We end up with exactly the same object
+We end up with exactly the same object.
 
 
 Back to Economics
@@ -355,18 +355,18 @@ Back to Economics
 Have you guessed where this is leading?
 
 What we're going to show now is that the operators :math:`T` and :math:`K`
-commute under a certain bijection
+commute under a certain bijection.
 
-The implication is that they have exactly the same rate of convergence
+The implication is that they have exactly the same rate of convergence.
 
 To make life a little easier, we'll assume in the following analysis (although not
-always in our applications) that :math:`u(0) = 0`
+always in our applications) that :math:`u(0) = 0`.
 
 
 A Bijection
 ^^^^^^^^^^^^^
 
-Let :math:`\mathscr V` be all strictly concave, continuously differentiable functions :math:`v` mapping :math:`\mathbb R_+` to itself and satisfying :math:`v(0) = 0` and :math:`v'(y) > u'(y)` for all positive :math:`y`
+Let :math:`\mathscr V` be all strictly concave, continuously differentiable functions :math:`v` mapping :math:`\mathbb R_+` to itself and satisfying :math:`v(0) = 0` and :math:`v'(y) > u'(y)` for all positive :math:`y`.
 
 For :math:`v \in \mathscr V` let
 
@@ -379,9 +379,9 @@ Although we omit details, :math:`\sigma := M v` is actually the unique
 
 * See proposition 12.1.18 of `EDTC <http://johnstachurski.net/edtc.html>`__
 
-It turns out that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`
+It turns out that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`.
 
-A (solved) exercise below asks you to confirm this
+A (solved) exercise below asks you to confirm this.
 
 
 Commutative Operators
@@ -409,11 +409,11 @@ Hence, :math:`T` and :math:`K` converge at exactly the same rate!
 Implementation
 ================
 
-We've just shown that the operators :math:`T` and :math:`K` have the same rate of convergence
+We've just shown that the operators :math:`T` and :math:`K` have the same rate of convergence.
 
-However, it turns out that, once numerical approximation is taken into account, significant differences arise
+However, it turns out that, once numerical approximation is taken into account, significant differences arise.
 
-In particular, the image of policy functions under :math:`K` can be calculated faster and with greater accuracy than the image of value functions under :math:`T`
+In particular, the image of policy functions under :math:`K` can be calculated faster and with greater accuracy than the image of value functions under :math:`T`.
 
 
 Our intuition for this result is that
@@ -452,9 +452,9 @@ Here's some code that returns the Coleman-Reffett operator, :math:`K`
 
 .. literalinclude:: /_static/lecture_specific/coleman_policy_iter/coleman_operator.py
 
-It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>`
+It has some similarities to the code for the Bellman operator in our :doc:`optimal growth lecture <optgrowth>`.
 
-For example, it evaluates integrals by Monte Carlo and approximates functions using linear interpolation
+For example, it evaluates integrals by Monte Carlo and approximates functions using linear interpolation.
 
 Here's that Bellman operator code again, which needs to be executed because we'll use it in some tests below
 
@@ -470,7 +470,7 @@ Testing on the Log / Cobb--Douglas Case
 
 As we :doc:`did for value function iteration <optgrowth>`, let's start by
 testing our method in the presence of a model that does have an analytical
-solution
+solution.
 
 
 First, we generate an instance of ``OptimalGrowthModel`` and return the corresponding
@@ -520,10 +520,10 @@ theory
 
 
 We can't really distinguish the two plots, so we are looking good, at least
-for this test
+for this test.
 
 Next, let's try iterating from an arbitrary initial condition and see if we
-converge towards :math:`\sigma^*`
+converge towards :math:`\sigma^*`.
 
 
 The initial condition we'll use is the one that eats the whole pie: :math:`\sigma(y) = y`
@@ -549,9 +549,9 @@ The initial condition we'll use is the one that eats the whole pie: :math:`\sigm
     plt.show()
 
 
-We see that the policy has converged nicely, in only a few steps
+We see that the policy has converged nicely, in only a few steps.
 
-Now let's compare the accuracy of iteration between the operators
+Now let's compare the accuracy of iteration between the operators.
 
 We'll generate
 
@@ -559,10 +559,10 @@ We'll generate
 
 #. :math:`(M \circ T^n \circ M^{-1}) \sigma` where :math:`\sigma(y) = y`
 
-In each case, we'll compare the resulting policy to :math:`\sigma^*`
+In each case, we'll compare the resulting policy to :math:`\sigma^*`.
 
 The theory on equivalent dynamics says we will get the same policy function
-and hence the same errors
+and hence the same errors.
 
 But in fact we expect the first method to be more accurate for reasons
 discussed above
@@ -592,7 +592,7 @@ discussed above
 
 
 As you can see, time iteration is much more accurate for a given
-number of iterations
+number of iterations.
 
 
 
@@ -613,7 +613,7 @@ Show that :eq:`cpi_ed_tk` is valid.  In particular,
 Exercise 2
 -----------
 
-Show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`
+Show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`.
 
 
 Exercise 3
@@ -634,14 +634,14 @@ Iterate 20 times with Bellman iteration and Euler equation time iteration
 
 * set :math:`\gamma = 1.5`
 
-Compare the resulting policies and check that they are close
+Compare the resulting policies and check that they are close.
 
 Exercise 4
 -----------
 
 
 Solve the above model as we did in :doc:`the previous lecture <optgrowth>` using
-the operators :math:`T` and :math:`K`, and check the solutions are similiar by plotting
+the operators :math:`T` and :math:`K`, and check the solutions are similiar by plotting.
 
 
 
@@ -652,7 +652,7 @@ Solutions
 Exercise 1
 -------------------------
 
-Let :math:`T, K, M, v` and :math:`y` be as stated in the exercise
+Let :math:`T, K, M, v` and :math:`y` be as stated in the exercise.
 
 Using the envelope theorem, one can show that :math:`(Tv)'(y) = u'(\sigma(y))`
 where :math:`\sigma(y)` solves
@@ -664,7 +664,7 @@ where :math:`\sigma(y)` solves
     = \beta \int v' (f(y - \sigma(y)) z ) f'(y - \sigma(y)) z \phi(dz)
 
 
-Hence :math:`MTv(y) = (u')^{-1} (u'(\sigma(y))) = \sigma(y)`
+Hence :math:`MTv(y) = (u')^{-1} (u'(\sigma(y))) = \sigma(y)`.
 
 On the other hand, :math:`KMv(y)` is the :math:`\sigma(y)` that solves
 
@@ -682,45 +682,45 @@ On the other hand, :math:`KMv(y)` is the :math:`\sigma(y)` that solves
     \end{aligned}
 
 
-We see that :math:`\sigma(y)` is the same in each case
+We see that :math:`\sigma(y)` is the same in each case.
 
 
 Exercise 2
 -------------------------
 
-We need to show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`
+We need to show that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`.
 
-To see this, first observe that, in view of our assumptions above, :math:`u'` is a strictly decreasing continuous bijection from :math:`(0,\infty)` to itself
+To see this, first observe that, in view of our assumptions above, :math:`u'` is a strictly decreasing continuous bijection from :math:`(0,\infty)` to itself.
 
-It `follows <https://math.stackexchange.com/questions/672174/continuity-of-an-inverse-function>`__ that :math:`h` has the same properties
+It `follows <https://math.stackexchange.com/questions/672174/continuity-of-an-inverse-function>`__ that :math:`h` has the same properties.
 
 Moreover, for fixed :math:`v \in \mathscr V`, the derivative :math:`v'` is
-a continuous, strictly decreasing function
+a continuous, strictly decreasing function.
 
 Hence, for fixed :math:`v \in \mathscr V`, the map :math:`M v = h \circ v'`
-is strictly increasing and continuous, taking values in :math:`(0, \infty)`
+is strictly increasing and continuous, taking values in :math:`(0, \infty)`.
 
 Moreover, interiority holds because :math:`v'` strictly dominates :math:`u'`, implying that
 
 .. math:: (M v)(y) = h(v'(y)) < h(u'(y)) = y
 
 In particular, :math:`\sigma(y) := (Mv)(y)` is an element of :math:`\mathscr
-P`
+P`.
 
-To see that each :math:`\sigma \in \mathscr P` has a preimage :math:`v \in \mathscr V` with :math:`Mv = \sigma`, fix any :math:`\sigma \in \mathscr P`
+To see that each :math:`\sigma \in \mathscr P` has a preimage :math:`v \in \mathscr V` with :math:`Mv = \sigma`, fix any :math:`\sigma \in \mathscr P`.
 
-Let :math:`v(y) := \int_0^y u'(\sigma(x)) dx` with :math:`v(0) = 0`
+Let :math:`v(y) := \int_0^y u'(\sigma(x)) dx` with :math:`v(0) = 0`.
 
-With a small amount of effort, you will be able to show that :math:`v \in \mathscr V` and :math:`Mv = \sigma`
+With a small amount of effort, you will be able to show that :math:`v \in \mathscr V` and :math:`Mv = \sigma`.
 
-It's also true that :math:`M` is one-to-one on :math:`\mathscr V`
+It's also true that :math:`M` is one-to-one on :math:`\mathscr V`.
 
 To see this, suppose that  :math:`v` and :math:`w` are elements of :math:`\mathscr V`
-satisfying :math:`Mv = Mw`
+satisfying :math:`Mv = Mw`.
 
-Then :math:`v(0) = w(0) = 0` and :math:`v' = w'` on :math:`(0, \infty)`
+Then :math:`v(0) = w(0) = 0` and :math:`v' = w'` on :math:`(0, \infty)`.
 
-The fundamental theorem of calculus then implies that :math:`v = w` on :math:`\mathbb R_+`
+The fundamental theorem of calculus then implies that :math:`v = w` on :math:`\mathbb R_+`.
 
 
 Exercise 3
@@ -761,7 +761,7 @@ Here's the code, which will execute if you've run all the code above
     plt.legend()
     plt.show()
 
-The policies are indeed close
+The policies are indeed close.
 
 
 Exercise 4
@@ -821,4 +821,4 @@ Solving both models and plotting
 
 
 
-Time iteration is numerically far more accurate for a given number of iterations
+Time iteration is numerically far more accurate for a given number of iterations.
