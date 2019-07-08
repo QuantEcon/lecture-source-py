@@ -17,7 +17,7 @@ Ramsey Plans, Time Inconsistency, Sustainable Plans
 
 **Co-author: Sebastian Graves**
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -30,10 +30,10 @@ Overview
 
 This lecture describes a linear-quadratic version of a model that Guillermo Calvo :cite:`Calvo1978`
 used to illustrate the **time inconsistency** of optimal government
-plans
+plans.
 
 Like Chang :cite:`chang1998credible`, we use the model as a laboratory in which to explore the consequences of
-different timing protocols for government decision making
+different timing protocols for government decision making.
 
 The model focuses attention on intertemporal tradeoffs between
 
@@ -52,28 +52,28 @@ The model features
    as a function of current and future government actions, another that
    describes  the value function of a  Ramsey planner
 
-A theme of this lecture is that  timing protocols affect  outcomes
+A theme of this lecture is that  timing protocols affect  outcomes.
 
 
 
 We'll use ideas from  papers by Cagan :cite:`Cagan`, Calvo :cite:`Calvo1978`, Stokey :cite:`stokey1989reputation`, :cite:`Stokey1991`,
 Chari and Kehoe :cite:`chari1990sustainable`, Chang :cite:`chang1998credible`, and Abreu :cite:`Abreu` as
-well as from chapter 19 of :cite:`Ljungqvist2012`
+well as from chapter 19 of :cite:`Ljungqvist2012`.
 
 In addition, we'll use ideas from linear-quadratic dynamic programming
 described in  :doc:`Linear Quadratic Control<lqcontrol>` as applied to Ramsey problems
-in :doc:`Stackelberg problems<dyn_stack>`
+in :doc:`Stackelberg problems<dyn_stack>`.
 
 In particular, we have specified the model in a way that allows us to use
 linear-quadratic dynamic programming to compute an optimal government
 plan under a timing protocol in which a government chooses an infinite
 sequence of money supply growth rates once and for all at time
-:math:`0`
+:math:`0`.
 
 The Model
 ==========
 
-There is no uncertainty
+There is no uncertainty.
 
 Let:
 
@@ -93,15 +93,15 @@ version of the Cagan :cite:`Cagan` demand function:
 
     m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha > 0
 
-for :math:`t \geq 0`
+for :math:`t \geq 0`.
 
 Equation :eq:`eq_old1` asserts that the demand for real balances is inversely
 related to the public's expected rate of inflation, which here equals
-the actual rate of inflation
+the actual rate of inflation.
 
-(When there is no uncertainty, an assumption of **rational expectations** simplifies to **perfect foresight**)
+(When there is no uncertainty, an assumption of **rational expectations** simplifies to **perfect foresight**).
 
-(See :cite:`Sargent77hyper` for a rational expectations version of the model when there is uncertainty)
+(See :cite:`Sargent77hyper` for a rational expectations version of the model when there is uncertainty).
 
 Subtracting the demand function at time :math:`t` from the demand
 function at :math:`t+1` gives:
@@ -115,7 +115,7 @@ or
 
      \theta_t = \frac{\alpha}{1+\alpha} \theta_{t+1} + \frac{1}{1+\alpha} \mu_t
 
-Because :math:`\alpha > 0`,  :math:`0 < \frac{\alpha}{1+\alpha} < 1`
+Because :math:`\alpha > 0`,  :math:`0 < \frac{\alpha}{1+\alpha} < 1`.
 
 
 **Definition:** For a scalar :math:`x_t`, let :math:`L^2` be the space of sequences
@@ -123,7 +123,7 @@ Because :math:`\alpha > 0`,  :math:`0 < \frac{\alpha}{1+\alpha} < 1`
 
 .. math::  \sum_{t=0}^\infty  x_t^2 < +\infty
 
-We say that a sequence that belongs to :math:`L^2`   is **square summable**
+We say that a sequence that belongs to :math:`L^2`   is **square summable**.
 
 When we assume that the sequence :math:`\vec \mu = \{\mu_t\}_{t=0}^\infty` is square summable and we require that the sequence
 :math:`\vec \theta = \{\theta_t\}_{t=0}^\infty` is square summable,
@@ -136,13 +136,13 @@ the linear  difference equation :eq:`eq_old2` can be solved forward to get:
 
 **Insight:** In the spirit of Chang :cite:`chang1998credible`, note that equations :eq:`eq_old1` and :eq:`eq_old3` show that :math:`\theta_t` intermediates
 how choices of :math:`\mu_{t+j}, \ j=0, 1, \ldots` impinge on time :math:`t`
-real balances :math:`m_t - p_t = -\alpha \theta_t`
+real balances :math:`m_t - p_t = -\alpha \theta_t`.
 
-We shall use this insight to help us simplify and analyze government policy problems
+We shall use this insight to help us simplify and analyze government policy problems.
 
 That future rates of money creation influence earlier rates of inflation
 creates optimal government policy problems in which timing protocols
-matter
+matter.
 
 We can rewrite the model  as:
 
@@ -174,9 +174,9 @@ or
      x_{t+1} = A x_t + B \mu_t
 
 We write the model in the state-space form :eq:`eq_old4` even though :math:`\theta_0` is to be determined and so is not an initial condition
-as it ordinarily would be in the state-space model described in :doc:`Linear Quadratic Control<lqcontrol>`
+as it ordinarily would be in the state-space model described in :doc:`Linear Quadratic Control<lqcontrol>`.
 
-We write the model in the form :eq:`eq_old4` because we want to apply an approach described in  :doc:`Stackelberg problems<dyn_stack>`
+We write the model in the form :eq:`eq_old4` because we want to apply an approach described in  :doc:`Stackelberg problems<dyn_stack>`.
 
 Assume that a representative household's utility of real balances at
 time :math:`t` is:
@@ -186,7 +186,7 @@ time :math:`t` is:
 
     U(m_t - p_t) = a_0 + a_1 (m_t - p_t) - \frac{a_2}{2} (m_t - p_t)^2, \quad a_0 > 0, a_1 > 0, a_2 > 0
 
-The "bliss level" of real balances is then :math:`\frac{a_1}{a_2}`
+The "bliss level" of real balances is then :math:`\frac{a_1}{a_2}`.
 
 The money demand function :eq:`eq_old1` and the utility function :eq:`eq_old5`
 imply that utility maximizing or  bliss level of real balances is attained when:
@@ -194,20 +194,20 @@ imply that utility maximizing or  bliss level of real balances is attained when:
 .. math::  \theta_t = \theta^* = -\frac{a_1}{a_2 \alpha}
 
 Below, we introduce the discount factor :math:`\beta \in (0,1)` that a representative household and a benevolent government
-both use to discount future utilities
+both use to discount future utilities.
 
 (If we set parameters so that :math:`\theta^* = \log(\beta)`, then we can
 regard a recommendation to set :math:`\theta_t = \theta^*` as a "poor
-man's Friedman rule" that attains Milton Friedman's **optimal quantity of money**)
+man's Friedman rule" that attains Milton Friedman's **optimal quantity of money**).
 
 Via equation :eq:`eq_old3`, a government plan
 :math:`\vec \mu = \{\mu_t \}_{t=0}^\infty` leads to an equilibrium
 sequence of inflation outcomes
-:math:`\vec \theta = \{ \theta_t \}_{t=0}^\infty`
+:math:`\vec \theta = \{ \theta_t \}_{t=0}^\infty`.
 
 We assume that social costs :math:`\frac{c}{2} \mu_t^2` are incurred at
 :math:`t` when the government changes the stock of nominal money
-balances at rate :math:`\mu_t`
+balances at rate :math:`\mu_t`.
 
 Therefore, the one-period welfare function of a benevolent government
 is:
@@ -237,11 +237,11 @@ Structure
 
 The following structure is induced by private agents'
 behavior as summarized by the demand function for money :eq:`eq_old1` that leads to equation :eq:`eq_old3` that tells how future
-settings of :math:`\mu` affect the current value of :math:`\theta`
+settings of :math:`\mu` affect the current value of :math:`\theta`.
 
 Equation :eq:`eq_old3` maps a **policy** sequence of money growth rates
 :math:`\vec \mu =\{\mu_t\}_{t=0}^\infty \in L^2`  into an inflation sequence
-:math:`\vec \theta = \{\theta_t\}_{t=0}^\infty \in L^2`
+:math:`\vec \theta = \{\theta_t\}_{t=0}^\infty \in L^2`.
 
 These, in turn, induce a discounted value to a government sequence
 :math:`\vec v = \{v_t\}_{t=0}^\infty \in L^2` that satisfies the
@@ -250,16 +250,16 @@ recursion
 .. math::  v_t = s(\theta_t,\mu_t) + \beta v_{t+1}
 
 where we have called :math:`s(\theta_t, \mu_t) = r(x_t, \mu_t)` as
-above
+above.
 
 Thus, we have a triple of sequences
 :math:`\vec \mu, \vec \theta, \vec v` associated with a
-:math:`\vec \mu \in L^2`
+:math:`\vec \mu \in L^2`.
 
-At this point :math:`\vec \mu \in L^2` is an arbitrary exogenous policy
+At this point :math:`\vec \mu \in L^2` is an arbitrary exogenous policy.
 
 To make :math:`\vec \mu` endogenous, we require a theory of government
-decisions
+decisions.
 
 
 
@@ -279,11 +279,11 @@ structure:
 
 That settings of :math:`\mu` at one date affect household utilities at
 earlier dates sets the stage for the emergence of a time-inconsistent
-optimal government plan  under a Ramsey (also called a Stackelberg)  timing protocol
+optimal government plan  under a Ramsey (also called a Stackelberg)  timing protocol.
 
-We'll study outcomes under a Ramsey timing protocol below
+We'll study outcomes under a Ramsey timing protocol below.
 
-But we'll also study the consequences of other timing protocols
+But we'll also study the consequences of other timing protocols.
 
 Four Models of Government Policy
 =================================
@@ -314,7 +314,7 @@ sets :math:`\mu_t` at one :math:`t` only
 The four models differ with respect to timing protocols, constraints on
 government choices, and government policymakers' beliefs about how their
 decisions affect private agents' beliefs about future government
-decisions
+decisions.
 
 The models are
 
@@ -339,14 +339,14 @@ A Ramsey Planner
 
 First, we consider a Ramsey planner that  chooses
 :math:`\{\mu_t, \theta_t\}_{t=0}^\infty` to maximize :eq:`eq_old7`
-subject to the law of motion :eq:`eq_old4`
+subject to the law of motion :eq:`eq_old4`.
 
-We can split this problem into two stages, as in :doc:`Stackelberg problems<dyn_stack>` and  :cite:`Ljungqvist2012` Chapter 19
+We can split this problem into two stages, as in :doc:`Stackelberg problems<dyn_stack>` and  :cite:`Ljungqvist2012` Chapter 19.
 
 In the first stage, we take the initial inflation rate :math:`\theta_0` as given,
-and then solve the resulting LQ dynamic programming problem
+and then solve the resulting LQ dynamic programming problem.
 
-In the second stage, we maximize over the initial inflation rate :math:`\theta_0`
+In the second stage, we maximize over the initial inflation rate :math:`\theta_0`.
 
 Define a feasible set of
 :math:`(\overrightarrow x_1, \overrightarrow \mu_0)` sequences:
@@ -376,7 +376,7 @@ subject to:
   x' = Ax + B\mu
 
 As in :doc:`Stackelberg problems<dyn_stack>`, we map this problem into a linear-quadratic control problem and then carefully use the
-optimal value function associated with it
+optimal value function associated with it.
 
 Guessing that :math:`J(x) = - x'Px` and substituting into the Bellman
 equation gives rise to the algebraic matrix Riccati equation:
@@ -392,7 +392,7 @@ where
 .. math::  F = \beta (Q + \beta B'PB)^{-1} B'PA
 
 The QuantEcon `LQ <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`_ class solves for :math:`F` and :math:`P` given inputs
-:math:`Q, R, A, B`, and :math:`\beta`
+:math:`Q, R, A, B`, and :math:`\beta`.
 
 Subproblem 2
 -------------
@@ -432,19 +432,19 @@ To interpret this system, think of the  sequence
 :math:`\{\theta_t\}_{t=0}^\infty` as a sequence of
 synthetic **promised inflation rates** that are just computational devices for
 generating a sequence :math:`\vec\mu` of money growth rates that are to
-be substituted into equation :eq:`eq_old3` to form actual rates of inflation
+be substituted into equation :eq:`eq_old3` to form actual rates of inflation.
 
 It can be verified that if we substitute a plan
 :math:`\vec \mu = \{\mu_t\}_{t=0}^\infty` that satisfies these equations
 into equation :eq:`eq_old3`, we obtain the same sequence :math:`\vec \theta`
-generated by the system :eq:`eq_old9`
+generated by the system :eq:`eq_old9`.
 
-(Here an application of the **Big :math:`K`, little :math:`k`** trick could once again be enlightening)
+(Here an application of the **Big :math:`K`, little :math:`k`** trick could once again be enlightening).
 
 Thus, our construction of a Ramsey plan guarantees that **promised
-inflation** equals **actual inflation**
+inflation** equals **actual inflation**.
 
-### Multiple roles of :math:`\theta_t`
+### Multiple roles of :math:`\theta_t`.
 
 The inflation rate :math:`\theta_t` that appears in the system :eq:`eq_old9` and
 equation :eq:`eq_old3` plays three roles simultaneously:
@@ -463,9 +463,9 @@ equation :eq:`eq_old3` plays three roles simultaneously:
 Time Inconsistency
 -------------------
 
-As discussed in :doc:`Stackelberg problems<dyn_stack>` and :doc:`Optimal taxation with state-contingent debt<opt_tax_recur>`, a continuation Ramsey plan is not a Ramsey plan
+As discussed in :doc:`Stackelberg problems<dyn_stack>` and :doc:`Optimal taxation with state-contingent debt<opt_tax_recur>`, a continuation Ramsey plan is not a Ramsey plan.
 
-This is a concise way of characterizing the time inconsistency of a Ramsey plan
+This is a concise way of characterizing the time inconsistency of a Ramsey plan.
 
 The time inconsistency of a Ramsey plan has motivated other models of government decision making
 that alter either
@@ -477,10 +477,10 @@ that alter either
 A Constrained-to-a-Constant-Growth-Rate Ramsey Government
 ==========================================================
 
-We now consider the following peculiar model of optimal government behavior
+We now consider the following peculiar model of optimal government behavior.
 
 We have created this model in order to highlight an aspect of an optimal government policy associated with its time inconsistency,
-namely, the feature that optimal settings of the  policy instrument vary over time
+namely, the feature that optimal settings of the  policy instrument vary over time.
 
 Instead of allowing the Ramsey government to choose different settings of its instrument at different moments, we now assume that
 at time :math:`0`, a Ramsey  government at time :math:`0` once and for all  chooses a **constant** sequence
@@ -490,7 +490,7 @@ at time :math:`0`, a Ramsey  government at time :math:`0` once and for all  choo
 
 Here we have imposed the perfect foresight outcome implied by equation :eq:`eq_old2` that
 :math:`\theta_t = \check \mu` when the government chooses a constant
-:math:`\mu` for all :math:`t \geq 0`
+:math:`\mu` for all :math:`t \geq 0`.
 
 With the quadratic form :eq:`eq_old5` for the utility function :math:`U`, the
 maximizing :math:`\bar \mu` is
@@ -499,7 +499,7 @@ maximizing :math:`\bar \mu` is
 
 **Summary:** We have  introduced the constrained-to-a-constant :math:`\mu`
 government in order to highlight  time-variation of
-:math:`\mu_t` as a telltale sign of  time inconsistency of a Ramsey plan
+:math:`\mu_t` as a telltale sign of  time inconsistency of a Ramsey plan.
 
 
 Markov Perfect Governments
@@ -508,14 +508,14 @@ Markov Perfect Governments
 We now  change the timing protocol by considering a sequence of
 government policymakers, the time :math:`t` representative of which
 chooses :math:`\mu_t` and expects all future governments to set
-:math:`\mu_{t+j} = \bar \mu`
+:math:`\mu_{t+j} = \bar \mu`.
 
-This assumption mirrors an assumption made in a different setting  :doc:`Markov Perfect Equilibrium<markov_perf>`
+This assumption mirrors an assumption made in a different setting  :doc:`Markov Perfect Equilibrium<markov_perf>`.
 
 
 
 Further, a government  policymaker at :math:`t` believes that :math:`\bar \mu` is
-unaffected by its choice of :math:`\mu_t`
+unaffected by its choice of :math:`\mu_t`.
 
 The time :math:`t` rate of inflation is then:
 
@@ -528,7 +528,7 @@ maximize:
 
 where :math:`V(\bar \mu)` is the time :math:`0` value :math:`v_0` of
 recursion :eq:`eq_old8` under a money supply growth rate that is forever constant
-at :math:`\bar \mu`
+at :math:`\bar \mu`.
 
 Substituting for :math:`U` and :math:`\theta_t` gives:
 
@@ -561,12 +561,12 @@ Below we compute sequences :math:`\{ \theta_t,\mu_t \}` under a Ramsey
 plan and compare these with the constant levels of :math:`\theta` and
 :math:`\mu` in a) a Markov Perfect Equilibrium, and b) a Ramsey plan
 in which the planner is restricted to choose :math:`\mu_t = \check\mu`
-for all :math:`t \geq 0`
+for all :math:`t \geq 0`.
 
 We denote the Ramsey sequence as :math:`\theta^R, \mu^R` and the MPE
-values as :math:`\theta^{MPE}, \mu^{MPE}`
+values as :math:`\theta^{MPE}, \mu^{MPE}`.
 
-The bliss level of inflation is denoted by :math:`\theta^*`
+The bliss level of inflation is denoted by :math:`\theta^*`.
 
 
 First, we will create a class `ChangLQ` that solves the models and stores their values
@@ -684,7 +684,7 @@ We will create an instance of `ChangLQ` with the following parameters
     clq.β
 
 The following code generates a figure that plots the value function from the Ramsey Planner's
-problem, which is maximized at :math:`\theta^R_0`
+problem, which is maximized at :math:`\theta^R_0`.
 
 The figure also shows the limiting value :math:`\theta_\infty^R` to which  the inflation rate :math:`\theta_t` converges under the Ramsey plan and compares it to the MPE value and the bliss value
 
@@ -771,10 +771,10 @@ problem as well as that for a Ramsey planner that  must choose a constant
 
 
 The next code generates  figures that plot the policy functions for a continuation Ramsey
-planner
+planner.
 
 The left figure shows the choice of :math:`\theta'` chosen by a
-continuation Ramsey planner who inherits :math:`\theta`
+continuation Ramsey planner who inherits :math:`\theta`.
 
 The right figure plots a continuation Ramsey planner's choice of
 :math:`\mu` as a function of an inherited :math:`\theta`
@@ -888,37 +888,37 @@ is a symptom of time inconsistency
 
 **Note:** A modified Ramsey plan constructed under the restriction that
 :math:`\mu_t` must be constant over time is time consistent (see
-:math:`\check \mu` and :math:`\check \theta` in the above graphs)
+:math:`\check \mu` and :math:`\check \theta` in the above graphs).
 
 Meaning of Time Inconsistency
 ------------------------------
 
 In settings in which governments actually choose sequentially, many economists
 regard a time inconsistent plan implausible because of the incentives to
-deviate that occur along the plan
+deviate that occur along the plan.
 
 A way to summarize this *defect* in a Ramsey plan is to say that it
 is not credible because there  endure incentives for policymakers
-to deviate from it
+to deviate from it.
 
 For that reason, the Markov perfect equilibrium concept attracts many
 economists
 
 * A Markov perfect equilibrium plan is constructed to insure that government policymakers who choose sequentially do not want to deviate from it
 
-The *no incentive to deviate from the plan* property is what makes the Markov perfect equilibrium concept attractive
+The *no incentive to deviate from the plan* property is what makes the Markov perfect equilibrium concept attractive.
 
 Ramsey Plan Strikes Back
 --------------------------
 
 Research by Abreu :cite:`Abreu`,  Chari and Kehoe :cite:`chari1990sustainable`
-:cite:`stokey1989reputation`, and Stokey :cite:`Stokey1991` discovered conditions under which a Ramsey plan can be rescued from the complaint that it is not credible
+:cite:`stokey1989reputation`, and Stokey :cite:`Stokey1991` discovered conditions under which a Ramsey plan can be rescued from the complaint that it is not credible.
 
 They  accomplished this by expanding the
 description of a plan to include expectations about **adverse consequences** of deviating from
-it that can serve to deter deviations
+it that can serve to deter deviations.
 
-We turn to such theories of **sustainable plans** next
+We turn to such theories of **sustainable plans** next.
 
 A Fourth Model of Government Decision Making
 =============================================
@@ -947,7 +947,7 @@ A Theory of Government Decision Making
 
 
 :math:`\vec \mu` is chosen by a sequence of government
-decision makers, one for each :math:`t \geq 0`
+decision makers, one for each :math:`t \geq 0`.
 
 We assume the following within-period and between-period timing protocol
 for each :math:`t \geq 0`:
@@ -989,39 +989,39 @@ described in equation :eq:`eq_old6` above has the property that for all
 
 This inequality implies that whenever the policy calls for the
 government to set :math:`\mu \neq 0`, the government could raise its
-one-period return by setting :math:`\mu =0`
+one-period return by setting :math:`\mu =0`.
 
 Disappointing private sector expectations in that way would increase the
 government's **current** payoff but would have adverse consequences for
 **subsequent** government payoffs because the private sector would alter
-its expectations about future settings of :math:`\mu`
+its expectations about future settings of :math:`\mu`.
 
 The **temporary** gain constitutes the government's temptation to
-deviate from a plan
+deviate from a plan.
 
 If the government at :math:`t` is to resist the temptation to raise its
 current payoff, it is only because it forecasts adverse  consequences that
-its setting of :math:`\mu_t` would bring for subsequent government payoffs via  alterations  in the private sector's expectations
+its setting of :math:`\mu_t` would bring for subsequent government payoffs via  alterations  in the private sector's expectations.
 
 Sustainable or Credible Plan
 =============================
 
 We call a plan :math:`\vec \mu` **sustainable** or **credible** if at
 each :math:`t \geq 0` the government chooses to confirm private
-agents' prior expectation of its setting for :math:`\mu_t`
+agents' prior expectation of its setting for :math:`\mu_t`.
 
 The government will choose to confirm prior expectations if the
 long-term **loss** from disappointing private sector expectations --
 coming from the government's understanding of the way the private sector
 adjusts its  expectations in response to having its prior
 expectations at :math:`t` disappointed -- outweigh the short-term
-**gain** from disappointing those expectations
+**gain** from disappointing those expectations.
 
 The theory of sustainable or credible plans assumes throughout that private sector
 expectations about what future governments will do are based on the
 assumption that governments at times :math:`t \geq 0` will act to
 maximize the continuation discounted utilities that describe those
-governments' purposes
+governments' purposes.
 
 This aspect of the theory means that credible plans come in **pairs**:
 
@@ -1037,9 +1037,9 @@ That credible plans come in pairs seems to bring an explosion of plans to keep t
 
 * therefore, the number of plans underlying one plan is unbounded
 
-But Dilip Abreu showed how to render manageable the number of plans that must be kept track of
+But Dilip Abreu showed how to render manageable the number of plans that must be kept track of.
 
-The key is an  object called a **self-enforcing** plan
+The key is an  object called a **self-enforcing** plan.
 
 
 Abreu's Self-Enforcing Plan
@@ -1064,16 +1064,16 @@ More precisely, a government plan :math:`\vec \mu^A` is
     & \geq s(\theta^A_j, 0 ) + \beta v_0^A \equiv v_j^{A,D}, \quad j \geq 0
     \end{aligned}
 
-(Here it is useful to recall that setting :math:`\mu=0` is the maximizing choice for the government's one-period return function)
+(Here it is useful to recall that setting :math:`\mu=0` is the maximizing choice for the government's one-period return function).
 
 The first line tells the consequences of confirming private agents'
 expectations, while the second line tells the consequences of
-disappointing private agents' expectations
+disappointing private agents' expectations.
 
 A consequence of the definition is that a self-enforcing plan is
-credible
+credible.
 
-Self-enforcing plans can be used to construct other credible plans, including ones with better values
+Self-enforcing plans can be used to construct other credible plans, including ones with better values.
 
 A sufficient condition for a plan :math:`\vec \mu` to be **credible** or
 **sustainable** is that
@@ -1086,20 +1086,20 @@ A sufficient condition for a plan :math:`\vec \mu` to be **credible** or
     \end{aligned}
 
 Abreu taught us that  key step in constructing a credible plan is first constructing a
-self-enforcing plan that has a low time :math:`0` value
+self-enforcing plan that has a low time :math:`0` value.
 
 The idea is to use the self-enforcing plan as a continuation plan whenever
 the government's choice at time :math:`t` fails to confirm private
-agents' expectation
+agents' expectation.
 
 We shall use a construction featured in :cite:`Abreu` to construct a
-self-enforcing plan with low time :math:`0` value
+self-enforcing plan with low time :math:`0` value.
 
 Abreu Carrot-Stick Plan
 -------------------------------------------
 
 :cite:`Abreu` invented a way to create a self-enforcing plan with a low
-initial value
+initial value.
 
 Imitating his idea, we can construct a self-enforcing plan
 :math:`\vec \mu` with a low time :math:`0` value to the government by
@@ -1113,9 +1113,9 @@ government  decisions thereafter  yield high one-period utilities
 
 Consider a plan :math:`\vec \mu^A` that sets
 :math:`\mu_t^A = \bar \mu` (a high positive
-number) for :math:`T_A` periods, and then reverts to the Ramsey plan
+number) for :math:`T_A` periods, and then reverts to the Ramsey plan.
 
-Denote this sequence by :math:`\{\mu_t^A\}_{t=0}^\infty`
+Denote this sequence by :math:`\{\mu_t^A\}_{t=0}^\infty`.
 
 The sequence of inflation rates implied by this plan,
 :math:`\{\theta_t^A\}_{t=0}^\infty`, can be calculated using:
@@ -1129,21 +1129,21 @@ The value of :math:`\{\theta_t^A,\mu_t^A \}_{t=0}^\infty` is
 Example of Self-Enforcing Plan
 ---------------------------------
 
-The following example implements an Abreu stick-and-carrot plan
+The following example implements an Abreu stick-and-carrot plan.
 
 The government sets :math:`\mu_t^A = 0.1` for :math:`t=0, 1, \ldots, 9`
-and then starts the **Ramsey plan**
+and then starts the **Ramsey plan**.
 
-We have computed outcomes for this plan
+We have computed outcomes for this plan.
 
 For this plan, we plot the :math:`\theta^A`, :math:`\mu^A` sequences as
-well as the implied :math:`v^A` sequence
+well as the implied :math:`v^A` sequence.
 
 Notice that because the government sets money supply growth high for 10
-periods, inflation starts high
+periods, inflation starts high.
 
 Inflation gradually slowly declines immediately because people immediately expect the government to lower the money growth rate after period
-:math:`10`
+:math:`10`.
 
 From the 10th period onwards, the inflation rate :math:`\theta^A_t`
 associated with this **Abreu plan** starts the Ramsey plan from its
@@ -1201,15 +1201,15 @@ beginning, i.e., :math:`\theta^A_{t+10} =\theta^R_t \ \ \forall t \geq 0`
 
 
 To confirm that the plan :math:`\vec \mu^A` is **self-enforcing**,  we
-plot an object that we call :math:`V_t^{A,D}`, defined in the second line of equation :eq:`eq_old10` above
+plot an object that we call :math:`V_t^{A,D}`, defined in the second line of equation :eq:`eq_old10` above.
 
 :math:`V_t^{A,D}` is the value at :math:`t` of deviating from the
 self-enforcing plan :math:`\vec \mu^A` by setting :math:`\mu_t = 0` and
-then restarting the plan at :math:`v^A_0` at :math:`t+1`
+then restarting the plan at :math:`v^A_0` at :math:`t+1`.
 
-Notice that  :math:`v_t^A > v_t^{A,D}`
+Notice that  :math:`v_t^A > v_t^{A,D}`.
 
-This confirms that :math:`\vec \mu^A` is a self-enforcing plan
+This confirms that :math:`\vec \mu^A` is a self-enforcing plan.
 
 We can also verify the inequalities required for :math:`\vec \mu^A` to
 be self-confirming numerically as follows
@@ -1242,7 +1242,7 @@ Recursive Representation of a Sustainable Plan
 -----------------------------------------------
 
 We can represent a sustainable plan recursively by taking the
-continuation value :math:`v_t` as a state variable
+continuation value :math:`v_t` as a state variable.
 
 We form the following 3-tuple of functions:
 
@@ -1256,18 +1256,18 @@ We form the following 3-tuple of functions:
     \end{aligned}
 
 In addition to these equations, we need an initial value :math:`v_0` to
-characterize a sustainable plan
+characterize a sustainable plan.
 
 The first equation of :eq:`eq_old11` tells the recommended value of
-:math:`\hat \mu_t` as a function of the promised value :math:`v_t`
+:math:`\hat \mu_t` as a function of the promised value :math:`v_t`.
 
 The second equation of :eq:`eq_old11`  tells the inflation rate as a function of
-:math:`v_t`
+:math:`v_t`.
 
 The third equation of :eq:`eq_old11`  updates the continuation value in a way that
 depends on whether the government at :math:`t` confirms private agents'
 expectations by setting :math:`\mu_t` equal to the recommended value
-:math:`\hat \mu_t`, or whether it disappoints those expectations
+:math:`\hat \mu_t`, or whether it disappoints those expectations.
 
 Comparison of Equilibrium Values
 =================================
@@ -1282,7 +1282,7 @@ We have computed plans for
 
 -  a Markov perfect sequence of governments
 
-Below we compare equilibrium time zero values for these three
+Below we compare equilibrium time zero values for these three.
 
 We confirm that the value delivered by the unrestricted Ramsey planner
 exceeds the value delivered by the restricted Ramsey planner which in
@@ -1306,7 +1306,7 @@ governments
     clq.J_MPE
 
 We have also computed **sustainable plans** for a government or sequence
-of governments that choose sequentially
+of governments that choose sequentially.
 
 These include
 
@@ -1319,9 +1319,9 @@ These include
 Note on Dynamic Programming Squared
 ====================================
 
-The theory deployed  in this lecture is an application of what we  nickname **dynamic programming squared**
+The theory deployed  in this lecture is an application of what we  nickname **dynamic programming squared**.
 
-The nickname refers to the fact that a value satisfying one Bellman equation is itself an argument in a second Bellman equation
+The nickname refers to the fact that a value satisfying one Bellman equation is itself an argument in a second Bellman equation.
 
 Thus, our models have involved two Bellman equations:
 
@@ -1331,4 +1331,4 @@ Thus, our models have involved two Bellman equations:
 -  equation :eq:`eq_old4` expresses how value :math:`v_t` depends on
    :math:`(\mu_t, \theta_t)` and :math:`v_{t+1}`
 
-A value :math:`\theta` from one Bellman equation appears as an argument of a second Bellman equation for another value :math:`v`
+A value :math:`\theta` from one Bellman equation appears as an argument of a second Bellman equation for another value :math:`v`.

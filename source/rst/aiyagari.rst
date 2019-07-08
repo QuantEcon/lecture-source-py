@@ -11,7 +11,7 @@ The Aiyagari Model
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -21,15 +21,15 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture, we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`
+In this lecture, we describe the structure of a class of models that build on work by Truman Bewley :cite:`Bewley1977`.
 
 .. only:: html
 
-    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/lecture_specific/aiyagari/aiyagari_obit.pdf>`
+    We begin by discussing an example of a Bewley model due to :download:`Rao Aiyagari <_static/lecture_specific/aiyagari/aiyagari_obit.pdf>`.
 
 .. only:: latex
 
-    We begin by discussing an example of a Bewley model due to `Rao Aiyagari <https://lectures.quantecon.org/_downloads/aiyagari_obit.pdf>`__
+    We begin by discussing an example of a Bewley model due to `Rao Aiyagari <https://lectures.quantecon.org/_downloads/aiyagari_obit.pdf>`__.
 
 The model features
 
@@ -56,11 +56,11 @@ The Aiyagari model has been used to investigate many topics, including
 References
 -------------
 
-The primary reference for this lecture is :cite:`Aiyagari1994`
+The primary reference for this lecture is :cite:`Aiyagari1994`.
 
-A textbook treatment is available in chapter 18 of :cite:`Ljungqvist2012`
+A textbook treatment is available in chapter 18 of :cite:`Ljungqvist2012`.
 
-A continuous time version of the model by SeHyoun Ahn and Benjamin Moll can be found `here <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/aiyagari_continuous_time.ipynb>`__
+A continuous time version of the model by SeHyoun Ahn and Benjamin Moll can be found `here <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/aiyagari_continuous_time.ipynb>`__.
 
 
 The Economy
@@ -74,9 +74,9 @@ Households
 ---------------
 
 
-Infinitely lived households / consumers face idiosyncratic income shocks
+Infinitely lived households / consumers face idiosyncratic income shocks.
 
-A unit interval of  *ex-ante* identical households face a common borrowing constraint
+A unit interval of  *ex-ante* identical households face a common borrowing constraint.
 
 The savings problem faced by a typical  household is
 
@@ -110,11 +110,11 @@ where
 
 * :math:`B` is the maximum amount that the agent is allowed to borrow
 
-The exogenous process :math:`\{z_t\}` follows a finite state Markov chain with given stochastic matrix :math:`P`
+The exogenous process :math:`\{z_t\}` follows a finite state Markov chain with given stochastic matrix :math:`P`.
 
-The wage and interest rate are fixed over time
+The wage and interest rate are fixed over time.
 
-In this simple version of the model, households supply labor  inelastically because they do not value leisure
+In this simple version of the model, households supply labor  inelastically because they do not value leisure.
 
 
 
@@ -122,13 +122,13 @@ Firms
 =======
 
 
-Firms produce output by hiring capital and labor
+Firms produce output by hiring capital and labor.
 
-Firms act competitively and face constant returns to scale
+Firms act competitively and face constant returns to scale.
 
-Since returns to scale are constant the number of firms does not matter
+Since returns to scale are constant the number of firms does not matter.
 
-Hence we can consider a single (but nonetheless competitive) representative firm
+Hence we can consider a single (but nonetheless competitive) representative firm.
 
 The firm's output is
 
@@ -153,7 +153,7 @@ The firm's problem is
     max_{K, N} \left\{ A K_t^{\alpha} N^{1 - \alpha} - (r + \delta) K - w N \right\}
 
 
-The parameter :math:`\delta` is the depreciation rate
+The parameter :math:`\delta` is the depreciation rate.
 
 
 From the first-order condition with respect to capital, the firm's inverse demand for capital is
@@ -176,7 +176,7 @@ the equilibrium wage rate as a function of :math:`r` as
 Equilibrium
 -----------------
 
-We construct  a *stationary rational expectations equilibrium* (SREE)
+We construct  a *stationary rational expectations equilibrium* (SREE).
 
 In such an equilibrium
 
@@ -213,13 +213,13 @@ If this final quantity agrees with :math:`K` then we have a SREE
 Code
 ====
 
-Let's look at how we might compute such an equilibrium in practice
+Let's look at how we might compute such an equilibrium in practice.
 
-To solve the household's dynamic programming problem we'll use the `DiscreteDP <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_
+To solve the household's dynamic programming problem we'll use the `DiscreteDP <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
 
-Our first task is the least exciting one: write code that maps parameters for a household problem into the ``R`` and ``Q`` matrices needed to generate an instance of ``DiscreteDP``
+Our first task is the least exciting one: write code that maps parameters for a household problem into the ``R`` and ``Q`` matrices needed to generate an instance of ``DiscreteDP``.
 
-Below is a piece of boilerplate code that does just this
+Below is a piece of boilerplate code that does just this.
 
 In reading the code, the following information will be helpful
 
@@ -230,14 +230,14 @@ In reading the code, the following information will be helpful
 
 (For a detailed discussion of ``DiscreteDP`` see :doc:`this lecture <discrete_dp>`)
 
-Here we take the state to be :math:`s_t := (a_t, z_t)`, where :math:`a_t` is assets and :math:`z_t` is the shock
+Here we take the state to be :math:`s_t := (a_t, z_t)`, where :math:`a_t` is assets and :math:`z_t` is the shock.
 
-The action is the choice of next period asset level :math:`a_{t+1}`
+The action is the choice of next period asset level :math:`a_{t+1}`.
 
 
 
 We use Numba to speed up the loops so we can update the matrices efficiently
-when the parameters change
+when the parameters change.
 
 
 
@@ -249,15 +249,15 @@ As a first example of what we can do, let's compute and plot an optimal accumula
 
 .. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_compute_policy.py
 
-The plot shows asset accumulation policies at different values of the exogenous state
+The plot shows asset accumulation policies at different values of the exogenous state.
 
 
 
-Now we want to calculate the equilibrium
+Now we want to calculate the equilibrium.
 
-Let's do this visually as a first pass
+Let's do this visually as a first pass.
 
-The following code draws aggregate supply and demand curves
+The following code draws aggregate supply and demand curves.
 
 The intersection gives equilibrium interest rates and capital
 

@@ -22,20 +22,20 @@ Remarks About Estimating Means and Variances
 The famous **Black-Litterman** (1992) :cite:`black1992global` portfolio choice model that we
 describe in this lecture is motivated by the finding that with high or
 moderate frequency data, means are more difficult to estimate than
-variances
+variances.
 
 A model of **robust portfolio choice** that we'll describe also begins
-from the same starting point
+from the same starting point.
 
 To begin, we'll take for granted that means are more difficult to
 estimate that covariances and will focus on how Black and Litterman, on
 the one hand, an robust control theorists, on the other, would recommend
 modifying the **mean-variance portfolio choice model** to take that into
-account
+account.
 
 At the end of this lecture, we shall use some rates of convergence
 results and some simulations to verify how means are more difficult to
-estimate than variances
+estimate than variances.
 
 Among the ideas in play in this lecture will be
 
@@ -61,28 +61,28 @@ Adjusting Mean-variance Portfolio Choice Theory for Distrust of Mean Excess Retu
 
 This lecture describes two lines of thought that modify the classic
 mean-variance portfolio choice model in ways designed to make its
-recommendations more plausible
+recommendations more plausible.
 
 As we mentioned above, the two approaches build on a common and widespread hunch --
 that because it is much easier statistically to estimate covariances of
 excess returns than it is to estimate their means, it makes sense to
 contemplated the consequences of adjusting investors' subjective beliefs
-about mean returns in order to render more sensible decisions
+about mean returns in order to render more sensible decisions.
 
 Both of the adjustments that we describe are designed to confront a
 widely recognized embarrassment to mean-variance portfolio theory,
 namely, that it usually implies taking very extreme long-short portfolio
-positions
+positions.
 
 Mean-variance Portfolio Choice
 -------------------------------
 
-A risk-free security earns one-period net return :math:`r_f`
+A risk-free security earns one-period net return :math:`r_f`.
 
 An :math:`n \times 1` vector of risky securities earns
 an :math:`n \times 1` vector :math:`\vec r - r_f {\bf 1}` of *excess
 returns*, where :math:`{\bf 1}` is an :math:`n \times 1` vector of
-ones
+ones.
 
 The excess return vector is multivariate normal with mean :math:`\mu`
 and covariance matrix :math:`\Sigma`, which we express either as
@@ -96,7 +96,7 @@ or
 where :math:`\epsilon \sim {\mathcal N}(0, I)` is an :math:`n \times 1`
 random vector.
 
-Let :math:`w` be an :math:`n \times 1`  vector of portfolio weights
+Let :math:`w` be an :math:`n \times 1`  vector of portfolio weights.
 
 A portfolio consisting :math:`w` earns returns
 
@@ -135,7 +135,7 @@ The key inputs into the portfolio choice model :eq:`risky-portfolio` are
 A standard way of estimating :math:`\mu` is maximum-likelihood or least
 squares; that amounts to estimating :math:`\mu` by a sample mean of
 excess returns and estimating :math:`\Sigma` by a sample covariance
-matrix
+matrix.
 
 The Black-Litterman Starting Point
 --------------------------------------------
@@ -145,7 +145,7 @@ When estimates of :math:`\mu` and :math:`\Sigma` from historical
 sample means and covariances have been combined with **reasonable** values
 of the risk-aversion parameter :math:`\delta` to compute an
 optimal portfolio from formula :eq:`risky-portfolio`, a typical outcome has been
-:math:`w`'s with **extreme long and short positions**
+:math:`w`'s with **extreme long and short positions**.
 
 A common reaction to these outcomes is that they are so unreasonable that a portfolio
 manager cannot recommend them to a customer
@@ -222,24 +222,24 @@ Let's define
 
 .. math:: w_m' \mu \equiv ( r_m - r_f)
 
-as the (scalar) excess return on the market portfolio :math:`w_m`
+as the (scalar) excess return on the market portfolio :math:`w_m`.
 
 Define
 
 .. math:: \sigma^2 = w_m' \Sigma w_m
 
 as the variance of the excess return on the market portfolio
-:math:`w_m`
+:math:`w_m`.
 
 Define
 
 .. math:: {\bf SR}_m = \frac{ r_m - r_f}{\sigma}
 
-as the **Sharpe-ratio** on the market portfolio :math:`w_m`
+as the **Sharpe-ratio** on the market portfolio :math:`w_m`.
 
 Let :math:`\delta_m` be the value of the risk aversion parameter that
 induces an investor to hold the market portfolio in light of the optimal
-portfolio choice rule :eq:`risky-portfolio`
+portfolio choice rule :eq:`risky-portfolio`.
 
 Evidently, portfolio rule :eq:`risky-portfolio` then implies that
 :math:`r_m - r_f = \delta_m \sigma^2` or
@@ -311,13 +311,13 @@ believes that excess returns are governed by
   \vec r - r_f {\bf 1} \sim {\mathcal N}( \mu_{BL}, \Sigma)
 
 Black and Litterman would advise that customer to hold the market
-portfolio of risky securities
+portfolio of risky securities.
 
 Black and Litterman then imagine a consumer who would like to express a
-view that differs from the market's
+view that differs from the market's.
 
 The consumer wants appropriately to
-mix his view with the market's before using :eq:`risky-portfolio` to choose a portfolio
+mix his view with the market's before using :eq:`risky-portfolio` to choose a portfolio.
 
 Suppose that the customer's view is expressed by a hunch that rather
 than :eq:`excess-returns`, excess returns are governed by
@@ -326,7 +326,7 @@ than :eq:`excess-returns`, excess returns are governed by
 
 where :math:`\tau > 0` is a scalar parameter that determines how the
 decision maker wants to mix his view :math:`\hat \mu` with the market's
-view :math:`\mu_{\bf BL}`
+view :math:`\mu_{\bf BL}`.
 
 Black and Litterman would then use a formula like the following one to
 mix the views :math:`\hat \mu` and :math:`\mu_{\bf BL}`
@@ -407,7 +407,7 @@ Bayes Interpretation of the Black-Litterman Recommendation
 -----------------------------------------------------------
 
 Consider the following Bayesian interpretation of the Black-Litterman
-recommendation
+recommendation.
 
 The prior belief over the mean excess returns is consistent with the
 market portfolio and is given by
@@ -422,10 +422,10 @@ on the market according to the distribution
 
 where :math:`\tau` is typically small capturing the idea that the
 variation in the mean is smaller than the variation of the individual
-random variable
+random variable.
 
 Given the realized excess returns one should then update the prior over
-the mean excess returns according to Bayes rule
+the mean excess returns according to Bayes rule.
 
 The corresponding
 posterior over mean excess returns is normally distributed with mean
@@ -438,7 +438,7 @@ The covariance matrix is
 
 Hence, the Black-Litterman recommendation is consistent with the Bayes
 update of the prior over the mean excess returns in light of the
-realized average excess returns on the market
+realized average excess returns on the market.
 
 Curve Decolletage
 ------------------
@@ -453,7 +453,7 @@ and
 
 A special feature of the multivariate normal random variable
 :math:`Z` is that its density function depends only on the (Euclidiean)
-length of its realization :math:`z`
+length of its realization :math:`z`.
 
 Formally, let the
 :math:`k`-dimensional random vector be
@@ -473,7 +473,7 @@ described by the ellipse
   \bar z \cdot \bar z =  (z - \mu)'\Sigma^{-1}(z - \mu) = \bar d
 
 where :math:`\bar d\in\mathbb{R}_+` denotes the (transformation) of a
-particular density value
+particular density value.
 
 The curves defined by equation :eq:`ellipse` can be
 labeled as iso-likelihood ellipses
@@ -503,19 +503,19 @@ given by
    \end{aligned}
 
 Notice that for particular :math:`\bar d_1` and :math:`\bar d_2` values
-the two ellipses have a tangency point
+the two ellipses have a tangency point.
 
 These tangency points, indexed
 by the pairs :math:`(\bar d_1, \bar d_2)`, characterize points
 :math:`\vec r_e` from which there exists no deviation where one can
 increase the likelihood of one view without decreasing the likelihood of
-the other view
+the other view.
 
 The pairs :math:`(\bar d_1, \bar d_2)` for which there
 is such a point outlines a curve in the excess return space. This curve
-is reminiscent of the Pareto curve in an Edgeworth-box setting
+is reminiscent of the Pareto curve in an Edgeworth-box setting.
 
-Dickey (1975) :cite:`Dickey1975` calls it a *curve decolletage*
+Dickey (1975) :cite:`Dickey1975` calls it a *curve decolletage*.
 
 Leamer (1978) :cite:`leamer1978specification` calls it an *information contract curve* and
 describes it by the following program: maximize the likelihood of one
@@ -627,12 +627,12 @@ as the figure below illustrates
 Note that the line that connects the two points
 :math:`\hat \mu` and :math:`\mu_{BL}` is linear, which comes from the
 fact that the covariance matrices of the two competing distributions
-(views) are proportional to each other
+(views) are proportional to each other.
 
 To illustrate the fact that this is not necessarily the case, consider
 another example using the same parameter values, except that the "second
 view" constituting the constraint has covariance matrix
-:math:`\tau I` instead of :math:`\tau \Sigma`
+:math:`\tau I` instead of :math:`\tau \Sigma`.
 
 This leads to the
 following figure, on which the curve connecting :math:`\hat \mu`
@@ -694,7 +694,7 @@ which yields the solution
 .. math:: \hat{\beta}_{OLS} = (X'X)^{-1}X'y
 
 A common performance measure of estimators is the *mean squared error
-(MSE)*
+(MSE)*.
 
 An estimator is "good" if its MSE is relatively small. Suppose
 that :math:`\beta_0` is the "true" value of the coefficient, then the MSE
@@ -708,13 +708,13 @@ of the OLS estimator is
   \underbrace{\Vert \mathbb E \hat\beta_{OLS} - \beta_0\Vert^2}_{\text{bias}}
 
 From this decomposition, one can see that in order for the MSE to be
-small, both the bias and the variance terms must be small
+small, both the bias and the variance terms must be small.
 
 For example,
 consider the case when :math:`X` is a :math:`T`-vector of ones (where
 :math:`T` is the sample size), so :math:`\hat\beta_{OLS}` is simply the
 sample average, while :math:`\beta_0\in \mathbb{R}` is defined by the
-true mean of :math:`y`
+true mean of :math:`y`.
 
 In this example the MSE is
 
@@ -726,13 +726,13 @@ In this example the MSE is
 
 However, because there is a trade-off between the estimator's bias and
 variance, there are cases when by permitting a small bias we can
-substantially reduce the variance so overall the MSE gets smaller
+substantially reduce the variance so overall the MSE gets smaller.
 
 A typical scenario when this proves to be useful is when the number of
-coefficients to be estimated is large relative to the sample size
+coefficients to be estimated is large relative to the sample size.
 
 In these cases, one approach to handle the bias-variance trade-off is the
-so called *Tikhonov regularization*
+so called *Tikhonov regularization*.
 
 A general form with regularization matrix :math:`\Gamma` can be written as
 
@@ -748,9 +748,9 @@ Substituting the value of :math:`\hat{\beta}_{OLS}` yields
 
 Often, the regularization matrix takes the form
 :math:`\Gamma = \lambda I` with :math:`\lambda>0`
-and :math:`\tilde \beta = \mathbf{0}`
+and :math:`\tilde \beta = \mathbf{0}`.
 
-Then the Tikhonov regularization is equivalent to what is called *ridge regression* in statistics
+Then the Tikhonov regularization is equivalent to what is called *ridge regression* in statistics.
 
 To illustrate how this estimator addresses the bias-variance trade-off,
 we compute the MSE of the ridge estimator
@@ -763,15 +763,15 @@ we compute the MSE of the ridge estimator
 
 The ridge regression shrinks the coefficients of the estimated vector
 towards zero relative to the OLS estimates thus reducing the variance
-term at the cost of introducing a "small" bias
+term at the cost of introducing a "small" bias.
 
-However, there is nothing special about the zero vector
+However, there is nothing special about the zero vector.
 
 When :math:`\tilde \beta \neq \mathbf{0}` shrinkage occurs in the direction
-of :math:`\tilde \beta`
+of :math:`\tilde \beta`.
 
 Now, we can give a regularization interpretation of the Black-Litterman
-portfolio recommendation
+portfolio recommendation.
 
 To this end, simplify first the equation :eq:`mix-views` characterizing the Black-Litterman recommendation
 
@@ -795,7 +795,7 @@ securities. This could be written as a vector autoregression where
    ones.
 
 Correspondingly, the OLS regression of :math:`y` on :math:`X` would
-yield the mean excess returns as coefficients
+yield the mean excess returns as coefficients.
 
 With :math:`\Gamma = \sqrt{\tau T^{-1}}(I_{N} \otimes \iota_T)` we can
 write the regularized version of the mean excess return estimation
@@ -812,36 +812,36 @@ write the regularized version of the mean excess return estimation
 Given that
 :math:`\hat \beta_{OLS} = \hat \mu` and :math:`\tilde \beta = \mu_{BL}`
 in the Black-Litterman model, we have the following interpretation of the
-model's recommendation
+model's recommendation.
 
 The estimated (personal) view of the mean excess returns,
 :math:`\hat{\mu}` that would lead to extreme short-long positions are
 "shrunk" towards the conservative market view, :math:`\mu_{BL}`, that
-leads to the more conservative market portfolio
+leads to the more conservative market portfolio.
 
 So the Black-Litterman procedure results in a recommendation that is a
 compromise between the conservative market portfolio and the more
-extreme portfolio that is implied by estimated "personal" views
+extreme portfolio that is implied by estimated "personal" views.
 
 Digression on A Robust Control Operator
 ----------------------------------------
 
 The Black-Litterman approach is partly inspired by the econometric
 insight that it is easier to estimate covariances of excess returns than
-the means
+the means.
 
 That is what gave Black and Litterman license to adjust
 investors' perception of mean excess returns while not tampering with
-the covariance matrix of excess returns
+the covariance matrix of excess returns.
 
 The robust control theory is another approach that also hinges on
-adjusting mean excess returns but not covariances
+adjusting mean excess returns but not covariances.
 
 Associated with a robust control problem is what Hansen and Sargent :cite:`HansenSargent2001`, :cite:`HansenSargent2008` call
-a :math:`{\sf T}` operator
+a :math:`{\sf T}` operator.
 
 Let's define the :math:`{\sf T}` operator as it applies to the problem
-at hand
+at hand.
 
 Let :math:`x` be an :math:`n \times 1` Gaussian random vector with mean
 vector :math:`\mu` and covariance matrix :math:`\Sigma = C C'`. This
@@ -849,10 +849,10 @@ means that :math:`x` can be represented as
 
 .. math:: x = \mu + C \epsilon
 
-where :math:`\epsilon \sim {\mathcal N}(0,I)`
+where :math:`\epsilon \sim {\mathcal N}(0,I)`.
 
 Let :math:`\phi(\epsilon)` denote the associated standardized Gaussian
-density
+density.
 
 Let :math:`m(\epsilon,\mu)` be a **likelihood ratio**, meaning that it
 satisfies
@@ -862,7 +862,7 @@ satisfies
 -  :math:`\int m(\epsilon,\mu) \phi(\epsilon) d \epsilon =1`
 
 That is, :math:`m(\epsilon, \mu)` is a non-negative random variable with
-mean 1
+mean 1.
 
 Multiplying :math:`\phi(\epsilon)`
 by the likelihood ratio :math:`m(\epsilon, \mu)` produces a distorted distribution for
@@ -871,7 +871,7 @@ by the likelihood ratio :math:`m(\epsilon, \mu)` produces a distorted distributi
 .. math:: \tilde \phi(\epsilon) = m(\epsilon,\mu) \phi(\epsilon)
 
 The next concept that we need is the **entropy** of the distorted
-distribution :math:`\tilde \phi` with respect to :math:`\phi`
+distribution :math:`\tilde \phi` with respect to :math:`\phi`.
 
 **Entropy** is defined as
 
@@ -883,18 +883,18 @@ or
 
 That is, relative entropy is the expected value of the likelihood ratio
 :math:`m` where the expectation is taken with respect to the twisted
-density :math:`\tilde \phi`
+density :math:`\tilde \phi`.
 
 Relative entropy is non-negative. It is a measure of the discrepancy
-between two probability distributions
+between two probability distributions.
 
 As such, it plays an important
 role in governing the behavior of statistical tests designed to
-discriminate one probability distribution from another
+discriminate one probability distribution from another.
 
-We are ready to define the :math:`{\sf T}` operator
+We are ready to define the :math:`{\sf T}` operator.
 
-Let :math:`V(x)` be a value function
+Let :math:`V(x)` be a value function.
 
 Define
 
@@ -907,7 +907,7 @@ This asserts that :math:`{\sf T}` is an indirect utility function for a
 minimization problem in which an **evil agent** chooses a distorted
 probability distribution :math:`\tilde \phi` to lower expected utility,
 subject to a penalty term that gets bigger the larger is relative
-entropy
+entropy.
 
 Here the penalty parameter
 
@@ -915,22 +915,22 @@ Here the penalty parameter
 
 is a robustness parameter when it is :math:`+\infty`, there is no scope for the minimizing agent to distort the distribution,
 so no robustness to alternative distributions is acquired
-As :math:`\theta` is lowered, more robustness is achieved
+As :math:`\theta` is lowered, more robustness is achieved.
 
 **Note:** The :math:`{\sf T}` operator is sometimes called a
-*risk-sensitivity* operator
+*risk-sensitivity* operator.
 
 We shall apply :math:`{\sf T}`\ to the special case of a linear value
 function :math:`w'(\vec r - r_f 1)`
 where :math:`\vec r - r_f 1 \sim {\mathcal N}(\mu,\Sigma)` or
 :math:`\vec r - r_f {\bf 1} = \mu + C \epsilon`\ and
-:math:`\epsilon \sim {\mathcal N}(0,I)`
+:math:`\epsilon \sim {\mathcal N}(0,I)`.
 
 The associated worst-case distribution of :math:`\epsilon` is Gaussian
 with mean :math:`v =-\theta^{-1} C' w` and covariance matrix :math:`I`
 (When the value function is affine, the worst-case distribution distorts
 the mean vector of :math:`\epsilon` but not the covariance matrix
-of :math:`\epsilon`)
+of :math:`\epsilon`).
 
 For utility function argument :math:`w'(\vec r - r_f 1)`
 
@@ -962,13 +962,13 @@ that comes from replacing the mean :math:`\mu` of :math:`\vec r - r\_f {\bf 1}` 
 .. math:: \mu - \theta^{-1} \Sigma w
 
 Notice how the worst-case mean vector depends on the portfolio
-:math:`w`
+:math:`w`.
 
 The operator :math:`{\sf T}` is the indirect utility function that
 emerges from solving a problem in which an agent who chooses
 probabilities does so in order to minimize the expected utility of a
 maximizing agent (in our case, the maximizing agent chooses portfolio
-weights :math:`w`)
+weights :math:`w`).
 
 The robust version of the mean-variance portfolio choice problem is then
 to choose a portfolio :math:`w` that maximizes
@@ -987,17 +987,17 @@ The minimizer of :eq:`robust-mean-variance` is
 .. math:: w_{\rm rob} = \frac{1}{\delta + \gamma } \Sigma^{-1} \mu
 
 where :math:`\gamma \equiv \theta^{-1}` is sometimes called the
-risk-sensitivity parameter
+risk-sensitivity parameter.
 
 An increase in the risk-sensitivity parameter :math:`\gamma` shrinks the
 portfolio weights toward zero in the same way that an increase in risk
-aversion does
+aversion does.
 
 Appendix
 ========
 
 We want to illustrate the "folk theorem" that with high or moderate
-frequency data, it is more difficult to estimate means than variances
+frequency data, it is more difficult to estimate means than variances.
 
 In order to operationalize this statement, we take two analog
 estimators:
@@ -1007,15 +1007,15 @@ estimators:
    :math:`S_N = \frac{1}{N-1}\sum_{t=1}^{N} (X_i - \bar X_N)^2`
 
 to estimate the unconditional mean and unconditional variance of the
-random variable :math:`X`, respectively
+random variable :math:`X`, respectively.
 
 To measure the "difficulty of estimation", we use *mean squared error*
 (MSE), that is the average squared difference between the estimator and
-the true value
+the true value.
 
 Assuming that the process :math:`\{X_i\}`\ is ergodic,
 both analog estimators are known to converge to their true values as the
-sample size :math:`N` goes to infinity
+sample size :math:`N` goes to infinity.
 
 More precisely
 for all :math:`\varepsilon > 0`
@@ -1037,7 +1037,7 @@ size grows to infinity)
 
 .. math:: \frac{\text{MSE}(S_N, \mathbb V X)}{\text{MSE}(\bar X_N, \mathbb E X)} = \frac{o(1)}{o(1)} \underset{N \to \infty}{\to} B
 
-can inform us about the relative (asymptotic) rates
+can inform us about the relative (asymptotic) rates.
 
 We will show that in general, with dependent data, the limit
 :math:`B` depends on the sampling frequency.
@@ -1053,7 +1053,7 @@ illustrating that "it is more difficult to estimate means than
 variances".
 
 That is, we need significantly more data to obtain a given
-precision of the mean estimate than for our variance estimate
+precision of the mean estimate than for our variance estimate.
 
 A Special Case -- IID Sample
 ---------------------------------
@@ -1072,7 +1072,7 @@ Taking :math:`S_N` to estimate the variance, the MSE is
 .. math:: \text{MSE}(S_N, \sigma^2) = \frac{2\sigma^4}{N-1}
 
 Both estimators are unbiased and hence the MSEs reflect the
-corresponding variances of the estimators
+corresponding variances of the estimators.
 
 Furthermore, both MSEs are
 :math:`o(1)` with a (multiplicative) factor of difference in their rates
@@ -1081,7 +1081,7 @@ of convergence:
 .. math:: \frac{\text{MSE}(S_N, \sigma^2)}{\text{MSE}(\bar X_N, \mu)} = \frac{N2\sigma^2}{N-1} \quad \underset{N \to \infty}{\to} \quad 2\sigma^2
 
 We are interested in how this (asymptotic) relative rate of convergence
-changes as increasing sampling frequency puts dependence into the data
+changes as increasing sampling frequency puts dependence into the data.
 
 Dependence and Sampling Frequency
 ----------------------------------
@@ -1094,7 +1094,7 @@ continuous time process of the form
 
 where :math:`\mu`\ is the unconditional mean, :math:`\kappa > 0` is a
 persistence parameter, and :math:`\{W_t\}` is a standardized Brownian
-motion
+motion.
 
 Observations arising from this system in particular discrete periods
 :math:`\mathcal T(h) \equiv \{nh : n \in \mathbb Z \}`\ with\ :math:`h>0`
@@ -1107,11 +1107,11 @@ where
 .. math:: \epsilon_{t, h} \sim \mathcal{N}(0, \Sigma_h) \quad \text{with}\quad \Sigma_h = \frac{\sigma^2(1-\exp(-2\kappa h))}{2\kappa}
 
 We call :math:`h` the *frequency* parameter, whereas :math:`n`
-represents the number of *lags* between observations
+represents the number of *lags* between observations.
 
 Hence, the effective distance between two observations :math:`X_t` and
 :math:`X_{t+n}` in the discrete time notation is equal
-to :math:`h\cdot n` in terms of the underlying continuous time process
+to :math:`h\cdot n` in terms of the underlying continuous time process.
 
 Straightforward calculations show that the autocorrelation function for
 the stochastic process :math:`\{X_{t}\}_{t\in \mathcal T(h)}` is
@@ -1124,7 +1124,7 @@ and the auto-covariance function is
 
 It follows that if :math:`n=0`, the unconditional variance is given
 by :math:`\gamma_h(0) = \frac{\sigma^2}{2\kappa}` irrespective of the
-sampling frequency
+sampling frequency.
 
 The following figure illustrates how the dependence between the
 observations is related to the sampling frequency
@@ -1164,7 +1164,7 @@ Frequency and the Mean Estimator
 Consider again the AR(1) process generated by discrete sampling with
 frequency :math:`h`. Assume that we have a sample of size :math:`N` and
 we would like to estimate the unconditional mean -- in our case the true
-mean is :math:`\mu`
+mean is :math:`\mu`.
 
 Again, the sample average is an unbiased estimator of the unconditional
 mean
@@ -1187,10 +1187,10 @@ inflates the variance of the mean estimator through the covariance
 terms. Moreover, as we can see, a higher sampling frequency---smaller
 :math:`h`---makes all the covariance terms larger, everything else being
 fixed. This implies a relatively slower rate of convergence of the
-sample average for high-frequency data
+sample average for high-frequency data.
 
 Intuitively, the stronger dependence across observations for high-frequency data reduces the
-"information content" of each observation relative to the IID case
+"information content" of each observation relative to the IID case.
 
 We can upper bound the variance term in the following way
 
@@ -1209,7 +1209,7 @@ of
 .. math:: \left(1 + 2 \frac{1}{1 - \exp(-\kappa h)} \right)
 
 This long run factor is larger the higher is the frequency (the smaller
-is :math:`h`)
+is :math:`h`).
 
 Therefore, we expect the asymptotic relative MSEs, :math:`B`, to change
 with time-dependent data. We just saw that the mean estimator's rate is
@@ -1217,7 +1217,7 @@ roughly changing by a factor of
 
 .. math:: \left(1 + 2 \frac{1}{1 - \exp(-\kappa h)} \right)
 
-Unfortunately, the variance estimator's MSE is harder to derive
+Unfortunately, the variance estimator's MSE is harder to derive.
 
 Nonetheless, we can approximate it by using (large sample) simulations,
 thus getting an idea about how the asymptotic relative MSEs changes in
