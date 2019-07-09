@@ -15,7 +15,7 @@ Rosen Schooling Model
 
 
 This lecture is yet another part of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
 In addition to what's included in  Anaconda, this lecture uses the quantecon  library
 
@@ -47,7 +47,7 @@ Ryoo and Rosen's (2004) :cite:`ryoo2004engineering` partial equilibrium model de
 
 -  the wage rate of engineers, :math:`w_t`
 
-It takes k periods of schooling to become an engineer
+It takes k periods of schooling to become an engineer.
 
 The model consists of the following equations:
 
@@ -98,13 +98,13 @@ Preferences
       \end{bmatrix}
 
 where :math:`\Lambda` is a k+1 x 1 matrix, :math:`\Delta_h` is a k\_1 x
-k+1 matrix, and :math:`\Theta_h` is a k+1 x 1 matrix
+k+1 matrix, and :math:`\Theta_h` is a k+1 x 1 matrix.
 
 This specification sets :math:`N_t = h_{1t-1}`, :math:`n_t = c_t`,
-:math:`h_{\tau+1,t-1} = n_{t-(k-\tau)}` for :math:`\tau = 1,...,k`
+:math:`h_{\tau+1,t-1} = n_{t-(k-\tau)}` for :math:`\tau = 1,...,k`.
 
 Below we set things up so that the number of years of education, k, can
-be varied
+be varied.
 
 Technology
 ------------
@@ -116,7 +116,7 @@ technology:
 
 .. math::  \psi_1i_t = g_t
 
-where :math:`\psi_1` is inversely proportional to :math:`\alpha_s`
+where :math:`\psi_1` is inversely proportional to :math:`\alpha_s`.
 
 Information
 ------------
@@ -161,7 +161,7 @@ We now study how changing
 
 -  the slope of the demand curve
 
-affects responses to demand shocks
+affects responses to demand shocks.
 
 To begin, we set :math:`k = 4` and :math:`\alpha_d = 0.1`
 
@@ -260,21 +260,21 @@ We create three other instances by:
 
 The first figure plots the impulse response of :math:`n_t` (on the left)
 and :math:`N_t` (on the right) to a positive demand shock, for
-:math:`\alpha_d = 0.1` and :math:`\alpha_d = 2`
+:math:`\alpha_d = 0.1` and :math:`\alpha_d = 2`.
 
 When :math:`\alpha_d = 2`, the number of new students :math:`n_t` rises
-initially, but the response then turns negative
+initially, but the response then turns negative.
 
 A positive demand shock raises wages, drawing new students into the
-profession
+profession.
 
-However, these new students raise :math:`N_t`
+However, these new students raise :math:`N_t`.
 
 The higher is :math:`\alpha_d`, the larger the effect of this rise in
-:math:`N_t` on wages
+:math:`N_t` on wages.
 
 This counteracts the demand shock's positive effect on wages, reducing
-the number of new students in subsequent periods
+the number of new students in subsequent periods.
 
 Consequently, when :math:`\alpha_d` is lower, the effect of a demand
 shock on :math:`N_t` is larger
@@ -316,9 +316,9 @@ and :math:`N_t` (on the right) to a positive demand shock, for
 
 
 Both panels in the above figure show that raising k lowers the effect of
-a positive demand shock on entry into the engineering profession
+a positive demand shock on entry into the engineering profession.
 
 Increasing the number of periods of schooling lowers
-the number of new students in response to a demand shock
+the number of new students in response to a demand shock.
 
-This occurs because  with longer required schooling, new students ultimately benefit less from the impact of that shock on wages
+This occurs because  with longer required schooling, new students ultimately benefit less from the impact of that shock on wages.

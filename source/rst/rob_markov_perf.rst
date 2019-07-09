@@ -10,7 +10,7 @@ Robust Markov Perfect Equilibrium
 
 **Co-author: Dongchen Zou**
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -23,7 +23,7 @@ Overview
 .. index::
     single: Markov Perfect Equilibrium; Overview
 
-This lecture describes  a Markov perfect equilibrium  with robust agents
+This lecture describes  a Markov perfect equilibrium  with robust agents.
 
 We  focus on special settings with
 
@@ -33,34 +33,34 @@ We  focus on special settings with
 
 * linear transition rules for the state vector
 
-These specifications simplify calculations and allow us to give a simple example that illustrates basic  forces
+These specifications simplify calculations and allow us to give a simple example that illustrates basic  forces.
 
 This lecture is based on ideas described in chapter 15 of  :cite:`HansenSargent2008` and in :doc:`Markov perfect equilibrium<markov_perf>`
-and :doc:`Robustness<robustness>`
+and :doc:`Robustness<robustness>`.
 
 Basic Setup
 ------------
 
 Decisions of two agents affect the motion of a  state vector
-that appears as an argument of   payoff functions of both agents
+that appears as an argument of   payoff functions of both agents.
 
 As described in :doc:`Markov perfect equilibrium<markov_perf>`, when decision-makers have no concerns about the robustness of their decision rules
 to misspecifications of the state dynamics, a Markov perfect equilibrium  can be computed via
-backward recursion  on  two sets of equations
+backward recursion  on  two sets of equations.
 
- * a pair of Bellman equations, one for each agent
+ * a pair of Bellman equations, one for each agent.
 
  * a pair of equations that express linear decision rules for each agent as functions of that agent's  continuation value function as well as parameters of
    preferences and state transition matrices
 
 
 This lecture shows how  a similar equilibrium concept and similar computational  procedures
-apply when we impute concerns about robustness to both decision-makers
+apply when we impute concerns about robustness to both decision-makers.
 
-A Markov perfect equilibrium with robust agents will be characterized by
+A Markov perfect equilibrium with robust agents will be characterized by.
 
 
- * a pair of Bellman equations, one for each agent
+ * a pair of Bellman equations, one for each agent.
 
  * a pair of equations that express linear decision rules for each agent as functions of that agent's  continuation value function as well as parameters of
    preferences and state transition matrices
@@ -72,7 +72,7 @@ A Markov perfect equilibrium with robust agents will be characterized by
 
 
 Below, we'll construct a robust firms version of the classic duopoly model with
-adjustment costs analyzed in :doc:`Markov perfect equilibrium<markov_perf>`
+adjustment costs analyzed in :doc:`Markov perfect equilibrium<markov_perf>`.
 
 
 
@@ -84,24 +84,24 @@ Linear Markov Perfect Equilibria with Robust Agents
     single: Linear Markov Perfect Equilibria
 
 As we saw in  :doc:`Markov perfect equilibrium<markov_perf>`, the study of Markov perfect equilibria in dynamic games with two players
-leads us to an interrelated pair of Bellman equations
+leads us to an interrelated pair of Bellman equations.
 
-In linear quadratic dynamic games, these "stacked Bellman equations" become "stacked Riccati equations" with a tractable mathematical structure
+In linear quadratic dynamic games, these "stacked Bellman equations" become "stacked Riccati equations" with a tractable mathematical structure.
 
 
 
 Modified Coupled Linear Regulator Problems
 -----------------------------------------------
 
-We consider a general linear quadratic regulator game with two players, each of whom fears model misspecifications
+We consider a general linear quadratic regulator game with two players, each of whom fears model misspecifications.
 
-We often call the players agents
+We often call the players agents.
 
 The agents share a common baseline model for the transition dynamics of the state vector
 
   - this is a counterpart of a 'rational expectations' assumption of shared beliefs
 
-But now one or more agents doubt that the baseline model is correctly specified
+But now one or more agents doubt that the baseline model is correctly specified.
 
 The agents express the possibility that their baseline specification is incorrect by adding a contribution :math:`C v_{it}` to the time :math:`t` transition law for the state
 
@@ -110,7 +110,7 @@ The agents express the possibility that their baseline specification is incorrec
    * :math:`v_{it}` is a possibly history-dependent vector of distortions to the dynamics of the state that agent :math:`i` uses to  represent misspecification of the original model
 
 
-For convenience, we'll start with a finite horizon formulation, where :math:`t_0` is the initial date and :math:`t_1` is the common terminal date
+For convenience, we'll start with a finite horizon formulation, where :math:`t_0` is the initial date and :math:`t_1` is the common terminal date.
 
 Player :math:`i` takes a sequence :math:`\{u_{-it}\}` as given and chooses a sequence :math:`\{u_{it}\}` to minimize and :math:`\{v_{it}\}` to maximize
 
@@ -151,9 +151,9 @@ Here
 * :math:`C` is :math:`n \times h`
 * :math:`\theta_i \in [\underline \theta_i, +\infty]` is a scalar multiplier parameter of player :math:`i`
 
-If :math:`\theta_i = + \infty`, player :math:`i` completely trusts the baseline model
+If :math:`\theta_i = + \infty`, player :math:`i` completely trusts the baseline model.
 
-If :math:`\theta_i < _\infty`, player :math:`i` suspects that some other unspecified model actually governs the transition dynamics
+If :math:`\theta_i < _\infty`, player :math:`i` suspects that some other unspecified model actually governs the transition dynamics.
 
 The term :math:`\theta_i v_{it}' v_{it}` is a time :math:`t` contribution to an entropy penalty that an (imaginary) loss-maximizing agent inside
 agent :math:`i`'s mind charges for distorting the law of motion in a way that harms agent :math:`i`
@@ -165,11 +165,11 @@ agent :math:`i`'s mind charges for distorting the law of motion in a way that ha
 Computing Equilibrium
 -----------------------------------
 
-We formulate a linear robust Markov perfect equilibrium as follows
+We formulate a linear robust Markov perfect equilibrium as follows.
 
-Player :math:`i` employs linear decision rules :math:`u_{it} = - F_{it} x_t`, where :math:`F_{it}` is a :math:`k_i \times n` matrix
+Player :math:`i` employs linear decision rules :math:`u_{it} = - F_{it} x_t`, where :math:`F_{it}` is a :math:`k_i \times n` matrix.
 
-Player :math:`i`'s malevolent alter ego employs decision rules :math:`v_{it} = K_{it} x_t` where :math:`K_{it}` is an  :math:`h \times n` matrix
+Player :math:`i`'s malevolent alter ego employs decision rules :math:`v_{it} = K_{it} x_t` where :math:`K_{it}` is an  :math:`h \times n` matrix.
 
 A robust Markov perfect equilibrium is a pair of sequences :math:`\{F_{1t}, F_{2t}\}` and  a pair of sequences :math:`\{K_{1t}, K_{2t}\}` over :math:`t = t_0, \ldots, t_1 - 1` that satisfy
 
@@ -208,7 +208,7 @@ where
 * :math:`\Gamma_{it} := W_i' - M_i' F_{-it}`
 
 This is an LQ robust dynamic programming problem of the type studied in the :doc:`Robustness<robustness>` lecture,
-which can be solved by working backward
+which can be solved by working backward.
 
 Maximization with respect to distortion  :math:`v_{1t}` leads to  the following version of the :math:`\mathcal D` operator from
 the :doc:`Robustness<robustness>` lecture, namely
@@ -258,34 +258,34 @@ where :math:`P_{2t}` solves
       (\beta B_2' {\mathcal D}_2 ( P_{2t+1}) \Lambda_{2t} + \Gamma_{2t}) + \beta \Lambda_{2t}' {\mathcal D}_2 ( P_{2t+1})  \Lambda_{2t}
 
 
-Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`
+Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`.
 
-The solution procedure is to use equations :eq:`rmp-orig-3`, :eq:`rmp-orig-4`, :eq:`rmp-orig-5`, and :eq:`rmp-orig-6`, and "work backwards" from time :math:`t_1 - 1`
+The solution procedure is to use equations :eq:`rmp-orig-3`, :eq:`rmp-orig-4`, :eq:`rmp-orig-5`, and :eq:`rmp-orig-6`, and "work backwards" from time :math:`t_1 - 1`.
 
-Since we're working backwards, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage
+Since we're working backwards, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage.
 
 Moreover, since
 
 * some terms on the right-hand side of :eq:`rmp-orig-3` contain :math:`F_{2t}`
 * some terms on the right-hand side of :eq:`rmp-orig-5` contain :math:`F_{1t}`
 
-we need to solve these :math:`k_1 + k_2` equations simultaneously
+we need to solve these :math:`k_1 + k_2` equations simultaneously.
 
 Key Insight
 ------------
 
-As in :doc:`Markov perfect equilibrium<markov_perf>`, a key insight here  is that  equations  :eq:`rmp-orig-3` and :eq:`rmp-orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
+As in :doc:`Markov perfect equilibrium<markov_perf>`, a key insight here  is that  equations  :eq:`rmp-orig-3` and :eq:`rmp-orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`.
 
-After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`rmp-orig-4` and :eq:`rmp-orig-6`
+After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`rmp-orig-4` and :eq:`rmp-orig-6`.
 
 
-Notice how :math:`j`\ 's control law :math:`F_{jt}` is a function of :math:`\{F_{is}, s \geq t, i \neq j \}`
+Notice how :math:`j`\ 's control law :math:`F_{jt}` is a function of :math:`\{F_{is}, s \geq t, i \neq j \}`.
 
-Thus, agent :math:`i`\ 's choice of :math:`\{F_{it}; t = t_0, \ldots, t_1 - 1\}` influences agent :math:`j`\ 's choice of control laws
+Thus, agent :math:`i`\ 's choice of :math:`\{F_{it}; t = t_0, \ldots, t_1 - 1\}` influences agent :math:`j`\ 's choice of control laws.
 
-However, in the Markov perfect equilibrium of this game, each agent is assumed to ignore the influence that his choice exerts on the other agent's choice
+However, in the Markov perfect equilibrium of this game, each agent is assumed to ignore the influence that his choice exerts on the other agent's choice.
 
-After these equations have been solved, we can also deduce associated sequences of worst-case shocks
+After these equations have been solved, we can also deduce associated sequences of worst-case shocks.
 
 
 Worst-case Shocks
@@ -306,11 +306,11 @@ where
 Infinite Horizon
 -----------------
 
-We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`
+We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`.
 
-In practice, we usually fix :math:`t_1` and compute the equilibrium of an infinite horizon game by driving :math:`t_0 \rightarrow - \infty`
+In practice, we usually fix :math:`t_1` and compute the equilibrium of an infinite horizon game by driving :math:`t_0 \rightarrow - \infty`.
 
-This is the approach we adopt in the next section
+This is the approach we adopt in the next section.
 
 
 
@@ -320,7 +320,7 @@ Implementation
 
 We use the function `nnash_robust` to compute a
 Markov perfect equilibrium of the infinite horizon linear quadratic dynamic
-game with robust planers in the manner described above
+game with robust planers in the manner described above.
 
 
 Application
@@ -333,9 +333,9 @@ Application
 A Duopoly Model
 ----------------------
 
-Without concerns for robustness, the model is identical to the duopoly model from the :doc:`Markov perfect equilibrium<markov_perf>` lecture
+Without concerns for robustness, the model is identical to the duopoly model from the :doc:`Markov perfect equilibrium<markov_perf>` lecture.
 
-To begin, we briefly review the structure of that model
+To begin, we briefly review the structure of that model.
 
 
 
@@ -347,7 +347,7 @@ Two firms are the only producers of a good the demand for which is governed by a
     p = a_0 - a_1 (q_1 +  q_2)
 
 
-Here :math:`p = p_t` is the price of the good, :math:`q_i = q_{it}` is the output of firm :math:`i=1,2` at time :math:`t` and :math:`a_0 > 0, a_1 >0`
+Here :math:`p = p_t` is the price of the good, :math:`q_i = q_{it}` is the output of firm :math:`i=1,2` at time :math:`t` and :math:`a_0 > 0, a_1 >0`.
 
 In :eq:`rgame2` and what follows,
 
@@ -355,7 +355,7 @@ In :eq:`rgame2` and what follows,
 
 * :math:`\hat x` denotes a next period value of variable :math:`x`
 
-Each firm recognizes that its output affects total output and therefore the market price
+Each firm recognizes that its output affects total output and therefore the market price.
 
 The one-period payoff function of firm :math:`i` is price times quantity minus adjustment costs:
 
@@ -373,16 +373,16 @@ Substituting the inverse demand curve :eq:`rgame2` into :eq:`rgame1` lets us exp
     \pi_i(q_i, q_{-i}, \hat q_i) = a_0 q_i - a_1 q_i^2 - a_1 q_i q_{-i} - \gamma (\hat q_i - q_i)^2 ,
 
 
-where :math:`q_{-i}` denotes the output of the firm other than :math:`i`
+where :math:`q_{-i}` denotes the output of the firm other than :math:`i`.
 
-The objective of the firm is to maximize :math:`\sum_{t=0}^\infty \beta^t \pi_{it}`
+The objective of the firm is to maximize :math:`\sum_{t=0}^\infty \beta^t \pi_{it}`.
 
 
-Firm :math:`i` chooses a decision rule that sets next period quantity :math:`\hat q_i` as a function :math:`f_i` of the current state :math:`(q_i, q_{-i})`
+Firm :math:`i` chooses a decision rule that sets next period quantity :math:`\hat q_i` as a function :math:`f_i` of the current state :math:`(q_i, q_{-i})`.
 
-This completes our review of the duopoly model without concerns for robustness
+This completes our review of the duopoly model without concerns for robustness.
 
-Now we activate robustness  concerns of both firms
+Now we activate robustness  concerns of both firms.
 
 
 To map a robust version of the duopoly model  into  coupled robust linear-quadratic dynamic programming
@@ -427,7 +427,7 @@ where :math:`Q_1 = Q_2 = \gamma`,
     \end{bmatrix}
 
 
-then we recover the  one-period  payoffs :eq:`rgame1` for the two firms in the duopoly model
+then we recover the  one-period  payoffs :eq:`rgame1` for the two firms in the duopoly model.
 
 The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1t} + B_2 u_{2t}` where
 
@@ -486,9 +486,9 @@ We add robustness concerns to the Markov Perfect Equilibrium model by
 extending the function ``qe.nnash``
 (`link <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__)
 into a robustness version by adding the maximization operator
-:math:`\mathcal D(P)` into the backward induction
+:math:`\mathcal D(P)` into the backward induction.
 
-The MPE with robustness function is ``nnash_robust``
+The MPE with robustness function is ``nnash_robust``.
 
 The function's code is as follows
 
@@ -776,13 +776,13 @@ with ``qe.nnash`` in the non-robustness case in which each :math:`\theta_i \appr
     print('P2 and P2r should be the same: ', np.allclose(P1, P1r))
 
 
-We can see that the results are consistent across the two functions
+We can see that the results are consistent across the two functions.
 
 Comparative Dynamics under Baseline Transition Dynamics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to compare the dynamics of price and output under the baseline
-MPE model with those under the baseline model under the robust decision rules within the robust MPE
+MPE model with those under the baseline model under the robust decision rules within the robust MPE.
 
 This means that we simulate the state dynamics under the MPE  equilibrium **closed-loop** transition matrix
 
@@ -805,7 +805,7 @@ where :math:`F_1` and :math:`F_2` are the firms' robust decision rules within th
     laws that are distorted relative to the baseline model
 
 After simulating :math:`x_t` under the baseline transition dynamics and robust decision rules :math:`F_i, i = 1, 2`, we
-extract and plot industry output :math:`q_t=q_{1t}+q_{2t}` and price :math:`p_t = a_0 − a_1 q_t`
+extract and plot industry output :math:`q_t=q_{1t}+q_{2t}` and price :math:`p_t = a_0 − a_1 q_t`.
 
 Here we set the robustness and volatility matrix parameters as follows:
 
@@ -813,9 +813,9 @@ Here we set the robustness and volatility matrix parameters as follows:
 -  :math:`\theta_2 = 0.04`
 -  :math:`C = \begin{pmatrix} 0 \\ 0.01 \\ 0.01 \end{pmatrix}`
 
-Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that
+Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that.
 
- - both firms fear that the baseline specification of the state transition dynamics are incorrect
+ - both firms fear that the baseline specification of the state transition dynamics are incorrect.
 
  - firm :math:`1` fears misspecification more than firm :math:`2`
 
@@ -888,7 +888,7 @@ Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that
 
 The following code prepares graphs that compare market-wide output :math:`q_{1t} + q_{2t}` and  the price of the good
 :math:`p_t` under equilibrium decision rules :math:`F_i, i = 1, 2` from an ordinary Markov perfect equilibrium and the decision rules
-under a  Markov perfect equilibrium with robust firms with multiplier parameters :math:`\theta_i, i = 1,2` set as described above
+under a  Markov perfect equilibrium with robust firms with multiplier parameters :math:`\theta_i, i = 1,2` set as described above.
 
 Both industry output and price  are under the transition dynamics associated with the baseline model; only the decision rules :math:`F_i` differ across the two
 equilibrium objects presented
@@ -913,9 +913,9 @@ equilibrium objects presented
         plt.show()
 
 Under the dynamics associated with the baseline model, the price path is higher with the Markov perfect equilibrium robust decision rules
-than it is with decision rules for the ordinary Markov perfect equilibrium
+than it is with decision rules for the ordinary Markov perfect equilibrium.
 
-So is the industry output path
+So is the industry output path.
 
 To dig a little beneath the forces driving these outcomes, we want to plot :math:`q_{1t}`
 and :math:`q_{2t}` in the Markov perfect equilibrium with robust firms and to compare them with corresponding objects
@@ -941,7 +941,7 @@ in the Markov perfect equilibrium without robust firms
 
 
 Evidently, firm 1's output path is substantially lower when firms are  robust firms while
-firm 2's output path is virtually the same as it would be in an ordinary  Markov perfect equilibrium with no robust firms
+firm 2's output path is virtually the same as it would be in an ordinary  Markov perfect equilibrium with no robust firms.
 
 Recall that we have set :math:`\theta_1 = .02` and :math:`\theta_2 = .04`, so that firm 1 fears
 misspecification of the baseline model substantially more than does firm 2
@@ -952,20 +952,20 @@ misspecification of the baseline model substantially more than does firm 2
 - thus it is something of a coincidence that its output is almost the same in the two equilibria
 
 
-Larger  concerns about misspecification induce firm 1 to be more cautious than firm 2 in predicting market price and the output of the other firm
+Larger  concerns about misspecification induce firm 1 to be more cautious than firm 2 in predicting market price and the output of the other firm.
 
-To explore this, we study next how *ex-post* the two firms' beliefs about state dynamics differ in  the Markov perfect equilibrium with robust firms
+To explore this, we study next how *ex-post* the two firms' beliefs about state dynamics differ in  the Markov perfect equilibrium with robust firms.
 
-(by *ex-post* we mean *after* extremization of each firm's intertemporal objective)
+(by *ex-post* we mean *after* extremization of each firm's intertemporal objective).
 
 Heterogeneous Beliefs
 ^^^^^^^^^^^^^^^^^^^^^^
 
-As before, let :math:`A^o = A - B\_1 F\_1^r - B\_2 F\_2^r`, where in a robust MPE, :math:`F_i^r` is a robust decision rule for firm :math:`i`
+As before, let :math:`A^o = A - B\_1 F\_1^r - B\_2 F\_2^r`, where in a robust MPE, :math:`F_i^r` is a robust decision rule for firm :math:`i`.
 
-Worst-case forecasts of  :math:`x_t` starting from :math:`t=0` differ between the two firms
+Worst-case forecasts of  :math:`x_t` starting from :math:`t=0` differ between the two firms.
 
-This means that  worst-case forecasts of industry output :math:`q_{1t} + q_{2t}` and price :math:`p_t` also differ between the two firms
+This means that  worst-case forecasts of industry output :math:`q_{1t} + q_{2t}` and price :math:`p_t` also differ between the two firms.
 
 To find these worst-case beliefs, we compute the following three "closed-loop" transition    matrices
 
@@ -975,12 +975,12 @@ To find these worst-case beliefs, we compute the following three "closed-loop" t
 
    -  :math:`A^o + C K\_2`
 
-We call the first transition law, namely, :math:`A^o`,  the baseline transition under firms' robust decision rules
+We call the first transition law, namely, :math:`A^o`,  the baseline transition under firms' robust decision rules.
 
 We call the second and third worst-case transitions under robust decision
-rules for firms 1 and 2
+rules for firms 1 and 2.
 
-From :math:`\{x_t\}` paths generated by  each of these transition laws, we pull off the associated price and total output sequences
+From :math:`\{x_t\}` paths generated by  each of these transition laws, we pull off the associated price and total output sequences.
 
 The following code plots them
 
@@ -1021,8 +1021,8 @@ even though they share the same baseline model and information
 
    * this leads firm 1 to produce less than firm 2
 
-These beliefs justify (or **rationalize**) the Markov perfect equilibrium  robust decision rules
+These beliefs justify (or **rationalize**) the Markov perfect equilibrium  robust decision rules.
 
-This means that the robust rules are the unique **optimal** rules (or best responses) to the indicated worst-case transition dynamics
+This means that the robust rules are the unique **optimal** rules (or best responses) to the indicated worst-case transition dynamics.
 
-(:cite:`HansenSargent2008` discuss how this property of robust decision rules is connected to the concept of *admissibility* in Bayesian statistical decision theory)
+(:cite:`HansenSargent2008` discuss how this property of robust decision rules is connected to the concept of *admissibility* in Bayesian statistical decision theory).
