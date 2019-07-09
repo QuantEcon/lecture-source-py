@@ -34,9 +34,9 @@ Variations of the methods we discuss in this lecture are used millions of times 
 * routing packets on the internet
 
 
-For us, the shortest path problem also provides a nice introduction to the logic of **dynamic programming**
+For us, the shortest path problem also provides a nice introduction to the logic of **dynamic programming**.
 
-Dynamic programming is an extremely powerful optimization technique that we apply in many lectures on this site
+Dynamic programming is an extremely powerful optimization technique that we apply in many lectures on this site.
 
 
 
@@ -45,7 +45,7 @@ Dynamic programming is an extremely powerful optimization technique that we appl
 Outline of the Problem
 =========================
 
-The shortest path problem is one of finding how to traverse a `graph <https://en.wikipedia.org/wiki/Graph_%28mathematics%29>`_ from one specified node to another at minimum cost
+The shortest path problem is one of finding how to traverse a `graph <https://en.wikipedia.org/wiki/Graph_%28mathematics%29>`_ from one specified node to another at minimum cost.
 
 Consider the following graph
 
@@ -75,16 +75,16 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 Finding Least-Cost Paths
 ===========================
 
-For large graphs, we need a systematic solution
+For large graphs, we need a systematic solution.
 
-Let :math:`J(v)` denote the minimum cost-to-go from node :math:`v`, understood as the total cost from :math:`v` if we take the best route
+Let :math:`J(v)` denote the minimum cost-to-go from node :math:`v`, understood as the total cost from :math:`v` if we take the best route.
 
 Suppose that we know :math:`J(v)` for each node :math:`v`, as shown below for the graph from the preceding example
 
 
 .. figure:: /_static/lecture_specific/short_path/graph2.png
 
-Note that :math:`J(G) = 0`
+Note that :math:`J(G) = 0`.
 
 The best path can now be found as follows
 
@@ -104,7 +104,7 @@ where
 
 * :math:`c(v, w)` is the cost of traveling from :math:`v` to :math:`w`
 
-Hence, if we know the function :math:`J`, then finding the best path is almost trivial
+Hence, if we know the function :math:`J`, then finding the best path is almost trivial.
 
 But how to find :math:`J`?
 
@@ -117,7 +117,7 @@ the function :math:`J` satisfies
     J(v) = \min_{w \in F_v} \{ c(v, w) + J(w) \}
 
 
-This is known as the *Bellman equation*, after the mathematician Richard Bellman
+This is known as the *Bellman equation*, after the mathematician Richard Bellman.
 
 
 
@@ -132,7 +132,7 @@ The standard algorithm for finding :math:`J` is to start with
     J_0(v) = M \text{ if } v \not= \text{ destination, else } J_0(v) = 0
 
 
-where :math:`M` is some large number
+where :math:`M` is some large number.
 
 Now we use the following algorithm
 
@@ -140,7 +140,7 @@ Now we use the following algorithm
 #. Set :math:`J_{n+1} (v) = \min_{w \in F_v} \{ c(v, w) + J_n(w) \}` for all :math:`v`
 #. If :math:`J_{n+1}` and :math:`J_n` are not equal then increment :math:`n`, go to 2
 
-In general, this sequence converges to :math:`J`---the proof is omitted
+In general, this sequence converges to :math:`J`---the proof is omitted.
 
 
 
@@ -156,7 +156,7 @@ Exercise 1
 ------------
 
 Use the algorithm given above to find the optimal path (and its cost) for the
-following graph
+following graph.
 
 You can put it in a Jupyter notebook cell and hit Shift-Enter --- it
 will be saved in the local directory as file `graph.txt`
@@ -271,11 +271,11 @@ Here the line ``node0, node1 0.04, node8 11.11, node14 72.21`` means that from `
 * `node8` at cost 11.11
 * `node14` at cost 72.21
 
-and so on
+and so on.
 
-According to our calculations, the optimal path and its cost are like `this <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/short_path/graph_out.txt>`__
+According to our calculations, the optimal path and its cost are like `this <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/short_path/graph_out.txt>`__.
 
-Your code should replicate this result
+Your code should replicate this result.
 
 
 

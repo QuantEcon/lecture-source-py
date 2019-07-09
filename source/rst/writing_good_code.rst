@@ -18,17 +18,17 @@ Writing Good Code
 Overview
 ============
 
-When computer programs are small, poorly written code is not overly costly
+When computer programs are small, poorly written code is not overly costly.
 
-But more data, more sophisticated models, and more computer power are enabling us to take on more challenging problems that involve writing longer programs
+But more data, more sophisticated models, and more computer power are enabling us to take on more challenging problems that involve writing longer programs.
 
-For such programs, investment in good coding practices will pay high returns
+For such programs, investment in good coding practices will pay high returns.
 
-The main payoffs are higher productivity and faster code
+The main payoffs are higher productivity and faster code.
 
-In this lecture, we review some elements of good coding practice
+In this lecture, we review some elements of good coding practice.
 
-We also touch on modern developments in scientific computing --- such as just in time compilation --- and how they affect good program design
+We also touch on modern developments in scientific computing --- such as just in time compilation --- and how they affect good program design.
 
 
 
@@ -36,7 +36,7 @@ We also touch on modern developments in scientific computing --- such as just in
 An Example of Bad Code
 =======================
 
-Let's have a look at some poorly written code
+Let's have a look at some poorly written code.
 
 The job of the code is to generate and plot time series of the simplified Solow model
 
@@ -61,7 +61,7 @@ For each parameterization, the code
 
 #. plots the sequence
 
-The plots will be grouped into three subfigures
+The plots will be grouped into three subfigures.
 
 In each subfigure, two parameters are held fixed while another varies
 
@@ -130,45 +130,45 @@ In each subfigure, two parameters are held fixed while another varies
     plt.show()
 
 
-True, the code more or less follows `PEP8 <https://www.python.org/dev/peps/pep-0008/>`__
+True, the code more or less follows `PEP8 <https://www.python.org/dev/peps/pep-0008/>`__.
 
-At the same time, it's very poorly structured
+At the same time, it's very poorly structured.
 
-Let's talk about why that's the case, and what we can do about it
+Let's talk about why that's the case, and what we can do about it.
 
 
 Good Coding Practice
 =====================
 
-There are usually many different ways to write a program that accomplishes a given task
+There are usually many different ways to write a program that accomplishes a given task.
 
-For small programs, like the one above, the way you write code doesn't matter too much
+For small programs, like the one above, the way you write code doesn't matter too much.
 
-But if you are ambitious and want to produce useful things, you'll  write medium to large programs too
+But if you are ambitious and want to produce useful things, you'll  write medium to large programs too.
 
-In those settings, coding style matters **a great deal**
+In those settings, coding style matters **a great deal**.
 
-Fortunately, lots of smart people have thought about the best way to write code
+Fortunately, lots of smart people have thought about the best way to write code.
 
-Here are some basic precepts
+Here are some basic precepts.
 
 
 
 Don't Use Magic Numbers
 ------------------------
 
-If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered through the code
+If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered through the code.
 
-These kinds of numeric literals in the body of your code are sometimes called "magic numbers"
+These kinds of numeric literals in the body of your code are sometimes called "magic numbers".
 
-This is not a complement
+This is not a complement.
 
 While numeric literals are not all evil, the numbers shown in the program above
-should certainly be replaced by named constants
+should certainly be replaced by named constants.
 
-For example, the code above could declare the variable `time_series_length = 50`
+For example, the code above could declare the variable `time_series_length = 50`.
 
-Then in the loops, 49 should be replaced by `time_series_length - 1`
+Then in the loops, 49 should be replaced by `time_series_length - 1`.
 
 The advantages are:
 
@@ -180,31 +180,31 @@ The advantages are:
 Don't Repeat Yourself
 ------------------------
 
-The other mortal sin in the code snippet above is repetition
+The other mortal sin in the code snippet above is repetition.
 
-Blocks of logic (such as the loop to generate time series) are repeated with only minor changes
+Blocks of logic (such as the loop to generate time series) are repeated with only minor changes.
 
 This violates a fundamental tenet of programming: Don't repeat yourself (DRY)
 
 * Also called DIE (duplication is evil)
 
-Yes, we realize that you can just cut and paste and change a few symbols
+Yes, we realize that you can just cut and paste and change a few symbols.
 
-But as a programmer, your aim should be to **automate** repetition, **not** do it yourself
+But as a programmer, your aim should be to **automate** repetition, **not** do it yourself.
 
-More importantly, repeating the same logic in different places means that eventually one of them will likely be wrong
+More importantly, repeating the same logic in different places means that eventually one of them will likely be wrong.
 
-If you want to know more, read the excellent summary found on `this page <https://code.tutsplus.com/tutorials/3-key-software-principles-you-must-understand--net-25161>`__
+If you want to know more, read the excellent summary found on `this page <https://code.tutsplus.com/tutorials/3-key-software-principles-you-must-understand--net-25161>`__.
 
-We'll talk about how to avoid repetition below
+We'll talk about how to avoid repetition below.
 
 
 Minimize Global Variables
 ----------------------------
 
-Sure, global variables (i.e., names assigned to values outside of any function or class) are convenient
+Sure, global variables (i.e., names assigned to values outside of any function or class) are convenient.
 
-Rookie programmers typically use global variables with abandon --- as we once did ourselves
+Rookie programmers typically use global variables with abandon --- as we once did ourselves.
 
 But global variables are dangerous, especially in medium to large size programs, since
 
@@ -212,28 +212,28 @@ But global variables are dangerous, especially in medium to large size programs,
 
 * they can be changed by any function
 
-This makes it much harder to be certain about what some  small part of a given piece of code actually commands
+This makes it much harder to be certain about what some  small part of a given piece of code actually commands.
 
-Here's a `useful discussion on the topic <http://wiki.c2.com/?GlobalVariablesAreBad>`__
+Here's a `useful discussion on the topic <http://wiki.c2.com/?GlobalVariablesAreBad>`__.
 
-While the odd global in small scripts is no big deal, we recommend that you teach yourself to avoid them
+While the odd global in small scripts is no big deal, we recommend that you teach yourself to avoid them.
 
-(We'll discuss how just below)
+(We'll discuss how just below).
 
 
 JIT Compilation
 ^^^^^^^^^^^^^^^^^
 
-In fact, there's now another good reason to avoid global variables
+In fact, there's now another good reason to avoid global variables.
 
-In scientific computing, we're witnessing the rapid growth of just in time (JIT) compilation
+In scientific computing, we're witnessing the rapid growth of just in time (JIT) compilation.
 
-JIT compilation can generate excellent performance for scripting languages like Python and Julia
+JIT compilation can generate excellent performance for scripting languages like Python and Julia.
 
 But the task of the compiler used for JIT compilation becomes much harder when
-many global variables are present
+many global variables are present.
 
-(This is because data type instability hinders the generation of efficient machine code --- we'll learn more about such topics :doc:`later on <numba>`)
+(This is because data type instability hinders the generation of efficient machine code --- we'll learn more about such topics :doc:`later on <numba>`).
 
 
 
@@ -244,30 +244,30 @@ Fortunately, we can easily avoid the evils of global variables and WET code
 
 * WET stands for "we love typing" and is the opposite of DRY
 
-We can do this by making frequent use of functions or classes
+We can do this by making frequent use of functions or classes.
 
-In fact, functions and classes are designed specifically to help us avoid shaming ourselves by repeating code or excessive use of global variables
+In fact, functions and classes are designed specifically to help us avoid shaming ourselves by repeating code or excessive use of global variables.
 
 
 Which One, Functions or Classes?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Both can be useful, and in fact they work well with each other
+Both can be useful, and in fact they work well with each other.
 
-We'll learn more about these topics over time
+We'll learn more about these topics over time.
 
-(Personal preference is part of the story too)
+(Personal preference is part of the story too).
 
-What's really important is that you use one or the other or both
+What's really important is that you use one or the other or both.
 
 
 
 Revisiting the Example
 ========================
 
-Here's some code that reproduces the plot above with better coding style
+Here's some code that reproduces the plot above with better coding style.
 
-It uses a function to avoid repetition
+It uses a function to avoid repetition.
 
 Note also that
 
@@ -315,8 +315,8 @@ Note also that
 Summary
 =========
 
-Writing decent code isn't hard
+Writing decent code isn't hard.
 
-It's also fun and intellectually satisfying
+It's also fun and intellectually satisfying.
 
-We recommend that you cultivate good habits and style even when you write relatively short programs
+We recommend that you cultivate good habits and style even when you write relatively short programs.

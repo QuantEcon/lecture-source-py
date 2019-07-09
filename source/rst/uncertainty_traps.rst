@@ -13,9 +13,9 @@ Uncertainty Traps
 Overview
 ============
 
-In this lecture, we study a simplified version of an uncertainty traps model of Fajgelbaum, Schaal and Taschereau-Dumouchel :cite:`fun`
+In this lecture, we study a simplified version of an uncertainty traps model of Fajgelbaum, Schaal and Taschereau-Dumouchel :cite:`fun`.
 
-The model features self-reinforcing uncertainty that has big impacts on economic activity
+The model features self-reinforcing uncertainty that has big impacts on economic activity.
 
 In the model,
 
@@ -42,7 +42,7 @@ Uncertainty traps emerge because:
 
 * Less information translates to higher uncertainty, further discouraging entrepreneurs from choosing to be active, and so on
 
-Uncertainty traps stem from a positive externality: high aggregate economic activity levels generates valuable information
+Uncertainty traps stem from a positive externality: high aggregate economic activity levels generates valuable information.
 
 
 
@@ -52,9 +52,9 @@ The Model
 ===============
 
 
-The original model described in :cite:`fun` has many interesting moving parts
+The original model described in :cite:`fun` has many interesting moving parts.
 
-Here we examine a simplified version that nonetheless captures many of the key ideas
+Here we examine a simplified version that nonetheless captures many of the key ideas.
 
 
 
@@ -74,14 +74,14 @@ where
 
 * :math:`\{w_t\}` is IID and standard normal
 
-The random variable :math:`\theta_t` is not observable at any time
+The random variable :math:`\theta_t` is not observable at any time.
 
 
 
 Output
 -----------
 
-There is a total :math:`\bar M` of risk-averse entrepreneurs
+There is a total :math:`\bar M` of risk-averse entrepreneurs.
 
 Output of the :math:`m`-th entrepreneur, conditional on being active in the market at
 time :math:`t`, is equal to
@@ -94,13 +94,13 @@ time :math:`t`, is equal to
     \epsilon_m \sim N \left(0, \gamma_x^{-1} \right)
 
 
-Here the time subscript has been dropped to simplify notation
+Here the time subscript has been dropped to simplify notation.
 
-The inverse of the shock variance, :math:`\gamma_x`, is called the shock's **precision**
+The inverse of the shock variance, :math:`\gamma_x`, is called the shock's **precision**.
 
-The higher is the precision, the more informative :math:`x_m` is about the fundamental
+The higher is the precision, the more informative :math:`x_m` is about the fundamental.
 
-Output shocks are independent across time and firms
+Output shocks are independent across time and firms.
 
 
 
@@ -109,16 +109,16 @@ Output shocks are independent across time and firms
 Information and Beliefs
 ----------------------------
 
-All entrepreneurs start with identical beliefs about :math:`\theta_0`
+All entrepreneurs start with identical beliefs about :math:`\theta_0`.
 
-Signals are publicly observable and hence all agents have identical beliefs always
+Signals are publicly observable and hence all agents have identical beliefs always.
 
 Dropping time subscripts, beliefs for current :math:`\theta` are represented by the normal
-distribution :math:`N(\mu, \gamma^{-1})`
+distribution :math:`N(\mu, \gamma^{-1})`.
 
-Here :math:`\gamma` is the precision of beliefs; its inverse is the degree of uncertainty
+Here :math:`\gamma` is the precision of beliefs; its inverse is the degree of uncertainty.
 
-These parameters are updated by Kalman filtering
+These parameters are updated by Kalman filtering.
 
 Let
 
@@ -146,12 +146,12 @@ With this notation and primes for next period values, we can write the updating 
         \right)^{-1}
 
 
-These are standard Kalman filtering results applied to the current setting
+These are standard Kalman filtering results applied to the current setting.
 
-Exercise 1 provides more details on how :eq:`update_mean` and :eq:`update_prec` are derived and then asks you to fill in remaining steps
+Exercise 1 provides more details on how :eq:`update_mean` and :eq:`update_prec` are derived and then asks you to fill in remaining steps.
 
 The next figure plots the law of motion for the precision in :eq:`update_prec`
-as a 45 degree diagram, with one curve for each :math:`M \in \{0, \ldots, 6\}`
+as a 45 degree diagram, with one curve for each :math:`M \in \{0, \ldots, 6\}`.
 
 The other parameter values are :math:`\rho = 0.99, \gamma_x = 0.5, \sigma_\theta =0.5`
 
@@ -159,7 +159,7 @@ The other parameter values are :math:`\rho = 0.99, \gamma_x = 0.5, \sigma_\theta
 
 
 Points where the curves hit the 45 degree lines are  long-run steady
-states for precision for different values of :math:`M`
+states for precision for different values of :math:`M`.
 
 Thus, if one of these values for :math:`M` remains fixed, a corresponding steady state is the equilibrium level of precision
 
@@ -168,7 +168,7 @@ Thus, if one of these values for :math:`M` remains fixed, a corresponding steady
 
 * low values of :math:`M` correspond to less information and more uncertainty in steady state
 
-In practice, as we'll see, the number of active firms fluctuates stochastically
+In practice, as we'll see, the number of active firms fluctuates stochastically.
 
 
 Participation
@@ -190,7 +190,7 @@ Here
 
 * :math:`c` is a constant reflecting opportunity costs
 
-The statement that :math:`F_m` is pre-visible means that it is realized at the start of the period and treated as a constant in :eq:`pref1`
+The statement that :math:`F_m` is pre-visible means that it is realized at the start of the period and treated as a constant in :eq:`pref1`.
 
 
 
@@ -202,7 +202,7 @@ The utility function has the constant absolute risk aversion form
     u(x) = \frac{1}{a} \left(1 - \exp(-a x) \right)
 
 
-where :math:`a` is a positive parameter
+where :math:`a` is a positive parameter.
 
 Combining :eq:`pref1` and :eq:`pref2`, entrepreneur :math:`m` participates in the market (or is said to be active) when
 
@@ -237,7 +237,7 @@ Implementation
 ===============
 
 
-We want to simulate this economy
+We want to simulate this economy.
 
 As a first step, let's put together a class that bundles
 
@@ -246,17 +246,17 @@ As a first step, let's put together a class that bundles
 
 * methods to update :math:`\theta`, :math:`\mu` and :math:`\gamma`, as well as to determine the number of active firms and their outputs
 
-The updating methods follow the laws of motion for :math:`\theta`, :math:`\mu` and :math:`\gamma` given above
+The updating methods follow the laws of motion for :math:`\theta`, :math:`\mu` and :math:`\gamma` given above.
 
 The method to evaluate the number of active firms generates :math:`F_1,
-\ldots, F_{\bar M}` and tests condition :eq:`firm_test` for each firm
+\ldots, F_{\bar M}` and tests condition :eq:`firm_test` for each firm.
 
 The `__init__` method encodes as default values the parameters we'll use in the simulations below
 
 
 .. literalinclude:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps.py
 
-In the results below we use this code to simulate time series for the major variables
+In the results below we use this code to simulate time series for the major variables.
 
 
 Results
@@ -266,12 +266,12 @@ Let's look first at the dynamics of :math:`\mu`, which the agents use to track :
 
 .. figure:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps_mu.png
 
-We see that :math:`\mu` tracks :math:`\theta` well when there are sufficient firms in the market
+We see that :math:`\mu` tracks :math:`\theta` well when there are sufficient firms in the market.
 
 However, there are times when :math:`\mu` tracks :math:`\theta` poorly due to
-insufficient information
+insufficient information.
 
-These are episodes where the uncertainty traps take hold
+These are episodes where the uncertainty traps take hold.
 
 During these episodes
 
@@ -286,9 +286,9 @@ at once, for a given set of shocks
 .. figure:: /_static/lecture_specific/uncertainty_traps/uncertainty_traps_sim.png
 
 
-Notice how the traps only take hold after a sequence of bad draws for the fundamental
+Notice how the traps only take hold after a sequence of bad draws for the fundamental.
 
-Thus, the model gives us a *propagation mechanism* that maps bad random draws into long downturns in economic activity
+Thus, the model gives us a *propagation mechanism* that maps bad random draws into long downturns in economic activity.
 
 
 
@@ -302,7 +302,7 @@ Exercise 1
 ------------
 
 Fill in the details behind :eq:`update_mean` and :eq:`update_prec` based on
-the following standard result (see, e.g., p. 24 of :cite:`young2005`)
+the following standard result (see, e.g., p. 24 of :cite:`young2005`).
 
 **Fact** Let :math:`\mathbf x = (x_1, \ldots, x_M)` be a vector of IID draws
 from common distribution :math:`N(\theta, 1/\gamma_x)`
@@ -371,7 +371,7 @@ where
 If we take a random variable :math:`\theta` with this distribution and
 then evaluate the distribution of :math:`\rho \theta + \sigma_\theta w`
 where :math:`w` is independent and standard normal, we get the
-expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture
+expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture.
 
 Exercise 2
 -----------
@@ -412,7 +412,7 @@ different values of :math:`M`
 The points where the curves hit the 45 degree lines are the long-run
 steady states corresponding to each :math:`M`, if that value of
 :math:`M` was to remain fixed. As the number of firms falls, so does the
-long-run steady state of precision
+long-run steady state of precision.
 
 Next let's generate time series for beliefs and the aggregates -- that
 is, the number of active firms and average output
@@ -487,11 +487,11 @@ Now let's plot the whole thing together
 
     plt.show()
 
-If you run the code above you'll get different plots, of course
+If you run the code above you'll get different plots, of course.
 
 Try experimenting with different parameters to see the effects on the time
-series
+series.
 
 (It would also be interesting to experiment with non-Gaussian
 distributions for the shocks, but this is a big exercise since it takes
-us outside the world of the standard Kalman filter)
+us outside the world of the standard Kalman filter).
