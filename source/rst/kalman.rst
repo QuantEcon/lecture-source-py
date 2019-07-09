@@ -13,7 +13,7 @@ A First Look at the Kalman Filter
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -33,7 +33,7 @@ For additional (more advanced) reading on the Kalman filter, see
 * :cite:`Ljungqvist2012`, section 2.7
 * :cite:`AndersonMoore2005`
 
-The second reference presents a  comprehensive treatment of the Kalman filter
+The second reference presents a  comprehensive treatment of the Kalman filter.
 
 Required knowledge: Familiarity with matrix manipulations, multivariate normal distributions, covariance matrices, etc.
 
@@ -42,15 +42,15 @@ The Basic Idea
 ====================
 
 The Kalman filter has many applications in economics, but for now
-let's pretend that we are rocket scientists
+let's pretend that we are rocket scientists.
 
-A missile has been launched from country Y and our mission is to track it
+A missile has been launched from country Y and our mission is to track it.
 
 Let :math:`x  \in \mathbb{R}^2` denote the current location of the missile---a
-pair indicating latitude-longitude coordinates on a map
+pair indicating latitude-longitude coordinates on a map.
 
 At the present moment in time, the precise location :math:`x` is unknown, but
-we do have some beliefs about :math:`x`
+we do have some beliefs about :math:`x`.
 
 One way to summarize our knowledge is a point prediction :math:`\hat x`
 
@@ -59,9 +59,9 @@ One way to summarize our knowledge is a point prediction :math:`\hat x`
 
     * :math:`\int_E p(x)dx` indicates the probability that we attach to the missile being in region :math:`E`
 
-The density :math:`p` is called our *prior* for the random variable :math:`x`
+The density :math:`p` is called our *prior* for the random variable :math:`x`.
 
-To keep things tractable in our example,  we  assume that our prior is Gaussian
+To keep things tractable in our example,  we  assume that our prior is Gaussian.
 
 In particular, we take
 
@@ -94,7 +94,7 @@ where :math:`\hat x` is the mean of the distribution and :math:`\Sigma` is a
       \right)
 
 
-This density :math:`p(x)` is shown below as a contour map, with the center of the red ellipse being equal to :math:`\hat x`
+This density :math:`p(x)` is shown below as a contour map, with the center of the red ellipse being equal to :math:`\hat x`.
 
 
 
@@ -190,9 +190,9 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
 The Filtering Step
 --------------------
 
-We are now presented with some good news and some bad news
+We are now presented with some good news and some bad news.
 
-The good news is that the missile has been located by our sensors, which report that the current location is :math:`y = (2.3, -1.9)`
+The good news is that the missile has been located by our sensors, which report that the current location is :math:`y = (2.3, -1.9)`.
 
 The next figure shows the original prior :math:`p(x)` and the new reported
 location :math:`y`
@@ -214,7 +214,7 @@ location :math:`y`
 
 
 
-The bad news is that our sensors are imprecise
+The bad news is that our sensors are imprecise.
 
 In particular, we should interpret the output of our sensor not as
 :math:`y=x`, but rather as
@@ -227,7 +227,7 @@ In particular, we should interpret the output of our sensor not as
 
 Here :math:`G` and :math:`R` are :math:`2 \times 2` matrices with :math:`R`
 positive definite.  Both are assumed known, and the noise term :math:`v` is assumed
-to be independent of :math:`x`
+to be independent of :math:`x`.
 
 How then should we combine our prior :math:`p(x) = N(\hat x, \Sigma)` and this
 new information :math:`y` to improve our understanding of the location of the
@@ -241,7 +241,7 @@ us to  update our prior :math:`p(x)` to :math:`p(x \,|\, y)` via
     p(x \,|\, y) = \frac{p(y \,|\, x) \, p(x)} {p(y)}
 
 
-where :math:`p(y) = \int p(y \,|\, x) \, p(x) dx`
+where :math:`p(y) = \int p(y \,|\, x) \, p(x) dx`.
 
 In solving for :math:`p(x \,|\, y)`, we observe that
 
@@ -249,7 +249,7 @@ In solving for :math:`p(x \,|\, y)`, we observe that
 * In view of :eq:`kl_measurement_model`, the conditional density :math:`p(y \,|\, x)` is :math:`N(Gx, R)`
 * :math:`p(y)` does not depend on :math:`x`, and enters into the calculations only as a normalizing constant
 
-Because we are in a linear and Gaussian framework, the updated density can be computed by calculating population linear regressions
+Because we are in a linear and Gaussian framework, the updated density can be computed by calculating population linear regressions.
 
 In particular, the solution is known [#f1]_ to be
 
@@ -268,9 +268,9 @@ where
     \Sigma^F := \Sigma - \Sigma G' (G \Sigma G' + R)^{-1} G \Sigma
 
 
-Here  :math:`\Sigma G' (G \Sigma G' + R)^{-1}` is the matrix of population regression coefficients of the hidden object :math:`x - \hat x` on the surprise :math:`y - G \hat x`
+Here  :math:`\Sigma G' (G \Sigma G' + R)^{-1}` is the matrix of population regression coefficients of the hidden object :math:`x - \hat x` on the surprise :math:`y - G \hat x`.
 
-This new density :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` is shown in the next figure via contour lines and the color map
+This new density :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` is shown in the next figure via contour lines and the color map.
 
 The original density is left in as contour lines for comparison
 
@@ -298,9 +298,9 @@ The original density is left in as contour lines for comparison
 
 
 Our new density twists the prior :math:`p(x)` in a direction determined by  the new
-information :math:`y - G \hat x`
+information :math:`y - G \hat x`.
 
-In generating the figure, we set :math:`G` to the identity matrix and :math:`R = 0.5 \Sigma` for :math:`\Sigma` defined in :eq:`kalman_dhxs`
+In generating the figure, we set :math:`G` to the identity matrix and :math:`R = 0.5 \Sigma` for :math:`\Sigma` defined in :eq:`kalman_dhxs`.
 
 
 .. _kl_forecase_step:
@@ -311,16 +311,16 @@ The Forecast Step
 
 What have we achieved so far?
 
-We have obtained probabilities for the current location of the state (missile) given prior and current information
+We have obtained probabilities for the current location of the state (missile) given prior and current information.
 
 This is called "filtering" rather than forecasting because we are filtering
 out noise rather than looking into the future
 
 * :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` is called the *filtering distribution*
 
-But now let's suppose that we are given another task: to predict the location of the missile after one unit of time (whatever that may be) has elapsed
+But now let's suppose that we are given another task: to predict the location of the missile after one unit of time (whatever that may be) has elapsed.
 
-To do this we need a model of how the state evolves
+To do this we need a model of how the state evolves.
 
 Let's suppose that we have one, and that it's linear and Gaussian. In particular,
 
@@ -330,11 +330,11 @@ Let's suppose that we have one, and that it's linear and Gaussian. In particular
     x_{t+1} = A x_t + w_{t+1}, \quad \text{where} \quad w_t \sim N(0, Q)
 
 
-Our aim is to combine this law of motion and our current distribution :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` to come up with a new *predictive* distribution for the location in one unit of time
+Our aim is to combine this law of motion and our current distribution :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` to come up with a new *predictive* distribution for the location in one unit of time.
 
-In view of :eq:`kl_xdynam`, all we have to do is introduce a random vector :math:`x^F \sim N(\hat x^F, \Sigma^F)` and work out the distribution of :math:`A x^F + w` where :math:`w` is independent of :math:`x^F` and has distribution :math:`N(0, Q)`
+In view of :eq:`kl_xdynam`, all we have to do is introduce a random vector :math:`x^F \sim N(\hat x^F, \Sigma^F)` and work out the distribution of :math:`A x^F + w` where :math:`w` is independent of :math:`x^F` and has distribution :math:`N(0, Q)`.
 
-Since linear combinations of Gaussians are Gaussian, :math:`A x^F + w` is Gaussian
+Since linear combinations of Gaussians are Gaussian, :math:`A x^F + w` is Gaussian.
 
 Elementary calculations and the expressions in :eq:`kl_filter_exp` tell us that
 
@@ -361,7 +361,7 @@ The matrix :math:`A \Sigma G' (G \Sigma G' + R)^{-1}` is often written as
 
 * The subscript :math:`\Sigma` has been added to remind us that  :math:`K_{\Sigma}` depends on :math:`\Sigma`, but not :math:`y` or :math:`\hat x`
 
-Using this notation, we can summarize our results as follows
+Using this notation, we can summarize our results as follows.
 
 Our updated prediction is the density :math:`N(\hat x_{new}, \Sigma_{new})` where
 
@@ -432,16 +432,16 @@ The Recursive Procedure
 .. index::
     single: Kalman Filter; Recursive Procedure
 
-Let's look back at what we've done
+Let's look back at what we've done.
 
-We started the current period with a prior :math:`p(x)` for the location :math:`x` of the missile
+We started the current period with a prior :math:`p(x)` for the location :math:`x` of the missile.
 
-We then used the current measurement :math:`y` to update to :math:`p(x \,|\, y)`
+We then used the current measurement :math:`y` to update to :math:`p(x \,|\, y)`.
 
-Finally, we used the law of motion :eq:`kl_xdynam` for :math:`\{x_t\}` to update to :math:`p_{new}(x)`
+Finally, we used the law of motion :eq:`kl_xdynam` for :math:`\{x_t\}` to update to :math:`p_{new}(x)`.
 
 If we now step into the next period, we are ready to go round again, taking :math:`p_{new}(x)`
-as the current prior
+as the current prior.
 
 Swapping notation :math:`p_t(x)` for :math:`p(x)` and :math:`p_{t+1}(x)` for :math:`p_{new}(x)`, the full recursive procedure is:
 
@@ -449,7 +449,7 @@ Swapping notation :math:`p_t(x)` for :math:`p(x)` and :math:`p_{t+1}(x)` for :ma
 2. Observe current measurement :math:`y_t`
 3. Compute the filtering distribution :math:`p_t(x \,|\, y) = N(\hat x_t^F, \Sigma_t^F)` from :math:`p_t(x)` and :math:`y_t`, applying Bayes rule and the conditional distribution :eq:`kl_measurement_model`
 4. Compute the predictive distribution :math:`p_{t+1}(x) = N(\hat x_{t+1}, \Sigma_{t+1})` from the filtering distribution and :eq:`kl_xdynam`
-5. Increment :math:`t` by one and go to step 1
+5. Increment :math:`t` by one and go to step 1.
 
 Repeating :eq:`kl_mlom0`, the dynamics for :math:`\hat x_t` and :math:`\Sigma_t` are as follows
 
@@ -462,24 +462,24 @@ Repeating :eq:`kl_mlom0`, the dynamics for :math:`\hat x_t` and :math:`\Sigma_t`
     \end{aligned}
 
 
-These are the standard dynamic equations for the Kalman filter (see, for example, :cite:`Ljungqvist2012`, page 58)
+These are the standard dynamic equations for the Kalman filter (see, for example, :cite:`Ljungqvist2012`, page 58).
 
 .. _kalman_convergence:
 
 Convergence
 ==============
 
-The matrix :math:`\Sigma_t` is a measure of the uncertainty of our prediction :math:`\hat x_t` of :math:`x_t`
+The matrix :math:`\Sigma_t` is a measure of the uncertainty of our prediction :math:`\hat x_t` of :math:`x_t`.
 
-Apart from special cases, this uncertainty will never be fully resolved, regardless of how much time elapses
+Apart from special cases, this uncertainty will never be fully resolved, regardless of how much time elapses.
 
-One reason is that our prediction :math:`\hat x_t` is made based on information available at :math:`t-1`, not :math:`t`
+One reason is that our prediction :math:`\hat x_t` is made based on information available at :math:`t-1`, not :math:`t`.
 
-Even if we know the precise value of :math:`x_{t-1}` (which we don't), the transition equation :eq:`kl_xdynam` implies that :math:`x_t = A x_{t-1} + w_t`
+Even if we know the precise value of :math:`x_{t-1}` (which we don't), the transition equation :eq:`kl_xdynam` implies that :math:`x_t = A x_{t-1} + w_t`.
 
-Since the shock :math:`w_t` is not observable at :math:`t-1`, any time :math:`t-1` prediction of :math:`x_t` will incur some error (unless :math:`w_t` is degenerate)
+Since the shock :math:`w_t` is not observable at :math:`t-1`, any time :math:`t-1` prediction of :math:`x_t` will incur some error (unless :math:`w_t` is degenerate).
 
-However, it is certainly possible that :math:`\Sigma_t` converges to a constant matrix as :math:`t \to \infty`
+However, it is certainly possible that :math:`\Sigma_t` converges to a constant matrix as :math:`t \to \infty`.
 
 To study this topic, let's expand the second equation in :eq:`kalman_lom`:
 
@@ -489,7 +489,7 @@ To study this topic, let's expand the second equation in :eq:`kalman_lom`:
     \Sigma_{t+1} = A \Sigma_t A' -  A \Sigma_t G' (G \Sigma_t G' + R)^{-1} G \Sigma_t A' + Q
 
 
-This is a nonlinear difference equation in :math:`\Sigma_t`
+This is a nonlinear difference equation in :math:`\Sigma_t`.
 
 A fixed point of :eq:`kalman_sdy` is a constant matrix :math:`\Sigma` such that
 
@@ -499,17 +499,17 @@ A fixed point of :eq:`kalman_sdy` is a constant matrix :math:`\Sigma` such that
     \Sigma = A \Sigma A' -  A \Sigma G' (G \Sigma G' + R)^{-1} G \Sigma A' + Q
 
 
-Equation :eq:`kalman_sdy` is known as a discrete-time Riccati difference equation
+Equation :eq:`kalman_sdy` is known as a discrete-time Riccati difference equation.
 
-Equation :eq:`kalman_dare` is known as a `discrete-time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_
+Equation :eq:`kalman_dare` is known as a `discrete-time algebraic Riccati equation <https://en.wikipedia.org/wiki/Algebraic_Riccati_equation>`_.
 
-Conditions under which a fixed point exists and the sequence :math:`\{\Sigma_t\}` converges to it are discussed in :cite:`AHMS1996` and :cite:`AndersonMoore2005`, chapter 4
+Conditions under which a fixed point exists and the sequence :math:`\{\Sigma_t\}` converges to it are discussed in :cite:`AHMS1996` and :cite:`AndersonMoore2005`, chapter 4.
 
-A sufficient (but not necessary) condition is that all the eigenvalues :math:`\lambda_i` of :math:`A` satisfy :math:`|\lambda_i| < 1` (cf. e.g., :cite:`AndersonMoore2005`, p. 77)
+A sufficient (but not necessary) condition is that all the eigenvalues :math:`\lambda_i` of :math:`A` satisfy :math:`|\lambda_i| < 1` (cf. e.g., :cite:`AndersonMoore2005`, p. 77).
 
-(This strong condition assures that the unconditional  distribution of :math:`x_t`  converges as :math:`t \rightarrow + \infty`)
+(This strong condition assures that the unconditional  distribution of :math:`x_t`  converges as :math:`t \rightarrow + \infty`).
 
-In this case, for any initial choice of :math:`\Sigma_0` that is both non-negative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy` converges to a non-negative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare`
+In this case, for any initial choice of :math:`\Sigma_0` that is both non-negative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy` converges to a non-negative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare`.
 
 
 
@@ -545,7 +545,7 @@ The latter represents a linear state space model of the form
     \end{aligned}
 
 
-where the shocks :math:`w_t` and :math:`v_t` are IID standard normals
+where the shocks :math:`w_t` and :math:`v_t` are IID standard normals.
 
 To connect this with the notation of this lecture we set
 
@@ -569,7 +569,7 @@ To connect this with the notation of this lecture we set
     * a ``stationary_values``, which computes the solution to :eq:`kalman_dare` and the corresponding (stationary) Kalman gain
 
 
-You can view the program `on GitHub <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/kalman.py>`__
+You can view the program `on GitHub <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/kalman.py>`__.
 
 
 
@@ -583,22 +583,22 @@ Exercise 1
 ------------
 
 Consider the following simple application of the Kalman filter, loosely based
-on :cite:`Ljungqvist2012`, section 2.9.2
+on :cite:`Ljungqvist2012`, section 2.9.2.
 
 Suppose that
 
 * all variables are scalars
 * the hidden state :math:`\{x_t\}` is in fact constant, equal to some :math:`\theta \in \mathbb{R}` unknown to the modeler
 
-State dynamics are therefore given by :eq:`kl_xdynam` with :math:`A=1`, :math:`Q=0` and :math:`x_0 = \theta`
+State dynamics are therefore given by :eq:`kl_xdynam` with :math:`A=1`, :math:`Q=0` and :math:`x_0 = \theta`.
 
-The measurement equation is :math:`y_t = \theta + v_t` where :math:`v_t` is :math:`N(0,1)` and IID
+The measurement equation is :math:`y_t = \theta + v_t` where :math:`v_t` is :math:`N(0,1)` and IID.
 
-The task of this exercise to simulate the model and, using the code from ``kalman.py``, plot the first five predictive densities :math:`p_t(x) = N(\hat x_t, \Sigma_t)`
+The task of this exercise to simulate the model and, using the code from ``kalman.py``, plot the first five predictive densities :math:`p_t(x) = N(\hat x_t, \Sigma_t)`.
 
-As shown in :cite:`Ljungqvist2012`, sections 2.9.1--2.9.2, these distributions asymptotically put all mass on the unknown value :math:`\theta`
+As shown in :cite:`Ljungqvist2012`, sections 2.9.1--2.9.2, these distributions asymptotically put all mass on the unknown value :math:`\theta`.
 
-In the simulation, take :math:`\theta = 10`, :math:`\hat x_0 = 8` and :math:`\Sigma_0 = 1`
+In the simulation, take :math:`\theta = 10`, :math:`\hat x_0 = 8` and :math:`\Sigma_0 = 1`.
 
 Your figure should -- modulo randomness -- look something like this
 
@@ -611,7 +611,7 @@ Exercise 2
 ----------------
 
 The preceding figure gives some support to the idea that probability mass
-converges to :math:`\theta`
+converges to :math:`\theta`.
 
 To get a better idea, choose a small :math:`\epsilon > 0` and calculate
 
@@ -620,9 +620,9 @@ To get a better idea, choose a small :math:`\epsilon > 0` and calculate
     z_t := 1 - \int_{\theta - \epsilon}^{\theta + \epsilon} p_t(x) dx
 
 
-for :math:`t = 0, 1, 2, \ldots, T`
+for :math:`t = 0, 1, 2, \ldots, T`.
 
-Plot :math:`z_t` against :math:`T`, setting :math:`\epsilon = 0.1` and :math:`T = 600`
+Plot :math:`z_t` against :math:`T`, setting :math:`\epsilon = 0.1` and :math:`T = 600`.
 
 Your figure should show error erratically declining something like this
 
@@ -634,28 +634,28 @@ Your figure should show error erratically declining something like this
 Exercise 3
 ----------------
 
-As discussed :ref:`above <kalman_convergence>`, if the shock sequence :math:`\{w_t\}` is not degenerate, then it is not in general possible to predict :math:`x_t` without error at time :math:`t-1` (and this would be the case even if we could observe :math:`x_{t-1}`)
+As discussed :ref:`above <kalman_convergence>`, if the shock sequence :math:`\{w_t\}` is not degenerate, then it is not in general possible to predict :math:`x_t` without error at time :math:`t-1` (and this would be the case even if we could observe :math:`x_{t-1}`).
 
 Let's now compare the prediction :math:`\hat x_t` made by the Kalman filter
-against a competitor who **is** allowed to observe :math:`x_{t-1}`
+against a competitor who **is** allowed to observe :math:`x_{t-1}`.
 
 This competitor will use the conditional expectation :math:`\mathbb E[ x_t
-\,|\, x_{t-1}]`, which in this case is :math:`A x_{t-1}`
+\,|\, x_{t-1}]`, which in this case is :math:`A x_{t-1}`.
 
-The conditional expectation is known to be the optimal prediction method in terms of minimizing mean squared error
+The conditional expectation is known to be the optimal prediction method in terms of minimizing mean squared error.
 
-(More precisely, the minimizer of :math:`\mathbb E \, \| x_t - g(x_{t-1}) \|^2` with respect to :math:`g` is :math:`g^*(x_{t-1}) := \mathbb E[ x_t \,|\, x_{t-1}]`)
+(More precisely, the minimizer of :math:`\mathbb E \, \| x_t - g(x_{t-1}) \|^2` with respect to :math:`g` is :math:`g^*(x_{t-1}) := \mathbb E[ x_t \,|\, x_{t-1}]`).
 
 Thus we are comparing the Kalman filter against a competitor who has more
 information (in the sense of being able to observe the latent state) and
-behaves optimally in terms of minimizing squared error
+behaves optimally in terms of minimizing squared error.
 
-Our horse race will be assessed in terms of squared error
+Our horse race will be assessed in terms of squared error.
 
-In particular, your task is to generate a graph plotting observations of both :math:`\| x_t - A x_{t-1} \|^2` and :math:`\| x_t - \hat x_t \|^2` against :math:`t` for :math:`t = 1, \ldots, 50`
+In particular, your task is to generate a graph plotting observations of both :math:`\| x_t - A x_{t-1} \|^2` and :math:`\| x_t - \hat x_t \|^2` against :math:`t` for :math:`t = 1, \ldots, 50`.
 
 For the parameters, set :math:`G = I, R = 0.5 I` and :math:`Q = 0.3 I`, where :math:`I` is
-the :math:`2 \times 2` identity
+the :math:`2 \times 2` identity.
 
 Set
 
@@ -683,15 +683,15 @@ To initialize the prior density, set
       \right)
 
 
-and :math:`\hat x_0 = (8, 8)`
+and :math:`\hat x_0 = (8, 8)`.
 
-Finally, set :math:`x_0 = (0, 0)`
+Finally, set :math:`x_0 = (0, 0)`.
 
 You should end up with a figure similar to the following (modulo randomness)
 
 .. figure:: /_static/lecture_specific/kalman/kalman_ex3.png
 
-Observe how, after an initial learning period, the Kalman filter performs quite well, even relative to the competitor who predicts optimally with knowledge of the latent state
+Observe how, after an initial learning period, the Kalman filter performs quite well, even relative to the competitor who predicts optimally with knowledge of the latent state.
 
 
 
@@ -701,11 +701,11 @@ Observe how, after an initial learning period, the Kalman filter performs quite 
 Exercise 4
 ----------------
 
-Try varying the coefficient :math:`0.3` in :math:`Q = 0.3 I` up and down
+Try varying the coefficient :math:`0.3` in :math:`Q = 0.3 I` up and down.
 
-Observe how the diagonal values in the stationary solution :math:`\Sigma` (see :eq:`kalman_dare`) increase and decrease in line with this coefficient
+Observe how the diagonal values in the stationary solution :math:`\Sigma` (see :eq:`kalman_dare`) increase and decrease in line with this coefficient.
 
-The interpretation is that more randomness in the law of motion for :math:`x_t` causes more (permanent) uncertainty in prediction
+The interpretation is that more randomness in the law of motion for :math:`x_t` causes more (permanent) uncertainty in prediction.
 
 
 
