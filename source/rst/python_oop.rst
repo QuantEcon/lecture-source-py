@@ -16,7 +16,7 @@
 Overview
 ============
 
-In an :doc:`earlier lecture <oop_intro>`, we learned some foundations of object-oriented programming
+In an :doc:`earlier lecture <oop_intro>`, we learned some foundations of object-oriented programming.
 
 The objectives of this lecture are
 
@@ -44,11 +44,11 @@ A natural solution in Python would be to create consumers as objects with
 
 * methods, such as ``buy`` or ``work`` that affect this data
 
-Python makes it easy to do this, by providing you with **class definitions**
+Python makes it easy to do this, by providing you with **class definitions**.
 
-Classes are blueprints that help you build objects according to your own specifications
+Classes are blueprints that help you build objects according to your own specifications.
 
-It takes a little while to get used to the syntax so we'll provide plenty of examples
+It takes a little while to get used to the syntax so we'll provide plenty of examples.
 
 
 OOP Review
@@ -65,7 +65,7 @@ OOP is supported in many languages:
 * C is a procedural language, while C++ is C with OOP added on top
 
 
-Let's cover general OOP concepts before we specialize to Python
+Let's cover general OOP concepts before we specialize to Python.
 
 
 
@@ -77,7 +77,7 @@ Key Concepts
     single: Object-Oriented Programming; Key Concepts
 
 
-As discussed an :doc:`earlier lecture <oop_intro>`, in the OOP paradigm, data and functions are **bundled together** into "objects"
+As discussed an :doc:`earlier lecture <oop_intro>`, in the OOP paradigm, data and functions are **bundled together** into "objects".
 
 An example is a Python list, which not only stores data but also knows how to sort itself, etc.
 
@@ -88,11 +88,11 @@ An example is a Python list, which not only stores data but also knows how to so
     x
 
 
-As we now know, ``sort`` is a function that is "part of" the list object --- and hence called a *method*
+As we now know, ``sort`` is a function that is "part of" the list object --- and hence called a *method*.
 
-If we want to make our own types of objects we need to use class definitions
+If we want to make our own types of objects we need to use class definitions.
 
-A *class definition* is a blueprint for a particular class of objects (e.g., lists, strings or complex numbers)
+A *class definition* is a blueprint for a particular class of objects (e.g., lists, strings or complex numbers).
 
 It describes
 
@@ -106,7 +106,7 @@ An  *object* or *instance* is a realization of the class, created from the bluep
 
 * Methods set out in the class definition act on this (and other) data
 
-In Python, the data and methods of an object are collectively referred to as *attributes*
+In Python, the data and methods of an object are collectively referred to as *attributes*.
 
 Attributes are accessed via "dotted attribute notation"
 
@@ -135,7 +135,7 @@ Why is OOP Useful?
 ----------------------
 
 
-OOP is useful for the same reason that abstraction is useful: for recognizing and exploiting the common structure
+OOP is useful for the same reason that abstraction is useful: for recognizing and exploiting the common structure.
 
 For example,
 
@@ -145,15 +145,15 @@ For example,
 
 * *a game* consists of a list of players, lists of actions available to each player, player payoffs as functions of all players' actions, and a timing protocol
 
-These are all abstractions that collect together "objects" of the same "type"
+These are all abstractions that collect together "objects" of the same "type".
 
-Recognizing common structure allows us to employ common tools
+Recognizing common structure allows us to employ common tools.
 
-In economic theory, this might be a proposition that applies to all games of a certain type
+In economic theory, this might be a proposition that applies to all games of a certain type.
 
-In Python, this might be a method that's useful for all Markov chains (e.g., ``simulate``)
+In Python, this might be a method that's useful for all Markov chains (e.g., ``simulate``).
 
-When we use OOP, the ``simulate`` method is conveniently bundled together with the Markov chain object
+When we use OOP, the ``simulate`` method is conveniently bundled together with the Markov chain object.
 
 
 
@@ -164,7 +164,7 @@ Defining Your Own Classes
 .. index::
     single: Object-Oriented Programming; Classes
 
-Let's build some simple classes to start off
+Let's build some simple classes to start off.
 
 
 .. _oop_consumer_class:
@@ -181,7 +181,7 @@ First, we'll build a ``Consumer`` class with
 
 * a ``spend`` method, where ``spend(x)`` either decreases wealth by ``x`` or returns an error if insufficient funds exist
 
-Admittedly a little contrived, this example of a class helps us internalize some new syntax
+Admittedly a little contrived, this example of a class helps us internalize some new syntax.
 
 Here's one implementation
 
@@ -215,17 +215,17 @@ This class defines instance data ``wealth`` and three methods: ``__init__``, ``e
 
 *  ``wealth`` is *instance data* because each consumer we create (each instance of the ``Consumer`` class) will have its own separate wealth data
 
-The ideas behind the ``earn`` and ``spend`` methods were discussed above
+The ideas behind the ``earn`` and ``spend`` methods were discussed above.
 
-Both of these act on the instance data ``wealth``
+Both of these act on the instance data ``wealth``.
 
-The ``__init__`` method is a *constructor method*
+The ``__init__`` method is a *constructor method*.
 
-Whenever we create an instance of the class, this method will be called automatically
+Whenever we create an instance of the class, this method will be called automatically.
 
-Calling ``__init__`` sets up a "namespace" to hold the instance data --- more on this soon
+Calling ``__init__`` sets up a "namespace" to hold the instance data --- more on this soon.
 
-We'll also discuss the role of ``self`` just below
+We'll also discuss the role of ``self`` just below.
 
 
 Usage
@@ -271,13 +271,13 @@ In fact, each instance stores its data in a separate namespace dictionary
     c2.__dict__
 
 When we access or set attributes we're actually just modifying the dictionary
-maintained by the instance
+maintained by the instance.
 
 Self
 ^^^^
 
 If you look at the ``Consumer`` class definition again you'll see the word
-`self` throughout the code
+`self` throughout the code.
 
 The rules with ``self`` are that
 
@@ -291,7 +291,7 @@ The rules with ``self`` are that
 
 * Any method referenced within the class should be called as  ``self.method_name``
 
-There are no examples of the last rule in the preceding code but we will see some shortly
+There are no examples of the last rule in the preceding code but we will see some shortly.
 
 Details
 ^^^^^^^
@@ -309,7 +309,7 @@ the class definition
 
     print(Consumer.__dict__)  # Show __dict__ attribute of class object
 
-Note how the three methods ``__init__``, ``earn`` and ``spend`` are stored in the class object
+Note how the three methods ``__init__``, ``earn`` and ``spend`` are stored in the class object.
 
 Consider the following code
 
@@ -319,7 +319,7 @@ Consider the following code
     c1.earn(10)
     c1.wealth
 
-When you call ``earn`` via ``c1.earn(10)`` the interpreter passes the instance ``c1`` and the argument ``10`` to ``Consumer.earn``
+When you call ``earn`` via ``c1.earn(10)`` the interpreter passes the instance ``c1`` and the argument ``10`` to ``Consumer.earn``.
 
 In fact, the following are equivalent
 
@@ -327,7 +327,7 @@ In fact, the following are equivalent
 
 * ``Consumer.earn(c1, 10)``
 
-In the function call ``Consumer.earn(c1, 10)`` note that ``c1`` is the first argument
+In the function call ``Consumer.earn(c1, 10)`` note that ``c1`` is the first argument.
 
 Recall that in the definition of the ``earn`` method, ``self`` is the first parameter
 
@@ -337,9 +337,9 @@ Recall that in the definition of the ``earn`` method, ``self`` is the first para
         "The consumer earns y dollars"
         self.wealth += y
 
-The end result is that ``self`` is bound to the instance ``c1`` inside the function call
+The end result is that ``self`` is bound to the instance ``c1`` inside the function call.
 
-That's why the statement ``self.wealth += y`` inside ``earn`` ends up modifying ``c1.wealth``
+That's why the statement ``self.wealth += y`` inside ``earn`` ends up modifying ``c1.wealth``.
 
 
 
@@ -353,7 +353,7 @@ Example: The Solow Growth Model
     single: Object-Oriented Programming; Methods
 
 
-For our next example, let's write a simple class to implement the Solow growth model
+For our next example, let's write a simple class to implement the Solow growth model.
 
 The Solow growth model is a neoclassical growth model where the amount of
 capital stock per capita :math:`k_t` evolves according to the rule
@@ -372,9 +372,9 @@ Here
 * :math:`n` is the population growth rate
 * :math:`\delta` is the depreciation rate
 
-The **steady state** of the model is the :math:`k` that solves :eq:`solow_lom` when :math:`k_{t+1} = k_t = k`
+The **steady state** of the model is the :math:`k` that solves :eq:`solow_lom` when :math:`k_{t+1} = k_t = k`.
 
-Here's a class that implements this model
+Here's a class that implements this model.
 
 
 Some points of interest in the code are
@@ -435,7 +435,7 @@ The methods ``steady_state`` and ``generate_sequence`` are fairly self-explanato
             return path
 
 
-Here's a little program that uses the class to compute  time series from two different initial conditions
+Here's a little program that uses the class to compute  time series from two different initial conditions.
 
 The common steady state is also plotted for comparison
 
@@ -466,7 +466,7 @@ The common steady state is also plotted for comparison
 Example: A Market
 ------------------------------
 
-Next, let's write a class for a simple one good market where agents are price takers
+Next, let's write a class for a simple one good market where agents are price takers.
 
 The market consists of the following objects:
 
@@ -480,7 +480,7 @@ Here
 
 * Other symbols are demand and supply parameters
 
-The class provides methods to compute various values of interest, including competitive equilibrium price and quantity, tax revenue raised, consumer surplus and producer surplus
+The class provides methods to compute various values of interest, including competitive equilibrium price and quantity, tax revenue raised, consumer surplus and producer surplus.
 
 Here's our implementation
 
@@ -608,7 +608,7 @@ Here's an example of usage
 Example: Chaos
 ------------------------------
 
-Let's look at one more example, related to chaotic dynamics in nonlinear systems
+Let's look at one more example, related to chaotic dynamics in nonlinear systems.
 
 One simple transition rule that can generate complex dynamics is the logistic map
 
@@ -620,7 +620,7 @@ One simple transition rule that can generate complex dynamics is the logistic ma
     \quad r \in [0, 4]
 
 
-Let's write a class for generating time series from this model
+Let's write a class for generating time series from this model.
 
 Here's one implementation
 
@@ -686,25 +686,25 @@ The next piece of code provides a bifurcation diagram
     ax.set_xlabel('$r$', fontsize=16)
     plt.show()
 
-On the horizontal axis is the parameter :math:`r` in :eq:`quadmap2`
+On the horizontal axis is the parameter :math:`r` in :eq:`quadmap2`.
 
-The vertical axis is the state space :math:`[0, 1]`
+The vertical axis is the state space :math:`[0, 1]`.
 
-For each :math:`r` we compute a long time series and then plot the tail (the last 50 points)
+For each :math:`r` we compute a long time series and then plot the tail (the last 50 points).
 
 The tail of the sequence shows us where the trajectory concentrates after
-settling down to some kind of steady state, if a steady state exists
+settling down to some kind of steady state, if a steady state exists.
 
-Whether it settles down, and the character of the steady state to which it does settle down, depend on the value of :math:`r`
+Whether it settles down, and the character of the steady state to which it does settle down, depend on the value of :math:`r`.
 
-For :math:`r` between about 2.5 and 3, the time series settles into a single fixed point plotted on the vertical axis
+For :math:`r` between about 2.5 and 3, the time series settles into a single fixed point plotted on the vertical axis.
 
 For :math:`r` between about 3 and 3.45, the time series settles down to oscillating between the two values plotted on the vertical
-axis
+axis.
 
-For :math:`r` a little bit higher than 3.45, the time series settles down to oscillating among the four values plotted on the vertical axis
+For :math:`r` a little bit higher than 3.45, the time series settles down to oscillating among the four values plotted on the vertical axis.
 
-Notice that there is no value of :math:`r` that leads to a steady state oscillating among three values
+Notice that there is no value of :math:`r` that leads to a steady state oscillating among three values.
 
 
 
@@ -717,7 +717,7 @@ Special Methods
 .. index::
     single: Object-Oriented Programming; Special Methods
 
-Python provides special methods with which some neat tricks can be performed
+Python provides special methods with which some neat tricks can be performed.
 
 For example, recall that lists and tuples have a notion of length and that this length can be queried via the ``len`` function
 
@@ -746,7 +746,7 @@ Now we get
 
 .. _call_method:
 
-A special method we will use regularly is the ``__call__`` method
+A special method we will use regularly is the ``__call__`` method.
 
 This method can be used to make your instances callable, just like functions
 
@@ -764,7 +764,7 @@ After running we get
     f = Foo()
     f(8)  # Exactly equivalent to f.__call__(8)
 
-Exercise 1 provides a more useful example
+Exercise 1 provides a more useful example.
 
 
 Exercises
@@ -787,9 +787,9 @@ The `empirical cumulative distribution function (ecdf) <https://en.wikipedia.org
 
 
 Here :math:`\mathbf{1}\{X_i \leq x\}` is an indicator function (one if :math:`X_i \leq x` and zero otherwise)
-and hence :math:`F_n(x)` is the fraction of the sample that falls below :math:`x`
+and hence :math:`F_n(x)` is the fraction of the sample that falls below :math:`x`.
 
-The Glivenko--Cantelli Theorem states that, provided that the sample is IID, the ecdf :math:`F_n` converges to the true distribution function :math:`F`
+The Glivenko--Cantelli Theorem states that, provided that the sample is IID, the ecdf :math:`F_n` converges to the true distribution function :math:`F`.
 
 Implement :math:`F_n` as a class called ``ECDF``, where
 
@@ -814,7 +814,7 @@ Your code should work as follows (modulo randomness)
     F(0.5)
 
 
-Aim for clarity, not efficiency
+Aim for clarity, not efficiency.
 
 
 .. _oop_ex2:
@@ -822,7 +822,7 @@ Aim for clarity, not efficiency
 Exercise 2
 -------------------------
 
-In an :ref:`earlier exercise <pyess_ex2>`, you wrote a function for evaluating polynomials
+In an :ref:`earlier exercise <pyess_ex2>`, you wrote a function for evaluating polynomials.
 
 This exercise is an extension, where the task is to build a simple class called ``Polynomial`` for representing and manipulating polynomial functions such as
 
@@ -833,7 +833,7 @@ This exercise is an extension, where the task is to build a simple class called 
         \qquad (x \in \mathbb{R})
 
 
-The instance data for the class ``Polynomial`` will be the coefficients (in the case of :eq:`polynom`, the numbers :math:`a_0, \ldots, a_N`)
+The instance data for the class ``Polynomial`` will be the coefficients (in the case of :eq:`polynom`, the numbers :math:`a_0, \ldots, a_N`).
 
 Provide methods that
 
@@ -842,7 +842,7 @@ Provide methods that
 #. Differentiate the polynomial, replacing the original coefficients with those of its derivative :math:`p'`
 
 
-Avoid using any ``import`` statements
+Avoid using any ``import`` statements.
 
 
 Solutions

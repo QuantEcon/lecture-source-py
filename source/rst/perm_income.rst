@@ -13,7 +13,7 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -23,11 +23,11 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ===========
 
-This lecture describes a rational expectations version of the famous permanent income model of Milton Friedman :cite:`Friedman1956`
+This lecture describes a rational expectations version of the famous permanent income model of Milton Friedman :cite:`Friedman1956`.
 
-Robert Hall cast Friedman's model within a linear-quadratic setting :cite:`Hall1978`
+Robert Hall cast Friedman's model within a linear-quadratic setting :cite:`Hall1978`.
 
-Like Hall, we formulate an infinite-horizon linear-quadratic savings problem
+Like Hall, we formulate an infinite-horizon linear-quadratic savings problem.
 
 We use the model as a vehicle for illustrating
 
@@ -42,7 +42,7 @@ We use the model as a vehicle for illustrating
 
 
 
-Background readings on the linear-quadratic-Gaussian permanent income model are Hall's  :cite:`Hall1978`  and chapter 2 of  :cite:`Ljungqvist2012`
+Background readings on the linear-quadratic-Gaussian permanent income model are Hall's  :cite:`Hall1978`  and chapter 2 of  :cite:`Ljungqvist2012`.
 
 Let's start with some imports
 
@@ -62,13 +62,13 @@ The Savings Problem
     single: Permanent Income Model; Savings Problem
 
 In this section, we state and solve the savings and consumption problem faced
-by the consumer
+by the consumer.
 
 Preliminaries
 ---------------
 
 We use a class of stochastic processes called
-`martingales <https://en.wikipedia.org/wiki/Martingale_%28probability_theory%29>`_
+`martingales <https://en.wikipedia.org/wiki/Martingale_%28probability_theory%29>`_.
 
 A discrete-time martingale is a stochastic process (i.e., a  sequence of random variables)
 :math:`\{X_t\}` with finite mean at each :math:`t` and satisfying
@@ -79,19 +79,19 @@ A discrete-time martingale is a stochastic process (i.e., a  sequence of random 
 
 
 Here :math:`\mathbb{E}_t := \mathbb{E}[ \cdot \,|\, \mathcal{F}_t]` is a conditional mathematical  expectation conditional on the time :math:`t`
-*information set* :math:`\mathcal{F}_t`
+*information set* :math:`\mathcal{F}_t`.
 
 The latter is just a collection of random variables that the modeler declares
 to be visible at :math:`t`
 
 * When not explicitly defined, it is usually understood that :math:`\mathcal{F}_t = \{X_t, X_{t-1}, \ldots, X_0\}`
 
-Martingales have the feature that the history of past outcomes provides no predictive power for changes between current and future outcomes
+Martingales have the feature that the history of past outcomes provides no predictive power for changes between current and future outcomes.
 
 For example, the current wealth of a gambler engaged in a "fair game" has this
-property
+property.
 
-One common class of martingales is the family of *random walks*
+One common class of martingales is the family of *random walks*.
 
 A **random walk** is  a stochastic process :math:`\{X_t\}` that satisfies
 
@@ -100,7 +100,7 @@ A **random walk** is  a stochastic process :math:`\{X_t\}` that satisfies
     X_{t+1} = X_t + w_{t+1}
 
 
-for some IID zero mean *innovation* sequence :math:`\{w_t\}`
+for some IID zero mean *innovation* sequence :math:`\{w_t\}`.
 
 Evidently, :math:`X_t` can also be expressed as
 
@@ -109,7 +109,7 @@ Evidently, :math:`X_t` can also be expressed as
     X_t = \sum_{j=1}^t w_j + X_0
 
 
-Not every martingale arises as a random walk (see, for example, `Wald's martingale <https://en.wikipedia.org/wiki/Wald%27s_martingale>`_)
+Not every martingale arises as a random walk (see, for example, `Wald's martingale <https://en.wikipedia.org/wiki/Wald%27s_martingale>`_).
 
 
 The Decision Problem
@@ -151,13 +151,13 @@ Here
 
 
 
-The consumer also faces initial conditions :math:`b_0` and :math:`y_0`, which can be fixed or random
+The consumer also faces initial conditions :math:`b_0` and :math:`y_0`, which can be fixed or random.
 
 
 Assumptions
 ---------------
 
-For the remainder of this lecture, we follow Friedman and Hall in assuming that :math:`(1 + r)^{-1} = \beta`
+For the remainder of this lecture, we follow Friedman and Hall in assuming that :math:`(1 + r)^{-1} = \beta`.
 
 Regarding the endowment process, we assume it has the :doc:`state-space representation <linear_models>`
 
@@ -179,7 +179,7 @@ where
 
 *  :math:`U` is a selection vector that pins down :math:`y_t` as a particular linear combination of components of :math:`z_t`
 
-The restriction on :math:`\rho(A)` prevents income from growing so fast that discounted geometric sums of some quadratic forms to be described below become infinite
+The restriction on :math:`\rho(A)` prevents income from growing so fast that discounted geometric sums of some quadratic forms to be described below become infinite.
 
 Regarding preferences, we assume the quadratic utility function
 
@@ -201,7 +201,7 @@ Finally, we impose the *no Ponzi scheme* condition
     \mathbb{E}_0 \left[ \sum_{t=0}^\infty \beta^t b_t^2 \right] < \infty
 
 
-This condition rules out an always-borrow scheme that would allow the consumer to enjoy bliss consumption forever
+This condition rules out an always-borrow scheme that would allow the consumer to enjoy bliss consumption forever.
 
 
 First-Order Conditions
@@ -216,10 +216,10 @@ First-order conditions for maximizing :eq:`sprob1` subject to :eq:`sprob2` are
     \mathbb{E}_t [u'(c_{t+1})] = u'(c_t) , \qquad t = 0, 1, \ldots
 
 
-These optimality conditions are also known as  *Euler equations*
+These optimality conditions are also known as  *Euler equations*.
 
 If you're not sure where they come from, you can find a proof sketch in the
-:ref:`appendix <perm_income_appendix>`
+:ref:`appendix <perm_income_appendix>`.
 
 With our quadratic preference specification, :eq:`sprob4` has the striking implication that consumption follows a martingale:
 
@@ -229,12 +229,12 @@ With our quadratic preference specification, :eq:`sprob4` has the striking impli
     \mathbb{E}_t [c_{t+1}] = c_t
 
 
-(In fact, quadratic preferences are *necessary* for this conclusion [#f2]_)
+(In fact, quadratic preferences are *necessary* for this conclusion [#f2]_).
 
 One way to interpret :eq:`sprob5` is that consumption will change only when
-"new information" about permanent income is revealed
+"new information" about permanent income is revealed.
 
-These ideas will be clarified below
+These ideas will be clarified below.
 
 
 .. _odr_pi:
@@ -261,7 +261,7 @@ In doing so, we need to combine
 #. the boundary condition :eq:`sprob3`
 
 
-To accomplish this, observe first that :eq:`sprob3` implies :math:`\lim_{t \to \infty} \beta^{\frac{t}{2}} b_{t+1}= 0`
+To accomplish this, observe first that :eq:`sprob3` implies :math:`\lim_{t \to \infty} \beta^{\frac{t}{2}} b_{t+1}= 0`.
 
 Using this restriction on the debt path and solving :eq:`sprob2` forward yields
 
@@ -289,7 +289,7 @@ Expressed in terms of :math:`c_t` we get
      = {r \over 1+r} \left[ \sum_{j=0}^\infty \beta^j \mathbb{E}_t [y_{t+j}] - b_t\right]
 
 
-where the last equality uses :math:`(1 + r) \beta = 1`
+where the last equality uses :math:`(1 + r) \beta = 1`.
 
 These last two equations assert that consumption equals *economic income*
 
@@ -315,7 +315,7 @@ These last two equations assert that consumption equals *economic income*
 Responding to the State
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The *state* vector confronting the consumer at :math:`t` is :math:`\begin{bmatrix} b_t & z_t \end{bmatrix}`
+The *state* vector confronting the consumer at :math:`t` is :math:`\begin{bmatrix} b_t & z_t \end{bmatrix}`.
 
 Here
 
@@ -323,13 +323,13 @@ Here
 
 * :math:`b_t` is an *endogenous* component (since it depends on the decision rule)
 
-Note that :math:`z_t` contains all variables useful for forecasting the consumer's future endowment
+Note that :math:`z_t` contains all variables useful for forecasting the consumer's future endowment.
 
 
 It is plausible that current decisions :math:`c_t` and :math:`b_{t+1}` should
-be expressible as functions of :math:`z_t` and :math:`b_t`
+be expressible as functions of :math:`z_t` and :math:`b_t`.
 
-This is indeed the case
+This is indeed the case.
 
 
 In fact, from :ref:`this discussion <lm_fgs>`, we see that
@@ -369,12 +369,12 @@ Using this equality to eliminate :math:`c_t` in the budget constraint :eq:`sprob
     \end{aligned}
 
 
-To get from the second last to the last expression in this chain of equalities is not trivial
+To get from the second last to the last expression in this chain of equalities is not trivial.
 
-A key is to use the fact that :math:`(1 + r) \beta = 1` and :math:`(I - \beta A)^{-1} = \sum_{j=0}^{\infty} \beta^j A^j`
+A key is to use the fact that :math:`(1 + r) \beta = 1` and :math:`(I - \beta A)^{-1} = \sum_{j=0}^{\infty} \beta^j A^j`.
 
 
-We've now successfully written :math:`c_t` and :math:`b_{t+1}` as functions of :math:`b_t` and :math:`z_t`
+We've now successfully written :math:`c_t` and :math:`b_{t+1}` as functions of :math:`b_t` and :math:`z_t`.
 
 A State-Space Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -473,9 +473,9 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
 A Simple Example with IID Income
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just IID
+To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just IID.
 
-(Later examples will investigate more realistic income streams)
+(Later examples will investigate more realistic income streams).
 
 In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be IID and scalar standard normal, and let
 
@@ -505,9 +505,9 @@ In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be IID and scalar standard n
     \end{bmatrix}
 
 
-Finally, let :math:`b_0 = z^1_0 = 0`
+Finally, let :math:`b_0 = z^1_0 = 0`.
 
-Under these assumptions, we have :math:`y_t = \mu + \sigma w_t \sim N(\mu, \sigma^2)`
+Under these assumptions, we have :math:`y_t = \mu + \sigma w_t \sim N(\mu, \sigma^2)`.
 
 Further, if you work through the state space representation, you will see that
 
@@ -520,9 +520,9 @@ Further, if you work through the state space representation, you will see that
     \end{aligned}
 
 
-Thus income is IID and debt and consumption are both Gaussian random walks
+Thus income is IID and debt and consumption are both Gaussian random walks.
 
-Defining assets as :math:`-b_t`, we see that assets are just the cumulative sum of unanticipated incomes prior to the present date
+Defining assets as :math:`-b_t`, we see that assets are just the cumulative sum of unanticipated incomes prior to the present date.
 
 The next figure shows a typical realization with :math:`r = 0.05`, :math:`\mu = 1`, and :math:`\sigma = 0.15`
 
@@ -562,7 +562,7 @@ The next figure shows a typical realization with :math:`r = 0.05`, :math:`\mu = 
 
 
 
-Observe that consumption is considerably smoother than income
+Observe that consumption is considerably smoother than income.
 
 The figure below shows the consumption paths of 250 consumers with independent income streams
 
@@ -590,7 +590,7 @@ Alternative Representations
 ================================
 
 In this section, we shed more light on the evolution of savings, debt and
-consumption by representing their dynamics in several different ways
+consumption by representing their dynamics in several different ways.
 
 
 Hall's Representation
@@ -599,7 +599,7 @@ Hall's Representation
 .. index::
     single: Permanent Income Model; Hall's Representation
 
-Hall :cite:`Hall1978` suggested an insightful way to summarize the implications of LQ permanent income theory
+Hall :cite:`Hall1978` suggested an insightful way to summarize the implications of LQ permanent income theory.
 
 First, to represent the solution for :math:`b_t`, shift :eq:`sprob8` forward one period and eliminate :math:`b_{t+1}` by using :eq:`sprob2` to obtain
 
@@ -618,7 +618,7 @@ If we add and subtract :math:`\beta^{-1} (1-\beta) \sum_{j=0}^\infty \beta^j \ma
         \left\{ \mathbb{E}_{t+1} [y_{t+j+1}] - \mathbb{E}_t [y_{t+j+1}] \right\}
 
 
-The right side is the time :math:`t+1` *innovation to the expected present value* of the endowment process :math:`\{y_t\}`
+The right side is the time :math:`t+1` *innovation to the expected present value* of the endowment process :math:`\{y_t\}`.
 
 
 We can represent the optimal decision rule for :math:`(c_t, b_{t+1})` in the form of :eq:`sprob11` and :eq:`sprob7`, which we repeat:
@@ -629,9 +629,9 @@ We can represent the optimal decision rule for :math:`(c_t, b_{t+1})` in the for
     b_t = \sum_{j=0}^\infty \beta^j \mathbb{E}_t [y_{t+j}] - {1 \over 1-\beta} c_t
 
 
-Equation :eq:`sprob7aa` asserts that the consumer's debt due at :math:`t` equals the expected present value of its endowment minus the expected present value of its consumption stream
+Equation :eq:`sprob7aa` asserts that the consumer's debt due at :math:`t` equals the expected present value of its endowment minus the expected present value of its consumption stream.
 
-A high debt thus indicates a large expected present value of surpluses :math:`y_t - c_t`
+A high debt thus indicates a large expected present value of surpluses :math:`y_t - c_t`.
 
 Recalling again our discussion on :ref:`forecasting geometric sums <lm_fgs>`, we have
 
@@ -675,15 +675,15 @@ Representation :eq:`sprob16abcd` makes clear that
 Cointegration
 --------------
 
-Representation :eq:`sprob16abcd` reveals that the joint process :math:`\{c_t, b_t\}` possesses the property that Engle and Granger :cite:`EngleGranger1987` called `cointegration <https://en.wikipedia.org/wiki/Cointegration>`_
+Representation :eq:`sprob16abcd` reveals that the joint process :math:`\{c_t, b_t\}` possesses the property that Engle and Granger :cite:`EngleGranger1987` called `cointegration <https://en.wikipedia.org/wiki/Cointegration>`_.
 
-Cointegration is a tool that allows us to apply powerful results from the theory of stationary stochastic processes to (certain transformations of) nonstationary models
+Cointegration is a tool that allows us to apply powerful results from the theory of stationary stochastic processes to (certain transformations of) nonstationary models.
 
-To apply cointegration in the present context, suppose that :math:`z_t` is asymptotically stationary [#fn_as]_
+To apply cointegration in the present context, suppose that :math:`z_t` is asymptotically stationary [#fn_as]_.
 
-Despite this, both :math:`c_t` and :math:`b_t` will be non-stationary because they have unit roots (see :eq:`pi_ssr` for :math:`b_t`)
+Despite this, both :math:`c_t` and :math:`b_t` will be non-stationary because they have unit roots (see :eq:`pi_ssr` for :math:`b_t`).
 
-Nevertheless, there is a linear combination of :math:`c_t, b_t` that *is* asymptotically stationary
+Nevertheless, there is a linear combination of :math:`c_t, b_t` that *is* asymptotically stationary.
 
 In particular, from the second equality in :eq:`sprob16abcd` we have
 
@@ -693,11 +693,11 @@ In particular, from the second equality in :eq:`sprob16abcd` we have
     (1-\beta) b_t + c_t = (1 - \beta) U (I-\beta A)^{-1} z_t
 
 
-Hence the linear combination :math:`(1-\beta) b_t + c_t` is asymptotically stationary
+Hence the linear combination :math:`(1-\beta) b_t + c_t` is asymptotically stationary.
 
-Accordingly, Granger and Engle would call :math:`\begin{bmatrix} (1-\beta) & 1 \end{bmatrix}` a **cointegrating vector** for the state
+Accordingly, Granger and Engle would call :math:`\begin{bmatrix} (1-\beta) & 1 \end{bmatrix}` a **cointegrating vector** for the state.
 
-When applied to the nonstationary vector process :math:`\begin{bmatrix} b_t  & c_t \end{bmatrix}'`, it yields a process that is asymptotically stationary
+When applied to the nonstationary vector process :math:`\begin{bmatrix} b_t  & c_t \end{bmatrix}'`, it yields a process that is asymptotically stationary.
 
 Equation :eq:`pi_spr` can be rearranged to take the form
 
@@ -707,7 +707,7 @@ Equation :eq:`pi_spr` can be rearranged to take the form
     (1-\beta) b_t + c_t = (1-\beta) \mathbb{E}_t \sum_{j=0}^\infty \beta^j y_{t+j}
 
 
-Equation :eq:`sprob77`  asserts that the *cointegrating residual*  on the left side equals the conditional expectation of the geometric sum of future incomes on the right [#f8]_
+Equation :eq:`sprob77`  asserts that the *cointegrating residual*  on the left side equals the conditional expectation of the geometric sum of future incomes on the right [#f8]_.
 
 
 
@@ -715,7 +715,7 @@ Cross-Sectional Implications
 -----------------------------------
 
 Consider again :eq:`sprob16abcd`, this time in light of our discussion of
-distribution dynamics in the :doc:`lecture on linear systems <linear_models>`
+distribution dynamics in the :doc:`lecture on linear systems <linear_models>`.
 
 The dynamics of :math:`c_t` are given by
 
@@ -734,7 +734,7 @@ or
     \hat w_{t+1} := (1-\beta) U  (I-\beta A)^{-1} C w_{t+1}
 
 
-The unit root affecting :math:`c_t` causes the time :math:`t` variance of :math:`c_t` to grow linearly with :math:`t`
+The unit root affecting :math:`c_t` causes the time :math:`t` variance of :math:`c_t` to grow linearly with :math:`t`.
 
 In particular, since :math:`\{ \hat w_t \}` is IID, we have
 
@@ -751,33 +751,33 @@ where
     \hat \sigma^2 := (1-\beta)^2 U  (I-\beta A)^{-1} CC' (I-\beta A')^{-1} U'
 
 
-When :math:`\hat \sigma > 0`, :math:`\{c_t\}` has no asymptotic distribution
+When :math:`\hat \sigma > 0`, :math:`\{c_t\}` has no asymptotic distribution.
 
-Let's consider what this means for a cross-section of ex-ante identical consumers born at time :math:`0`
+Let's consider what this means for a cross-section of ex-ante identical consumers born at time :math:`0`.
 
-Let the distribution of :math:`c_0` represent the cross-section of initial consumption values
+Let the distribution of :math:`c_0` represent the cross-section of initial consumption values.
 
-Equation :eq:`pi_vt` tells us that the variance of :math:`c_t` increases over time at a rate proportional to :math:`t`
+Equation :eq:`pi_vt` tells us that the variance of :math:`c_t` increases over time at a rate proportional to :math:`t`.
 
 A number of different studies have investigated this prediction and found some support for it
-(see, e.g., :cite:`DeatonPaxton1994`, :cite:`STY2004`)
+(see, e.g., :cite:`DeatonPaxton1994`, :cite:`STY2004`).
 
 
 Impulse Response Functions
 -----------------------------
 
-Impulse response functions measure responses  to various  impulses (i.e., temporary shocks)
+Impulse response functions measure responses  to various  impulses (i.e., temporary shocks).
 
-The impulse response function of :math:`\{c_t\}` to the innovation :math:`\{w_t\}` is a box
+The impulse response function of :math:`\{c_t\}` to the innovation :math:`\{w_t\}` is a box.
 
-In particular, the response of :math:`c_{t+j}` to a unit increase in the innovation :math:`w_{t+1}` is :math:`(1-\beta) U (I -\beta A)^{-1} C` for all :math:`j \geq 1`
+In particular, the response of :math:`c_{t+j}` to a unit increase in the innovation :math:`w_{t+1}` is :math:`(1-\beta) U (I -\beta A)^{-1} C` for all :math:`j \geq 1`.
 
 
 
 Moving Average Representation
 --------------------------------
 
-It's useful to express the innovation to the expected present value of the endowment process in terms of a moving average representation for income :math:`y_t`
+It's useful to express the innovation to the expected present value of the endowment process in terms of a moving average representation for income :math:`y_t`.
 
 The endowment process defined by :eq:`sprob15ab` has the moving average representation
 
@@ -816,7 +816,7 @@ Using :eq:`sprob120` in :eq:`sprob11` gives
     c_{t+1} - c_t = (1-\beta) d(\beta) w_{t+1}
 
 
-The object :math:`d(\beta)` is the **present value of the moving average coefficients** in the representation for the endowment process :math:`y_t`
+The object :math:`d(\beta)` is the **present value of the moving average coefficients** in the representation for the endowment process :math:`y_t`.
 
 
 
@@ -829,7 +829,7 @@ The object :math:`d(\beta)` is the **present value of the moving average coeffic
 Two Classic Examples
 =======================
 
-We illustrate some of the preceding ideas with two examples
+We illustrate some of the preceding ideas with two examples.
 
 In both examples, the endowment follows the process :math:`y_t = z_{1t} + z_{2t}` where
 
@@ -868,7 +868,7 @@ Here
 Example 1
 -------------
 
-Assume as before that the consumer observes the state :math:`z_t` at time :math:`t`
+Assume as before that the consumer observes the state :math:`z_t` at time :math:`t`.
 
 In view of :eq:`sprob16abcd` we have
 
@@ -884,9 +884,9 @@ Formula :eq:`consexample1` shows how an increment :math:`\sigma_1 w_{1t+1}` to t
 
 * no increase in savings :math:`-b_{t+1}`
 
-But the purely transitory component of income :math:`\sigma_2 w_{2t+1}` leads to a permanent increment in consumption by a fraction :math:`1-\beta` of transitory income
+But the purely transitory component of income :math:`\sigma_2 w_{2t+1}` leads to a permanent increment in consumption by a fraction :math:`1-\beta` of transitory income.
 
-The remaining fraction :math:`\beta` is saved, leading to a permanent increment in :math:`-b_{t+1}`
+The remaining fraction :math:`\beta` is saved, leading to a permanent increment in :math:`-b_{t+1}`.
 
 Application of the formula for debt in :eq:`pi_ssr` to this example shows that
 
@@ -896,7 +896,7 @@ Application of the formula for debt in :eq:`pi_ssr` to this example shows that
     b_{t+1} - b_t = - z_{2t} = - \sigma_2 w_{2t}
 
 
-This confirms that none of :math:`\sigma_1 w_{1t}` is saved, while all of :math:`\sigma_2 w_{2t}` is saved
+This confirms that none of :math:`\sigma_1 w_{1t}` is saved, while all of :math:`\sigma_2 w_{2t}` is saved.
 
 The next figure illustrates these very different reactions to transitory and
 permanent income shocks using impulse-response functions
@@ -948,9 +948,9 @@ permanent income shocks using impulse-response functions
 Example 2
 ------------
 
-Assume now that at time :math:`t` the consumer observes :math:`y_t`, and its history up to :math:`t`, but not :math:`z_t`
+Assume now that at time :math:`t` the consumer observes :math:`y_t`, and its history up to :math:`t`, but not :math:`z_t`.
 
-Under this assumption, it is appropriate to use an *innovation representation* to form :math:`A, C, U` in :eq:`sprob16abcd`
+Under this assumption, it is appropriate to use an *innovation representation* to form :math:`A, C, U` in :eq:`sprob16abcd`.
 
 The discussion in sections 2.9.1 and 2.11.3 of :cite:`Ljungqvist2012` shows that the pertinent state space representation for :math:`y_t` is
 
@@ -994,11 +994,11 @@ where
 
 * :math:`a_t := y_t - E [ y_t \,|\, y_{t-1}, \ldots, y_0]`
 
-In the same discussion in :cite:`Ljungqvist2012` it is shown that :math:`K \in [0,1]` and that :math:`K` increases as :math:`\sigma_1/\sigma_2` does
+In the same discussion in :cite:`Ljungqvist2012` it is shown that :math:`K \in [0,1]` and that :math:`K` increases as :math:`\sigma_1/\sigma_2` does.
 
-In other words, :math:`K` increases as the ratio of the standard deviation of the permanent shock to that of the transitory shock increases
+In other words, :math:`K` increases as the ratio of the standard deviation of the permanent shock to that of the transitory shock increases.
 
-Please see  :doc:`first look at the Kalman filter <kalman>`
+Please see  :doc:`first look at the Kalman filter <kalman>`.
 
 Applying formulas :eq:`sprob16abcd` implies
 
@@ -1022,15 +1022,15 @@ Equation :eq:`incomemaar` indicates that the consumer regards
 
 * fraction :math:`1-K` as purely transitory
 
-The consumer permanently increases his consumption by the full amount of his estimate of the permanent part of :math:`a_{t+1}`, but by only :math:`(1-\beta)` times his estimate of the purely transitory part of :math:`a_{t+1}`
+The consumer permanently increases his consumption by the full amount of his estimate of the permanent part of :math:`a_{t+1}`, but by only :math:`(1-\beta)` times his estimate of the purely transitory part of :math:`a_{t+1}`.
 
-Therefore, in total, he permanently increments his consumption by a fraction :math:`K + (1-\beta) (1-K) = 1 - \beta (1-K)` of :math:`a_{t+1}`
+Therefore, in total, he permanently increments his consumption by a fraction :math:`K + (1-\beta) (1-K) = 1 - \beta (1-K)` of :math:`a_{t+1}`.
 
-He saves the remaining fraction :math:`\beta (1-K)`
+He saves the remaining fraction :math:`\beta (1-K)`.
 
-According to equation :eq:`incomemaar`, the first difference of income is a first-order moving average
+According to equation :eq:`incomemaar`, the first difference of income is a first-order moving average.
 
-Equation  :eq:`consexample2` asserts that the first difference of consumption is IID
+Equation  :eq:`consexample2` asserts that the first difference of consumption is IID.
 
 Application of formula to this example shows that
 
@@ -1040,7 +1040,7 @@ Application of formula to this example shows that
     b_{t+1} - b_t = (K-1) a_t
 
 
-This indicates how the fraction :math:`K` of the innovation to :math:`y_t` that is regarded as permanent influences the fraction of the innovation that is saved
+This indicates how the fraction :math:`K` of the innovation to :math:`y_t` that is regarded as permanent influences the fraction of the innovation that is saved.
 
 
 
@@ -1050,13 +1050,13 @@ Further Reading
 ==================
 
 The model described above significantly changed how economists think about
-consumption
+consumption.
 
-While Hall's model does a remarkably good job as a first approximation to consumption data, it's widely believed that it doesn't capture important aspects of some consumption/savings data
+While Hall's model does a remarkably good job as a first approximation to consumption data, it's widely believed that it doesn't capture important aspects of some consumption/savings data.
 
-For example, liquidity constraints and precautionary savings appear to be present sometimes
+For example, liquidity constraints and precautionary savings appear to be present sometimes.
 
-Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker1999`, :cite:`Deaton1991`, :cite:`Carroll2001`
+Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker1999`, :cite:`Deaton1991`, :cite:`Carroll2001`.
 
 .. _perm_income_appendix:
 
@@ -1066,10 +1066,10 @@ Appendix: The Euler Equation
 Where does the first-order condition :eq:`sprob4` come from?
 
 Here we'll give a proof for the two-period case, which is representative of
-the general argument
+the general argument.
 
 The finite horizon equivalent of the no-Ponzi condition is that the agent
-cannot end her life in debt, so :math:`b_2 = 0`
+cannot end her life in debt, so :math:`b_2 = 0`.
 
 From the budget constraint :eq:`sprob2` we then have
 
@@ -1080,7 +1080,7 @@ From the budget constraint :eq:`sprob2` we then have
     c_1 = y_1 - b_1
 
 
-Here :math:`b_0` and :math:`y_0` are given constants
+Here :math:`b_0` and :math:`y_0` are given constants.
 
 Substituting these constraints into our two-period objective :math:`u(c_0) + \beta \mathbb{E}_0 [u(c_1)]` gives
 
@@ -1100,7 +1100,7 @@ You will be able to verify that the first-order condition is
     u'(c_0) = \beta R  \,\mathbb{E}_0 [u'(c_1)]
 
 
-Using :math:`\beta R = 1` gives :eq:`sprob4` in the two-period case
+Using :math:`\beta R = 1` gives :eq:`sprob4` in the two-period case.
 
 The proof for the general case is similar
 

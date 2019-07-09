@@ -8,7 +8,7 @@ Python Essentials
 
 .. contents:: :depth: 2
 
-In this lecture, we'll cover features of the language that are essential to reading and writing Python code
+In this lecture, we'll cover features of the language that are essential to reading and writing Python code.
 
 
 
@@ -19,10 +19,10 @@ Data Types
     single: Python; Data Types
 
 
-We've already met several built-in Python data types, such as strings, integers, floats and lists
+We've already met several built-in Python data types, such as strings, integers, floats and lists.
 
 
-Let's learn a bit more about them
+Let's learn a bit more about them.
 
 
 
@@ -49,9 +49,9 @@ In the next line of code, the interpreter evaluates the expression on the right 
 
 
 
-In arithmetic expressions, ``True`` is converted to ``1`` and ``False`` is converted ``0``
+In arithmetic expressions, ``True`` is converted to ``1`` and ``False`` is converted ``0``.
 
-This is called **Boolean arithmetic** and is often useful in programming
+This is called **Boolean arithmetic** and is often useful in programming.
 
 Here are some examples
 
@@ -87,7 +87,7 @@ The two most common data types used to represent numbers are integers and floats
     type(c)
 
 Computers distinguish between the two because, while floats are more
-informative, arithmetic operations on integers are faster and more accurate
+informative, arithmetic operations on integers are faster and more accurate.
 
 As long as you're using Python 3.x, division of integers yields floats
 
@@ -96,7 +96,7 @@ As long as you're using Python 3.x, division of integers yields floats
     1 / 2
 
 
-But be careful! If you're still using Python 2.x, division of two integers returns only the integer part
+But be careful! If you're still using Python 2.x, division of two integers returns only the integer part.
 
 For integer division in Python 3.x use this syntax:
 
@@ -117,9 +117,9 @@ Complex numbers are another primitive data type in Python
 Containers
 --------------
 
-Python has several basic types for storing collections of (possibly heterogeneous) data
+Python has several basic types for storing collections of (possibly heterogeneous) data.
 
-We've :ref:`already discussed lists <lists_ref>`
+We've :ref:`already discussed lists <lists_ref>`.
 
 .. index::
     single: Python; Tuples
@@ -136,9 +136,9 @@ A related data type is **tuples**, which are "immutable" lists
 
     type(x)
 
-In Python, an object is called **immutable** if, once created, the object cannot be changed
+In Python, an object is called **immutable** if, once created, the object cannot be changed.
 
-Conversely, an object is **mutable** if it can still be altered after creation
+Conversely, an object is **mutable** if it can still be altered after creation.
 
 Python lists are mutable
 
@@ -157,7 +157,7 @@ But tuples are not
     x[0] = 10
 
 
-We'll say more about the role of mutable and immutable data a bit later
+We'll say more about the role of mutable and immutable data a bit later.
 
 Tuples (and lists) can be "unpacked" as follows
 
@@ -172,9 +172,9 @@ Tuples (and lists) can be "unpacked" as follows
 
     y
 
-You've actually :ref:`seen an example of this <tuple_unpacking_example>` already
+You've actually :ref:`seen an example of this <tuple_unpacking_example>` already.
 
-Tuple unpacking is convenient and we'll use it often
+Tuple unpacking is convenient and we'll use it often.
 
 Slice Notation
 ^^^^^^^^^^^^^^^^
@@ -183,7 +183,7 @@ Slice Notation
     single: Python; Slicing
 
 To access multiple elements of a list or tuple, you can use Python's slice
-notation
+notation.
 
 For example,
 
@@ -196,7 +196,7 @@ For example,
 
     a[1:3]
 
-The general rule is that ``a[m:n]`` returns ``n - m`` elements, starting at ``a[m]``
+The general rule is that ``a[m:n]`` returns ``n - m`` elements, starting at ``a[m]``.
 
 Negative numbers are also permissible
 
@@ -221,7 +221,7 @@ Sets and Dictionaries
 .. index::
     single: Python; Dictionaries
 
-Two other container types we should mention before moving on are `sets <https://docs.python.org/3/tutorial/datastructures.html#sets>`_ and `dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`_
+Two other container types we should mention before moving on are `sets <https://docs.python.org/3/tutorial/datastructures.html#sets>`_ and `dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`_.
 
 Dictionaries are much like lists, except that the items are named instead of
 numbered
@@ -235,9 +235,9 @@ numbered
 
     d['age']
 
-The names ``'name'`` and ``'age'`` are called the *keys*
+The names ``'name'`` and ``'age'`` are called the *keys*.
 
-The objects that the keys are mapped to (``'Frodo'`` and ``33``) are called the ``values``
+The objects that the keys are mapped to (``'Frodo'`` and ``33``) are called the ``values``.
 
 Sets are unordered collections without duplicates, and set methods provide the
 usual set-theoretic operations
@@ -297,7 +297,7 @@ Recall that Python maintains a concept of the present working directory (pwd) th
 
     %pwd
 
-If a path is not specified, then this is where Python writes to
+If a path is not specified, then this is where Python writes to.
 
 We can also use Python to read the contents of ``newline.txt`` as follows
 
@@ -318,7 +318,7 @@ Paths
 .. index::
     single: Python; Paths
 
-Note that if ``newfile.txt`` is not in the present working directory then this call to ``open()`` fails
+Note that if ``newfile.txt`` is not in the present working directory then this call to ``open()`` fails.
 
 In this case, you can shift the file to the pwd or specify the `full path <https://en.wikipedia.org/wiki/Path_%28computing%29>`_ to the file
 
@@ -338,18 +338,18 @@ Iterating
     single: Python; Iteration
 
 One of the most important tasks in computing is stepping through a
-sequence of data and performing a given action
+sequence of data and performing a given action.
 
 One of Python's strengths is its simple, flexible interface to this kind of iteration via
-the ``for`` loop
+the ``for`` loop.
 
 
 Looping over Different Objects
 ---------------------------------
 
-Many Python objects are "iterable", in the sense that they can be looped over
+Many Python objects are "iterable", in the sense that they can be looped over.
 
-To give an example, let's write the file `us_cities.txt`, which lists US cities and their population, to the present working directory
+To give an example, let's write the file `us_cities.txt`, which lists US cities and their population, to the present working directory.
 
 .. _us_cities_data:
 
@@ -367,31 +367,31 @@ To give an example, let's write the file `us_cities.txt`, which lists US cities 
     dallas: 1223229
 
 
-Suppose that we want to make the information more readable, by capitalizing names and adding commas to mark thousands
+Suppose that we want to make the information more readable, by capitalizing names and adding commas to mark thousands.
 
 The program `us_cities.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_essentials/us_cities.py>`__ program reads the data in and makes the conversion:
 
 .. literalinclude:: /_static/lecture_specific/python_essentials/us_cities.py
 
-Here ``format()`` is a string method `used for inserting variables into strings <https://docs.python.org/3/library/string.html#formatspec>`_
+Here ``format()`` is a string method `used for inserting variables into strings <https://docs.python.org/3/library/string.html#formatspec>`_.
 
 The reformatting of each line is the result of three different string methods,
-the details of which can be left till later
+the details of which can be left till later.
 
 The interesting part of this program for us is line 2, which shows that
 
 #. The file object ``f`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop
 #. Iteration steps through each line in the file
 
-This leads to the clean, convenient syntax shown in our program
+This leads to the clean, convenient syntax shown in our program.
 
-Many other kinds of objects are iterable, and we'll discuss some of them later on
+Many other kinds of objects are iterable, and we'll discuss some of them later on.
 
 
 Looping without Indices
 ------------------------
 
-One thing you might have noticed is that Python tends to favor looping without explicit indexing
+One thing you might have noticed is that Python tends to favor looping without explicit indexing.
 
 For example,
 
@@ -408,11 +408,11 @@ is preferred to
     for i in range(len(x_values)):
         print(x_values[i] * x_values[i])
 
-When you compare these two alternatives, you can see why the first one is preferred
+When you compare these two alternatives, you can see why the first one is preferred.
 
-Python provides some facilities to simplify looping without indices
+Python provides some facilities to simplify looping without indices.
 
-One is ``zip()``, which is used for stepping through pairs from two sequences
+One is ``zip()``, which is used for stepping through pairs from two sequences.
 
 For example, try running the following code
 
@@ -435,7 +435,7 @@ example
 
 
 
-If we actually need the index from a list, one option is to use ``enumerate()``
+If we actually need the index from a list, one option is to use ``enumerate()``.
 
 To understand what ``enumerate()`` does, consider the following example
 
@@ -466,7 +466,7 @@ Comparisons
 .. index::
     single: Python; Comparison
 
-Many different kinds of expressions evaluate to one of the Boolean values (i.e., ``True`` or ``False``)
+Many different kinds of expressions evaluate to one of the Boolean values (i.e., ``True`` or ``False``).
 
 A common type is comparisons, such as
 
@@ -539,7 +539,7 @@ Combining Expressions
 .. index::
     single: Python; Logical Expressions
 
-We can combine expressions using ``and``, ``or`` and ``not``
+We can combine expressions using ``and``, ``or`` and ``not``.
 
 These are the standard logical connectives (conjunction, disjunction and denial)
 
@@ -576,9 +576,9 @@ More Functions
 .. index::
     single: Python; Functions
 
-Let's talk a bit more about functions, which are all important for good programming style
+Let's talk a bit more about functions, which are all important for good programming style.
 
-Python has a number of built-in functions that are available without ``import``
+Python has a number of built-in functions that are available without ``import``.
 
 We have already met some
 
@@ -616,9 +616,9 @@ Two more useful built-in functions are ``any()`` and ``all()``
     any(bools)  # False if all are False and True otherwise
 
 
-The full list of Python built-ins is `here <https://docs.python.org/2/library/functions.html>`_
+The full list of Python built-ins is `here <https://docs.python.org/2/library/functions.html>`_.
 
-Now let's talk some more about user-defined functions constructed using the keyword ``def``
+Now let's talk some more about user-defined functions constructed using the keyword ``def``.
 
 
 Why Write Functions?
@@ -629,15 +629,15 @@ User-defined functions are important for improving the clarity of your code by
 * separating different strands of logic
 * facilitating code reuse
 
-(Writing the same thing twice is `almost always a bad idea <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_)
+(Writing the same thing twice is `almost always a bad idea <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
-The basics of user-defined functions were discussed :ref:`here <user_defined_functions>`
+The basics of user-defined functions were discussed :ref:`here <user_defined_functions>`.
 
 
 The Flexibility of Python Functions
 ---------------------------------------
 
-As we discussed in the :ref:`previous lecture <python_by_example>`, Python functions are very flexible
+As we discussed in the :ref:`previous lecture <python_by_example>`, Python functions are very flexible.
 
 In particular
 
@@ -647,9 +647,9 @@ In particular
 * A function can return any kind of object, including functions
 
 We already :ref:`gave an example <test_program_6>` of how straightforward it is to pass a function to
-a function
+a function.
 
-Note that a function can have arbitrarily many ``return`` statements (including zero)
+Note that a function can have arbitrarily many ``return`` statements (including zero).
 
 Execution of the function terminates when the first return is hit, allowing
 code like the following example
@@ -661,7 +661,7 @@ code like the following example
             return 'negative'
         return 'nonnegative'
 
-Functions without a return statement automatically return the special Python object ``None``
+Functions without a return statement automatically return the special Python object ``None``.
 
 Docstrings
 ----------------
@@ -669,9 +669,9 @@ Docstrings
 .. index::
     single: Python; Docstrings
 
-Python has a system for adding comments to functions, modules, etc. called *docstrings*
+Python has a system for adding comments to functions, modules, etc. called *docstrings*.
 
-The nice thing about docstrings is that they are available at run-time
+The nice thing about docstrings is that they are available at run-time.
 
 Try running this
 
@@ -717,7 +717,7 @@ After running this code, the docstring is available
         return x**2
 
 
-With one question mark we bring up the docstring, and with two we get the source code as well
+With one question mark we bring up the docstring, and with two we get the source code as well.
 
 
 
@@ -728,7 +728,7 @@ One-Line Functions: ``lambda``
 .. index::
     single: Python; lambda functions
 
-The ``lambda`` keyword is used to create simple functions on one line
+The ``lambda`` keyword is used to create simple functions on one line.
 
 For example, the definitions
 
@@ -743,13 +743,13 @@ and
 
     f = lambda x: x**3
 
-are entirely equivalent
+are entirely equivalent.
 
-To see why ``lambda`` is useful, suppose that we want to calculate :math:`\int_0^2 x^3 dx` (and have forgotten our high-school calculus)
+To see why ``lambda`` is useful, suppose that we want to calculate :math:`\int_0^2 x^3 dx` (and have forgotten our high-school calculus).
 
-The SciPy library has a function called ``quad`` that will do this calculation for us
+The SciPy library has a function called ``quad`` that will do this calculation for us.
 
-The syntax of the ``quad`` function is ``quad(f, a, b)`` where ``f`` is a function and ``a`` and ``b`` are numbers
+The syntax of the ``quad`` function is ``quad(f, a, b)`` where ``f`` is a function and ``a`` and ``b`` are numbers.
 
 To create the function :math:`f(x) = x^3` we can use ``lambda`` as follows
 
@@ -760,7 +760,7 @@ To create the function :math:`f(x) = x^3` we can use ``lambda`` as follows
 
     quad(lambda x: x**3, 0, 2)
 
-Here the function created by ``lambda`` is said to be *anonymous* because it was never given a name
+Here the function created by ``lambda`` is said to be *anonymous* because it was never given a name.
 
 
 Keyword Arguments
@@ -777,18 +777,18 @@ If you did the exercises in the :ref:`previous lecture <python_by_example>`, you
     plt.plot(x, 'b-', label="white noise")
 
 In this call to Matplotlib's ``plot`` function, notice that the last
-argument is passed in ``name=argument`` syntax
+argument is passed in ``name=argument`` syntax.
 
-This is called a *keyword argument*, with ``label`` being the keyword
+This is called a *keyword argument*, with ``label`` being the keyword.
 
 Non-keyword arguments are called *positional arguments*, since their meaning
 is determined by order
 
 * ``plot(x, 'b-', label="white noise")`` is different from ``plot('b-', x, label="white noise")``
 
-Keyword arguments are particularly useful when a function has a lot of arguments, in which case it's hard to remember the right order
+Keyword arguments are particularly useful when a function has a lot of arguments, in which case it's hard to remember the right order.
 
-You can adopt keyword arguments in user-defined functions with no difficulty
+You can adopt keyword arguments in user-defined functions with no difficulty.
 
 The next example illustrates the syntax
 
@@ -819,11 +819,11 @@ Coding Style and PEP8
 .. index::
     single: Python; PEP8
 
-To learn more about the Python programming philosophy type ``import this`` at the prompt
+To learn more about the Python programming philosophy type ``import this`` at the prompt.
 
-Among other things, Python strongly favors consistency in programming style
+Among other things, Python strongly favors consistency in programming style.
 
-We've all heard the saying about consistency and little minds
+We've all heard the saying about consistency and little minds.
 
 In programming, as in mathematics, the opposite is true
 
@@ -831,18 +831,18 @@ In programming, as in mathematics, the opposite is true
   reversed would be very hard to read, even if the author told you so on the
   first page
 
-In Python, the standard style is set out in `PEP8 <https://www.python.org/dev/peps/pep-0008/>`_
+In Python, the standard style is set out in `PEP8 <https://www.python.org/dev/peps/pep-0008/>`_.
 
-(Occasionally we'll deviate from PEP8 in these lectures to better match mathematical notation)
+(Occasionally we'll deviate from PEP8 in these lectures to better match mathematical notation).
 
 
 
 Exercises
 ============
 
-Solve the following exercises
+Solve the following exercises.
 
-(For some, the built-in function ``sum()`` comes in handy)
+(For some, the built-in function ``sum()`` comes in handy).
 
 .. _pyess_ex1:
 
@@ -850,14 +850,14 @@ Exercise 1
 ---------------
 
 Part 1: Given two numeric lists or tuples ``x_vals`` and ``y_vals`` of equal length, compute
-their inner product using ``zip()``
+their inner product using ``zip()``.
 
 Part 2: In one line, count the number of even numbers in 0,...,99
 
 * Hint: ``x % 2`` returns 0 if ``x`` is even, 1 otherwise
 
 Part 3: Given ``pairs = ((2, 5), (4, 2), (9, 8), (12, 10))``, count the number of pairs ``(a, b)``
-such that both ``a`` and ``b`` are even
+such that both ``a`` and ``b`` are even.
 
 
 
@@ -881,9 +881,9 @@ Consider the polynomial
     = \sum_{i=0}^n a_i x^i
 
 
-Write a function ``p`` such that ``p(x, coeff)`` that computes the value in :eq:`polynom0` given a point ``x`` and a list of coefficients ``coeff``
+Write a function ``p`` such that ``p(x, coeff)`` that computes the value in :eq:`polynom0` given a point ``x`` and a list of coefficients ``coeff``.
 
-Try to use ``enumerate()`` in your loop
+Try to use ``enumerate()`` in your loop.
 
 
 
@@ -895,9 +895,9 @@ Try to use ``enumerate()`` in your loop
 Exercise 3
 --------------
 
-Write a function that takes a string as an argument and returns the number of capital letters in the string
+Write a function that takes a string as an argument and returns the number of capital letters in the string.
 
-Hint: ``'foo'.upper()`` returns ``'FOO'``
+Hint: ``'foo'.upper()`` returns ``'FOO'``.
 
 
 
@@ -924,9 +924,9 @@ Exercise 5
 ------------
 
 When we cover the numerical libraries, we will see they include many
-alternatives for interpolation and function approximation
+alternatives for interpolation and function approximation.
 
-Nevertheless, let's write our own function approximation routine as an exercise
+Nevertheless, let's write our own function approximation routine as an exercise.
 
 In particular, without using any imports, write a function ``linapprox`` that takes as arguments
 
@@ -938,9 +938,9 @@ In particular, without using any imports, write a function ``linapprox`` that ta
 
 * A number ``x`` satisfying ``a <= x <= b``
 
-and returns the `piecewise linear interpolation <https://en.wikipedia.org/wiki/Linear_interpolation>`_ of ``f`` at ``x``, based on ``n`` evenly spaced grid points ``a = point[0] < point[1] < ... < point[n-1] = b``
+and returns the `piecewise linear interpolation <https://en.wikipedia.org/wiki/Linear_interpolation>`_ of ``f`` at ``x``, based on ``n`` evenly spaced grid points ``a = point[0] < point[1] < ... < point[n-1] = b``.
 
-Aim for clarity, not efficiency
+Aim for clarity, not efficiency.
 
 
 
