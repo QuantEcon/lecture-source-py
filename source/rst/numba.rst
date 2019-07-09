@@ -8,7 +8,7 @@ Numba
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -19,39 +19,39 @@ Overview
 ============
 
 
-In our lecture on :doc:`NumPy <numpy>`, we learned one method to improve speed and efficiency in numerical work
+In our lecture on :doc:`NumPy <numpy>`, we learned one method to improve speed and efficiency in numerical work.
 
-That method, called *vectorization*, involved sending array processing operations in batch to efficient low-level code
+That method, called *vectorization*, involved sending array processing operations in batch to efficient low-level code.
 
-This clever idea dates back to Matlab, which uses it extensively
+This clever idea dates back to Matlab, which uses it extensively.
 
 
-Unfortunately, vectorization is limited and has several weaknesses
+Unfortunately, vectorization is limited and has several weaknesses.
 
-One weakness is that it is highly memory-intensive
+One weakness is that it is highly memory-intensive.
 
-Another problem is that only some algorithms can be vectorized
+Another problem is that only some algorithms can be vectorized.
 
 
 In the last few years, a new Python library called `Numba <http://numba.pydata.org/>`__ has appeared that
-solves many of these problems
+solves many of these problems.
 
-It does so through something called **just in time (JIT) compilation**
+It does so through something called **just in time (JIT) compilation**.
 
 
-JIT compilation is effective in many numerical settings and can generate extremely fast, efficient code
+JIT compilation is effective in many numerical settings and can generate extremely fast, efficient code.
 
-It can also do other tricks such as facilitate multithreading (a form of parallelization well suited to numerical work)
+It can also do other tricks such as facilitate multithreading (a form of parallelization well suited to numerical work).
 
 
 The Need for Speed
 -----------------------
 
-To understand what Numba does and why, we need some background knowledge
+To understand what Numba does and why, we need some background knowledge.
 
-Let's start by thinking about higher-level languages, such as Python
+Let's start by thinking about higher-level languages, such as Python.
 
-These languages are optimized for humans
+These languages are optimized for humans.
 
 This means that the programmer can leave many details to the runtime environment
 
@@ -59,17 +59,17 @@ This means that the programmer can leave many details to the runtime environment
 
 * memory allocation/deallocation, etc.
 
-The upside is that, compared to low-level languages, Python is typically faster to write, less error-prone and  easier to debug
+The upside is that, compared to low-level languages, Python is typically faster to write, less error-prone and  easier to debug.
 
-The downside is that Python is harder to optimize --- that is, turn into fast machine code --- than languages like C or Fortran
+The downside is that Python is harder to optimize --- that is, turn into fast machine code --- than languages like C or Fortran.
 
-Indeed, the standard implementation of Python (called CPython) cannot match the speed of compiled languages such as C or Fortran
+Indeed, the standard implementation of Python (called CPython) cannot match the speed of compiled languages such as C or Fortran.
 
 Does that mean that we should just switch to C or Fortran for everything?
 
-The answer is no, no and one hundred times no
+The answer is no, no and one hundred times no.
 
-High productivity languages should be chosen over high-speed languages for the great majority of scientific computing tasks
+High productivity languages should be chosen over high-speed languages for the great majority of scientific computing tasks.
 
 This is because
 
@@ -77,7 +77,7 @@ This is because
 
 #. For those lines of code that *are* time-critical, we can achieve C-like speed using a combination of NumPy and Numba
 
-This lecture provides a guide
+This lecture provides a guide.
 
 
 
@@ -86,7 +86,7 @@ This lecture provides a guide
 Where are the Bottlenecks?
 =============================
 
-Let's start by trying to understand why high-level languages like Python are slower than compiled code
+Let's start by trying to understand why high-level languages like Python are slower than compiled code.
 
 
 Dynamic Typing
@@ -103,10 +103,10 @@ Consider this Python operation
     a + b
 
 
-Even for this simple operation, the Python interpreter has a fair bit of work to do
+Even for this simple operation, the Python interpreter has a fair bit of work to do.
 
 For example, in the statement ``a + b``, the interpreter has to know which
-operation to invoke
+operation to invoke.
 
 If ``a`` and ``b`` are strings, then ``a + b`` requires string concatenation
 
@@ -125,11 +125,11 @@ If ``a`` and ``b`` are lists, then ``a + b`` requires list concatenation
 
 
 (We say that the operator ``+`` is *overloaded* --- its action depends on the
-type of the objects on which it acts)
+type of the objects on which it acts).
 
-As a result, Python must check the type of the objects and then call the correct operation
+As a result, Python must check the type of the objects and then call the correct operation.
 
-This involves substantial overheads
+This involves substantial overheads.
 
 Static Types
 ^^^^^^^^^^^^^^^^
@@ -137,7 +137,7 @@ Static Types
 .. index::
     single: Static Types
 
-Compiled languages avoid these overheads with explicit, static types
+Compiled languages avoid these overheads with explicit, static types.
 
 For example, consider the following C code, which sums the integers from 1 to 10
 
@@ -156,22 +156,22 @@ For example, consider the following C code, which sums the integers from 1 to 10
         return 0;
     }
 
-The variables ``i`` and ``sum`` are explicitly declared to be integers
+The variables ``i`` and ``sum`` are explicitly declared to be integers.
 
-Hence, the meaning of addition here is completely unambiguous
+Hence, the meaning of addition here is completely unambiguous.
 
 Data Access
 --------------------
 
-Another drag on speed for high-level languages is data access
+Another drag on speed for high-level languages is data access.
 
-To illustrate, let's consider the problem of summing some data --- say, a collection of integers
+To illustrate, let's consider the problem of summing some data --- say, a collection of integers.
 
 Summing with Compiled Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In C or Fortran, these integers would typically be stored in an array, which
-is a simple data structure for storing homogeneous data
+is a simple data structure for storing homogeneous data.
 
 Such an array is stored in a single contiguous block of memory
 
@@ -194,19 +194,19 @@ space by a known and fixed amount
 Summing in Pure Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Python tries to replicate these ideas to some degree
+Python tries to replicate these ideas to some degree.
 
-For example, in the standard Python implementation (CPython), list elements are placed in memory locations that are in a sense contiguous
+For example, in the standard Python implementation (CPython), list elements are placed in memory locations that are in a sense contiguous.
 
-However, these list elements are more like pointers to data rather than actual data
+However, these list elements are more like pointers to data rather than actual data.
 
-Hence, there is still overhead involved in accessing the data values themselves
+Hence, there is still overhead involved in accessing the data values themselves.
 
-This is a considerable drag on speed
+This is a considerable drag on speed.
 
-In fact, it's generally true that memory traffic is a major culprit when it comes to slow execution
+In fact, it's generally true that memory traffic is a major culprit when it comes to slow execution.
 
-Let's look at some ways around these problems
+Let's look at some ways around these problems.
 
 
 
@@ -220,7 +220,7 @@ Vectorization is about sending batches of related operations to native machine c
 
 * The machine code itself is typically compiled from carefully optimized C or Fortran
 
-This can greatly accelerate many (but not all) numerical computations
+This can greatly accelerate many (but not all) numerical computations.
 
 
 Operations on Arrays
@@ -261,7 +261,7 @@ Now compare this vectorized code
 
 
 The second code block --- which achieves the same thing as the first --- runs
-much faster
+much faster.
 
 The reason is that in the second implementation we have broken the loop down into three basic operations
 
@@ -271,17 +271,17 @@ The reason is that in the second implementation we have broken the loop down int
 
 #. sum them
 
-These are sent as batch operators to optimized machine code
+These are sent as batch operators to optimized machine code.
 
-Apart from minor overheads associated with sending data back and forth, the result is C or Fortran-like speed
+Apart from minor overheads associated with sending data back and forth, the result is C or Fortran-like speed.
 
-When we run batch operations on arrays like this, we say that the code is *vectorized*
+When we run batch operations on arrays like this, we say that the code is *vectorized*.
 
-Vectorized code is typically fast and efficient
+Vectorized code is typically fast and efficient.
 
-It is also surprisingly flexible, in the sense that many operations can be vectorized
+It is also surprisingly flexible, in the sense that many operations can be vectorized.
 
-The next section illustrates this point
+The next section illustrates this point.
 
 
 .. _ufuncs:
@@ -293,7 +293,7 @@ Universal Functions
 .. index::
     single: NumPy; Universal Functions
 
-Many functions provided by NumPy are so-called *universal functions* --- also called `ufuncs <https://docs.scipy.org/doc/numpy/reference/ufuncs.html>`__
+Many functions provided by NumPy are so-called *universal functions* --- also called `ufuncs <https://docs.scipy.org/doc/numpy/reference/ufuncs.html>`__.
 
 This means that they
 
@@ -312,10 +312,10 @@ For example, ``np.cos`` is a ufunc:
     np.cos(np.linspace(0, 1, 3))
 
 
-By exploiting ufuncs, many operations can be vectorized
+By exploiting ufuncs, many operations can be vectorized.
 
 For example, consider the problem of maximizing a function :math:`f` of two
-variables :math:`(x,y)` over the square :math:`[-a, a] \times [-a, a]`
+variables :math:`(x,y)` over the square :math:`[-a, a] \times [-a, a]`.
 
 For :math:`f` and :math:`a` let's choose
 
@@ -394,11 +394,11 @@ And here's a vectorized version
     qe.toc()
 
 
-In the vectorized version, all the looping takes place in compiled code
+In the vectorized version, all the looping takes place in compiled code.
 
-As you can see, the second version is **much** faster
+As you can see, the second version is **much** faster.
 
-(We'll make it even faster again below when we discuss Numba)
+(We'll make it even faster again below when we discuss Numba).
 
 
 .. _numba-p_c_vectorization:
@@ -406,20 +406,20 @@ As you can see, the second version is **much** faster
 Pros and Cons of Vectorization
 ----------------------------------------
 
-At its best, vectorization yields fast, simple code
+At its best, vectorization yields fast, simple code.
 
-However, it's not without disadvantages
+However, it's not without disadvantages.
 
-One issue is that it can be highly memory-intensive
+One issue is that it can be highly memory-intensive.
 
 For example, the vectorized maximization routine above is far more memory
-intensive than the non-vectorized version that preceded it
+intensive than the non-vectorized version that preceded it.
 
-Another issue is that not all algorithms can be vectorized
+Another issue is that not all algorithms can be vectorized.
 
-In these kinds of settings, we need to go back to loops
+In these kinds of settings, we need to go back to loops.
 
-Fortunately, there are nice ways to speed up Python loops
+Fortunately, there are nice ways to speed up Python loops.
 
 
 
@@ -434,25 +434,25 @@ Fortunately, there are nice ways to speed up Python loops
 .. index::
     single: Python; Numba
 
-One exciting development in this direction is `Numba <http://numba.pydata.org/>`_
+One exciting development in this direction is `Numba <http://numba.pydata.org/>`_.
 
-Numba aims to automatically compile functions to native machine code instructions on the fly
+Numba aims to automatically compile functions to native machine code instructions on the fly.
 
-The process isn't flawless, since Numba needs to infer type information on all variables to generate pure machine instructions
+The process isn't flawless, since Numba needs to infer type information on all variables to generate pure machine instructions.
 
-Such inference isn't possible in every setting
+Such inference isn't possible in every setting.
 
-But for simple routines, Numba infers types very well
+But for simple routines, Numba infers types very well.
 
-Moreover, the "hot loops" at the heart of our code that we need to speed up are often such simple routines
+Moreover, the "hot loops" at the heart of our code that we need to speed up are often such simple routines.
 
 
 Prerequisites
 ------------------
 
-If you :doc:`followed our set up instructions <getting_started>`, then Numba should be installed
+If you :doc:`followed our set up instructions <getting_started>`, then Numba should be installed.
 
-Make sure you have the latest version of Anaconda by running ``conda update anaconda`` from a terminal (Mac, Linux) / Anaconda command prompt (Windows)
+Make sure you have the latest version of Anaconda by running ``conda update anaconda`` from a terminal (Mac, Linux) / Anaconda command prompt (Windows).
 
 
 
@@ -463,10 +463,10 @@ Make sure you have the latest version of Anaconda by running ``conda update anac
 An Example
 ------------------
 
-Let's consider some problems that are difficult to vectorize
+Let's consider some problems that are difficult to vectorize.
 
 One is generating the trajectory of a difference equation given an initial
-condition
+condition.
 
 Let's take the difference equation to be the quadratic map
 
@@ -516,7 +516,7 @@ Let's time and compare identical function calls across these two versions:
     time2 = qe.util.toc()
 
 
-The first execution is relatively slow because of JIT compilation (see below)
+The first execution is relatively slow because of JIT compilation (see below).
 
 Next time and all subsequent times it runs much faster:
 
@@ -534,9 +534,9 @@ Next time and all subsequent times it runs much faster:
 
 That's a speed increase of two orders of magnitude!
 
-Your mileage will of course vary depending on hardware and so on
+Your mileage will of course vary depending on hardware and so on.
 
-Nonetheless, two orders of magnitude is huge relative to how simple and clear the implementation is
+Nonetheless, two orders of magnitude is huge relative to how simple and clear the implementation is.
 
 Decorator Notation
 ^^^^^^^^^^^^^^^^^^^
@@ -555,7 +555,7 @@ you can just put ``@jit`` before the function
         return x
 
 
-This is equivalent to ``qm = jit(qm)``
+This is equivalent to ``qm = jit(qm)``.
 
 
 
@@ -565,27 +565,27 @@ This is equivalent to ``qm = jit(qm)``
 How and When it Works
 --------------------------
 
-Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_
+Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_.
 
-It does this by inferring type information on the fly
+It does this by inferring type information on the fly.
 
-As you can imagine, this is easier for simple Python objects (simple scalar data types, such as floats, integers, etc.)
+As you can imagine, this is easier for simple Python objects (simple scalar data types, such as floats, integers, etc.).
 
-Numba also plays well with NumPy arrays, which it treats as typed memory regions
+Numba also plays well with NumPy arrays, which it treats as typed memory regions.
 
-In an ideal setting, Numba can infer all necessary type information
+In an ideal setting, Numba can infer all necessary type information.
 
-This allows it to generate native machine code, without having to call the Python runtime environment
+This allows it to generate native machine code, without having to call the Python runtime environment.
 
-In such a setting, Numba will be on par with machine code from low-level languages
+In such a setting, Numba will be on par with machine code from low-level languages.
 
-When Numba cannot infer all type information, some Python objects are given generic ``object`` status, and some code is generated using the Python runtime
+When Numba cannot infer all type information, some Python objects are given generic ``object`` status, and some code is generated using the Python runtime.
 
-In this second setting, Numba typically provides only minor speed gains --- or none at all
+In this second setting, Numba typically provides only minor speed gains --- or none at all.
 
-Hence, it's prudent when using Numba to focus on speeding up small, time-critical snippets of code
+Hence, it's prudent when using Numba to focus on speeding up small, time-critical snippets of code.
 
-This will give you much better performance than blanketing your Python programs with ``@jit`` statements
+This will give you much better performance than blanketing your Python programs with ``@jit`` statements.
 
 
 A Gotcha: Global Variables
@@ -611,16 +611,16 @@ Consider the following example
 
 
 Notice that changing the global had no effect on the value returned by the
-function
+function.
 
-When Numba compiles machine code for functions, it treats global variables as constants to ensure type stability
+When Numba compiles machine code for functions, it treats global variables as constants to ensure type stability.
 
 
 
 Numba for Vectorization
 --------------------------
 
-Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator
+Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator.
 
 To illustrate the advantage of using Numba to vectorize a function, we
 return to a maximization problem :ref:`discussed above <ufuncs>`
@@ -644,20 +644,20 @@ return to a maximization problem :ref:`discussed above <ufuncs>`
     qe.toc()
 
 
-This is faster than our vectorized version using NumPy's ufuncs
+This is faster than our vectorized version using NumPy's ufuncs.
 
-Why should that be?  After all, anything vectorized with NumPy will be running in fast C or Fortran code
+Why should that be?  After all, anything vectorized with NumPy will be running in fast C or Fortran code.
 
-The reason is that it's much less memory-intensive
+The reason is that it's much less memory-intensive.
 
 For example, when NumPy computes ``np.cos(x**2 + y**2)`` it first creates the
-intermediate arrays ``x**2`` and ``y**2``, then it creates the array ``np.cos(x**2 + y**2)``
+intermediate arrays ``x**2`` and ``y**2``, then it creates the array ``np.cos(x**2 + y**2)``.
 
 In our ``@vectorize`` version using Numba, the entire operator is reduced to a
-single vectorized process and none of these intermediate arrays are created
+single vectorized process and none of these intermediate arrays are created.
 
 We can gain further speed improvements using Numba's automatic parallelization
-feature by specifying ``target='parallel'``
+feature by specifying ``target='parallel'``.
 
 In this case, we need to specify the types of our inputs and outputs
 
@@ -673,4 +673,4 @@ In this case, we need to specify the types of our inputs and outputs
     np.max(f_vec(x, y))
     qe.toc()
 
-This is a striking speed up with very little effort
+This is a striking speed up with very little effort.

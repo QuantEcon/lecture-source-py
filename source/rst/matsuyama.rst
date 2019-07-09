@@ -11,7 +11,7 @@ Globalization and Cycles
 
 .. contents:: :depth: 2
 
-This lecture is coauthored with `Chase Coleman <https://github.com/cc7768>`__
+This lecture is coauthored with `Chase Coleman <https://github.com/cc7768>`__.
 
 
 
@@ -19,93 +19,93 @@ Overview
 =====================================
 
 
-In this lecture, we review the paper `Globalization and Synchronization of Innovation Cycles <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__ by `Kiminori Matsuyama <http://faculty.wcas.northwestern.edu/~kmatsu/>`__, `Laura Gardini <http://www.mdef.it/index.php?id=32>`__ and `Iryna Sushko <http://irynasushko.altervista.org/>`__
+In this lecture, we review the paper `Globalization and Synchronization of Innovation Cycles <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__ by `Kiminori Matsuyama <http://faculty.wcas.northwestern.edu/~kmatsu/>`__, `Laura Gardini <http://www.mdef.it/index.php?id=32>`__ and `Iryna Sushko <http://irynasushko.altervista.org/>`__.
 
-This model helps us understand several interesting stylized facts about the world economy
+This model helps us understand several interesting stylized facts about the world economy.
 
-One of these is synchronized business cycles across different countries
+One of these is synchronized business cycles across different countries.
 
-Most existing models that generate synchronized business cycles do so by assumption, since they tie output in each country to a common shock
+Most existing models that generate synchronized business cycles do so by assumption, since they tie output in each country to a common shock.
 
-They also fail to explain certain features of the data, such as the fact that the degree of synchronization tends to increase with trade ties
+They also fail to explain certain features of the data, such as the fact that the degree of synchronization tends to increase with trade ties.
 
-By contrast, in the model we consider in this lecture, synchronization is both endogenous and increasing with the extent of trade integration
+By contrast, in the model we consider in this lecture, synchronization is both endogenous and increasing with the extent of trade integration.
 
-In particular, as trade costs fall and international competition increases, innovation incentives become aligned and countries synchronize their innovation cycles
+In particular, as trade costs fall and international competition increases, innovation incentives become aligned and countries synchronize their innovation cycles.
 
 
 
 Background
 -------------
 
-The model builds on work by Judd :cite:`Judd1985`, Deneckner and Judd :cite:`Deneckere1992` and Helpman and Krugman :cite:`Helpman1985` by developing a two-country model with trade and innovation
+The model builds on work by Judd :cite:`Judd1985`, Deneckner and Judd :cite:`Deneckere1992` and Helpman and Krugman :cite:`Helpman1985` by developing a two-country model with trade and innovation.
 
-On the technical side, the paper introduces the concept of `coupled oscillators <https://en.wikipedia.org/wiki/Oscillation#Coupled_oscillations>`__ to economic modeling
+On the technical side, the paper introduces the concept of `coupled oscillators <https://en.wikipedia.org/wiki/Oscillation#Coupled_oscillations>`__ to economic modeling.
 
-As we will see, coupled oscillators arise endogenously within the model
+As we will see, coupled oscillators arise endogenously within the model.
 
-Below we review the model and replicate some of the results on synchronization of innovation across countries
+Below we review the model and replicate some of the results on synchronization of innovation across countries.
 
 
 
 Key Ideas
 ==========================
 
-It is helpful to begin with an overview of the mechanism
+It is helpful to begin with an overview of the mechanism.
 
 
 Innovation Cycles
 ---------------------
 
-As discussed above, two countries produce and trade with each other
+As discussed above, two countries produce and trade with each other.
 
-In each country, firms innovate, producing new varieties of goods and, in doing so, receiving temporary monopoly power
+In each country, firms innovate, producing new varieties of goods and, in doing so, receiving temporary monopoly power.
 
-Imitators follow and, after one period of monopoly, what had previously been new varieties now enter competitive production
+Imitators follow and, after one period of monopoly, what had previously been new varieties now enter competitive production.
 
-Firms have incentives to innovate and produce new goods when the mass of varieties of goods currently in production is relatively low
+Firms have incentives to innovate and produce new goods when the mass of varieties of goods currently in production is relatively low.
 
-In addition, there are strategic complementarities in the timing of innovation
+In addition, there are strategic complementarities in the timing of innovation.
 
-Firms have incentives to innovate in the same period, so as to avoid competing with substitutes that are competitively produced
+Firms have incentives to innovate in the same period, so as to avoid competing with substitutes that are competitively produced.
 
-This leads to temporal clustering in innovations in each country
+This leads to temporal clustering in innovations in each country.
 
-After a burst of innovation, the mass of goods currently in production increases
+After a burst of innovation, the mass of goods currently in production increases.
 
-However, goods also become obsolete, so that not all survive from period to period
+However, goods also become obsolete, so that not all survive from period to period.
 
-This mechanism generates a cycle, where the mass of varieties increases through simultaneous innovation and then falls through obsolescence
+This mechanism generates a cycle, where the mass of varieties increases through simultaneous innovation and then falls through obsolescence.
 
 Synchronization
 ---------------
 
-In the absence of trade, the timing of innovation cycles in each country is decoupled
+In the absence of trade, the timing of innovation cycles in each country is decoupled.
 
-This will be the case when trade costs are prohibitively high
+This will be the case when trade costs are prohibitively high.
 
-If trade costs fall, then goods produced in each country penetrate each other's markets
+If trade costs fall, then goods produced in each country penetrate each other's markets.
 
-As illustrated below, this leads to synchronization of business cycles across the two countries
+As illustrated below, this leads to synchronization of business cycles across the two countries.
 
 
 
 Model
 =======
 
-Let's write down the model more formally
+Let's write down the model more formally.
 
-(The treatment is relatively terse since full details can be found in `the original paper <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__)
+(The treatment is relatively terse since full details can be found in `the original paper <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__).
 
-Time is discrete with :math:`t = 0, 1, \dots`
+Time is discrete with :math:`t = 0, 1, \dots`.
 
-There are two countries indexed by :math:`j` or :math:`k`
+There are two countries indexed by :math:`j` or :math:`k`.
 
-In each country, a representative household inelastically supplies :math:`L_j` units of labor at wage rate :math:`w_{j, t}`
+In each country, a representative household inelastically supplies :math:`L_j` units of labor at wage rate :math:`w_{j, t}`.
 
-Without loss of generality, it is assumed that :math:`L_{1} \geq L_{2}`
+Without loss of generality, it is assumed that :math:`L_{1} \geq L_{2}`.
 
-Households consume a single nontradeable final good which is produced competitively
+Households consume a single nontradeable final good which is produced competitively.
 
 Its production involves combining two types of tradeable intermediate inputs
 via
@@ -115,11 +115,11 @@ via
     Y_{k, t} = C_{k, t} = \left( \frac{X^o_{k, t}}{1 - \alpha} \right)^{1-\alpha} \left( \frac{X_{k, t}}{\alpha} \right)^{\alpha}
 
 
-Here :math:`X^o_{k, t}` is a homogeneous input which can be produced from labor using a linear, one-for-one technology
+Here :math:`X^o_{k, t}` is a homogeneous input which can be produced from labor using a linear, one-for-one technology.
 
-It is freely tradeable, competitively supplied, and homogeneous across countries
+It is freely tradeable, competitively supplied, and homogeneous across countries.
 
-By choosing the price of this good as numeraire and assuming both countries find it optimal to always produce the homogeneous good, we can set :math:`w_{1, t} = w_{2, t} = 1`
+By choosing the price of this good as numeraire and assuming both countries find it optimal to always produce the homogeneous good, we can set :math:`w_{1, t} = w_{2, t} = 1`.
 
 The good :math:`X_{k, t}` is a composite, built from many differentiated goods via
 
@@ -128,12 +128,12 @@ The good :math:`X_{k, t}` is a composite, built from many differentiated goods v
     X_{k, t}^{1 - \frac{1}{\sigma}} = \int_{\Omega_t} \left[ x_{k, t}(\nu) \right]^{1 - \frac{1}{\sigma}} d \nu
 
 
-Here :math:`x_{k, t}(\nu)` is the total amount of a differentiated good :math:`\nu \in \Omega_t` that is produced
+Here :math:`x_{k, t}(\nu)` is the total amount of a differentiated good :math:`\nu \in \Omega_t` that is produced.
 
 The parameter :math:`\sigma > 1` is the direct partial elasticity of substitution between a pair of varieties and :math:`\Omega_t` is the set of varieties available in period
-:math:`t`
+:math:`t`.
 
-We can split the varieties into those which are supplied competitively and those supplied monopolistically; that is, :math:`\Omega_t = \Omega_t^c + \Omega_t^m`
+We can split the varieties into those which are supplied competitively and those supplied monopolistically; that is, :math:`\Omega_t = \Omega_t^c + \Omega_t^m`.
 
 Prices
 ---------
@@ -159,9 +159,9 @@ Here
 
 The price of a variety also depends on the origin, :math:`j`, and destination, :math:`k`, of the goods because shipping
 varieties between countries incurs an iceberg trade cost
-:math:`\tau_{j,k}`
+:math:`\tau_{j,k}`.
 
-Thus the effective price in country :math:`k` of a variety :math:`\nu` produced in country :math:`j` becomes :math:`p_{k, t}(\nu) = \tau_{j,k} \, p_{j, t}(\nu)`
+Thus the effective price in country :math:`k` of a variety :math:`\nu` produced in country :math:`j` becomes :math:`p_{k, t}(\nu) = \tau_{j,k} \, p_{j, t}(\nu)`.
 
 Using these expressions, we can derive the total demand for each variety,
 which is
@@ -187,9 +187,9 @@ It is assumed that :math:`\tau_{1,1} = \tau_{2,2} = 1` and :math:`\tau_{1,2} = \
     \rho_{1,2} = \rho_{2,1} = \rho := \tau^{1 - \sigma} < 1
 
 
-The value :math:`\rho \in [0, 1)` is a proxy for the degree of globalization
+The value :math:`\rho \in [0, 1)` is a proxy for the degree of globalization.
 
-Producing one unit of each differentiated variety requires :math:`\psi` units of labor, so the marginal cost is equal to :math:`\psi` for :math:`\nu \in \Omega_{j, t}`
+Producing one unit of each differentiated variety requires :math:`\psi` units of labor, so the marginal cost is equal to :math:`\psi` for :math:`\nu \in \Omega_{j, t}`.
 
 Additionally, all competitive varieties will have the same price (because of equal marginal cost), which means that, for all :math:`\nu \in \Omega^c`,
 
@@ -227,14 +227,14 @@ Using the preceding definitions and some algebra, the price indices can now be r
     M_{j,t} := N_{j,t}^c + \frac{N_{j,t}^m}{ \theta}
 
 
-The symbols :math:`N_{j, t}^c` and :math:`N_{j, t}^m` will denote the measures of :math:`\Omega^c` and :math:`\Omega^m` respectively
+The symbols :math:`N_{j, t}^c` and :math:`N_{j, t}^m` will denote the measures of :math:`\Omega^c` and :math:`\Omega^m` respectively.
 
 
 
 New Varieties
 --------------
 
-To introduce a new variety, a firm must hire :math:`f` units of labor per variety in each country
+To introduce a new variety, a firm must hire :math:`f` units of labor per variety in each country.
 
 Monopolist profits must be less than or equal to zero in expectation, so
 
@@ -282,10 +282,10 @@ We will work with a normalized measure of varieties
     m_{j, t} := \frac{\theta \sigma f M_{j, t}}{\alpha (L_1 + L_2)} = n_{j, t} + \frac{i_{j, t}}{\theta}
 
 
-We also use :math:`s_j := \frac{L_j}{L_1 + L_2}` to be the share of labor employed in country :math:`j`
+We also use :math:`s_j := \frac{L_j}{L_1 + L_2}` to be the share of labor employed in country :math:`j`.
 
 We can use these definitions and the preceding expressions to obtain a law of
-motion for :math:`n_t := (n_{1, t}, n_{2, t})`
+motion for :math:`n_t := (n_{1, t}, n_{2, t})`.
 
 In particular, given an initial condition, :math:`n_0 = (n_{1, 0}, n_{2, 0}) \in \mathbb{R}_{+}^{2}`, the equilibrium trajectory, :math:`\{ n_t \}_{t=0}^{\infty} = \{ (n_{1, t}, n_{2, t}) \}_{t=0}^{\infty}`, is obtained by iterating on :math:`n_{t+1} = F(n_t)` where :math:`F : \mathbb{R}_{+}^{2} \rightarrow \mathbb{R}_{+}^{2}` is given by
 
@@ -331,9 +331,9 @@ and :math:`h_j(n_k)` is defined implicitly by the equation
     1 = \frac{s_j}{h_j(n_k) + \rho n_k} + \frac{s_k}{h_j(n_k) + n_k / \rho}
 
 
-Rewriting the equation above gives us a quadratic equation in terms of :math:`h_j(n_k)`
+Rewriting the equation above gives us a quadratic equation in terms of :math:`h_j(n_k)`.
 
-Since we know :math:`h_j(n_k) > 0` then we can just solve the quadratic equation and return the positive root
+Since we know :math:`h_j(n_k) > 0` then we can just solve the quadratic equation and return the positive root.
 
 This gives us
 
@@ -346,23 +346,23 @@ Simulation
 ===============
 
 
-Let's try simulating some of these trajectories
+Let's try simulating some of these trajectories.
 
 We will focus in particular on whether or not innovation cycles synchronize
-across the two countries
+across the two countries.
 
-As we will see, this depends on initial conditions
+As we will see, this depends on initial conditions.
 
-For some parameterizations, synchronization will occur for "most" initial conditions, while for others synchronization will be rare
+For some parameterizations, synchronization will occur for "most" initial conditions, while for others synchronization will be rare.
 
 
 
 The computational burden of testing synchronization across many initial
-conditions is not trivial
+conditions is not trivial.
 
-In order to make our code fast, we will use just in time compiled functions that will get called and handled by our class
+In order to make our code fast, we will use just in time compiled functions that will get called and handled by our class.
 
-These are the ``@jit`` statements that you see below (review :doc:`this lecture <numba>` if you don't recall how to use JIT compilation)
+These are the ``@jit`` statements that you see below (review :doc:`this lecture <numba>` if you don't recall how to use JIT compilation).
 
 
 
@@ -376,46 +376,46 @@ Here's the main body of code
 Time Series of Firm Measures
 ----------------------------
 
-We write a short function below that exploits the preceding code and plots two time series
+We write a short function below that exploits the preceding code and plots two time series.
 
-Each time series gives the dynamics for the two countries
+Each time series gives the dynamics for the two countries.
 
-The time series share parameters but differ in their initial condition
+The time series share parameters but differ in their initial condition.
 
 Here's the function
 
 .. literalinclude:: /_static/lecture_specific/matsuyama/sim_time_series.py
 
-In the first case, innovation in the two countries does not synchronize
+In the first case, innovation in the two countries does not synchronize.
 
 In the second case, different initial conditions are chosen, and the cycles
-become synchronized
+become synchronized.
 
 
 Basin of Attraction
 -----------------------
 
 Next, let's study the initial conditions that lead to synchronized cycles more
-systematically
+systematically.
 
 We generate time series from a large collection of different initial
 conditions and mark those conditions with different colors according to
-whether synchronization occurs or not
+whether synchronization occurs or not.
 
 The next display shows exactly this for four different parameterizations (one
-for each subfigure)
+for each subfigure).
 
-Dark colors indicate synchronization, while light colors indicate failure to synchronize
+Dark colors indicate synchronization, while light colors indicate failure to synchronize.
 
 .. _matsrep:
 
 .. figure:: /_static/lecture_specific/matsuyama/matsuyama_14.png
 
-As you can see, larger values of :math:`\rho` translate to more synchronization
+As you can see, larger values of :math:`\rho` translate to more synchronization.
 
-You are asked to replicate this figure in the exercises
+You are asked to replicate this figure in the exercises.
 
-In the solution to the exercises, you'll also find a figure with sliders, allowing you to experiment with different parameters
+In the solution to the exercises, you'll also find a figure with sliders, allowing you to experiment with different parameters.
 
 Here's one snapshot from the interactive figure
 
@@ -429,7 +429,7 @@ Exercises
 Exercise 1
 ------------
 
-Replicate the figure :ref:`shown above <matsrep>` by coloring initial conditions according to whether or not synchronization occurs from those conditions
+Replicate the figure :ref:`shown above <matsrep>` by coloring initial conditions according to whether or not synchronization occurs from those conditions.
 
 
 
@@ -498,7 +498,7 @@ Interactive Version
 
 Additionally, instead of just seeing 4 plots at once, we might want to
 manually be able to change :math:`\rho` and see how it affects the plot
-in real-time. Below we use an interactive plot to do this
+in real-time. Below we use an interactive plot to do this.
 
 Note, interactive plotting requires the `ipywidgets <https://github.com/jupyter-widgets/ipywidgets>`__ module to be installed and enabled
 
