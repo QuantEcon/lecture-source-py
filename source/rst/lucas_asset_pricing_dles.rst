@@ -15,7 +15,7 @@ Lucas Asset Pricing Using DLE
 
 
 This is one of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
 
 In addition to what's in Anaconda, this lecture uses the quantecon  library
@@ -28,13 +28,13 @@ In addition to what's in Anaconda, this lecture uses the quantecon  library
 This lecture uses  the DLE class to price payout
 streams that are linear functions of the economy's state vector, as well
 as risk-free assets that pay out one unit of the first consumption good
-with certainty
+with certainty.
 
 We assume basic knowledge of the class of economic environments that fall within the domain of the
-DLE class
+DLE class.
 
 Many details about the basic environment are contained in the lecture
-:doc:`Growth in Dynamic Linear Economies <growth_in_dles>`
+:doc:`Growth in Dynamic Linear Economies <growth_in_dles>`.
 
 We'll also need the following imports
 
@@ -131,7 +131,7 @@ where
 .. math::  Z_a = U_a^{'}M_c
 
 The use of :math:`\bar e _1` indicates that the first consumption good
-is the numeraire
+is the numeraire.
 
 Asset Pricing Simulations
 ==========================
@@ -169,7 +169,7 @@ Asset Pricing Simulations
 
     Econ1 = DLE(Info1, Tech1, Pref1)
 
-After specifying a "Pay" matrix, we simulate the economy
+After specifying a "Pay" matrix, we simulate the economy.
 
 The particular choice of "Pay" used below means that we are pricing a
 perpetual claim on the endowment process :math:`d_{1t}`
@@ -204,7 +204,7 @@ tree" as well as on a risk-free one-period bond:
 
 
 Above we have also calculated the correlation coefficient between these
-two returns
+two returns.
 
 To give an idea of how the term structure of interest rates moves in
 this economy, the next plot displays the *net* rates of return on
@@ -219,11 +219,11 @@ one-period and five-period risk-free bonds:
     plt.show()
 
 From the above plot, we can see the tendency of the term structure to
-slope up when rates are low and to slope down when rates are high
+slope up when rates are low and to slope down when rates are high.
 
 Comparing it to the previous plot of the price of the "Lucas tree", we
 can also see that net rates of return are low when the price of the tree
-is high, and vice versa
+is high, and vice versa.
 
 We now plot the realized gross rate of return on a "Lucas tree" as well
 as on a risk-free one-period bond when the autoregressive parameter for
@@ -252,7 +252,7 @@ the endowment process is reduced to 0.4:
     np.corrcoef(Econ2.Pay_Gross[1:, 0], Econ2.R1_Gross[1:, 0])
 
 
-The correlation between these two gross rates is now more negative
+The correlation between these two gross rates is now more negative.
 
 Next, we again plot the *net* rates of return on one-period and
 five-period risk-free bonds:
@@ -267,4 +267,4 @@ five-period risk-free bonds:
 
 We can see the tendency of the term structure to slope up when rates are
 low (and down when rates are high) has been accentuated relative to the
-first instance of our economy
+first instance of our economy.
