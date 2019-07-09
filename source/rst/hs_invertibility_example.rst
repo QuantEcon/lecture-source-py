@@ -15,7 +15,7 @@ Overview
 ========
 
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
 In addition to what's in Anaconda, this lecture uses the quantecon library
 
@@ -37,18 +37,18 @@ We'll make these imports
     %matplotlib inline
 
 This lecture can be viewed as introducing  an early contribution to what is now often called
-a **news and noise** issue
+a **news and noise** issue.
 
 In particular, it analyzes and illustrates an **invertibility** issue that is
-endemic within a class of permanent income models
+endemic within a class of permanent income models.
 
 Technically, the invertibility problem indicates a situation in which
 histories of the shocks in an econometrician's autoregressive or Wold
 moving average representation span a smaller information space than do
-the shocks seen by the agent inside the econometrician's model
+the shocks seen by the agent inside the econometrician's model.
 
 This situation sets the stage for an econometrician who is unaware of the
-problem to  misinterpret  shocks and likely responses to them
+problem to  misinterpret  shocks and likely responses to them.
 
 Model
 =====
@@ -106,7 +106,7 @@ We consider the following modification  of Robert Hall's (1978) model :cite:`Hal
       \right]
 
 The preference shock is constant at 30, while the endowment process is
-the sum of a constant and two orthogonal processes
+the sum of a constant and two orthogonal processes.
 
 Specifically:
 
@@ -149,7 +149,7 @@ third-order pure moving average process
 
     Econ1 = DLE(Info1, Tech1, Pref1)
 
-We define the household's net of interest deficit as :math:`c_t - d_t`
+We define the household's net of interest deficit as :math:`c_t - d_t`.
 
 Hall's model imposes "expected present-value budget balance" in the
 sense that
@@ -170,13 +170,13 @@ If we define the moving average representation of
       \right] w_t
 
 then Hall's model imposes the restriction
-:math:`\sigma_2(\beta) = [0\,\,\,0]`
+:math:`\sigma_2(\beta) = [0\,\,\,0]`.
 
 The agent inside this model sees histories of both components of the
-endowment process :math:`d_{1t}` and :math:`d_{2t}`
+endowment process :math:`d_{1t}` and :math:`d_{2t}`.
 
 The econometrician has data on the history of the pair
-:math:`[c_t,d_t]`, but not directly on the history of :math:`w_t`
+:math:`[c_t,d_t]`, but not directly on the history of :math:`w_t`.
 
 The econometrician obtains a Wold representation for the process
 :math:`[c_t,c_t-d_t]`:
@@ -195,11 +195,11 @@ The Appendix of chapter 8 of :cite:`HS2013`  explains why the impulse
 response functions in the Wold representation estimated by the
 econometrician do not resemble the impulse response functions that
 depict the response of consumption and the deficit to innovations to
-agents' information
+agents' information.
 
 Technically, :math:`\sigma_2(\beta) = [0\,\,\,0]` implies that the
 history of :math:`u_t`\ s spans a *smaller* linear space than does the
-history of :math:`w_t`\ s
+history of :math:`w_t`\ s.
 
 This means that :math:`u_t` will typically be a distributed lag of
 :math:`w_t` that is not concentrated at zero lag:
@@ -207,7 +207,7 @@ This means that :math:`u_t` will typically be a distributed lag of
 .. math::  u_t = \sum_{j=0}^\infty \alpha_j w_{t-j}
 
 Thus, the econometrician's news :math:`u_t` potentially responds
-belatedly to agents' news :math:`w_t`
+belatedly to agents' news :math:`w_t`.
 
 Code
 ====
@@ -237,13 +237,13 @@ illustrate these ideas:
     plt.show()
 
 The above figure displays the impulse response of consumption and the
-deficit to the endowment innovations
+deficit to the endowment innovations.
 
 Consumption displays the characteristic "random walk" response with
-respect to each innovation
+respect to each innovation.
 
 Each endowment innovation leads to a
-temporary surplus followed by a permanent net-of-interest deficit
+temporary surplus followed by a permanent net-of-interest deficit.
 
 The temporary surplus just offsets the permanent deficit in terms of
 expected present value
@@ -343,7 +343,7 @@ The above figure displays the impulse responses of :math:`u_t` to
 While the responses of the innovations to consumption are concentrated
 at lag zero for both components of :math:`w_t`, the responses of the
 innovations to :math:`(c_t - d_t)` are spread over time (especially in
-response to :math:`w_{1t}`)
+response to :math:`w_{1t}`).
 
 Thus, the innovations to :math:`(c_t - d_t)` as revealed by the vector
-autoregression depend on what the economic agent views as "old news"
+autoregression depend on what the economic agent views as "old news".
