@@ -7,9 +7,9 @@ SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = lecture-source-jl
 SOURCEDIR     = source/rst
 BUILDDIR      = _build
-BUILDWEBSITE  = _build_website
+BUILDWEBSITE  = _build/website
 CORES 		  = 4
-BUILDCOVERAGE = _build_coverage
+BUILDCOVERAGE = _build/coverage
 
 # Put it first so that "make" without argument is like "make help".
 help:
