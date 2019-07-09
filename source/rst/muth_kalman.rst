@@ -37,11 +37,11 @@ We'll also need the following imports
 
 
 This lecture uses the Kalman filter to reformulate John F. Muth’s first
-paper :cite:`Muth1960` about rational expectations
+paper :cite:`Muth1960` about rational expectations.
 
 Muth used *classical* prediction methods to reverse engineer a
 stochastic process that renders optimal Milton Friedman’s :cite:`Friedman1956` “adaptive
-expectations” scheme
+expectations” scheme.
 
 Friedman (1956) and Muth (1960)
 =================================
@@ -56,38 +56,38 @@ expectations scheme
   y_{t+i,t}^* = K \sum_{j=0}^\infty (1 - K)^j y_{t-j}
 
 where :math:`K \in (0,1)` and :math:`y_{t+i,t}^*` is a forecast of
-future :math:`y` over horizon :math:`i`
+future :math:`y` over horizon :math:`i`.
 
 Milton Friedman justified the **exponential smoothing** forecasting
 scheme :eq:`expectations` informally, noting  that it seemed a plausible way to use
-past income to forecast future income
+past income to forecast future income.
 
 In his first paper about rational expectations, John F. Muth :cite:`Muth1960`
 reverse-engineered a univariate stochastic process
 :math:`\{y_t\}_{t=- \infty}^\infty` for which Milton Friedman’s adaptive
 expectations scheme gives linear least forecasts of :math:`y_{t+j}` for
-any horizon :math:`i`
+any horizon :math:`i`.
 
 Muth sought a setting and a sense in which Friedman’s forecasting scheme
-is optimal
+is optimal.
 
 That is, Muth asked for what optimal forecasting **question** is Milton
-Friedman’s adaptive expectation scheme the **answer**
+Friedman’s adaptive expectation scheme the **answer**.
 
 Muth (1960) used classical prediction methods based on lag-operators and
-:math:`z`-transforms to find the answer to his question
+:math:`z`-transforms to find the answer to his question.
 
 Please see lectures :doc:`Classical Control with Linear Algebra<lu_tricks>` and
 :doc:`Classical Filtering and Prediction with Linear Algebra<classical_filtering>` for an introduction to the classical
-tools that Muth used
+tools that Muth used.
 
 
 Rather than using those classical tools, in this lecture we apply the
-Kalman filter to express the heart of Muth’s analysis concisely
+Kalman filter to express the heart of Muth’s analysis concisely.
 
-The lecture :doc:`First Look at Kalman Filter<kalman>` describes the Kalman filter
+The lecture :doc:`First Look at Kalman Filter<kalman>` describes the Kalman filter.
 
-We'll use limiting versions of the Kalman filter corresponding to what are called **stationary values** in that lecture
+We'll use limiting versions of the Kalman filter corresponding to what are called **stationary values** in that lecture.
 
 A Process for Which Adaptive Expectations are Optimal
 ------------------------------------------------------------------------
@@ -105,17 +105,17 @@ where
 
 .. math::  \begin{bmatrix} \epsilon_{1,t+1} \cr \epsilon_{2,t} \end{bmatrix} \sim {\mathcal N} (0, I)
 
-is an IID process
+is an IID process.
 
 **Note:** A property of the state-space representation :eq:`state-space` is that in
 general neither :math:`\epsilon_{1,t}` nor :math:`\epsilon_{2,t}` is in
 the space spanned by square-summable linear combinations of
-:math:`y_t, y_{t-1}, \ldots`
+:math:`y_t, y_{t-1}, \ldots`.
 
 In general
 :math:`\begin{bmatrix} \epsilon_{1,t} \cr \epsilon_{2t} \end{bmatrix}`
 has more information about future :math:`y_{t+j}`\ ’s than is contained
-in :math:`y_t, y_{t-1}, \ldots`
+in :math:`y_t, y_{t-1}, \ldots`.
 
 We can use the asymptotic or stationary values of the Kalman gain and
 the one-step-ahead conditional state covariance matrix to compute a
@@ -128,17 +128,17 @@ time-invariant *innovations representation*
                y_t & = \hat x_t + a_t \end{aligned}
 
 where :math:`\hat x_t = E [x_t | y_{t-1}, y_{t-2}, \ldots ]` and
-:math:`a_t = y_t - E[y_t |y_{t-1}, y_{t-2}, \ldots ]`
+:math:`a_t = y_t - E[y_t |y_{t-1}, y_{t-2}, \ldots ]`.
 
 **Note:** A key property about an *innovations representation* is that
 :math:`a_t` is in the space spanned by square summable linear
-combinations of :math:`y_t, y_{t-1}, \ldots`
+combinations of :math:`y_t, y_{t-1}, \ldots`.
 
 For more ramifications of this property, see the lectures  :doc:`Shock Non-Invertibility<hs_invertibility_example>`  and
-:doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`
+:doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
 Later we’ll stack these state-space systems :eq:`state-space` and :eq:`innovations` to display some
-classic findings of Muth
+classic findings of Muth.
 
 But first, let’s create an instance of the state-space system :eq:`state-space` then
 apply the quantecon ``Kalman`` class, then uses it to construct the associated "innovations representation"
@@ -171,14 +171,14 @@ Some Useful State-Space Math
 Now we want to map the time-invariant innovations representation :eq:`innovations` and
 the original state-space system :eq:`state-space` into a convenient form for deducing
 the impulse responses from the original shocks to the :math:`x_t` and
-:math:`\hat x_t`
+:math:`\hat x_t`.
 
 Putting both of these representations into a single state-space system
 is yet another application of the insight that “finding the state is an
-art”
+art”.
 
 We’ll define a state vector and appropriate state-space matrices that
-allow us to represent both systems in one fell swoop
+allow us to represent both systems in one fell swoop.
 
 Note that
 
@@ -209,7 +209,7 @@ The stacked system
 is a state-space system that tells us how the shocks
 :math:`\begin{bmatrix} \epsilon_{1,t+1} \cr \epsilon_{2,t+1} \end{bmatrix}`
 affect states :math:`\hat x_{t+1}, x_t`, the observable :math:`y_t`, and
-the innovation :math:`a_t`
+the innovation :math:`a_t`.
 
 With this tool at our disposal, let’s form the composite system and
 simulate it
@@ -241,10 +241,10 @@ simulate it
 
 
 Now that we have simulated our joint system, we have :math:`x_t`,
-:math:`\hat{x_t}`, and :math:`y_t`
+:math:`\hat{x_t}`, and :math:`y_t`.
 
 We can now investigate how these
-variables are related by plotting some key objects
+variables are related by plotting some key objects.
 
 Estimates of Unobservables
 ---------------------------
@@ -264,15 +264,15 @@ on the history :math:`y_{t-1}, y_{t-2}, \ldots`
     plt.show()
 
 
-Note how :math:`x_t` and :math:`\hat{x_t}` differ
+Note how :math:`x_t` and :math:`\hat{x_t}` differ.
 
 For Friedman, :math:`\hat x_t` and not :math:`x_t` is the consumer’s
-idea about her/his *permanent income*
+idea about her/his *permanent income*.
 
 Relation between Unobservable and Observable
 ---------------------------------------------
 
-Now let’s plot :math:`x_t` and :math:`y_t`
+Now let’s plot :math:`x_t` and :math:`y_t`.
 
 Recall that :math:`y_t` is just :math:`x_t` plus white noise
 
@@ -287,7 +287,7 @@ Recall that :math:`y_t` is just :math:`x_t` plus white noise
     plt.show()
 
 We see above that :math:`y` seems to look like white noise around the
-values of :math:`x`
+values of :math:`x`.
 
 Innovations
 ------------
@@ -342,10 +342,10 @@ Then we’ll plot each of them
 
 The **moving average** coefficients in the top panel show tell-tale
 signs of :math:`y_t` being a process whose first difference is a first-order
-autoregression
+autoregression.
 
 The **autoregressive coefficients** decline geometrically with decay
-rate :math:`(1-K)`
+rate :math:`(1-K)`.
 
 These are exactly the target outcomes that Muth (1960) aimed to reverse
 engineer

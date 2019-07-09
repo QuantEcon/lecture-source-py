@@ -14,33 +14,33 @@ Overview
 
 
 In a :doc:`previous lecture <ols>`, we estimated the relationship between
-dependent and explanatory variables using linear regression
+dependent and explanatory variables using linear regression.
 
 But what if a linear relationship is not an appropriate assumption for our model?
 
 One widely used alternative is maximum likelihood estimation, which
-involves specifying a class of distributions, indexed by unknown parameters, and then using the data to pin down these parameter values
+involves specifying a class of distributions, indexed by unknown parameters, and then using the data to pin down these parameter values.
 
-The benefit relative to linear regression is that it allows more flexibility in the probabilistic relationships between variables
+The benefit relative to linear regression is that it allows more flexibility in the probabilistic relationships between variables.
 
 
-Here we illustrate maximum likelihood by replicating Daniel Treisman's (2016) paper, `Russia's Billionaires <http://pubs.aeaweb.org/doi/pdfplus/10.1257/aer.p20161068>`__, which connects the number of billionaires in a country to its economic characteristics
+Here we illustrate maximum likelihood by replicating Daniel Treisman's (2016) paper, `Russia's Billionaires <http://pubs.aeaweb.org/doi/pdfplus/10.1257/aer.p20161068>`__, which connects the number of billionaires in a country to its economic characteristics.
 
 The paper concludes that Russia has a higher number of billionaires than
-economic factors such as market size and tax rate predict
+economic factors such as market size and tax rate predict.
 
 
 
 Prerequisites
 -------------
 
-We assume familiarity with basic probability and multivariate calculus
+We assume familiarity with basic probability and multivariate calculus.
 
 
 Comments
 -------------
 
-This lecture is co-authored with `Natasha Watkins <https://github.com/natashawatkins>`__
+This lecture is co-authored with `Natasha Watkins <https://github.com/natashawatkins>`__.
 
 
 
@@ -48,13 +48,13 @@ Set Up and Assumptions
 ========================
 
 
-Let's consider the steps we need to go through in maximum likelihood estimation and how they pertain to this study
+Let's consider the steps we need to go through in maximum likelihood estimation and how they pertain to this study.
 
 
 Flow of Ideas
 --------------------------
 
-The first step with maximum likelihood estimation is to choose the probability distribution believed to be generating the data
+The first step with maximum likelihood estimation is to choose the probability distribution believed to be generating the data.
 
 More precisely, we need to make an assumption as to which *parametric class* of distributions is generating the data
 
@@ -66,24 +66,24 @@ Each such class is a family of distributions indexed by a finite number of param
   indexed by its mean :math:`\mu \in (-\infty, \infty)` and standard deviation :math:`\sigma \in (0, \infty)`
 
 
-We'll let the data pick out a particular element of the class by pinning down the parameters
+We'll let the data pick out a particular element of the class by pinning down the parameters.
 
-The parameter estimates so produced will be called **maximum likelihood estimates**
+The parameter estimates so produced will be called **maximum likelihood estimates**.
 
 
 Counting Billionaires
 ----------------------------------
 
 
-Treisman :cite:`Treisman2016` is interested in estimating the number of billionaires in different countries
+Treisman :cite:`Treisman2016` is interested in estimating the number of billionaires in different countries.
 
 
-The number of billionaires is integer-valued
+The number of billionaires is integer-valued.
 
-Hence we consider distributions that take values only in the nonnegative integers
+Hence we consider distributions that take values only in the nonnegative integers.
 
 (This is one reason least squares regression is not the best tool for the present problem, since the dependent variable in linear regression is not restricted
-to integer values)
+to integer values).
 
 
 One integer distribution is the `Poisson distribution <https://en.wikipedia.org/wiki/Poisson_distribution>`__, the probability mass function (pmf) of which is
@@ -130,21 +130,21 @@ We can plot the Poisson distribution over :math:`y` for different values of :mat
 
 
 
-Notice that the Poisson distribution begins to resemble a normal distribution as the mean of :math:`y` increases
+Notice that the Poisson distribution begins to resemble a normal distribution as the mean of :math:`y` increases.
 
-Let's have a look at the distribution of the data we'll be working with in this lecture
+Let's have a look at the distribution of the data we'll be working with in this lecture.
 
-Treisman's main source of data is *Forbes'* annual rankings of billionaires and their estimated net worth
+Treisman's main source of data is *Forbes'* annual rankings of billionaires and their estimated net worth.
 
 .. only:: html
 
     The dataset ``mle/fp.dta`` can be downloaded :download:`here </_static/lecture_specific/mle/fp.dta>`
-    or from its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__
+    or from its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__.
 
 .. only:: latex
 
     The dataset ``mle/fp.dta`` can be downloaded from `here <https://lectures.quantecon.org/_downloads/mle/fp.dta>`__
-    or its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__
+    or its `AER page <https://www.aeaweb.org/articles?id=10.1257/aer.p20161068>`__.
 
 .. code-block:: python3
 
@@ -175,7 +175,7 @@ dropped for plotting purposes)
     plt.show()
 
 
-From the histogram, it appears that the Poisson assumption is not unreasonable (albeit with a very low :math:`\mu` and some outliers)
+From the histogram, it appears that the Poisson assumption is not unreasonable (albeit with a very low :math:`\mu` and some outliers).
 
 
 
@@ -184,9 +184,9 @@ Conditional Distributions
 =========================
 
 
-In Treisman's paper, the dependent variable --- the number of billionaires :math:`y_i` in country :math:`i` --- is modeled as a function of GDP per capita, population size, and years membership in GATT and WTO
+In Treisman's paper, the dependent variable --- the number of billionaires :math:`y_i` in country :math:`i` --- is modeled as a function of GDP per capita, population size, and years membership in GATT and WTO.
 
-Hence, the distribution of :math:`y_i` needs to be conditioned on the vector of explanatory variables :math:`\mathbf{x}_i`
+Hence, the distribution of :math:`y_i` needs to be conditioned on the vector of explanatory variables :math:`\mathbf{x}_i`.
 
 The standard formulation --- the so-called *poisson regression* model --- is as follows:
 
@@ -203,7 +203,7 @@ The standard formulation --- the so-called *poisson regression* model --- is as 
 
 
 To illustrate the idea that the distribution of :math:`y_i` depends on
-:math:`\mathbf{x}_i` let's run a simple simulation
+:math:`\mathbf{x}_i` let's run a simple simulation.
 
 We use our ``poisson_pmf`` function from above and arbitrary values for
 :math:`\boldsymbol{\beta}` and :math:`\mathbf{x}_i`
@@ -247,13 +247,13 @@ We use our ``poisson_pmf`` function from above and arbitrary values for
 
 
 We can see that the distribution of :math:`y_i` is conditional on
-:math:`\mathbf{x}_i` (:math:`\mu_i` is no longer constant)
+:math:`\mathbf{x}_i` (:math:`\mu_i` is no longer constant).
 
 Maximum Likelihood Estimation
 =============================
 
 In our model for number of billionaires, the conditional distribution
-contains 4 (:math:`k = 4`) parameters that we need to estimate
+contains 4 (:math:`k = 4`) parameters that we need to estimate.
 
 We will label our entire parameter vector as :math:`\boldsymbol{\beta}` where
 
@@ -268,17 +268,17 @@ We will label our entire parameter vector as :math:`\boldsymbol{\beta}` where
                          \end{bmatrix}
 
 To estimate the model using MLE, we want to maximize the likelihood that
-our estimate :math:`\hat{\boldsymbol{\beta}}` is the true parameter :math:`\boldsymbol{\beta}`
+our estimate :math:`\hat{\boldsymbol{\beta}}` is the true parameter :math:`\boldsymbol{\beta}`.
 
-Intuitively, we want to find the :math:`\hat{\boldsymbol{\beta}}` that best fits our data
+Intuitively, we want to find the :math:`\hat{\boldsymbol{\beta}}` that best fits our data.
 
-First, we need to construct the likelihood function :math:`\mathcal{L}(\boldsymbol{\beta})`, which is similar to a joint probability density function
+First, we need to construct the likelihood function :math:`\mathcal{L}(\boldsymbol{\beta})`, which is similar to a joint probability density function.
 
 Assume we have some data :math:`y_i = \{y_1, y_2\}` and
-:math:`y_i \sim f(y_i)`
+:math:`y_i \sim f(y_i)`.
 
 If :math:`y_1` and :math:`y_2` are independent, the joint pmf of these
-data is :math:`f(y_1, y_2) = f(y_1) \cdot f(y_2)`
+data is :math:`f(y_1, y_2) = f(y_1) \cdot f(y_2)`.
 
 If :math:`y_i` follows a Poisson distribution with :math:`\lambda = 7`,
 we can visualize the joint pmf like so
@@ -316,7 +316,7 @@ conditional Poisson distribution) can be written as
        = \prod_{i=1}^{n} \frac{\mu_i^{y_i}}{y_i!} e^{-\mu_i}
 
 :math:`y_i` is conditional on both the values of :math:`\mathbf{x}_i` and the
-parameters :math:`\boldsymbol{\beta}`
+parameters :math:`\boldsymbol{\beta}`.
 
 The likelihood function is the same as the joint pmf, but treats the
 parameter :math:`\boldsymbol{\beta}` as a random variable and takes the observations
@@ -338,9 +338,9 @@ Now that we have our likelihood function, we want to find the :math:`\hat{\bolds
    \underset{\boldsymbol{\beta}}{\max} \mathcal{L}(\boldsymbol{\beta})
 
 In doing so it is generally easier to maximize the log-likelihood (consider
-differentiating :math:`f(x) = x \exp(x)`  vs.  :math:`f(x) = \log(x) + x`)
+differentiating :math:`f(x) = x \exp(x)`  vs.  :math:`f(x) = \log(x) + x`).
 
-Given that taking a logarithm is a monotone increasing transformation, a maximizer of the likelihood function will also be a maximizer of the log-likelihood function
+Given that taking a logarithm is a monotone increasing transformation, a maximizer of the likelihood function will also be a maximizer of the log-likelihood function.
 
 In our case the log-likelihood is
 
@@ -376,20 +376,20 @@ The MLE of the Poisson to the Poisson  for :math:`\hat{\beta}` can be obtained b
   \sum_{i=1}^{n} \log y! \Big)
 
 However, no analytical solution exists to the above problem -- to find the MLE
-we need to use numerical methods
+we need to use numerical methods.
 
 MLE with Numerical Methods
 ==================================
 
 Many distributions do not have nice, analytical solutions and therefore require
-numerical methods to solve for parameter estimates
+numerical methods to solve for parameter estimates.
 
-One such numerical method is the Newton-Raphson algorithm
+One such numerical method is the Newton-Raphson algorithm.
 
-Our goal is to find the maximum likelihood estimate :math:`\hat{\boldsymbol{\beta}}`
+Our goal is to find the maximum likelihood estimate :math:`\hat{\boldsymbol{\beta}}`.
 
 At :math:`\hat{\boldsymbol{\beta}}`, the first derivative of the log-likelihood
-function will be equal to 0
+function will be equal to 0.
 
 Let's illustrate this by supposing
 
@@ -425,16 +425,16 @@ Let's illustrate this by supposing
 
 The plot shows that the maximum likelihood value (the top plot) occurs
 when :math:`\frac{d \log \mathcal{L(\boldsymbol{\beta})}}{d \boldsymbol{\beta}} = 0` (the bottom
-plot)
+plot).
 
-Therefore, the likelihood is maximized when :math:`\beta = 10`
+Therefore, the likelihood is maximized when :math:`\beta = 10`.
 
 We can also ensure that this value is a *maximum* (as opposed to a
 minimum) by checking that the second derivative (slope of the bottom
-plot) is negative
+plot) is negative.
 
 The Newton-Raphson algorithm finds a point where the first derivative is
-0
+0.
 
 To use the algorithm, we take an initial guess at the maximum value,
 :math:`\beta_0` (the OLS parameter estimates might be a reasonable
@@ -464,12 +464,12 @@ guess), then
 
 As can be seen from the updating equation,
 :math:`\boldsymbol{\beta}_{(k+1)} = \boldsymbol{\beta}_{(k)}` only when
-:math:`G(\boldsymbol{\beta}_{(k)}) = 0` ie. where the first derivative is equal to 0
+:math:`G(\boldsymbol{\beta}_{(k)}) = 0` ie. where the first derivative is equal to 0.
 
 (In practice, we stop iterating when the difference is below a small
-tolerance threshold)
+tolerance threshold).
 
-Let's have a go at implementing the Newton-Raphson algorithm
+Let's have a go at implementing the Newton-Raphson algorithm.
 
 First, we'll create a class called ``PoissonRegression`` so we can
 easily recompute the values of the log likelihood, gradient and Hessian
@@ -504,11 +504,11 @@ for every iteration
             return -(X.T @ (μ * X))
 
 Our function ``newton_raphson`` will take a ``PoissonRegression`` object
-that has an initial guess of the parameter vector :math:`\boldsymbol{\beta}_0`
+that has an initial guess of the parameter vector :math:`\boldsymbol{\beta}_0`.
 
 The algorithm will update the parameter vector according to the updating
 rule, and recalculate the gradient and Hessian matrices at the new
-parameter estimates
+parameter estimates.
 
 Iteration will end when either:
 
@@ -577,18 +577,18 @@ variables in :math:`\mathbf{X}`
 
 
 As this was a simple model with few observations, the algorithm achieved
-convergence in only 6 iterations
+convergence in only 6 iterations.
 
-You can see that with each iteration, the log-likelihood value increased
+You can see that with each iteration, the log-likelihood value increased.
 
 Remember, our objective was to maximize the log-likelihood function,
-which the algorithm has worked to achieve
+which the algorithm has worked to achieve.
 
 Also, note that the increase in :math:`\log \mathcal{L}(\boldsymbol{\beta}_{(k)})`
-becomes smaller with each iteration
+becomes smaller with each iteration.
 
 This is because the gradient is approaching 0 as we reach the maximum,
-and therefore the numerator in our updating equation is becoming smaller
+and therefore the numerator in our updating equation is becoming smaller.
 
 The gradient vector should be close to 0 at :math:`\hat{\boldsymbol{\beta}}`
 
@@ -638,7 +638,7 @@ the maximum is found at :math:`\beta = 10`
 
 Note that our implementation of the Newton-Raphson algorithm is rather
 basic --- for more robust implementations see,
-for example, `scipy.optimize <https://docs.scipy.org/doc/scipy/reference/optimize.html>`__
+for example, `scipy.optimize <https://docs.scipy.org/doc/scipy/reference/optimize.html>`__.
 
 
 
@@ -646,13 +646,13 @@ for example, `scipy.optimize <https://docs.scipy.org/doc/scipy/reference/optimiz
 Maximum Likelihood Estimation with ``statsmodels``
 ==================================================
 
-Now that we know what's going on under the hood, we can apply MLE to an interesting application
+Now that we know what's going on under the hood, we can apply MLE to an interesting application.
 
 We'll use the Poisson regression model in ``statsmodels`` to obtain
-a richer output with standard errors, test values, and more
+a richer output with standard errors, test values, and more.
 
 ``statsmodels`` uses the same algorithm as above to find the maximum
-likelihood estimates
+likelihood estimates.
 
 Before we begin, let's re-estimate our simple model with ``statsmodels``
 to confirm we obtain the same coefficients and log-likelihood value
@@ -679,7 +679,7 @@ to confirm we obtain the same coefficients and log-likelihood value
 
 Now let's replicate results from Daniel Treisman's paper, `Russia's
 Billionaires <http://pubs.aeaweb.org/doi/pdfplus/10.1257/aer.p20161068>`__,
-mentioned earlier in the lecture
+mentioned earlier in the lecture.
 
 Treisman starts by estimating equation :eq:`poissonreg`, where:
 
@@ -688,7 +688,7 @@ Treisman starts by estimating equation :eq:`poissonreg`, where:
 * :math:`x_{i2}` is :math:`\log{population}_i`
 * :math:`x_{i3}` is :math:`{years\ in\ GATT}_i` -- years membership in GATT and WTO (to proxy access to international markets)
 
-The paper only considers the year 2008 for estimation
+The paper only considers the year 2008 for estimation.
 
 We will set up our variables for estimation like so (you should have the
 data assigned to ``df`` from earlier in the lecture)
@@ -709,7 +709,7 @@ data assigned to ``df`` from earlier in the lecture)
             'rintr', 'topint08', 'nrrents', 'roflaw']
 
 Then we can use the ``Poisson`` function from ``statsmodels`` to fit the
-model
+model.
 
 We'll use robust standard errors as in the author's paper
 
@@ -723,12 +723,12 @@ We'll use robust standard errors as in the author's paper
     print(poisson_reg.summary())
 
 
-Success! The algorithm was able to achieve convergence in 9 iterations
+Success! The algorithm was able to achieve convergence in 9 iterations.
 
 Our output indicates that GDP per capita, population, and years of
 membership in the General Agreement on Tariffs and Trade (GATT) are
 positively related to the number of billionaires a country has, as
-expected
+expected.
 
 Let's also estimate the author's more full-featured models and display
 them in a single table
@@ -770,7 +770,7 @@ them in a single table
 The output suggests that the frequency of billionaires is positively
 correlated with GDP per capita, population size, stock market
 capitalization, and negatively correlated with top marginal income tax
-rate
+rate.
 
 To analyze our results by country, we can plot the difference between
 the predicted an actual values, then sort from highest to lowest and
@@ -799,29 +799,29 @@ plot the first 15
 
 
 As we can see, Russia has by far the highest number of billionaires in
-excess of what is predicted by the model (around 50 more than expected)
+excess of what is predicted by the model (around 50 more than expected).
 
 Treisman uses this empirical result to discuss possible reasons for
 Russia's excess of billionaires, including the origination of wealth in
 Russia, the political climate, and the history of privatization in the
-years after the USSR
+years after the USSR.
 
 
 Summary
 =======
 
 In this lecture, we used Maximum Likelihood Estimation to estimate the
-parameters of a Poisson model
+parameters of a Poisson model.
 
 ``statsmodels`` contains other built-in likelihood models such as
 `Probit <http://www.statsmodels.org/dev/generated/statsmodels.discrete.discrete_model.Probit.html>`__
 and
-`Logit <http://www.statsmodels.org/dev/generated/statsmodels.discrete.discrete_model.Logit.html>`__
+`Logit <http://www.statsmodels.org/dev/generated/statsmodels.discrete.discrete_model.Logit.html>`__.
 
 For further flexibility, ``statsmodels`` provides a way to specify the
 distribution manually using the ``GenericLikelihoodModel`` class - an
 example notebook can be found
-`here <http://www.statsmodels.org/dev/examples/notebooks/generated/generic_mle.html>`__
+`here <http://www.statsmodels.org/dev/examples/notebooks/generated/generic_mle.html>`__.
 
 
 
@@ -837,7 +837,7 @@ Exercise 1
 ------------
 
 Suppose we wanted to estimate the probability of an event :math:`y_i`
-occurring, given some observations
+occurring, given some observations.
 
 We could use a probit regression model, where the pmf of :math:`y_i` is
 
@@ -850,18 +850,18 @@ We could use a probit regression model, where the pmf of :math:`y_i` is
 
 :math:`\Phi` represents the *cumulative normal distribution* and
 constrains the predicted :math:`y_i` to be between 0 and 1 (as required
-for a probability)
+for a probability).
 
-:math:`\boldsymbol{\beta}` is a vector of coefficients
+:math:`\boldsymbol{\beta}` is a vector of coefficients.
 
 Following the example in the lecture, write a class to represent the
-Probit model
+Probit model.
 
 To begin, find the log-likelihood function and derive the gradient and
-Hessian
+Hessian.
 
 The ``scipy`` module ``stats.norm`` contains the functions needed to
-compute the cmf and pmf of the normal distribution
+compute the cmf and pmf of the normal distribution.
 
 Exercise 2
 -----------
@@ -907,7 +907,7 @@ function with the following import statement
 
 Note that the simple Newton-Raphson algorithm developed in this lecture
 is very sensitive to initial values, and therefore you may fail to
-achieve convergence with different starting values
+achieve convergence with different starting values.
 
 Solutions
 =========
@@ -933,7 +933,7 @@ cumulative probability distribution is its marginal distribution
 
    \frac{ \partial} {\partial s} \Phi(s) = \phi(s)
 
-where :math:`\phi` is the marginal normal distribution
+where :math:`\phi` is the marginal normal distribution.
 
 The gradient vector of the Probit model is
 

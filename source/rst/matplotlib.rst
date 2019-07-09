@@ -14,7 +14,7 @@
 Overview
 ============
 
-We've already generated quite a few figures in these lectures using `Matplotlib <http://matplotlib.org/>`__
+We've already generated quite a few figures in these lectures using `Matplotlib <http://matplotlib.org/>`__.
 
 Matplotlib is an outstanding graphics library, designed for scientific computing, with
 
@@ -34,15 +34,15 @@ Matplotlib's Split Personality
 ---------------------------------
 
 
-Matplotlib is unusual in that it offers two different interfaces to plotting
+Matplotlib is unusual in that it offers two different interfaces to plotting.
 
-One is a simple MATLAB-style API (Application Programming Interface) that was written to help MATLAB refugees find a ready home
+One is a simple MATLAB-style API (Application Programming Interface) that was written to help MATLAB refugees find a ready home.
 
-The other is a more "Pythonic" object-oriented API
+The other is a more "Pythonic" object-oriented API.
 
-For reasons described below, we recommend that you use the second API
+For reasons described below, we recommend that you use the second API.
 
-But first, let's discuss the difference
+But first, let's discuss the difference.
 
 
 
@@ -71,13 +71,13 @@ Here's the kind of easy example you might find in introductory treatments
     plt.show()
 
 
-This is simple and convenient, but also somewhat limited and un-Pythonic
+This is simple and convenient, but also somewhat limited and un-Pythonic.
 
-For example, in the function calls, a lot of objects get created and passed around without making themselves known to the programmer
+For example, in the function calls, a lot of objects get created and passed around without making themselves known to the programmer.
 
-Python programmers tend to prefer a more explicit style of programming (run ``import this`` in a code block and look at the second line)
+Python programmers tend to prefer a more explicit style of programming (run ``import this`` in a code block and look at the second line).
 
-This leads us to the alternative, object-oriented Matplotlib API
+This leads us to the alternative, object-oriented Matplotlib API.
 
 The Object-Oriented API
 -----------------------
@@ -97,11 +97,11 @@ Here the call ``fig, ax = plt.subplots()`` returns a pair, where
 
 * ``ax`` is an ``AxesSubplot`` instance---think of a frame for plotting in
 
-The ``plot()`` function is actually a method of ``ax``
+The ``plot()`` function is actually a method of ``ax``.
 
-While there's a bit more typing, the more explicit use of objects gives us better control
+While there's a bit more typing, the more explicit use of objects gives us better control.
 
-This will become more clear as we go along
+This will become more clear as we go along.
 
 
 Tweaks
@@ -116,7 +116,7 @@ Here we've changed the line to red and added a legend
     ax.legend()
     plt.show()
 
-We've also used ``alpha`` to make the line slightly transparent---which makes it look smoother
+We've also used ``alpha`` to make the line slightly transparent---which makes it look smoother.
 
 The location of the legend can be changed by replacing ``ax.legend()`` with ``ax.legend(loc='upper center')``
 
@@ -152,9 +152,9 @@ More Features
 ====================
 
 Matplotlib has a huge array of functions and features, which you can discover
-over time as you have need for them
+over time as you have need for them.
 
-We mention just a few
+We mention just a few.
 
 
 Multiple Plots on One Axis
@@ -163,7 +163,7 @@ Multiple Plots on One Axis
 .. index::
     single: Matplotlib; Multiple Plots on One Axis
 
-It's straightforward to generate multiple plots on the same axes
+It's straightforward to generate multiple plots on the same axes.
 
 Here's an example that randomly generates three normal densities and adds a label with their mean
 
@@ -189,7 +189,7 @@ Multiple Subplots
 .. index::
     single: Matplotlib; Subplots
 
-Sometimes we want multiple subplots in one figure
+Sometimes we want multiple subplots in one figure.
 
 Here's an example that generates 6 histograms
 
@@ -246,11 +246,11 @@ Matplotlib does a nice job of 3D plots --- here is one example
 A Customizing Function
 -------------------------
 
-Perhaps you will find a set of customizations that you regularly use
+Perhaps you will find a set of customizations that you regularly use.
 
-Suppose we usually prefer our axes to go through the origin, and to have a grid
+Suppose we usually prefer our axes to go through the origin, and to have a grid.
 
-Here's a nice example from `Matthew Doty <https://github.com/xcthulhu>`_ of how the object-oriented API can be used to build a custom ``subplots`` function that implements these changes
+Here's a nice example from `Matthew Doty <https://github.com/xcthulhu>`_ of how the object-oriented API can be used to build a custom ``subplots`` function that implements these changes.
 
 Read carefully through the code and see if you can follow what's going on
 
@@ -316,9 +316,9 @@ Plot the function
 
        f(x) = \cos(\pi \theta x) \exp(-x)
 
-over the interval :math:`[0, 5]` for each :math:`\theta` in ``np.linspace(0, 2, 10)``
+over the interval :math:`[0, 5]` for each :math:`\theta` in ``np.linspace(0, 2, 10)``.
 
-Place all the curves in the same figure
+Place all the curves in the same figure.
 
 The output should look like this
 
