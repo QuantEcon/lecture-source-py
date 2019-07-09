@@ -15,7 +15,7 @@ Permanent Income Model using the DLE Class
 
 
 This lecture is part of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
 In addition to what's included in  Anaconda, this lecture uses the quantecon  library
 
@@ -30,15 +30,15 @@ linear-quadratic-Gaussian permanent income model with
 :math:`\beta R = 1`, complementing the other two solution methods described in
 :doc:`Optimal Savings I: The Permanent Income Model <perm_income>` and
 :doc:`Optimal Savings II: LQ Techniques <perm_income_cons>` and this Jupyter
-notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/permanent_income.ipynb>`__
+notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/permanent_income.ipynb>`__.
 
 
 
-The additional solution method uses the **DLE** class
+The additional solution method uses the **DLE** class.
 
 In this way, we  map the permanent
 income model into the framework of Hansen & Sargent (2013) "Recursive
-Models of Dynamic Linear Economies" :cite:`HS2013`
+Models of Dynamic Linear Economies" :cite:`HS2013`.
 
 We'll also require the following imports
 
@@ -56,7 +56,7 @@ We'll also require the following imports
 The Permanent Income Model
 ===========================
 
-The LQ permanent income model is an example of a **savings problem**
+The LQ permanent income model is an example of a **savings problem**.
 
 A consumer has preferences over consumption streams that are ordered by
 the utility functional
@@ -69,14 +69,14 @@ the utility functional
 where :math:`E_t` is the mathematical expectation conditioned on the
 consumer's time :math:`t` information, :math:`c_t` is time :math:`t`
 consumption, :math:`u(c)` is a strictly concave one-period utility
-function, and :math:`\beta \in (0,1)` is a discount factor
+function, and :math:`\beta \in (0,1)` is a discount factor.
 
 The LQ model gets its name partly from assuming that the utility
 function :math:`u` is quadratic:
 
 .. math::  u(c) = -.5(c - \gamma)^2
 
-where :math:`\gamma>0` is a bliss level of consumption
+where :math:`\gamma>0` is a bliss level of consumption.
 
 The consumer maximizes the utility functional :eq:`perm-utility` by choosing a
 consumption, borrowing plan :math:`\{c_t, b_{t+1}\}_{t=0}^\infty`
@@ -90,13 +90,13 @@ subject to the sequence of budget constraints
 where :math:`y_t` is an exogenous stationary endowment process,
 :math:`R` is a constant gross risk-free interest rate, :math:`b_t` is
 one-period risk-free debt maturing at :math:`t`, and :math:`b_0` is a
-given initial condition
+given initial condition.
 
-We shall assume that :math:`R^{-1} = \beta`
+We shall assume that :math:`R^{-1} = \beta`.
 
-Equation :eq:`max-utility` is linear
+Equation :eq:`max-utility` is linear.
 
-We use another set of linear equations to model the endowment process
+We use another set of linear equations to model the endowment process.
 
 In particular, we assume that the endowment process has the state-space
 representation
@@ -111,7 +111,7 @@ where :math:`w_{t+1}` is an IID process with mean zero and identity
 contemporaneous covariance matrix, :math:`A_{22}` is a stable matrix,
 its eigenvalues being strictly below unity in modulus, and :math:`U_y`
 is a selection vector that identifies :math:`y` with a particular linear
-combination of the :math:`z_t`
+combination of the :math:`z_t`.
 
 We impose the following condition on the consumption, borrowing plan:
 
@@ -120,10 +120,10 @@ We impose the following condition on the consumption, borrowing plan:
 
   E_0 \sum_{t=0}^\infty \beta^t b_t^2 < +\infty
 
-This condition suffices to rule out Ponzi schemes
+This condition suffices to rule out Ponzi schemes.
 
 (We impose this condition to rule out a borrow-more-and-more plan that
-would allow the household to enjoy bliss consumption forever)
+would allow the household to enjoy bliss consumption forever).
 
 The state vector confronting the household at :math:`t` is
 
@@ -131,7 +131,7 @@ The state vector confronting the household at :math:`t` is
 
 where :math:`b_t` is its one-period debt falling due at the beginning of
 period :math:`t` and :math:`z_t` contains all variables useful for
-forecasting its future endowment
+forecasting its future endowment.
 
 We assume that :math:`\{y_t\}` follows a second order univariate
 autoregressive process:
@@ -152,22 +152,22 @@ information and preference matrices as follows:
 ,
 :math:`\phi_i=  \left[ {\begin{array}{c}  -1 \\ -0.00001  \end{array} }  \right]`,
 :math:`\Gamma=  \left[ {\begin{array}{c}  -1 \\ 0  \end{array} }  \right]`,
-:math:`\Delta_k = 0`,  :math:`\Theta_k = R`
+:math:`\Delta_k = 0`,  :math:`\Theta_k = R`.
 
 **Information:**
 :math:`A_{22} = \left[ {\begin{array}{ccc}  1 & 0 & 0 \\ \alpha & \rho_1 & \rho_2 \\ 0 & 1 & 0  \end{array} }  \right]`,
 :math:`C_{2} = \left[ {\begin{array}{c}  0 \\ \sigma \\ 0  \end{array} }  \right]`,
 :math:`U_b = \left[ {\begin{array}{ccc}  \gamma & 0 & 0  \end{array} }  \right]`,
-:math:`U_d = \left[ {\begin{array}{ccc}  0 & 1 & 0 \\ 0 & 0 & 0  \end{array} }  \right]`
+:math:`U_d = \left[ {\begin{array}{ccc}  0 & 1 & 0 \\ 0 & 0 & 0  \end{array} }  \right]`.
 
 **Preferences:** :math:`\Lambda = 0`, :math:`\Pi = 1`,
-:math:`\Delta_h = 0`, :math:`\Theta_h = 0`
+:math:`\Delta_h = 0`, :math:`\Theta_h = 0`.
 
-We set parameters
+We set parameters.
 
-:math:`\alpha = 10, \beta = 0.95, \rho_1 = 0.9, \rho_2 = 0, \sigma = 1`
+:math:`\alpha = 10, \beta = 0.95, \rho_1 = 0.9, \rho_2 = 0, \sigma = 1`.
 
-(The value of :math:`\gamma` does not affect the optimal decision rule)
+(The value of :math:`\gamma` does not affect the optimal decision rule).
 
 The chosen matrices mean that the household's technology is:
 
@@ -178,10 +178,10 @@ The chosen matrices mean that the household's technology is:
 .. math::  l_t^2 = (0.00001)^2i_t
 
 Combining the first two of these gives the budget constraint of the
-permanent income model, where :math:`k_t = b_{t+1}`
+permanent income model, where :math:`k_t = b_{t+1}`.
 
 The third equation is a very small penalty on debt-accumulation to rule
-out Ponzi schemes
+out Ponzi schemes.
 
 We set up this instance of the DLE class below:
 
@@ -219,7 +219,7 @@ We set up this instance of the DLE class below:
     Econ1 = DLE(Info1, Tech1, Pref1)
 
 To check the solution of this model with that from the **LQ** problem,
-we select the :math:`S_c` matrix from the DLE class
+we select the :math:`S_c` matrix from the DLE class.
 
 The solution to the
 DLE economy has:
@@ -240,15 +240,15 @@ The state vector in the DLE class is:
       \right]
 
 where :math:`k_{t-1}` = :math:`b_{t}` is set up to be :math:`b_t` in the
-permanent income model
+permanent income model.
 
 The state vector in the LQ problem is
-:math:`\begin{bmatrix} z_t \\ b_t \end{bmatrix}`
+:math:`\begin{bmatrix} z_t \\ b_t \end{bmatrix}`.
 
 Consequently, the relevant elements of Econ1.Sc are the same as in
 :math:`-F` occur when we apply other approaches to the same model in the lecture
 :doc:`Optimal Savings II: LQ Techniques <perm_income_cons>` and this Jupyter
-notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/permanent_income.ipynb>`__
+notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/permanent_income.ipynb>`__.
 
 
 The plot below quickly replicates the first two figures of

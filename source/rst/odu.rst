@@ -10,7 +10,7 @@ Job Search III: Search with Learning
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture, we consider an extension of the :doc:`previously studied <mccall_model>` job search model of McCall :cite:`McCall1970`
+In this lecture, we consider an extension of the :doc:`previously studied <mccall_model>` job search model of McCall :cite:`McCall1970`.
 
 In the McCall model, an unemployed worker decides when to accept a permanent position at a specified wage, given
 
@@ -65,7 +65,7 @@ Model
 .. index::
     single: Models; McCall
 
-Let's first review the basic McCall model :cite:`McCall1970` and then add the variation we want to consider
+Let's first review the basic McCall model :cite:`McCall1970` and then add the variation we want to consider.
 
 
 
@@ -76,7 +76,7 @@ The Basic McCall Model
     single: McCall Model
 
 Recall that, :doc:`in the baseline model <mccall_model>`, an unemployed worker is presented in each period with a
-permanent job offer at wage :math:`W_t`
+permanent job offer at wage :math:`W_t`.
 
 At time :math:`t`, our worker either
 
@@ -84,7 +84,7 @@ At time :math:`t`, our worker either
 
 #. rejects the offer, receives unemployment compensation :math:`c` and reconsiders next period
 
-The wage sequence :math:`\{W_t\}` is IID and generated from known density :math:`q`
+The wage sequence :math:`\{W_t\}` is IID and generated from known density :math:`q`.
 
 The worker aims to maximize the expected discounted sum of earnings :math:`\mathbb{E} \sum_{t=0}^{\infty} \beta^t y_t`
 The function :math:`V` satisfies the recursion
@@ -99,13 +99,13 @@ The function :math:`V` satisfies the recursion
 
 
 The optimal policy has the form :math:`\mathbf{1}\{w \geq \bar w\}`, where
-:math:`\bar w` is a constant depending called the *reservation wage*
+:math:`\bar w` is a constant depending called the *reservation wage*.
 
 
 Offer Distribution Unknown
 ----------------------------
 
-Now let's extend the model by considering the variation presented in :cite:`Ljungqvist2012`, section 6.6
+Now let's extend the model by considering the variation presented in :cite:`Ljungqvist2012`, section 6.6.
 
 The model is as above, apart from the fact that
 
@@ -113,12 +113,12 @@ The model is as above, apart from the fact that
 
 * the worker learns about :math:`q` by starting with a prior and updating based on wage offers that he/she observes
 
-The worker knows there are two possible distributions :math:`F` and :math:`G` --- with densities :math:`f` and :math:`g`
+The worker knows there are two possible distributions :math:`F` and :math:`G` --- with densities :math:`f` and :math:`g`.
 
 At the start of time, "nature" selects :math:`q` to be either :math:`f` or
-:math:`g` --- the wage distribution from which the entire sequence :math:`\{W_t\}` will be drawn
+:math:`g` --- the wage distribution from which the entire sequence :math:`\{W_t\}` will be drawn.
 
-This choice is not observed by the worker, who puts prior probability :math:`\pi_0` on :math:`f` being chosen
+This choice is not observed by the worker, who puts prior probability :math:`\pi_0` on :math:`f` being chosen.
 
 Update rule: worker's time :math:`t` estimate of the distribution is :math:`\pi_t f + (1 - \pi_t) g`, where :math:`\pi_t` updates via
 
@@ -140,7 +140,7 @@ This last expression follows from Bayes' rule, which tells us that
     \mathbb{P}\{W = w\} = \sum_{\omega \in \{f, g\}} \mathbb{P}\{W = w \,|\, q = \omega\} \mathbb{P}\{q = \omega\}
 
 
-The fact that :eq:`odu_pi_rec` is recursive allows us to progress to a recursive solution method
+The fact that :eq:`odu_pi_rec` is recursive allows us to progress to a recursive solution method.
 
 
 Letting
@@ -166,7 +166,7 @@ follows
     \pi' = \kappa(w', \pi)
 
 
-Notice that the current guess :math:`\pi` is a state variable, since it affects the worker's perception of probabilities for future rewards
+Notice that the current guess :math:`\pi` is a state variable, since it affects the worker's perception of probabilities for future rewards.
 
 Parameterization
 ------------------
@@ -214,31 +214,31 @@ Looking Forward
 
 What kind of optimal policy might result from :eq:`odu_mvf` and the parameterization specified above?
 
-Intuitively, if we accept at :math:`w_a` and :math:`w_a \leq w_b`, then --- all other things being given --- we should also accept at :math:`w_b`
+Intuitively, if we accept at :math:`w_a` and :math:`w_a \leq w_b`, then --- all other things being given --- we should also accept at :math:`w_b`.
 
-This suggests a policy of accepting whenever :math:`w` exceeds some threshold value :math:`\bar w`
+This suggests a policy of accepting whenever :math:`w` exceeds some threshold value :math:`\bar w`.
 
 But :math:`\bar w` should depend on :math:`\pi` --- in fact, it should be decreasing in :math:`\pi` because
 
 * :math:`f` is a less attractive offer distribution than :math:`g`
 * larger :math:`\pi` means more weight on :math:`f` and less on :math:`g`
 
-Thus larger :math:`\pi` depresses the worker's assessment of her future prospects, and relatively low current offers become more attractive
+Thus larger :math:`\pi` depresses the worker's assessment of her future prospects, and relatively low current offers become more attractive.
 
 **Summary:**  We conjecture that the optimal policy is of the form
 :math:`\mathbb 1\{w \geq \bar w(\pi) \}` for some decreasing function
-:math:`\bar w`
+:math:`\bar w`.
 
 
 
 Take 1: Solution by VFI
 ==================================
 
-Let's set about solving the model and see how our results match with our intuition
+Let's set about solving the model and see how our results match with our intuition.
 
-We begin by solving via value function iteration (VFI), which is natural but ultimately turns out to be second best
+We begin by solving via value function iteration (VFI), which is natural but ultimately turns out to be second best.
 
-The class ``SearchProblem`` is used to store parameters and methods needed to compute optimal actions
+The class ``SearchProblem`` is used to store parameters and methods needed to compute optimal actions.
 
 .. _odu_vfi_code:
 
@@ -361,7 +361,7 @@ optimal policy from a guess ``v`` of the value function
         return T, get_greedy
 
 We will omit a detailed discussion of the code because there is a
-more efficient solution method that we will use later
+more efficient solution method that we will use later.
 
 To solve the model we will use the following function that iterates using
 `T` to find a fixed point
@@ -452,24 +452,24 @@ The results fit well with our intuition from section :ref:`looking forward <look
 Take 2: A More Efficient Method
 ==================================
 
-Let's consider another method to solve for the optimal policy
+Let's consider another method to solve for the optimal policy.
 
 We will use iteration with an operator that has the same contraction rate as the Bellman operator, but
 
 * one dimensional rather than two dimensional
 * no maximization step
 
-As a consequence, the algorithm is orders of magnitude faster than VFI
+As a consequence, the algorithm is orders of magnitude faster than VFI.
 
 This section illustrates the point that when it comes to programming, a bit of
-mathematical analysis goes a long way
+mathematical analysis goes a long way.
 
 
 Another Functional Equation
 -----------------------------
 
 To begin, note that when :math:`w = \bar w(\pi)`, the worker is indifferent
-between accepting and rejecting
+between accepting and rejecting.
 
 Hence the two choices on the right-hand side of :eq:`odu_mvf` have equal value:
 
@@ -524,7 +524,7 @@ Solving the RWFE
 --------------------------------
 
 To solve the RWFE, we will first show that its solution is the
-fixed point of a `contraction mapping <https://en.wikipedia.org/wiki/Contraction_mapping>`_
+fixed point of a `contraction mapping <https://en.wikipedia.org/wiki/Contraction_mapping>`_.
 
 To this end, let
 
@@ -591,7 +591,7 @@ Taking the supremum over :math:`\pi` now gives us
 
 
 In other words, :math:`Q` is a contraction of modulus :math:`\beta` on the
-complete metric space :math:`(b[0,1], \| \cdot \|)`
+complete metric space :math:`(b[0,1], \| \cdot \|)`.
 
 Hence
 
@@ -651,7 +651,7 @@ operator ``Q``
 
         return Q
 
-In the next exercise, you are asked to compute an approximation to :math:`\bar w`
+In the next exercise, you are asked to compute an approximation to :math:`\bar w`.
 
 
 Exercises
@@ -662,12 +662,12 @@ Exercises
 Exercise 1
 ------------
 
-Use the default parameters and ``Q_factory`` to compute an optimal policy
+Use the default parameters and ``Q_factory`` to compute an optimal policy.
 
-Your result should coincide closely with the figure for the optimal policy :ref:`shown above<odu_pol_vfi>`
+Your result should coincide closely with the figure for the optimal policy :ref:`shown above<odu_pol_vfi>`.
 
 Try experimenting with different parameters, and confirm that the change in
-the optimal policy coincides with your intuition
+the optimal policy coincides with your intuition.
 
 
 
@@ -680,10 +680,10 @@ Exercise 1
 ----------
 
 This code solves the "Offer Distribution Unknown" model by iterating on
-a guess of the reservation wage function
+a guess of the reservation wage function.
 
 You should find that the run time is shorter than that of the value
-function approach
+function approach.
 
 Similar to above, we set up a function to iterate with ``Q`` to find the fixed point
 
@@ -745,12 +745,12 @@ Appendix
 =========
 
 The next piece of code is just a fun simulation to see what the effect of a change in the
-underlying distribution on the unemployment rate is
+underlying distribution on the unemployment rate is.
 
-At a point in the simulation, the distribution becomes significantly worse
+At a point in the simulation, the distribution becomes significantly worse.
 
 It takes a while for agents to learn this, and in the meantime, they are too optimistic
-and turn down too many jobs
+and turn down too many jobs.
 
 As a result, the unemployment rate spikes
 

@@ -12,10 +12,10 @@ Overview
 ============
 
 
-`OOP <https://en.wikipedia.org/wiki/Object-oriented_programming>`_ is one of the major paradigms in programming
+`OOP <https://en.wikipedia.org/wiki/Object-oriented_programming>`_ is one of the major paradigms in programming.
 
 
-The traditional programming paradigm (think Fortran, C, MATLAB, etc.) is called *procedural*
+The traditional programming paradigm (think Fortran, C, MATLAB, etc.) is called *procedural*.
 
 It works as follows
 
@@ -30,7 +30,7 @@ In contrast, in the OOP paradigm
 
 * data and functions are "bundled together" into "objects"
 
-(Functions in this context are referred to as **methods**)
+(Functions in this context are referred to as **methods**).
 
 
 
@@ -41,13 +41,13 @@ In contrast, in the OOP paradigm
 Python and OOP
 ----------------
 
-Python is a pragmatic language that blends object-oriented and procedural styles, rather than taking a purist approach
+Python is a pragmatic language that blends object-oriented and procedural styles, rather than taking a purist approach.
 
-However, at a foundational level, Python *is* object-oriented
+However, at a foundational level, Python *is* object-oriented.
 
-In particular, in Python, *everything is an object*
+In particular, in Python, *everything is an object*.
 
-In this lecture, we explain what that statement means and why it matters
+In this lecture, we explain what that statement means and why it matters.
 
 
 
@@ -70,7 +70,7 @@ In Python, an *object* is a collection of data and instructions held in computer
 
 #. methods
 
-These concepts are defined and discussed sequentially below
+These concepts are defined and discussed sequentially below.
 
 
 
@@ -85,7 +85,7 @@ Type
 .. index::
     single: Python; Type
 
-Python provides for different types of objects, to accommodate different categories of data
+Python provides for different types of objects, to accommodate different categories of data.
 
 For example
 
@@ -99,7 +99,7 @@ For example
     x = 42   # Now let's create an integer
     type(x)
 
-The type of an object matters for many expressions
+The type of an object matters for many expressions.
 
 For example, the addition operator between two strings means concatenation
 
@@ -134,7 +134,7 @@ Some languages might try to guess but Python is *strongly typed*
 * Python will respond instead by raising a ``TypeError``
 
 
-To avoid the error, you need to clarify by changing the relevant type
+To avoid the error, you need to clarify by changing the relevant type.
 
 For example,
 
@@ -152,7 +152,7 @@ Identity
 .. index::
     single: Python; Identity
 
-In Python, each object has a unique identifier, which helps Python (and us) keep track of the object
+In Python, each object has a unique identifier, which helps Python (and us) keep track of the object.
 
 The identity of an object can be obtained via the ``id()`` function
 
@@ -166,9 +166,9 @@ The identity of an object can be obtained via the ``id()`` function
 
     id(z)
 
-In this example, ``y`` and ``z`` happen to have the same value (i.e., ``2.5``), but they are not the same object
+In this example, ``y`` and ``z`` happen to have the same value (i.e., ``2.5``), but they are not the same object.
 
-The identity of an object is in fact just the address of the object in memory
+The identity of an object is in fact just the address of the object in memory.
 
 
 
@@ -181,7 +181,7 @@ Object Content: Data and Attributes
     single: Python; Content
 
 If we set ``x = 42`` then we create an object of type ``int`` that contains
-the data ``42``
+the data ``42``.
 
 In fact, it contains more, as the following example shows
 
@@ -199,19 +199,19 @@ In fact, it contains more, as the following example shows
 
     x.__class__
 
-When Python creates this integer object, it stores with it various auxiliary information, such as the imaginary part, and the type
+When Python creates this integer object, it stores with it various auxiliary information, such as the imaginary part, and the type.
 
 Any name following a dot is called an *attribute* of the object to the left of the dot
 
 * e.g.,``imag`` and ``__class__`` are attributes of ``x``
 
 
-We see from this example that objects have attributes that contain auxiliary information
+We see from this example that objects have attributes that contain auxiliary information.
 
 
-They also have attributes that act like functions, called *methods*
+They also have attributes that act like functions, called *methods*.
 
-These attributes are important, so let's discuss them in-depth
+These attributes are important, so let's discuss them in-depth.
 
 
 .. _methods:
@@ -222,7 +222,7 @@ Methods
 .. index::
     single: Python; Methods
 
-Methods are *functions that are bundled with objects*
+Methods are *functions that are bundled with objects*.
 
 
 
@@ -256,7 +256,7 @@ Methods typically act on the data contained in the object they belong to, or com
 
     s.replace('This', 'That')
 
-A great deal of Python functionality is organized around method calls
+A great deal of Python functionality is organized around method calls.
 
 For example, consider the following piece of code
 
@@ -266,7 +266,7 @@ For example, consider the following piece of code
     x[0] = 'aa'  # Item assignment using square bracket notation
     x
 
-It doesn't look like there are any methods used here, but in fact the square bracket assignment notation is just a convenient interface to a method call
+It doesn't look like there are any methods used here, but in fact the square bracket assignment notation is just a convenient interface to a method call.
 
 What actually happens is that Python calls the ``__setitem__`` method, as follows
 
@@ -276,7 +276,7 @@ What actually happens is that Python calls the ``__setitem__`` method, as follow
     x.__setitem__(0, 'aa')  # Equivalent to x[0] = 'aa'
     x
 
-(If you wanted to you could modify the ``__setitem__`` method, so that square bracket assignment does something totally different)
+(If you wanted to you could modify the ``__setitem__`` method, so that square bracket assignment does something totally different).
 
 
 
@@ -284,7 +284,7 @@ What actually happens is that Python calls the ``__setitem__`` method, as follow
 Summary
 ==========
 
-In Python, *everything in memory is treated as an object*
+In Python, *everything in memory is treated as an object*.
 
 This includes not just lists, strings, etc., but also less obvious things, such as
 
@@ -296,9 +296,9 @@ This includes not just lists, strings, etc., but also less obvious things, such 
 
 * integers, etc.
 
-Consider, for example, functions
+Consider, for example, functions.
 
-When Python reads a function definition, it creates a **function object** and stores it in memory
+When Python reads a function definition, it creates a **function object** and stores it in memory.
 
 
 The following code illustrates
@@ -321,9 +321,9 @@ The following code illustrates
 
     f.__name__
 
-We can see that ``f`` has type, identity, attributes and so on---just like any other object
+We can see that ``f`` has type, identity, attributes and so on---just like any other object.
 
-It also has methods
+It also has methods.
 
 One example is the ``__call__`` method, which just evaluates the function
 
@@ -331,7 +331,7 @@ One example is the ``__call__`` method, which just evaluates the function
 
     f.__call__(3)
 
-Another is the ``__dir__`` method, which returns a list of attributes
+Another is the ``__dir__`` method, which returns a list of attributes.
 
 
 Modules loaded into memory are also treated as objects
@@ -343,4 +343,4 @@ Modules loaded into memory are also treated as objects
     id(math)
 
 
-This uniform treatment of data in Python (everything is an object) helps keep the language simple and consistent
+This uniform treatment of data in Python (everything is an object) helps keep the language simple and consistent.
