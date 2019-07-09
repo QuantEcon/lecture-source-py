@@ -9,7 +9,7 @@ Stackelberg Plans
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -22,19 +22,19 @@ Overview
 This notebook formulates and computes a plan that a **Stackelberg
 leader** uses to manipulate forward-looking decisions of a **Stackelberg
 follower** that depend on continuation sequences of decisions made once
-and for all by the Stackelberg leader at time :math:`0`
+and for all by the Stackelberg leader at time :math:`0`.
 
 To facilitate computation and interpretation, we formulate things in a
-context that allows us to apply linear optimal dynamic programming
+context that allows us to apply linear optimal dynamic programming.
 
 From the beginning, we carry along a linear-quadratic model of duopoly in
 which firms face adjustment costs that make them want to forecast
-actions of other firms that influence future prices
+actions of other firms that influence future prices.
 
 Duopoly
 =======
 
-Time is discrete and is indexed by :math:`t = 0, 1, \ldots`
+Time is discrete and is indexed by :math:`t = 0, 1, \ldots`.
 
 Two firms produce a single good whose demand is governed by the linear
 inverse demand curve
@@ -42,10 +42,10 @@ inverse demand curve
 .. math::  p_t = a_0 - a_1 (q_{1t}+ q_{2t} )
 
 where :math:`q_{it}` is output of firm :math:`i` at time :math:`t` and
-:math:`a_0` and :math:`a_1` are both positive
+:math:`a_0` and :math:`a_1` are both positive.
 
 :math:`q_{10}, q_{20}` are given numbers that serve as initial
-conditions at time :math:`0`
+conditions at time :math:`0`.
 
 By incurring a cost of change
 
@@ -64,7 +64,7 @@ Firm :math:`i` wants to maximize the present value of its profits
 
 .. math::  \sum_{t=0}^\infty \beta^t \pi_{it}
 
-where :math:`\beta \in (0,1)` is a time discount factor
+where :math:`\beta \in (0,1)` is a time discount factor.
 
 
 
@@ -73,21 +73,21 @@ Stackelberg Leader and Follower
 
 Each firm :math:`i=1,2` chooses a sequence
 :math:`\vec q_i \equiv \{q_{it+1}\}_{t=0}^\infty` once and for all at
-time :math:`0`
+time :math:`0`.
 
 We let firm 2 be a **Stackelberg leader** and firm 1 be a **Stackelberg
-follower**
+follower**.
 
 The leader firm 2 goes first and chooses
-:math:`\{q_{2t+1}\}_{t=0}^\infty` once and for all at time :math:`0`
+:math:`\{q_{2t+1}\}_{t=0}^\infty` once and for all at time :math:`0`.
 
 Knowing that firm 2 has chosen :math:`\{q_{2t+1}\}_{t=0}^\infty`, the
 follower firm 1 goes second and chooses
-:math:`\{q_{1t+1}\}_{t=0}^\infty` once and for all at time :math:`0`
+:math:`\{q_{1t+1}\}_{t=0}^\infty` once and for all at time :math:`0`.
 
 In choosing :math:`\vec q_2`, firm 2 takes into account that firm 1 will
 base its choice of :math:`\vec q_1` on firm 2's choice of
-:math:`\vec q_2`
+:math:`\vec q_2`.
 
 
 Abstract Statement of the Leader's and Follower's Problems
@@ -98,13 +98,13 @@ We can express firm 1's problem as
 .. math::  \max_{\vec q_1} \Pi_1(\vec q_1; \vec q_2)
 
 where the appearance behind the semi-colon indicates that
-:math:`\vec q_2` is given
+:math:`\vec q_2` is given.
 
 Firm 1's problem induces the best response mapping
 
 .. math::  \vec q_1 = B(\vec q_2)
 
-(Here :math:`B` maps a sequence into a sequence)
+(Here :math:`B` maps a sequence into a sequence).
 
 The Stackelberg leader's problem is
 
@@ -112,7 +112,7 @@ The Stackelberg leader's problem is
 
 whose maximizer is a sequence :math:`\vec q_2` that depends on the
 initial conditions :math:`q_{10}, q_{20}` and the parameters of the
-model :math:`a_0, a_1, \gamma`
+model :math:`a_0, a_1, \gamma`.
 
 This formulation captures key features of the model
 
@@ -128,21 +128,21 @@ This formulation captures key features of the model
 While our abstract formulation reveals the timing protocol and
 equilibrium concept well, it obscures details that must be addressed
 when we want to compute and interpret a Stackelberg plan and the
-follower's best response to it
+follower's best response to it.
 
-To gain insights about these things, we study them in more detail
+To gain insights about these things, we study them in more detail.
 
 Firms' Problems
 ----------------
 
 Firm 1 acts as if firm 2's sequence :math:`\{q_{2t+1}\}_{t=0}^\infty` is
-given and beyond its control
+given and beyond its control.
 
 Firm 2 knows that firm 1 chooses second and takes this into account in
-choosing :math:`\{q_{2t+1}\}_{t=0}^\infty`
+choosing :math:`\{q_{2t+1}\}_{t=0}^\infty`.
 
 In the spirit of *working backward*, we study firm 1's problem first,
-taking :math:`\{q_{2t+1}\}_{t=0}^\infty` as given
+taking :math:`\{q_{2t+1}\}_{t=0}^\infty` as given.
 
 We can formulate firm 1's optimum problem in terms of the Lagrangian
 
@@ -150,11 +150,11 @@ We can formulate firm 1's optimum problem in terms of the Lagrangian
 
 Firm 1 seeks a maximum with respect to
 :math:`\{q_{1t+1}, v_{1t} \}_{t=0}^\infty` and a minimum with respect to
-:math:`\{ \lambda_t\}_{t=0}^\infty`
+:math:`\{ \lambda_t\}_{t=0}^\infty`.
 
 We approach this problem using methods described in Ljungqvist and
 Sargent RMT5 chapter 2, appendix A and Macroeconomic Theory, 2nd
-edition, chapter IX
+edition, chapter IX.
 
 First-order conditions for this problem are
 
@@ -177,7 +177,7 @@ We can substitute the second equation into the first equation to obtain
 .. math::  (q_{1t+1} - q_{1t} ) = \beta (q_{1t+2} - q_{1t+1}) + c_0 - c_1 q_{1t+1} - c_2 q_{2t+1}
 
 where
-:math:`c_0 = \frac{\beta a_0}{2 \gamma}, c_1 = \frac{\beta a_1}{\gamma}, c_2 = \frac{\beta a_1}{2 \gamma}`
+:math:`c_0 = \frac{\beta a_0}{2 \gamma}, c_1 = \frac{\beta a_1}{\gamma}, c_2 = \frac{\beta a_1}{2 \gamma}`.
 
 This equation can in turn be rearranged to become the second-order
 difference equation
@@ -188,7 +188,7 @@ difference equation
     q_{1t} + (1+\beta + c_1) q_{1t+1} - \beta q_{1t+2} = c_0 - c_2 q_{2t+1}
 
 Equation :eq:`sstack1` is a second-order difference equation in the sequence
-:math:`\vec q_1` whose solution we want
+:math:`\vec q_1` whose solution we want.
 
 It satisfies **two boundary conditions:**
 
@@ -211,11 +211,11 @@ as
 
     (1 - \frac{1+\beta + c_1}{\beta} L + \beta^{-1} L^2 )  = ( 1 - \delta_1 L ) (1 - \delta_2 L)
 
-where :math:`0 < \delta_1 < 1 < \frac{1}{\sqrt{\beta}} < \delta_2`
+where :math:`0 < \delta_1 < 1 < \frac{1}{\sqrt{\beta}} < \delta_2`.
 
 Because :math:`\delta_2 > \frac{1}{\sqrt{\beta}}` the operator
 :math:`(1 - \delta_2 L)` contributes an **unstable** component if solved
-**backwards** but a **stable** component if solved **forwards**
+**backwards** but a **stable** component if solved **forwards**.
 
 Mechanically, write
 
@@ -240,7 +240,7 @@ The problem of the Stackelberg leader firm 2 is to choose the sequence
 
 .. math::  \sum_{t=0}^\infty \beta^t \{ (a_0 -  a_1 (q_{1t} + q_{2t}) ) q_{2t} - \gamma (q_{2t+1} - q_{2t})^2 \}
 
-subject to the sequence of constraints :eq:`sstack3` for :math:`t \geq 0`
+subject to the sequence of constraints :eq:`sstack3` for :math:`t \geq 0`.
 
 We can put a sequence :math:`\{\theta_t\}_{t=0}^\infty` of Lagrange
 multipliers on the sequence of equations :eq:`sstack3`
@@ -254,53 +254,53 @@ and formulate the following Lagrangian for the Stackelberg leader firm
      &  + \sum_{t=0}^\infty \beta^t \theta_t \{ \delta_1 q_{1t} -  c_0 \delta_2^{-1} \beta^{-1}  \frac{1}{1 -\delta_2^{-1}} +  c_2 \delta_2^{-1} \beta^{-1}
        \sum_{j=0}^\infty \delta_2^{-j} q_{2t+j+1} - q_{1t+1} \} \end{aligned}
 
-subject to initial conditions for :math:`q_{1t}, q_{2t}` at :math:`t=0`
+subject to initial conditions for :math:`q_{1t}, q_{2t}` at :math:`t=0`.
 
 **Comments:** We have formulated the Stackelberg problem in a space of
-sequences
+sequences.
 
 The max-min problem associated with Lagrangian
 :eq:`sstack4` is unpleasant because the time :math:`t`
 component of firm :math:`1`'s payoff function depends on the entire
-future of its choices of :math:`\{q_{1t+j}\}_{j=0}^\infty`
+future of its choices of :math:`\{q_{1t+j}\}_{j=0}^\infty`.
 
-This renders a direct attack on the problem cumbersome
+This renders a direct attack on the problem cumbersome.
 
 Therefore, below, we will formulate the Stackelberg leader's problem
-recursively
+recursively.
 
 We'll put our little duopoly model into a broader class of models with
-the same conceptual structure
+the same conceptual structure.
 
 The Stackelberg Problem
 ========================
 
 We formulate a class of linear-quadratic Stackelberg leader-follower
-problems of which our duopoly model is an instance
+problems of which our duopoly model is an instance.
 
 We use the optimal linear regulator (a.k.a. the linear-quadratic dynamic
 programming problem described in `LQ Dynamic Programming
 problems <https://lectures.quantecon.org/py/lqcontrol.html>`__) to
-represent a Stackelberg leader's problem recursively
+represent a Stackelberg leader's problem recursively.
 
 Let :math:`z_t` be an :math:`n_z \times 1` vector of **natural
-state variables**
+state variables**.
 
 Let :math:`x_t` be an :math:`n_x \times 1` vector of endogenous
-forward-looking variables that are physically free to jump at :math:`t`
+forward-looking variables that are physically free to jump at :math:`t`.
 
 In our duopoly example :math:`x_t = v_{1t}`, the time :math:`t` decision
-of the Stackelberg **follower**
+of the Stackelberg **follower**.
 
 Let :math:`u_t` be a vector of decisions chosen by the Stackelberg leader
-at :math:`t`
+at :math:`t`.
 
-The :math:`z_t` vector is inherited physically from the past
+The :math:`z_t` vector is inherited physically from the past.
 
 But :math:`x_t` is a decision made by the Stackelberg follower at time
 :math:`t` that is the follower's best response to the choice of an
 entire sequence of decisions made by the Stackelberg leader at time
-:math:`t=0`
+:math:`t=0`.
 
 Let
 
@@ -354,37 +354,37 @@ Interpretation of the Second Block of Equations
 -------------------------------------------------
 
 The Stackelberg follower's best response mapping is summarized by the
-second block of equations of :eq:`new3`
+second block of equations of :eq:`new3`.
 
 In particular, these equations are the first-order conditions of the
-Stackelberg follower's optimization problem (i.e., its Euler equations)
+Stackelberg follower's optimization problem (i.e., its Euler equations).
 
 These Euler equations summarize the forward-looking aspect of the
 follower's behavior and express how its time :math:`t` decision depends on
-the leader's actions at times :math:`s \geq t`
+the leader's actions at times :math:`s \geq t`.
 
 When combined with a stability condition to be imposed below, the Euler
 equations summarize the follower’s best response to the sequence of
-actions by the leader
+actions by the leader.
 
 The Stackelberg leader maximizes :eq:`maxeq` by
 choosing sequences :math:`\{u_t, x_t, z_{t+1}\}_{t=0}^{\infty}`
-subject to :eq:`constrainteq` and an initial condition for :math:`z_0`
+subject to :eq:`constrainteq` and an initial condition for :math:`z_0`.
 
-Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`
+Note that we have an initial condition for :math:`z_0` but not for :math:`x_0`.
 
 :math:`x_0` is among the variables to be chosen at time :math:`0` by the
-Stackelberg leader
+Stackelberg leader.
 
 The Stackelberg leader uses its understanding of the responses
 restricted by :eq:`constrainteq` to manipulate the follower's
-decisions
+decisions.
 
 More Mechanical Details
 --------------------------
 
 For any vector :math:`a_t`, define :math:`\vec a_t = [a_t,
-a_{t+1} \ldots ]`
+a_{t+1} \ldots ]`.
 
 Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
 
@@ -394,26 +394,26 @@ Define a feasible set of :math:`(\vec y_1, \vec u_0)` sequences
    \Omega(y_0) = \left\{ (\vec y_1, \vec u_0) :  y_{t+1} = A y_t + B u_t, \forall t \geq 0 \right\}
 
 Please remember that the follower's Euler equation is embedded in the
-system of dynamic equations :math:`y_{t+1} = A y_t + B u_t`
+system of dynamic equations :math:`y_{t+1} = A y_t + B u_t`.
 
 Note that in the definition of :math:`\Omega(y_0)`, :math:`y_0`
-is taken as given
+is taken as given.
 
 Although it is taken as given in :math:`\Omega(y_0)`,
 eventually, the :math:`x_0` component of :math:`y_0` will be chosen by the
-Stackelberg leader
+Stackelberg leader.
 
 Two Subproblems
 ----------------
 
-Once again we use backward induction
+Once again we use backward induction.
 
-We express the Stackelberg problem in terms of **two subproblems**
+We express the Stackelberg problem in terms of **two subproblems**.
 
 Subproblem 1 is solved by a **continuation Stackelberg leader** at each
-date :math:`t \geq 0`
+date :math:`t \geq 0`.
 
-Subproblem 2 is solved the **Stackelberg leader** at :math:`t=0`
+Subproblem 2 is solved the **Stackelberg leader** at :math:`t=0`.
 
 The two subproblems are designed
 
@@ -445,18 +445,18 @@ Subproblem 2
    w(z_0) = \max_{x_0} v(y_0)
 
 Subproblem 1 takes the vector of forward-looking variables :math:`x_0` as
-given
+given.
 
-Subproblem 2 optimizes over :math:`x_0`
+Subproblem 2 optimizes over :math:`x_0`.
 
 The value function :math:`w(z_0)` tells the value of the Stackelberg plan
 as a function of the vector of natural state variables at time :math:`0`,
-:math:`z_0`
+:math:`z_0`.
 
 Two Bellman Equations
 -----------------------
 
-We now describe Bellman equations for :math:`v(y)` and :math:`w(z_0)`
+We now describe Bellman equations for :math:`v(y)` and :math:`w(z_0)`.
 
 Subproblem 1
 ~~~~~~~~~~~~
@@ -475,7 +475,7 @@ where the maximization is subject to
 
    y^* = A y + B u
 
-and :math:`y^*` denotes next period’s value
+and :math:`y^*` denotes next period’s value.
 
 Substituting :math:`v(y) = - y'P y` into Bellman equation :eq:`bellman-stack` gives
 
@@ -536,20 +536,20 @@ We will formulate a state space system
 .. math::  y_t = \begin{bmatrix} z_t \cr x_t \end{bmatrix}
 
 where in this instance :math:`x_t = v_{1t}`, the time :math:`t` decision
-of the follower firm 1
+of the follower firm 1.
 
 Calculations to Prepare Duopoly Model
 ----------------------------------------
 
 Now we'll proceed to cast our duopoly model within the framework of the
-more general linear-quadratic structure described above
+more general linear-quadratic structure described above.
 
 That will allow us to compute a Stackelberg plan simply by enlisting a
-Riccati equation to solve a linear-quadratic dynamic program
+Riccati equation to solve a linear-quadratic dynamic program.
 
 As emphasized above, firm 1 acts as if firm 2's decisions
 :math:`\{q_{2t+1}, v_{2t}\}_{t=0}^\infty` are given and beyond its
-control
+control.
 
 Firm 1's Problem
 -------------------
@@ -560,7 +560,7 @@ We again formulate firm 1's optimum problem in terms of the Lagrangian
 
 Firm 1 seeks a maximum with respect to
 :math:`\{q_{1t+1}, v_{1t} \}_{t=0}^\infty` and a minimum with respect to
-:math:`\{ \lambda_t\}_{t=0}^\infty`
+:math:`\{ \lambda_t\}_{t=0}^\infty`.
 
 First-order conditions for this problem are
 
@@ -624,10 +624,10 @@ with :math:`x_t = v_{1t}` and
     R =
     \begin{bmatrix} R_1 & 0 \cr 0 & 0 \end{bmatrix}
 
-We'll report results of implementing this code soon
+We'll report results of implementing this code soon.
 
 But first, we want to represent the Stackelberg leader's optimal choices
-recursively
+recursively.
 
 It is important to do this for several reasons:
 
@@ -637,7 +637,7 @@ It is important to do this for several reasons:
 -  to formulate a recursive version of the follower's choice problem
 
 First, let's get a recursive representation of the Stackelberg leader's
-choice of :math:`\vec q_2` for our duopoly model
+choice of :math:`\vec q_2` for our duopoly model.
 
 
 
@@ -650,20 +650,20 @@ leader's history-dependent plan, we will employ what amounts to a
 version of the **Big K, little k** device often used in
 macroeconomics by distinguishing :math:`z_t`, which depends partly on
 decisions :math:`x_t` of the followers, from another vector
-:math:`\check z_t`, which does not
+:math:`\check z_t`, which does not.
 
 We will use :math:`\check z_t` and its history :math:`\check z^t
 = [\check z_t, \check z_{t-1}, \ldots, \check z_0]` to describe the
 sequence of the Stackelberg leader's decisions that the Stackelberg
-follower takes as given
+follower takes as given.
 
 Thus, we let
 :math:`\check y_t' = \begin{bmatrix}\check z_t' & \check x_t'\end{bmatrix}`
-with initial condition :math:`\check z_0 = z_0` given
+with initial condition :math:`\check z_0 = z_0` given.
 
 That we distinguish :math:`\check z_t` from :math:`z_t` is part and
 parcel of the **Big K, little k** device in this
-instance
+instance.
 
 We have demonstrated that a Stackelberg plan for
 :math:`\{u_t\}_{t=0}^\infty` has a recursive representation
@@ -676,7 +676,7 @@ We have demonstrated that a Stackelberg plan for
 
 From this representation, we can deduce the sequence of functions
 :math:`\sigma = \{\sigma_t(\check z^t)\}_{t=0}^\infty` that comprise a
-Stackelberg plan
+Stackelberg plan.
 
 For convenience, let :math:`\check A \equiv A - BF` and partition
 :math:`\check A` conformably to the partition
@@ -687,7 +687,7 @@ For convenience, let :math:`\check A \equiv A - BF` and partition
    \begin{bmatrix}\check A_{11} & \check A_{12} \cr \check A_{21} & \check A_{22} \end{bmatrix}
 
 Let :math:`H^0_0 \equiv - P_{22}^{-1} P_{21}` so that
-:math:`\check x_0 = H^0_0 \check z_0`
+:math:`\check x_0 = H^0_0 \check z_0`.
 
 Then iterations on :math:`\check y_{t+1} = \check A \check y_t` starting from initial
 condition :math:`\check y_0 = \begin{bmatrix}\check z_0 \cr H^0_0 \check z_0\end{bmatrix}`
@@ -725,7 +725,7 @@ Representation :eq:`finalrule` confirms that whenever
 :math:`F_x \neq 0`, the typical situation, the time :math:`t` component
 :math:`\sigma_t` of a Stackelberg plan is **history-dependent**, meaning
 that the Stackelberg leader's choice :math:`u_t` depends not just on
-:math:`\check z_t` but on components of :math:`\check z^{t-1}`
+:math:`\check z_t` but on components of :math:`\check z^{t-1}`.
 
 
 
@@ -734,7 +734,7 @@ Comments and Interpretations
 
 After all, at the end of the day, it will turn out that because we set
 :math:`\check z_0 = z_0`, it will be true that :math:`z_t = \check z_t`
-for all :math:`t \geq 0`
+for all :math:`t \geq 0`.
 
 Then why did we distinguish :math:`\check z_t` from :math:`z_t`?
 
@@ -743,7 +743,7 @@ a history-dependent representation of the Stackelberg **leader's**
 sequence :math:`\vec q_2`, we must use representation
 :eq:`finalrule` cast in terms of the history
 :math:`\check z^t` and **not** a corresponding representation cast in
-terms of :math:`z^t`
+terms of :math:`z^t`.
 
 
 
@@ -753,13 +753,13 @@ Dynamic Programming and Time Consistency of **follower's** Problem
 Given the sequence :math:`\vec q_2` chosen by the Stackelberg leader in
 our duopoly model, it turns out that the Stackelberg **follower's**
 problem is recursive in the *natural* state variables that confront a
-follower at any time :math:`t \geq 0`
+follower at any time :math:`t \geq 0`.
 
-This means that the follower's plan is time consistent
+This means that the follower's plan is time consistent.
 
 To verify these claims, we'll formulate a recursive version of a
 follower's problem that builds on our recursive representation of the
-Stackelberg leader's plan and our use of the **Big K, little k** idea
+Stackelberg leader's plan and our use of the **Big K, little k** idea.
 
 Recursive Formulation of a Follower’s Problem
 ----------------------------------------------
@@ -767,7 +767,7 @@ Recursive Formulation of a Follower’s Problem
 We now use what amounts to another “Big :math:`K`, little :math:`k`” trick (see
 `rational expectations equilibrium <https://lectures.quantecon.org/py/rational_expectations.html>`__)
 to formulate a recursive version of a follower’s problem cast in terms
-of an ordinary Bellman equation
+of an ordinary Bellman equation.
 
 Firm 1, the follower, faces :math:`\{q_{2t}\}_{t=0}^\infty` as
 a given quantity sequence chosen by the leader and believes that its
@@ -778,7 +778,7 @@ output price at :math:`t` satisfies
     p_t  = a_0 - a_1 ( q_{1t} + q_{2t})  , \quad t \geq 0
 
 Our challenge is to represent :math:`\{q_{2t}\}_{t=0}^\infty` as
-a given sequence
+a given sequence.
 
 To do so, recall that under the Stackelberg plan, firm 2 sets output
 according to the :math:`q_{2t}` component of
@@ -800,7 +800,7 @@ that evolves according to
 
 subject to the initial condition :math:`\tilde q_{10} = q_{10}` and
 :math:`\tilde x_0 = x_0` where :math:`x_0 = - P_{22}^{-1} P_{21}` as
-stated above
+stated above.
 
 Firm 1's state vector is
 
@@ -817,7 +817,7 @@ It follows that the follower firm 1 faces law of motion
     q_{1t} \end{bmatrix} + \begin{bmatrix} 0 \cr 1 \end{bmatrix} x_t
 
 This specification assures that from the point of the view of a firm 1,
-:math:`q_{2t}` is an exogenous process
+:math:`q_{2t}` is an exogenous process.
 
 Here
 
@@ -845,7 +845,7 @@ and it's state evolves according to
 
 .. math::  \tilde X_{t+1} = (\tilde A - \tilde B \tilde F) X_t
 
-under its optimal decision rule
+under its optimal decision rule.
 
 Later we shall compute :math:`\tilde F` and verify that when we set
 
@@ -857,7 +857,7 @@ we recover
 
 which will verify that we have properly set up a recursive
 representation of the follower's problem facing the Stackelberg leader's
-:math:`\vec q_2`
+:math:`\vec q_2`.
 
 Time Consistency of Follower's Plan
 -------------------------------------
@@ -870,7 +870,7 @@ namely
 
    \begin{bmatrix} 1 \cr q_{2t} \cr \tilde q_{10} \cr \tilde x_0   \end{bmatrix}
 
-It follows that the follower's plan is time consistent
+It follows that the follower's plan is time consistent.
 
 
 
@@ -984,7 +984,7 @@ The following code plots the price and quantities
 Value of Stackelberg Leader
 ----------------------------
 
-We'll compute the present value earned by the Stackelberg leader
+We'll compute the present value earned by the Stackelberg leader.
 
 We'll compute it two ways (they give identical answers -- just a check
 on coding and thinking)
@@ -1067,7 +1067,7 @@ Recursive Formulation of the Follower's Problem
 ================================================
 
 We now formulate and compute the recursive version of the follower's
-problem
+problem.
 
 We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation of the follower's problem produces the same output path
 :math:`\vec q_1` that we computed when we solved the Stackelberg problem
@@ -1126,7 +1126,7 @@ Explanation of Alignment
 If we inspect the coefficients in the decision rule :math:`- \tilde F`,
 we can spot the reason that the follower chooses to set :math:`x_t =
 \tilde x_t` when it sets :math:`x_t = - \tilde F X_t` in
-the recursive formulation of the follower problem
+the recursive formulation of the follower problem.
 
 Can you spot what features of :math:`\tilde F` imply this?
 
