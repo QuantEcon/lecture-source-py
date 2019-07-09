@@ -19,7 +19,7 @@ Overview
 ========
 
 
-The lecture describes important ideas in economics that use the mathematics of geometric series
+The lecture describes important ideas in economics that use the mathematics of geometric series.
 
 Among these are
 
@@ -30,7 +30,7 @@ Among these are
 
 -  interest rates and present values of streams of payouts from assets
 
-(As we shall see below, the term **multiplier** comes down to meaning **sum of a convergent geometric series**)
+(As we shall see below, the term **multiplier** comes down to meaning **sum of a convergent geometric series**).
 
 
 
@@ -63,7 +63,7 @@ To start, let :math:`c` be a real number that lies strictly between
 
 -  The symbol :math:`\in` means *in* or *belongs to the set after the symbol*
 
-We want to evaluate geometric series of two types -- infinite and finite
+We want to evaluate geometric series of two types -- infinite and finite.
 
 Infinite Geometric Series
 -------------------------
@@ -72,7 +72,7 @@ The first type of geometric that interests us is the infinite series
 
 .. math:: 1 + c + c^2 + c^3 + \cdots
 
-Where :math:`\cdots` means that the series continues without limit
+Where :math:`\cdots` means that the series continues without limit.
 
 The key formula is
 
@@ -83,7 +83,7 @@ The key formula is
 
 To prove key formula :eq:`infinite`, multiply both sides  by :math:`(1-c)` and verify
 that if :math:`c \in (-1,1)`, then the outcome is the
-equation :math:`1 = 1`
+equation :math:`1 = 1`.
 
 Finite Geometric Series
 -----------------------
@@ -92,7 +92,7 @@ The second series that interests us is the finite geomtric series
 
 .. math:: 1 + c + c^2 + c^3 + \cdots + c^T
 
-where :math:`T` is a positive integer
+where :math:`T` is a positive integer.
 
 The key formula here is
 
@@ -100,13 +100,13 @@ The key formula here is
 
 **Remark:** The above formula works for any value of the scalar
 :math:`c`. We don't have to restrict :math:`c` to be in the
-set :math:`(-1,1)`
+set :math:`(-1,1)`.
 
 
 
 
 We now move on to describe some famuous economic applications of
-geometric series
+geometric series.
 
 
 
@@ -135,23 +135,23 @@ issue
       checking or savings account balance)
 
 Economists and financiers often define the **supply of money** as an
-economy-wide sum of **cash** plus **deposits**
+economy-wide sum of **cash** plus **deposits**.
 
 In a **fractional reserve banking system** (one in which the reserve
-ratio :math:`r` satisfying :math:`0 < r < 1`), **banks create money** by issuing deposits *backed* by fractional reserves plus loans that they make to their customers
+ratio :math:`r` satisfying :math:`0 < r < 1`), **banks create money** by issuing deposits *backed* by fractional reserves plus loans that they make to their customers.
 
 A geometric series is a key tool for understanding how banks create
-money (i.e., deposits) in a fractional reserve system
+money (i.e., deposits) in a fractional reserve system.
 
 The geometric series formula :eq:`infinite` is at the heart of the classic model of the money creation process -- one that leads us to the celebrated
-**money multiplier**
+**money multiplier**.
 
 
 
 A Simple Model
 --------------
 
-There is a set of banks named :math:`i = 0, 1, 2, \ldots`
+There is a set of banks named :math:`i = 0, 1, 2, \ldots`.
 
 Bank :math:`i`'s loans :math:`L_i`, deposits :math:`D_i`, and
 reserves :math:`R_i` must satisfy the balance sheet equation (because
@@ -161,7 +161,7 @@ reserves :math:`R_i` must satisfy the balance sheet equation (because
 
 The left side of the above equation is the sum of the bank's **assets**,
 namely, the loans :math:`L_i` it has outstanding plus its reserves of
-cash :math:`R_i`
+cash :math:`R_i`.
 
 The right side records bank :math:`i`'s liabilities,
 namely, the deposits :math:`D_i` held by its depositors; these are
@@ -206,9 +206,9 @@ Finally, we add an *initial condition* about an exogenous level of bank
 .. math:: D_0 \ \text{ is given exogenously}
 
 We can think of :math:`D_0` as being the amount of cash that a first
-depositor put into the first bank in the system, bank number :math:`i=0`
+depositor put into the first bank in the system, bank number :math:`i=0`.
 
-Now we do a little algebra
+Now we do a little algebra.
 
 Combining equations :eq:`reserves` and :eq:`deposits` tells us that
 
@@ -218,7 +218,7 @@ Combining equations :eq:`reserves` and :eq:`deposits` tells us that
   L_i = (1-r) D_i
 
 This states that bank :math:`i` loans a fraction :math:`(1-r)` of its
-deposits and keeps a fraction :math:`r` as cash reserves
+deposits and keeps a fraction :math:`r` as cash reserves.
 
 Combining equation :eq:`fraction` with equation :eq:`deposits` tells us that
 
@@ -250,7 +250,7 @@ Money Multiplier
 
 The **money multiplier** is a number that tells the multiplicative
 factor by which an exogenous injection of cash into bank :math:`0` leads
-to an increase in the total deposits in the banking system
+to an increase in the total deposits in the banking system.
 
 Equation :eq:`sumdeposits` asserts that the **money multiplier** is
 :math:`\frac{1}{r}`
@@ -288,7 +288,7 @@ Static Version
 
 An elementary Keynesian model of national income determination consists
 of three equations that describe aggegate demand for :math:`y` and its
-components
+components.
 
 The first equation is a national income identity asserting that
 consumption :math:`c` plus investment :math:`i` equals national income
@@ -302,31 +302,31 @@ people consume a fraction :math:`b \in (0,1)` of their income:
 .. math:: c = b y
 
 The fraction :math:`b \in (0,1)` is called the **marginal propensity to
-consume**
+consume**.
 
 The fraction :math:`1-b \in (0,1)` is called the **marginal propensity
-to save**
+to save**.
 
 The third equation simply states that investment is exogenous at level
 :math:`i`
 
 - *exogenous* means *determined outside this model*
 
-Substituting the second equation into the first gives :math:`(1-b) y = i`
+Substituting the second equation into the first gives :math:`(1-b) y = i`.
 
 Solving this equation for :math:`y` gives
 
 .. math:: y = \frac{1}{1-b} i
 
 The quantity :math:`\frac{1}{1-b}` is called the **investment
-multiplier** or simply the **multiplier**
+multiplier** or simply the **multiplier**.
 
 Applying the formula for the sum of an infinite geometric series, we can
 write the above equation as
 
 .. math:: y = i \sum_{t=0}^\infty b^t
 
-where :math:`t` is a nonnegative integer
+where :math:`t` is a nonnegative integer.
 
 So we arrive at the following equivalent expressions for the multiplier:
 
@@ -334,7 +334,7 @@ So we arrive at the following equivalent expressions for the multiplier:
 
 The expression :math:`\sum_{t=0}^\infty b^t` motivates an interpretation
 of the multiplier as the outcome of a dynamic process that we describe
-next
+next.
 
 Dynamic Version
 ---------------
@@ -346,14 +346,14 @@ consumption function to take time into account
 -  we add a one-period lag in how income affects consumption
 
 We let :math:`c_t` be consumption at time :math:`t` and :math:`i_t` be
-investment at time :math:`t`
+investment at time :math:`t`.
 
 We modify our consumption function to assume the form
 
 .. math:: c_t = b y_{t-1}
 
 so that :math:`b` is the marginal propensity to consume (now) out of
-last period's income
+last period's income.
 
 We begin wtih an initial condition stating that
 
@@ -363,7 +363,7 @@ We also assume that
 
 .. math:: i_t = i \ \ \textrm {for all }  t \geq 0
 
-so that investment is constant over time
+so that investment is constant over time.
 
 It follows that
 
@@ -395,10 +395,10 @@ ignites a dynamic process of increases in national income by amounts
 
 .. math:: \Delta i, (1 + b )\Delta i, (1+b + b^2) \Delta i , \cdots
 
-at times :math:`0, 1, 2, \ldots`
+at times :math:`0, 1, 2, \ldots`.
 
 **Remark 2** Let :math:`g_t` be an exogenous sequence of government
-expenditures
+expenditures.
 
 If we generalize the model so that the national income identity
 becomes
@@ -419,10 +419,10 @@ Example: Interest Rates and Present Values
 ==========================================
 
 We can apply our formula for geometric series to study how interest
-rates affect values of streams of dollar payments that extend over time
+rates affect values of streams of dollar payments that extend over time.
 
 We work in discrete time and assume that :math:`t = 0, 1, 2, \ldots`
-indexes time
+indexes time.
 
 We let :math:`r \in (0,1)` be a one-period **net nominal interest rate**
 
@@ -438,10 +438,10 @@ A one-period **gross nominal interest rate** :math:`R` is defined as
 **Remark:** The gross nominal interest rate :math:`R` is an **exchange
 rate** or **relative price** of dollars at between times :math:`t` and
 :math:`t+1`. The units of :math:`R` are dollars at time :math:`t+1` per
-dollar at time :math:`t`
+dollar at time :math:`t`.
 
 When people borrow and lend, they trade dollars now for dollars later or
-dollars later for dollars now
+dollars later for dollars now.
 
 The price at which these exchanges occur is the gross nominal interest
 rate
@@ -454,7 +454,7 @@ rate
 
 We assume that the net nominal interest rate :math:`r` is fixed over
 time, so that :math:`R` is the gross nominal interest rate at times
-:math:`t=0, 1, 2, \ldots`
+:math:`t=0, 1, 2, \ldots`.
 
 Two important geometric sequences are
 
@@ -471,10 +471,10 @@ and
   1, R^{-1}, R^{-2}, \cdots
 
 Sequence :eq:`geom1` tells us how dollar values of an investment **accumulate**
-through time
+through time.
 
 Sequence :eq:`geom2` tells us how to **discount** future dollars to get their
-values in terms of today's dollars
+values in terms of today's dollars.
 
 Accumulation
 ------------
@@ -501,15 +501,15 @@ reinvest the proceeds, then the sequence
 
 .. math:: x , xR , x R^2, \cdots
 
-tells how our account accumulates at dates :math:`t=0, 1, 2, \ldots`
+tells how our account accumulates at dates :math:`t=0, 1, 2, \ldots`.
 
 Discounting
 -----------
 
-Geometric sequence :eq:`geom2` tells us how much future dollars are worth in terms of today's dollars
+Geometric sequence :eq:`geom2` tells us how much future dollars are worth in terms of today's dollars.
 
 Remember that the units of :math:`R` are dollars at :math:`t+1` per
-dollar at :math:`t`
+dollar at :math:`t`.
 
 It follows that
 
@@ -521,7 +521,7 @@ It follows that
    dollar at :math:`t+j`
 
 So if someone has a claim on :math:`x` dollars at time :math:`t+j`, it
-is worth :math:`x R^{-j}` dollars at time :math:`t` (e.g., today)
+is worth :math:`x R^{-j}` dollars at time :math:`t` (e.g., today).
 
 
 
@@ -533,11 +533,11 @@ times :math:`t = 0, 1, 2, \ldots` where
 
 .. math::  x_t = G^t x_0
 
-where :math:`G = (1+g)` and :math:`g \in (0,1)`
+where :math:`G = (1+g)` and :math:`g \in (0,1)`.
 
-Thus, lease payments increase at :math:`g` percent per period
+Thus, lease payments increase at :math:`g` percent per period.
 
-For a reason soon to be revealed, we assume that :math:`G < R`
+For a reason soon to be revealed, we assume that :math:`G < R`.
 
 The **present value** of the lease is
 
@@ -547,11 +547,11 @@ The **present value** of the lease is
                      & = x_0 (1 + G R^{-1} + G^2 R^{-2} + \cdots ) \\
                      & = x_0 \frac{1}{1 - G R^{-1}} \end{aligned}
 
-where the last line uses the formula for an infinite geometric series
+where the last line uses the formula for an infinite geometric series.
 
 Recall that :math:`R = 1+r` and :math:`G = 1+g` and that :math:`R > G`
 and :math:`r > g` and that :math:`r` and\ :math:`g` are typically small
-numbers, e.g., .05 or .03
+numbers, e.g., .05 or .03.
 
 Use the Taylor series of :math:`\frac{1}{1+r}` about :math:`r=0`,
 namely,
@@ -559,7 +559,7 @@ namely,
 .. math:: \frac{1}{1+r} = 1 - r + r^2 - r^3 + \cdots
 
 and the fact that :math:`r` is small to aproximate
-:math:`\frac{1}{1+r} \approx 1 - r`
+:math:`\frac{1}{1+r} \approx 1 - r`.
 
 Use this approximation to write :math:`p_0` as
 
@@ -572,7 +572,7 @@ Use this approximation to write :math:`p_0` as
     & \approx x_0 \frac{1}{r -g }
    \end{aligned}
 
-where the last step uses the approximation :math:`r g \approx 0`
+where the last step uses the approximation :math:`r g \approx 0`.
 
 The approximation
 
@@ -580,10 +580,10 @@ The approximation
 
 is known as the **Gordon formula** for the present value or current
 price of an infinite payment stream :math:`x_0 G^t` when the nominal
-one-period interest rate is :math:`r` and when :math:`r > g`
+one-period interest rate is :math:`r` and when :math:`r > g`.
 
 
-We can also extend the asset pricing formula so that it applies to finite leases
+We can also extend the asset pricing formula so that it applies to finite leases.
 
 Let the payment stream on the lease now be :math:`x_t` for :math:`t= 1,2, \dots,T`, where again
 
@@ -612,10 +612,10 @@ Expanding:
 We could have also approximated by removing the second term
 :math:`rgx_0(T+1)` when :math:`T` is relatively small compared to
 :math:`1/(rg)` to get :math:`x_0(T+1)` as in the finite stream
-approximation
+approximation.
 
 We will plot the true finite stream present-value and the two
-approximations, under different values of :math:`T`, and :math:`g` and :math:`r` in python
+approximations, under different values of :math:`T`, and :math:`g` and :math:`r` in python.
 
 First we plot the true finite stream present-value after computing it
 below
@@ -644,7 +644,7 @@ below
         return x_0 / (1 - G * R**(-1))
 
 
-Now that we have test run our functions, we can plot some outcomes
+Now that we have test run our functions, we can plot some outcomes.
 
 First we study the quality of our approximations
 
@@ -668,9 +668,9 @@ First we study the quality of our approximations
     ax.set_ylabel('Present Value, $p_0$')
     plt.show()
 
-Evidently our approximations perform well for small values of :math:`T`
+Evidently our approximations perform well for small values of :math:`T`.
 
-However, holding :math:`g` and r fixed, our approximations deteriorate as :math:`T` increases
+However, holding :math:`g` and r fixed, our approximations deteriorate as :math:`T` increases.
 
 Next we compare the infinite and finite duration lease present values
 over different lease lengths :math:`T`
@@ -693,7 +693,7 @@ over different lease lengths :math:`T`
 
 The above graphs shows how as duration :math:`T \rightarrow +\infty`,
 the value of a lease of duration :math:`T` approaches the value of a
-perpetural lease
+perpetural lease.
 
 Now we consider two different views of what happens as :math:`r` and
 :math:`g` covary
@@ -732,10 +732,10 @@ Now we consider two different views of what happens as :math:`r` and
 
 The above graphs gives a big hint for why the condition :math:`r > g` is
 necessary if a lease of length :math:`T = +\infty` is to have finite
-value
+value.
 
 For fans of 3-d graphs the same point comes through in the following
-graph
+graph.
 
 If you aren't enamored of 3-d graphs, feel free to skip the next
 visualization!
@@ -768,15 +768,15 @@ visualization!
 
 
 We can use a little calculus to study how the present value :math:`p_0`
-of a lease varies with :math:`r` and :math:`g`
+of a lease varies with :math:`r` and :math:`g`.
 
-We will use a library called `SymPy <https://www.sympy.org/>`__
+We will use a library called `SymPy <https://www.sympy.org/>`__.
 
 SymPy enables us to do symbolic math calculations including
 computing derivatives of algebraic equations.
 
 We will illustrate how it works by creating a symbolic expression that
-represents our present value formula for an infinite lease
+represents our present value formula for an infinite lease.
 
 After that, we'll use SymPy to compute derivatives
 
@@ -808,10 +808,10 @@ After that, we'll use SymPy to compute derivatives
 
 We can see that for :math:`\frac{\partial p_0}{\partial r}<0` as long as
 :math:`r>g`, :math:`r>0` and :math:`g>0` and :math:`x_0` is positive,
-this equation will always be negative
+this equation will always be negative.
 
 Similarly, :math:`\frac{\partial p_0}{\partial g}>0` as long as :math:`r>g`, :math:`r>0` and :math:`g>0` and :math:`x_0` is positive, this equation
-will always be postive
+will always be postive.
 
 
 
@@ -850,7 +850,7 @@ of national income, and investment is fixed
     plt.show()
 
 In this model, income grows over time, until it gradually converges to
-the infinite geometric series sum of income
+the infinite geometric series sum of income.
 
 We now examine what will
 happen if we vary the so-called **marginal propensity to consume**,
@@ -908,4 +908,4 @@ path of output over time
 
 Notice here, whether government spending increases from 0.3 to 0.4 or
 investment increases from 0.3 to 0.4, the shifts in the graphs are
-identical
+identical.

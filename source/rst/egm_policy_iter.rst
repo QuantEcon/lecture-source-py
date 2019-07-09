@@ -10,7 +10,7 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -26,17 +26,17 @@ We solved the stochastic optimal growth model using
 #. :doc:`value function iteration <optgrowth>`
 #. :doc:`Euler equation based time iteration <coleman_policy_iter>`
 
-We found time iteration to be significantly more accurate at each step
+We found time iteration to be significantly more accurate at each step.
 
-In this lecture, we'll look at an ingenious twist on the time iteration technique called the **endogenous grid method** (EGM)
+In this lecture, we'll look at an ingenious twist on the time iteration technique called the **endogenous grid method** (EGM).
 
-EGM is a numerical method for implementing policy iteration invented by `Chris Carroll <http://www.econ2.jhu.edu/people/ccarroll/>`__
+EGM is a numerical method for implementing policy iteration invented by `Chris Carroll <http://www.econ2.jhu.edu/people/ccarroll/>`__.
 
-It is a good example of how a clever algorithm can save a massive amount of computer time
+It is a good example of how a clever algorithm can save a massive amount of computer time.
 
-(Massive when we multiply saved CPU cycles on each implementation times the number of implementations worldwide)
+(Massive when we multiply saved CPU cycles on each implementation times the number of implementations worldwide).
 
-The original reference is :cite:`Carroll2006`
+The original reference is :cite:`Carroll2006`.
 
 Let's start with some imports
 
@@ -54,14 +54,14 @@ Let's start with some imports
 Key Idea
 ==========================
 
-Let's start by reminding ourselves of the theory and then see how the numerics fit in
+Let's start by reminding ourselves of the theory and then see how the numerics fit in.
 
 
 
 Theory
 ------
 
-Take the model set out in :doc:`the time iteration lecture <coleman_policy_iter>`, following the same terminology and notation
+Take the model set out in :doc:`the time iteration lecture <coleman_policy_iter>`, following the same terminology and notation.
 
 The Euler equation is
 
@@ -72,9 +72,9 @@ The Euler equation is
     = \beta \int (u'\circ \sigma^*)(f(y - \sigma^*(y)) z) f'(y - \sigma^*(y)) z \phi(dz)
 
 
-As we saw, the Coleman-Reffett operator is a nonlinear operator :math:`K` engineered so that :math:`\sigma^*` is a fixed point of :math:`K`
+As we saw, the Coleman-Reffett operator is a nonlinear operator :math:`K` engineered so that :math:`\sigma^*` is a fixed point of :math:`K`.
 
-It takes as its argument a continuous strictly increasing consumption policy :math:`\sigma \in \Sigma`
+It takes as its argument a continuous strictly increasing consumption policy :math:`\sigma \in \Sigma`.
 
 It returns a new function :math:`K \sigma`,  where :math:`(K \sigma)(y)` is the :math:`c \in (0, \infty)` that solves
 
@@ -90,11 +90,11 @@ It returns a new function :math:`K \sigma`,  where :math:`(K \sigma)(y)` is the 
 Exogenous Grid
 -------------------
 
-As discussed in :doc:`the lecture on time iteration <coleman_policy_iter>`, to implement the method on a computer we need a numerical approximation
+As discussed in :doc:`the lecture on time iteration <coleman_policy_iter>`, to implement the method on a computer we need a numerical approximation.
 
-In particular, we represent a policy function by a set of values on a finite grid
+In particular, we represent a policy function by a set of values on a finite grid.
 
-The function itself is reconstructed from this representation when necessary, using interpolation or some other method
+The function itself is reconstructed from this representation when necessary, using interpolation or some other method.
 
 :doc:`Previously <coleman_policy_iter>`, to obtain a finite representation of an updated consumption policy we
 
@@ -103,9 +103,9 @@ The function itself is reconstructed from this representation when necessary, us
 * calculated the consumption value :math:`c_i` corresponding to each
   :math:`y_i` using :eq:`egm_coledef` and a root-finding routine
 
-Each :math:`c_i` is then interpreted as the value of the function :math:`K \sigma` at :math:`y_i`
+Each :math:`c_i` is then interpreted as the value of the function :math:`K \sigma` at :math:`y_i`.
 
-Thus, with the points :math:`\{y_i, c_i\}` in hand, we can reconstruct :math:`K \sigma` via approximation
+Thus, with the points :math:`\{y_i, c_i\}` in hand, we can reconstruct :math:`K \sigma` via approximation.
 
 Iteration then continues...
 
@@ -116,19 +116,19 @@ Endogenous Grid
 --------------------
 
 The method discussed above requires a root-finding routine to find the
-:math:`c_i` corresponding to a given income value :math:`y_i`
+:math:`c_i` corresponding to a given income value :math:`y_i`.
 
 Root-finding is costly because it typically involves a significant number of
-function evaluations
+function evaluations.
 
 As pointed out by Carroll :cite:`Carroll2006`, we can avoid this if
-:math:`y_i` is chosen endogenously
+:math:`y_i` is chosen endogenously.
 
-The only assumption required is that :math:`u'` is invertible on :math:`(0, \infty)`
+The only assumption required is that :math:`u'` is invertible on :math:`(0, \infty)`.
 
 The idea is this:
 
-First, we fix an *exogenous* grid :math:`\{k_i\}` for capital (:math:`k = y - c`)
+First, we fix an *exogenous* grid :math:`\{k_i\}` for capital (:math:`k = y - c`).
 
 Then we obtain  :math:`c_i` via
 
@@ -141,21 +141,21 @@ Then we obtain  :math:`c_i` via
         \beta \int (u' \circ \sigma) (f(k_i) z ) \, f'(k_i) \, z \, \phi(dz)
     \right\}
 
-where :math:`(u')^{-1}` is the inverse function of :math:`u'`
+where :math:`(u')^{-1}` is the inverse function of :math:`u'`.
 
-Finally, for each :math:`c_i` we set :math:`y_i = c_i + k_i`
+Finally, for each :math:`c_i` we set :math:`y_i = c_i + k_i`.
 
-It is clear that each :math:`(y_i, c_i)` pair constructed in this manner satisfies :eq:`egm_coledef`
+It is clear that each :math:`(y_i, c_i)` pair constructed in this manner satisfies :eq:`egm_coledef`.
 
-With the points :math:`\{y_i, c_i\}` in hand, we can reconstruct :math:`K \sigma` via approximation as before
+With the points :math:`\{y_i, c_i\}` in hand, we can reconstruct :math:`K \sigma` via approximation as before.
 
-The name EGM comes from the fact that the grid :math:`\{y_i\}` is  determined **endogenously**
+The name EGM comes from the fact that the grid :math:`\{y_i\}` is  determined **endogenously**.
 
 
 Implementation
 ================
 
-Let's implement this version of the Coleman-Reffett operator and see how it performs
+Let's implement this version of the Coleman-Reffett operator and see how it performs.
 
 First, we will construct a class ``OptimalGrowthModel`` to hold the parameters of the
 model
@@ -195,10 +195,10 @@ The Operator
 ----------------
 
 
-Here's an implementation of :math:`K` using EGM as described above
+Here's an implementation of :math:`K` using EGM as described above.
 
 Unlike the :doc:`previous lecture <coleman_policy_iter>`, we do not just-in-time
-compile the operator because we want to return the policy function
+compile the operator because we want to return the policy function.
 
 Despite this, the EGM method is still faster than the standard Coleman-Reffett operator,
 as we will see later on
@@ -240,7 +240,7 @@ as we will see later on
 
         return K
 
-Note the lack of any root-finding algorithm
+Note the lack of any root-finding algorithm.
 
 We'll also run our original implementation, which uses an exogenous grid and requires root-finding, so we can perform some comparisons
 
@@ -248,7 +248,7 @@ We'll also run our original implementation, which uses an exogenous grid and req
 
 
 
-Let's test out the code above on some example parameterizations
+Let's test out the code above on some example parameterizations.
 
 
 Testing on the Log / Cobb--Douglas Case
@@ -256,7 +256,7 @@ Testing on the Log / Cobb--Douglas Case
 
 
 As we :doc:`did for value function iteration <optgrowth>` and :doc:`time iteration <coleman_policy_iter>`,
-let's start by testing our method with the log-linear benchmark
+let's start by testing our method with the log-linear benchmark.
 
 
 First, we generate an instance
@@ -290,11 +290,11 @@ First, we generate an instance
                             u_prime=u_prime,
                             u_prime_inv=u_prime)
 
-Notice that we're passing ``u_prime`` twice
+Notice that we're passing ``u_prime`` twice.
 
-The reason is that, in the case of log utility, :math:`u'(c) = (u')^{-1}(c) = 1/c`
+The reason is that, in the case of log utility, :math:`u'(c) = (u')^{-1}(c) = 1/c`.
 
-Hence ``u_prime`` and ``u_prime_inv`` are the same
+Hence ``u_prime`` and ``u_prime_inv`` are the same.
 
 As a preliminary test, let's see if :math:`K \sigma^* = \sigma^*`, as implied by the theory
 
@@ -318,7 +318,7 @@ As a preliminary test, let's see if :math:`K \sigma^* = \sigma^*`, as implied by
     plt.show()
 
 
-We can't really distinguish the two plots
+We can't really distinguish the two plots.
 
 In fact it's easy to see that the difference is essentially zero:
 
@@ -328,7 +328,7 @@ In fact it's easy to see that the difference is essentially zero:
 
 
 Next, let's try iterating from an arbitrary initial condition and see if we
-converge towards :math:`\sigma^*`
+converge towards :math:`\sigma^*`.
 
 
 Let's start from the consumption policy that eats the whole pie: :math:`\sigma(y) = y`
@@ -356,14 +356,14 @@ Let's start from the consumption policy that eats the whole pie: :math:`\sigma(y
 
 
 
-We see that the policy has converged nicely, in only a few steps
+We see that the policy has converged nicely, in only a few steps.
 
 
 Speed
 ========
 
 Now let's compare the clock times per iteration for the standard Coleman-Reffett
-operator (with exogenous grid) and the EGM version
+operator (with exogenous grid) and the EGM version.
 
 We'll do so using the CRRA model adopted in the exercises of the :doc:`Euler equation time iteration lecture <coleman_policy_iter>`
 
@@ -420,4 +420,4 @@ Here's the result
 
 We see that the EGM version is significantly faster, even without jit compilation!
 
-The absence of numerical root-finding means that it is typically more accurate at each step as well
+The absence of numerical root-finding means that it is typically more accurate at each step as well.
