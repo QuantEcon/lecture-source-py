@@ -17,7 +17,7 @@ Growth in Dynamic Linear Economies
 
 
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
 In addition to what's included in  Anaconda, this lecture uses the quantecon  library
 
@@ -27,12 +27,12 @@ In addition to what's included in  Anaconda, this lecture uses the quantecon  li
   !pip install --upgrade quantecon
 
 This lecture describes several complete market economies having a
-common linear-quadratic-Gaussian structure
+common linear-quadratic-Gaussian structure.
 
 Three examples of such economies show how the DLE class can be used to
 compute equilibria of such economies in Python and to illustrate how
 different versions of these economies can or cannot generate sustained
-growth
+growth.
 
 
 We require the following imports
@@ -91,7 +91,7 @@ Our example economies have the following features
 
 
 where :math:`s_t` is a vector of consumption services, and
-:math:`h_t` is a vector of household capital stocks
+:math:`h_t` is a vector of household capital stocks.
 
 
 Thus, an instance of this class of economies is described by the
@@ -99,13 +99,13 @@ matrices
 
 .. math::  \{ A_{22}, C_2, U_b, U_d, \Phi_c, \Phi_g, \Phi_i, \Gamma, \Delta_k, \Theta_k,\Lambda, \Pi, \Delta_h, \Theta_h \}
 
-and the scalar :math:`\beta`
+and the scalar :math:`\beta`.
 
 A Planning Problem
 ==================
 
 The first welfare theorem asserts that a competitive equilibrium
-allocation solves the following planning problem
+allocation solves the following planning problem.
 
 Choose :math:`\{c_t, s_t, i_t, h_t, k_t, g_t\}_{t=0}^\infty` to maximize
 
@@ -130,12 +130,12 @@ and
 .. math:: d_t = U_dz_t
 
 The DLE class in Python maps this planning problem into a linear-quadratic dynamic programming problem and then solves it by using
-QuantEcon's LQ class
+QuantEcon's LQ class.
 
 (See Section 5.5 of Hansen & Sargent (2013) :cite:`HS2013` for a full
 description of how to map these economies into an LQ setting, and how to
 use the solution to the LQ problem to construct the output matrices in
-order to simulate the economies)
+order to simulate the economies).
 
 The state for the LQ problem is
 
@@ -147,13 +147,13 @@ The state for the LQ problem is
    \end{array} }
    \right]
 
-and the control variable is :math:`u_t = i_t`
+and the control variable is :math:`u_t = i_t`.
 
 Once the LQ problem has been solved, the law of motion for the state is
 
 .. math:: x_{t+1} = (A-BF)x_t + Cw_{t+1}
 
-where the optimal control law is :math:`u_t = -Fx_t`
+where the optimal control law is :math:`u_t = -Fx_t`.
 
 Letting :math:`A^o = A-BF` we write this law of motion as
 
@@ -223,7 +223,7 @@ And information of the form
 
 We shall vary
 :math:`\{\lambda, \pi, \delta_h, \theta_h, \gamma_1, \delta_k, \phi_1\}`
-and the initial state :math:`x_0` across the three economies
+and the initial state :math:`x_0` across the three economies.
 
 Example 1: Hall (1978)
 -----------------------
@@ -235,10 +235,10 @@ particular, we set
 
 (In this economy :math:`\delta_h` and :math:`\theta_h` are arbitrary as
 household capital does not enter the equation for consumption services
-We set them to values that will become useful in Example 3)
+We set them to values that will become useful in Example 3).
 
 It is worth noting that this choice of parameter values ensures that
-:math:`\beta(\gamma_1 + \delta_k) = 1`
+:math:`\beta(\gamma_1 + \delta_k) = 1`.
 
 For simulations of this economy, we choose an initial condition of
 
@@ -313,7 +313,7 @@ consumption and investment
 
 Inspection of the plot shows that the sample paths of consumption and
 investment drift in ways that suggest that each has or nearly has a
-**random walk** or **unit root** component
+**random walk** or **unit root** component.
 
 This is confirmed by checking the eigenvalues of :math:`A^o`
 
@@ -349,7 +349,7 @@ steady state of consumption, investment and capital
 
 
 However, the near-unity endogenous eigenvalue means that these steady
-state values are of little relevance
+state values are of little relevance.
 
 Example 2: Altered Growth Condition
 ------------------------------------
@@ -410,7 +410,7 @@ consumption and investment
 
 
 Simulating our new economy shows that consumption grows quickly in the
-early stages of the sample
+early stages of the sample.
 
 However, it then settles down around the new non-stochastic steady-state
 level of consumption of 17.5, which we find as follows
@@ -437,26 +437,26 @@ Example 3: A Jones-Manuelli (1990) Economy
 -------------------------------------------
 
 For our third economy, we choose parameter values with the aim of
-generating *sustained* growth in consumption, investment and capital
+generating *sustained* growth in consumption, investment and capital.
 
 To do this, we set parameters so that Jones and Manuelli's "growth
-condition" is just satisfied
+condition" is just satisfied.
 
 In our notation, just satisfying the growth condition is actually
 equivalent to setting :math:`\beta(\gamma_1 + \delta_k) = 1`, the
 condition that was necessary for consumption to be a random walk in
-Hall's model
+Hall's model.
 
-Thus, we lower :math:`\gamma_1` back to 0.1
+Thus, we lower :math:`\gamma_1` back to 0.1.
 
 In our model, this is a necessary but not sufficient condition for
-growth
+growth.
 
 To generate growth we set preference parameters to reflect habit
-persistence
+persistence.
 
 In particular, we set :math:`\lambda = -1`, :math:`\delta_h = 0.9` and
-:math:`\theta_h = 1 - \delta_h = 0.1`
+:math:`\theta_h = 1 - \delta_h = 0.1`.
 
 This makes preferences assume the form
 
@@ -496,7 +496,7 @@ We simulate this economy from the original state vector
 
 
 Thus, adding habit persistence to the Hall model of Example 1 is enough
-to generate sustained growth in our economy
+to generate sustained growth in our economy.
 
 The eigenvalues of
 :math:`A^o` in this new economy are
@@ -509,12 +509,12 @@ The eigenvalues of
 
 
 We now have two unit endogenous eigenvalues. One stems from satisfying
-the growth condition (as in Example 1)
+the growth condition (as in Example 1).
 
-The other unit eigenvalue results from setting :math:`\lambda = -1`
+The other unit eigenvalue results from setting :math:`\lambda = -1`.
 
 To show the importance of both of these for generating growth, we
-consider the following experiments
+consider the following experiments.
 
 Example 3.1: Varying Sensitivity
 -------------------------------------------
@@ -537,7 +537,7 @@ Next we raise :math:`\lambda` to -0.7
 
 
 
-We no longer achieve sustained growth if :math:`\lambda` is raised from -1 to -0.7
+We no longer achieve sustained growth if :math:`\lambda` is raised from -1 to -0.7.
 
 This is related to the fact that one of the endogenous
 eigenvalues is now less than 1
@@ -568,11 +568,11 @@ Next let's lower :math:`\beta` to 0.94
     plt.show()
 
 Growth also fails if we lower :math:`\beta`, since we now have
-:math:`\beta(\gamma_1 + \delta_k) < 1`
+:math:`\beta(\gamma_1 + \delta_k) < 1`.
 
 Consumption and investment explode downwards, as a lower value of
 :math:`\beta` causes the representative consumer to front-load
-consumption
+consumption.
 
 This explosive path shows up in the second endogenous eigenvalue now
 being larger than one
