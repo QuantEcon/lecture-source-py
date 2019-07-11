@@ -262,7 +262,7 @@ It records implications of Harrison and Kreps's specifications of :math:`P_a, P_
 | :math:`\hat{p}_a`     | 1.85 | 1.69 |
 +-----------------------+------+------+
 | :math:`\hat{p}_b`     | 1.69 | 2.08 |
-+-----------------------+------+------+.
++-----------------------+------+------+
 
 Here
 
@@ -528,7 +528,7 @@ Recreate the summary table using the functions we have built above.
 | :math:`\hat{p}_a`     | 1.85 | 1.69 |
 +-----------------------+------+------+
 | :math:`\hat{p}_b`     | 1.69 | 2.08 |
-+-----------------------+------+------+.
++-----------------------+------+------+
 
 
 You will first need to define the transition matrices and dividend payoff vector.
