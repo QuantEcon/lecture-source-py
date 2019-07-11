@@ -379,7 +379,7 @@ jupyter_conversion_mode = "all"
 jupyter_write_metadata = False
 
 # Location for _static folder
-jupyter_static_file_path = ["_static"]
+jupyter_static_file_path = ["source/_static"]
 
 # Configure Jupyter Kernels
 jupyter_kernels = {

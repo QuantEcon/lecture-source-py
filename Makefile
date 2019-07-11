@@ -2,7 +2,7 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
+SPHINXOPTS    = -c "./"
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = lecture-source-jl
 SOURCEDIR     = source/rst
