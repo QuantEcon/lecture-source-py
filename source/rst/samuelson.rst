@@ -10,7 +10,7 @@ OOP III: Samuelson Multiplier Accelerator
 
 **Co-author: Natasha Watkins**
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -22,9 +22,9 @@ Overview
 
 
 
-This lecture creates non-stochastic and stochastic versions of Paul Samuelson's celebrated multiplier accelerator model :cite:`Samuelson1939`
+This lecture creates non-stochastic and stochastic versions of Paul Samuelson's celebrated multiplier accelerator model :cite:`Samuelson1939`.
 
-In doing so, we extend the example of the Solow model class in :doc:`our second OOP lecture <python_oop>`
+In doing so, we extend the example of the Solow model class in :doc:`our second OOP lecture <python_oop>`.
 
 Our objectives are to
 
@@ -59,13 +59,13 @@ represent a model of national output based on three components:
    constitute *aggregate demand,* which automatically calls forth an
    equal amount of *aggregate supply*
 
-(To read about linear difference equations see `here <https://en.wikipedia.org/wiki/Linear\_difference\_equation>`__ or chapter IX of :cite:`Sargent1987`)
+(To read about linear difference equations see `here <https://en.wikipedia.org/wiki/Linear\_difference\_equation>`__ or chapter IX of :cite:`Sargent1987`).
 
 
 
 Samuelson used the model to analyze how particular values of the
 marginal propensity to consume and the accelerator coefficient might
-give rise to transient *business cycles* in national output
+give rise to transient *business cycles* in national output.
 
 Possible dynamic properties include
 
@@ -78,15 +78,15 @@ Possible dynamic properties include
 
 Later we present an extension that
 adds a random shock to the right side of the national income
-identity representing random fluctuations in aggregate demand
+identity representing random fluctuations in aggregate demand.
 
 This modification makes national output become governed by a second-order
 *stochastic linear difference equation* that, with appropriate parameter values,
-gives rise to recurrent irregular business cycles
+gives rise to recurrent irregular business cycles.
 
 
 (To read about stochastic linear difference equations see chapter XI of
-:cite:`Sargent1987`)
+:cite:`Sargent1987`).
 
 
 Details
@@ -159,9 +159,9 @@ or
 
    Y_t = \rho_1 Y_{t-1} + \rho_2 Y_{t-2} + (\gamma + G_t)
 
-where :math:`\rho_1 = (a+b)` and :math:`\rho_2 = -b`
+where :math:`\rho_1 = (a+b)` and :math:`\rho_2 = -b`.
 
-To complete the model, we require two **initial conditions**
+To complete the model, we require two **initial conditions**.
 
 If the model is to generate time series for :math:`t=0, \ldots, T`, we
 require initial values
@@ -171,7 +171,7 @@ require initial values
 We'll ordinarily set the parameters :math:`(a,b)` so that starting from
 an arbitrary pair of initial conditions
 :math:`(\bar Y_{-1}, \bar Y_{-2})`, national income :math:`Y\_t` converges to
-a constant value as :math:`t` becomes large
+a constant value as :math:`t` becomes large.
 
 We are interested in studying
 
@@ -181,10 +181,10 @@ We are interested in studying
 -  the **rate** at which it converges to a steady state level
 
 The deterministic version of the model described so far --- meaning that
-no random shocks hit aggregate demand --- has only transient fluctuations
+no random shocks hit aggregate demand --- has only transient fluctuations.
 
 We can convert the model to one that has persistent irregular
-fluctuations by adding a random shock to aggregate demand
+fluctuations by adding a random shock to aggregate demand.
 
 Stochastic Version of the Model
 --------------------------------------------------
@@ -204,7 +204,7 @@ Mathematical Analysis of the Model
 -------------------------------------------
 
 To get started, let's set :math:`G_t \equiv 0`, :math:`\sigma = 0`, and
-:math:`\gamma = 0`
+:math:`\gamma = 0`.
 
 Then we can write equation :eq:`second_stochastic` as
 
@@ -226,10 +226,10 @@ for :eq:`second_stochastic2`:
 
    z^2 - \rho_1 z  - \rho_2
 
-where :math:`z` is possibly a complex number
+where :math:`z` is possibly a complex number.
 
 We want to find the two **zeros** (a.k.a. **roots**) -- namely
-:math:`\lambda_1, \lambda_2` -- of the characteristic polynomial
+:math:`\lambda_1, \lambda_2` -- of the characteristic polynomial.
 
 These are two special values of :math:`z`, say :math:`z= \lambda_1` and
 :math:`z= \lambda_2`, such that if we set :math:`z` equal to one of
@@ -241,9 +241,9 @@ the characteristic polynomial :eq:`polynomial` equals zero:
 
    z^2 - \rho_1 z  - \rho_2  = (z- \lambda_1 ) (z -\lambda_2) = 0
 
-Equation :eq:`polynomial_sol` is said to **factor** the characteristic polynomial
+Equation :eq:`polynomial_sol` is said to **factor** the characteristic polynomial.
 
-When the roots are complex, they will occur as a complex conjugate pair
+When the roots are complex, they will occur as a complex conjugate pair.
 
 When the roots are complex, it is convenient to represent them in the
 polar form
@@ -251,7 +251,7 @@ polar form
 .. math::  \lambda_1 =  r e^{i \omega}, \  \lambda_2 = r e^{-i \omega}
 
 where :math:`r` is the *amplitude* of the complex number and
-:math:`\omega` is its *angle* or *phase*
+:math:`\omega` is its *angle* or *phase*.
 
 These can also be represented as
 
@@ -260,19 +260,19 @@ These can also be represented as
 .. math::  \lambda_2 = r (cos (\omega) - i \sin(\omega))
 
 (To read about the polar form, see
-`here <https://www.varsitytutors.com/hotmath/hotmath\_help/topics/polar-form-of-a-complex-number>`__)
+`here <https://www.varsitytutors.com/hotmath/hotmath\_help/topics/polar-form-of-a-complex-number>`__).
 
 Given **initial conditions** :math:`Y_{-1}, Y_{-2}`, we want to generate
-a **solution** of the difference equation :eq:`second_stochastic2`
+a **solution** of the difference equation :eq:`second_stochastic2`.
 
 It can be represented as
 
 .. math::  Y_t = \lambda_1^t c_1 + \lambda_2^t c_2
 
 where :math:`c_1` and :math:`c_2` are constants that depend on the two
-initial conditions and on :math:`\rho_1, \rho_2`
+initial conditions and on :math:`\rho_1, \rho_2`.
 
-When the roots are complex, it is useful to pursue the following calculations
+When the roots are complex, it is useful to pursue the following calculations.
 
 Notice that
 
@@ -285,7 +285,7 @@ Notice that
       & = & (c_1 + c_2) r^t \cos(\omega t) + i (c_1 - c_2) r^t \sin(\omega t)
     \end{aligned}
 
-The only way that :math:`Y_t` can be a  real number for each :math:`t` is if :math:`c_1 + c_2` is a real number and :math:`c_1 - c_2` is an imaginary number
+The only way that :math:`Y_t` can be a  real number for each :math:`t` is if :math:`c_1 + c_2` is a real number and :math:`c_1 - c_2` is an imaginary number.
 
 This happens only when :math:`c_1` and :math:`c_2` are complex conjugates, in which case they can be written in the polar forms
 
@@ -303,16 +303,16 @@ So we can write
          & = & 2 v r^t  \cos (\omega t + \theta)
     \end{aligned}
 
-where :math:`v` and :math:`\theta` are constants that must be chosen to satisfy initial conditions for :math:`Y_{-1}, Y_{-2}`
+where :math:`v` and :math:`\theta` are constants that must be chosen to satisfy initial conditions for :math:`Y_{-1}, Y_{-2}`.
 
 
 This formula shows that when the roots are complex, :math:`Y_t` displays
 oscillations with **period** :math:`\check p =
-\frac{2 \pi}{\omega}` and **damping factor** :math:`r`
+\frac{2 \pi}{\omega}` and **damping factor** :math:`r`.
 
-We say that :math:`\check p` is the **period** because in that amount of time the cosine wave :math:`\cos(\omega t + \theta)` goes through exactly one complete cycles
+We say that :math:`\check p` is the **period** because in that amount of time the cosine wave :math:`\cos(\omega t + \theta)` goes through exactly one complete cycles.
 
-(Draw a cosine function to convince yourself of this please)
+(Draw a cosine function to convince yourself of this please).
 
 **Remark:** Following :cite:`Samuelson1939`, we want to choose the parameters
 :math:`a, b` of the model so that the absolute values (of the possibly
@@ -324,26 +324,26 @@ polynomial are both strictly less than one:
 **Remark:** When both roots  :math:`\lambda_1, \lambda_2` of the characteristic polynomial have
 absolute values strictly less than one, the absolute value of the larger
 one governs the rate of convergence to the steady state of the non
-stochastic version of the model
+stochastic version of the model.
 
 
 
 Things This Lecture Does
 ---------------------------
 
-We write a function to generate simulations of a :math:`\{Y_t\}` sequence as a function of time
+We write a function to generate simulations of a :math:`\{Y_t\}` sequence as a function of time.
 
-The function requires that we put in initial conditions for :math:`Y_{-1}, Y_{-2}`
+The function requires that we put in initial conditions for :math:`Y_{-1}, Y_{-2}`.
 
 The function checks that :math:`a, b` are set so that :math:`\lambda_1, \lambda_2` are less than
    unity in absolute value (also called "modulus")
 
-The function also tells us whether the roots are complex, and, if they are complex, returns both their real and complex parts
+The function also tells us whether the roots are complex, and, if they are complex, returns both their real and complex parts.
 
-If the roots are both real, the function returns their values
+If the roots are both real, the function returns their values.
 
 
-We use our function written to simulate paths that are stochastic (when :math:`\sigma >0`)
+We use our function written to simulate paths that are stochastic (when :math:`\sigma >0`).
 
 We have written the function in a way that allows us to input :math:`\{G_t\}` paths of a few simple forms, e.g.,
 
@@ -351,21 +351,21 @@ We have written the function in a way that allows us to input :math:`\{G_t\}` pa
 
 * a permanent jump in :math:`G` that occurs at some time
 
-We proceed to use the Samuelson multiplier-accelerator model as a laboratory to make a simple OOP example
+We proceed to use the Samuelson multiplier-accelerator model as a laboratory to make a simple OOP example.
 
-The "state" that determines next period's :math:`Y_{t+1}` is now not just the current value :math:`Y_t` but also the once lagged value :math:`Y_{t-1}`
+The "state" that determines next period's :math:`Y_{t+1}` is now not just the current value :math:`Y_t` but also the once lagged value :math:`Y_{t-1}`.
 
-This involves a little more bookkeeping than is required in the Solow model class definition
+This involves a little more bookkeeping than is required in the Solow model class definition.
 
-We use the Samuelson multiplier-accelerator model as a vehicle for teaching how we can gradually add more features to the class
+We use the Samuelson multiplier-accelerator model as a vehicle for teaching how we can gradually add more features to the class.
 
-We want to have a method in the class that automatically generates a simulation, either non-stochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`)
+We want to have a method in the class that automatically generates a simulation, either non-stochastic (:math:`\sigma=0`) or stochastic (:math:`\sigma > 0`).
 
-We also show how to map the Samuelson model into a simple instance of the ``LinearStateSpace`` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__
+We also show how to map the Samuelson model into a simple instance of the ``LinearStateSpace`` class described `here <https://lectures.quantecon.org/py/linear_models.html>`__.
 
-We can use a ``LinearStateSpace`` instance to do various things that we did above with our homemade function and class
+We can use a ``LinearStateSpace`` instance to do various things that we did above with our homemade function and class.
 
-Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the ``LinearStateSpace`` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model
+Among other things, we show by example that the eigenvalues of the matrix :math:`A` that we use to form the instance of the ``LinearStateSpace`` class for the Samuelson model equal the roots of the characteristic polynomial :eq:`polynomial` for the Samuelson multiplier accelerator model.
 
 Here is the formula for the matrix :math:`A` in the linear state space system in the case that government expenditures are a constant :math:`G`:
 
@@ -480,7 +480,7 @@ difference equation parameter pairs in the Samuelson model are such that:
    convergence to the steady state without damped cycles
 
 Later we'll present the graph with a red mark showing the particular
-point implied by the setting of :math:`(a,b)`
+point implied by the setting of :math:`(a,b)`.
 
 Function to Describe Implications of Characteristic Polynomial
 -------------------------------------------------------------------------------
@@ -527,9 +527,9 @@ Manual or "by hand" Root Calculations
 ----------------------------------------------
 
 The following function calculates roots of the characteristic polynomial
-using high school algebra
+using high school algebra.
 
-(We'll calculate the roots in other ways later)
+(We'll calculate the roots in other ways later).
 
 The function also plots a :math:`Y_t` starting from initial conditions
 that we set
@@ -723,7 +723,7 @@ Reverse-Engineered Complex Roots: Example
 --------------------------------------------------
 
 The next cell studies the implications of reverse-engineered complex
-roots
+roots.
 
 We'll generate an **undamped** cycle of period 10
 
@@ -973,7 +973,7 @@ We can also see the response to a one time jump in government expenditures
 Wrapping Everything Into a Class
 =================================
 
-Up to now, we have written functions to do the work
+Up to now, we have written functions to do the work.
 
 Now we'll roll up our sleeves and write a Python class called ``Samuelson``
 for the Samuelson model
@@ -1186,7 +1186,7 @@ Using the Graph
 -----------------
 
 We'll use our graph to show where the roots lie and how their location
-is consistent with the behavior of the path just graphed
+is consistent with the behavior of the path just graphed.
 
 The red :math:`+` sign shows the location of the roots
 
@@ -1201,7 +1201,7 @@ Using the LinearStateSpace Class
 
 It turns out that we can use the `QuantEcon.py <http://quantecon.org/python_index.html>`_
 `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to do
-much of the work that we have done from scratch above
+much of the work that we have done from scratch above.
 
 Here is how we map the Samuelson model into an instance of a
 ``LinearStateSpace`` class
@@ -1457,10 +1457,10 @@ Summary
 
 In this lecture, we wrote functions and classes to represent non-stochastic and
 stochastic versions of the Samuelson (1939) multiplier-accelerator model, described
-in :cite:`Samuelson1939`
+in :cite:`Samuelson1939`.
 
 We saw that different parameter values led to different output paths, which
-could either be stationary, explosive, or oscillating
+could either be stationary, explosive, or oscillating.
 
 We also were able to represent the model using the `QuantEcon.py <http://quantecon.org/python_index.html>`_
-`LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class
+`LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class.

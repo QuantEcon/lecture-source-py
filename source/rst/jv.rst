@@ -13,7 +13,7 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -68,16 +68,16 @@ Let :math:`w_t = x_t(1 - s_t - \phi_t)`, where
 * :math:`s_t` is search effort, devoted to obtaining new offers from other firms
 
 For as long as the worker remains in the current job, evolution of
-:math:`\{x_t\}` is given by :math:`x_{t+1} = g(x_t, \phi_t)`
+:math:`\{x_t\}` is given by :math:`x_{t+1} = g(x_t, \phi_t)`.
 
 When search effort at :math:`t` is :math:`s_t`, the worker receives a new job
-offer with probability :math:`\pi(s_t) \in [0, 1]`
+offer with probability :math:`\pi(s_t) \in [0, 1]`.
 
-Value of offer is :math:`u_{t+1}`, where :math:`\{u_t\}` is IID with common distribution :math:`f`
+Value of offer is :math:`u_{t+1}`, where :math:`\{u_t\}` is IID with common distribution :math:`f`.
 
-Worker has the right to reject the current offer and continue with existing job
+Worker has the right to reject the current offer and continue with existing job.
 
-In particular, :math:`x_{t+1} = u_{t+1}` if accepts and :math:`x_{t+1} = g(x_t, \phi_t)` if rejects
+In particular, :math:`x_{t+1} = u_{t+1}` if accepts and :math:`x_{t+1} = g(x_t, \phi_t)` if rejects.
 
 Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicating an offer, we can write
 
@@ -89,7 +89,7 @@ Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicatin
         \max \{ g(x_t, \phi_t), u_{t+1}\}
 
 
-Agent's objective: maximize expected discounted sum of wages via controls :math:`\{s_t\}` and :math:`\{\phi_t\}`
+Agent's objective: maximize expected discounted sum of wages via controls :math:`\{s_t\}` and :math:`\{\phi_t\}`.
 
 Taking the expectation of :math:`v(x_{t+1})` and using :eq:`jd`,
 the Bellman equation for this problem can be written as
@@ -106,7 +106,7 @@ the Bellman equation for this problem can be written as
 
 
 Here nonnegativity of :math:`s` and :math:`\phi` is understood, while
-:math:`a \vee b := \max\{a, b\}`
+:math:`a \vee b := \max\{a, b\}`.
 
 
 Parameterization
@@ -133,7 +133,7 @@ with default parameter values
 * :math:`\beta = 0.96`
 
 
-The :math:`\text{Beta}(2,2)` distribution is supported on :math:`(0,1)` - it has a unimodal, symmetric density peaked at 0.5
+The :math:`\text{Beta}(2,2)` distribution is supported on :math:`(0,1)` - it has a unimodal, symmetric density peaked at 0.5.
 
 
 .. _jvboecalc:
@@ -143,7 +143,7 @@ Back-of-the-Envelope Calculations
 
 
 Before we solve the model, let's make some quick calculations that
-provide intuition on what the solution should look like
+provide intuition on what the solution should look like.
 
 To begin, observe that the worker has two instruments to build
 capital and hence wages:
@@ -151,11 +151,11 @@ capital and hence wages:
 #. invest in capital specific to the current job via :math:`\phi`
 #. search for a new job with better job-specific capital match via :math:`s`
 
-Since wages are :math:`x (1 - s - \phi)`, marginal cost of investment via either :math:`\phi` or :math:`s` is identical
+Since wages are :math:`x (1 - s - \phi)`, marginal cost of investment via either :math:`\phi` or :math:`s` is identical.
 
-Our risk-neutral worker should focus on whatever instrument has the highest expected return
+Our risk-neutral worker should focus on whatever instrument has the highest expected return.
 
-The relative expected return will depend on :math:`x`
+The relative expected return will depend on :math:`x`.
 
 For example, suppose first that :math:`x = 0.05`
 
@@ -164,14 +164,14 @@ For example, suppose first that :math:`x = 0.05`
   = \mathbb{E} u = 0.5`
 * If :math:`s=0` and :math:`\phi=1`, then next period capital is :math:`g(x, \phi) = g(0.05, 1) \approx 0.23`
 
-Both rates of return are good, but the return from search is better
+Both rates of return are good, but the return from search is better.
 
 Next, suppose that :math:`x = 0.4`
 
 * If :math:`s=1` and :math:`\phi = 0`, then expected next period capital is again :math:`0.5`
 * If :math:`s=0` and :math:`\phi = 1`, then :math:`g(x, \phi) = g(0.4, 1) \approx 0.8`
 
-Return from investment via :math:`\phi` dominates expected return from search
+Return from investment via :math:`\phi` dominates expected return from search.
 
 Combining these observations gives us two informal predictions:
 
@@ -180,7 +180,7 @@ Combining these observations gives us two informal predictions:
 #. For sufficiently small :math:`x`, search will be preferable to investment in
    job-specific human capital.  For larger :math:`x`, the reverse will be true
 
-Now let's turn to implementation, and see if we can match our predictions
+Now let's turn to implementation, and see if we can match our predictions.
 
 
 Implementation
@@ -245,16 +245,16 @@ where
 
 
 
-When we represent :math:`v`, it will be with a NumPy array ``v`` giving values on grid ``x_grid``
+When we represent :math:`v`, it will be with a NumPy array ``v`` giving values on grid ``x_grid``.
 
 But to evaluate the right-hand side of :eq:`defw`, we need a function, so
 we replace the arrays ``v`` and ``x_grid`` with a function ``v_func`` that gives linear
-interpolation of ``v`` on ``x_grid``
+interpolation of ``v`` on ``x_grid``.
 
 Inside the ``for`` loop, for each ``x`` in the grid over the state space, we
-set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`
+set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`.
 
-The function is maximized over all feasible :math:`(s, \phi)` pairs
+The function is maximized over all feasible :math:`(s, \phi)` pairs.
 
 Another function, ``get_greedy`` returns the optimal policies of ``s`` and :math:`\phi`
 given a value function
@@ -382,7 +382,7 @@ Solving for Policies
 .. index::
     single: On-the-Job Search; Solving for Policies
 
-Let's plot the optimal policies and see what they look like
+Let's plot the optimal policies and see what they look like.
 
 .. _jv_policies:
 
@@ -406,7 +406,7 @@ Let's plot the optimal policies and see what they look like
     plt.show()
 
 
-The horizontal axis is the state :math:`x`, while the vertical axis gives :math:`s(x)` and :math:`\phi(x)`
+The horizontal axis is the state :math:`x`, while the vertical axis gives :math:`s(x)` and :math:`\phi(x)`.
 
 Overall, the policies match well with our predictions from :ref:`above <jvboecalc>`
 
@@ -425,18 +425,18 @@ Exercises
 Exercise 1
 ------------
 
-Let's look at the dynamics for the state process :math:`\{x_t\}` associated with these policies
+Let's look at the dynamics for the state process :math:`\{x_t\}` associated with these policies.
 
 The dynamics are given by :eq:`jd` when :math:`\phi_t` and :math:`s_t` are
 chosen according to the optimal policies, and :math:`\mathbb{P}\{b_{t+1} = 1\}
-= \pi(s_t)`
+= \pi(s_t)`.
 
-Since the dynamics are random, analysis is a bit subtle
+Since the dynamics are random, analysis is a bit subtle.
 
 One way to do it is to plot, for each :math:`x` in a relatively fine grid
 called ``plot_grid``, a
 large number :math:`K` of realizations of :math:`x_{t+1}` given :math:`x_t =
-x`
+x`.
 
 Plot this with one dot for each realization, in the form of a 45 degree
 diagram, setting
@@ -456,9 +456,9 @@ diagram, setting
 
 
 By examining the plot, argue that under the optimal policies, the state
-:math:`x_t` will converge to a constant value :math:`\bar x` close to unity
+:math:`x_t` will converge to a constant value :math:`\bar x` close to unity.
 
-Argue that at the steady state, :math:`s_t \approx 0` and :math:`\phi_t \approx 0.6`
+Argue that at the steady state, :math:`s_t \approx 0` and :math:`\phi_t \approx 0.6`.
 
 
 
@@ -472,24 +472,24 @@ Exercise 2
 ----------------
 
 In the preceding exercise, we found that :math:`s_t` converges to zero
-and :math:`\phi_t` converges to about 0.6
+and :math:`\phi_t` converges to about 0.6.
 
 Since these results were calculated at a value of :math:`\beta` close to
-one, let's compare them to the best choice for an *infinitely* patient worker
+one, let's compare them to the best choice for an *infinitely* patient worker.
 
 Intuitively, an infinitely patient worker would like to maximize steady state
-wages, which are a function of steady state capital
+wages, which are a function of steady state capital.
 
 You can take it as given---it's certainly true---that the infinitely patient worker does not
-search in the long run (i.e., :math:`s_t = 0` for large :math:`t`)
+search in the long run (i.e., :math:`s_t = 0` for large :math:`t`).
 
 Thus, given :math:`\phi`, steady state capital is the positive fixed point
-:math:`x^*(\phi)` of the map :math:`x \mapsto g(x, \phi)`
+:math:`x^*(\phi)` of the map :math:`x \mapsto g(x, \phi)`.
 
-Steady state wages can be written as :math:`w^*(\phi) = x^*(\phi) (1 - \phi)`
+Steady state wages can be written as :math:`w^*(\phi) = x^*(\phi) (1 - \phi)`.
 
 Graph :math:`w^*(\phi)` with respect to :math:`\phi`, and examine the best
-choice of :math:`\phi`
+choice of :math:`\phi`.
 
 Can you give a rough interpretation for the value that you see?
 
@@ -551,7 +551,7 @@ Looking at the dynamics, we can see that
 
 Referring back to the figure :ref:`here <jv_policies>` we see that :math:`x_t \approx 1` means that
 :math:`s_t = s(x_t) \approx 0` and
-:math:`\phi_t = \phi(x_t) \approx 0.6`
+:math:`\phi_t = \phi(x_t) \approx 0.6`.
 
 Exercise 2
 ----------
@@ -576,13 +576,13 @@ The figure can be produced as follows
     plt.show()
 
 
-Observe that the maximizer is around 0.6
+Observe that the maximizer is around 0.6.
 
 This is similar to the long-run value for :math:`\phi` obtained in
-exercise 1
+exercise 1.
 
 Hence the behavior of the infinitely patent worker is similar to that
-of the worker with :math:`\beta = 0.96`
+of the worker with :math:`\beta = 0.96`.
 
 This seems reasonable and helps us confirm that our dynamic programming
-solutions are probably correct
+solutions are probably correct.

@@ -16,7 +16,7 @@
 
 **Co-author: Chase Coleman**
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -26,9 +26,9 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-This lecture continues our analysis of the linear-quadratic (LQ) permanent income model of savings and consumption
+This lecture continues our analysis of the linear-quadratic (LQ) permanent income model of savings and consumption.
 
-As we saw in our :doc:`previous lecture <perm_income>` on this topic, Robert Hall :cite:`Hall1978` used the LQ permanent income model to restrict and interpret intertemporal comovements of nondurable consumption, nonfinancial income, and financial wealth
+As we saw in our :doc:`previous lecture <perm_income>` on this topic, Robert Hall :cite:`Hall1978` used the LQ permanent income model to restrict and interpret intertemporal comovements of nondurable consumption, nonfinancial income, and financial wealth.
 
 For example, we saw how the model asserts that for any covariance stationary process for nonfinancial income
 
@@ -36,13 +36,13 @@ For example, we saw how the model asserts that for any covariance stationary pro
 
 -  financial wealth has a unit root and is cointegrated with consumption
 
-Other applications use the same LQ framework
+Other applications use the same LQ framework.
 
-For example, a model isomorphic to the LQ permanent income model has been used by Robert Barro :cite:`Barro1979` to interpret intertemporal comovements of a government's tax collections, its  expenditures net of debt service, and its public debt
+For example, a model isomorphic to the LQ permanent income model has been used by Robert Barro :cite:`Barro1979` to interpret intertemporal comovements of a government's tax collections, its  expenditures net of debt service, and its public debt.
 
-This isomorphism means that in analyzing the LQ permanent income model, we are in effect also analyzing  the Barro tax smoothing model
+This isomorphism means that in analyzing the LQ permanent income model, we are in effect also analyzing  the Barro tax smoothing model.
 
-It is just a matter of appropriately relabeling the variables in Hall's model
+It is just a matter of appropriately relabeling the variables in Hall's model.
 
 In this lecture, we'll
 
@@ -53,9 +53,9 @@ In this lecture, we'll
 * apply `QuantEcon <http://quantecon.org/python_index.html>`__'s `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to characterize statistical features of the consumer's optimal consumption and borrowing plans
 
 We'll then use these characterizations to construct a simple model of cross-section wealth and
-consumption dynamics in the spirit of Truman Bewley :cite:`Bewley86`
+consumption dynamics in the spirit of Truman Bewley :cite:`Bewley86`.
 
-(Later we'll study other Bewley models---see :doc:`this lecture <aiyagari>`)
+(Later we'll study other Bewley models---see :doc:`this lecture <aiyagari>`).
 
 The model will prove useful for illustrating concepts such as
 
@@ -73,7 +73,7 @@ Setup
 ======================
 
 
-Let's recall the basic features of the model discussed in the :doc:`permanent income model<perm_income>`
+Let's recall the basic features of the model discussed in the :doc:`permanent income model<perm_income>`.
 
 Consumer preferences are ordered  by
 
@@ -83,7 +83,7 @@ Consumer preferences are ordered  by
     E_0 \sum_{t=0}^\infty \beta^t u(c_t)
 
 
-where :math:`u(c) = -(c - \gamma)^2`
+where :math:`u(c) = -(c - \gamma)^2`.
 
 The consumer maximizes :eq:`old1` by choosing a
 consumption, borrowing plan :math:`\{c_t, b_{t+1}\}_{t=0}^\infty`
@@ -105,9 +105,9 @@ and the no-Ponzi condition
 
 
 The interpretation of all variables and parameters are the same as in the
-:doc:`previous lecture <perm_income>`
+:doc:`previous lecture <perm_income>`.
 
-We continue to assume that :math:`(1 + r) \beta = 1`
+We continue to assume that :math:`(1 + r) \beta = 1`.
 
 The dynamics of :math:`\{y_t\}` again follow the linear state space model
 
@@ -121,7 +121,7 @@ The dynamics of :math:`\{y_t\}` again follow the linear state space model
     \end{aligned}
 
 
-The restrictions on the shock process and parameters are the same as in our :doc:`previous lecture <perm_income>`
+The restrictions on the shock process and parameters are the same as in our :doc:`previous lecture <perm_income>`.
 
 
 
@@ -130,7 +130,7 @@ Digression on a Useful Isomorphism
 ----------------------------------
 
 The LQ permanent income model of consumption is mathematically isomorphic with a version of
-Barro's :cite:`Barro1979` model of tax smoothing
+Barro's :cite:`Barro1979` model of tax smoothing.
 
 
 In the LQ permanent income model
@@ -157,11 +157,11 @@ If we set
 
 *  :math:`R`, the gross rate of return on risk-free one-period government debt in Barro's model to the gross rate of return :math:`1+r` on financial assets in  the permanent income model of consumption
 
-then the two models are mathematically equivalent
+then the two models are mathematically equivalent.
 
-All characterizations of a :math:`\{c_t, y_t, b_t\}` in the LQ permanent income model automatically apply to a :math:`\{T_t, G_t, B_t\}` process in the Barro model of tax smoothing
+All characterizations of a :math:`\{c_t, y_t, b_t\}` in the LQ permanent income model automatically apply to a :math:`\{T_t, G_t, B_t\}` process in the Barro model of tax smoothing.
 
-See :doc:`consumption and tax smoothing models <smoothing>` for further exploitation of an isomorphism between consumption and tax smoothing models
+See :doc:`consumption and tax smoothing models <smoothing>` for further exploitation of an isomorphism between consumption and tax smoothing models.
 
 
 A Specification of the Nonfinancial Income Process
@@ -175,7 +175,7 @@ For the purposes of this lecture, let's assume :math:`\{y_t\}` is a second-order
 
 
 We can map this into the linear state space framework in :eq:`sprob15ab2`, as
-discussed in our lecture on  :doc:`linear models<linear_models>`
+discussed in our lecture on  :doc:`linear models<linear_models>`.
 
 To do so we take
 
@@ -206,18 +206,18 @@ To do so we take
 The LQ Approach
 ==================
 
-:ref:`Previously <odr_pi>` we solved the permanent income model  by solving a system of linear expectational difference equations subject to two boundary conditions
+:ref:`Previously <odr_pi>` we solved the permanent income model  by solving a system of linear expectational difference equations subject to two boundary conditions.
 
-Here we solve the same model using :doc:`LQ methods <lqcontrol>` based on dynamic programming
+Here we solve the same model using :doc:`LQ methods <lqcontrol>` based on dynamic programming.
 
 After confirming that answers produced by the two methods agree, we apply `QuantEcon <http://quantecon.org/python_index.html>`__'s `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__
-class to illustrate features of the model
+class to illustrate features of the model.
 
 Why solve a model in two distinct ways?
 
-Because by doing so we gather insights about the structure of the model
+Because by doing so we gather insights about the structure of the model.
 
-Our earlier approach based on solving a system of expectational difference equations brought to the fore the role of the consumer's expectations about future nonfinancial income
+Our earlier approach based on solving a system of expectational difference equations brought to the fore the role of the consumer's expectations about future nonfinancial income.
 
 On the other hand, formulating the model in terms of an LQ dynamic programming problem reminds us that
 
@@ -249,9 +249,9 @@ subject to :math:`x_0` given and the law of motion
     \qquad t\geq 0,
 
 
-where :math:`w_{t+1}` is IID with mean vector zero and :math:`\mathbb E w_t w'_t= I`
+where :math:`w_{t+1}` is IID with mean vector zero and :math:`\mathbb E w_t w'_t= I`.
 
-The tildes in :math:`\tilde A, \tilde B, \tilde C` are to avoid clashing with notation in :eq:`sprob15ab2`
+The tildes in :math:`\tilde A, \tilde B, \tilde C` are to avoid clashing with notation in :eq:`sprob15ab2`.
 
 The value function for this problem is :math:`v(x) = - x'Px - d`, where
 
@@ -259,9 +259,9 @@ The value function for this problem is :math:`v(x) = - x'Px - d`, where
 
 * The scalar :math:`d` is given by :math:`d=\beta (1-\beta)^{-1} {\rm trace} ( P \tilde C \tilde C')`
 
-The optimal policy is :math:`u_t = -Fx_t`, where :math:`F := \beta (Q+\beta \tilde B'P \tilde B)^{-1} \tilde B'P \tilde A`
+The optimal policy is :math:`u_t = -Fx_t`, where :math:`F := \beta (Q+\beta \tilde B'P \tilde B)^{-1} \tilde B'P \tilde A`.
 
-Under an optimal decision rule :math:`F`, the state vector :math:`x_t` evolves according to :math:`x_{t+1} = (\tilde A-\tilde BF) x_t + \tilde C w_{t+1}`
+Under an optimal decision rule :math:`F`, the state vector :math:`x_t` evolves according to :math:`x_{t+1} = (\tilde A-\tilde BF) x_t + \tilde C w_{t+1}`.
 
 
 
@@ -286,7 +286,7 @@ To map into the LQ framework, we'll use
         \end{bmatrix}
 
 
-as the state vector and :math:`u_t := c_t - \gamma` as the control
+as the state vector and :math:`u_t := c_t - \gamma` as the control.
 
 With this notation and :math:`U_\gamma := \begin{bmatrix} \gamma & 0 & 0
 \end{bmatrix}`, we can write the state dynamics as in :eq:`pilqsd` when
@@ -312,7 +312,7 @@ With this notation and :math:`U_\gamma := \begin{bmatrix} \gamma & 0 & 0
        w_{t+1}
 
 
-Please confirm for yourself that, with these definitions, the LQ dynamics :eq:`pilqsd`  match the dynamics of :math:`z_t` and :math:`b_t` described above
+Please confirm for yourself that, with these definitions, the LQ dynamics :eq:`pilqsd`  match the dynamics of :math:`z_t` and :math:`b_t` described above.
 
 To map utility into the quadratic form :math:`x_t' R x_t + u_t'Q u_t` we can set
 
@@ -320,18 +320,18 @@ To map utility into the quadratic form :math:`x_t' R x_t + u_t'Q u_t` we can set
 
 * :math:`R :=` a :math:`4 \times 4` matrix of zeros
 
-However, there is one problem remaining
+However, there is one problem remaining.
 
 We have no direct way to capture the non-recursive restriction :eq:`old42`
-on the debt sequence :math:`\{b_t\}` from within the LQ framework
+on the debt sequence :math:`\{b_t\}` from within the LQ framework.
 
-To try to enforce it, we're going to use a trick: put a small penalty on :math:`b_t^2` in the criterion function
+To try to enforce it, we're going to use a trick: put a small penalty on :math:`b_t^2` in the criterion function.
 
-In the present setting, this means adding a small entry :math:`\epsilon > 0` in the :math:`(4,4)` position of :math:`R`
+In the present setting, this means adding a small entry :math:`\epsilon > 0` in the :math:`(4,4)` position of :math:`R`.
 
-That will induce a (hopefully) small approximation error in the decision rule
+That will induce a (hopefully) small approximation error in the decision rule.
 
-We'll check whether it really is small numerically soon
+We'll check whether it really is small numerically soon.
 
 
 
@@ -340,15 +340,15 @@ We'll check whether it really is small numerically soon
 Implementation
 ====================
 
-Let's write some code to solve the model
+Let's write some code to solve the model.
 
-One comment before we start is that the bliss level of consumption :math:`\gamma` in the utility function has no effect on the optimal decision rule
+One comment before we start is that the bliss level of consumption :math:`\gamma` in the utility function has no effect on the optimal decision rule.
 
-We saw this in the previous lecture  :doc:`permanent income <perm_income>`
+We saw this in the previous lecture  :doc:`permanent income <perm_income>`.
 
-The reason is that it drops out of the Euler equation for consumption
+The reason is that it drops out of the Euler equation for consumption.
 
-In what follows we set it equal to unity
+In what follows we set it equal to unity.
 
 
 
@@ -466,7 +466,7 @@ Comparison with the Difference Equation Approach
 --------------------------------------------------------------
 
 In our :doc:`first lecture <perm_income>` on the infinite horizon permanent
-income problem we used a different solution method
+income problem we used a different solution method.
 
 The method was based around
 
@@ -537,21 +537,21 @@ Now compare pertinent elements of ``c_pol`` and ``F``
 
 
 
-We have verified that the two methods give the same solution
+We have verified that the two methods give the same solution.
 
-Now let's create instances of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class and use it to do some interesting experiments
+Now let's create instances of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class and use it to do some interesting experiments.
 
-To do this, we'll use the outcomes from our second method
+To do this, we'll use the outcomes from our second method.
 
 
 
 Two Example Economies
 =======================
 
-In the spirit of Bewley models :cite:`Bewley86`, we'll generate panels of consumers
+In the spirit of Bewley models :cite:`Bewley86`, we'll generate panels of consumers.
 
 
-The examples differ only in  the initial states with which we endow the consumers
+The examples differ only in  the initial states with which we endow the consumers.
 
 All other parameter values are kept the same in the two examples
 
@@ -568,9 +568,9 @@ pronounced transients early in the sample
 
 - these will affect outcomes in striking ways
 
-Those transient effects will not be present in the second example
+Those transient effects will not be present in the second example.
 
-We use methods affiliated with the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to simulate the model
+We use methods affiliated with the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to simulate the model.
 
 
 First Set of Initial Conditions
@@ -578,9 +578,9 @@ First Set of Initial Conditions
 
 We generate  25 paths of the exogenous non-financial income process and the associated optimal consumption and debt paths.
 
-In the first set of graphs,  darker lines depict a particular sample path, while the lighter lines describe 24 other  paths
+In the first set of graphs,  darker lines depict a particular sample path, while the lighter lines describe 24 other  paths.
 
-A second graph  plots a collection of simulations against the population distribution that we extract from the ``LinearStateSpace`` instance ``LSS``
+A second graph  plots a collection of simulations against the population distribution that we extract from the ``LinearStateSpace`` instance ``LSS``.
 
 Comparing sample paths with population distributions at each date :math:`t` is a useful exercise---see :ref:`our discussion <lln_mr>` of the laws of large numbers
 
@@ -742,11 +742,11 @@ Now let's create figures with initial conditions of zero for :math:`y_0` and :ma
 
 
 
-Here is what is going on in the above graphs
+Here is what is going on in the above graphs.
 
-For our simulation, we have set initial conditions :math:`b_0 = y_{-1} = y_{-2} = 0`
+For our simulation, we have set initial conditions :math:`b_0 = y_{-1} = y_{-2} = 0`.
 
-Because :math:`y_{-1} = y_{-2} = 0`, nonfinancial income :math:`y_t` starts far below its stationary mean :math:`\mu_{y, \infty}` and rises early in each simulation
+Because :math:`y_{-1} = y_{-2} = 0`, nonfinancial income :math:`y_t` starts far below its stationary mean :math:`\mu_{y, \infty}` and rises early in each simulation.
 
 
 Recall from  the :doc:`previous lecture <perm_income>` that we can represent the optimal decision rule for consumption in terms of the **co-integrating relationship**
@@ -764,19 +764,19 @@ So at time :math:`0` we have
     c_0 = (1-\beta) E_0 \sum_{t=0}^\infty \beta^j y_{t}
 
 
-This tells us that consumption starts at the income that would be paid by an annuity whose value equals the expected discounted value of nonfinancial income at time :math:`t=0`
+This tells us that consumption starts at the income that would be paid by an annuity whose value equals the expected discounted value of nonfinancial income at time :math:`t=0`.
 
-To support that level of consumption, the consumer borrows a lot early and consequently builds up substantial debt
+To support that level of consumption, the consumer borrows a lot early and consequently builds up substantial debt.
 
-In fact, he or she incurs so much debt that eventually, in the stochastic steady state, he consumes less each period than his nonfinancial income
+In fact, he or she incurs so much debt that eventually, in the stochastic steady state, he consumes less each period than his nonfinancial income.
 
-He uses the gap between consumption and nonfinancial income mostly to service the interest payments due on his debt
+He uses the gap between consumption and nonfinancial income mostly to service the interest payments due on his debt.
 
-Thus, when we look at the panel of debt in the accompanying graph, we see that this is a group of *ex-ante* identical people each of whom starts with zero debt
+Thus, when we look at the panel of debt in the accompanying graph, we see that this is a group of *ex-ante* identical people each of whom starts with zero debt.
 
-All of them accumulate debt in anticipation of rising nonfinancial income
+All of them accumulate debt in anticipation of rising nonfinancial income.
 
-They expect their nonfinancial income to rise toward the invariant distribution of income, a consequence of our having started them at :math:`y_{-1} = y_{-2} = 0`
+They expect their nonfinancial income to rise toward the invariant distribution of income, a consequence of our having started them at :math:`y_{-1} = y_{-2} = 0`.
 
 
 Cointegration Residual
@@ -785,25 +785,25 @@ Cointegration Residual
 
 
 The following figure plots realizations of the left side of :eq:`old12`, which,
-:ref:`as discussed in our last lecture <coint_pi>`, is called the **cointegrating residual**
+:ref:`as discussed in our last lecture <coint_pi>`, is called the **cointegrating residual**.
 
 As mentioned above, the right side can be thought of as an
 annuity payment on the expected present value of future income
-:math:`E_t \sum_{j=0}^\infty \beta^j y_{t+j}`
+:math:`E_t \sum_{j=0}^\infty \beta^j y_{t+j}`.
 
 Early along a realization, :math:`c_t` is approximately constant while
 :math:`(1-\beta) b_t` and
 :math:`(1-\beta) E_t \sum_{j=0}^\infty \beta^j y_{t+j}` both rise
 markedly as the household's present value of income and borrowing rise
-pretty much together
+pretty much together.
 
 This example illustrates the following point: the definition
 of cointegration implies that the cointegrating residual is
-*asymptotically* covariance stationary, not *covariance stationary*
+*asymptotically* covariance stationary, not *covariance stationary*.
 
 The cointegrating residual for the specification with zero income and zero
 debt initially has a notable transient component that dominates its
-behavior early in the sample
+behavior early in the sample.
 
 By altering initial conditions, we shall remove this transient in our second example to be presented below
 
@@ -839,19 +839,19 @@ A "Borrowers and Lenders" Closed Economy
 ----------------------------------------
 
 When we set :math:`y_{-1} = y_{-2} = 0` and :math:`b_0 =0` in the
-preceding exercise, we make debt "head north" early in the sample
+preceding exercise, we make debt "head north" early in the sample.
 
-Average debt in the cross-section rises and approaches the asymptote
+Average debt in the cross-section rises and approaches the asymptote.
 
 We can regard these as outcomes of a "small open economy" that
 borrows from abroad at the fixed gross interest rate :math:`R = r+1` in
-anticipation of rising incomes
+anticipation of rising incomes.
 
 So with the economic primitives set as above, the economy converges to a
 steady state in which there is an excess aggregate supply of risk-free
-loans at a gross interest rate of :math:`R`
+loans at a gross interest rate of :math:`R`.
 
-This excess supply is filled by "foreigner lenders" willing to make those loans
+This excess supply is filled by "foreigner lenders" willing to make those loans.
 
 We can use virtually the same code to rig a "poor man's Bewley :cite:`Bewley86` model" in the following way
 
@@ -863,16 +863,16 @@ We can use virtually the same code to rig a "poor man's Bewley :cite:`Bewley86` 
 
 This rigs a closed economy in which people are borrowing and lending
 with each other at a gross risk-free interest rate of
-:math:`R = \beta^{-1}`
+:math:`R = \beta^{-1}`.
 
-Across the group of people being analyzed, risk-free loans are in zero excess supply
+Across the group of people being analyzed, risk-free loans are in zero excess supply.
 
 
-We have arranged primitives so that :math:`R = \beta^{-1}` clears the market for risk-free loans at zero aggregate excess supply
+We have arranged primitives so that :math:`R = \beta^{-1}` clears the market for risk-free loans at zero aggregate excess supply.
 
-So the risk-free loans are being made from one person to another within our closed set of agent
+So the risk-free loans are being made from one person to another within our closed set of agent.
 
-There is no need for foreigners to lend to our group
+There is no need for foreigners to lend to our group.
 
 Let's have a look at the corresponding figures
 

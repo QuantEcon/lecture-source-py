@@ -16,7 +16,7 @@ IRFs in Hall Models
 
 
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
-:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`
+:cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
 In addition to what's in Anaconda, this lecture uses the quantecon library
 
@@ -37,29 +37,29 @@ We'll make these imports
 
 This lecture shows how the DLE class can be used to create impulse
 response functions for three related economies, starting from
-Hall (1978) :cite:`Hall1978`
+Hall (1978) :cite:`Hall1978`.
 
-Knowledge of the basic economic environment is assumed
+Knowledge of the basic economic environment is assumed.
 
-See the lecture "Growth in Dynamic Linear Economies" for more details
+See the lecture "Growth in Dynamic Linear Economies" for more details.
 
 Example 1: Hall (1978)
 =======================
 
 First, we set parameters to make consumption (almost) follow a random
-walk
+walk.
 
 We set
 
 .. math::  \lambda = 0, \pi = 1, \gamma_1 = 0.1, \phi_1 = 0.00001, \delta_k = 0.95, \beta = \frac{1}{1.05}
 
 (In this example :math:`\delta_h` and :math:`\theta_h` are arbitrary as
-household capital does not enter the equation for consumption services
+household capital does not enter the equation for consumption services.
 
-We set them to values that will become useful in Example 3)
+We set them to values that will become useful in Example 3).
 
 It is worth noting that this choice of parameter values ensures that
-:math:`\beta(\gamma_1 + \delta_k) = 1`
+:math:`\beta(\gamma_1 + \delta_k) = 1`.
 
 For simulations of this economy, we choose an initial condition of:
 
@@ -101,10 +101,10 @@ For simulations of this economy, we choose an initial condition of:
     Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
     Pref1 = (β, l_λ, π_h, δ_h, θ_h)
 
-These parameter values are used to define an economy of the DLE class
+These parameter values are used to define an economy of the DLE class.
 
 We can then simulate the economy for a chosen length of time, from our
-initial state vector :math:`x_0`
+initial state vector :math:`x_0`.
 
 The economy stores the simulated values for each variable. Below we plot
 consumption and investment:
@@ -121,10 +121,10 @@ consumption and investment:
     plt.show()
 
 The DLE class can be used to create impulse response functions for each
-of the endogenous variables: :math:`\{c_t,s_t,h_t,i_t,k_t,g_t\}`
+of the endogenous variables: :math:`\{c_t,s_t,h_t,i_t,k_t,g_t\}`.
 
 If no selector vector for the shock is specified, the default choice is
-to give IRFs to the first shock in :math:`w_{t+1}`
+to give IRFs to the first shock in :math:`w_{t+1}`.
 
 Below we plot the impulse response functions of investment and
 consumption to an endowment innovation (the first shock) in the Hall
@@ -141,17 +141,17 @@ model:
 
 It can be seen that the endowment shock has permanent effects on the
 level of both consumption and investment, consistent with the endogenous
-unit eigenvalue in this economy
+unit eigenvalue in this economy.
 
 Investment is much more responsive to the endowment shock at shorter time
-horizons
+horizons.
 
 Example 2: Higher Adjustment Costs
 ===================================
 
 We generate our next economy by making only one change to the parameters
 of Example 1: we raise the parameter associated with the cost of
-adjusting capital,\ :math:`\phi_1`, from 0.00001 to 0.2
+adjusting capital,\ :math:`\phi_1`, from 0.00001 to 0.2.
 
 This will lower the endogenous eigenvalue that is unity in Example 1 to
 a value slightly below 1
@@ -190,31 +190,31 @@ a value slightly below 1
     print(Econ2.css, Econ2.iss, Econ2.kss)
 
 The first graph shows that there seems to be a downward trend in both
-consumption and investment
+consumption and investment.
 
 his is a consequence of the decrease in the largest endogenous
 eigenvalue from unity in the earlier economy, caused by the higher
-adjustment cost
+adjustment cost.
 
 The present economy has a nonstochastic steady state value of 5 for
-consumption and 0 for both capital and investment
+consumption and 0 for both capital and investment.
 
 Because the largest endogenous eigenvalue is still close to 1, the
-economy heads only slowly towards these mean values
+economy heads only slowly towards these mean values.
 
 The impulse response functions now show that an endowment shock does not
 have a permanent effect on the levels of either consumption or
-investment
+investment.
 
 Example 3: Durable Consumption Goods
 =====================================
 
 We generate our third economy by raising :math:`\phi_1` further, to 1.0.
 We also raise the production function parameter from 0.1 to 0.15 (which
-raises the non-stochastic steady state value of capital above zero)
+raises the non-stochastic steady state value of capital above zero).
 
 We also change the specification of preferences to make the consumption
-good *durable*
+good *durable*.
 
 Specifically, we allow for a single durable household good obeying:
 
@@ -230,7 +230,7 @@ And preferences are ordered by:
 .. math::  - \frac{1}{2} \mathbb{E} \sum_{t=0}^\infty \beta^t [(\lambda h_{t-1} - b_t)^2 + l_t^2]|J_0
 
 To implement this, we set :math:`\lambda=0.1` and :math:`\pi = 0` (we
-have already set :math:`\theta_h = 1` and :math:`\delta_h = 0.9`)
+have already set :math:`\theta_h = 1` and :math:`\delta_h = 0.9`).
 
 We start from an initial condition that makes consumption begin near
 around its non-stochastic steady state
@@ -261,7 +261,7 @@ around its non-stochastic steady state
     plt.show()
 
 In contrast to Hall's original model of Example 1, it is now investment
-that is much smoother than consumption
+that is much smoother than consumption.
 
 This illustrates how making consumption goods durable tends to undo the
 strong consumption smoothing result that Hall obtained
@@ -277,7 +277,7 @@ strong consumption smoothing result that Hall obtained
 
 The impulse response functions confirm that consumption is now much more
 responsive to an endowment shock (and investment less so) than in
-Example 1
+Example 1.
 
 As in Example 2, the endowment shock has permanent effects on
-neither variable
+neither variable.

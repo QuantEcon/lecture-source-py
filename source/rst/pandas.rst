@@ -14,10 +14,10 @@
 Overview
 ============
 
-`Pandas <http://pandas.pydata.org/>`_ is a package of fast, efficient data analysis tools for Python
+`Pandas <http://pandas.pydata.org/>`_ is a package of fast, efficient data analysis tools for Python.
 
 Its popularity has surged in recent years, coincident with the rise
-of fields such as data science and machine learning
+of fields such as data science and machine learning.
 
 Here's a popularity comparison over time against STATA and SAS, courtesy of Stack Overflow Trends
 
@@ -41,10 +41,10 @@ Just as `NumPy <http://www.numpy.org/>`_ provides the basic array data type plus
     * dealing with missing values, etc., etc.
 
 More sophisticated statistical functionality is left to other packages, such
-as `statsmodels <http://www.statsmodels.org/>`__ and `scikit-learn <http://scikit-learn.org/>`__, which are built on top of pandas
+as `statsmodels <http://www.statsmodels.org/>`__ and `scikit-learn <http://scikit-learn.org/>`__, which are built on top of pandas.
 
 
-This lecture will provide a basic introduction to pandas
+This lecture will provide a basic introduction to pandas.
 
 Throughout the lecture, we will assume that the following imports have taken
 place
@@ -62,13 +62,13 @@ Series
 .. index::
     single: Pandas; Series
 
-Two important data types defined by pandas are  ``Series`` and ``DataFrame``
+Two important data types defined by pandas are  ``Series`` and ``DataFrame``.
 
 
 
-You can think of a ``Series`` as a "column" of data, such as a collection of observations on a single variable
+You can think of a ``Series`` as a "column" of data, such as a collection of observations on a single variable.
 
-A ``DataFrame`` is an object for storing related columns of data
+A ``DataFrame`` is an object for storing related columns of data.
 
 Let's start with `Series`
 
@@ -79,7 +79,7 @@ Let's start with `Series`
 
 
 Here you can imagine the indices ``0, 1, 2, 3`` as indexing four listed
-companies, and the values being daily returns on their shares
+companies, and the values being daily returns on their shares.
 
 Pandas ``Series`` are built on top of NumPy arrays and support many similar
 operations
@@ -92,7 +92,7 @@ operations
 
     np.abs(s)
 
-But ``Series`` provide more than NumPy arrays
+But ``Series`` provide more than NumPy arrays.
 
 Not only do they have some additional (statistically oriented) methods
 
@@ -109,7 +109,7 @@ But their indices are more flexible
 
 Viewed in this way, ``Series`` are like fast, efficient Python dictionaries
 (with the restriction that the items in the dictionary all have the same
-type---in this case, floats)
+type---in this case, floats).
 
 In fact, you can use much of the same syntax as Python dictionaries
 
@@ -133,21 +133,21 @@ DataFrames
 .. index::
     single: Pandas; DataFrames
 
-While a ``Series`` is a single column of data, a ``DataFrame`` is several columns, one for each variable
+While a ``Series`` is a single column of data, a ``DataFrame`` is several columns, one for each variable.
 
-In essence, a ``DataFrame`` in pandas is analogous to a (highly optimized) Excel spreadsheet
+In essence, a ``DataFrame`` in pandas is analogous to a (highly optimized) Excel spreadsheet.
 
-Thus, it is a powerful tool for representing and analyzing data that are naturally organized  into rows and columns, often with  descriptive indexes for individual rows and individual columns
+Thus, it is a powerful tool for representing and analyzing data that are naturally organized  into rows and columns, often with  descriptive indexes for individual rows and individual columns.
 
 .. only:: html
 
     Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv`` that can be downloaded
-    :download:`here <_static/lecture_specific/pandas/data/test_pwt.csv>`
+    :download:`here <_static/lecture_specific/pandas/data/test_pwt.csv>`.
 
 .. only:: latex
 
     Let's look at an example that reads data from the CSV file ``pandas/data/test_pwt.csv`` and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas/data/test_pwt.csv>`__
+    `here <https://lectures.quantecon.org/_downloads/pandas/data/test_pwt.csv>`__.
 
 Here's the content of ``test_pwt.csv``
 
@@ -201,7 +201,7 @@ To select rows and columns using a mixture of integers and labels, the ``loc`` a
 
     df.loc[df.index[2:5], ['country', 'tcgdp']]
 
-Let's imagine that we're only interested in population and total GDP (``tcgdp``)
+Let's imagine that we're only interested in population and total GDP (``tcgdp``).
 
 One way to strip the data frame ``df`` down to only these variables is to overwrite the dataframe using the selection method described above
 
@@ -210,7 +210,7 @@ One way to strip the data frame ``df`` down to only these variables is to overwr
     df = df[['country', 'POP', 'tcgdp']]
     df
 
-Here the index ``0, 1,..., 7`` is redundant because we can use the country names as an index
+Here the index ``0, 1,..., 7`` is redundant because we can use the country names as an index.
 
 To do this, we set the index to be the ``country`` variable in the dataframe
 
@@ -240,7 +240,7 @@ Next, we're going to add a column showing real GDP per capita, multiplying by 1,
     df['GDP percap'] = df['total GDP'] * 1e6 / df['population']
     df
 
-One of the nice things about pandas ``DataFrame`` and ``Series`` objects is that they have methods for plotting and visualization that work through Matplotlib
+One of the nice things about pandas ``DataFrame`` and ``Series`` objects is that they have methods for plotting and visualization that work through Matplotlib.
 
 For example, we can easily generate a bar plot of GDP per capita
 
@@ -274,11 +274,11 @@ On-Line Data Sources
 .. index::
     single: Data Sources
 
-Python makes it straightforward to query online databases programmatically
+Python makes it straightforward to query online databases programmatically.
 
-An important database for economists is `FRED <https://research.stlouisfed.org/fred2/>`_ --- a vast collection of time series data maintained by the St. Louis Fed
+An important database for economists is `FRED <https://research.stlouisfed.org/fred2/>`_ --- a vast collection of time series data maintained by the St. Louis Fed.
 
-For example, suppose that we are interested in the `unemployment rate <https://research.stlouisfed.org/fred2/series/UNRATE>`_
+For example, suppose that we are interested in the `unemployment rate <https://research.stlouisfed.org/fred2/series/UNRATE>`_.
 
 Via FRED, the entire series for the US civilian unemployment rate can be downloaded directly by entering
 this URL into your browser (note that this requires an internet connection)
@@ -287,15 +287,15 @@ this URL into your browser (note that this requires an internet connection)
 
     https://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv
 
-(Equivalently, click here: https://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv)
+(Equivalently, click here: https://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv).
 
-This request returns a CSV file, which will be handled by your default application for this class of files
+This request returns a CSV file, which will be handled by your default application for this class of files.
 
-Alternatively, we can access the CSV file from within a Python program
+Alternatively, we can access the CSV file from within a Python program.
 
-This can be done with a variety of methods
+This can be done with a variety of methods.
 
-We start with a relatively low-level method and then return to pandas
+We start with a relatively low-level method and then return to pandas.
 
 Accessing Data with :index:`requests`
 -------------------------------------------
@@ -303,7 +303,7 @@ Accessing Data with :index:`requests`
 .. index::
     single: Python; requests
 
-One option is to use `requests <http://docs.python-requests.org/en/master/>`_, a standard Python library for requesting data over the Internet
+One option is to use `requests <http://docs.python-requests.org/en/master/>`_, a standard Python library for requesting data over the Internet.
 
 To begin, try the following code on your computer
 
@@ -313,7 +313,7 @@ To begin, try the following code on your computer
 
     r = requests.get('http://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv')
 
-If there's no error message, then the call has succeeded
+If there's no error message, then the call has succeeded.
 
 If you do get an error, then there are two likely causes
 
@@ -343,9 +343,9 @@ Assuming that all is working, you can now proceed to use the ``source`` object r
 
     source[2]
 
-We could now write some additional code to parse this text and store it as an array
+We could now write some additional code to parse this text and store it as an array.
 
-But this is unnecessary --- pandas' ``read_csv`` function can handle the task for us
+But this is unnecessary --- pandas' ``read_csv`` function can handle the task for us.
 
 We use ``parse_dates=True`` so that pandas recognizes our dates column, allowing for simple date filtering
 
@@ -383,14 +383,14 @@ Accessing World Bank Data
     single: Pandas; Accessing Data
 
 Let's look at one more example of downloading and manipulating data --- this
-time from the World Bank
+time from the World Bank.
 
-The World Bank `collects and organizes data <http://data.worldbank.org/indicator>`_ on a huge range of indicators
+The World Bank `collects and organizes data <http://data.worldbank.org/indicator>`_ on a huge range of indicators.
 
-For example, `here's <http://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS/countries>`__ some data on government debt as a ratio to GDP
+For example, `here's <http://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS/countries>`__ some data on government debt as a ratio to GDP.
 
 If you click on "DOWNLOAD DATA" you will be given the option to download the
-data as an Excel file
+data as an Excel file.
 
 The next program does this for you, reads an Excel file into a pandas
 DataFrame, and plots time series for the US and Australia
@@ -400,12 +400,12 @@ DataFrame, and plots time series for the US and Australia
 .. only:: html
 
     (The file is ``pandas/wb_download.py``, and can be downloaded
-    :download:`here <_static/lecture_specific/pandas/wb_download.py>`
+    :download:`here <_static/lecture_specific/pandas/wb_download.py>`).
 
 .. only:: latex
 
     (The file is ``pandas/wb_download.py``, and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas/wb_download.py>`__
+    `here <https://lectures.quantecon.org/_downloads/pandas/wb_download.py>`__).
 
 Exercises
 =============
@@ -437,12 +437,12 @@ Write a program to calculate the percentage price change over 2013 for the follo
 .. only:: html
 
     A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    :download:`here <_static/lecture_specific/pandas/data/ticker_data.csv>`
+    :download:`here <_static/lecture_specific/pandas/data/ticker_data.csv>`.
 
 .. only:: latex
 
     A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas/data/ticker_data.csv>`__
+    `here <https://lectures.quantecon.org/_downloads/pandas/data/ticker_data.csv>`__.
 
 Plot the result as a bar graph like follows
 

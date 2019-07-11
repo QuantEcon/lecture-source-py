@@ -17,17 +17,17 @@ Overview
 =========
 
 This lecture describes a model that Tjalling Koopmans :cite:`Koopmans`
-and David Cass :cite:`Cass` used to analyze optimal growth
+and David Cass :cite:`Cass` used to analyze optimal growth.
 
 The model can be viewed as an extension of the model of Robert Solow
 described in `an earlier lecture <https://lectures.quantecon.org/py/python_oop.html>`__
-but adapted to make the savings rate the outcome of an optimal choice
+but adapted to make the savings rate the outcome of an optimal choice.
 
-(Solow assumed a constant saving rate determined outside the model)
+(Solow assumed a constant saving rate determined outside the model).
 
 We describe two versions of the model to illustrate what is, in fact, a
 more general connection between a **planned economy** and an economy
-organized as a **competitive equilibrium**
+organized as a **competitive equilibrium**.
 
 The lecture uses important ideas including
 
@@ -80,34 +80,34 @@ Let's start with some imports
 The Growth Model
 ==================
 
-Time is discrete and takes values :math:`t = 0, 1 , \ldots, T`
+Time is discrete and takes values :math:`t = 0, 1 , \ldots, T`.
 
 (We leave open the possibility that :math:`T = + \infty`, but that
 will require special care in interpreting and using a **terminal
 condition** on :math:`K_t` at :math:`t = T+1` to be described
-below)
+below).
 
-A single good can either be consumed or invested in physical capital
+A single good can either be consumed or invested in physical capital.
 
 The consumption good is not durable and depreciates completely if not
-consumed immediately
+consumed immediately.
 
 The capital good is durable but depreciates each period at rate
-:math:`\delta \in (0,1)`
+:math:`\delta \in (0,1)`.
 
-We let :math:`C_t` be a nondurable consumption good at time t
+We let :math:`C_t` be a nondurable consumption good at time t.
 
-Let :math:`K_t` be the stock of physical capital at time t
+Let :math:`K_t` be the stock of physical capital at time t.
 
 Let :math:`\vec{C}` = :math:`\{C_0,\dots, C_T\}` and
-:math:`\vec{K}` = :math:`\{K_1,\dots,K_{T+1}\}`
+:math:`\vec{K}` = :math:`\{K_1,\dots,K_{T+1}\}`.
 
 A representative household is endowed with one unit of labor at each
-:math:`t` and likes the consumption good at each :math:`t`
+:math:`t` and likes the consumption good at each :math:`t`.
 
 The representative household inelastically supplies a single unit of
 labor :math:`N_t` at each :math:`t`, so that
-:math:`N_t =1 \text{ for all } t \in [0,T]`
+:math:`N_t =1 \text{ for all } t \in [0,T]`.
 
 The representative household has preferences over consumption bundles
 ordered by the utility functional:
@@ -118,7 +118,7 @@ ordered by the utility functional:
     U(\vec{C}) = \sum_{t=0}^{T} \beta^t \frac{C_t^{1-\gamma}}{1-\gamma}
 
 where :math:`\beta \in (0,1)` is a discount factor and :math:`\gamma >0`
-governs the curvature of the one-period utility function
+governs the curvature of the one-period utility function.
 
 Note that
 
@@ -127,15 +127,15 @@ Note that
 
     u(C_t) = \frac{C_t^{1-\gamma}}{1-\gamma}
 
-satisfies :math:`u'>0,u''<0`
+satisfies :math:`u'>0,u''<0`.
 
-:math:`u' > 0` asserts the consumer prefers more to less
+:math:`u' > 0` asserts the consumer prefers more to less.
 
 :math:`u''< 0` asserts that marginal utility declines with increases
-in :math:`C_t`
+in :math:`C_t`.
 
 We assume that :math:`K_0 > 0` is a given exogenous level of initial
-capital
+capital.
 
 There is an economy-wide production function
 
@@ -144,7 +144,7 @@ There is an economy-wide production function
 
   F(K_t,N_t) = A K_t^{\alpha}N_t^{1-\alpha}
 
-with :math:`0 < \alpha<1`, :math:`A > 0`
+with :math:`0 < \alpha<1`, :math:`A > 0`.
 
 A feasible allocation :math:`\vec C, \vec K` satisfies
 
@@ -153,16 +153,16 @@ A feasible allocation :math:`\vec C, \vec K` satisfies
 
   C_t + K_{t+1} \leq F(K_t,N_t) + (1-\delta) K_t, \quad \text{for all } t \in [0, T]
 
-where :math:`\delta \in (0,1)` is a depreciation rate of capital
+where :math:`\delta \in (0,1)` is a depreciation rate of capital.
 
 Planning Problem
 ------------------
 
 A planner chooses an allocation :math:`\{\vec{C},\vec{K}\}` to
-maximize :eq:`utility-functional` subject to :eq:`allocation`
+maximize :eq:`utility-functional` subject to :eq:`allocation`.
 
 Let :math:`\vec{\mu}=\{\mu_0,\dots,\mu_T\}` be a sequence of
-nonnegative **Lagrange multipliers**
+nonnegative **Lagrange multipliers**.
 
 To find an optimal allocation, we form a Lagrangian
 
@@ -182,7 +182,7 @@ and then solve the following min-max problem:
 Useful Properties of Linearly Homogeneous Production Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following technicalities will help us
+The following technicalities will help us.
 
 Notice that
 
@@ -196,7 +196,7 @@ Define the **output per-capita production function**
 
   f\left(\frac{K_t}{N_t}\right) = A\left(\frac{K_t}{N_t}\right)^\alpha
 
-whose argument is **capital per-capita**
+whose argument is **capital per-capita**.
 
 Evidently,
 
@@ -204,7 +204,7 @@ Evidently,
 
   F(K_t,N_t)=N_t f \left( \frac{K_t}{N_t} \right)
 
-Now for some useful calculations
+Now for some useful calculations.
 
 First
 
@@ -277,14 +277,14 @@ minimization with respect to :math:`\vec \mu`):
 
 Note that in :eq:`constraint2` we plugged in for
 :math:`\frac{\partial F}{\partial K}` using our formula :eq:`useful-calc1`
-above
+above.
 
 Because :math:`N_t = 1` for :math:`t = 1, \ldots, T`, need not
-differentiate with respect to those arguments
+differentiate with respect to those arguments.
 
 Note that :eq:`constraint3` comes from the occurrence
 of :math:`K_t` in both the period :math:`t` and period :math:`t-1`
-feasibility constraints
+feasibility constraints.
 
 :eq:`constraint4` comes from differentiating with respect
 to :math:`K_{T+1}` in the last period and applying the following
@@ -295,7 +295,7 @@ condition called a **Karush-Kuhn-Tucker condition** (KKT):
 
     \mu_T K_{T+1}=0
 
-See `Karush-Kuhn-Tucker conditions <https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions>`__
+See `Karush-Kuhn-Tucker conditions <https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions>`__.
 
 Combining :eq:`constraint1` and :eq:`constraint2` gives
 
@@ -326,10 +326,10 @@ or using our utility function :eq:`utility-oneperiod`
   (1-\delta)]\right)^{1/\gamma} \end{aligned}
 
 The above first-order condition for consumption is called an **Euler
-equation**
+equation**.
 
 It tells us how consumption in adjacent periods are optimally related
-to each other and to capital next period
+to each other and to capital next period.
 
 We now use some of the equations above to calculate some
 variables and functions that we'll soon use to solve the planning
@@ -387,7 +387,7 @@ Shooting Method
 
 We shall use a **shooting method** to compute an optimal allocation
 :math:`\vec C, \vec K` and an associated Lagrange multiplier sequence
-:math:`\vec \mu`
+:math:`\vec \mu`.
 
 The first-order necessary conditions for the planning problem,
 namely, equations :eq:`constraint1`, :eq:`constraint2`, and
@@ -401,7 +401,7 @@ two boundary conditions:
    the KKT condition :eq:`kkt`
 
 We have no initial condition for the Lagrange multiplier
-:math:`\mu_0`
+:math:`\mu_0`.
 
 If we did, solving for the allocation would be simple:
 
@@ -414,13 +414,13 @@ If we did, solving for the allocation would be simple:
    :math:`\vec C, \vec K, \vec \mu`
 
 But we don't have an initial condition for :math:`\mu_0`, so this
-won't work
+won't work.
 
 But a simple modification called the **shooting algorithm** will
-work
+work.
 
 The **shooting algorithm** is an instance of a **guess and verify**
-algorithm
+algorithm.
 
 It proceeds as follows:
 
@@ -438,11 +438,11 @@ It proceeds as follows:
 -  If :math:`K_{T+1} < 0`, raise :math:`\mu_0` and try again
 
 The following Python code implements the shooting algorithm for the
-planning problem
+planning problem.
 
 We make a slight modification starting with a guess of
 :math:`c_0` but since :math:`c_0` is a function of :math:`\mu_0`
-there is no difference to the procedure above
+there is no difference to the procedure above.
 
 We'll apply it with an initial guess that will turn out not to be
 perfect, as we'll soon see
@@ -512,36 +512,36 @@ perfect, as we'll soon see
     plt.show()
 
 Evidently, our initial guess for :math:`\mu_0` is too high and makes
-initial consumption is too low
+initial consumption is too low.
 
 We know this because we miss our :math:`K_{T+1}=0` target on the high
-side
+side.
 
 Now we automate things with a search-for-a-good :math:`\mu_0`
-algorithm that stops when we hit the target :math:`K_{t+1} = 0`
+algorithm that stops when we hit the target :math:`K_{t+1} = 0`.
 
-The search procedure is to use a **bisection method**
+The search procedure is to use a **bisection method**.
 
-Here is how we apply the bisection method
+Here is how we apply the bisection method.
 
 We take an initial guess for :math:`C_0` (we can eliminate
 :math:`\mu_0` because :math:`C_0` is an exact function of
-:math:`\mu_0`)
+:math:`\mu_0`).
 
 We know that the lowest :math:`C_0` can ever be is :math:`0` and the
-largest it can be is initial output :math:`f(K_0)`
+largest it can be is initial output :math:`f(K_0)`.
 
-We take a :math:`C_0` guess and shoot forward to :math:`T+1`
+We take a :math:`C_0` guess and shoot forward to :math:`T+1`.
 
 If the :math:`K_{T+1}>0`, let it be our new **lower** bound
-on :math:`C_0`
+on :math:`C_0`.
 
-If :math:`K_{T+1}<0`, let it be our new **upper** bound
+If :math:`K_{T+1}<0`, let it be our new **upper** bound.
 
 Make a new guess for :math:`C_0` exactly halfway between our new
-upper and lower bounds
+upper and lower bounds.
 
-Shoot forward again and iterate the procedure
+Shoot forward again and iterate the procedure.
 
 When :math:`K_{T+1}` gets close enough to 0 (within some error
 tolerance bounds), stop and declare victory
@@ -629,14 +629,14 @@ Now we can plot
     plot_paths(paths)
 
 
-Setting Intial Capital to the Steady State 
+Setting Intial Capital to the Steady State
 ----------------------------------------------------
 
 If :math:`T \rightarrow +\infty`, the optimal allocation converges to
-steady state values of :math:`C_t` and :math:`K_t`
+steady state values of :math:`C_t` and :math:`K_t`.
 
 It is instructive to compute these and then to set :math:`K_0` equal
-to its steady state value
+to its steady state value.
 
 In a steady state :math:`K_{t+1} = K_t=\bar{K}` for all very
 large :math:`t` the feasibility constraint :eq:`allocation` is
@@ -698,10 +698,10 @@ Now we plot
 
 Evidently, in this economy with a large value of
 :math:`T`, :math:`K_t` stays near its initial value at the until the
-end of time approaches closely
+end of time approaches closely.
 
 Evidently, the planner likes the steady state capital stock and wants
-to stay near there for a long time
+to stay near there for a long time.
 
 Let's see what happens when we push the initial
 :math:`K_0` below :math:`\bar K`
@@ -720,7 +720,7 @@ Let's see what happens when we push the initial
 
 Notice how the planner pushes capital toward the steady state, stays
 near there for a while, then pushes :math:`K_t` toward the terminal
-value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`
+value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`.
 
 The following graphs compare outcomes as we vary :math:`T`
 
@@ -757,26 +757,26 @@ its steady state value
         plot_paths(paths, ss=k_ss, axes=axes)
 
 The different colors in the above graphs are tied to outcomes with
-different horizons :math:`T`
+different horizons :math:`T`.
 
 Notice that as the horizon increases, the planner puts :math:`K_t`
-closer to the steady state value :math:`\bar K` for longer
+closer to the steady state value :math:`\bar K` for longer.
 
-This pattern reflects a **turnpike** property of the steady state
+This pattern reflects a **turnpike** property of the steady state.
 
 A rule of thumb for the planner is
 
 -  for whatever :math:`K_0` you start with, push :math:`K_t` toward
    the steady state and stay there for as long as you can
 
-In loose language: head for the turnpike and stay near it for as long as you can
+In loose language: head for the turnpike and stay near it for as long as you can.
 
 As we drive :math:`T` toward :math:`+\infty`, the planner
 keeps :math:`K_t` very close to its steady state for all dates after
-some transition toward the steady state
+some transition toward the steady state.
 
 The planner makes the saving rate :math:`\frac{f(K_t) - C_t}{f(K_t)}`
-vary over time
+vary over time.
 
 Let's calculate it
 
@@ -849,7 +849,7 @@ Let's calculate it
 The Limiting Economy
 --------------------------
 
-We now consider an economy in which :math:`T = +\infty`
+We now consider an economy in which :math:`T = +\infty`.
 
 The appropriate thing to do is to replace terminal condition
 :eq:`constraint4` with
@@ -858,21 +858,21 @@ The appropriate thing to do is to replace terminal condition
 
   \lim_{T \rightarrow +\infty} \beta^T u'(C_T) K_{T+1} = 0
 
-which is sometimes called a **transversality condition**
+which is sometimes called a **transversality condition**.
 
 This condition will be satisfied by a path that converges to an
-optimal steady state
+optimal steady state.
 
 We can approximate the optimal path from an arbitrary initial
 :math:`K_0` and shooting towards the optimal steady state
-:math:`K` at a large but finite :math:`T+1`
+:math:`K` at a large but finite :math:`T+1`.
 
 In the following code, we do this for a large :math:`T`; we shoot
 towards the **steady state** and plot consumption, capital and the
-savings rate
+savings rate.
 
 We know that in the steady state that the saving rate must be fixed
-and that :math:`\bar s= \frac{f(\bar K)-\bar C}{f(\bar K)}`
+and that :math:`\bar s= \frac{f(\bar K)-\bar C}{f(\bar K)}`.
 
 From :eq:`feasibility-constraint` the steady state saving rate equals
 
@@ -881,7 +881,7 @@ From :eq:`feasibility-constraint` the steady state saving rate equals
   \bar s =\frac{ \delta \bar{K}}{f(\bar K)}
 
 The steady state savings level :math:`\bar S = \bar s f(\bar K)` is
-the amount required to offset capital depreciation each period
+the amount required to offset capital depreciation each period.
 
 We first study optimal capital paths that start below the steady
 state
@@ -902,16 +902,16 @@ state
     paths = bisection_method(c, k, γ, δ, β, α, A, terminal=k_ss)
     plot_savings(paths, k_ss=k_ss, s_ss=s_ss, c_ss=c_ss)
 
-Since :math:`K_0<\bar K`, :math:`f'(K_0)>\rho +\delta`
+Since :math:`K_0<\bar K`, :math:`f'(K_0)>\rho +\delta`.
 
 The planner chooses a positive saving rate above the steady state
 level offsetting depreciation that enables us to increase our capital
-stock
+stock.
 
-Note, :math:`f''(K)<0`, so as :math:`K` rises, :math:`f'(K)` declines
+Note, :math:`f''(K)<0`, so as :math:`K` rises, :math:`f'(K)` declines.
 
 The planner slowly lowers the savings rate until reaching a steady
-state where :math:`f'(K)=\rho +\delta`
+state where :math:`f'(K)=\rho +\delta`.
 
 Exercise
 ---------
@@ -940,18 +940,18 @@ Competitive Equilibrium
 ========================
 
 Next, we study a decentralized version of an economy with the same
-technology and preference structure as our planned economy
+technology and preference structure as our planned economy.
 
-But now there is no planner
+But now there is no planner.
 
 Market prices adjust to reconcile distinct decisions that are made
-separately by a representative household and a representative firm
+separately by a representative household and a representative firm.
 
 The technology for producing goods and accumulating capital via
-physical investment remains as in our planned economy
+physical investment remains as in our planned economy.
 
 There is a representative consumer who has the same preferences over
-consumption plans as did the consumer in the planned economy
+consumption plans as did the consumer in the planned economy.
 
 Instead of being told what to consume and save by a planner, the
 household chooses for itself subject to a budget constraint
@@ -989,20 +989,20 @@ household chooses for itself subject to a budget constraint
 
 **Note:** We are free to think of there being a large number
 :math:`M` of identical representative consumers and :math:`M`
-identical representative firms
+identical representative firms.
 
 Firm Problem
 -------------
 
 At time :math:`t` the representative firm hires labor
-:math:`\tilde n_t` and capital :math:`\tilde k_t`
+:math:`\tilde n_t` and capital :math:`\tilde k_t`.
 
 The firm's profits at time :math:`t` are
 
 .. math:: F(\tilde k_t, \tilde n_t)-w_t \tilde n_t -\eta_t \tilde k_t
 
 where :math:`w_t` is a wage rate at :math:`t`
-and :math:`\eta_t` is the rental rate on capital at :math:`t`
+and :math:`\eta_t` is the rental rate on capital at :math:`t`.
 
 As in the planned economy model
 
@@ -1022,17 +1022,17 @@ and
 
     F_n(\tilde k_t, \tilde n_t) =w_t
 
-These conditions emerge from a no-arbitrage requirement
+These conditions emerge from a no-arbitrage requirement.
 
 To describe this line of reasoning, we begin by applying a theorem of
-Euler about linearly homogenous functions
+Euler about linearly homogenous functions.
 
 The theorem applies to the Cobb-Douglas production function because
 it assumed displays constant returns to scale:
 
 .. math:: \alpha F(\tilde k_t, \tilde n_t) =  F(\alpha  \tilde k_t, \alpha \tilde n_t)
 
-for :math:`\alpha \in (0,1)`
+for :math:`\alpha \in (0,1)`.
 
 Taking the partial derivative
 :math:`\frac{\partial F }{\partial \alpha}` on both sides of the
@@ -1061,34 +1061,34 @@ Because :math:`F` is homogeneous of degree :math:`1`, it follows
 that :math:`\frac{\partial F}{\partial \tilde k_t}` and
 :math:`\frac{\partial F}{\partial \tilde n_t}` are homogeneous of
 degree :math:`0` and therefore fixed with respect to
-:math:`\tilde k_t` and :math:`\tilde n_t`
+:math:`\tilde k_t` and :math:`\tilde n_t`.
 
 If :math:`\frac{\partial F}{\partial \tilde k_t}> \eta_t`, then the
 firm makes positive profits on each additional unit of
 :math:`\tilde k_t`, so it will want to make :math:`\tilde k_t`
-arbitrarily large
+arbitrarily large.
 
 But setting :math:`\tilde k_t = + \infty` is not physically feasible,
 so presumably **equilibrium** prices will assume values that present
-the firm with no such arbitrage opportunity
+the firm with no such arbitrage opportunity.
 
 A related argument applies if
-:math:`\frac{\partial F}{\partial \tilde n_t}> w_t`
+:math:`\frac{\partial F}{\partial \tilde n_t}> w_t`.
 
 If :math:`\frac{\partial \tilde k_t}{\partial \tilde k_t}< \eta_t`,
-the firm will set :math:`\tilde k_t` to zero
+the firm will set :math:`\tilde k_t` to zero.
 
 Again, **equilibrium** prices won't incentive the firm to do that.
 
 And so on...
 
 It is convenient to define
-:math:`\vec w_t =\{w_0, \dots,w_T\}`\ and :math:`\vec \eta_t = \{\eta_0, \dots, \eta_T\}`
+:math:`\vec w_t =\{w_0, \dots,w_T\}`\ and :math:`\vec \eta_t = \{\eta_0, \dots, \eta_T\}`.
 
 Household Problem
 ------------------
 
-A representative household lives at :math:`t=0,1,\dots, T`
+A representative household lives at :math:`t=0,1,\dots, T`.
 
 At :math:`t`, the household rents :math:`1` unit of labor
 and :math:`k_t` units of capital to a firm and receives income
@@ -1102,28 +1102,28 @@ purchases
 
 Here :math:`\left(k_{t+1} -(1-\delta)k_t\right)` is the household's
 net investment in physical capital and :math:`\delta \in (0,1)` is
-again a depreciation rate of capital
+again a depreciation rate of capital.
 
 In period :math:`t` is free to purchase more goods to be consumed and
 invested in physical capital than its income from supplying capital
 and labor to the firm, provided that in some other periods its income
-exceeds its purchases
+exceeds its purchases.
 
 A household's net excess demand for time :math:`t` consumption goods
 is the gap
 
 .. math:: e_t \equiv \left(c_t + (k_{t+1} -(1-\delta)k_t)\right)-(w_t 1 + \eta_t k_t)
 
-Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_{T+1}\}`
+Let :math:`\vec c = \{c_0,\dots,c_T\}` and let :math:`\vec k = \{k_1,\dots,k_{T+1}\}`.
 
-:math:`k_0` is given to the household
+:math:`k_0` is given to the household.
 
 Market Structure for Intertemporal Trades
 -------------------------------------------
 
 There is a **single** grand competitive market in which a
 representative household can trade date :math:`0` goods for goods at
-all other dates :math:`t=1, 2, \ldots, T`
+all other dates :math:`t=1, 2, \ldots, T`.
 
 What matters are not **bilateral** trades of the good at one date
 :math:`t` for the good at another date :math:`\tilde t \neq t`.
@@ -1133,17 +1133,17 @@ trades in which bundles of goods at some dates can be traded for
 bundles of goods at some other dates.
 
 There exist **complete markets** in such bundles with associated
-market prices
+market prices.
 
 Market Prices
 --------------
 
 Let :math:`q^0_t` be the price of a good at date :math:`t` relative
-to a good at date :math:`0`
+to a good at date :math:`0`.
 
 :math:`\{q^0_t\}_{t=0}^T` is a vector of **Hicks-Arrow prices**,
 named after the 1972 joint economics Nobel prize winners who used
-such prices in some of their important work
+such prices in some of their important work.
 
 Evidently,
 
@@ -1151,15 +1151,15 @@ Evidently,
 
 Because :math:`q^0_t` is a **relative price**, the units in terms of
 which prices are quoted are arbitrary -- we can normalize them
-without substantial consequence
+without substantial consequence.
 
 If we use the price vector :math:`\{q^0_t\}_{t=0}^T` to evaluate a
 stream of excess demands :math:`\{e_t\}_{t=0}^T` we compute the
 **present value** of :math:`\{e_t\}_{t=0}^T` to be
-:math:`\sum_{t=0}^T q^0_t e_t`
+:math:`\sum_{t=0}^T q^0_t e_t`.
 
 That the market is **multitemporal** is reflected in the situation
-that the household faces a **single** budget constraint
+that the household faces a **single** budget constraint.
 
 It states that the present value of the household's net excess
 demands must be zero:
@@ -1212,10 +1212,10 @@ Guess for Price System
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 We have computed an allocation :math:`\{\vec C, \vec K, \vec 1\}`
-that solves the planning problem
+that solves the planning problem.
 
 We use that allocation to construct our guess for the equilibrium
-price system
+price system.
 
 In particular, we guess that for :math:`t=0,\dots,T`:
 
@@ -1246,7 +1246,7 @@ and let the allocation chosen by the firm be
 
 .. math:: \tilde k^*_t(\vec q, \vec  w, \vec \eta), \quad t \geq 0
 
-and so on
+and so on.
 
 If our guess for the equilibrium price system is correct, then it
 must occur that
@@ -1279,11 +1279,11 @@ Verification Procedure
 -----------------------
 
 Our approach is to stare at first-order necessary conditions for the
-optimization problems of the household and the firm
+optimization problems of the household and the firm.
 
 At the price system we have guessed, both sets of first-order
 conditions are satisfied at the allocation that solves the planning
-problem
+problem.
 
 Household's Lagrangian
 ------------------------
@@ -1364,7 +1364,7 @@ Since :math:`\beta^t` and :math:`\mu_t` are always positive here,
 
 .. math:: C_t+K_{t+1}-(1-\delta)K_t -F(K_t,1)=0 \quad  \text{ for all }t \text{ in } 0,\dots,T
 
-\ which is :eq:`constraint3`
+\ which is :eq:`constraint3`.
 
 Combining :eq:`cond4` and :eq:`eq-price`, we get:
 
@@ -1375,11 +1375,11 @@ positive here, we get:
 
 .. math:: -\mu_{T+1} \leq 0
 
-\ which is the :eq:`constraint4` of our planning problem
+\ which is the :eq:`constraint4` of our planning problem.
 
 **Thus, at our guess of the equilibrium price system, the allocation
 that solves the planning problem also solves the problem faced by a
-representative household living in a competitive equilibrium**
+representative household living in a competitive equilibrium**.
 
 We now consider the problem faced by a firm in a competitive
 equilibrium:
@@ -1389,29 +1389,29 @@ get
 
 .. math:: \frac{\partial F(K_t, 1)}{\partial K_t} = f'(K_t) = \eta_t
 
-\ which is :eq:`eq-price3`
+\ which is :eq:`eq-price3`.
 
 If we now plug :eq:`eq-pl` into :eq:`Zero-profits` for all t, we
 get:
 
 .. math:: \frac{\partial F(\tilde K_t, 1)}{\partial \tilde L} = f(K_t)-f'(K_t)K_t=w_t
 
-\ which is exactly :eq:`eq-pr4`
+\ which is exactly :eq:`eq-pr4`.
 
 **Thus, at our guess of the equilibrium price system, the allocation
 that solves the planning problem also solves the problem faced by a firm
-within a competitive equilibrium**
+within a competitive equilibrium**.
 
 By :eq:`ge1` and :eq:`ge2` this allocation is
-identical to the one that solves the consumer's problem
+identical to the one that solves the consumer's problem.
 
 **Note:** Because budget sets are affected only by relative prices,
 :math:`\{q_0^t\}` is determined only up to multiplication by a
-positive constant
+positive constant.
 
 **Normalization:** We are free to choose a :math:`\{q_0^t\}` that
 makes :math:`\lambda=1`, thereby making :math:`q_0^t` be measured in
-units of the marginal utility of time :math:`0` goods
+units of the marginal utility of time :math:`0` goods.
 
 
 We will also plot q, w and :math:`\eta` below to show the prices that
@@ -1517,21 +1517,21 @@ We plot the results for :math:`T=150`
     plt.show()
 
 Adjusting :math:`\gamma` means adjusting how much individuals prefer
-to smooth consumption
+to smooth consumption.
 
 Higher :math:`\gamma` means individuals prefer to smooth more
-resulting in slower adjustments to the steady state allocations
+resulting in slower adjustments to the steady state allocations.
 
-Vice-versa for lower :math:`\gamma`
+Vice-versa for lower :math:`\gamma`.
 
 
 Yield Curves and Hicks-Arrow Prices Again
 ------------------------------------------
 
 Now, we compute Hicks-Arrow prices again, but also calculate the
-implied yields to maturity
+implied yields to maturity.
 
-This will let us plot a **yield curve**
+This will let us plot a **yield curve**.
 
 The key formulas are:
 
@@ -1549,7 +1549,7 @@ A generic Hicks-Arrow price for any base-year :math:`t_0\leq t`
   \frac{c_t^{-\gamma}}{c_{t_0}^{-\gamma}}
 
 We redefine our function for :math:`q` to allow arbitrary base
-years, and define a new function for :math:`r`, then plot both
+years, and define a new function for :math:`r`, then plot both.
 
 First, we plot when :math:`t_0=0` as before, for different values of
 :math:`T`, with :math:`K_0` below the steady state
@@ -1625,4 +1625,4 @@ Now we plot when :math:`t_0=20`
     plt.show()
 
 We shall have more to say about the term structure of interest rates
-in a later lecture on the topic
+in a later lecture on the topic.

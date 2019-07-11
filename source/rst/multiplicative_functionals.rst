@@ -17,7 +17,7 @@ Multiplicative Functionals
 
 **Co-authors: Chase Coleman and Balint Szoke**
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -27,7 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 =========
 
-This lecture is a sequel to the :doc:`lecture on additive functionals <additive_functionals>`
+This lecture is a sequel to the :doc:`lecture on additive functionals <additive_functionals>`.
 
 That lecture
 
@@ -62,7 +62,7 @@ described by
 where :math:`A` is a stable matrix, :math:`\{z_{t+1}\}_{t=0}^\infty` is
 an IID sequence of :math:`{\cal N}(0,I)` random vectors, :math:`F` is
 nonsingular, and :math:`x_0` and :math:`y_0` are vectors of known
-numbers
+numbers.
 
 Evidently,
 
@@ -73,13 +73,13 @@ Evidently,
 
 
 so that :math:`x_{t+1}` can be constructed from observations on
-:math:`\{y_{s}\}_{s=0}^{t+1}` and :math:`x_0`
+:math:`\{y_{s}\}_{s=0}^{t+1}` and :math:`x_0`.
 
-The distribution of :math:`y_{t+1} - y_t` conditional on :math:`x_t` is normal with mean :math:`Dx_t` and nonsingular covariance matrix :math:`FF'`
+The distribution of :math:`y_{t+1} - y_t` conditional on :math:`x_t` is normal with mean :math:`Dx_t` and nonsingular covariance matrix :math:`FF'`.
 
-Let :math:`\theta` denote the vector of free parameters of the model
+Let :math:`\theta` denote the vector of free parameters of the model.
 
-These parameters pin down the elements of :math:`A, B, D, F`
+These parameters pin down the elements of :math:`A, B, D, F`.
 
 The **log-likelihood function** of :math:`\{y_s\}_{s=1}^t` is
 
@@ -94,25 +94,25 @@ The **log-likelihood function** of :math:`\{y_s\}_{s=1}^t` is
     \end{aligned}
 
 
-Let's consider the case of a scalar process in which :math:`A, B, D, F` are scalars and :math:`z_{t+1}` is a scalar stochastic process
+Let's consider the case of a scalar process in which :math:`A, B, D, F` are scalars and :math:`z_{t+1}` is a scalar stochastic process.
 
-We let :math:`\theta_o` denote the "true" values of :math:`\theta`, meaning the values that generate the data
+We let :math:`\theta_o` denote the "true" values of :math:`\theta`, meaning the values that generate the data.
 
-For the purposes of this exercise,  set :math:`\theta_o = (A, B, D, F) = (0.8, 1, 0.5, 0.2)`
+For the purposes of this exercise,  set :math:`\theta_o = (A, B, D, F) = (0.8, 1, 0.5, 0.2)`.
 
-Set :math:`x_0 = y_0 = 0`
+Set :math:`x_0 = y_0 = 0`.
 
 
 Simulating Sample Paths
 ---------------------------
 
-Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`
+Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`.
 
-We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work
+We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work.
 
- .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py
+ .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py.
 
-The heavy lifting is done inside the `AMF_LSS_VAR` class
+The heavy lifting is done inside the `AMF_LSS_VAR` class.
 
 The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR`
 
@@ -164,11 +164,11 @@ The following code adds some simple functions that make it straightforward to ge
 
 
 Now that we have these functions in our tool kit, let's apply them to run some
-simulations
+simulations.
 
-In particular, let's use our program to generate :math:`I = 5000` sample paths of length :math:`T = 150`, labeled :math:`\{ x_{t}^i, y_{t}^i \}_{t=0}^\infty` for :math:`i = 1, ..., I`
+In particular, let's use our program to generate :math:`I = 5000` sample paths of length :math:`T = 150`, labeled :math:`\{ x_{t}^i, y_{t}^i \}_{t=0}^\infty` for :math:`i = 1, ..., I`.
 
-Then we compute averages of :math:`\frac{1}{I} \sum_i x_t^i` and :math:`\frac{1}{I} \sum_i y_t^i` across the sample paths and compare them with the population means of :math:`x_t` and :math:`y_t`
+Then we compute averages of :math:`\frac{1}{I} \sum_i x_t^i` and :math:`\frac{1}{I} \sum_i y_t^i` across the sample paths and compare them with the population means of :math:`x_t` and :math:`y_t`.
 
 Here goes
 
@@ -214,9 +214,9 @@ Here goes
 Simulating Log-likelihoods
 ---------------------------
 
-Our next aim is to write a program to simulate :math:`\{\log L_t \mid \theta_o\}_{t=1}^T`
+Our next aim is to write a program to simulate :math:`\{\log L_t \mid \theta_o\}_{t=1}^T`.
 
-We want as inputs to this program the *same* sample paths :math:`\{x_t^i, y_t^i\}_{t=0}^T` that we  have already computed
+We want as inputs to this program the *same* sample paths :math:`\{x_t^i, y_t^i\}_{t=0}^T` that we  have already computed.
 
 We now want to simulate :math:`I = 5000` paths of :math:`\{\log L_t^i  \mid \theta_o\}_{t=1}^T`
 
@@ -224,7 +224,7 @@ We now want to simulate :math:`I = 5000` paths of :math:`\{\log L_t^i  \mid \the
 
 -  We also compute :math:`\frac{1}{I} \sum_{i=1}^I \log L_T^i / T`
 
-Then we to compare these objects
+Then we to compare these objects.
 
 Below we plot the histogram of :math:`\log L_T^i / T` for realizations :math:`i = 1, \ldots, 5000`
 
@@ -261,13 +261,13 @@ Below we plot the histogram of :math:`\log L_T^i / T` for realizations :math:`i 
 
 
 
-Notice that the log-likelihood is almost always nonnegative, implying that :math:`L_t` is typically bigger than 1
+Notice that the log-likelihood is almost always nonnegative, implying that :math:`L_t` is typically bigger than 1.
 
-Recall that the likelihood function is a pdf (probability density function) and **not** a probability measure, so it can take values larger than 1
+Recall that the likelihood function is a pdf (probability density function) and **not** a probability measure, so it can take values larger than 1.
 
-In the current case, the conditional variance of :math:`\Delta y_{t+1}`, which equals  :math:`FF^T=0.04`, is so small that the maximum value of the pdf is 2 (see the figure below)
+In the current case, the conditional variance of :math:`\Delta y_{t+1}`, which equals  :math:`FF^T=0.04`, is so small that the maximum value of the pdf is 2 (see the figure below).
 
-This implies that approximately :math:`75\%` of the time (a bit more than one sigma deviation),  we should expect the **increment** of the log-likelihood to be nonnegative
+This implies that approximately :math:`75\%` of the time (a bit more than one sigma deviation),  we should expect the **increment** of the log-likelihood to be nonnegative.
 
 
 Let's see this in a simulation
@@ -309,13 +309,13 @@ Let's also plot the conditional pdf of :math:`\Delta y_{t+1}`
 An Alternative Parameter Vector
 -----------------------------------
 
-Now consider alternative parameter vector :math:`\theta_1 = [A, B, D, F] = [0.9, 1.0, 0.55, 0.25]`
+Now consider alternative parameter vector :math:`\theta_1 = [A, B, D, F] = [0.9, 1.0, 0.55, 0.25]`.
 
-We want to compute :math:`\{\log L_t \mid \theta_1\}_{t=1}^T`
+We want to compute :math:`\{\log L_t \mid \theta_1\}_{t=1}^T`.
 
-The :math:`x_t, y_t` inputs to this program should be exactly the **same** sample paths :math:`\{x_t^i, y_t^i\}_{t=0}^T` that we computed above
+The :math:`x_t, y_t` inputs to this program should be exactly the **same** sample paths :math:`\{x_t^i, y_t^i\}_{t=0}^T` that we computed above.
 
-This is because we want to generate data under the :math:`\theta_o` probability model but evaluate the likelihood under the :math:`\theta_1` model
+This is because we want to generate data under the :math:`\theta_o` probability model but evaluate the likelihood under the :math:`\theta_1` model.
 
 So our task is to use our program to simulate :math:`I = 5000` paths of :math:`\{\log L_t^i  \mid \theta_1\}_{t=1}^T`
 
@@ -323,15 +323,15 @@ So our task is to use our program to simulate :math:`I = 5000` paths of :math:`\
 
 -  Then compute :math:`\frac{1}{I}\sum_{i=1}^I \frac{1}{T} \log L_T^i`
 
-We want to compare these objects with each other and with the analogous objects that we computed above
+We want to compare these objects with each other and with the analogous objects that we computed above.
 
-Then we want to interpret outcomes
+Then we want to interpret outcomes.
 
-A function that we constructed can  handle these tasks
+A function that we constructed can  handle these tasks.
 
-The only innovation is that we must create an alternative model to feed in
+The only innovation is that we must create an alternative model to feed in.
 
-We will creatively call the new model ``amf2``
+We will creatively call the new model ``amf2``.
 
 We make three graphs
 
@@ -418,7 +418,7 @@ These histograms of  log-likelihood ratios illustrate  important features of **l
 
 * These mechanics underlie the statistical theory of **mistake probabilities** associated with model selection tests based on  likelihood ratio
 
-(In a subsequent lecture, we'll use some of the code prepared in this lecture to illustrate mistake probabilities)
+(In a subsequent lecture, we'll use some of the code prepared in this lecture to illustrate mistake probabilities).
 
 
 
@@ -429,7 +429,7 @@ These histograms of  log-likelihood ratios illustrate  important features of **l
 Benefits from Reduced Aggregate Fluctuations
 ===================================================
 
-Now let's turn to a new example of multiplicative functionals
+Now let's turn to a new example of multiplicative functionals.
 
 This example illustrates  ideas in the literature on
 
@@ -437,7 +437,7 @@ This example illustrates  ideas in the literature on
 
 *  **benefits of eliminating aggregate fluctuations** in representative agent macro models (e.g., :cite:`Tall2000`, :cite:`lucas2003macroeconomic`)
 
-Let :math:`c_t` be consumption at date :math:`t \geq 0`
+Let :math:`c_t` be consumption at date :math:`t \geq 0`.
 
 Suppose that :math:`\{\log c_t \}_{t=0}^\infty` is an additive functional described by
 
@@ -453,7 +453,7 @@ where
     x_{t+1} = A x_t + B z_{t+1}
 
 
-Here :math:`\{z_{t+1}\}_{t=0}^\infty` is an IID sequence of :math:`{\cal N}(0,I)` random vectors
+Here :math:`\{z_{t+1}\}_{t=0}^\infty` is an IID sequence of :math:`{\cal N}(0,I)` random vectors.
 
 A representative household ranks consumption processes :math:`\{c_t\}_{t=0}^\infty` with a utility functional :math:`\{V_t\}_{t=0}^\infty` that satisfies
 
@@ -479,7 +479,7 @@ and
     \biggl| D' \left[ I - \exp(-\delta) A \right]^{-1}B + F \biggl|^2,
 
 
-Here :math:`\gamma \geq 1` is a risk-aversion coefficient and :math:`\delta > 0` is a rate of time preference
+Here :math:`\gamma \geq 1` is a risk-aversion coefficient and :math:`\delta > 0` is a rate of time preference.
 
 
 
@@ -499,7 +499,7 @@ We begin by showing that consumption is a **multiplicative functional** with rep
     \left( \frac{\tilde{e}(x_0)}{\tilde{e}(x_t)} \right)
 
 
-where :math:`\left( \frac{\tilde{M}_t}{\tilde{M}_0} \right)` is a likelihood ratio process and :math:`\tilde M_0 = 1`
+where :math:`\left( \frac{\tilde{M}_t}{\tilde{M}_0} \right)` is a likelihood ratio process and :math:`\tilde M_0 = 1`.
 
 At this point, as an exercise, we ask the reader please to verify the following formulas for :math:`\tilde{\nu}` and :math:`\tilde{e}(x_t)` as functions of :math:`A, B, D, F`:
 
@@ -518,12 +518,12 @@ and
 Simulating a Likelihood Ratio Process Again
 --------------------------------------------
 
-Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
+Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`.
 
-In particular, we want to simulate 5000 sample paths of length :math:`T=1000` for the case in which :math:`x` is a scalar and :math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005`
+In particular, we want to simulate 5000 sample paths of length :math:`T=1000` for the case in which :math:`x` is a scalar and :math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005`.
 
 After accomplishing this, we want to display a histogram of :math:`\tilde{M}_T^i` for
-:math:`T=1000`
+:math:`T=1000`.
 
 Here is code that accomplishes these tasks
 
@@ -631,17 +631,17 @@ The likelihood ratio process :math:`\{\widetilde M_t\}_{t=0}^\infty` can be repr
     \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1 ,
 
 
-where :math:`H =  [F + B'(I-A')^{-1} D]`
+where :math:`H =  [F + B'(I-A')^{-1} D]`.
 
-It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log-normal
+It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log-normal.
 
 Let's plot the probability density functions for :math:`\log {\widetilde M}_t` for
-:math:`t=100, 500, 1000, 10000, 100000`
+:math:`t=100, 500, 1000, 10000, 100000`.
 
 
-Then let's use the plots to  investigate how these densities evolve through time
+Then let's use the plots to  investigate how these densities evolve through time.
 
-We will plot the densities of :math:`\log {\widetilde M}_t` for different values of :math:`t`
+We will plot the densities of :math:`\log {\widetilde M}_t` for different values of :math:`t`.
 
 
 
@@ -652,7 +652,7 @@ keyword argument ``scale`` (``scale=``\ :math:`\exp(-tH \cdot H/2)`)
 * See the documentation `here
   <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__
 
-This is peculiar, so make sure you are careful in working with the log-normal distribution
+This is peculiar, so make sure you are careful in working with the log-normal distribution.
 
 
 
@@ -723,7 +723,7 @@ These probability density functions illustrate a **peculiar property** of log-li
 Welfare Benefits of Reduced Random Aggregate Fluctuations
 ---------------------------------------------------------------
 
-Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`lucas2003macroeconomic`) we want to estimate the welfare benefits from removing random fluctuations around trend growth
+Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`lucas2003macroeconomic`) we want to estimate the welfare benefits from removing random fluctuations around trend growth.
 
 We shall  compute how much initial consumption :math:`c_0` a representative consumer who ranks consumption streams according to :eq:`old1mf` would be willing to sacrifice to enjoy the consumption stream
 
@@ -732,14 +732,14 @@ We shall  compute how much initial consumption :math:`c_0` a representative cons
     \frac{c_t}{c_0} = \exp (\tilde{\nu} t)
 
 
-rather than the stream described by equation :eq:`old2mf`
+rather than the stream described by equation :eq:`old2mf`.
 
-We want to compute the implied percentage reduction in :math:`c_0` that the representative consumer would accept
+We want to compute the implied percentage reduction in :math:`c_0` that the representative consumer would accept.
 
 To accomplish this, we write a function that computes the coefficients :math:`U`
 and :math:`u` for the original values of :math:`A, B, D, F, \nu`, but
 also for the case that  :math:`A, B, D, F = [0, 0, 0, 0]` and
-:math:`\nu = \tilde{\nu}`
+:math:`\nu = \tilde{\nu}`.
 
 Here's our code
 
@@ -819,4 +819,4 @@ Let's compute this
 
 
 
-We find that the consumer would be willing to take a percentage reduction of initial consumption equal to around 1.081
+We find that the consumer would be willing to take a percentage reduction of initial consumption equal to around 1.081.

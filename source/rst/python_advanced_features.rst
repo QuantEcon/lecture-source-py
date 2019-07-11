@@ -11,7 +11,7 @@ More Language Features
 Overview
 ============
 
-With this last lecture, our advice is to **skip it on first pass**, unless you have a burning desire to read it
+With this last lecture, our advice is to **skip it on first pass**, unless you have a burning desire to read it.
 
 It's here
 
@@ -19,7 +19,7 @@ It's here
 
 #. for those who have worked through a number of applications, and now want to learn more about the Python language
 
-A variety of topics are treated in the lecture, including generators, exceptions and descriptors
+A variety of topics are treated in the lecture, including generators, exceptions and descriptors.
 
 
 
@@ -32,9 +32,9 @@ Iterables and Iterators
 .. index::
     single: Python; Iteration
 
-We've :ref:`already said something <iterating_version_1>` about iterating in Python
+We've :ref:`already said something <iterating_version_1>` about iterating in Python.
 
-Now let's look more closely at how it all works, focusing in Python's implementation of the ``for`` loop
+Now let's look more closely at how it all works, focusing in Python's implementation of the ``for`` loop.
 
 
 Iterators
@@ -43,13 +43,13 @@ Iterators
 .. index::
     single: Python; Iterators
 
-Iterators are a uniform interface to stepping through elements in a collection
+Iterators are a uniform interface to stepping through elements in a collection.
 
-Here we'll talk about using iterators---later we'll learn how to build our own
+Here we'll talk about using iterators---later we'll learn how to build our own.
 
-Formally, an *iterator* is an object with a ``__next__`` method
+Formally, an *iterator* is an object with a ``__next__`` method.
 
-For example, file objects are iterators 
+For example, file objects are iterators .
 
 To see this, let's have another look at the :ref:`US cities data <us_cities_data>`,
 which is written to the present working directory in the following cell
@@ -80,7 +80,7 @@ which is written to the present working directory in the following cell
     
 
 
-We see that file objects do indeed have a ``__next__`` method, and that calling this method returns the next line in the file
+We see that file objects do indeed have a ``__next__`` method, and that calling this method returns the next line in the file.
 
 The next method can also be accessed via the builtin function ``next()``,
 which directly calls this method
@@ -100,7 +100,7 @@ The objects returned by ``enumerate()`` are also iterators
     
     next(e)
 
-as are the reader objects from the ``csv`` module 
+as are the reader objects from the ``csv`` module .
 
 Let's create a small csv file that contains data from the NIKKEI index
 
@@ -139,7 +139,7 @@ Iterators in For Loops
 .. index::
     single: Python; Iterators
 
-All iterators can be placed to the right of the ``in`` keyword in ``for`` loop statements
+All iterators can be placed to the right of the ``in`` keyword in ``for`` loop statements.
 
 In fact this is how the ``for`` loop works:  If we write
 
@@ -170,7 +170,7 @@ The interpreter just keeps
 #. calling ``f.__next__()`` and binding ``line`` to the result
 #. executing the body of the loop
 
-This continues until a ``StopIteration`` error occurs
+This continues until a ``StopIteration`` error occurs.
 
 
 
@@ -206,9 +206,9 @@ The answer is no
 
 So why can we iterate over a list in a ``for`` loop?
 
-The reason is that a list is *iterable* (as opposed to an iterator)
+The reason is that a list is *iterable* (as opposed to an iterator).
 
-Formally, an object is iterable if it can be converted to an iterator using the built-in function ``iter()``
+Formally, an object is iterable if it can be converted to an iterator using the built-in function ``iter()``.
 
 Lists are one such object 
 
@@ -238,7 +238,7 @@ Lists are one such object
     next(y)    
 
 
-Many other objects are iterable, such as dictionaries and tuples
+Many other objects are iterable, such as dictionaries and tuples.
 
 Of course, not all objects are iterable 
 
@@ -324,9 +324,9 @@ type ``int`` in your computer's memory, containing
 
 But what is ``x`` itself?
 
-In Python, ``x`` is called a *name*, and the statement ``x = 42`` *binds* the name ``x`` to the integer object we have just discussed
+In Python, ``x`` is called a *name*, and the statement ``x = 42`` *binds* the name ``x`` to the integer object we have just discussed.
 
-Under the hood, this process of binding names to objects is implemented as a dictionary---more about this in a moment
+Under the hood, this process of binding names to objects is implemented as a dictionary---more about this in a moment.
 
 There is no problem binding two or more names to the one object, regardless of what that object is 
 
@@ -342,9 +342,9 @@ There is no problem binding two or more names to the one object, regardless of w
 
     g('test')
 
-In the first step, a function object is created, and the name ``f`` is bound to it
+In the first step, a function object is created, and the name ``f`` is bound to it.
 
-After binding the name ``g`` to the same object, we can use it anywhere we would use ``f``
+After binding the name ``g`` to the same object, we can use it anywhere we would use ``f``.
 
 What happens when the number of names bound to an object goes to zero?
 
@@ -359,9 +359,9 @@ Here's an example of this situation, where the name ``x`` is first bound to one 
 
     x = 'bar'  # No names bound to the first object
 
-What happens here is that the first object is garbage collected
+What happens here is that the first object is garbage collected.
 
-In other words, the memory slot that stores that object is deallocated, and returned to the operating system
+In other words, the memory slot that stores that object is deallocated, and returned to the operating system.
 
 
 
@@ -377,17 +377,17 @@ Recall from the preceding discussion that the statement
 
     x = 42
 
-binds the name ``x`` to the integer object on the right-hand side
+binds the name ``x`` to the integer object on the right-hand side.
 
-We also mentioned that this process of binding ``x`` to the correct object is implemented as a dictionary
+We also mentioned that this process of binding ``x`` to the correct object is implemented as a dictionary.
 
-This dictionary is called a *namespace*
+This dictionary is called a *namespace*.
 
-**Definition:** A namespace is a symbol table that maps names to objects in memory
+**Definition:** A namespace is a symbol table that maps names to objects in memory.
 
-Python uses multiple namespaces, creating them on the fly as necessary 
+Python uses multiple namespaces, creating them on the fly as necessary .
 
-For example, every time we import a module, Python creates a namespace for that module
+For example, every time we import a module, Python creates a namespace for that module.
 
 To see this in action, suppose we write a script ``math2.py`` with a single line
 
@@ -418,7 +418,7 @@ Both of these modules have an attribute called ``pi``
 
     math2.pi
 
-These two different bindings of ``pi`` exist in different namespaces, each one implemented as a dictionary
+These two different bindings of ``pi`` exist in different namespaces, each one implemented as a dictionary.
 
 We can look at the dictionary directly, using ``module_name.__dict__`` 
 
@@ -451,7 +451,7 @@ In fact this is entirely equivalent to ``math.__dict__['pi']``
 Viewing Namespaces
 ---------------------
 
-As we saw above, the ``math`` namespace can be printed by typing ``math.__dict__``
+As we saw above, the ``math`` namespace can be printed by typing ``math.__dict__``.
 
 Another way to see its contents is to type ``vars(math)``
 
@@ -465,7 +465,7 @@ If you just want to see the names, you can type
 
     dir(math)[0:10]
 
-Notice the special names ``__doc__`` and ``__name__``
+Notice the special names ``__doc__`` and ``__name__``.
 
 These are initialized in the namespace when any module is imported
 
@@ -486,11 +486,11 @@ Interactive Sessions
 .. index::
     single: Python; Interpreter
 
-In Python, **all** code executed by the interpreter runs in some module
+In Python, **all** code executed by the interpreter runs in some module.
 
 What about commands typed at the prompt?
 
-These are also regarded as being executed within a module --- in this case, a module called ``__main__``
+These are also regarded as being executed within a module --- in this case, a module called ``__main__``.
 
 To check this, we can look at the current module name via the value of ``__name__`` given at the prompt
 
@@ -498,7 +498,7 @@ To check this, we can look at the current module name via the value of ``__name_
 
     print(__name__)
 
-When we run a script using IPython's ``run`` command, the contents of the file are executed as part of ``__main__`` too
+When we run a script using IPython's ``run`` command, the contents of the file are executed as part of ``__main__`` too.
 
 To see this, let's create a file ``mod.py`` that prints its own ``__name__`` attribute
 
@@ -517,12 +517,12 @@ Now let's look at two different ways of running it in IPython
     
     %run mod.py  # Run interactively
   
-In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``
+In the second case, the code is executed as part of ``__main__``, so ``__name__`` is equal to ``__main__``.
 
-To see the contents of the namespace of ``__main__`` we use ``vars()`` rather than ``vars(__main__)`` 
+To see the contents of the namespace of ``__main__`` we use ``vars()`` rather than ``vars(__main__)`` .
 
 If you do this in IPython, you will see a whole lot of variables that IPython
-needs, and has initialized when you started up your session
+needs, and has initialized when you started up your session.
 
 If you prefer to see only the variables you have initialized, use ``whos``
 
@@ -541,13 +541,13 @@ The Global Namespace
 .. index::
     single: Python; Namespace (Global)
 
-Python documentation often makes reference to the "global namespace"
+Python documentation often makes reference to the "global namespace".
 
-The global namespace is *the namespace of the module currently being executed*
+The global namespace is *the namespace of the module currently being executed*.
 
-For example, suppose that we start the interpreter and begin making assignments 
+For example, suppose that we start the interpreter and begin making assignments .
 
-We are now working in the module ``__main__``, and hence the namespace for ``__main__`` is the global namespace
+We are now working in the module ``__main__``, and hence the namespace for ``__main__`` is the global namespace.
 
 Next, we import a module called ``amodule`` 
 
@@ -556,13 +556,13 @@ Next, we import a module called ``amodule``
 
     import amodule
 
-At this point, the interpreter creates a namespace for the module ``amodule`` and starts executing commands in the module
+At this point, the interpreter creates a namespace for the module ``amodule`` and starts executing commands in the module.
 
-While this occurs, the namespace ``amodule.__dict__`` is the global namespace
+While this occurs, the namespace ``amodule.__dict__`` is the global namespace.
 
-Once execution of the module finishes, the interpreter returns to the module from where the import statement was made
+Once execution of the module finishes, the interpreter returns to the module from where the import statement was made.
 
-In this case it's ``__main__``, so the namespace of ``__main__`` again becomes the global namespace
+In this case it's ``__main__``, so the namespace of ``__main__`` again becomes the global namespace.
 
 
 Local Namespaces
@@ -571,13 +571,13 @@ Local Namespaces
 .. index::
     single: Python; Namespace (Local)
 
-Important fact: When we call a function, the interpreter creates a *local namespace* for that function, and registers the variables in that namespace
+Important fact: When we call a function, the interpreter creates a *local namespace* for that function, and registers the variables in that namespace.
 
-The reason for this will be explained in just a moment
+The reason for this will be explained in just a moment.
 
-Variables in the local namespace are called *local variables*
+Variables in the local namespace are called *local variables*.
 
-After the function returns, the namespace is deallocated and lost 
+After the function returns, the namespace is deallocated and lost .
 
 While the function is executing, we can view the contents of the local namespace with ``locals()`` 
  
@@ -597,7 +597,7 @@ Now let's call the function
 
     f(1)
 
-You can see the local namespace of ``f`` before it is destroyed
+You can see the local namespace of ``f`` before it is destroyed.
 
 
 
@@ -650,15 +650,15 @@ Name Resolution
 .. index::
     single: Python; Namespace (Resolution)
 
-Namespaces are great because they help us organize variable names
+Namespaces are great because they help us organize variable names.
 
-(Type ``import this`` at the prompt and look at the last item that's printed)
+(Type ``import this`` at the prompt and look at the last item that's printed).
 
-However, we do need to understand how the Python interpreter works with multiple namespaces 
+However, we do need to understand how the Python interpreter works with multiple namespaces .
 
-At any point of execution, there are in fact at least two namespaces that can be accessed directly
+At any point of execution, there are in fact at least two namespaces that can be accessed directly.
 
-("Accessed directly" means without using a dot, as in  ``pi`` rather than ``math.pi``)
+("Accessed directly" means without using a dot, as in  ``pi`` rather than ``math.pi``).
 
 These namespaces are 
 
@@ -684,7 +684,7 @@ Sometimes functions are defined within other functions, like so
 
 
 Here ``f`` is the *enclosing function* for ``g``, and each function gets its
-own namespaces
+own namespaces.
 
 Now we can give the rule for how namespace resolution works:
 
@@ -695,11 +695,11 @@ The order in which the interpreter searches for names is
 #. the global namespace
 #. the builtin namespace
 
-If the name is not in any of these namespaces, the interpreter raises a ``NameError``
+If the name is not in any of these namespaces, the interpreter raises a ``NameError``.
 
-This is called the **LEGB rule** (local, enclosing, global, builtin)
+This is called the **LEGB rule** (local, enclosing, global, builtin).
 
-Here's an example that helps to illustrate 
+Here's an example that helps to illustrate .
 
 Consider a script ``test.py`` that looks as follows
 
@@ -743,14 +743,14 @@ Next ``g`` is called via ``y = g(10)``, leading to the following sequence of act
 * This value is returned, and ``y`` is bound to it in the global namespace
 * Local ``x`` and ``a`` are discarded (and the local namespace is deallocated)
 
-Note that the global ``a`` was not affected by the local ``a``
+Note that the global ``a`` was not affected by the local ``a``.
 
 .. _mutable_vs_immutable:
 
 :index:`Mutable` Versus :index:`Immutable` Parameters
 -----------------------------------------------------
 
-This is a good time to say a little more about mutable vs immutable objects
+This is a good time to say a little more about mutable vs immutable objects.
 
 Consider the code segment
 
@@ -764,15 +764,15 @@ Consider the code segment
     print(f(x), x)
 
 
-We now understand what will happen here: The code prints ``2`` as the value of ``f(x)`` and ``1`` as the value of ``x``
+We now understand what will happen here: The code prints ``2`` as the value of ``f(x)`` and ``1`` as the value of ``x``.
 
-First ``f`` and ``x`` are registered in the global namespace
+First ``f`` and ``x`` are registered in the global namespace.
 
-The call ``f(x)`` creates a local namespace and adds ``x`` to it, bound to ``1``
+The call ``f(x)`` creates a local namespace and adds ``x`` to it, bound to ``1``.
 
-Next, this local ``x`` is rebound to the new integer object ``2``, and this value is returned
+Next, this local ``x`` is rebound to the new integer object ``2``, and this value is returned.
 
-None of this affects the global ``x``
+None of this affects the global ``x``.
 
 However, it's a different story when we use a **mutable** data type such as a list
 
@@ -786,7 +786,7 @@ However, it's a different story when we use a **mutable** data type such as a li
     print(f(x), x)
 
 
-This prints ``[2]`` as the value of ``f(x)`` and *same* for ``x``
+This prints ``[2]`` as the value of ``f(x)`` and *same* for ``x``.
 
 Here's what happens
 
@@ -819,7 +819,7 @@ Handling Errors
 .. index::
     single: Python; Handling Errors
 
-Sometimes it's possible to anticipate errors as we're writing code
+Sometimes it's possible to anticipate errors as we're writing code.
 
 For example, the unbiased sample variance of sample :math:`y_1, \ldots, y_n`
 is defined as
@@ -830,14 +830,14 @@ is defined as
     \qquad \bar y = \text{ sample mean}
 
 
-This can be calculated in NumPy using ``np.var``
+This can be calculated in NumPy using ``np.var``.
 
 But if you were writing a function to handle such a calculation, you might
-anticipate a divide-by-zero error when the sample size is one
+anticipate a divide-by-zero error when the sample size is one.
 
-One possible action is to do nothing --- the program will just crash, and spit out an error message
+One possible action is to do nothing --- the program will just crash, and spit out an error message.
 
-But sometimes it's worth writing your code in a way that anticipates and deals with runtime errors that you think might arise
+But sometimes it's worth writing your code in a way that anticipates and deals with runtime errors that you think might arise.
 
 Why?
 
@@ -856,7 +856,7 @@ Assertions
 .. index::
     single: Python; Assertions
 
-A relatively easy way to handle checks is with the ``assert`` keyword
+A relatively easy way to handle checks is with the ``assert`` keyword.
 
 For example, pretend for a moment that the ``np.var`` function doesn't
 exist and we need to write our own
@@ -891,11 +891,11 @@ Handling Errors During Runtime
     single: Python; Runtime Errors
 
 The approach used above is a bit limited, because it always leads to
-termination
+termination.
 
-Sometimes we can handle errors more gracefully, by treating special cases
+Sometimes we can handle errors more gracefully, by treating special cases.
 
-Let's look at how this is done
+Let's look at how this is done.
 
 Exceptions
 ^^^^^^^^^^^^^^
@@ -911,7 +911,7 @@ Here's an example of a common error type
     def f:
 
 
-Since illegal syntax cannot be executed, a syntax error terminates execution of the program
+Since illegal syntax cannot be executed, a syntax error terminates execution of the program.
 
 Here's a different kind of error, unrelated to syntax
 
@@ -950,12 +950,12 @@ On each occasion, the interpreter informs us of the error type
 
 * ``NameError``, ``TypeError``, ``IndexError``, ``ZeroDivisionError``, etc.
 
-In Python, these errors are called *exceptions*
+In Python, these errors are called *exceptions*.
 
 Catching Exceptions
 ^^^^^^^^^^^^^^^^^^^^^^
 
-We can catch and deal with exceptions using ``try`` -- ``except`` blocks
+We can catch and deal with exceptions using ``try`` -- ``except`` blocks.
 
 Here's a simple example
 
@@ -984,9 +984,9 @@ When we call ``f`` we get the following output
     f(0.0)
 
 
-The error is caught and execution of the program is not terminated
+The error is caught and execution of the program is not terminated.
 
-Note that other error types are not caught
+Note that other error types are not caught.
 
 If we are worried the user might pass in a string, we can catch that error too
 
@@ -1055,7 +1055,7 @@ If we feel extra lazy we can catch all error types as follows
             print('Error.  Returned None')
         return None
 
-In general it's better to be specific
+In general it's better to be specific.
 
 
 
@@ -1068,12 +1068,12 @@ Decorators and Descriptors
 .. index::
     single: Python; Descriptors
 
-Let's look at some special syntax elements that are routinely used by Python developers
+Let's look at some special syntax elements that are routinely used by Python developers.
 
 You might not need the following concepts immediately, but you will see them
-in other people's code
+in other people's code.
 
-Hence you need to understand them at some stage of your Python education
+Hence you need to understand them at some stage of your Python education.
 
 
 Decorators
@@ -1082,11 +1082,11 @@ Decorators
 .. index::
     single: Python; Decorators
 
-Decorators are a bit of syntactic sugar that, while easily avoided, have turned out to be popular
+Decorators are a bit of syntactic sugar that, while easily avoided, have turned out to be popular.
 
-It's very easy to say what decorators do
+It's very easy to say what decorators do.
 
-On the other hand it takes a bit of effort to explain *why* you might use them
+On the other hand it takes a bit of effort to explain *why* you might use them.
 
 An Example
 ^^^^^^^^^^^^^^
@@ -1105,16 +1105,16 @@ Suppose we are working on a program that looks something like this
 
     # Program continues with various calculations using f and g
 
-Now suppose there's a problem: occasionally negative numbers get fed to ``f`` and ``g`` in the calculations that follow
+Now suppose there's a problem: occasionally negative numbers get fed to ``f`` and ``g`` in the calculations that follow.
 
-If you try it, you'll see that when these functions are called with negative numbers they return a NumPy object called ``nan`` 
+If you try it, you'll see that when these functions are called with negative numbers they return a NumPy object called ``nan`` .
 
 This stands for "not a number" (and indicates that you are trying to evaluate
-a mathematical function at a point where it is not defined)
+a mathematical function at a point where it is not defined).
 
-Perhaps this isn't what we want, because it causes other problems that are hard to pick up later on
+Perhaps this isn't what we want, because it causes other problems that are hard to pick up later on.
 
-Suppose that instead we want the program to terminate whenever this happens, with a sensible error message
+Suppose that instead we want the program to terminate whenever this happens, with a sensible error message.
 
 This change is easy enough to implement
 
@@ -1133,16 +1133,16 @@ This change is easy enough to implement
     # Program continues with various calculations using f and g
 
 
-Notice however that there is some repetition here, in the form of two identical lines of code
+Notice however that there is some repetition here, in the form of two identical lines of code.
 
 Repetition makes our code longer and harder to maintain, and hence is
-something we try hard to avoid
+something we try hard to avoid.
 
-Here it's not a big deal, but imagine now that instead of just ``f`` and ``g``, we have 20 such functions that we need to modify in exactly the same way
+Here it's not a big deal, but imagine now that instead of just ``f`` and ``g``, we have 20 such functions that we need to modify in exactly the same way.
 
-This means we need to repeat the test logic (i.e., the ``assert`` line testing nonnegativity) 20 times
+This means we need to repeat the test logic (i.e., the ``assert`` line testing nonnegativity) 20 times.
 
-The situation is still worse if the test logic is longer and more complicated
+The situation is still worse if the test logic is longer and more complicated.
 
 In this kind of scenario the following approach would be neater
 
@@ -1166,20 +1166,20 @@ In this kind of scenario the following approach would be neater
     g = check_nonneg(g)
     # Program continues with various calculations using f and g
 
-This looks complicated so let's work through it slowly
+This looks complicated so let's work through it slowly.
 
-To unravel the logic, consider what happens when we say ``f = check_nonneg(f)``
+To unravel the logic, consider what happens when we say ``f = check_nonneg(f)``.
 
-This calls the function ``check_nonneg`` with parameter ``func`` set equal to ``f``
+This calls the function ``check_nonneg`` with parameter ``func`` set equal to ``f``.
 
 Now ``check_nonneg`` creates a new function called ``safe_function`` that
-verifies ``x`` as nonnegative and then calls ``func`` on it (which is the same as ``f``)
+verifies ``x`` as nonnegative and then calls ``func`` on it (which is the same as ``f``).
 
-Finally, the global name ``f`` is then set equal to ``safe_function``
+Finally, the global name ``f`` is then set equal to ``safe_function``.
 
-Now the behavior of ``f`` is as we desire, and the same is true of ``g``
+Now the behavior of ``f`` is as we desire, and the same is true of ``g``.
 
-At the same time, the test logic is written only once
+At the same time, the test logic is written only once.
 
 
 Enter Decorators
@@ -1188,7 +1188,7 @@ Enter Decorators
 .. index::
     single: Python; Decorators
 
-The last version of our code is still not ideal
+The last version of our code is still not ideal.
 
 For example, if someone is reading our code and wants to know how
 ``f`` works, they will be looking for the function definition, which is
@@ -1198,9 +1198,9 @@ For example, if someone is reading our code and wants to know how
     def f(x):
         return np.log(np.log(x))
 
-They may well miss the line ``f = check_nonneg(f)``
+They may well miss the line ``f = check_nonneg(f)``.
 
-For this and other reasons, decorators were introduced to Python
+For this and other reasons, decorators were introduced to Python.
 
 With decorators, we can replace the lines
 
@@ -1227,16 +1227,16 @@ with
     def g(x):
         return np.sqrt(42 * x)
 
-These two pieces of code do exactly the same thing
+These two pieces of code do exactly the same thing.
 
 If they do the same thing, do we really need decorator syntax?
 
-Well, notice that the decorators sit right on top of the function definitions
+Well, notice that the decorators sit right on top of the function definitions.
 
 Hence anyone looking at the definition of the function will see them and be
-aware that the function is modified
+aware that the function is modified.
 
-In the opinion of many people, this makes the decorator syntax a significant improvement to the language
+In the opinion of many people, this makes the decorator syntax a significant improvement to the language.
 
 
 
@@ -1248,12 +1248,12 @@ Descriptors
 .. index::
     single: Python; Descriptors
 
-Descriptors solve a common problem regarding management of variables
+Descriptors solve a common problem regarding management of variables.
 
-To understand the issue, consider a ``Car`` class, that simulates a car
+To understand the issue, consider a ``Car`` class, that simulates a car.
 
 Suppose that this class defines the variables ``miles`` and ``kms``, which give the distance traveled in miles
-and kilometers respectively
+and kilometers respectively.
 
 A highly simplified version of the class might look as follows
 
@@ -1285,20 +1285,20 @@ variables but not the other
     car.kms
 
 
-In the last two lines we see that ``miles`` and ``kms`` are out of sync
+In the last two lines we see that ``miles`` and ``kms`` are out of sync.
 
-What we really want is some mechanism whereby each time a user sets one of these variables, *the other is automatically updated*
+What we really want is some mechanism whereby each time a user sets one of these variables, *the other is automatically updated*.
 
 A Solution
 ^^^^^^^^^^^
 
-In Python, this issue is solved using *descriptors*
+In Python, this issue is solved using *descriptors*.
 
-A descriptor is just a Python object that implements certain methods
+A descriptor is just a Python object that implements certain methods.
 
-These methods are triggered when the object is accessed through dotted attribute notation
+These methods are triggered when the object is accessed through dotted attribute notation.
 
-The best way to understand this is to see it in action
+The best way to understand this is to see it in action.
 
 Consider this alternative version of the ``Car`` class
 
@@ -1340,26 +1340,26 @@ First let's check that we get the desired behavior
     car.miles = 6000
     car.kms
 
-Yep, that's what we want --- ``car.kms`` is automatically updated
+Yep, that's what we want --- ``car.kms`` is automatically updated.
 
 How it Works
 ^^^^^^^^^^^^^^
 
-The names ``_miles`` and ``_kms`` are arbitrary names we are using to store the values of the variables
+The names ``_miles`` and ``_kms`` are arbitrary names we are using to store the values of the variables.
 
-The objects ``miles`` and ``kms`` are *properties*, a common kind of descriptor
+The objects ``miles`` and ``kms`` are *properties*, a common kind of descriptor.
 
 The methods ``get_miles``, ``set_miles``, ``get_kms`` and ``set_kms`` define
 what happens when you get (i.e. access) or set (bind) these variables
 
 * So-called "getter" and "setter" methods
 
-The builtin Python function ``property`` takes getter and setter methods and creates a property
+The builtin Python function ``property`` takes getter and setter methods and creates a property.
 
-For example, after ``car`` is created as an instance of ``Car``, the object ``car.miles`` is a property
+For example, after ``car`` is created as an instance of ``Car``, the object ``car.miles`` is a property.
 
 Being a property, when we set its value via ``car.miles = 6000`` its setter
-method is triggered --- in this case ``set_miles``
+method is triggered --- in this case ``set_miles``.
 
 
 
@@ -1372,7 +1372,7 @@ Decorators and Properties
 .. index::
     single: Python; Properties
 
-These days its very common to see the ``property`` function used via a decorator
+These days its very common to see the ``property`` function used via a decorator.
 
 Here's another version of our ``Car`` class that works as before but now uses
 decorators to set up the properties
@@ -1404,9 +1404,9 @@ decorators to set up the properties
             self._miles = value / 1.61
 
 
-We won't go through all the details here
+We won't go through all the details here.
 
-For further information you can refer to the `descriptor documentation <https://docs.python.org/3/howto/descriptor.html>`_
+For further information you can refer to the `descriptor documentation <https://docs.python.org/3/howto/descriptor.html>`_.
 
 
 .. _paf_generators:
@@ -1417,16 +1417,16 @@ Generators
 .. index::
     single: Python; Generators
 
-A generator is a kind of iterator (i.e., it works with a ``next`` function)
+A generator is a kind of iterator (i.e., it works with a ``next`` function).
 
-We will study two ways to build generators: generator expressions and generator functions
+We will study two ways to build generators: generator expressions and generator functions.
 
 Generator Expressions
 -------------------------
 
-The easiest way to build generators is using *generator expressions*
+The easiest way to build generators is using *generator expressions*.
 
-Just like a list comprehension, but with round brackets
+Just like a list comprehension, but with round brackets.
 
 Here is the list comprehension:
 
@@ -1471,7 +1471,7 @@ Since ``sum()`` can be called on iterators, we can do this
 
     sum((x * x for x in range(10)))
 
-The function ``sum()`` calls ``next()`` to get the items, adds successive terms
+The function ``sum()`` calls ``next()`` to get the items, adds successive terms.
 
 In fact, we can omit the outer brackets in this case
 
@@ -1486,9 +1486,9 @@ Generator Functions
 .. index::
     single: Python; Generator Functions
 
-The most flexible way to create generator objects is to use generator functions
+The most flexible way to create generator objects is to use generator functions.
 
-Let's look at some examples
+Let's look at some examples.
 
 Example 1
 ^^^^^^^^^^^^
@@ -1503,7 +1503,7 @@ Here's a very simple example of a generator function
         yield 'end'
 
 
-It looks like a function, but uses a keyword ``yield`` that we haven't met before
+It looks like a function, but uses a keyword ``yield`` that we haven't met before.
 
 Let's see how it works after running this code
 
@@ -1535,9 +1535,9 @@ Let's see how it works after running this code
 
 
 
-The generator function ``f()`` is used to create generator objects (in this case ``gen``)
+The generator function ``f()`` is used to create generator objects (in this case ``gen``).
 
-Generators are iterators, because they support a ``next`` method
+Generators are iterators, because they support a ``next`` method.
 
 The first call to ``next(gen)``
 
@@ -1553,11 +1553,11 @@ The second call to ``next(gen)`` starts executing *from the next line*
         yield 'middle'  # This line!
         yield 'end'
 
-and continues until the next ``yield`` statement
+and continues until the next ``yield`` statement.
 
-At that point it returns the value following ``yield`` to the caller of ``next(gen)``, and so on
+At that point it returns the value following ``yield`` to the caller of ``next(gen)``, and so on.
 
-When the code block ends, the generator throws a ``StopIteration`` error
+When the code block ends, the generator throws a ``StopIteration`` error.
 
 
 Example 2
@@ -1601,15 +1601,15 @@ Let's see how it works
     next(gen)
 
 
-The call ``gen = g(2)`` binds ``gen`` to a generator
+The call ``gen = g(2)`` binds ``gen`` to a generator.
 
-Inside the generator, the name ``x`` is bound to ``2``
+Inside the generator, the name ``x`` is bound to ``2``.
 
 When we call ``next(gen)``
 
 * The body of ``g()`` executes until the line ``yield x``, and the value of ``x`` is returned
 
-Note that value of ``x`` is retained inside the generator
+Note that value of ``x`` is retained inside the generator.
 
 When we call ``next(gen)`` again, execution continues *from where it left off*
 
@@ -1620,7 +1620,7 @@ When we call ``next(gen)`` again, execution continues *from where it left off*
             yield x
             x = x * x  # execution continues from here
 
-When ``x < 100`` fails, the generator throws a ``StopIteration`` error
+When ``x < 100`` fails, the generator throws a ``StopIteration`` error.
 
 Incidentally, the loop inside the generator can be infinite
 
@@ -1637,7 +1637,7 @@ Advantages of Iterators
 
 What's the advantage of using an iterator here?
 
-Suppose we want to sample a binomial(n,0.5)
+Suppose we want to sample a binomial(n,0.5).
 
 One way to do it is as follows
 
@@ -1649,9 +1649,9 @@ One way to do it is as follows
     sum(draws)
 
 
-But we are creating two huge lists here,  ``range(n)`` and ``draws``
+But we are creating two huge lists here,  ``range(n)`` and ``draws``.
 
-This uses lots of memory and is very slow
+This uses lots of memory and is very slow.
 
 If we make ``n`` even bigger then this happens
 
@@ -1662,7 +1662,7 @@ If we make ``n`` even bigger then this happens
     draws = [random.uniform(0, 1) < 0.5 for i in range(n)]
 
 
-We can avoid these problems using iterators
+We can avoid these problems using iterators.
 
 Here is the generator function
 
@@ -1702,9 +1702,9 @@ Recursive Function Calls
 .. index::
     single: Python; Recursion
 
-This is not something that you will use every day, but it is still useful --- you should learn it at some stage
+This is not something that you will use every day, but it is still useful --- you should learn it at some stage.
 
-Basically, a recursive function is a function that calls itself
+Basically, a recursive function is a function that calls itself.
 
 For example, consider the problem of computing :math:`x_t` for some t when
 
@@ -1714,7 +1714,7 @@ For example, consider the problem of computing :math:`x_t` for some t when
     x_{t+1} = 2 x_t, \quad x_0 = 1
 
 
-Obviously the answer is :math:`2^t`
+Obviously the answer is :math:`2^t`.
 
 We can compute this easily enough with a loop
 
@@ -1743,9 +1743,9 @@ What happens here is that each successive call uses it's own *frame* in the *sta
 * stack is memory used to process function calls
   * a First In Last Out (FILO) queue
 
-This example is somewhat contrived, since the first (iterative) solution would usually be preferred to the recursive solution
+This example is somewhat contrived, since the first (iterative) solution would usually be preferred to the recursive solution.
 
-We'll meet less contrived applications of recursion later on
+We'll meet less contrived applications of recursion later on.
 
 
 Exercises
@@ -1762,9 +1762,9 @@ The Fibonacci numbers are defined by
     x_{t+1} = x_t + x_{t-1}, \quad x_0 = 0, \; x_1 = 1
 
 
-The first few numbers in the sequence are :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55`
+The first few numbers in the sequence are :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55`.
 
-Write a function to recursively compute the :math:`t`-th Fibonacci number for any :math:`t`
+Write a function to recursively compute the :math:`t`-th Fibonacci number for any :math:`t`.
 
 Exercise 2
 ------------
@@ -1805,7 +1805,7 @@ Suppose we have a text file ``numbers.txt`` containing the following lines
     21
 
 
-Using ``try`` -- ``except``, write a program to read in the contents of the file and sum the numbers, ignoring lines without numbers
+Using ``try`` -- ``except``, write a program to read in the contents of the file and sum the numbers, ignoring lines without numbers.
 
 
 

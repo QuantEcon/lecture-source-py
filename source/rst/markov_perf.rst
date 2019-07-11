@@ -13,7 +13,7 @@ Markov Perfect Equilibrium
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -26,11 +26,11 @@ Overview
 .. index::
     single: Markov Perfect Equilibrium; Overview
 
-This lecture describes the concept of Markov perfect equilibrium
+This lecture describes the concept of Markov perfect equilibrium.
 
-Markov perfect equilibrium is a key notion for analyzing economic problems involving dynamic strategic interaction, and a cornerstone of applied game theory
+Markov perfect equilibrium is a key notion for analyzing economic problems involving dynamic strategic interaction, and a cornerstone of applied game theory.
 
-In this lecture, we teach Markov perfect equilibrium by example
+In this lecture, we teach Markov perfect equilibrium by example.
 
 We will focus on settings with
 
@@ -40,7 +40,7 @@ We will focus on settings with
 
 * linear transition rules for the state
 
-Other references include chapter 7 of :cite:`Ljungqvist2012`
+Other references include chapter 7 of :cite:`Ljungqvist2012`.
 
 
 
@@ -53,17 +53,17 @@ Background
 .. index::
     single: Markov Perfect Equilibrium; Background
 
-Markov perfect equilibrium is a refinement of the concept of Nash equilibrium
+Markov perfect equilibrium is a refinement of the concept of Nash equilibrium.
 
-It is used to study settings where multiple decision-makers interact non-cooperatively over time, each seeking to pursue its own objective
+It is used to study settings where multiple decision-makers interact non-cooperatively over time, each seeking to pursue its own objective.
 
-The agents in the model face a common state vector, the time path of which is influenced by -- and influences -- their decisions
+The agents in the model face a common state vector, the time path of which is influenced by -- and influences -- their decisions.
 
-In particular, the transition law for the state that confronts each agent is affected by decision rules of other agents
+In particular, the transition law for the state that confronts each agent is affected by decision rules of other agents.
 
-Individual payoff maximization requires that each agent solve a dynamic programming problem that includes  this transition law
+Individual payoff maximization requires that each agent solve a dynamic programming problem that includes  this transition law.
 
-Markov perfect equilibrium prevails when no agent wishes to revise its policy, taking as given the policies of all other agents
+Markov perfect equilibrium prevails when no agent wishes to revise its policy, taking as given the policies of all other agents.
 
 Well known examples include
 
@@ -71,7 +71,7 @@ Well known examples include
 
 * Rate of extraction from a shared natural resource, such as a fishery (e.g., :cite:`levhari1980great`, :cite:`van2011dynamic`)
 
-Let's examine a model of the first type
+Let's examine a model of the first type.
 
 
 Example: A Duopoly Model
@@ -86,7 +86,7 @@ Two firms are the only producers of a good the demand for which is governed by a
     p = a_0 - a_1 (q_1 +  q_2)
 
 
-Here :math:`p = p_t` is the price of the good, :math:`q_i = q_{it}` is the output of firm :math:`i=1,2` at time :math:`t` and :math:`a_0 > 0, a_1 >0`
+Here :math:`p = p_t` is the price of the good, :math:`q_i = q_{it}` is the output of firm :math:`i=1,2` at time :math:`t` and :math:`a_0 > 0, a_1 >0`.
 
 In :eq:`game2` and what follows,
 
@@ -94,7 +94,7 @@ In :eq:`game2` and what follows,
 
 * :math:`\hat x` denotes a next period value of variable :math:`x`
 
-Each firm recognizes that its output affects total output and therefore the market price
+Each firm recognizes that its output affects total output and therefore the market price.
 
 The one-period payoff function of firm :math:`i` is price times quantity minus adjustment costs:
 
@@ -112,14 +112,14 @@ Substituting the inverse demand curve :eq:`game2` into :eq:`game1` lets us expre
     \pi_i(q_i, q_{-i}, \hat q_i) = a_0 q_i - a_1 q_i^2 - a_1 q_i q_{-i} - \gamma (\hat q_i - q_i)^2 ,
 
 
-where :math:`q_{-i}` denotes the output of the firm other than :math:`i`
+where :math:`q_{-i}` denotes the output of the firm other than :math:`i`.
 
-The objective of the firm is to maximize :math:`\sum_{t=0}^\infty \beta^t \pi_{it}`
+The objective of the firm is to maximize :math:`\sum_{t=0}^\infty \beta^t \pi_{it}`.
 
 
-Firm :math:`i` chooses a decision rule that sets next period quantity :math:`\hat q_i` as a function :math:`f_i` of the current state :math:`(q_i, q_{-i})`
+Firm :math:`i` chooses a decision rule that sets next period quantity :math:`\hat q_i` as a function :math:`f_i` of the current state :math:`(q_i, q_{-i})`.
 
-An essential aspect of a Markov perfect equilibrium is that each firm takes the decision rule of the other firm as known and given
+An essential aspect of a Markov perfect equilibrium is that each firm takes the decision rule of the other firm as known and given.
 
 Given :math:`f_{-i}`, the Bellman equation of firm :math:`i` is
 
@@ -137,7 +137,7 @@ Given :math:`f_{-i}`, the Bellman equation of firm :math:`i` is
 * The maximizer on the right side of :eq:`game4` is equal to :math:`f_i(q_i, q_{-i})`
 
 
-The adjective "Markov" denotes that the equilibrium decision rules depend only on the current values of the state variables, not other parts of their histories
+The adjective "Markov" denotes that the equilibrium decision rules depend only on the current values of the state variables, not other parts of their histories.
 
 "Perfect" means complete, in the sense that the equilibrium is constructed by backward induction and hence builds in optimizing behavior for each firm at all possible future states
 
@@ -149,9 +149,9 @@ The adjective "Markov" denotes that the equilibrium decision rules depend only o
 Computation
 -----------
 
-One strategy for computing a Markov perfect equilibrium is iterating to convergence on pairs of Bellman equations and decision rules
+One strategy for computing a Markov perfect equilibrium is iterating to convergence on pairs of Bellman equations and decision rules.
 
-In particular, let :math:`v_i^j,f_i^j` be the value function and policy function for firm :math:`i` at the :math:`j`-th iteration
+In particular, let :math:`v_i^j,f_i^j` be the value function and policy function for firm :math:`i` at the :math:`j`-th iteration.
 
 Imagine constructing the iterates
 
@@ -162,9 +162,9 @@ Imagine constructing the iterates
        \left\{\pi_i (q_i, q_{-i}, \hat q_i) + \beta v^j_i(\hat q_i, f_{-i}(q_{-i}, q_i)) \right\}
 
 
-These iterations can be challenging to implement computationally
+These iterations can be challenging to implement computationally.
 
-However, they simplify for the case in which the one-period payoff functions are quadratic and the transition laws are linear --- which takes us to our next topic
+However, they simplify for the case in which the one-period payoff functions are quadratic and the transition laws are linear --- which takes us to our next topic.
 
 
 
@@ -175,19 +175,19 @@ Linear Markov Perfect Equilibria
 .. index::
     single: Linear Markov Perfect Equilibria
 
-As we saw in the duopoly example, the study of Markov perfect equilibria in games with two players leads us to an interrelated pair of Bellman equations
+As we saw in the duopoly example, the study of Markov perfect equilibria in games with two players leads us to an interrelated pair of Bellman equations.
 
-In linear-quadratic dynamic games, these "stacked Bellman equations" become "stacked Riccati equations" with a tractable mathematical structure
+In linear-quadratic dynamic games, these "stacked Bellman equations" become "stacked Riccati equations" with a tractable mathematical structure.
 
-We'll lay out that structure in a general setup and then apply it to some simple problems
+We'll lay out that structure in a general setup and then apply it to some simple problems.
 
 
 Coupled Linear Regulator Problems
 -----------------------------------
 
-We consider a general linear-quadratic regulator game with two players
+We consider a general linear-quadratic regulator game with two players.
 
-For convenience, we'll start with a finite horizon formulation, where :math:`t_0` is the initial date and :math:`t_1` is the common terminal date
+For convenience, we'll start with a finite horizon formulation, where :math:`t_0` is the initial date and :math:`t_1` is the common terminal date.
 
 Player :math:`i` takes :math:`\{u_{-it}\}` as given and minimizes
 
@@ -230,9 +230,9 @@ Here
 Computing Equilibrium
 -----------------------------------
 
-We formulate a linear Markov perfect equilibrium as follows
+We formulate a linear Markov perfect equilibrium as follows.
 
-Player :math:`i` employs linear decision rules :math:`u_{it} = - F_{it} x_t`, where :math:`F_{it}` is a :math:`k_i \times n` matrix
+Player :math:`i` employs linear decision rules :math:`u_{it} = - F_{it} x_t`, where :math:`F_{it}` is a :math:`k_i \times n` matrix.
 
 A Markov perfect equilibrium is a pair of sequences :math:`\{F_{1t}, F_{2t}\}` over :math:`t = t_0, \ldots, t_1 - 1` such that
 
@@ -268,7 +268,7 @@ where
 * :math:`\Pi_{it} := R_i + F_{-it}' S_i F_{-it}`
 * :math:`\Gamma_{it} := W_i' - M_i' F_{-it}`
 
-This is an LQ dynamic programming problem that can be solved by working backwards
+This is an LQ dynamic programming problem that can be solved by working backwards.
 
 The policy rule that solves this problem is
 
@@ -313,23 +313,23 @@ where :math:`P_{2t}` solves
     \beta \Lambda_{2t}' P_{2t+1} \Lambda_{2t}
 
 
-Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`
+Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`.
 
-The solution procedure is to use equations :eq:`orig-3`, :eq:`orig-4`, :eq:`orig-5`, and :eq:`orig-6`, and "work backwards" from time :math:`t_1 - 1`
+The solution procedure is to use equations :eq:`orig-3`, :eq:`orig-4`, :eq:`orig-5`, and :eq:`orig-6`, and "work backwards" from time :math:`t_1 - 1`.
 
-Since we're working backward, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage
+Since we're working backward, :math:`P_{1t+1}` and :math:`P_{2t+1}` are taken as given at each stage.
 
 Moreover, since
 
 * some terms on the right-hand side of :eq:`orig-3` contain :math:`F_{2t}`
 * some terms on the right-hand side of :eq:`orig-5` contain :math:`F_{1t}`
 
-we need to solve these :math:`k_1 + k_2` equations simultaneously
+we need to solve these :math:`k_1 + k_2` equations simultaneously.
 
 Key Insight
 ^^^^^^^^^^^^
 
-A key insight is that  equations  :eq:`orig-3` and :eq:`orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`
+A key insight is that  equations  :eq:`orig-3` and :eq:`orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`.
 
 After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`orig-4` and :eq:`orig-6`
 
@@ -343,18 +343,18 @@ After these equations have been solved, we can take  :math:`F_{it}` and solve fo
 Infinite Horizon
 ^^^^^^^^^^^^^^^^^^^^
 
-We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`
+We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`.
 
-In practice, we usually fix :math:`t_1` and compute the equilibrium of an infinite horizon game by driving :math:`t_0 \rightarrow - \infty`
+In practice, we usually fix :math:`t_1` and compute the equilibrium of an infinite horizon game by driving :math:`t_0 \rightarrow - \infty`.
 
-This is the approach we adopt in the next section
+This is the approach we adopt in the next section.
 
 
 
 Implementation
 ----------------
 
-We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear-quadratic dynamic game in the manner described above
+We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear-quadratic dynamic game in the manner described above.
 
 
 
@@ -364,7 +364,7 @@ Application
 .. index::
     single: Markov Perfect Equilibrium; Applications
 
-Let's use these procedures to treat some applications, starting with the duopoly model
+Let's use these procedures to treat some applications, starting with the duopoly model.
 
 
 A Duopoly Model
@@ -412,7 +412,7 @@ where :math:`Q_1 = Q_2 = \gamma`,
     \end{bmatrix}
 
 
-then we recover the  one-period  payoffs in expression :eq:`game3`
+then we recover the  one-period  payoffs in expression :eq:`game3`.
 
 The law of motion for the state :math:`x_t` is :math:`x_{t+1} = A x_t + B_1 u_{1t} + B_2 u_{2t}` where
 
@@ -463,16 +463,16 @@ From these, we compute the infinite horizon MPE using the preceding code
 .. literalinclude:: /_static/lecture_specific/markov_perf/duopoly_mpe.py
 
 
-Running the code produces the following output
+Running the code produces the following output.
 
 
 
 
 
 
-One way to see that :math:`F_i` is indeed optimal for firm :math:`i` taking :math:`F_2` as given is to use `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class
+One way to see that :math:`F_i` is indeed optimal for firm :math:`i` taking :math:`F_2` as given is to use `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class.
 
-In particular, let's take `F2` as computed above, plug it into :eq:`eq_mpe_p1p` and :eq:`eq_mpe_p1d` to get firm 1's problem and solve it using `LQ`
+In particular, let's take `F2` as computed above, plug it into :eq:`eq_mpe_p1p` and :eq:`eq_mpe_p1d` to get firm 1's problem and solve it using `LQ`.
 
 We hope that the resulting policy will agree with `F1` as computed above
 
@@ -487,7 +487,7 @@ We hope that the resulting policy will agree with `F1` as computed above
 
 
 
-This is close enough for rock and roll, as they say in the trade
+This is close enough for rock and roll, as they say in the trade.
 
 Indeed, `np.allclose` agrees with our assessment
 
@@ -503,9 +503,9 @@ Indeed, `np.allclose` agrees with our assessment
 Dynamics
 -----------------------
 
-Let's now investigate the dynamics of price and output in this simple duopoly model under the MPE policies
+Let's now investigate the dynamics of price and output in this simple duopoly model under the MPE policies.
 
-Given our optimal policies :math:`F1` and :math:`F2`, the state evolves according to :eq:`eq_mpe_cle`
+Given our optimal policies :math:`F1` and :math:`F2`, the state evolves according to :eq:`eq_mpe_cle`.
 
 The following program
 
@@ -517,23 +517,23 @@ The following program
 
 .. literalinclude:: /_static/lecture_specific/markov_perf/duopoly_mpe_dynamics.py
 
-Note that the initial condition has been set to :math:`q_{10} = q_{20} = 1.0`
+Note that the initial condition has been set to :math:`q_{10} = q_{20} = 1.0`.
 
-To gain some perspective we can compare this to what happens in the monopoly case
+To gain some perspective we can compare this to what happens in the monopoly case.
 
-The first panel in the next figure compares output of the monopolist and industry output under the MPE, as a function of time
+The first panel in the next figure compares output of the monopolist and industry output under the MPE, as a function of time.
 
-The second panel shows analogous curves for price
+The second panel shows analogous curves for price.
 
 .. _mpe_vs_monopolist:
 
 .. figure:: /_static/lecture_specific/markov_perf/mpe_vs_monopolist.png
 
-Here parameters are the same as above for both the MPE and monopoly solutions
+Here parameters are the same as above for both the MPE and monopoly solutions.
 
-The monopolist initial condition is :math:`q_0 = 2.0` to mimic the industry initial condition :math:`q_{10} = q_{20} = 1.0` in the MPE case
+The monopolist initial condition is :math:`q_0 = 2.0` to mimic the industry initial condition :math:`q_{10} = q_{20} = 1.0` in the MPE case.
 
-As expected, output is higher and prices are lower under duopoly than monopoly
+As expected, output is higher and prices are lower under duopoly than monopoly.
 
 Exercises
 ===========
@@ -542,21 +542,21 @@ Exercises
 Exercise 1
 ---------------
 
-Replicate the :ref:`pair of figures <mpe_vs_monopolist>` showing the comparison of output and prices for the monopolist and duopoly under MPE
+Replicate the :ref:`pair of figures <mpe_vs_monopolist>` showing the comparison of output and prices for the monopolist and duopoly under MPE.
 
-Parameters are as in `duopoly_mpe.py` and you can use that code to compute MPE policies under duopoly
+Parameters are as in `duopoly_mpe.py` and you can use that code to compute MPE policies under duopoly.
 
-The optimal policy in the monopolist case can be computed using `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class
+The optimal policy in the monopolist case can be computed using `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class.
 
 
 Exercise 2
 ---------------
 
-In this exercise, we consider a slightly more sophisticated duopoly problem
+In this exercise, we consider a slightly more sophisticated duopoly problem.
 
-It takes the form of infinite horizon linear-quadratic game proposed by Judd :cite:`Judd1990`
+It takes the form of infinite horizon linear-quadratic game proposed by Judd :cite:`Judd1990`.
 
-Two firms set prices and quantities of two goods interrelated through their demand curves
+Two firms set prices and quantities of two goods interrelated through their demand curves.
 
 Relevant variables are defined as follows:
 
@@ -626,11 +626,11 @@ We can convert this to a linear-quadratic problem by taking
     \end{bmatrix}
 
 
-Decision rules for price and quantity take the form :math:`u_{it} = -F_i  x_t`
+Decision rules for price and quantity take the form :math:`u_{it} = -F_i  x_t`.
 
-The Markov perfect equilibrium of Judd’s model can be computed by filling in the matrices appropriately
+The Markov perfect equilibrium of Judd’s model can be computed by filling in the matrices appropriately.
 
-The exercise is to calculate these matrices and compute the following figures
+The exercise is to calculate these matrices and compute the following figures.
 
 The first figure shows the dynamics of inventories for each firm when the parameters are
 
@@ -648,9 +648,9 @@ The first figure shows the dynamics of inventories for each firm when the parame
 
 .. figure:: /_static/lecture_specific/markov_perf/judd_fig2.png
 
-Inventories trend to a common steady state
+Inventories trend to a common steady state.
 
-If we increase the depreciation rate to :math:`\delta = 0.05`, then we expect steady state inventories to fall
+If we increase the depreciation rate to :math:`\delta = 0.05`, then we expect steady state inventories to fall.
 
 This is indeed the case, as the next figure shows
 
@@ -718,7 +718,7 @@ initial condition :math:`q_{10} = q_{20} = 1`
 
 
 
-Next, let's have a look at the monopoly solution
+Next, let's have a look at the monopoly solution.
 
 For the state and control, we take
 
@@ -742,7 +742,7 @@ in the payoff function :math:`x_t' R x_t + u_t' Q u_t` and
 
        A = B = 1
 
-in the law of motion :math:`x_{t+1} = A x_t + B u_t`
+in the law of motion :math:`x_{t+1} = A x_t + B u_t`.
 
 We solve for the optimal policy :math:`u_t = - Fx_t` and track the
 resulting dynamics of :math:`\{q_t\}`, starting at :math:`q_0 = 2.0`

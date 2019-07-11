@@ -13,7 +13,7 @@ A Lake Model of Employment and Unemployment
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -23,9 +23,9 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ===============
 
-This lecture describes what has come to be called a *lake model*
+This lecture describes what has come to be called a *lake model*.
 
-The lake model is a basic tool for modeling unemployment
+The lake model is a basic tool for modeling unemployment.
 
 It allows us to analyze
 
@@ -33,9 +33,9 @@ It allows us to analyze
 
 * how these flows influence steady state employment and unemployment rates
 
-It is a good model for interpreting monthly labor department reports on gross and net jobs created and jobs destroyed
+It is a good model for interpreting monthly labor department reports on gross and net jobs created and jobs destroyed.
 
-The "lakes" in the model are the pools of employed and unemployed
+The "lakes" in the model are the pools of employed and unemployed.
 
 The "flows" between the lakes are caused by
 
@@ -44,22 +44,22 @@ The "flows" between the lakes are caused by
 * entry and exit from the labor force
 
 For the first part of this lecture, the parameters governing transitions into
-and out of unemployment and employment are exogenous
+and out of unemployment and employment are exogenous.
 
-Later, we'll determine some of these transition rates endogenously using the :doc:`McCall search model <mccall_model>`
+Later, we'll determine some of these transition rates endogenously using the :doc:`McCall search model <mccall_model>`.
 
-We'll also use some nifty concepts like ergodicity, which provides a fundamental link between *cross-sectional* and *long run time series* distributions
+We'll also use some nifty concepts like ergodicity, which provides a fundamental link between *cross-sectional* and *long run time series* distributions.
 
-These concepts will help us build an equilibrium model of ex-ante homogeneous workers whose different luck generates variations in their ex post experiences
+These concepts will help us build an equilibrium model of ex-ante homogeneous workers whose different luck generates variations in their ex post experiences.
 
 
 Prerequisites
 -------------
 
 Before working through what follows, we recommend you read the :doc:`lecture
-on finite Markov chains <finite_markov>`
+on finite Markov chains <finite_markov>`.
 
-You will also need some basic :doc:`linear algebra <linear_algebra>` and probability
+You will also need some basic :doc:`linear algebra <linear_algebra>` and probability.
 
 
 
@@ -67,9 +67,9 @@ You will also need some basic :doc:`linear algebra <linear_algebra>` and probabi
 The Model
 ==========
 
-The economy is inhabited by a very large number of ex-ante identical workers
+The economy is inhabited by a very large number of ex-ante identical workers.
 
-The workers live forever, spending their lives moving between unemployment and employment
+The workers live forever, spending their lives moving between unemployment and employment.
 
 Their rates of  transition between employment and unemployment are  governed by the following parameters:
 
@@ -81,7 +81,7 @@ Their rates of  transition between employment and unemployment are  governed by 
 
 * :math:`d`, the exit rate from the labor force
 
-The growth rate of the labor force evidently equals :math:`g=b-d`
+The growth rate of the labor force evidently equals :math:`g=b-d`.
 
 
 Aggregate Variables
@@ -102,14 +102,14 @@ We also want to know the values of the following objects
 * The unemployment rate :math:`u_t := U_t/N_t`
 
 
-(Here and below, capital letters represent stocks and lowercase letters represent flows)
+(Here and below, capital letters represent stocks and lowercase letters represent flows).
 
 
 
 Laws of Motion for Stock Variables
 ------------------------------------
 
-We begin by constructing laws of motion for the aggregate variables :math:`E_t,U_t, N_t`
+We begin by constructing laws of motion for the aggregate variables :math:`E_t,U_t, N_t`.
 
 Of the mass of workers :math:`E_t` who are employed at date :math:`t`,
 
@@ -137,7 +137,7 @@ A similar analysis implies
     U_{t+1} = (1-d)\alpha E_t + (1-d)(1-\lambda)U_t + b (E_t+U_t)
 
 
-The value :math:`b(E_t+U_t)` is the mass of new workers entering the labor force unemployed
+The value :math:`b(E_t+U_t)` is the mass of new workers entering the labor force unemployed.
 
 The total stock of workers :math:`N_t=E_t+U_t` evolves as
 
@@ -159,13 +159,13 @@ Letting :math:`X_t := \left(\begin{matrix}U_t\\E_t\end{matrix}\right)`, the law 
     \end{pmatrix}
 
 
-This law tells us how total employment and unemployment evolve over time
+This law tells us how total employment and unemployment evolve over time.
 
 
 Laws of Motion for Rates
 --------------------------------------------------------
 
-Now let's derive the law of motion for rates
+Now let's derive the law of motion for rates.
 
 To get these we can divide both sides of :math:`X_{t+1} = A X_t` by  :math:`N_{t+1}` to get
 
@@ -205,20 +205,20 @@ we can also write this as
     \hat A := \frac{1}{1 + g} A
 
 
-You can check that :math:`e_t + u_t = 1` implies that :math:`e_{t+1}+u_{t+1} = 1`
+You can check that :math:`e_t + u_t = 1` implies that :math:`e_{t+1}+u_{t+1} = 1`.
 
-This follows from the fact that the columns of :math:`\hat A` sum to 1
+This follows from the fact that the columns of :math:`\hat A` sum to 1.
 
 
 Implementation
 ================
 
 
-Let's code up these equations
+Let's code up these equations.
 
 
 
-To do this we're going to use a class that we'll call `LakeModel`
+To do this we're going to use a class that we'll call `LakeModel`.
 
 This class will
 
@@ -231,19 +231,19 @@ This class will
 #. provide a method to compute the state state of the rate
 
 
-To write a nice implementation, there's an issue we have to address
+To write a nice implementation, there's an issue we have to address.
 
 Derived data such as :math:`A` depend on the primitives like :math:`\alpha`
-and :math:`\lambda`
+and :math:`\lambda`.
 
 If a user alters these primitives, we would ideally like derived data to
-update automatically
+update automatically.
 
-(For example, if a user changes the value of :math:`b` for a given instance of the class, we would like :math:`g = b - d` to update automatically)
+(For example, if a user changes the value of :math:`b` for a given instance of the class, we would like :math:`g = b - d` to update automatically).
 
-To achieve this outcome, we're going to use descriptors and decorators such as `@property`
+To achieve this outcome, we're going to use descriptors and decorators such as `@property`.
 
-If you need to refresh your understanding of how these work, consult :doc:`this lecture <python_advanced_features>`
+If you need to refresh your understanding of how these work, consult :doc:`this lecture <python_advanced_features>`.
 
 
 
@@ -318,7 +318,7 @@ Let's run a simulation under the default parameters (see above) starting from :m
 
 
 
-The aggregates :math:`E_t` and :math:`U_t` don't converge because  their sum :math:`E_t + U_t` grows at rate :math:`g`
+The aggregates :math:`E_t` and :math:`U_t` don't converge because  their sum :math:`E_t + U_t` grows at rate :math:`g`.
 
 
 On the other hand, the vector of employment and unemployment rates :math:`x_t` can be in a steady state :math:`\bar x` if
@@ -328,9 +328,9 @@ there exists an :math:`\bar x`  such that
 
 * the components satisfy :math:`\bar e + \bar u = 1`
 
-This equation tells us that a steady state level :math:`\bar x` is an  eigenvector of :math:`\hat A` associated with a unit eigenvalue
+This equation tells us that a steady state level :math:`\bar x` is an  eigenvector of :math:`\hat A` associated with a unit eigenvalue.
 
-We also have :math:`x_t \to \bar x` as :math:`t \to \infty` provided that the remaining eigenvalue of :math:`\hat A` has modulus less that 1
+We also have :math:`x_t \to \bar x` as :math:`t \to \infty` provided that the remaining eigenvalue of :math:`\hat A` has modulus less that 1.
 
 This is the case for our default parameters:
 
@@ -355,7 +355,7 @@ Dynamics of an Individual Worker
 =================================
 
 
-An individual worker's employment dynamics are governed by a :doc:`finite state Markov process <finite_markov>`
+An individual worker's employment dynamics are governed by a :doc:`finite state Markov process <finite_markov>`.
 
 The worker can be in one of two states:
 
@@ -363,7 +363,7 @@ The worker can be in one of two states:
 
 * :math:`s_t=1` means employed
 
-Let's start off under the assumption that :math:`b = d = 0`
+Let's start off under the assumption that :math:`b = d = 0`.
 
 The associated transition matrix is then
 
@@ -377,9 +377,9 @@ The associated transition matrix is then
         \right)
 
 
-Let :math:`\psi_t` denote the :ref:`marginal distribution <mc_md>` over employment/unemployment states for the worker at time :math:`t`
+Let :math:`\psi_t` denote the :ref:`marginal distribution <mc_md>` over employment/unemployment states for the worker at time :math:`t`.
 
-As usual, we regard it as a row vector
+As usual, we regard it as a row vector.
 
 We know :ref:`from an earlier discussion <mc_md>` that :math:`\psi_t` follows the law of motion
 
@@ -390,7 +390,7 @@ We know :ref:`from an earlier discussion <mc_md>` that :math:`\psi_t` follows th
 
 We also know from the :doc:`lecture on finite Markov chains <finite_markov>`
 that if :math:`\alpha \in (0, 1)` and :math:`\lambda \in (0, 1)`, then
-:math:`P` has a unique stationary distribution, denoted here by :math:`\psi^*`
+:math:`P` has a unique stationary distribution, denoted here by :math:`\psi^*`.
 
 The unique stationary distribution satisfies
 
@@ -400,7 +400,7 @@ The unique stationary distribution satisfies
 
 
 Not surprisingly, probability mass on the unemployment state increases with
-the dismissal rate and falls with the job finding rate
+the dismissal rate and falls with the job finding rate.
 
 
 
@@ -409,9 +409,9 @@ the dismissal rate and falls with the job finding rate
 Ergodicity
 ------------------------
 
-Let's look at a typical lifetime of employment-unemployment spells
+Let's look at a typical lifetime of employment-unemployment spells.
 
-We want to compute the average amounts of time an infinitely lived worker would spend employed and unemployed
+We want to compute the average amounts of time an infinitely lived worker would spend employed and unemployed.
 
 
 Let
@@ -428,9 +428,9 @@ and
     \bar s_{e,T} := \frac1{T} \sum_{t=1}^T \mathbb 1\{s_t = 1\}
 
 
-(As usual, :math:`\mathbb 1\{Q\} = 1` if statement :math:`Q` is true and 0 otherwise)
+(As usual, :math:`\mathbb 1\{Q\} = 1` if statement :math:`Q` is true and 0 otherwise).
 
-These are the fraction of time a worker spends unemployed and employed, respectively, up until period :math:`T`
+These are the fraction of time a worker spends unemployed and employed, respectively, up until period :math:`T`.
 
 If :math:`\alpha \in (0, 1)` and :math:`\lambda \in (0, 1)`, then :math:`P` is :ref:`ergodic <ergodicity>`, and hence we have
 
@@ -441,12 +441,12 @@ If :math:`\alpha \in (0, 1)` and :math:`\lambda \in (0, 1)`, then :math:`P` is :
     \lim_{T \to \infty} \bar s_{e, T} = \psi^*[1]
 
 
-with probability one
+with probability one.
 
 
-Inspection tells us that :math:`P` is exactly the transpose of :math:`\hat A` under the assumption :math:`b=d=0`
+Inspection tells us that :math:`P` is exactly the transpose of :math:`\hat A` under the assumption :math:`b=d=0`.
 
-Thus, the percentages of time that an  infinitely lived worker  spends employed and unemployed equal the fractions of workers employed and unemployed in the steady state distribution
+Thus, the percentages of time that an  infinitely lived worker  spends employed and unemployed equal the fractions of workers employed and unemployed in the steady state distribution.
 
 
 Convergence Rate
@@ -455,7 +455,7 @@ Convergence Rate
 How long does it take for time series sample averages to converge to cross-sectional averages?
 
 We can use `QuantEcon.py's <http://quantecon.org/python_index.html>`__
-`MarkovChain` class to investigate this
+`MarkovChain` class to investigate this.
 
 Let's plot the path of the sample averages over 5,000 periods
 
@@ -464,11 +464,11 @@ Let's plot the path of the sample averages over 5,000 periods
 
 
 
-The stationary probabilities are given by the dashed red line
+The stationary probabilities are given by the dashed red line.
 
-In this case it takes much of the sample for these two objects to converge
+In this case it takes much of the sample for these two objects to converge.
 
-This is largely due to the high persistence in the Markov chain
+This is largely due to the high persistence in the Markov chain.
 
 
 
@@ -477,11 +477,11 @@ Endogenous Job Finding Rate
 ============================
 
 
-We now make the hiring rate endogenous
+We now make the hiring rate endogenous.
 
-The transition rate from unemployment to employment will be determined by the McCall search model :cite:`McCall1970`
+The transition rate from unemployment to employment will be determined by the McCall search model :cite:`McCall1970`.
 
-All details relevant to the following discussion can be found in :doc:`our treatment <mccall_model>` of that model
+All details relevant to the following discussion can be found in :doc:`our treatment <mccall_model>` of that model.
 
 
 Reservation Wage
@@ -510,11 +510,11 @@ As we saw in :doc:`our discussion of the model <mccall_model>`, the reservation 
 Linking the McCall Search Model to the Lake Model
 --------------------------------------------------
 
-Suppose that  all workers inside a lake model behave according to the McCall search model
+Suppose that  all workers inside a lake model behave according to the McCall search model.
 
-The exogenous probability of leaving employment remains :math:`\alpha`
+The exogenous probability of leaving employment remains :math:`\alpha`.
 
-But their optimal decision rules determine the probability :math:`\lambda` of leaving unemployment
+But their optimal decision rules determine the probability :math:`\lambda` of leaving unemployment.
 
 This is now
 
@@ -529,11 +529,11 @@ This is now
 Fiscal Policy
 -----------------
 
-We can use the McCall search version of the Lake Model  to find an optimal level of unemployment insurance
+We can use the McCall search version of the Lake Model  to find an optimal level of unemployment insurance.
 
-We assume that  the government sets unemployment compensation :math:`c`
+We assume that  the government sets unemployment compensation :math:`c`.
 
-The government imposes a lump-sum tax :math:`\tau` sufficient to finance total unemployment payments
+The government imposes a lump-sum tax :math:`\tau` sufficient to finance total unemployment payments.
 
 To attain a balanced budget at a steady state, taxes, the steady state unemployment rate :math:`u`, and the unemployment compensation rate must satisfy
 
@@ -542,15 +542,15 @@ To attain a balanced budget at a steady state, taxes, the steady state unemploym
     \tau = u c
 
 
-The lump-sum tax applies to everyone, including unemployed workers
+The lump-sum tax applies to everyone, including unemployed workers.
 
-Thus, the post-tax income of an employed worker with wage :math:`w` is :math:`w - \tau`
+Thus, the post-tax income of an employed worker with wage :math:`w` is :math:`w - \tau`.
 
-The post-tax income of an unemployed worker is :math:`c - \tau`
+The post-tax income of an unemployed worker is :math:`c - \tau`.
 
-For each specification :math:`(c, \tau)` of government policy, we can solve for the worker's optimal reservation wage
+For each specification :math:`(c, \tau)` of government policy, we can solve for the worker's optimal reservation wage.
 
-This determines :math:`\lambda` via :eq:`lake_lamda` evaluated at post tax wages, which in turn determines a steady state unemployment rate :math:`u(c, \tau)`
+This determines :math:`\lambda` via :eq:`lake_lamda` evaluated at post tax wages, which in turn determines a steady state unemployment rate :math:`u(c, \tau)`.
 
 For a given level of unemployment benefit :math:`c`, we can solve for a tax that balances the budget in the steady state
 
@@ -559,7 +559,7 @@ For a given level of unemployment benefit :math:`c`, we can solve for a tax that
     \tau = u(c, \tau) c
 
 
-To evaluate alternative government tax-unemployment compensation pairs, we require a welfare criterion
+To evaluate alternative government tax-unemployment compensation pairs, we require a welfare criterion.
 
 We use a steady state welfare criterion
 
@@ -568,14 +568,14 @@ We use a steady state welfare criterion
     W := e \,  {\mathbb E} [V \, | \,  \text{employed}] + u \,  U
 
 
-where the notation :math:`V` and :math:`U` is as defined in the :doc:`McCall search model lecture <mccall_model>`
+where the notation :math:`V` and :math:`U` is as defined in the :doc:`McCall search model lecture <mccall_model>`.
 
 The wage offer distribution will be a discretized version of the lognormal distribution :math:`LN(\log(20),1)`, as shown in the next figure
 
 
 .. figure:: /_static/lecture_specific/lake_model/lake_distribution_wages.png
 
-We take a period to be a month
+We take a period to be a month.
 
 We set :math:`b` and :math:`d` to match monthly `birth <http://www.cdc.gov/nchs/fastats/births.htm>`_ and `death rates <http://www.cdc.gov/nchs/fastats/deaths.htm>`_, respectively, in the U.S. population
 
@@ -593,7 +593,7 @@ Fiscal Policy Code
 -----------------------
 
 
-We will make use of code we wrote in the :doc:`McCall model lecture <mccall_model>`, embedded below for convenience
+We will make use of code we wrote in the :doc:`McCall model lecture <mccall_model>`, embedded below for convenience.
 
 The first piece of code, repeated below, implements value function iteration
 
@@ -612,9 +612,9 @@ function of the unemployment compensation rate
 
 .. literalinclude:: /_static/lecture_specific/lake_model/lake_fiscal_policy.py
 
-Welfare first increases and then decreases as unemployment benefits rise
+Welfare first increases and then decreases as unemployment benefits rise.
 
-The level that maximizes steady state welfare is approximately 62
+The level that maximizes steady state welfare is approximately 62.
 
 
 Exercises
@@ -634,13 +634,13 @@ steady state level of employment in the baseline parameterization
 
 * :math:`d = 0.00822`
 
-(The values for :math:`\alpha` and :math:`\lambda` follow :cite:`davis2006flow`)
+(The values for :math:`\alpha` and :math:`\lambda` follow :cite:`davis2006flow`).
 
-Suppose that in response to new legislation the hiring rate reduces to :math:`\lambda = 0.2`
+Suppose that in response to new legislation the hiring rate reduces to :math:`\lambda = 0.2`.
 
-Plot the transition dynamics of the unemployment and employment stocks for 50 periods
+Plot the transition dynamics of the unemployment and employment stocks for 50 periods.
 
-Plot the transition dynamics for the rates
+Plot the transition dynamics for the rates.
 
 How long does the economy take to converge to its new steady state?
 
@@ -653,13 +653,13 @@ Exercise 2
 -----------------
 
 Consider an economy with an initial stock  of workers :math:`N_0 = 100` at the
-steady state level of employment in the baseline parameterization
+steady state level of employment in the baseline parameterization.
 
-Suppose that for 20 periods the birth rate was temporarily high (:math:`b = 0.0025`) and then returned to its original level
+Suppose that for 20 periods the birth rate was temporarily high (:math:`b = 0.0025`) and then returned to its original level.
 
-Plot the transition dynamics of the unemployment and employment stocks for 50 periods
+Plot the transition dynamics of the unemployment and employment stocks for 50 periods.
 
-Plot the transition dynamics for the rates
+Plot the transition dynamics for the rates.
 
 How long does the economy take to return to its original steady state?
 
@@ -746,15 +746,15 @@ And how the rates evolve
 
 
 We see that it takes 20 periods for the economy to converge to its new
-steady state levels
+steady state levels.
 
 Exercise 2
 ----------
 
 This next exercise has the economy experiencing a boom in entrances to
-the labor market and then later returning to the original levels
+the labor market and then later returning to the original levels.
 
-For 20 periods the economy has a new entry rate into the labor market
+For 20 periods the economy has a new entry rate into the labor market.
 
 Let's start off at the baseline parameterization and record the steady
 state

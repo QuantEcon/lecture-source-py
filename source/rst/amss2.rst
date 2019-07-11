@@ -12,7 +12,7 @@ Fluctuating Interest Rates Deliver Fiscal Insurance
 
 **Co-authors: Anmol Bhandari and David Evans**
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -23,27 +23,27 @@ Overview
 =============
 
 This lecture extends our investigations of how optimal policies for levying a flat-rate tax on labor income and  issuing government debt depend
-on whether there are complete  markets for debt
+on whether there are complete  markets for debt.
 
 A Ramsey allocation and Ramsey policy in the AMSS :cite:`aiyagari2002optimal` model described in :doc:`optimal taxation without state-contingent debt<amss>` generally differs
-from a Ramsey allocation and Ramsey policy in the  Lucas-Stokey :cite:`LucasStokey1983` model described in :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`
+from a Ramsey allocation and Ramsey policy in the  Lucas-Stokey :cite:`LucasStokey1983` model described in :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`.
 
 This is because the implementability restriction that a competitive equilibrium with a distorting tax  imposes on  allocations in the Lucas-Stokey model is just one among a set of
-implementability conditions imposed in  the AMSS model
+implementability conditions imposed in  the AMSS model.
 
 These additional constraints require that time :math:`t` components of a Ramsey allocation
-for the AMSS model be **measurable** with respect to time :math:`t-1` information
+for the AMSS model be **measurable** with respect to time :math:`t-1` information.
 
 The  measurability constraints imposed by the AMSS model are inherited from the   restriction that  only one-period risk-free bonds
-can be traded
+can be traded.
 
 Differences between the  Ramsey allocations in the two models   indicate that at least some of the measurability constraints of the AMSS model of
-:doc:`optimal taxation without state-contingent debt<amss>` are violated at the Ramsey allocation of a corresponding  :cite:`LucasStokey1983` model with state-contingent debt
+:doc:`optimal taxation without state-contingent debt<amss>` are violated at the Ramsey allocation of a corresponding  :cite:`LucasStokey1983` model with state-contingent debt.
 
 Another way to say this is that differences between the Ramsey allocations of the two models indicate that some of the measurability constraints of the
-AMSS model are violated at the  Ramsey allocation of the Lucas-Stokey model
+AMSS model are violated at the  Ramsey allocation of the Lucas-Stokey model.
 
-Nonzero Lagrange multipliers on those constraints make the Ramsey allocation for the AMSS model differ from the Ramsey allocation for the Lucas-Stokey model
+Nonzero Lagrange multipliers on those constraints make the Ramsey allocation for the AMSS model differ from the Ramsey allocation for the Lucas-Stokey model.
 
 This lecture studies a special  AMSS model in which
 
@@ -89,24 +89,24 @@ This lecture studies a special  AMSS model in which
 
 
 In a nutshell, the reason for this striking outcome is that at a particular level of risk-free government **assets**, fluctuations in the one-period risk-free interest
-rate provide the government with complete insurance against stochastically varying government expenditures
+rate provide the government with complete insurance against stochastically varying government expenditures.
 
 
 Forces at Work
 ===============
 
-The forces  driving asymptotic  outcomes here are examples of dynamics present in a more general class  incomplete markets models analyzed in :cite:`BEGS1` (BEGS)
+The forces  driving asymptotic  outcomes here are examples of dynamics present in a more general class  incomplete markets models analyzed in :cite:`BEGS1` (BEGS).
 
-BEGS provide conditions under which government debt under a Ramsey plan converges to an invariant distribution
+BEGS provide conditions under which government debt under a Ramsey plan converges to an invariant distribution.
 
-BEGS  construct approximations to that asymptotically invariant  distribution  of government debt under a  Ramsey plan
+BEGS  construct approximations to that asymptotically invariant  distribution  of government debt under a  Ramsey plan.
 
-BEGS also compute an approximation to a Ramsey plan's rate of convergence  to that limiting invariant distribution
+BEGS also compute an approximation to a Ramsey plan's rate of convergence  to that limiting invariant distribution.
 
-We  shall use the BEGS approximating limiting distribution and the approximating  rate of convergence   to help interpret  outcomes here
+We  shall use the BEGS approximating limiting distribution and the approximating  rate of convergence   to help interpret  outcomes here.
 
 For a long time, the Ramsey plan puts a nontrivial martingale-like component into the par value of  government debt as part of the way that the Ramsey plan imperfectly
-smooths distortions from the labor tax rate across  time and Markov states
+smooths distortions from the labor tax rate across  time and Markov states.
 
 But BEGS show that binding implementability constraints slowly push government debt in a direction designed to let the government use fluctuations in equilibrium interest
 rate  rather than fluctuations in  par values of debt to insure against shocks to government expenditures
@@ -146,11 +146,11 @@ Equations from Lucas-Stokey (1983) Model
 ------------------------------------------
 
 Although we are studying an AMSS :cite:`aiyagari2002optimal` economy,  a Lucas-Stokey :cite:`LucasStokey1983` economy plays
-an important  role in the reverse-engineering calculation to be described below
+an important  role in the reverse-engineering calculation to be described below.
 
-For that reason, it is helpful  to have readily available some key equations underlying a Ramsey plan for the Lucas-Stokey economy
+For that reason, it is helpful  to have readily available some key equations underlying a Ramsey plan for the Lucas-Stokey economy.
 
-Recall first-order conditions for a Ramsey allocation for the Lucas-Stokey economy
+Recall first-order conditions for a Ramsey allocation for the Lucas-Stokey economy.
 
 For :math:`t \geq 1`, these take the form
 
@@ -165,7 +165,7 @@ For :math:`t \geq 1`, these take the form
         (c+g) u_{\ell \ell}(c,1-c-g)  \bigr]
     \end{aligned}
 
-There is one such equation for each value of the Markov state :math:`s_t`
+There is one such equation for each value of the Markov state :math:`s_t`.
 
 In addition, given an initial Markov state, the time :math:`t=0` quantities :math:`c_0` and :math:`b_0` satisfy
 
@@ -189,7 +189,7 @@ In addition, the time :math:`t=0` budget constraint is satisfied at :math:`c_0` 
     b_0 + g_0 = \tau_0 (c_0 + g_0) + \frac{\bar b}{R_0}
 
 where :math:`R_0` is the gross interest rate for the Markov state :math:`s_0` that is assumed to prevail at time :math:`t =0`
-and :math:`\tau_0` is the time :math:`t=0` tax rate
+and :math:`\tau_0` is the time :math:`t=0` tax rate.
 
 
 In equation :eq:`eqn_AMSS2_10`, it is understood that
@@ -204,7 +204,7 @@ In equation :eq:`eqn_AMSS2_10`, it is understood that
 
 
 It is useful to transform  some of the above equations to forms that are more natural for analyzing the
-case of a CRRA utility specification that we shall use in our example economies
+case of a CRRA utility specification that we shall use in our example economies.
 
 Specification with CRRA Utility
 --------------------------------
@@ -219,7 +219,7 @@ we assume that the representative agent has utility function
     u(c,n) = {\frac{c^{1-\sigma}}{1-\sigma}} - {\frac{n^{1+\gamma}}{1+\gamma}}
 
 
-and set  :math:`\sigma = 2`, :math:`\gamma = 2`, and the  discount factor :math:`\beta = 0.9`
+and set  :math:`\sigma = 2`, :math:`\gamma = 2`, and the  discount factor :math:`\beta = 0.9`.
 
 We eliminate leisure from the model and continue to assume that
 
@@ -239,7 +239,7 @@ The analysis of Lucas and Stokey prevails once we make the following replacement
         u_{c,\ell} (c,\ell) &\sim 0
         \end{aligned}
 
-With these understandings, equations :eq:`TS_barg10a` and :eq:`TS_barg11b` simplify in the case of the CRRA utility function
+With these understandings, equations :eq:`TS_barg10a` and :eq:`TS_barg11b` simplify in the case of the CRRA utility function.
 
 They become
 
@@ -255,7 +255,7 @@ and
 
     (1+\Phi) [u_c(c_0) + u_n(c_0+g_0)] + \Phi[c_0 u_{cc}(c_0) + (c_0+g_0) u_{nn}(c_0+g_0)] - \Phi u_{cc}(c_0) b_0 = 0
 
-In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`
+In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`.
 
 The CRRA utility function is represented in the following class
 
@@ -265,15 +265,15 @@ The CRRA utility function is represented in the following class
 Example Economy
 ==================
 
-We set the following parameter values
+We set the following parameter values.
 
-The Markov state :math:`s_t` takes two values, namely,  :math:`0,1`
+The Markov state :math:`s_t` takes two values, namely,  :math:`0,1`.
 
-The initial Markov state is :math:`0`
+The initial Markov state is :math:`0`.
 
-The Markov transition matrix is :math:`.5 I` where :math:`I` is a :math:`2 \times 2` identity matrix, so the :math:`s_t` process is IID
+The Markov transition matrix is :math:`.5 I` where :math:`I` is a :math:`2 \times 2` identity matrix, so the :math:`s_t` process is IID.
 
-Government expenditures :math:`g(s)` equal :math:`.1` in Markov state :math:`0` and :math:`.2` in Markov state :math:`1`
+Government expenditures :math:`g(s)` equal :math:`.1` in Markov state :math:`0` and :math:`.2` in Markov state :math:`1`.
 
 We set preference parameters as follows:
 
@@ -285,7 +285,7 @@ We set preference parameters as follows:
     \gamma & = 2
     \end{aligned}
 
-Here are several classes that do most of the work for us
+Here are several classes that do most of the work for us.
 
 The code is  mostly taken or adapted from the earlier lectures :doc:`optimal taxation without state-contingent debt<amss>` and
 :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`
@@ -305,25 +305,25 @@ The code is  mostly taken or adapted from the earlier lectures :doc:`optimal tax
 Reverse Engineering Strategy
 =============================
 
-We can reverse engineer a value :math:`b_0` of initial debt due   that renders the AMSS measurability constraints not binding from time :math:`t =0` onward
+We can reverse engineer a value :math:`b_0` of initial debt due   that renders the AMSS measurability constraints not binding from time :math:`t =0` onward.
 
 We accomplish this by recognizing that if the AMSS measurability constraints never bind, then the AMSS allocation and Ramsey plan is equivalent
 with that for a Lucas-Stokey economy in which for each period :math:`t \geq 0`, the government promises to pay the **same** state-contingent
-amount  :math:`\bar b` in each state tomorrow
+amount  :math:`\bar b` in each state tomorrow.
 
 This insight tells us to find a :math:`b_0` and other fundamentals for the Lucas-Stokey :cite:`LucasStokey1983` model that make the Ramsey planner
-want to borrow the same value :math:`\bar b` next period for all states and all dates
+want to borrow the same value :math:`\bar b` next period for all states and all dates.
 
 We accomplish this by using various equations for the Lucas-Stokey :cite:`LucasStokey1983` model
-presented in :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`
+presented in :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`.
 
-We use the following steps
+We use the following steps.
 
 
-**Step 1:**  Pick an initial :math:`\Phi`
+**Step 1:**  Pick an initial :math:`\Phi`.
 
 **Step 2:** Given that :math:`\Phi`, jointly solve two versions of equation :eq:`amss2_TS_barg10` for :math:`c(s), s=1, 2` associated with the two values
-for :math:`g(s), s=1,2`
+for :math:`g(s), s=1,2`.
 
 **Step 3:**  Solve the following equation for :math:`\vec x`
 
@@ -340,13 +340,13 @@ state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equa
 
     \vec b = {\frac{ \vec x }{\vec u_c}}
 
-**Step 5:** Compute :math:`J(\Phi) = (b(1) - b(2))^2`
+**Step 5:** Compute :math:`J(\Phi) = (b(1) - b(2))^2`.
 
-**Step 6:** Put steps 2 through 6 in a function minimizer and find a :math:`\Phi` that minimizes :math:`J(\Phi)`
+**Step 6:** Put steps 2 through 6 in a function minimizer and find a :math:`\Phi` that minimizes :math:`J(\Phi)`.
 
 
 **Step 7:** At the value of :math:`\Phi` and the value of :math:`\bar b` that emerged from step 6, solve equations
-:eq:`amss2_TS_barg11` and :eq:`eqn_AMSS2_10` jointly for :math:`c_0, b_0`
+:eq:`amss2_TS_barg11` and :eq:`eqn_AMSS2_10` jointly for :math:`c_0, b_0`.
 
 
 Code for Reverse Engineering
@@ -432,14 +432,14 @@ To solve the equations for :math:`c_0, b_0`, we use SciPy's fsolve function
     c0, b0 = fsolve(solve_cb, np.array([1., -1.], dtype='float64'), args=(Φ_star, b[0], 1), xtol=1.0e-12)
     c0, b0
 
-Thus, we have reverse engineered an initial :math:`b0 = -1.038698407551764` that ought to render the AMSS measurability constraints slack
+Thus, we have reverse engineered an initial :math:`b0 = -1.038698407551764` that ought to render the AMSS measurability constraints slack.
 
 
 Short Simulation for Reverse-engineered: Initial Debt
 =====================================================
 
 The following graph shows simulations of outcomes for both a Lucas-Stokey economy and for an AMSS economy starting from initial government
-debt equal to :math:`b_0 = -1.038698407551764`
+debt equal to :math:`b_0 = -1.038698407551764`.
 
 These graphs report outcomes for both the Lucas-Stokey economy with complete markets and the AMSS economy with one-period risk-free debt only
 
@@ -486,19 +486,19 @@ These graphs report outcomes for both the Lucas-Stokey economy with complete mar
     plt.tight_layout()
     plt.show()
 
-The Ramsey allocations and Ramsey outcomes are **identical** for the Lucas-Stokey and AMSS economies
+The Ramsey allocations and Ramsey outcomes are **identical** for the Lucas-Stokey and AMSS economies.
 
-This outcome confirms the success of our reverse-engineering exercises
+This outcome confirms the success of our reverse-engineering exercises.
 
-Notice how for :math:`t \geq 1`, the tax rate is a constant - so is the par value of government debt
+Notice how for :math:`t \geq 1`, the tax rate is a constant - so is the par value of government debt.
 
-However, output and labor supply are both nontrivial time-invariant functions of the Markov state
+However, output and labor supply are both nontrivial time-invariant functions of the Markov state.
 
 
 Long Simulation
 =================
 
-The following graph shows the par value of government debt and the flat rate tax on labor income  for a long simulation for our sample economy
+The following graph shows the par value of government debt and the flat rate tax on labor income  for a long simulation for our sample economy.
 
 For the **same** realization of a government expenditure path, the graph reports outcomes for two economies
 
@@ -506,7 +506,7 @@ For the **same** realization of a government expenditure path, the graph reports
 
 - the blue lines are for the AMSS economy with risk-free one-period debt only
 
-For both economies, initial government debt due at time :math:`0` is :math:`b_0 = .5`
+For both economies, initial government debt due at time :math:`0` is :math:`b_0 = .5`.
 
 For the Lucas-Stokey complete markets economy, the government debt plotted is :math:`b_{t+1}(s_{t+1})`
 
@@ -558,18 +558,18 @@ This leads us to seek an initial value of government debt :math:`b_0` that rende
 - a tell-tale sign of this situation is that the Ramsey planner in a corresponding Lucas-Stokey economy would instruct the government to issue a
   constant level of government debt :math:`b_{t+1}(s_{t+1})` across the two Markov states
 
-We  now describe how to find such an initial level of government debt
+We  now describe how to find such an initial level of government debt.
 
 
 BEGS Approximations of Limiting Debt and Convergence Rate
 ===========================================================
 
-It is useful to link the outcome of our reverse engineering exercise to limiting approximations constructed by :cite:`BEGS1`
+It is useful to link the outcome of our reverse engineering exercise to limiting approximations constructed by :cite:`BEGS1`.
 
-:cite:`BEGS1` used a slightly different notation to represent a generalization of the AMSS model
+:cite:`BEGS1` used a slightly different notation to represent a generalization of the AMSS model.
 
 We'll introduce a version of their notation so that readers can quickly relate notation that appears in their key formulas to the notation
-that we have used
+that we have used.
 
 
 
@@ -594,7 +594,7 @@ In terms of their notation, equation (44) of :cite:`BEGS1` expresses the time :m
 
     {\mathcal B}(s) = {\mathcal R}_\tau(s, s_{-}) {\mathcal B}_{-} + {\mathcal X}_{\tau(s)} (s)
 
-where the dependence on :math:`\tau` is to remind us that these objects depend on the tax rate and :math:`s_{-}` is last period's Markov state
+where the dependence on :math:`\tau` is to remind us that these objects depend on the tax rate and :math:`s_{-}` is last period's Markov state.
 
 BEGS interpret random variations in the right side of :eq:`eq_fiscal_risk` as a measure of **fiscal risk** composed of
 
@@ -613,10 +613,10 @@ BEGS give conditions under which the ergodic mean of :math:`{\mathcal B}_t` is
 
    {\mathcal B}^* = - \frac{\rm cov^{\infty}(\mathcal R, \mathcal X)}{\rm var^{\infty}(\mathcal R)}
 
-where the superscript :math:`\infty` denotes a moment taken with respect to an ergodic distribution
+where the superscript :math:`\infty` denotes a moment taken with respect to an ergodic distribution.
 
 Formula :eq:`prelim_formula` presents :math:`{\mathcal B}^*` as a regression coefficient of :math:`{\mathcal X}_t` on :math:`{\mathcal R}_t` in the ergodic
-distribution
+distribution.
 
 This regression coefficient emerges as the minimizer for a variance-minimization problem:
 
@@ -626,7 +626,7 @@ This regression coefficient emerges as the minimizer for a variance-minimization
    {\mathcal B}^* = {\rm argmin}_{\mathcal B}  {\rm var} ({\mathcal R} {\mathcal B} + {\mathcal X})
 
 The minimand in criterion :eq:`eq_criterion_fiscal` is the  measure of fiscal risk associated with a given tax-debt policy that appears on the right side
-of equation :eq:`eq_fiscal_risk`
+of equation :eq:`eq_fiscal_risk`.
 
 
 Expressing formula :eq:`prelim_formula` in terms of  our notation tells us that :math:`\bar b` should approximately equal
@@ -639,14 +639,14 @@ Expressing formula :eq:`prelim_formula` in terms of  our notation tells us that 
 Rate of Convergence
 --------------------
 
-BEGS also derive the following  approximation to the rate of convergence to :math:`{\mathcal B}^{*}` from an arbitrary initial condition
+BEGS also derive the following  approximation to the rate of convergence to :math:`{\mathcal B}^{*}` from an arbitrary initial condition.
 
  .. math::
     :label: rate_of_convergence
 
     \frac{ E_t  ( {\mathcal B}_{t+1} - {\mathcal B}^{*} )} { ( {\mathcal B}_{t} - {\mathcal B}^{*} )} \approx \frac{1}{1 + \beta^2 {\rm var} ({\mathcal R} )}
 
-(See the equation above equation (47) in :cite:`BEGS1`)
+(See the equation above equation (47) in :cite:`BEGS1`).
 
 
 
@@ -654,20 +654,20 @@ BEGS also derive the following  approximation to the rate of convergence to :mat
 Formulas and Code Details
 --------------------------
 
-For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it
+For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.
 
-The  values of :math:`\pi(s)` are .5, .5
+The  values of :math:`\pi(s)` are .5, .5.
 
-We can then construct :math:`{\mathcal X}(s), {\mathcal R}(s), u_c(s)` for our two states using  the definitions above
+We can then construct :math:`{\mathcal X}(s), {\mathcal R}(s), u_c(s)` for our two states using  the definitions above.
 
 We can then construct :math:`\beta E_{t-1} u_c = \beta \sum_s u_c(s) \pi(s)`, :math:`{\rm cov}({\mathcal R}(s), \mathcal{X}(s))` and
-:math:`{\rm var}({\mathcal R}(s))` to be plugged into formula :eq:`key_formula`
+:math:`{\rm var}({\mathcal R}(s))` to be plugged into formula :eq:`key_formula`.
 
-We also want to  compute :math:`{\rm var}({\mathcal X})`
+We also want to  compute :math:`{\rm var}({\mathcal X})`.
 
-To compute the variances and covariance, we use the following standard formulas
+To compute the variances and covariance, we use the following standard formulas.
 
-Temporarily let :math:`x(s), s =1,2` be an arbitrary random variables
+Temporarily let :math:`x(s), s =1,2` be an arbitrary random variables.
 
 Then we define
 
@@ -679,9 +679,9 @@ Then we define
    {\rm cov}(x,y)  & = \left(\sum_s x(s) y(s) \pi(s) \right) - \mu_x \mu_y
    \end{aligned}
 
-After we compute these moments, we  compute the BEGS approximation to the asymptotic mean :math:`\hat b` in formula :eq:`key_formula`
+After we compute these moments, we  compute the BEGS approximation to the asymptotic mean :math:`\hat b` in formula :eq:`key_formula`.
 
-After that, we move on to compute :math:`{\mathcal B}^*` in formula :eq:`prelim_formula`
+After that, we move on to compute :math:`{\mathcal B}^*` in formula :eq:`prelim_formula`.
 
 We'll also evaluate  the BEGS criterion :eq:`eq_fiscal_risk` at the limiting value :math:`{\mathcal B}^*`
 
@@ -753,7 +753,7 @@ So we have
 
     bhat - b_bar
 
-These outcomes show that :math:`\hat b` does a remarkably good job of approximating :math:`\bar b`
+These outcomes show that :math:`\hat b` does a remarkably good job of approximating :math:`\bar b`.
 
 
 Next, let's compute the BEGS fiscal criterion that :math:`\hat b` is minimizing
@@ -764,7 +764,7 @@ Next, let's compute the BEGS fiscal criterion that :math:`\hat b` is minimizing
     Jmin
 
 This is *machine zero*, a verification that :math:`\hat b` succeeds in minimizing the nonnegative fiscal cost criterion :math:`J ( {\mathcal B}^*)` defined in
-BEGS and in equation :eq:`eqn_Jcriterion` above
+BEGS and in equation :eq:`eqn_Jcriterion` above.
 
 
 Let's push our luck and compute the mean reversion speed in the formula above equation (47) in :cite:`BEGS1`
@@ -785,4 +785,4 @@ Now let's compute the implied meantime to get to within .01 of the limit
     print(f"Time to get within .01 of limit = {ttime}")
 
 The slow rate of convergence and the implied time of getting within one percent of the limiting value do a good job of approximating
-our long simulation above
+our long simulation above.

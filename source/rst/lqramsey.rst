@@ -13,7 +13,7 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -23,42 +23,42 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ============
 
-In this lecture, we study optimal fiscal policy in a linear quadratic setting
+In this lecture, we study optimal fiscal policy in a linear quadratic setting.
 
 We slightly modify a well-known model of Robert Lucas and Nancy Stokey :cite:`LucasStokey1983` so that convenient formulas for
-solving linear-quadratic models can be applied to simplify the calculations
+solving linear-quadratic models can be applied to simplify the calculations.
 
-The economy consists of a representative household and a benevolent government
+The economy consists of a representative household and a benevolent government.
 
-The government finances an exogenous stream of government purchases with state-contingent loans and a linear tax on labor income
+The government finances an exogenous stream of government purchases with state-contingent loans and a linear tax on labor income.
 
-A linear tax is sometimes called a flat-rate tax
+A linear tax is sometimes called a flat-rate tax.
 
-The household maximizes utility by choosing paths for consumption and labor, taking prices and the government's tax rate and borrowing plans as given
+The household maximizes utility by choosing paths for consumption and labor, taking prices and the government's tax rate and borrowing plans as given.
 
-Maximum attainable utility for the household depends on the government's tax and borrowing plans
+Maximum attainable utility for the household depends on the government's tax and borrowing plans.
 
-The *Ramsey problem* :cite:`Ramsey1927` is  to choose tax and borrowing plans that maximize the household's welfare, taking the household's optimizing behavior as given
+The *Ramsey problem* :cite:`Ramsey1927` is  to choose tax and borrowing plans that maximize the household's welfare, taking the household's optimizing behavior as given.
 
-There is a large number of competitive equilibria indexed by different government fiscal policies
+There is a large number of competitive equilibria indexed by different government fiscal policies.
 
-The Ramsey planner chooses the best competitive equilibrium
+The Ramsey planner chooses the best competitive equilibrium.
 
-We want to study  the dynamics of tax rates,  tax revenues, government debt under a Ramsey plan
+We want to study  the dynamics of tax rates,  tax revenues, government debt under a Ramsey plan.
 
-Because the Lucas and Stokey model features state-contingent government debt, the government debt dynamics differ substantially from those in a model of Robert Barro :cite:`Barro1979`
+Because the Lucas and Stokey model features state-contingent government debt, the government debt dynamics differ substantially from those in a model of Robert Barro :cite:`Barro1979`.
 
 .. only:: html
 
     The treatment given here closely follows :download:`this manuscript <_static/lecture_specific/lqramsey/firenze.pdf>`, prepared
-    by Thomas J. Sargent and Francois R. Velde
+    by Thomas J. Sargent and Francois R. Velde.
 
 .. only:: latex
 
     The treatment given here closely follows `this manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__, prepared
-    by Thomas J. Sargent and Francois R. Velde
+    by Thomas J. Sargent and Francois R. Velde.
 
-We cover only the key features of the problem in this lecture, leaving you to refer to that source for additional results and intuition
+We cover only the key features of the problem in this lecture, leaving you to refer to that source for additional results and intuition.
 
 
 
@@ -74,18 +74,18 @@ Model Features
 The Ramsey Problem
 =====================
 
-We begin by outlining the key assumptions regarding technology, households and the government sector
+We begin by outlining the key assumptions regarding technology, households and the government sector.
 
 Technology
 ----------
 
-Labor can be converted one-for-one into a single, non-storable consumption good
+Labor can be converted one-for-one into a single, non-storable consumption good.
 
-In the usual spirit of the LQ model, the amount of labor supplied in each period is unrestricted
+In the usual spirit of the LQ model, the amount of labor supplied in each period is unrestricted.
 
-This is unrealistic, but helpful when it comes to solving the model
+This is unrealistic, but helpful when it comes to solving the model.
 
-Realistic labor supply can be induced by suitable parameter values
+Realistic labor supply can be induced by suitable parameter values.
 
 
 Households
@@ -135,23 +135,23 @@ the Arrow-Debreu time :math:`0` price of a claim on one unit of consumption at d
 
 
 Thus, our scaled Arrow-Debreu price is the ordinary Arrow-Debreu price multiplied by the discount factor :math:`\beta^t` and divided
-by an appropriate probability
+by an appropriate probability.
 
 
-The budget constraint :eq:`lq_hc` requires that the present value of consumption be restricted to equal the present value of endowments, labor income and coupon payments on bond holdings
+The budget constraint :eq:`lq_hc` requires that the present value of consumption be restricted to equal the present value of endowments, labor income and coupon payments on bond holdings.
 
 
 
 Government
 ----------
 
-The government imposes a linear tax on labor income, fully committing to a stochastic path of tax rates at time zero
+The government imposes a linear tax on labor income, fully committing to a stochastic path of tax rates at time zero.
 
-The government also issues state-contingent debt
+The government also issues state-contingent debt.
 
-Given government tax and borrowing plans, we can construct a competitive equilibrium with distorting government taxes
+Given government tax and borrowing plans, we can construct a competitive equilibrium with distorting government taxes.
 
-Among all such competitive equilibria, the Ramsey plan is the one that maximizes the welfare of the representative consumer
+Among all such competitive equilibria, the Ramsey plan is the one that maximizes the welfare of the representative consumer.
 
 
 Exogenous Variables
@@ -166,9 +166,9 @@ promised coupon payments on initial government debt :math:`s_t` are all exogenou
 * :math:`s_t = S_s x_t`
 
 The matrices :math:`S_d, S_g, S_b, S_s` are primitives and :math:`\{x_t\}` is
-an exogenous stochastic process taking values in :math:`\mathbb R^k`
+an exogenous stochastic process taking values in :math:`\mathbb R^k`.
 
-We consider two specifications for :math:`\{x_t\}`
+We consider two specifications for :math:`\{x_t\}`.
 
 .. _lq_twospec:
 
@@ -188,7 +188,7 @@ The period-by-period feasibility restriction for this economy is
     c_t + g_t = d_t + \ell_t
 
 
-A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:`lq_feasible` holds for all :math:`t`
+A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:`lq_feasible` holds for all :math:`t`.
 
 
 Government Budget Constraint
@@ -214,10 +214,10 @@ of prices :math:`\{p_t^0\}`, and a tax system :math:`\{\tau_t\}` such that
 #.  The government's budget constraint :eq:`lq_gc` is satisfied
 
 The *Ramsey problem* is to choose the equilibrium :math:`\{\ell_t, c_t, \tau_t, p_t^0\}` that maximizes the
-household's welfare
+household's welfare.
 
 If :math:`\{\ell_t, c_t, \tau_t, p_t^0\}` solves the Ramsey problem,
-then :math:`\{\tau_t\}` is called the *Ramsey plan*
+then :math:`\{\tau_t\}` is called the *Ramsey plan*.
 
 The solution procedure we adopt is
 
@@ -231,18 +231,18 @@ The solution procedure we adopt is
    constraint constructed in step 2 and the feasibility constraint
    :eq:`lq_feasible`
 
-The solution to this maximization problem pins down all quantities of interest
+The solution to this maximization problem pins down all quantities of interest.
 
 
 Solution
 ----------
 
 Step one is to obtain the first-conditions for the household's problem,
-taking taxes and prices as given
+taking taxes and prices as given.
 
 Letting :math:`\mu` be the Lagrange multiplier on :eq:`lq_hc`, the first-order
 conditions are :math:`p_t^0 = (c_t - b_t) / \mu` and :math:`\ell_t = (c_t - b_t)
-(1 - \tau_t)`
+(1 - \tau_t)`.
 
 Rearranging and normalizing at :math:`\mu = b_0 - c_0`, we can write these
 conditions as
@@ -267,7 +267,7 @@ yields
 
 
 The Ramsey problem now amounts to maximizing :eq:`lq_hu` subject to
-:eq:`lq_gc2` and :eq:`lq_feasible`
+:eq:`lq_gc2` and :eq:`lq_feasible`.
 
 The associated Lagrangian is
 
@@ -315,11 +315,11 @@ where
 * :math:`\bar c_t := (b_t + d_t - g_t) / 2`
 * :math:`m_t := (b_t - d_t - s_t ) / 2`
 
-Apart from :math:`\nu`, all of these quantities are expressed in terms of exogenous variables
+Apart from :math:`\nu`, all of these quantities are expressed in terms of exogenous variables.
 
-To solve for :math:`\nu`, we can use the government's budget constraint again
+To solve for :math:`\nu`, we can use the government's budget constraint again.
 
-The term inside the brackets in :eq:`lq_gc2` is :math:`(b_t - c_t)(s_t + g_t) - (b_t - c_t) \ell_t + \ell_t^2`
+The term inside the brackets in :eq:`lq_gc2` is :math:`(b_t - c_t)(s_t + g_t) - (b_t - c_t) \ell_t + \ell_t^2`.
 
 Using :eq:`lq_lcex`, the definitions above and the fact that :math:`\bar \ell
 = b - \bar c`, this term can be rewritten as
@@ -360,7 +360,7 @@ Although it might not be clear yet, we are nearly there because:
 Computing the Quadratic Term
 -------------------------------
 
-Let's consider how to obtain the term :math:`\nu` in :eq:`lq_gc22`
+Let's consider how to obtain the term :math:`\nu` in :eq:`lq_gc22`.
 
 If we can compute the two expected geometric sums
 
@@ -386,12 +386,12 @@ then the problem reduces to solving
     b_0 + a_0 (\nu^2 - \nu) = 0
 
 
-for :math:`\nu`
+for :math:`\nu`.
 
 Provided that :math:`4 b_0 < a_0`, there is a unique solution :math:`\nu \in
-(0, 1/2)`, and a unique corresponding :math:`\lambda > 0`
+(0, 1/2)`, and a unique corresponding :math:`\lambda > 0`.
 
-Let's work out how to compute mathematical expectations  in :eq:`lq_gc3`
+Let's work out how to compute mathematical expectations  in :eq:`lq_gc3`.
 
 For the first one, the random variable :math:`(b_t - \bar c_t) (g_t + s_t )` inside the summation can be expressed as
 
@@ -415,9 +415,9 @@ It follows that both objects of interest are special cases of the expression
     q(x_0) = \mathbb E \sum_{t=0}^{\infty} \beta^t x_t' H x_t
 
 
-where :math:`H` is a matrix conformable to :math:`x_t` and :math:`x_t'` is the transpose of column vector :math:`x_t`
+where :math:`H` is a matrix conformable to :math:`x_t` and :math:`x_t'` is the transpose of column vector :math:`x_t`.
 
-Suppose first that :math:`\{x_t\}` is the Gaussian VAR described :ref:`above <lq_twospec>`
+Suppose first that :math:`\{x_t\}` is the Gaussian VAR described :ref:`above <lq_twospec>`.
 
 In this case, the formula for computing :math:`q(x_0)` is known to be :math:`q(x_0) = x_0' Q x_0 + v`, where
 
@@ -425,14 +425,14 @@ In this case, the formula for computing :math:`q(x_0)` is known to be :math:`q(x
 * :math:`v = \text{trace} \, (C' Q C) \beta / (1 - \beta)`
 
 The first equation is known as a discrete Lyapunov equation and can be solved
-using `this function <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/matrix_eqn.py#L25>`_
+using `this function <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/matrix_eqn.py#L25>`_.
 
 Finite State Markov Case
 -------------------------
 
-Next, suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`
+Next, suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`.
 
-Suppose further that each :math:`x_t` takes values in the state space :math:`\{x^1, \ldots, x^N\} \subset \mathbb R^k`
+Suppose further that each :math:`x_t` takes values in the state space :math:`\{x^1, \ldots, x^N\} \subset \mathbb R^k`.
 
 Let :math:`h \colon \mathbb R^k \to \mathbb R` be a given function, and suppose that we
 wish to evaluate
@@ -443,7 +443,7 @@ wish to evaluate
     \quad \text{given} \quad x_0 = x^j
 
 
-For example, in the discussion above, :math:`h(x_t) = x_t' H x_t`
+For example, in the discussion above, :math:`h(x_t) = x_t' H x_t`.
 
 It is legitimate to pass the expectation through the sum, leading to
 
@@ -460,9 +460,9 @@ Here
 * :math:`(P^t h)[j]` indicates the :math:`j`-th element of :math:`P^t h`
 
 It can be shown that :eq:`lq_ise` is in fact equal to the :math:`j`-th element of
-the vector :math:`(I - \beta P)^{-1} h`
+the vector :math:`(I - \beta P)^{-1} h`.
 
-This last fact is applied in the calculations below
+This last fact is applied in the calculations below.
 
 
 
@@ -479,9 +479,9 @@ To prepare the way for this, we define
     p^t_{t+j} = \frac{b_{t+j}- c_{t+j}}{b_t - c_t}
 
 
-as the scaled Arrow-Debreu time :math:`t` price of a history contingent claim on one unit of consumption at time :math:`t+j`
+as the scaled Arrow-Debreu time :math:`t` price of a history contingent claim on one unit of consumption at time :math:`t+j`.
 
-These are prices that would prevail at time :math:`t` if markets were reopened at time :math:`t`
+These are prices that would prevail at time :math:`t` if markets were reopened at time :math:`t`.
 
 These prices are constituents of the present value of government obligations outstanding at time :math:`t`, which can be expressed as
 
@@ -504,7 +504,7 @@ Using our expression for prices and the Ramsey plan, we can also write
     { b_t - c_t }
 
 
-This version is more convenient for computation
+This version is more convenient for computation.
 
 Using the equation
 
@@ -538,7 +538,7 @@ Define
 
 
 :math:`R_{t}` is the gross :math:`1`-period risk-free rate for loans
-between :math:`t` and :math:`t+1`
+between :math:`t` and :math:`t+1`.
 
 
 A Martingale
@@ -566,7 +566,7 @@ The term :math:`\pi_{t+1}` is the difference between two quantities:
     period :math:`t+1` if it had simply borrowed at the one-period risk-free rate rather than selling state-contingent securities
 
 Thus, :math:`\pi_{t+1}` is the excess payout on the actual portfolio of state-contingent government debt  relative to an alternative
-portfolio sufficient to finance :math:`B_t + g_t - \tau_t \ell_t` and consisting entirely of risk-free one-period bonds
+portfolio sufficient to finance :math:`B_t + g_t - \tau_t \ell_t` and consisting entirely of risk-free one-period bonds.
 
 Use expressions :eq:`lq_cb22` and :eq:`lq_rfr` to obtain
 
@@ -599,11 +599,11 @@ It follows from equation :eq:`lq_pidist` that
 
 
 which asserts that :math:`\{\pi_{t+1}\}` is a martingale difference sequence under the distorted probability measure, and
-that  :math:`\{\Pi_t\}` is a martingale under the distorted probability measure
+that  :math:`\{\Pi_t\}` is a martingale under the distorted probability measure.
 
-In the tax-smoothing model of Robert Barro :cite:`Barro1979`, government debt is a random walk
+In the tax-smoothing model of Robert Barro :cite:`Barro1979`, government debt is a random walk.
 
-In the current model, government debt :math:`\{B_t\}` is not a random walk, but the ``excess payoff`` :math:`\{\Pi_t\}` on it  is
+In the current model, government debt :math:`\{B_t\}` is not a random walk, but the ``excess payoff`` :math:`\{\Pi_t\}` on it  is.
 
 
 Implementation
@@ -624,39 +624,39 @@ Comments on the Code
 ------------------------
 
 The function ``var_quadratic_sum`` imported from ``quadsums`` is for computing the value of :eq:`lq_eqs`
-when the exogenous process :math:`\{ x_t \}` is of the VAR type described :ref:`above <lq_twospec>`
+when the exogenous process :math:`\{ x_t \}` is of the VAR type described :ref:`above <lq_twospec>`.
 
-Below the definition of the function, you will see definitions of two ``namedtuple`` objects, ``Economy`` and ``Path``
+Below the definition of the function, you will see definitions of two ``namedtuple`` objects, ``Economy`` and ``Path``.
 
 The first is used to collect all the parameters and primitives of a given LQ
-economy, while the second collects output of the computations
+economy, while the second collects output of the computations.
 
 
 
-In Python, a ``namedtuple`` is a popular data type from the ``collections`` module of the standard library that replicates the functionality of a tuple, but also allows you to assign a name to each tuple element
+In Python, a ``namedtuple`` is a popular data type from the ``collections`` module of the standard library that replicates the functionality of a tuple, but also allows you to assign a name to each tuple element.
 
-These elements can then be references via dotted attribute notation --- see for example the use of ``path`` in the functions ``gen_fig_1()``  and ``gen_fig_2()``
+These elements can then be references via dotted attribute notation --- see for example the use of ``path`` in the functions ``gen_fig_1()``  and ``gen_fig_2()``.
 
 The benefits of using ``namedtuples``:
 
 * Keeps content organized by meaning
 * Helps reduce the number of global variables
 
-Other than that, our code is long but relatively straightforward
+Other than that, our code is long but relatively straightforward.
 
 
 
 Examples
 ================
 
-Let's look at two examples of usage
+Let's look at two examples of usage.
 
 .. _lq_cc:
 
 The Continuous Case
 ------------------------
 
-Our first example adopts the VAR specification described :ref:`above <lq_twospec>`
+Our first example adopts the VAR specification described :ref:`above <lq_twospec>`.
 
 Regarding the primitives, we set
 
@@ -670,13 +670,13 @@ Government spending evolves according to
     g_{t+1} - \mu_g = \rho (g_t - \mu_g) + C_g w_{g, t+1}
 
 
-with :math:`\rho = 0.7`, :math:`\mu_g = 0.35` and :math:`C_g = \mu_g \sqrt{1 - \rho^2} / 10`
+with :math:`\rho = 0.7`, :math:`\mu_g = 0.35` and :math:`C_g = \mu_g \sqrt{1 - \rho^2} / 10`.
 
 Here's the code
 
 .. literalinclude:: /_static/lecture_specific/lqramsey/lqramsey_ar1.py
 
-The legends on the figures indicate the variables being tracked
+The legends on the figures indicate the variables being tracked.
 
 Most obvious from the figure is tax smoothing in the sense that tax revenue is
 much less variable than government expenditure
@@ -691,11 +691,11 @@ much less variable than government expenditure
 
 .. only:: html
 
-    See the original :download:`manuscript <_static/lecture_specific/lqramsey/firenze.pdf>` for comments and interpretation
+    See the original :download:`manuscript <_static/lecture_specific/lqramsey/firenze.pdf>` for comments and interpretation.
 
 .. only:: latex
 
-    See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation
+    See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation.
 
 The Discrete Case
 ----------------------
@@ -716,11 +716,11 @@ The call ``gen_fig_2(path)`` generates
 
 .. only:: html
 
-    See the original :download:`manuscript <_static/lecture_specific/lqramsey/firenze.pdf>` for comments and interpretation
+    See the original :download:`manuscript <_static/lecture_specific/lqramsey/firenze.pdf>` for comments and interpretation.
 
 .. only:: latex
 
-    See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation
+    See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation.
 
 Exercises
 ================
@@ -739,9 +739,9 @@ Modify the VAR example :ref:`given above <lq_cc>`, setting
     g_{t+1} - \mu_g = \rho (g_{t-3} - \mu_g) + C_g w_{g, t+1}
 
 
-with :math:`\rho = 0.95` and :math:`C_g = 0.7 \sqrt{1 - \rho^2}`
+with :math:`\rho = 0.95` and :math:`C_g = 0.7 \sqrt{1 - \rho^2}`.
 
-Produce the corresponding figures
+Produce the corresponding figures.
 
 
 

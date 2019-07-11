@@ -8,7 +8,7 @@ Linear Regression in Python
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -19,9 +19,9 @@ Overview
 ============
 
 
-Linear regression is a standard tool for analyzing the relationship between two or more variables
+Linear regression is a standard tool for analyzing the relationship between two or more variables.
 
-In this lecture, we'll use the Python package ``statsmodels`` to estimate, interpret, and visualize linear regression models
+In this lecture, we'll use the Python package ``statsmodels`` to estimate, interpret, and visualize linear regression models.
 
 Along the way, we'll discuss a variety of topics, including
 
@@ -34,35 +34,35 @@ As an example, we will replicate results from Acemoglu, Johnson and Robinson's s
 
 * You can download a copy `here <https://economics.mit.edu/files/4123>`__
 
-In the paper, the authors emphasize the importance of institutions in economic development
+In the paper, the authors emphasize the importance of institutions in economic development.
 
-The main contribution is the use of settler mortality rates as a source of *exogenous* variation in institutional differences
+The main contribution is the use of settler mortality rates as a source of *exogenous* variation in institutional differences.
 
-Such variation is needed to determine whether it is institutions that give rise to greater economic growth, rather than the other way around
+Such variation is needed to determine whether it is institutions that give rise to greater economic growth, rather than the other way around.
 
 
 
 Prerequisites
 -------------
 
-This lecture assumes you are familiar with basic econometrics
+This lecture assumes you are familiar with basic econometrics.
 
 For an introductory text covering these topics, see, for example,
-:cite:`Wooldridge2015`
+:cite:`Wooldridge2015`.
 
 
 
 Comments
 -------------
 
-This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__
+This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__.
 
 
 
 Simple Linear Regression
 ===========================================
 
-:cite:`Acemoglu2001` wish to determine whether or not differences in institutions can help to explain observed economic outcomes
+:cite:`Acemoglu2001` wish to determine whether or not differences in institutions can help to explain observed economic outcomes.
 
 How do we measure *institutional differences* and *economic outcomes*?
 
@@ -72,7 +72,7 @@ In this paper,
 
 -  institutional differences are proxied by an index of protection against expropriation on average over 1985-95, constructed by the `Political Risk Services Group <https://www.prsgroup.com/>`__
 
-These variables and other data used in the paper are available for download on Daron Acemoglu's `webpage <https://economics.mit.edu/faculty/acemoglu/data/ajr2001>`__
+These variables and other data used in the paper are available for download on Daron Acemoglu's `webpage <https://economics.mit.edu/faculty/acemoglu/data/ajr2001>`__.
 
 We will use pandas' ``.read_stata()`` function to read in data contained in the ``.dta`` files to dataframes
 
@@ -100,14 +100,14 @@ expropriation index
     plt.show()
 
 The plot shows a fairly strong positive relationship between
-protection against expropriation and log GDP per capita
+protection against expropriation and log GDP per capita.
 
 Specifically, if higher protection against expropriation is a measure of
 institutional quality, then better institutions appear to be positively
-correlated with better economic outcomes (higher GDP per capita)
+correlated with better economic outcomes (higher GDP per capita).
 
 Given the plot, choosing a linear model to describe this relationship
-seems like a reasonable assumption
+seems like a reasonable assumption.
 
 We can write our model as
 
@@ -166,7 +166,7 @@ fits the data, as in the following plot (Figure 2 in :cite:`Acemoglu2001`)
 
 
 The most common technique to estimate the parameters (:math:`\beta`'s)
-of the linear model is Ordinary Least Squares (OLS)
+of the linear model is Ordinary Least Squares (OLS).
 
 As the name implies, an OLS model is solved by finding the parameters
 that minimize *the sum of squared residuals*, ie.
@@ -177,7 +177,7 @@ that minimize *the sum of squared residuals*, ie.
    \underset{\hat{\beta}}{\min} \sum^N_{i=1}{\hat{u}^2_i}
 
 where :math:`\hat{u}_i` is the difference between the observation and
-the predicted value of the dependent variable
+the predicted value of the dependent variable.
 
 To estimate the constant term :math:`\beta_0`, we need to add a column
 of 1's to our dataset (consider the equation if :math:`\beta_0` was
@@ -187,7 +187,7 @@ replaced with :math:`\beta_0 x_i` and :math:`x_i = 1`)
 
     df1['const'] = 1
 
-Now we can construct our model in ``statsmodels`` using the OLS function
+Now we can construct our model in ``statsmodels`` using the OLS function.
 
 We will use ``pandas`` dataframes with ``statsmodels``, however standard arrays can also be used as arguments
 
@@ -202,7 +202,7 @@ We will use ``pandas`` dataframes with ``statsmodels``, however standard arrays 
 
 
 
-So far we have simply constructed our model
+So far we have simply constructed our model.
 
 We need to use ``.fit()`` to obtain parameter estimates
 :math:`\hat{\beta}_0` and :math:`\hat{\beta}_1`
@@ -214,10 +214,10 @@ We need to use ``.fit()`` to obtain parameter estimates
 
 
 
-We now have the fitted regression model stored in ``results``
+We now have the fitted regression model stored in ``results``.
 
 To view the OLS regression results, we can call the ``.summary()``
-method
+method.
 
 Note that an observation was mistakenly dropped from the results in the
 original paper (see the note located in `maketable2.do` from Acemoglu's webpage), and thus the
@@ -251,10 +251,10 @@ relationship as
    \widehat{logpgp95}_i = 4.63 + 0.53 \ {avexpr}_i
 
 This equation describes the line that best fits our data, as shown in
-Figure 2
+Figure 2.
 
 We can use this equation to predict the level of log GDP per capita for
-a value of the index of expropriation protection
+a value of the index of expropriation protection.
 
 For example, for a country with an index value of 7.07 (the average for
 the dataset), we find that their predicted level of log GDP per capita
@@ -283,10 +283,10 @@ An easier (and more accurate) way to obtain this result is to use
 
 We can obtain an array of predicted :math:`{logpgp95}_i` for every value
 of :math:`{avexpr}_i` in our dataset by calling ``.predict()`` on our
-results
+results.
 
 Plotting the predicted values against :math:`{avexpr}_i` shows that the
-predicted values lie along the linear line that we fitted above
+predicted values lie along the linear line that we fitted above.
 
 The observed values of :math:`{logpgp95}_i` are also plotted for
 comparison purposes
@@ -319,11 +319,11 @@ Extending the Linear Regression Model
 
 So far we have only accounted for institutions affecting economic
 performance - almost certainly there are numerous other factors
-affecting GDP that are not included in our model
+affecting GDP that are not included in our model.
 
-Leaving out variables that affect :math:`logpgp95_i` will result in **omitted variable bias**, yielding biased and inconsistent parameter estimates
+Leaving out variables that affect :math:`logpgp95_i` will result in **omitted variable bias**, yielding biased and inconsistent parameter estimates.
 
-We can extend our bivariate regression model to a **multivariate regression model** by adding in other factors that may affect :math:`logpgp95_i`
+We can extend our bivariate regression model to a **multivariate regression model** by adding in other factors that may affect :math:`logpgp95_i`.
 
 :cite:`Acemoglu2001` consider other factors such as:
 
@@ -387,7 +387,7 @@ Endogeneity
 
 As :cite:`Acemoglu2001` discuss, the OLS models likely suffer from
 **endogeneity** issues, resulting in biased and inconsistent model
-estimates
+estimates.
 
 Namely, there is likely a two-way relationship between institutions and
 economic outcomes:
@@ -402,7 +402,7 @@ economic outcomes:
    institutions
 
 To deal with endogeneity, we can use **two-stage least squares (2SLS)
-regression**, which is an extension of OLS regression
+regression**, which is an extension of OLS regression.
 
 This method requires replacing the endogenous variable
 :math:`{avexpr}_i` with a variable that is:
@@ -413,15 +413,15 @@ This method requires replacing the endogenous variable
    :math:`u_i` due to omitted variable bias)
 
 The new set of regressors is called an **instrument**, which aims to
-remove endogeneity in our proxy of institutional differences
+remove endogeneity in our proxy of institutional differences.
 
 The main contribution of :cite:`Acemoglu2001` is the use of settler mortality
-rates to instrument for institutional differences
+rates to instrument for institutional differences.
 
 They hypothesize that higher mortality rates of colonizers led to the
 establishment of institutions that were more extractive in nature (less
 protection against expropriation), and these institutions still persist
-today
+today.
 
 Using a scatterplot (Figure 3 in :cite:`Acemoglu2001`), we can see protection
 against expropriation is negatively correlated with settler mortality
@@ -458,9 +458,9 @@ condition of a valid instrument
 
 
 
-The second condition may not be satisfied if settler mortality rates in the 17th to 19th centuries have a direct effect on current GDP (in addition to their indirect effect through institutions)
+The second condition may not be satisfied if settler mortality rates in the 17th to 19th centuries have a direct effect on current GDP (in addition to their indirect effect through institutions).
 
-For example, settler mortality rates may be related to the current disease environment in a country, which could affect current economic performance
+For example, settler mortality rates may be related to the current disease environment in a country, which could affect current economic performance.
 
 :cite:`Acemoglu2001` argue this is unlikely because:
 
@@ -472,18 +472,18 @@ For example, settler mortality rates may be related to the current disease envir
    high population densities in these areas before colonization
 
 As we appear to have a valid instrument, we can use 2SLS regression to
-obtain consistent and unbiased parameter estimates
+obtain consistent and unbiased parameter estimates.
 
-**First stage**
+**First stage**.
 
 The first stage involves regressing the endogenous variable
-(:math:`{avexpr}_i`) on the instrument
+(:math:`{avexpr}_i`) on the instrument.
 
 The instrument is the set of all exogenous variables in our model (and
-not just the variable we have replaced)
+not just the variable we have replaced).
 
 Using model 1 as an example, our instrument is simply a constant and
-settler mortality rates :math:`{logem4}_i`
+settler mortality rates :math:`{logem4}_i`.
 
 Therefore, we will estimate the first-stage regression as
 
@@ -512,13 +512,13 @@ used for estimation)
     print(results_fs.summary())
 
 
-**Second stage**
+**Second stage**.
 
 We need to retrieve the predicted values of :math:`{avexpr}_i` using
-``.predict()``
+``.predict()``.
 
 We then replace the endogenous variable :math:`{avexpr}_i` with the
-predicted values :math:`\widehat{avexpr}_i` in the original linear model
+predicted values :math:`\widehat{avexpr}_i` in the original linear model.
 
 Our second stage regression is thus
 
@@ -539,14 +539,14 @@ Our second stage regression is thus
 
 
 The second-stage regression results give us an unbiased and consistent
-estimate of the effect of institutions on economic outcomes
+estimate of the effect of institutions on economic outcomes.
 
 The result suggests a stronger positive relationship than what the OLS
-results indicated
+results indicated.
 
 Note that while our parameter estimates are correct, our standard errors
 are not and for this reason, computing 2SLS 'manually' (in stages with
-OLS) is not recommended
+OLS) is not recommended.
 
 We can correctly estimate a 2SLS regression in one step using the
 `linearmodels <https://github.com/bashtage/linearmodels>`__ package, an extension of ``statsmodels``
@@ -574,21 +574,21 @@ included exogenous variables)
 Given that we now have consistent and unbiased estimates, we can infer
 from the model we have estimated that institutional differences
 (stemming from institutions set up during colonization) can help
-to explain differences in income levels across countries today
+to explain differences in income levels across countries today.
 
 :cite:`Acemoglu2001` use a marginal effect of 0.94 to calculate that the
 difference in the index between Chile and Nigeria (ie. institutional
 quality) implies up to a 7-fold difference in income, emphasizing the
-significance of institutions in economic development
+significance of institutions in economic development.
 
 
 
 Summary
 =======
 
-We have demonstrated basic OLS and 2SLS regression in ``statsmodels`` and ``linearmodels``
+We have demonstrated basic OLS and 2SLS regression in ``statsmodels`` and ``linearmodels``.
 
-If you are familiar with R, you may want to use the `formula interface <http://www.statsmodels.org/dev/example_formulas.html>`__ to ``statsmodels``, or consider using `r2py <https://rpy2.bitbucket.io/>`__ to call R from within Python
+If you are familiar with R, you may want to use the `formula interface <http://www.statsmodels.org/dev/example_formulas.html>`__ to ``statsmodels``, or consider using `r2py <https://rpy2.bitbucket.io/>`__ to call R from within Python.
 
 
 
@@ -599,11 +599,11 @@ Exercise 1
 ----------
 
 In the lecture, we think the original model suffers from endogeneity
-bias due to the likely effect income has on institutional development
+bias due to the likely effect income has on institutional development.
 
 Although endogeneity is often best identified by thinking about the data
 and model, we can formally test for endogeneity using the **Hausman
-test**
+test**.
 
 We want to test for correlation between the endogenous variable,
 :math:`avexpr_i`, and the errors, :math:`u_i`
@@ -615,7 +615,7 @@ We want to test for correlation between the endogenous variable,
    H_1 : Cov(avexpr_i, u_i) \neq 0 \quad (endogeneity)
    \end{aligned}
 
-This test is run is two stages
+This test is run is two stages.
 
 First, we regress :math:`avexpr_i` on the instrument, :math:`logem4_i`
 
@@ -634,10 +634,10 @@ them in the original equation
 
 If :math:`\alpha` is statistically significant (with a p-value < 0.05),
 then we reject the null hypothesis and conclude that :math:`avexpr_i` is
-endogenous
+endogenous.
 
 Using the above information, estimate a Hausman test and interpret your
-results
+results.
 
 Exercise 2
 ------------
@@ -645,7 +645,7 @@ Exercise 2
 The OLS parameter :math:`\beta` can also be estimated using matrix
 algebra and ``numpy`` (you may need to review the
 `numpy <https://lectures.quantecon.org/py/numpy.html>`__ lecture to
-complete this exercise)
+complete this exercise).
 
 The linear equation we want to estimate is (written in matrix form)
 
@@ -680,7 +680,7 @@ Solving this optimization problem gives the solution for the
 
 Using the above information, compute :math:`\hat{\beta}` from model 1
 using ``numpy`` - your results should be the same as those in the
-``statsmodels`` output from earlier in the lecture
+``statsmodels`` output from earlier in the lecture.
 
 
 
@@ -719,7 +719,7 @@ Exercise 1
 
 
 The output shows that the coefficient on the residuals is statistically
-significant, indicating :math:`avexpr_i` is endogenous
+significant, indicating :math:`avexpr_i` is endogenous.
 
 Exercise 2
 ------------
@@ -746,4 +746,4 @@ Exercise 2
 
 It is also possible to use ``np.linalg.inv(X.T @ X) @ X.T @ y`` to solve
 for :math:`\beta`, however ``.solve()`` is preferred as it involves fewer
-computations
+computations.

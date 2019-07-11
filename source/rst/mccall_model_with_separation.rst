@@ -14,7 +14,7 @@ Job Search II: Search and Separation
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -25,11 +25,11 @@ Overview
 ===============
 
 
-Previously :doc:`we looked <mccall_model>` at the McCall job search model :cite:`McCall1970` as a way of understanding unemployment and worker decisions
+Previously :doc:`we looked <mccall_model>` at the McCall job search model :cite:`McCall1970` as a way of understanding unemployment and worker decisions.
 
-One unrealistic feature of the model is that every job is permanent
+One unrealistic feature of the model is that every job is permanent.
 
-In this lecture, we extend the McCall model by introducing job separation
+In this lecture, we extend the McCall model by introducing job separation.
 
 Once separation enters the picture, the agent comes to view
 
@@ -58,7 +58,7 @@ The model concerns the life of an infinitely lived worker and
 
 * his decision making process while unemployed
 
-The worker can be in one of two states: employed or unemployed
+The worker can be in one of two states: employed or unemployed.
 
 He wants to maximize
 
@@ -68,18 +68,18 @@ He wants to maximize
     {\mathbb E} \sum_{t=0}^\infty \beta^t u(Y_t)
 
 The only difference from the :doc:`baseline model <mccall_model>` is that
-we've added some flexibility over preferences by introducing a utility function :math:`u`
+we've added some flexibility over preferences by introducing a utility function :math:`u`.
 
-It satisfies :math:`u'> 0` and :math:`u'' < 0`
+It satisfies :math:`u'> 0` and :math:`u'' < 0`.
 
 
 
 Timing and Decisions
 -----------------------
 
-Here's what happens at the start of a given period in our model with search and separation
+Here's what happens at the start of a given period in our model with search and separation.
 
-If currently *employed*, the worker consumes his wage :math:`w`, receiving utility :math:`u(w)`
+If currently *employed*, the worker consumes his wage :math:`w`, receiving utility :math:`u(w)`.
 
 If currently *unemployed*, he
 
@@ -87,17 +87,17 @@ If currently *unemployed*, he
 
 * receives an offer to start work *next period* at a wage :math:`w'` drawn from a known distribution :math:`\phi`
 
-He can either accept or reject the offer
+He can either accept or reject the offer.
 
-If he accepts the offer, he enters next period employed with wage :math:`w'`
+If he accepts the offer, he enters next period employed with wage :math:`w'`.
 
-If he rejects the offer, he enters next period unemployed
+If he rejects the offer, he enters next period unemployed.
 
-When employed, the agent faces a constant probability :math:`\alpha` of becoming unemployed at the end of the period
+When employed, the agent faces a constant probability :math:`\alpha` of becoming unemployed at the end of the period.
 
 
 (Note: we do not allow for job search while employed---this topic is taken
-up in a :doc:`later lecture <jv>`)
+up in a :doc:`later lecture <jv>`).
 
 
 
@@ -113,9 +113,9 @@ Let
 
 * :math:`h` be the total lifetime value accruing to a worker who is *unemployed* this period
 
-Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time
+Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time.
 
-Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`h` and use them in his decision making
+Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`h` and use them in his decision making.
 
 Then :math:`v` and :math:`h`  should satisfy
 
@@ -141,16 +141,16 @@ Let's interpret these two equations in light of the fact that today's tomorrow i
 
 *  But *tomorrow* the worker can be in only one of the situations whose values *today* are on the left sides of our two equations
 
-Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare
+Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare.
 
-In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`h < v(w')`
+In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`h < v(w')`.
 
 Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations
-for this model
+for this model.
 
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`v` and :math:`h`
+Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`v` and :math:`h`.
 
-Before discussing this, however, let's make a small extension to the model
+Before discussing this, however, let's make a small extension to the model.
 
 
 
@@ -159,15 +159,15 @@ Before discussing this, however, let's make a small extension to the model
 Stochastic Offers
 -----------------
 
-Let's suppose now that unemployed workers don't always receive job offers
+Let's suppose now that unemployed workers don't always receive job offers.
 
-Instead, let's suppose that unemployed workers only receive an offer with probability :math:`\gamma`
+Instead, let's suppose that unemployed workers only receive an offer with probability :math:`\gamma`.
 
-If our worker does receive an offer, the wage offer is drawn from :math:`\phi` as before
+If our worker does receive an offer, the wage offer is drawn from :math:`\phi` as before.
 
-He either accepts or rejects the offer
+He either accepts or rejects the offer.
 
-Otherwise, the model is the same
+Otherwise, the model is the same.
 
 
 With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy
@@ -193,7 +193,7 @@ Solving the Bellman Equations
 
 
 We'll use the same iterative approach to solving the Bellman equations that we
-adopted in the :doc:`first job search lecture <mccall_model>`
+adopted in the :doc:`first job search lecture <mccall_model>`.
 
 Here this amounts to
 
@@ -223,12 +223,12 @@ and
         \beta \gamma \sum_{w'} \max \{ h_n, v_n(w') \} \phi(w')
 
 
-starting from some initial conditions :math:`h_0, v_0`
+starting from some initial conditions :math:`h_0, v_0`.
 
 As before, the system always converges to the true solutions---in this case,
-the :math:`v` and :math:`h` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`
+the :math:`v` and :math:`h` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`.
 
-A proof can be obtained via the Banach contraction mapping theorem
+A proof can be obtained via the Banach contraction mapping theorem.
 
 
 
@@ -236,12 +236,12 @@ A proof can be obtained via the Banach contraction mapping theorem
 Implementation
 ================
 
-Let's implement this iterative process
+Let's implement this iterative process.
 
 In the code, you'll see that we use a class to store the various parameters and other
-objects associated with a given model
+objects associated with a given model.
 
-This helps to tidy up the code and provides an object that's easy to pass to functions
+This helps to tidy up the code and provides an object that's easy to pass to functions.
 
 The default utility function is a CRRA utility function
 
@@ -311,7 +311,7 @@ The following defines jitted versions of the Bellman operators :math:`h` and :ma
         return v_new, h_new
 
 
-The approach is to iterate until successive iterates are closer together than some small tolerance level
+The approach is to iterate until successive iterates are closer together than some small tolerance level.
 
 We then return the current iterate as an approximate solution
 
@@ -342,7 +342,7 @@ We then return the current iterate as an approximate solution
 
         return v, h
 
-Let's plot the approximate solutions :math:`v` and :math:`h` to see what they look like
+Let's plot the approximate solutions :math:`v` and :math:`h` to see what they look like.
 
 We'll use the default parameterizations found in the code above
 
@@ -363,7 +363,7 @@ We'll use the default parameterizations found in the code above
     plt.show()
 
 
-The value :math:`v` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed
+The value :math:`v` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed.
 
 
 
@@ -371,17 +371,17 @@ The value :math:`v` is increasing because higher :math:`w` generates a higher wa
 The Reservation Wage
 =======================
 
-Once :math:`v` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer
+Once :math:`v` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer.
 
-If :math:`v(w) > h`, then working at wage :math:`w` is preferred to unemployment
+If :math:`v(w) > h`, then working at wage :math:`w` is preferred to unemployment.
 
-If :math:`v(w) < h`, then remaining unemployed will generate greater lifetime value
+If :math:`v(w) < h`, then remaining unemployed will generate greater lifetime value.
 
-Suppose in particular that :math:`v` crosses :math:`h` (as it does in the preceding figure)
+Suppose in particular that :math:`v` crosses :math:`h` (as it does in the preceding figure).
 
-Then, since :math:`v` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`v(w) \geq h`
+Then, since :math:`v` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`v(w) \geq h`.
 
-We denote this wage :math:`\bar w` and call it the reservation wage
+We denote this wage :math:`\bar w` and call it the reservation wage.
 
 Optimal behavior for the worker is characterized by :math:`\bar w`
 
@@ -390,10 +390,10 @@ Optimal behavior for the worker is characterized by :math:`\bar w`
 *  if the  wage offer :math:`w` in hand is less than :math:`\bar w`, then the worker rejects
 
 Here's a function ``compute_reservation_wage`` that takes an instance of ``McCallModel``
-and returns the reservation wage associated with a given model
+and returns the reservation wage associated with a given model.
 
 It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__
-to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`
+to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`.
 
 If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
 
@@ -424,9 +424,9 @@ If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
         else:
             return w_bar, v, h
 
-Let's use it to look at how the reservation wage varies with parameters
+Let's use it to look at how the reservation wage varies with parameters.
 
-In each instance below, we'll show you a figure and then ask you to reproduce it in the exercises
+In each instance below, we'll show you a figure and then ask you to reproduce it in the exercises.
 
 
 
@@ -434,48 +434,48 @@ In each instance below, we'll show you a figure and then ask you to reproduce it
 The Reservation Wage and Unemployment Compensation
 ----------------------------------------------------
 
-First, let's look at how :math:`\bar w` varies with unemployment compensation
+First, let's look at how :math:`\bar w` varies with unemployment compensation.
 
 In the figure below, we use the default parameters in the ``McCallModel`` class, apart from
 `c` (which takes the values given on the horizontal axis)
 
 .. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_c.png
 
-As expected, higher unemployment compensation causes the worker to hold out for higher wages
+As expected, higher unemployment compensation causes the worker to hold out for higher wages.
 
-In effect, the cost of continuing job search is reduced
+In effect, the cost of continuing job search is reduced.
 
 
 
 The Reservation Wage and Discounting
 ----------------------------------------------------
 
-Next, let's investigate how :math:`\bar w` varies with the discount factor
+Next, let's investigate how :math:`\bar w` varies with the discount factor.
 
 The next figure plots the reservation wage associated with different values of
 :math:`\beta`
 
 .. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_beta.png
 
-Again, the results are intuitive: More patient workers will hold out for higher wages
+Again, the results are intuitive: More patient workers will hold out for higher wages.
 
 
 
 The Reservation Wage and Job Destruction
 ----------------------------------------------------
 
-Finally, let's look at how :math:`\bar w` varies with the job separation rate :math:`\alpha`
+Finally, let's look at how :math:`\bar w` varies with the job separation rate :math:`\alpha`.
 
 Higher :math:`\alpha` translates to a greater chance that a worker will face termination in each period once employed
 
 
 .. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_alpha.png
 
-Once more, the results are in line with our intuition
+Once more, the results are in line with our intuition.
 
-If the separation rate is high, then the benefit of holding out for a higher wage falls
+If the separation rate is high, then the benefit of holding out for a higher wage falls.
 
-Hence the reservation wage is lower
+Hence the reservation wage is lower.
 
 
 
@@ -487,12 +487,12 @@ Exercises
 Exercise 1
 ----------------
 
-Reproduce all the reservation wage figures shown above
+Reproduce all the reservation wage figures shown above.
 
 Exercise 2
 ------------
 
-Plot the reservation wage against the job offer rate :math:`\gamma`
+Plot the reservation wage against the job offer rate :math:`\gamma`.
 
 Use
 
@@ -505,7 +505,7 @@ Use
 
 
 
-Interpret your results
+Interpret your results.
 
 
 
@@ -567,9 +567,9 @@ Similar to above, we can plot :math:`\bar w` against :math:`\gamma` as follows
 
     plt.show()
 
-As expected, the reservation wage increases in :math:`\gamma`
+As expected, the reservation wage increases in :math:`\gamma`.
 
 This is because higher :math:`\gamma` translates to a more favorable job
-search environment
+search environment.
 
-Hence workers are less willing to accept lower offers
+Hence workers are less willing to accept lower offers.

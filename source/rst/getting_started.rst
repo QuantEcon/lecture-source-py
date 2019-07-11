@@ -32,7 +32,7 @@ Anaconda
 ================
 
 
-The `core Python package <https://www.python.org/downloads/>`_ is easy to install but *not* what you should choose for these lectures
+The `core Python package <https://www.python.org/downloads/>`_ is easy to install but *not* what you should choose for these lectures.
 
 These lectures require the entire scientific programming ecosystem, which
 
@@ -48,7 +48,7 @@ Hence the best approach for our purposes is to install a free Python distributio
 #. the most popular scientific libraries
 
 
-The best such distribution is `Anaconda <https://www.anaconda.com/what-is-anaconda/>`__
+The best such distribution is `Anaconda <https://www.anaconda.com/what-is-anaconda/>`__.
 
 Anaconda is
 
@@ -60,11 +60,11 @@ Anaconda is
 
 * completely unrelated to the `Nicki Minaj song <https://www.youtube.com/watch?v=LDZX4ooRsWs>`_ of the same name
 
-Anaconda also comes with a great package management system to organize your code libraries
+Anaconda also comes with a great package management system to organize your code libraries.
 
 
 
-**All of what follows assumes that you adopt this recommendation!**
+**All of what follows assumes that you adopt this recommendation!**.
 
 
 
@@ -79,7 +79,7 @@ Installing Anaconda
 
 
 
-Installing Anaconda is straightforward: `download <https://www.anaconda.com/download/>`_ the binary and follow the instructions
+Installing Anaconda is straightforward: `download <https://www.anaconda.com/download/>`_ the binary and follow the instructions.
 
 
 Important points:
@@ -94,9 +94,9 @@ Important points:
 Updating Anaconda
 ------------------
 
-Anaconda supplies a tool called `conda` to manage and upgrade your Anaconda packages
+Anaconda supplies a tool called `conda` to manage and upgrade your Anaconda packages.
 
-One `conda` command you should execute regularly is the one that updates the whole Anaconda distribution
+One `conda` command you should execute regularly is the one that updates the whole Anaconda distribution.
 
 As a practice run, please execute the following
 
@@ -104,7 +104,7 @@ As a practice run, please execute the following
 
 #. Type ``conda update anaconda``
 
-For more information on `conda`,  type `conda help` in a terminal
+For more information on `conda`,  type `conda help` in a terminal.
 
 
 
@@ -122,7 +122,7 @@ For more information on `conda`,  type `conda help` in a terminal
 .. index::
     single: Jupyter
 
-`Jupyter <http://jupyter.org/>`_ notebooks are one of the many possible ways to interact with Python and the scientific libraries
+`Jupyter <http://jupyter.org/>`_ notebooks are one of the many possible ways to interact with Python and the scientific libraries.
 
 They use  a *browser-based* interface to Python with
 
@@ -134,7 +134,7 @@ They use  a *browser-based* interface to Python with
 
 
 
-Because of these possibilities, Jupyter is fast turning into a major player in the scientific computing ecosystem
+Because of these possibilities, Jupyter is fast turning into a major player in the scientific computing ecosystem.
 
 Here's an image showing execution of some code (borrowed from `here <http://matplotlib.org/examples/pylab_examples/hexbin_demo.html>`__) in a Jupyter notebook
 
@@ -142,7 +142,7 @@ Here's an image showing execution of some code (borrowed from `here <http://matp
 
 
 
-You can find a nice example of the kinds of things you can do in a Jupyter notebook (such as include maths and text) `here <http://nbviewer.jupyter.org/github/QuantEcon/TaxSmoothing/blob/master/Tax_Smoothing_1.ipynb>`__
+You can find a nice example of the kinds of things you can do in a Jupyter notebook (such as include maths and text) `here <http://nbviewer.jupyter.org/github/QuantEcon/TaxSmoothing/blob/master/Tax_Smoothing_1.ipynb>`__.
 
 While Jupyter isn't the only way to code in Python, it's great for when you wish to
 
@@ -152,7 +152,7 @@ While Jupyter isn't the only way to code in Python, it's great for when you wish
 
 * share or collaborate scientific ideas with students or colleagues
 
-These lectures are designed for executing in Jupyter notebooks
+These lectures are designed for executing in Jupyter notebooks.
 
 
 
@@ -162,7 +162,7 @@ Starting the Jupyter Notebook
 .. index::
     single: Jupyter Notebook; Setup
 
-Once you have installed Anaconda, you can start the Jupyter notebook
+Once you have installed Anaconda, you can start the Jupyter notebook.
 
 Either
 
@@ -182,23 +182,23 @@ The output tells us the notebook is running at ``http://localhost:8888/``
 
 * ``8888`` refers to `port number <https://en.wikipedia.org/wiki/Port_%28computer_networking%29>`_ 8888 on your computer
 
-Thus, the Jupyter kernel is listening for Python commands on port 8888 of our local machine
+Thus, the Jupyter kernel is listening for Python commands on port 8888 of our local machine.
 
 Hopefully, your default browser has also opened up with a web page that looks something like this (click to enlarge)
 
 .. figure:: /_static/lecture_specific/getting_started/nb.png
 
-What you see here is called the Jupyter *dashboard*
+What you see here is called the Jupyter *dashboard*.
 
-If you look at the URL at the top, it should be ``localhost:8888`` or similar, matching the message above
+If you look at the URL at the top, it should be ``localhost:8888`` or similar, matching the message above.
 
-Assuming all this has worked OK, you can now click on ``New`` at the top right and select ``Python 3`` or similar
+Assuming all this has worked OK, you can now click on ``New`` at the top right and select ``Python 3`` or similar.
 
 Here's what shows up on our machine:
 
 .. figure:: /_static/lecture_specific/getting_started/nb2.png
 
-The notebook displays an *active cell*, into which you can type Python commands
+The notebook displays an *active cell*, into which you can type Python commands.
 
 
 
@@ -208,32 +208,32 @@ Notebook Basics
 .. index::
     single: Jupyter Notebook; Basics
 
-Let's start with how to edit code and run simple programs
+Let's start with how to edit code and run simple programs.
 
 
 
 Running Cells
 ^^^^^^^^^^^^^^^
 
-Notice that in the previous figure the cell is surrounded by a green border
+Notice that in the previous figure the cell is surrounded by a green border.
 
-This means that the cell is in *edit mode*
+This means that the cell is in *edit mode*.
 
-As a result, you can type in Python code and it will appear in the cell
+As a result, you can type in Python code and it will appear in the cell.
 
 When you're ready to execute the code in a cell, hit ``Shift-Enter`` instead of the usual ``Enter``
 
 .. figure:: /_static/lecture_specific/getting_started/nb3.png
 
-(Note: There are also menu and button options for running code in a cell that you can find by exploring)
+(Note: There are also menu and button options for running code in a cell that you can find by exploring).
 
 
 Modal Editing
 ^^^^^^^^^^^^^^^^
 
-The next thing to understand about the Jupyter notebook is that it uses a *modal* editing system
+The next thing to understand about the Jupyter notebook is that it uses a *modal* editing system.
 
-This means that the effect of typing at the keyboard **depends on which mode you are in**
+This means that the effect of typing at the keyboard **depends on which mode you are in**.
 
 The two modes are
 
@@ -256,7 +256,7 @@ To switch to
 
 * edit mode from command mode, hit ``Enter`` or click in a cell
 
-The modal behavior of the Jupyter notebook is a little tricky at first but very efficient when you get used to it
+The modal behavior of the Jupyter notebook is a little tricky at first but very efficient when you get used to it.
 
 
 User Interface Tour
@@ -272,20 +272,20 @@ Inserting Unicode (e.g., Greek Letters)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Python 3 introduced support for `unicode characters <https://docs.python.org/3/howto/unicode.html>`__,
-allowing the use of characters such as `α` and `β` in your code
+allowing the use of characters such as `α` and `β` in your code.
 
-Unicode characters can be typed quickly in Jupyter using the `tab` key
+Unicode characters can be typed quickly in Jupyter using the `tab` key.
 
-Try creating a new code cell and typing `\\alpha`, then hitting the `tab` key on your keyboard
+Try creating a new code cell and typing `\\alpha`, then hitting the `tab` key on your keyboard.
 
 .. _a_test_program:
 
 A Test Program
 ^^^^^^^^^^^^^^^^^^
 
-Let's run a test program
+Let's run a test program.
 
-Here's an arbitrary program we can use: http://matplotlib.org/1.4.1/examples/pie_and_polar_charts/polar_bar_demo.html
+Here's an arbitrary program we can use: http://matplotlib.org/1.4.1/examples/pie_and_polar_charts/polar_bar_demo.html.
 
 On that page, you'll see the following code
 
@@ -310,11 +310,11 @@ On that page, you'll see the following code
 
     plt.show()
 
-Don't worry about the details for now --- let's just run it and see what happens
+Don't worry about the details for now --- let's just run it and see what happens.
 
-The easiest way to run this code is to copy and paste into a cell in the notebook
+The easiest way to run this code is to copy and paste into a cell in the notebook.
 
-(In older versions of Jupyter you might need to add the command ``%matplotlib inline`` before you generate the figure)
+(In older versions of Jupyter you might need to add the command ``%matplotlib inline`` before you generate the figure).
 
 
 
@@ -324,7 +324,7 @@ The easiest way to run this code is to copy and paste into a cell in the noteboo
 Working with the Notebook
 -----------------------------
 
-Here are a few more tips on working with Jupyter notebooks
+Here are a few more tips on working with Jupyter notebooks.
 
 
 Tab Completion
@@ -338,15 +338,15 @@ After this import command, functions in NumPy can be accessed with ``np.<functio
 
 * For example, try ``np.random.randn(3)``
 
-We can explore these attributes of ``np`` using the ``Tab`` key
+We can explore these attributes of ``np`` using the ``Tab`` key.
 
 For example, here we type ``np.ran`` and hit Tab (click to enlarge)
 
 .. figure:: /_static/lecture_specific/getting_started/nb6.png
 
-Jupyter offers up the two possible completions, ``random`` and ``rank``
+Jupyter offers up the two possible completions, ``random`` and ``rank``.
 
-In this way, the Tab key helps remind you of what's available and also saves you typing
+In this way, the Tab key helps remind you of what's available and also saves you typing.
 
 
 
@@ -359,29 +359,29 @@ On-Line Help
 .. index::
     single: Jupyter Notebook; Help
 
-To get help on ``np.rank``, say, we can execute ``np.rank?``
+To get help on ``np.rank``, say, we can execute ``np.rank?``.
 
 Documentation appears in a split window of the browser, like so
 
 .. figure:: /_static/lecture_specific/getting_started/nb6a.png
 
-Clicking on the top right of the lower split closes the on-line help
+Clicking on the top right of the lower split closes the on-line help.
 
 
 
 Other Content
 ^^^^^^^^^^^^^^^
 
-In addition to executing code, the Jupyter notebook allows you to embed text, equations, figures and even videos in the page
+In addition to executing code, the Jupyter notebook allows you to embed text, equations, figures and even videos in the page.
 
 For example, here we enter a mixture of plain text and LaTeX instead of code
 
 .. figure:: /_static/lecture_specific/getting_started/nb7.png
 
 Next we ``Esc`` to enter command mode and then type ``m`` to indicate that we
-are writing `Markdown <http://daringfireball.net/projects/markdown/>`_, a mark-up language similar to (but simpler than) LaTeX
+are writing `Markdown <http://daringfireball.net/projects/markdown/>`_, a mark-up language similar to (but simpler than) LaTeX.
 
-(You can also use your mouse to select ``Markdown`` from the ``Code`` drop-down box just below the list of menu items)
+(You can also use your mouse to select ``Markdown`` from the ``Code`` drop-down box just below the list of menu items).
 
 Now we ``Shift+Enter`` to produce this
 
@@ -401,25 +401,25 @@ Sharing Notebooks
     single: Jupyter Notebook; nbviewer
 
 
-Notebook files are just text files structured in `JSON <https://en.wikipedia.org/wiki/JSON>`_ and typically ending with ``.ipynb``
+Notebook files are just text files structured in `JSON <https://en.wikipedia.org/wiki/JSON>`_ and typically ending with ``.ipynb``.
 
-You can share them in the usual way that you share files --- or by using web services such as `nbviewer <http://nbviewer.jupyter.org/>`_
+You can share them in the usual way that you share files --- or by using web services such as `nbviewer <http://nbviewer.jupyter.org/>`_.
 
-The notebooks you see on that site are **static** html representations
+The notebooks you see on that site are **static** html representations.
 
-To run one, download it as an ``ipynb`` file by clicking on the download icon at the top right
+To run one, download it as an ``ipynb`` file by clicking on the download icon at the top right.
 
-Save it somewhere, navigate to it from the Jupyter dashboard and then run as discussed above
+Save it somewhere, navigate to it from the Jupyter dashboard and then run as discussed above.
 
 
 QuantEcon Notes
 -----------------
 
 QuantEcon has its own site for sharing Jupyter notebooks related
-to economics -- `QuantEcon Notes <http://notes.quantecon.org/>`_
+to economics -- `QuantEcon Notes <http://notes.quantecon.org/>`_.
 
 Notebooks submitted to QuantEcon Notes can be shared with a link, and are open
-to comments and votes by the community
+to comments and votes by the community.
 
 
 Installing Libraries
@@ -430,11 +430,11 @@ Installing Libraries
 .. index::
     single: QuantEcon
 
-Most of the libraries we need come in Anaconda
+Most of the libraries we need come in Anaconda.
 
-Other libraries can be installed with ``pip``
+Other libraries can be installed with ``pip``.
 
-One library we'll be using is `QuantEcon.py <http://quantecon.org/python_index.html>`__
+One library we'll be using is `QuantEcon.py <http://quantecon.org/python_index.html>`__.
 
 .. _gs_install_qe:
 
@@ -444,19 +444,19 @@ starting Jupyter and typing
 
     ``!pip install --upgrade quantecon``
 
-into a cell
+into a cell.
 
 Alternatively, you can type the following into a terminal
 
     ``pip install quantecon``
 
-More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__
+More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__.
 
 To upgrade to the latest version, which you should do regularly, use
 
     ``pip install --upgrade quantecon``
 
-Another library we will be using is `interpolation.py <https://github.com/EconForge/interpolation.py>`__
+Another library we will be using is `interpolation.py <https://github.com/EconForge/interpolation.py>`__.
 
 This can be installed by typing in Jupyter
 
@@ -468,7 +468,7 @@ Working with Files
 
 How does one run a locally saved Python file?
 
-There are a number of ways to do this but let's focus on methods using Jupyter notebooks
+There are a number of ways to do this but let's focus on methods using Jupyter notebooks.
 
 Option 1: Copy and Paste
 ------------------------
@@ -489,11 +489,11 @@ Using the ``run`` command is often easier than copy and paste
 
 * For example, ``%run test.py`` will run the file ``test.py``
 
-(You might find that the ``%`` is unnecessary --- use ``%automagic`` to toggle the need for ``%``)
+(You might find that the ``%`` is unnecessary --- use ``%automagic`` to toggle the need for ``%``).
 
-Note that Jupyter only looks for ``test.py`` in the present working directory (PWD)
+Note that Jupyter only looks for ``test.py`` in the present working directory (PWD).
 
-If ``test.py`` isn't in that directory, you will get an error
+If ``test.py`` isn't in that directory, you will get an error.
 
 Let's look at a successful example, where we run a file ``test.py`` with contents::
 
@@ -524,7 +524,7 @@ Here
 But File X isn't in my PWD!
 ---------------------------
 
-If you're trying to run a file not in the present working directory, you'll get an error
+If you're trying to run a file not in the present working directory, you'll get an error.
 
 To fix this error you need to either
 
@@ -546,18 +546,18 @@ The second option can be achieved using the ``cd`` command
 
     * On Linux / OSX it might look like this ``cd /home/user/scripts/dir``
 
-Note: You can type the first letter or two of each directory name and then use the tab key to expand
+Note: You can type the first letter or two of each directory name and then use the tab key to expand.
 
 
 
 Loading Files
 --------------
 
-It's often convenient to be able to see your code before you run it
+It's often convenient to be able to see your code before you run it.
 
-In the following example, we execute ``load white_noise_plot.py`` where ``white_noise_plot.py`` is in the PWD
+In the following example, we execute ``load white_noise_plot.py`` where ``white_noise_plot.py`` is in the PWD.
 
-(Use ``%load`` if automagic is off)
+(Use ``%load`` if automagic is off).
 
 Now the code from the file appears in a cell ready to execute
 
@@ -574,7 +574,7 @@ To save the contents of a cell as file ``foo.py``
 
 * ``Shift+Enter``
 
-Here ``%%file`` is an example of a `cell magic <http://ipython.readthedocs.org/en/stable/interactive/magics.html#cell-magics>`_
+Here ``%%file`` is an example of a `cell magic <http://ipython.readthedocs.org/en/stable/interactive/magics.html#cell-magics>`_.
 
 
 
@@ -588,12 +588,12 @@ Editors and IDEs
 ==================
 
 The preceding discussion covers most of what you need to know to interact with
-this website
+this website.
 
 However, as you start to write longer programs, you might want to experiment
-with your workflow
+with your workflow.
 
-There are many different options and we mention them only in passing
+There are many different options and we mention them only in passing.
 
 
 
@@ -605,20 +605,20 @@ There are many different options and we mention them only in passing
     single: JupyterLab
 
 
-`JupyterLab <https://github.com/jupyterlab/jupyterlab>`__ is an integrated development environment centered around Jupyter notebooks
+`JupyterLab <https://github.com/jupyterlab/jupyterlab>`__ is an integrated development environment centered around Jupyter notebooks.
 
-It is available through Anaconda and will soon be made the default environment for Jupyter notebooks
+It is available through Anaconda and will soon be made the default environment for Jupyter notebooks.
 
-Reading the docs or searching for a recent YouTube video will give you more information
+Reading the docs or searching for a recent YouTube video will give you more information.
 
 
 
 :index:`Text Editors`
 ---------------------
 
-A text editor is an application that is specifically designed to work with text files --- such as Python programs
+A text editor is an application that is specifically designed to work with text files --- such as Python programs.
 
-Nothing beats the power and efficiency of a good text editor for working with program text
+Nothing beats the power and efficiency of a good text editor for working with program text.
 
 A good text editor will provide
 
@@ -626,11 +626,11 @@ A good text editor will provide
 
     * syntax highlighting, etc.
 
-Among the most popular are `Sublime Text <http://www.sublimetext.com/>`_ and `Atom <https://atom.io/>`_
+Among the most popular are `Sublime Text <http://www.sublimetext.com/>`_ and `Atom <https://atom.io/>`_.
 
-For a top quality open source text editor with a steeper learning curve, try `Emacs <http://www.gnu.org/software/emacs/>`_
+For a top quality open source text editor with a steeper learning curve, try `Emacs <http://www.gnu.org/software/emacs/>`_.
 
-If you want an outstanding free text editor and don't mind a seemingly vertical learning curve plus long days of pain and suffering while all your neural pathways are rewired, try `Vim <http://www.vim.org/>`_
+If you want an outstanding free text editor and don't mind a seemingly vertical learning curve plus long days of pain and suffering while all your neural pathways are rewired, try `Vim <http://www.vim.org/>`_.
 
 
 
@@ -645,13 +645,13 @@ Text Editors Plus IPython Shell
     single: IPython; Shell
 
 
-A text editor is for writing programs
+A text editor is for writing programs.
 
-To run them you can continue to use Jupyter as described above
+To run them you can continue to use Jupyter as described above.
 
-Another option is to use the excellent `IPython shell <https://ipython.org>`_
+Another option is to use the excellent `IPython shell <https://ipython.org>`_.
 
-To use an IPython shell, open up a terminal and type ``ipython``
+To use an IPython shell, open up a terminal and type ``ipython``.
 
 You should see something like this
 
@@ -659,9 +659,9 @@ You should see something like this
 
 The IPython shell has many of the features of the notebook: tab completion, color syntax, etc.
 
-It also has command history through the arrow key
+It also has command history through the arrow key.
 
-The up arrow key to brings previously typed commands to the prompt
+The up arrow key to brings previously typed commands to the prompt.
 
 This saves a lot of typing...
 
@@ -679,13 +679,13 @@ IDEs
 ----
 
 IDEs are Integrated Development Environments, which allow you to edit, execute
-and interact with code from an integrated environment
+and interact with code from an integrated environment.
 
 One of the most popular in recent times is VS Code, which is `now available
-via Anaconda <https://www.anaconda.com/blog/company-blog/vs-code-in-anaconda-distribution-5-1/>`__
+via Anaconda <https://www.anaconda.com/blog/company-blog/vs-code-in-anaconda-distribution-5-1/>`__.
 
 We hear good things about VS Code --- please tell us about your experiences on
-`the forum <http://discourse.quantecon.org/>`__
+`the forum <http://discourse.quantecon.org/>`__.
 
 
 
@@ -700,13 +700,13 @@ Exercises
 Exercise 1
 ------------
 
-If Jupyter is still running, quit by using ``Ctrl-C`` at the terminal where you started it
+If Jupyter is still running, quit by using ``Ctrl-C`` at the terminal where you started it.
 
-Now launch again, but this time using ``jupyter notebook --no-browser``
+Now launch again, but this time using ``jupyter notebook --no-browser``.
 
-This should start the kernel without launching the browser
+This should start the kernel without launching the browser.
 
-Note also the startup message: It should give you a URL such as ``http://localhost:8888`` where the notebook is running
+Note also the startup message: It should give you a URL such as ``http://localhost:8888`` where the notebook is running.
 
 Now
 
@@ -714,9 +714,9 @@ Now
 
 #. Enter the URL from above (e.g. ``http://localhost:8888``) in the address bar at the top
 
-You should now be able to run a standard Jupyter notebook session
+You should now be able to run a standard Jupyter notebook session.
 
-This is an alternative way to start the notebook that can also be handy
+This is an alternative way to start the notebook that can also be handy.
 
 
 
@@ -729,22 +729,22 @@ Exercise 2
 .. index::
     single: Git
 
-This exercise will familiarize you with git and GitHub
+This exercise will familiarize you with git and GitHub.
 
-`Git <http://git-scm.com/>`_ is a *version control system* --- a piece of software used to manage digital projects such as code libraries
+`Git <http://git-scm.com/>`_ is a *version control system* --- a piece of software used to manage digital projects such as code libraries.
 
-In many cases, the associated collections of files --- called *repositories* --- are stored on `GitHub <https://github.com/>`_
+In many cases, the associated collections of files --- called *repositories* --- are stored on `GitHub <https://github.com/>`_.
 
-GitHub is a wonderland of collaborative coding projects
+GitHub is a wonderland of collaborative coding projects.
 
 For example, it hosts many of the scientific libraries we'll be using later
-on, such as `this one <https://github.com/pydata/pandas>`_
+on, such as `this one <https://github.com/pydata/pandas>`_.
 
-Git is the underlying software used to manage these projects
+Git is the underlying software used to manage these projects.
 
 Git is an extremely powerful tool for distributed collaboration --- for
 example, we use it to share and synchronize all the source files for these
-lectures
+lectures.
 
 
 There are two main flavors of Git
@@ -761,13 +761,13 @@ As an exercise, try
 
 #. Getting a copy of `QuantEcon.py <https://github.com/QuantEcon/QuantEcon.py>`__ using Git
 
-For example, if you've installed the command line version, open up a terminal and enter
+For example, if you've installed the command line version, open up a terminal and enter.
 
 
 
-	``git clone https://github.com/QuantEcon/QuantEcon.py``
+	``git clone https://github.com/QuantEcon/QuantEcon.py``.
 
-(This is just ``git clone`` in front of the URL for the repository)
+(This is just ``git clone`` in front of the URL for the repository).
 
 Even better,
 

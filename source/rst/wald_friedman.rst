@@ -19,7 +19,7 @@
 
 Co-authors: `Chase Coleman <https://github.com/cc7768>`__
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -33,12 +33,12 @@ Overview
 
 This lecture describes a statistical decision problem encountered  by Milton
 Friedman and W. Allen Wallis during World War II when they were analysts at
-the U.S. Government's  Statistical Research Group at Columbia University
+the U.S. Government's  Statistical Research Group at Columbia University.
 
 This problem led Abraham Wald :cite:`Wald47` to formulate **sequential analysis**,
-an approach to statistical decision problems intimately related to dynamic programming
+an approach to statistical decision problems intimately related to dynamic programming.
 
-In this lecture, we apply dynamic programming algorithms to Friedman and Wallis and Wald's problem
+In this lecture, we apply dynamic programming algorithms to Friedman and Wallis and Wald's problem.
 
 Key ideas in play will be:
 
@@ -77,7 +77,7 @@ Origin of the Problem
 On pages 137-139 of his 1998 book *Two Lucky People* with Rose Friedman :cite:`Friedman98`,
 Milton Friedman described a problem presented to him and Allen Wallis
 during World War II, when they worked at the US Government's
-Statistical Research Group at Columbia University
+Statistical Research Group at Columbia University.
 
 Let's listen to Milton Friedman tell us what happened
 
@@ -113,11 +113,11 @@ Let's listen to Milton Friedman tell us what happened
 
 
 Friedman and Wallis struggled with the problem but, after realizing that
-they were not able to solve it,  described the problem to  Abraham Wald
+they were not able to solve it,  described the problem to  Abraham Wald.
 
-That started Wald on the path that led him  to *Sequential Analysis* :cite:`Wald47`
+That started Wald on the path that led him  to *Sequential Analysis* :cite:`Wald47`.
 
-We'll formulate the problem using dynamic programming
+We'll formulate the problem using dynamic programming.
 
 
 
@@ -125,14 +125,14 @@ A Dynamic Programming Approach
 ================================
 
 The following presentation of the problem closely follows Dmitri
-Berskekas's treatment in **Dynamic Programming and Stochastic Control** :cite:`Bertekas75`
+Berskekas's treatment in **Dynamic Programming and Stochastic Control** :cite:`Bertekas75`.
 
-A decision-maker observes IID draws of a random variable :math:`z`
+A decision-maker observes IID draws of a random variable :math:`z`.
 
-He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z`
+He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z`.
 
 After a number of draws, also to be determined, he makes a decision as to
-which of the distributions is generating the draws he observes
+which of the distributions is generating the draws he observes.
 
 He starts with prior
 
@@ -165,9 +165,9 @@ that :math:`z_{k+1}` has probability distribution
 
 
 This is a mixture of distributions :math:`f_0` and :math:`f_1`, with the weight
-on :math:`f_0` being the posterior probability that :math:`f = f_0` [#f1]_
+on :math:`f_0` being the posterior probability that :math:`f = f_0` [#f1]_.
 
-To help illustrate this kind of distribution, let's inspect some mixtures of beta distributions
+To help illustrate this kind of distribution, let's inspect some mixtures of beta distributions.
 
 The density of a beta probability distribution with parameters :math:`a` and :math:`b` is
 
@@ -178,7 +178,7 @@ The density of a beta probability distribution with parameters :math:`a` and :ma
     \Gamma(t) := \int_{0}^{\infty} x^{t-1} e^{-x} dx
 
 
-The next figure shows two beta distributions in the top panel
+The next figure shows two beta distributions in the top panel.
 
 The bottom panel presents mixtures of these distributions, with various mixing probabilities :math:`\pi_k`
 
@@ -275,15 +275,15 @@ So when we treat :math:`f=f_0` as the null hypothesis
 Intuition
 -------------------
 
-Let's try to guess what an optimal decision rule might look like before we go further
+Let's try to guess what an optimal decision rule might look like before we go further.
 
-Suppose at some given point in time that :math:`\pi` is close to 1
+Suppose at some given point in time that :math:`\pi` is close to 1.
 
-Then our prior beliefs and the evidence so far point strongly to :math:`f = f_0`
+Then our prior beliefs and the evidence so far point strongly to :math:`f = f_0`.
 
-If, on the other hand, :math:`\pi` is close to 0, then :math:`f = f_1` is strongly favored
+If, on the other hand, :math:`\pi` is close to 0, then :math:`f = f_1` is strongly favored.
 
-Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction
+Finally, if :math:`\pi` is in the middle of the interval :math:`[0, 1]`, then we have little information in either direction.
 
 This reasoning suggests a decision rule such as the one shown in the figure
 
@@ -291,19 +291,19 @@ This reasoning suggests a decision rule such as the one shown in the figure
 
 
 
-As we'll see, this is indeed the correct form of the decision rule
+As we'll see, this is indeed the correct form of the decision rule.
 
 The key problem is to determine the threshold values :math:`\alpha, \beta`,
-which will depend on the parameters listed above
+which will depend on the parameters listed above.
 
 You might like to pause at this point and try to predict the impact of a
-parameter such as :math:`c` or :math:`L_0` on :math:`\alpha` or :math:`\beta`
+parameter such as :math:`c` or :math:`L_0` on :math:`\alpha` or :math:`\beta`.
 
 A Bellman Equation
 -------------------
 
 
-Let :math:`J(\pi)` be the total loss for a decision-maker with current belief :math:`\pi` who chooses optimally
+Let :math:`J(\pi)` be the total loss for a decision-maker with current belief :math:`\pi` who chooses optimally.
 
 With some thought, you will agree that :math:`J` should satisfy the Bellman equation
 
@@ -387,7 +387,7 @@ The optimal decision rule is then
 
 
 Our aim is to compute the value function :math:`J`, and from it the associated cutoffs :math:`\alpha`
-and :math:`\beta`
+and :math:`\beta`.
 
 To make our computations simpler, using :eq:`optdec`, we can write the continuation value :math:`h(\pi)` as
 
@@ -408,13 +408,13 @@ The equality
     h(\pi) =
     c + \int \min \{ (1 - \kappa(z', \pi) ) L_0, \kappa(z', \pi)  L_1, h(\kappa(z', \pi) ) \} f_\pi (z') dz'
 
-can be understood as a functional equation, where :math:`h` is the unknown
+can be understood as a functional equation, where :math:`h` is the unknown.
 
 Using the functional equation, :eq:`funceq`, for the continuation value, we can back out
-optimal choices using the RHS of :eq:`optdec`
+optimal choices using the RHS of :eq:`optdec`.
 
 This functional equation can be solved by taking an initial guess and iterating
-to find the fixed point
+to find the fixed point.
 
 In other words, we iterate with an operator :math:`Q`, where
 
@@ -561,7 +561,7 @@ To solve the model, we will iterate using ``Q`` to find the fixed point
 Analysis
 =====================
 
-Let's inspect the model's solutions
+Let's inspect the model's solutions.
 
 We will be using the default parameterization with distributions like so
 
@@ -638,28 +638,28 @@ and plot these on our value function plot
 
 
 The value function equals :math:`\pi L_1` for :math:`\pi \leq \beta`, and :math:`(1-\pi )L_0` for :math:`\pi
-\geq \alpha`
+\geq \alpha`.
 
 The slopes of the two linear pieces of the value function are determined by :math:`L_1`
-and :math:`- L_0`
+and :math:`- L_0`.
 
 The value function is smooth in the interior region, where the posterior
-probability assigned to :math:`f_0` is in the indecisive region :math:`\pi \in (\beta, \alpha)`
+probability assigned to :math:`f_0` is in the indecisive region :math:`\pi \in (\beta, \alpha)`.
 
 The decision-maker continues to sample until the probability that he attaches to
-model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`
+model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`.
 
 
 Simulations
 -----------------
 
-The next figure shows the outcomes of 500 simulations of the decision process
+The next figure shows the outcomes of 500 simulations of the decision process.
 
-On the left is a histogram of the stopping times, which equal the number of draws of :math:`z_k` required to make a decision
+On the left is a histogram of the stopping times, which equal the number of draws of :math:`z_k` required to make a decision.
 
-The average number of draws is around 6.6
+The average number of draws is around 6.6.
 
-On the right is the fraction of correct decisions at the stopping time
+On the right is the fraction of correct decisions at the stopping time.
 
 In this case, the decision-maker is correct 80% of the time
 
@@ -766,9 +766,9 @@ In this case, the decision-maker is correct 80% of the time
 Comparative Statics
 ----------------------
 
-Now let's consider the following exercise
+Now let's consider the following exercise.
 
-We double the cost of drawing an additional observation
+We double the cost of drawing an additional observation.
 
 Before you look, think about what will happen:
 
@@ -782,11 +782,11 @@ Before you look, think about what will happen:
     wf = WaldFriedman(c=2.5)
     simulation_plot(wf)
 
-Increased cost per draw has induced the decision-maker to take less draws before deciding
+Increased cost per draw has induced the decision-maker to take less draws before deciding.
 
-Because he decides with less, the percentage of time he is correct drops
+Because he decides with less, the percentage of time he is correct drops.
 
-This leads to him having a higher expected loss when he puts equal weight on both models
+This leads to him having a higher expected loss when he puts equal weight on both models.
 
 
 
@@ -797,7 +797,7 @@ A Notebook Implementation
 
 To facilitate comparative statics, we provide
 a `Jupyter notebook <http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/Wald_Friedman.ipynb>`__ that
-generates the same plots, but with sliders
+generates the same plots, but with sliders.
 
 
 
@@ -824,13 +824,13 @@ Comparison with Neyman-Pearson Formulation
 For several reasons, it is useful to describe the theory underlying the test
 that Navy Captain G. S. Schuyler had been told to use and that led him
 to approach Milton Friedman and Allan Wallis to convey his conjecture
-that superior practical procedures existed
+that superior practical procedures existed.
 
 Evidently, the Navy had told
 Captail Schuyler to use what it knew to be a state-of-the-art
-Neyman-Pearson test
+Neyman-Pearson test.
 
-We'll rely on Abraham Wald's :cite:`Wald47` elegant summary of Neyman-Pearson theory
+We'll rely on Abraham Wald's :cite:`Wald47` elegant summary of Neyman-Pearson theory.
 
 For our purposes, watch for there features of the setup:
 
@@ -852,13 +852,13 @@ Recall that in the sequential analytic formulation above, that
    construction
 
 In chapter 1 of **Sequential Analysis** :cite:`Wald47` Abraham Wald summarizes the
-Neyman-Pearson approach to hypothesis testing
+Neyman-Pearson approach to hypothesis testing.
 
 Wald frames the problem as making a decision about a probability
-distribution that is partially known
+distribution that is partially known.
 
 (You have to assume that *something* is already known in order to state a well-posed
-problem -- usually, *something* means *a lot*)
+problem -- usually, *something* means *a lot*).
 
 By limiting  what is unknown, Wald uses the following simple structure
 to illustrate the main ideas:
@@ -940,7 +940,7 @@ interpret :math:`\alpha` and :math:`\beta`:
 
 The quantity :math:`\alpha` is called the *size* of the critical region,
 and the quantity :math:`1-\beta` is called the *power* of the critical
-region
+region.
 
 Wald notes that
 
@@ -968,7 +968,7 @@ Wald summarizes Neyman and Pearson's setup as follows:
 
 
 Wald goes on to discuss Neyman and Pearson's concept of *uniformly most
-powerful* test
+powerful* test.
 
 Here is how Wald introduces the notion of a sequential test
 

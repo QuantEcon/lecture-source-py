@@ -22,7 +22,7 @@
 
     "Asset pricing is all about covariances" -- Lars Peter Hansen
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -36,7 +36,7 @@ Overview
 .. index::
     single: Markov Asset Pricing; Overview
 
-An asset is a claim on one or more future payoffs
+An asset is a claim on one or more future payoffs.
 
 The spot price of an asset depends primarily on
 
@@ -47,11 +47,11 @@ The spot price of an asset depends primarily on
 * rates of time preference
 
 
-In this lecture, we consider some standard pricing models and dividend stream specifications
+In this lecture, we consider some standard pricing models and dividend stream specifications.
 
-We study how prices and dividend-price ratios respond in these different scenarios
+We study how prices and dividend-price ratios respond in these different scenarios.
 
-We also look at creating and pricing *derivative* assets by repackaging income streams
+We also look at creating and pricing *derivative* assets by repackaging income streams.
 
 Key tools for the lecture are
 
@@ -76,7 +76,7 @@ In what follows let :math:`\{d_t\}_{t \geq 0}` be a stream of dividends
 
 
 Let's look at some equations that we expect to hold for prices of assets under ex-dividend contracts
-(we will consider cum-dividend pricing in the exercises)
+(we will consider cum-dividend pricing in the exercises).
 
 
 Risk-Neutral Pricing
@@ -85,12 +85,12 @@ Risk-Neutral Pricing
 .. index::
     single: Pricing Models; Risk-Neutral
 
-Our first scenario is risk-neutral pricing
+Our first scenario is risk-neutral pricing.
 
 Let :math:`\beta = 1/(1+\rho)` be an intertemporal discount factor, where
-:math:`\rho` is the rate at which agents discount the future
+:math:`\rho` is the rate at which agents discount the future.
 
-The basic risk-neutral asset pricing equation for pricing one unit of an ex-dividend asset is
+The basic risk-neutral asset pricing equation for pricing one unit of an ex-dividend asset is.
 
 .. _mass_pra:
 
@@ -100,9 +100,9 @@ The basic risk-neutral asset pricing equation for pricing one unit of an ex-divi
     p_t = \beta {\mathbb E}_t [d_{t+1} + p_{t+1}]
 
 
-This is a simple "cost equals expected benefit" relationship
+This is a simple "cost equals expected benefit" relationship.
 
-Here :math:`{\mathbb E}_t [y]` denotes the best forecast of :math:`y`, conditioned on information available at time :math:`t`
+Here :math:`{\mathbb E}_t [y]` denotes the best forecast of :math:`y`, conditioned on information available at time :math:`t`.
 
 
 
@@ -126,17 +126,17 @@ settings the price of an ex-dividend asset obeys
     p_t = {\mathbb E}_t \left[ m_{t+1}  ( d_{t+1} + p_{t+1} ) \right]
 
 
-for some  **stochastic discount factor** :math:`m_{t+1}`
+for some  **stochastic discount factor** :math:`m_{t+1}`.
 
-The fixed discount factor :math:`\beta` in :eq:`rnapex` has been replaced by the random variable :math:`m_{t+1}`
+The fixed discount factor :math:`\beta` in :eq:`rnapex` has been replaced by the random variable :math:`m_{t+1}`.
 
-The way anticipated future payoffs are evaluated can now depend on various random outcomes
+The way anticipated future payoffs are evaluated can now depend on various random outcomes.
 
-One example of this idea is that assets that tend to have good payoffs in bad states of the world might be regarded as more valuable
+One example of this idea is that assets that tend to have good payoffs in bad states of the world might be regarded as more valuable.
 
-This is because they pay well when the funds are more urgently needed
+This is because they pay well when the funds are more urgently needed.
 
-We give examples of how the stochastic discount factor has been modeled below
+We give examples of how the stochastic discount factor has been modeled below.
 
 
 
@@ -165,18 +165,18 @@ It is useful to regard equation :eq:`lteeqs102`   as a generalization of equatio
 
 * In equation :eq:`rnapex`, the covariance term :math:`{\rm cov}_t (m_{t+1}, d_{t+1}+ p_{t+1})` is zero because :math:`m_{t+1} = \beta`
 
-Equation :eq:`lteeqs102` asserts that the covariance of the stochastic discount factor with the one period payout :math:`d_{t+1} + p_{t+1}` is an important determinant of the price :math:`p_t`
+Equation :eq:`lteeqs102` asserts that the covariance of the stochastic discount factor with the one period payout :math:`d_{t+1} + p_{t+1}` is an important determinant of the price :math:`p_t`.
 
-We give examples of some models of stochastic discount factors that have been proposed later in this lecture and also in a :doc:`later lecture <lucas_model>`
+We give examples of some models of stochastic discount factors that have been proposed later in this lecture and also in a :doc:`later lecture <lucas_model>`.
 
 
 
 The Price-Dividend Ratio
 --------------------------
 
-Aside from prices, another quantity of interest is the **price-dividend ratio** :math:`v_t := p_t / d_t`
+Aside from prices, another quantity of interest is the **price-dividend ratio** :math:`v_t := p_t / d_t`.
 
-Let's write down an expression that this ratio should satisfy
+Let's write down an expression that this ratio should satisfy.
 
 We can divide both sides of :eq:`lteeqs0` by :math:`d_t` to get
 
@@ -185,7 +185,7 @@ We can divide both sides of :eq:`lteeqs0` by :math:`d_t` to get
 
     v_t = {\mathbb E}_t \left[ m_{t+1} \frac{d_{t+1}}{d_t} (1 + v_{t+1}) \right]
 
-Below we'll discuss the implication of this equation
+Below we'll discuss the implication of this equation.
 
 
 
@@ -200,14 +200,14 @@ The answer to this question depends on
 
 #. the stochastic discount factor and how it correlates with dividends
 
-For now let's focus on the risk-neutral case, where the stochastic discount factor is constant, and study how prices depend on the dividend process
+For now let's focus on the risk-neutral case, where the stochastic discount factor is constant, and study how prices depend on the dividend process.
 
 
 
 Example 1: Constant Dividends
 ---------------------------------
 
-The simplest case is risk-neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`
+The simplest case is risk-neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`.
 
 Removing the expectation from :eq:`rnapex` and iterating forward gives
 
@@ -232,23 +232,23 @@ Unless prices explode in the future, this sequence converges to
     \bar p := \frac{\beta d}{1-\beta}
 
 
-This price is the equilibrium price in the constant dividend case
+This price is the equilibrium price in the constant dividend case.
 
 Indeed, simple algebra shows that setting :math:`p_t = \bar p` for all :math:`t`
-satisfies the equilibrium condition :math:`p_t = \beta (d + p_{t+1})`
+satisfies the equilibrium condition :math:`p_t = \beta (d + p_{t+1})`.
 
 
 Example 2: Dividends with Deterministic Growth Paths
 ---------------------------------------------------------
 
 Consider a growing, non-random dividend process :math:`d_{t+1} = g d_t`
-where :math:`0 < g \beta < 1`
+where :math:`0 < g \beta < 1`.
 
 While prices are not usually constant when dividends grow over time, the price
-dividend-ratio might be
+dividend-ratio might be.
 
 If we guess this, substituting :math:`v_t = v` into :eq:`pdex` as well as our
-other assumptions, we get :math:`v = \beta g (1 + v)`
+other assumptions, we get :math:`v = \beta g (1 + v)`.
 
 Since :math:`\beta g < 1`, we have a unique positive solution:
 
@@ -271,7 +271,7 @@ If, in this example, we take :math:`g = 1+\kappa` and let
     p_t = \frac{1 + \kappa}{ \rho - \kappa} d_t
 
 
-This is called the *Gordon formula*
+This is called the *Gordon formula*.
 
 .. _mass_mg:
 
@@ -318,7 +318,7 @@ You can think of
 * :math:`\ln g_t = \ln (d_{t+1} / d_t)` is the growth rate of dividends
 
 
-(For a refresher on notation and theory for finite Markov chains see :doc:`this lecture <finite_markov>`)
+(For a refresher on notation and theory for finite Markov chains see :doc:`this lecture <finite_markov>`).
 
 The next figure shows a simulation, where
 
@@ -360,13 +360,13 @@ The next figure shows a simulation, where
 Pricing
 ^^^^^^^^^^^^
 
-To obtain asset prices in this setting, let's adapt our analysis from the case of deterministic growth
+To obtain asset prices in this setting, let's adapt our analysis from the case of deterministic growth.
 
-In that case, we found that :math:`v` is constant
+In that case, we found that :math:`v` is constant.
 
-This encourages us to guess that, in the current case, :math:`v_t` is constant given the state :math:`X_t`
+This encourages us to guess that, in the current case, :math:`v_t` is constant given the state :math:`X_t`.
 
-In other words, we are looking for a fixed function :math:`v` such that the price-dividend ratio satisfies  :math:`v_t = v(X_t)`
+In other words, we are looking for a fixed function :math:`v` such that the price-dividend ratio satisfies  :math:`v_t = v(X_t)`.
 
 We can substitute this guess into :eq:`pdex` to get
 
@@ -392,7 +392,7 @@ or
     K(x, y) := g(y) P(x, y)
 
 
-Suppose that there are :math:`n` possible states :math:`x_1, \ldots, x_n`
+Suppose that there are :math:`n` possible states :math:`x_1, \ldots, x_n`.
 
 We can then think of :eq:`pstack` as :math:`n` stacked equations, one for each state, and write it in matrix form as
 
@@ -412,9 +412,9 @@ Here
 
 When does :eq:`vcumrn` have a unique solution?
 
-From the :ref:`Neumann series lemma <la_neumann>` and Gelfand's formula, this will be the case if :math:`\beta K` has spectral radius strictly less than one
+From the :ref:`Neumann series lemma <la_neumann>` and Gelfand's formula, this will be the case if :math:`\beta K` has spectral radius strictly less than one.
 
-In other words, we require that the eigenvalues of :math:`K`  be strictly less than :math:`\beta^{-1}` in modulus
+In other words, we require that the eigenvalues of :math:`K`  be strictly less than :math:`\beta^{-1}` in modulus.
 
 The solution is then
 
@@ -427,9 +427,9 @@ The solution is then
 Code
 -----
 
-Let's calculate and plot the price-dividend ratio at a set of parameters
+Let's calculate and plot the price-dividend ratio at a set of parameters.
 
-As before, we'll generate :math:`\{X_t\}`  as a :ref:`discretized AR1 process <mc_ex3>` and set :math:`g_t = \exp(X_t)`
+As before, we'll generate :math:`\{X_t\}`  as a :ref:`discretized AR1 process <mc_ex3>` and set :math:`g_t = \exp(X_t)`.
 
 Here's the code, including a test of the spectral radius condition
 
@@ -465,11 +465,11 @@ Why does the price-dividend ratio increase with the state?
 
 
 The reason is that this Markov process is positively correlated, so high
-current states suggest high future states
+current states suggest high future states.
 
-Moreover, dividend growth is increasing in the state
+Moreover, dividend growth is increasing in the state.
 
-The anticipation of high future dividend growth leads to a high price-dividend ratio
+The anticipation of high future dividend growth leads to a high price-dividend ratio.
 
 
 
@@ -479,7 +479,7 @@ Asset Prices under Risk Aversion
 ==================================
 
 
-Now let's turn to the case where agents are risk averse
+Now let's turn to the case where agents are risk averse.
 
 We'll price several distinct assets, including
 
@@ -500,7 +500,7 @@ Pricing a Lucas Tree
     single: Finite Markov Asset Pricing; Lucas Tree
 
 
-Let's start with a version of the celebrated asset pricing model of Robert E. Lucas, Jr. :cite:`Lucas1978`
+Let's start with a version of the celebrated asset pricing model of Robert E. Lucas, Jr. :cite:`Lucas1978`.
 
 
 As in :cite:`Lucas1978`, suppose that the stochastic discount factor takes the form
@@ -511,17 +511,17 @@ As in :cite:`Lucas1978`, suppose that the stochastic discount factor takes the f
     m_{t+1} = \beta \frac{u'(c_{t+1})}{u'(c_t)}
 
 
-where :math:`u` is a concave utility function and :math:`c_t` is time :math:`t` consumption of a representative consumer
+where :math:`u` is a concave utility function and :math:`c_t` is time :math:`t` consumption of a representative consumer.
 
 
-(A derivation of this expression is given in a :doc:`later lecture <lucas_model>`)
+(A derivation of this expression is given in a :doc:`later lecture <lucas_model>`).
 
-Assume the existence of an endowment that follows :eq:`mass_fmce`
+Assume the existence of an endowment that follows :eq:`mass_fmce`.
 
-The asset being priced is a claim on the endowment process
+The asset being priced is a claim on the endowment process.
 
 Following :cite:`Lucas1978`, suppose further that in equilibrium, consumption
-is equal to the endowment, so that :math:`d_t = c_t` for all :math:`t`
+is equal to the endowment, so that :math:`d_t = c_t` for all :math:`t`.
 
 For utility, we'll assume the **constant relative risk aversion** (CRRA)
 specification
@@ -532,7 +532,7 @@ specification
     u(c) = \frac{c^{1-\gamma}}{1 - \gamma} \ {\rm with} \ \gamma > 0
 
 
-When :math:`\gamma =1` we let :math:`u(c) = \ln c`
+When :math:`\gamma =1` we let :math:`u(c) = \ln c`.
 
 Inserting the CRRA specification into :eq:`lucsdf` and using :math:`c_t = d_t` gives
 
@@ -693,19 +693,19 @@ with a positively correlated Markov process and :math:`g(x) = \exp(x)`
 
 
 
-Notice that :math:`v` is decreasing in each case
+Notice that :math:`v` is decreasing in each case.
 
-This is because, with a positively correlated state process, higher states suggest higher future consumption growth
+This is because, with a positively correlated state process, higher states suggest higher future consumption growth.
 
 In the stochastic discount factor :eq:`lucsdf2`, higher growth decreases the
-discount factor, lowering the weight placed on future returns
+discount factor, lowering the weight placed on future returns.
 
 
 
 Special Cases
 ^^^^^^^^^^^^^^^^^
 
-In the special case :math:`\gamma =1`, we have :math:`J = P`
+In the special case :math:`\gamma =1`, we have :math:`J = P`.
 
 Recalling that :math:`P^i {\mathbb 1} = {\mathbb 1}` for all :math:`i` and applying :ref:`Neumann's geometric series lemma <la_neumann>`, we are led to
 
@@ -716,24 +716,24 @@ Recalling that :math:`P^i {\mathbb 1} = {\mathbb 1}` for all :math:`i` and apply
     = \beta \frac{1}{1 - \beta} {\mathbb 1}
 
 
-Thus, with log preferences, the price-dividend ratio for a Lucas tree is constant
+Thus, with log preferences, the price-dividend ratio for a Lucas tree is constant.
 
 
 Alternatively, if :math:`\gamma = 0`, then :math:`J = K` and we recover the
-risk-neutral solution :eq:`rned`
+risk-neutral solution :eq:`rned`.
 
-This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and hence agents are risk-neutral)
+This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and hence agents are risk-neutral).
 
 
 
 A Risk-Free Consol
 -------------------
 
-Consider the same pure exchange representative agent economy
+Consider the same pure exchange representative agent economy.
 
-A risk-free consol promises to pay a constant amount  :math:`\zeta> 0` each period
+A risk-free consol promises to pay a constant amount  :math:`\zeta> 0` each period.
 
-Recycling notation, let :math:`p_t` now be the price of an  ex-coupon claim to the consol
+Recycling notation, let :math:`p_t` now be the price of an  ex-coupon claim to the consol.
 
 An ex-coupon claim to the consol entitles the owner at the end of period :math:`t` to
 
@@ -818,13 +818,13 @@ The above is implemented in the function `consol_price`
 Pricing an Option to Purchase the Consol
 ----------------------------------------
 
-Let's now price options of varying maturity that give the right to purchase a consol at a price :math:`p_S`
+Let's now price options of varying maturity that give the right to purchase a consol at a price :math:`p_S`.
 
 
 An Infinite Horizon Call Option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We want to price an infinite horizon  option to purchase a consol at a price :math:`p_S`
+We want to price an infinite horizon  option to purchase a consol at a price :math:`p_S`.
 
 The option entitles the owner at the beginning of a period either to
 
@@ -832,16 +832,16 @@ The option entitles the owner at the beginning of a period either to
 
 #. Not to exercise the option now but to retain the right to exercise it later
 
-Thus, the owner either *exercises* the option now or chooses *not to exercise* and wait until next period
+Thus, the owner either *exercises* the option now or chooses *not to exercise* and wait until next period.
 
-This is termed an infinite-horizon *call option* with *strike price* :math:`p_S`
+This is termed an infinite-horizon *call option* with *strike price* :math:`p_S`.
 
-The owner of the option is entitled to purchase the consol at the price :math:`p_S` at the beginning of any period, after the coupon has been paid to the previous owner of the bond
+The owner of the option is entitled to purchase the consol at the price :math:`p_S` at the beginning of any period, after the coupon has been paid to the previous owner of the bond.
 
-The fundamentals of the economy are identical with the one above, including the stochastic discount factor and the process for consumption
+The fundamentals of the economy are identical with the one above, including the stochastic discount factor and the process for consumption.
 
 Let :math:`w(X_t, p_S)` be the value of the option when the time :math:`t` growth state is known to be :math:`X_t` but *before* the owner has decided whether or not to exercise the option
-at time :math:`t` (i.e., today)
+at time :math:`t` (i.e., today).
 
 Recalling that :math:`p(X_t)` is the value of the consol when the initial growth state is :math:`X_t`, the value of the option satisfies
 
@@ -854,7 +854,7 @@ Recalling that :math:`p(X_t)` is the value of the consol when the initial growth
     \right\}
 
 
-The first term on the right is the value of waiting, while the second is the value of exercising now
+The first term on the right is the value of waiting, while the second is the value of exercising now.
 
 We can also write this as
 
@@ -887,7 +887,7 @@ into vector :math:`Tw` via
     = \max \{ \beta M w,\; p - p_S {\mathbb 1} \}
 
 
-Start at some initial :math:`w` and iterate to convergence with :math:`T`
+Start at some initial :math:`w` and iterate to convergence with :math:`T`.
 
 We can find the solution with the following function `call_option`
 
@@ -965,12 +965,12 @@ Here's a plot of :math:`w` compared to the consol price when :math:`P_S = 40`
 
 
 
-In large states, the value of the option is close to zero
+In large states, the value of the option is close to zero.
 
 This is despite the fact the Markov chain is irreducible and low states ---
-where the consol prices are high --- will eventually be visited
+where the consol prices are high --- will eventually be visited.
 
-The reason is that :math:`\beta=0.9`, so the future is discounted relatively rapidly
+The reason is that :math:`\beta=0.9`, so the future is discounted relatively rapidly.
 
 
 
@@ -978,14 +978,14 @@ The reason is that :math:`\beta=0.9`, so the future is discounted relatively rap
 Risk-Free Rates
 -----------------
 
-Let's look at risk-free interest rates over different periods
+Let's look at risk-free interest rates over different periods.
 
 
 
 The One-period Risk-free Interest Rate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As before, the stochastic discount factor is :math:`m_{t+1} = \beta g_{t+1}^{-\gamma}`
+As before, the stochastic discount factor is :math:`m_{t+1} = \beta g_{t+1}^{-\gamma}`.
 
 It follows that the reciprocal :math:`R_t^{-1}` of the gross risk-free interest rate :math:`R_t` in state :math:`x` is
 
@@ -1001,16 +1001,16 @@ We can write this as
     m_1 = \beta M {\mathbb 1}
 
 
-where the :math:`i`-th  element of :math:`m_1` is the reciprocal of the one-period gross risk-free interest rate in state :math:`x_i`
+where the :math:`i`-th  element of :math:`m_1` is the reciprocal of the one-period gross risk-free interest rate in state :math:`x_i`.
 
 
 Other Terms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Let :math:`m_j` be an :math:`n \times 1` vector whose :math:`i` th component is the reciprocal of the :math:`j` -period gross risk-free interest rate in state :math:`x_i`
+Let :math:`m_j` be an :math:`n \times 1` vector whose :math:`i` th component is the reciprocal of the :math:`j` -period gross risk-free interest rate in state :math:`x_i`.
 
 
-Then :math:`m_1 = \beta M`, and :math:`m_{j+1} = M m_j` for :math:`j \geq 1`
+Then :math:`m_1 = \beta M`, and :math:`m_{j+1} = M m_j` for :math:`j \geq 1`.
 
 
 
@@ -1020,12 +1020,12 @@ Exercises
 Exercise 1
 -----------
 
-In the lecture, we considered **ex-dividend assets**
+In the lecture, we considered **ex-dividend assets**.
 
-A **cum-dividend** asset is a claim to the stream :math:`d_t, d_{t+1}, \ldots`
+A **cum-dividend** asset is a claim to the stream :math:`d_t, d_{t+1}, \ldots`.
 
 Following :eq:`rnapex`, find the risk-neutral asset pricing equation for
-one unit of a cum-dividend asset
+one unit of a cum-dividend asset.
 
 With a constant, non-random dividend stream :math:`d_t = d > 0`, what is the equilibrium
 price of a cum-dividend asset?
@@ -1051,9 +1051,9 @@ Consider the following primitives
 
 
 
-Let :math:`g` be defined by :math:`g(x) = x`  (that is, :math:`g` is the identity map)
+Let :math:`g` be defined by :math:`g(x) = x`  (that is, :math:`g` is the identity map).
 
-Compute the price of the Lucas tree
+Compute the price of the Lucas tree.
 
 Do the same for
 
@@ -1067,17 +1067,17 @@ Exercise 3
 -----------
 
 Let's consider finite horizon call options, which are more common than the
-infinite horizon variety
+infinite horizon variety.
 
-Finite horizon options obey functional equations closely related to :eq:`FEoption0`
+Finite horizon options obey functional equations closely related to :eq:`FEoption0`.
 
-A :math:`k` period option expires after :math:`k` periods
+A :math:`k` period option expires after :math:`k` periods.
 
-If we view today as date zero, a :math:`k` period option gives the owner the right to exercise the option to purchase the risk-free consol at the strike price :math:`p_S` at dates :math:`0, 1, \ldots , k-1`
+If we view today as date zero, a :math:`k` period option gives the owner the right to exercise the option to purchase the risk-free consol at the strike price :math:`p_S` at dates :math:`0, 1, \ldots , k-1`.
 
-The option expires at time :math:`k`
+The option expires at time :math:`k`.
 
-Thus, for :math:`k=1, 2, \ldots`, let :math:`w(x, k)` be the value of a :math:`k`-period option
+Thus, for :math:`k=1, 2, \ldots`, let :math:`w(x, k)` be the value of a :math:`k`-period option.
 
 It obeys
 
@@ -1091,7 +1091,7 @@ It obeys
     \right\}
 
 
-where :math:`w(x, 0) = 0` for all :math:`x`
+where :math:`w(x, 0) = 0` for all :math:`x`.
 
 We can express the preceding as the sequence of nonlinear vector equations
 
@@ -1102,9 +1102,9 @@ We can express the preceding as the sequence of nonlinear vector equations
       \quad \text{with } w_0 = 0
 
 
-Write a function that computes :math:`w_k` for any given :math:`k`
+Write a function that computes :math:`w_k` for any given :math:`k`.
 
-Compute the value of the option with ``k = 5`` and ``k = 25`` using parameter values as in Exercise 1
+Compute the value of the option with ``k = 5`` and ``k = 25`` using parameter values as in Exercise 1.
 
 Is one higher than the other?  Can you give intuition?
 
@@ -1242,7 +1242,7 @@ Now let's compute the option values at ``k=5`` and ``k=25``
 
 
 
-Not surprisingly, the option has greater value with larger :math:`k`
+Not surprisingly, the option has greater value with larger :math:`k`.
 
 This is because the owner has a longer time horizon over which he or she
-may exercise the option
+may exercise the option.

@@ -18,7 +18,7 @@ Additive and Multiplicative Functionals
 
 **Co-authors: Chase Coleman and Balint Szoke**
 
-In addition what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -28,18 +28,18 @@ In addition what's in Anaconda, this lecture will need the following libraries
 Overview
 =============
 
-Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic
+Many economic time series display persistent growth that prevents them from being  asymptotically stationary and ergodic.
 
-For example, outputs, prices, and dividends typically display  irregular but persistent growth
+For example, outputs, prices, and dividends typically display  irregular but persistent growth.
 
-Asymptotic stationarity and ergodicity are key assumptions needed to make it possible to learn by applying statistical methods
+Asymptotic stationarity and ergodicity are key assumptions needed to make it possible to learn by applying statistical methods.
 
 Are there ways to model  time series having persistent growth that still enables statistical learning based on a law of large number for
 an asymptotically stationary and ergodic process?
 
-The answer provided by Hansen and Scheinkman :cite:`hansen2009long` is yes
+The answer provided by Hansen and Scheinkman :cite:`hansen2009long` is yes.
 
-They described  two classes of time series models that accommodate growth
+They described  two classes of time series models that accommodate growth.
 
 They are:
 
@@ -47,13 +47,13 @@ They are:
 
 #.  **multiplicative functionals** that display random "geometric growth"
 
-These two classes of processes are closely connected
+These two classes of processes are closely connected.
 
-If a process :math:`\{y_t\}` is an additive functional and :math:`\phi_t = \exp(y_t)`, then :math:`\{\phi_t\}` is a multiplicative functional
+If a process :math:`\{y_t\}` is an additive functional and :math:`\phi_t = \exp(y_t)`, then :math:`\{\phi_t\}` is a multiplicative functional.
 
-Hansen and Sargent :cite:`hansen2008robustness` (chs. 5 and 8) describe discrete time versions of additive and multiplicative functionals
+Hansen and Sargent :cite:`hansen2008robustness` (chs. 5 and 8) describe discrete time versions of additive and multiplicative functionals.
 
-In this lecture, we describe both  additive functionals and multiplicative functionals
+In this lecture, we describe both  additive functionals and multiplicative functionals.
 
 We also describe  and compute  decompositions of additive and multiplicative processes into four components
 
@@ -65,21 +65,21 @@ We also describe  and compute  decompositions of additive and multiplicative pro
 
 #. a **martingale**
 
-We describe how to construct,  simulate,  and interpret these components
+We describe how to construct,  simulate,  and interpret these components.
 
-More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`hansen2008robustness`
+More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`hansen2008robustness`.
 
 
 A Particular Additive Functional
 ====================================
 
 
-Hansen and Sargent :cite:`hansen2008robustness`  describe a general class of additive functionals
+Hansen and Sargent :cite:`hansen2008robustness`  describe a general class of additive functionals.
 
-This lecture focuses on a subclass of these: a scalar process :math:`\{y_t\}_{t=0}^\infty` whose increments are driven by a Gaussian vector autoregression
+This lecture focuses on a subclass of these: a scalar process :math:`\{y_t\}_{t=0}^\infty` whose increments are driven by a Gaussian vector autoregression.
 
 Our special additive functional displays interesting time series behavior while also being easy to construct, simulate, and analyze
-by using linear state-space tools
+by using linear state-space tools.
 
 We construct our  additive functional from two pieces, the first of which is a **first-order vector autoregression** (VAR)
 
@@ -119,16 +119,16 @@ In particular,
 
 
 Here :math:`y_0 \sim {\cal N}(\mu_{y0}, \Sigma_{y0})` is a random
-initial condition for :math:`y`
+initial condition for :math:`y`.
 
 The nonstationary random process :math:`\{y_t\}_{t=0}^\infty` displays
-systematic but random *arithmetic growth*
+systematic but random *arithmetic growth*.
 
 
 Linear State-Space Representation
 ----------------------------------
 
-A convenient way to represent our additive functional is to use a :doc:`linear state space system <linear_models>`
+A convenient way to represent our additive functional is to use a :doc:`linear state space system <linear_models>`.
 
 To do this, we set up state and observation vectors
 
@@ -189,11 +189,11 @@ This can be written as
     \end{aligned}
 
 
-which is a standard linear state space system
+which is a standard linear state space system.
 
-To study it, we could map it into an instance of `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_
+To study it, we could map it into an instance of `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
 
-But here we will use a different set of code for simulation, for reasons described below
+But here we will use a different set of code for simulation, for reasons described below.
 
 
 
@@ -201,7 +201,7 @@ But here we will use a different set of code for simulation, for reasons describ
 Dynamics
 ============
 
-Let's run some simulations to build intuition
+Let's run some simulations to build intuition.
 
 .. _addfunc_eg1:
 
@@ -220,9 +220,9 @@ in which the zeros :math:`z`  of the polynomial
 
      \phi(z) = ( 1 - \phi_1 z - \phi_2 z^2 - \phi_3 z^3 - \phi_4 z^4 )
 
-are strictly greater than unity in absolute value
+are strictly greater than unity in absolute value.
 
-(Being a zero of :math:`\phi(z)` means that :math:`\phi(z) = 0`)
+(Being a zero of :math:`\phi(z)` means that :math:`\phi(z) = 0`).
 
 Let the increment in :math:`\{y_t\}` obey
 
@@ -231,23 +231,23 @@ Let the increment in :math:`\{y_t\}` obey
     y_{t+1} - y_t =  \nu + \tilde x_t + \sigma z_{t+1}
 
 
-with an initial condition for :math:`y_0`
+with an initial condition for :math:`y_0`.
 
 While :eq:`ftaf` is not a first order system like :eq:`old1_additive_functionals`, we know that it can be mapped  into a first order system
 
 * for an example of such a mapping, see :ref:`this example <lss_sode>`
 
 
-In fact, this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals` -- :eq:`old2_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`
+In fact, this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals` -- :eq:`old2_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`.
 
-You can try writing these matrices down now as an exercise --- correct expressions appear in the code below
+You can try writing these matrices down now as an exercise --- correct expressions appear in the code below.
 
 Simulation
 ----------------------------------
 
-When simulating we embed our variables into a bigger system
+When simulating we embed our variables into a bigger system.
 
-This system also constructs the components of the decompositions of :math:`y_t` and of :math:`\exp(y_t)` proposed by Hansen and Scheinkman :cite:`hansen2009long`
+This system also constructs the components of the decompositions of :math:`y_t` and of :math:`\exp(y_t)` proposed by Hansen and Scheinkman :cite:`hansen2009long`.
 
 
 All of these objects are computed using the code below
@@ -255,7 +255,7 @@ All of these objects are computed using the code below
 
 .. literalinclude:: /_static/lecture_specific/additive_functionals/amflss.py
 
-For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a description of exactly how we compute them
+For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a description of exactly how we compute them.
 
 .. _addfunc_egcode:
 
@@ -265,13 +265,13 @@ For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a desc
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.01
-    ν = 0.01 # Growth rate
+    ν = 0.01   # Growth rate
 
     # A matrix should be n x n
     A = np.array([[ϕ_1, ϕ_2, ϕ_3, ϕ_4],
-                  [ 1,   0,    0,   0],
-                  [ 0,   1,    0,   0],
-                  [ 0,   0,    1,   0]])
+                  [  1,   0,   0,   0],
+                  [  0,   1,   0,   0],
+                  [  0,   0,   1,   0]])
 
     # B matrix should be n x k
     B = np.array([[σ, 0, 0, 0]]).T
@@ -296,7 +296,7 @@ For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a desc
 
 
 
-Notice the irregular but persistent growth in :math:`y_t`
+Notice the irregular but persistent growth in :math:`y_t`.
 
 
 Decomposition
@@ -338,7 +338,7 @@ Then the Hansen-Scheinkman :cite:`hansen2009long` decomposition is
     \end{aligned}
 
 
-At this stage, you should pause and verify that :math:`y_{t+1} - y_t` satisfies :eq:`old2_additive_functionals`
+At this stage, you should pause and verify that :math:`y_{t+1} - y_t` satisfies :eq:`old2_additive_functionals`.
 
 It is convenient for us to introduce the following notation:
 
@@ -348,11 +348,11 @@ It is convenient for us to introduce the following notation:
 
 -  :math:`s_t = g x_t`, an (asymptotically) stationary component
 
-We want to characterize and simulate components :math:`\tau_t, m_t, s_t` of the decomposition
+We want to characterize and simulate components :math:`\tau_t, m_t, s_t` of the decomposition.
 
-A convenient way to do this is to construct an appropriate instance of a :doc:`linear state space system <linear_models>` by using `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_
+A convenient way to do this is to construct an appropriate instance of a :doc:`linear state space system <linear_models>` by using `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
 
-This will allow us to use the routines in `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ to study dynamics
+This will allow us to use the routines in `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ to study dynamics.
 
 To start, observe that, under the dynamics in :eq:`old1_additive_functionals` and :eq:`old2_additive_functionals` and with the
 definitions just given,
@@ -437,21 +437,21 @@ we can write this as the linear state space system
 
 
 By picking out components of :math:`\tilde y_t`, we can track all variables of
-interest
+interest.
 
 Code
 =====================
 
-The class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ mentioned above does all that we want to study our additive functional
+The class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ mentioned above does all that we want to study our additive functional.
 
 In fact, `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ does more
-because it allows us to study  an associated multiplicative functional as well
+because it allows us to study  an associated multiplicative functional as well.
 
 (A hint that it does more is the name of the class -- here AMF stands for
 "additive and multiplicative functional" -- the code computes and displays objects associated with
-multiplicative functionals too)
+multiplicative functionals too).
 
-Let's use this code (embedded above) to explore the :ref:`example process described above <addfunc_eg1>`
+Let's use this code (embedded above) to explore the :ref:`example process described above <addfunc_eg1>`.
 
 If you run :ref:`the code that first simulated that example <addfunc_egcode>` again and then the method call
 you will generate (modulo randomness) the plot
@@ -465,9 +465,9 @@ you will generate (modulo randomness) the plot
 
 
 
-When we plot multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plot the population 95% probability coverage sets computed using the LinearStateSpace class
+When we plot multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plot the population 95% probability coverage sets computed using the LinearStateSpace class.
 
-We have chosen to simulate many paths, all starting from the *same* non-random initial conditions :math:`x_0, y_0` (you can tell this from the shape of the 95% probability coverage shaded areas)
+We have chosen to simulate many paths, all starting from the *same* non-random initial conditions :math:`x_0, y_0` (you can tell this from the shape of the 95% probability coverage shaded areas).
 
 Notice tell-tale signs of these probability coverage shaded areas
 
@@ -481,9 +481,9 @@ Notice tell-tale signs of these probability coverage shaded areas
 Associated Multiplicative Functional
 --------------------------------------
 
-Where :math:`\{y_t\}` is our additive functional, let :math:`M_t = \exp(y_t)`
+Where :math:`\{y_t\}` is our additive functional, let :math:`M_t = \exp(y_t)`.
 
-As mentioned above, the process :math:`\{M_t\}` is called a **multiplicative functional**
+As mentioned above, the process :math:`\{M_t\}` is called a **multiplicative functional**.
 
 Corresponding to the additive decomposition described above we have a multiplicative decomposition of  :math:`M_t`
 
@@ -516,9 +516,9 @@ and
     \tilde e(x) = \exp[g(x)] = \exp \bigl[ D' (I - A)^{-1} x \bigr]
 
 
-An instance of class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ includes this associated multiplicative functional as an attribute
+An instance of class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ includes this associated multiplicative functional as an attribute.
 
-Let's plot this multiplicative functional for our example
+Let's plot this multiplicative functional for our example.
 
 
 
@@ -534,18 +534,18 @@ obtain the graph in the next cell
 
 
 
-As before, when we plotted multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plotted population 95% confidence bands computed using the LinearStateSpace class
+As before, when we plotted multiple realizations of a component in the 2nd, 3rd, and 4th panels, we also plotted population 95% confidence bands computed using the LinearStateSpace class.
 
 Comparing this figure and the last also helps show how geometric growth differs from
-arithmetic growth
+arithmetic growth.
 
 
 The top right panel of the above graph shows a panel of martingales associated with the panel of :math:`M_t = \exp(y_t)` that we have generated
-for a limited horizon :math:`T`
+for a limited horizon :math:`T`.
 
-It is interesting to how the martingale behaves as :math:`T \rightarrow +\infty`
+It is interesting to how the martingale behaves as :math:`T \rightarrow +\infty`.
 
-Let's see what happens when we set :math:`T = 12000` instead of :math:`150`
+Let's see what happens when we set :math:`T = 12000` instead of :math:`150`.
 
 
 Peculiar Large Sample Property
@@ -561,9 +561,9 @@ Hansen and Sargent :cite:`hansen2008robustness` (ch. 8) note that the martingale
    zero almost surely
 
 The first property follows from :math:`\widetilde M_t` being a multiplicative martingale with initial condition
-:math:`\widetilde M_0 = 1`
+:math:`\widetilde M_0 = 1`.
 
-The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`hansen2008robustness`
+The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`hansen2008robustness`.
 
 The following simulation of many paths of :math:`\widetilde M_t` illustrates both properties
 
@@ -576,11 +576,11 @@ The following simulation of many paths of :math:`\widetilde M_t` illustrates bot
     plt.show()
 
 
-The dotted line in the above graph is the mean :math:`E \tilde M_t = 1` of the martingale
+The dotted line in the above graph is the mean :math:`E \tilde M_t = 1` of the martingale.
 
-It remains constant at unity, illustrating the first property
+It remains constant at unity, illustrating the first property.
 
-The purple 95 percent coverage intervale collapses around zero, illustrating the second property
+The purple 95 percent coverage intervale collapses around zero, illustrating the second property.
 
 
 
@@ -588,7 +588,7 @@ More About the Multiplicative Martingale
 ==========================================
 
 Let's drill down and study probability distribution of the multiplicative martingale  :math:`\{\widetilde M_t\}_{t=0}^\infty`  in
-more detail
+more detail.
 
 As we  have seen, it has representation
 
@@ -598,35 +598,35 @@ As we  have seen, it has representation
     \widetilde M_t = \exp \biggl( \sum_{j=1}^t \biggl(H \cdot z_j -\frac{ H \cdot H }{2} \biggr) \biggr),  \quad \widetilde M_0 =1
 
 
-where :math:`H =  [F + B'(I-A')^{-1} D]`
+where :math:`H =  [F + B'(I-A')^{-1} D]`.
 
-It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal
+It follows that :math:`\log {\widetilde M}_t \sim {\mathcal N} ( -\frac{t H \cdot H}{2}, t H \cdot H )` and that consequently :math:`{\widetilde M}_t` is log normal.
 
 Simulating a Multiplicative Martingale Again
 -----------------------------------------------
 
-Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`
+Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`.
 
 In particular, we want to simulate 5000 sample paths of length :math:`T` for the case in which :math:`x` is a scalar and
-:math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005`
+:math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005`.
 
-After accomplishing this, we want to display and stare at  histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T`
+After accomplishing this, we want to display and stare at  histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T`.
 
 
 
-Here is code that accomplishes these tasks
+Here is code that accomplishes these tasks.
 
 
 Sample Paths
 ---------------------------
 
-Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`
+Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`.
 
-We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work
+We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work.
 
- .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py
+ .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py.
 
-The heavy lifting is done inside the `AMF_LSS_VAR` class
+The heavy lifting is done inside the `AMF_LSS_VAR` class.
 
 The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR`
 
@@ -698,7 +698,7 @@ simulations
             # Martingale component is third component
             add_mart_comp[i, :] = bar[2, :]
 
-        mul_mart_comp = np.exp(add_mart_comp - (np.arange(T) * H**2) / 2)
+        mul_mart_comp = np.exp(add_mart_comp - (np.arange(T) * H**2)/2)
 
         return add_mart_comp, mul_mart_comp
 
@@ -722,12 +722,12 @@ simulations
 
 
 Let's plot the probability density functions for :math:`\log {\widetilde M}_t` for
-:math:`t=100, 500, 1000, 10000, 100000`
+:math:`t=100, 500, 1000, 10000, 100000`.
 
 
-Then let's use the plots to  investigate how these densities evolve through time
+Then let's use the plots to  investigate how these densities evolve through time.
 
-We will plot the densities of :math:`\log {\widetilde M}_t` for different values of :math:`t`
+We will plot the densities of :math:`\log {\widetilde M}_t` for different values of :math:`t`.
 
 
 
@@ -738,7 +738,7 @@ keyword argument ``scale`` (``scale=np.exp(-t * H2 / 2)``)
 * See the documentation `here
   <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__
 
-This is peculiar, so make sure you are careful in working with the log normal distribution
+This is peculiar, so make sure you are careful in working with the log normal distribution.
 
 
 
@@ -752,10 +752,10 @@ Here is some code that tackles these tasks
 
         # Pull out the multiplicative decomposition
         νtilde, H, g = amf.multiplicative_decomp()
-        H2 = H * H
+        H2 = H*H
 
         # The distribution
-        mdist = lognorm(np.sqrt(t * H2), scale=np.exp(-t * H2 / 2))
+        mdist = lognorm(np.sqrt(t*H2), scale=np.exp(-t*H2/2))
         x = np.linspace(xmin, xmax, npts)
         pdf = mdist.pdf(x)
 
@@ -766,10 +766,10 @@ Here is some code that tackles these tasks
 
         # Pull out the multiplicative decomposition
         νtilde, H, g = amf.multiplicative_decomp()
-        H2 = H * H
+        H2 = H*H
 
         # The distribution
-        lmdist = norm(-t * H2 / 2, np.sqrt(t * H2))
+        lmdist = norm(-t*H2/2, np.sqrt(t*H2))
         x = np.linspace(xmin, xmax, npts)
         pdf = lmdist.pdf(x)
 
@@ -777,8 +777,10 @@ Here is some code that tackles these tasks
 
 
     times_to_plot = [10, 100, 500, 1000, 2500, 5000]
-    dens_to_plot = map(lambda t: Mtilde_t_density(amf_2, t, xmin=1e-8, xmax=6.0), times_to_plot)
-    ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0, xmax=10.0), times_to_plot)
+    dens_to_plot = map(lambda t: Mtilde_t_density(amf_2, t, xmin=1e-8, xmax=6.0),
+                       times_to_plot)
+    ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0,
+                        xmax=10.0), times_to_plot)
 
     fig, ax = plt.subplots(3, 2, figsize=(8, 14))
     ax = ax.flatten()
@@ -813,10 +815,10 @@ These probability density functions help us understand mechanics underlying the 
 Multiplicative Martingale as Likelihood Ratio Process
 --------------------------------------------------------
 
-A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**
+A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**.
 
-A likelihood ratio process is defined as a  multiplicative  martingale with mean unity
+A likelihood ratio process is defined as a  multiplicative  martingale with mean unity.
 
-Likelihood ratio processes exhibit the peculiar property discussed here
+Likelihood ratio processes exhibit the peculiar property discussed here.
 
-We'll discuss how to interpret that property in the forthcoming lecture
+We'll discuss how to interpret that property in the forthcoming lecture.

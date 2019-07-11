@@ -12,10 +12,10 @@ class Household:
     S = {0, ..., n}.  To this end, (a_i, z_i) index pairs are mapped to s_i
     indices according to the rule
 
-        s_i = a_i * z_size + z_i 
+        s_i = a_i * z_size + z_i
 
     To invert this map, use
-    
+
         a_i = s_i // z_size  (integer division)
         z_i = s_i % z_size
 
@@ -64,7 +64,13 @@ class Household:
 
     def build_R(self):
         self.R.fill(-np.inf)
-        populate_R(self.R, self.a_size, self.z_size, self.a_vals, self.z_vals, self.r, self.w)
+        populate_R(self.R,
+                   self.a_size,
+                   self.z_size,
+                   self.a_vals,
+                   self.z_vals,
+                   self.r,
+                   self.w)
 
 
 # Do the hard work using JIT-ed functions
@@ -90,7 +96,7 @@ def populate_Q(Q, a_size, z_size, Π):
         z_i = s_i % z_size
         for a_i in range(a_size):
             for next_z_i in range(z_size):
-                Q[s_i, a_i, a_i * z_size + next_z_i] = Π[z_i, next_z_i]
+                Q[s_i, a_i, a_i*z_size + next_z_i] = Π[z_i, next_z_i]
 
 
 @jit(nopython=True)
@@ -98,5 +104,5 @@ def asset_marginal(s_probs, a_size, z_size):
     a_probs = np.zeros(a_size)
     for a_i in range(a_size):
         for z_i in range(z_size):
-            a_probs[a_i] += s_probs[a_i * z_size + z_i]
+            a_probs[a_i] += s_probs[a_i*z_size + z_i]
     return a_probs

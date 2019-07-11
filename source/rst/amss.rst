@@ -8,7 +8,7 @@ Optimal Taxation without State-Contingent Debt
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries
+In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -20,10 +20,10 @@ Overview
 
 In :doc:`an earlier lecture<opt_tax_recur>`, we described a model of
 optimal taxation with state-contingent debt due to
-Robert E. Lucas, Jr.,  and Nancy Stokey  :cite:`LucasStokey1983`
+Robert E. Lucas, Jr.,  and Nancy Stokey  :cite:`LucasStokey1983`.
 
 Aiyagari, Marcet, Sargent, and Seppälä :cite:`aiyagari2002optimal`  (hereafter, AMSS)
-studied optimal taxation in a model without state-contingent debt
+studied optimal taxation in a model without state-contingent debt.
 
 In this lecture, we
 
@@ -37,7 +37,7 @@ In this lecture, we
 
 * compare outcomes with those in a corresponding complete-markets model
 
-We begin with an introduction to the model
+We begin with an introduction to the model.
 
 
 
@@ -46,16 +46,16 @@ Competitive Equilibrium with Distorting Taxes
 ===================================================
 
 
-Many but not all features of the economy are identical to those of :doc:`the Lucas-Stokey economy <opt_tax_recur>`
+Many but not all features of the economy are identical to those of :doc:`the Lucas-Stokey economy <opt_tax_recur>`.
 
-Let's start with things that are identical
+Let's start with things that are identical.
 
-For :math:`t \geq 0`, a history of the state is represented by :math:`s^t = [s_t, s_{t-1}, \ldots, s_0]`
+For :math:`t \geq 0`, a history of the state is represented by :math:`s^t = [s_t, s_{t-1}, \ldots, s_0]`.
 
-Government purchases :math:`g(s)` are an exact time-invariant function of :math:`s`
+Government purchases :math:`g(s)` are an exact time-invariant function of :math:`s`.
 
 Let :math:`c_t(s^t)`,  :math:`\ell_t(s^t)`, and :math:`n_t(s^t)` denote consumption,
-leisure, and labor supply, respectively, at history :math:`s^t` at time :math:`t`
+leisure, and labor supply, respectively, at history :math:`s^t` at time :math:`t`.
 
 
 Each period a representative  household is endowed with one unit of time that can be divided between  leisure
@@ -75,10 +75,10 @@ Output equals :math:`n_t(s^t)` and can be divided between consumption :math:`c_t
     c_t(s^t) + g(s_t) = n_t(s^t)
 
 
-Output is not storable
+Output is not storable.
 
 
-The technology pins down a pre-tax wage rate to unity for all :math:`t, s^t`
+The technology pins down a pre-tax wage rate to unity for all :math:`t, s^t`.
 
 A representative  household’s preferences over :math:`\{c_t(s^t), \ell_t(s^t)\}_{t=0}^\infty` are ordered by
 
@@ -95,15 +95,15 @@ where
 * the utility function :math:`u` is  increasing, strictly concave, and three times  continuously differentiable in both arguments
 
 
-The government imposes a flat rate tax :math:`\tau_t(s^t)` on labor income at time :math:`t`, history :math:`s^t`
+The government imposes a flat rate tax :math:`\tau_t(s^t)` on labor income at time :math:`t`, history :math:`s^t`.
 
-Lucas and Stokey assumed that there are complete markets in one-period Arrow securities; also see :doc:`smoothing models<smoothing>`
+Lucas and Stokey assumed that there are complete markets in one-period Arrow securities; also see :doc:`smoothing models<smoothing>`.
 
-It is at this point that AMSS :cite:`aiyagari2002optimal` modify the Lucas and Stokey economy
+It is at this point that AMSS :cite:`aiyagari2002optimal` modify the Lucas and Stokey economy.
 
-AMSS allow the government to issue only one-period risk-free debt each period
+AMSS allow the government to issue only one-period risk-free debt each period.
 
-Ruling out complete markets in this way is a step in the direction of making total tax collections behave more like that prescribed in :cite:`Barro1979` than they do in :cite:`LucasStokey1983`
+Ruling out complete markets in this way is a step in the direction of making total tax collections behave more like that prescribed in :cite:`Barro1979` than they do in :cite:`LucasStokey1983`.
 
 
 Risk-free One-Period Debt Only
@@ -117,9 +117,9 @@ In period :math:`t` and history :math:`s^t`, let
 
 * :math:`T_t(s^t)` be a non-negative lump-sum transfer to the representative household [#fn_a]_
 
-That :math:`b_{t+1}(s^t)` is the same for all realizations of :math:`s_{t+1}` captures its *risk-free* character
+That :math:`b_{t+1}(s^t)` is the same for all realizations of :math:`s_{t+1}` captures its *risk-free* character.
 
-The market value at time :math:`t` of government debt maturing at time :math:`t+1` equals :math:`b_{t+1}(s^t)` divided by :math:`R_t(s^t)`
+The market value at time :math:`t` of government debt maturing at time :math:`t+1` equals :math:`b_{t+1}(s^t)` divided by :math:`R_t(s^t)`.
 
 The government’s budget constraint in period :math:`t` at history :math:`s^t` is
 
@@ -135,9 +135,9 @@ The government’s budget constraint in period :math:`t` at history :math:`s^t` 
     \end{aligned}
 
 
-where :math:`z(s^t)` is the net-of-interest government surplus
+where :math:`z(s^t)` is the net-of-interest government surplus.
 
-To rule out Ponzi schemes, we assume that the government is subject to a **natural debt limit** (to be discussed in a forthcoming lecture)
+To rule out Ponzi schemes, we assume that the government is subject to a **natural debt limit** (to be discussed in a forthcoming lecture).
 
 The consumption Euler equation for a representative household able to trade only one-period risk-free debt
 with one-period gross interest rate :math:`R_t(s^t)` is
@@ -158,13 +158,13 @@ yields:
     b_t(s^{t-1}) =  z(s^t) + \beta  \sum_{s^{t+1}\vert s^t}  \pi_{t+1}(s^{t+1} | s^t)
                            { u_c(s^{t+1}) \over u_c(s^{t}) } \; b_{t+1}(s^t)
 
-Components of :math:`z(s^t)` on the right side depend on :math:`s^t`, but the left side is required to depend on :math:`s^{t-1}` only
+Components of :math:`z(s^t)` on the right side depend on :math:`s^t`, but the left side is required to depend on :math:`s^{t-1}` only.
 
-**This is what it means for one-period government debt to be risk-free**
+**This is what it means for one-period government debt to be risk-free**.
 
-Therefore, the sum on the right side of equation :eq:`TS_gov_wo2` also has to depend only on :math:`s^{t-1}`
+Therefore, the sum on the right side of equation :eq:`TS_gov_wo2` also has to depend only on :math:`s^{t-1}`.
 
-This requirement will give rise to **measurability constraints** on the Ramsey allocation to be discussed soon
+This requirement will give rise to **measurability constraints** on the Ramsey allocation to be discussed soon.
 
 If we replace :math:`b_{t+1}(s^t)` on the right side of equation :eq:`TS_gov_wo2` by the right
 side of next period’s budget constraint (associated with a
@@ -207,7 +207,7 @@ so that we can express the net-of-interest government surplus :math:`z(s^t)` as
             -g_t(s_t) - T_t(s^t)\,.
 
 If we substitute the  appropriate versions of the right side of :eq:`AMSS_44_2` for :math:`z(s^{t+j})` into equation :eq:`TS_gov_wo3`,
-we obtain a sequence of *implementability constraints* on a Ramsey allocation in an AMSS economy
+we obtain a sequence of *implementability constraints* on a Ramsey allocation in an AMSS economy.
 
 Expression :eq:`TS_gov_wo3` at time :math:`t=0` and initial state :math:`s^0`
 was also  an *implementability constraint* on a Ramsey allocation in a Lucas-Stokey economy:
@@ -218,7 +218,7 @@ was also  an *implementability constraint* on a Ramsey allocation in a Lucas-Sto
     b_0(s^{-1}) = \mathbb E_0 \sum_{j=0}^\infty \beta^j
                    { u_c(s^{j}) \over u_c(s^{0}) } \;z(s^{j})
 
-Indeed, it was the *only* implementability constraint there
+Indeed, it was the *only* implementability constraint there.
 
 But now we also have a large number of additional implementability constraints
 
@@ -228,18 +228,18 @@ But now we also have a large number of additional implementability constraints
      b_t(s^{t-1}) =  \mathbb E_t \sum_{j=0}^\infty \beta^j
                   { u_c(s^{t+j}) \over u_c(s^{t}) } \;z(s^{t+j})
 
-Equation :eq:`TS_gov_wo4a` must hold for each :math:`s^t` for each :math:`t \geq 1`
+Equation :eq:`TS_gov_wo4a` must hold for each :math:`s^t` for each :math:`t \geq 1`.
 
 Comparison with Lucas-Stokey Economy
 -------------------------------------
 
-The expression on the right side of :eq:`TS_gov_wo4a` in the Lucas-Stokey (1983) economy would  equal the present value of a continuation stream of government surpluses evaluated at what would be competitive equilibrium Arrow-Debreu prices at date :math:`t`
+The expression on the right side of :eq:`TS_gov_wo4a` in the Lucas-Stokey (1983) economy would  equal the present value of a continuation stream of government surpluses evaluated at what would be competitive equilibrium Arrow-Debreu prices at date :math:`t`.
 
-In the Lucas-Stokey economy, that present value is measurable with respect to :math:`s^t`
+In the Lucas-Stokey economy, that present value is measurable with respect to :math:`s^t`.
 
-In the AMSS economy, the restriction that government debt be risk-free imposes that that same present value must be measurable with respect to :math:`s^{t-1}`
+In the AMSS economy, the restriction that government debt be risk-free imposes that that same present value must be measurable with respect to :math:`s^{t-1}`.
 
-In a language used in the literature on incomplete markets models, it can be said that the AMSS model requires that at each :math:`(t, s^t)` what would be the present value of continuation government surpluses in the Lucas-Stokey model must belong to  the **marketable subspace** of the AMSS model
+In a language used in the literature on incomplete markets models, it can be said that the AMSS model requires that at each :math:`(t, s^t)` what would be the present value of continuation government surpluses in the Lucas-Stokey model must belong to  the **marketable subspace** of the AMSS model.
 
 
 Ramsey Problem Without State-contingent Debt
@@ -274,20 +274,20 @@ and
           \quad \forall \,  s^t
 
 
-given :math:`b_0(s^{-1})`
+given :math:`b_0(s^{-1})`.
 
 
 
 Lagrangian Formulation
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Let :math:`\gamma_0(s^0)` be a non-negative Lagrange multiplier on constraint :eq:`AMSS_44`
+Let :math:`\gamma_0(s^0)` be a non-negative Lagrange multiplier on constraint :eq:`AMSS_44`.
 
 As in the Lucas-Stokey economy, this multiplier is strictly positive when the government must resort to
-distortionary taxation; otherwise it equals zero
+distortionary taxation; otherwise it equals zero.
 
 A consequence of the assumption that there are no markets in state-contingent securities  and that a market exists only in a risk-free security is that we have to attach stochastic processes :math:`\{\gamma_t(s^t)\}_{t=1}^\infty` of
-Lagrange multipliers to the implementability constraints :eq:`AMSS_46`
+Lagrange multipliers to the implementability constraints :eq:`AMSS_46`.
 
 Depending on how the constraints  bind, these multipliers can be positive or negative:
 
@@ -304,19 +304,19 @@ Depending on how the constraints  bind, these multipliers can be positive or neg
 
 A negative multiplier :math:`\gamma_t(s^t)<0` means that if we could
 relax constraint :eq:`AMSS_46`, we would like to *increase* the beginning-of-period
-indebtedness for that particular realization of history :math:`s^t`
+indebtedness for that particular realization of history :math:`s^t`.
 
-That would let us reduce the beginning-of-period indebtedness for some other history [#fn_b]_
+That would let us reduce the beginning-of-period indebtedness for some other history [#fn_b]_.
 
-These features flow from  the fact that the government cannot use state-contingent debt and therefore cannot allocate its indebtedness  efficiently across future states
+These features flow from  the fact that the government cannot use state-contingent debt and therefore cannot allocate its indebtedness  efficiently across future states.
 
 Some Calculations
 ------------------
 
 
-It is helpful to apply two transformations to the Lagrangian
+It is helpful to apply two transformations to the Lagrangian.
 
-Multiply constraint :eq:`AMSS_44` by :math:`u_c(s^0)` and the constraints :eq:`AMSS_46` by :math:`\beta^t u_c(s^{t})`
+Multiply constraint :eq:`AMSS_44` by :math:`u_c(s^0)` and the constraints :eq:`AMSS_46` by :math:`\beta^t u_c(s^{t})`.
 
 Then a Lagrangian for the Ramsey problem can  be represented as
 
@@ -349,7 +349,7 @@ where
 
 In :eq:`AMSS_lagr;a`,  the second equality uses  the law of iterated expectations
 and Abel’s summation formula (also called *summation by parts*, see
-`this page <https://en.wikipedia.org/wiki/Abel%27s_summation_formula>`__)
+`this page <https://en.wikipedia.org/wiki/Abel%27s_summation_formula>`__).
 
 
 First-order conditions with respect
@@ -403,7 +403,7 @@ on optimal taxation with state-contingent debt  sequential allocation implementa
 
 
 To analyze the AMSS model, we find it useful to adopt a recursive formulation
-using techniques like those in our lectures on :doc:`dynamic Stackelberg models <dyn_stack>` and :doc:`optimal taxation with state-contingent debt <opt_tax_recur>`
+using techniques like those in our lectures on :doc:`dynamic Stackelberg models <dyn_stack>` and :doc:`optimal taxation with state-contingent debt <opt_tax_recur>`.
 
 
 
@@ -411,7 +411,7 @@ using techniques like those in our lectures on :doc:`dynamic Stackelberg models 
 Recursive Version of AMSS Model
 ==================================
 
-We now describe a recursive formulation of the AMSS economy
+We now describe a recursive formulation of the AMSS economy.
 
 We have noted that from the point of view of the Ramsey planner, the restriction
 to one-period risk-free securities
@@ -424,7 +424,7 @@ to one-period risk-free securities
 
 We now explore how these constraints alter  Bellman equations for a time
 :math:`0` Ramsey planner and for time :math:`t \geq 1`, history :math:`s^t`
-continuation Ramsey planners
+continuation Ramsey planners.
 
 
 
@@ -439,11 +439,11 @@ In the AMSS setting, the government faces a sequence of budget constraints
 
 
 where :math:`R_t(s^t)` is the gross risk-free rate of interest between :math:`t`
-and :math:`t+1` at history :math:`s^t` and :math:`T_t(s^t)` are non-negative transfers
+and :math:`t+1` at history :math:`s^t` and :math:`T_t(s^t)` are non-negative transfers.
 
 Throughout this lecture, we shall set transfers to zero (for some issues about the limiting behavior of debt, this makes a possibly
 important  difference from AMSS :cite:`aiyagari2002optimal`, who restricted transfers
-to be non-negative)
+to be non-negative).
 
 In this case, the household faces a sequence of budget constraints
 
@@ -454,7 +454,7 @@ In this case, the household faces a sequence of budget constraints
 
 
 The household’s first-order conditions are :math:`u_{c,t} = \beta R_t \mathbb E_t u_{c,t+1}`
-and :math:`(1-\tau_t) u_{c,t} = u_{l,t}`
+and :math:`(1-\tau_t) u_{c,t} = u_{l,t}`.
 
 Using these to eliminate :math:`R_t` and :math:`\tau_t` from  budget constraint
 :eq:`eqn:AMSSapp1` gives
@@ -492,7 +492,7 @@ history :math:`s^t` as
     {\frac{u_{c,t} x_{t-1}}{\beta \mathbb E_{t-1} u_{c,t}}} = u_{c,t} c_t - u_{l,t} n_t + x_t
 
 
-for :math:`t \geq 1`
+for :math:`t \geq 1`.
 
 Measurability Constraints
 --------------------------
@@ -508,20 +508,20 @@ Write equation :eq:`eqn:AMSSapp2` as
 
 The right side of equation :eq:`eqn:AMSSapp2b` expresses the time :math:`t` value of government debt
 in terms of a linear combination of terms whose individual components
-are measurable with respect to :math:`s^t`
+are measurable with respect to :math:`s^t`.
 
 The sum  of terms on the right side  of equation :eq:`eqn:AMSSapp2b` must equal
-:math:`b_t(s^{t-1})`
+:math:`b_t(s^{t-1})`.
 
-That implies that it has to be *measurable* with respect to :math:`s^{t-1}`
+That implies that it has to be *measurable* with respect to :math:`s^{t-1}`.
 
 Equations :eq:`eqn:AMSSapp2b` are the *measurability constraints* that the AMSS model adds to the single time :math:`0` implementation
-constraint imposed in the Lucas and Stokey model
+constraint imposed in the Lucas and Stokey model.
 
 Two Bellman Equations
 ----------------------
 
-Let :math:`\Pi(s|s_-)` be a Markov transition matrix whose entries tell probabilities of moving from state :math:`s_-` to state :math:`s` in one period
+Let :math:`\Pi(s|s_-)` be a Markov transition matrix whose entries tell probabilities of moving from state :math:`s_-` to state :math:`s` in one period.
 
 Let
 
@@ -556,7 +556,7 @@ for each :math:`s \in {\cal S}`:
 A continuation Ramsey planner at :math:`t \geq 1` takes
 :math:`(x_{t-1}, s_{t-1}) = (x_-, s_-)` as given and before
 :math:`s` is realized chooses
-:math:`(n_t(s_t), x_t(s_t)) = (n(s), x(s))` for :math:`s \in  {\cal S}`
+:math:`(n_t(s_t), x_t(s_t)) = (n(s), x(s))` for :math:`s \in  {\cal S}`.
 
 
 The **Ramsey planner** takes :math:`(b_0, s_0)` as given and chooses :math:`(n_0, x_0)`.
@@ -581,7 +581,7 @@ Martingale Supercedes State-Variable Degeneracy
 ------------------------------------------------
 
 Let :math:`\mu(s|s_-) \Pi(s|s_-)` be a Lagrange multiplier on the constraint :eq:`eqn:AMSSapp6`
-for state :math:`s`
+for state :math:`s`.
 
 After forming an appropriate Lagrangian, we find that the continuation Ramsey planner’s first-order
 condition with respect to :math:`x(s)` is
@@ -610,7 +610,7 @@ Equations :eq:`eqn:AMSSapp7` and :eq:`eqn:AMSSapp8` imply that
     \Pi(\tilde s| s_-) u_c(\tilde s)}} \right) V_x(x(s), s)
 
 
-Equation :eq:`eqn:AMSSapp9` states that :math:`V_x(x, s)` is a *risk-adjusted martingale*
+Equation :eq:`eqn:AMSSapp9` states that :math:`V_x(x, s)` is a *risk-adjusted martingale*.
 
 Saying that :math:`V_x(x, s)` is a risk-adjusted martingale  means  that
 :math:`V_x(x, s)`  is a martingale with respect to the probability distribution
@@ -624,7 +624,7 @@ over :math:`s^t` sequences that are generated by the *twisted* transition probab
 
 **Exercise**: Please verify that :math:`\check \Pi(s|s_-)` is a valid Markov
 transition density, i.e., that its elements are all non-negative and
-that for each :math:`s_-`, the sum over :math:`s` equals unity
+that for each :math:`s_-`, the sum over :math:`s` equals unity.
 
 
 
@@ -633,7 +633,7 @@ Absence of State Variable Degeneracy
 
 Along a Ramsey plan, the state variable :math:`x_t = x_t(s^t, b_0)`
 becomes a function of the history :math:`s^t` and initial
-government debt :math:`b_0`
+government debt :math:`b_0`.
 
 In :doc:`Lucas-Stokey model<opt_tax_recur>`, we
 found that
@@ -646,12 +646,12 @@ found that
   (i.e., :math:`x_t` is an exact function of :math:`s_t`)
 
 That :math:`V_x(x,s)` varies over time according to a twisted martingale
-means that there is no state-variable degeneracy in the AMSS model
+means that there is no state-variable degeneracy in the AMSS model.
 
-In the AMSS model, both :math:`x` and :math:`s` are needed to describe the state
+In the AMSS model, both :math:`x` and :math:`s` are needed to describe the state.
 
 This property of the AMSS model  transmits a twisted martingale
-component to consumption, employment, and the tax rate
+component to consumption, employment, and the tax rate.
 
 
 
@@ -659,21 +659,21 @@ component to consumption, employment, and the tax rate
 Digression on Non-negative Transfers
 ------------------------------------
 
-Throughout this lecture, we have imposed that transfers :math:`T_t = 0`
+Throughout this lecture, we have imposed that transfers :math:`T_t = 0`.
 
 AMSS :cite:`aiyagari2002optimal` instead imposed a nonnegativity
-constraint :math:`T_t\geq 0` on transfers
+constraint :math:`T_t\geq 0` on transfers.
 
 They also considered a special case of quasi-linear preferences,
-:math:`u(c,l)= c + H(l)`
+:math:`u(c,l)= c + H(l)`.
 
-In this case, :math:`V_x(x,s)\leq 0` is a non-positive martingale
+In this case, :math:`V_x(x,s)\leq 0` is a non-positive martingale.
 
-By the *martingale convergence theorem*  :math:`V_x(x,s)` converges almost surely
+By the *martingale convergence theorem*  :math:`V_x(x,s)` converges almost surely.
 
 Furthermore, when the Markov chain :math:`\Pi(s| s_-)` and the government
 expenditure function :math:`g(s)` are such that :math:`g_t` is perpetually
-random, :math:`V_x(x, s)` almost surely converges to zero
+random, :math:`V_x(x, s)` almost surely converges to zero.
 
 For quasi-linear preferences, the first-order condition with respect to :math:`n(s)` becomes
 
@@ -683,11 +683,11 @@ For quasi-linear preferences, the first-order condition with respect to :math:`n
 
 
 When :math:`\mu(s|s_-) = \beta V_x(x(s),x)` converges to zero, in the limit
-:math:`u_l(s)= 1 =u_c(s)`, so that :math:`\tau(x(s),s) =0`
+:math:`u_l(s)= 1 =u_c(s)`, so that :math:`\tau(x(s),s) =0`.
 
 Thus, in the limit, if :math:`g_t` is perpetually random,  the government
 accumulates sufficient assets to finance all expenditures from earnings on those
-assets, returning any excess revenues to the household as non-negative lump-sum transfers
+assets, returning any excess revenues to the household as non-negative lump-sum transfers.
 
 
 Code
@@ -701,7 +701,7 @@ The recursive formulation is implemented as follows
 Examples
 ================
 
-We now turn to some examples
+We now turn to some examples.
 
 
 
@@ -716,7 +716,7 @@ Anticipated One-Period War
 ----------------------------------
 
 In our lecture on :doc:`optimal taxation with state contingent debt <opt_tax_recur>`
-we studied how the government manages uncertainty in a simple setting
+we studied how the government manages uncertainty in a simple setting.
 
 As in that lecture, we assume the one-period utility function
 
@@ -731,7 +731,7 @@ As in that lecture, we assume the one-period utility function
 
 
 We consider the same government expenditure process studied in the lecture on
-:doc:`optimal taxation with state contingent debt <opt_tax_recur>`
+:doc:`optimal taxation with state contingent debt <opt_tax_recur>`.
 
 Government expenditures are known for sure in all periods except one
 
@@ -751,7 +751,7 @@ A useful trick is to define  components of the state vector as the following six
     (0,g_l), (1,g_l), (2,g_l), (3,g_l), (3,g_h), (t\geq 4,g_l)
 
 
-We think of these 6 states as corresponding to :math:`s=1,2,3,4,5,6`
+We think of these 6 states as corresponding to :math:`s=1,2,3,4,5,6`.
 
 The transition matrix is
 
@@ -774,7 +774,7 @@ The government expenditure at  each state is
     g = \left(\begin{matrix} 0.1\\0.1\\0.1\\0.1\\0.2\\0.1 \end{matrix}\right)
 
 
-We assume the same utility parameters as in the :doc:`Lucas-Stokey economy <opt_tax_recur>`
+We assume the same utility parameters as in the :doc:`Lucas-Stokey economy <opt_tax_recur>`.
 
 This utility function is implemented in the following class
 
@@ -782,10 +782,10 @@ This utility function is implemented in the following class
 
 
 The following figure plots the Ramsey plan under both complete and incomplete
-markets for both possible realizations of the state at time :math:`t=3`
+markets for both possible realizations of the state at time :math:`t=3`.
 
 Optimal policies when  the government has  access to state contingent debt are
-represented by black lines, while the optimal policies when there is only a risk-free bond are in red
+represented by black lines, while the optimal policies when there is only a risk-free bond are in red.
 
 Paths with circles are histories in which there is peace, while those with
 triangle denote war
@@ -854,7 +854,7 @@ triangle denote war
 
 
 
-How a Ramsey planner responds to  war depends on the structure of the asset market
+How a Ramsey planner responds to  war depends on the structure of the asset market.
 
 If it is able to trade state-contingent debt, then at time :math:`t=2`
 
@@ -864,20 +864,20 @@ If it is able to trade state-contingent debt, then at time :math:`t=2`
 
 * These purchases are designed in such a way that regardless of whether or not there is a war at :math:`t=3`, the government will begin  period :math:`t=4` with the *same* government debt
 
-This pattern facilities smoothing tax rates across  states
+This pattern facilities smoothing tax rates across  states.
 
-The government without state contingent debt cannot do this
+The government without state contingent debt cannot do this.
 
-Instead, it must enter   time :math:`t=3` with the same level of debt falling due whether there is peace or war at :math:`t=3`
+Instead, it must enter   time :math:`t=3` with the same level of debt falling due whether there is peace or war at :math:`t=3`.
 
-It responds to this constraint by smoothing tax rates across time
+It responds to this constraint by smoothing tax rates across time.
 
-To finance a war it raises taxes and issues more debt
+To finance a war it raises taxes and issues more debt.
 
-To service the additional debt burden, it raises taxes in all future periods
+To service the additional debt burden, it raises taxes in all future periods.
 
 The absence of state contingent debt leads to an important difference in the
-optimal tax policy
+optimal tax policy.
 
 When the Ramsey planner has access to state contingent debt, the optimal tax
 policy is history independent
@@ -895,12 +895,12 @@ Perpetual War Alert
 ^^^^^^^^^^^^^^^^^^^^
 
 History dependence occurs more dramatically in a case in which the government
-perpetually faces the prospect  of war
+perpetually faces the prospect  of war.
 
 This case was studied in the final example of the lecture on
-:doc:`optimal taxation with state-contingent debt <opt_tax_recur>`
+:doc:`optimal taxation with state-contingent debt <opt_tax_recur>`.
 
-There, each period the government faces a constant probability, :math:`0.5`, of war
+There, each period the government faces a constant probability, :math:`0.5`, of war.
 
 In addition, this example features the following preferences
 
@@ -914,7 +914,7 @@ In accordance, we will re-define our utility function
 
 
 With these preferences, Ramsey tax rates will vary even in the Lucas-Stokey
-model with state-contingent debt
+model with state-contingent debt.
 
 The figure below plots optimal tax policies for both the economy with
 state contingent debt (circles) and the economy with only a risk-free bond
@@ -964,12 +964,12 @@ state contingent debt (circles) and the economy with only a risk-free bond
 
 
 When the government experiences a prolonged period of peace, it is able to reduce
-government debt and set permanently lower tax rates
+government debt and set permanently lower tax rates.
 
-However, the government  finances a long war by borrowing and raising taxes
+However, the government  finances a long war by borrowing and raising taxes.
 
 This results in a drift away from  policies with state contingent debt that
-depends on the history of shocks
+depends on the history of shocks.
 
 This is even more evident in the following figure that plots the evolution of
 the two policies over 200 periods
