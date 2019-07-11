@@ -624,7 +624,7 @@ Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^
 
 We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work.
 
- .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py.
+ .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py
 
 The heavy lifting is done inside the `AMF_LSS_VAR` class.
 
