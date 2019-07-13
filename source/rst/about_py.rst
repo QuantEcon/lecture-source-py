@@ -14,7 +14,7 @@ About Python
 Overview
 ============
 
-In this lecture we will:
+In this lecture we will
 
 * Outline what Python is
 * Showcase some of its abilities
@@ -41,7 +41,7 @@ Python has experienced rapid adoption in the last decade and is now one of the m
 Common Uses
 ------------
 
-:index:`Python <single: Python; common uses>` is a general-purpose language used in almost all application domains:
+:index:`Python <single: Python; common uses>` is a general-purpose language used in almost all application domains
 
 * communications
 
@@ -53,7 +53,7 @@ Common Uses
 
 * multimedia, data processing, security, etc., etc., etc.
 
-Used extensively by Internet service and high tech companies such as:
+Used extensively by Internet service and high tech companies such as
 
 * `Google <https://www.google.com/>`_
 
@@ -110,7 +110,7 @@ Python is a `high-level language <https://en.wikipedia.org/wiki/High-level_progr
 
 It has a relatively small core language supported by many libraries.
 
-Other features:
+Other features
 
 * A multiparadigm language, in that multiple programming styles are supported (procedural, object-oriented, functional, etc.).
 
@@ -147,7 +147,7 @@ Scientific Programming
 
 Python has become one of the core languages of scientific computing.
 
-It's either the dominant player or a major player in-
+It's either the dominant player or a major player in
 
 * `Machine learning and data science <http://scikit-learn.org/stable/>`_
 * `Astronomy <http://www.astropy.org/>`_
@@ -186,7 +186,7 @@ For example, let's build some arrays
 
 
 
-Now let's take the inner product:
+Now let's take the inner product
 
 .. code-block:: python3
 
@@ -217,7 +217,7 @@ For example, let's calculate :math:`\int_{-2}^2 \phi(z) dz` where :math:`\phi` i
     value
 
 
-SciPy includes many of the standard routines used in:
+SciPy includes many of the standard routines used in
 
 * `linear algebra <http://docs.scipy.org/doc/scipy/reference/linalg.html>`_
 
