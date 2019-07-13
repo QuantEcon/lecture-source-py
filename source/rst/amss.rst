@@ -92,7 +92,7 @@ where
 
 * :math:`\pi_t(s^t)` is a joint probability distribution over the sequence :math:`s^t`, and
 
-* the utility function :math:`u` is  increasing, strictly concave, and three times  continuously differentiable in both arguments
+* the utility function :math:`u` is  increasing, strictly concave, and three times  continuously differentiable in both arguments.
 
 
 The government imposes a flat rate tax :math:`\tau_t(s^t)` on labor income at time :math:`t`, history :math:`s^t`.
@@ -379,20 +379,20 @@ and with respect to :math:`b_t(s^t)` as
 If we substitute :math:`z(s^t)` from :eq:`AMSS_44_2` and its derivative
 :math:`z_c(s^t)` into the first-order condition :eq:`AMSS_foc;a`, we  find  two
 differences from the corresponding condition for the optimal allocation
-in a Lucas-Stokey economy with state-contingent government debt
+in a Lucas-Stokey economy with state-contingent government debt.
 
 1. The term involving :math:`b_t(s^{t-1})` in the first-order condition
    :eq:`AMSS_foc;a` does not appear in the corresponding expression
-   for the Lucas-Stokey economy
+   for the Lucas-Stokey economy.
 
     * This term reflects the constraint that
       beginning-of-period government indebtedness must be the same across all
       realizations of next period’s state, a constraint that would  not be present if
-      government debt could be state contingent
+      government debt could be state contingent.
 
 2. The Lagrange multiplier :math:`\Psi_t(s^t)` in the first-order condition
    :eq:`AMSS_foc;a` may change over time in response to realizations of the state,
-   while the multiplier :math:`\Phi` in the Lucas-Stokey economy is time-invariant
+   while the multiplier :math:`\Phi` in the Lucas-Stokey economy is time-invariant.
 
 
 We need some code from our :doc:`an earlier lecture <opt_tax_recur>`
@@ -727,21 +727,21 @@ As in that lecture, we assume the one-period utility function
 
 .. note::
     For convenience in  matching our computer code, we have expressed
-    utility as a function of :math:`n` rather than leisure :math:`l`
+    utility as a function of :math:`n` rather than leisure :math:`l`.
 
 
 We consider the same government expenditure process studied in the lecture on
 :doc:`optimal taxation with state contingent debt <opt_tax_recur>`.
 
-Government expenditures are known for sure in all periods except one
+Government expenditures are known for sure in all periods except one.
 
-* For :math:`t<3` or :math:`t > 3` we assume that :math:`g_t = g_l = 0.1`
+* For :math:`t<3` or :math:`t > 3` we assume that :math:`g_t = g_l = 0.1`.
 
-* At :math:`t = 3` a war occurs with probability 0.5
+* At :math:`t = 3` a war occurs with probability 0.5.
 
-  *  If there is war, :math:`g_3 = g_h = 0.2`
+  *  If there is war, :math:`g_3 = g_h = 0.2`.
 
-  *  If there is no war :math:`g_3 = g_l = 0.1`
+  *  If there is no war :math:`g_3 = g_l = 0.1`.
 
 A useful trick is to define  components of the state vector as the following six
 :math:`(t,g)` pairs:
@@ -776,7 +776,7 @@ The government expenditure at  each state is
 
 We assume the same utility parameters as in the :doc:`Lucas-Stokey economy <opt_tax_recur>`.
 
-This utility function is implemented in the following class
+This utility function is implemented in the following class.
 
 .. literalinclude:: /_static/lecture_specific/opt_tax_recur/crra_utility.py
 
@@ -788,7 +788,7 @@ Optimal policies when  the government has  access to state contingent debt are
 represented by black lines, while the optimal policies when there is only a risk-free bond are in red.
 
 Paths with circles are histories in which there is peace, while those with
-triangle denote war
+triangle denote war.
 
 
 
@@ -885,9 +885,9 @@ policy is history independent
 * the tax rate is a function  of the current level of government spending only,
   given the Lagrange multiplier on the implementability constraint
 
-Without state contingent debt, the optimal tax rate is history dependent
+Without state contingent debt, the optimal tax rate is history dependent.
 
-* A war at time :math:`t=3` causes a permanent increase in the tax rate
+* A war at time :math:`t=3` causes a permanent increase in the tax rate.
 
 
 
@@ -908,7 +908,7 @@ In addition, this example features the following preferences
 
     u(c,n) = \log(c) + 0.69 \log(1-n)
 
-In accordance, we will re-define our utility function
+In accordance, we will re-define our utility function.
 
 .. literalinclude:: /_static/lecture_specific/opt_tax_recur/log_utility.py
 
@@ -918,7 +918,7 @@ model with state-contingent debt.
 
 The figure below plots optimal tax policies for both the economy with
 state contingent debt (circles) and the economy with only a risk-free bond
-(triangles)
+(triangles).
 
 
 
@@ -972,7 +972,7 @@ This results in a drift away from  policies with state contingent debt that
 depends on the history of shocks.
 
 This is even more evident in the following figure that plots the evolution of
-the two policies over 200 periods
+the two policies over 200 periods.
 
 
 

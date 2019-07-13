@@ -41,7 +41,7 @@ The answer provided by Hansen and Scheinkman :cite:`hansen2009long` is yes.
 
 They described  two classes of time series models that accommodate growth.
 
-They are:
+They are
 
 #.  **additive functionals** that display random "arithmetic growth"
 
@@ -205,7 +205,7 @@ Let's run some simulations to build intuition.
 
 .. _addfunc_eg1:
 
-In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x_t` follows a 4th-order scalar autoregression
+In doing so we'll assume that :math:`z_{t+1}` is scalar and that :math:`\tilde x_t` follows a 4th-order scalar autoregression.
 
 .. math::
     :label: ftaf
@@ -222,7 +222,7 @@ in which the zeros :math:`z`  of the polynomial
 
 are strictly greater than unity in absolute value.
 
-(Being a zero of :math:`\phi(z)` means that :math:`\phi(z) = 0`).
+(Being a zero of :math:`\phi(z)` means that :math:`\phi(z) = 0`)
 
 Let the increment in :math:`\{y_t\}` obey
 
@@ -233,9 +233,9 @@ Let the increment in :math:`\{y_t\}` obey
 
 with an initial condition for :math:`y_0`.
 
-While :eq:`ftaf` is not a first order system like :eq:`old1_additive_functionals`, we know that it can be mapped  into a first order system
+While :eq:`ftaf` is not a first order system like :eq:`old1_additive_functionals`, we know that it can be mapped  into a first order system.
 
-* for an example of such a mapping, see :ref:`this example <lss_sode>`
+* For an example of such a mapping, see :ref:`this example <lss_sode>`.
 
 
 In fact, this whole model can be mapped into the additive functional system definition in :eq:`old1_additive_functionals` -- :eq:`old2_additive_functionals`  by appropriate selection of the matrices :math:`A, B, D, F`.
@@ -449,7 +449,7 @@ because it allows us to study  an associated multiplicative functional as well.
 
 (A hint that it does more is the name of the class -- here AMF stands for
 "additive and multiplicative functional" -- the code computes and displays objects associated with
-multiplicative functionals too).
+multiplicative functionals too.)
 
 Let's use this code (embedded above) to explore the :ref:`example process described above <addfunc_eg1>`.
 
@@ -523,7 +523,7 @@ Let's plot this multiplicative functional for our example.
 
 
 If you run :ref:`the code that first simulated that example <addfunc_egcode>` again and then the method call in the cell below you'll
-obtain the graph in the next cell
+obtain the graph in the next cell.
 
 
 
@@ -554,10 +554,10 @@ Peculiar Large Sample Property
 Hansen and Sargent :cite:`hansen2008robustness` (ch. 8) note that the martingale component
 :math:`\widetilde M_t` of the multiplicative decomposition
 
-*  While :math:`E_0 \widetilde M_t = 1` for all :math:`t \geq 0`,
+*  while :math:`E_0 \widetilde M_t = 1` for all :math:`t \geq 0`,
    nevertheless :math:`\ldots`
 
-*  As :math:`t \rightarrow +\infty`, :math:`\widetilde M_t` converges to
+*  as :math:`t \rightarrow +\infty`, :math:`\widetilde M_t` converges to
    zero almost surely
 
 The first property follows from :math:`\widetilde M_t` being a multiplicative martingale with initial condition
@@ -628,7 +628,7 @@ We'll do this by formulating the additive functional as a linear state space mod
 
 The heavy lifting is done inside the `AMF_LSS_VAR` class.
 
-The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR`
+The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR`.
 
 
 
@@ -678,7 +678,7 @@ The following code adds some simple functions that make it straightforward to ge
 
 
 Now that we have these functions in our took kit, let's apply them to run some
-simulations
+simulations.
 
 
 
@@ -733,10 +733,10 @@ We will plot the densities of :math:`\log {\widetilde M}_t` for different values
 
 Note: ``scipy.stats.lognorm`` expects you to pass the standard deviation
 first :math:`(tH \cdot H)` and then the exponent of the mean as a
-keyword argument ``scale`` (``scale=np.exp(-t * H2 / 2)``)
+keyword argument ``scale`` (``scale=np.exp(-t * H2 / 2)``).
 
 * See the documentation `here
-  <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__
+  <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__.
 
 This is peculiar, so make sure you are careful in working with the log normal distribution.
 
@@ -801,15 +801,15 @@ Here is some code that tackles these tasks
 
 These probability density functions help us understand mechanics underlying the  **peculiar property** of our multiplicative martingale
 
-* As :math:`T` grows, most of the probability mass shifts leftward toward zero --
+* As :math:`T` grows, most of the probability mass shifts leftward toward zero --.
 
-* for example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but
-  most of it is near :math:`0` for :math:`T = 5000`
+* For example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but
+  most of it is near :math:`0` for :math:`T = 5000`.
 
-* As :math:`T` grows, the tail of the density of :math:`\widetilde M_T` lengthens toward the right
+* As :math:`T` grows, the tail of the density of :math:`\widetilde M_T` lengthens toward the right.
 
 * Enough mass moves toward the right tail to keep :math:`E \widetilde M_T = 1`
-  even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`
+  even as most mass in the distribution of :math:`\widetilde M_T` collapses around :math:`0`.
 
 
 Multiplicative Martingale as Likelihood Ratio Process
