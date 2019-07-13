@@ -47,45 +47,45 @@ Nonzero Lagrange multipliers on those constraints make the Ramsey allocation for
 
 This lecture studies a special  AMSS model in which
 
-*  The exogenous state variable :math:`s_t` is governed by  a finite-state Markov chain
+*  The exogenous state variable :math:`s_t` is governed by  a finite-state Markov chain.
 
 *  With an arbitrary budget-feasible initial level of government debt, the measurability  constraints
 
-   - bind for many periods, but :math:`\ldots`
+   - bind for many periods, but :math:`\ldots`.
 
-   - eventually, they stop binding evermore, so :math:`\ldots`
+   - eventually, they stop binding evermore, so :math:`\ldots`.
 
-   - in the tail of the Ramsey plan, the Lagrange multipliers :math:`\gamma_t(s^t)` on the AMSS implementability constraints :eq:`TS_gov_wo4`  converge to zero
+   - in the tail of the Ramsey plan, the Lagrange multipliers :math:`\gamma_t(s^t)` on the AMSS implementability constraints :eq:`TS_gov_wo4`  converge to zero.
 
 *  After the implementability constraints :eq:`TS_gov_wo4` no longer bind in the tail of the AMSS Ramsey plan
 
-   - history dependence of the AMSS state variable :math:`x_t` vanishes and  :math:`x_t` becomes a time-invariant function of the Markov state :math:`s_t`
+   - history dependence of the AMSS state variable :math:`x_t` vanishes and  :math:`x_t` becomes a time-invariant function of the Markov state :math:`s_t`.
 
-   - the par value of government debt becomes **constant over time** so that :math:`b_{t+1}(s^t) = \bar b` for :math:`t \geq T` for a sufficiently large :math:`T`
+   - the par value of government debt becomes **constant over time** so that :math:`b_{t+1}(s^t) = \bar b` for :math:`t \geq T` for a sufficiently large :math:`T`.
 
-   - :math:`\bar b <0`, so that the tail of the Ramsey plan instructs  the government always to make a constant par value of risk-free one-period loans to the private sector
+   - :math:`\bar b <0`, so that the tail of the Ramsey plan instructs  the government always to make a constant par value of risk-free one-period loans to the private sector.
 
-   - the one-period gross interest rate :math:`R_t(s^t)` on risk-free debt  converges to a time-invariant function of the Markov state :math:`s_t`
+   - the one-period gross interest rate :math:`R_t(s^t)` on risk-free debt  converges to a time-invariant function of the Markov state :math:`s_t`.
 
-*  For a **particular** :math:`b_0 < 0` (i.e., a positive level of initial government **loans** to the private sector), the measurability constraints **never** bind
+*  For a **particular** :math:`b_0 < 0` (i.e., a positive level of initial government **loans** to the private sector), the measurability constraints **never** bind.
 
 * In this special case
 
    - the **par value** :math:`b_{t+1}(s_t) = \bar b`  of government debt at time :math:`t` and Markov state :math:`s_t`  is constant across time and states,
-     but :math:`\ldots`
+     but :math:`\ldots`.
 
-   - the **market value** :math:`\frac{\bar b}{R_t(s_t)}` of government debt at time :math:`t`  varies as a time-invariant function of the Markov state :math:`s_t`
+   - the **market value** :math:`\frac{\bar b}{R_t(s_t)}` of government debt at time :math:`t`  varies as a time-invariant function of the Markov state :math:`s_t`.
 
-   - fluctuations in the interest rate make gross earnings on government debt :math:`\frac{\bar b}{R_t(s_t)}` fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures
+   - fluctuations in the interest rate make gross earnings on government debt :math:`\frac{\bar b}{R_t(s_t)}` fully insure the gross-of-gross-interest-payments government budget against fluctuations in government expenditures.
 
-   - the state variable :math:`x` in a recursive representation of a Ramsey plan is a time-invariant function of the Markov state for :math:`t \geq 0`
+   - the state variable :math:`x` in a recursive representation of a Ramsey plan is a time-invariant function of the Markov state for :math:`t \geq 0`.
 
 *  In this special case, the Ramsey allocation in the AMSS model agrees with that in a :cite:`LucasStokey1983` model in which
    the same amount of state-contingent debt falls due in all states tomorrow
 
-   - it is a situation in which  the Ramsey planner loses nothing from not being  able to  purchase state-contingent debt and being restricted to exchange only risk-free debt  debt
+   - it is a situation in which  the Ramsey planner loses nothing from not being  able to  purchase state-contingent debt and being restricted to exchange only risk-free debt  debt.
 
-* This outcome emerges only when we initialize government debt at a particular :math:`b_0 < 0`
+* This outcome emerges only when we initialize government debt at a particular :math:`b_0 < 0`.
 
 
 In a nutshell, the reason for this striking outcome is that at a particular level of risk-free government **assets**, fluctuations in the one-period risk-free interest
@@ -109,15 +109,15 @@ For a long time, the Ramsey plan puts a nontrivial martingale-like component int
 smooths distortions from the labor tax rate across  time and Markov states.
 
 But BEGS show that binding implementability constraints slowly push government debt in a direction designed to let the government use fluctuations in equilibrium interest
-rate  rather than fluctuations in  par values of debt to insure against shocks to government expenditures
+rate  rather than fluctuations in  par values of debt to insure against shocks to government expenditures.
 
 - This is a **weak** (but unrelenting) force that, starting from an initial debt level, for a long time is dominated by the stochastic martingale-like component of debt
-  dynamics that the Ramsey planner uses to facilitate imperfect tax-smoothing across time and states
+  dynamics that the Ramsey planner uses to facilitate imperfect tax-smoothing across time and states.
 
 - This weak force slowly drives the par value of government **assets** to a **constant** level at which the government can completely insure against government expenditure shocks while
-  shutting down the stochastic component of debt dynamics
+  shutting down the stochastic component of debt dynamics.
 
-- At that point, the tail of the par value of government debt becomes a trivial martingale: it is constant over time
+- At that point, the tail of the par value of government debt becomes a trivial martingale: it is constant over time.
 
 
 
@@ -126,21 +126,21 @@ Logical Flow of Lecture
 
 We present ideas  in the following order
 
-* We describe a two-state  AMSS economy and generate a long simulation starting from a positive  initial government debt
+* We describe a two-state  AMSS economy and generate a long simulation starting from a positive  initial government debt.
 
-* We observe that in a long simulation starting from positive government debt, the par value of  government debt eventually converges to a constant :math:`\bar b`
+* We observe that in a long simulation starting from positive government debt, the par value of  government debt eventually converges to a constant :math:`\bar b`.
 
 * In fact, the par value of government debt  converges to the same constant level :math:`\bar b` for alternative realizations of the Markov government expenditure process and for alternative settings of initial government
-  debt :math:`b_0`
+  debt :math:`b_0`.
 
 * We reverse engineer a particular value of initial government debt :math:`b_0` (it turns out to be negative) for which the  continuation debt moves
-  to :math:`\bar b` immediately
+  to :math:`\bar b` immediately.
 
 * We note that for this particular initial debt :math:`b_0`, the Ramsey allocations  for the AMSS economy and the Lucas-Stokey model are identical
 
-  - we verify that the LS Ramsey planner chooses to purchase **identical** claims to time :math:`t+1` consumption for all Markov states tomorrow for each Markov state today
+  - we verify that the LS Ramsey planner chooses to purchase **identical** claims to time :math:`t+1` consumption for all Markov states tomorrow for each Markov state today.
 
-* We compute the BEGS approximations to check how accurately they describe the dynamics of the long-simulation
+* We compute the BEGS approximations to check how accurately they describe the dynamics of the long-simulation.
 
 Equations from Lucas-Stokey (1983) Model
 ------------------------------------------
@@ -257,7 +257,7 @@ and
 
 In equation :eq:`amss2_TS_barg10`, it is understood that :math:`c` and :math:`g` are each functions of the Markov state :math:`s`.
 
-The CRRA utility function is represented in the following class
+The CRRA utility function is represented in the following class.
 
 .. literalinclude:: /_static/lecture_specific/opt_tax_recur/crra_utility.py
 
@@ -288,7 +288,7 @@ We set preference parameters as follows:
 Here are several classes that do most of the work for us.
 
 The code is  mostly taken or adapted from the earlier lectures :doc:`optimal taxation without state-contingent debt<amss>` and
-:doc:`optimal taxation with state-contingent debt<opt_tax_recur>`
+:doc:`optimal taxation with state-contingent debt<opt_tax_recur>`.
 
 
 .. literalinclude:: /_static/lecture_specific/opt_tax_recur/sequential_allocation.py
@@ -352,7 +352,7 @@ state :math:`s_t=s` from :math:`b(s) = {\frac{x(s)}{u_c(s)}}` or the matrix equa
 Code for Reverse Engineering
 ===============================================
 
-Here is code to do the calculations for us
+Here is code to do the calculations for us.
 
 .. code-block:: python3
 
@@ -403,7 +403,7 @@ To recover and print out :math:`\bar b`
 
 
 To complete the reverse engineering exercise by jointly determining :math:`c_0, b_0`,  we
-set up a function that returns two simultaneous equations
+set up a function that returns two simultaneous equations.
 
 .. code-block:: python3
 
@@ -441,7 +441,7 @@ Short Simulation for Reverse-engineered: Initial Debt
 The following graph shows simulations of outcomes for both a Lucas-Stokey economy and for an AMSS economy starting from initial government
 debt equal to :math:`b_0 = -1.038698407551764`.
 
-These graphs report outcomes for both the Lucas-Stokey economy with complete markets and the AMSS economy with one-period risk-free debt only
+These graphs report outcomes for both the Lucas-Stokey economy with complete markets and the AMSS economy with one-period risk-free debt only.
 
 .. code-block:: ipython
 
@@ -508,17 +508,17 @@ For the **same** realization of a government expenditure path, the graph reports
 
 For both economies, initial government debt due at time :math:`0` is :math:`b_0 = .5`.
 
-For the Lucas-Stokey complete markets economy, the government debt plotted is :math:`b_{t+1}(s_{t+1})`
+For the Lucas-Stokey complete markets economy, the government debt plotted is :math:`b_{t+1}(s_{t+1})`.
 
-- Notice that this is a time-invariant function of the Markov state from the beginning
+- Notice that this is a time-invariant function of the Markov state from the beginning.
 
-For the AMSS incomplete markets economy, the government debt plotted is :math:`b_{t+1}(s^t)`
+For the AMSS incomplete markets economy, the government debt plotted is :math:`b_{t+1}(s^t)`.
 
-- Notice that this is a martingale-like random process that eventually seems to converge to a constant :math:`\bar b \approx - 1.07`
+- Notice that this is a martingale-like random process that eventually seems to converge to a constant :math:`\bar b \approx - 1.07`.
 
-- Notice that the limiting value :math:`\bar b < 0` so that asymptotically the government makes a constant level of risk-free loans to the public\
+- Notice that the limiting value :math:`\bar b < 0` so that asymptotically the government makes a constant level of risk-free loans to the public\.
 
-- In the simulation displayed as well as  other simulations we have run, the par value of government debt converges to about :math:`1.07` afters between 1400 to 2000 periods
+- In the simulation displayed as well as  other simulations we have run, the par value of government debt converges to about :math:`1.07` afters between 1400 to 2000 periods.
 
 For the AMSS incomplete markets economy, the marginal tax rate on labor income  :math:`\tau_t` converges to a constant
 
@@ -646,7 +646,7 @@ BEGS also derive the following  approximation to the rate of convergence to :mat
 
     \frac{ E_t  ( {\mathcal B}_{t+1} - {\mathcal B}^{*} )} { ( {\mathcal B}_{t} - {\mathcal B}^{*} )} \approx \frac{1}{1 + \beta^2 {\rm var} ({\mathcal R} )}
 
-(See the equation above equation (47) in :cite:`BEGS1`).
+(See the equation above equation (47) in :cite:`BEGS1`)
 
 
 
@@ -656,7 +656,7 @@ Formulas and Code Details
 
 For our example, we describe some code that we use to compute the steady state mean and the rate of convergence to it.
 
-The  values of :math:`\pi(s)` are .5, .5.
+The  values of :math:`\pi(s)` are 0.5, 0.5.
 
 We can then construct :math:`{\mathcal X}(s), {\mathcal R}(s), u_c(s)` for our two states using  the definitions above.
 
@@ -767,7 +767,7 @@ This is *machine zero*, a verification that :math:`\hat b` succeeds in minimizin
 BEGS and in equation :eq:`eqn_Jcriterion` above.
 
 
-Let's push our luck and compute the mean reversion speed in the formula above equation (47) in :cite:`BEGS1`
+Let's push our luck and compute the mean reversion speed in the formula above equation (47) in :cite:`BEGS1`.
 
 .. code-block:: python3
 
@@ -776,7 +776,7 @@ Let's push our luck and compute the mean reversion speed in the formula above eq
     print(f'Mean reversion speed = {speedrever}')
 
 
-Now let's compute the implied meantime to get to within .01 of the limit
+Now let's compute the implied meantime to get to within 0.01 of the limit
 
 
 .. code-block:: python3

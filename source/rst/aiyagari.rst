@@ -206,7 +206,7 @@ In practice, once parameter values are set, we can check for an SREE by the foll
 
 #. compute aggregate capital as the mean of steady state capital given this savings policy
 
-If this final quantity agrees with :math:`K` then we have a SREE
+If this final quantity agrees with :math:`K` then we have a SREE.
 
 
 
@@ -223,9 +223,9 @@ Below is a piece of boilerplate code that does just this.
 
 In reading the code, the following information will be helpful
 
-* ``R`` needs to be a matrix where ``R[s, a]`` is the reward at state ``s`` under action ``a``
+* ``R`` needs to be a matrix where ``R[s, a]`` is the reward at state ``s`` under action ``a``.
 
-* ``Q`` needs to be a three-dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a``
+* ``Q`` needs to be a three-dimensional array where ``Q[s, a, s']`` is the probability of transitioning to state ``s'`` when the current state is ``s`` and the current action is ``a``.
 
 
 (For a detailed discussion of ``DiscreteDP`` see :doc:`this lecture <discrete_dp>`)
@@ -241,11 +241,11 @@ when the parameters change.
 
 
 
-The class also includes a default set of parameters that we'll adopt unless otherwise specified
+The class also includes a default set of parameters that we'll adopt unless otherwise specified.
 
 .. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_household.py
 
-As a first example of what we can do, let's compute and plot an optimal accumulation policy at fixed prices
+As a first example of what we can do, let's compute and plot an optimal accumulation policy at fixed prices.
 
 .. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_compute_policy.py
 
@@ -259,7 +259,7 @@ Let's do this visually as a first pass.
 
 The following code draws aggregate supply and demand curves.
 
-The intersection gives equilibrium interest rates and capital
+The intersection gives equilibrium interest rates and capital.
 
 
 .. literalinclude:: /_static/lecture_specific/aiyagari/aiyagari_compute_equilibrium.py

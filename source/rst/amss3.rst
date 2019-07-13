@@ -43,10 +43,10 @@ of :cite:`BEGS1` (BEGS).
 We study an  :cite:`aiyagari2002optimal` economy with  three Markov states driving government expenditures.
 
  * In a :doc:`previous lecture<amss2>`, we showed that with only two Markov states, it is possible that eventually endogenous
-   interest rate fluctuations support complete markets allocations and Ramsey outcomes
+   interest rate fluctuations support complete markets allocations and Ramsey outcomes.
 
  * The presence of three states  prevents the full spanning that eventually prevails in the two-state example featured in
-   :doc:`Fiscal Insurance via Fluctuating Interest Rates<amss2>`
+   :doc:`Fiscal Insurance via Fluctuating Interest Rates<amss2>`.
 
 
 The lack of full spanning means that the ergodic distribution of the par value of government debt is nontrivial, in contrast to the situation
@@ -115,7 +115,7 @@ First and Second Moments
 
 We'll want  first and second moments of some key random variables below.
 
-The following code computes these moments; the code is recycled from :doc:`Fiscal Insurance via Fluctuating Interest Rates<amss2>`
+The following code computes these moments; the code is recycled from :doc:`Fiscal Insurance via Fluctuating Interest Rates<amss2>`.
 
 .. code-block:: python3
 
@@ -156,7 +156,7 @@ Here it is
 Next, we show the code that we use to generate a very long simulation starting from initial
 government debt equal to :math:`-.5`.
 
-Here is a graph of a long simulation of 102000 periods
+Here is a graph of a long simulation of 102000 periods.
 
 .. code-block:: ipython
 
@@ -207,7 +207,7 @@ approximations to rates of convergence that appear in :cite:`BEGS1` and that we 
 We discard the first 2000 observations of the simulation and construct the histogram of
 the part value of government debt.
 
-We obtain the following graph for the histogram of the last 100,000 observations on the par value of government debt
+We obtain the following graph for the histogram of the last 100,000 observations on the par value of government debt.
 
 .. figure:: /_static/lecture_specific/amss3/amss3_g3.png
 
@@ -219,7 +219,7 @@ distribution that can be precomputed before sampling from the ergodic distributi
 
 Before moving on to discuss the histogram and the vertical lines approximating the ergodic  mean of government debt in more detail, the following graphs show
 government debt and taxes early in the simulation, for periods 1-100 and 101 to 200
-respectively
+respectively.
 
 
 .. code-block:: python3
@@ -355,7 +355,7 @@ BEGS also derive the following  approximation to the rate of convergence to :mat
 
     \frac{ E_t  ( {\mathcal B}_{t+1} - {\mathcal B}^{*} )} { ( {\mathcal B}_{t} - {\mathcal B}^{*} )} \approx \frac{1}{1 + \beta^2 {\rm var}^\infty ({\mathcal R} )}
 
-(See the equation above equation (47) in :cite:`BEGS1`).
+(See the equation above equation (47) in :cite:`BEGS1`)
 
 
 More Advanced Material
@@ -426,9 +426,9 @@ This is a nonlinear equation to be solved for
 :math:`S`.
 
 **Typo alert:** Please note that there is a sign error in equation (42)
-of :cite:`BEGS1` -- it should be a minus rather than a plus in the middle
+of :cite:`BEGS1` -- it should be a minus rather than a plus in the middle.
 
-  * We have made the appropriate correction in the above equation
+  * We have made the appropriate correction in the above equation.
 
 **Step 2:** Knowing :math:`c_\tau(s), s=1, \ldots, S` for a given
 :math:`\tau`, we want to compute the random variables
@@ -454,9 +454,9 @@ This equation says that at a constant discount factor :math:`\beta`,  equivalent
 present value of the mean effective government **surplus**.
 
 **Typo alert**: there is a sign error in equation (46) of :cite:`BEGS1` --the left
-side should be multiplied by :math:`-1`
+side should be multiplied by :math:`-1`.
 
-  *  We have made this correction in the above equation
+  *  We have made this correction in the above equation.
 
 For a given :math:`{\mathcal B}`, let a :math:`\tau` that solves the
 above equation be called :math:`\tau(\mathcal B)`.
@@ -468,7 +468,7 @@ We'll use this function to induce a function :math:`\tau({\mathcal B})`.
 
 **Step 4:** With a Python program that computes
 :math:`\tau(\mathcal B)` in hand, next we write a Python function to
-compute the random variable
+compute the random variable.
 
 .. math::  J({\mathcal B})(s) =  \mathcal R_{\tau({\mathcal B})}(s) {\mathcal B} + {\mathcal X}_{\tau({\mathcal B})}(s) ,  \quad s = 1, \ldots, S
 
