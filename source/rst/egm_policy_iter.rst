@@ -34,7 +34,7 @@ EGM is a numerical method for implementing policy iteration invented by `Chris C
 
 It is a good example of how a clever algorithm can save a massive amount of computer time.
 
-(Massive when we multiply saved CPU cycles on each implementation times the number of implementations worldwide).
+(Massive when we multiply saved CPU cycles on each implementation times the number of implementations worldwide)
 
 The original reference is :cite:`Carroll2006`.
 
@@ -158,7 +158,7 @@ Implementation
 Let's implement this version of the Coleman-Reffett operator and see how it performs.
 
 First, we will construct a class ``OptimalGrowthModel`` to hold the parameters of the
-model
+model.
 
 
 .. code-block:: python3
@@ -201,7 +201,7 @@ Unlike the :doc:`previous lecture <coleman_policy_iter>`, we do not just-in-time
 compile the operator because we want to return the policy function.
 
 Despite this, the EGM method is still faster than the standard Coleman-Reffett operator,
-as we will see later on
+as we will see later on.
 
 .. code-block:: python3
 
@@ -242,7 +242,7 @@ as we will see later on
 
 Note the lack of any root-finding algorithm.
 
-We'll also run our original implementation, which uses an exogenous grid and requires root-finding, so we can perform some comparisons
+We'll also run our original implementation, which uses an exogenous grid and requires root-finding, so we can perform some comparisons.
 
 .. literalinclude:: /_static/lecture_specific/coleman_policy_iter/coleman_operator.py
 
@@ -365,7 +365,7 @@ Speed
 Now let's compare the clock times per iteration for the standard Coleman-Reffett
 operator (with exogenous grid) and the EGM version.
 
-We'll do so using the CRRA model adopted in the exercises of the :doc:`Euler equation time iteration lecture <coleman_policy_iter>`
+We'll do so using the CRRA model adopted in the exercises of the :doc:`Euler equation time iteration lecture <coleman_policy_iter>`.
 
 .. code-block:: python3
 

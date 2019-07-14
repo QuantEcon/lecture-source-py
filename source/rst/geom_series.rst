@@ -30,7 +30,7 @@ Among these are
 
 -  interest rates and present values of streams of payouts from assets
 
-(As we shall see below, the term **multiplier** comes down to meaning **sum of a convergent geometric series**).
+(As we shall see below, the term **multiplier** comes down to meaning **sum of a convergent geometric series**)
 
 
 
@@ -54,14 +54,14 @@ Key Formulas
 ============
 
 To start, let :math:`c` be a real number that lies strictly between
-:math:`-1` and :math:`1`
+:math:`-1` and :math:`1`.
 
--  We often write this as :math:`c \in (-1,1)`
+-  We often write this as :math:`c \in (-1,1)`.
 
 -  Here :math:`(-1,1)` denotes the collection of all real numbers that
-   are strictly less than :math:`1` and strictly greater than :math:`-1`
+   are strictly less than :math:`1` and strictly greater than :math:`-1`.
 
--  The symbol :math:`\in` means *in* or *belongs to the set after the symbol*
+-  The symbol :math:`\in` means *in* or *belongs to the set after the symbol*.
 
 We want to evaluate geometric series of two types -- infinite and finite.
 
@@ -167,7 +167,7 @@ The right side records bank :math:`i`'s liabilities,
 namely, the deposits :math:`D_i` held by its depositors; these are
 IOU's from the bank to its depositors in the form of either checking
 accounts or savings accounts (or before 1914, bank notes issued by a
-bank stating promises to redeem note for gold or silver on demand)
+bank stating promises to redeem note for gold or silver on demand).
 
 .. TO REMOVE:
 .. Dongchen: is there a way to add a little balance sheet here?
@@ -255,11 +255,11 @@ to an increase in the total deposits in the banking system.
 Equation :eq:`sumdeposits` asserts that the **money multiplier** is
 :math:`\frac{1}{r}`
 
--  an initial deposit of cash of :math:`D_0` in bank :math:`0` leads
-   the banking system to create total deposits of :math:`\frac{D_0}{r}`
+-  An initial deposit of cash of :math:`D_0` in bank :math:`0` leads
+   the banking system to create total deposits of :math:`\frac{D_0}{r}`.
 
 -  The initial deposit :math:`D_0` is held as reserves, distributed
-   throughout the banking system according to :math:`D_0 = \sum_{i=0}^\infty R_i`
+   throughout the banking system according to :math:`D_0 = \sum_{i=0}^\infty R_i`.
 
 .. Dongchen: can you think of some simple Python examples that
 .. illustrate how to create sequences and so on? Also, some simple
@@ -308,9 +308,9 @@ The fraction :math:`1-b \in (0,1)` is called the **marginal propensity
 to save**.
 
 The third equation simply states that investment is exogenous at level
-:math:`i`
+:math:`i`.
 
-- *exogenous* means *determined outside this model*
+- *exogenous* means *determined outside this model*.
 
 Substituting the second equation into the first gives :math:`(1-b) y = i`.
 
@@ -409,7 +409,7 @@ then a version of the preceding argument shows that the **government
 expenditures multiplier** is also :math:`\frac{1}{1-b}`, so that a
 permanent increase in government expenditures ultimately leads to an
 increase in national income equal to the multiplier times the increase
-in government expenditures
+in government expenditures.
 
 .. Dongchen: can you think of some simple Python things to add to
 .. illustrate basic concepts, maybe the idea of a "difference equation" and how we solve it?
@@ -444,13 +444,13 @@ When people borrow and lend, they trade dollars now for dollars later or
 dollars later for dollars now.
 
 The price at which these exchanges occur is the gross nominal interest
-rate
+rate.
 
 -  If I sell :math:`x` dollars to you today, you pay me :math:`R x`
-   dollars tomorrow
+   dollars tomorrow.
 
 -  This means that you borrowed :math:`x` dollars for me at a gross
-   interest rate :math:`R` and a net interest rate :math:`r`
+   interest rate :math:`R` and a net interest rate :math:`r`.
 
 We assume that the net nominal interest rate :math:`r` is fixed over
 time, so that :math:`R` is the gross nominal interest rate at times
@@ -673,7 +673,7 @@ Evidently our approximations perform well for small values of :math:`T`.
 However, holding :math:`g` and r fixed, our approximations deteriorate as :math:`T` increases.
 
 Next we compare the infinite and finite duration lease present values
-over different lease lengths :math:`T`
+over different lease lengths :math:`T`.
 
 .. code-block:: python3
 
@@ -820,7 +820,7 @@ Back to the Keynesian Multiplier
 
 We will now go back to the case of the Keynesian multiplier and plot the
 time path of :math:`y_t`, given that consumption is a constant fraction
-of national income, and investment is fixed
+of national income, and investment is fixed.
 
 .. code-block:: python3
 
