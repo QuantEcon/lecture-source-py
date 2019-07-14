@@ -31,24 +31,24 @@ organized as a **competitive equilibrium**.
 
 The lecture uses important ideas including
 
--  Hicks-Arrow prices named after John R. Hicks and Kenneth Arrow
+-  Hicks-Arrow prices named after John R. Hicks and Kenneth Arrow.
 
--  A min-max problem for solving a planning problem
+-  A min-max problem for solving a planning problem.
 
 -  A **shooting algorithm** for solving difference equations subject
-   to initial and terminal conditions
+   to initial and terminal conditions.
 
 -  A connection between some Lagrange multipliers in the min-max
-   problem and the Hicks-Arrow prices
+   problem and the Hicks-Arrow prices.
 
 -  A **Big** :math:`K` **, little** :math:`k` trick widely used in
-   macroeconomic dynamics
+   macroeconomic dynamics.
 
   *  We shall encounter this trick in `this lecture <https://lectures.quantecon.org/py/rational_expectations.html#>`__
-     and also in `this lecture <https://lectures.quantecon.org/py/dyn_stack.html#>`__
+     and also in `this lecture <https://lectures.quantecon.org/py/dyn_stack.html#>`__.
 
 -  An application of a **guess and verify** method for solving a
-   system of difference equations
+   system of difference equations.
 
 -  The intimate connection between the cases for the optimality of two
    competing visions of good ways to organize an economy, namely:
@@ -63,10 +63,10 @@ The lecture uses important ideas including
      decisions
 
 -  A **turnpike** property that describes optimal paths for
-   long-but-finite horizon economies
+   long-but-finite horizon economies.
 
 -  A non-stochastic version of a theory of the **term structure of
-   interest rates**
+   interest rates**.
 
 Let's start with some imports
 
@@ -243,12 +243,12 @@ Back to Solving the Problem
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To solve the Lagrangian extremization problem, we compute first
-derivatives of the Lagrangian and set them equal to 0
+derivatives of the Lagrangian and set them equal to 0.
 
 -  **Note:** Our objective function and constraints satisfy
    conditions that work to assure that required second-order
    conditions are satisfied at an allocation that satisfies the
-   first-order conditions that we are about to compute
+   first-order conditions that we are about to compute.
 
 Here are the **first order necessary conditions** for extremization
 (i.e., maximization with respect to :math:`\vec C, \vec K`,
@@ -333,7 +333,7 @@ to each other and to capital next period.
 
 We now use some of the equations above to calculate some
 variables and functions that we'll soon use to solve the planning
-problem with Python
+problem with Python.
 
 .. code-block:: python3
 
@@ -408,10 +408,10 @@ If we did, solving for the allocation would be simple:
 -  Given :math:`\mu_0` and :math:`k_0`, we could compute :math:`c_0` from
    equation :eq:`constraint1` and then :math:`k_1` from equation
    :eq:`constraint3` and :math:`\mu_1` from equation
-   :eq:`constraint2`
+   :eq:`constraint2`.
 
 -  We could then iterate on to compute the remaining elements of
-   :math:`\vec C, \vec K, \vec \mu`
+   :math:`\vec C, \vec K, \vec \mu`.
 
 But we don't have an initial condition for :math:`\mu_0`, so this
 won't work.
@@ -424,18 +424,18 @@ algorithm.
 
 It proceeds as follows:
 
--  Guess a value for the initial Lagrange multiplier :math:`\mu_0`
+-  Guess a value for the initial Lagrange multiplier :math:`\mu_0`.
 
--  Apply the **simple algorithm** described above
+-  Apply the **simple algorithm** described above.
 
 -  Compute the implied value of :math:`k_{T+1}` and check whether it
-   equals zero
+   equals zero.
 
--  If the implied :math:`K_{T+1} =0`, we have solved the problem
+-  If the implied :math:`K_{T+1} =0`, we have solved the problem.
 
--  If :math:`K_{T+1} > 0`, lower :math:`\mu_0` and try again
+-  If :math:`K_{T+1} > 0`, lower :math:`\mu_0` and try again.
 
--  If :math:`K_{T+1} < 0`, raise :math:`\mu_0` and try again
+-  If :math:`K_{T+1} < 0`, raise :math:`\mu_0` and try again.
 
 The following Python code implements the shooting algorithm for the
 planning problem.
@@ -445,7 +445,7 @@ We make a slight modification starting with a guess of
 there is no difference to the procedure above.
 
 We'll apply it with an initial guess that will turn out not to be
-perfect, as we'll soon see
+perfect, as we'll soon see.
 
 .. code-block:: python3
 
@@ -544,7 +544,7 @@ upper and lower bounds.
 Shoot forward again and iterate the procedure.
 
 When :math:`K_{T+1}` gets close enough to 0 (within some error
-tolerance bounds), stop and declare victory
+tolerance bounds), stop and declare victory.
 
 .. code-block:: python3
 
@@ -674,7 +674,7 @@ we get
 .. math:: \bar{K} = \left(\frac{\frac{33}{100}}{\frac{1}{50}+\frac{1}{19}}\right)^{\frac{67}{100}} \approx 9.57583
 
 Let's verify this with Python and then use this steady state
-:math:`\bar K` as our initial capital stock :math:`K_0`
+:math:`\bar K` as our initial capital stock :math:`K_0`.
 
 .. code-block:: python3
 
@@ -704,7 +704,7 @@ Evidently, the planner likes the steady state capital stock and wants
 to stay near there for a long time.
 
 Let's see what happens when we push the initial
-:math:`K_0` below :math:`\bar K`
+:math:`K_0` below :math:`\bar K`.
 
 .. code-block:: python3
 
@@ -722,7 +722,7 @@ Notice how the planner pushes capital toward the steady state, stays
 near there for a while, then pushes :math:`K_t` toward the terminal
 value :math:`K_{T+1} =0` as :math:`t` gets close to :math:`T`.
 
-The following graphs compare outcomes as we vary :math:`T`
+The following graphs compare outcomes as we vary :math:`T`.
 
 .. code-block:: python3
 
@@ -740,7 +740,7 @@ The following graphs compare outcomes as we vary :math:`T`
 
 The following calculation shows that when we set :math:`T` very large
 the planner makes the capital stock spend most of its time close to
-its steady state value
+its steady state value.
 
 .. code-block:: python3
 
@@ -918,7 +918,7 @@ Exercise
 
 -  Plot the optimal consumption, capital, and savings paths when the
    initial capital level begins at 1.5 times the steady state level
-   as we shoot towards the steady state at :math:`T=130`
+   as we shoot towards the steady state at :math:`T=130`.
 
 -  Why does the savings rate respond like it does?
 
@@ -958,28 +958,28 @@ household chooses for itself subject to a budget constraint
 
 -  At each time :math:`t`, the household receives wages and rentals
    of capital from a firm -- these comprise its **income** at
-   time :math:`t`
+   time :math:`t`.
 
 -  The consumer decides how much income to allocate to consumption or
-   to savings
+   to savings.
 
 -  The household can save either by acquiring additional physical
    capital (it trades one for one with time :math:`t` consumption)
    or by acquiring claims on consumption at dates other
-   than :math:`t`
+   than :math:`t`.
 
 -  A utility-maximizing household owns all physical capital and labor
-   and rents them to the firm
+   and rents them to the firm.
 
 -  The household consumes, supplies labor, and invests in physical
-   capital
+   capital.
 
 -  A profit-maximizing representative firm operates the production
-   technology
+   technology.
 
 -  The firm rents labor and capital each period from the
    representative household and sells its output each period to the
-   household
+   household.
 
 -  The representative household and the representative firm are both
    **price takers:**
@@ -1182,31 +1182,31 @@ Definitions
 ------------
 
 -  A **price system** is a sequence
-   :math:`\{q_t^0,\eta_t,w_t\}_{t=0}^T= \{\vec q, \vec \eta, \vec w\}`
+   :math:`\{q_t^0,\eta_t,w_t\}_{t=0}^T= \{\vec q, \vec \eta, \vec w\}`.
 
 -  An **allocation** is a sequence
-   :math:`\{c_t,k_{t+1},n_t=1\}_{t=0}^T = \{\vec c, \vec k, \vec n =1\}`
+   :math:`\{c_t,k_{t+1},n_t=1\}_{t=0}^T = \{\vec c, \vec k, \vec n =1\}`.
 
 -  A **competitive equilibrium** is a price system and an allocation
    for which
 
    -  Given the price system, the allocation solves the household's
-      problem
+      problem.
 
    -  Given the price system, the allocation solves the firm's
-      problem
+      problem.
 
 Computing a Competitive Equilibrium
 -------------------------------------
 
 We shall compute a competitive equilibrium using a **guess and
-verify** approach
+verify** approach.
 
 -  We shall **guess** equilibrium price sequences
-   :math:`\{\vec q, \vec \eta, \vec w\}`
+   :math:`\{\vec q, \vec \eta, \vec w\}`.
 
 -  We shall then **verify** that at those prices, the household and
-   the firm choose the same allocation
+   the firm choose the same allocation.
 
 Guess for Price System
 ^^^^^^^^^^^^^^^^^^^^^^^

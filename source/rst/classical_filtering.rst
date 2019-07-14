@@ -41,9 +41,9 @@ In fact, we saw duality at work earlier when we formulated control and predictio
 
 A useful consequence of duality is that
 
-* With every LQ control problem, there is implicitly affiliated a linear least squares prediction or filtering problem
+* With every LQ control problem, there is implicitly affiliated a linear least squares prediction or filtering problem.
 
-* With every linear least squares prediction or filtering problem there is implicitly affiliated a LQ control problem
+* With every linear least squares prediction or filtering problem there is implicitly affiliated a LQ control problem.
 
 An understanding of these connections has repeatedly proved useful in cracking interesting applied problems.
 
@@ -107,7 +107,7 @@ We want to  construct :math:`j` step ahead linear least squares predictors of th
 
 where :math:`\mathbb{\hat E}` is the linear least squares projection operator.
 
-(Sometimes :math:`\mathbb{\hat E}` is called the wide-sense expectations operator).
+(Sometimes :math:`\mathbb{\hat E}` is called the wide-sense expectations operator)
 
 To find linear least squares predictors it is helpful  first to construct a :math:`T \times 1` vector :math:`\varepsilon`
 of random variables that form an orthonormal basis   for the vector of random variables :math:`x`.
@@ -133,7 +133,7 @@ Form the :math:`T \times 1` random vector :math:`\varepsilon = Lx`.
 
 The random vector :math:`\varepsilon` is an orthonormal basis for :math:`x` because
 
--   :math:`L` is nonsingular
+-  :math:`L` is nonsingular
 
 -  :math:`\mathbb{E} \, \varepsilon \, \varepsilon^\prime = L \mathbb{E} xx^\prime L^\prime = I`
 
@@ -263,7 +263,7 @@ If we were to use the tools associated with infinite dimensional prediction and 
 we would use the Wiener-Kolmogorov formula :eq:`eq_36` to compute the linear least squares forecasts :math:`\mathbb{E} [x_{t+j} \mid x_t, x_{t-1}, \ldots]`, for :math:`j = 1,\, 2`.
 
 But we can do everything we want by instead using our finite dimensional tools and
-setting :math:`d = r`, generating an instance of `LQFilter`, then invoking pertinent methods of `LQFilter`
+setting :math:`d = r`, generating an instance of `LQFilter`, then invoking pertinent methods of `LQFilter`.
 
 
 
@@ -298,7 +298,7 @@ Now let's form the covariance matrix of a time series vector of length :math:`N`
 and put it in :math:`V`.
 
 Then we'll take a Cholesky decomposition of :math:`V = L^{-1} L^{-1}` and use it to form the vector of
-"moving average representations" :math:`x = L^{-1} \varepsilon` and the vector of "autoregressive representations" :math:`L x = \varepsilon`
+"moving average representations" :math:`x = L^{-1} \varepsilon` and the vector of "autoregressive representations" :math:`L x = \varepsilon`.
 
 
 
@@ -540,7 +540,7 @@ matrix, and :math:`V = \tilde U^{-1} \tilde U^{-1^{\prime}}`, where
 :math:`\tilde U` is the *upper* triangular Cholesky factor of the
 covariance matrix :math:`V`.
 
-(We have reversed the time axis in dating the :math:`a`'s relative to earlier).
+(We have reversed the time axis in dating the :math:`a`'s relative to earlier)
 
 The time axis can be reversed in representation :eq:`eq_59` by replacing :math:`L` with :math:`L^T`.
 
@@ -760,11 +760,11 @@ Combining :eq:`eq_29`  and :eq:`eq_33`  gives
     d(z) \,d(z^{-1}) + h = c \, (z) \,c\,(z^{-1})
 
 
-.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`lu_tricks`
+.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`lu_tricks`.
 
-.. Add the next sentence once Sphinx starts supporting cross file equation references (due in next release)
+.. Add the next sentence once Sphinx starts supporting cross file equation references (due in next release).
 
-.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`
+.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`.
 
 Therefore, we have already shown constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`.
 
@@ -862,9 +862,9 @@ In order to evaluate the term in the annihilation operator, we use the following
 
 **Proposition** Let
 
-* :math:`g(z) = \sum^\infty_{j=0} g_j \, z^j` where :math:`\sum^\infty_{j=0} \vert g_j \vert^2 < + \infty`
+* :math:`g(z) = \sum^\infty_{j=0} g_j \, z^j` where :math:`\sum^\infty_{j=0} \vert g_j \vert^2 < + \infty`.
 
-* :math:`h\,(z^{-1}) =` :math:`(1- \delta_1 z^{-1}) \ldots (1-\delta_n z^{-1})`, where :math:`\vert \delta_j \vert < 1`, for :math:`j = 1, \ldots, n`
+* :math:`h\,(z^{-1}) =` :math:`(1- \delta_1 z^{-1}) \ldots (1-\delta_n z^{-1})`, where :math:`\vert \delta_j \vert < 1`, for :math:`j = 1, \ldots, n`.
 
 Then
 
@@ -1010,7 +1010,7 @@ the following solution
 
 
 
-**Blaschke factors**.
+**Blaschke factors**
 
 
 The following is a useful piece of mathematics underlying "root flipping".

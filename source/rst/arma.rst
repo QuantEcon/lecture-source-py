@@ -110,8 +110,8 @@ Definitions
 
 A real-valued stochastic process :math:`\{ X_t \}` is called *covariance stationary* if
 
-#. Its mean :math:`\mu := \mathbb E X_t` does not depend on :math:`t`
-#. For all :math:`k` in :math:`\mathbb Z`, the :math:`k`-th autocovariance :math:`\gamma(k) := \mathbb E (X_t - \mu)(X_{t + k} - \mu)` is finite and depends only on :math:`k`
+#. Its mean :math:`\mu := \mathbb E X_t` does not depend on :math:`t`.
+#. For all :math:`k` in :math:`\mathbb Z`, the :math:`k`-th autocovariance :math:`\gamma(k) := \mathbb E (X_t - \mu)(X_{t + k} - \mu)` is finite and depends only on :math:`k`.
 
 
 The function :math:`\gamma \colon \mathbb Z \to \mathbb R` is called the *autocovariance function* of the process.
@@ -132,7 +132,7 @@ A process :math:`\{ \epsilon_t \}` is called a *white noise process* if
 #. :math:`\mathbb E \epsilon_t = 0`
 #. :math:`\gamma(k) = \sigma^2 \mathbf 1\{k = 0\}` for some :math:`\sigma > 0`
 
-(Here :math:`\mathbf 1\{k = 0\}` is defined to be 1 if :math:`k = 0` and zero otherwise).
+(Here :math:`\mathbf 1\{k = 0\}` is defined to be 1 if :math:`k = 0` and zero otherwise)
 
 White noise processes play the role of **building blocks** for processes with more complicated dynamics.
 
@@ -211,7 +211,7 @@ General linear processes are a very broad class of processes.
 
 It often pays to specialize to those for which there exists a representation having only finitely many parameters.
 
-(Experience and theory combine to indicate that models with a relatively small number of parameters typically perform better than larger models, especially for forecasting).
+(Experience and theory combine to indicate that models with a relatively small number of parameters typically perform better than larger models, especially for forecasting)
 
 One very simple example of such a model is the first-order autoregressive or AR(1) process
 
@@ -237,7 +237,7 @@ Applying :eq:`ma_inf_ac` to the previous expression for :math:`X_t`, we get the 
     \qquad k = 0, 1, \ldots
 
 
-The next figure plots an example of this function for :math:`\phi = 0.8` and :math:`\phi = -0.8` with :math:`\sigma = 1`
+The next figure plots an example of this function for :math:`\phi = 0.8` and :math:`\phi = -0.8` with :math:`\sigma = 1`.
 
 
 
@@ -283,7 +283,7 @@ You will be able to verify that
 
 The AR(1) can be generalized to an AR(:math:`p`) and likewise for the MA(1).
 
-Putting all of this together, we get the.
+Putting all of this together, we get the
 
 :index:`ARMA` Processes
 ------------------------
@@ -405,7 +405,7 @@ where :math:`x = r \cos(\omega), y = r \sin(\omega)`, and :math:`\omega = \arcta
 
 Let :math:`\{ X_t \}` be a covariance stationary process with autocovariance function :math:`\gamma`  satisfying :math:`\sum_{k} \gamma(k)^2 < \infty`.
 
-The *spectral density* :math:`f` of :math:`\{ X_t \}` is defined as the `discrete time Fourier transform <https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform>`_ of its autocovariance function :math:`\gamma`
+The *spectral density* :math:`f` of :math:`\{ X_t \}` is defined as the `discrete time Fourier transform <https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform>`_ of its autocovariance function :math:`\gamma`.
 
 .. math::
 
@@ -445,7 +445,7 @@ It is easy to check that in  this case :math:`f(\omega) = \sigma^2`.  So :math:`
 
 As we will see, this can be interpreted as meaning that "all frequencies are equally present".
 
-(White light has this property when frequency refers to the visible spectrum, a connection that provides the origins of the term "white noise").
+(White light has this property when frequency refers to the visible spectrum, a connection that provides the origins of the term "white noise")
 
 
 Example 2: :index:`AR` and :index:`MA` and :index:`ARMA`
@@ -469,7 +469,7 @@ With a bit more effort, it's possible to show (see, e.g., p. 261 of :cite:`Sarge
     = \frac{\sigma^2}{ 1 - 2 \phi \cos(\omega) + \phi^2 }
 
 
-More generally, it can be shown that the spectral density of the ARMA process :eq:`arma` is.
+More generally, it can be shown that the spectral density of the ARMA process :eq:`arma` is
 
 .. _arma_spec_den:
 
@@ -481,8 +481,8 @@ More generally, it can be shown that the spectral density of the ARMA process :e
 
 where
 
-* :math:`\sigma` is the standard deviation of the white noise process :math:`\{\epsilon_t\}`
-* the polynomials :math:`\phi(\cdot)` and :math:`\theta(\cdot)` are as defined in :eq:`arma_poly`
+* :math:`\sigma` is the standard deviation of the white noise process :math:`\{\epsilon_t\}`.
+* the polynomials :math:`\phi(\cdot)` and :math:`\theta(\cdot)` are as defined in :eq:`arma_poly`.
 
 The derivation of :eq:`arma_sd` uses the fact that convolutions become products under Fourier transformations.
 
@@ -497,7 +497,7 @@ Interpreting the :index:`Spectral Density`
 .. index::
     single: Spectral Density; interpretation
 
-Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1) model when :math:`\phi` takes the values 0.8 and -0.8 respectively
+Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1) model when :math:`\phi` takes the values 0.8 and -0.8 respectively.
 
 
 
@@ -548,7 +548,7 @@ positive, and large in absolute value and negative when :math:`(-0.8)^k` is nega
 Hence the product is always large and positive, and hence the sum of the
 products on the right-hand side of :eq:`sumpr` is large.
 
-These ideas are illustrated in the next figure, which has :math:`k` on the horizontal axis
+These ideas are illustrated in the next figure, which has :math:`k` on the horizontal axis.
 
 
 
@@ -592,7 +592,7 @@ These ideas are illustrated in the next figure, which has :math:`k` on the horiz
 
 On the other hand, if we evaluate :math:`f(\omega)` at :math:`\omega = \pi / 3`, then the cycles are
 not matched, the sequence :math:`\gamma(k) \cos(\omega k)` contains
-both positive and negative terms, and hence the sum of these terms is much smaller
+both positive and negative terms, and hence the sum of these terms is much smaller.
 
 
 
@@ -657,7 +657,7 @@ In particular, for all :math:`k \in \mathbb Z`, we have
 
 This is convenient in situations where the spectral density is easier to calculate and manipulate than the autocovariance function.
 
-(For example, the expression :eq:`arma_sd` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance).
+(For example, the expression :eq:`arma_sd` for the ARMA spectral density is much easier to work with than the expression for the ARMA autocovariance)
 
 
 Mathematical Theory
@@ -699,9 +699,9 @@ The Fourier coefficients of :math:`T\alpha` are just :math:`\alpha = \{ \alpha_k
 
 Using elementary results from Hilbert space theory, it can be shown that
 
-* :math:`T` is one-to-one --- if :math:`\alpha` and :math:`\beta` are distinct in :math:`\ell_2`, then so are their expansions in :math:`H`
-* :math:`T` is onto --- if :math:`f \in H` then its preimage in :math:`\ell_2` is the sequence :math:`\alpha` given by :math:`\alpha_k = \langle f, h_k \rangle`
-* :math:`T` is a linear isometry --- in particular, :math:`\langle \alpha, \beta \rangle = \langle T\alpha, T\beta \rangle`
+* :math:`T` is one-to-one --- if :math:`\alpha` and :math:`\beta` are distinct in :math:`\ell_2`, then so are their expansions in :math:`H`.
+* :math:`T` is onto --- if :math:`f \in H` then its preimage in :math:`\ell_2` is the sequence :math:`\alpha` given by :math:`\alpha_k = \langle f, h_k \rangle`.
+* :math:`T` is a linear isometry --- in particular, :math:`\langle \alpha, \beta \rangle = \langle T\alpha, T\beta \rangle`.
 
 Summarizing these results, we say that any separable Hilbert space is isometrically isomorphic to :math:`\ell_2`.
 
@@ -709,9 +709,9 @@ In essence, this says that each separable Hilbert space we consider is just a di
 
 With this in mind, let's specialize to a setting where
 
-* :math:`\gamma \in \ell_2` is the autocovariance function of a covariance stationary process, and :math:`f` is the spectral density
-* :math:`H = L_2`, where :math:`L_2` is the set of square summable functions on the interval :math:`[-\pi, \pi]`, with inner product :math:`\langle g, h \rangle = \int_{-\pi}^{\pi} g(\omega) h(\omega) d \omega`
-* :math:`\{h_k\} =` the orthonormal basis for :math:`L_2` given by the set of trigonometric functions
+* :math:`\gamma \in \ell_2` is the autocovariance function of a covariance stationary process, and :math:`f` is the spectral density.
+* :math:`H = L_2`, where :math:`L_2` is the set of square summable functions on the interval :math:`[-\pi, \pi]`, with inner product :math:`\langle g, h \rangle = \int_{-\pi}^{\pi} g(\omega) h(\omega) d \omega`.
+* :math:`\{h_k\} =` the orthonormal basis for :math:`L_2` given by the set of trigonometric functions.
 
 .. math::
 
@@ -835,7 +835,7 @@ Here are some functions to generate the plots
 
 Now let's call these functions to generate plots.
 
-As a warmup, let's make sure things look right when we for the pure white noise model :math:`X_t = \epsilon_t`
+As a warmup, let's make sure things look right when we for the pure white noise model :math:`X_t = \epsilon_t`.
 
 
 
@@ -854,11 +854,11 @@ which is at it should be.
 
 Also
 
-   * the variance  equals :math:`1 = \frac{1}{2 \pi} \int_{-\pi}^\pi 1 d \omega` as it should
+   * the variance  equals :math:`1 = \frac{1}{2 \pi} \int_{-\pi}^\pi 1 d \omega` as it should.
 
-   * the covariogram and impulse response look as they should
+   * the covariogram and impulse response look as they should.
 
-   * it is actually challenging to visualize a time series realization of white noise -- a sequence of surprises -- but this too looks pretty good
+   * it is actually challenging to visualize a time series realization of white noise -- a sequence of surprises -- but this too looks pretty good.
 
 
 To get some more examples, as our laboratory
@@ -933,9 +933,9 @@ creates an instance ``arma`` that represents the ARMA(:math:`p, q`) model
 If ``ϕ`` and ``θ`` are arrays or sequences, then the interpretation will
 be
 
-* ``ϕ`` holds the vector of parameters :math:`(\phi_1, \phi_2,..., \phi_p)`
+* ``ϕ`` holds the vector of parameters :math:`(\phi_1, \phi_2,..., \phi_p)`.
 
-* ``θ`` holds the vector of parameters :math:`(\theta_1, \theta_2,..., \theta_q)`
+* ``θ`` holds the vector of parameters :math:`(\theta_1, \theta_2,..., \theta_q)`.
 
 The parameter ``σ`` is always a scalar, the standard deviation of the white noise.
 
@@ -1020,6 +1020,6 @@ For :math:`n` sufficiently large, we then have
     = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(\omega) e^{i \omega k} d \omega
 
 
-(You can check the last equality).
+(You can check the last equality)
 
 In view of :eq:`ift`, we have now shown that, for :math:`n` sufficiently large, :math:`a_k \approx \gamma(k)` --- which is exactly what we want to compute.

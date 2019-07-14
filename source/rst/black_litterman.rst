@@ -148,7 +148,7 @@ optimal portfolio from formula :eq:`risky-portfolio`, a typical outcome has been
 :math:`w`'s with **extreme long and short positions**.
 
 A common reaction to these outcomes is that they are so unreasonable that a portfolio
-manager cannot recommend them to a customer
+manager cannot recommend them to a customer.
 
 .. code-block:: python3
 
@@ -197,15 +197,15 @@ manager cannot recommend them to a customer
 Black and Litterman's responded to this situation in the following way:
 
 -  They continue to accept :eq:`risky-portfolio` as a good model for choosing an optimal
-   portfolio :math:`w`
+   portfolio :math:`w`.
 
 -  They want to continue to allow the customer to express his or her
-   risk tolerance by setting :math:`\delta`
+   risk tolerance by setting :math:`\delta`.
 
 -  Leaving :math:`\Sigma` at its maximum-likelihood value, they push
    :math:`\mu` away from its maximum value in a way designed to make
    portfolio choices that are more plausible in terms of conforming to
-   what most people actually do
+   what most people actually do.
 
 In particular, given :math:`\Sigma` and a reasonable value
 of :math:`\delta`, Black and Litterman reverse engineered a vector
@@ -267,7 +267,7 @@ portfolio rule :eq:`risky-portfolio` at the market portfolio :math:`w = w_m`
 
 The starting point of the Black-Litterman portfolio choice model is thus
 a pair :math:`(\delta_m, \mu_m)` that tells the customer to hold the
-market portfolio
+market portfolio.
 
 .. code-block:: python3
 
@@ -347,7 +347,7 @@ portfolio :math:`w_{BL}` in amounts that depend on the mixing parameter
 
 If :math:`\hat \mu` is the maximum likelihood estimator
 and :math:`\tau` is chosen heavily to weight this view, then the
-customer's portfolio will involve big short-long positions
+customer's portfolio will involve big short-long positions.
 
 .. code-block:: python3
 
@@ -488,7 +488,7 @@ labeled as iso-likelihood ellipses
       \text{ has the form } \quad f(z) = c g(z\cdot z)
 
     This property is called **spherical symmetry** (see p 81. in Leamer
-    (1978) :cite:`leamer1978specification`)
+    (1978) :cite:`leamer1978specification`).
 
 In our specific example, we can use the pair
 :math:`(\bar d_1, \bar d_2)` as being two "likelihood" values for which
@@ -550,7 +550,7 @@ identifies one point on the information contract curve.
 Furthermore, because :math:`\lambda` is a function of the minimum likelihood
 :math:`\bar d_2` on the RHS of the constraint, by varying
 :math:`\bar d_2` (or :math:`\lambda` ), we can trace out the whole curve
-as the figure below illustrates
+as the figure below illustrates.
 
 .. code-block:: python3
 
@@ -788,7 +788,7 @@ securities. This could be written as a vector autoregression where
 
 -  :math:`y` is the stacked vector of observed excess returns of size
    :math:`(N T\times 1)` -- :math:`N` securities and :math:`T`
-   observations
+   observations.
 
 -  :math:`X = \sqrt{T^{-1}}(I_{N} \otimes \iota_T)` where :math:`I_N`
    is the identity matrix and :math:`\iota_T` is a column vector of
@@ -1129,9 +1129,9 @@ sampling frequency.
 The following figure illustrates how the dependence between the
 observations is related to the sampling frequency
 
--  For any given :math:`h`, the autocorrelation converges to zero as we increase the distance -- :math:`n`-- between the observations. This represents the "weak dependence" of the :math:`X` process
+-  For any given :math:`h`, the autocorrelation converges to zero as we increase the distance -- :math:`n`-- between the observations. This represents the "weak dependence" of the :math:`X` process.
 
--  Moreover, for a fixed lag length, :math:`n`, the dependence vanishes as the sampling frequency goes to infinity. In fact, letting :math:`h` go to :math:`\infty` gives back the case of IID data
+-  Moreover, for a fixed lag length, :math:`n`, the dependence vanishes as the sampling frequency goes to infinity. In fact, letting :math:`h` go to :math:`\infty` gives back the case of IID data.
 
 .. code-block:: python3
 
@@ -1222,7 +1222,7 @@ Unfortunately, the variance estimator's MSE is harder to derive.
 Nonetheless, we can approximate it by using (large sample) simulations,
 thus getting an idea about how the asymptotic relative MSEs changes in
 the sampling frequency :math:`h` relative to the IID case that we
-compute in closed form
+compute in closed form.
 
 .. code-block:: python3
 
@@ -1287,11 +1287,11 @@ The above figure illustrates the relationship between the asymptotic
 relative MSEs and the sampling frequency
 
 -  We can see that with low-frequency data -- large values of :math:`h`
-   -- the ratio of asymptotic rates approaches the IID case
+   -- the ratio of asymptotic rates approaches the IID case.
 
 -  As :math:`h` gets smaller -- the higher the frequency -- the relative
    performance of the variance estimator is better in the sense that the
    ratio of asymptotic rates gets smaller. That is, as the time
    dependence gets more pronounced, the rate of convergence of the mean
    estimator's MSE deteriorates more than that of the variance
-   estimator
+   estimator.

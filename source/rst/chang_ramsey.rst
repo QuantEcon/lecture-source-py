@@ -51,10 +51,10 @@ make extensive use of an idea to which we apply the nickname
 
 In dynamic programming squared problems there are typically two interrelated Bellman equations
 
-* A Bellman equation for a set of agents or followers with value or value function :math:`v_a`
+* A Bellman equation for a set of agents or followers with value or value function :math:`v_a`.
 
 * A Bellman equation for a principal or Ramsey planner or Stackelberg leader with value or
-  value function :math:`v_p` in which :math:`v_a` appears as an argument
+  value function :math:`v_p` in which :math:`v_a` appears as an argument.
 
 We encountered problems with this structure in
 :doc:`dynamic Stackelberg problems<dyn_stack>`,
@@ -334,24 +334,24 @@ Competitive Equilibrium
 
 **Definition:**
 
-* A *government policy* is a pair of sequences :math:`(\vec h,\vec x)` where :math:`h_t \in \Pi  \ \forall t \geq 0`
+* A *government policy* is a pair of sequences :math:`(\vec h,\vec x)` where :math:`h_t \in \Pi  \ \forall t \geq 0`.
 
-* A *price system* is a nonnegative value of money sequence :math:`\vec q`
+* A *price system* is a nonnegative value of money sequence :math:`\vec q`.
 
-* An *allocation* is a  triple of nonnegative sequences :math:`(\vec c, \vec m, \vec y)`
+* An *allocation* is a  triple of nonnegative sequences :math:`(\vec c, \vec m, \vec y)`.
 
 It is required that time :math:`t` components :math:`(m_t, x_t, h_t) \in E`.
 
-**Definition:**.
+**Definition:**
 
 Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system :math:`\vec q`, and allocation
 :math:`(\vec c, \vec m, \vec y)` are said to be a *competitive equilibrium* if
 
-* :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`
+* :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`.
 
-* The government budget constraint is satisfied
+* The government budget constraint is satisfied.
 
-* Given :math:`\vec q, \vec x, \vec y`, :math:`(\vec c, \vec m)` solves the household’s problem
+* Given :math:`\vec q, \vec x, \vec y`, :math:`(\vec c, \vec m)` solves the household’s problem.
 
 Inventory of Objects in Play
 =============================
@@ -361,18 +361,18 @@ Chang constructs the following objects
 1. A set :math:`\Omega` of initial marginal utilities of money :math:`\theta_0`
 
    * Let :math:`\Omega` denote the set of initial promised marginal utilities of
-     money :math:`\theta_0` associated with competitive equilibria
+     money :math:`\theta_0` associated with competitive equilibria.
 
    * Chang exploits the fact that a competitive equilibrium consists of a first
      period outcome :math:`(h_0, m_0, x_0)` and a continuation competitive
-     equilibrium with marginal utility of money :math:`\theta _1 \in \Omega`
+     equilibrium with marginal utility of money :math:`\theta _1 \in \Omega`.
 
 2. Competitive equilibria that have a recursive representation
 
    * A competitive equilibrium with a recursive representation consists of an
      initial :math:`\theta_0` and a four-tuple of functions :math:`(h, m, x, \Psi)`
      mapping :math:`\theta` into this period’s :math:`(h, m, x)` and
-     next period’s :math:`\theta`, respectively
+     next period’s :math:`\theta`, respectively.
 
    * A competitive equilibrium can be represented recursively by iterating on
 
@@ -395,36 +395,36 @@ Chang constructs the following objects
    * A recursive representation of a Ramsey plan is a recursive
      competitive equilibrium :math:`\theta_0, (h, m, x, \Psi)` that, among
      all recursive competitive equilibria, maximizes :math:`\sum_{t=0}^\infty
-     \beta^t \left[ u(c_t) + v(q_t M_t ) \right]`
+     \beta^t \left[ u(c_t) + v(q_t M_t ) \right]`.
 
    * The Ramsey planner chooses :math:`\theta_0, (h, m, x, \Psi)` from among
-     the set of recursive competitive equilibria at time :math:`0`
+     the set of recursive competitive equilibria at time :math:`0`.
 
    * Iterations on the function :math:`\Psi` determine subsequent
      :math:`\theta_t`\ ’s that summarize the aspects of the continuation
-     competitive equilibria that influence the household’s decisions
+     competitive equilibria that influence the household’s decisions.
 
    * At time :math:`0`, the Ramsey planner commits to this implied sequence
      :math:`\{\theta_t\}_{t=0}^\infty` and therefore to an associated sequence
-     of continuation competitive equilibria
+     of continuation competitive equilibria.
 
 4. A characterization of time-inconsistency of a Ramsey plan
 
    * Imagine that after a ‘revolution’ at time :math:`t \geq 1`, a new Ramsey
      planner is  given the opportunity to ignore history and solve a brand new
-     Ramsey plan
+     Ramsey plan.
 
    * This new planner would want to reset the :math:`\theta_t` associated
-     with the original Ramsey plan to :math:`\theta_0`
+     with the original Ramsey plan to :math:`\theta_0`.
 
    * The incentive to reinitialize :math:`\theta_t` associated with this
-     revolution experiment indicates the time-inconsistency of the Ramsey plan
+     revolution experiment indicates the time-inconsistency of the Ramsey plan.
 
    * By resetting :math:`\theta` to :math:`\theta_0`, the new planner avoids
      the costs at time :math:`t` that the original Ramsey planner must pay to
      reap the beneficial effects that the original Ramsey plan for
      :math:`s \geq t` had achieved via its influence on the household’s
-     decisions for :math:`s = 0, \ldots, t-1`
+     decisions for :math:`s = 0, \ldots, t-1`.
 
 
 Analysis
@@ -456,7 +456,7 @@ The continuation of a competitive equilibrium is a competitive equilibrium.
 That is, :math:`(\vec m, \vec x, \vec h) \in CE` implies that :math:`(\vec m_t,
 \vec x_t, \vec h_t) \in CE \  \forall \ t \geq 1`.
 
-(Lecture :doc:`dynamic Stackelberg problems<dyn_stack>` also used a version of this insight).
+(Lecture :doc:`dynamic Stackelberg problems<dyn_stack>` also used a version of this insight)
 
 We can now state that a **Ramsey problem** is to
 
@@ -504,9 +504,9 @@ outcome to the representative household
 
 .. math:: w(\theta) = \max_{(\vec m, \vec x, \vec h) \in \Gamma(\theta)} \sum_{t=0}^\infty \beta^t \left[ u(f(x_t)) + v(m_t) \right]
 
-2. Compute the value of the Ramsey outcome by solving :math:`\max_{\theta \in \Omega} w(\theta)`
+2. Compute the value of the Ramsey outcome by solving :math:`\max_{\theta \in \Omega} w(\theta)`.
 
-Thus, Chang states the following.
+Thus, Chang states the following
 
 **Proposition**:
 
@@ -619,7 +619,7 @@ competitive equilibria after each possible subsequent history.
 After any history :math:`\vec h^{t-1}`, admissibility restricts the government’s
 choice in period :math:`t` to the set
 
-.. math:: CE_\pi^0 = \{ h \in \Pi: {\rm there \ is } \ \vec h \in CE_\pi \ {\rm with } \ h=h_0 \} .
+.. math:: CE_\pi^0 = \{ h \in \Pi: {\rm there \ is } \ \vec h \in CE_\pi \ {\rm with } \ h=h_0 \}
 
 In words, :math:`CE_\pi^0` is the set of all first period money growth
 rates :math:`h=h_0`, each of which is consistent with the existence of a
@@ -696,13 +696,13 @@ such that
 
 It is possible to establish.
 
-**Proposition:**.
+**Proposition:**
 
 i. If :math:`Z \subset D(Z)`, then :math:`D(Z) \subset S` (‘self-generation’).
 
 ii. :math:`S = D(S)` (‘factorization’).
 
-**Proposition:**.
+**Proposition:**
 
 i. Monotonicity of :math:`D`: :math:`Z \subset Z'` implies :math:`D(Z) \subset D(Z')`.
 
@@ -778,18 +778,18 @@ to find it by solving a sequence of linear programs.
 The *outer hyperplane approximation algorithm* proceeds as follows:
 
 1. Initialize subgradients, :math:`H`, and hyperplane levels,
-   :math:`C_0`
+   :math:`C_0`.
 
 2. Given a set of subgradients, :math:`H`, and hyperplane levels,
    :math:`C_t`, for each subgradient :math:`h_i \in H`:
 
    -  Solve a linear program (described below) for each action in the
-      action space
+      action space.
 
    -  Find the maximum and update the corresponding hyperplane level,
-      :math:`C_{i,t+1}`
+      :math:`C_{i,t+1}`.
 
-3. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2
+3. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2.
 
 **Step 1** simply creates a large initial set :math:`S_0`.
 
@@ -907,11 +907,11 @@ Solving a Continuation Ramsey Planner's Bellman Equation
 In this section we solve the Bellman equation confronting a **continuation Ramsey planner**.
 
 The construction of a Ramsey plan is decomposed into a two subproblems in :doc:`Ramsey plans, time inconsistency, sustainable plans<calvo>`
-and :doc:`dynamic Stackelberg problems<dyn_stack>`
+and :doc:`dynamic Stackelberg problems<dyn_stack>`.
 
-* Subproblem 1 is faced by a sequence of continuation Ramsey planners at :math:`t \geq 1`
+* Subproblem 1 is faced by a sequence of continuation Ramsey planners at :math:`t \geq 1`.
 
-* Subproblem 2 is faced by a Ramsey planner at :math:`t = 0`
+* Subproblem 2 is faced by a Ramsey planner at :math:`t = 0`.
 
 The problem is:
 
@@ -1016,7 +1016,7 @@ of parameters.
 
 With the first set of parameter values,  this function does not intersect the
 45-degree line until :math:`\bar \theta`, whereas in the second set of parameter values, it
-intersects in the interior
+intersects in the interior.
 
 .. code-block:: python3
 
