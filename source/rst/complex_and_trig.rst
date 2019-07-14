@@ -46,7 +46,7 @@ The Euclidean, polar, and trigonometric forms of a complex number :math:`z` are:
    z = x + iy = re^{i\theta} = r(\cos{\theta} + i \sin{\theta})
 
 
-The second equality above is known as called **Euler's formula**
+The second equality above is known as **Euler's formula**
 
 -  `Euler <https://en.wikipedia.org/wiki/Leonhard_Euler>`__ contributed many other formulas too!
 
@@ -107,7 +107,7 @@ It follows that :math:`r = 2` and
 :math:`\theta = \tan^{-1}(\sqrt{3}) = \frac{\pi}{3} = 60^o`.
 
 Let's use Python to plot the trigonometric form of the complex number
-:math:`z = 1 + \sqrt{3} i`
+:math:`z = 1 + \sqrt{3} i`.
 
 .. code-block:: python3
 
@@ -315,7 +315,7 @@ Using the code above, we compute that
 :math:`\omega = 0` and :math:`p = 2`.
 
 Then we plug in the values we solve for :math:`\omega` and :math:`p`
-and plot the dynamic
+and plot the dynamic.
 
 .. code-block:: python3
 

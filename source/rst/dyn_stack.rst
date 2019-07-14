@@ -104,7 +104,7 @@ Firm 1's problem induces the best response mapping
 
 .. math::  \vec q_1 = B(\vec q_2)
 
-(Here :math:`B` maps a sequence into a sequence).
+(Here :math:`B` maps a sequence into a sequence)
 
 The Stackelberg leader's problem is
 
@@ -116,14 +116,14 @@ model :math:`a_0, a_1, \gamma`.
 
 This formulation captures key features of the model
 
--  Both firms make once-and-for-all choices at time :math:`0`
+-  Both firms make once-and-for-all choices at time :math:`0`.
 
 -  This is true even though both firms are choosing sequences of
-   quantities that are indexed by **time**
+   quantities that are indexed by **time**.
 
 -  The Stackelberg leader chooses first **within time** :math:`0`,
    knowing that the Stackelberg follower will choose second **within
-   time** :math:`0`
+   time** :math:`0`.
 
 While our abstract formulation reveals the timing protocol and
 equilibrium concept well, it obscures details that must be addressed
@@ -228,7 +228,7 @@ and compute the following inverse operator
 Operating on both sides of equation :eq:`sstack2` with
 :math:`\beta^{-1}` times this inverse operator gives the follower's
 decision rule for setting :math:`q_{1t+1}` in the
-**feedback-feedforward** form
+**feedback-feedforward** form.
 
 .. math::
     :label: sstack3

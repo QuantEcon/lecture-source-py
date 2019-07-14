@@ -103,11 +103,11 @@ Summary
 
 Here's a summary of our discussion:
 
-* Firms grow because transaction costs encourage them to take some operations in house
+* Firms grow because transaction costs encourage them to take some operations in house.
 
-* But as they get large, in-house operations become costly due to diminishing returns to management
+* But as they get large, in-house operations become costly due to diminishing returns to management.
 
-* The size of firms is determined by balancing these effects, thereby equalizing the marginal costs of each form of operation
+* The size of firms is determined by balancing these effects, thereby equalizing the marginal costs of each form of operation.
 
 
 
@@ -157,24 +157,24 @@ The subcontracting scheme by which tasks are allocated across firms is illustrat
 
 In this example,
 
-* Firm 1 receives a contract to sell one unit of the completed good to a final buyer
+* Firm 1 receives a contract to sell one unit of the completed good to a final buyer.
 
 * Firm 1 then forms a contract with firm 2 to purchase the partially completed good at stage :math:`t_1`, with
-  the intention of implementing the remaining :math:`1 - t_1` tasks in-house (i.e., processing from stage :math:`t_1` to stage :math:`1`)
+  the intention of implementing the remaining :math:`1 - t_1` tasks in-house (i.e., processing from stage :math:`t_1` to stage :math:`1`).
 
-* Firm 2 repeats this procedure, forming a contract with firm 3 to purchase the good at stage :math:`t_2`
+* Firm 2 repeats this procedure, forming a contract with firm 3 to purchase the good at stage :math:`t_2`.
 
-* firm 3 decides to complete the chain, selecting :math:`t_3 = 0`
+* Firm 3 decides to complete the chain, selecting :math:`t_3 = 0`.
 
-At this point, production unfolds in the opposite direction (i.e., from upstream to downstream)
+At this point, production unfolds in the opposite direction (i.e., from upstream to downstream).
 
-* Firm 3 completes processing stages from :math:`t_3 = 0` up to :math:`t_2` and transfers the good to firm 2
+* Firm 3 completes processing stages from :math:`t_3 = 0` up to :math:`t_2` and transfers the good to firm 2.
 
 * Firm 2 then processes from :math:`t_2` up to :math:`t_1` and transfers the good to firm 1,
 
-* Firm 1 processes from :math:`t_1` to :math:`1` and delivers the completed good to the final buyer
+* Firm 1 processes from :math:`t_1` to :math:`1` and delivers the completed good to the final buyer.
 
-The length of the interval of stages (range of tasks) carried out by firm :math:`i` is denoted by :math:`\ell_i`
+The length of the interval of stages (range of tasks) carried out by firm :math:`i` is denoted by :math:`\ell_i`.
 
 .. figure:: /_static/lecture_specific/coase/allocation.png
 
@@ -251,7 +251,7 @@ Formal Definition of Equilibrium
 
 Let's make this definition more formal.
 
-(You might like to skip this section on first reading).
+(You might like to skip this section on first reading)
 
 An **allocation** of firms is a nonnegative sequence :math:`\{\ell_i\}_{i \in \mathbb N}` such that :math:`\ell_i=0` for all sufficiently large :math:`i`.
 
@@ -283,9 +283,9 @@ As transaction costs are incurred only by the buyer, its profits are
 
 Given a price function :math:`p` and a feasible allocation :math:`\{\ell_i\}`, let
 
-* :math:`\{t_i\}` be the corresponding firm boundaries
+* :math:`\{t_i\}` be the corresponding firm boundaries.
 
-* :math:`\{\pi_i\}` be corresponding profits, as defined in :eq:`prof`
+* :math:`\{\pi_i\}` be corresponding profits, as defined in :eq:`prof`.
 
 This price-allocation pair is called an **equilibrium** for the production chain if
 
@@ -293,7 +293,7 @@ This price-allocation pair is called an **equilibrium** for the production chain
 
 #. :math:`\; \pi_i = 0` for all :math:`i`, and
 
-#. :math:`p(s) - c(s - t) -  \delta p(t) \leq 0` for any pair :math:`s, t` with :math:`0 \leq s \leq t \leq 1`
+#. :math:`p(s) - c(s - t) -  \delta p(t) \leq 0` for any pair :math:`s, t` with :math:`0 \leq s \leq t \leq 1`.
 
 
 The rationale behind these conditions was given in our informal definition of equilibrium above.
@@ -332,9 +332,9 @@ We denote this set of functions by :math:`\mathcal P`.
 
 In :cite:`kikuchi2018span` it is shown that the following statements are true:
 
-#. :math:`T` maps :math:`\mathcal P` into itself
-#. :math:`T` has a unique fixed point in :math:`\mathcal P`, denoted below by :math:`p^*`
-#. For all :math:`p \in \mathcal P` we have :math:`T^k p \to p^*` uniformly as :math:`k \to \infty`
+#. :math:`T` maps :math:`\mathcal P` into itself.
+#. :math:`T` has a unique fixed point in :math:`\mathcal P`, denoted below by :math:`p^*`.
+#. For all :math:`p \in \mathcal P` we have :math:`T^k p \to p^*` uniformly as :math:`k \to \infty`.
 
 
 Now consider the choice function
@@ -382,7 +382,7 @@ In :cite:`kikuchi2018span` it is shown that
 
 #. the allocation :math:`\{\ell^*_i\}` is feasible, and
 
-#. the price function :math:`p^*` and this allocation together forms an equilibrium for the production chain
+#. the price function :math:`p^*` and this allocation together forms an equilibrium for the production chain.
 
 While the proofs are too long to repeat here,
 much of the insight can be obtained by observing that, as a fixed point of :math:`T`, the equilibrium price function must satisfy
@@ -517,7 +517,7 @@ Recalling that our initial condition must lie in :math:`\mathcal P`, we set
        return p_func
 
 The next function computes optimal choice of upstream boundary and range of
-task implemented for a firm face price function `p_function` and with downstream boundary :math:`s`
+task implemented for a firm face price function `p_function` and with downstream boundary :math:`s`.
 
 .. code-block:: python3
 
@@ -542,7 +542,7 @@ task implemented for a firm face price function `p_function` and with downstream
 The allocation of firms can be computed by recursively stepping through firms' choices of
 their respective upstream boundary, treating the previous firm's upstream boundary as their own downstream boundary.
 
-In doing so, we start with firm 1, who has downstream boundary :math:`s=1`
+In doing so, we start with firm 1, who has downstream boundary :math:`s=1`.
 
 .. code-block:: python3
 

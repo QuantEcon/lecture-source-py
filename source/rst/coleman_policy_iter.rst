@@ -177,7 +177,7 @@ Henceforth we denote this set of policies by :math:`\mathscr P`
 
 #. The operator :math:`K` takes as its argument a :math:`\sigma \in \mathscr P` and
 
-#. returns a new function :math:`K\sigma`,  where :math:`K\sigma(y)` is the :math:`c \in (0, y)` that solves
+#. returns a new function :math:`K\sigma`,  where :math:`K\sigma(y)` is the :math:`c \in (0, y)` that solves.
 
 .. math::
     :label: cpi_coledef
@@ -272,7 +272,7 @@ Let's talk about the theory first.
 To explain the connection between the two algorithms, it helps to understand
 the notion of equivalent dynamics.
 
-(This concept is very helpful in many other contexts as well).
+(This concept is very helpful in many other contexts as well)
 
 Suppose that we have a function :math:`g \colon X \to X` where :math:`X` is a given set.
 
@@ -375,9 +375,9 @@ For :math:`v \in \mathscr V` let
 
 
 Although we omit details, :math:`\sigma := M v` is actually the unique
-:math:`v`-greedy policy
+:math:`v`-greedy policy.
 
-* See proposition 12.1.18 of `EDTC <http://johnstachurski.net/edtc.html>`__
+* See proposition 12.1.18 of `EDTC <http://johnstachurski.net/edtc.html>`__.
 
 It turns out that :math:`M` is a bijection from :math:`\mathscr V` to :math:`\mathscr P`.
 
@@ -448,7 +448,7 @@ First, we'll store the parameters of the model in a class ``OptimalGrowthModel``
             self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
 
 
-Here's some code that returns the Coleman-Reffett operator, :math:`K`
+Here's some code that returns the Coleman-Reffett operator, :math:`K`.
 
 .. literalinclude:: /_static/lecture_specific/coleman_policy_iter/coleman_operator.py
 
@@ -456,7 +456,7 @@ It has some similarities to the code for the Bellman operator in our :doc:`optim
 
 For example, it evaluates integrals by Monte Carlo and approximates functions using linear interpolation.
 
-Here's that Bellman operator code again, which needs to be executed because we'll use it in some tests below
+Here's that Bellman operator code again, which needs to be executed because we'll use it in some tests below.
 
 .. literalinclude:: /_static/lecture_specific/optgrowth/bellman_operator.py
     :class: collapse
@@ -474,7 +474,7 @@ solution.
 
 
 First, we generate an instance of ``OptimalGrowthModel`` and return the corresponding
-Coleman-Reffett operator
+Coleman-Reffett operator.
 
 
 .. code-block:: python3
@@ -497,7 +497,7 @@ Coleman-Reffett operator
 
 
 As a preliminary test, let's see if :math:`K \sigma^* = \sigma^*`, as implied by the
-theory
+theory.
 
 
 .. code-block:: python3
@@ -526,7 +526,7 @@ Next, let's try iterating from an arbitrary initial condition and see if we
 converge towards :math:`\sigma^*`.
 
 
-The initial condition we'll use is the one that eats the whole pie: :math:`\sigma(y) = y`
+The initial condition we'll use is the one that eats the whole pie: :math:`\sigma(y) = y`.
 
 
 
@@ -605,9 +605,9 @@ Exercise 1
 
 Show that :eq:`cpi_ed_tk` is valid.  In particular,
 
-* Let :math:`v` be strictly concave and continuously differentiable on :math:`(0, \infty)`
+* Let :math:`v` be strictly concave and continuously differentiable on :math:`(0, \infty)`.
 
-* Fix :math:`y \in (0, \infty)` and show that :math:`MTv(y) = KMv(y)`
+* Fix :math:`y \in (0, \infty)` and show that :math:`MTv(y) = KMv(y)`.
 
 
 Exercise 2
@@ -773,7 +773,7 @@ copied from the previous lecture
 
 .. literalinclude:: /_static/lecture_specific/optgrowth/solve_model.py
 
-Similarly, we can write a function that uses ``K`` to solve the model
+Similarly, we can write a function that uses ``K`` to solve the model.
 
 .. code-block:: python3
 

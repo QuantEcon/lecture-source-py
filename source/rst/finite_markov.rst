@@ -135,9 +135,9 @@ Consider a worker who, at any given time :math:`t`, is either unemployed (state 
 
 Suppose that, over a one month period,
 
-#. An unemployed worker finds a job with probability :math:`\alpha \in (0, 1)`
+#. An unemployed worker finds a job with probability :math:`\alpha \in (0, 1)`.
 
-#. An employed worker loses her job and becomes unemployed with probability :math:`\beta \in (0, 1)`
+#. An employed worker loses her job and becomes unemployed with probability :math:`\beta \in (0, 1)`.
 
 In terms of a Markov model, we have
 
@@ -218,9 +218,9 @@ One natural way to answer questions about Markov chains is to simulate them.
 
 (To approximate the probability of event :math:`E`, we can simulate many times and count the fraction of times that :math:`E` occurs).
 
-Nice functionality for simulating Markov chains exists in `QuantEcon.py <http://quantecon.org/python_index.html>`__
+Nice functionality for simulating Markov chains exists in `QuantEcon.py <http://quantecon.org/python_index.html>`__.
 
-* Efficient, bundled with lots of other useful routines for handling Markov chains
+* Efficient, bundled with lots of other useful routines for handling Markov chains.
 
 However, it's also a good exercise to roll our own routines --- let's do that first and then come back to the methods in `QuantEcon.py <http://quantecon.org/python_index.html>`__.
 
@@ -236,13 +236,13 @@ To simulate a Markov chain, we need its stochastic matrix :math:`P` and either a
 
 The Markov chain is then constructed as discussed above.  To repeat:
 
-#. At time :math:`t=0`, the :math:`X_0` is set to some fixed state or chosen from :math:`\psi`
+#. At time :math:`t=0`, the :math:`X_0` is set to some fixed state or chosen from :math:`\psi`.
 
-#. At each subsequent time :math:`t`, the new state :math:`X_{t+1}` is drawn from :math:`P(X_t, \cdot)`
+#. At each subsequent time :math:`t`, the new state :math:`X_{t+1}` is drawn from :math:`P(X_t, \cdot)`.
 
 In order to implement this simulation procedure, we need a method for generating draws from a discrete distribution.
 
-For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/python_index.html>`__
+For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/python_index.html>`__.
 
 
 
@@ -425,7 +425,7 @@ Using the `law of total probability <https://en.wikipedia.org/wiki/Law_of_total_
 In words, to get the probability of being at :math:`y` tomorrow, we account for
 all  ways this can happen and sum their probabilities.
 
-Rewriting this statement in terms of  marginal and conditional probabilities gives.
+Rewriting this statement in terms of  marginal and conditional probabilities gives
 
 .. _mc_fdd:
 
@@ -436,7 +436,7 @@ Rewriting this statement in terms of  marginal and conditional probabilities giv
 
 There are :math:`n` such equations, one for each :math:`y \in S`.
 
-If we think of :math:`\psi_{t+1}` and :math:`\psi_t` as *row vectors* (as is traditional in this literature), these :math:`n` equations are summarized by the matrix expression.
+If we think of :math:`\psi_{t+1}` and :math:`\psi_t` as *row vectors* (as is traditional in this literature), these :math:`n` equations are summarized by the matrix expression
 
 .. _mc_fddv:
 
@@ -542,9 +542,9 @@ To illustrate, recall our model of employment/unemployment dynamics for a given 
 
 Consider a large (i.e., tending to infinite) population of workers, each of whose lifetime experience is described by the specified dynamics, independent of one another.
 
-Let :math:`\psi` be the current *cross-sectional* distribution over :math:`\{ 0, 1 \}`
+Let :math:`\psi` be the current *cross-sectional* distribution over :math:`\{ 0, 1 \}`.
 
-* For example, :math:`\psi(0)` is the unemployment rate
+* For example, :math:`\psi(0)` is the unemployment rate.
 
 The cross-sectional distribution records the fractions of workers employed and unemployed at a given moment.
 
@@ -783,13 +783,13 @@ Mathematically, a stationary distribution is a fixed point of :math:`P` when :ma
 
 **Theorem.** Every stochastic matrix :math:`P` has at least one stationary distribution.
 
-(We are assuming here that the state space :math:`S` is finite; if not more assumptions are required).
+(We are assuming here that the state space :math:`S` is finite; if not more assumptions are required)
 
 For proof of this result, you can apply `Brouwer's fixed point theorem <https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem>`_, or see `EDTC <http://johnstachurski.net/edtc.html>`_, theorem 4.3.5.
 
-There may in fact be many stationary distributions corresponding to a given stochastic matrix :math:`P`
+There may in fact be many stationary distributions corresponding to a given stochastic matrix :math:`P`.
 
-* For example, if :math:`P` is the identity matrix, then all distributions are stationary
+* For example, if :math:`P` is the identity matrix, then all distributions are stationary.
 
 Since stationary distributions are long run equilibria, to get uniqueness we require that initial conditions are not infinitely persistent.
 
@@ -802,21 +802,21 @@ This gives some intuition for the following fundamental theorem.
 
 **Theorem.** If :math:`P` is both aperiodic and irreducible, then
 
-#. :math:`P` has exactly one stationary distribution :math:`\psi^*`
+#. :math:`P` has exactly one stationary distribution :math:`\psi^*`.
 
-#. For any initial distribution :math:`\psi_0`, we have :math:`\| \psi_0 P^t - \psi^* \| \to 0` as :math:`t \to \infty`
+#. For any initial distribution :math:`\psi_0`, we have :math:`\| \psi_0 P^t - \psi^* \| \to 0` as :math:`t \to \infty`.
 
 
 For a proof, see, for example, theorem 5.2 of :cite:`haggstrom2002finite`.
 
 (Note that part 1 of the theorem requires only irreducibility, whereas part 2
-requires both irreducibility and aperiodicity).
+requires both irreducibility and aperiodicity)
 
 A stochastic matrix satisfying the conditions of the theorem is sometimes called **uniformly ergodic**.
 
-One easy sufficient condition for aperiodicity and irreducibility is that every element of :math:`P` is strictly positive
+One easy sufficient condition for aperiodicity and irreducibility is that every element of :math:`P` is strictly positive.
 
-* Try to convince yourself of this
+* Try to convince yourself of this.
 
 
 
@@ -938,13 +938,13 @@ The convergence in the theorem is illustrated in the next figure
 
 Here
 
-* :math:`P` is the stochastic matrix for recession and growth :ref:`considered above <mc_eg2>`
+* :math:`P` is the stochastic matrix for recession and growth :ref:`considered above <mc_eg2>`.
 
-* The highest red dot is an arbitrarily chosen initial probability distribution  :math:`\psi`, represented as a vector in :math:`\mathbb R^3`
+* The highest red dot is an arbitrarily chosen initial probability distribution  :math:`\psi`, represented as a vector in :math:`\mathbb R^3`.
 
-* The other red dots are the distributions :math:`\psi P^t` for :math:`t = 1, 2, \ldots`
+* The other red dots are the distributions :math:`\psi P^t` for :math:`t = 1, 2, \ldots`.
 
-* The black dot is :math:`\psi^*`
+* The black dot is :math:`\psi^*`.
 
 The code for the figure can be found `here <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/finite_markov/mc_convergence_plot.py>`__ --- you might like to try experimenting with different initial conditions.
 
@@ -1176,7 +1176,7 @@ course
 
 .. figure:: /_static/lecture_specific/finite_markov/mc_ex1_plot.png
 
-(You don't need to add the fancy touches to the graph---see the solution if you're interested).
+(You don't need to add the fancy touches to the graph---see the solution if you're interested)
 
 
 
@@ -1191,7 +1191,7 @@ A topic of interest for economics and many other disciplines is *ranking*.
 Let's now consider one of the most practical and important ranking problems
 --- the rank assigned to web pages by search engines.
 
-(Although the problem is motivated from outside of economics, there is in fact a deep connection between search ranking systems and prices in certain competitive equilibria --- see :cite:`DLP2013`).
+(Although the problem is motivated from outside of economics, there is in fact a deep connection between search ranking systems and prices in certain competitive equilibria --- see :cite:`DLP2013`)
 
 To understand the issue, consider the set of results returned by a query to a web search engine.
 
@@ -1378,9 +1378,9 @@ The values :math:`P(x_i, x_j)` are computed to approximate the AR(1) process ---
 
 The exercise is to write a function ``approx_markov(rho, sigma_u, m=3, n=7)`` that returns
 :math:`\{x_0, \ldots, x_{n-1}\} \subset \mathbb R` and :math:`n \times n` matrix
-:math:`P` as described above
+:math:`P` as described above.
 
-* Even better, write a function that returns an instance of `QuantEcon.py's <http://quantecon.org/python_index.html>`__ `MarkovChain` class
+* Even better, write a function that returns an instance of `QuantEcon.py's <http://quantecon.org/python_index.html>`__ `MarkovChain` class.
 
 
 Solutions
@@ -1398,7 +1398,7 @@ Exercise 1
 ----------
 
 Compute the fraction of time that the worker spends unemployed, and
-compare it to the stationary probability
+compare it to the stationary probability.
 
 .. code-block:: python3
 
@@ -1520,7 +1520,7 @@ Exercise 3
 ----------
 
 A solution from the `QuantEcon.py <http://quantecon.org/python_index.html>`__ library
-can be found `here <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`__
+can be found `here <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`__.
 
 
 

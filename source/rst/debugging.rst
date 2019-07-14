@@ -72,7 +72,7 @@ This code is intended to plot the ``log`` function over the interval :math:`[1, 
 
 But there's an error here: ``plt.subplots(2, 1)`` should be just ``plt.subplots()``.
 
-(The call ``plt.subplots(2, 1)`` returns a NumPy array containing two axes objects, suitable for having two subplots on the same figure).
+(The call ``plt.subplots(2, 1)`` returns a NumPy array containing two axes objects, suitable for having two subplots on the same figure)
 
 The traceback shows that the error occurs at the method call ``ax.plot(x, np.log(x))``.
 
@@ -120,7 +120,7 @@ You should be dropped into a new prompt that looks something like this
 
     ipdb>
 
-(You might see `pdb>` instead).
+(You might see `pdb>` instead)
 
 Now we can investigate the value of our variables at this point in the program, step forward through the code, etc.
 
