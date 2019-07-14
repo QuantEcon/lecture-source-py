@@ -96,9 +96,9 @@ Python's popularity begin to spike in the first figure.
 
 Overall, it's clear that
 
-* Python is `one of the most popular programming languages worldwide <http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages>`__
+* Python is `one of the most popular programming languages worldwide <http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages>`__.
 
-* Python is a major tool for scientific computing, accounting for a rapidly rising share of scientific work around the globe
+* Python is a major tool for scientific computing, accounting for a rapidly rising share of scientific work around the globe.
 
 
 
@@ -110,11 +110,11 @@ Python is a `high-level language <https://en.wikipedia.org/wiki/High-level_progr
 
 It has a relatively small core language supported by many libraries.
 
-Other features:
+Other features
 
-* A multiparadigm language, in that multiple programming styles are supported (procedural, object-oriented, functional, etc.)
+* A multiparadigm language, in that multiple programming styles are supported (procedural, object-oriented, functional, etc.).
 
-* Interpreted rather than compiled
+* Interpreted rather than compiled.
 
 
 
@@ -159,9 +159,9 @@ It's either the dominant player or a major player in
 
 Its popularity in economics is also beginning to rise.
 
-This section briefly showcases some examples of Python for scientific programming
+This section briefly showcases some examples of Python for scientific programming.
 
-* All of these topics will be covered in detail later on
+* All of these topics will be covered in detail later on.
 
 
 Numerical Programming
@@ -186,7 +186,7 @@ For example, let's build some arrays
 
 
 
-Now let's take the inner product:
+Now let's take the inner product
 
 .. code-block:: python3
 
@@ -205,7 +205,7 @@ The `SciPy <http://www.scipy.org>`_ library is built on top of NumPy and provide
 
 .. _tuple_unpacking_example:
 
-For example, let's calculate :math:`\int_{-2}^2 \phi(z) dz` where :math:`\phi` is the standard normal density
+For example, let's calculate :math:`\int_{-2}^2 \phi(z) dz` where :math:`\phi` is the standard normal density.
 
 .. code-block:: python3
 
@@ -241,7 +241,7 @@ Graphics
 .. index::
     single: Matplotlib
 
-The most popular and comprehensive Python library for creating figures and graphs is `Matplotlib <http://matplotlib.org/>`_
+The most popular and comprehensive Python library for creating figures and graphs is `Matplotlib <http://matplotlib.org/>`_.
 
 * Plots, histograms, contour images, 3D, bar charts, etc., etc.
 
@@ -279,7 +279,7 @@ It's useful to be able to manipulate symbolic expressions, as in Mathematica or 
 .. index::
     single: SymPy
 
-The `SymPy <http://www.sympy.org/>`_ library provides this functionality from within the Python shell
+The `SymPy <http://www.sympy.org/>`_ library provides this functionality from within the Python shell.
 
 .. code-block:: python3
 
@@ -327,7 +327,7 @@ and calculate limits, derivatives and integrals
 
 The beauty of importing this functionality into Python is that we are working within a fully fledged programming language.
 
-Can easily create tables of derivatives, generate LaTeX output, add it to figures, etc., etc..
+Can easily create tables of derivatives, generate LaTeX output, add it to figures, etc., etc.
 
 
 Statistics
@@ -405,7 +405,7 @@ One well-known example is `NetworkX <http://networkx.github.io/>`_
 
 * etc., etc.
 
-Here's some example code that generates and plots a random graph, with node color determined by shortest path length from a central node
+Here's some example code that generates and plots a random graph, with node color determined by shortest path length from a central node.
 
 .. code-block:: ipython
 
@@ -484,12 +484,12 @@ Apart from the cloud computing options listed above, you might like to consider
 .. index::
     single: parallel computing; ipython
 
-* `Parallel computing through IPython clusters <http://ipython.org/ipython-doc/stable/parallel/parallel_demos.html>`_
+* `Parallel computing through IPython clusters <http://ipython.org/ipython-doc/stable/parallel/parallel_demos.html>`_.
 
 .. index::
     single: parallel computing; starcluster
 
-* The `Starcluster <http://star.mit.edu/cluster/>`_ interface to Amazon's EC2
+* The `Starcluster <http://star.mit.edu/cluster/>`_ interface to Amazon's EC2.
 
 .. index::
     single: parallel computing; copperhead
@@ -497,7 +497,7 @@ Apart from the cloud computing options listed above, you might like to consider
 .. index::
     single: parallel computing; pycuda
 
-* GPU programming through `PyCuda <https://wiki.tiker.net/PyCuda>`_, `PyOpenCL <https://mathema.tician.de/software/pyopencl/>`_, `Theano <http://deeplearning.net/software/theano/>`_ or similar
+* GPU programming through `PyCuda <https://wiki.tiker.net/PyCuda>`_, `PyOpenCL <https://mathema.tician.de/software/pyopencl/>`_, `Theano <http://deeplearning.net/software/theano/>`_ or similar.
 
 
 
@@ -526,18 +526,18 @@ Some representative examples include
 .. index::
     single: scientific programming; Blaze
 
-* `Blaze <http://blaze.pydata.org/>`_ --- a generalization of NumPy
+* `Blaze <http://blaze.pydata.org/>`_ --- a generalization of NumPy.
 
 
 .. index::
     single: scientific programming; PyTables
 
-* `PyTables <http://www.pytables.org>`_ --- manage large data sets
+* `PyTables <http://www.pytables.org>`_ --- manage large data sets.
 
 .. index::
     single: scientific programming; CVXPY
 
-* `CVXPY <https://github.com/cvxgrp/cvxpy>`_ --- convex optimization in Python
+* `CVXPY <https://github.com/cvxgrp/cvxpy>`_ --- convex optimization in Python.
 
 
 
@@ -546,15 +546,15 @@ Learn More
 ============
 
 
-* Browse some Python projects on `GitHub <https://github.com/trending?l=python>`_
+* Browse some Python projects on `GitHub <https://github.com/trending?l=python>`_.
 
-* Have a look at `some of the Jupyter notebooks <http://nbviewer.jupyter.org/>`_ people have shared on various scientific topics
+* Have a look at `some of the Jupyter notebooks <http://nbviewer.jupyter.org/>`_ people have shared on various scientific topics.
 
 .. index::
     single: Python; PyPI
 
-* Visit the `Python Package Index <https://pypi.org/>`_
+* Visit the `Python Package Index <https://pypi.org/>`_.
 
-* View some of the questions people are asking about Python on `Stackoverflow <http://stackoverflow.com/questions/tagged/python>`_
+* View some of the questions people are asking about Python on `Stackoverflow <http://stackoverflow.com/questions/tagged/python>`_.
 
-* Keep up to date on what's happening in the Python community with the `Python subreddit <https://www.reddit.com:443/r/Python/>`_
+* Keep up to date on what's happening in the Python community with the `Python subreddit <https://www.reddit.com:443/r/Python/>`_.
