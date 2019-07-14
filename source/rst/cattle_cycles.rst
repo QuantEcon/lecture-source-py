@@ -19,7 +19,7 @@ Cattle Cycles
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
-In addition to what's in Anaconda, this lecture uses the quantecon library
+In addition to what's in Anaconda, this lecture uses the quantecon library.
 
 .. code-block:: ipython
   :class: hide-output
@@ -187,7 +187,7 @@ We set
 To map this into our class, we set :math:`f_1^2 = \frac{\Psi_1}{2}`,
 :math:`f_2^2 = \frac{\Psi_2}{2}`, :math:`f_3^2 = \frac{\Psi_3}{2}`,
 :math:`2f_1f_2 = 1`, :math:`2f_3f_4 = \gamma_0g`,
-:math:`2f_5f_6 = \gamma_1g`
+:math:`2f_5f_6 = \gamma_1g`.
 
 .. code-block:: python3
 
@@ -274,7 +274,7 @@ preference matrices below.
 
 We also construct two extra information matrices, corresponding to cases
 when :math:`\rho_3 = 1` and :math:`\rho_3 = 0` (as opposed to the
-baseline case of :math:`\rho_3 = 0.6`)
+baseline case of :math:`\rho_3 = 0.6`).
 
 .. code-block:: python3
 

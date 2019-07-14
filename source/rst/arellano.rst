@@ -108,19 +108,19 @@ The only credit instrument available to the government is a one-period bond trad
 
 The bond market has the following features
 
-* The bond matures in one period and is not state contingent
+* The bond matures in one period and is not state contingent.
 
 * A purchase of a bond with face value :math:`B'` is a claim to :math:`B'` units of the
-  consumption good next period
+  consumption good next period.
 
-* To purchase :math:`B'`  next period costs :math:`q B'` now, or, what is equivalent
+* To purchase :math:`B'`  next period costs :math:`q B'` now, or, what is equivalent.
 
-* For selling :math:`-B'` units of next period goods the seller earns :math:`- q B'` of today's goods
+* For selling :math:`-B'` units of next period goods the seller earns :math:`- q B'` of today's goods.
 
 
-    * if :math:`B' < 0`, then :math:`-q B'` units of the good are received in the current period, for a promise to repay :math:`-B'` units next period
+    * If :math:`B' < 0`, then :math:`-q B'` units of the good are received in the current period, for a promise to repay :math:`-B'` units next period.
 
-    * there is an equilibrium  price function :math:`q(B', y)` that makes :math:`q` depend on both :math:`B'` and :math:`y`
+    * There is an equilibrium  price function :math:`q(B', y)` that makes :math:`q` depend on both :math:`B'` and :math:`y`.
 
 
 Earnings on the government portfolio are distributed (or, if negative, taxed) lump sum to households.
@@ -136,9 +136,9 @@ When the government is not excluded from financial markets, the one-period natio
 
 Here and below, a prime denotes a next period value or a claim maturing next period.
 
-To rule out Ponzi schemes, we also require that :math:`B \geq -Z` in every period
+To rule out Ponzi schemes, we also require that :math:`B \geq -Z` in every period.
 
-* :math:`Z` is chosen to be sufficiently large that the constraint never binds in equilibrium
+* :math:`Z` is chosen to be sufficiently large that the constraint never binds in equilibrium.
 
 
 Financial Markets
@@ -185,11 +185,11 @@ If the government defaults in the current period, then consumption equals curren
 
 But a sovereign default has two consequences:
 
-#. Output immediately falls from :math:`y` to :math:`h(y)`, where :math:`0 \leq h(y) \leq y`
+#. Output immediately falls from :math:`y` to :math:`h(y)`, where :math:`0 \leq h(y) \leq y`.
 
-     * it returns to :math:`y` only after the country regains access to  international credit markets
+     * It returns to :math:`y` only after the country regains access to  international credit markets.
 
-#. The country loses access to foreign credit markets
+#. The country loses access to foreign credit markets.
 
 Reentering International Credit Market
 ---------------------------------------
@@ -206,7 +206,7 @@ Equilibrium
 
 Informally, an equilibrium is a sequence of interest rates on its sovereign debt, a stochastic sequence of government default decisions  and an implied flow of household consumption such that
 
-#. Consumption and assets satisfy the national budget constraint
+#. Consumption and assets satisfy the national budget constraint.
 
 #. The government maximizes household utility taking into account
 
@@ -216,7 +216,7 @@ Informally, an equilibrium is a sequence of interest rates on its sovereign debt
 
    * consequences of defaulting now for future net output and future borrowing and lending opportunities
 
-#. The interest rate on the government's debt includes a risk-premium sufficient to make foreign creditors expect on average to earn the constant risk-free international interest rate
+#. The interest rate on the government's debt includes a risk-premium sufficient to make foreign creditors expect on average to earn the constant risk-free international interest rate.
 
 
 To express these ideas more precisely, consider first the choices of the
@@ -335,38 +335,38 @@ After that we'll perform some additional simulations.
 
 The majority of the code below was written by `Chase Coleman <https://github.com/cc7768>`_.
 
-It uses a slightly modified version of the algorithm recommended by Arellano
+It uses a slightly modified version of the algorithm recommended by Arellano.
 
 * The appendix to :cite:`arellano2008default` recommends
-  value function iteration until convergence, updating the price, and then repeating
+  value function iteration until convergence, updating the price, and then repeating.
 
-* Instead, we update the bond price at every value function iteration step
+* Instead, we update the bond price at every value function iteration step.
 
 The second approach is faster and the two different procedures deliver very similar results.
 
 
 Here is a more detailed description of our algorithm:
 
-1. Guess a value function :math:`v(B, y)` and price function :math:`q(B', y)`
+1. Guess a value function :math:`v(B, y)` and price function :math:`q(B', y)`.
 
 2. At each pair :math:`(B, y)`,
 
-   * update the value of defaulting :math:`v_d(y)`
+   * update the value of defaulting :math:`v_d(y)`.
 
-   * update the value of continuing :math:`v_c(B, y)`
+   * update the value of continuing :math:`v_c(B, y)`.
 
-3.  Update the value function :math:`v(B, y)`, the default rule,  the implied ex ante default probability,  and the price function
+3.  Update the value function :math:`v(B, y)`, the default rule,  the implied ex ante default probability,  and the price function.
 
-4. Check for convergence. If converged, stop -- if not, go to step 2
+4. Check for convergence. If converged, stop -- if not, go to step 2.
 
-We use simple discretization on a grid of asset holdings and income levels
+We use simple discretization on a grid of asset holdings and income levels.
 
-.. note that the next line will need to be changed when we add a Julia version
+.. note that the next line will need to be changed when we add a Julia version.
 
 The output process is discretized using `Tauchen's quadrature method <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`_.
 
 
-:ref:`Numba <numba_link>` has been used in two places to speed up the code
+:ref:`Numba <numba_link>` has been used in two places to speed up the code.
 
 
 .. literalinclude:: /_static/lecture_specific/arellano/arellano_vfi.py
@@ -381,15 +381,15 @@ Let's start by trying to replicate the results obtained in :cite:`arellano2008de
 
 In what follows, all results are computed using Arellano's parameter values.
 
-The values can be seen in the ``__init__`` method of the ``Arellano_Economy`` shown above
+The values can be seen in the ``__init__`` method of the ``Arellano_Economy`` shown above.
 
 * For example, ``r=0.017`` matches the average quarterly rate on a 5 year US treasury
-  over the period 1983--2001
+  over the period 1983--2001.
 
 Details on how to compute the figures are reported as solutions to the exercises.
 
 
-The first figure shows the bond price schedule and replicates Figure 3 of Arellano, where :math:`y_L` and :math:`Y_H` are particular below average and above average values of output :math:`y`
+The first figure shows the bond price schedule and replicates Figure 3 of Arellano, where :math:`y_L` and :math:`Y_H` are particular below average and above average values of output :math:`y`.
 
 .. figure:: /_static/lecture_specific/arellano/arellano_bond_prices.png
 
@@ -405,12 +405,12 @@ Here's the same relationships computed on a finer grid (``ny, nB = 51, 551``)
 
 In either case, the figure shows that
 
-* Higher levels of debt (larger :math:`-B'`) induce larger discounts on the face value, which correspond to  higher interest rates
+* Higher levels of debt (larger :math:`-B'`) induce larger discounts on the face value, which correspond to  higher interest rates.
 
-* Lower income also causes more discounting, as foreign creditors anticipate greater likelihood of default
+* Lower income also causes more discounting, as foreign creditors anticipate greater likelihood of default.
 
 
-The next figure plots value functions and replicates the right hand panel of Figure 4 of :cite:`arellano2008default`
+The next figure plots value functions and replicates the right hand panel of Figure 4 of :cite:`arellano2008default`.
 
 .. figure:: /_static/lecture_specific/arellano/arellano_value_funcs.png
 
@@ -419,7 +419,7 @@ We can use the results of the computation to study the default probability
 :math:`\delta(B', y)` defined in :eq:`delta`.
 
 The next plot shows these default probabilities over :math:`(B', y)` as a heat
-map
+map.
 
 .. figure:: /_static/lecture_specific/arellano/arellano_default_probs.png
 
@@ -428,7 +428,7 @@ following period increases with indebtedness and falls with income.
 
 Next let's run a time series simulation of :math:`\{y_t\}`, :math:`\{B_t\}` and :math:`q(B_{t+1}, y_t)`.
 
-The grey vertical bars correspond to periods when the economy is excluded from financial markets because of a past default
+The grey vertical bars correspond to periods when the economy is excluded from financial markets because of a past default.
 
 .. figure:: /_static/lecture_specific/arellano/arellano_time_series.png
 
@@ -447,9 +447,9 @@ Exercise 1
 
 To the extent that you can, replicate the figures shown above
 
-* Use the parameter values listed as defaults in the ``__init__`` method of the ``Arellano_Economy``
+* Use the parameter values listed as defaults in the ``__init__`` method of the ``Arellano_Economy``.
 
-* The time series will of course vary depending on the shock draws
+* The time series will of course vary depending on the shock draws.
 
 
 Solutions

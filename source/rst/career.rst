@@ -47,9 +47,9 @@ We begin with some imports
 Model Features
 ----------------
 
-* Career and job within career both chosen to maximize expected discounted wage flow
+* Career and job within career both chosen to maximize expected discounted wage flow.
 
-* Infinite horizon dynamic programming with two state variables
+* Infinite horizon dynamic programming with two state variables.
 
 
 Model
@@ -157,7 +157,7 @@ Nice properties:
 * very flexible class of distributions, including uniform, symmetric unimodal, etc.
 * only three parameters
 
-Here's a figure showing the effect on the pmf of different shape parameters when :math:`n=50`
+Here's a figure showing the effect on the pmf of different shape parameters when :math:`n=50`.
 
 .. code-block:: python3
 
@@ -184,7 +184,7 @@ Implementation
 ==============================================
 
 We will first create a class ``CareerWorkerProblem`` which will hold the
-default parameterizations of the model and an initial guess for the value function
+default parameterizations of the model and an initial guess for the value function.
 
 .. code-block:: python3
 
@@ -219,7 +219,7 @@ The following function takes an instance of ``CareerWorkerProblem`` and returns
 the corresponding Bellman operator :math:`T` and the greedy policy function.
 
 In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II, III\}`, where
-:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`
+:math:`I`, :math:`II` and :math:`III` are as given in :eq:`eyes`.
 
 .. code-block:: python3
 
@@ -275,7 +275,7 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
         return T, get_greedy
 
 Lastly, ``solve_model`` will  take an instance of ``CareerWorkerProblem`` and
-iterate using the Bellman operator to find the fixed point of the value function
+iterate using the Bellman operator to find the fixed point of the value function.
 
 .. code-block:: python3
 
@@ -351,19 +351,19 @@ And here is the optimal policy
 
 Interpretation:
 
-* If both job and career are poor or mediocre, the worker will experiment with a new job and new career
+* If both job and career are poor or mediocre, the worker will experiment with a new job and new career.
 
-* If career is sufficiently good, the worker will hold it and experiment with new jobs until a sufficiently good one is found
+* If career is sufficiently good, the worker will hold it and experiment with new jobs until a sufficiently good one is found.
 
-* If both job and career are good, the worker will stay put
+* If both job and career are good, the worker will stay put.
 
 
 Notice that the worker will always hold on to a sufficiently good career, but not necessarily hold on to even the best paying job.
 
 The reason is that high lifetime wages require both variables to be large, and
-the worker cannot change careers without changing jobs
+the worker cannot change careers without changing jobs.
 
-* Sometimes a good job must be sacrificed in order to change to a better career
+* Sometimes a good job must be sacrificed in order to change to a better career.
 
 Exercises
 =============
@@ -435,7 +435,7 @@ Simulate job/career paths.
 
 In reading the code, recall that ``optimal_policy[i, j]`` = policy at
 :math:`(\theta_i, \epsilon_j)` = either 1, 2 or 3; meaning 'stay put',
-'new job' and 'new life'
+'new job' and 'new life'.
 
 .. code-block:: python3
 

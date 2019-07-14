@@ -68,16 +68,16 @@ Chang's set-to-set  operator :math:`\tilde D(Z)` to
 compute a set of values associated with sustainable plans.
 
 Chang's operator :math:`\tilde D(Z)` is closely connected with the operator
-:math:`D(Z)` introduced in lecture :doc:`competitive equilibria in the Chang model<chang_ramsey>`
+:math:`D(Z)` introduced in lecture :doc:`competitive equilibria in the Chang model<chang_ramsey>`.
 
 * :math:`\tilde D(Z)` incorporates all of the restrictions imposed in
-  constructing the operator :math:`D(Z)`, but :math:`\ldots`
+  constructing the operator :math:`D(Z)`, but :math:`\ldots`.
 
 * It adds some additional restrictions
 
-   * these additional restrictions incorporate the idea that a plan must be *sustainable*
+   * these additional restrictions incorporate the idea that a plan must be *sustainable*.
 
-   * *sustainable* means that the government wants to implement it at all times after all histories
+   * *sustainable* means that the government wants to implement it at all times after all histories.
 
 
 
@@ -333,40 +333,40 @@ Competitive Equilibrium
 
 **Definition:**
 
-* A *government policy* is a pair of sequences :math:`(\vec h,\vec x)` where :math:`h_t \in \Pi  \ \forall t \geq 0`
+* A *government policy* is a pair of sequences :math:`(\vec h,\vec x)` where :math:`h_t \in \Pi  \ \forall t \geq 0`.
 
-* A *price system* is a non-negative value of money sequence :math:`\vec q`
+* A *price system* is a non-negative value of money sequence :math:`\vec q`.
 
-* An *allocation* is a  triple of non-negative sequences :math:`(\vec c, \vec m, \vec y)`
+* An *allocation* is a  triple of non-negative sequences :math:`(\vec c, \vec m, \vec y)`.
 
 It is required that time :math:`t` components :math:`(m_t, x_t, h_t) \in E`.
 
-**Definition:**.
+**Definition:**
 
 Given :math:`M_{-1}`, a government policy :math:`(\vec h, \vec x)`, price system :math:`\vec q`, and allocation
 :math:`(\vec c, \vec m, \vec y)` are said to be a *competitive equilibrium* if
 
-* :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`
+* :math:`m_t = q_t M_t` and :math:`y_t = f(x_t)`.
 
-* The government budget constraint is satisfied
+* The government budget constraint is satisfied.
 
-* Given :math:`\vec q, \vec x, \vec y`, :math:`(\vec c, \vec m)` solves the household’s problem
+* Given :math:`\vec q, \vec x, \vec y`, :math:`(\vec c, \vec m)` solves the household’s problem.
 
 A Credible Government Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Chang works with.
+Chang works with
 
 
 **A credible government policy with a recursive representation**
 
-* Here there is no time :math:`0` Ramsey planner
+* Here there is no time :math:`0` Ramsey planner.
 
 * Instead there is a sequence of governments, one for each :math:`t`, that
-  choose time :math:`t` government actions after forecasting what future governments will do
+  choose time :math:`t` government actions after forecasting what future governments will do.
 
 * Let :math:`w=\sum_{t=0}^\infty \beta^t \left[ u(c_t) + v(q_t M_t ) \right]`
-  be a value associated with a particular competitive equilibrium
+  be a value associated with a particular competitive equilibrium.
 
 * A recursive representation of a credible government policy is a pair of
   initial conditions :math:`(w_0, \theta_0)` and a five-tuple of functions
@@ -376,7 +376,7 @@ Chang works with.
     h(w_t, \theta_t), m(h_t, w_t, \theta_t), x(h_t, w_t, \theta_t), \chi(h_t, w_t, \theta_t),\Psi(h_t, w_t, \theta_t)
 
   mapping :math:`w_t,\theta_t` and in some cases :math:`h_t` into
-  :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively
+  :math:`\hat h_t, m_t, x_t, w_{t+1}`, and :math:`\theta_{t+1}`, respectively.
 
 * Starting from an initial condition :math:`(w_0, \theta_0)`, a credible
   government policy can be constructed by iterating on these functions in
@@ -397,7 +397,7 @@ Chang works with.
 * Here it is to be understood that :math:`\hat h_t` is the action that the
   government policy instructs the government to take, while :math:`h_t`
   possibly not equal to :math:`\hat h_t` is some other action that the
-  government is free to take at time :math:`t`
+  government is free to take at time :math:`t`.
 
 The plan is *credible* if it is in the time :math:`t` government’s interest to
 execute it.
@@ -454,7 +454,7 @@ ii.  Given :math:`\sigma`, :math:`\alpha` is competitive.
 iii. After any history :math:`\vec h^{t-1}`, the continuation of :math:`\sigma`
      is optimal for the government; i.e., the sequence :math:`\vec h_t` induced
      by :math:`\sigma` after :math:`\vec h^{t-1}` maximizes over :math:`CE_\pi`
-     given :math:`\alpha`
+     given :math:`\alpha`.
 
 Given any history :math:`\vec h^{t-1}`, the continuation of a sustainable plan is a
 sustainable plan.
@@ -494,15 +494,15 @@ following components:
 i.   A period :math:`0` action :math:`\hat h \in \Pi` that the public
      expects the government to take, together with subsequent within-period
      consequences :math:`m(\hat h), x(\hat h)` when the government acts as
-     expected
+     expected.
 
 ii.  For any first-period action :math:`h \neq \hat h` with
      :math:`h \in CE_\pi^0`, a pair of within-period consequences
      :math:`m(h), x(h)` when the government does not act as the public had
-     expected
+     expected.
 
 iii. For every :math:`h \in \Pi`, a pair
-     :math:`(w'(h), \theta'(h))\in S` to carry into next period
+     :math:`(w'(h), \theta'(h))\in S` to carry into next period.
 
 These components must be such that it is optimal for the government to
 choose :math:`\hat h` as expected; and for every possible
@@ -566,7 +566,7 @@ Condition :eq:`eqn_chang14` requires that the plan deter the government from wan
 take one-shot deviations when candidate continuation values are drawn
 from :math:`Z`.
 
-**Proposition:**.
+**Proposition:**
 
 i.  If :math:`Z \subset \tilde D(Z)`, then :math:`\tilde D(Z) \subset S` (‘self-generation’).
 
@@ -671,21 +671,21 @@ Consequently, to implement this operator we just need to add one step to
 our *outer hyperplane approximation algorithm* :
 
 1. Initialize subgradients, :math:`H`, and hyperplane levels,
-   :math:`C_0`
+   :math:`C_0`.
 
 2. Given a set of subgradients, :math:`H`, and hyperplane levels,
-   :math:`C_t`, calculate :math:`BR(S_t)`
+   :math:`C_t`, calculate :math:`BR(S_t)`.
 
 3. Given :math:`H`, :math:`C_t`, and :math:`BR(S_t)`, for each
    subgradient :math:`h_i \in H`:
 
    -  Solve a linear program (described below) for each action in the
-      action space
+      action space.
 
    -  Find the maximum and update the corresponding hyperplane level,
-      :math:`C_{i,t+1}`
+      :math:`C_{i,t+1}`.
 
-4. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2
+4. If :math:`|C_{t+1}-C_t| > \epsilon`, return to 2.
 
 **Step 1** simply creates a large initial set :math:`S_0`.
 
@@ -764,7 +764,7 @@ equilibrium set, once with :math:`\beta = 0.3` and once with
 sets, which we described in  :doc:`competitive equilibria in the Chang model<chang_ramsey>`.
 
 (We have set the number of subgradients to 10 in order to speed up the
-code for now. We can increase accuracy by increasing the number of subgradients).
+code for now. We can increase accuracy by increasing the number of subgradients)
 
 The following code computes sustainable plans
 
@@ -790,7 +790,7 @@ Let's compute two examples, one with a low :math:`\beta`, another with a higher 
     ch1.solve_sustainable()
 
 The following plot shows both the set of :math:`w,\theta` pairs associated with competitive equilibria (in red)
-and the smaller set of :math:`w,\theta` pairs associated with  sustainable plans (in blue)
+and the smaller set of :math:`w,\theta` pairs associated with  sustainable plans (in blue).
 
 
 .. code-block:: ipython
