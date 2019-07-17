@@ -21,16 +21,11 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 .. note::
 
-    The current version of `numba=0.43.1` (which is distributed with `anaconda`) 
+    The current version of :code:`numba=0.43.1` (which is distributed with `anaconda`) 
     throws an error with the quantecon package. To get this lecture to run you will 
-    need to use a newer version: `numba=0.44.1+`. To install this using conda you
-    will need to update `numba` using conda by running:
-
-    .. code-block: bash
-
-        conda install numba=0.44.1
-
-    in a terminal
+    need to use a newer version: :code:`numba=0.44.1+`. To install this using conda you
+    will need to update `numba` using conda by running: :code:`conda install numba=0.44.1`
+    in a terminal.
 
 Overview
 ============
