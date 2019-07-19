@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-*************************
+*****
 Numba
-*************************
+*****
 
 .. contents:: :depth: 2
 
@@ -16,7 +16,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 
 In our lecture on :doc:`NumPy <numpy>`, we learned one method to improve speed and efficiency in numerical work.
@@ -45,7 +45,7 @@ It can also do other tricks such as facilitate multithreading (a form of paralle
 
 
 The Need for Speed
------------------------
+------------------
 
 To understand what Numba does and why, we need some background knowledge.
 
@@ -73,9 +73,9 @@ High productivity languages should be chosen over high-speed languages for the g
 
 This is because
 
-#. Of any given program, relatively few lines are ever going to be time-critical
+#. Of any given program, relatively few lines are ever going to be time-critical.
 
-#. For those lines of code that *are* time-critical, we can achieve C-like speed using a combination of NumPy and Numba
+#. For those lines of code that *are* time-critical, we can achieve C-like speed using a combination of NumPy and Numba.
 
 This lecture provides a guide.
 
@@ -84,13 +84,13 @@ This lecture provides a guide.
 
 
 Where are the Bottlenecks?
-=============================
+==========================
 
 Let's start by trying to understand why high-level languages like Python are slower than compiled code.
 
 
 Dynamic Typing
---------------------
+--------------
 
 .. index::
     single: Dynamic Typing
@@ -125,14 +125,14 @@ If ``a`` and ``b`` are lists, then ``a + b`` requires list concatenation
 
 
 (We say that the operator ``+`` is *overloaded* --- its action depends on the
-type of the objects on which it acts).
+type of the objects on which it acts)
 
 As a result, Python must check the type of the objects and then call the correct operation.
 
 This involves substantial overheads.
 
 Static Types
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 .. index::
     single: Static Types
@@ -161,38 +161,38 @@ The variables ``i`` and ``sum`` are explicitly declared to be integers.
 Hence, the meaning of addition here is completely unambiguous.
 
 Data Access
---------------------
+-----------
 
 Another drag on speed for high-level languages is data access.
 
 To illustrate, let's consider the problem of summing some data --- say, a collection of integers.
 
 Summing with Compiled Code
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In C or Fortran, these integers would typically be stored in an array, which
 is a simple data structure for storing homogeneous data.
 
 Such an array is stored in a single contiguous block of memory
 
-* In modern computers, memory addresses are allocated to each byte (one byte = 8 bits)
+* In modern computers, memory addresses are allocated to each byte (one byte = 8 bits).
 
-* For example, a 64 bit integer is stored in 8 bytes of memory
+* For example, a 64 bit integer is stored in 8 bytes of memory.
 
-* An array of :math:`n` such integers occupies :math:`8n` **consecutive** memory slots
+* An array of :math:`n` such integers occupies :math:`8n` **consecutive** memory slots.
 
-Moreover, the compiler is made aware of the data type by the programmer
+Moreover, the compiler is made aware of the data type by the programmer.
 
 * In this case 64 bit integers
 
 Hence, each successive data point can be accessed by shifting forward in memory
-space by a known and fixed amount
+space by a known and fixed amount.
 
 * In this case 8 bytes
 
 
 Summing in Pure Python
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 Python tries to replicate these ideas to some degree.
 
@@ -216,15 +216,15 @@ Let's look at some ways around these problems.
 .. index::
     single: Python; Vectorization
 
-Vectorization is about sending batches of related operations to native machine code
+Vectorization is about sending batches of related operations to native machine code.
 
-* The machine code itself is typically compiled from carefully optimized C or Fortran
+* The machine code itself is typically compiled from carefully optimized C or Fortran.
 
 This can greatly accelerate many (but not all) numerical computations.
 
 
 Operations on Arrays
-----------------------
+--------------------
 
 .. index::
     single: Vectorization; Operations on Arrays
@@ -288,7 +288,7 @@ The next section illustrates this point.
 
 
 Universal Functions
---------------------------
+-------------------
 
 .. index::
     single: NumPy; Universal Functions
@@ -356,9 +356,9 @@ Here's a plot of :math:`f`
 
 To maximize it, we're going to use a naive grid search:
 
-#. Evaluate :math:`f` for all :math:`(x,y)` in a grid on the square
+#. Evaluate :math:`f` for all :math:`(x,y)` in a grid on the square.
 
-#. Return the maximum of observed values
+#. Return the maximum of observed values.
 
 Here's a non-vectorized version that uses Python loops
 
@@ -398,13 +398,13 @@ In the vectorized version, all the looping takes place in compiled code.
 
 As you can see, the second version is **much** faster.
 
-(We'll make it even faster again below when we discuss Numba).
+(We'll make it even faster again below when we discuss Numba)
 
 
 .. _numba-p_c_vectorization:
 
 Pros and Cons of Vectorization
-----------------------------------------
+------------------------------
 
 At its best, vectorization yields fast, simple code.
 
@@ -448,7 +448,7 @@ Moreover, the "hot loops" at the heart of our code that we need to speed up are 
 
 
 Prerequisites
-------------------
+-------------
 
 If you :doc:`followed our set up instructions <getting_started>`, then Numba should be installed.
 
@@ -461,7 +461,7 @@ Make sure you have the latest version of Anaconda by running ``conda update anac
 .. _quad_map_eg:
 
 An Example
-------------------
+----------
 
 Let's consider some problems that are difficult to vectorize.
 
@@ -539,7 +539,7 @@ Your mileage will of course vary depending on hardware and so on.
 Nonetheless, two orders of magnitude is huge relative to how simple and clear the implementation is.
 
 Decorator Notation
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 If you don't need a separate name for the "numbafied" version of ``qm``,
 you can just put ``@jit`` before the function
@@ -563,7 +563,7 @@ This is equivalent to ``qm = jit(qm)``.
 
 
 How and When it Works
---------------------------
+---------------------
 
 Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_.
 
@@ -589,7 +589,7 @@ This will give you much better performance than blanketing your Python programs 
 
 
 A Gotcha: Global Variables
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Consider the following example
 
@@ -618,7 +618,7 @@ When Numba compiles machine code for functions, it treats global variables as co
 
 
 Numba for Vectorization
---------------------------
+-----------------------
 
 Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator.
 

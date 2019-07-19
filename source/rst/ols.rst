@@ -2,9 +2,9 @@
 
 .. highlight:: python3
 
-*******************************
+***************************
 Linear Regression in Python
-*******************************
+***************************
 
 .. contents:: :depth: 2
 
@@ -16,7 +16,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install linearmodels
 
 Overview
-============
+========
 
 
 Linear regression is a standard tool for analyzing the relationship between two or more variables.
@@ -30,9 +30,9 @@ Along the way, we'll discuss a variety of topics, including
 -  endogeneity and omitted variable bias
 -  two-stage least squares
 
-As an example, we will replicate results from Acemoglu, Johnson and Robinson's seminal paper :cite:`Acemoglu2001`
+As an example, we will replicate results from Acemoglu, Johnson and Robinson's seminal paper :cite:`Acemoglu2001`.
 
-* You can download a copy `here <https://economics.mit.edu/files/4123>`__
+* You can download a copy `here <https://economics.mit.edu/files/4123>`__.
 
 In the paper, the authors emphasize the importance of institutions in economic development.
 
@@ -53,14 +53,14 @@ For an introductory text covering these topics, see, for example,
 
 
 Comments
--------------
+--------
 
 This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__.
 
 
 
 Simple Linear Regression
-===========================================
+========================
 
 :cite:`Acemoglu2001` wish to determine whether or not differences in institutions can help to explain observed economic outcomes.
 
@@ -68,9 +68,9 @@ How do we measure *institutional differences* and *economic outcomes*?
 
 In this paper,
 
--  economic outcomes are proxied by log GDP per capita in 1995, adjusted for exchange rates
+-  economic outcomes are proxied by log GDP per capita in 1995, adjusted for exchange rates.
 
--  institutional differences are proxied by an index of protection against expropriation on average over 1985-95, constructed by the `Political Risk Services Group <https://www.prsgroup.com/>`__
+-  institutional differences are proxied by an index of protection against expropriation on average over 1985-95, constructed by the `Political Risk Services Group <https://www.prsgroup.com/>`__.
 
 These variables and other data used in the paper are available for download on Daron Acemoglu's `webpage <https://economics.mit.edu/faculty/acemoglu/data/ajr2001>`__.
 
@@ -169,7 +169,7 @@ The most common technique to estimate the parameters (:math:`\beta`'s)
 of the linear model is Ordinary Least Squares (OLS).
 
 As the name implies, an OLS model is solved by finding the parameters
-that minimize *the sum of squared residuals*, ie.
+that minimize *the sum of squared residuals*, i.e.
 
 .. math::
 
@@ -221,7 +221,7 @@ method.
 
 Note that an observation was mistakenly dropped from the results in the
 original paper (see the note located in `maketable2.do` from Acemoglu's webpage), and thus the
-coefficients differ slightly
+coefficients differ slightly.
 
 .. code-block:: python3
 
@@ -231,17 +231,17 @@ coefficients differ slightly
 
 From our results, we see that
 
--  The intercept :math:`\hat{\beta}_0 = 4.63`
--  The slope :math:`\hat{\beta}_1 = 0.53`
--  The positive :math:`\hat{\beta}_1` parameter estimate implies that
+-  The intercept :math:`\hat{\beta}_0 = 4.63`.
+-  The slope :math:`\hat{\beta}_1 = 0.53`.
+-  The positive :math:`\hat{\beta}_1` parameter estimate implies that.
    institutional quality has a positive effect on economic outcomes, as
-   we saw in the figure
+   we saw in the figure.
 -  The p-value of 0.000 for :math:`\hat{\beta}_1` implies that the
    effect of institutions on GDP is statistically significant (using p <
-   0.05 as a rejection rule)
+   0.05 as a rejection rule).
 -  The R-squared value of 0.611 indicates that around 61% of variation
    in log GDP per capita is explained by protection against
-   expropriation
+   expropriation.
 
 Using our parameter estimates, we can now write our estimated
 relationship as
@@ -258,7 +258,7 @@ a value of the index of expropriation protection.
 
 For example, for a country with an index value of 7.07 (the average for
 the dataset), we find that their predicted level of log GDP per capita
-in 1995 is 8.38
+in 1995 is 8.38.
 
 .. code-block:: python3
 
@@ -426,7 +426,7 @@ today.
 Using a scatterplot (Figure 3 in :cite:`Acemoglu2001`), we can see protection
 against expropriation is negatively correlated with settler mortality
 rates, coinciding with the authors' hypothesis and satisfying the first
-condition of a valid instrument
+condition of a valid instrument.
 
 .. code-block:: python3
 
@@ -465,16 +465,16 @@ For example, settler mortality rates may be related to the current disease envir
 :cite:`Acemoglu2001` argue this is unlikely because:
 
 -  The majority of settler deaths were due to malaria and yellow fever
-   and had a limited effect on local people
+   and had a limited effect on local people.
 
 -  The disease burden on local people in Africa or India, for example,
    did not appear to be higher than average, supported by relatively
-   high population densities in these areas before colonization
+   high population densities in these areas before colonization.
 
 As we appear to have a valid instrument, we can use 2SLS regression to
 obtain consistent and unbiased parameter estimates.
 
-**First stage**.
+**First stage**
 
 The first stage involves regressing the endogenous variable
 (:math:`{avexpr}_i`) on the instrument.
@@ -512,7 +512,7 @@ used for estimation)
     print(results_fs.summary())
 
 
-**Second stage**.
+**Second stage**
 
 We need to retrieve the predicted values of :math:`{avexpr}_i` using
 ``.predict()``.
@@ -615,7 +615,7 @@ We want to test for correlation between the endogenous variable,
    H_1 : Cov(avexpr_i, u_i) \neq 0 \quad (endogeneity)
    \end{aligned}
 
-This test is run is two stages.
+This test is running in two stages.
 
 First, we regress :math:`avexpr_i` on the instrument, :math:`logem4_i`
 
@@ -640,7 +640,7 @@ Using the above information, estimate a Hausman test and interpret your
 results.
 
 Exercise 2
-------------
+----------
 
 The OLS parameter :math:`\beta` can also be estimated using matrix
 algebra and ``numpy`` (you may need to review the
@@ -722,7 +722,7 @@ The output shows that the coefficient on the residuals is statistically
 significant, indicating :math:`avexpr_i` is endogenous.
 
 Exercise 2
-------------
+----------
 
 .. code-block:: python3
 

@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-**********************************************
+**************************
 Multiplicative Functionals
-**********************************************
+**************************
 
 .. index::
     single: Models; Multiplicative functionals
@@ -25,7 +25,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-=========
+========
 
 This lecture is a sequel to the :doc:`lecture on additive functionals <additive_functionals>`.
 
@@ -33,19 +33,19 @@ That lecture
 
 #. defined a special class of **additive functionals** driven by a first-order vector VAR
 
-#.  by taking the exponential of that additive functional, created an associated **multiplicative functional**
+#. by taking the exponential of that additive functional, created an associated **multiplicative functional**
 
 This lecture uses this special class to create and analyze two examples
 
-* A  **log-likelihood process**, an object at the foundation of both frequentist and Bayesian approaches to statistical inference
+* A  **log-likelihood process**, an object at the foundation of both frequentist and Bayesian approaches to statistical inference.
 
-* A version of Robert E. Lucas's :cite:`lucas2003macroeconomic` and Thomas Tallarini's :cite:`Tall2000` approaches to measuring the benefits of moderating aggregate fluctuations
+* A version of Robert E. Lucas's :cite:`lucas2003macroeconomic` and Thomas Tallarini's :cite:`Tall2000` approaches to measuring the benefits of moderating aggregate fluctuations.
 
 
 
 
 A Log-Likelihood Process
-==========================
+========================
 
 Consider a vector of additive functionals :math:`\{y_t\}_{t=0}^\infty`
 described by
@@ -104,7 +104,7 @@ Set :math:`x_0 = y_0 = 0`.
 
 
 Simulating Sample Paths
----------------------------
+-----------------------
 
 Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^{\infty}`.
 
@@ -212,17 +212,17 @@ Here goes
 
 
 Simulating Log-likelihoods
----------------------------
+--------------------------
 
 Our next aim is to write a program to simulate :math:`\{\log L_t \mid \theta_o\}_{t=1}^T`.
 
 We want as inputs to this program the *same* sample paths :math:`\{x_t^i, y_t^i\}_{t=0}^T` that we  have already computed.
 
-We now want to simulate :math:`I = 5000` paths of :math:`\{\log L_t^i  \mid \theta_o\}_{t=1}^T`
+We now want to simulate :math:`I = 5000` paths of :math:`\{\log L_t^i  \mid \theta_o\}_{t=1}^T`.
 
--  For each path, we compute :math:`\log L_T^i / T`
+-  For each path, we compute :math:`\log L_T^i / T`.
 
--  We also compute :math:`\frac{1}{I} \sum_{i=1}^I \log L_T^i / T`
+-  We also compute :math:`\frac{1}{I} \sum_{i=1}^I \log L_T^i / T`.
 
 Then we to compare these objects.
 
@@ -307,7 +307,7 @@ Let's also plot the conditional pdf of :math:`\Delta y_{t+1}`
 
 
 An Alternative Parameter Vector
------------------------------------
+-------------------------------
 
 Now consider alternative parameter vector :math:`\theta_1 = [A, B, D, F] = [0.9, 1.0, 0.55, 0.25]`.
 
@@ -319,9 +319,9 @@ This is because we want to generate data under the :math:`\theta_o` probability 
 
 So our task is to use our program to simulate :math:`I = 5000` paths of :math:`\{\log L_t^i  \mid \theta_1\}_{t=1}^T`
 
--  For each path, compute :math:`\frac{1}{T} \log L_T^i`
+-  For each path, compute :math:`\frac{1}{T} \log L_T^i`.
 
--  Then compute :math:`\frac{1}{I}\sum_{i=1}^I \frac{1}{T} \log L_T^i`
+-  Then compute :math:`\frac{1}{I}\sum_{i=1}^I \frac{1}{T} \log L_T^i`.
 
 We want to compare these objects with each other and with the analogous objects that we computed above.
 
@@ -406,19 +406,19 @@ Now we'll plot the histogram of the difference in log-likelihood ratio
 
 
 Interpretation
--------------------
+--------------
 
-These histograms of  log-likelihood ratios illustrate  important features of **likelihood ratio tests** as tools for discriminating between statistical models
+These histograms of  log-likelihood ratios illustrate  important features of **likelihood ratio tests** as tools for discriminating between statistical models.
 
-*  The log-likelihood is higher on average under the true model -- obviously a very useful property
+*  The log-likelihood is higher on average under the true model -- obviously a very useful property.
 
 *  Nevertheless, for a positive fraction of realizations, the log-likelihood is higher for the incorrect than for the true model
 
   * in these instances, a likelihood ratio test mistakenly selects the wrong model
 
-* These mechanics underlie the statistical theory of **mistake probabilities** associated with model selection tests based on  likelihood ratio
+* These mechanics underlie the statistical theory of **mistake probabilities** associated with model selection tests based on  likelihood ratio.
 
-(In a subsequent lecture, we'll use some of the code prepared in this lecture to illustrate mistake probabilities).
+(In a subsequent lecture, we'll use some of the code prepared in this lecture to illustrate mistake probabilities)
 
 
 
@@ -427,7 +427,7 @@ These histograms of  log-likelihood ratios illustrate  important features of **l
 
 
 Benefits from Reduced Aggregate Fluctuations
-===================================================
+============================================
 
 Now let's turn to a new example of multiplicative functionals.
 
@@ -486,7 +486,7 @@ Here :math:`\gamma \geq 1` is a risk-aversion coefficient and :math:`\delta > 0`
 
 
 Consumption as a Multiplicative Process
-----------------------------------------
+---------------------------------------
 
 We begin by showing that consumption is a **multiplicative functional** with representation
 
@@ -516,7 +516,7 @@ and
 
 
 Simulating a Likelihood Ratio Process Again
---------------------------------------------
+-------------------------------------------
 
 Next, we want a program to simulate the likelihood ratio process :math:`\{ \tilde{M}_t \}_{t=0}^\infty`.
 
@@ -569,23 +569,23 @@ Here is code that accomplishes these tasks
 
 
 Comments
-^^^^^^^^^^^^^^
+^^^^^^^^
 
 
 -  The preceding min, mean, and max of the cross-section of the date
    :math:`T` realizations of the multiplicative martingale component of
    :math:`c_t` indicate that the sample mean is close to its population
-   mean of 1
+   mean of 1.
 
-    * This outcome prevails for all values of the horizon :math:`T`
+    * This outcome prevails for all values of the horizon :math:`T`.
 
 -  The cross-section distribution of the multiplicative martingale
    component of :math:`c` at date :math:`T` approximates a log-normal
-   distribution well
+   distribution well.
 
 -  The histogram of the additive martingale component of
    :math:`\log c_t` at date :math:`T` approximates a normal distribution
-   well
+   well.
 
 Here's a histogram of the additive martingale component
 
@@ -622,7 +622,7 @@ Here's a histogram of the multiplicative martingale component
 
 
 Representing the Likelihood Ratio Process
--------------------------------------------
+-----------------------------------------
 
 The likelihood ratio process :math:`\{\widetilde M_t\}_{t=0}^\infty` can be represented as
 
@@ -647,10 +647,10 @@ We will plot the densities of :math:`\log {\widetilde M}_t` for different values
 
 Note: ``scipy.stats.lognorm`` expects you to pass the standard deviation
 first :math:`(tH \cdot H)` and then the exponent of the mean as a
-keyword argument ``scale`` (``scale=``\ :math:`\exp(-tH \cdot H/2)`)
+keyword argument ``scale`` (``scale=``\ :math:`\exp(-tH \cdot H/2)`).
 
 * See the documentation `here
-  <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__
+  <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html#scipy.stats.lognorm>`__.
 
 This is peculiar, so make sure you are careful in working with the log-normal distribution.
 
@@ -713,15 +713,15 @@ Here is some code that tackles these tasks
 
 These probability density functions illustrate a **peculiar property** of log-likelihood ratio processes:
 
-* With respect to the true model probabilities, they have mathematical expectations equal to :math:`1` for all :math:`t \geq 0`
+* With respect to the true model probabilities, they have mathematical expectations equal to :math:`1` for all :math:`t \geq 0`.
 
-* They almost surely converge to zero
+* They almost surely converge to zero.
 
 
 
 
 Welfare Benefits of Reduced Random Aggregate Fluctuations
----------------------------------------------------------------
+---------------------------------------------------------
 
 Suppose in the tradition of a strand of macroeconomics (for example Tallarini :cite:`Tall2000`, :cite:`lucas2003macroeconomic`) we want to estimate the welfare benefits from removing random fluctuations around trend growth.
 
