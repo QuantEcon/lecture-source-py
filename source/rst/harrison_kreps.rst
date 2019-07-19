@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-************************************************************
+*************************************
 Asset Pricing III: Incomplete Markets
-************************************************************
+*************************************
 
 .. index::
     single: Models; Harrison Kreps
@@ -49,17 +49,17 @@ Prior to reading the following, you might like to review our lectures on
 
 
 Bubbles
-----------
+-------
 
 Economists differ in how they define a *bubble*.
 
 The Harrison-Kreps model illustrates the following notion of a bubble that attracts many economists:
 
-    *A component of an asset price can be interpreted as a bubble when all investors agree that the current price of the asset exceeds what they believe the asset's underlying dividend stream justifies*
+    *A component of an asset price can be interpreted as a bubble when all investors agree that the current price of the asset exceeds what they believe the asset's underlying dividend stream justifies*.
 
 
 Structure of the Model
-=======================
+======================
 
 
 The model simplifies by ignoring alterations in the distribution of wealth
@@ -149,11 +149,11 @@ Both types of investors are risk-neutral and both have the same fixed discount f
 
 In our numerical example, we’ll set :math:`\beta = .75`, just as Harrison and Kreps did.
 
-We’ll eventually study the consequences of two different assumptions about the number of shares :math:`A` relative to the resources that our two types of investors can invest in the stock
+We’ll eventually study the consequences of two different assumptions about the number of shares :math:`A` relative to the resources that our two types of investors can invest in the stock.
 
-#.  Both types of investors have enough resources (either wealth or the capacity to borrow) so that they can purchase the entire available stock of the asset [#f1]_
+#. Both types of investors have enough resources (either wealth or the capacity to borrow) so that they can purchase the entire available stock of the asset [#f1]_.
 
-#. No single type of investor has sufficient resources to purchase the entire stock
+#. No single type of investor has sufficient resources to purchase the entire stock.
 
 Case 1 is the case studied in Harrison and Kreps.
 
@@ -165,11 +165,11 @@ Short Sales Prohibited
 
 No short sales are allowed.
 
-This matters because it limits pessimists from expressing their opinions
+This matters because it limits pessimists from expressing their opinions.
 
-* They can express their views by selling their shares
+* They can express their views by selling their shares.
 
-* They cannot express their pessimism more loudly by artificially "manufacturing shares" -- that is, they cannot borrow shares from more optimistic investors and sell them immediately
+* They cannot express their pessimism more loudly by artificially "manufacturing shares" -- that is, they cannot borrow shares from more optimistic investors and sell them immediately.
 
 
 Optimism and Pessimism
@@ -177,11 +177,11 @@ Optimism and Pessimism
 
 The above specifications of the perceived transition matrices :math:`P_a` and :math:`P_b`, taken directly from Harrison and Kreps, build in stochastically alternating temporary optimism and pessimism.
 
-Remember that state :math:`1` is the high dividend state
+Remember that state :math:`1` is the high dividend state.
 
-* In state :math:`0`, a type :math:`a` agent is more optimistic about next period's dividend than a type :math:`b` agent
+* In state :math:`0`, a type :math:`a` agent is more optimistic about next period's dividend than a type :math:`b` agent.
 
-* In state :math:`1`, a type :math:`b` agent is more optimistic about next period's dividend
+* In state :math:`1`, a type :math:`b` agent is more optimistic about next period's dividend.
 
 However, the stationary distributions :math:`\pi_A = \begin{bmatrix} .57 & .43 \end{bmatrix}` and :math:`\pi_B = \begin{bmatrix} .43 & .57 \end{bmatrix}` tell us that a type :math:`B` person is more optimistic about the dividend process in the long run than is a type A person.
 
@@ -232,11 +232,11 @@ This amounts to determining equilibrium prices under the different possible spec
 In particular, we compare equilibrium price functions under the following alternative
 assumptions about beliefs:
 
-#. There is only one type of agent, either :math:`a` or :math:`b`
+#. There is only one type of agent, either :math:`a` or :math:`b`.
 
-#. There are two types of agents differentiated only by their beliefs. Each type of agent has sufficient resources to purchase all of the asset (Harrison and Kreps's setting)
+#. There are two types of agents differentiated only by their beliefs. Each type of agent has sufficient resources to purchase all of the asset (Harrison and Kreps's setting).
 
-#. There are two types of agents with different beliefs, but because of limited wealth and/or limited leverage, both types of investors hold the asset each period
+#. There are two types of agents with different beliefs, but because of limited wealth and/or limited leverage, both types of investors hold the asset each period.
 
 
 
@@ -286,7 +286,7 @@ Single Belief Prices
 
 We’ll start by pricing the asset under homogeneous beliefs.
 
-(This is the case treated in :doc:`the lecture <markov_asset>` on asset pricing with finite Markov states).
+(This is the case treated in :doc:`the lecture <markov_asset>` on asset pricing with finite Markov states)
 
 Suppose that there is only one type of investor, either of type :math:`a` or :math:`b`, and that this investor always "prices the asset".
 
@@ -318,11 +318,11 @@ Here's a function that can be used to compute these values
 Single Belief Prices as Benchmarks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-These equilibrium prices under homogeneous beliefs are important benchmarks for the subsequent analysis
+These equilibrium prices under homogeneous beliefs are important benchmarks for the subsequent analysis.
 
-* :math:`p_h(s)` tells what investor :math:`h` thinks is the "fundamental value" of the asset
+* :math:`p_h(s)` tells what investor :math:`h` thinks is the "fundamental value" of the asset.
 
-* Here "fundamental value" means the expected discounted present value of future dividends
+* Here "fundamental value" means the expected discounted present value of future dividends.
 
 We will compare these fundamental values of the asset with equilibrium values when traders have different beliefs.
 
@@ -402,7 +402,7 @@ Nevertheless, the economy recurrently visits a state that makes each investor wa
 purchase the asset for more than he believes its future dividends are
 worth.
 
-The reason is that he expects to have the option to sell the asset later to another investor who will value the asset more highly than he will
+The reason is that he expects to have the option to sell the asset later to another investor who will value the asset more highly than he will.
 
 * Investors of type :math:`a` are willing to pay the following price for the asset
 
@@ -428,13 +428,13 @@ The reason is that he expects to have the option to sell the asset later to anot
 
 Evidently, :math:`\hat p_a(1) < \bar p(1)` and :math:`\hat p_b(0) < \bar p(0)`.
 
-Investors of type :math:`a` want to sell the asset in state :math:`1` while investors of type :math:`b` want to sell it in state :math:`0`
+Investors of type :math:`a` want to sell the asset in state :math:`1` while investors of type :math:`b` want to sell it in state :math:`0`.
 
-*  The asset changes hands whenever the state changes from :math:`0` to :math:`1` or from :math:`1` to :math:`0`
+*  The asset changes hands whenever the state changes from :math:`0` to :math:`1` or from :math:`1` to :math:`0`.
 
-*  The valuations :math:`\hat p_a(s)` and :math:`\hat p_b(s)` are displayed in the fourth and fifth rows of the table
+*  The valuations :math:`\hat p_a(s)` and :math:`\hat p_b(s)` are displayed in the fourth and fifth rows of the table.
 
-*  Even the pessimistic investors who don't buy the asset think that it is worth more than they think future dividends are worth
+*  Even the pessimistic investors who don't buy the asset think that it is worth more than they think future dividends are worth.
 
 Here's code to solve for :math:`\bar p`, :math:`\hat p_a` and :math:`\hat p_b` using the iterative method described above
 
@@ -490,17 +490,17 @@ Further Interpretation
 
 Scheinkman stresses these features of the Harrison-Kreps model:
 
-* Compared to the homogeneous beliefs setting leading to the pricing formula, high volume occurs when the Harrison-Kreps pricing formula prevails
+* Compared to the homogeneous beliefs setting leading to the pricing formula, high volume occurs when the Harrison-Kreps pricing formula prevails.
 
 Type :math:`a` investors sell the entire stock of the asset to type :math:`b` investors every time the state switches from :math:`s_t =0` to :math:`s_t =1`.
 
 Type :math:`b` investors sell the asset to type :math:`a` investors every time the state switches from :math:`s_t = 1` to :math:`s_t =0`.
 
-Scheinkman takes this as a strength of the model because he observes high volume during *famous bubbles*
+Scheinkman takes this as a strength of the model because he observes high volume during *famous bubbles*.
 
-* If the *supply* of the asset is increased sufficiently either physically (more "houses" are built) or artificially (ways are invented to short sell "houses"), bubbles end when the supply has grown enough to outstrip optimistic investors’ resources for purchasing the asset
+* If the *supply* of the asset is increased sufficiently either physically (more "houses" are built) or artificially (ways are invented to short sell "houses"), bubbles end when the supply has grown enough to outstrip optimistic investors’ resources for purchasing the asset.
 
-* If optimistic investors finance purchases by borrowing, tightening leverage constraints can extinguish a bubble
+* If optimistic investors finance purchases by borrowing, tightening leverage constraints can extinguish a bubble.
 
 Scheinkman extracts insights about the effects of financial regulations on bubbles.
 
@@ -541,7 +541,7 @@ Exercise 1
 -----------
 
 First, we will obtain equilibrium price vectors with homogeneous beliefs, including when all
-investors are optimistic or pessimistic
+investors are optimistic or pessimistic.
 
 
 
@@ -568,7 +568,7 @@ investors are optimistic or pessimistic
 
 
 We will use the `price_optimistic_beliefs` function to find the price under
-heterogeneous beliefs
+heterogeneous beliefs.
 
 
 
@@ -589,7 +589,7 @@ heterogeneous beliefs
 
 
 Notice that the equilibrium price with heterogeneous beliefs is equal to the price under single beliefs
-with optimistic investors - this is due to the marginal investor being the temporarily optimistic type
+with optimistic investors - this is due to the marginal investor being the temporarily optimistic type.
 
 .. rubric:: Footnotes
 

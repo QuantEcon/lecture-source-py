@@ -19,7 +19,7 @@ Growth in Dynamic Linear Economies
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
-In addition to what's included in  Anaconda, this lecture uses the quantecon  library
+In addition to what's included in  Anaconda, this lecture uses the quantecon library.
 
 .. code-block:: ipython
   :class: hide-output
@@ -57,7 +57,7 @@ Our example economies have the following features
 
    .. math:: z_{t+1} = A_{22}z_t + C_2w_{t+1}
 
-   where :math:`w_{t+1}` is a martingale difference sequence
+   where :math:`w_{t+1}` is a martingale difference sequence.
 
 -  Preference shocks :math:`b_t` and technology shocks :math:`d_t` are
    linear functions of :math:`z_t`
@@ -79,7 +79,7 @@ Our example economies have the following features
    vector of intermediate goods, :math:`i_t` is a vector of investment
    goods, :math:`k_t` is a vector of physical capital goods, and
    :math:`l_t` is the amount of labor supplied by the representative
-   household
+   household.
 
 -  Preferences of a representative household are described by
 
@@ -135,7 +135,7 @@ QuantEcon's LQ class.
 (See Section 5.5 of Hansen & Sargent (2013) :cite:`HS2013` for a full
 description of how to map these economies into an LQ setting, and how to
 use the solution to the LQ problem to construct the output matrices in
-order to simulate the economies).
+order to simulate the economies)
 
 The state for the LQ problem is
 
@@ -226,7 +226,7 @@ We shall vary
 and the initial state :math:`x_0` across the three economies.
 
 Example 1: Hall (1978)
------------------------
+----------------------
 
 First, we set parameters such that consumption follows a random walk. In
 particular, we set
@@ -235,7 +235,7 @@ particular, we set
 
 (In this economy :math:`\delta_h` and :math:`\theta_h` are arbitrary as
 household capital does not enter the equation for consumption services
-We set them to values that will become useful in Example 3).
+We set them to values that will become useful in Example 3)
 
 It is worth noting that this choice of parameter values ensures that
 :math:`\beta(\gamma_1 + \delta_k) = 1`.
@@ -286,7 +286,7 @@ For simulations of this economy, we choose an initial condition of
     Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
     Pref1 = (β, l_λ, π_h, δ_h, θ_h)
 
-These parameter values are used to define an economy of the DLE class
+These parameter values are used to define an economy of the DLE class.
 
 .. code-block:: python3
 
@@ -323,11 +323,11 @@ This is confirmed by checking the eigenvalues of :math:`A^o`
 
 
 The endogenous eigenvalue that appears to be unity reflects the random
-walk character of consumption in Hall's model
+walk character of consumption in Hall's model.
 
--  Actually, the largest endogenous eigenvalue is very slightly below 1
+-  Actually, the largest endogenous eigenvalue is very slightly below 1.
 
--  This outcome comes from the small adjustment cost :math:`\phi_1`
+-  This outcome comes from the small adjustment cost :math:`\phi_1`.
 
 .. code-block:: python3
 
@@ -338,7 +338,7 @@ walk character of consumption in Hall's model
 
 The fact that the largest endogenous eigenvalue is strictly less than
 unity in modulus means that it is possible to compute the non-stochastic
-steady state of consumption, investment and capital
+steady state of consumption, investment and capital.
 
 .. code-block:: python3
 
@@ -352,21 +352,21 @@ However, the near-unity endogenous eigenvalue means that these steady
 state values are of little relevance.
 
 Example 2: Altered Growth Condition
-------------------------------------
+-----------------------------------
 
 We generate our next economy by making two alterations to the parameters
-of Example 1
+of Example 1.
 
--  First, we raise :math:`\phi_1` from 0.00001 to 1
+-  First, we raise :math:`\phi_1` from 0.00001 to 1.
 
    -  This will lower the endogenous eigenvalue that is close to 1,
       causing the economy to head more quickly to the vicinity of its
-      non-stochastic steady-state
+      non-stochastic steady-state.
 
--  Second, we raise :math:`\gamma_1` from 0.1 to 0.15
+-  Second, we raise :math:`\gamma_1` from 0.1 to 0.15.
 
    -  This has the effect of raising the optimal steady-state value of
-      capital
+      capital.
 
 We also start the economy off from an initial condition with a lower
 capital stock
@@ -424,7 +424,7 @@ level of consumption of 17.5, which we find as follows
 
 The economy converges faster to this level than in Example 1 because the
 largest endogenous eigenvalue of :math:`A^o` is now significantly lower
-than 1
+than 1.
 
 .. code-block:: python3
 
@@ -434,7 +434,7 @@ than 1
 
 
 Example 3: A Jones-Manuelli (1990) Economy
--------------------------------------------
+------------------------------------------
 
 For our third economy, we choose parameter values with the aim of
 generating *sustained* growth in consumption, investment and capital.
@@ -470,7 +470,7 @@ These preferences reflect habit persistence
 
 Since :math:`\delta_h` and :math:`\theta_h` were defined earlier, the
 only change we need to make from the parameters of Example 1 is to
-define the new value of :math:`\lambda`
+define the new value of :math:`\lambda`.
 
 .. code-block:: python3
 
@@ -540,7 +540,7 @@ Next we raise :math:`\lambda` to -0.7
 We no longer achieve sustained growth if :math:`\lambda` is raised from -1 to -0.7.
 
 This is related to the fact that one of the endogenous
-eigenvalues is now less than 1
+eigenvalues is now less than 1.
 
 .. code-block:: python3
 
@@ -575,7 +575,7 @@ Consumption and investment explode downwards, as a lower value of
 consumption.
 
 This explosive path shows up in the second endogenous eigenvalue now
-being larger than one
+being larger than one.
 
 .. code-block:: python3
 
