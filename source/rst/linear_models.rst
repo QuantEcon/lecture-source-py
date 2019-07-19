@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-*********************************************
+*************************
 Linear State Space Models
-*********************************************
+*************************
 
 .. index::
     single: Linear State Space Models
@@ -25,7 +25,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 This lecture introduces the **linear state space** dynamic system.
 
@@ -50,11 +50,11 @@ Its many applications include:
 
 * key ingredient of useful models
 
-    * Friedman's permanent income model of consumption smoothing
+    * Friedman's permanent income model of consumption smoothing.
 
-    * Barro's model of smoothing total tax collections
+    * Barro's model of smoothing total tax collections.
 
-    * Rational expectations version of Cagan's model of hyperinflation
+    * Rational expectations version of Cagan's model of hyperinflation.
 
     * Sargent and Wallace's "unpleasant monetarist arithmetic," etc.
 
@@ -65,24 +65,24 @@ Its many applications include:
 
 
 The Linear State Space Model
-===============================
+============================
 
 .. index::
     single: Models; Linear State Space
 
 The objects in play are:
 
-* An :math:`n \times 1` vector :math:`x_t` denoting the **state** at time :math:`t = 0, 1, 2, \ldots`
+* An :math:`n \times 1` vector :math:`x_t` denoting the **state** at time :math:`t = 0, 1, 2, \ldots`.
 
-* An IID sequence of :math:`m \times 1` random vectors :math:`w_t \sim N(0,I)`
+* An IID sequence of :math:`m \times 1` random vectors :math:`w_t \sim N(0,I)`.
 
-* A :math:`k \times 1` vector :math:`y_t` of **observations** at time :math:`t = 0, 1, 2, \ldots`
+* A :math:`k \times 1` vector :math:`y_t` of **observations** at time :math:`t = 0, 1, 2, \ldots`.
 
-* An :math:`n \times n` matrix :math:`A`  called the **transition matrix**
+* An :math:`n \times n` matrix :math:`A`  called the **transition matrix**.
 
-* An :math:`n \times m` matrix :math:`C`  called the **volatility matrix**
+* An :math:`n \times m` matrix :math:`C`  called the **volatility matrix**.
 
-* A :math:`k \times n` matrix :math:`G` sometimes called the **output matrix**
+* A :math:`k \times n` matrix :math:`G` sometimes called the **output matrix**.
 
 
 Here is the linear state-space system
@@ -100,7 +100,7 @@ Here is the linear state-space system
 .. _lss_pgs:
 
 Primitives
---------------
+----------
 
 The primitives of the model are
 
@@ -121,7 +121,7 @@ Later we'll see how to compute these distributions and their moments.
 
 
 Martingale Difference Shocks
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Linear State Space Models; Martingale Difference Shocks
@@ -146,7 +146,7 @@ This is a weaker condition than that :math:`\{w_t\}` is IID with :math:`w_{t+1} 
 
 
 Examples
---------------
+--------
 
 By appropriate choice of the primitives, a variety of dynamics can be represented in terms of the linear state space model.
 
@@ -158,7 +158,7 @@ They also illustrate the wise dictum *finding the state is an art*.
 .. _lss_sode:
 
 Second-order Difference Equation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Let :math:`\{y_t\}` be a deterministic sequence that satisfies
@@ -212,7 +212,7 @@ Later you'll be asked to recreate this figure.
 
 
 Univariate Autoregressive Processes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Linear State Space Models; Univariate Autoregressive Processes
@@ -269,7 +269,7 @@ The next figure shows the dynamics of this process when
     /_static/lecture_specific/linear_models/solution_lss_ex2.png
 
 Vector Autoregressions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Linear State Space Models; Vector Autoregressions
@@ -323,7 +323,7 @@ where :math:`I` is the :math:`k \times k` identity matrix and :math:`\sigma` is 
 
 
 Seasonals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^
 
 .. index::
     single: Linear State Space Models; Seasonals
@@ -362,7 +362,7 @@ The *indeterministic* seasonal produces recurrent, but aperiodic, seasonal fluct
 
 
 Time Trends
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 .. index::
     single: Linear State Space Models; Time Trends
@@ -441,7 +441,7 @@ linear and quadratic time trends.
 
 
 Moving Average Representations
----------------------------------
+------------------------------
 
 .. index::
     single: Linear State Space Models; Moving Average Representations
@@ -511,7 +511,7 @@ For this reason, :math:`x_{1t}` is called a *martingale with drift*.
 
 
 Distributions and Moments
-===========================
+=========================
 
 .. index::
     single: Linear State Space Models; Distributions
@@ -520,7 +520,7 @@ Distributions and Moments
     single: Linear State Space Models; Moments
 
 Unconditional Moments
---------------------------------------
+---------------------
 
 Using :eq:`st_space_rep`, it's easy to obtain expressions for the
 (unconditional) means of :math:`x_t` and :math:`y_t`.
@@ -566,7 +566,7 @@ However, you should be aware that these "unconditional" moments do depend on
 the initial distribution :math:`N(\mu_0, \Sigma_0)`.
 
 Moments of the Observations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using linearity of expectations again we have
 
@@ -585,7 +585,7 @@ The variance-covariance matrix of :math:`y_t` is easily shown to be
 
 
 Distributions
-----------------
+-------------
 
 .. index::
     single: Linear State Space Models; Distributions
@@ -598,7 +598,7 @@ need to know.
 
 These are situations in which the mean vector and covariance matrix are **sufficient statistics** for the population distribution.
 
-(Sufficient statistics form a list of objects that characterize a population distribution).
+(Sufficient statistics form a list of objects that characterize a population distribution)
 
 One such situation is when the vector in question is Gaussian (i.e., normally
 distributed).
@@ -649,7 +649,7 @@ By similar reasoning combined with :eq:`lss_umy` and :eq:`lss_uvy`,
 
 
 Ensemble Interpretations
-------------------------------
+------------------------
 
 How should we interpret the distributions defined by :eq:`lss_mgs_x`--:eq:`lss_mgs_y`?
 
@@ -674,7 +674,7 @@ The values of :math:`y_T` are represented by black dots in the left-hand figure
 In the right-hand figure, these values are converted into a rotated histogram
 that shows relative frequencies from our sample of 20 :math:`y_T`'s.
 
-(The parameters and source code for the figures can be found in file `linear_models/paths_and_hist.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/linear_models/paths_and_hist.py>`__).
+(The parameters and source code for the figures can be found in file `linear_models/paths_and_hist.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/linear_models/paths_and_hist.py>`__)
 
 Here is another figure, this time with 100 observations
 
@@ -696,7 +696,7 @@ the distribution's sufficient statistics.
 
 
 Ensemble Means
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 In the preceding figure, we approximated the population distribution of :math:`y_T` by
 
@@ -736,7 +736,7 @@ The ensemble mean for :math:`x_t` is
 
 The limit :math:`\mu_T` is a  "long-run average".
 
-(By *long-run average* we mean the average for an infinite (:math:`I = \infty`)  number of sample :math:`x_T`'s).
+(By *long-run average* we mean the average for an infinite (:math:`I = \infty`)  number of sample :math:`x_T`'s)
 
 Another application of the law of large numbers assures us that
 
@@ -747,7 +747,7 @@ Another application of the law of large numbers assures us that
 
 
 Joint Distributions
------------------------------
+-------------------
 
 In the preceding discussion, we looked at the distributions of :math:`x_t` and
 :math:`y_t` in isolation.
@@ -790,7 +790,7 @@ In view of :eq:`st_space_rep`, the conditional densities are
 
 
 Autocovariance Functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 An important object related to the joint distribution is the *autocovariance function*
 
@@ -815,7 +815,7 @@ Notice that :math:`\Sigma_{t+j,t}` in general depends on both :math:`j`, the gap
 
 
 Stationarity and Ergodicity
-===============================
+===========================
 
 .. index::
     single: Linear State Space Models; Stationarity
@@ -828,7 +828,7 @@ Stationarity and ergodicity are two properties  that, when they hold,  greatly a
 Let's start with the intuition.
 
 Visualizing Stability
--------------------------
+---------------------
 
 Let's look at some more time series from the same model that we analyzed above.
 
@@ -849,7 +849,7 @@ When such a distribution exists it is called a *stationary distribution*.
 
 
 Stationary Distributions
----------------------------
+------------------------
 
 In our setting, a distribution :math:`\psi_{\infty}` is said to be *stationary* for :math:`x_t` if
 
@@ -879,7 +879,7 @@ we can restate the definition as follows: :math:`\psi_{\infty}` is stationary fo
 where :math:`\mu_{\infty}` and :math:`\Sigma_{\infty}` are fixed points of :eq:`lss_mut_linear_models` and :eq:`eqsigmalaw_linear_models` respectively.
 
 Covariance Stationary Processes
----------------------------------
+-------------------------------
 
 Let's see what happens to the preceding figure if we start :math:`x_0` at the stationary distribution.
 
@@ -921,11 +921,11 @@ In our setting, :math:`\{x_t\}` will be covariance stationary if :math:`\mu_0, \
 
 
 Conditions for Stationarity
-------------------------------
+---------------------------
 
 
 The Globally Stable Case
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 The difference equation :math:`\mu_{t+1} = A \mu_t` is known to have *unique*
 fixed point :math:`\mu_{\infty} = 0` if all eigenvalues of :math:`A` have moduli strictly less than unity.
@@ -964,7 +964,7 @@ How can we find stationary solutions that respect a constant state component?
 
 
 Processes with a Constant State Component
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To investigate such a process, suppose that :math:`A` and :math:`C` take the
 form
@@ -1040,20 +1040,20 @@ In conclusion, if
 * the moduli of the eigenvalues of :math:`A_1` are all strictly less than unity
 
 then the :math:`\{x_t\}` process is covariance stationary, with constant state
-component
+component.
 
 .. note::
    If the eigenvalues of :math:`A_1` are less than unity in modulus, then
    (a) starting from any initial value, the mean and variance-covariance
    matrix both converge to their stationary values; and (b)
    iterations on :eq:`eqsigmalaw_linear_models` converge to the fixed point of the *discrete
-   Lyapunov equation* in the first line of :eq:`eqnSigmainf`
+   Lyapunov equation* in the first line of :eq:`eqnSigmainf`.
 
 
 
 
 Ergodicity
--------------
+----------
 
 
 Let's suppose that we're working with a covariance stationary process.
@@ -1064,7 +1064,7 @@ In this case, we know that the ensemble mean will converge to :math:`\mu_{\infty
 
 
 Averages over Time
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 Ensemble averages across simulations are interesting theoretically, but in real life, we usually observe only a *single* realization :math:`\{x_t, y_t\}_{t=0}^T`.
 
@@ -1100,7 +1100,7 @@ In our linear Gaussian setting, any covariance stationary process is also ergodi
 
 
 Noisy Observations
-===================
+==================
 
 In some settings, the observation equation :math:`y_t = Gx_t` is modified to
 include an error term.
@@ -1110,9 +1110,9 @@ observed imperfectly.
 
 To include an error term in the observation we introduce
 
-* An IID sequence of :math:`\ell \times 1` random vectors :math:`v_t \sim N(0,I)`
+* An IID sequence of :math:`\ell \times 1` random vectors :math:`v_t \sim N(0,I)`.
 
-* A :math:`k \times \ell` matrix :math:`H`
+* A :math:`k \times \ell` matrix :math:`H`.
 
 and extend the linear state-space system to
 
@@ -1156,7 +1156,7 @@ The distribution of :math:`y_t` is therefore
 
 
 Prediction
-==================
+==========
 
 
 .. index::
@@ -1169,7 +1169,7 @@ simple.
 .. _ff_cm:
 
 Forecasting Formulas -- Conditional Means
---------------------------------------------
+-----------------------------------------
 
 The natural way to predict variables is to use conditional distributions.
 
@@ -1230,7 +1230,7 @@ The :math:`j`-step ahead forecast of :math:`y` is therefore
 
 
 Covariance of Prediction Errors
----------------------------------
+-------------------------------
 
 It is useful to obtain the covariance matrix of the vector of  :math:`j`-step-ahead prediction errors
 
@@ -1276,15 +1276,15 @@ Weaker sufficient conditions for convergence  associate eigenvalues equaling or 
 .. _lm_fgs:
 
 Forecasts of Geometric Sums
--------------------------------
+---------------------------
 
 In several contexts, we want to compute forecasts of  geometric sums of future random variables governed by the linear state-space system :eq:`st_space_rep`.
 
 We want the following objects
 
-*  Forecast of a geometric sum of future :math:`x`'s, or :math:`\mathbb{E}_t \left[ \sum_{j=0}^\infty \beta^j x_{t+j} \right]`
+*  Forecast of a geometric sum of future :math:`x`'s, or :math:`\mathbb{E}_t \left[ \sum_{j=0}^\infty \beta^j x_{t+j} \right]`.
 
-*  Forecast of a geometric sum of future :math:`y`'s, or :math:`\mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right]`
+*  Forecast of a geometric sum of future :math:`y`'s, or :math:`\mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right]`.
 
 These objects are important components of some famous and  interesting dynamic models.
 
@@ -1297,7 +1297,7 @@ For example,
 
 
 Formulas
-^^^^^^^^^
+^^^^^^^^
 
 Fortunately, it is easy to use a little matrix algebra to compute these objects.
 
@@ -1325,7 +1325,7 @@ This leads to our formulas:
 
 
 Code
-=======
+====
 
 Our preceding simulations and calculations are based on code in
 the file `lss.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ package.
@@ -1349,13 +1349,13 @@ Examples of usage are given in the solutions to the exercises.
 
 
 Exercises
-====================
+=========
 
 
 .. _lss_ex1:
 
 Exercise 1
-------------
+----------
 
 Replicate :ref:`this figure <lss_sode_fig>` using the ``LinearStateSpace`` class from ``lss.py``.
 
@@ -1365,7 +1365,7 @@ Replicate :ref:`this figure <lss_sode_fig>` using the ``LinearStateSpace`` class
 .. _lss_ex2:
 
 Exercise 2
-------------
+----------
 
 Replicate :ref:`this figure <lss_uap_fig>` modulo randomness using the same class.
 
@@ -1375,7 +1375,7 @@ Replicate :ref:`this figure <lss_uap_fig>` modulo randomness using the same clas
 .. _lss_ex3:
 
 Exercise 3
-------------
+----------
 
 Replicate :ref:`this figure <lss_em_fig>` modulo randomness using the same class.
 
@@ -1386,7 +1386,7 @@ The state space model and parameters are the same as for the preceding exercise.
 .. _lss_ex4:
 
 Exercise 4
-------------
+----------
 
 Replicate :ref:`this figure <lss_s_fig>` modulo randomness using the same class.
 
@@ -1403,7 +1403,7 @@ the bars are at dates 10, 50 and 75.
 
 
 Solutions
-==========
+=========
 
 
 

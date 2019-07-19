@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-*****************************************************************
+******************************************
 :index:`Optimal Taxation in an LQ Economy`
-*****************************************************************
+******************************************
 
 .. index::
     single: Ramsey Problem; Optimal Taxation
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 In this lecture, we study optimal fiscal policy in a linear quadratic setting.
 
@@ -63,7 +63,7 @@ We cover only the key features of the problem in this lecture, leaving you to re
 
 
 Model Features
----------------
+--------------
 
 * Linear quadratic (LQ) model
 * Representative household
@@ -72,7 +72,7 @@ Model Features
 
 
 The Ramsey Problem
-=====================
+==================
 
 We begin by outlining the key assumptions regarding technology, households and the government sector.
 
@@ -116,12 +116,12 @@ subject to the budget constraint
 
 Here
 
-* :math:`\beta` is a discount factor in :math:`(0, 1)`
-* :math:`p_t^0` is a scaled Arrow-Debreu price at time :math:`0` of history contingent goods at time :math:`t+j`
-* :math:`b_t` is a stochastic preference parameter
-* :math:`d_t` is an endowment process
-* :math:`\tau_t` is a flat tax rate on labor income
-* :math:`s_t` is a promised time-:math:`t` coupon payment on debt issued by the government
+* :math:`\beta` is a discount factor in :math:`(0, 1)`.
+* :math:`p_t^0` is a scaled Arrow-Debreu price at time :math:`0` of history contingent goods at time :math:`t+j`.
+* :math:`b_t` is a stochastic preference parameter.
+* :math:`d_t` is an endowment process.
+* :math:`\tau_t` is a flat tax rate on labor income.
+* :math:`s_t` is a promised time-:math:`t` coupon payment on debt issued by the government.
 
 The scaled Arrow-Debreu price :math:`p^0_t` is related to the unscaled Arrow-Debreu price as follows.
 
@@ -155,7 +155,7 @@ Among all such competitive equilibria, the Ramsey plan is the one that maximizes
 
 
 Exogenous Variables
-----------------------
+-------------------
 
 Endowments, government expenditure, the preference shock process :math:`b_t`, and
 promised coupon payments on initial government debt :math:`s_t` are all exogenous, and given by
@@ -172,9 +172,9 @@ We consider two specifications for :math:`\{x_t\}`.
 
 .. _lq_twospec:
 
-#. Discrete case: :math:`\{x_t\}` is a discrete state Markov chain with transition matrix :math:`P`
+#. Discrete case: :math:`\{x_t\}` is a discrete state Markov chain with transition matrix :math:`P`.
 
-#. VAR case: :math:`\{x_t\}` obeys :math:`x_{t+1} = A x_t + C w_{t+1}` where :math:`\{w_t\}` is independent zero-mean Gaussian with identify covariance matrix
+#. VAR case: :math:`\{x_t\}` obeys :math:`x_{t+1} = A x_t + C w_{t+1}` where :math:`\{w_t\}` is independent zero-mean Gaussian with identify covariance matrix.
 
 
 Feasibility
@@ -192,7 +192,7 @@ A labor-consumption process :math:`\{\ell_t, c_t\}` is called *feasible* if :eq:
 
 
 Government Budget Constraint
-----------------------------------
+----------------------------
 
 Where :math:`p_t^0` is again a scaled Arrow-Debreu price, the time zero government budget constraint is
 
@@ -204,14 +204,14 @@ Where :math:`p_t^0` is again a scaled Arrow-Debreu price, the time zero governme
 
 
 Equilibrium
---------------
+-----------
 
 An *equilibrium* is a feasible allocation :math:`\{\ell_t, c_t\}`, a sequence
 of prices :math:`\{p_t^0\}`, and a tax system :math:`\{\tau_t\}` such that
 
-#.  The allocation :math:`\{\ell_t, c_t\}` is optimal for the household given :math:`\{p_t^0\}` and :math:`\{\tau_t\}`
+#.  The allocation :math:`\{\ell_t, c_t\}` is optimal for the household given :math:`\{p_t^0\}` and :math:`\{\tau_t\}`.
 
-#.  The government's budget constraint :eq:`lq_gc` is satisfied
+#.  The government's budget constraint :eq:`lq_gc` is satisfied.
 
 The *Ramsey problem* is to choose the equilibrium :math:`\{\ell_t, c_t, \tau_t, p_t^0\}` that maximizes the
 household's welfare.
@@ -222,20 +222,20 @@ then :math:`\{\tau_t\}` is called the *Ramsey plan*.
 The solution procedure we adopt is
 
 #. Use the first-order conditions from the household problem to pin down
-   prices and allocations given :math:`\{\tau_t\}`
+   prices and allocations given :math:`\{\tau_t\}`.
 
 #. Use these expressions to rewrite the government budget constraint
-   :eq:`lq_gc` in terms of exogenous variables and allocations
+   :eq:`lq_gc` in terms of exogenous variables and allocations.
 
 #. Maximize the household's objective function :eq:`lq_hu` subject to the
    constraint constructed in step 2 and the feasibility constraint
-   :eq:`lq_feasible`
+   :eq:`lq_feasible`.
 
 The solution to this maximization problem pins down all quantities of interest.
 
 
 Solution
-----------
+--------
 
 Step one is to obtain the first-conditions for the household's problem,
 taking taxes and prices as given.
@@ -347,18 +347,18 @@ Reinserting into :eq:`lq_gc2`, we get
 
 Although it might not be clear yet, we are nearly there because:
 
-* The two expectations terms in :eq:`lq_gc22` can be solved for in terms of model primitives
+* The two expectations terms in :eq:`lq_gc22` can be solved for in terms of model primitives.
 
-* This in turn allows us to solve for the Lagrange multiplier :math:`\nu`
+* This in turn allows us to solve for the Lagrange multiplier :math:`\nu`.
 
-* With :math:`\nu` in hand, we can go back and solve for the allocations via :eq:`lq_lcex`
+* With :math:`\nu` in hand, we can go back and solve for the allocations via :eq:`lq_lcex`.
 
 * Once we have the allocations, prices and the tax system can be derived from
-  :eq:`lq_hfoc`
+  :eq:`lq_hfoc`.
 
 
 Computing the Quadratic Term
--------------------------------
+----------------------------
 
 Let's consider how to obtain the term :math:`\nu` in :eq:`lq_gc22`.
 
@@ -428,7 +428,7 @@ The first equation is known as a discrete Lyapunov equation and can be solved
 using `this function <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/matrix_eqn.py#L25>`_.
 
 Finite State Markov Case
--------------------------
+------------------------
 
 Next, suppose that :math:`\{x_t\}` is the discrete Markov process described :ref:`above <lq_twospec>`.
 
@@ -455,9 +455,9 @@ It is legitimate to pass the expectation through the sum, leading to
 
 Here
 
-* :math:`P^t` is the :math:`t`-th power of the transition matrix :math:`P`
-* :math:`h` is, with some abuse of notation, the vector :math:`(h(x^1), \ldots, h(x^N))`
-* :math:`(P^t h)[j]` indicates the :math:`j`-th element of :math:`P^t h`
+* :math:`P^t` is the :math:`t`-th power of the transition matrix :math:`P`.
+* :math:`h` is, with some abuse of notation, the vector :math:`(h(x^1), \ldots, h(x^N))`.
+* :math:`(P^t h)[j]` indicates the :math:`j`-th element of :math:`P^t h`.
 
 It can be shown that :eq:`lq_ise` is in fact equal to the :math:`j`-th element of
 the vector :math:`(I - \beta P)^{-1} h`.
@@ -542,7 +542,7 @@ between :math:`t` and :math:`t+1`.
 
 
 A Martingale
--------------
+------------
 
 We now want to study the following two objects, namely,
 
@@ -560,10 +560,10 @@ and the cumulation of :math:`\pi_t`
 
 The term :math:`\pi_{t+1}` is the difference between two quantities:
 
-  * :math:`B_{t+1}`, the value of government debt at the start of period :math:`t+1`
+  * :math:`B_{t+1}`, the value of government debt at the start of period :math:`t+1`.
 
   * :math:`R_t [B_t + g_t - \tau_t ]`, which is what the government would have owed at the beginning of
-    period :math:`t+1` if it had simply borrowed at the one-period risk-free rate rather than selling state-contingent securities
+    period :math:`t+1` if it had simply borrowed at the one-period risk-free rate rather than selling state-contingent securities.
 
 Thus, :math:`\pi_{t+1}` is the excess payout on the actual portfolio of state-contingent government debt  relative to an alternative
 portfolio sufficient to finance :math:`B_t + g_t - \tau_t \ell_t` and consisting entirely of risk-free one-period bonds.
@@ -603,17 +603,17 @@ that  :math:`\{\Pi_t\}` is a martingale under the distorted probability measure.
 
 In the tax-smoothing model of Robert Barro :cite:`Barro1979`, government debt is a random walk.
 
-In the current model, government debt :math:`\{B_t\}` is not a random walk, but the ``excess payoff`` :math:`\{\Pi_t\}` on it  is.
+In the current model, government debt :math:`\{B_t\}` is not a random walk, but the ``excess payoff`` :math:`\{\Pi_t\}` on it is.
 
 
 Implementation
-================
+==============
 
 The following code provides functions for
 
-#. Solving for the Ramsey plan given a specification of the economy
+#. Solving for the Ramsey plan given a specification of the economy.
 
-#. Simulating the dynamics of the major variables
+#. Simulating the dynamics of the major variables.
 
 Description and clarifications are given below
 
@@ -621,7 +621,7 @@ Description and clarifications are given below
 
 
 Comments on the Code
-------------------------
+--------------------
 
 The function ``var_quadratic_sum`` imported from ``quadsums`` is for computing the value of :eq:`lq_eqs`
 when the exogenous process :math:`\{ x_t \}` is of the VAR type described :ref:`above <lq_twospec>`.
@@ -639,22 +639,22 @@ These elements can then be references via dotted attribute notation --- see for 
 
 The benefits of using ``namedtuples``:
 
-* Keeps content organized by meaning
-* Helps reduce the number of global variables
+* Keeps content organized by meaning.
+* Helps reduce the number of global variables.
 
 Other than that, our code is long but relatively straightforward.
 
 
 
 Examples
-================
+========
 
 Let's look at two examples of usage.
 
 .. _lq_cc:
 
 The Continuous Case
-------------------------
+-------------------
 
 Our first example adopts the VAR specification described :ref:`above <lq_twospec>`.
 
@@ -679,7 +679,7 @@ Here's the code
 The legends on the figures indicate the variables being tracked.
 
 Most obvious from the figure is tax smoothing in the sense that tax revenue is
-much less variable than government expenditure
+much less variable than government expenditure.
 
 
 
@@ -698,7 +698,7 @@ much less variable than government expenditure
     See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation.
 
 The Discrete Case
-----------------------
+-----------------
 
 Our second example adopts a discrete Markov specification for the exogenous process
 
@@ -723,13 +723,13 @@ The call ``gen_fig_2(path)`` generates
     See the original `manuscript <https://lectures.quantecon.org/_downloads/firenze.pdf>`__ for comments and interpretation.
 
 Exercises
-================
+=========
 
 
 .. _lqramsey_ex1:
 
 Exercise 1
-------------
+----------
 
 
 Modify the VAR example :ref:`given above <lq_cc>`, setting
@@ -746,7 +746,7 @@ Produce the corresponding figures.
 
 
 Solutions
-==========
+=========
 
 
 

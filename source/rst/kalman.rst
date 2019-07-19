@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-************************************
+*********************************
 A First Look at the Kalman Filter
-************************************
+*********************************
 
 .. index::
     single: Kalman Filter
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 This lecture provides a simple and intuitive introduction to the Kalman filter, for those who either
 
@@ -39,7 +39,7 @@ Required knowledge: Familiarity with matrix manipulations, multivariate normal d
 
 
 The Basic Idea
-====================
+==============
 
 The Kalman filter has many applications in economics, but for now
 let's pretend that we are rocket scientists.
@@ -57,7 +57,7 @@ One way to summarize our knowledge is a point prediction :math:`\hat x`
 * But what if the President wants to know the probability that the missile is currently over the Sea of Japan?
 * Then it is better to summarize our initial beliefs with a bivariate probability density :math:`p`
 
-    * :math:`\int_E p(x)dx` indicates the probability that we attach to the missile being in region :math:`E`
+    * :math:`\int_E p(x)dx` indicates the probability that we attach to the missile being in region :math:`E`.
 
 The density :math:`p` is called our *prior* for the random variable :math:`x`.
 
@@ -188,7 +188,7 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
 
 
 The Filtering Step
---------------------
+------------------
 
 We are now presented with some good news and some bad news.
 
@@ -245,9 +245,9 @@ where :math:`p(y) = \int p(y \,|\, x) \, p(x) dx`.
 
 In solving for :math:`p(x \,|\, y)`, we observe that
 
-* :math:`p(x) = N(\hat x, \Sigma)`
-* In view of :eq:`kl_measurement_model`, the conditional density :math:`p(y \,|\, x)` is :math:`N(Gx, R)`
-* :math:`p(y)` does not depend on :math:`x`, and enters into the calculations only as a normalizing constant
+* :math:`p(x) = N(\hat x, \Sigma)`.
+* In view of :eq:`kl_measurement_model`, the conditional density :math:`p(y \,|\, x)` is :math:`N(Gx, R)`.
+* :math:`p(y)` does not depend on :math:`x`, and enters into the calculations only as a normalizing constant.
 
 Because we are in a linear and Gaussian framework, the updated density can be computed by calculating population linear regressions.
 
@@ -306,7 +306,7 @@ In generating the figure, we set :math:`G` to the identity matrix and :math:`R =
 .. _kl_forecase_step:
 
 The Forecast Step
--------------------
+-----------------
 
 
 What have we achieved so far?
@@ -314,7 +314,7 @@ What have we achieved so far?
 We have obtained probabilities for the current location of the state (missile) given prior and current information.
 
 This is called "filtering" rather than forecasting because we are filtering
-out noise rather than looking into the future
+out noise rather than looking into the future.
 
 * :math:`p(x \,|\, y) = N(\hat x^F, \Sigma^F)` is called the *filtering distribution*
 
@@ -357,9 +357,9 @@ and
 
 
 The matrix :math:`A \Sigma G' (G \Sigma G' + R)^{-1}` is often written as
-:math:`K_{\Sigma}` and called the *Kalman gain*
+:math:`K_{\Sigma}` and called the *Kalman gain*.
 
-* The subscript :math:`\Sigma` has been added to remind us that  :math:`K_{\Sigma}` depends on :math:`\Sigma`, but not :math:`y` or :math:`\hat x`
+* The subscript :math:`\Sigma` has been added to remind us that  :math:`K_{\Sigma}` depends on :math:`\Sigma`, but not :math:`y` or :math:`\hat x`.
 
 Using this notation, we can summarize our results as follows.
 
@@ -377,7 +377,7 @@ Our updated prediction is the density :math:`N(\hat x_{new}, \Sigma_{new})` wher
 * The density :math:`p_{new}(x) = N(\hat x_{new}, \Sigma_{new})` is called the *predictive distribution*
 
 The predictive distribution is the new density shown in the following figure, where
-the update has used parameters
+the update has used parameters.
 
 .. math::
 
@@ -427,7 +427,7 @@ the update has used parameters
 
 
 The Recursive Procedure
--------------------------
+-----------------------
 
 .. index::
     single: Kalman Filter; Recursive Procedure
@@ -445,10 +445,10 @@ as the current prior.
 
 Swapping notation :math:`p_t(x)` for :math:`p(x)` and :math:`p_{t+1}(x)` for :math:`p_{new}(x)`, the full recursive procedure is:
 
-1. Start the current period with prior :math:`p_t(x) = N(\hat x_t, \Sigma_t)`
-2. Observe current measurement :math:`y_t`
-3. Compute the filtering distribution :math:`p_t(x \,|\, y) = N(\hat x_t^F, \Sigma_t^F)` from :math:`p_t(x)` and :math:`y_t`, applying Bayes rule and the conditional distribution :eq:`kl_measurement_model`
-4. Compute the predictive distribution :math:`p_{t+1}(x) = N(\hat x_{t+1}, \Sigma_{t+1})` from the filtering distribution and :eq:`kl_xdynam`
+1. Start the current period with prior :math:`p_t(x) = N(\hat x_t, \Sigma_t)`.
+2. Observe current measurement :math:`y_t`.
+3. Compute the filtering distribution :math:`p_t(x \,|\, y) = N(\hat x_t^F, \Sigma_t^F)` from :math:`p_t(x)` and :math:`y_t`, applying Bayes rule and the conditional distribution :eq:`kl_measurement_model`.
+4. Compute the predictive distribution :math:`p_{t+1}(x) = N(\hat x_{t+1}, \Sigma_{t+1})` from the filtering distribution and :eq:`kl_xdynam`.
 5. Increment :math:`t` by one and go to step 1.
 
 Repeating :eq:`kl_mlom0`, the dynamics for :math:`\hat x_t` and :math:`\Sigma_t` are as follows
@@ -467,7 +467,7 @@ These are the standard dynamic equations for the Kalman filter (see, for example
 .. _kalman_convergence:
 
 Convergence
-==============
+===========
 
 The matrix :math:`\Sigma_t` is a measure of the uncertainty of our prediction :math:`\hat x_t` of :math:`x_t`.
 
@@ -507,14 +507,14 @@ Conditions under which a fixed point exists and the sequence :math:`\{\Sigma_t\}
 
 A sufficient (but not necessary) condition is that all the eigenvalues :math:`\lambda_i` of :math:`A` satisfy :math:`|\lambda_i| < 1` (cf. e.g., :cite:`AndersonMoore2005`, p. 77).
 
-(This strong condition assures that the unconditional  distribution of :math:`x_t`  converges as :math:`t \rightarrow + \infty`).
+(This strong condition assures that the unconditional  distribution of :math:`x_t`  converges as :math:`t \rightarrow + \infty`)
 
 In this case, for any initial choice of :math:`\Sigma_0` that is both non-negative and symmetric, the sequence :math:`\{\Sigma_t\}` in :eq:`kalman_sdy` converges to a non-negative symmetric matrix :math:`\Sigma` that solves :eq:`kalman_dare`.
 
 
 
 Implementation
-=========================
+==============
 
 .. index::
     single: Kalman Filter; Programming Implementation
@@ -529,9 +529,9 @@ The class ``Kalman`` from the `QuantEcon.py`_ package implements the Kalman filt
 
 * Instance data consists of:
 
-    * the moments :math:`(\hat x_t, \Sigma_t)` of the current prior
+    * the moments :math:`(\hat x_t, \Sigma_t)` of the current prior.
 
-    * An instance of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_
+    * An instance of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
 
 
 The latter represents a linear state space model of the form
@@ -556,7 +556,7 @@ To connect this with the notation of this lecture we set
 
 
 
-* The class ``Kalman`` from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ package has a number of methods, some that we will wait to use until we study more advanced applications in subsequent lectures
+* The class ``Kalman`` from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ package has a number of methods, some that we will wait to use until we study more advanced applications in subsequent lectures.
 
 * Methods pertinent for this lecture  are:
 
@@ -574,13 +574,13 @@ You can view the program `on GitHub <https://github.com/QuantEcon/QuantEcon.py/b
 
 
 Exercises
-=============
+=========
 
 
 .. _kalman_ex1:
 
 Exercise 1
-------------
+----------
 
 Consider the following simple application of the Kalman filter, loosely based
 on :cite:`Ljungqvist2012`, section 2.9.2.
@@ -608,7 +608,7 @@ Your figure should -- modulo randomness -- look something like this
 .. _kalman_ex2:
 
 Exercise 2
-----------------
+----------
 
 The preceding figure gives some support to the idea that probability mass
 converges to :math:`\theta`.
@@ -632,7 +632,7 @@ Your figure should show error erratically declining something like this
 .. _kalman_ex3:
 
 Exercise 3
-----------------
+----------
 
 As discussed :ref:`above <kalman_convergence>`, if the shock sequence :math:`\{w_t\}` is not degenerate, then it is not in general possible to predict :math:`x_t` without error at time :math:`t-1` (and this would be the case even if we could observe :math:`x_{t-1}`).
 
@@ -644,7 +644,7 @@ This competitor will use the conditional expectation :math:`\mathbb E[ x_t
 
 The conditional expectation is known to be the optimal prediction method in terms of minimizing mean squared error.
 
-(More precisely, the minimizer of :math:`\mathbb E \, \| x_t - g(x_{t-1}) \|^2` with respect to :math:`g` is :math:`g^*(x_{t-1}) := \mathbb E[ x_t \,|\, x_{t-1}]`).
+(More precisely, the minimizer of :math:`\mathbb E \, \| x_t - g(x_{t-1}) \|^2` with respect to :math:`g` is :math:`g^*(x_{t-1}) := \mathbb E[ x_t \,|\, x_{t-1}]`)
 
 Thus we are comparing the Kalman filter against a competitor who has more
 information (in the sense of being able to observe the latent state) and
