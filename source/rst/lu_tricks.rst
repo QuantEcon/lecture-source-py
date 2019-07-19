@@ -4,32 +4,32 @@
 
 .. highlight:: python3
 
-****************************************************
+*************************************
 Classical Control with Linear Algebra
-****************************************************
+*************************************
 
 .. contents:: :depth: 2
 
 
 Overview
-============
+========
 
 In an earlier lecture :doc:`Linear Quadratic Dynamic Programming Problems<lqcontrol>`, we have studied how to solve a special
 class of dynamic optimization and prediction problems by applying the method of dynamic programming. In this class of problems
 
-  * the objective function is **quadratic** in **states** and **controls**
+  * the objective function is **quadratic** in **states** and **controls**.
 
-  * the one-step transition function is **linear**
+  * the one-step transition function is **linear**.
 
-  * shocks are IID Gaussian or martingale differences
+  * shocks are IID Gaussian or martingale differences.
 
 In this lecture and a companion lecture :doc:`Classical Filtering with Linear Algebra<classical_filtering>`, we study the classical theory of linear-quadratic (LQ) optimal control problems.
 
 The classical approach does not use the two closely related methods -- dynamic programming and  Kalman filtering -- that we describe in other lectures, namely, :doc:`Linear Quadratic Dynamic Programming Problems<lqcontrol>` and :doc:`A First Look at the Kalman Filter<kalman>`.
 
-Instead, they use either.
+Instead, they use either
 
- * :math:`z`-transform and lag operator methods, or.
+ * :math:`z`-transform and lag operator methods, or
 
  * matrix decompositions applied to linear systems of first-order conditions for optimum problems.
 
@@ -47,13 +47,13 @@ These classes of problems are connected in the sense that to solve each, essenti
 
 
 References
--------------
+----------
 
 Useful references include :cite:`Whittle1963`, :cite:`HanSar1980`, :cite:`Orfanidisoptimum1988`, :cite:`Athanasios1991`, and :cite:`Muth1960`.
 
 
 A Control Problem
-====================================
+=================
 
 Let :math:`L` be the **lag operator**, so that, for sequence :math:`\{x_t\}` we have :math:`L x_t = x_{t-1}`.
 
@@ -81,9 +81,9 @@ Consider the discrete-time control problem
 
 where
 
-* :math:`h` is a positive parameter and :math:`\beta \in (0,1)` is a discount factor
+* :math:`h` is a positive parameter and :math:`\beta \in (0,1)` is a discount factor.
 
-* :math:`\{a_t\}_{t \geq 0}` is a sequence of exponential order less than :math:`\beta^{-1/2}`, by which we mean :math:`\lim_{t \rightarrow \infty} \beta^{\frac{t}{2}} a_t = 0`
+* :math:`\{a_t\}_{t \geq 0}` is a sequence of exponential order less than :math:`\beta^{-1/2}`, by which we mean :math:`\lim_{t \rightarrow \infty} \beta^{\frac{t}{2}} a_t = 0`.
 
 
 Maximization in :eq:`oneone` is subject to  initial conditions for :math:`y_{-1}, y_{-2} \ldots, y_{-m}`.
@@ -92,7 +92,7 @@ Maximization is over infinite sequences :math:`\{y_t\}_{t \geq 0}`.
 
 
 Example
----------
+-------
 
 The formulation of the LQ problem given above is broad enough to encompass
 many useful models.
@@ -133,14 +133,14 @@ Further examples of this problem for factor demand, economic growth, and governm
 
 
 Finite Horizon Theory
-=======================
+=====================
 
 We first study a finite :math:`N` version of the problem.
 
 Later we will study an infinite horizon problem solution as a limiting version of a finite horizon problem.
 
 (This will require being careful because the limits as :math:`N \to \infty` of the necessary and sufficient conditions for maximizing finite :math:`N` versions of :eq:`oneone`
-are not sufficient for maximizing :eq:`oneone`).
+are not sufficient for maximizing :eq:`oneone`)
 
 We begin by
 
@@ -148,7 +148,7 @@ We begin by
 
 #. differentiating the finite version of :eq:`oneone` with respect to :math:`y_0, y_1, \ldots, y_N`, and
 
-#. setting these derivatives to zero
+#. setting these derivatives to zero.
 
 For :math:`t=0, \ldots, N-m` these first-order necessary conditions are the
 *Euler equations*.
@@ -262,12 +262,12 @@ Next, we describe how to obtain the solution using matrix methods.
 .. _fdlq:
 
 Matrix Methods
------------------
+--------------
 
 Let's look at how linear algebra can be used to tackle and shed light on the finite horizon LQ control problem.
 
 A Single Lag Term
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 Let's begin with the special case in which :math:`m=1`.
 
@@ -345,9 +345,9 @@ descending diagonal is constant).
 
 There are two sources of deviation from the  form  of a Toeplitz matrix
 
-#. The first element differs from the remaining diagonal elements, reflecting the terminal condition
+#. The first element differs from the remaining diagonal elements, reflecting the terminal condition.
 
-#. The sub-diagonal elements equal :math:`\beta` time the super-diagonal elements
+#. The sub-diagonal elements equal :math:`\beta` time the super-diagonal elements.
 
 The solution of :eq:`onefoursix` can be expressed in the form
 
@@ -362,7 +362,7 @@ which represents each element :math:`y_t` of :math:`\bar y` as a function of the
 That is, :math:`y_t` is a function of past, present, and future values of :math:`a`'s, as well as of the initial condition :math:`y_{-1}`.
 
 An Alternative Representation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An alternative way to express the solution to :eq:`onefourfive` or
 :eq:`onefoursix` is in so-called **feedback-feedforward** form.
@@ -374,7 +374,7 @@ To achieve this solution, one can use an `LU decomposition <https://en.wikipedia
 There always exists a decomposition of :math:`W` of the form :math:`W= LU`
 where
 
-* :math:`L` is an :math:`(N+1) \times (N+1)` lower triangular matrix
+* :math:`L` is an :math:`(N+1) \times (N+1)` lower triangular matrix.
 
 * :math:`U` is an :math:`(N+1) \times (N+1)` upper triangular matrix.
 
@@ -399,9 +399,9 @@ Because there are zeros everywhere in the matrix
 on the left of :eq:`onefourfive` except on the diagonal, super-diagonal, and
 sub-diagonal, the :math:`LU` decomposition takes
 
-* :math:`L` to be zero except in the diagonal  and the leading sub-diagonal
+* :math:`L` to be zero except in the diagonal  and the leading sub-diagonal.
 
-* :math:`U` to be zero except on the diagonal and the super-diagonal
+* :math:`U` to be zero except on the diagonal and the super-diagonal.
 
 Thus, :eq:`onefournine` has the form
 
@@ -453,7 +453,7 @@ Note how the left side for a given :math:`t` involves  :math:`y_t` and one lagge
 
 
 Additional Lag Terms
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 We briefly indicate how this approach extends to the problem with
 :math:`m > 1`.
@@ -577,7 +577,7 @@ to :math:`c(L)` and :math:`c(\beta L^{-1})^{-1}` can be obtained.
 
 
 The Infinite Horizon Limit
-===========================
+==========================
 
 For the infinite horizon problem, we propose to discover first-order
 necessary conditions by taking the limits of :eq:`onefour` and :eq:`onefive` as
@@ -775,9 +775,9 @@ have modulus exceeding :math:`\sqrt\beta`, is central to solving the problem.
 
 We note two features of the solution :eq:`onefifteen`
 
-* Since :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for all :math:`j`, it follows that :math:`(\lambda_j \ \beta) < \sqrt \beta`
+* Since :math:`\vert \lambda_j \vert < 1/\sqrt \beta` for all :math:`j`, it follows that :math:`(\lambda_j \ \beta) < \sqrt \beta`.
 
-* The assumption that :math:`\{ a_t \}` is of exponential order less than :math:`1 /\sqrt \beta` is sufficient to guarantee that the geometric sums of future :math:`a_t`'s on the right side of :eq:`onefifteen` converge
+* The assumption that :math:`\{ a_t \}` is of exponential order less than :math:`1 /\sqrt \beta` is sufficient to guarantee that the geometric sums of future :math:`a_t`'s on the right side of :eq:`onefifteen` converge.
 
 We immediately see that those sums will
 converge under the weaker condition that :math:`\{ a_t\}` is of
@@ -808,12 +808,8 @@ This policy involves at most :math:`m` nonzero values of
 Therefore it is easy to dominate a path that violates :eq:`onesix`.
 
 
-
-
-
-
 Undiscounted Problems
-=======================
+=====================
 
 It is worthwhile focusing on a special case of the LQ problems above:
 the undiscounted problem that emerges when :math:`\beta = 1`.
@@ -854,7 +850,7 @@ The solution of the problem becomes
 
 
 Transforming Discounted to Undiscounted Problem
--------------------------------------------------
+-----------------------------------------------
 
 Discounted problems can always be converted into undiscounted problems via a simple transformation.
 
@@ -938,7 +934,7 @@ solving a related undiscounted problem.
 
 
 Implementation
-================
+==============
 
 Code that computes solutions to the LQ problem using the methods described
 above can be found in file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__.
@@ -950,7 +946,7 @@ Here's how it looks
 
 
 Example
----------
+-------
 
 In this application, we'll have one lag, with
 
@@ -1037,11 +1033,11 @@ And here's :math:`\gamma = 10`
 
 
 Exercises
-=================
+=========
 
 
 Exercise 1
-------------
+----------
 
 Consider solving a discounted version :math:`(\beta < 1)` of problem
 :eq:`oneone`, as follows.
@@ -1086,7 +1082,7 @@ where :math:`f_j = \tilde f_j \beta^{-j/2}, A_j = \tilde A_j`, and :math:`\lambd
 
 
 Exercise 2
------------
+----------
 
 Solve the optimal control problem, maximize
 
@@ -1101,11 +1097,11 @@ Express the solution in the "feedback form" :eq:`onefifteen`, giving numerical v
 
 Make sure that the boundary conditions :eq:`onefive` are satisfied.
 
-(Note: this problem differs from the problem in the text in one important way: instead of :math:`h > 0` in :eq:`oneone`, :math:`h = 0`. This has an important influence on the solution.).
+(Note: this problem differs from the problem in the text in one important way: instead of :math:`h > 0` in :eq:`oneone`, :math:`h = 0`. This has an important influence on the solution.)
 
 
 Exercise 3
---------------
+----------
 
 Solve the infinite time-optimal control problem to maximize
 
@@ -1123,7 +1119,7 @@ subject to :math:`y_{-1}` given. Prove that the solution is
 
 
 Exercise 4
---------------
+----------
 
 Solve the infinite time problem, to maximize
 

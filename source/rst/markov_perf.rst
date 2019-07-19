@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-********************************
+**************************
 Markov Perfect Equilibrium
-********************************
+**************************
 
 .. index::
     single: Markov Perfect Equilibrium
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-==========================
+========
 
 .. index::
     single: Markov Perfect Equilibrium; Overview
@@ -48,7 +48,7 @@ Other references include chapter 7 of :cite:`Ljungqvist2012`.
 
 
 Background
-================
+==========
 
 .. index::
     single: Markov Perfect Equilibrium; Background
@@ -67,15 +67,15 @@ Markov perfect equilibrium prevails when no agent wishes to revise its policy, t
 
 Well known examples include
 
-* Choice of price, output, location or capacity for firms in an industry (e.g., :cite:`ericson1995markov`, :cite:`ryan2012costs`, :cite:`doraszelski2010computable`)
+* Choice of price, output, location or capacity for firms in an industry (e.g., :cite:`ericson1995markov`, :cite:`ryan2012costs`, :cite:`doraszelski2010computable`).
 
-* Rate of extraction from a shared natural resource, such as a fishery (e.g., :cite:`levhari1980great`, :cite:`van2011dynamic`)
+* Rate of extraction from a shared natural resource, such as a fishery (e.g., :cite:`levhari1980great`, :cite:`van2011dynamic`).
 
 Let's examine a model of the first type.
 
 
 Example: A Duopoly Model
------------------------------
+------------------------
 
 
 Two firms are the only producers of a good the demand for which is governed by a linear inverse demand function
@@ -132,16 +132,16 @@ Given :math:`f_{-i}`, the Bellman equation of firm :math:`i` is
 
 **Definition**  A *Markov perfect equilibrium* of the duopoly model is a pair of value functions :math:`(v_1, v_2)` and a pair of policy functions :math:`(f_1, f_2)` such that, for each :math:`i \in \{1, 2\}` and each possible state,
 
-* The value function :math:`v_i` satisfies the Bellman equation :eq:`game4`
+* The value function :math:`v_i` satisfies the Bellman equation :eq:`game4`.
 
-* The maximizer on the right side of :eq:`game4` is equal to :math:`f_i(q_i, q_{-i})`
+* The maximizer on the right side of :eq:`game4` is equal to :math:`f_i(q_i, q_{-i})`.
 
 
 The adjective "Markov" denotes that the equilibrium decision rules depend only on the current values of the state variables, not other parts of their histories.
 
-"Perfect" means complete, in the sense that the equilibrium is constructed by backward induction and hence builds in optimizing behavior for each firm at all possible future states
+"Perfect" means complete, in the sense that the equilibrium is constructed by backward induction and hence builds in optimizing behavior for each firm at all possible future states.
 
-   * These include many states that will not be reached when we iterate forward on the pair of equilibrium strategies :math:`f_i` starting from a given initial state
+   * These include many states that will not be reached when we iterate forward on the pair of equilibrium strategies :math:`f_i` starting from a given initial state.
 
 
 
@@ -183,7 +183,7 @@ We'll lay out that structure in a general setup and then apply it to some simple
 
 
 Coupled Linear Regulator Problems
------------------------------------
+---------------------------------
 
 We consider a general linear-quadratic regulator game with two players.
 
@@ -228,7 +228,7 @@ Here
 
 
 Computing Equilibrium
------------------------------------
+---------------------
 
 We formulate a linear Markov perfect equilibrium as follows.
 
@@ -327,21 +327,21 @@ Moreover, since
 we need to solve these :math:`k_1 + k_2` equations simultaneously.
 
 Key Insight
-^^^^^^^^^^^^
+^^^^^^^^^^^
 
 A key insight is that  equations  :eq:`orig-3` and :eq:`orig-5` are linear in :math:`F_{1t}` and :math:`F_{2t}`.
 
-After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`orig-4` and :eq:`orig-6`
+After these equations have been solved, we can take  :math:`F_{it}` and solve for :math:`P_{it}` in :eq:`orig-4` and :eq:`orig-6`.
 
 
 .. Notice how :math:`j`\ 's control law :math:`F_{jt}` is a function of :math:`\{F_{is}, s \geq t, i \neq j \}`.
 
-.. Thus, agent :math:`i`\ 's choice of :math:`\{F_{it}; t = t_0, \ldots, t_1 - 1\}` influences agent :math:`j`\ 's choice of control laws
+.. Thus, agent :math:`i`\ 's choice of :math:`\{F_{it}; t = t_0, \ldots, t_1 - 1\}` influences agent :math:`j`\ 's choice of control laws.
 
-.. However, in the Markov perfect equilibrium of this game, each agent is assumed to ignore the influence that his choice exerts on the other agent's choice
+.. However, in the Markov perfect equilibrium of this game, each agent is assumed to ignore the influence that his choice exerts on the other agent's choice.
 
 Infinite Horizon
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 We often want to compute the solutions of such games for infinite horizons, in the hope that the decision rules :math:`F_{it}` settle down to be time-invariant as :math:`t_1 \rightarrow +\infty`.
 
@@ -352,14 +352,14 @@ This is the approach we adopt in the next section.
 
 
 Implementation
-----------------
+--------------
 
 We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear-quadratic dynamic game in the manner described above.
 
 
 
 Application
-=====================
+===========
 
 .. index::
     single: Markov Perfect Equilibrium; Applications
@@ -368,7 +368,7 @@ Let's use these procedures to treat some applications, starting with the duopoly
 
 
 A Duopoly Model
-----------------------
+---------------
 
 To map the duopoly model into  coupled linear-quadratic dynamic programming problems, define the state
 and controls as
@@ -449,7 +449,7 @@ The optimal decision rule of firm :math:`i` will take the form :math:`u_{it} = -
 
 
 Parameters and Solution
---------------------------
+-----------------------
 
 Consider the previously presented duopoly model with parameter values of:
 
@@ -501,7 +501,7 @@ Indeed, `np.allclose` agrees with our assessment
 
 
 Dynamics
------------------------
+--------
 
 Let's now investigate the dynamics of price and output in this simple duopoly model under the MPE policies.
 
@@ -509,11 +509,11 @@ Given our optimal policies :math:`F1` and :math:`F2`, the state evolves accordin
 
 The following program
 
-* imports :math:`F1` and :math:`F2` from the previous program along with all parameters
+* imports :math:`F1` and :math:`F2` from the previous program along with all parameters.
 
-* computes the evolution of :math:`x_t` using :eq:`eq_mpe_cle`
+* computes the evolution of :math:`x_t` using :eq:`eq_mpe_cle`.
 
-* extracts and plots industry output :math:`q_t = q_{1t} + q_{2t}` and price :math:`p_t = a_0 - a_1 q_t`
+* extracts and plots industry output :math:`q_t = q_{1t} + q_{2t}` and price :math:`p_t = a_0 - a_1 q_t`.
 
 .. literalinclude:: /_static/lecture_specific/markov_perf/duopoly_mpe_dynamics.py
 
@@ -536,11 +536,11 @@ The monopolist initial condition is :math:`q_0 = 2.0` to mimic the industry init
 As expected, output is higher and prices are lower under duopoly than monopoly.
 
 Exercises
-===========
+=========
 
 
 Exercise 1
----------------
+----------
 
 Replicate the :ref:`pair of figures <mpe_vs_monopolist>` showing the comparison of output and prices for the monopolist and duopoly under MPE.
 
@@ -550,7 +550,7 @@ The optimal policy in the monopolist case can be computed using `QuantEcon.py <h
 
 
 Exercise 2
----------------
+----------
 
 In this exercise, we consider a slightly more sophisticated duopoly problem.
 
@@ -659,10 +659,10 @@ This is indeed the case, as the next figure shows
 
 
 Solutions
-==========
+=========
 
 Exercise 1
--------------
+----------
 
 First, let's compute the duopoly MPE under the stated parameters
 
@@ -699,7 +699,7 @@ First, let's compute the duopoly MPE under the stated parameters
 
 
 Now we evaluate the time path of industry output and prices given
-initial condition :math:`q_{10} = q_{20} = 1`
+initial condition :math:`q_{10} = q_{20} = 1`.
 
 
 
@@ -745,7 +745,7 @@ in the payoff function :math:`x_t' R x_t + u_t' Q u_t` and
 in the law of motion :math:`x_{t+1} = A x_t + B u_t`.
 
 We solve for the optimal policy :math:`u_t = - Fx_t` and track the
-resulting dynamics of :math:`\{q_t\}`, starting at :math:`q_0 = 2.0`
+resulting dynamics of :math:`\{q_t\}`, starting at :math:`q_0 = 2.0`.
 
 
 
@@ -792,7 +792,7 @@ Let's have a look at the different time paths
 
 
 Exercise 2
--------------
+----------
 
 We treat the case :math:`\delta = 0.02`
 

@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-************************************************
+***********************************************
 Asset Pricing II: The Lucas Asset Pricing Model
-************************************************
+***********************************************
 
 .. index::
     single: Models; Lucas Asset Pricing
@@ -23,7 +23,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 
 Overview
-=====================================
+========
 
 As stated in an :doc:`earlier lecture <markov_asset>`, an asset is a claim on a stream of prospective payments.
 
@@ -50,14 +50,14 @@ Let's start with some imports
 
 
 The Lucas Model
-========================
+===============
 
 .. index::
     single: Lucas Model
 
 Lucas studied a pure exchange economy with a representative consumer (or household), where
 
-* *Pure exchange* means that all endowments are exogenous
+* *Pure exchange* means that all endowments are exogenous.
 
 * *Representative* consumer means that either
 
@@ -73,12 +73,12 @@ This makes it very easy to compute competitive equilibrium prices.
 
 
 Basic Setup
---------------------------
+-----------
 
 Let's review the setup.
 
 Assets
-^^^^^^^^^^^^^^^
+^^^^^^
 
 .. index::
     single: Lucas Model; Assets
@@ -106,7 +106,7 @@ Based on this idea, a "Lucas tree" is a claim on the consumption endowment.
 
 
 Consumers
-^^^^^^^^^^^^^^^
+^^^^^^^^^
 
 .. index::
     single: Lucas Model; Consumers
@@ -121,16 +121,16 @@ A representative consumer ranks consumption streams :math:`\{c_t\}` according to
 
 Here
 
-* :math:`\beta \in (0,1)` is a fixed discount factor
+* :math:`\beta \in (0,1)` is a fixed discount factor.
 
-* :math:`u` is a strictly increasing, strictly concave, continuously differentiable period utility function
+* :math:`u` is a strictly increasing, strictly concave, continuously differentiable period utility function.
 
-* :math:`\mathbb{E}` is a mathematical expectation
+* :math:`\mathbb{E}` is a mathematical expectation.
 
 
 
 Pricing a Lucas Tree
------------------------
+--------------------
 
 .. index::
     single: Lucas Model; Pricing
@@ -170,7 +170,7 @@ But this value is inherited as a state variable at time :math:`t`, which explain
 
 
 The Dynamic Program
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Lucas Model; Dynamic Program
@@ -186,11 +186,11 @@ This leads us to guess an equilibrium where price is a function :math:`p` of :ma
 
 Remarks on the solution method
 
-* Since this is a competitive (read: price taking) model, the consumer will take this function :math:`p` as given
+* Since this is a competitive (read: price taking) model, the consumer will take this function :math:`p` as given.
 
-* In this way, we determine consumer behavior given :math:`p` and then use equilibrium conditions to recover :math:`p`
+* In this way, we determine consumer behavior given :math:`p` and then use equilibrium conditions to recover :math:`p`.
 
-* This is the standard way to solve competitive equilibrium models
+* This is the standard way to solve competitive equilibrium models.
 
 Using the assumption that price is a given function :math:`p` of :math:`y`, we write the value function and constraint as
 
@@ -221,29 +221,29 @@ We can invoke the fact that utility is increasing to claim equality in :eq:`prel
         \right\}
 
 
-The solution to this dynamic programming problem is an optimal policy expressing either :math:`\pi'` or :math:`c` as a function of the state :math:`(\pi, y)`
+The solution to this dynamic programming problem is an optimal policy expressing either :math:`\pi'` or :math:`c` as a function of the state :math:`(\pi, y)`.
 
 * Each one determines the other, since :math:`c(\pi, y) = \pi (y + p(y))- \pi' (\pi, y) p(y)`
 
 
 Next Steps
-^^^^^^^^^^^
+^^^^^^^^^^
 
 What we need to do now is determine equilibrium prices.
 
 It seems that to obtain these, we will have to
 
-#. Solve this two-dimensional dynamic programming problem for the optimal policy
+#. Solve this two-dimensional dynamic programming problem for the optimal policy.
 
-#. Impose equilibrium constraints
+#. Impose equilibrium constraints.
 
-#. Solve out for the price function :math:`p(y)` directly
+#. Solve out for the price function :math:`p(y)` directly.
 
 However, as Lucas showed, there is a related but more straightforward way to do this.
 
 
 Equilibrium Constraints
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Lucas Model; Equilibrium Constraints
@@ -259,7 +259,7 @@ Prices must adjust to satisfy these two constraints.
 
 
 The Equilibrium Price Function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Lucas Model; Equilibrium Price Function
@@ -304,7 +304,7 @@ Before discussing it further we want to solve out for prices.
 
 
 Solving the Model
---------------------------------------
+-----------------
 
 .. index::
     single: Lucas Model; Solving
@@ -316,7 +316,7 @@ The solution is an equilibrium price function :math:`p^*`.
 Let's look at how to obtain it.
 
 Setting up the Problem
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 Instead of solving for it directly we'll follow Lucas' indirect approach, first setting
 
@@ -361,7 +361,7 @@ In other words, a solution is a *fixed point* of :math:`T`.
 This means that we can use fixed point theory to obtain and compute the solution.
 
 A Little Fixed Point Theory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Fixed Point Theory
@@ -370,12 +370,12 @@ Let :math:`cb\mathbb{R}_+` be the set of continuous bounded functions :math:`f \
 
 We now show that
 
-#. :math:`T` has exactly one fixed point :math:`f^*` in :math:`cb\mathbb{R}_+`
+#. :math:`T` has exactly one fixed point :math:`f^*` in :math:`cb\mathbb{R}_+`.
 
 #. For any :math:`f \in cb\mathbb{R}_+`, the sequence :math:`T^k f` converges
-   uniformly to :math:`f^*`
+   uniformly to :math:`f^*`.
 
-(Note: If you find the mathematics heavy going you can take 1--2 as given and skip to the :ref:`next section <lt_comp_eg>`).
+(Note: If you find the mathematics heavy going you can take 1--2 as given and skip to the :ref:`next section <lt_comp_eg>`)
 
 Recall the `Banach contraction mapping theorem <https://en.wikipedia.org/wiki/Banach_fixed-point_theorem>`_.
 
@@ -418,7 +418,7 @@ on the left-hand side gives :eq:`ltbc` with :math:`\alpha := \beta`.
 .. _lt_comp_eg:
 
 Computation -- An Example
-----------------------------
+-------------------------
 
 .. index::
     single: Lucas Model; Computation
@@ -507,7 +507,7 @@ jitted version of the Lucas operator
         return T
 
 To solve the model, we write a function that iterates using the Lucas operator
-to find the fixed point
+to find the fixed point.
 
 .. code-block:: python3
 
@@ -575,18 +575,18 @@ Exercise 1 asks you to replicate this figure.
 
 
 Exercises
-==============
+=========
 
 .. _lucas_asset_ex1:
 
 Exercise 1
-------------
+----------
 
 Replicate :ref:`the figure <mass_lt_cb>` to show how discount factors affect prices.
 
 
 Solutions
-==========
+=========
 
 
 Exercise 1
@@ -607,3 +607,4 @@ Exercise 1
   ax.legend(loc='upper left')
   ax.set(xlabel='$y$', ylabel='price', xlim=(min(grid), max(grid)))
   plt.show()
+  

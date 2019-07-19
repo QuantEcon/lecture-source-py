@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-******************************************
+*************************************
 Job Search I: The McCall Search Model
-******************************************
+*************************************
 
 .. contents:: :depth: 2
 
@@ -27,7 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 
 The McCall search model :cite:`McCall1970` helped transform economists' way of thinking about labor markets.
@@ -57,7 +57,7 @@ Let's start with some imports
     from quantecon.distributions import BetaBinomial
 
 The McCall Model
-=================
+================
 
 
 .. index::
@@ -67,9 +67,9 @@ An unemployed worker receives in each period a job offer at wage :math:`W_t`.
 
 At time :math:`t`, our worker has two choices:
 
-#. Accept the offer and work permanently at constant wage :math:`W_t`
+#. Accept the offer and work permanently at constant wage :math:`W_t`.
 
-#. Reject the offer, receive unemployment compensation :math:`c`, and reconsider next period
+#. Reject the offer, receive unemployment compensation :math:`c`, and reconsider next period.
 
 The wage sequence is assumed to be IID with probability mass function :math:`\phi`.
 
@@ -94,14 +94,14 @@ The variable  :math:`Y_t` is income, equal to
 
 
 A Trade-Off
---------------------
+-----------
 
 
 The worker faces a trade-off:
 
-* Waiting too long for a good offer is costly, since the future is discounted
+* Waiting too long for a good offer is costly, since the future is discounted.
 
-* Accepting too early is costly, since better offers might arrive in the future
+* Accepting too early is costly, since better offers might arrive in the future.
 
 To decide optimally in the face of this trade-off, we use dynamic programming.
 
@@ -116,7 +116,7 @@ We'll go through these steps in turn.
 
 
 The Value Function
----------------------
+------------------
 
 In order to optimally trade-off current and future rewards, we need to think about two things:
 
@@ -165,7 +165,7 @@ But this is precisely :math:`v^*(w)`, which is the l.h.s. of :eq:`odu_pv`.
 
 
 The Optimal Policy
--------------------
+------------------
 
 Suppose for now that we are able to solve :eq:`odu_pv` for the unknown
 function :math:`v^*`.
@@ -217,7 +217,7 @@ Clearly, we can compute this reservation wage if we can compute the value functi
 
 
 Computing the Optimal Policy: Take 1
-======================================
+====================================
 
 To put the above ideas into action, we need to compute the value function at
 points :math:`w_1, \ldots, w_n`.
@@ -268,11 +268,11 @@ This algorithm returns an arbitrarily good approximation to the true solution
 to :eq:`odu_pv2`, which represents the value function.
 
 (Arbitrarily good means here that the approximation converges to the true
-solution as the tolerance goes to zero).
+solution as the tolerance goes to zero)
 
 
 The Fixed Point Theory
------------------------
+----------------------
 
 What's the math behind these ideas?
 
@@ -291,7 +291,7 @@ itself via
 
 
 (A new vector :math:`Tv` is obtained from given vector :math:`v` by evaluating
-the r.h.s. at each :math:`i`).
+the r.h.s. at each :math:`i`)
 
 One can show that the conditions of the Banach contraction mapping theorem are
 satisfied by :math:`T` as a self-mapping on :math:`\mathbb R^n`.
@@ -310,7 +310,7 @@ generates a sequence that converges to the fixed point.
 
 
 Implementation
-----------------
+--------------
 
 Here's the distribution of wage offers we'll work with
 
@@ -338,7 +338,7 @@ the algorithm above generates.
 
 Default parameter values are embedded in the function.
 
-Our initial guess :math:`v` is the value of accepting at every given wage
+Our initial guess :math:`v` is the value of accepting at every given wage.
 
 
 
@@ -423,14 +423,6 @@ Let's compute the reservation wage at the default parameters
 
 
 
-
-
-
-
-
-
-
-
 Comparative Statics
 -------------------
 
@@ -439,7 +431,7 @@ Now we know how to compute the reservation wage, let's see how it varies with
 parameters.
 
 In particular, let's look at what happens when we change :math:`\beta` and
-:math:`c`
+:math:`c`.
 
 
 
@@ -494,7 +486,7 @@ unemployment compensation.
 
 
 Computing the Optimal Policy: Take 2
-======================================
+====================================
 
 The approach to dynamic programming just described is very standard and
 broadly applicable.
@@ -616,7 +608,7 @@ Exercises
 
 
 Exercise 1
-------------
+----------
 
 Compute the average duration of unemployment when :math:`\beta=0.99` and
 :math:`c` takes the following values
@@ -632,7 +624,7 @@ Plot mean unemployment duration as a function of :math:`c` in ``c_vals``.
 
 
 Solutions
-==========
+=========
 
 
 Exercise 1

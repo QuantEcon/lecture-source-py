@@ -599,7 +599,7 @@ There are many different options and we mention them only in passing.
 
 
 :index:`JupyterLab`
-------------------
+-------------------
 
 .. index::
     single: JupyterLab
@@ -614,7 +614,7 @@ Reading the docs or searching for a recent YouTube video will give you more info
 
 
 :index:`Text Editors`
---------------------
+---------------------
 
 A text editor is an application that is specifically designed to work with text files --- such as Python programs.
 

@@ -5,9 +5,9 @@
 .. index::
     single: python
 
-******************************
+*****************************
 Lucas Asset Pricing Using DLE
-******************************
+*****************************
 
 .. contents:: :depth: 2
 
@@ -18,7 +18,7 @@ This is one of a suite of lectures that use the quantecon DLE class to instantia
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
 
-In addition to what's in Anaconda, this lecture uses the quantecon  library
+In addition to what's in Anaconda, this lecture uses the quantecon library
 
 .. code-block:: ipython
   :class: hide-output
@@ -113,7 +113,7 @@ to develop an equilibrium theory of asset prices:
       \right]'
 
 Asset Pricing Equations
-========================
+=======================
 
 :cite:`HS2013` show that the time t value of a permanent claim to a stream
 :math:`y_s = U_ax_s \, , s \geq t` is:
@@ -134,7 +134,7 @@ The use of :math:`\bar e _1` indicates that the first consumption good
 is the numeraire.
 
 Asset Pricing Simulations
-==========================
+=========================
 
 .. code-block:: python3
 

@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-********************************************
+************************************
 Job Search II: Search and Separation
-********************************************
+************************************
 
 .. index::
     single: An Introduction to Job Search
@@ -22,7 +22,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-===============
+========
 
 
 Previously :doc:`we looked <mccall_model>` at the McCall job search model :cite:`McCall1970` as a way of understanding unemployment and worker decisions.
@@ -48,7 +48,7 @@ We'll need the following imports
     %matplotlib inline
 
 The Model
-============
+=========
 
 The model concerns the life of an infinitely lived worker and
 
@@ -75,7 +75,7 @@ It satisfies :math:`u'> 0` and :math:`u'' < 0`.
 
 
 Timing and Decisions
------------------------
+--------------------
 
 Here's what happens at the start of a given period in our model with search and separation.
 
@@ -97,7 +97,7 @@ When employed, the agent faces a constant probability :math:`\alpha` of becoming
 
 
 (Note: we do not allow for job search while employed---this topic is taken
-up in a :doc:`later lecture <jv>`).
+up in a :doc:`later lecture <jv>`)
 
 
 
@@ -105,7 +105,7 @@ up in a :doc:`later lecture <jv>`).
 
 
 Solving the Model using Dynamic Programming
-============================================
+===========================================
 
 Let
 
@@ -135,11 +135,11 @@ and
 
 Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
 
-* The left-hand sides of equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the values of a worker in a particular situation *today*
+* The left-hand sides of equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the values of a worker in a particular situation *today*.
 
-* The right-hand sides of the equations are the discounted (by :math:`\beta`) expected values of the possible situations that worker can be in *tomorrow*
+* The right-hand sides of the equations are the discounted (by :math:`\beta`) expected values of the possible situations that worker can be in *tomorrow*.
 
-*  But *tomorrow* the worker can be in only one of the situations whose values *today* are on the left sides of our two equations
+*  But *tomorrow* the worker can be in only one of the situations whose values *today* are on the left sides of our two equations.
 
 Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare.
 
@@ -189,7 +189,7 @@ and
 
 
 Solving the Bellman Equations
--------------------------------
+-----------------------------
 
 
 We'll use the same iterative approach to solving the Bellman equations that we
@@ -234,7 +234,7 @@ A proof can be obtained via the Banach contraction mapping theorem.
 
 
 Implementation
-================
+==============
 
 Let's implement this iterative process.
 
@@ -369,7 +369,7 @@ The value :math:`v` is increasing because higher :math:`w` generates a higher wa
 
 
 The Reservation Wage
-=======================
+====================
 
 Once :math:`v` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer.
 
@@ -432,7 +432,7 @@ In each instance below, we'll show you a figure and then ask you to reproduce it
 
 
 The Reservation Wage and Unemployment Compensation
-----------------------------------------------------
+--------------------------------------------------
 
 First, let's look at how :math:`\bar w` varies with unemployment compensation.
 
@@ -448,7 +448,7 @@ In effect, the cost of continuing job search is reduced.
 
 
 The Reservation Wage and Discounting
-----------------------------------------------------
+------------------------------------
 
 Next, let's investigate how :math:`\bar w` varies with the discount factor.
 
@@ -462,11 +462,11 @@ Again, the results are intuitive: More patient workers will hold out for higher 
 
 
 The Reservation Wage and Job Destruction
-----------------------------------------------------
+----------------------------------------
 
 Finally, let's look at how :math:`\bar w` varies with the job separation rate :math:`\alpha`.
 
-Higher :math:`\alpha` translates to a greater chance that a worker will face termination in each period once employed
+Higher :math:`\alpha` translates to a greater chance that a worker will face termination in each period once employed.
 
 
 .. figure:: /_static/lecture_specific/mccall_model_with_separation/mccall_resw_alpha.png
@@ -480,17 +480,17 @@ Hence the reservation wage is lower.
 
 
 Exercises
-=============
+=========
 
 
 
 Exercise 1
-----------------
+----------
 
 Reproduce all the reservation wage figures shown above.
 
 Exercise 2
-------------
+----------
 
 Plot the reservation wage against the job offer rate :math:`\gamma`.
 
@@ -510,7 +510,7 @@ Interpret your results.
 
 
 Solutions
-==========
+=========
 
 Exercise 1
 ----------

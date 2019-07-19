@@ -12,7 +12,7 @@
 .. contents:: :depth: 2
 
 Overview
-============
+========
 
 We've already generated quite a few figures in these lectures using `Matplotlib <http://matplotlib.org/>`__.
 
@@ -31,7 +31,7 @@ Matplotlib is an outstanding graphics library, designed for scientific computing
 
 
 Matplotlib's Split Personality
----------------------------------
+------------------------------
 
 
 Matplotlib is unusual in that it offers two different interfaces to plotting.
@@ -48,7 +48,7 @@ But first, let's discuss the difference.
 
 
 The APIs
-=======================
+========
 
 .. index::
     single: Matplotlib; Simple API
@@ -93,9 +93,9 @@ Here's the code corresponding to the preceding figure using the object-oriented 
 
 Here the call ``fig, ax = plt.subplots()`` returns a pair, where
 
-* ``fig`` is a ``Figure`` instance---like a blank canvas
+* ``fig`` is a ``Figure`` instance---like a blank canvas.
 
-* ``ax`` is an ``AxesSubplot`` instance---think of a frame for plotting in
+* ``ax`` is an ``AxesSubplot`` instance---think of a frame for plotting in.
 
 The ``plot()`` function is actually a method of ``ax``.
 
@@ -105,7 +105,7 @@ This will become more clear as we go along.
 
 
 Tweaks
---------------
+------
 
 Here we've changed the line to red and added a legend
 
@@ -118,7 +118,7 @@ Here we've changed the line to red and added a legend
 
 We've also used ``alpha`` to make the line slightly transparent---which makes it look smoother.
 
-The location of the legend can be changed by replacing ``ax.legend()`` with ``ax.legend(loc='upper center')``
+The location of the legend can be changed by replacing ``ax.legend()`` with ``ax.legend(loc='upper center')``.
 
 .. code-block:: python3
 
@@ -149,7 +149,7 @@ Controlling the ticks, adding titles and so on is also straightforward
 
 
 More Features
-====================
+=============
 
 Matplotlib has a huge array of functions and features, which you can discover
 over time as you have need for them.
@@ -158,7 +158,7 @@ We mention just a few.
 
 
 Multiple Plots on One Axis
--------------------------------
+--------------------------
 
 .. index::
     single: Matplotlib; Multiple Plots on One Axis
@@ -184,7 +184,7 @@ Here's an example that randomly generates three normal densities and adds a labe
 
 
 Multiple Subplots
-------------------
+-----------------
 
 .. index::
     single: Matplotlib; Subplots
@@ -208,7 +208,7 @@ Here's an example that generates 6 histograms
 
 
 3D Plots
----------------
+--------
 
 .. index::
     single: Matplotlib; 3D Plots
@@ -244,7 +244,7 @@ Matplotlib does a nice job of 3D plots --- here is one example
 
 
 A Customizing Function
--------------------------
+----------------------
 
 Perhaps you will find a set of customizations that you regularly use.
 
@@ -283,31 +283,31 @@ The custom ``subplots`` function
 
 #. makes the desired customizations to ``ax``, and
 
-#. passes the ``fig, ax`` pair back to the calling code
+#. passes the ``fig, ax`` pair back to the calling code.
 
 
 
 Further Reading
-===================
+===============
 
 
-* The `Matplotlib gallery <http://matplotlib.org/gallery.html>`__ provides many examples
+* The `Matplotlib gallery <http://matplotlib.org/gallery.html>`__ provides many examples.
 
-* A nice `Matplotlib tutorial <http://www.scipy-lectures.org/intro/matplotlib/matplotlib.html>`__ by Nicolas Rougier, Mike Muller and Gael Varoquaux
+* A nice `Matplotlib tutorial <http://www.scipy-lectures.org/intro/matplotlib/matplotlib.html>`__ by Nicolas Rougier, Mike Muller and Gael Varoquaux.
 
 * `mpltools <http://tonysyu.github.io/mpltools/index.html>`_ allows easy
-  switching between plot styles
+  switching between plot styles.
 
-* `Seaborn <https://github.com/mwaskom/seaborn>`_ facilitates common statistics plots in Matplotlib
+* `Seaborn <https://github.com/mwaskom/seaborn>`_ facilitates common statistics plots in Matplotlib.
 
 
 
 Exercises
-=============
+=========
 
 
 Exercise 1
-----------------
+----------
 
 
 Plot the function
@@ -329,11 +329,11 @@ The output should look like this
 
 
 Solutions
-===========
+=========
 
 
 Exercise 1
-------------
+----------
 
 
 Here's one solution

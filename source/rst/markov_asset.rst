@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-**********************************************
+*********************************************
 :index:`Asset Pricing I: Finite State Models`
-**********************************************
+*********************************************
 
 .. index::
     single: Models; Markov Asset Pricing
@@ -62,7 +62,7 @@ Key tools for the lecture are
 
 
 :index:`Pricing Models`
-=====================================
+=======================
 
 .. index::
     single: Models; Pricing
@@ -70,9 +70,9 @@ Key tools for the lecture are
 
 In what follows let :math:`\{d_t\}_{t \geq 0}` be a stream of dividends
 
-* A time-:math:`t` **cum-dividend** asset is a claim to the stream :math:`d_t, d_{t+1}, \ldots`
+* A time-:math:`t` **cum-dividend** asset is a claim to the stream :math:`d_t, d_{t+1}, \ldots`.
 
-* A time-:math:`t` **ex-dividend** asset is a claim to the stream :math:`d_{t+1}, d_{t+2}, \ldots`
+* A time-:math:`t` **ex-dividend** asset is a claim to the stream :math:`d_{t+1}, d_{t+2}, \ldots`.
 
 
 Let's look at some equations that we expect to hold for prices of assets under ex-dividend contracts
@@ -80,7 +80,7 @@ Let's look at some equations that we expect to hold for prices of assets under e
 
 
 Risk-Neutral Pricing
-------------------------
+--------------------
 
 .. index::
     single: Pricing Models; Risk-Neutral
@@ -90,7 +90,7 @@ Our first scenario is risk-neutral pricing.
 Let :math:`\beta = 1/(1+\rho)` be an intertemporal discount factor, where
 :math:`\rho` is the rate at which agents discount the future.
 
-The basic risk-neutral asset pricing equation for pricing one unit of an ex-dividend asset is.
+The basic risk-neutral asset pricing equation for pricing one unit of an ex-dividend asset is
 
 .. _mass_pra:
 
@@ -109,7 +109,7 @@ Here :math:`{\mathbb E}_t [y]` denotes the best forecast of :math:`y`, condition
 
 
 Pricing with Random Discount Factor
-------------------------------------
+-----------------------------------
 
 .. index::
     single: Pricing Models; Risk Aversion
@@ -141,7 +141,7 @@ We give examples of how the stochastic discount factor has been modeled below.
 
 
 Asset Pricing and Covariances
-------------------------------
+-----------------------------
 
 Recall that, from the definition of a conditional covariance :math:`{\rm cov}_t (x_{t+1}, y_{t+1})`, we have
 
@@ -161,9 +161,9 @@ If we apply this definition to the asset pricing equation :eq:`lteeqs0` we obtai
 
 It is useful to regard equation :eq:`lteeqs102`   as a generalization of equation :eq:`rnapex`
 
-* In equation :eq:`rnapex`, the stochastic discount factor :math:`m_{t+1} = \beta`,  a constant
+* In equation :eq:`rnapex`, the stochastic discount factor :math:`m_{t+1} = \beta`,  a constant.
 
-* In equation :eq:`rnapex`, the covariance term :math:`{\rm cov}_t (m_{t+1}, d_{t+1}+ p_{t+1})` is zero because :math:`m_{t+1} = \beta`
+* In equation :eq:`rnapex`, the covariance term :math:`{\rm cov}_t (m_{t+1}, d_{t+1}+ p_{t+1})` is zero because :math:`m_{t+1} = \beta`.
 
 Equation :eq:`lteeqs102` asserts that the covariance of the stochastic discount factor with the one period payout :math:`d_{t+1} + p_{t+1}` is an important determinant of the price :math:`p_t`.
 
@@ -172,7 +172,7 @@ We give examples of some models of stochastic discount factors that have been pr
 
 
 The Price-Dividend Ratio
---------------------------
+------------------------
 
 Aside from prices, another quantity of interest is the **price-dividend ratio** :math:`v_t := p_t / d_t`.
 
@@ -190,7 +190,7 @@ Below we'll discuss the implication of this equation.
 
 
 Prices in the Risk-Neutral Case
-===================================
+===============================
 
 What can we say about price dynamics on the basis of the models described above?
 
@@ -205,7 +205,7 @@ For now let's focus on the risk-neutral case, where the stochastic discount fact
 
 
 Example 1: Constant Dividends
----------------------------------
+-----------------------------
 
 The simplest case is risk-neutral pricing in the face of a constant, non-random dividend stream :math:`d_t = d > 0`.
 
@@ -239,7 +239,7 @@ satisfies the equilibrium condition :math:`p_t = \beta (d + p_{t+1})`.
 
 
 Example 2: Dividends with Deterministic Growth Paths
----------------------------------------------------------
+----------------------------------------------------
 
 Consider a growing, non-random dividend process :math:`d_{t+1} = g d_t`
 where :math:`0 < g \beta < 1`.
@@ -276,7 +276,7 @@ This is called the *Gordon formula*.
 .. _mass_mg:
 
 Example 3: Markov Growth, Risk-Neutral Pricing
-------------------------------------------------
+----------------------------------------------
 
 Next, we consider a dividend process
 
@@ -310,21 +310,21 @@ where
 You can think of
 
 * :math:`S` as :math:`n` possible "states of the world" and :math:`X_t` as the
-  current state
+  current state.
 
 * :math:`g` as a function that maps a given state :math:`X_t` into a growth
-  factor :math:`g_t = g(X_t)` for the endowment
+  factor :math:`g_t = g(X_t)` for the endowment.
 
-* :math:`\ln g_t = \ln (d_{t+1} / d_t)` is the growth rate of dividends
+* :math:`\ln g_t = \ln (d_{t+1} / d_t)` is the growth rate of dividends.
 
 
-(For a refresher on notation and theory for finite Markov chains see :doc:`this lecture <finite_markov>`).
+(For a refresher on notation and theory for finite Markov chains see :doc:`this lecture <finite_markov>`)
 
 The next figure shows a simulation, where
 
-* :math:`\{X_t\}` evolves as a discretized AR1 process produced using :ref:`Tauchen's method <mc_ex3>`
+* :math:`\{X_t\}` evolves as a discretized AR1 process produced using :ref:`Tauchen's method <mc_ex3>`.
 
-* :math:`g_t = \exp(X_t)`, so that :math:`\ln g_t = X_t` is the growth rate
+* :math:`g_t = \exp(X_t)`, so that :math:`\ln g_t = X_t` is the growth rate.
 
 
 
@@ -358,7 +358,7 @@ The next figure shows a simulation, where
 
 
 Pricing
-^^^^^^^^^^^^
+^^^^^^^
 
 To obtain asset prices in this setting, let's adapt our analysis from the case of deterministic growth.
 
@@ -404,11 +404,11 @@ We can then think of :eq:`pstack` as :math:`n` stacked equations, one for each s
 
 Here
 
-* :math:`v` is understood to be the column vector :math:`(v(x_1), \ldots, v(x_n))'`
+* :math:`v` is understood to be the column vector :math:`(v(x_1), \ldots, v(x_n))'`.
 
-* :math:`K` is the matrix :math:`(K(x_i, x_j))_{1 \leq i, j \leq n}`
+* :math:`K` is the matrix :math:`(K(x_i, x_j))_{1 \leq i, j \leq n}`.
 
-* :math:`{\mathbb 1}` is a column vector of ones
+* :math:`{\mathbb 1}` is a column vector of ones.
 
 When does :eq:`vcumrn` have a unique solution?
 
@@ -425,7 +425,7 @@ The solution is then
 
 
 Code
------
+----
 
 Let's calculate and plot the price-dividend ratio at a set of parameters.
 
@@ -476,7 +476,7 @@ The anticipation of high future dividend growth leads to a high price-dividend r
 
 
 Asset Prices under Risk Aversion
-==================================
+================================
 
 
 Now let's turn to the case where agents are risk averse.
@@ -494,7 +494,7 @@ We'll price several distinct assets, including
 
 
 Pricing a Lucas Tree
----------------------------
+--------------------
 
 .. index::
     single: Finite Markov Asset Pricing; Lucas Tree
@@ -514,7 +514,7 @@ As in :cite:`Lucas1978`, suppose that the stochastic discount factor takes the f
 where :math:`u` is a concave utility function and :math:`c_t` is time :math:`t` consumption of a representative consumer.
 
 
-(A derivation of this expression is given in a :doc:`later lecture <lucas_model>`).
+(A derivation of this expression is given in a :doc:`later lecture <lucas_model>`)
 
 Assume the existence of an endowment that follows :eq:`mass_fmce`.
 
@@ -703,7 +703,7 @@ discount factor, lowering the weight placed on future returns.
 
 
 Special Cases
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 In the special case :math:`\gamma =1`, we have :math:`J = P`.
 
@@ -727,7 +727,7 @@ This is as expected, since :math:`\gamma = 0` implies :math:`u(c) = c` (and henc
 
 
 A Risk-Free Consol
--------------------
+------------------
 
 Consider the same pure exchange representative agent economy.
 
@@ -774,7 +774,7 @@ yields the solution
 
     p = (I - \beta M)^{-1} \beta M \zeta {\mathbb 1}
 
-The above is implemented in the function `consol_price`
+The above is implemented in the function `consol_price`.
 
 
 
@@ -822,7 +822,7 @@ Let's now price options of varying maturity that give the right to purchase a co
 
 
 An Infinite Horizon Call Option
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to price an infinite horizon  option to purchase a consol at a price :math:`p_S`.
 
@@ -976,14 +976,14 @@ The reason is that :math:`\beta=0.9`, so the future is discounted relatively rap
 
 
 Risk-Free Rates
------------------
+---------------
 
 Let's look at risk-free interest rates over different periods.
 
 
 
 The One-period Risk-free Interest Rate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As before, the stochastic discount factor is :math:`m_{t+1} = \beta g_{t+1}^{-\gamma}`.
 
@@ -1005,7 +1005,7 @@ where the :math:`i`-th  element of :math:`m_1` is the reciprocal of the one-peri
 
 
 Other Terms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 Let :math:`m_j` be an :math:`n \times 1` vector whose :math:`i` th component is the reciprocal of the :math:`j` -period gross risk-free interest rate in state :math:`x_i`.
 
@@ -1015,10 +1015,10 @@ Then :math:`m_1 = \beta M`, and :math:`m_{j+1} = M m_j` for :math:`j \geq 1`.
 
 
 Exercises
-==============
+=========
 
 Exercise 1
------------
+----------
 
 In the lecture, we considered **ex-dividend assets**.
 
@@ -1034,7 +1034,7 @@ With a growing, non-random dividend process :math:`d_t = g d_t` where :math:`0 <
 what is the equilibrium price of a cum-dividend asset?
 
 Exercise 2
-------------
+----------
 
 Consider the following primitives
 
@@ -1111,7 +1111,7 @@ Is one higher than the other?  Can you give intuition?
 
 
 Solutions
-==========
+=========
 
 
 
@@ -1141,7 +1141,7 @@ With a growing, non-random dividend process, the equilibrium price is
     p_t = \frac{1}{1 - \beta g} d_t
 
 Exercise 2
------------
+----------
 
 First, let's enter the parameters:
 
