@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-*************************************
+**********************************
 Setting up Your Python Environment
-*************************************
+**********************************
 
 .. index::
     single: Python
@@ -12,7 +12,7 @@ Setting up Your Python Environment
 .. contents:: :depth: 2
 
 Overview
-============
+========
 
 In this lecture, you will learn how to
 
@@ -29,7 +29,7 @@ In this lecture, you will learn how to
 
 
 Anaconda
-================
+========
 
 
 The `core Python package <https://www.python.org/downloads/>`_ is easy to install but *not* what you should choose for these lectures.
@@ -72,7 +72,7 @@ Anaconda also comes with a great package management system to organize your code
 .. _install_anaconda:
 
 Installing Anaconda
----------------------
+-------------------
 
 .. index::
     single: Python; Anaconda
@@ -84,15 +84,15 @@ Installing Anaconda is straightforward: `download <https://www.anaconda.com/down
 
 Important points:
 
-* Install the latest version
+* Install the latest version.
 
-* If you are asked during the installation process whether you'd like to make Anaconda your default Python installation, say **yes**
+* If you are asked during the installation process whether you'd like to make Anaconda your default Python installation, say **yes**.
 
-* Otherwise, you can accept all of the defaults
+* Otherwise, you can accept all of the defaults.
 
 
 Updating Anaconda
-------------------
+-----------------
 
 Anaconda supplies a tool called `conda` to manage and upgrade your Anaconda packages.
 
@@ -126,11 +126,11 @@ For more information on `conda`,  type `conda help` in a terminal.
 
 They use  a *browser-based* interface to Python with
 
-* The ability to write and execute Python commands
+* The ability to write and execute Python commands.
 
 * Formatted output in the browser, including tables, figures, animation, etc.
 
-* The option to mix in formatted text and mathematical expressions
+* The option to mix in formatted text and mathematical expressions.
 
 
 
@@ -157,7 +157,7 @@ These lectures are designed for executing in Jupyter notebooks.
 
 
 Starting the Jupyter Notebook
-------------------------------
+-----------------------------
 
 .. index::
     single: Jupyter Notebook; Setup
@@ -170,7 +170,7 @@ Either
 
 * open up a terminal and type ``jupyter notebook``
 
-    * Windows users should substitute "Anaconda command prompt" for "terminal" in the previous line
+    * Windows users should substitute "Anaconda command prompt" for "terminal" in the previous line.
 
 If you use the second option, you will see something like this (click to enlarge)
 
@@ -203,7 +203,7 @@ The notebook displays an *active cell*, into which you can type Python commands.
 
 
 Notebook Basics
-------------------
+---------------
 
 .. index::
     single: Jupyter Notebook; Basics
@@ -213,7 +213,7 @@ Let's start with how to edit code and run simple programs.
 
 
 Running Cells
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 Notice that in the previous figure the cell is surrounded by a green border.
 
@@ -221,15 +221,15 @@ This means that the cell is in *edit mode*.
 
 As a result, you can type in Python code and it will appear in the cell.
 
-When you're ready to execute the code in a cell, hit ``Shift-Enter`` instead of the usual ``Enter``
+When you're ready to execute the code in a cell, hit ``Shift-Enter`` instead of the usual ``Enter``.
 
 .. figure:: /_static/lecture_specific/getting_started/nb3.png
 
-(Note: There are also menu and button options for running code in a cell that you can find by exploring).
+(Note: There are also menu and button options for running code in a cell that you can find by exploring)
 
 
 Modal Editing
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 The next thing to understand about the Jupyter notebook is that it uses a *modal* editing system.
 
@@ -260,7 +260,7 @@ The modal behavior of the Jupyter notebook is a little tricky at first but very 
 
 
 User Interface Tour
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 At this stage, we recommend you take your time to
 
@@ -269,7 +269,7 @@ At this stage, we recommend you take your time to
 * take the "user interface tour", which can be accessed through the help menu
 
 Inserting Unicode (e.g., Greek Letters)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Python 3 introduced support for `unicode characters <https://docs.python.org/3/howto/unicode.html>`__,
 allowing the use of characters such as `α` and `β` in your code.
@@ -281,7 +281,7 @@ Try creating a new code cell and typing `\\alpha`, then hitting the `tab` key on
 .. _a_test_program:
 
 A Test Program
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 Let's run a test program.
 
@@ -314,7 +314,7 @@ Don't worry about the details for now --- let's just run it and see what happens
 
 The easiest way to run this code is to copy and paste into a cell in the notebook.
 
-(In older versions of Jupyter you might need to add the command ``%matplotlib inline`` before you generate the figure).
+(In older versions of Jupyter you might need to add the command ``%matplotlib inline`` before you generate the figure)
 
 
 
@@ -322,21 +322,21 @@ The easiest way to run this code is to copy and paste into a cell in the noteboo
 
 
 Working with the Notebook
------------------------------
+-------------------------
 
 Here are a few more tips on working with Jupyter notebooks.
 
 
 Tab Completion
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 In the previous program, we executed the line ``import numpy as np``
 
-* NumPy is a numerical library we'll work with in depth
+* NumPy is a numerical library we'll work with in depth.
 
-After this import command, functions in NumPy can be accessed with ``np.<function_name>`` type syntax
+After this import command, functions in NumPy can be accessed with ``np.<function_name>`` type syntax.
 
-* For example, try ``np.random.randn(3)``
+* For example, try ``np.random.randn(3)``.
 
 We can explore these attributes of ``np`` using the ``Tab`` key.
 
@@ -354,7 +354,7 @@ In this way, the Tab key helps remind you of what's available and also saves you
 .. _gs_help:
 
 On-Line Help
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 .. index::
     single: Jupyter Notebook; Help
@@ -370,7 +370,7 @@ Clicking on the top right of the lower split closes the on-line help.
 
 
 Other Content
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 In addition to executing code, the Jupyter notebook allows you to embed text, equations, figures and even videos in the page.
 
@@ -381,7 +381,7 @@ For example, here we enter a mixture of plain text and LaTeX instead of code
 Next we ``Esc`` to enter command mode and then type ``m`` to indicate that we
 are writing `Markdown <http://daringfireball.net/projects/markdown/>`_, a mark-up language similar to (but simpler than) LaTeX.
 
-(You can also use your mouse to select ``Markdown`` from the ``Code`` drop-down box just below the list of menu items).
+(You can also use your mouse to select ``Markdown`` from the ``Code`` drop-down box just below the list of menu items)
 
 Now we ``Shift+Enter`` to produce this
 
@@ -391,7 +391,7 @@ Now we ``Shift+Enter`` to produce this
 
 
 Sharing Notebooks
-------------------------
+-----------------
 
 .. index::
     single: Jupyter Notebook; Sharing
@@ -413,7 +413,7 @@ Save it somewhere, navigate to it from the Jupyter dashboard and then run as dis
 
 
 QuantEcon Notes
------------------
+---------------
 
 QuantEcon has its own site for sharing Jupyter notebooks related
 to economics -- `QuantEcon Notes <http://notes.quantecon.org/>`_.
@@ -423,7 +423,7 @@ to comments and votes by the community.
 
 
 Installing Libraries
-=================================
+====================
 
 .. _gs_qe:
 
@@ -464,7 +464,7 @@ This can be installed by typing in Jupyter
 
 
 Working with Files
-====================
+==================
 
 How does one run a locally saved Python file?
 
@@ -475,21 +475,21 @@ Option 1: Copy and Paste
 
 The steps are:
 
-#. Navigate to your file with your mouse/trackpad using a file browser
+#. Navigate to your file with your mouse/trackpad using a file browser.
 
-#. Click on your file to open it with a text editor
+#. Click on your file to open it with a text editor.
 
-#. Copy and paste into a cell and ``Shift-Enter``
+#. Copy and paste into a cell and ``Shift-Enter``.
 
 
 Method 2: Run
 -------------
 
-Using the ``run`` command is often easier than copy and paste
+Using the ``run`` command is often easier than copy and paste.
 
-* For example, ``%run test.py`` will run the file ``test.py``
+* For example, ``%run test.py`` will run the file ``test.py``.
 
-(You might find that the ``%`` is unnecessary --- use ``%automagic`` to toggle the need for ``%``).
+(You might find that the ``%`` is unnecessary --- use ``%automagic`` to toggle the need for ``%``)
 
 Note that Jupyter only looks for ``test.py`` in the present working directory (PWD).
 
@@ -508,13 +508,13 @@ Here
 
 * ``pwd`` asks Jupyter to show the PWD (or ``%pwd`` --- see the comment about automagic above)
 
-    * This is where Jupyter is going to look for files to run
+    * This is where Jupyter is going to look for files to run.
 
-    * Your output will look a bit different depending on your OS
+    * Your output will look a bit different depending on your OS.
 
 * ``ls`` asks Jupyter to list files in the PWD (or ``%ls``)
 
-   * Note that ``test.py`` is there (on our computer, because we saved it there earlier)
+   * Note that ``test.py`` is there (on our computer, because we saved it there earlier).
 
 * ``cat test.py`` asks Jupyter to print the contents of ``test.py`` (or ``!type test.py`` on Windows)
 
@@ -551,22 +551,22 @@ Note: You can type the first letter or two of each directory name and then use t
 
 
 Loading Files
---------------
+-------------
 
 It's often convenient to be able to see your code before you run it.
 
 In the following example, we execute ``load white_noise_plot.py`` where ``white_noise_plot.py`` is in the PWD.
 
-(Use ``%load`` if automagic is off).
+(Use ``%load`` if automagic is off)
 
-Now the code from the file appears in a cell ready to execute
+Now the code from the file appears in a cell ready to execute.
 
 .. figure:: /_static/lecture_specific/getting_started/nb_wntest2.png
 
 
 
 Saving Files
--------------
+------------
 
 To save the contents of a cell as file ``foo.py``
 
@@ -585,7 +585,7 @@ Here ``%%file`` is an example of a `cell magic <http://ipython.readthedocs.org/e
 
 
 Editors and IDEs
-==================
+================
 
 The preceding discussion covers most of what you need to know to interact with
 this website.
@@ -599,7 +599,7 @@ There are many different options and we mention them only in passing.
 
 
 :index:`JupyterLab`
------------------------
+------------------
 
 .. index::
     single: JupyterLab
@@ -614,7 +614,7 @@ Reading the docs or searching for a recent YouTube video will give you more info
 
 
 :index:`Text Editors`
----------------------
+--------------------
 
 A text editor is an application that is specifically designed to work with text files --- such as Python programs.
 
@@ -636,7 +636,7 @@ If you want an outstanding free text editor and don't mind a seemingly vertical 
 
 
 Text Editors Plus IPython Shell
--------------------------------------
+-------------------------------
 
 .. _ipython_shell:
 
@@ -669,7 +669,7 @@ Here's one set up, on a Linux box, with
 
 * a file being edited in  `Vim <http://www.vim.org/>`_
 
-* An IPython shell next to it, to run the file
+* an IPython shell next to it, to run the file
 
 .. figure:: /_static/lecture_specific/getting_started/editing_vim.png
 
@@ -695,10 +695,10 @@ We hear good things about VS Code --- please tell us about your experiences on
 
 
 Exercises
-===========
+=========
 
 Exercise 1
-------------
+----------
 
 If Jupyter is still running, quit by using ``Ctrl-C`` at the terminal where you started it.
 
@@ -710,9 +710,9 @@ Note also the startup message: It should give you a URL such as ``http://localho
 
 Now
 
-#. Start your browser --- or open a new tab if it's already running
+#. Start your browser --- or open a new tab if it's already running.
 
-#. Enter the URL from above (e.g. ``http://localhost:8888``) in the address bar at the top
+#. Enter the URL from above (e.g. ``http://localhost:8888``) in the address bar at the top.
 
 You should now be able to run a standard Jupyter notebook session.
 
@@ -724,7 +724,7 @@ This is an alternative way to start the notebook that can also be handy.
 .. _gs_ex2:
 
 Exercise 2
-------------
+----------
 
 .. index::
     single: Git
@@ -757,9 +757,9 @@ There are two main flavors of Git
 
 As an exercise, try
 
-#. Installing Git
+#. Installing Git.
 
-#. Getting a copy of `QuantEcon.py <https://github.com/QuantEcon/QuantEcon.py>`__ using Git
+#. Getting a copy of `QuantEcon.py <https://github.com/QuantEcon/QuantEcon.py>`__ using Git.
 
 For example, if you've installed the command line version, open up a terminal and enter.
 
@@ -767,26 +767,26 @@ For example, if you've installed the command line version, open up a terminal an
 
 	``git clone https://github.com/QuantEcon/QuantEcon.py``.
 
-(This is just ``git clone`` in front of the URL for the repository).
+(This is just ``git clone`` in front of the URL for the repository)
 
 Even better,
 
-#. Sign up to `GitHub <https://github.com/>`_
+#. Sign up to `GitHub <https://github.com/>`_.
 
-#. Look into 'forking' GitHub repositories (forking means making your own copy of a GitHub repository, stored on GitHub)
+#. Look into 'forking' GitHub repositories (forking means making your own copy of a GitHub repository, stored on GitHub).
 
-#. Fork `QuantEcon.py <https://github.com/QuantEcon/QuantEcon.py>`__
+#. Fork `QuantEcon.py <https://github.com/QuantEcon/QuantEcon.py>`__.
 
-#. Clone your fork to some local directory, make edits, commit them, and push them back up to your forked GitHub repo
+#. Clone your fork to some local directory, make edits, commit them, and push them back up to your forked GitHub repo.
 
 #. If you made a valuable improvement, send us a `pull request <https://help.github.com/articles/about-pull-requests/>`_!
 
 For reading on these and other topics, try
 
-* `The official Git documentation <http://git-scm.com/doc>`_
+* `The official Git documentation <http://git-scm.com/doc>`_.
 
-* Reading through the docs on `GitHub <https://github.com/>`_
+* Reading through the docs on `GitHub <https://github.com/>`_.
 
-* `Pro Git Book <http://git-scm.com/book>`_ by Scott Chacon and Ben Straub
+* `Pro Git Book <http://git-scm.com/book>`_ by Scott Chacon and Ben Straub.
 
-* One of the thousands of Git tutorials on the Net
+* One of the thousands of Git tutorials on the Net.

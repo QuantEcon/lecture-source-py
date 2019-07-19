@@ -6,9 +6,9 @@
     single: python
 
 
-***************************************************
+********************************************
 Recursive Models of Dynamic Linear Economies
-***************************************************
+********************************************
 
 .. contents:: :depth: 2
 
@@ -27,14 +27,14 @@ Recursive Models of Dynamic Linear Economies
 
 
 A Suite of Models
-===================
+=================
 
 This lecture presents  a class of  linear-quadratic-Gaussian models of general economic equilibrium
 designed by Lars Peter Hansen and Thomas J. Sargent :cite:`HS2013`.
 
 The class of models is implemented in a Python class DLE that is part of  quantecon.
 
-Subsequent lectures   use the DLE class to implement various instances that have appeared in the economics literature
+Subsequent lectures use the DLE class to implement various instances that have appeared in the economics literature
 
 
 
@@ -55,29 +55,29 @@ Subsequent lectures   use the DLE class to implement various instances that have
 
 
 Overview of the Models
------------------------
+----------------------
 
 In saying that "complete markets are all alike", Robert E. Lucas, Jr. was noting  that all of them have
 
-- a commodity space
+- a commodity space.
 
-- a space dual to the commodity space in which prices reside
+- a space dual to the commodity space in which prices reside.
 
-- endowments of resources
+- endowments of resources.
 
-- peoples' preferences over goods
+- peoples' preferences over goods.
 
-- physical technologies for transforming resources into goods
+- physical technologies for transforming resources into goods.
 
-- random processes that govern shocks to technologies and preferences and associated information flows
+- random processes that govern shocks to technologies and preferences and associated information flows.
 
-- a single budget constraint per person
+- a single budget constraint per person.
 
-- the existence of a representative consumer even when there are many people in the model
+- the existence of a representative consumer even when there are many people in the model.
 
-- a concept of competitive equilibrium
+- a concept of competitive equilibrium.
 
-- theorems connecting competitive equilibrium allocations to allocations that would be chosen by a benevolent social planner
+- theorems connecting competitive equilibrium allocations to allocations that would be chosen by a benevolent social planner.
 
 
 The models have **no frictions** such as :math:`\ldots`
@@ -93,9 +93,9 @@ The models have **no frictions** such as :math:`\ldots`
 The models extensively use the  powerful ideas of
 
 
--  Indexing commodities and their prices by time (John R. Hicks)
+-  Indexing commodities and their prices by time (John R. Hicks).
 
--  Indexing commodities and their prices by chance (Kenneth Arrow)
+-  Indexing commodities and their prices by chance (Kenneth Arrow).
 
 
 Much of  the imperialism of complete markets models comes from applying these two tricks.
@@ -112,9 +112,9 @@ in the two lectures  :doc:`Linear State Space Models<linear_models>` and :doc:`L
 There are costs and benefits associated with the simplifications and specializations needed to make a particular model fit within the
 :cite:`HS2013` class
 
-- the costs are that  linear-quadratic structures are sometimes too confining
+- the costs are that  linear-quadratic structures are sometimes too confining.
 
-- benefits include computational speed, simplicity, and ability to analyze many model features analytically or nearly analytically
+- benefits include computational speed, simplicity, and ability to analyze many model features analytically or nearly analytically.
 
 
 A variety of superficially different models are all instances of the :cite:`HS2013` class of models
@@ -143,7 +143,7 @@ we began this lecture.
 
 
 Forecasting?
--------------------------------
+------------
 
 A consequence of a single budget constraint per person  plus the Hicks-Arrow tricks is that households and firms need not forecast.
 
@@ -153,10 +153,10 @@ In these structures, to forecast, households and firms use:
 
 - equilibrium pricing functions, and
 
-- knowledge of the  Markov structure of the economy’s state vector
+- knowledge of the  Markov structure of the economy’s state vector.
 
 Theory and Econometrics
--------------------------------
+-----------------------
 
 For an application of the  :cite:`HS2013` class of models, the outcome of theorizing is a stochastic process, i.e., a probability
 distribution over sequences of prices and quantities, indexed by  parameters describing preferences, technologies, and information flows.
@@ -177,7 +177,7 @@ and from them makes inferences about the parameters that define the model's pref
 
 
 More Details
--------------------------------
+------------
 
 A :cite:`HS2013` economy consists of **lists of matrices** that describe peoples’ household technologies, their preferences over
 consumption services,  their production technologies, and their information sets.
@@ -204,14 +204,14 @@ Different example economies manifest themselves simply as different settings for
 
 The models are flexible enough to express alternative senses of a representative household
 
--  A single ‘stand-in’ household of the type used to good effect by Edward C. Prescott
+-  A single ‘stand-in’ household of the type used to good effect by Edward C. Prescott.
 
 -  Heterogeneous households satisfying conditions for Gorman aggregation
-   into a representative household
+   into a representative household.
 
 -  Heterogeneous household technologies that  violate conditions for Gorman
    aggregation but are still susceptible to aggregation into a single
-   representative household via ‘non-Gorman' or 'mongrel' aggregation’
+   representative household via ‘non-Gorman' or 'mongrel' aggregation’.
 
 These three alternative types of aggregation have different consequences in terms of how  prices and allocations can be computed.
 
@@ -219,27 +219,27 @@ In particular, can prices and an aggregate allocation be computed before the
 equilibrium allocation to individual heterogeneous households is computed?
 
 -  Answers are “Yes” for Gorman aggregation, “No” for non-Gorman
-   aggregation
+   aggregation.
 
 
 In summary, the insights and practical benefits from economics to be introduced in this lecture
 are
 
 -  Deeper understandings that come from recognizing common underlying
-   structures
+   structures.
 
--  Speed and ease of computation that comes from unleashing a common suite of Python programs
+-  Speed and ease of computation that comes from unleashing a common suite of Python programs.
 
 We'll use the following **mathematical tools**
 
 
--  Stochastic Difference Equations (Linear)
+-  Stochastic Difference Equations (Linear).
 
 -  Duality: LQ Dynamic Programming and Linear Filtering  are the same things
-   mathematically
+   mathematically.
 
 -  The Spectral Factorization Identity (for understanding vector
-   autoregressions and non-Gorman aggregation)
+   autoregressions and non-Gorman aggregation).
 
 So here is our roadmap.
 
@@ -260,7 +260,7 @@ Then we'll describe
 .. _section-3:
 
 Stochastic Model of Information Flows and Outcomes
-----------------------------------------------------
+--------------------------------------------------
 
 We'll use  stochastic linear difference equations to describe information flows **and** equilibrium outcomes.
 
@@ -302,7 +302,7 @@ Evidently, the distribution of :math:`x_{t+1}` conditional on :math:`x_t` is
 :math:`{\mathcal N}(Ax_t, CC')`.
 
 Information Sets
------------------
+----------------
 
 Let :math:`J_0` be generated by :math:`x_0` and :math:`J_t` be generated
 by :math:`x_0, w_1, \ldots ,
@@ -311,7 +311,7 @@ functions of :math:`\{x_0, w_1,\ldots,
 w_t\}`.
 
 Prediction Theory
-------------------
+-----------------
 
 The optimal forecast of :math:`x_{t+1}` given current information is
 
@@ -385,7 +385,7 @@ Evidently,
 
 
 Orthogonal Decomposition
----------------------------
+------------------------
 
 To decompose these covariances into parts attributable to the individual
 components of :math:`w_t`, we let :math:`i_\tau` be an
@@ -411,7 +411,7 @@ each of the components :math:`\tau =
 1, \ldots, N`.
 
 Taste and Technology Shocks
-----------------------------
+---------------------------
 
 :math:`E(w_t \mid J_{t-1}) = 0` and :math:`E(w_t
 w_t^\prime \mid J_{t-1}) = I` for :math:`t=1,2, \ldots`
@@ -474,7 +474,7 @@ For technical reasons that facilitate computations, we make the following.
 
 
 
-**Household Technology**.
+**Household Technology**
 
 Households confront a technology that allows them to devote consumption goods to construct a vector :math:`h_t` of household capital goods
 and a vector :math:`s_t` of utility generating  house services
@@ -487,14 +487,14 @@ and a vector :math:`s_t` of utility generating  house services
 
 where :math:`\Lambda, \Pi, \Delta_h, \Theta_h` are matrices that pin down the household technology.
 
-We make the following.
+We make the following
 
 **Assumption:** The absolute values of the eigenvalues of :math:`\Delta_h`
 are less than or equal to one.
 
 Below, we'll outline further assumptions that we shall occasionally impose.
 
-**Preferences**.
+**Preferences**
 
 Where :math:`b_t` is a stochastic process of preference shocks that will play the role of demand shifters, the representative household orders
 stochastic processes of consumption services :math:`s_t` according to
@@ -608,7 +608,7 @@ where household services are produced via the household technology
 
 .. math:: s_t = \Lambda h_{t-1} + \Pi c_t
 
-and we make.
+and we make
 
 **Assumption:** The absolute values of the eigenvalues of :math:`\Delta_h`
 are less than or equal to one.
@@ -667,7 +667,7 @@ Here the effective bliss point :math:`b_t + \lambda (1 - \delta_h)
 average of past consumption.
 
 
-**Initial Conditions**.
+**Initial Conditions**
 
 Preferences of this form require an initial condition for the geometric
 sum :math:`\sum^\infty_{j=0} \delta_h^j c_{t - j-1}` that we specify as
@@ -781,7 +781,7 @@ Thus, we set :math:`\Delta_h = 0, \Theta_h = 1`
 .. math::
 
    \Lambda = \begin{bmatrix} 0\\0\end{bmatrix} \ \hbox { and } \ \Pi =
-   \begin{bmatrix}\pi_1 & 0 \\ \pi_2 & \pi_3 \end{bmatrix} .
+   \begin{bmatrix}\pi_1 & 0 \\ \pi_2 & \pi_3 \end{bmatrix}
 
 .. math:: -{1 \over 2} \beta^t (\Pi c_t - b_t)^\prime (\Pi c_t - b_t)
 
@@ -1039,7 +1039,7 @@ Thus, let :math:`V(x_0)` be the optimal value function for the
 
 (Thus, in essence, dynamic programming amounts to an application of a **guess and verify** method in which we begin with a guess about the answer
 to the problem we want to solve. That's why we start with **let** :math:`V(x_0)` be the (value of the) answer to the problem, then establish and
-verify a bunch of conditions :math:`V(x_0)` has to satisfy if indeed it is the answer).
+verify a bunch of conditions :math:`V(x_0)` has to satisfy if indeed it is the answer)
 
 The optimal value function :math:`V(x)` satisfies the **Bellman equation**
 
@@ -1328,11 +1328,11 @@ We can now state the following.
 and an allocation :math:`\{c_t, i_t, k_t, h_t, g_t, d_t\}^\infty_{t=0}`
 that satisfy the following conditions:
 
-   * Each component of the price system and the allocation resides in the space :math:`L^2_0`
+   * Each component of the price system and the allocation resides in the space :math:`L^2_0`.
 
 
    * Given the price system and given :math:`h_{-1},\, k_{-1}`, the allocation solves the representative household’s problem and
-     the problems of the two types of firms
+     the problems of the two types of firms.
 
 Versions of the two classical welfare theorems prevail under our assumptions.
 
@@ -1465,7 +1465,7 @@ where :math:`v_t` is a martingale difference sequence of measurement
 errors that satisfies :math:`Ev_t
 v_t' = R, E w_{t+1} v_s' = 0` for all :math:`t+1 \geq s` and
 
-.. math:: x_0 \sim {\mathcal N}(\hat x_0,\Sigma_0).
+.. math:: x_0 \sim {\mathcal N}(\hat x_0,\Sigma_0)
 
 **Innovations Representation:**
 
@@ -1508,7 +1508,7 @@ Riccati Difference Equation:
     \Sigma_{t+1} &= A^o \Sigma_t A^{o \prime} + CC^\prime \\
    &- A^o \Sigma_t G^\prime (G \Sigma_t G^\prime + R)^{-1} G \Sigma_t A^{o \prime}\end{aligned}
 
-**Innovations Representation as Whitener**.
+**Innovations Representation as Whitener**
 
 
 Whitening Filter:
@@ -1602,11 +1602,11 @@ Equating these two leads to:
 **Key Insight:** The zeros of the polynomial
 :math:`\det [G(zI-A^o)^{-1}K +I]` all lie inside the unit circle, which
 means that :math:`a_t` lies in the space spanned by square summable
-linear combinations of :math:`y^t`
+linear combinations of :math:`y^t`.
 
 .. math:: H(a^t) = H(y^t)
 
-**Key Property:** Invertibility.
+**Key Property:** Invertibility
 
 
 Wold and Vector Autoregressive Representations
@@ -2057,7 +2057,7 @@ equations, and initial conditions
 
 We sweep the time-to-build structure and the demand for engineers into
 the household technology and putting the supply of new engineers into
-the technology for producing goods
+the technology for producing goods.
 
 .. math::
 
@@ -2076,12 +2076,12 @@ the technology for producing goods
 This specification sets Rosen’s :math:`N_t = h_{1t-1}, n_t = c_t,
 h_{\tau+1,t-1} = n_{t-\tau}, \tau=1, \ldots, k`, and uses the
 home-produced service to capture the demand for labor. Here
-:math:`\lambda_1` embodies Rosen’s demand parameter :math:`\alpha_d`
+:math:`\lambda_1` embodies Rosen’s demand parameter :math:`\alpha_d`.
 
 
-- The supply of new workers becomes our consumption
+- The supply of new workers becomes our consumption.
 
-- The dynamic demand curve becomes Rosen’s dynamic supply curve for new workers
+- The dynamic demand curve becomes Rosen’s dynamic supply curve for new workers.
 
 **Remark:** This has an Imai-Keane flavor.
 
@@ -2138,7 +2138,7 @@ and fourth, supply curves for new entrants:
          = \alpha_s \begin{bmatrix} v_{ut} \\ v_{st} \end{bmatrix} +
            \epsilon_{2t}
 
-**Short Cut**.
+**Short Cut**
 
 As an alternative, Siow simply used the  **equalizing differences**
 condition
@@ -2161,7 +2161,7 @@ Permanent Income Models
 
 .. math:: \phi_ii_t-g_t=0
 
-**Implication One:**.
+**Implication One:**
 
 Equality of Present Values of Moving Average Coefficients of :math:`c` and :math:`e`
 
@@ -2185,7 +2185,7 @@ where :math:`\chi_j w_t` is the response of :math:`c_{t+j}` to
 :math:`w_t` and :math:`\epsilon_j w_t` is the response of endowment
 :math:`e_{t+j}` to :math:`w_t`:
 
-**Implication Two:**.
+**Implication Two:**
 
 Martingales
 
@@ -2199,13 +2199,13 @@ and
 
 .. math:: {\mathcal M}_t^c  =  (\Phi_c)^\prime {\mathcal M}_t^d = \phi_c {\cal M}_t^e
 
-**Testing Permanent Income Models:**.
+**Testing Permanent Income Models:**
 
 Test the two implications:
 
--  Equality of present values of moving average coefficients
+-  Equality of present values of moving average coefficients.
 
--  Martingale :math:`{\mathcal M}_t^k`
+-  Martingale :math:`{\mathcal M}_t^k`.
 
 These have been tested in work by Hansen, Sargent, and Roberts (1991) :cite:`sargent1991observable`
 and by Attanasio and Pavoni (2011) :cite:`attanasio2011risk`.
@@ -2273,7 +2273,7 @@ We can use the representative consumer to compute a competitive equilibrium **ag
 
 With the equilibrium aggregate allocation and price system in hand, we can then compute allocations to each household.
 
-**Computing  Allocations to Individuals:**.
+**Computing  Allocations to Individuals:**
 
 
 Set
@@ -2307,7 +2307,7 @@ Non-Gorman Heterogeneous Households
 
 We now describe a less tractable type of heterogeneity across households that we dub **Non-Gorman heterogeneity**.
 
-Here is the specification.
+Here is the specification:
 
 Preferences and Household Technologies:
 
@@ -2354,7 +2354,7 @@ Preferences and Household Technologies:
    - {1\over 2}\, (1-\lambda) E_0 \sum^\infty_{t=0}\, \beta^t [ (s_{2t} -
    b_{2t}) \cdot (s_{2t} - b_{2t}) + \ell^2_{2t}] \end{aligned}
 
-**Mongrel Aggregation: Static**.
+**Mongrel Aggregation: Static**
 
 There is what we call a kind of **mongrel aggregation** in this setting.
 
@@ -2408,7 +2408,7 @@ satisfy
    \mu_0^{-1} \Pi' \Pi = (\mu_{01} \Pi_1^{-1} \Pi_2^{-1 \prime}
          + \mu_{02} \Pi_2^{-1} \Pi_2^{-1 \prime})^{-1}
 
-**Dynamic Analogue:**.
+**Dynamic Analogue:**
 
 
 We now describe how to extend mongrel aggregation to a dynamic setting.
@@ -2450,7 +2450,7 @@ into the objective determines a mongrel preference ordering over
 
 
 In solving this problem, it is convenient to proceed by using Fourier
-transforms.  For details, please see :cite:`HS2013` where they deploy a .
+transforms.  For details, please see :cite:`HS2013` where they deploy a
 
 **Secret Weapon:** Another application of the spectral factorization
 identity.
@@ -2463,7 +2463,7 @@ spirit of Henri Poincare.
 Could we create such a class for **incomplete markets** models?
 
 That would be nice, but before trying it would be wise to contemplate
-the remainder of a statement by Robert E. Lucas, Jr., with which we began this lecture
+the remainder of a statement by Robert E. Lucas, Jr., with which we began this lecture.
 
 .. epigraph::
 

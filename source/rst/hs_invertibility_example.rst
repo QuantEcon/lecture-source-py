@@ -5,9 +5,9 @@
 .. index::
     single: python
 
-****************************
+***********************
 Shock Non Invertibility
-****************************
+***********************
 
 .. contents:: :depth: 2
 
@@ -17,7 +17,7 @@ Overview
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
-In addition to what's in Anaconda, this lecture uses the quantecon library
+In addition to what's in Anaconda, this lecture uses the quantecon library.
 
 .. code-block:: ipython
   :class: hide-output
@@ -117,7 +117,7 @@ Specifically:
 .. math::  d_{2t} = 4w_{2t} + 0.8(4w_{2t-1})+ 0.6(4w_{2t-2})+ 0.4(4w_{2t-3})
 
 :math:`d_{1t}` is a first-order AR process, while :math:`d_{2t}` is a
-third-order pure moving average process
+third-order pure moving average process.
 
 .. code-block:: python3
 
@@ -246,7 +246,7 @@ Each endowment innovation leads to a
 temporary surplus followed by a permanent net-of-interest deficit.
 
 The temporary surplus just offsets the permanent deficit in terms of
-expected present value
+expected present value.
 
 .. code-block:: python3
 
@@ -297,13 +297,13 @@ The above figure displays the impulse response of consumption and the
 deficit to the innovations in the econometrician's Wold representation
 
 -  this is the object that would be recovered from a high order vector
-   autoregression on the econometrician's observations
+   autoregression on the econometrician's observations.
 
 Consumption responds only to the first innovation
 
 -  this is indicative of the Granger causality imposed on the
    :math:`[c_t, c_t - d_t]` process by Hall's model: consumption Granger
-   causes :math:`c_t - d_t`, with no reverse causality
+   causes :math:`c_t - d_t`, with no reverse causality.
 
 .. code-block:: python3
 
