@@ -28,7 +28,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
     in a terminal.
 
 Overview
-============
+========
 
 In this lecture, we're going to study a simple optimal growth model with one agent.
 
@@ -58,7 +58,7 @@ We use an interpolation function from the
 `interpolation.py package <https://github.com/EconForge/interpolation.py>`_
 because it comes in handy later when we want to just-in-time compile our code.
 
-This library can be installed with the following command in Jupyter: ``!pip install interpolation``
+This library can be installed with the following command in Jupyter: ``!pip install interpolation``.
 
 .. code-block:: ipython
 
@@ -70,7 +70,7 @@ This library can be installed with the following command in Jupyter: ``!pip inst
     from quantecon.optimize.scalar_maximization import brent_max
 
 The Model
-==========================
+=========
 
 .. index::
     single: Optimal Growth; Model
@@ -107,17 +107,17 @@ and all variables are required to be nonnegative.
 
 
 Assumptions and Comments
----------------------------
+------------------------
 
 In what follows,
 
-* The sequence :math:`\{\xi_t\}` is assumed to be IID
+* The sequence :math:`\{\xi_t\}` is assumed to be IID.
 
-* The common distribution of each :math:`\xi_t` will be denoted :math:`\phi`
+* The common distribution of each :math:`\xi_t` will be denoted :math:`\phi`.
 
-* The production function :math:`f` is assumed to be increasing and continuous
+* The production function :math:`f` is assumed to be increasing and continuous.
 
-* Depreciation of capital is not made explicit but can be incorporated into the production function
+* Depreciation of capital is not made explicit but can be incorporated into the production function.
 
 While many other treatments of the stochastic growth model use :math:`k_t` as the state variable, we will use :math:`y_t`.
 
@@ -127,7 +127,7 @@ We consider alternative states and timing specifications in some of our other le
 
 
 Optimization
---------------
+------------
 
 Taking :math:`y_0` as given, the agent wishes to maximize
 
@@ -152,7 +152,7 @@ where
 
 * :math:`u` is a bounded, continuous and strictly increasing utility function and
 
-* :math:`\beta \in (0, 1)` is a discount factor
+* :math:`\beta \in (0, 1)` is a discount factor.
 
 In :eq:`og_conse` we are assuming that the resource constraint :eq:`outcsdp0` holds with equality --- which is reasonable because :math:`u` is strictly increasing and no output will be wasted at the optimum.
 
@@ -165,21 +165,21 @@ In summary, the agent's aim is to select a path :math:`c_0, c_1, c_2, \ldots` fo
 #. optimal, in the sense that it maximizes :eq:`texs0_og2` relative to all other feasible consumption sequences, and
 
 #. *adapted*, in the sense that the action :math:`c_t` depends only on
-   observable outcomes, not on future outcomes such as :math:`\xi_{t+1}`
+   observable outcomes, not on future outcomes such as :math:`\xi_{t+1}`.
 
 
 In the present context
 
-* :math:`y_t` is called the *state* variable --- it summarizes the "state of the world" at the start of each period
+* :math:`y_t` is called the *state* variable --- it summarizes the "state of the world" at the start of each period.
 
-* :math:`c_t` is called the *control* variable --- a value chosen by the agent each period after observing the state
+* :math:`c_t` is called the *control* variable --- a value chosen by the agent each period after observing the state.
 
 
 
 
 
 The Policy Function Approach
---------------------------------
+----------------------------
 
 .. index::
     single: Optimal Growth; Policy Function Approach
@@ -259,7 +259,7 @@ The next section covers these ideas more formally.
 
 
 Optimality
-------------------------------------
+----------
 
 The :math:`\sigma`**-value function** :math:`v_{\sigma}` associated with a given policy :math:`\sigma` is the mapping defined by
 
@@ -290,7 +290,7 @@ A policy :math:`\sigma \in \Sigma` is called **optimal** if it attains the supre
 
 
 The Bellman Equation
-----------------------
+--------------------
 
 With our assumptions on utility and production function, the value function as defined in :eq:`vfcsdp0` also satisfies a **Bellman equation**.
 
@@ -334,7 +334,7 @@ It also suggests a way of computing the value function, which we discuss below.
 
 
 Greedy Policies
------------------
+---------------
 
 The primary importance of the value function is that we can use it to compute optimal policies.
 
@@ -360,7 +360,7 @@ function.
 
 In our setting, we have the following key result
 
-    * A feasible consumption policy is optimal if and only it is :math:`v^*`-greedy
+    * A feasible consumption policy is optimal if and only it is :math:`v^*`-greedy.
 
 The intuition is similar to the intuition for the Bellman equation, which was
 provided after :eq:`fpb30`.
@@ -377,13 +377,13 @@ problem.
 
 
 The Bellman Operator
-------------------------
+--------------------
 
 How, then, should we compute the value function?
 
 One way is to use the so-called **Bellman operator**.
 
-(An operator is a map that sends functions into functions).
+(An operator is a map that sends functions into functions)
 
 The Bellman operator is denoted by :math:`T` and defined by
 
@@ -422,7 +422,7 @@ It follows that :math:`v^*` is a fixed point of :math:`T`.
 
 
 Review of Theoretical Results
----------------------------------
+-----------------------------
 
 .. index::
     single: Dynamic Programming; Theory
@@ -442,10 +442,10 @@ Hence it has exactly one fixed point in this set, which we know is equal to the 
 
 It follows that
 
-* The value function :math:`v^*` is bounded and continuous
+* The value function :math:`v^*` is bounded and continuous.
 
 * Starting from any bounded and continuous :math:`v`, the sequence :math:`v, Tv, T^2v, \ldots`
-  generated by iteratively applying :math:`T` converges uniformly to :math:`v^*`
+  generated by iteratively applying :math:`T` converges uniformly to :math:`v^*`.
 
 This iterative method is called **value function iteration**.
 
@@ -485,7 +485,7 @@ Consult,  for example, section 12.2 of `EDTC <http://johnstachurski.net/edtc.htm
 
 
 Computation
-=============
+===========
 
 .. index::
     single: Dynamic Programming; Computation
@@ -495,7 +495,7 @@ Let's now look at computing the value function and the optimal policy.
 
 
 Fitted Value Iteration
--------------------------
+----------------------
 
 .. index::
     single: Dynamic Programming; Value Function Iteration
@@ -504,11 +504,11 @@ The first step is to compute the value function by value function iteration.
 
 In theory, the algorithm is as follows
 
-#. Begin with a function :math:`v` --- an initial condition
+#. Begin with a function :math:`v` --- an initial condition.
 
-#. Solving :eq:`fcbell20_optgrowth`, obtain the function :math:`Tv`
+#. Solving :eq:`fcbell20_optgrowth`, obtain the function :math:`Tv`.
 
-#. Unless some stopping condition is satisfied, set :math:`v = Tv` and go to step 2
+#. Unless some stopping condition is satisfied, set :math:`v = Tv` and go to step 2.
 
 This generates the sequence :math:`v, Tv, T^2v, \ldots`.
 
@@ -528,21 +528,21 @@ What we will do instead is use **fitted value function iteration**.
 The procedure is to record the value of the function :math:`Tv` at only
 finitely many "grid" points :math:`y_1 < y_2 < \cdots < y_I` and reconstruct it from this information when required.
 
-More precisely, the algorithm will be.
+More precisely, the algorithm will be
 
 .. _fvi_alg:
 
 #. Begin with an array of values :math:`\{ v_1, \ldots, v_I \}` representing
-   the values of some initial function :math:`v` on the grid points :math:`\{ y_1, \ldots, y_I \}`
+   the values of some initial function :math:`v` on the grid points :math:`\{ y_1, \ldots, y_I \}`.
 
 #. Build a function :math:`\hat v` on the state space :math:`\mathbb R_+` by
-   interpolation or approximation, based on these data points
+   interpolation or approximation, based on these data points.
 
 #. Obtain and record the value :math:`T \hat v(y_i)` on each grid point
-   :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth`
+   :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth`.
 
 #. Unless some stopping condition is satisfied, set
-   :math:`\{ v_1, \ldots, v_I \} = \{ T \hat v(y_1), \ldots, T \hat v(y_I) \}` and go to step 2
+   :math:`\{ v_1, \ldots, v_I \} = \{ T \hat v(y_1), \ldots, T \hat v(y_I) \}` and go to step 2.
 
 How should we go about step 2?
 
@@ -589,7 +589,7 @@ Another advantage of piecewise linear interpolation is that it preserves
 useful shape properties such as monotonicity and concavity/convexity.
 
 Optimal Growth Model
----------------------
+--------------------
 
 We will hold the primitives of the optimal growth model in a class.
 
@@ -618,7 +618,7 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
 
 
 The Bellman Operator
------------------------
+--------------------
 
 Here's a function that generates a Bellman operator using linear interpolation
 
@@ -640,14 +640,14 @@ where :math:`\{\xi_i\}_{i=1}^n` are IID draws from :math:`\phi`.
 Monte Carlo is not always the most efficient way to compute integrals numerically
 but it does have some theoretical advantages in the present setting.
 
-(For example, it preserves the contraction mapping property of the Bellman operator --- see, e.g., :cite:`pal2013`).
+(For example, it preserves the contraction mapping property of the Bellman operator --- see, e.g., :cite:`pal2013`)
 
 
 
 .. _benchmark_growth_mod:
 
 An Example
------------------------------
+----------
 
 Let's test out our operator when
 
@@ -699,7 +699,7 @@ We will define functions to compute the closed-form solutions to check our answe
 
 
 A First Test
---------------
+------------
 
 To test our code, we want to see if we can replicate the analytical solution
 numerically, using fitted value function iteration.
@@ -801,7 +801,7 @@ The sequence of iterates converges towards :math:`v^*`.
 We are clearly getting closer.
 
 We can write a function that iterates until the difference is below a particular
-tolerance level
+tolerance level.
 
 .. literalinclude:: /_static/lecture_specific/optgrowth/solve_model.py
 
@@ -830,7 +830,7 @@ The figure shows that we are pretty much on the money.
 
 
 The Policy Function
------------------------
+-------------------
 
 .. index::
     single: Optimal Growth; Policy Function
@@ -861,11 +861,11 @@ the true policy.
 
 
 Exercises
-=============
+=========
 
 
 Exercise 1
-------------
+----------
 
 Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`.
 
@@ -889,12 +889,12 @@ Replicate the figure modulo randomness.
 
 
 Solutions
-==========
+=========
 
 
 
 Exercise 1
----------------------------
+----------
 
 
 Here's one solution (assuming as usual that you've executed everything above)

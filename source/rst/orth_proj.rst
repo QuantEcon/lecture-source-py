@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-***********************************************
+*********************************************
 Orthogonal Projections and Their Applications
-***********************************************
+*********************************************
 
 .. index::
     single: Orthogonal Projection
@@ -43,7 +43,7 @@ In this lecture, we focus on
 
 
 Further Reading
-----------------
+---------------
 
 For background and foundational concepts, see our lecture :doc:`on linear algebra <linear_algebra>`.
 
@@ -66,21 +66,21 @@ Recall :math:`\|x \|^2 = \langle x, x \rangle`.
 
 The **law of cosines** states that :math:`\langle x, z \rangle = \| x \| \| z \| \cos(\theta)` where :math:`\theta` is the angle between the vectors :math:`x` and :math:`z`.
 
-When :math:`\langle x,  z\rangle = 0`, then :math:`\cos(\theta) = 0` and  :math:`x` and :math:`z` are said to be **orthogonal** and we write :math:`x \perp z`
+When :math:`\langle x,  z\rangle = 0`, then :math:`\cos(\theta) = 0` and  :math:`x` and :math:`z` are said to be **orthogonal** and we write :math:`x \perp z`.
 
 
 
 
 .. figure:: /_static/lecture_specific/orth_proj/orth_proj_def1.png
 
-For a linear subspace  :math:`S \subset \mathbb R^n`, we call :math:`x \in \mathbb R^n` **orthogonal to** :math:`S` if :math:`x \perp z` for all :math:`z \in S`, and write :math:`x \perp S`
+For a linear subspace  :math:`S \subset \mathbb R^n`, we call :math:`x \in \mathbb R^n` **orthogonal to** :math:`S` if :math:`x \perp z` for all :math:`z \in S`, and write :math:`x \perp S`.
 
 
 .. figure:: /_static/lecture_specific/orth_proj/orth_proj_def2.png
 
 
 
-The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` is the set :math:`S^{\perp} := \{x \in \mathbb R^n \,:\, x \perp S\}`
+The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` is the set :math:`S^{\perp} := \{x \in \mathbb R^n \,:\, x \perp S\}`.
 
 
 .. figure:: /_static/lecture_specific/orth_proj/orth_proj_def3.png
@@ -88,7 +88,7 @@ The **orthogonal complement** of linear subspace :math:`S \subset \mathbb R^n` i
 
 :math:`S^\perp` is  a linear subspace of :math:`\mathbb R^n`
 
-* To see this, fix :math:`x, y \in S^{\perp}` and :math:`\alpha, \beta \in \mathbb R`
+* To see this, fix :math:`x, y \in S^{\perp}` and :math:`\alpha, \beta \in \mathbb R`.
 
 * Observe that if :math:`z \in S`, then
 
@@ -124,7 +124,7 @@ For example, when  :math:`k=2`, :math:`x_1 \perp x_2` implies
 
 
 Linear Independence vs Orthogonality
------------------------------------------
+------------------------------------
 
 If :math:`X \subset \mathbb R^n` is an orthogonal set and :math:`0 \notin X`, then :math:`X` is linearly independent.
 
@@ -134,7 +134,7 @@ While the converse is not true, a kind of partial converse holds, as we'll :ref:
 
 
 The Orthogonal Projection Theorem
-========================================
+=================================
 
 What vector within a linear subspace of :math:`\mathbb R^n`  best approximates a given vector in :math:`\mathbb R^n`?
 
@@ -190,7 +190,7 @@ Hence :math:`\| y - z \| \geq \| y - \hat y \|`, which completes the proof.
 
 
 Orthogonal Projection as a Mapping
--------------------------------------
+----------------------------------
 
 For a linear space :math:`Y` and a fixed linear subspace :math:`S`, we have a functional relationship
 
@@ -203,11 +203,11 @@ By the OPT, this is a well-defined mapping  or *operator* from :math:`\mathbb R^
 
 In what follows we denote this operator by a matrix :math:`P`
 
-* :math:`P y` represents the projection :math:`\hat y`
+* :math:`P y` represents the projection :math:`\hat y`.
 
-* This is sometimes expressed as :math:`\hat E_S y = P y`, where :math:`\hat E` denotes a **wide-sense expectations operator** and the subscript :math:`S` indicates that we are projecting :math:`y` onto the linear subspace :math:`S`
+* This is sometimes expressed as :math:`\hat E_S y = P y`, where :math:`\hat E` denotes a **wide-sense expectations operator** and the subscript :math:`S` indicates that we are projecting :math:`y` onto the linear subspace :math:`S`.
 
-The operator :math:`P` is called the **orthogonal projection mapping onto** :math:`S`
+The operator :math:`P` is called the **orthogonal projection mapping onto** :math:`S`.
 
 
 .. figure:: /_static/lecture_specific/orth_proj/orth_proj_thm2.png
@@ -229,7 +229,7 @@ From this, we can deduce additional useful properties, such as
 For example, to prove 1, observe that :math:`y  = P y  + y - P y` and apply the Pythagorean law.
 
 Orthogonal Complement
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Let :math:`S \subset \mathbb R^n`.
 
@@ -268,7 +268,7 @@ The next figure illustrates
 
 
 Orthonormal Basis
-====================
+=================
 
 
 An orthogonal set of vectors :math:`O \subset \mathbb R^n` is called an **orthonormal set** if :math:`\| u \| = 1` for all :math:`u \in O`.
@@ -315,7 +315,7 @@ Combining this result with :eq:`pob` verifies the claim.
 
 
 Projection onto an Orthonormal Basis
-------------------------------------------
+------------------------------------
 
 When the subspace onto which are projecting is orthonormal, computing the projection simplifies:
 
@@ -347,7 +347,7 @@ This is true because
 
 
 Projection Using Matrix Algebra
-===================================
+===============================
 
 
 Let :math:`S` be a linear subspace of :math:`\mathbb R^n` and  let :math:`y \in \mathbb R^n`.
@@ -410,7 +410,7 @@ The proof is now complete.
 
 
 Starting with the Basis
-------------------------
+-----------------------
 
 It is common in applications to start with :math:`n \times k` matrix :math:`X`  with linearly independent columns and let
 
@@ -425,7 +425,7 @@ From the preceding theorem, :math:`P = X (X' X)^{-1} X' y` projects :math:`y` on
 
 In this context, :math:`P` is often called the **projection matrix**
 
-* The matrix :math:`M = I - P` satisfies :math:`M y = \hat E_{S^{\perp}} y` and is sometimes called the **annihilator matrix**
+* The matrix :math:`M = I - P` satisfies :math:`M y = \hat E_{S^{\perp}} y` and is sometimes called the **annihilator matrix**.
 
 
 
@@ -473,9 +473,9 @@ Intuitively, we may not be able to find a :math:`b` that satisfies all :math:`n`
 
 The best approach here is to
 
-* Accept that an exact solution may not exist
+* Accept that an exact solution may not exist.
 
-* Look instead for an approximate solution
+* Look instead for an approximate solution.
 
 By approximate solution, we mean a :math:`b \in \mathbb R^k` such that :math:`X b` is as close to :math:`y` as possible.
 
@@ -518,7 +518,7 @@ This is what we aimed to show.
 
 
 Least Squares Regression
-============================
+========================
 
 Let's apply the theory of orthogonal projection to least squares regression.
 
@@ -528,7 +528,7 @@ We treat only some examples.
 
 
 Squared Risk Measures
-----------------------
+---------------------
 
 Given pairs :math:`(x, y) \in \mathbb R^K \times \mathbb R`, consider choosing :math:`f \colon \mathbb R^K \to \mathbb R` to minimize
 the **risk**
@@ -566,7 +566,7 @@ This is the sample **linear least squares problem**.
 
 
 Solution
-----------
+--------
 
 Define the matrices
 
@@ -662,13 +662,13 @@ The **vector of residuals** is
 
 Here are some more standard definitions:
 
-* The **total sum of squares** is :math:`:=  \| y \|^2`
+* The **total sum of squares** is :math:`:=  \| y \|^2`.
 
-* The **sum of squared residuals** is :math:`:= \| \hat u \|^2`
+* The **sum of squared residuals** is :math:`:= \| \hat u \|^2`.
 
-* The **explained sum of squares** is :math:`:= \| \hat y \|^2`
+* The **explained sum of squares** is :math:`:= \| \hat y \|^2`.
 
- TSS = ESS + SSR.
+ TSS = ESS + SSR
 
 We can prove this easily using the OPT.
 
@@ -680,7 +680,7 @@ Applying the Pythagorean law completes the proof.
 
 
 Orthogonalization and Decomposition
-========================================
+===================================
 
 Let's return to the connection between linear independence and orthogonality touched on above.
 
@@ -694,7 +694,7 @@ The next section gives details.
 .. _gram_schmidt:
 
 Gram-Schmidt Orthogonalization
------------------------------------
+------------------------------
 
 **Theorem** For each linearly independent set :math:`\{x_1, \ldots, x_k\} \subset \mathbb R^n`, there exists an
 orthonormal set :math:`\{u_1, \ldots, u_k\}` with
@@ -726,7 +726,7 @@ In some exercises below, you are asked to implement this algorithm and test it u
 
 
 QR Decomposition
---------------------
+----------------
 
 The following result uses the preceding algorithm to produce a useful decomposition.
 
@@ -757,7 +757,7 @@ Some rearranging gives :math:`X = Q R`.
 
 
 Linear Regression via QR Decomposition
------------------------------------------
+--------------------------------------
 
 For matrices :math:`X` and :math:`y` that overdetermine :math:`beta` in the linear
 equation system :math:`y = X \beta`, we found  the least squares approximator :math:`\hat \beta = (X' X)^{-1} X' y`.
@@ -782,22 +782,22 @@ Numerical routines would in this case use the alternative form :math:`R \hat \be
 
 
 Exercises
-==============
+=========
 
 Exercise 1
-------------
+----------
 
 Show that, for any linear subspace :math:`S \subset \mathbb R^n`,  :math:`S \cap S^{\perp} = \{0\}`.
 
 Exercise 2
--------------
+----------
 
 Let :math:`P = X (X' X)^{-1} X'` and let :math:`M = I - P`.  Show that
 :math:`P` and :math:`M` are both idempotent and symmetric.  Can you give any
 intuition as to why they should be idempotent?
 
 Exercise 3
--------------
+----------
 
 Using Gram-Schmidt orthogonalization, produce a linear projection of :math:`y` onto the column space of :math:`X` and verify this using the projection matrix :math:`P := X (X' X)^{-1} X'` and also using QR decomposition, where:
 
@@ -828,18 +828,18 @@ and
 
 
 Solutions
-==========
+=========
 
 
 
 Exercise 1
-------------
+----------
 
 If :math:`x \in S` and :math:`x \in S^\perp`, then we have in particular
 that :math:`\langle x, x \rangle = 0`, ut then :math:`x = 0`.
 
 Exercise 2
-------------
+----------
 
 Symmetry and idempotence of :math:`M` and :math:`P` can be established
 using standard rules for matrix algebra. The intuition behind
@@ -850,7 +850,7 @@ is not shifted by orthogonal projection onto that space because it is
 already the closest point in the subspace to itself.).
 
 Exercise 3
-------------
+----------
 
 Here's a function that computes the orthonormal vectors using the GS
 algorithm given in the lecture

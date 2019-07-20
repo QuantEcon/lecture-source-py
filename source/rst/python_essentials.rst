@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-******************************************
+*****************
 Python Essentials
-******************************************
+*****************
 
 .. contents:: :depth: 2
 
@@ -13,7 +13,7 @@ In this lecture, we'll cover features of the language that are essential to read
 
 
 Data Types
-======================
+==========
 
 .. index::
     single: Python; Data Types
@@ -27,7 +27,7 @@ Let's learn a bit more about them.
 
 
 Primitive Data Types
--------------------------
+--------------------
 
 One simple data type is **Boolean values**, which can be either ``True`` or ``False``
 
@@ -115,7 +115,7 @@ Complex numbers are another primitive data type in Python
 
 
 Containers
---------------
+----------
 
 Python has several basic types for storing collections of (possibly heterogeneous) data.
 
@@ -177,7 +177,7 @@ You've actually :ref:`seen an example of this <tuple_unpacking_example>` already
 Tuple unpacking is convenient and we'll use it often.
 
 Slice Notation
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 .. index::
     single: Python; Slicing
@@ -213,7 +213,7 @@ The same slice notation works on tuples and strings
 
 
 Sets and Dictionaries
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Python; Sets
@@ -269,7 +269,7 @@ The ``set()`` function creates sets from sequences
 
 
 Input and Output
-====================
+================
 
 .. index::
     single: Python; IO
@@ -285,9 +285,9 @@ Let's briefly review reading and writing to text files, starting with writing
 
 Here
 
-* The built-in function ``open()`` creates a file object for writing to
+* The built-in function ``open()`` creates a file object for writing to.
 
-* Both ``write()`` and ``close()`` are methods of file objects
+* Both ``write()`` and ``close()`` are methods of file objects.
 
 Where is this file that we've created?
 
@@ -313,7 +313,7 @@ We can also use Python to read the contents of ``newline.txt`` as follows
 
 
 Paths
---------
+-----
 
 .. index::
     single: Python; Paths
@@ -332,7 +332,7 @@ In this case, you can shift the file to the pwd or specify the `full path <https
 .. _iterating_version_1:
 
 Iterating
-========================
+=========
 
 .. index::
     single: Python; Iteration
@@ -345,7 +345,7 @@ the ``for`` loop.
 
 
 Looping over Different Objects
----------------------------------
+------------------------------
 
 Many Python objects are "iterable", in the sense that they can be looped over.
 
@@ -380,8 +380,8 @@ the details of which can be left till later.
 
 The interesting part of this program for us is line 2, which shows that
 
-#. The file object ``f`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop
-#. Iteration steps through each line in the file
+#. The file object ``f`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop.
+#. Iteration steps through each line in the file.
 
 This leads to the clean, convenient syntax shown in our program.
 
@@ -389,7 +389,7 @@ Many other kinds of objects are iterable, and we'll discuss some of them later o
 
 
 Looping without Indices
-------------------------
+-----------------------
 
 One thing you might have noticed is that Python tends to favor looping without explicit indexing.
 
@@ -458,10 +458,10 @@ The output of the loop is
 
 
 Comparisons and Logical Operators
-===================================
+=================================
 
 Comparisons
----------------------------------
+-----------
 
 .. index::
     single: Python; Comparison
@@ -522,11 +522,11 @@ What's going on here?
 
 The rule is:
 
-* Expressions that evaluate to zero, empty sequences or containers (strings, lists, etc.) and ``None`` are all equivalent to ``False``
+* Expressions that evaluate to zero, empty sequences or containers (strings, lists, etc.) and ``None`` are all equivalent to ``False``.
 
     * for example, ``[]`` and ``()`` are equivalent to ``False`` in an ``if`` clause
 
-* All other values are equivalent to ``True``
+* All other values are equivalent to ``True``.
 
     * for example, ``42`` is equivalent to ``True`` in an ``if`` clause
 
@@ -534,7 +534,7 @@ The rule is:
 
 
 Combining Expressions
-------------------------
+---------------------
 
 .. index::
     single: Python; Logical Expressions
@@ -571,7 +571,7 @@ Remember
 
 
 More Functions
-========================
+==============
 
 .. index::
     single: Python; Functions
@@ -622,29 +622,29 @@ Now let's talk some more about user-defined functions constructed using the keyw
 
 
 Why Write Functions?
---------------------------
+--------------------
 
 User-defined functions are important for improving the clarity of your code by
 
 * separating different strands of logic
 * facilitating code reuse
 
-(Writing the same thing twice is `almost always a bad idea <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
+(Writing the same thing twice is `almost always a bad idea <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_)
 
 The basics of user-defined functions were discussed :ref:`here <user_defined_functions>`.
 
 
 The Flexibility of Python Functions
----------------------------------------
+-----------------------------------
 
 As we discussed in the :ref:`previous lecture <python_by_example>`, Python functions are very flexible.
 
 In particular
 
-* Any number of functions can be defined in a given file
-* Functions can be (and often are) defined inside other functions
-* Any object can be passed to a function as an argument, including other functions
-* A function can return any kind of object, including functions
+* Any number of functions can be defined in a given file.
+* Functions can be (and often are) defined inside other functions.
+* Any object can be passed to a function as an argument, including other functions.
+* A function can return any kind of object, including functions.
 
 We already :ref:`gave an example <test_program_6>` of how straightforward it is to pass a function to
 a function.
@@ -664,7 +664,7 @@ code like the following example
 Functions without a return statement automatically return the special Python object ``None``.
 
 Docstrings
-----------------
+----------
 
 .. index::
     single: Python; Docstrings
@@ -723,7 +723,7 @@ With one question mark we bring up the docstring, and with two we get the source
 
 
 One-Line Functions: ``lambda``
--------------------------------
+------------------------------
 
 .. index::
     single: Python; lambda functions
@@ -764,7 +764,7 @@ Here the function created by ``lambda`` is said to be *anonymous* because it was
 
 
 Keyword Arguments
--------------------
+-----------------
 
 .. index::
     single: Python; keyword arguments
@@ -814,7 +814,7 @@ They can be modified as follows
 
 
 Coding Style and PEP8
-=============================
+=====================
 
 .. index::
     single: Python; PEP8
@@ -829,16 +829,16 @@ In programming, as in mathematics, the opposite is true
 
 * A mathematical paper where the symbols :math:`\cup` and :math:`\cap` were
   reversed would be very hard to read, even if the author told you so on the
-  first page
+  first page.
 
 In Python, the standard style is set out in `PEP8 <https://www.python.org/dev/peps/pep-0008/>`_.
 
-(Occasionally we'll deviate from PEP8 in these lectures to better match mathematical notation).
+(Occasionally we'll deviate from PEP8 in these lectures to better match mathematical notation)
 
 
 
 Exercises
-============
+=========
 
 Solve the following exercises.
 
@@ -847,14 +847,14 @@ Solve the following exercises.
 .. _pyess_ex1:
 
 Exercise 1
----------------
+----------
 
 Part 1: Given two numeric lists or tuples ``x_vals`` and ``y_vals`` of equal length, compute
 their inner product using ``zip()``.
 
-Part 2: In one line, count the number of even numbers in 0,...,99
+Part 2: In one line, count the number of even numbers in 0,...,99.
 
-* Hint: ``x % 2`` returns 0 if ``x`` is even, 1 otherwise
+* Hint: ``x % 2`` returns 0 if ``x`` is even, 1 otherwise.
 
 Part 3: Given ``pairs = ((2, 5), (4, 2), (9, 8), (12, 10))``, count the number of pairs ``(a, b)``
 such that both ``a`` and ``b`` are even.
@@ -869,7 +869,7 @@ such that both ``a`` and ``b`` are even.
 .. _pyess_ex2:
 
 Exercise 2
-------------
+----------
 
 Consider the polynomial
 
@@ -893,7 +893,7 @@ Try to use ``enumerate()`` in your loop.
 .. _pyess_ex3:
 
 Exercise 3
---------------
+----------
 
 Write a function that takes a string as an argument and returns the number of capital letters in the string.
 
@@ -906,14 +906,14 @@ Hint: ``'foo'.upper()`` returns ``'FOO'``.
 .. _pyess_ex4:
 
 Exercise 4
-------------
+----------
 
 Write a function that takes two sequences ``seq_a`` and ``seq_b`` as arguments and
 returns ``True`` if every element in ``seq_a`` is also an element of ``seq_b``, else
-``False``
+``False``.
 
-* By "sequence" we mean a list, a tuple or a string
-* Do the exercise without using `sets <https://docs.python.org/3/tutorial/datastructures.html#sets>`_ and set methods
+* By "sequence" we mean a list, a tuple or a string.
+* Do the exercise without using `sets <https://docs.python.org/3/tutorial/datastructures.html#sets>`_ and set methods.
 
 
 
@@ -921,7 +921,7 @@ returns ``True`` if every element in ``seq_a`` is also an element of ``seq_b``, 
 .. _pyess_ex5:
 
 Exercise 5
-------------
+----------
 
 When we cover the numerical libraries, we will see they include many
 alternatives for interpolation and function approximation.
@@ -930,13 +930,13 @@ Nevertheless, let's write our own function approximation routine as an exercise.
 
 In particular, without using any imports, write a function ``linapprox`` that takes as arguments
 
-* A function ``f`` mapping some interval :math:`[a, b]` into :math:`\mathbb R`
+* A function ``f`` mapping some interval :math:`[a, b]` into :math:`\mathbb R`.
 
-* two scalars ``a`` and ``b`` providing the limits of this interval
+* Two scalars ``a`` and ``b`` providing the limits of this interval.
 
-* An integer ``n`` determining the number of grid points
+* An integer ``n`` determining the number of grid points.
 
-* A number ``x`` satisfying ``a <= x <= b``
+* A number ``x`` satisfying ``a <= x <= b``.
 
 and returns the `piecewise linear interpolation <https://en.wikipedia.org/wiki/Linear_interpolation>`_ of ``f`` at ``x``, based on ``n`` evenly spaced grid points ``a = point[0] < point[1] < ... < point[n-1] = b``.
 
@@ -945,7 +945,7 @@ Aim for clarity, not efficiency.
 
 
 Solutions
-==========
+=========
 
 
 
@@ -1087,7 +1087,7 @@ Exercise 5
         [a, b], with n evenly spaced grid points.
 
         Parameters
-        ===========
+        ==========
             f : function
                 The function to approximate
 
@@ -1098,7 +1098,7 @@ Exercise 5
                 Number of grid points
 
         Returns
-        =========
+        =======
             A float. The interpolant evaluated at x
 
         """

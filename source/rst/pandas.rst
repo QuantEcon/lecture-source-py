@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-*******************************
+***************
 :index:`Pandas`
-*******************************
+***************
 
 .. index::
     single: Python; Pandas
@@ -57,7 +57,7 @@ place
 
 
 Series
-==========
+======
 
 .. index::
     single: Pandas; Series
@@ -128,7 +128,7 @@ In fact, you can use much of the same syntax as Python dictionaries
 
 
 DataFrames
-==============
+==========
 
 .. index::
     single: Pandas; DataFrames
@@ -269,7 +269,7 @@ Plotting as before now yields
 
 
 On-Line Data Sources
-==========================
+====================
 
 .. index::
     single: Data Sources
@@ -287,7 +287,7 @@ this URL into your browser (note that this requires an internet connection)
 
     https://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv
 
-(Equivalently, click here: https://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv).
+(Equivalently, click here: https://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv)
 
 This request returns a CSV file, which will be handled by your default application for this class of files.
 
@@ -298,7 +298,7 @@ This can be done with a variety of methods.
 We start with a relatively low-level method and then return to pandas.
 
 Accessing Data with :index:`requests`
--------------------------------------------
+-------------------------------------
 
 .. index::
     single: Python; requests
@@ -317,9 +317,9 @@ If there's no error message, then the call has succeeded.
 
 If you do get an error, then there are two likely causes
 
-#. You are not connected to the Internet --- hopefully, this isn't the case
+#. You are not connected to the Internet --- hopefully, this isn't the case.
 
-#. Your machine is accessing the Internet through a proxy server, and Python isn't aware of this
+#. Your machine is accessing the Internet through a proxy server, and Python isn't aware of this.
 
 In the second case, you can either
 
@@ -377,7 +377,7 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
     plt.show()
 
 Accessing World Bank Data
-----------------------------
+-------------------------
 
 .. index::
     single: Pandas; Accessing Data
@@ -408,12 +408,12 @@ DataFrame, and plots time series for the US and Australia
     `here <https://lectures.quantecon.org/_downloads/pandas/wb_download.py>`__).
 
 Exercises
-=============
+=========
 
 .. _pd_ex1:
 
 Exercise 1
--------------
+----------
 
 Write a program to calculate the percentage price change over 2013 for the following shares
 
@@ -451,7 +451,7 @@ Plot the result as a bar graph like follows
 
 
 Solutions
-==========
+=========
 
 
 
