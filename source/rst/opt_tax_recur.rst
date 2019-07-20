@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-*********************************************
+*******************************************
 Optimal Taxation with State-Contingent Debt
-*********************************************
+*******************************************
 
 .. contents:: :depth: 2
 
@@ -56,7 +56,7 @@ See :doc:`Optimal taxation <lqramsey>` for analysis within a linear-quadratic se
 
 
 A Competitive Equilibrium with Distorting Taxes
-================================================
+===============================================
 
 
 For :math:`t \geq 0`, a history :math:`s^t = [s_t, s_{t-1}, \ldots, s_0]` of an
@@ -120,9 +120,9 @@ The government has a sequence of budget constraints whose time :math:`t \geq 0` 
 where
 
 * :math:`p_{t+1}(s_{t+1}|s^t)` is a competitive equilibrium price of one unit of
-  consumption at date :math:`t+1` in state :math:`s_{t+1}` at date :math:`t` and history :math:`s^t`
+  consumption at date :math:`t+1` in state :math:`s_{t+1}` at date :math:`t` and history :math:`s^t`.
 
-* :math:`b_t(s_t|s^{t-1})` is government debt falling due at time :math:`t`, history :math:`s^t`
+* :math:`b_t(s_t|s^{t-1})` is government debt falling due at time :math:`t`, history :math:`s^t`.
 
 
 Government debt :math:`b_0(s_0)` is an exogenous initial condition.
@@ -152,10 +152,10 @@ A **competitive equilibrium with distorting taxes** is a feasible allocation,
 a price system, and a government policy such that
 
 * Given the price system and the government policy, the allocation solves the
-  household's optimization problem
+  household's optimization problem.
 
 * Given the allocation, government policy, and  price system, the government's
-  budget constraint is satisfied for all :math:`t, s^t`
+  budget constraint is satisfied for all :math:`t, s^t`.
 
 Note: There are many competitive equilibria with distorting taxes.
 
@@ -165,7 +165,7 @@ The **Ramsey problem** or **optimal taxation problem** is to choose a competitiv
 equilibrium with distorting taxes that maximizes :eq:`TS_prefr_opt_tax`.
 
 Arrow-Debreu Version of Price System
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We find it convenient sometimes to work with the Arrow-Debreu price system that is
 implied by a sequence of Arrow securities prices.
@@ -187,7 +187,7 @@ constraints into a single intertemporal budget constraint, as we shall find it
 convenient to do below.
 
 Primal Approach
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 We apply a popular approach to solving a Ramsey problem, called the *primal approach*.
 
@@ -201,26 +201,26 @@ from the allocation.
 The primal approach uses four steps:
 
 1. Obtain  first-order conditions of the household's problem and solve them for :math:`\{q^0_t(s^t), \tau_t(s^t)\}_{t=0}^\infty` as functions of
-   the allocation :math:`\{c_t(s^t), n_t(s^t)\}_{t=0}^\infty`
+   the allocation :math:`\{c_t(s^t), n_t(s^t)\}_{t=0}^\infty`.
 
 2. Substitute these expressions for taxes and prices in terms of the allocation
-   into the household's present-value budget constraint
+   into the household's present-value budget constraint.
 
    * This intertemporal constraint involves only the allocation and is regarded
-     as an *implementability constraint*
+     as an *implementability constraint*.
 
 3. Find the allocation that maximizes the utility of the representative household
    :eq:`TS_prefr_opt_tax` subject to  the feasibility constraints :eq:`feas1_opt_tax`
-   and :eq:`TSs_techr_opt_tax`  and the implementability condition derived in step 2
+   and :eq:`TSs_techr_opt_tax`  and the implementability condition derived in step 2.
 
-   *  This optimal allocation is called the **Ramsey allocation**
+   *  This optimal allocation is called the **Ramsey allocation**.
 
 4. Use the Ramsey  allocation together with the formulas from step 1 to find
-   taxes and prices
+   taxes and prices.
 
 
 The Implementability Constraint
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By sequential substitution of one one-period budget constraint :eq:`TS_bcr` into
 another, we can obtain the household's present-value budget constraint:
@@ -290,7 +290,7 @@ subject to  :eq:`TSs_cham1`.
 
 
 Solution Details
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 First, define a "pseudo utility function"
 
@@ -430,7 +430,7 @@ currently realized quantity of government purchases :math:`g` only and does
 
 
 The Ramsey Allocation for a Given Multiplier
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Temporarily take  :math:`\Phi` as given.
 
@@ -459,7 +459,7 @@ with that :math:`\Phi`.
 
 
 Further Specialization
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 At this point, it is useful to specialize the model in the following ways.
 
@@ -478,7 +478,7 @@ We maintain these assumptions throughout the remainder of this lecture.
 
 
 Determining the Multiplier
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We complete the Ramsey plan by computing the Lagrange multiplier :math:`\Phi`
 on the implementability constraint :eq:`TSs_cham1`.
@@ -587,14 +587,14 @@ Here is a computational algorithm:
 1.  Start with a guess for the value for :math:`\Phi`, then use the
     first-order conditions and the feasibility conditions to compute
     :math:`c(s_t), n(s_t)` for :math:`s \in [1,\ldots, S]` and
-    :math:`c_0(s_0,b_0)` and :math:`n_0(s_0, b_0)`, given :math:`\Phi`
+    :math:`c_0(s_0,b_0)` and :math:`n_0(s_0, b_0)`, given :math:`\Phi`.
 
-    * these are :math:`2  (S+1)` equations in :math:`2  (S+1)` unknowns
+    * these are :math:`2  (S+1)` equations in :math:`2  (S+1)` unknowns.
 
 2. Solve the :math:`S` equations :eq:`LSA_xsol` for the :math:`S` elements
-   of :math:`\vec x`
+   of :math:`\vec x`.
 
-   * these depend on :math:`\Phi`
+   * these depend on :math:`\Phi`.
 
 3. Find a :math:`\Phi` that satisfies
 
@@ -604,11 +604,11 @@ Here is a computational algorithm:
         u_{c,0} b_0 = u_{c,0} (n_0 - g_0) - u_{l,0} n_0  + \beta \sum_{s=1}^S \Pi(s | s_0) x(s)
 
    by gradually raising :math:`\Phi` if the left side of :eq:`Bellman2cons`
-   exceeds the right side and lowering :math:`\Phi` if the left side is less than the right side
+   exceeds the right side and lowering :math:`\Phi` if the left side is less than the right side.
 
 4. After computing a Ramsey allocation,  recover the flat tax rate on
    labor from :eq:`LSA_taxr` and the implied one-period Arrow securities
-   prices from :eq:`LS101`
+   prices from :eq:`LS101`.
 
 In summary, when :math:`g_t` is a time-invariant function of a Markov state
 :math:`s_t`, a Ramsey plan can be constructed by solving :math:`3S +3`
@@ -619,7 +619,7 @@ equations in :math:`S` components each of :math:`\vec c`, :math:`\vec n`, and
 
 
 Time Inconsistency
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 Let :math:`\{\tau_t(s^t)\}_{t=0}^\infty, \{b_{t+1}(s_{t+1}| s^t)\}_{t=0}^\infty`
 be a time :math:`0`, state :math:`s_0` Ramsey plan.
@@ -648,14 +648,14 @@ We shall discuss this more below.
 
 
 Specification with CRRA Utility
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
 In our calculations below and in a :doc:`subsequent lecture <amss>` based on an extension of the Lucas-Stokey model
 by  Aiyagari, Marcet, Sargent, and Seppälä (2002) :cite:`aiyagari2002optimal`, we shall modify the one-period utility function assumed above.
 
-(We adopted the preceding utility specification because it was the one used in  the original :cite:`LucasStokey1983` paper).
+(We adopted the preceding utility specification because it was the one used in  the original :cite:`LucasStokey1983` paper)
 
 We will  modify their specification by instead assuming that the  representative agent has  utility function
 
@@ -734,7 +734,7 @@ In equation :eq:`opt_tax_eqn_10`, it is understood that
 
 
 Sequence Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
@@ -746,7 +746,7 @@ The above steps are implemented in a class called `SequentialAllocation`
 
 
 Recursive Formulation of the Ramsey Problem
-=============================================
+===========================================
 
 :math:`x_t(s^t) = u_c(s^t) b_t(s_t | s^{t-1})` in equation :eq:`LSA_budget`
 appears to be a purely “forward-looking” variable.
@@ -755,7 +755,7 @@ But :math:`x_t(s^t)` is a also a  natural candidate for a state variable in
 a recursive formulation of the Ramsey problem.
 
 Intertemporal Delegation
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 To express a Ramsey plan recursively, we imagine that a time :math:`0`
 Ramsey planner is followed by a sequence of continuation Ramsey planners
@@ -798,21 +798,21 @@ obligations to implement their parts of the original Ramsey plan,
 designed once-and-for-all at time :math:`0`.
 
 Two Bellman Equations
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 After :math:`s_t` has been realized at time :math:`t \geq 1`, the state
 variables confronting the time :math:`t` **continuation Ramsey planner** are
-:math:`(x_t, s_t)`
+:math:`(x_t, s_t)`.
 
-* Let :math:`V(x, s)` be the value of a **continuation Ramsey plan** at :math:`x_t = x, s_t =s` for :math:`t \geq 1`
+* Let :math:`V(x, s)` be the value of a **continuation Ramsey plan** at :math:`x_t = x, s_t =s` for :math:`t \geq 1`.
 
-* Let :math:`W(b, s)` be the value of a **Ramsey plan** at time :math:`0` at :math:`b_0=b` and :math:`s_0 = s`
+* Let :math:`W(b, s)` be the value of a **Ramsey plan** at time :math:`0` at :math:`b_0=b` and :math:`s_0 = s`.
 
 We work backward by presenting a Bellman equation for
 :math:`V(x,s)` first, then a Bellman equation for :math:`W(b,s)`.
 
 The Continuation Ramsey Problem
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Bellman equation for a time :math:`t \geq 1` continuation Ramsey
 planner is
@@ -825,7 +825,7 @@ planner is
 
 where maximization over :math:`n` and the :math:`S` elements of
 :math:`x'(s')` is subject to the single implementability constraint for
-:math:`t \geq 1`
+:math:`t \geq 1`.
 
 .. math::
     :label: LSA_Bellman1cons
@@ -852,7 +852,7 @@ are :math:`S+1` time-invariant policy functions
 
 
 The Ramsey Problem
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 The Bellman equation for the time :math:`0` Ramsey planner is
 
@@ -900,7 +900,7 @@ the consumption and leisure processes are evaluated along the original
 time :math:`0` Ramsey plan.
 
 First-Order Conditions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 Attach a Lagrange multiplier :math:`\Phi_1(x,s)` to constraint :eq:`LSA_Bellman1cons` and a
 Lagrange multiplier :math:`\Phi_0` to constraint :eq:`Bellman2cons`.
@@ -982,7 +982,7 @@ formulated the Ramsey plan in the space of sequences.
 
 
 State Variable Degeneracy
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Equations :eq:`LSAx0` and :eq:`LSAn0` imply that :math:`\Phi_0 = \Phi_1`
 and that
@@ -1005,7 +1005,7 @@ for :math:`n` and :math:`c` as functions of :math:`g` that are associated
 with :math:`\Phi = \Phi_0`.
 
 Manifestations of Time Inconsistency
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 While the marginal utility adjusted level of government debt :math:`x_t`
 is a key state variable for the continuation Ramsey planners at
@@ -1016,18 +1016,18 @@ The time :math:`0` Ramsey planner faces :math:`b_0`, not :math:`x_0 = u_{c,0} b_
 The discrepancy in state variables faced by the time :math:`0` Ramsey planner and the time
 :math:`t \geq 1` continuation Ramsey planners captures the differing
 obligations and incentives faced by the time :math:`0` Ramsey planner
-and the time :math:`t \geq 1` continuation Ramsey planners
+and the time :math:`t \geq 1` continuation Ramsey planners.
 
 * The time :math:`0` Ramsey planner is obligated to honor government
-  debt :math:`b_0` measured in time :math:`0` consumption goods
+  debt :math:`b_0` measured in time :math:`0` consumption goods.
 
 * The time :math:`0` Ramsey planner can manipulate the *value* of government
-  debt as measured by :math:`u_{c,0} b_0`
+  debt as measured by :math:`u_{c,0} b_0`.
 
 * In contrast, time :math:`t \geq 1` continuation Ramsey planners are
   obligated *not* to alter values of debt, as measured by
   :math:`u_{c,t} b_t`, that they inherit from a preceding Ramsey planner or
-  continuation Ramsey planner
+  continuation Ramsey planner.
 
 When government expenditures :math:`g_t` are a time-invariant function
 of a Markov state :math:`s_t`, a Ramsey plan and associated Ramsey
@@ -1051,7 +1051,7 @@ the Ramsey planner’s incentive to manipulate Arrow security prices and,
 through them, the value of initial government debt :math:`b_0`.
 
 Recursive Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
@@ -1064,18 +1064,18 @@ The above steps are implemented in a class called `RecursiveAllocation`
 
 
 Examples
-=============
+========
 
 Anticipated One-Period War
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This example illustrates in a simple setting how a Ramsey planner manages risk.
 
 Government expenditures are known for sure in all periods except one
 
-* For :math:`t<3` and :math:`t > 3` we assume that :math:`g_t = g_l = 0.1`
+* For :math:`t<3` and :math:`t > 3` we assume that :math:`g_t = g_l = 0.1`.
 
-* At :math:`t = 3` a war occurs with probability 0.5
+* At :math:`t = 3` a war occurs with probability 0.5.
 
   *  If there is war, :math:`g_3 = g_h = 0.2`
 
@@ -1181,13 +1181,13 @@ We can now plot the Ramsey tax  under both realizations of time :math:`t = 3` go
 * the tax rate is constant for all  :math:`t\geq 1`
 
       * For :math:`t \geq 1, t \neq 3`, this is a consequence of :math:`g_t`
-        being the same at all those dates
+        being the same at all those dates.
 
       * For :math:`t = 3`, it is a consequence of the special one-period utility
-        function that we have assumed
+        function that we have assumed.
 
       * Under  other one-period utility functions, the time :math:`t=3` tax rate
-        could be either higher or lower than for dates :math:`t \geq 1, t \neq 3`
+        could be either higher or lower than for dates :math:`t \geq 1, t \neq 3`.
 
 * the tax rate is the same at :math:`t=3` for both the high :math:`g_t` outcome and the low :math:`g_t` outcome
 
@@ -1232,38 +1232,38 @@ time 0 by raising consumption
 
 
 Government Saving
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
-At time  :math:`t=0` the government evidently *dissaves* since :math:`b_1> b_0`
+At time  :math:`t=0` the government evidently *dissaves* since :math:`b_1> b_0`.
 
     * This is a consequence of it setting a *lower* tax rate at :math:`t=0`,
-      implying more consumption at :math:`t=0`
+      implying more consumption at :math:`t=0`.
 
 At time :math:`t=1`, the government evidently *saves* since it has set the tax
-rate sufficiently high to allow it to set :math:`b_2 < b_1`
+rate sufficiently high to allow it to set :math:`b_2 < b_1`.
 
-    * Its motive for doing this is that it anticipates a likely war at :math:`t=3`
+    * Its motive for doing this is that it anticipates a likely war at :math:`t=3`.
 
 At time :math:`t=2` the government trades state-contingent Arrow securities
-to hedge against  war at :math:`t=3`
+to hedge against  war at :math:`t=3`.
 
-   * It purchases a security that pays off when :math:`g_3 = g_h`
+   * It purchases a security that pays off when :math:`g_3 = g_h`.
 
-   * It sells a security that  pays off when :math:`g_3 = g_l`
+   * It sells a security that  pays off when :math:`g_3 = g_l`.
 
    * These purchases are designed in such a way that regardless of whether or
      not there is a war at :math:`t=3`, the government will begin  period
-     :math:`t=4` with the *same* government debt
+     :math:`t=4` with the *same* government debt.
 
    * The time :math:`t=4` debt level can be serviced with revenues from the
-     constant tax rate set at times :math:`t\geq 1`
+     constant tax rate set at times :math:`t\geq 1`.
 
 At times :math:`t \geq 4` the government rolls over its debt, knowing that the
 tax rate is set at level required to service the interest payments
 on the debt and government expenditures.
 
 Time 0 Manipulation of Interest Rate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have seen that when :math:`b_0>0`, the Ramsey plan sets the time :math:`t=0`
 tax rate partly with an eye toward raising a risk-free interest
@@ -1277,7 +1277,7 @@ and must finance.
 
 
 Time 0 and Time-Inconsistency
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the  preceding  example,  the Ramsey tax rate at time 0 differs from its value  at time 1.
 
@@ -1343,7 +1343,7 @@ constant for all :math:`t \geq 0`.
 The first is :math:`b_{0} = 0`
 
    * Here the government can't use the :math:`t=0` tax rate  to alter  the
-     value of the initial debt
+     value of the initial debt.
 
 The second occurs when the government enters with sufficiently large  assets
 that the Ramsey planner can achieve first best and sets :math:`\tau_t = 0`
@@ -1399,7 +1399,7 @@ The tax rates in the figure are equal  for only two values of initial government
 
 
 Tax Smoothing and non-CRRA Preferences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The complete tax smoothing for :math:`t \geq 1` in the preceding example is a
 consequence of our having assumed CRRA preferences.
@@ -1491,7 +1491,7 @@ Instead, the government raises the tax rate when :math:`g_t` is high.
 
 
 Further Comments
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 A :doc:`related lecture <amss>` describes an extension of the Lucas-Stokey model
 by  Aiyagari, Marcet, Sargent, and Seppälä (2002) :cite:`aiyagari2002optimal`.

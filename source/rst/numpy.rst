@@ -18,13 +18,13 @@
 
 
 Overview
-============
+========
 
 `NumPy <https://en.wikipedia.org/wiki/NumPy>`_ is a first-rate library for numerical programming
 
-* Widely used in academia, finance and industry
+* Widely used in academia, finance and industry.
 
-* Mature, fast, stable and under continuous development
+* Mature, fast, stable and under continuous development.
 
 
 In this lecture, we introduce NumPy arrays and the fundamental array processing operations provided by NumPy.
@@ -32,9 +32,9 @@ In this lecture, we introduce NumPy arrays and the fundamental array processing 
 
 
 References
-----------------
+----------
 
-* `The official NumPy documentation <http://docs.scipy.org/doc/numpy/reference/>`_
+* `The official NumPy documentation <http://docs.scipy.org/doc/numpy/reference/>`_.
 
 
 
@@ -43,7 +43,7 @@ References
 
 
 Introduction to NumPy
-========================
+=====================
 
 .. index::
     single: NumPy
@@ -56,11 +56,11 @@ If we did this in pure Python it would be orders of magnitude slower than C or F
 
 This is because
 
-* Loops in Python over Python data types like lists carry significant overhead
+* Loops in Python over Python data types like lists carry significant overhead.
 
-* C and Fortran code contains a lot of type information that can be used for optimization
+* C and Fortran code contains a lot of type information that can be used for optimization.
 
-* Various optimizations can be carried out during compilation when the compiler sees the instructions as a whole
+* Various optimizations can be carried out during compilation when the compiler sees the instructions as a whole.
 
 
 However, for a task like the one described above, there's no need to switch back to C or Fortran.
@@ -83,7 +83,7 @@ This is similar in spirit to Matlab, which provides an interface to fast Fortran
 
 
 A Comment on Vectorization
-----------------------------------
+--------------------------
 
 NumPy is great for operations that are naturally *vectorized*.
 
@@ -102,7 +102,7 @@ In a :doc:`later lecture <numba>`, we'll discuss code that isn't easy to vectori
 .. _numpy_array:
 
 NumPy Arrays
-================
+============
 
 .. index::
     single: NumPy; Arrays
@@ -128,8 +128,8 @@ To create a NumPy array containing only zeros we use  `np.zeros <http://docs.sci
 
 NumPy arrays are somewhat like native Python lists, except that
 
-* Data *must be homogeneous* (all elements of the same type)
-* These types must be one of the data types (``dtypes``) provided by NumPy
+* Data *must be homogeneous* (all elements of the same type).
+* These types must be one of the data types (``dtypes``) provided by NumPy.
 
 The most important of these dtypes are:
 
@@ -158,7 +158,7 @@ If we want to use integers we can specify as follows:
 .. _numpy_shape_dim:
 
 Shape and Dimension
-----------------------
+-------------------
 
 .. index::
     single: NumPy; Arrays (Shape and Dimension)
@@ -200,7 +200,7 @@ in ``z = np.zeros((2, 2))``.
 .. _creating_arrays:
 
 Creating Arrays
-------------------
+---------------
 
 .. index::
     single: NumPy; Arrays (Creating)
@@ -218,7 +218,7 @@ Related is ``np.empty``, which creates arrays in memory that can later be popula
 
 The numbers you see here are garbage values.
 
-(Python allocates 3 contiguous 64 bit pieces of memory, and the existing contents of those memory slots are interpreted as ``float64`` values).
+(Python allocates 3 contiguous 64 bit pieces of memory, and the existing contents of those memory slots are interpreted as ``float64`` values)
 
 To set up a grid of evenly spaced numbers use ``np.linspace``
 
@@ -256,7 +256,7 @@ In addition, NumPy arrays can be created from Python lists, tuples, etc. using `
     z
 
 See also ``np.asarray``, which performs a similar function, but does not make
-a distinct copy of data already in a NumPy array
+a distinct copy of data already in a NumPy array.
 
 .. code-block:: python3
 
@@ -273,7 +273,7 @@ or ``np.genfromtxt``---see `the documentation <http://docs.scipy.org/doc/numpy/r
 
 
 Array Indexing
------------------
+--------------
 
 .. index::
     single: NumPy; Arrays (Indexing)
@@ -371,7 +371,7 @@ An aside: all elements of an array can be set equal to one number using slice no
 
 
 Array Methods
-------------------
+-------------
 
 .. index::
     single: NumPy; Arrays (Methods)
@@ -457,13 +457,13 @@ Many of the methods discussed above have equivalent functions in the NumPy names
 
 
 Operations on Arrays
-================================
+====================
 
 .. index::
     single: NumPy; Arrays (Operations)
 
 Arithmetic Operations
-------------------------
+---------------------
 
 The operators ``+``, ``-``, ``*``, ``/`` and ``**`` all act *elementwise* on arrays
 
@@ -512,7 +512,7 @@ The two-dimensional arrays follow the same general rules
 In particular, ``A * B`` is *not* the matrix product, it is an element-wise product.
 
 Matrix Multiplication
-------------------------
+---------------------
 
 .. index::
     single: NumPy; Matrix Multiplication
@@ -526,7 +526,7 @@ one can use the ``@`` symbol for matrix multiplication, as follows:
     B = np.ones((2, 2))
     A @ B
 
-(For older versions of Python and NumPy you need to use the `np.dot <http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html>`_ function).
+(For older versions of Python and NumPy you need to use the `np.dot <http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html>`_ function)
 
 
 We can also use ``@`` to take the inner product of two flat arrays
@@ -553,7 +553,7 @@ Since we are post-multiplying, the tuple is treated as a column vector.
 
 
 Mutability and Copying Arrays
--------------------------------
+-----------------------------
 
 NumPy arrays are mutable data types, like Python lists.
 
@@ -635,13 +635,13 @@ Note that the change to ``b`` has not affected ``a``.
 
 
 Additional Functionality
-=========================
+========================
 
 Let's look at some other useful things we can do with NumPy.
 
 
 Vectorized Functions
---------------------------
+--------------------
 
 .. index::
     single: NumPy; Vectorized Functions
@@ -667,7 +667,7 @@ Because they act element-wise on arrays, these functions are called *vectorized 
 In NumPy-speak, they are also called *ufuncs*, which stands for "universal functions".
 
 As we saw above, the usual arithmetic operations (``+``, ``*``, etc.) also
-work element-wise, and combining these with the ufuncs gives a very large set of fast element-wise functions
+work element-wise, and combining these with the ufuncs gives a very large set of fast element-wise functions.
 
 .. code-block:: python3
 
@@ -713,7 +713,7 @@ However, this approach doesn't always obtain the same speed as a more carefully 
 
 
 Comparisons
---------------
+-----------
 
 .. index::
     single: NumPy; Comparisons
@@ -769,7 +769,7 @@ Of course we can---and frequently do---perform this in one step
 
 
 Sub-packages
----------------
+------------
 
 NumPy provides some additional functionality related to scientific programming
 through its sub-packages.
@@ -809,13 +809,13 @@ For a comprehensive list of what's available in NumPy see `this documentation <h
 
 
 Exercises
-=============
+=========
 
 
 .. _np_ex1:
 
 Exercise 1
-----------------
+----------
 
 Consider the polynomial expression
 
@@ -839,7 +839,7 @@ Now write a new function that does the same job, but uses NumPy arrays and array
 .. _np_ex2:
 
 Exercise 2
-----------------
+----------
 
 Let ``q`` be a NumPy array of length ``n`` with ``q.sum() == 1``.
 
@@ -851,8 +851,8 @@ In other words, ``x`` takes values in ``range(len(q))`` and ``x = i`` with proba
 
 The standard (inverse transform) algorithm is as follows:
 
-* Divide the unit interval :math:`[0, 1]` into :math:`n` subintervals :math:`I_0, I_1, \ldots, I_{n-1}` such that the length of :math:`I_i` is :math:`q_i`
-* Draw a uniform random variable :math:`U` on :math:`[0, 1]` and return the :math:`i` such that :math:`U \in I_i`
+* Divide the unit interval :math:`[0, 1]` into :math:`n` subintervals :math:`I_0, I_1, \ldots, I_{n-1}` such that the length of :math:`I_i` is :math:`q_i`.
+* Draw a uniform random variable :math:`U` on :math:`[0, 1]` and return the :math:`i` such that :math:`U \in I_i`.
 
 The probability of drawing :math:`i` is the length of :math:`I_i`, which is equal to :math:`q_i`.
 
@@ -891,18 +891,18 @@ If you can, write the method so that ``draw(k)`` returns ``k`` draws from ``q``.
 .. _np_ex3:
 
 Exercise 3
-----------------
+----------
 
 Recall our :ref:`earlier discussion <oop_ex1>` of the empirical cumulative distribution function.
 
 Your task is to
 
-#. Make the ``__call__`` method more efficient using NumPy
-#. Add a method that plots the ECDF over :math:`[a, b]`, where :math:`a` and :math:`b` are method parameters
+#. Make the ``__call__`` method more efficient using NumPy.
+#. Add a method that plots the ECDF over :math:`[a, b]`, where :math:`a` and :math:`b` are method parameters.
 
 
 Solutions
-==========
+=========
 
 
 

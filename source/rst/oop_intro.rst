@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-***************************************************
+**************************************************
 OOP I: Introduction to Object Oriented Programming
-***************************************************
+**************************************************
 
 .. contents:: :depth: 2
 
@@ -19,18 +19,18 @@ The traditional programming paradigm (think Fortran, C, MATLAB, etc.) is called 
 
 It works as follows
 
-* The program has a state corresponding to the values of its variables
+* The program has a state corresponding to the values of its variables.
 
-* Functions are called to act on these data
+* Functions are called to act on these data.
 
-* Data are passed back and forth via function calls
+* Data are passed back and forth via function calls.
 
 
 In contrast, in the OOP paradigm
 
 * data and functions are "bundled together" into "objects"
 
-(Functions in this context are referred to as **methods**).
+(Functions in this context are referred to as **methods**)
 
 
 
@@ -39,7 +39,7 @@ In contrast, in the OOP paradigm
 
 
 Python and OOP
-----------------
+--------------
 
 Python is a pragmatic language that blends object-oriented and procedural styles, rather than taking a purist approach.
 
@@ -54,7 +54,7 @@ In this lecture, we explain what that statement means and why it matters.
 
 
 Objects
-===========
+=======
 
 .. index::
     single: Python; Objects
@@ -80,7 +80,7 @@ These concepts are defined and discussed sequentially below.
 .. _type:
 
 Type
-------
+----
 
 .. index::
     single: Python; Type
@@ -129,9 +129,9 @@ Here we are mixing types, and it's unclear to Python whether the user wants to
 
 Some languages might try to guess but Python is *strongly typed*
 
-* Type is important, and implicit type conversion is rare
+* Type is important, and implicit type conversion is rare.
 
-* Python will respond instead by raising a ``TypeError``
+* Python will respond instead by raising a ``TypeError``.
 
 
 To avoid the error, you need to clarify by changing the relevant type.
@@ -147,7 +147,7 @@ For example,
 .. _identity:
 
 Identity
-------------
+--------
 
 .. index::
     single: Python; Identity
@@ -201,9 +201,9 @@ In fact, it contains more, as the following example shows
 
 When Python creates this integer object, it stores with it various auxiliary information, such as the imaginary part, and the type.
 
-Any name following a dot is called an *attribute* of the object to the left of the dot
+Any name following a dot is called an *attribute* of the object to the left of the dot.
 
-* e.g.,``imag`` and ``__class__`` are attributes of ``x``
+* e.g.,``imag`` and ``__class__`` are attributes of ``x``.
 
 
 We see from this example that objects have attributes that contain auxiliary information.
@@ -217,7 +217,7 @@ These attributes are important, so let's discuss them in-depth.
 .. _methods:
 
 Methods
------------
+-------
 
 .. index::
     single: Python; Methods
@@ -276,7 +276,7 @@ What actually happens is that Python calls the ``__setitem__`` method, as follow
     x.__setitem__(0, 'aa')  # Equivalent to x[0] = 'aa'
     x
 
-(If you wanted to you could modify the ``__setitem__`` method, so that square bracket assignment does something totally different).
+(If you wanted to you could modify the ``__setitem__`` method, so that square bracket assignment does something totally different)
 
 
 
