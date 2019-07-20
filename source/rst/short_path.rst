@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-******************************************************
+**************
 Shortest Paths
-******************************************************
+**************
 
 .. index::
 	single: Dynamic Programming; Shortest Paths
@@ -12,7 +12,7 @@ Shortest Paths
 .. contents:: :depth: 2
 
 Overview
-=============
+========
 
 The shortest path problem is a `classic problem <https://en.wikipedia.org/wiki/Shortest_path>`_ in mathematics and computer science with applications in
 
@@ -43,7 +43,7 @@ Dynamic programming is an extremely powerful optimization technique that we appl
 
 
 Outline of the Problem
-=========================
+======================
 
 The shortest path problem is one of finding how to traverse a `graph <https://en.wikipedia.org/wiki/Graph_%28mathematics%29>`_ from one specified node to another at minimum cost.
 
@@ -53,13 +53,13 @@ Consider the following graph
 
 We wish to travel from node (vertex) A to node G at minimum cost
 
-* Arrows (edges) indicate the movements we can take
-* Numbers on edges indicate the cost of traveling that edge
+* Arrows (edges) indicate the movements we can take.
+* Numbers on edges indicate the cost of traveling that edge.
 
 Possible interpretations of the graph include
 
-* Minimum cost for supplier to reach a destination
-* Routing of packets on the internet (minimize time)
+* Minimum cost for supplier to reach a destination.
+* Routing of packets on the internet (minimize time).
 * Etc., etc.
 
 For this simple graph, a quick scan of the edges shows that the optimal paths are
@@ -73,7 +73,7 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 .. figure:: /_static/lecture_specific/short_path/graph3.png
 
 Finding Least-Cost Paths
-===========================
+========================
 
 For large graphs, we need a systematic solution.
 
@@ -100,9 +100,9 @@ The best path can now be found as follows
 
 where
 
-* :math:`F_v` is the set of nodes that can be reached from :math:`v` in one step
+* :math:`F_v` is the set of nodes that can be reached from :math:`v` in one step.
 
-* :math:`c(v, w)` is the cost of traveling from :math:`v` to :math:`w`
+* :math:`c(v, w)` is the cost of traveling from :math:`v` to :math:`w`.
 
 Hence, if we know the function :math:`J`, then finding the best path is almost trivial.
 
@@ -122,7 +122,7 @@ This is known as the *Bellman equation*, after the mathematician Richard Bellman
 
 
 Solving for Minimum Cost-to-Go
-================================
+==============================
 
 The standard algorithm for finding :math:`J` is to start with
 
@@ -148,18 +148,18 @@ In general, this sequence converges to :math:`J`---the proof is omitted.
 
 
 Exercises
-============
+=========
 
 .. _short_path_ex1:
 
 Exercise 1
-------------
+----------
 
 Use the algorithm given above to find the optimal path (and its cost) for the
 following graph.
 
 You can put it in a Jupyter notebook cell and hit Shift-Enter --- it
-will be saved in the local directory as file `graph.txt`
+will be saved in the local directory as file `graph.txt`.
 
 .. code-block:: python3
 
@@ -280,7 +280,7 @@ Your code should replicate this result.
 
 
 Solutions
-==========
+=========
 
 
 

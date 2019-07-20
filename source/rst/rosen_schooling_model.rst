@@ -5,9 +5,9 @@
 .. index::
     single: python
 
-****************************
+*********************
 Rosen Schooling Model
-****************************
+*********************
 
 .. contents:: :depth: 2
 
@@ -17,7 +17,7 @@ Rosen Schooling Model
 This lecture is yet another part of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.
 
-In addition to what's included in  Anaconda, this lecture uses the quantecon  library
+In addition to what's included in  Anaconda, this lecture uses the quantecon library
 
 .. code-block:: ipython
   :class: hide-output
@@ -37,7 +37,7 @@ We'll also need the following imports
     %matplotlib inline
 
 A One-Occupation Model
-========================
+======================
 
 Ryoo and Rosen's (2004) :cite:`ryoo2004engineering` partial equilibrium model determines
 
@@ -69,7 +69,7 @@ The model consists of the following equations:
 .. math:: n_t = \alpha_s v_t + \epsilon_{st}
 
 Mapping into HS2013 Framework
-===============================================
+=============================
 
 We represent this model in the :cite:`HS2013` framework by
 
@@ -80,7 +80,7 @@ We represent this model in the :cite:`HS2013` framework by
    goods
 
 Preferences
-------------
+-----------
 
 .. math::
 
@@ -107,7 +107,7 @@ Below we set things up so that the number of years of education, k, can
 be varied.
 
 Technology
-------------
+----------
 
 To capture Ryoo and Rosen's :cite:`ryoo2004engineering` supply curve, we use the physical
 technology:
@@ -119,7 +119,7 @@ technology:
 where :math:`\psi_1` is inversely proportional to :math:`\alpha_s`.
 
 Information
-------------
+-----------
 
 Because we  want :math:`b_t = \epsilon_{dt}` and :math:`d_{1t} =\epsilon_{st}`, we set
 
@@ -153,7 +153,7 @@ supply and demand shocks
     Preferences = namedtuple('Preferences', ['β', 'l_λ', 'π_h', 'δ_h', 'θ_h'])
 
 Effects of Changes in Education Technology and Demand
-------------------------------------------------------
+-----------------------------------------------------
 
 We now study how changing
 

@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-********************************
+*****************************
 Schelling's Segregation Model
-********************************
+*****************************
 
 .. index::
     single: Schelling Segregation Model
@@ -17,7 +17,7 @@ Schelling's Segregation Model
 .. contents:: :depth: 2
 
 Outline
-=======================
+=======
 
 
 In 1969, Thomas C. Schelling developed a simple but striking model of racial segregation :cite:`Schelling1969`.
@@ -35,12 +35,12 @@ In this lecture, we (in fact you) will build and run a version of Schelling's mo
 
 
 The Model
-=======================
+=========
 
 We will cover a variation of Schelling's model that is easy to program and captures the main idea.
 
 Set-Up
----------
+------
 
 Suppose we have two types of people: orange people and green people.
 
@@ -53,7 +53,7 @@ The location of an agent is just a point :math:`(x, y)`,  where :math:`0 < x, y 
 
 
 Preferences
--------------
+-----------
 
 We will say that an agent is *happy* if half or more of her 10 nearest neighbors are of the same type.
 
@@ -67,7 +67,7 @@ They are perfectly happy if half their neighbors are of the other color.
 
 
 Behavior
------------
+--------
 
 Initially, agents are mixed together (integrated).
 
@@ -92,16 +92,16 @@ We continue to cycle until no one wishes to move.
 
 
 Results
-=============
+=======
 
 Let's have a look at the results we got when we coded and ran this model.
 
-As discussed above, agents are initially mixed randomly together
+As discussed above, agents are initially mixed randomly together.
 
 
 .. figure:: /_static/lecture_specific/schelling/schelling_fig1.png
 
-But after several cycles, they become segregated into distinct regions
+But after several cycles, they become segregated into distinct regions.
 
 .. figure:: /_static/lecture_specific/schelling/schelling_fig2.png
 
@@ -120,14 +120,14 @@ Even with these preferences, the outcome is a high degree of segregation.
 
 
 Exercises
-===============
+=========
 
 
 
 .. _schelling_ex1:
 
 Exercise 1
-------------
+----------
 
 Implement and run this simulation for yourself.
 
@@ -171,7 +171,7 @@ Use 250 agents of each type.
 
 
 Solutions
-==========
+=========
 
 
 
@@ -183,7 +183,7 @@ Exercise 1
 Here's one solution that does the job we want.
 
 If you feel like a further exercise, you can probably speed up some of the computations and
-then increase the number of agents
+then increase the number of agents.
 
 .. code-block:: ipython
 
