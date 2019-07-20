@@ -2,14 +2,14 @@
 
 .. include:: /_static/includes/header.raw
 
-******************************************
+**********************
 More Language Features
-******************************************
+**********************
 
 .. contents:: :depth: 2
 
 Overview
-============
+========
 
 With this last lecture, our advice is to **skip it on first pass**, unless you have a burning desire to read it.
 
@@ -27,7 +27,7 @@ A variety of topics are treated in the lecture, including generators, exceptions
 
 
 Iterables and Iterators
-============================
+=======================
 
 .. index::
     single: Python; Iteration
@@ -38,7 +38,7 @@ Now let's look more closely at how it all works, focusing in Python's implementa
 
 
 Iterators
-------------
+---------
 
 .. index::
     single: Python; Iterators
@@ -134,7 +134,7 @@ Let's create a small csv file that contains data from the NIKKEI index
 
 
 Iterators in For Loops
--------------------------
+----------------------
 
 .. index::
     single: Python; Iterators
@@ -176,7 +176,7 @@ This continues until a ``StopIteration`` error occurs.
 
 
 Iterables
--------------
+---------
 
 .. index::
     single: Python; Iterables
@@ -250,12 +250,12 @@ Of course, not all objects are iterable
 
 To conclude our discussion of ``for`` loops
 
-* ``for`` loops work on either iterators or iterables
-* In the second case, the iterable is converted into an iterator before the loop starts
+* ``for`` loops work on either iterators or iterables.
+* In the second case, the iterable is converted into an iterator before the loop starts.
 
 
 Iterators and built-ins
---------------------------
+-----------------------
 
 .. index::
     single: Python; Iterators
@@ -301,11 +301,11 @@ One thing to remember about iterators is that they are depleted by use
 
 
 Names and Name Resolution
-============================
+=========================
 
 
 Variable Names in Python
----------------------------
+------------------------
 
 .. index::
     single: Python; Variable Names
@@ -366,7 +366,7 @@ In other words, the memory slot that stores that object is deallocated, and retu
 
 
 Namespaces
-----------------------------
+----------
 
 .. index::
     single: Python; Namespaces
@@ -449,7 +449,7 @@ In fact this is entirely equivalent to ``math.__dict__['pi']``
 
 
 Viewing Namespaces
----------------------
+------------------
 
 As we saw above, the ``math`` namespace can be printed by typing ``math.__dict__``.
 
@@ -481,7 +481,7 @@ These are initialized in the namespace when any module is imported
     math.__name__
 
 Interactive Sessions
------------------------
+--------------------
 
 .. index::
     single: Python; Interpreter
@@ -536,7 +536,7 @@ If you prefer to see only the variables you have initialized, use ``whos``
     %whos
 
 The Global Namespace
-----------------------
+--------------------
 
 .. index::
     single: Python; Namespace (Global)
@@ -566,7 +566,7 @@ In this case it's ``__main__``, so the namespace of ``__main__`` again becomes t
 
 
 Local Namespaces
--------------------
+----------------
 
 .. index::
     single: Python; Namespace (Local)
@@ -577,9 +577,9 @@ The reason for this will be explained in just a moment.
 
 Variables in the local namespace are called *local variables*.
 
-After the function returns, the namespace is deallocated and lost .
+After the function returns, the namespace is deallocated and lost.
 
-While the function is executing, we can view the contents of the local namespace with ``locals()`` 
+While the function is executing, we can view the contents of the local namespace with ``locals()``.
  
 For example, consider
 
@@ -604,7 +604,7 @@ You can see the local namespace of ``f`` before it is destroyed.
 
 
 The ``__builtins__`` Namespace
---------------------------------
+------------------------------
 
 .. index::
     single: Python; Namespace (__builtins__)
@@ -613,8 +613,8 @@ We have been using various built-in functions, such as ``max(), dir(), str(), li
 
 How does access to these names work?
 
-* These definitions are stored in a module called ``__builtin__``
-* They have there own namespace called ``__builtins__``
+* These definitions are stored in a module called ``__builtin__``.
+* They have there own namespace called ``__builtins__``.
 
 .. code-block:: python3
 
@@ -645,20 +645,20 @@ The next section explains how this works ...
 
 
 Name Resolution
--------------------
+---------------
 
 .. index::
     single: Python; Namespace (Resolution)
 
 Namespaces are great because they help us organize variable names.
 
-(Type ``import this`` at the prompt and look at the last item that's printed).
+(Type ``import this`` at the prompt and look at the last item that's printed)
 
 However, we do need to understand how the Python interpreter works with multiple namespaces .
 
 At any point of execution, there are in fact at least two namespaces that can be accessed directly.
 
-("Accessed directly" means without using a dot, as in  ``pi`` rather than ``math.pi``).
+("Accessed directly" means without using a dot, as in  ``pi`` rather than ``math.pi``)
 
 These namespaces are 
 
@@ -731,17 +731,17 @@ What happens when we run this script?
 
 First,
 
-* The global namespace ``{}`` is created
-* The function object is created, and ``g`` is bound to it within the global namespace 
-* The name ``a`` is bound to ``0``, again in the global namespace 
+* The global namespace ``{}`` is created.
+* The function object is created, and ``g`` is bound to it within the global namespace.
+* The name ``a`` is bound to ``0``, again in the global namespace.
 
 Next ``g`` is called via ``y = g(10)``, leading to the following sequence of actions
 
-* The local namespace for the function is created
-* Local names ``x`` and ``a`` are bound, so that the local namespace becomes ``{'x': 10, 'a': 1}``
-* Statement ``x = x + a`` uses the local ``a`` and local ``x`` to compute ``x + a``, and binds local name ``x`` to the result
-* This value is returned, and ``y`` is bound to it in the global namespace
-* Local ``x`` and ``a`` are discarded (and the local namespace is deallocated)
+* The local namespace for the function is created.
+* Local names ``x`` and ``a`` are bound, so that the local namespace becomes ``{'x': 10, 'a': 1}``.
+* Statement ``x = x + a`` uses the local ``a`` and local ``x`` to compute ``x + a``, and binds local name ``x`` to the result.
+* This value is returned, and ``y`` is bound to it in the global namespace.
+* Local ``x`` and ``a`` are discarded (and the local namespace is deallocated).
 
 Note that the global ``a`` was not affected by the local ``a``.
 
@@ -814,7 +814,7 @@ Here's what happens
 
 
 Handling Errors
-=======================
+===============
 
 .. index::
     single: Python; Handling Errors
@@ -842,16 +842,16 @@ But sometimes it's worth writing your code in a way that anticipates and deals w
 Why?
 
 * Because the debugging information provided by the interpreter is often less useful than the information
-  on possible errors you have in your head when writing code
+  on possible errors you have in your head when writing code.
 
-* Because errors causing execution to stop are frustrating if you're in the middle of a large computation
+* Because errors causing execution to stop are frustrating if you're in the middle of a large computation.
 
-* Because it's reduces confidence in your code on the part of your users (if you are writing for others)
+* Because it's reduces confidence in your code on the part of your users (if you are writing for others).
 
 
 
 Assertions
--------------------
+----------
 
 .. index::
     single: Python; Assertions
@@ -885,7 +885,7 @@ The advantage is that we can
 * supply specific information on why a program is failing
 
 Handling Errors During Runtime
----------------------------------
+------------------------------
 
 .. index::
     single: Python; Runtime Errors
@@ -898,7 +898,7 @@ Sometimes we can handle errors more gracefully, by treating special cases.
 Let's look at how this is done.
 
 Exceptions
-^^^^^^^^^^^^^^
+^^^^^^^^^^
 
 .. index::
     single: Python; Exceptions
@@ -953,7 +953,7 @@ On each occasion, the interpreter informs us of the error type
 In Python, these errors are called *exceptions*.
 
 Catching Exceptions
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 We can catch and deal with exceptions using ``try`` -- ``except`` blocks.
 
@@ -1060,7 +1060,7 @@ In general it's better to be specific.
 
 
 Decorators and Descriptors
-===========================
+==========================
 
 .. index::
     single: Python; Decorators
@@ -1077,7 +1077,7 @@ Hence you need to understand them at some stage of your Python education.
 
 
 Decorators
------------
+----------
 
 .. index::
     single: Python; Decorators
@@ -1089,7 +1089,7 @@ It's very easy to say what decorators do.
 On the other hand it takes a bit of effort to explain *why* you might use them.
 
 An Example
-^^^^^^^^^^^^^^
+^^^^^^^^^^
 
 Suppose we are working on a program that looks something like this
 
@@ -1183,7 +1183,7 @@ At the same time, the test logic is written only once.
 
 
 Enter Decorators
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 .. index::
     single: Python; Decorators
@@ -1243,7 +1243,7 @@ In the opinion of many people, this makes the decorator syntax a significant imp
 .. _descriptors:
 
 Descriptors
-----------------
+-----------
 
 .. index::
     single: Python; Descriptors
@@ -1290,7 +1290,7 @@ In the last two lines we see that ``miles`` and ``kms`` are out of sync.
 What we really want is some mechanism whereby each time a user sets one of these variables, *the other is automatically updated*.
 
 A Solution
-^^^^^^^^^^^
+^^^^^^^^^^
 
 In Python, this issue is solved using *descriptors*.
 
@@ -1343,7 +1343,7 @@ First let's check that we get the desired behavior
 Yep, that's what we want --- ``car.kms`` is automatically updated.
 
 How it Works
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 The names ``_miles`` and ``_kms`` are arbitrary names we are using to store the values of the variables.
 
@@ -1352,7 +1352,7 @@ The objects ``miles`` and ``kms`` are *properties*, a common kind of descriptor.
 The methods ``get_miles``, ``set_miles``, ``get_kms`` and ``set_kms`` define
 what happens when you get (i.e. access) or set (bind) these variables
 
-* So-called "getter" and "setter" methods
+* So-called "getter" and "setter" methods.
 
 The builtin Python function ``property`` takes getter and setter methods and creates a property.
 
@@ -1364,7 +1364,7 @@ method is triggered --- in this case ``set_miles``.
 
 
 Decorators and Properties
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Python; Decorators
@@ -1412,7 +1412,7 @@ For further information you can refer to the `descriptor documentation <https://
 .. _paf_generators:
 
 Generators
-==================
+==========
 
 .. index::
     single: Python; Generators
@@ -1422,7 +1422,7 @@ A generator is a kind of iterator (i.e., it works with a ``next`` function).
 We will study two ways to build generators: generator expressions and generator functions.
 
 Generator Expressions
--------------------------
+---------------------
 
 The easiest way to build generators is using *generator expressions*.
 
@@ -1481,7 +1481,7 @@ In fact, we can omit the outer brackets in this case
 
 
 Generator Functions
-------------------------
+-------------------
 
 .. index::
     single: Python; Generator Functions
@@ -1491,7 +1491,7 @@ The most flexible way to create generator objects is to use generator functions.
 Let's look at some examples.
 
 Example 1
-^^^^^^^^^^^^
+^^^^^^^^^
 
 Here's a very simple example of a generator function
 
@@ -1541,8 +1541,8 @@ Generators are iterators, because they support a ``next`` method.
 
 The first call to ``next(gen)``
 
-* Executes code in the body of ``f()`` until it meets a ``yield`` statement
-* Returns that value to the caller of ``next(gen)``
+* Executes code in the body of ``f()`` until it meets a ``yield`` statement.
+* Returns that value to the caller of ``next(gen)``.
 
 The second call to ``next(gen)`` starts executing *from the next line*
 
@@ -1561,7 +1561,7 @@ When the code block ends, the generator throws a ``StopIteration`` error.
 
 
 Example 2
-^^^^^^^^^^^^^
+^^^^^^^^^
 
 Our next example receives an argument ``x`` from the caller
 
@@ -1607,7 +1607,7 @@ Inside the generator, the name ``x`` is bound to ``2``.
 
 When we call ``next(gen)``
 
-* The body of ``g()`` executes until the line ``yield x``, and the value of ``x`` is returned
+* The body of ``g()`` executes until the line ``yield x``, and the value of ``x`` is returned.
 
 Note that value of ``x`` is retained inside the generator.
 
@@ -1633,7 +1633,7 @@ Incidentally, the loop inside the generator can be infinite
 
 
 Advantages of Iterators
-----------------------------
+-----------------------
 
 What's the advantage of using an iterator here?
 
@@ -1697,7 +1697,7 @@ In summary, iterables
 .. _recursive_functions:
 
 Recursive Function Calls
-===========================
+========================
 
 .. index::
     single: Python; Recursion
@@ -1749,10 +1749,10 @@ We'll meet less contrived applications of recursion later on.
 
 
 Exercises
-============
+=========
 
 Exercise 1
------------------
+----------
 
 The Fibonacci numbers are defined by
 
@@ -1767,7 +1767,7 @@ The first few numbers in the sequence are :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 Write a function to recursively compute the :math:`t`-th Fibonacci number for any :math:`t`.
 
 Exercise 2
-------------
+----------
 
 Complete the following code, and test it using `this csv file <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_advanced_features/test_table.csv>`__, which we assume that you've put in your current working directory
 
@@ -1791,7 +1791,7 @@ Complete the following code, and test it using `this csv file <https://github.co
 
 
 Exercise 3
----------------
+----------
 
 Suppose we have a text file ``numbers.txt`` containing the following lines
 
@@ -1810,7 +1810,7 @@ Using ``try`` -- ``except``, write a program to read in the contents of the file
 
 
 Solutions
-==========
+=========
 
 
 
@@ -1897,9 +1897,3 @@ Let's save the data first
     f.close()
     
     print(total)
-
-
-
-
-
-

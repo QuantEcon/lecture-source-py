@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-******************************************
+***********************
 An Introductory Example
-******************************************
+***********************
 
 .. index::
     single: Python; Introductory Example
@@ -23,11 +23,11 @@ You just need to cover a few of the fundamentals of programming before returning
 
 Good references for first time programmers include:
 
-* The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_
+* The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_.
 
-* `Automate the Boring Stuff with Python <https://automatetheboringstuff.com/>`_
+* `Automate the Boring Stuff with Python <https://automatetheboringstuff.com/>`_.
 
-* The start of `Dive into Python 3 <http://www.diveintopython3.net/>`_
+* The start of `Dive into Python 3 <http://www.diveintopython3.net/>`_.
 
 Note: These references offer help on installing Python but you should probably stick with the method on our :doc:`set up page <getting_started>`.
 
@@ -35,7 +35,7 @@ You'll then have an outstanding scientific computing environment (Anaconda) and 
 
 
 Overview
-============
+========
 
 In this lecture, we will write and then pick apart small Python programs.
 
@@ -44,7 +44,7 @@ The objective is to introduce you to basic Python syntax and data structures.
 Deeper concepts will be covered in later lectures.
 
 Prerequisites
---------------
+-------------
 
 The :doc:`lecture <getting_started>` on getting started with Python.
 
@@ -52,7 +52,7 @@ The :doc:`lecture <getting_started>` on getting started with Python.
 
 
 The Task: Plotting a White Noise Process
-================================================
+========================================
 
 
 Suppose we want to simulate and plot the white noise
@@ -66,7 +66,7 @@ In other words, we want to generate figures that look something like this:
 We'll do this in several different ways.
 
 Version 1
-==============
+=========
 
 
 .. _ourfirstprog:
@@ -90,7 +90,7 @@ Let's break this program down and see how it works.
 .. _import:
 
 Import Statements
--------------------
+-----------------
 
 The first two lines of the program import functionality.
 
@@ -126,7 +126,7 @@ We could also just write
 But the former method is convenient and more standard.
 
 Why all the Imports?
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 Remember that Python is a general-purpose language.
 
@@ -140,7 +140,7 @@ Scientific work in Python is no exception.
 Most of our programs start off with lines similar to the ``import`` statements seen above.
 
 Packages
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^
 
 .. index::
     single: Python; Packages
@@ -167,7 +167,7 @@ On this machine, it's located in
     anaconda3/lib/python3.6/site-packages/numpy
 
 Subpackages
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 .. index::
     single: Python; Subpackages
@@ -184,7 +184,7 @@ Subpackages are just packages that are subdirectories of another package.
 
 
 Importing Names Directly
---------------------------
+------------------------
 
 Recall this code that we saw above
 
@@ -217,7 +217,7 @@ Then it's harder for readers to know where ``sqrt`` came from, should they wish 
 
 
 Alternative Versions
-=======================
+====================
 
 Let's try writing some alternative versions of :ref:`our first program <ourfirstprog>`.
 
@@ -231,7 +231,7 @@ The programs below are less efficient but
 
 
 A Version with a For Loop
------------------------------------
+-------------------------
 
 Here's a version that illustrates loops and Python lists.
 
@@ -251,15 +251,15 @@ Here's a version that illustrates loops and Python lists.
 
 In brief,
 
-* The first pair of lines ``import`` functionality as before
+* The first pair of lines ``import`` functionality as before.
 
-* The next line sets the desired length of the time series
+* The next line sets the desired length of the time series.
 
-* The next line creates an empty *list* called ``ϵ_values`` that will store the :math:`\epsilon_t` values as we generate them
+* The next line creates an empty *list* called ``ϵ_values`` that will store the :math:`\epsilon_t` values as we generate them.
 
-* The next three lines are the ``for`` loop, which repeatedly draws a new random number :math:`\epsilon_t` and appends it to the end of the list ``ϵ_values``
+* The next three lines are the ``for`` loop, which repeatedly draws a new random number :math:`\epsilon_t` and appends it to the end of the list ``ϵ_values``.
 
-* The last two lines generate the plot and display it to the user
+* The last two lines generate the plot and display it to the user.
 
 
 Let's study some parts of this program in more detail.
@@ -303,7 +303,7 @@ Here ``append()`` is what's called a *method*, which is a function "attached to"
 We'll learn all about methods later on, but just to give you some idea,
 
 * Python objects such as lists, strings, etc. all have methods that are used
-  to manipulate the data contained in the object
+  to manipulate the data contained in the object.
 * String objects have `string methods <https://docs.python.org/3/library/stdtypes.html#string-methods>`_, list objects have `list methods <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_, etc.
 
 Another useful list method is ``pop()``
@@ -339,7 +339,7 @@ Following C, C++, Java, etc., lists in Python are zero-based
 
 
 The For Loop
----------------
+------------
 
 .. index::
     single: Python; For loop
@@ -380,14 +380,14 @@ loop of the form
 
 The Python interpreter performs the following:
 
-* For each element of the ``sequence``, it "binds" the name ``variable_name`` to that element and then executes the code block
+* For each element of the ``sequence``, it "binds" the name ``variable_name`` to that element and then executes the code block.
 
 The ``sequence`` object can in fact be a very general object, as we'll see
 soon enough.
 
 
 Code Blocks and Indentation
------------------------------
+---------------------------
 
 .. index::
     single: Python; Indentation
@@ -413,16 +413,16 @@ On the other hand, it takes a bit of care to get right, so please remember:
     * ``while x < 100:``
     * etc., etc.
 
-* All lines in a code block **must have the same amount of indentation**
+* All lines in a code block **must have the same amount of indentation**.
 
-* The Python standard is 4 spaces, and that's what you should use
+* The Python standard is 4 spaces, and that's what you should use.
 
 Tabs vs Spaces
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 One small "gotcha" here is the mixing of tabs and spaces, which often leads to errors.
 
-(Important: Within text files, the internal representation of tabs and spaces is not the same).
+(Important: Within text files, the internal representation of tabs and spaces is not the same)
 
 You can use your ``Tab`` key to insert 4 spaces, but you need to make sure it's configured to do so.
 
@@ -432,7 +432,7 @@ Also, good text editors will allow you to configure the Tab key to insert spaces
 
 
 While Loops
----------------------
+-----------
 
 .. index::
     single: Python; While loop
@@ -469,7 +469,7 @@ Note that
 .. _user_defined_functions:
 
 User-Defined Functions
-----------------------------
+----------------------
 
 .. index::
     single: Python; Functions
@@ -478,7 +478,7 @@ Now let's go back to the ``for`` loop, but restructure our program to make the l
 
 To this end, we will break our program into two parts:
 
-#. A *user-defined function* that generates a list of random variables
+#. A *user-defined function* that generates a list of random variables.
 
 #. The main part of the program that
 
@@ -486,7 +486,7 @@ To this end, we will break our program into two parts:
 
     #. plots the data
 
-This is accomplished in the next program.
+This is accomplished in the next program
 
 .. _funcloopprog:
 
@@ -508,10 +508,10 @@ how they work.
 
 We have defined a function called ``generate_data()`` as follows
 
-* ``def`` is a Python keyword used to start function definitions
-* ``def generate_data(n):`` indicates that the function is called ``generate_data`` and that it has a single argument ``n``
-* The indented code is a code block called the *function body*---in this case, it creates an IID list of random draws using the same logic as before
-* The ``return`` keyword indicates that ``ϵ_values`` is the object that should be returned to the calling code
+* ``def`` is a Python keyword used to start function definitions.
+* ``def generate_data(n):`` indicates that the function is called ``generate_data`` and that it has a single argument ``n``.
+* The indented code is a code block called the *function body*---in this case, it creates an IID list of random draws using the same logic as before.
+* The ``return`` keyword indicates that ``ϵ_values`` is the object that should be returned to the calling code.
 
 This whole function definition is read by the Python interpreter and stored in memory.
 
@@ -522,7 +522,7 @@ The net result is that the name ``data`` is *bound* to the list ``ϵ_values`` re
 
 
 Conditions
---------------
+----------
 
 .. index::
     single: Python; Conditions
@@ -557,13 +557,13 @@ Hopefully, the syntax of the if/else clause is self-explanatory, with indentatio
 
 Notes
 
-* We are passing the argument ``U`` as a string, which is why we write it as ``'U'``
+* We are passing the argument ``U`` as a string, which is why we write it as ``'U'``.
 
-* Notice that equality is tested with the ``==`` syntax, not ``=``
+* Notice that equality is tested with the ``==`` syntax, not ``=``.
 
-    * For example, the statement ``a = 10`` assigns the name ``a`` to the value ``10``
+    * For example, the statement ``a = 10`` assigns the name ``a`` to the value ``10``.
 
-    * The expression ``a == 10`` evaluates to either ``True`` or ``False``, depending on the value of ``a``
+    * The expression ``a == 10`` evaluates to either ``True`` or ``False``, depending on the value of ``a``.
 
 Now, there are several ways that we can simplify the code above.
 
@@ -593,9 +593,9 @@ as the second argument.
 
 This object is a *function*.
 
-When the function call  ``generate_data(100, np.random.uniform)`` is executed, Python runs the function code block with ``n`` equal to 100 and the name ``generator_type`` "bound" to the function ``np.random.uniform``
+When the function call  ``generate_data(100, np.random.uniform)`` is executed, Python runs the function code block with ``n`` equal to 100 and the name ``generator_type`` "bound" to the function ``np.random.uniform``.
 
-* While these lines are executed, the names ``generator_type`` and ``np.random.uniform`` are "synonyms", and can be used in identical ways
+* While these lines are executed, the names ``generator_type`` and ``np.random.uniform`` are "synonyms", and can be used in identical ways.
 
 This principle works more generally---for example, consider the following piece of code
 
@@ -615,7 +615,7 @@ In the context of our program, the ability to bind new names to functions means 
 
 
 List Comprehensions
-----------------------
+-------------------
 
 .. index::
     single: Python; List comprehension
@@ -666,12 +666,12 @@ into
 
 
 Exercises
-===============
+=========
 
 .. _pbe_ex1:
 
 Exercise 1
------------------
+----------
 
 Recall that :math:`n!` is read as ":math:`n` factorial" and defined as
 :math:`n! = n \times (n - 1) \times \cdots \times 2 \times 1`.
@@ -687,7 +687,7 @@ for any positive integer :math:`n`.
 .. _pbe_ex2:
 
 Exercise 2
---------------
+----------
 
 The `binomial random variable <https://en.wikipedia.org/wiki/Binomial_distribution>`_ :math:`Y \sim Bin(n, p)` represents the number of successes in :math:`n` binary trials, where each trial succeeds with probability :math:`p`.
 
@@ -702,7 +702,7 @@ Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then th
 .. _pbe_ex3:
 
 Exercise 3
---------------
+----------
 
 Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besides
 
@@ -712,9 +712,9 @@ Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besid
 
 Your hints are as follows:
 
-* If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`
-* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`
-* For a circle, area = pi * radius^2
+* If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`.
+* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`.
+* For a circle, area = pi * radius^2.
 
 
 
@@ -722,13 +722,13 @@ Your hints are as follows:
 .. _pbe_ex4:
 
 Exercise 4
---------------
+----------
 
 Write a program that prints one realization of the following random device:
 
-* Flip an unbiased coin 10 times
-* If 3 consecutive heads occur one or more times within this sequence, pay one dollar
-* If not, pay nothing
+* Flip an unbiased coin 10 times.
+* If 3 consecutive heads occur one or more times within this sequence, pay one dollar.
+* If not, pay nothing.
 
 Use no import besides ``from numpy.random import uniform``.
 
@@ -737,7 +737,7 @@ Use no import besides ``from numpy.random import uniform``.
 .. _pbe_ex5:
 
 Exercise 5
-----------------------------------
+----------
 
 Your next task is to simulate and plot the correlated time series
 
@@ -767,7 +767,7 @@ Set :math:`T=200` and :math:`\alpha = 0.9`.
 .. _pbe_ex6:
 
 Exercise 6
-----------------------------------
+----------
 
 To do the next exercise, you will need to know how to produce a plot legend.
 
@@ -792,23 +792,23 @@ In particular, you should produce (modulo randomness) a figure that looks as fol
 
 .. figure:: /_static/lecture_specific/python_by_example/pbe_ex2_fig.png
 
-(The figure nicely illustrates how time series with the same one-step-ahead conditional volatilities, as these three processes have, can have very different unconditional volatilities.).
+(The figure nicely illustrates how time series with the same one-step-ahead conditional volatilities, as these three processes have, can have very different unconditional volatilities.)
 
 Use a ``for`` loop to step through the :math:`\alpha` values.
 
 Important hints:
 
-* If you call the ``plot()`` function multiple times before calling ``show()``, all of the lines you produce will end up on the same figure
+* If you call the ``plot()`` function multiple times before calling ``show()``, all of the lines you produce will end up on the same figure.
 
-    * And if you omit the argument ``'b-'`` to the plot function, Matplotlib will automatically select different colors for each line
+    * And if you omit the argument ``'b-'`` to the plot function, Matplotlib will automatically select different colors for each line.
 
-* The expression ``'foo' + str(42)`` evaluates to ``'foo42'``
+* The expression ``'foo' + str(42)`` evaluates to ``'foo42'``.
 
 
 
 
 Solutions
-==========
+=========
 
 
 

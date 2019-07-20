@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-**********************************************************
+******************************************************
 :index:`Optimal Savings I: The Permanent Income Model`
-**********************************************************
+******************************************************
 
 .. index::
     single: Models; Permanent Income
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-===========
+========
 
 This lecture describes a rational expectations version of the famous permanent income model of Milton Friedman :cite:`Friedman1956`.
 
@@ -56,7 +56,7 @@ Let's start with some imports
 
 
 The Savings Problem
-====================
+===================
 
 .. index::
     single: Permanent Income Model; Savings Problem
@@ -65,7 +65,7 @@ In this section, we state and solve the savings and consumption problem faced
 by the consumer.
 
 Preliminaries
----------------
+-------------
 
 We use a class of stochastic processes called
 `martingales <https://en.wikipedia.org/wiki/Martingale_%28probability_theory%29>`_.
@@ -82,9 +82,9 @@ Here :math:`\mathbb{E}_t := \mathbb{E}[ \cdot \,|\, \mathcal{F}_t]` is a conditi
 *information set* :math:`\mathcal{F}_t`.
 
 The latter is just a collection of random variables that the modeler declares
-to be visible at :math:`t`
+to be visible at :math:`t`.
 
-* When not explicitly defined, it is usually understood that :math:`\mathcal{F}_t = \{X_t, X_{t-1}, \ldots, X_0\}`
+* When not explicitly defined, it is usually understood that :math:`\mathcal{F}_t = \{X_t, X_{t-1}, \ldots, X_0\}`.
 
 Martingales have the feature that the history of past outcomes provides no predictive power for changes between current and future outcomes.
 
@@ -113,7 +113,7 @@ Not every martingale arises as a random walk (see, for example, `Wald's martinga
 
 
 The Decision Problem
------------------------
+--------------------
 
 A consumer has preferences over consumption streams that are ordered by the utility functional
 
@@ -143,11 +143,11 @@ The consumer maximizes :eq:`sprob1` by choosing a consumption, borrowing plan :m
 
 Here
 
-*  :math:`y_t` is an exogenous endowment process
+*  :math:`y_t` is an exogenous endowment process.
 
-*  :math:`r > 0` is a time-invariant risk-free net interest rate
+*  :math:`r > 0` is a time-invariant risk-free net interest rate.
 
-*  :math:`b_t` is one-period risk-free debt maturing at :math:`t`
+*  :math:`b_t` is one-period risk-free debt maturing at :math:`t`.
 
 
 
@@ -155,7 +155,7 @@ The consumer also faces initial conditions :math:`b_0` and :math:`y_0`, which ca
 
 
 Assumptions
----------------
+-----------
 
 For the remainder of this lecture, we follow Friedman and Hall in assuming that :math:`(1 + r)^{-1} = \beta`.
 
@@ -173,11 +173,11 @@ Regarding the endowment process, we assume it has the :doc:`state-space represen
 
 where
 
-*  :math:`\{w_t\}` is an IID vector process with :math:`\mathbb{E} w_t = 0` and :math:`\mathbb{E} w_t w_t' = I`
+*  :math:`\{w_t\}` is an IID vector process with :math:`\mathbb{E} w_t = 0` and :math:`\mathbb{E} w_t w_t' = I`.
 
-*  the :ref:`spectral radius <la_neumann_remarks>` of :math:`A` satisfies :math:`\rho(A) < \sqrt{1/\beta}`
+*  The :ref:`spectral radius <la_neumann_remarks>` of :math:`A` satisfies :math:`\rho(A) < \sqrt{1/\beta}`.
 
-*  :math:`U` is a selection vector that pins down :math:`y_t` as a particular linear combination of components of :math:`z_t`
+*  :math:`U` is a selection vector that pins down :math:`y_t` as a particular linear combination of components of :math:`z_t`.
 
 The restriction on :math:`\rho(A)` prevents income from growing so fast that discounted geometric sums of some quadratic forms to be described below become infinite.
 
@@ -191,7 +191,7 @@ Regarding preferences, we assume the quadratic utility function
 where :math:`\gamma` is a bliss level of consumption
 
 .. note::
-    Along with this quadratic utility specification, we allow consumption to be negative.  However, by choosing parameters appropriately, we can make the probability that the model generates negative consumption paths over finite time horizons as low as desired
+    Along with this quadratic utility specification, we allow consumption to be negative.  However, by choosing parameters appropriately, we can make the probability that the model generates negative consumption paths over finite time horizons as low as desired.
 
 Finally, we impose the *no Ponzi scheme* condition
 
@@ -205,7 +205,7 @@ This condition rules out an always-borrow scheme that would allow the consumer t
 
 
 First-Order Conditions
--------------------------
+----------------------
 
 
 First-order conditions for maximizing :eq:`sprob1` subject to :eq:`sprob2` are
@@ -229,7 +229,7 @@ With our quadratic preference specification, :eq:`sprob4` has the striking impli
     \mathbb{E}_t [c_{t+1}] = c_t
 
 
-(In fact, quadratic preferences are *necessary* for this conclusion [#f2]_).
+(In fact, quadratic preferences are *necessary* for this conclusion [#f2]_)
 
 One way to interpret :eq:`sprob5` is that consumption will change only when
 "new information" about permanent income is revealed.
@@ -240,7 +240,7 @@ These ideas will be clarified below.
 .. _odr_pi:
 
 The Optimal Decision Rule
-------------------------------
+-------------------------
 
 
 Now let's deduce the optimal decision rule [#fod]_
@@ -250,7 +250,7 @@ Now let's deduce the optimal decision rule [#fod]_
     One way to solve the consumer's problem is to apply *dynamic programming*
     as in :doc:`this lecture <lqcontrol>`.  We do this later. But first we use
     an alternative approach that is revealing and shows the work that dynamic
-    programming does for us behind the scenes
+    programming does for us behind the scenes.
 
 In doing so, we need to combine
 
@@ -299,7 +299,7 @@ These last two equations assert that consumption equals *economic income*
 
 * **total wealth** equals the sum of financial and non-financial wealth
 
-* A **marginal propensity to consume out of total wealth** equals the  interest factor :math:`\frac{r}{1+r}`
+* a **marginal propensity to consume out of total wealth** equals the  interest factor :math:`\frac{r}{1+r}`
 
 * **economic income** equals
 
@@ -313,15 +313,15 @@ These last two equations assert that consumption equals *economic income*
 
 
 Responding to the State
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The *state* vector confronting the consumer at :math:`t` is :math:`\begin{bmatrix} b_t & z_t \end{bmatrix}`.
 
 Here
 
-* :math:`z_t` is an *exogenous* component, unaffected by consumer behavior
+* :math:`z_t` is an *exogenous* component, unaffected by consumer behavior.
 
-* :math:`b_t` is an *endogenous* component (since it depends on the decision rule)
+* :math:`b_t` is an *endogenous* component (since it depends on the decision rule).
 
 Note that :math:`z_t` contains all variables useful for forecasting the consumer's future endowment.
 
@@ -377,7 +377,7 @@ A key is to use the fact that :math:`(1 + r) \beta = 1` and :math:`(I - \beta A)
 We've now successfully written :math:`c_t` and :math:`b_{t+1}` as functions of :math:`b_t` and :math:`z_t`.
 
 A State-Space Representation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We can summarize our dynamics in the form of a linear state-space system governing consumption, debt and income:
 
@@ -471,11 +471,11 @@ We can then compute the mean and covariance of :math:`\tilde y_t` from
 
 
 A Simple Example with IID Income
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To gain some preliminary intuition on the implications of :eq:`pi_ssr`, let's look at a highly stylized example where income is just IID.
 
-(Later examples will investigate more realistic income streams).
+(Later examples will investigate more realistic income streams)
 
 In particular, let :math:`\{w_t\}_{t = 1}^{\infty}` be IID and scalar standard normal, and let
 
@@ -587,14 +587,14 @@ The figure below shows the consumption paths of 250 consumers with independent i
 
 
 Alternative Representations
-================================
+===========================
 
 In this section, we shed more light on the evolution of savings, debt and
 consumption by representing their dynamics in several different ways.
 
 
 Hall's Representation
------------------------
+---------------------
 
 .. index::
     single: Permanent Income Model; Hall's Representation
@@ -659,21 +659,21 @@ Using  these formulas together with :eq:`sprob15ab` and substituting  into :eq:`
 
 Representation :eq:`sprob16abcd` makes clear that
 
-* The state can be taken as :math:`(c_t, z_t)`
+* The state can be taken as :math:`(c_t, z_t)`.
 
-    * The endogenous part is :math:`c_t` and the exogenous part is :math:`z_t`
+    * The endogenous part is :math:`c_t` and the exogenous part is :math:`z_t`.
 
-    * Debt :math:`b_t` has disappeared as a component of the state because it is encoded in :math:`c_t`
+    * Debt :math:`b_t` has disappeared as a component of the state because it is encoded in :math:`c_t`.
 
-* Consumption is a random walk with innovation :math:`(1-\beta) U  (I-\beta A)^{-1} C w_{t+1}`
+* Consumption is a random walk with innovation :math:`(1-\beta) U  (I-\beta A)^{-1} C w_{t+1}`.
 
-    * This is a more explicit representation of the martingale result in :eq:`sprob5`
+    * This is a more explicit representation of the martingale result in :eq:`sprob5`.
 
 
 .. _coint_pi:
 
 Cointegration
---------------
+-------------
 
 Representation :eq:`sprob16abcd` reveals that the joint process :math:`\{c_t, b_t\}` possesses the property that Engle and Granger :cite:`EngleGranger1987` called `cointegration <https://en.wikipedia.org/wiki/Cointegration>`_.
 
@@ -712,7 +712,7 @@ Equation :eq:`sprob77`  asserts that the *cointegrating residual*  on the left s
 
 
 Cross-Sectional Implications
------------------------------------
+----------------------------
 
 Consider again :eq:`sprob16abcd`, this time in light of our discussion of
 distribution dynamics in the :doc:`lecture on linear systems <linear_models>`.
@@ -764,7 +764,7 @@ A number of different studies have investigated this prediction and found some s
 
 
 Impulse Response Functions
------------------------------
+--------------------------
 
 Impulse response functions measure responses  to various  impulses (i.e., temporary shocks).
 
@@ -775,7 +775,7 @@ In particular, the response of :math:`c_{t+j}` to a unit increase in the innovat
 
 
 Moving Average Representation
---------------------------------
+-----------------------------
 
 It's useful to express the innovation to the expected present value of the endowment process in terms of a moving average representation for income :math:`y_t`.
 
@@ -827,7 +827,7 @@ The object :math:`d(\beta)` is the **present value of the moving average coeffic
 .. _sub_classic_consumption:
 
 Two Classic Examples
-=======================
+====================
 
 We illustrate some of the preceding ideas with two examples.
 
@@ -858,15 +858,15 @@ In both examples, the endowment follows the process :math:`y_t = z_{1t} + z_{2t}
 
 Here
 
-* :math:`w_{t+1}` is an IID :math:`2 \times 1` process distributed as :math:`N(0,I)`
+* :math:`w_{t+1}` is an IID :math:`2 \times 1` process distributed as :math:`N(0,I)`.
 
-* :math:`z_{1t}` is a permanent component of :math:`y_t`
+* :math:`z_{1t}` is a permanent component of :math:`y_t`.
 
-* :math:`z_{2t}` is a purely transitory component of :math:`y_t`
+* :math:`z_{2t}` is a purely transitory component of :math:`y_t`.
 
 
 Example 1
--------------
+---------
 
 Assume as before that the consumer observes the state :math:`z_t` at time :math:`t`.
 
@@ -946,7 +946,7 @@ permanent income shocks using impulse-response functions
 
 
 Example 2
-------------
+---------
 
 Assume now that at time :math:`t` the consumer observes :math:`y_t`, and its history up to :math:`t`, but not :math:`z_t`.
 
@@ -1047,7 +1047,7 @@ This indicates how the fraction :math:`K` of the innovation to :math:`y_t` that 
 
 
 Further Reading
-==================
+===============
 
 The model described above significantly changed how economists think about
 consumption.
@@ -1061,7 +1061,7 @@ Further discussion can be found in, e.g., :cite:`HallMishkin1982`, :cite:`Parker
 .. _perm_income_appendix:
 
 Appendix: The Euler Equation
-================================
+============================
 
 Where does the first-order condition :eq:`sprob4` come from?
 
@@ -1112,15 +1112,15 @@ The proof for the general case is similar
 
 .. [#f2] A linear marginal utility is essential for deriving :eq:`sprob5` from :eq:`sprob4`.  Suppose instead that we had imposed the following more standard assumptions on the utility function: :math:`u'(c) >0, u''(c)<0, u'''(c) > 0` and required that :math:`c \geq 0`.  The Euler equation remains :eq:`sprob4`. But the fact that :math:`u''' <0` implies via Jensen's inequality that :math:`\mathbb{E}_t [u'(c_{t+1})] >  u'(\mathbb{E}_t [c_{t+1}])`.  This inequality together with :eq:`sprob4` implies that :math:`\mathbb{E}_t [c_{t+1}] > c_t` (consumption is said to be a 'submartingale'), so that consumption stochastically diverges to :math:`+\infty`.  The consumer's savings also diverge to :math:`+\infty`.
 
-.. [#fod] An optimal decision rule is a map from the current state into current actions---in this case, consumption
+.. [#fod] An optimal decision rule is a map from the current state into current actions---in this case, consumption.
 
 .. [#f4] Representation :eq:`sprob15ab` implies that :math:`d(L) = U (I - A L)^{-1} C`.
 
-.. [#fn_as] This would be the case if, for example, the :ref:`spectral radius <la_neumann_remarks>` of :math:`A` is strictly less than one
+.. [#fn_as] This would be the case if, for example, the :ref:`spectral radius <la_neumann_remarks>` of :math:`A` is strictly less than one.
 
 .. [#f5] A moving average representation for a process :math:`y_t` is said to be **fundamental** if the linear space spanned by :math:`y^t` is equal to the linear space spanned by :math:`w^t`.  A time-invariant innovations representation, attained via the Kalman filter, is by construction fundamental.
 
 .. [#f8] See :cite:`CampbellShiller88`, :cite:`LettLud2001`, :cite:`LettLud2004` for interesting applications of related ideas.
 
 
-.. NOTE: in #f2, #f3, #f5, #f6, #f7 I had to hardcode some names
+.. NOTE: in #f2, #f3, #f5, #f6, #f7 I had to hardcode some names.

@@ -5,9 +5,9 @@
 .. index::
     single: python
 
-********************************************************
+******************************************
 Permanent Income Model using the DLE Class
-********************************************************
+******************************************
 
 .. contents:: :depth: 2
 
@@ -17,7 +17,7 @@ Permanent Income Model using the DLE Class
 This lecture is part of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
-In addition to what's included in  Anaconda, this lecture uses the quantecon  library
+In addition to what's included in  Anaconda, this lecture uses the quantecon library.
 
 .. code-block:: ipython
   :class: hide-output
@@ -54,7 +54,7 @@ We'll also require the following imports
     np.set_printoptions(suppress=True, precision=4)
 
 The Permanent Income Model
-===========================
+==========================
 
 The LQ permanent income model is an example of a **savings problem**.
 
@@ -123,7 +123,7 @@ We impose the following condition on the consumption, borrowing plan:
 This condition suffices to rule out Ponzi schemes.
 
 (We impose this condition to rule out a borrow-more-and-more plan that
-would allow the household to enjoy bliss consumption forever).
+would allow the household to enjoy bliss consumption forever)
 
 The state vector confronting the household at :math:`t` is
 
@@ -139,7 +139,7 @@ autoregressive process:
 .. math::  y_{t+1} = \alpha + \rho_1 y_t + \rho_2 y_{t-1} + \sigma w_{t+1}
 
 Solution with the DLE Class
-----------------------------
+---------------------------
 
 One way of solving this model is to map the problem into the framework
 outlined in Section 4.8 of :cite:`HS2013` by setting up our technology,
@@ -163,11 +163,11 @@ information and preference matrices as follows:
 **Preferences:** :math:`\Lambda = 0`, :math:`\Pi = 1`,
 :math:`\Delta_h = 0`, :math:`\Theta_h = 0`.
 
-We set parameters.
+We set parameters
 
-:math:`\alpha = 10, \beta = 0.95, \rho_1 = 0.9, \rho_2 = 0, \sigma = 1`.
+:math:`\alpha = 10, \beta = 0.95, \rho_1 = 0.9, \rho_2 = 0, \sigma = 1`
 
-(The value of :math:`\gamma` does not affect the optimal decision rule).
+(The value of :math:`\gamma` does not affect the optimal decision rule)
 
 The chosen matrices mean that the household's technology is:
 

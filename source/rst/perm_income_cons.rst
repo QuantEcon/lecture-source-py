@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-************************************************
+******************************************
 :index:`Optimal Savings II: LQ Techniques`
-************************************************
+******************************************
 
 .. index::
     single: Models; Permanent Income
@@ -24,7 +24,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 This lecture continues our analysis of the linear-quadratic (LQ) permanent income model of savings and consumption.
 
@@ -46,16 +46,16 @@ It is just a matter of appropriately relabeling the variables in Hall's model.
 
 In this lecture, we'll
 
-* show how the solution to the LQ permanent income model can be obtained using LQ control methods
+* show how the solution to the LQ permanent income model can be obtained using LQ control methods.
 
-* represent the model as a linear state space system as in :doc:`this lecture <linear_models>`
+* represent the model as a linear state space system as in :doc:`this lecture <linear_models>`.
 
-* apply `QuantEcon <http://quantecon.org/python_index.html>`__'s `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to characterize statistical features of the consumer's optimal consumption and borrowing plans
+* apply `QuantEcon <http://quantecon.org/python_index.html>`__'s `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to characterize statistical features of the consumer's optimal consumption and borrowing plans.
 
 We'll then use these characterizations to construct a simple model of cross-section wealth and
 consumption dynamics in the spirit of Truman Bewley :cite:`Bewley86`.
 
-(Later we'll study other Bewley models---see :doc:`this lecture <aiyagari>`).
+(Later we'll study other Bewley models---see :doc:`this lecture <aiyagari>`)
 
 The model will prove useful for illustrating concepts such as
 
@@ -70,7 +70,7 @@ The model will prove useful for illustrating concepts such as
 
 
 Setup
-======================
+=====
 
 
 Let's recall the basic features of the model discussed in the :doc:`permanent income model<perm_income>`.
@@ -149,13 +149,13 @@ In the Barro tax smoothing model
 
 If we set
 
-*  :math:`T_t`, total tax collections in Barro's model to consumption :math:`c_t` in the LQ permanent income model
+*  :math:`T_t`, total tax collections in Barro's model to consumption :math:`c_t` in the LQ permanent income model.
 
-*  :math:`G_t`, exogenous government expenditures in Barro's model to nonfinancial income :math:`y_t` in the permanent income model
+*  :math:`G_t`, exogenous government expenditures in Barro's model to nonfinancial income :math:`y_t` in the permanent income model.
 
-*  :math:`B_t`, government risk-free one-period assets falling due in Barro's model to  risk-free one-period consumer debt :math:`b_t` falling due in the LQ permanent income model
+*  :math:`B_t`, government risk-free one-period assets falling due in Barro's model to  risk-free one-period consumer debt :math:`b_t` falling due in the LQ permanent income model.
 
-*  :math:`R`, the gross rate of return on risk-free one-period government debt in Barro's model to the gross rate of return :math:`1+r` on financial assets in  the permanent income model of consumption
+*  :math:`R`, the gross rate of return on risk-free one-period government debt in Barro's model to the gross rate of return :math:`1+r` on financial assets in  the permanent income model of consumption.
 
 then the two models are mathematically equivalent.
 
@@ -165,7 +165,7 @@ See :doc:`consumption and tax smoothing models <smoothing>` for further exploita
 
 
 A Specification of the Nonfinancial Income Process
----------------------------------------------------
+--------------------------------------------------
 
 For the purposes of this lecture, let's assume :math:`\{y_t\}` is a second-order univariate autoregressive process:
 
@@ -204,7 +204,7 @@ To do so we take
 
 
 The LQ Approach
-==================
+===============
 
 :ref:`Previously <odr_pi>` we solved the permanent income model  by solving a system of linear expectational difference equations subject to two boundary conditions.
 
@@ -228,7 +228,7 @@ On the other hand, formulating the model in terms of an LQ dynamic programming p
 
 
 The LQ Problem
----------------------------
+--------------
 
 
 Recall from our :doc:`lecture on LQ theory <lqcontrol>` that the optimal linear regulator problem is to choose
@@ -255,9 +255,9 @@ The tildes in :math:`\tilde A, \tilde B, \tilde C` are to avoid clashing with no
 
 The value function for this problem is :math:`v(x) = - x'Px - d`, where
 
-* :math:`P` is the unique positive semidefinite solution of the :ref:`corresponding matrix Riccati equation <riccati_equation>`
+* :math:`P` is the unique positive semidefinite solution of the :ref:`corresponding matrix Riccati equation <riccati_equation>`.
 
-* The scalar :math:`d` is given by :math:`d=\beta (1-\beta)^{-1} {\rm trace} ( P \tilde C \tilde C')`
+* The scalar :math:`d` is given by :math:`d=\beta (1-\beta)^{-1} {\rm trace} ( P \tilde C \tilde C')`.
 
 The optimal policy is :math:`u_t = -Fx_t`, where :math:`F := \beta (Q+\beta \tilde B'P \tilde B)^{-1} \tilde B'P \tilde A`.
 
@@ -266,7 +266,7 @@ Under an optimal decision rule :math:`F`, the state vector :math:`x_t` evolves a
 
 
 Mapping into the LQ Framework
---------------------------------
+-----------------------------
 
 
 To map into the LQ framework, we'll use
@@ -338,7 +338,7 @@ We'll check whether it really is small numerically soon.
 
 
 Implementation
-====================
+==============
 
 Let's write some code to solve the model.
 
@@ -354,7 +354,7 @@ In what follows we set it equal to unity.
 
 
 The Exogenous Nonfinancial Income Process
--------------------------------------------
+-----------------------------------------
 
 
 First, we create the objects for the optimal linear regulator
@@ -463,20 +463,20 @@ employing an alternative solution method
 
 
 Comparison with the Difference Equation Approach
---------------------------------------------------------------
+------------------------------------------------
 
 In our :doc:`first lecture <perm_income>` on the infinite horizon permanent
 income problem we used a different solution method.
 
 The method was based around
 
-* deducing the Euler equations that are the first-order conditions with respect to consumption and savings
+* deducing the Euler equations that are the first-order conditions with respect to consumption and savings.
 
-* using the budget constraints and boundary condition to complete a system of expectational linear difference equations
+* using the budget constraints and boundary condition to complete a system of expectational linear difference equations.
 
-* solving those equations to obtain the solution
+* solving those equations to obtain the solution.
 
-Expressed in state space notation, the solution took  the form
+Expressed in state space notation, the solution took the form
 
 .. math::
 
@@ -546,7 +546,7 @@ To do this, we'll use the outcomes from our second method.
 
 
 Two Example Economies
-=======================
+=====================
 
 In the spirit of Bewley models :cite:`Bewley86`, we'll generate panels of consumers.
 
@@ -555,13 +555,13 @@ The examples differ only in  the initial states with which we endow the consumer
 
 All other parameter values are kept the same in the two examples
 
--  In the first example, all consumers begin with zero nonfinancial income and zero debt
+-  In the first example, all consumers begin with zero nonfinancial income and zero debt.
 
-    * The consumers are thus *ex-ante* identical
+    * The consumers are thus *ex-ante* identical.
 
--  In the second example, while all begin with zero debt, we draw their initial income levels from the invariant distribution of financial income
+-  In the second example, while all begin with zero debt, we draw their initial income levels from the invariant distribution of financial income.
 
-    * Consumers are *ex-ante* heterogeneous
+    * Consumers are *ex-ante* heterogeneous.
 
 In the first example, consumers' nonfinancial income paths  display
 pronounced transients early in the sample
@@ -574,7 +574,7 @@ We use methods affiliated with the `LinearStateSpace <https://github.com/QuantEc
 
 
 First Set of Initial Conditions
---------------------------------
+-------------------------------
 
 We generate  25 paths of the exogenous non-financial income process and the associated optimal consumption and debt paths.
 
@@ -594,15 +594,15 @@ Comparing sample paths with population distributions at each date :math:`t` is a
 
 
 Population and Sample Panels
---------------------------------
+----------------------------
 
 In the code below, we use the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`__ class to
 
 -  compute and plot population quantiles of the distributions of
-   consumption and debt for a population of consumers
+   consumption and debt for a population of consumers.
 
 -  simulate a group of 25 consumers and plot sample paths on the same
-   graph as the population distribution
+   graph as the population distribution.
 
 
 
@@ -780,7 +780,7 @@ They expect their nonfinancial income to rise toward the invariant distribution 
 
 
 Cointegration Residual
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 
 
@@ -855,11 +855,11 @@ This excess supply is filled by "foreigner lenders" willing to make those loans.
 
 We can use virtually the same code to rig a "poor man's Bewley :cite:`Bewley86` model" in the following way
 
--  as before, we start everyone at :math:`b_0 = 0`
+-  as before, we start everyone at :math:`b_0 = 0`.
 
 -  But instead of starting everyone at :math:`y_{-1} = y_{-2} = 0`, we
    draw :math:`\begin{bmatrix} y_{-1} \\ y_{-2}   \end{bmatrix}` from
-   the invariant distribution of the :math:`\{y_t\}` process
+   the invariant distribution of the :math:`\{y_t\}` process.
 
 This rigs a closed economy in which people are borrowing and lending
 with each other at a gross risk-free interest rate of
@@ -904,15 +904,15 @@ Let's have a look at the corresponding figures
 
 The graphs confirm the following outcomes:
 
--  As before, the consumption distribution spreads out over time
+-  As before, the consumption distribution spreads out over time.
 
-But now there is some initial dispersion because there is *ex-ante* heterogeneity in the initial draws of :math:`\begin{bmatrix} y_{-1} \\ y_{-2}   \end{bmatrix}`
+But now there is some initial dispersion because there is *ex-ante* heterogeneity in the initial draws of :math:`\begin{bmatrix} y_{-1} \\ y_{-2}   \end{bmatrix}`.
 
--  As before, the cross-section distribution of debt spreads out over time
+-  As before, the cross-section distribution of debt spreads out over time.
 
--  Unlike before, the average level of debt stays at zero, confirming that this is a closed borrower-and-lender economy
+-  Unlike before, the average level of debt stays at zero, confirming that this is a closed borrower-and-lender economy.
 
--  Now the cointegrating residual seems stationary, and not just asymptotically stationary
+-  Now the cointegrating residual seems stationary, and not just asymptotically stationary.
 
 
 Let's have a look at the cointegration figure
