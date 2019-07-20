@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-***********************************
+**************
 Linear Algebra
-***********************************
+**************
 
 .. index::
     single: Linear Algebra
@@ -12,7 +12,7 @@ Linear Algebra
 .. contents:: :depth: 2
 
 Overview
-===========
+========
 
 Linear algebra is one of the most useful branches of applied mathematics for economists to invest in.
 
@@ -71,7 +71,7 @@ A *vector* of length :math:`n` is just a sequence (or array, or tuple) of :math:
 
 We will write these sequences either horizontally or vertically as we please.
 
-(Later, when we wish to perform certain matrix operations, it will become necessary to distinguish between the two).
+(Later, when we wish to perform certain matrix operations, it will become necessary to distinguish between the two)
 
 The set of all :math:`n`-vectors is denoted by :math:`\mathbb R^n`.
 
@@ -113,7 +113,7 @@ The following figure represents three vectors in this manner
 
 
 Vector Operations
--------------------
+-----------------
 
 .. index::
     single: Vectors; Operations
@@ -223,7 +223,7 @@ One advantage of NumPy arrays is that scalar multiplication and addition have ve
 
 
 Inner Product and Norm
-------------------------
+----------------------
 
 .. index::
     single: Vectors; Inner Product
@@ -362,7 +362,7 @@ The span is a two-dimensional plane passing through these two points and the ori
 
 
 Examples
-^^^^^^^^^
+^^^^^^^^
 
 If :math:`A` contains only one vector :math:`a_1 \in \mathbb R ^2`, then its
 span is just the scalar multiples of :math:`a_1`, which is the unique line passing through both :math:`a_1` and the origin.
@@ -410,7 +410,7 @@ Hence :math:`A_0` fails to span all of :math:`\mathbb R ^3`.
 .. _la_li:
 
 Linear Independence
-----------------------
+-------------------
 
 .. index::
     single: Vectors; Linear Independence
@@ -421,9 +421,9 @@ The condition we need for a set of vectors to have a large span is what's called
 
 In particular, a collection of vectors :math:`A := \{a_1, \ldots, a_k\}` in :math:`\mathbb R ^n` is said to be
 
-* *linearly dependent* if some strict subset of :math:`A` has the same span as :math:`A`
+* *linearly dependent* if some strict subset of :math:`A` has the same span as :math:`A`.
 
-* *linearly independent* if it is not linearly dependent
+* *linearly independent* if it is not linearly dependent.
 
 Put differently, a set of vectors is linearly independent if no vector is redundant to the span and linearly dependent otherwise.
 
@@ -441,17 +441,17 @@ As another illustration of the concept, since :math:`\mathbb R ^n` can be spanne
 
 The following statements are equivalent to linear independence of :math:`A := \{a_1, \ldots, a_k\} \subset \mathbb R ^n`
 
-#. No vector in :math:`A` can be formed as a linear combination of the other elements
+#. No vector in :math:`A` can be formed as a linear combination of the other elements.
 
-#. If :math:`\beta_1 a_1 + \cdots \beta_k a_k = 0` for scalars :math:`\beta_1, \ldots, \beta_k`, then :math:`\beta_1 = \cdots = \beta_k = 0`
+#. If :math:`\beta_1 a_1 + \cdots \beta_k a_k = 0` for scalars :math:`\beta_1, \ldots, \beta_k`, then :math:`\beta_1 = \cdots = \beta_k = 0`.
 
-(The zero in the first expression is the origin of :math:`\mathbb R ^n`).
+(The zero in the first expression is the origin of :math:`\mathbb R ^n`)
 
 
 .. _la_unique_reps:
 
 Unique Representations
---------------------------
+----------------------
 
 Another nice thing about sets of linearly independent vectors is that each element in the span has a unique representation as a linear combination of these vectors.
 
@@ -479,7 +479,7 @@ Linear independence now implies :math:`\gamma_i = \beta_i` for all :math:`i`.
 
 
 Matrices
-==========
+========
 
 .. index::
     single: Linear Algebra; Matrices
@@ -521,7 +521,7 @@ If, in addition to being diagonal, each element along the principal diagonal is 
 
 
 Matrix Operations
---------------------
+-----------------
 
 .. index::
     single: Matrix; Operations
@@ -612,7 +612,7 @@ According to the preceding rule, this gives us an :math:`n \times 1` column vect
 
 .. note::
 
-    :math:`A B` and :math:`B A` are not generally the same thing
+    :math:`A B` and :math:`B A` are not generally the same thing.
 
 Another important special case is the identity matrix.
 
@@ -624,7 +624,7 @@ If :math:`I` is the :math:`n \times n` identity matrix, then :math:`IA = A`.
 
 
 Matrices in NumPy
------------------------------
+-----------------
 
 .. index::
     single: Matrix; Numpy
@@ -693,7 +693,7 @@ See :ref:`here <numpy_matrix_multiplication>` for more discussion.
 .. _la_linear_map:
 
 Matrices as Maps
--------------------
+----------------
 
 .. index::
     single: Matrix; Maps
@@ -717,7 +717,7 @@ In fact, it's `known <https://en.wikipedia.org/wiki/Linear_map#Matrices>`_ that 
 
 
 Solving Systems of Equations
-================================
+============================
 
 .. index::
     single: Matrix; Solving Systems of Equations
@@ -823,7 +823,7 @@ Indeed, it follows from our :ref:`earlier discussion <la_unique_reps>` that if :
 
 
 The Square Matrix Case
---------------------------------
+----------------------
 
 Let's discuss some more details, starting with the case where :math:`A` is :math:`n \times n`.
 
@@ -841,14 +841,14 @@ Moreover, the solution is unique.
 
 In particular, the following are equivalent
 
-#. The columns of :math:`A` are linearly independent
+#. The columns of :math:`A` are linearly independent.
 
-#. For any :math:`y \in \mathbb R ^n`, the equation :math:`y = Ax` has a unique solution
+#. For any :math:`y \in \mathbb R ^n`, the equation :math:`y = Ax` has a unique solution.
 
 The property of having linearly independent columns is sometimes expressed as having *full column rank*.
 
 Inverse Matrices
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 .. index::
     single: Matrix; Inverse
@@ -868,7 +868,7 @@ As a consequence, if we pre-multiply both sides of :math:`y = Ax` by :math:`A^{-
 This is the solution that we're looking for.
 
 Determinants
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 .. index::
     single: Matrix; Determinants
@@ -887,7 +887,7 @@ inverted.
 
 
 More Rows than Columns
--------------------------
+----------------------
 
 This is the :math:`n \times k` case with :math:`n > k`.
 
@@ -931,7 +931,7 @@ projections.
     chapter 3 of `these notes <https://lectures.quantecon.org/_downloads/course_notes.pdf>`__.
 
 More Columns than Rows
--------------------------
+----------------------
 
 
 This is the :math:`n \times k` case with :math:`n < k`, so there are fewer
@@ -946,7 +946,7 @@ Thus, the columns of :math:`A` consists of 3 vectors in :math:`\mathbb R ^2`.
 This set can never be linearly independent, since it is possible to find two vectors that span
 :math:`\mathbb R ^2`.
 
-(For example, use the canonical basis vectors).
+(For example, use the canonical basis vectors)
 
 It follows that one column is a linear combination of the other two.
 
@@ -967,7 +967,7 @@ In other words, uniqueness fails.
 
 
 Linear Equations with SciPy
-----------------------------------
+---------------------------
 
 .. index::
     single: Linear Algebra; SciPy
@@ -1015,7 +1015,7 @@ To obtain the least-squares solution :math:`\hat x = (A'A)^{-1}A'y`, use ``scipy
 .. _la_eigen:
 
 :index:`Eigenvalues` and :index:`Eigenvectors`
-===============================================
+==============================================
 
 .. index::
     single: Linear Algebra; Eigenvalues
@@ -1112,13 +1112,13 @@ plane, although some might be repeated.
 
 Some nice facts about the eigenvalues of a square matrix :math:`A` are as follows
 
-#. The determinant of :math:`A` equals  the product of the eigenvalues
+#. The determinant of :math:`A` equals  the product of the eigenvalues.
 
-#. The trace of :math:`A` (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues
+#. The trace of :math:`A` (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues.
 
-#. If :math:`A` is symmetric, then all of its eigenvalues are real
+#. If :math:`A` is symmetric, then all of its eigenvalues are real.
 
-#. If :math:`A` is invertible and :math:`\lambda_1, \ldots, \lambda_n` are its eigenvalues, then the eigenvalues of :math:`A^{-1}` are :math:`1/\lambda_1, \ldots, 1/\lambda_n`
+#. If :math:`A` is invertible and :math:`\lambda_1, \ldots, \lambda_n` are its eigenvalues, then the eigenvalues of :math:`A^{-1}` are :math:`1/\lambda_1, \ldots, 1/\lambda_n`.
 
 A corollary of the first statement is that a matrix is invertible if and only if all its eigenvalues are nonzero.
 
@@ -1152,7 +1152,7 @@ eigenvalue (check it), the eig routine normalizes the length of each eigenvector
 to one.
 
 Generalized Eigenvalues
--------------------------
+-----------------------
 
 It is sometimes useful to consider the *generalized eigenvalue problem*, which, for given
 matrices :math:`A` and :math:`B`, seeks generalized eigenvalues
@@ -1171,14 +1171,14 @@ A v = \lambda v`, but this is not always the case.
 
 
 Further Topics
-================
+==============
 
 We round out our discussion by briefly mentioning several other important
 topics.
 
 
 Series Expansions
----------------------
+-----------------
 
 .. index::
     single: Linear Algebra; Series Expansions
@@ -1191,7 +1191,7 @@ A generalization of this idea exists in the matrix setting.
 .. _la_mn:
 
 Matrix Norms
-^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 .. index::
     single: Linear Algebra; Matrix Norms
@@ -1213,7 +1213,7 @@ For example, for a square matrix :math:`S`, the condition :math:`\| S \| < 1` me
 .. _la_neumann:
 
 :index:`Neumann's Theorem`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Linear Algebra; Neumann's Theorem
@@ -1234,7 +1234,7 @@ Neumann's theorem states the following: If :math:`\| A^k \| < 1` for some
 .. _la_neumann_remarks:
 
 :index:`Spectral Radius`
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: Linear Algebra; Spectral Radius
@@ -1255,7 +1255,7 @@ In which case :eq:`la_neumann` is valid.
 
 
 :index:`Positive Definite Matrices`
-------------------------------------
+-----------------------------------
 
 .. index::
     single: Linear Algebra; Positive Definite Matrices
@@ -1278,7 +1278,7 @@ definite inverse).
 .. _la_mcalc:
 
 Differentiating Linear and Quadratic Forms
--------------------------------------------
+------------------------------------------
 
 .. index::
     single: Linear Algebra; Differentiating Linear and Quadratic Forms
@@ -1308,7 +1308,7 @@ Exercise 1 below asks you to apply these formulas.
 
 
 Further Reading
------------------
+---------------
 
 
 
@@ -1325,11 +1325,11 @@ is :cite:`Janich1994`.
 
 
 Exercises
-=============
+=========
 
 
 Exercise 1
------------
+----------
 
 Let :math:`x` be a given :math:`n \times 1` vector and consider the problem
 
@@ -1353,7 +1353,7 @@ Here
 
 * both :math:`P` and :math:`Q` are symmetric and positive semidefinite
 
-(What must the dimensions of :math:`y` and :math:`u` be to make this a well-posed problem?).
+(What must the dimensions of :math:`y` and :math:`u` be to make this a well-posed problem?)
 
 One way to solve the problem is to form the Lagrangian
 
@@ -1368,20 +1368,20 @@ Try applying the formulas given above for differentiating quadratic and linear f
 
 Show that these conditions imply that
 
-#. :math:`\lambda = - 2 P y`
+#. :math:`\lambda = - 2 P y`.
 
-#. The optimizing choice of :math:`u` satisfies :math:`u = - (Q + B' P B)^{-1} B' P A x`
+#. The optimizing choice of :math:`u` satisfies :math:`u = - (Q + B' P B)^{-1} B' P A x`.
 
-#. The function :math:`v` satisfies :math:`v(x) = - x' \tilde P x` where :math:`\tilde P = A' P A - A'P B (Q + B'P B)^{-1} B' P A`
+#. The function :math:`v` satisfies :math:`v(x) = - x' \tilde P x` where :math:`\tilde P = A' P A - A'P B (Q + B'P B)^{-1} B' P A`.
 
-As we will see, in economic contexts Lagrange multipliers often are shadow prices
+As we will see, in economic contexts Lagrange multipliers often are shadow prices.
 
 .. note::
     If we don't care about the Lagrange multipliers, we can substitute the constraint into the objective function, and then just maximize :math:`-(Ax + Bu)'P (Ax + Bu) - u' Q u` with respect to :math:`u`.  You can verify that this leads to the same maximizer.
 
 
 Solutions
-===========
+=========
 
 
 
@@ -1413,7 +1413,7 @@ with primitives
 
 -  :math:`B` an :math:`n \times m` matrix
 
-The associated Lagrangian is :
+The associated Lagrangian is:
 
 .. math::
 

@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-**********************************************
+****************************************
 :index:`Job Search V: On-the-Job Search`
-**********************************************
+****************************************
 
 .. index::
     single: Models; On-the-Job Search
@@ -22,7 +22,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install interpolation
 
 Overview
-============
+========
 
 In this section, we solve a simple on-the-job search model
 
@@ -41,7 +41,7 @@ Let's start with some imports
     from math import gamma
 
 Model Features
-----------------
+--------------
 
 .. index::
     single: On-the-Job Search; Model Features
@@ -110,7 +110,7 @@ Here nonnegativity of :math:`s` and :math:`\phi` is understood, while
 
 
 Parameterization
-------------------
+----------------
 
 .. index::
     single: On-the-Job Search; Parameterization
@@ -139,7 +139,7 @@ The :math:`\text{Beta}(2,2)` distribution is supported on :math:`(0,1)` - it has
 .. _jvboecalc:
 
 Back-of-the-Envelope Calculations
------------------------------------
+---------------------------------
 
 
 Before we solve the model, let's make some quick calculations that
@@ -161,8 +161,8 @@ For example, suppose first that :math:`x = 0.05`
 
 * If :math:`s=1` and :math:`\phi = 0`, then since :math:`g(x,\phi) = 0`,
   taking expectations of :eq:`jd` gives expected next period capital equal to :math:`\pi(s) \mathbb{E} u
-  = \mathbb{E} u = 0.5`
-* If :math:`s=0` and :math:`\phi=1`, then next period capital is :math:`g(x, \phi) = g(0.05, 1) \approx 0.23`
+  = \mathbb{E} u = 0.5`.
+* If :math:`s=0` and :math:`\phi=1`, then next period capital is :math:`g(x, \phi) = g(0.05, 1) \approx 0.23`.
 
 Both rates of return are good, but the return from search is better.
 
@@ -176,15 +176,15 @@ Return from investment via :math:`\phi` dominates expected return from search.
 Combining these observations gives us two informal predictions:
 
 #. At any given state :math:`x`, the two controls :math:`\phi` and :math:`s` will
-   function primarily as substitutes --- worker will focus on whichever instrument has the higher expected return
+   function primarily as substitutes --- worker will focus on whichever instrument has the higher expected return.
 #. For sufficiently small :math:`x`, search will be preferable to investment in
-   job-specific human capital.  For larger :math:`x`, the reverse will be true
+   job-specific human capital.  For larger :math:`x`, the reverse will be true.
 
 Now let's turn to implementation, and see if we can match our predictions.
 
 
 Implementation
-=======================
+==============
 
 .. index::
     single: On-the-Job Search; Programming Implementation
@@ -257,7 +257,7 @@ set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`.
 The function is maximized over all feasible :math:`(s, \phi)` pairs.
 
 Another function, ``get_greedy`` returns the optimal policies of ``s`` and :math:`\phi`
-given a value function
+given a value function.
 
 .. code-block:: python3
 
@@ -334,7 +334,7 @@ given a value function
         return T, get_greedy
 
 To solve the model, we will write a function that uses the Bellman operator
-and iterates to find a fixed point
+and iterates to find a fixed point.
 
 .. code-block:: python3
 
@@ -377,7 +377,7 @@ and iterates to find a fixed point
 
 
 Solving for Policies
-=====================
+====================
 
 .. index::
     single: On-the-Job Search; Solving for Policies
@@ -410,20 +410,20 @@ The horizontal axis is the state :math:`x`, while the vertical axis gives :math:
 
 Overall, the policies match well with our predictions from :ref:`above <jvboecalc>`
 
-* Worker switches from one investment strategy to the other depending on relative return
+* Worker switches from one investment strategy to the other depending on relative return.
 
-* For low values of :math:`x`, the best option is to search for a new job
+* For low values of :math:`x`, the best option is to search for a new job.
 
-* Once :math:`x` is larger, worker does better by investing in human capital specific to the current position
+* Once :math:`x` is larger, worker does better by investing in human capital specific to the current position.
 
 
 Exercises
-=============
+=========
 
 .. _jv_ex1:
 
 Exercise 1
-------------
+----------
 
 Let's look at the dynamics for the state process :math:`\{x_t\}` associated with these policies.
 
@@ -469,7 +469,7 @@ Argue that at the steady state, :math:`s_t \approx 0` and :math:`\phi_t \approx 
 .. _jv_ex2:
 
 Exercise 2
-----------------
+----------
 
 In the preceding exercise, we found that :math:`s_t` converges to zero
 and :math:`\phi_t` converges to about 0.6.
@@ -497,7 +497,7 @@ Can you give a rough interpretation for the value that you see?
 
 
 Solutions
-==========
+=========
 
 
 
@@ -545,9 +545,9 @@ Here’s code to produce the 45 degree diagram
 Looking at the dynamics, we can see that
 
 -  If :math:`x_t` is below about 0.2 the dynamics are random, but
-   :math:`x_{t+1} > x_t` is very likely
+   :math:`x_{t+1} > x_t` is very likely.
 -  As :math:`x_t` increases the dynamics become deterministic, and
-   :math:`x_t` converges to a steady state value close to 1
+   :math:`x_t` converges to a steady state value close to 1.
 
 Referring back to the figure :ref:`here <jv_policies>` we see that :math:`x_t \approx 1` means that
 :math:`s_t = s(x_t) \approx 0` and

@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-******************************************
+*****************************
 :index:`LLN` and :index:`CLT`
-******************************************
+*****************************
 
 .. index::
     single: Law of Large Numbers
@@ -17,7 +17,7 @@
 .. contents:: :depth: 2
 
 Overview
-============
+========
 
 This lecture illustrates two of the most important theorems of probability and statistics: The
 law of large numbers (LLN) and the central limit theorem (CLT).
@@ -30,16 +30,16 @@ We also demonstrate how the LLN and CLT break down when the assumptions they are
 
 In addition, we examine several useful extensions of the classical theorems, such as
 
-* The delta method, for smooth functions of random variables
+* The delta method, for smooth functions of random variables.
 
-* The multivariate case
+* The multivariate case.
 
 
 Some of these extensions are presented as exercises.
 
 
 Relationships
-==================
+=============
 
 The CLT refines the LLN.
 
@@ -51,7 +51,7 @@ The CLT provides information about the rate at which sample moments converge to 
 .. _lln_mr:
 
 LLN
-==================
+===
 
 .. index::
     single: Law of Large Numbers
@@ -62,7 +62,7 @@ will converge to their population means.
 .. _lln_ksl:
 
 The Classical LLN
----------------------------
+-----------------
 
 The classical law of large numbers concerns independent and
 identically distributed (IID) random variables.
@@ -108,7 +108,7 @@ probability of the computer producing a sequence where :math:`\bar X_n \to \mu` 
 is zero.
 
 Proof
---------
+-----
 
 .. index::
     single: Law of Large Numbers; Proof
@@ -129,7 +129,7 @@ then, for any :math:`\epsilon > 0`, we have
     n \to \infty
 
 
-(This version is weaker because we claim only `convergence in probability <https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_probability>`_ rather than `almost sure convergence <https://en.wikipedia.org/wiki/Convergence_of_random_variables#Almost_sure_convergence>`_, and assume a finite second moment).
+(This version is weaker because we claim only `convergence in probability <https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_probability>`_ rather than `almost sure convergence <https://en.wikipedia.org/wiki/Convergence_of_random_variables#Almost_sure_convergence>`_, and assume a finite second moment)
 
 To see that this is so, fix :math:`\epsilon > 0`, and let :math:`\sigma^2` be the variance of each :math:`X_i`.
 
@@ -194,7 +194,7 @@ In other words, the LLN can still work if the sequence :math:`X_1, \ldots, X_n` 
 This idea is very important in time series analysis, and we'll come across it again soon enough.
 
 Illustration
--------------
+------------
 
 .. index::
     single: Law of Large Numbers; Illustration
@@ -277,7 +277,7 @@ The three distributions are chosen at random from a selection stored in the dict
 
 
 Infinite Mean
-----------------
+-------------
 
 What happens if the condition :math:`\mathbb E | X | < \infty` in the statement of the LLN is not satisfied?
 
@@ -388,7 +388,7 @@ In particular, the sequence :math:`\bar X_n` does not converge to a point.
 
 
 CLT
-==================
+===
 
 .. index::
     single: Central Limit Theorem
@@ -397,7 +397,7 @@ Next, we turn to the central limit theorem, which tells us about the distributio
 
 
 Statement of the Theorem
----------------------------
+------------------------
 
 The central limit theorem is one of the most remarkable results in all of mathematics.
 
@@ -487,7 +487,7 @@ or "succeed then fail") than to get zero or two successes.
 Moreover, the two trials are independent, so the outcomes "fail then succeed" and "succeed then
 fail" are just as likely as the outcomes "fail then fail" and "succeed then succeed".
 
-(If there was positive correlation, say, then "succeed then fail" would be less likely than "succeed then succeed").
+(If there was positive correlation, say, then "succeed then fail" would be less likely than "succeed then succeed")
 
 Here, already we have the essence of the CLT: addition under independence leads probability mass to pile up in the middle and thin out at the tails.
 
@@ -505,19 +505,19 @@ We are witnessing the `binomial approximation of the normal distribution <https:
 
 
 Simulation 1
-----------------
+------------
 
 Since the CLT seems almost magical, running simulations that verify its implications is one good way to build intuition.
 
 To this end, we now perform the following simulation
 
-#. Choose an arbitrary distribution :math:`F` for the underlying observations :math:`X_i`
+#. Choose an arbitrary distribution :math:`F` for the underlying observations :math:`X_i`.
 
-#. Generate independent draws of :math:`Y_n := \sqrt{n} ( \bar X_n - \mu )`
+#. Generate independent draws of :math:`Y_n := \sqrt{n} ( \bar X_n - \mu )`.
 
-#. Use these draws to compute some measure of their distribution --- such as a histogram
+#. Use these draws to compute some measure of their distribution --- such as a histogram.
 
-#. Compare the latter to :math:`N(0, \sigma^2)`
+#. Compare the latter to :math:`N(0, \sigma^2)`.
 
 Here's some code that does exactly this for the exponential distribution
 :math:`F(x) = 1 - e^{- \lambda x}`.
@@ -571,15 +571,8 @@ The fit to the normal density is already tight and can be further improved by in
 You can also experiment with other specifications of :math:`F`.
 
 
-
-
-
-
-
-
-
 Simulation 2
---------------
+------------
 
 Our next simulation is somewhat like the first, except that we aim to track the distribution of :math:`Y_n := \sqrt{n} ( \bar X_n - \mu )` as :math:`n` increases.
 
@@ -596,7 +589,7 @@ random variable, the distribution of :math:`Y_n` will smooth out into a bell-sha
 The next figure shows this process for :math:`X_i \sim f`, where :math:`f` was
 specified as the convex combination of three different beta densities.
 
-(Taking a convex combination is an easy way to produce an irregular shape for :math:`f`).
+(Taking a convex combination is an easy way to produce an irregular shape for :math:`f`)
 
 In the figure, the closest density is that of :math:`Y_1`, while the furthest is that of
 :math:`Y_5`
@@ -689,7 +682,7 @@ density sequence.
 .. _multivariate_clt:
 
 The Multivariate Case
--------------------------
+---------------------
 
 .. index::
     single: Law of Large Numbers; Multivariate Case
@@ -715,7 +708,7 @@ A collection of random vectors :math:`\mathbf X_1, \ldots, \mathbf X_n` is calle
     \times \cdots \times \mathbb P\{ \mathbf X_n \leq \mathbf x_n \}
 
 
-(The vector inequality :math:`\mathbf X \leq \mathbf x` means that :math:`X_j \leq x_j` for :math:`j = 1,\ldots,k`).
+(The vector inequality :math:`\mathbf X \leq \mathbf x` means that :math:`X_j \leq x_j` for :math:`j = 1,\ldots,k`)
 
 Let :math:`\mu_j := \mathbb E [X_j]` for all :math:`j =1,\ldots,k`.
 
@@ -809,13 +802,13 @@ The CLT tells us that, provided :math:`\Sigma` is finite,
 
 
 Exercises
-=============
+=========
 
 
 .. _lln_ex1:
 
 Exercise 1
-------------
+----------
 
 One very useful consequence of the central limit theorem is as follows.
 
@@ -834,7 +827,7 @@ If :math:`g \colon \mathbb R \to \mathbb R` is differentiable at :math:`\mu` and
 
 This theorem is used frequently in statistics to obtain the asymptotic distribution of estimators --- many of which can be expressed as functions of sample means.
 
-(These kinds of results are often said to use the "delta method").
+(These kinds of results are often said to use the "delta method")
 
 The proof is based on a Taylor expansion of :math:`g` around the point :math:`\mu`.
 
@@ -858,9 +851,9 @@ If you study econometric theory, you will see this result used again and again.
 
 Assume the setting of the multivariate CLT :ref:`discussed above <multivariate_clt>`, so that
 
-#. :math:`\mathbf X_1, \ldots, \mathbf X_n` is a sequence of IID random vectors, each taking values in :math:`\mathbb R^k`
+#. :math:`\mathbf X_1, \ldots, \mathbf X_n` is a sequence of IID random vectors, each taking values in :math:`\mathbb R^k`.
 
-#. :math:`\boldsymbol \mu := \mathbb E [\mathbf X_i]`, and :math:`\Sigma` is the variance-covariance matrix of :math:`\mathbf X_i`
+#. :math:`\boldsymbol \mu := \mathbb E [\mathbf X_i]`, and :math:`\Sigma` is the variance-covariance matrix of :math:`\mathbf X_i`.
 
 #. The convergence
 
@@ -935,7 +928,7 @@ Given the distribution of :math:`\mathbf Z`, we conclude that
 where :math:`\chi^2(k)` is the chi-squared distribution with :math:`k` degrees
 of freedom.
 
-(Recall that :math:`k` is the dimension of :math:`\mathbf X_i`, the underlying random vectors).
+(Recall that :math:`k` is the dimension of :math:`\mathbf X_i`, the underlying random vectors)
 
 Your second exercise is to illustrate the convergence in :eq:`lln_ctc` with a simulation.
 
@@ -955,18 +948,18 @@ In doing so, let
 
 where
 
-* each :math:`W_i` is an IID draw from the uniform distribution on :math:`[-1, 1]`
-* each :math:`U_i` is an IID draw from the uniform distribution on :math:`[-2, 2]`
-* :math:`U_i` and :math:`W_i` are independent of each other
+* each :math:`W_i` is an IID draw from the uniform distribution on :math:`[-1, 1]`.
+* each :math:`U_i` is an IID draw from the uniform distribution on :math:`[-2, 2]`.
+* :math:`U_i` and :math:`W_i` are independent of each other.
 
 Hints:
 
-#. ``scipy.linalg.sqrtm(A)`` computes the square root of ``A``.  You still need to invert it
-#. You should be able to work out :math:`\Sigma` from the preceding information
+#. ``scipy.linalg.sqrtm(A)`` computes the square root of ``A``.  You still need to invert it.
+#. You should be able to work out :math:`\Sigma` from the preceding information.
 
 
 Solutions
-==========
+=========
 
 
 Exercise 1

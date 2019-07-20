@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-************************************
+*******************************
 LQ Dynamic Programming Problems
-************************************
+*******************************
 
 .. index::
     single: LQ Control
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 Linear quadratic (LQ) control refers to a class of dynamic optimization problems that have found applications in almost every scientific field.
 
@@ -35,9 +35,9 @@ These themes appear repeatedly below.
 
 Mathematically, LQ control problems are closely related to :doc:`the Kalman filter <kalman>`
 
-* Recursive formulations of linear-quadratic control problems and Kalman filtering problems both involve matrix **Riccati equations**
+* Recursive formulations of linear-quadratic control problems and Kalman filtering problems both involve matrix **Riccati equations**.
 
-* Classical formulations of linear control and linear filtering problems make use of similar matrix decompositions (see for example :doc:`this lecture <lu_tricks>` and :doc:`this lecture <classical_filtering>`)
+* Classical formulations of linear control and linear filtering problems make use of similar matrix decompositions (see for example :doc:`this lecture <lu_tricks>` and :doc:`this lecture <classical_filtering>`).
 
 In reading what follows, it will be useful to have some familiarity with
 
@@ -62,7 +62,7 @@ In order to focus on computation, we leave longer proofs to these sources (while
 
 
 Introduction
-====================
+============
 
 The "linear" part of LQ is a linear law of motion for the state, while the "quadratic" part refers to preferences.
 
@@ -71,7 +71,7 @@ Let's begin with the former, move on to the latter, and then put them together i
 
 
 The Law of Motion
--------------------
+-----------------
 
 Let :math:`x_t` be a vector describing the state of some economic system.
 
@@ -100,7 +100,7 @@ Regarding the dimensions
 
 
 Example 1
-^^^^^^^^^^^
+^^^^^^^^^
 
 Consider a household budget constraint given by
 
@@ -126,7 +126,7 @@ This is clearly a special case of :eq:`lq_lom`, with assets being the state and 
 .. _lq_hhp:
 
 Example 2
-^^^^^^^^^^^
+^^^^^^^^^
 
 One unrealistic feature of the previous model is that non-financial income has a zero mean and is often negative.
 
@@ -138,7 +138,7 @@ Another alteration that's useful to introduce (we'll see why soon) is to
 change the control variable from consumption
 to the deviation of consumption from some "ideal" quantity :math:`\bar c`.
 
-(Most parameterizations will be such that :math:`\bar c` is large relative to the amount of consumption that is attainable in each period, and hence the household wants to increase consumption).
+(Most parameterizations will be such that :math:`\bar c` is large relative to the amount of consumption that is attainable in each period, and hence the household wants to increase consumption)
 
 For this reason, we now take our control to be :math:`u_t := c_t - \bar c`.
 
@@ -247,7 +247,7 @@ In effect, we've bought ourselves linearity by adding another state.
 
 
 Preferences
---------------
+-----------
 
 In the LQ model, the aim is to minimize flow of losses, where time-:math:`t` loss is given by the quadratic expression
 
@@ -259,12 +259,12 @@ In the LQ model, the aim is to minimize flow of losses, where time-:math:`t` los
 
 Here
 
-* :math:`R` is assumed to be :math:`n \times n`, symmetric and nonnegative definite
+* :math:`R` is assumed to be :math:`n \times n`, symmetric and nonnegative definite.
 
-* :math:`Q` is assumed to be :math:`k \times k`, symmetric and positive definite
+* :math:`Q` is assumed to be :math:`k \times k`, symmetric and positive definite.
 
 .. note::
-    In fact, for many economic problems, the definiteness conditions on :math:`R` and :math:`Q` can be relaxed.  It is sufficient that certain submatrices of :math:`R` and :math:`Q` be nonnegative definite. See :cite:`HansenSargent2008` for details
+    In fact, for many economic problems, the definiteness conditions on :math:`R` and :math:`Q` can be relaxed.  It is sufficient that certain submatrices of :math:`R` and :math:`Q` be nonnegative definite. See :cite:`HansenSargent2008` for details.
 
 
 Example 1
@@ -312,7 +312,7 @@ Under this specification, the household's current loss is the squared deviation 
 
 
 Optimality -- Finite Horizon
-=============================
+============================
 
 .. index::
     single: LQ Control; Optimality (Finite Horizon)
@@ -320,7 +320,7 @@ Optimality -- Finite Horizon
 Let's now be precise about the optimization problem we wish to consider, and look at how to solve it.
 
 The Objective
---------------
+-------------
 
 We will begin with the finite horizon case, with terminal time :math:`T \in \mathbb N`.
 
@@ -344,16 +344,16 @@ The scalar :math:`\beta` is the discount factor, while :math:`x' R_f x` gives te
 
 Comments:
 
-* We assume :math:`R_f` to be :math:`n \times n`, symmetric and nonnegative definite
+* We assume :math:`R_f` to be :math:`n \times n`, symmetric and nonnegative definite.
 
-* We allow :math:`\beta = 1`, and hence include the undiscounted case
+* We allow :math:`\beta = 1`, and hence include the undiscounted case.
 
-* :math:`x_0` may itself be random, in which case we require it to be independent of the shock sequence :math:`w_1, \ldots, w_T`
+* :math:`x_0` may itself be random, in which case we require it to be independent of the shock sequence :math:`w_1, \ldots, w_T`.
 
 .. _lq_cp:
 
 Information
---------------
+-----------
 
 There's one constraint we've neglected to mention so far, which is that the
 decision-maker who solves this LQ problem knows only the present and the past,
@@ -374,7 +374,7 @@ The fancy `measure-theoretic <https://en.wikipedia.org/wiki/Measure_%28mathemati
 This is in fact equivalent to stating that :math:`u_t` can be written in the form :math:`u_t = g_t(x_0, w_1, w_2, \ldots, w_t)` for some Borel measurable function :math:`g_t`.
 
 (Just about every function that's useful for applications is Borel measurable,
-so, for the purposes of intuition, you can read that last phrase as "for some function :math:`g_t`").
+so, for the purposes of intuition, you can read that last phrase as "for some function :math:`g_t`")
 
 Now note that :math:`x_t` will ultimately depend on the realizations of :math:`x_0, w_1, w_2, \ldots, w_t`.
 
@@ -390,7 +390,7 @@ What's special about the LQ case is that -- as we shall soon see ---  the optima
 
 
 Solution
---------------
+--------
 
 
 To solve the finite horizon LQ problem we can use a dynamic programming
@@ -436,9 +436,9 @@ That is, :math:`J_{T-1}(x)` summarizes the future loss associated with moving to
 
 The decision-maker chooses her control :math:`u` to trade off current loss against future loss, where
 
-* the next period state is :math:`x_{T-1} = Ax_{T-2} + B u + C w_{T-1}`, and hence depends on the choice of current control
+* the next period state is :math:`x_{T-1} = Ax_{T-2} + B u + C w_{T-1}`, and hence depends on the choice of current control.
 
-* the "cost" of landing in state :math:`x_{T-1}` is :math:`J_{T-1}(x_{T-1})`
+* the "cost" of landing in state :math:`x_{T-1}` is :math:`J_{T-1}(x_{T-1})`.
 
 Her problem is therefore
 
@@ -535,7 +535,7 @@ and
     d_{T-1} := \beta \mathop{\mathrm{trace}}(C' P_T C)
 
 
-(The algebra is a good exercise --- we'll leave it up to you).
+(The algebra is a good exercise --- we'll leave it up to you)
 
 If we continue working backwards in this manner, it soon becomes clear that :math:`J_t (x) = x' P_t x + d_t` as claimed, where :math:`\{P_t\}` and :math:`\{d_t\}` satisfy the recursions
 
@@ -585,7 +585,7 @@ Rephrasing this more precisely, the sequence :math:`u_0, \ldots, u_{T-1}` given 
 for :math:`t = 0, \ldots, T-1` attains the minimum of :eq:`lq_object` subject to our constraints.
 
 Implementation
-====================
+==============
 
 We will use code from `lqcontrol.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`__
 in `QuantEcon.py <http://quantecon.org/python_index.html>`_
@@ -619,7 +619,7 @@ are wrapped in a class  called ``LQ``, which includes
 .. _lq_mfpa:
 
 An Application
------------------
+--------------
 
 Early Keynesian models assumed that households have a constant marginal
 propensity to consume from current income.
@@ -629,7 +629,7 @@ Data contradicted the constancy of the marginal propensity to consume.
 In response, Milton Friedman, Franco Modigliani and others built models
 based on a consumer's preference for an intertemporally smooth consumption stream.
 
-(See, for example, :cite:`Friedman1956` or :cite:`ModiglianiBrumberg1954`).
+(See, for example, :cite:`Friedman1956` or :cite:`ModiglianiBrumberg1954`)
 
 One property of those models is that households purchase and sell financial assets to make consumption streams smoother than income streams.
 
@@ -650,7 +650,7 @@ subject to the sequence of budget constraints :math:`a_{t+1} = (1 + r) a_t - c_t
 
 Here :math:`q` is a large positive constant, the role of which is to induce the consumer to target zero debt at the end of her life.
 
-(Without such a constraint, the optimal choice is to choose :math:`c_t = \bar c` in each period, letting assets adjust accordingly).
+(Without such a constraint, the optimal choice is to choose :math:`c_t = \bar c` in each period, letting assets adjust accordingly)
 
 As before we set :math:`y_t = \sigma w_{t+1} + \mu` and :math:`u_t := c_t - \bar c`, after which the constraint can be written as in :eq:`lq_lomwc`.
 
@@ -690,7 +690,7 @@ consumption can be simulated via :eq:`lq_xud`.
 The following figure was computed using :math:`r = 0.05, \beta = 1 / (1+ r),
 \bar c = 2,  \mu = 1, \sigma = 0.25, T = 45` and :math:`q = 10^6`.
 
-The shocks :math:`\{w_t\}` were taken to be IID and standard normal
+The shocks :math:`\{w_t\}` were taken to be IID and standard normal.
 
 .. literalinclude:: /_static/lecture_specific/lqcontrol/lq_permanent_1.py
 
@@ -713,14 +713,14 @@ closely correlated with cumulative unanticipated income, where the latter is def
 A key message is that unanticipated windfall gains are saved rather
 than consumed, while unanticipated negative shocks are met by reducing assets.
 
-(Again, this relationship breaks down towards the end of life due to the zero final asset requirement).
+(Again, this relationship breaks down towards the end of life due to the zero final asset requirement)
 
 These results are relatively robust to changes in parameters.
 
 For example, let's increase :math:`\beta` from :math:`1 / (1 + r) \approx 0.952` to :math:`0.96` while keeping other parameters fixed.
 
 This consumer is slightly more patient than the last one, and hence puts
-relatively more weight on later consumption values
+relatively more weight on later consumption values.
 
 
 
@@ -772,14 +772,14 @@ However, the essential features are the same: consumption is smooth relative to 
 
 
 Extensions and Comments
-=================================
+=======================
 
 
 Let's now consider a number of standard extensions to the LQ problem treated above.
 
 
 Time-Varying Parameters
-------------------------
+-----------------------
 
 In some settings, it can be desirable to allow :math:`A, B, C, R` and :math:`Q` to depend on :math:`t`.
 
@@ -846,7 +846,7 @@ We leave interested readers to confirm these results (the calculations are long 
 .. _lq_ih:
 
 Infinite Horizon
----------------------
+----------------
 
 .. index::
     single: LQ Control; Infinite Horizon
@@ -918,7 +918,7 @@ An example infinite horizon problem is treated :ref:`below <lqc_mwac>`.
 .. _lq_cert_eq:
 
 Certainty Equivalence
-----------------------------
+---------------------
 
 Linear quadratic control problems of the class discussed above have the property of *certainty equivalence*.
 
@@ -931,13 +931,13 @@ It follows that we can ignore uncertainty when solving for optimal behavior, and
 
 
 Further Applications
-=====================
+====================
 
 
 .. _lq_nsi:
 
 Application 1: Age-Dependent Income Process
---------------------------------------------
+-------------------------------------------
 
 
 :ref:`Previously <lq_mfpa>` we studied a permanent income model that generated consumption smoothing.
@@ -963,7 +963,7 @@ subject to :math:`a_{t+1} = (1 + r) a_t - c_t + y_t, \ t \geq 0`.
 
 For income we now take :math:`y_t = p(t) + \sigma w_{t+1}` where :math:`p(t) := m_0 + m_1 t + m_2 t^2`.
 
-(In :ref:`the next section <lq_nsi2>` we employ some tricks to implement a more sophisticated model).
+(In :ref:`the next section <lq_nsi2>` we employ some tricks to implement a more sophisticated model)
 
 The coefficients :math:`m_0, m_1, m_2` are chosen such that :math:`p(0)=0, p(T/2) = \mu,` and :math:`p(T)=0`.
 
@@ -1080,7 +1080,7 @@ Exercise 1 gives the full set of parameters used here and asks you to replicate 
 
 
 Application 2: A Permanent Income Model with Retirement
---------------------------------------------------------
+-------------------------------------------------------
 
 In the :ref:`previous application <lq_nsi>`, we generated income dynamics with an inverted U shape using polynomials and placed them in an LQ framework.
 
@@ -1124,7 +1124,7 @@ However, we can still use our LQ methods here by suitably linking two-component 
 These two LQ problems describe the consumer's behavior during her working life (``lq_working``) and retirement (``lq_retired``).
 
 (This is possible because, in the two separate periods of life, the respective income processes
-[polynomial trend and constant] each fit the LQ framework).
+[polynomial trend and constant] each fit the LQ framework)
 
 The basic idea is that although the whole problem is not a single time-invariant LQ problem, it is
 still a dynamic programming problem, and hence we can use appropriate Bellman equations at
@@ -1132,11 +1132,11 @@ every stage.
 
 Based on this logic, we can
 
-#. solve ``lq_retired`` by the usual backward induction procedure, iterating back to the start of retirement
+#. solve ``lq_retired`` by the usual backward induction procedure, iterating back to the start of retirement.
 
-#. take the start-of-retirement value function generated by this process, and use it as  the terminal condition :math:`R_f` to feed into the ``lq_working`` specification
+#. take the start-of-retirement value function generated by this process, and use it as  the terminal condition :math:`R_f` to feed into the ``lq_working`` specification.
 
-#. solve ``lq_working`` by backward induction from this choice of :math:`R_f`, iterating back to the start of working life
+#. solve ``lq_working`` by backward induction from this choice of :math:`R_f`, iterating back to the start of working life.
 
 This process gives the entire life-time sequence of value functions and optimal policies.
 
@@ -1162,7 +1162,7 @@ Assets peak at retirement and subsequently decline.
 .. _lqc_mwac:
 
 Application 3: Monopoly with Adjustment Costs
---------------------------------------------------------
+---------------------------------------------
 
 Consider a monopolist facing stochastic inverse demand function
 
@@ -1218,9 +1218,9 @@ It's not difficult to show that profit-maximizing output is
 
 In light of this discussion, what we might expect for general :math:`\gamma` is that
 
-* if :math:`\gamma` is close to zero, then :math:`q_t` will track the time path of :math:`\bar q_t` relatively closely
+* if :math:`\gamma` is close to zero, then :math:`q_t` will track the time path of :math:`\bar q_t` relatively closely.
 
-* if :math:`\gamma` is larger, then :math:`q_t` will be smoother than :math:`\bar q_t`, as the monopolist seeks to avoid adjustment costs
+* if :math:`\gamma` is larger, then :math:`q_t` will be smoother than :math:`\bar q_t`, as the monopolist seeks to avoid adjustment costs.
 
 This intuition turns out to be correct.
 
@@ -1248,7 +1248,7 @@ Let's now replace :math:`\pi_t` in :eq:`lq_object_mp` with :math:`\hat \pi_t := 
 
 This makes no difference to the solution, since :math:`a_1 \bar q_t^2` does not depend on the controls.
 
-(In fact, we are just adding a constant term to :eq:`\lq_object_mp`, and optimizers are not affected by constant terms).
+(In fact, we are just adding a constant term to :eq:`\lq_object_mp`, and optimizers are not affected by constant terms)
 
 The reason for making this substitution is that, as you will be able to
 verify, :math:`\hat \pi_t` reduces to the simple quadratic
@@ -1282,12 +1282,12 @@ can be found by writing down the dynamics of each element of the state.
 
 
 Exercises
-====================
+=========
 
 .. _lqc_ex1:
 
 Exercise 1
-------------
+----------
 
 Replicate the figure with polynomial income :ref:`shown above <solution_lqc_ex1_fig>`.
 
@@ -1300,7 +1300,7 @@ The parameters are :math:`r = 0.05, \beta = 1 / (1 + r), \bar c = 1.5,  \mu = 2,
 .. _lqc_ex2:
 
 Exercise 2
-------------
+----------
 
 Replicate the figure on work and retirement :ref:`shown above <solution_lqc_ex2_fig>`.
 
@@ -1314,9 +1314,9 @@ First, in order to make our approach work, we must ensure that both LQ problems 
 
 As with previous applications, the control can be set to :math:`u_t = c_t - \bar c`.
 
-For ``lq_working``, :math:`x_t, A, B, C` can be chosen as in :eq:`lq_lowmc3`
+For ``lq_working``, :math:`x_t, A, B, C` can be chosen as in :eq:`lq_lowmc3`.
 
-* Recall that :math:`m_1, m_2` are chosen so that :math:`p(K) = \mu` and :math:`p(2K)=0`
+* Recall that :math:`m_1, m_2` are chosen so that :math:`p(K) = \mu` and :math:`p(2K)=0`.
 
 For ``lq_retired``, use the same definition of :math:`x_t` and :math:`u_t`, but modify :math:`A, B, C` to correspond to constant income :math:`y_t = s`.
 
@@ -1334,7 +1334,7 @@ together the simulations from these two separate models.
 .. _lqc_ex3:
 
 Exercise 3
-------------
+----------
 
 Reproduce the figures from the monopolist application :ref:`given above <lqc_mwac>`.
 
@@ -1346,7 +1346,7 @@ For parameters, use :math:`a_0 = 5, a_1 = 0.5, \sigma = 0.15, \rho = 0.9,
 
 
 Solutions
-==========
+=========
 
 
 
@@ -1443,7 +1443,7 @@ This is a permanent income / life-cycle model with polynomial growth in
 income over working life followed by a fixed retirement income.
 
 The model is solved by combining two LQ programming problems as described in
-the lecture
+the lecture.
 
 .. code-block:: python3
 

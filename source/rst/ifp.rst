@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-********************************************************************
+**************************************************************
 :index:`Optimal Savings III: Occasionally Binding Constraints`
-********************************************************************
+**************************************************************
 
 .. contents:: :depth: 2
 
@@ -19,7 +19,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install interpolation
 
 Overview
-============
+========
 
 Next, we study an optimal savings problem for an infinitely lived consumer---the "common ancestor" described in :cite:`Ljungqvist2012`, section 1.3.
 
@@ -40,13 +40,13 @@ Our presentation of the model will be relatively brief.
 
 .. only:: html
 
-    * For further details on economic intuition, implication and models, see :cite:`Ljungqvist2012`
-    * Proofs of all mathematical results stated below can be found in :download:`this paper <_static/lecture_specific/ifp/pi2.pdf>`
+    * For further details on economic intuition, implication and models, see :cite:`Ljungqvist2012`.
+    * Proofs of all mathematical results stated below can be found in :download:`this paper <_static/lecture_specific/ifp/pi2.pdf>`.
 
 .. only:: latex
 
-    * For further details on economic intuition, implication and models, see :cite:`Ljungqvist2012`
-    * Proofs of all mathematical results stated below can be found in `this paper <https://lectures.quantecon.org/_downloads/pi2.pdf>`__
+    * For further details on economic intuition, implication and models, see :cite:`Ljungqvist2012`.
+    * Proofs of all mathematical results stated below can be found in `this paper <https://lectures.quantecon.org/_downloads/pi2.pdf>`__.
 
 To solve the model we will use Euler equation based time iteration, similar to :doc:`this lecture <coleman_policy_iter>`.
 
@@ -65,14 +65,14 @@ We'll need the following imports
 
 
 References
-----------------
+----------
 
 Other useful references include :cite:`Deaton1991`, :cite:`DenHaan2010`, :cite:`Kuhn2013`, :cite:`Rabault2002`,  :cite:`Reiter2009`  and :cite:`SchechtmanEscudero1977`.
 
 
 
 The Optimal Savings Problem
-===============================
+===========================
 
 .. index::
     single: Optimal Savings; Problem
@@ -80,7 +80,7 @@ The Optimal Savings Problem
 Let's write down the model and then discuss how to solve it.
 
 Set-Up
----------
+------
 
 Consider a household that chooses a state-contingent consumption plan :math:`\{c_t\}_{t \geq 0}` to maximize
 
@@ -148,7 +148,7 @@ a function of outcomes that have already been observed.
 
 
 Value Function and Euler Equation
-------------------------------------
+---------------------------------
 
 The *value function* :math:`V \colon S \to \mathbb{R}` is defined by
 
@@ -188,7 +188,7 @@ In essence, this says that the natural "arbitrage" relation :math:`u' (c_t) = \b
 Interiority means that :math:`c_t` is strictly less than its upper bound :math:`Ra_t + z_t + b`.
 
 (The lower boundary case :math:`c_t = 0` never arises at the optimum because
-:math:`u'(0) = \infty`).
+:math:`u'(0) = \infty`)
 
 When :math:`c_t` does hit the upper bound :math:`Ra_t + z_t + b`, the
 strict inequality :math:`u' (c_t) > \beta R \,  \mathbb{E}_t [ u'(c_{t+1}) ]`
@@ -254,7 +254,7 @@ In summary, to solve the optimization problem, we need to compute :math:`\sigma^
 .. _ifp_computation:
 
 Computation
-===============
+===========
 
 .. index::
     single: Optimal Savings; Computation
@@ -268,7 +268,7 @@ There are two standard ways to solve for :math:`\sigma^*`
 Let's look at these in turn.
 
 Time Iteration
------------------------------
+--------------
 
 We can rewrite :eq:`eqeul0` to make it a statement about functions rather than
 random variables.
@@ -365,7 +365,7 @@ the solutions to :eq:`eqeul1` in :math:`\mathscr{C}`.
 :math:`\sigma \in \mathscr{C}` and iterating with the operator :math:`K` defined in :eq:`eqsifc`.
 
 Value Function Iteration
------------------------------
+------------------------
 
 
 The Bellman operator for this problem is given by
@@ -383,9 +383,9 @@ The Bellman operator for this problem is given by
 We have to be careful with VFI (i.e., iterating with
 :math:`T`) in this setting because :math:`u` is not assumed to be bounded
 
-* In fact typically unbounded both above and below --- e.g. :math:`u(c) = \log c`
-* In which case, the standard DP theory does not apply
-* :math:`T^n v` is not guaranteed to converge to the value function for arbitrary continuous bounded :math:`v`
+* In fact typically unbounded both above and below --- e.g. :math:`u(c) = \log c`.
+* In which case, the standard DP theory does not apply.
+* :math:`T^n v` is not guaranteed to converge to the value function for arbitrary continuous bounded :math:`v`.
 
 Nonetheless, we can always try the popular strategy "iterate and hope".
 
@@ -395,12 +395,12 @@ The latter is known to converge, as described above.
 
 
 Implementation
------------------
+--------------
 
 .. index::
     single: Optimal Savings; Programming Implementation
 
-First, we build a class called ``ConsumerProblem`` that stores the model primitives
+First, we build a class called ``ConsumerProblem`` that stores the model primitives.
 
 .. code-block:: python3
 
@@ -485,7 +485,7 @@ The function ``operator_factory`` returns the operator ``K`` as specified above
 ``K`` uses linear interpolation along the asset grid to approximate the value and consumption functions.
 
 To solve for the optimal policy function, we will write a function ``solve_model``
-to iterate and find the optimal :math:`\sigma`
+to iterate and find the optimal :math:`\sigma`.
 
 .. code-block:: python3
 
@@ -548,11 +548,11 @@ Plotting the result using the default parameters of the ``ConsumerProblem`` clas
 The following exercises walk you through several applications where policy functions are computed.
 
 Exercises
-=============
+=========
 
 
 Exercise 1
-------------
+----------
 
 Next, let's consider how the interest rate affects consumption.
 
@@ -560,16 +560,16 @@ Reproduce the following figure, which shows (approximately) optimal consumption 
 
 .. figure:: /_static/lecture_specific/ifp/ifp_policies.png
 
-* Other than ``r``, all parameters are at their default values
-* ``r`` steps through ``np.linspace(0, 0.04, 4)``
-* Consumption is plotted against assets for income shock fixed at the smallest value
+* Other than ``r``, all parameters are at their default values.
+* ``r`` steps through ``np.linspace(0, 0.04, 4)``.
+* Consumption is plotted against assets for income shock fixed at the smallest value.
 
 The figure shows that higher interest rates boost savings and hence suppress consumption.
 
 
 
 Exercise 2
-------------
+----------
 
 Now let's consider the long run asset levels held by households.
 
@@ -614,9 +614,9 @@ diverge.
 
 In fact there is a unique stationary distribution of assets that we can calculate by simulation
 
-* Can be proved via theorem 2 of :cite:`HopenhaynPrescott1992`
+* Can be proved via theorem 2 of :cite:`HopenhaynPrescott1992`.
 
-* Represents the long run dispersion of assets across households when households have idiosyncratic shocks
+* Represents the long run dispersion of assets across households when households have idiosyncratic shocks.
 
 
 Ergodicity is valid here, so stationary probabilities can be calculated by averaging over a single long time series.
@@ -627,23 +627,23 @@ Hence to approximate the stationary distribution we can simulate a long time ser
 
 Your task is to replicate the figure
 
-* Parameters are as discussed above
+* Parameters are as discussed above.
 
-* The histogram in the figure used a single time series :math:`\{a_t\}` of length 500,000
+* The histogram in the figure used a single time series :math:`\{a_t\}` of length 500,000.
 
-* Given the length of this time series, the initial condition :math:`(a_0, z_0)` will not matter
+* Given the length of this time series, the initial condition :math:`(a_0, z_0)` will not matter.
 
-* You might find it helpful to use the ``MarkovChain`` class from ``quantecon``
+* You might find it helpful to use the ``MarkovChain`` class from ``quantecon``.
 
 
 
 
 Exercise 3
-------------
+----------
 
 Following on from exercises 1 and 2, let's look at how savings and aggregate asset holdings vary with the interest rate
 
-* Note: :cite:`Ljungqvist2012` section 18.6 can be consulted for more background on the topic treated in this exercise
+* Note: :cite:`Ljungqvist2012` section 18.6 can be consulted for more background on the topic treated in this exercise.
 
 For a given parameterization of the model, the mean of the stationary distribution can be interpreted as aggregate capital in an economy with a unit mass of *ex-ante* identical households facing idiosyncratic shocks.
 
@@ -665,7 +665,7 @@ Try to explain why the measure of aggregate capital is equal to :math:`-b`
 when :math:`r=0` for both cases shown here.
 
 Solutions
-==========
+=========
 
 
 

@@ -18,7 +18,7 @@ IRFs in Hall Models
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies <hs_recursive_models>`.
 
-In addition to what's in Anaconda, this lecture uses the quantecon library
+In addition to what's in Anaconda, this lecture uses the quantecon library.
 
 .. code-block:: ipython
   :class: hide-output
@@ -56,7 +56,7 @@ We set
 (In this example :math:`\delta_h` and :math:`\theta_h` are arbitrary as
 household capital does not enter the equation for consumption services.
 
-We set them to values that will become useful in Example 3).
+We set them to values that will become useful in Example 3)
 
 It is worth noting that this choice of parameter values ensures that
 :math:`\beta(\gamma_1 + \delta_k) = 1`.
@@ -154,7 +154,7 @@ of Example 1: we raise the parameter associated with the cost of
 adjusting capital,\ :math:`\phi_1`, from 0.00001 to 0.2.
 
 This will lower the endogenous eigenvalue that is unity in Example 1 to
-a value slightly below 1
+a value slightly below 1.
 
 .. code-block:: python3
 
@@ -233,7 +233,7 @@ To implement this, we set :math:`\lambda=0.1` and :math:`\pi = 0` (we
 have already set :math:`\theta_h = 1` and :math:`\delta_h = 0.9`).
 
 We start from an initial condition that makes consumption begin near
-around its non-stochastic steady state
+around its non-stochastic steady state.
 
 .. code-block:: python3
 
@@ -264,7 +264,7 @@ In contrast to Hall's original model of Example 1, it is now investment
 that is much smoother than consumption.
 
 This illustrates how making consumption goods durable tends to undo the
-strong consumption smoothing result that Hall obtained
+strong consumption smoothing result that Hall obtained.
 
 .. code-block:: python3
 

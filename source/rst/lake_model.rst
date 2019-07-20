@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-********************************************
+*******************************************
 A Lake Model of Employment and Unemployment
-********************************************
+*******************************************
 
 .. index::
     single: Lake Model
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-===============
+========
 
 This lecture describes what has come to be called a *lake model*.
 
@@ -29,9 +29,9 @@ The lake model is a basic tool for modeling unemployment.
 
 It allows us to analyze
 
-* flows between unemployment and employment
+* flows between unemployment and employment.
 
-* how these flows influence steady state employment and unemployment rates
+* how these flows influence steady state employment and unemployment rates.
 
 It is a good model for interpreting monthly labor department reports on gross and net jobs created and jobs destroyed.
 
@@ -65,7 +65,7 @@ You will also need some basic :doc:`linear algebra <linear_algebra>` and probabi
 
 
 The Model
-==========
+=========
 
 The economy is inhabited by a very large number of ex-ante identical workers.
 
@@ -85,7 +85,7 @@ The growth rate of the labor force evidently equals :math:`g=b-d`.
 
 
 Aggregate Variables
-----------------------
+-------------------
 
 We want to derive the dynamics of the following aggregates
 
@@ -97,17 +97,17 @@ We want to derive the dynamics of the following aggregates
 
 We also want to know the values of the following objects
 
-* The employment rate :math:`e_t := E_t/N_t`
+* The employment rate :math:`e_t := E_t/N_t`.
 
-* The unemployment rate :math:`u_t := U_t/N_t`
+* The unemployment rate :math:`u_t := U_t/N_t`.
 
 
-(Here and below, capital letters represent stocks and lowercase letters represent flows).
+(Here and below, capital letters represent stocks and lowercase letters represent flows)
 
 
 
 Laws of Motion for Stock Variables
-------------------------------------
+----------------------------------
 
 We begin by constructing laws of motion for the aggregate variables :math:`E_t,U_t, N_t`.
 
@@ -163,7 +163,7 @@ This law tells us how total employment and unemployment evolve over time.
 
 
 Laws of Motion for Rates
---------------------------------------------------------
+------------------------
 
 Now let's derive the law of motion for rates.
 
@@ -211,7 +211,7 @@ This follows from the fact that the columns of :math:`\hat A` sum to 1.
 
 
 Implementation
-================
+==============
 
 
 Let's code up these equations.
@@ -239,7 +239,7 @@ and :math:`\lambda`.
 If a user alters these primitives, we would ideally like derived data to
 update automatically.
 
-(For example, if a user changes the value of :math:`b` for a given instance of the class, we would like :math:`g = b - d` to update automatically).
+(For example, if a user changes the value of :math:`b` for a given instance of the class, we would like :math:`g = b - d` to update automatically)
 
 To achieve this outcome, we're going to use descriptors and decorators such as `@property`.
 
@@ -275,7 +275,7 @@ As desired, if we create an instance and update a primitive like
 
 
 Aggregate Dynamics
---------------------
+------------------
 
 
 Let's run a simulation under the default parameters (see above) starting from :math:`X_0 = (12, 138)`
@@ -352,7 +352,7 @@ Let's look at the convergence of the unemployment and employment rate to steady 
 
 
 Dynamics of an Individual Worker
-=================================
+================================
 
 
 An individual worker's employment dynamics are governed by a :doc:`finite state Markov process <finite_markov>`.
@@ -428,7 +428,7 @@ and
     \bar s_{e,T} := \frac1{T} \sum_{t=1}^T \mathbb 1\{s_t = 1\}
 
 
-(As usual, :math:`\mathbb 1\{Q\} = 1` if statement :math:`Q` is true and 0 otherwise).
+(As usual, :math:`\mathbb 1\{Q\} = 1` if statement :math:`Q` is true and 0 otherwise)
 
 These are the fraction of time a worker spends unemployed and employed, respectively, up until period :math:`T`.
 
@@ -485,14 +485,14 @@ All details relevant to the following discussion can be found in :doc:`our treat
 
 
 Reservation Wage
--------------------
+----------------
 
 The most important thing to remember about the model is that optimal decisions
 are characterized by a reservation wage :math:`\bar w`
 
-*  If the wage offer :math:`w` in hand is greater than or equal to :math:`\bar w`, then the worker accepts
+*  If the wage offer :math:`w` in hand is greater than or equal to :math:`\bar w`, then the worker accepts.
 
-*  Otherwise, the worker rejects
+*  Otherwise, the worker rejects.
 
 As we saw in :doc:`our discussion of the model <mccall_model>`, the reservation wage depends on the wage offer distribution and the parameters
 
@@ -508,7 +508,7 @@ As we saw in :doc:`our discussion of the model <mccall_model>`, the reservation 
 
 
 Linking the McCall Search Model to the Lake Model
---------------------------------------------------
+-------------------------------------------------
 
 Suppose that  all workers inside a lake model behave according to the McCall search model.
 
@@ -527,7 +527,7 @@ This is now
 
 
 Fiscal Policy
------------------
+-------------
 
 We can use the McCall search version of the Lake Model  to find an optimal level of unemployment insurance.
 
@@ -590,7 +590,7 @@ Following :cite:`davis2006flow`, we set :math:`\alpha`, the hazard rate of leavi
 
 
 Fiscal Policy Code
------------------------
+------------------
 
 
 We will make use of code we wrote in the :doc:`McCall model lecture <mccall_model>`, embedded below for convenience.
@@ -618,10 +618,10 @@ The level that maximizes steady state welfare is approximately 62.
 
 
 Exercises
-=============
+=========
 
 Exercise 1
-----------------
+----------
 
 Consider an economy with an initial stock  of workers :math:`N_0 = 100` at the
 steady state level of employment in the baseline parameterization
@@ -634,7 +634,7 @@ steady state level of employment in the baseline parameterization
 
 * :math:`d = 0.00822`
 
-(The values for :math:`\alpha` and :math:`\lambda` follow :cite:`davis2006flow`).
+(The values for :math:`\alpha` and :math:`\lambda` follow :cite:`davis2006flow`)
 
 Suppose that in response to new legislation the hiring rate reduces to :math:`\lambda = 0.2`.
 
@@ -650,7 +650,7 @@ What is the new steady state level of employment?
 
 
 Exercise 2
------------------
+----------
 
 Consider an economy with an initial stock  of workers :math:`N_0 = 100` at the
 steady state level of employment in the baseline parameterization.
@@ -667,7 +667,7 @@ How long does the economy take to return to its original steady state?
 
 
 Solutions
-==========
+=========
 
 
 
