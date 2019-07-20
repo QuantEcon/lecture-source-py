@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-***************************************
+*****************
 Uncertainty Traps
-***************************************
+*****************
 
 .. contents:: :depth: 2
 
@@ -19,28 +19,28 @@ The model features self-reinforcing uncertainty that has big impacts on economic
 
 In the model,
 
-* Fundamentals  vary stochastically and are not fully observable
+* Fundamentals  vary stochastically and are not fully observable.
 
-* At any moment there are both active and inactive entrepreneurs; only active entrepreneurs produce
+* At any moment there are both active and inactive entrepreneurs; only active entrepreneurs produce.
 
-* Agents -- active and inactive entrepreneurs --  have beliefs about the fundamentals expressed as probability distributions
+* Agents -- active and inactive entrepreneurs --  have beliefs about the fundamentals expressed as probability distributions.
 
-* Greater uncertainty means greater dispersions of these distributions
+* Greater uncertainty means greater dispersions of these distributions.
 
-* Entrepreneurs are risk-averse and hence less inclined to be active  when uncertainty is high
+* Entrepreneurs are risk-averse and hence less inclined to be active  when uncertainty is high.
 
-* The output of active entrepreneurs is observable, supplying a noisy signal that helps everyone inside the model infer fundamentals
+* The output of active entrepreneurs is observable, supplying a noisy signal that helps everyone inside the model infer fundamentals.
 
-* Entrepreneurs update their beliefs about fundamentals using Bayes' Law, implemented via :doc:`Kalman filtering <kalman>`
+* Entrepreneurs update their beliefs about fundamentals using Bayes' Law, implemented via :doc:`Kalman filtering <kalman>`.
 
 
 Uncertainty traps emerge because:
 
-* High uncertainty discourages entrepreneurs from becoming active
+* High uncertainty discourages entrepreneurs from becoming active.
 
-* A low level of participation -- i.e., a smaller number of active entrepreneurs -- diminishes the flow of information about fundamentals
+* A low level of participation -- i.e., a smaller number of active entrepreneurs -- diminishes the flow of information about fundamentals.
 
-* Less information translates to higher uncertainty, further discouraging entrepreneurs from choosing to be active, and so on
+* Less information translates to higher uncertainty, further discouraging entrepreneurs from choosing to be active, and so on.
 
 Uncertainty traps stem from a positive externality: high aggregate economic activity levels generates valuable information.
 
@@ -49,7 +49,7 @@ Uncertainty traps stem from a positive externality: high aggregate economic acti
 
 
 The Model
-===============
+=========
 
 
 The original model described in :cite:`fun` has many interesting moving parts.
@@ -59,7 +59,7 @@ Here we examine a simplified version that nonetheless captures many of the key i
 
 
 Fundamentals
---------------
+------------
 
 The evolution of the fundamental process :math:`\{\theta_t\}` is given by
 
@@ -79,7 +79,7 @@ The random variable :math:`\theta_t` is not observable at any time.
 
 
 Output
------------
+------
 
 There is a total :math:`\bar M` of risk-averse entrepreneurs.
 
@@ -107,7 +107,7 @@ Output shocks are independent across time and firms.
 
 
 Information and Beliefs
-----------------------------
+-----------------------
 
 All entrepreneurs start with identical beliefs about :math:`\theta_0`.
 
@@ -122,11 +122,11 @@ These parameters are updated by Kalman filtering.
 
 Let
 
-* :math:`\mathbb M \subset \{1, \ldots, \bar M\}` denote the set of currently active firms
+* :math:`\mathbb M \subset \{1, \ldots, \bar M\}` denote the set of currently active firms.
 
-* :math:`M := |\mathbb M|` denote the number of currently active firms
+* :math:`M := |\mathbb M|` denote the number of currently active firms.
 
-* :math:`X` be the average output :math:`\frac{1}{M} \sum_{m \in \mathbb M} x_m` of the active firms
+* :math:`X` be the average output :math:`\frac{1}{M} \sum_{m \in \mathbb M} x_m` of the active firms.
 
 With this notation and primes for next period values, we can write the updating of the mean and precision via
 
@@ -172,7 +172,7 @@ In practice, as we'll see, the number of active firms fluctuates stochastically.
 
 
 Participation
-----------------
+-------------
 
 Omitting time subscripts once more, entrepreneurs enter the market in the current period if
 
@@ -234,7 +234,7 @@ Using standard formulas for expectations of `lognormal <https://en.wikipedia.org
 
 
 Implementation
-===============
+==============
 
 
 We want to simulate this economy.
@@ -260,7 +260,7 @@ In the results below we use this code to simulate time series for the major vari
 
 
 Results
-===============
+=======
 
 Let's look first at the dynamics of :math:`\mu`, which the agents use to track :math:`\theta`
 
@@ -293,13 +293,13 @@ Thus, the model gives us a *propagation mechanism* that maps bad random draws in
 
 
 Exercises
-==============
+=========
 
 .. _uncertainty_traps_ex1:
 
 
 Exercise 1
-------------
+----------
 
 Fill in the details behind :eq:`update_mean` and :eq:`update_prec` based on
 the following standard result (see, e.g., p. 24 of :cite:`young2005`).
@@ -325,11 +325,11 @@ where
 
 
 Exercise 2
-------------
+----------
 
-Modulo randomness, replicate the simulation figures shown above
+Modulo randomness, replicate the simulation figures shown above.
 
-* Use the parameter values listed as defaults in the `__init__` method of the `UncertaintyTrapEcon` class
+* Use the parameter values listed as defaults in the `__init__` method of the `UncertaintyTrapEcon` class.
 
 
 
@@ -346,7 +346,7 @@ Solutions
     import itertools
 
 Exercise 1
-----------------
+----------
 
 This exercise asked you to validate the laws of motion for
 :math:`\gamma` and :math:`\mu` given in the lecture, based on the stated
@@ -374,7 +374,7 @@ where :math:`w` is independent and standard normal, we get the
 expressions for :math:`\mu'` and :math:`\gamma'` given in the lecture.
 
 Exercise 2
------------
+----------
 
 First, let's replicate the plot that illustrates the law of motion for
 precision, which is
@@ -494,4 +494,4 @@ series.
 
 (It would also be interesting to experiment with non-Gaussian
 distributions for the shocks, but this is a big exercise since it takes
-us outside the world of the standard Kalman filter).
+us outside the world of the standard Kalman filter)

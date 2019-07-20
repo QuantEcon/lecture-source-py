@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-*******************************************************************
+******************************************************************
 Consumption and Tax Smoothing with Complete and Incomplete Markets
-*******************************************************************
+******************************************************************
 
 
 .. index::
@@ -90,9 +90,9 @@ Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described 
 
 The key difference between those lectures and this one is
 
-* Here the decision-maker  takes all prices as exogenous, meaning that his decisions do not affect them
+* Here the decision-maker  takes all prices as exogenous, meaning that his decisions do not affect them.
 
-* In :doc:`lqramsey` and :doc:`opt_tax_recur`, the decision-maker -- the government in the case of these lectures -- recognizes that his decisions affect prices
+* In :doc:`lqramsey` and :doc:`opt_tax_recur`, the decision-maker -- the government in the case of these lectures -- recognizes that his decisions affect prices.
 
 So these later lectures are partly about how the government should  manipulate prices of government debt.
 
@@ -279,7 +279,7 @@ Thus, our consumer sets :math:`c_t = \bar c` for all :math:`t \geq 0` for some v
             \quad i=1,2; \;\; j= 1,2
 
 
-so that the amount borrowed today turns out to depend only on *tomorrow's* Markov state. (Why is this is a plausible guess?).
+so that the amount borrowed today turns out to depend only on *tomorrow's* Markov state. (Why is this is a plausible guess?)
 
 To determine :math:`\bar c`, we shall pursue the implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess` about the consumer's debt level choices.
 
@@ -360,7 +360,7 @@ The preceding calculations indicate that in the complete markets version
 of our model, we obtain the following striking results:
 
 *  The consumer chooses to make consumption perfectly constant across
-   time and Markov states
+   time and Markov states.
 
 
 We computed the constant level of consumption :math:`\bar c` and indicated how that level depends on the underlying specifications of preferences, Arrow securities prices,  the stochastic process of exogenous nonfinancial income, and the initial debt level :math:`b_0`
@@ -368,16 +368,16 @@ We computed the constant level of consumption :math:`\bar c` and indicated how t
 *  The consumer's debt neither accumulates, nor decumulates, nor drifts --
    instead, the debt level each period is an exact function of the Markov
    state, so in the two-state Markov case, it switches between two
-   values
+   values.
 
-*  We have verified guess :eq:`eq_guess`
+*  We have verified guess :eq:`eq_guess`.
 
 We computed how one of those debt levels depends entirely on initial debt -- it equals it -- and how the other value depends on virtually all  remaining parameters of the model.
 
 
 
 Code
------
+----
 
 Here's some code that, among other things, contains a function called `consumption_complete()`.
 
@@ -539,21 +539,21 @@ markets model
 -  consumption drifts over time as a random walk; the level of
    consumption at time :math:`t` depends on the level of debt that the
    consumer brings into the period as well as the expected discounted
-   present value of nonfinancial income at :math:`t`
+   present value of nonfinancial income at :math:`t`.
 
 -  the consumer's debt drifts upward over time in response to low
    realizations of nonfinancial income and drifts downward over time in
-   response to high realizations of nonfinancial income
+   response to high realizations of nonfinancial income.
 
 -  the drift over time in the consumer's debt and the dependence of
    current consumption on today's debt level account for the drift over
-   time in consumption
+   time in consumption.
 
 
 
 
 The Incomplete Markets Model
--------------------------------------
+----------------------------
 
 
 The code above also contains a function called `consumption_incomplete()` that uses :eq:`cs_12` and :eq:`cs_13` to
@@ -570,12 +570,12 @@ Let's try this, using the same parameters in both complete and incomplete market
 In the graph on the left, for the same sample path of nonfinancial
 income :math:`y_t`, notice that
 
-*  consumption is constant when there are complete markets, but it takes a random walk in the incomplete markets version of the model
+*  consumption is constant when there are complete markets, but it takes a random walk in the incomplete markets version of the model.
 
 *  the consumer's debt oscillates between two values that are functions
    of the Markov state in the complete markets model, while the
    consumer's debt drifts in a "unit root" fashion in the incomplete
-   markets economy
+   markets economy.
 
 
 
@@ -699,15 +699,15 @@ war in debt and :math:`b_2 = -10`.
 
 
 Linear State Space Version of Complete Markets Model
-=====================================================
+====================================================
 
 Now we'll use a setting like that in the :doc:`first lecture on the permanent income model <perm_income>`.
 
 In that model, there were
 
-* incomplete markets: the consumer could trade only a single risk-free one-period bond bearing gross one-period risk-free interest rate equal to :math:`\beta^{-1}`
+* incomplete markets: the consumer could trade only a single risk-free one-period bond bearing gross one-period risk-free interest rate equal to :math:`\beta^{-1}`.
 
-* the consumer's exogenous nonfinancial income was governed by a linear state space model driven by Gaussian shocks, the kind of model studied in an earlier lecture about :doc:`linear state space models <linear_models>`
+* the consumer's exogenous nonfinancial income was governed by a linear state space model driven by Gaussian shocks, the kind of model studied in an earlier lecture about :doc:`linear state space models <linear_models>`.
 
 We'll write down a complete markets counterpart of that model.
 
@@ -837,15 +837,15 @@ Interpretation of Graph
 
 In the above graph, please note that:
 
--  nonfinancial income fluctuates in a stationary manner
+-  nonfinancial income fluctuates in a stationary manner.
 
--  consumption is completely constant
+-  consumption is completely constant.
 
 -  the consumer's debt fluctuates in a stationary manner; in fact, in
    this case, because nonfinancial income is a first-order
    autoregressive process, the consumer's debt is an exact affine function
    (meaning linear plus a constant) of the consumer's nonfinancial
-   income
+   income.
 
 Incomplete Markets Version
 --------------------------
@@ -862,7 +862,7 @@ We leave it to the reader to apply the usual isomorphism to deduce the correspon
 
 
 Government Manipulation of Arrow Securities Prices
-----------------------------------------------------
+--------------------------------------------------
 
 In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optimal taxation <opt_tax_recur>`, we study **complete-markets**
 models in which the government recognizes that it can manipulate  Arrow securities prices.

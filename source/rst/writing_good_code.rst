@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-***************************************
+*****************
 Writing Good Code
-***************************************
+*****************
 
 .. index::
     single: Models; Code style
@@ -16,7 +16,7 @@ Writing Good Code
 
 
 Overview
-============
+========
 
 When computer programs are small, poorly written code is not overly costly.
 
@@ -34,7 +34,7 @@ We also touch on modern developments in scientific computing --- such as just in
 
 
 An Example of Bad Code
-=======================
+======================
 
 Let's have a look at some poorly written code.
 
@@ -138,7 +138,7 @@ Let's talk about why that's the case, and what we can do about it.
 
 
 Good Coding Practice
-=====================
+====================
 
 There are usually many different ways to write a program that accomplishes a given task.
 
@@ -155,7 +155,7 @@ Here are some basic precepts.
 
 
 Don't Use Magic Numbers
-------------------------
+-----------------------
 
 If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered through the code.
 
@@ -178,15 +178,15 @@ The advantages are:
 
 
 Don't Repeat Yourself
-------------------------
+---------------------
 
 The other mortal sin in the code snippet above is repetition.
 
 Blocks of logic (such as the loop to generate time series) are repeated with only minor changes.
 
-This violates a fundamental tenet of programming: Don't repeat yourself (DRY)
+This violates a fundamental tenet of programming: Don't repeat yourself (DRY).
 
-* Also called DIE (duplication is evil)
+* Also called DIE (duplication is evil).
 
 Yes, we realize that you can just cut and paste and change a few symbols.
 
@@ -200,7 +200,7 @@ We'll talk about how to avoid repetition below.
 
 
 Minimize Global Variables
-----------------------------
+-------------------------
 
 Sure, global variables (i.e., names assigned to values outside of any function or class) are convenient.
 
@@ -222,7 +222,7 @@ While the odd global in small scripts is no big deal, we recommend that you teac
 
 
 JIT Compilation
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 In fact, there's now another good reason to avoid global variables.
 
@@ -233,16 +233,16 @@ JIT compilation can generate excellent performance for scripting languages like 
 But the task of the compiler used for JIT compilation becomes much harder when
 many global variables are present.
 
-(This is because data type instability hinders the generation of efficient machine code --- we'll learn more about such topics :doc:`later on <numba>`).
+(This is because data type instability hinders the generation of efficient machine code --- we'll learn more about such topics :doc:`later on <numba>`)
 
 
 
 Use Functions or Classes
---------------------------
+------------------------
 
-Fortunately, we can easily avoid the evils of global variables and WET code
+Fortunately, we can easily avoid the evils of global variables and WET code.
 
-* WET stands for "we love typing" and is the opposite of DRY
+* WET stands for "we love typing" and is the opposite of DRY.
 
 We can do this by making frequent use of functions or classes.
 
@@ -256,14 +256,14 @@ Both can be useful, and in fact they work well with each other.
 
 We'll learn more about these topics over time.
 
-(Personal preference is part of the story too).
+(Personal preference is part of the story too)
 
 What's really important is that you use one or the other or both.
 
 
 
 Revisiting the Example
-========================
+======================
 
 Here's some code that reproduces the plot above with better coding style.
 
@@ -313,7 +313,7 @@ Note also that
     plt.show()
 
 Summary
-=========
+=======
 
 Writing decent code isn't hard.
 

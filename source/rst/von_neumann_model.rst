@@ -5,9 +5,9 @@
 .. index::
     single: python
 
-**************************************************
+***********************************************
 Von Neumann Growth Model (and a Generalization)
-**************************************************
+***********************************************
 
 .. contents:: :depth: 2
 
@@ -304,7 +304,7 @@ The code below provides the ``Neumann`` class
           return γ, x, p
 
 Notation
-===========
+========
 
 We use the following notation.
 
@@ -339,7 +339,7 @@ denote the :math:`j` th column and :math:`i` th row of :math:`A`,
 respectively.
 
 Model Ingredients and Assumptions
-====================================
+=================================
 
 A pair :math:`(A,B)` of :math:`m\times n` non-negative matrices defines
 an economy.
@@ -443,7 +443,7 @@ instance
     N2
 
 Dynamic Interpretation
-====================================
+======================
 
 Attach a time index :math:`t` to the preceding objects, regard an economy
 as a dynamic system, and study sequences
@@ -479,7 +479,7 @@ Accordingly, :math:`Ap_t` tells the costs of production in period
 :math:`t` and :math:`Bp_t` tells revenues in period :math:`t+1`.
 
 Balanced Growth
------------------
+---------------
 
 We follow John von Neumann in studying “balanced growth”.
 
@@ -517,7 +517,7 @@ conduct an analysis purely in terms of a time-invariant growth rate
 
 
 Duality
-========
+=======
 
 The following two problems are connected by a remarkable dual
 relationship between the technological and valuation characteristics of
@@ -637,7 +637,7 @@ significantly reduces the number of (relevant) solutions.
 
 
 Interpretation as a Game Theoretic Problem (Two-player Zero-sum Game)
-=======================================================================
+=====================================================================
 
 To compute the equilibrium :math:`(\gamma^{*}, x_0, p_0)`, we follow the
 algorithm proposed by Hamburger, Thompson and Weil (1967), building on
@@ -688,7 +688,7 @@ Moreover, von Neumann’s Minmax Theorem (1928) :cite:`neumann1928theorie` impli
 
 
 Connection with Linear Programming (LP)
------------------------------------------
+---------------------------------------
 
 Finding Nash equilibria of a finite two-player zero-sum game can be
 formulated as a linear programming problem.
@@ -741,7 +741,7 @@ interpretation, they restate Assumption I and II as follows
    that :math:`p>\mathbf{0}`, it follows that :math:`Bp > \mathbf{0}`.
    This implies that the maximizing player can always choose :math:`x`
    so that :math:`x^TBp>0`, that is it must be the case
-   that :math:`V(B)>0`
+   that :math:`V(B)>0`.
 
 In order to (re)state Theorem I in terms of a particular two-player
 zero-sum game, we define the matrix for :math:`\gamma\in\mathbb{R}`
@@ -754,10 +754,10 @@ we can calculate the solution of the game
 -  If :math:`\gamma > \alpha_0`, then for all :math:`x>0`, there
    :math:`\exists j\in\{1, \dots, n\}`, s.t.
    :math:`[x^T M(\gamma)]_j < 0` implying
-   that :math:`V(M(\gamma)) < 0`
+   that :math:`V(M(\gamma)) < 0`.
 -  If :math:`\gamma < \beta_0`, then for all :math:`p>0`, there
    :math:`\exists i\in\{1, \dots, m\}`, s.t.
-   :math:`[M(\gamma)p]_i > 0` implying that :math:`V(M(\gamma)) > 0`
+   :math:`[M(\gamma)p]_i > 0` implying that :math:`V(M(\gamma)) > 0`.
 -  If :math:`\gamma \in \{\beta_0, \alpha_0\}`, then (by Theorem I) the
    optimal intensity and price vectors :math:`x_0` and :math:`p_0`
    satisfy
@@ -779,11 +779,11 @@ Moreover, if :math:`x'` is optimal for the maximizing player in
 :math:`p''` is optimal for the minimizing player in :math:`M(\gamma'')`
 where :math:`\gamma''\in(\beta_0, \gamma')`, then :math:`(x', p'', 0)`
 is a solution for
-:math:`M(\gamma)`, :math:`\forall \gamma\in (\gamma'', \gamma')`
+:math:`M(\gamma)`, :math:`\forall \gamma\in (\gamma'', \gamma')`.
 
   *Proof (Sketch):* If :math:`x'` is optimal for a maximizing player in
   game :math:`M(\gamma')`, then :math:`(x')^T M(\gamma')\geq \mathbf{0}^T`
-  and so for all :math:`\gamma<\gamma'`
+  and so for all :math:`\gamma<\gamma'`.
 
 .. math:: (x')^T M(\gamma) = (x')^T M(\gamma') + (x')^T(\gamma' - \gamma)A \geq \mathbf{0}^T
 
@@ -808,14 +808,14 @@ This suggests an algorithm to compute
 input-output pair :math:`(A, B)`.
 
 Algorithm
-----------
+---------
 
 Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` propose a simple bisection algorithm
 to find the minimal and maximal roots (i.e. :math:`\beta_0` and
 :math:`\alpha_0`) of the function :math:`\gamma \mapsto V(M(\gamma))`.
 
 Step 1
-~~~~~~~~~
+~~~~~~
 
 First, notice that we can easily find trivial upper and lower bounds for
 :math:`\alpha_0` and :math:`\beta_0`.
@@ -843,7 +843,7 @@ The *bounds* method calculates these trivial bounds for us
 
 
 Step 2
-~~~~~~~~~
+~~~~~~
 
 Compute :math:`\alpha_0` and :math:`\beta_0`
 
@@ -852,28 +852,28 @@ Compute :math:`\alpha_0` and :math:`\beta_0`
    1. Fix :math:`\gamma = \frac{UB + LB}{2}` and compute the solution
       of the two-player zero-sum game associated
       with :math:`M(\gamma)`. We can use either the primal or the dual
-      LP problem
+      LP problem.
    2. If :math:`V(M(\gamma)) \geq 0`, then set :math:`LB = \gamma`,
-      otherwise let :math:`UB = \gamma`
-   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`
+      otherwise let :math:`UB = \gamma`.
+   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`.
 
 -  Finding :math:`\beta_0`
 
    1. Fix :math:`\gamma = \frac{UB + LB}{2}` and compute the solution
-      of the two-player zero-sum game associated
+      of the two-player zero-sum game associated.
       with :math:`M(\gamma)`. We can use either the primal or the dual
-      LP problem
+      LP problem.
    2. If :math:`V(M(\gamma)) > 0`, then set :math:`LB = \gamma`,
-      otherwise let :math:`UB = \gamma`
-   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`
+      otherwise let :math:`UB = \gamma`.
+   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`.
 
 
    *Existence*: Since :math:`V(M(LB))>0` and :math:`V(M(UB))<0` and
    :math:`V(M(\cdot))` is a continuous, nonincreasing function, there is
-   at least one :math:`\gamma\in[LB, UB]`, s.t. :math:`V(M(\gamma))=0`
+   at least one :math:`\gamma\in[LB, UB]`, s.t. :math:`V(M(\gamma))=0`.
 
 The *zerosum* method calculates the value and optimal strategies
-associated with a given :math:`\gamma`
+associated with a given :math:`\gamma`.
 
 .. code-block:: python3
 
