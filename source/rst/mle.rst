@@ -2,15 +2,15 @@
 
 .. highlight:: python3
 
-*******************************
+*****************************
 Maximum Likelihood Estimation
-*******************************
+*****************************
 
 .. contents:: :depth: 2
 
 
 Overview
-============
+========
 
 
 In a :doc:`previous lecture <ols>`, we estimated the relationship between
@@ -38,32 +38,32 @@ We assume familiarity with basic probability and multivariate calculus.
 
 
 Comments
--------------
+--------
 
 This lecture is co-authored with `Natasha Watkins <https://github.com/natashawatkins>`__.
 
 
 
 Set Up and Assumptions
-========================
+======================
 
 
 Let's consider the steps we need to go through in maximum likelihood estimation and how they pertain to this study.
 
 
 Flow of Ideas
---------------------------
+-------------
 
 The first step with maximum likelihood estimation is to choose the probability distribution believed to be generating the data.
 
-More precisely, we need to make an assumption as to which *parametric class* of distributions is generating the data
+More precisely, we need to make an assumption as to which *parametric class* of distributions is generating the data.
 
-* e.g., the class of all normal distributions, or the class of all gamma distributions
+* e.g., the class of all normal distributions, or the class of all gamma distributions.
 
-Each such class is a family of distributions indexed by a finite number of parameters
+Each such class is a family of distributions indexed by a finite number of parameters.
 
 * e.g., the class of normal distributions is a family of distributions
-  indexed by its mean :math:`\mu \in (-\infty, \infty)` and standard deviation :math:`\sigma \in (0, \infty)`
+  indexed by its mean :math:`\mu \in (-\infty, \infty)` and standard deviation :math:`\sigma \in (0, \infty)`.
 
 
 We'll let the data pick out a particular element of the class by pinning down the parameters.
@@ -72,7 +72,7 @@ The parameter estimates so produced will be called **maximum likelihood estimate
 
 
 Counting Billionaires
-----------------------------------
+---------------------
 
 
 Treisman :cite:`Treisman2016` is interested in estimating the number of billionaires in different countries.
@@ -83,7 +83,7 @@ The number of billionaires is integer-valued.
 Hence we consider distributions that take values only in the nonnegative integers.
 
 (This is one reason least squares regression is not the best tool for the present problem, since the dependent variable in linear regression is not restricted
-to integer values).
+to integer values)
 
 
 One integer distribution is the `Poisson distribution <https://en.wikipedia.org/wiki/Poisson_distribution>`__, the probability mass function (pmf) of which is
@@ -379,7 +379,7 @@ However, no analytical solution exists to the above problem -- to find the MLE
 we need to use numerical methods.
 
 MLE with Numerical Methods
-==================================
+==========================
 
 Many distributions do not have nice, analytical solutions and therefore require
 numerical methods to solve for parameter estimates.
@@ -467,7 +467,7 @@ As can be seen from the updating equation,
 :math:`G(\boldsymbol{\beta}_{(k)}) = 0` ie. where the first derivative is equal to 0.
 
 (In practice, we stop iterating when the difference is below a small
-tolerance threshold).
+tolerance threshold)
 
 Let's have a go at implementing the Newton-Raphson algorithm.
 
@@ -512,12 +512,12 @@ parameter estimates.
 
 Iteration will end when either:
 
-* The difference between the parameter and the updated parameter is below a tolerance level
-* The maximum number of iterations has been achieved (meaning convergence is not achieved)
+* The difference between the parameter and the updated parameter is below a tolerance level.
+* The maximum number of iterations has been achieved (meaning convergence is not achieved).
 
 So we can get an idea of what's going on while the algorithm is running,
 an option ``display=True`` is added to print out values at each
-iteration
+iteration.
 
 .. code-block:: python3
 
@@ -554,7 +554,7 @@ iteration
         return model.β.flatten()        # Return a flat array for β (instead of a k_by_1 column vector)
 
 Let's try out our algorithm with a small dataset of 5 observations and 3
-variables in :math:`\mathbf{X}`
+variables in :math:`\mathbf{X}`.
 
 .. code-block:: python3
 
@@ -655,7 +655,7 @@ a richer output with standard errors, test values, and more.
 likelihood estimates.
 
 Before we begin, let's re-estimate our simple model with ``statsmodels``
-to confirm we obtain the same coefficients and log-likelihood value
+to confirm we obtain the same coefficients and log-likelihood value.
 
 .. TODO: remove chisqprob workaround when statsmodels is updated
 
@@ -834,7 +834,7 @@ Exercises
 
 
 Exercise 1
-------------
+----------
 
 Suppose we wanted to estimate the probability of an event :math:`y_i`
 occurring, given some observations.
@@ -864,7 +864,7 @@ The ``scipy`` module ``stats.norm`` contains the functions needed to
 compute the cmf and pmf of the normal distribution.
 
 Exercise 2
------------
+----------
 
 Use the following dataset and initial values of :math:`\boldsymbol{\beta}` to
 estimate the MLE with the Newton-Raphson algorithm developed earlier in
@@ -913,7 +913,7 @@ Solutions
 =========
 
 Exercise 1
---------------
+----------
 
 The log-likelihood can be written as
 
@@ -997,7 +997,7 @@ follows
             return -(ϕ * (y * a + (1 - y) * b) * X.T) @ X
 
 Exercise 2
------------
+----------
 
 .. code-block:: python3
 

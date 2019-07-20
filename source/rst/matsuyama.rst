@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-****************************************
+************************
 Globalization and Cycles
-****************************************
+************************
 
 .. contents:: :depth: 2
 
@@ -16,7 +16,7 @@ This lecture is coauthored with `Chase Coleman <https://github.com/cc7768>`__.
 
 
 Overview
-=====================================
+========
 
 
 In this lecture, we review the paper `Globalization and Synchronization of Innovation Cycles <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__ by `Kiminori Matsuyama <http://faculty.wcas.northwestern.edu/~kmatsu/>`__, `Laura Gardini <http://www.mdef.it/index.php?id=32>`__ and `Iryna Sushko <http://irynasushko.altervista.org/>`__.
@@ -36,7 +36,7 @@ In particular, as trade costs fall and international competition increases, inno
 
 
 Background
--------------
+----------
 
 The model builds on work by Judd :cite:`Judd1985`, Deneckner and Judd :cite:`Deneckere1992` and Helpman and Krugman :cite:`Helpman1985` by developing a two-country model with trade and innovation.
 
@@ -49,13 +49,13 @@ Below we review the model and replicate some of the results on synchronization o
 
 
 Key Ideas
-==========================
+=========
 
 It is helpful to begin with an overview of the mechanism.
 
 
 Innovation Cycles
----------------------
+-----------------
 
 As discussed above, two countries produce and trade with each other.
 
@@ -91,11 +91,11 @@ As illustrated below, this leads to synchronization of business cycles across th
 
 
 Model
-=======
+=====
 
 Let's write down the model more formally.
 
-(The treatment is relatively terse since full details can be found in `the original paper <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__).
+(The treatment is relatively terse since full details can be found in `the original paper <http://www.centreformacroeconomics.ac.uk/Discussion-Papers/2015/CFMDP2015-27-Paper.pdf>`__)
 
 Time is discrete with :math:`t = 0, 1, \dots`.
 
@@ -136,7 +136,7 @@ The parameter :math:`\sigma > 1` is the direct partial elasticity of substitutio
 We can split the varieties into those which are supplied competitively and those supplied monopolistically; that is, :math:`\Omega_t = \Omega_t^c + \Omega_t^m`.
 
 Prices
----------
+------
 
 Demand for differentiated inputs is
 
@@ -232,7 +232,7 @@ The symbols :math:`N_{j, t}^c` and :math:`N_{j, t}^m` will denote the measures o
 
 
 New Varieties
---------------
+-------------
 
 To introduce a new variety, a firm must hire :math:`f` units of labor per variety in each country.
 
@@ -261,7 +261,7 @@ With further manipulations, this becomes
 
 
 Law of Motion
----------------
+-------------
 
 With :math:`\delta` as the exogenous probability of a variety becoming obsolete,
 the dynamic equation for the measure of firms becomes
@@ -343,7 +343,7 @@ This gives us
 
 
 Simulation
-===============
+==========
 
 
 Let's try simulating some of these trajectories.
@@ -393,7 +393,7 @@ become synchronized.
 
 
 Basin of Attraction
------------------------
+-------------------
 
 Next, let's study the initial conditions that lead to synchronized cycles more
 systematically.
@@ -423,23 +423,23 @@ Here's one snapshot from the interactive figure
 
 
 Exercises
-==============
+=========
 
 
 Exercise 1
-------------
+----------
 
 Replicate the figure :ref:`shown above <matsrep>` by coloring initial conditions according to whether or not synchronization occurs from those conditions.
 
 
 
 Solutions
-==========
+=========
 
 
 
 
-These solutions are written by `Chase Coleman <https://github.com/cc7768>`__
+These solutions are written by `Chase Coleman <https://github.com/cc7768>`__.
 
 .. code-block:: ipython
 
@@ -500,7 +500,7 @@ Additionally, instead of just seeing 4 plots at once, we might want to
 manually be able to change :math:`\rho` and see how it affects the plot
 in real-time. Below we use an interactive plot to do this.
 
-Note, interactive plotting requires the `ipywidgets <https://github.com/jupyter-widgets/ipywidgets>`__ module to be installed and enabled
+Note, interactive plotting requires the `ipywidgets <https://github.com/jupyter-widgets/ipywidgets>`__ module to be installed and enabled.
 
 .. code-block:: python3
 
