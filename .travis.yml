@@ -25,5 +25,4 @@ install:
   - pip install sphinxcontrib-jupyter sphinxcontrib-bibtex
 
 script:
-  - make jupyter
   - make website
