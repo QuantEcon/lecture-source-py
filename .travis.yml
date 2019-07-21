@@ -1,0 +1,31 @@
+# Travis Configuration for lectures-quantecon-py
+
+sudo: false
+language: python
+dist: xenial
+
+language: python
+
+notifications:
+  email: false
+
+branches:
+  only:
+    - master
+
+before_install:
+  - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+  - chmod +x miniconda.sh
+  - ./miniconda.sh -b
+  - export PATH=/home/travis/miniconda/bin:$PATH
+  - conda update --yes conda
+
+install:
+  - conda install --yes anaconda
+  - pip install quantecon
+  - pip install joblib
+  - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter.git
+  - cd sphinxcontrib-jupyter && python setup.py install
+
+script:
+  - make jupyter
