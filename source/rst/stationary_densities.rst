@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-******************************************
+***************************************
 :index:`Continuous State Markov Chains`
-******************************************
+***************************************
 
 .. index::
     single: Markov Chains; Continuous State
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 In a :doc:`previous lecture <finite_markov>`, we learned about finite Markov chains, a relatively elementary class of stochastic dynamic models.
 
@@ -59,20 +59,20 @@ such as simulation, distribution dynamics, stability, ergodicity, etc.
     For some people, the term "Markov chain" always refers to a process with a
     finite or discrete state space.  We follow the mainstream
     mathematical literature (e.g., :cite:`MeynTweedie2009`) in using the term to refer to any discrete **time**
-    Markov process
+    Markov process.
 
 
 
 .. _statd_density_case:
 
 The Density Case
-==================================
+================
 
 You are probably aware that some distributions can be represented by densities
 and some cannot.
 
 (For example, distributions on the real numbers :math:`\mathbb R` that put positive probability
-on individual points have no density representation).
+on individual points have no density representation)
 
 We are going to start our analysis by looking at Markov chains where the one-step transition probabilities have density representations.
 
@@ -83,7 +83,7 @@ Once we've built some intuition we'll cover the general case.
 
 
 Definitions and Basic Properties
----------------------------------
+--------------------------------
 
 In our :doc:`lecture on finite Markov chains <finite_markov>`, we studied discrete-time Markov chains that evolve on a finite state space :math:`S`.
 
@@ -106,7 +106,7 @@ Equivalently,
 
 * :math:`P[i, \cdot]` is the distribution of :math:`X_{t+1}` given :math:`X_t = i`
 
-(As you probably recall, when using NumPy arrays, :math:`P[i, \cdot]` is expressed as ``P[i,:]``).
+(As you probably recall, when using NumPy arrays, :math:`P[i, \cdot]` is expressed as ``P[i,:]``)
 
 In this section, we'll allow :math:`S` to be a subset of :math:`\mathbb R`, such as
 
@@ -124,7 +124,7 @@ More formally, a *stochastic kernel on* :math:`S` is a function :math:`p \colon 
 
 #. :math:`\int p(x, y) dy = 1` for all :math:`x \in S`
 
-(Integrals are over the whole space unless otherwise specified).
+(Integrals are over the whole space unless otherwise specified)
 
 For example, let :math:`S = \mathbb R` and consider the particular stochastic
 kernel :math:`p_w` defined by
@@ -158,7 +158,7 @@ In other words, :math:`p` is exactly :math:`p_w`, as defined in :eq:`statd_rwsk`
 
 
 Connection to Stochastic Difference Equations
--------------------------------------------------
+---------------------------------------------
 
 In the previous section, we made the connection between stochastic difference
 equation :eq:`statd_rw` and stochastic kernel :eq:`statd_rwsk`.
@@ -276,12 +276,12 @@ For example, the growth model in :eq:`statd_ss` has stochastic kernel
 where :math:`\phi` is the density of :math:`A_{t+1}`.
 
 (Regarding the state space :math:`S` for this model, a natural choice is :math:`(0, \infty)` --- in which case
-:math:`\sigma(x) = s f(x)` is strictly positive for all :math:`s` as required).
+:math:`\sigma(x) = s f(x)` is strictly positive for all :math:`s` as required)
 
 
 
 Distribution Dynamics
------------------------
+---------------------
 
 In :ref:`this section <mc_md>` of our lecture on **finite** Markov chains, we
 asked the following question: If
@@ -315,7 +315,7 @@ mass functions with densities, yielding
 
 It is convenient to think of this updating process in terms of an operator.
 
-(An operator is just a function, but the term is usually reserved for a function that sends functions into functions).
+(An operator is just a function, but the term is usually reserved for a function that sends functions into functions)
 
 Let :math:`\mathscr D` be the set of all densities on :math:`S`, and let
 :math:`P` be the operator from :math:`\mathscr D` to itself that takes density
@@ -353,7 +353,7 @@ It's interesting to note that :eq:`statd_p` is a deterministic difference equati
 Thus, by converting a stochastic difference equation such as
 :eq:`statd_srs` into a stochastic kernel :math:`p` and hence an operator
 :math:`P`, we convert a stochastic difference equation into a deterministic
-one (albeit in a much higher dimensional space)
+one (albeit in a much higher dimensional space).
 
 .. note::
 
@@ -363,7 +363,7 @@ one (albeit in a much higher dimensional space)
     the `counting measure <https://en.wikipedia.org/wiki/Counting_measure>`_.
 
 Computation
---------------
+-----------
 
 To learn about the dynamics of a given process, it's useful to compute and study the sequences of densities generated by the model.
 
@@ -453,7 +453,7 @@ converges almost surely to :math:`\psi_t(y)`, which is just what we want to comp
 
 
 Implementation
-----------------
+--------------
 
 
 
@@ -480,7 +480,7 @@ This function returns the right-hand side of :eq:`statd_lae1` using
 
 The function is vectorized, in the sense that if ``psi`` is such an instance and ``y`` is an array, then the call ``psi(y)`` acts elementwise.
 
-(This is the reason that we reshaped ``X`` and ``y`` inside the class --- to make vectorization work).
+(This is the reason that we reshaped ``X`` and ``y`` inside the class --- to make vectorization work)
 
 
 
@@ -490,7 +490,7 @@ would be in C or Fortran.
 
 
 Example
----------------
+-------
 
 The following code is an example of usage for the stochastic growth model :ref:`described above <solow_swan>`
 
@@ -559,7 +559,7 @@ as a cross-sectional distribution (recall :ref:`this discussion <mc_eg1-1>`).
 
 
 Beyond Densities
-==================================
+================
 
 Up until now, we have focused exclusively on continuous state Markov chains
 where all conditional distributions :math:`p(x, \cdot)` are densities.
@@ -578,7 +578,7 @@ We can, however, construct a fairly general theory using distribution functions.
 
 
 Example and Definitions
-------------------------
+-----------------------
 
 To illustrate the issues, recall that Hopenhayn and Rogerson :cite:`HopenhaynRogerson1993` study a model of firm dynamics where individual firm productivity follows the exogenous process
 
@@ -635,7 +635,7 @@ The intuition behind :eq:`statd_fddc` is essentially the same as for :eq:`statd_
 
 
 Computation
-------------
+-----------
 
 If you wish to compute these cdfs, you cannot use the look-ahead estimator as before.
 
@@ -649,7 +649,7 @@ One good option is simulation as before, combined with the `empirical distributi
 
 
 Stability
-===========
+=========
 
 In our :doc:`lecture <finite_markov>` on finite Markov chains, we also studied stationarity, stability and ergodicity.
 
@@ -662,7 +662,7 @@ The general case is relatively similar --- references are given below.
 
 
 Theoretical Results
---------------------
+-------------------
 
 Analogous to :ref:`the finite case <mc_stat_dd>`, given a stochastic kernel :math:`p` and corresponding Markov operator as
 defined in :eq:`def_dmo`, a density :math:`\psi^*` on :math:`S` is called
@@ -724,35 +724,35 @@ So what are these conditions we require to get global stability and ergodicity?
 
 In essence, it must be the case that
 
-#. Probability mass does not drift off to the "edges" of the state space
+#. Probability mass does not drift off to the "edges" of the state space.
 
-#. Sufficient "mixing" obtains
+#. Sufficient "mixing" obtains.
 
 For one such set of conditions see theorem 8.2.14 of `EDTC <http://johnstachurski.net/edtc.html>`_.
 
 In addition
 
-* :cite:`StokeyLucas1989`  contains a classic (but slightly outdated) treatment of these topics
+* :cite:`StokeyLucas1989`  contains a classic (but slightly outdated) treatment of these topics.
 
-* From the mathematical literature, :cite:`LasotaMackey1994`  and :cite:`MeynTweedie2009` give outstanding in-depth treatments
+* From the mathematical literature, :cite:`LasotaMackey1994`  and :cite:`MeynTweedie2009` give outstanding in-depth treatments.
 
-* Section 8.1.2 of `EDTC <http://johnstachurski.net/edtc.html>`_ provides detailed intuition, and section 8.3 gives additional references
+* Section 8.1.2 of `EDTC <http://johnstachurski.net/edtc.html>`_ provides detailed intuition, and section 8.3 gives additional references.
 
 * `EDTC <http://johnstachurski.net/edtc.html>`_, section 11.3.4
   provides a specific treatment for the growth model we considered in this
-  lecture
+  lecture.
 
 
 
 
 
 An Example of Stability
-------------------------
+-----------------------
 
 As stated above, the :ref:`growth model treated here <solow_swan>` is stable under mild conditions
-on the primitives
+on the primitives.
 
-* See `EDTC <http://johnstachurski.net/edtc.html>`_, section 11.3.4 for more details
+* See `EDTC <http://johnstachurski.net/edtc.html>`_, section 11.3.4 for more details.
 
 We can see this stability in action --- in particular, the convergence in :eq:`statd_dca` --- by simulating the path of densities from various initial conditions.
 
@@ -769,7 +769,7 @@ The details regarding initial conditions and so on are given in :ref:`this exerc
 
 
 Computing Stationary Densities
---------------------------------
+------------------------------
 
 
 In the preceding figure, each sequence of densities is converging towards the unique stationary density :math:`\psi^*`.
@@ -821,13 +821,13 @@ The first exercise helps illustrate this point.
 
 
 Exercises
-=============
+=========
 
 
 .. _statd_ex1:
 
 Exercise 1
-------------
+----------
 
 Consider the simple threshold autoregressive model
 
@@ -868,7 +868,7 @@ The next figure shows the result of such a computation
 
 The additional density (black line) is a `nonparametric kernel density estimate <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_, added to the solution for illustration.
 
-(You can try to replicate it before looking at the solution if you want to).
+(You can try to replicate it before looking at the solution if you want to)
 
 As you can see, the look-ahead estimator is a much tighter fit than the kernel
 density estimator.
@@ -879,7 +879,7 @@ If you repeat the simulation you will see that this is consistently the case.
 .. _statd_ex2:
 
 Exercise 2
-------------
+----------
 
 Replicate the figure on global convergence :ref:`shown above <statd_egs>`.
 
@@ -903,7 +903,7 @@ For the four initial distributions, use the shifted beta distributions
 .. _statd_ex3:
 
 Exercise 3
-------------
+----------
 
 A common way to compare distributions visually is with `boxplots <https://en.wikipedia.org/wiki/Box_plot>`_.
 
@@ -959,9 +959,9 @@ In particular, the exercise is to generate `J` boxplot figures, one for each ini
 
 For each :math:`X_0` in this set,
 
-#. Generate :math:`k` time-series of length :math:`n`, each starting at :math:`X_0` and obeying :eq:`statd_tar`
+#. Generate :math:`k` time-series of length :math:`n`, each starting at :math:`X_0` and obeying :eq:`statd_tar`.
 
-#. Create a boxplot representing :math:`n` distributions, where the :math:`t`-th distribution shows the :math:`k` observations of :math:`X_t`
+#. Create a boxplot representing :math:`n` distributions, where the :math:`t`-th distribution shows the :math:`k` observations of :math:`X_t`.
 
 
 Use :math:`\theta = 0.9, n = 20, k = 5000, J = 8`
@@ -972,7 +972,7 @@ Use :math:`\theta = 0.9, n = 20, k = 5000, J = 8`
 
 
 Solutions
-==========
+=========
 
 
 
@@ -1112,7 +1112,7 @@ series for one boxplot all at once
 
 
 Appendix
-===========
+========
 
 .. _statd_appendix:
 
