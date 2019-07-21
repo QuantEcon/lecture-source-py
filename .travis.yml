@@ -22,7 +22,10 @@ before_install:
 install:
   - pip install quantecon
   - pip install joblib
-  - pip install sphinxcontrib-jupyter sphinxcontrib-bibtex
+  - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter.git
+  - cd sphinxcontrib-jupyter && python setup.py install && cd ../
+  - rm -rf sphinxcontrib-jupyter
+  - make setup
 
 script:
   - make website
