@@ -1,4 +1,4 @@
-# Travis Configuration for lectures-quantecon-py
+# Travis Configuration for lecture-source-py
 
 sudo: false
 language: python
@@ -27,5 +27,9 @@ install:
   - rm -rf sphinxcontrib-jupyter
   - make setup
 
+cache:
+  directories:
+    - $HOME/QuantEcon/lecture-source-py/_build
+
 script:
-  - make website
+  - travis wait 30 make website
