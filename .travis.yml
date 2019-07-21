@@ -14,14 +14,12 @@ branches:
     - master
 
 before_install:
-  - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-  - chmod +x miniconda.sh
-  - ./miniconda.sh -b
-  - export PATH=/home/travis/miniconda/bin:$PATH
-  - conda update --yes conda
+  - wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O anaconda3.sh
+  - chmod +x anaconda3.sh
+  - ./anaconda3.sh -b
+  - export PATH=/home/travis/anaconda3/bin:$PATH
 
 install:
-  - conda install --yes anaconda
   - pip install quantecon
   - pip install joblib
   - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter.git
