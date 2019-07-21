@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-*********************************************
+******************************************
 :index:`Rational Expectations Equilibrium`
-*********************************************
+******************************************
 
 .. contents:: :depth: 2
 
@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 This lecture introduces the concept of *rational expectations equilibrium*.
 
@@ -43,27 +43,27 @@ Finally, we will learn about the important "Big :math:`K`, little :math:`k`" tri
 
 Except that for us
 
-* Instead of "Big :math:`K`" it will be "Big :math:`Y`"
+* Instead of "Big :math:`K`" it will be "Big :math:`Y`".
 
-* Instead of "little :math:`k`" it will be "little :math:`y`"
+* Instead of "little :math:`k`" it will be "little :math:`y`".
 
 
 The Big Y, Little y Trick
---------------------------------------------------
+-------------------------
 
 This widely used method applies in contexts in which a "representative firm" or agent is a "price taker" operating within a competitive equilibrium.
 
 We want to impose that
 
-* The representative firm or individual takes *aggregate* :math:`Y` as given when it chooses individual :math:`y`, but :math:`\ldots`
+* The representative firm or individual takes *aggregate* :math:`Y` as given when it chooses individual :math:`y`, but :math:`\ldots`.
 
-* At the end of the day, :math:`Y = y`, so that the representative firm is indeed representative
+* At the end of the day, :math:`Y = y`, so that the representative firm is indeed representative.
 
 The Big :math:`Y`, little :math:`y` trick accomplishes these two goals by
 
-* Taking :math:`Y` as beyond control when posing the choice  problem of who chooses :math:`y`;  but :math:`\ldots`
+* Taking :math:`Y` as beyond control when posing the choice  problem of who chooses :math:`y`;  but :math:`\ldots`.
 
-* Imposing :math:`Y = y` *after* having solved the individual's optimization  problem
+* Imposing :math:`Y = y` *after* having solved the individual's optimization  problem.
 
 Please watch for how this strategy is applied as the lecture unfolds.
 
@@ -71,7 +71,7 @@ We begin by applying the  Big :math:`Y`, little :math:`y` trick in a very simple
 
 
 A Simple Static Example of the Big Y, Little y Trick
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Consider a static model in which a collection of :math:`n` firms produce a homogeneous good that is sold in a competitive market.
@@ -142,7 +142,7 @@ After solving for :math:`Y`, we can compute the competitive equilibrium price :m
 
 
 Further Reading
------------------
+---------------
 
 References for this lecture include
 
@@ -154,7 +154,7 @@ References for this lecture include
 
 
 Defining Rational Expectations Equilibrium
-====================================================
+==========================================
 
 .. index::
     single: Rational Expectations Equilibrium; Definition
@@ -177,7 +177,7 @@ We formulate a rational expectations equilibrium in terms of a fixed point of an
 .. _ree_ce:
 
 Competitive Equilibrium with Adjustment Costs
--------------------------------------------------
+---------------------------------------------
 
 .. index::
     single: Rational Expectations Equilibrium; Competitive Equilbrium (w. Adjustment Costs)
@@ -203,7 +203,7 @@ where
 .. _ree_fp:
 
 The Firm's Problem
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 Each firm is a price taker.
 
@@ -213,7 +213,7 @@ While it faces no uncertainty, it does face adjustment costs
     uncertainty to the problem --- for example, by assuming that the inverse demand function
     is :math:`p_t = a_0 - a_1 Y_t + u_t`, where :math:`u_{t+1} = \rho u_t +
     \sigma_u \epsilon_{t+1}` where :math:`|\rho| < 1` and :math:`\epsilon_{t+1} \sim N(0,1)`
-    is IID.    We ask you to study the consequences of this change in exercise XXXXX
+    is IID.    We ask you to study the consequences of this change in exercise XXXXX.
 
 In particular, it chooses a production plan to maximize
 
@@ -248,7 +248,7 @@ We turn to this problem now.
 
 
 Prices and Aggregate Output
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 In view of :eq:`ree_comp3d`, the firm's incentive to forecast the market price translates into an incentive to forecast aggregate output :math:`Y_t`.
@@ -262,7 +262,7 @@ That justifies firms in regarding their forecasts of aggregate output as being u
 
 
 The Firm's Beliefs
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 We suppose the firm believes that market-wide output :math:`Y_t` follows the law of motion
 
@@ -279,7 +279,7 @@ The *belief function* :math:`H` is an equilibrium object, and hence remains to b
 
 
 Optimal Behavior Given Beliefs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For now, let's fix a particular belief :math:`H` in :eq:`ree_hlom` and investigate the firm's response to it.
 
@@ -313,7 +313,7 @@ where
 Evidently :math:`v` and :math:`h` both depend on :math:`H`.
 
 A First-Order Characterization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In what follows it will be helpful to have a second characterization of :math:`h`, based on first-order conditions.
 
@@ -345,9 +345,9 @@ Substituting this equation into :eq:`comp5` gives the *Euler equation*
 
 The firm optimally sets  an output path that satisfies :eq:`ree_comp7`, taking :eq:`ree_hlom` as given, and  subject to
 
-* the initial conditions for :math:`(y_0, Y_0)`
+* the initial conditions for :math:`(y_0, Y_0)`.
 
-* the terminal condition :math:`\lim_{t \rightarrow \infty } \beta^t y_t v_y(y_{t}, Y_t) = 0`
+* the terminal condition :math:`\lim_{t \rightarrow \infty } \beta^t y_t v_y(y_{t}, Y_t) = 0`.
 
 This last condition is called the *transversality condition*, and acts as a first-order necessary condition "at infinity".
 
@@ -359,7 +359,7 @@ a decision rule that automatically imposes both the Euler equation :eq:`ree_comp
 
 
 The Actual Law of Motion for Output
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As we've seen, a given belief translates into a particular decision rule :math:`h`.
 
@@ -376,22 +376,22 @@ Thus, when firms believe that the law of motion for market-wide output is :eq:`r
 .. _ree_def:
 
 Definition of Rational Expectations Equilibrium
-----------------------------------------------------
+-----------------------------------------------
 
 A *rational expectations equilibrium* or *recursive competitive equilibrium*  of the model with adjustment costs is a decision rule :math:`h` and an aggregate law of motion :math:`H` such that
 
 
-#.  Given belief :math:`H`, the map :math:`h` is the firm's optimal policy function
+#.  Given belief :math:`H`, the map :math:`h` is the firm's optimal policy function.
 
 #.  The law of motion :math:`H` satisfies :math:`H(Y)= nh(Y/n,Y)` for all
-    :math:`Y`
+    :math:`Y`.
 
 
 Thus, a rational expectations equilibrium equates the perceived and actual laws of motion :eq:`ree_hlom` and :eq:`ree_comp9a`.
 
 
 Fixed Point Characterization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As we've seen, the firm's optimum problem induces a mapping :math:`\Phi` from a perceived law of motion :math:`H` for market-wide output to an actual law of motion :math:`\Phi(H)`.
 
@@ -402,7 +402,7 @@ The :math:`H` component of a rational expectations equilibrium is a fixed point 
 
 
 Computation of an Equilibrium
-===============================
+=============================
 
 .. index::
     single: Rational Expectations Equilibrium; Computation
@@ -411,7 +411,7 @@ Now let's consider the problem of computing the rational expectations equilibriu
 
 
 Failure of Contractivity
--------------------------------------------------
+------------------------
 
 Readers accustomed to dynamic programming arguments might try to address this problem by choosing some guess :math:`H_0` for the aggregate law of motion and then iterating with :math:`\Phi`.
 
@@ -432,7 +432,7 @@ The details follow.
 .. _ree_pp:
 
 A Planning Problem Approach
-----------------------------------
+---------------------------
 
 .. index::
     single: Rational Expectations Equilibrium; Planning Problem Approach
@@ -469,7 +469,7 @@ subject to an initial condition for :math:`Y_0`.
 
 
 Solution of the Planning Problem
-----------------------------------------------
+--------------------------------
 
 Evaluating the integral in :eq:`comp10` yields the quadratic form :math:`a_0
 Y_t - a_1 Y_t^2 / 2`.
@@ -508,12 +508,12 @@ equation
 
 
 The Key Insight
-------------------
+---------------
 
 Return to equation :eq:`ree_comp7` and set :math:`y_t = Y_t` for all :math:`t`.
 
 (Recall that for this section we've set :math:`n=1` to simplify the
-calculations).
+calculations)
 
 A small amount of algebra will convince you that when :math:`y_t=Y_t`, equations :eq:`comp16` and :eq:`ree_comp7` are identical.
 
@@ -522,11 +522,11 @@ that we derived by
 
 #. finding the Euler equation of the representative firm and
 
-#. substituting into it the expression :math:`Y_t = n y_t` that "makes the representative firm be representative"
+#. substituting into it the expression :math:`Y_t = n y_t` that "makes the representative firm be representative".
 
-If it is appropriate to apply the same terminal conditions for these two difference equations, which it is, then we have verified that a solution of the planning problem is also a rational expectations equilibrium quantity sequence
+If it is appropriate to apply the same terminal conditions for these two difference equations, which it is, then we have verified that a solution of the planning problem is also a rational expectations equilibrium quantity sequence.
 
-.. Setting :math:`y_t = Y_t` in equation :eq:`ree_comp7` amounts to dropping equation :eq:`ree_hlom` and instead solving for the coefficients :math:`\kappa_0, \kappa_1` that make :math:`y_t = Y_t` true and that jointly solve equations :eq:`ree_hlom` and :eq:`ree_comp7`
+.. Setting :math:`y_t = Y_t` in equation :eq:`ree_comp7` amounts to dropping equation :eq:`ree_hlom` and instead solving for the coefficients :math:`\kappa_0, \kappa_1` that make :math:`y_t = Y_t` true and that jointly solve equations :eq:`ree_hlom` and :eq:`ree_comp7`.
 
 It follows that for this example we can compute equilibrium quantities by forming the optimal linear regulator problem corresponding to the Bellman equation :eq:`comp12`.
 
@@ -535,7 +535,7 @@ The optimal policy function for the planning problem is the aggregate law of mot
 
 
 Structure of the Law of Motion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As you are asked to show in the exercises, the fact that the planner's
 problem is an LQ problem implies an optimal policy --- and hence aggregate law
@@ -569,12 +569,12 @@ Hence a rational expectations equilibrium will be defined by the parameters
 
 
 Exercises
-=============
+=========
 
 .. _ree_ex1:
 
 Exercise 1
--------------
+----------
 
 Consider the firm problem :ref:`described above <ree_fp>`.
 
@@ -600,7 +600,7 @@ If there were :math:`n` identical competitive firms all behaving according to :e
 .. _ree_ex2:
 
 Exercise 2
-------------
+----------
 
 Consider the following :math:`\kappa_0, \kappa_1` pairs as candidates for the
 aggregate law of motion component of a rational expectations equilibrium (see
@@ -618,7 +618,7 @@ satisfy :ref:`the definition <ree_def>` of a rational expectations equilibrium
 
 Describe an iterative algorithm that uses the program that you wrote for exercise 1 to compute a rational expectations equilibrium.
 
-(You are not being asked actually to use the algorithm you are suggesting).
+(You are not being asked actually to use the algorithm you are suggesting)
 
 
 
@@ -626,20 +626,20 @@ Describe an iterative algorithm that uses the program that you wrote for exercis
 .. _ree_ex3:
 
 Exercise 3
-------------
+----------
 
 
 Recall the planner's problem :ref:`described above <ree_pp>`
 
-#. Formulate the planner's problem as an LQ problem
+#. Formulate the planner's problem as an LQ problem.
 
 #. Solve it using the same parameter values in exercise 1
 
     * :math:`a_0= 100, a_1= 0.05, \beta = 0.95, \gamma=10`
 
-#.  Represent the solution in the form :math:`Y_{t+1} = \kappa_0 + \kappa_1 Y_t`
+#.  Represent the solution in the form :math:`Y_{t+1} = \kappa_0 + \kappa_1 Y_t`.
 
-#.  Compare your answer with the results from exercise 2
+#.  Compare your answer with the results from exercise 2.
 
 
 
@@ -647,7 +647,7 @@ Recall the planner's problem :ref:`described above <ree_pp>`
 .. _ree_ex4:
 
 Exercise 4
-------------
+----------
 
 A monopolist faces the industry demand curve :eq:`ree_comp3d`  and chooses :math:`\{Y_t\}` to maximize :math:`\sum_{t=0}^{\infty} \beta^t r_t` where
 
@@ -672,7 +672,7 @@ Compare your results with the previous exercise -- comment.
 
 
 Solutions
-==========
+=========
 
 
 
@@ -820,11 +820,11 @@ aggregate law of motion component of a rational expectations
 equilibrium, we can proceed as follows:
 
 -  Determine the corresponding firm law of motion
-   :math:`y_{t+1} = h_0 + h_1 y_t + h_2 Y_t`
+   :math:`y_{t+1} = h_0 + h_1 y_t + h_2 Y_t`.
 
 -  Test whether the associated aggregate law
    ::math:`Y_{t+1} = n h(Y_t/n, Y_t)` evaluates to
-   :math:`Y_{t+1} = \kappa_0 + \kappa_1 Y_t`
+   :math:`Y_{t+1} = \kappa_0 + \kappa_1 Y_t`.
 
 In the second step, we can use :math:`Y_t = n y_t = y_t`, so that
 :math:`Y_{t+1} = n h(Y_t/n, Y_t)` becomes
@@ -878,7 +878,7 @@ This amounts to implementing the operator :math:`\Phi` described in the
 lecture.
 
 (There is in general no guarantee that this iterative process will
-converge to a rational expectations equilibrium).
+converge to a rational expectations equilibrium)
 
 Exercise 3
 ----------

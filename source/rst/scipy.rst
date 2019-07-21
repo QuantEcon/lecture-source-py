@@ -84,7 +84,7 @@ These sub-packages and their attributes need to be imported separately
 Let's explore some of the major sub-packages.
 
 Statistics
-=============
+==========
 
 .. index::
     single: SciPy; Statistics
@@ -96,7 +96,7 @@ The ``scipy.stats`` subpackage supplies
 * some statistical tests
 
 Random Variables and Distributions
--------------------------------------
+----------------------------------
 
 Recall that ``numpy.random`` provides functions for generating random variables
 
@@ -188,7 +188,7 @@ For example, the previous code can be replaced by
 
 
 Other Goodies in scipy.stats
--------------------------------
+----------------------------
 
 There are a variety statistical functions in ``scipy.stats``.
 
@@ -209,7 +209,7 @@ To see the full list, consult the `documentation <http://docs.scipy.org/doc/scip
 
 
 Roots and Fixed Points
-=========================
+======================
 
 A *root* of a real function :math:`f` on :math:`[a,b]` is an :math:`x \in [a, b]` such that :math:`f(x)=0`.
 
@@ -290,9 +290,9 @@ Unlike bisection, the Newton-Raphson method uses local slope information.
 
 This is a double-edged sword:
 
-* When the function is well-behaved, the Newton-Raphson method is faster than bisection
+* When the function is well-behaved, the Newton-Raphson method is faster than bisection.
 
-* When the function is less well-behaved, the Newton-Raphson might fail
+* When the function is less well-behaved, the Newton-Raphson might fail.
 
 Let's investigate this using the same function :math:`f`, first looking at potential instability
 
@@ -321,7 +321,7 @@ On the other hand, using IPython's ``timeit`` magic, we see that ``newton`` can 
 
 
 Hybrid Methods
----------------
+--------------
 
 So far we have seen that the Newton-Raphson method is fast but not robust.
 
@@ -329,9 +329,9 @@ This bisection algorithm is robust but relatively slow.
 
 This illustrates a general principle
 
-* If you have specific knowledge about your function, you might be able to exploit it to generate efficiency
+* If you have specific knowledge about your function, you might be able to exploit it to generate efficiency.
 
-* If not, then the algorithm choice involves a trade-off between the speed of convergence and robustness
+* If not, then the algorithm choice involves a trade-off between the speed of convergence and robustness.
 
 In practice, most default algorithms for root-finding, optimization and fixed points use *hybrid* methods.
 
@@ -355,7 +355,7 @@ Here the correct solution is found and the speed is almost the same as ``newton`
 
 
 Multivariate Root-Finding
-----------------------------
+-------------------------
 
 .. index::
     single: SciPy; Multivariate Root-Finding
@@ -366,7 +366,7 @@ See the `documentation <http://docs.scipy.org/doc/scipy/reference/generated/scip
 
 
 Fixed Points
----------------
+------------
 
 .. index::
     single: SciPy; Fixed Points
@@ -413,7 +413,7 @@ For constrained, univariate (i.e., scalar) minimization, a good hybrid option is
 
 
 Multivariate Optimization
-----------------------------
+-------------------------
 
 .. index::
     single: Optimization; Multivariate
@@ -476,17 +476,17 @@ We leave you to investigate the `set of available routines <http://docs.scipy.or
 
 
 Exercises
-=============
+=========
 
 .. _sp_ex1:
 
 Exercise 1
-------------
+----------
 
 
 Previously we discussed the concept of :ref:`recursive function calls <recursive_functions>`.
 
-Write a recursive implementation of the bisection function described above, which we repeat here for convenience
+Write a recursive implementation of the bisection function described above, which we repeat here for convenience.
 
 .. literalinclude:: /_static/lecture_specific/scipy/bisection.py
 
@@ -494,7 +494,7 @@ Test it on the function ``f = lambda x: np.sin(4 * (x - 0.25)) + x + x**20 - 1``
 
 
 Solutions
-==========
+=========
 
 
 
