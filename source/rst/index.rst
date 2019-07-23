@@ -47,6 +47,7 @@
     index_time_series_models
     index_asset_pricing
     index_dynamic_programming_squared
+    index_lq_dynamic_programming
     zreferences
 
 
