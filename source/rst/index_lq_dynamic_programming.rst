@@ -1,0 +1,24 @@
+.. _lq_dynamic_programming:
+
+.. include:: /_static/includes/header.raw
+
+**********************
+LQ Dynamic Programming
+**********************
+
+
+.. only:: html
+
+    Lectures
+    ********
+
+
+
+.. toctree::
+    :maxdepth: 2
+
+    markov_jump_lq
+    tax_smoothing_1
+    tax_smoothing_2
+    tax_smoothing_3
+    
