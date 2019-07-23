@@ -21,9 +21,9 @@ Overview
 This lecture describes **Markov jump linear quadratic dynamic programming**, an extension of the method described in
 :doc:`LQ dynamic programming <lqcontrol>`.
 
-Markov jump linear quadratic dynamic programming is  described and analyzed in :cite:`do1999solutions` and the references cited there.
+Markov jump linear quadratic dynamic programming is described and analyzed in :cite:`do1999solutions` and the references cited there.
 
-The method has been applied to problems in  macroeconomics and monetary economics by :cite:`svensson2008optimal` and :cite:`SvenssonWilliams2009`.
+The method has been applied to problems in macroeconomics and monetary economics by :cite:`svensson2008optimal` and :cite:`SvenssonWilliams2009`.
 
 The periodic models of seasonality described in chapter 14 of :cite:`HS2013` are a special case of Markov jump linear quadratic problems.
 
@@ -56,7 +56,7 @@ for state :math:`j` prevails.
 Review of useful LQ dynamic programming formulas
 ================================================
 
-To begin,it is handy to have the following reminder in mind.
+To begin, it is handy to have the following reminder in mind.
 
 A **linear quadratic dynamic programming problem** consists of a scalar
 discount factor :math:`\beta \in (0,1)`, an :math:`n\times 1` state
@@ -247,7 +247,7 @@ Example 1
 
 This example is a version of a classic problem of optimally adjusting a variable :math:`k_t` to a target level in the face of costly adjustment.
 
-This provides a  model of gradual adjustment.
+This provides a model of gradual adjustment.
 
 Given :math:`k_{0}`, the objective function is
 
@@ -319,7 +319,7 @@ We can represent the one-period payoff function
                           d_vals=[1., 1.]):
         """
         Construct matrices that maps the problem described in example 1
-        into a Markov jump linear quadratic dynamic programming problem.
+        into a Markov jump linear quadratic dynamic programming problem
         """
 
         # number of Markov states
@@ -673,8 +673,10 @@ decision rules for cases with different Markov transition matrices
             for i in range(2):
                 F = [F1, F2][i]
                 c = ["b", "r"][i]
-                ax.plot([0, 1], [k_star[i], k_star[i]], "--", color=c, label="$k^*(\overline{s}_"+str(i+1)+")$")
-                ax.plot(λ_vals, - F[:, 1] / F[:, 0], color=c, label="$k^{target}(\overline{s}_"+str(i+1)+")$")
+                ax.plot([0, 1], [k_star[i], k_star[i]], "--",
+                        color=c, label="$k^*(\overline{s}_"+str(i+1)+")$")
+                ax.plot(λ_vals, - F[:, 1] / F[:, 0], color=c,
+                        label="$k^{target}(\overline{s}_"+str(i+1)+")$")
 
             # plot a vertical line at λ=0.5
             ax.plot([0.5, 0.5], [min(k_star), max(k_star)], "-.")
@@ -947,7 +949,7 @@ Only :math:`\sigma(s_t)` depends on :math:`s_t`.
 More examples
 =============
 
-The following  lectures describe how Markov jump  linear quadratic dynamic programming  can be used to extend the :cite:`Barro1979` model
+The following lectures describe how Markov jump linear quadratic dynamic programming can be used to extend the :cite:`Barro1979` model
 of optimal tax-smoothing and government debt in several interesting directions
 
   1. :doc:`How to Pay for a War: Part 1 <tax_smoothing_1>`
