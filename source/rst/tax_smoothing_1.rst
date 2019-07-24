@@ -37,7 +37,7 @@ Barro’s original 1979 :cite:`Barro1979` model is about a government that borro
 in order to minimize an intertemporal measure of distortions
 caused by taxes.
 
-Technical tractability induced Barro to assume that
+Technical tractability induced Barro :cite:`Barro1979` to assume that
 
 -  the government trades only one-period risk-free debt, and
 
