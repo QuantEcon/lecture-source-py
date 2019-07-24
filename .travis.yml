@@ -18,9 +18,7 @@ before_install:
   - chmod +x anaconda3.sh
   - ./anaconda3.sh -b
   - export PATH=/home/travis/anaconda3/bin:$PATH
-  - echo $HOME
   - pwd
-  - ls
 
 install:
   - pip install quantecon
@@ -32,7 +30,7 @@ install:
 
 cache:
   directories:
-    - $HOME/QuantEcon/lecture-source-py/_build
+    - $HOME/build/QuantEcon/lecture-source-py/_build
 
 script:
   - travis_wait 120 make website
