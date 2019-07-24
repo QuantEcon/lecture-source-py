@@ -11,7 +11,7 @@ Uncertainty Traps
 .. contents:: :depth: 2
 
 Overview
-============
+========
 
 In this lecture, we study a simplified version of an uncertainty traps model of Fajgelbaum, Schaal and Taschereau-Dumouchel :cite:`fun`.
 
@@ -394,7 +394,7 @@ different values of :math:`M`
 .. code-block:: python3
 
     econ = UncertaintyTrapEcon()
-    ρ, σ_θ, γ_x = econ.ρ, econ.σ_θ, econ.γ_x    # simplify names
+    ρ, σ_θ, γ_x = econ.ρ, econ.σ_θ, econ.γ_x    # Simplify names
     γ = np.linspace(1e-10, 3, 200)              # γ grid
     fig, ax = plt.subplots(figsize=(9, 9))
     ax.plot(γ, γ, 'k-')                         # 45 degree line
@@ -474,7 +474,7 @@ Now let's plot the whole thing together
     names = r'$\theta$', r'$\mu$', r'$\gamma$', r'$M$'
 
     for ax, vals, name in zip(axes, series, names):
-        # determine suitable y limits
+        # Determine suitable y limits
         s_max, s_min = max(vals), min(vals)
         s_range = s_max - s_min
         y_max = s_max + s_range * 0.1
