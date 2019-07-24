@@ -19,7 +19,7 @@ before_install:
   - ./anaconda3.sh -b
   - export PATH=/home/travis/anaconda3/bin:$PATH
   - pwd
-  - ls _build/doctrees/
+  - ls $HOME/build/QuantEcon/lecture-source-py/_build/doctrees/
 
 install:
   - pip install quantecon
