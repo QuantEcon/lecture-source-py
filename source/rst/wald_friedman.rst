@@ -484,7 +484,7 @@ The function ``operator_factory`` returns the operator ``Q``
         @njit
         def κ(z, π):
             """
-            Updates π using Bayes' rule and the current observation z.
+            Updates π using Bayes' rule and the current observation z
             """
             π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
             π_new = π_f0 / (π_f0 + π_f1)
@@ -585,7 +585,7 @@ To solve the model, we will call our ``solve_model`` function
 
 .. code-block:: python3
 
-    h_star = solve_model(wf)  # solve the model
+    h_star = solve_model(wf)    # Solve the model
 
 We will also set up a function to compute the cutoffs :math:`\alpha` and :math:`\beta`
 and plot these on our value function plot
@@ -593,11 +593,13 @@ and plot these on our value function plot
 .. code-block:: python3
 
     def find_cutoff_rule(wf, h):
+
         """
-        This function takes a continuation value function and returns the corresponding
-        cutoffs of where you transition between continuing and choosing a
-        specific model
+        This function takes a continuation value function and returns the 
+        corresponding cutoffs of where you transition between continuing and
+        choosing a specific model
         """
+
         π_grid = wf.π_grid
         L0, L1 = wf.L0, wf.L1
 
@@ -606,7 +608,7 @@ and plot these on our value function plot
         payoff_f1 = π_grid * L1
 
         # The cutoff points can be found by differencing these costs with
-        # the Bellman equation (J is always less than or equal to p_c_i)
+        # The Bellman equation (J is always less than or equal to p_c_i)
         β = π_grid[np.searchsorted(payoff_f1 - np.minimum(h, payoff_f0), 1e-10) - 1]
         α = π_grid[np.searchsorted(np.minimum(h, payoff_f1) - payoff_f0, 1e-10) - 1]
 
@@ -621,7 +623,8 @@ and plot these on our value function plot
     ax.plot(wf.π_grid, h_star, label='continuation value')
     ax.plot(wf.π_grid, cost_L1, label='choose f1')
     ax.plot(wf.π_grid, cost_L0, label='choose f0')
-    ax.plot(wf.π_grid, np.amin(np.column_stack([h_star, cost_L0, cost_L1]), axis=1),
+    ax.plot(wf.π_grid,
+            np.amin(np.column_stack([h_star, cost_L0, cost_L1]),axis=1),
             lw=15, alpha=0.1, color='b', label='minimum cost')
 
     ax.annotate(r"$\beta$", xy=(β + 0.01, 0.5), fontsize=14)
@@ -666,9 +669,10 @@ In this case, the decision-maker is correct 80% of the time
 .. code-block:: python3
 
     def simulate(wf, true_dist, h_star, π_0=0.5):
+
         """
         This function takes an initial condition and simulates until it
-        stops (when a decision is made).
+        stops (when a decision is made)
         """
 
         f0, f1 = wf.f0, wf.f1
@@ -677,7 +681,7 @@ In this case, the decision-maker is correct 80% of the time
 
         def κ(z, π):
             """
-            Updates π using Bayes' rule and the current observation z.
+            Updates π using Bayes' rule and the current observation z
             """
             π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
             π_new = π_f0 / (π_f0 + π_f1)
@@ -725,9 +729,10 @@ In this case, the decision-maker is correct 80% of the time
         return correct, π, t
 
     def stopping_dist(wf, h_star, ndraws=250, true_dist="f0"):
+
         """
         Simulates repeatedly to get distributions of time needed to make a
-        decision and how often they are correct.
+        decision and how often they are correct
         """
 
         tdist = np.empty(ndraws, int)
