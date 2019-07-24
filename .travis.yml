@@ -19,7 +19,8 @@ before_install:
   - ./anaconda3.sh -b
   - export PATH=/home/travis/anaconda3/bin:$PATH
   - echo $HOME
-  - ls -a | echo
+  - pwd
+  - ls
 
 install:
   - pip install quantecon
