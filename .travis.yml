@@ -33,4 +33,4 @@ cache:
     - $HOME/build/QuantEcon/lecture-source-py/_build
 
 script:
-  - travis_wait 120 make website
+  - make website
