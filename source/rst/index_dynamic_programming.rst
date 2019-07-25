@@ -31,11 +31,6 @@ agents as given.  Later we will look at full equilibrium problems.
     optgrowth
     coleman_policy_iter
     egm_policy_iter
-    lqcontrol
-    perm_income
-    perm_income_cons
-    smoothing
     ifp
-    robustness
     discrete_dp
 

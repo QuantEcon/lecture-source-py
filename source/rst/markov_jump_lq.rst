@@ -6,6 +6,7 @@
     single: python
 
 
+
 ************************************************
 Markov Jump Linear Quadratic Dynamic Programming
 ************************************************
@@ -18,8 +19,7 @@ Markov Jump Linear Quadratic Dynamic Programming
 Overview
 ========
 
-This lecture describes **Markov jump linear quadratic dynamic programming**, an extension of the method described in
-:doc:`LQ dynamic programming <lqcontrol>`.
+This lecture describes **Markov jump linear quadratic dynamic programming**, an extension of the method described in the :doc:`first LQ control lecture <lqcontrol>`.
 
 Markov jump linear quadratic dynamic programming is described and analyzed in :cite:`do1999solutions` and the references cited there.
 

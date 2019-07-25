@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-**********************
-LQ Dynamic Programming
-**********************
+**********
+LQ Control
+**********
 
 
 .. only:: html
@@ -17,6 +17,11 @@ LQ Dynamic Programming
 .. toctree::
     :maxdepth: 2
 
+    lqcontrol
+    perm_income
+    perm_income_cons
+    smoothing
+    robustness
     markov_jump_lq
     tax_smoothing_1
     tax_smoothing_2

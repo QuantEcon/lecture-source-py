@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-*******************************
-LQ Dynamic Programming Problems
-*******************************
+***********************
+LQ Control: Foundations
+***********************
 
 .. index::
     single: LQ Control
