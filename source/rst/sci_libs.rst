@@ -465,7 +465,7 @@ Here's a pure Python version of the function
 .. code-block:: python3
 
     def compute_series(n):
-        x = np.empty(n, dtype=int)
+        x = np.empty(n, dtype=np.int_)
         x[0] = 1  # Start in state 1
         U = np.random.uniform(0, 1, size=n)
         for t in range(1, n):
