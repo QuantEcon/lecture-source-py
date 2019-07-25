@@ -15,12 +15,12 @@ How to Pay for a War: Part 3
 **Co-author**: `Sebastian Graves <https://github.com/sebgraves>`__
 
 
-Roll-Over Risk: Another Application of Markov Jump Linear Quadratic Dynamic Programming
-=======================================================================================
+Another Application of Markov Jump Linear Quadratic Dynamic Programming
+=======================================================================
 
 This is another :doc:`sequel to an earlier lecture <tax_smoothing_1>`.
 
-As earlier, we use method introduced in lecture :doc:`Markov Jump LQ dynamic programming <markov_jump_lq>`
+We again use a method introduced in lecture :doc:`Markov Jump LQ dynamic programming <markov_jump_lq>`
 to implement some ideas Barro (1999 :cite:`barro1999determinants`, 2003 :cite:`barro2003religion`) that
 extend his classic 1979 :cite:`Barro1979` model of tax smoothing.
 
@@ -28,17 +28,16 @@ Barro’s 1979 :cite:`Barro1979` model is about a government that borrows and le
 to help it minimize an intertemporal measure of distortions caused by
 taxes.
 
-Technically, Barro’s 1979 :cite:`Barro1979` model looks a lot like a consumption
-smoothing model.
+Technically, Barro’s 1979 :cite:`Barro1979` model looks a lot like a consumption-smoothing model.
 
 Our generalizations of his 1979 model will also look
-like a souped-up consumption smoothing model.
+like souped-up consumption-smoothing models.
 
 In this lecture, we try to capture the tax-smoothing problem of a
 government that faces **roll-over risk**.
 
-Roll-over Risk
---------------
+Roll-Over Risk
+==============
 
 Let :math:`T_t` denote tax collections, :math:`\beta` a discount factor,
 :math:`b_{t,t+1}` time :math:`t+1` goods that the government promises to
@@ -78,7 +77,7 @@ Specifically, we shut down the government’s ability to borrow in
 one of the Markov states.
 
 A Dead End
-^^^^^^^^^^
+==========
 
 A first thought for how to implement this might be to allow
 :math:`p^t_{t+1}` to vary over time with:
@@ -106,8 +105,8 @@ cheap (Our Riccati equations will discover this for us!).
 
 Thus, we must represent “roll-over risk” some other way.
 
-A Better Representation of Roll-over Risk
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A Better Representation of Roll-Over Risk
+=========================================
 
 To force the government to set :math:`b_{t,t+1} = 0`, we can instead
 extend the model to have four Markov states:
