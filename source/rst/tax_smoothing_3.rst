@@ -14,6 +14,12 @@ How to Pay for a War: Part 3
 
 **Co-author**: `Sebastian Graves <https://github.com/sebgraves>`__
 
+In addition to what's in Anaconda, this lecture will need the following libraries:
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install --upgrade quantecon
 
 Another Application of Markov Jump Linear Quadratic Dynamic Programming
 =======================================================================
