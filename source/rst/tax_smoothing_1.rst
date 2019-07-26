@@ -14,6 +14,13 @@ How to Pay for a War: Part 1
 
 **Co-author:** `Sebastian Graves <https://github.com/sebgraves>`__
 
+In addition to what's included in Anaconda, this lecture uses the quantecon library
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install --upgrade quantecon
+
 
 Reader's Guide
 ==============

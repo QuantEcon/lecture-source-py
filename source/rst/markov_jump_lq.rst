@@ -16,6 +16,14 @@ Markov Jump Linear Quadratic Dynamic Programming
 **Co-authors:** `Sebastian Graves <https://github.com/sebgraves>`__ and Zejin Shi
 
 
+In addition to what's included in  Anaconda, this lecture uses the quantecon library
+
+.. code-block:: ipython
+  :class: hide-output
+
+  !pip install --upgrade quantecon
+
+
 Overview
 ========
 
