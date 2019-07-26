@@ -463,7 +463,7 @@ Now we’ll plot the decision rules and see if they make sense
     ax.legend()
     plt.show()
 
-The above graph plots $k_{t+1}= k_t + u_t = k_t - F x_t $ as an affine
+The above graph plots :math:`k_{t+1}= k_t + u_t = k_t - F x_t` as an affine
 (i.e., linear in :math:`k_t` plus a constant) function of :math:`k_t`
 for both Markov states :math:`s_t`.
 

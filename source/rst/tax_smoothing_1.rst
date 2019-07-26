@@ -233,7 +233,7 @@ the current state:
 
 .. math::  G_t = S_G x_t \hspace{2mm}, \hspace{2mm} b_{t-1,t} = S_1 x_t
 
-If we define :math:`M_t = - p_{t,t+1}`, and let $S = S_G + S_1 $, then
+If we define :math:`M_t = - p_{t,t+1}`, and let :math:`S = S_G + S_1`, then
 we can write taxation as a function of the states and control using the
 government’s budget constraint:
 
