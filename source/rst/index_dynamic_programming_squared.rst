@@ -20,7 +20,6 @@ Here we look at models in which a value function for one Bellman equation has as
 
     dyn_stack
     calvo
-    lqramsey
     opt_tax_recur
     amss
     amss2
