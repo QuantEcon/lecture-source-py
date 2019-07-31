@@ -453,7 +453,8 @@ We can now briefly summarize other components of our economies, in particular
 
 
 
-**Production Technology**.
+Production Technology
+----------------------
 
 Where :math:`c_t` is a vector of consumption rates, :math:`k_t` is a vector of physical capital goods, :math:`g_t` is
 a vector intermediate productions goods, :math:`d_t` is a vector of technology shocks, the production technology is
@@ -474,7 +475,8 @@ For technical reasons that facilitate computations, we make the following.
 
 
 
-**Household Technology**
+Household Technology
+---------------------
 
 Households confront a technology that allows them to devote consumption goods to construct a vector :math:`h_t` of household capital goods
 and a vector :math:`s_t` of utility generating  house services
@@ -494,7 +496,8 @@ are less than or equal to one.
 
 Below, we'll outline further assumptions that we shall occasionally impose.
 
-**Preferences**
+Preferences
+------------
 
 Where :math:`b_t` is a stochastic process of preference shocks that will play the role of demand shifters, the representative household orders
 stochastic processes of consumption services :math:`s_t` according to
@@ -911,9 +914,9 @@ Thus, we require that each component of :math:`h_t` and each component of
 
 We shall compare and utilize two approaches to solving the planning problem
 
--  Lagrangian
+-  Lagrangian formulation
 
--  Dynamic Programming
+-  Dynamic programming
 
 Lagrangian Formulation
 ------------------------
@@ -1034,8 +1037,7 @@ Dynamic Programming
 
 Dynamic Programming  always starts with the word **let**.
 
-Thus, let :math:`V(x_0)` be the optimal value function for the
- planning problem as a function of the initial state vector :math:`x_0`.
+Thus, let :math:`V(x_0)` be the optimal value function for the  planning problem as a function of the initial state vector :math:`x_0`.
 
 (Thus, in essence, dynamic programming amounts to an application of a **guess and verify** method in which we begin with a guess about the answer
 to the problem we want to solve. That's why we start with **let** :math:`V(x_0)` be the (value of the) answer to the problem, then establish and
@@ -1061,11 +1063,13 @@ subject to the linear constraints
     z_1 &= A_{22} z_0 + C_2 w_1,\ b_0 = U_b z_0 \ \hbox{ and }\  d_0 =
    U_d z_0 \end{aligned}
 
+Because this is a  linear-quadratic dynamic programming problem, it turns out that the value function has the form
+
 .. math:: V(x) = x' P x + \rho
 
 .. _dynamic-programming-1:
 
-This is a version of the following linear-quadratic dynamic programming problem.
+Thus, we want to solve  an instance of the following linear-quadratic dynamic programming problem:
 
 Choose a contingency plan for :math:`\{x_{t+1}, u_t \}_{t=0}^\infty` to
 maximize
@@ -1108,8 +1112,8 @@ where maximization is subject to
    B + W)   (Q + \beta B^\prime P B)^{-1} (\beta B^\prime P
    A + W')
 
-This equation in :math:`P` is called the algebraic matrix Riccati
-equation.
+This equation in :math:`P` is called the **algebraic matrix Riccati
+equation**.
 
 The optimal decision rule is :math:`u_t = - F x_t`, where
 
@@ -1179,7 +1183,9 @@ where
    \begin{bmatrix} R & W \\ W' & Q  \end{bmatrix}\ \ \begin{bmatrix} x_t
    \\ u_t \end{bmatrix}
 
-:math:`S = (G^\prime G + H^\prime H) / 2`
+.. math::
+ 
+   S = (G^\prime G + H^\prime H) / 2
 
 .. math::
 
@@ -1194,7 +1200,9 @@ where
    \vdots \ - \Phi_i] .
 
 
-For us a useful fact is that Lagrange multipliers equal gradients of the  planner’s value function
+**Lagrange multipliers as gradient of value function**
+
+A useful fact is that Lagrange multipliers equal gradients of the  planner’s value function
 
 
 .. math::
@@ -1225,6 +1233,9 @@ For us a useful fact is that Lagrange multipliers equal gradients of the  planne
 
 
 We will use this fact and these equations to compute competitive equilibrium prices.
+
+Other mathematical infrastructure
+----------------------------------
 
 Let's start with describing the **commodity space** and **pricing functional** for our competitive equilibrium.
 
@@ -1321,6 +1332,10 @@ subject to
 
 .. math:: k_t = \Delta_k k_{t-1} + \Theta_k i_t
 
+
+Competitive Equilibrium:  Definition
+-------------------------------------
+
 We can now state the following.
 
 **Definition:** A competitive equilibrium is a price system
@@ -1338,12 +1353,12 @@ Versions of the two classical welfare theorems prevail under our assumptions.
 
 We exploit that fact in our algorithm for computing a competitive equilibrium.
 
- **Step 1:** Solve the planning problem by using dynamic programming.
+**Step 1:** Solve the planning problem by using dynamic programming.
 
  The allocation (i.e., **quantities**) that solve the planning problem **are** the
  competitive equilibrium quantities.
 
- **Step 2:** use the following formulas to compute the **equilibrium price system**
+**Step 2:** use the following formulas to compute the **equilibrium price system**
 
 
 .. math::
@@ -1371,6 +1386,10 @@ We exploit that fact in our algorithm for computing a competitive equilibrium.
 multipliers for each of our three classes of agents that cause all
 first-order necessary conditions to be satisfied at these prices and at
 the quantities associated with the optimum of the planning problem.
+
+
+Asset pricing
+-------------
 
 An important use of an equilibrium pricing system is to do asset pricing.
 
@@ -1662,7 +1681,7 @@ if
 
   - the absolute values of the eigenvalues of :math:`\color{blue}{(\Delta_h - \Theta_h \Pi^{-1}\Lambda)}` are strictly less than :math:`1/\sqrt\beta`.
 
-.
+
 **Key invertibility property:** A canonical household service
 technology maps a service process :math:`\{s_t\}` in :math:`L_0^2`
 into a corresponding consumption process :math:`\{c_t\}` for which the
@@ -1841,10 +1860,33 @@ requirements for a canonical representation.
 
 
 
-Examples: Partial Equilibrium
--------------------------------
+Partial Equilibrium
+====================
 
-Demand:
+Now we'll provide quick overviews of  examples of  economies that fit within our framework
+
+We provide details for a number  of these examples in subsequent lectures 
+
+
+
+  1. :doc:`Growth in Dynamic Linear Economies <growth_in_dles>`
+
+  2. :doc:`Lucas Asset Pricing using DLE <lucas_asset_pricing_dles>`
+
+  3. :doc:`IRFs in Hall Model <irfs_in_hall_model>`
+
+  4. :doc:`Permanent Income Using the DLE class <permanent_income_dles>`
+
+  5. :doc:`Rosen schooling model <rosen_schooling_model>`
+
+  6. :doc:`Cattle cycles <cattle_cycles>`
+
+  7. :doc:`Shock Non Invertibility <hs_invertibility_example>`
+
+
+We'll start with an example of a **partial equilibrium** in which we posit demand and supply curves
+
+Suppose that we want to capture the dynamic  demand curve:
 
 .. math::
 
@@ -1856,7 +1898,11 @@ Demand:
      h_t &= \Delta_h h_{t-1} + \Theta_h c_t \end{aligned}
 
 
-Reverse engineer preferences that generate this demand system:
+From material described earlier in this lecture, we know how to reverse engineer preferences that generate this demand system
+
+  * note how the demand equations are cast in terms of the matrices in our standard preference representation
+
+Now let's turn to supply.
 
 A representative firm takes as given and beyond its control the
 stochastic process :math:`\{p_t\}_{t=0}^\infty`.
@@ -1885,7 +1931,7 @@ subject to given :math:`k_{-1}` and
                      \end{aligned}
 
 Equilibrium Investment Under Uncertainty
---------------------------------------------------------------
+=========================================
 
 A representative firm maximizes
 
@@ -1912,7 +1958,7 @@ where :math:`u_t` is a demand shifter with mean zero and
 Assume that :math:`u_t, d_t` are uncorrelated first-order autoregressive processes.
 
 A Rosen-Topel Housing Model
--------------------------------
+============================
 
 .. math::
 
@@ -2010,8 +2056,13 @@ where :math:`\alpha_0 > 0`, :math:`\alpha_1 > 0`, and
 :math:`\{\tilde d_t\}_{t=0}^\infty` is a stochastic process with mean
 zero representing a demand shifter.
 
+For more details see :doc:`Cattle cycles <cattle_cycles>`
+
 Models of Occupational Choice and Pay
 ======================================
+
+We'll describe the following pair of schooling models that view education as a time-to-build process:
+
 
 -  Rosen schooling model for engineers
 
@@ -2149,9 +2200,13 @@ condition
 Permanent Income Models
 =======================
 
+We'll describe a class of permanent income models that feature
+
 -  Many consumption goods and services
 
--  A single capital good with ‘:math:`R \beta =1`’
+-  A single capital good with :math:`R \beta =1`
+
+ - The physical production technology 
 
 .. math::
 
@@ -2165,16 +2220,12 @@ Permanent Income Models
 
 Equality of Present Values of Moving Average Coefficients of :math:`c` and :math:`e`
 
-.. math:: k_{t-1} = \beta \sum_{j=0}^\infty \beta^j (\phi_c \cdot c_{t+j} - e_{t+j})
-
-:math:`\Rightarrow`
+.. math:: k_{t-1} = \beta \sum_{j=0}^\infty \beta^j (\phi_c \cdot c_{t+j} - e_{t+j}) \quad  \Rightarrow
 
 .. math::
 
    k_{t-1} = \beta \sum_{j=0}^\infty  \beta^j E (\phi_c
-       \cdot c_{t+j} - e_{t+j})|J_t
-
-:math:`\Rightarrow`
+       \cdot c_{t+j} - e_{t+j})|J_t \quad \Rightarrow
 
 .. math::
 
@@ -2199,9 +2250,12 @@ and
 
 .. math:: {\mathcal M}_t^c  =  (\Phi_c)^\prime {\mathcal M}_t^d = \phi_c {\cal M}_t^e
 
+
+For more details see :doc:`Permanent Income Using the DLE class <permanent_income_dles>`
+
 **Testing Permanent Income Models:**
 
-Test the two implications:
+We have two types of  implications of permanent income models:
 
 -  Equality of present values of moving average coefficients.
 
@@ -2267,7 +2321,7 @@ levels) and different :math:`b_{jt}` preference shock processes and
 initial conditions for household capital stocks.
 
 
-**Punchline:** :math:`\exists` a representative consumer.
+**Punchline:** there exists a representative consumer.
 
 We can use the representative consumer to compute a competitive equilibrium **aggregate** allocation and price system.
 
