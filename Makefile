@@ -10,6 +10,7 @@ BUILDDIR      = _build
 BUILDWEBSITE  = _build/website
 CORES 		  = 4
 BUILDCOVERAGE = _build/coverage
+PORT          = 8888
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -23,12 +24,12 @@ setup:
 
 preview:
 ifneq (,$(filter $(target),website Website))
-	cd $(BUILDWEBSITE)/jupyter_html && python -m http.server
+	cd $(BUILDWEBSITE)/jupyter_html && python -m http.server $(PORT)
 else
 ifdef lecture
-	cd $(BUILDDIR)/jupyter/ && jupyter notebook $(basename $(lecture)).ipynb
+	cd $(BUILDDIR)/jupyter/ && jupyter notebook --port $(PORT) --port-retries=0 $(basename $(lecture)).ipynb
 else
-	cd $(BUILDDIR)/jupyter/ && jupyter notebook
+	cd $(BUILDDIR)/jupyter/ && jupyter notebook --port $(PORT) --port-retries=0
 endif
 endif
 
