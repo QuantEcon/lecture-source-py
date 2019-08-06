@@ -580,10 +580,6 @@ Let's try this, using the same parameters in both complete and incomplete market
 .. literalinclude:: /_static/lecture_specific/smoothing/consumption_paths.py
 
 
-XXXX John and Matt: the graph does not show up in the lecture or in the *.pdf that are live now; after my edits, the above graph *does* show up in the
-jupyter notebook now; will it show up on the lectures though?; any ideas on how to repair? XXXX
-
-
 In the graph on the left, for the same sample path of nonfinancial
 income :math:`y_t`, notice that
 
