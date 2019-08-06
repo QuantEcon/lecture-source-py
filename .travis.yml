@@ -14,7 +14,6 @@ branches:
     - master
 
 before_install:
-  - ls $HOME/build/QuantEcon/lecture-source-py/_build/website/doctrees/
   - wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O anaconda3.sh
   - chmod +x anaconda3.sh
   - ./anaconda3.sh -b
@@ -24,9 +23,10 @@ before_install:
 install:
   - pip install quantecon
   - pip install joblib
-  - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter.git
-  - cd sphinxcontrib-jupyter && python setup.py install && cd ../
-  - rm -rf sphinxcontrib-jupyter
+  - pip install sphinxcontrib-jupyter
+  - git clone https://github.com/larsoner/sphinx.git
+  - cd sphinx && python setup.py install && cd ../
+  - rm -rf sphinx
   - make setup
 
 cache:
@@ -34,5 +34,4 @@ cache:
     - $HOME/build/QuantEcon/lecture-source-py/_build/
 
 script:
-  - ls _build/website/doctrees/
   - make website
