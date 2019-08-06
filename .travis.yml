@@ -36,4 +36,4 @@ cache:
 
 script:
   - ls _build/website/doctrees/*
-  - travis_wait 120 make website
+  - make website
