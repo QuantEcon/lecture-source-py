@@ -31,7 +31,8 @@ install:
 
 cache:
   directories:
-    - $HOME/build/QuantEcon/lecture-source-py/_build
+    - $HOME/build/QuantEcon/lecture-source-py/_build/
 
 script:
+  - ls _build/website/doctrees/
   - make website
