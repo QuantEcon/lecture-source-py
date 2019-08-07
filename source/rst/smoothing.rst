@@ -498,7 +498,7 @@ Define
     v_t := \mathbb E_t \sum_{j=0}^\infty \beta^j y_{t+j}
 
 
-In our finite Markov chain setting, :math:`v_t = v(1)` when :math:`s_t= \bar s_1` and :math:`v_t = v(2)` when :math:`s_t=\bar s_2`.
+In our two-state Markov chain setting, :math:`v_t = v(1)` when :math:`s_t= \bar s_1` and :math:`v_t = v(2)` when :math:`s_t=\bar s_2`.
 
 Therefore, we can write
 
@@ -773,6 +773,15 @@ constraints
     c_t + b_t = y_t + \beta \mathbb E_t b_{t+1}, \quad t \geq 0
 
 
+Please note that 
+
+.. math:: 
+
+    E_t b_{t+1} = \int p_{t+1}(x_{t+1} | x_t) b_{t+1}(x_{t+1}) d x_{t+1}  
+
+which verifies that :math:`E_t b_{t+1}` is the value of time :math:`t+1` state-contingent claims issued by the consumer at time :math:`t`
+    
+
 We can solve the time :math:`t` budget constraint forward to obtain
 
 .. math::
@@ -861,6 +870,45 @@ In the above graph, please note that:
    autoregressive process, the consumer's debt is an exact affine function
    (meaning linear plus a constant) of the consumer's nonfinancial
    income.
+
+
+Tax-smoothing interpretation
+-----------------------------
+
+In the tax-smoothing interpretation of the preceding  complete markets consumption-smoothing model,  a government  faces a sequence of budget
+constraints
+
+.. math::
+
+    T_t + b_t = g_t + \beta \mathbb E_t b_{t+1}, \quad t \geq 0
+
+where :math:`T_t` is tax revenues, :math:`b_t` are receipts at :math:`t` from contingent claims that the government had *purchased* at time :math:`t`,
+and 
+
+.. math:: 
+
+    \mathbb E_t b_{t+1} \equiv \int p_{t+1}(x_{t+1} | x_t) b_{t+1}(x_{t+1}) d x_{t+1}  
+
+is the value of time :math:`t+1` state-contingent claims purchased  by the government  at time :math:`t`
+    
+
+As above with the consumption-smoothing model, we can solve the time :math:`t` budget constraint forward to obtain
+
+.. math::
+
+    b_t = \mathbb E_t  \sum_{j=0}^\infty \beta^j (g_{t+j} - T_{t+j} )
+
+which can be rearranged to become
+
+.. math::
+ 
+    \mathbb E_t  \sum_{j=0}^\infty \beta^j g_{t+j}  = b_t + \sum_{j=0}^\infty \beta^j T_{t+j} 
+
+ which states that the present value of government purchases equals the value of government assets at :math:`t` plus the present value tax receipts   
+    
+   
+
+
 
 Incomplete Markets Version
 --------------------------
