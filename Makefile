@@ -9,7 +9,7 @@ SOURCEDIR     = source/rst
 BUILDDIR      = _build
 BUILDWEBSITE  = _build/website
 BUILDCOVERAGE = _build/coverage
-PORT          = 8888
+PORT          = 8890
 
 # Put it first so that "make" without argument is like "make help".
 help:
