@@ -904,7 +904,7 @@ which can be rearranged to become
  
     \mathbb E_t  \sum_{j=0}^\infty \beta^j g_{t+j}  = b_t + \sum_{j=0}^\infty \beta^j T_{t+j} 
 
- which states that the present value of government purchases equals the value of government assets at :math:`t` plus the present value tax receipts   
+which states that the present value of government purchases equals the value of government assets at :math:`t` plus the present value tax receipts   
     
    
 
