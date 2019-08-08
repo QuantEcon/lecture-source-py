@@ -35,7 +35,9 @@ cache:
     - $HOME/build/QuantEcon/lecture-source-py/_build/
 
 script:
+  - echo $TRAVIS_PULL_REQUEST
   - echo $TRAVIS_COMMIT_RANGE
   - CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep '\.rst')
   - echo $CHANGED_FILES
   - make website FILES=$CHANGED_FILES
+  - ls _build/website/jupyter_html/
