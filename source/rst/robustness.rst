@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-***********************************
+**********
 Robustness
-***********************************
+**********
 
 .. index::
     single: Robustness
@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-===========
+========
 
 .. index::
     single: Bellman Equation
@@ -42,7 +42,7 @@ All that he knows is that the actual data-generating model is in some (uncountab
 
 He quantifies the discrepancy between his approximating model and the genuine data-generating model by using a quantity called *entropy*.
 
-(We'll explain what entropy means below).
+(We'll explain what entropy means below)
 
 He wants a decision rule that will work well enough no matter which of those other models actually governs outcomes.
 
@@ -56,7 +56,7 @@ The secret weapon is max-min control theory.
 
 A value-maximizing decision-maker enlists the aid of an (imaginary) value-minimizing model chooser to construct *bounds* on the value attained by a given decision rule under different models of the transition dynamics.
 
-The original decision-maker uses those bounds to construct a decision rule with an assured performance level, no matter which model actually governs outcomes
+The original decision-maker uses those bounds to construct a decision rule with an assured performance level, no matter which model actually governs outcomes.
 
 .. note::
 
@@ -66,7 +66,7 @@ The original decision-maker uses those bounds to construct a decision rule with 
 .. _rb_vec:
 
 Sets of Models Imply Sets Of Values
-----------------------------------------
+-----------------------------------
 
 Our "robust" decision-maker wants to know how well a given rule will work when he does not *know* a single transition law  :math:`\ldots`.
 
@@ -84,13 +84,13 @@ The shaded set is the graph of the correspondence, which maps entropy to a set o
 
 Here
 
-* *Value* refers to a sum of discounted rewards obtained by applying the decision rule :math:`F` when the state starts at some fixed initial state :math:`x_0`
+* *Value* refers to a sum of discounted rewards obtained by applying the decision rule :math:`F` when the state starts at some fixed initial state :math:`x_0`.
 
-* *Entropy* is a non-negative number that measures the size of a set of models surrounding the decision-maker's approximating model
+* *Entropy* is a non-negative number that measures the size of a set of models surrounding the decision-maker's approximating model.
 
-    * Entropy is zero when the set includes only the approximating model, indicating that the decision-maker completely trusts the approximating model
+    * Entropy is zero when the set includes only the approximating model, indicating that the decision-maker completely trusts the approximating model.
 
-    * Entropy is bigger, and the set of surrounding models is bigger, the less the decision-maker trusts the approximating model
+    * Entropy is bigger, and the set of surrounding models is bigger, the less the decision-maker trusts the approximating model.
 
 The shaded region indicates that for **all** models having entropy less than or equal to the number on the horizontal axis, the value obtained will be somewhere within the indicated set of values.
 
@@ -98,9 +98,9 @@ Now let's compare sets of values associated with two different decision rules, :
 
 In the next figure,
 
-* The red set shows the value-entropy correspondence for decision rule :math:`F_r`
+* The red set shows the value-entropy correspondence for decision rule :math:`F_r`.
 
-* The blue set shows the value-entropy correspondence for decision rule :math:`F_b`
+* The blue set shows the value-entropy correspondence for decision rule :math:`F_b`.
 
 
 .. figure:: /_static/lecture_specific/robustness/kg.png
@@ -114,7 +114,7 @@ This conveys the sense in which the decision rule :math:`F_b` is *more robust* t
 
 Notice that the less robust rule :math:`F_r` promises higher values for small misspecifications (small entropy).
 
-(But it is more fragile in the sense that it is more sensitive to perturbations of the approximating model).
+(But it is more fragile in the sense that it is more sensitive to perturbations of the approximating model)
 
 Below we'll explain in detail how to construct these sets of values for a given :math:`F`, but for now :math:`\ldots`.
 
@@ -130,16 +130,16 @@ This will involve crafting a *skinnier* set at the cost of  a lower *level* (at 
 
 
 Inspiring Video
-------------------------
+---------------
 
 
-If you want to understand more about why one serious quantitative researcher is interested in this approach, we recommend `Lars Peter Hansen's Nobel lecture <http://www.nobelprize.org/mediaplayer/index.php?id=1994>`_
+If you want to understand more about why one serious quantitative researcher is interested in this approach, we recommend `Lars Peter Hansen's Nobel lecture <http://www.nobelprize.org/mediaplayer/index.php?id=1994>`_.
 
 .. .. raw:: html <iframe src="http://www.youtube.com/embed/WzxZGvrpFu4" style="border: 0; height: 510px; width: 640px"> </iframe>
 
 
 Other References
------------------
+----------------
 
 Our discussion in this lecture is based on
 
@@ -152,7 +152,7 @@ Our discussion in this lecture is based on
 
 
 The Model
-================
+=========
 
 For simplicity, we present ideas in the context of a class of problems with linear transition laws and quadratic objective functions.
 
@@ -220,7 +220,7 @@ If our agent takes :math:`\{ w_t \}` as a given deterministic sequence, then, dr
     \}
 
 
-(Here :math:`J` depends on :math:`t` because the sequence :math:`\{w_t\}` is not recursive).
+(Here :math:`J` depends on :math:`t` because the sequence :math:`\{w_t\}` is not recursive)
 
 Our tool for studying robustness is to construct a rule that works well even if an adverse sequence :math:`\{ w_t \}` occurs.
 
@@ -252,7 +252,7 @@ So bigger :math:`\theta` is implicitly associated with smaller distortion sequen
 
 
 Analyzing the Bellman Equation
--------------------------------
+------------------------------
 
 So what does :math:`J` in :eq:`rb_wcb0` look like?
 
@@ -357,7 +357,7 @@ Conversely, smaller :math:`\theta` is associated with greater fear of model miss
 
 
 Robustness as Outcome of a Two-Person Zero-Sum Game
-====================================================
+===================================================
 
 What we have done above can be interpreted in terms of  a two-person zero-sum game in which :math:`\hat F, \hat K` are Nash equilibrium objects.
 
@@ -372,7 +372,7 @@ We begin with agent 2's problem.
 .. _rb_a2:
 
 Agent 2's Problem
---------------------
+-----------------
 
 Agent 2
 
@@ -478,10 +478,10 @@ Here :math:`x_t` is given by :eq:`rob_lomf` --- which in this case becomes :math
 
 
 Using Agent 2's Problem to Construct Bounds on the Value Sets
---------------------------------------------------------------
+-------------------------------------------------------------
 
 The Lower Bound
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 Define the minimized object on the right side of problem :eq:`rb_a2o` as :math:`R_\theta(x_0, F)`.
 
@@ -528,19 +528,19 @@ In particular, the lower bound on the left side of :eq:`rob_bound` is attained w
 
 To construct the *lower bound* on the set of values associated with all perturbations :math:`{\mathbf w}` satisfying the entropy constraint :eq:`rb_dec` at a  given entropy level, we proceed as follows:
 
-    *  For a given :math:`\theta`, solve the minimization problem :eq:`rb_a2o`
+    *  For a given :math:`\theta`, solve the minimization problem :eq:`rb_a2o`.
 
-    *  Compute the minimizer :math:`R_\theta(x_0, F)` and the associated entropy using :eq:`rb_pdt22`
+    *  Compute the minimizer :math:`R_\theta(x_0, F)` and the associated entropy using :eq:`rb_pdt22`.
 
-    *  Compute the lower bound on the value function :math:`R_\theta(x_0, F) - \theta \ {\rm  ent}` and plot it against :math:`{\rm ent}`
+    *  Compute the lower bound on the value function :math:`R_\theta(x_0, F) - \theta \ {\rm  ent}` and plot it against :math:`{\rm ent}`.
 
-    *  Repeat the preceding three steps  for a range of values of :math:`\theta` to trace out the lower bound
+    *  Repeat the preceding three steps  for a range of values of :math:`\theta` to trace out the lower bound.
 
 .. note::
-    This procedure  sweeps  out a set of separating hyperplanes indexed by different values for  the Lagrange multiplier :math:`\theta`
+    This procedure  sweeps  out a set of separating hyperplanes indexed by different values for  the Lagrange multiplier :math:`\theta`.
 
 The Upper Bound
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 To construct an *upper bound* we use a very similar procedure.
 
@@ -559,7 +559,7 @@ We simply replace the *minimization* problem :eq:`rb_a2o` with the *maximization
 
 where now :math:`\tilde \theta  >0`  penalizes the choice of :math:`{\mathbf w}` with larger entropy.
 
-(Notice that :math:`\tilde \theta = - \theta` in problem :eq:`rb_a2o`).
+(Notice that :math:`\tilde \theta = - \theta` in problem :eq:`rb_a2o`)
 
 Because "maximizers maximize" we have
 
@@ -596,23 +596,23 @@ The upper bound on the left side of :eq:`robboundmax` is attained when
 
 To construct the *upper bound* on the set of values associated all perturbations :math:`{\mathbf w}` with a given entropy we proceed much as we did for the lower bound
 
-    *  For a given :math:`\tilde \theta`, solve the maximization problem :eq:`rba2omax`
+    *  For a given :math:`\tilde \theta`, solve the maximization problem :eq:`rba2omax`.
 
-    *  Compute the maximizer :math:`V_{\tilde \theta}(x_0, F)` and the associated entropy using :eq:`rbpdt223`
+    *  Compute the maximizer :math:`V_{\tilde \theta}(x_0, F)` and the associated entropy using :eq:`rbpdt223`.
 
-    *  Compute the upper bound on the value function :math:`V_{\tilde \theta}(x_0, F) + \tilde \theta \ {\rm ent}` and plot it against :math:`{\rm ent}`
+    *  Compute the upper bound on the value function :math:`V_{\tilde \theta}(x_0, F) + \tilde \theta \ {\rm ent}` and plot it against :math:`{\rm ent}`.
 
-    *  Repeat the preceding three steps  for a range of values of :math:`\tilde \theta` to trace out the upper bound
+    *  Repeat the preceding three steps  for a range of values of :math:`\tilde \theta` to trace out the upper bound.
 
 
 Reshaping the Set of Values
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Now in the interest of *reshaping* these sets of values by choosing :math:`F`, we turn to agent 1's problem.
 
 Agent 1's Problem
---------------------
+-----------------
 
 Now we turn to agent 1, who solves
 
@@ -656,7 +656,7 @@ it by :math:`\tilde F`.
 .. _rb_eq:
 
 Nash Equilibrium
------------------
+----------------
 
 Clearly, the :math:`\tilde F` we have obtained depends on :math:`K`, which, in agent 2's problem,
 depended on an initial policy :math:`F`.
@@ -690,7 +690,7 @@ A sketch of the proof is given in :ref:`the appendix <rb_appendix>`.
 
 
 The Stochastic Case
-====================
+===================
 
 Now we turn to the stochastic case, where the sequence :math:`\{w_t\}` is treated as an IID sequence of random vectors.
 
@@ -737,7 +737,7 @@ This penalty term plays a role analogous to the one played by the deterministic 
 
 
 Solving the Model
---------------------
+-----------------
 
 The maximization problem in :eq:`rb_wcb1` appears highly nontrivial --- after all,
 we are maximizing over an infinite dimensional space consisting of the entire set of densities.
@@ -833,13 +833,13 @@ Note that the mean of the worst-case shock distribution is equal to the same  wo
 .. _rb_coq:
 
 Computing Other Quantities
-------------------------------
+--------------------------
 
 Before turning to implementation, we briefly outline how to compute several other quantities of interest.
 
 
 Worst-Case Value of a Policy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One thing we will be interested in doing is holding a policy fixed and
 computing the discounted loss associated with that policy.
@@ -896,7 +896,7 @@ computations.
 
 
 Implementation
-================
+==============
 
 The `QuantEcon.py <http://quantecon.org/python_index.html>`_ package provides a class called ``RBLQ`` for implementation of robust LQ optimal control.
 
@@ -925,7 +925,7 @@ Here is a brief description of the methods of the class
 
 
 Application
-==============
+===========
 
 Let us consider a monopolist similar to :ref:`this one <lqc_mwac>`, but now facing model uncertainty.
 
@@ -1018,9 +1018,9 @@ agent's baseline, with uncertainty parameterized by :math:`\theta`.
 We compute value-entropy correspondences for two policies
 
 #. The no concern for robustness policy :math:`F_0`, which is the ordinary LQ
-   loss minimizer
+   loss minimizer.
 
-#. A "moderate" concern for robustness policy :math:`F_b`, with :math:`\theta = 0.02`
+#. A "moderate" concern for robustness policy :math:`F_b`, with :math:`\theta = 0.02`.
 
 The code for producing the graph shown above, with blue being for the robust policy, is as follows
 
@@ -1038,7 +1038,7 @@ Can you explain the different shape of the value-entropy correspondence for the 
 .. _rb_appendix:
 
 Appendix
-==============
+========
 
 We sketch the proof only of the first claim in :ref:`this section <rb_eq>`,
 which is that, for any given :math:`\theta`, :math:`K(\hat F, \theta) = \hat K`,
@@ -1108,4 +1108,4 @@ side more simply as
 Although it involves a substantial amount of algebra, it can be shown that the
 latter is just :math:`\hat P`.
 
-(Hint: Use the fact that :math:`\hat P = \mathcal B( \mathcal D( \hat P))`).
+(Hint: Use the fact that :math:`\hat P = \mathcal B( \mathcal D( \hat P))`)

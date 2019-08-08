@@ -41,6 +41,7 @@
     index_data_and_empirics
     index_tools_and_techniques
     index_dynamic_programming
+    index_lq_control
     index_multi_agent_models
     index_hs_recursive_models
     index_classic_linear_models

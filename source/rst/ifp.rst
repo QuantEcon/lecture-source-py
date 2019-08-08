@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 **************************************************************
-:index:`Optimal Savings III: Occasionally Binding Constraints`
+:index:`The Income Fluctuation Problem`
 **************************************************************
 
 .. contents:: :depth: 2

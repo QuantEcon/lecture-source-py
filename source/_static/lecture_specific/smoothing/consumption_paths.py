@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+%matplotlib inline
 
 np.random.seed(1)
 N_simul = 150

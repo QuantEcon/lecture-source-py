@@ -29,7 +29,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 
 Overview
-=========
+========
 
 This lecture describes a statistical decision problem encountered  by Milton
 Friedman and W. Allen Wallis during World War II when they were analysts at
@@ -72,7 +72,7 @@ We'll begin with some imports
     from math import gamma
 
 Origin of the Problem
-======================
+=====================
 
 On pages 137-139 of his 1998 book *Two Lucky People* with Rose Friedman :cite:`Friedman98`,
 Milton Friedman described a problem presented to him and Allen Wallis
@@ -109,7 +109,7 @@ Let's listen to Milton Friedman tell us what happened
     few thousand or even few hundred [rounds] that the experiment need not
     be completed either because the new method is obviously inferior or
     because it is obviously superior beyond what was hoped for
-    :math:`\ldots`
+    :math:`\ldots`.
 
 
 Friedman and Wallis struggled with the problem but, after realizing that
@@ -122,7 +122,7 @@ We'll formulate the problem using dynamic programming.
 
 
 A Dynamic Programming Approach
-================================
+==============================
 
 The following presentation of the problem closely follows Dmitri
 Berskekas's treatment in **Dynamic Programming and Stochastic Control** :cite:`Bertekas75`.
@@ -224,7 +224,7 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 
 Losses and Costs
--------------------
+----------------
 
 After observing :math:`z_k, z_{k-1}, \ldots, z_0`, the decision-maker
 chooses among three distinct actions:
@@ -252,7 +252,7 @@ kinds of losses:
 
 
 Digression on Type I and Type II Errors
-----------------------------------------
+---------------------------------------
 
 If we regard  :math:`f=f_0` as a null hypothesis and :math:`f=f_1` as an alternative hypothesis,
 then :math:`L_1` and :math:`L_0` are losses associated with two types of statistical errors
@@ -264,16 +264,16 @@ then :math:`L_1` and :math:`L_0` are losses associated with two types of statist
 So when we treat :math:`f=f_0` as the null hypothesis
 
 -  We can think of :math:`L_1` as the loss associated with a type I
-   error
+   error.
 
 -  We can think of :math:`L_0` as the loss associated with a type II
-   error
+   error.
 
 
 
 
 Intuition
--------------------
+---------
 
 Let's try to guess what an optimal decision rule might look like before we go further.
 
@@ -300,7 +300,7 @@ You might like to pause at this point and try to predict the impact of a
 parameter such as :math:`c` or :math:`L_0` on :math:`\alpha` or :math:`\beta`.
 
 A Bellman Equation
--------------------
+------------------
 
 
 Let :math:`J(\pi)` be the total loss for a decision-maker with current belief :math:`\pi` who chooses optimally.
@@ -350,13 +350,13 @@ We can represent the  Bellman equation as
 where :math:`\pi \in [0,1]` and
 
 -  :math:`(1-\pi) L_0` is the expected loss associated with accepting
-   :math:`f_0` (i.e., the cost of making a type II error)
+   :math:`f_0` (i.e., the cost of making a type II error).
 
 -  :math:`\pi L_1` is the expected loss associated with accepting
-   :math:`f_1` (i.e., the cost of making a type I error)
+   :math:`f_1` (i.e., the cost of making a type I error).
 
 -  :math:`h(\pi) :=  c + \mathbb E [J(\pi')]` the continuation value; i.e.,
-   the expected cost associated with drawing one more :math:`z`
+   the expected cost associated with drawing one more :math:`z`.
 
 
 
@@ -425,7 +425,7 @@ In other words, we iterate with an operator :math:`Q`, where
 
 
 Implementation
-==================
+==============
 
 First, we will construct a class to store the parameters of the model
 
@@ -459,9 +459,9 @@ First, we will construct a class to store the parameters of the model
 
 As in the :doc:`optimal growth lecture <optgrowth>`, to approximate a continuous value function
 
-* We iterate at a finite grid of possible values of :math:`\pi`
+* We iterate at a finite grid of possible values of :math:`\pi`.
 
-* When we evaluate :math:`\mathbb E[J(\pi')]` between grid points, we use linear interpolation
+* When we evaluate :math:`\mathbb E[J(\pi')]` between grid points, we use linear interpolation.
 
 The function ``operator_factory`` returns the operator ``Q``
 
@@ -484,7 +484,7 @@ The function ``operator_factory`` returns the operator ``Q``
         @njit
         def κ(z, π):
             """
-            Updates π using Bayes' rule and the current observation z.
+            Updates π using Bayes' rule and the current observation z
             """
             π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
             π_new = π_f0 / (π_f0 + π_f1)
@@ -559,7 +559,7 @@ To solve the model, we will iterate using ``Q`` to find the fixed point
 
 
 Analysis
-=====================
+========
 
 Let's inspect the model's solutions.
 
@@ -579,13 +579,13 @@ We will be using the default parameterization with distributions like so
 
 
 Value Function
------------------
+--------------
 
 To solve the model, we will call our ``solve_model`` function
 
 .. code-block:: python3
 
-    h_star = solve_model(wf)  # solve the model
+    h_star = solve_model(wf)    # Solve the model
 
 We will also set up a function to compute the cutoffs :math:`\alpha` and :math:`\beta`
 and plot these on our value function plot
@@ -593,11 +593,13 @@ and plot these on our value function plot
 .. code-block:: python3
 
     def find_cutoff_rule(wf, h):
+
         """
-        This function takes a continuation value function and returns the corresponding
-        cutoffs of where you transition between continuing and choosing a
-        specific model
+        This function takes a continuation value function and returns the 
+        corresponding cutoffs of where you transition between continuing and
+        choosing a specific model
         """
+
         π_grid = wf.π_grid
         L0, L1 = wf.L0, wf.L1
 
@@ -606,7 +608,7 @@ and plot these on our value function plot
         payoff_f1 = π_grid * L1
 
         # The cutoff points can be found by differencing these costs with
-        # the Bellman equation (J is always less than or equal to p_c_i)
+        # The Bellman equation (J is always less than or equal to p_c_i)
         β = π_grid[np.searchsorted(payoff_f1 - np.minimum(h, payoff_f0), 1e-10) - 1]
         α = π_grid[np.searchsorted(np.minimum(h, payoff_f1) - payoff_f0, 1e-10) - 1]
 
@@ -621,7 +623,8 @@ and plot these on our value function plot
     ax.plot(wf.π_grid, h_star, label='continuation value')
     ax.plot(wf.π_grid, cost_L1, label='choose f1')
     ax.plot(wf.π_grid, cost_L0, label='choose f0')
-    ax.plot(wf.π_grid, np.amin(np.column_stack([h_star, cost_L0, cost_L1]), axis=1),
+    ax.plot(wf.π_grid,
+            np.amin(np.column_stack([h_star, cost_L0, cost_L1]),axis=1),
             lw=15, alpha=0.1, color='b', label='minimum cost')
 
     ax.annotate(r"$\beta$", xy=(β + 0.01, 0.5), fontsize=14)
@@ -651,7 +654,7 @@ model :math:`f_0` falls below :math:`\beta` or above :math:`\alpha`.
 
 
 Simulations
------------------
+-----------
 
 The next figure shows the outcomes of 500 simulations of the decision process.
 
@@ -666,9 +669,10 @@ In this case, the decision-maker is correct 80% of the time
 .. code-block:: python3
 
     def simulate(wf, true_dist, h_star, π_0=0.5):
+
         """
         This function takes an initial condition and simulates until it
-        stops (when a decision is made).
+        stops (when a decision is made)
         """
 
         f0, f1 = wf.f0, wf.f1
@@ -677,7 +681,7 @@ In this case, the decision-maker is correct 80% of the time
 
         def κ(z, π):
             """
-            Updates π using Bayes' rule and the current observation z.
+            Updates π using Bayes' rule and the current observation z
             """
             π_f0, π_f1 = π * f0(z), (1 - π) * f1(z)
             π_new = π_f0 / (π_f0 + π_f1)
@@ -725,9 +729,10 @@ In this case, the decision-maker is correct 80% of the time
         return correct, π, t
 
     def stopping_dist(wf, h_star, ndraws=250, true_dist="f0"):
+
         """
         Simulates repeatedly to get distributions of time needed to make a
-        decision and how often they are correct.
+        decision and how often they are correct
         """
 
         tdist = np.empty(ndraws, int)
@@ -764,7 +769,7 @@ In this case, the decision-maker is correct 80% of the time
 
 
 Comparative Statics
-----------------------
+-------------------
 
 Now let's consider the following exercise.
 
@@ -791,7 +796,7 @@ This leads to him having a higher expected loss when he puts equal weight on bot
 
 
 A Notebook Implementation
----------------------------
+-------------------------
 
 
 
@@ -803,23 +808,23 @@ generates the same plots, but with sliders.
 
 With these sliders, you can adjust parameters and immediately observe
 
-*  effects on the smoothness of the value function in the indecisive middle range
-   as we increase the number of grid points in the piecewise linear  approximation
+* effects on the smoothness of the value function in the indecisive middle range
+  as we increase the number of grid points in the piecewise linear  approximation.
 
 * effects of different settings for the cost parameters :math:`L_0, L_1, c`, the
   parameters of two beta distributions :math:`f_0` and :math:`f_1`, and the number
-  of points and linear functions :math:`m` to use in the piece-wise continuous approximation to the value function
+  of points and linear functions :math:`m` to use in the piece-wise continuous approximation to the value function.
 
-* various simulations from :math:`f_0` and associated distributions of waiting times to making a decision
+* various simulations from :math:`f_0` and associated distributions of waiting times to making a decision.
 
-* associated histograms of correct and incorrect decisions
+* associated histograms of correct and incorrect decisions.
 
 
 
 
 
 Comparison with Neyman-Pearson Formulation
-=============================================
+==========================================
 
 For several reasons, it is useful to describe the theory underlying the test
 that Navy Captain G. S. Schuyler had been told to use and that led him
@@ -843,13 +848,13 @@ For our purposes, watch for there features of the setup:
 Recall that in the sequential analytic formulation above, that
 
 -  The sample size :math:`n` is not fixed but rather an object to be
-   chosen; technically :math:`n` is a random variable
+   chosen; technically :math:`n` is a random variable.
 
 -  The parameters :math:`\beta` and :math:`\alpha` characterize cut-off
-   rules used to determine :math:`n` as a random variable
+   rules used to determine :math:`n` as a random variable.
 
 -  Laws of large numbers make no appearances in the sequential
-   construction
+   construction.
 
 In chapter 1 of **Sequential Analysis** :cite:`Wald47` Abraham Wald summarizes the
 Neyman-Pearson approach to hypothesis testing.
@@ -858,25 +863,25 @@ Wald frames the problem as making a decision about a probability
 distribution that is partially known.
 
 (You have to assume that *something* is already known in order to state a well-posed
-problem -- usually, *something* means *a lot*).
+problem -- usually, *something* means *a lot*)
 
 By limiting  what is unknown, Wald uses the following simple structure
 to illustrate the main ideas:
 
--  a decision-maker wants to decide which of two distributions
-   :math:`f_0`, :math:`f_1` govern an IID random variable :math:`z`
+-  A decision-maker wants to decide which of two distributions
+   :math:`f_0`, :math:`f_1` govern an IID random variable :math:`z`.
 
 -  The null hypothesis :math:`H_0` is the statement that :math:`f_0`
-   governs the data
+   governs the data.
 
 -  The alternative hypothesis :math:`H_1` is the statement that
-   :math:`f_1` governs the data
+   :math:`f_1` governs the data.
 
 -  The problem is to devise and analyze a test of hypothesis
    :math:`H_0` against the alternative hypothesis :math:`H_1` on the
    basis of a sample of a fixed number :math:`n` independent
    observations :math:`z_1, z_2, \ldots, z_n` of the random variable
-   :math:`z`
+   :math:`z`.
 
 To quote Abraham Wald,
 

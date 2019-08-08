@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-**********************************************
-Recursive Models of Dynamic Linear Economies
-**********************************************
+***************************
+Dynamic Linear Economies
+***************************
 
 
 .. only:: html

@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-***************************
+**************************
 Other Scientific Libraries
-***************************
+**************************
 
 .. contents:: :depth: 2
 
@@ -16,7 +16,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 Overview
-============
+========
 
 
 
@@ -52,22 +52,22 @@ Cython also takes care of building language extensions --- the wrapper code that
 
 
 
-**Important Note:**.
+**Important Note:**
 
 In what follows code is executed in a Jupyter notebook.
 
 This is to take advantage of a Cython `cell magic <http://ipython.readthedocs.org/en/stable/interactive/magics.html#cell-magics>`_ that makes Cython particularly easy to use.
 
-Some modifications are required to run the code outside a notebook
+Some modifications are required to run the code outside a notebook.
 
-* See the book `Cython <http://shop.oreilly.com/product/0636920033431.do>`__ by Kurt Smith or `the online documentation <http://cython.org/>`_
+* See the book `Cython <http://shop.oreilly.com/product/0636920033431.do>`__ by Kurt Smith or `the online documentation <http://cython.org/>`_.
 
 
 
 
 
 A First Example
-------------------
+---------------
 
 Let's start with a rather artificial example.
 
@@ -83,7 +83,7 @@ Suppose further that we've forgotten the basic formula
 for a geometric progression and hence have resolved to rely on a loop.
 
 Python vs C
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 Here's a pure Python function that does the job
 
@@ -129,7 +129,7 @@ type definitions
 Not surprisingly, the C code is faster than the Python code.
 
 A Cython Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Cython implementations look like a convex combination of Python and C.
 
@@ -180,7 +180,7 @@ What you are in fact calling is compiled C code with a Python call interface
 
 
 Example 2: Cython with NumPy Arrays
-------------------------------------------
+-----------------------------------
 
 Let's go back to the first problem that we worked with: generating the iterates of the quadratic map
 
@@ -266,7 +266,7 @@ This is fast, although still slightly slower than ``qm_numba``.
 
 
 Summary
-------------
+-------
 
 Cython requires more expertise than Numba, and is a little more fiddly in terms of getting good performance.
 
@@ -274,16 +274,16 @@ In fact, it's surprising how difficult it is to beat the speed improvements prov
 
 Nonetheless,
 
-* Cython is a very mature, stable and widely used tool
+* Cython is a very mature, stable and widely used tool.
 
-* Cython can be more useful than Numba when working with larger, more sophisticated applications
+* Cython can be more useful than Numba when working with larger, more sophisticated applications.
 
 
 
 
 
 Joblib
-==========
+======
 
 
 `Joblib <https://joblib.readthedocs.io/en/latest/>`__ is a popular Python library for
@@ -304,7 +304,7 @@ Here we review just the basics.
 
 
 Caching
---------
+-------
 
 
 Perhaps, like us, you sometimes run a long computation that simulates a model
@@ -321,14 +321,14 @@ back up to you when you repeat the calculation.
 
 
 An Example
------------
+----------
 
 Let's look at a toy example, related to the quadratic map model discussed :ref:`above <quad_map_eg>`.
 
 Let's say we want to generate a long trajectory from a certain initial
 condition :math:`x_0` and see what fraction of the sample is below 0.1.
 
-(We'll omit JIT compilation or other speedups for simplicity).
+(We'll omit JIT compilation or other speedups for simplicity)
 
 Here's our code
 
@@ -351,7 +351,7 @@ We are using `joblib <https://joblib.readthedocs.io/en/latest/>`_ to cache the r
 
 With the argument `location='./joblib_cache'`, any call to this function results in both the input values and output values being stored a subdirectory `joblib_cache` of the present working directory.
 
-(In UNIX shells, `.` refers to the present working directory).
+(In UNIX shells, `.` refers to the present working directory)
 
 The first time we call the function with a given set of parameters we see some
 extra output that notes information being cached
@@ -379,7 +379,7 @@ The next time we call the function with the same set of parameters, the result i
 
 
 Other Options
-=================
+=============
 
 There are in fact many other approaches to speeding up your Python code.
 
@@ -405,12 +405,12 @@ Recently, `a Jupyter cell magic for Fortran
 
 
 Exercises
-=============
+=========
 
 .. _speed_ex1:
 
 Exercise 1
--------------
+----------
 
 Later we'll learn all about :doc:`finite-state Markov chains <finite_markov>`.
 
@@ -444,7 +444,7 @@ If your code is correct, it should be about 2/3.
 
 
 Solutions
-==========
+=========
 
 
 
@@ -465,7 +465,7 @@ Here's a pure Python version of the function
 .. code-block:: python3
 
     def compute_series(n):
-        x = np.empty(n, dtype=int)
+        x = np.empty(n, dtype=np.int_)
         x[0] = 1  # Start in state 1
         U = np.random.uniform(0, 1, size=n)
         for t in range(1, n):

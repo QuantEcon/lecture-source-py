@@ -8,8 +8,8 @@ SPHINXPROJ    = lecture-source-jl
 SOURCEDIR     = source/rst
 BUILDDIR      = _build
 BUILDWEBSITE  = _build/website
-CORES 		  = 4
 BUILDCOVERAGE = _build/coverage
+PORT          = 8890
 FILES         = 
 
 # Put it first so that "make" without argument is like "make help".
@@ -24,12 +24,12 @@ setup:
 
 preview:
 ifneq (,$(filter $(target),website Website))
-	cd _build/jupyter_html/ && python -m http.server
+	cd $(BUILDWEBSITE)/jupyter_html && python -m http.server $(PORT)
 else
 ifdef lecture
-	cd _build/jupyter/ && jupyter notebook $(basename $(lecture)).ipynb
+	cd $(BUILDDIR)/jupyter/ && jupyter notebook --port $(PORT) --port-retries=0 $(basename $(lecture)).ipynb
 else
-	cd _build/jupyter/ && jupyter notebook
+	cd $(BUILDDIR)/jupyter/ && jupyter notebook --port $(PORT) --port-retries=0
 endif
 endif
 

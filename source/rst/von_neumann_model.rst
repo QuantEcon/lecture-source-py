@@ -5,9 +5,9 @@
 .. index::
     single: python
 
-**************************************************
+***********************************************
 Von Neumann Growth Model (and a Generalization)
-**************************************************
+***********************************************
 
 .. contents:: :depth: 2
 
@@ -51,9 +51,11 @@ The code below provides the ``Neumann`` class
 
 
   class Neumann(object):
+
       """
       This class describes the Generalized von Neumann growth model as it was
-      discussed in Kemeny et al. (1956, ECTA) :cite:`kemeny1956generalization` and Gale (1960, Chapter 9.5) :cite:`gale1989theory`:
+      discussed in Kemeny et al. (1956, ECTA) :cite:`kemeny1956generalization`
+      and Gale (1960, Chapter 9.5) :cite:`gale1989theory`:
 
       Let:
       n ... number of goods
@@ -134,8 +136,9 @@ The code below provides the ``Neumann`` class
 
       def bounds(self):
           """
-          Calculate the trivial upper and lower bounds for alpha (expansion rate) and
-          beta (interest factor). See the proof of Theorem 9.8 in Gale (1960) :cite:`gale1989theory`
+          Calculate the trivial upper and lower bounds for alpha (expansion rate)
+          and beta (interest factor). See the proof of Theorem 9.8 in Gale (1960)
+          :cite:`gale1989theory`
           """
 
           n, m = self.n, self.m
@@ -152,8 +155,8 @@ The code below provides the ``Neumann`` class
 
       def zerosum(self, γ, dual=False):
           """
-          Given gamma, calculate the value and optimal strategies of a two-player
-          zero-sum game given by the matrix
+          Given gamma, calculate the value and optimal strategies of a
+          two-player zero-sum game given by the matrix
 
                   M(gamma) = B - gamma * A
 
@@ -236,11 +239,11 @@ The code below provides the ``Neumann`` class
 
       def expansion(self, tol=1e-8, maxit=1000):
           """
-          The algorithm used here is described in Hamburger-Thompson-Weil (1967, ECTA).
-          It is based on a simple bisection argument and utilizes the idea that for
-          a given γ (= α or β), the matrix "M = B - γ * A" defines a
-          two-player zero-sum game, where the optimal strategies are the (normalized)
-          intensity and price vector.
+          The algorithm used here is described in Hamburger-Thompson-Weil
+          (1967, ECTA). It is based on a simple bisection argument and utilizes
+          the idea that for a given γ (= α or β), the matrix "M = B - γ * A"
+          defines a two-player zero-sum game, where the optimal strategies are
+          the (normalized) intensity and price vector.
 
           Outputs:
           --------
@@ -271,11 +274,12 @@ The code below provides the ``Neumann`` class
 
       def interest(self, tol=1e-8, maxit=1000):
           """
-          The algorithm used here is described in Hamburger-Thompson-Weil (1967, ECTA).
-          It is based on a simple bisection argument and utilizes the idea that for
-          a given gamma (= alpha or beta), the matrix "M = B - γ * A" defines a
-          two-player zero-sum game, where the optimal strategies are the (normalized)
-          intensity and price vector.
+          The algorithm used here is described in Hamburger-Thompson-Weil
+          (1967, ECTA). It is based on a simple bisection argument and utilizes
+          the idea that for a given gamma (= alpha or beta),
+          the matrix "M = B - γ * A" defines a two-player zero-sum game,
+          where the optimal strategies are the (normalized) intensity and price
+          vector
 
           Outputs:
           --------
@@ -304,7 +308,7 @@ The code below provides the ``Neumann`` class
           return γ, x, p
 
 Notation
-===========
+========
 
 We use the following notation.
 
@@ -339,7 +343,7 @@ denote the :math:`j` th column and :math:`i` th row of :math:`A`,
 respectively.
 
 Model Ingredients and Assumptions
-====================================
+=================================
 
 A pair :math:`(A,B)` of :math:`m\times n` non-negative matrices defines
 an economy.
@@ -433,17 +437,17 @@ instance
 
 .. code-block:: python3
 
-    N1 = Neumann(A1, B1)
-    N1
+    n1 = Neumann(A1, B1)
+    n1
 
 
 .. code-block:: python3
 
-    N2 = Neumann(A2, B2)
-    N2
+    n2 = Neumann(A2, B2)
+    n2
 
 Dynamic Interpretation
-====================================
+======================
 
 Attach a time index :math:`t` to the preceding objects, regard an economy
 as a dynamic system, and study sequences
@@ -479,7 +483,7 @@ Accordingly, :math:`Ap_t` tells the costs of production in period
 :math:`t` and :math:`Bp_t` tells revenues in period :math:`t+1`.
 
 Balanced Growth
------------------
+---------------
 
 We follow John von Neumann in studying “balanced growth”.
 
@@ -517,7 +521,7 @@ conduct an analysis purely in terms of a time-invariant growth rate
 
 
 Duality
-========
+=======
 
 The following two problems are connected by a remarkable dual
 relationship between the technological and valuation characteristics of
@@ -637,7 +641,7 @@ significantly reduces the number of (relevant) solutions.
 
 
 Interpretation as a Game Theoretic Problem (Two-player Zero-sum Game)
-=======================================================================
+=====================================================================
 
 To compute the equilibrium :math:`(\gamma^{*}, x_0, p_0)`, we follow the
 algorithm proposed by Hamburger, Thompson and Weil (1967), building on
@@ -688,7 +692,7 @@ Moreover, von Neumann’s Minmax Theorem (1928) :cite:`neumann1928theorie` impli
 
 
 Connection with Linear Programming (LP)
------------------------------------------
+---------------------------------------
 
 Finding Nash equilibria of a finite two-player zero-sum game can be
 formulated as a linear programming problem.
@@ -741,7 +745,7 @@ interpretation, they restate Assumption I and II as follows
    that :math:`p>\mathbf{0}`, it follows that :math:`Bp > \mathbf{0}`.
    This implies that the maximizing player can always choose :math:`x`
    so that :math:`x^TBp>0`, that is it must be the case
-   that :math:`V(B)>0`
+   that :math:`V(B)>0`.
 
 In order to (re)state Theorem I in terms of a particular two-player
 zero-sum game, we define the matrix for :math:`\gamma\in\mathbb{R}`
@@ -754,10 +758,10 @@ we can calculate the solution of the game
 -  If :math:`\gamma > \alpha_0`, then for all :math:`x>0`, there
    :math:`\exists j\in\{1, \dots, n\}`, s.t.
    :math:`[x^T M(\gamma)]_j < 0` implying
-   that :math:`V(M(\gamma)) < 0`
+   that :math:`V(M(\gamma)) < 0`.
 -  If :math:`\gamma < \beta_0`, then for all :math:`p>0`, there
    :math:`\exists i\in\{1, \dots, m\}`, s.t.
-   :math:`[M(\gamma)p]_i > 0` implying that :math:`V(M(\gamma)) > 0`
+   :math:`[M(\gamma)p]_i > 0` implying that :math:`V(M(\gamma)) > 0`.
 -  If :math:`\gamma \in \{\beta_0, \alpha_0\}`, then (by Theorem I) the
    optimal intensity and price vectors :math:`x_0` and :math:`p_0`
    satisfy
@@ -779,11 +783,11 @@ Moreover, if :math:`x'` is optimal for the maximizing player in
 :math:`p''` is optimal for the minimizing player in :math:`M(\gamma'')`
 where :math:`\gamma''\in(\beta_0, \gamma')`, then :math:`(x', p'', 0)`
 is a solution for
-:math:`M(\gamma)`, :math:`\forall \gamma\in (\gamma'', \gamma')`
+:math:`M(\gamma)`, :math:`\forall \gamma\in (\gamma'', \gamma')`.
 
   *Proof (Sketch):* If :math:`x'` is optimal for a maximizing player in
   game :math:`M(\gamma')`, then :math:`(x')^T M(\gamma')\geq \mathbf{0}^T`
-  and so for all :math:`\gamma<\gamma'`
+  and so for all :math:`\gamma<\gamma'`.
 
 .. math:: (x')^T M(\gamma) = (x')^T M(\gamma') + (x')^T(\gamma' - \gamma)A \geq \mathbf{0}^T
 
@@ -808,14 +812,14 @@ This suggests an algorithm to compute
 input-output pair :math:`(A, B)`.
 
 Algorithm
-----------
+---------
 
 Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` propose a simple bisection algorithm
 to find the minimal and maximal roots (i.e. :math:`\beta_0` and
 :math:`\alpha_0`) of the function :math:`\gamma \mapsto V(M(\gamma))`.
 
 Step 1
-~~~~~~~~~
+~~~~~~
 
 First, notice that we can easily find trivial upper and lower bounds for
 :math:`\alpha_0` and :math:`\beta_0`.
@@ -839,11 +843,11 @@ The *bounds* method calculates these trivial bounds for us
 
 .. code-block:: python3
 
-    N1.bounds()
+    n1.bounds()
 
 
 Step 2
-~~~~~~~~~
+~~~~~~
 
 Compute :math:`\alpha_0` and :math:`\beta_0`
 
@@ -852,39 +856,39 @@ Compute :math:`\alpha_0` and :math:`\beta_0`
    1. Fix :math:`\gamma = \frac{UB + LB}{2}` and compute the solution
       of the two-player zero-sum game associated
       with :math:`M(\gamma)`. We can use either the primal or the dual
-      LP problem
+      LP problem.
    2. If :math:`V(M(\gamma)) \geq 0`, then set :math:`LB = \gamma`,
-      otherwise let :math:`UB = \gamma`
-   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`
+      otherwise let :math:`UB = \gamma`.
+   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`.
 
 -  Finding :math:`\beta_0`
 
    1. Fix :math:`\gamma = \frac{UB + LB}{2}` and compute the solution
-      of the two-player zero-sum game associated
+      of the two-player zero-sum game associated.
       with :math:`M(\gamma)`. We can use either the primal or the dual
-      LP problem
+      LP problem.
    2. If :math:`V(M(\gamma)) > 0`, then set :math:`LB = \gamma`,
-      otherwise let :math:`UB = \gamma`
-   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`
+      otherwise let :math:`UB = \gamma`.
+   3. Iterate on 1. and 2. until :math:`|UB - LB| < \epsilon`.
 
 
    *Existence*: Since :math:`V(M(LB))>0` and :math:`V(M(UB))<0` and
    :math:`V(M(\cdot))` is a continuous, nonincreasing function, there is
-   at least one :math:`\gamma\in[LB, UB]`, s.t. :math:`V(M(\gamma))=0`
+   at least one :math:`\gamma\in[LB, UB]`, s.t. :math:`V(M(\gamma))=0`.
 
 The *zerosum* method calculates the value and optimal strategies
-associated with a given :math:`\gamma`
+associated with a given :math:`\gamma`.
 
 .. code-block:: python3
 
     γ = 2
 
     print(f'Value of the game with γ = {γ}')
-    print(N1.zerosum(γ=γ)[0])
+    print(n1.zerosum(γ=γ)[0])
     print('Intensity vector (from the primal)')
-    print(N1.zerosum(γ=γ)[1])
+    print(n1.zerosum(γ=γ)[1])
     print('Price vector (from the dual)')
-    print(N1.zerosum(γ=γ, dual=True)[1])
+    print(n1.zerosum(γ=γ, dual=True)[1])
 
 
 .. code-block:: python3
@@ -892,13 +896,16 @@ associated with a given :math:`\gamma`
     numb_grid = 100
     γ_grid = np.linspace(0.4, 2.1, numb_grid)
 
-    value_ex1_grid = np.asarray([N1.zerosum(γ=γ_grid[i])[0] for i in range(numb_grid)])
-    value_ex2_grid = np.asarray([N2.zerosum(γ=γ_grid[i])[0] for i in range(numb_grid)])
+    value_ex1_grid = np.asarray([n1.zerosum(γ=γ_grid[i])[0]
+                                for i in range(numb_grid)])
+    value_ex2_grid = np.asarray([n2.zerosum(γ=γ_grid[i])[0]
+                                for i in range(numb_grid)])
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 5), sharey=True)
     fig.suptitle(r'The function $V(M(\gamma))$', fontsize=16)
 
-    for ax, grid, N, i in zip(axes, (value_ex1_grid, value_ex2_grid), (N1, N2), (1, 2)):
+    for ax, grid, N, i in zip(axes, (value_ex1_grid, value_ex2_grid),
+                              (n1, n2), (1, 2)):
         ax.plot(γ_grid, grid)
         ax.set(title=f'Example {i}', xlabel='$\gamma$')
         ax.axhline(0, c='k', lw=1)
@@ -912,7 +919,7 @@ The *expansion* method implements the bisection algorithm for
 
 .. code-block:: python3
 
-    α_0, x, p = N1.expansion()
+    α_0, x, p = n1.expansion()
     print(f'α_0 = {α_0}')
     print(f'x_0 = {x}')
     print(f'The corresponding p from the dual = {p}')
@@ -923,7 +930,7 @@ The *interest* method implements the bisection algorithm for
 
 .. code-block:: python3
 
-    β_0, x, p = N1.interest()
+    β_0, x, p = n1.interest()
     print(f'β_0 = {β_0}')
     print(f'p_0 = {p}')
     print(f'The corresponding x from the primal = {x}')
@@ -946,14 +953,14 @@ input-output pair :math:`(A, B)`
 
 .. code-block:: python3
 
-    α_0, x, p = N2.expansion()
+    α_0, x, p = n2.expansion()
     print(f'α_0 = {α_0}')
     print(f'x_0 = {x}')
     print(f'The corresponding p from the dual = {p}')
 
 .. code-block:: python3
 
-    β_0, x, p = N2.interest()
+    β_0, x, p = n2.interest()
     print(f'β_0 = {β_0}')
     print(f'p_0 = {p}')
     print(f'The corresponding x from the primal = {x}')

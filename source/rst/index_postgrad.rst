@@ -41,6 +41,7 @@
     index_data_and_empirics
     index_tools_and_techniques_grad
     index_dynamic_programming_grad
+    index_lq_control_grad
     index_multi_agent_models_grad
     index_time_series_models_grad
     index_asset_pricing_grad

@@ -175,7 +175,7 @@ Evidently, :math:`\gamma(k)` does not depend on :math:`t`.
 
 
 
-:index:`Wold's Decomposition`
+:index:`Wold Representation`
 ------------------------------
 
 Remarkably, the class of general linear processes goes a long way towards
@@ -193,9 +193,10 @@ where
 
 * :math:`\{\epsilon_t\}` is white noise
 * :math:`\{\psi_t\}` is square summable
+* :math:`\psi_0 \epsilon_t` is the one-step ahead prediction error in forecasting :math:`X_t` as a linear least-squares function of the infinite history :math:`X_{t-1}, X_{t-2}, \ldots`
 * :math:`\eta_t` can be expressed as a linear function of :math:`X_{t-1}, X_{t-2},\ldots` and is perfectly predictable over arbitrarily long horizons
 
-For intuition and further discussion, see :cite:`Sargent1987`, p. 286.
+For the method of constructing a Wold representation, intuition, and further discussion, see :cite:`Sargent1987`, p. 286.
 
 
 AR and MA

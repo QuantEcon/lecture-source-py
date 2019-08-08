@@ -2,9 +2,9 @@
 
 .. include:: /_static/includes/header.raw
 
-********************************************
+*********************************
 :index:`OOP II: Building Classes`
-********************************************
+*********************************
 
 .. index::
     single: Python; Object-Oriented Programming
@@ -14,7 +14,7 @@
 
 
 Overview
-============
+========
 
 In an :doc:`earlier lecture <oop_intro>`, we learned some foundations of object-oriented programming.
 
@@ -52,17 +52,17 @@ It takes a little while to get used to the syntax so we'll provide plenty of exa
 
 
 OOP Review
-============
+==========
 
 OOP is supported in many languages:
 
-* JAVA and Ruby are relatively pure OOP
+* JAVA and Ruby are relatively pure OOP.
 
-* Python supports both procedural and object-oriented programming
+* Python supports both procedural and object-oriented programming.
 
-* Fortran and MATLAB are mainly procedural, some OOP recently tacked on
+* Fortran and MATLAB are mainly procedural, some OOP recently tacked on.
 
-* C is a procedural language, while C++ is C with OOP added on top
+* C is a procedural language, while C++ is C with OOP added on top.
 
 
 Let's cover general OOP concepts before we specialize to Python.
@@ -71,7 +71,7 @@ Let's cover general OOP concepts before we specialize to Python.
 
 
 Key Concepts
----------------
+------------
 
 .. index::
     single: Object-Oriented Programming; Key Concepts
@@ -102,9 +102,9 @@ It describes
 
 An  *object* or *instance* is a realization of the class, created from the blueprint
 
-* Each instance has its own unique data
+* Each instance has its own unique data.
 
-* Methods set out in the class definition act on this (and other) data
+* Methods set out in the class definition act on this (and other) data.
 
 In Python, the data and methods of an object are collectively referred to as *attributes*.
 
@@ -121,18 +121,18 @@ In the example
     x.sort()
     x.__class__
 
-* ``x`` is an object or instance, created from the definition for Python lists, but with its own particular data
+* ``x`` is an object or instance, created from the definition for Python lists, but with its own particular data.
 
-* ``x.sort()`` and ``x.__class__`` are two attributes of ``x``
+* ``x.sort()`` and ``x.__class__`` are two attributes of ``x``.
 
-* ``dir(x)`` can be used to view all the attributes of ``x``
+* ``dir(x)`` can be used to view all the attributes of ``x``.
 
 
 
 .. _why_oop:
 
 Why is OOP Useful?
-----------------------
+------------------
 
 
 OOP is useful for the same reason that abstraction is useful: for recognizing and exploiting the common structure.
@@ -159,7 +159,7 @@ When we use OOP, the ``simulate`` method is conveniently bundled together with t
 
 
 Defining Your Own Classes
-==============================
+=========================
 
 .. index::
     single: Object-Oriented Programming; Classes
@@ -171,7 +171,7 @@ Let's build some simple classes to start off.
 
 
 Example: A Consumer Class
--------------------------------------
+-------------------------
 
 First, we'll build a ``Consumer`` class with
 
@@ -209,11 +209,11 @@ Here's one implementation
 
 There's some special syntax here so let's step through carefully
 
-* The ``class`` keyword indicates that we are building a class
+* The ``class`` keyword indicates that we are building a class.
 
 This class defines instance data ``wealth`` and three methods: ``__init__``, ``earn`` and ``spend``
 
-*  ``wealth`` is *instance data* because each consumer we create (each instance of the ``Consumer`` class) will have its own separate wealth data
+*  ``wealth`` is *instance data* because each consumer we create (each instance of the ``Consumer`` class) will have its own separate wealth data.
 
 The ideas behind the ``earn`` and ``spend`` methods were discussed above.
 
@@ -229,7 +229,7 @@ We'll also discuss the role of ``self`` just below.
 
 
 Usage
-^^^^^^^
+^^^^^
 
 
 Here's an example of usage
@@ -298,9 +298,9 @@ Details
 
 In this section, we look at some more formal details related to classes and ``self``
 
-*  You might wish to skip to :ref:`the next section <oop_solow_growth>` on first pass of this lecture
+*  You might wish to skip to :ref:`the next section <oop_solow_growth>` on first pass of this lecture.
 
-*  You can return to these details after you've familiarized yourself with more examples
+*  You can return to these details after you've familiarized yourself with more examples.
 
 Methods actually live inside a class object formed when the interpreter reads
 the class definition
@@ -347,7 +347,7 @@ That's why the statement ``self.wealth += y`` inside ``earn`` ends up modifying 
 .. _oop_solow_growth:
 
 Example: The Solow Growth Model
--------------------------------------
+-------------------------------
 
 .. index::
     single: Object-Oriented Programming; Methods
@@ -379,13 +379,13 @@ Here's a class that implements this model.
 
 Some points of interest in the code are
 
-* An instance maintains a record of its current capital stock in the variable ``self.k``
+* An instance maintains a record of its current capital stock in the variable ``self.k``.
 
-* The ``h`` method implements the right-hand side of :eq:`solow_lom`
+* The ``h`` method implements the right-hand side of :eq:`solow_lom`.
 
-* The ``update`` method uses ``h`` to update capital as per :eq:`solow_lom`
+* The ``update`` method uses ``h`` to update capital as per :eq:`solow_lom`.
 
-    * Notice how inside ``update`` the reference to the local method ``h`` is ``self.h``
+    * Notice how inside ``update`` the reference to the local method ``h`` is ``self.h``.
 
 The methods ``steady_state`` and ``generate_sequence`` are fairly self-explanatory
 
@@ -464,7 +464,7 @@ The common steady state is also plotted for comparison
 
 
 Example: A Market
-------------------------------
+-----------------
 
 Next, let's write a class for a simple one good market where agents are price takers.
 
@@ -476,9 +476,9 @@ The market consists of the following objects:
 
 Here
 
-* :math:`p` is price paid by the consumer,  :math:`Q` is quantity and :math:`t` is a per-unit tax
+* :math:`p` is price paid by the consumer,  :math:`Q` is quantity and :math:`t` is a per-unit tax.
 
-* Other symbols are demand and supply parameters
+* Other symbols are demand and supply parameters.
 
 The class provides methods to compute various values of interest, including competitive equilibrium price and quantity, tax revenue raised, consumer surplus and producer surplus.
 
@@ -606,7 +606,7 @@ Here's an example of usage
 
 
 Example: Chaos
-------------------------------
+--------------
 
 Let's look at one more example, related to chaotic dynamics in nonlinear systems.
 
@@ -712,7 +712,7 @@ Notice that there is no value of :math:`r` that leads to a steady state oscillat
 
 
 Special Methods
-=================
+===============
 
 .. index::
     single: Object-Oriented Programming; Special Methods
@@ -768,13 +768,13 @@ Exercise 1 provides a more useful example.
 
 
 Exercises
-===========
+=========
 
 
 .. _oop_ex1:
 
 Exercise 1
----------------
+----------
 
 
 The `empirical cumulative distribution function (ecdf) <https://en.wikipedia.org/wiki/Empirical_distribution_function>`_ corresponding to a sample :math:`\{X_i\}_{i=1}^n` is defined as
@@ -793,8 +793,8 @@ The Glivenko--Cantelli Theorem states that, provided that the sample is IID, the
 
 Implement :math:`F_n` as a class called ``ECDF``, where
 
-* A given sample :math:`\{X_i\}_{i=1}^n` are the instance data, stored as ``self.observations``
-* The class implements a ``__call__`` method that returns :math:`F_n(x)` for any :math:`x`
+* A given sample :math:`\{X_i\}_{i=1}^n` are the instance data, stored as ``self.observations``.
+* The class implements a ``__call__`` method that returns :math:`F_n(x)` for any :math:`x`.
 
 Your code should work as follows (modulo randomness)
 
@@ -820,7 +820,7 @@ Aim for clarity, not efficiency.
 .. _oop_ex2:
 
 Exercise 2
--------------------------
+----------
 
 In an :ref:`earlier exercise <pyess_ex2>`, you wrote a function for evaluating polynomials.
 
@@ -837,16 +837,16 @@ The instance data for the class ``Polynomial`` will be the coefficients (in the 
 
 Provide methods that
 
-#. Evaluate the polynomial :eq:`polynom`, returning :math:`p(x)` for any :math:`x`
+#. Evaluate the polynomial :eq:`polynom`, returning :math:`p(x)` for any :math:`x`.
 
-#. Differentiate the polynomial, replacing the original coefficients with those of its derivative :math:`p'`
+#. Differentiate the polynomial, replacing the original coefficients with those of its derivative :math:`p'`.
 
 
 Avoid using any ``import`` statements.
 
 
 Solutions
-==========
+=========
 
 
 
