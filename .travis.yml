@@ -35,5 +35,6 @@ cache:
     - $HOME/build/QuantEcon/lecture-source-py/_build/
 
 script:
-  - ls _build/website/doctrees/*
-  - make website
+  - FILES=($(git diff --name-only $TRAVIS_COMMIT_RANGE) | grep '\.rst')
+  - echo $FILES
+  - make website FILES=$FILES
