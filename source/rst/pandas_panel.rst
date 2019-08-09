@@ -380,7 +380,7 @@ Grouping and summarizing data can be particularly useful for
 understanding large panel datasets.
 
 A simple way to summarize data is to call an `aggregation
-method <http://pandas.pydata.org/pandas-docs/stable/basics.html#descriptive-statistics>`__
+method <https://pandas.pydata.org/pandas-docs/stable/getting_started/basics.html#descriptive-statistics>`__
 on the dataframe, such as ``.mean()`` or ``.max()``.
 
 For example, we can calculate the average real minimum wage for each
