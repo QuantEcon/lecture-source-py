@@ -24,10 +24,6 @@ install:
   - pip install quantecon
   - pip install joblib
   - pip install sphinxcontrib-jupyter
-  - conda remove sphinx -y
-  - git clone https://github.com/larsoner/sphinx.git
-  - cd sphinx && python setup.py install && cd ../
-  - rm -rf sphinx
   - make setup
 
 cache:
