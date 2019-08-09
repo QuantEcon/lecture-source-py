@@ -26,9 +26,9 @@ install:
   - pip install sphinxcontrib-jupyter
   - make setup
 
-cache:
-  directories:
-    - $HOME/build/QuantEcon/lecture-source-py/_build/
+# cache:
+#   directories:
+#     - $HOME/build/QuantEcon/lecture-source-py/_build/
 
 script:
   - echo $TRAVIS_PULL_REQUEST
