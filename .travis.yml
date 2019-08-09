@@ -26,9 +26,4 @@ install:
   - make setup
 
 script:
-  - echo $TRAVIS_PULL_REQUEST
-  - echo $TRAVIS_COMMIT_RANGE
-  - CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep '\.rst')
-  - echo $CHANGED_FILES
-  - make coverage FILES=$CHANGED_FILES
-  - more _build/coverage/jupyter/reports/code-execution-results.json
+  - bash scripts/travis-coverage.sh
