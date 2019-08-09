@@ -1,0 +1,34 @@
+# Travis Configuration for lecture-source-py code execution tests
+
+sudo: false
+language: python
+dist: xenial
+
+language: python
+
+notifications:
+  email: false
+
+branches:
+  only:
+    - master
+
+before_install:
+  - wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O anaconda3.sh
+  - chmod +x anaconda3.sh
+  - ./anaconda3.sh -b
+  - export PATH=/home/travis/anaconda3/bin:$PATH
+
+install:
+  - pip install quantecon
+  - pip install joblib
+  - pip install sphinxcontrib-jupyter
+  - make setup
+
+script:
+  - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_COMMIT_RANGE
+  - CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep '\.rst')
+  - echo $CHANGED_FILES
+  - make coverage FILES=$CHANGED_FILES
+  - more _build/coverage/jupyter/reports/code-execution-results.json
