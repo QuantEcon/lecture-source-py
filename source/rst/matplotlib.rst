@@ -293,7 +293,7 @@ Further Reading
 
 * The `Matplotlib gallery <http://matplotlib.org/gallery.html>`__ provides many examples.
 
-* A nice `Matplotlib tutorial <http://www.scipy-lectures.org/intro/matplotlib/matplotlib.html>`__ by Nicolas Rougier, Mike Muller and Gael Varoquaux.
+* A nice `Matplotlib tutorial <http://scipy-lectures.org/intro/matplotlib/index.html>`__ by Nicolas Rougier, Mike Muller and Gael Varoquaux.
 
 * `mpltools <http://tonysyu.github.io/mpltools/index.html>`_ allows easy
   switching between plot styles.
