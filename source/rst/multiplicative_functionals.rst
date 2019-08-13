@@ -44,7 +44,7 @@ This lecture uses this special class to create and analyze two examples
 
 Let's start with some imports
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import scipy as sp
