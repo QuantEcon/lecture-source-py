@@ -45,7 +45,14 @@ Uncertainty traps emerge because:
 Uncertainty traps stem from a positive externality: high aggregate economic activity levels generates valuable information.
 
 
+Let's start with following imports:
 
+.. code-block:: ipython
+
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import numpy as np
+    import itertools
 
 
 The Model
@@ -337,13 +344,6 @@ Modulo randomness, replicate the simulation figures shown above.
 
 Solutions
 =========
-
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-    import numpy as np
-    import itertools
 
 Exercise 1
 ----------
