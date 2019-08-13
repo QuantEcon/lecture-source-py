@@ -27,7 +27,6 @@
         <link rel="stylesheet" href="https://lectures.quantecon.org/_static/css/qe.css?v=1.2">
         <link rel="stylesheet" href="https://assets.quantecon.org/css/qemb.css">
         <link rel="icon" href="https://lectures.quantecon.org/_static/img/favicon.ico" type="image/x-icon" />
-		<link rel="canonical" href="https://lectures.quantecon.org/py/arma.html">
 
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Source+Sans+Pro:400,700" rel="stylesheet">
 
