@@ -42,6 +42,17 @@ This lecture uses this special class to create and analyze two examples
 * A version of Robert E. Lucas's :cite:`lucas2003macroeconomic` and Thomas Tallarini's :cite:`Tall2000` approaches to measuring the benefits of moderating aggregate fluctuations.
 
 
+Let's start with some imports
+
+.. code-block:: ipython
+
+    import numpy as np
+    import scipy as sp
+    import scipy.linalg as la
+    import quantecon as qe
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.stats import norm, lognorm
 
 
 A Log-Likelihood Process
