@@ -101,7 +101,7 @@ to maximize.
 
 subject to the constraints
 
-.. math:: \begin{align*}
+.. math:: \begin{aligned}
  T_t & = G_t + b_{t-2,t} + b_{t-1,t} - p_{t,t+2} b_{t,t+2} - p_{t,t+1} b_{t,t+1} \cr
    G_t &  = U_{g,t} z_t \cr
    z_{t+1} & = A_{22,t} z_t + C_{2,t} w_{t+1} \cr
@@ -111,7 +111,7 @@ subject to the constraints
     U_{g,t} \cr
     A_{22,t} \cr
     C_{2,t}
-   \end{bmatrix} & \sim \textrm{functions of Markov state with transition matrix } \Pi \end{align*}
+   \end{bmatrix} & \sim \textrm{functions of Markov state with transition matrix } \Pi \end{aligned}
 
 
 Here :math:`w_{t+1} \sim {\cal N}(0,I)` and :math:`\Pi_{ij}` is
