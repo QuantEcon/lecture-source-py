@@ -5,10 +5,6 @@ Provides a class called ChangModel to solve different
 parameterizations of the Chang (1998) model.
 """
 
-import numpy as np
-import quantecon as qe
-import time
-
 from scipy.spatial import ConvexHull
 from scipy.optimize import linprog, minimize, minimize_scalar
 from scipy.interpolate import UnivariateSpline

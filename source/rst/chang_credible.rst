@@ -80,7 +80,16 @@ Chang's operator :math:`\tilde D(Z)` is closely connected with the operator
    * *sustainable* means that the government wants to implement it at all times after all histories.
 
 
+Let's start with following imports:
 
+.. code-block:: ipython
+
+    import numpy as np
+    import quantecon as qe
+    import time
+    import polytope
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 The Setting
@@ -793,11 +802,7 @@ The following plot shows both the set of :math:`w,\theta` pairs associated with 
 and the smaller set of :math:`w,\theta` pairs associated with  sustainable plans (in blue).
 
 
-.. code-block:: ipython
-
-    import polytope
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     def plot_equilibria(ChangModel):
         """

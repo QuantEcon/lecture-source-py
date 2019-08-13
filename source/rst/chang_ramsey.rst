@@ -61,6 +61,18 @@ We encountered problems with this structure in
 :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`,
 and other lectures.
 
+Let's start with following imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import quantecon as qe
+    import time
+    import polytope
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+
 The Setting
 -----------
 
@@ -853,12 +865,7 @@ code for now - we can increase accuracy by increasing the number of subgradients
     ch1 = ChangModel(β=0.3, mbar=30, h_min=0.9, h_max=2, n_h=8, n_m=35, N_g=10)
     ch1.solve_sustainable()
 
-.. code-block:: ipython
-
-  import polytope
-  import matplotlib.pyplot as plt
-  %matplotlib inline
-
+.. code-block:: python3
 
   def plot_competitive(ChangModel):
       """
