@@ -192,9 +192,16 @@ interrelated Bellman equations
 
 .. math::
 
-    -x' P_i x - \rho_i  = \max_u - \biggl[ x'R_i x + u' Q_i u + 2 u' W_i x \\
-                    \beta \sum_j \Pi_{ij}E ((A_i x + B_i u + C_i w)' P_j
-                    (A_i x + B_i u + C_i w) x + \rho_j) \biggr]
+    \begin{split}
+    -x' P_i x - \rho_i & = \max_u - 
+      \\ 
+      &
+       \left[ 
+         x'R_i x + u' Q_i u + 2 u' W_i x 
+                 \beta \sum_j \Pi_{ij}E ((A_i x + B_i u + C_i w)' P_j
+                 (A_i x + B_i u + C_i w) x + \rho_j) 
+       \right] 
+    \end{split}
 
 
 The matrices :math:`P(s(t)) = P_i` and the scalars
@@ -301,11 +308,14 @@ We can represent the one-period payoff function
 .. math::
 
 
+    \begin{aligned}
    r\left(s_{t},k_{t}\right)   =f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)u_{t}{}^{2} \\
        =-\left(x_{t}^{\prime}\underset{\equiv R\left(s_{t}\right)}{\underbrace{\begin{bmatrix}
    f_{2}\left(s_{t}\right) & -\frac{f_{1}\left(s_{t}\right)}{2}\\
    -\frac{f_{1}\left(s_{t}\right)}{2} & 0
    \end{bmatrix}}}x_{t}+\underset{\equiv Q\left(s_{t}\right)}{\underbrace{d\left(s_{t}\right)}}u_{t}{}^{2}\right)
+    \end{aligned}
+
 
 .. math::
 
@@ -820,13 +830,18 @@ We can write the one-period payoff function
 
 .. math::
 
-
-   r\left(s_{t},k_{t},w_{t}\right) =f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)\left(k_{t+1}-k_{t}\right)^{2}-w_{t}k_{t} \\
-       =-\left(x_{t}^{\prime}\underset{\equiv R\left(s_{t}\right)}{\underbrace{\begin{bmatrix}
-   f_{2}\left(s_{t}\right) & -\frac{f_{1}\left(s_{t}\right)}{2} & \frac{1}{2}\\
-   -\frac{f_{1}\left(s_{t}\right)}{2} & 0 & 0\\
-   \frac{1}{2} & 0 & 0
-   \end{bmatrix}}}x_{t}+\underset{\equiv Q\left(s_{t}\right)}{\underbrace{d\left(s_{t}\right)}}u_{t}^{2}\right),
+   \begin{aligned}
+   r\left(s_{t},k_{t},w_{t}\right) 
+     & =f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)\left(k_{t+1}-k_{t}\right)^{2}-w_{t}k_{t} \\
+     & =-\left(x_{t}^{\prime}\underset{\equiv R\left(s_{t}\right)}{\underbrace{
+      \begin{bmatrix}
+         f_{2}\left(s_{t}\right) & -\frac{f_{1}\left(s_{t}\right)}{2} & \frac{1}{2}\\
+         -\frac{f_{1}\left(s_{t}\right)}{2} & 0 & 0\\
+         \frac{1}{2} & 0 & 0
+      \end{bmatrix}}}
+   x_{t}+
+   \underset{\equiv Q\left(s_{t}\right)}{\underbrace{d\left(s_{t}\right)}}u_{t}^{2}\right),
+   \end{aligned}
 
 and
 

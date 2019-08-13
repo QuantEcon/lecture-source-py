@@ -69,6 +69,18 @@ We describe how to construct,  simulate,  and interpret these components.
 
 More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`hansen2008robustness`.
 
+Let's start with some imports
+
+.. code-block:: python3
+
+    import numpy as np
+    import scipy as sp
+    import scipy.linalg as la
+    import quantecon as qe
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.stats import norm, lognorm
+
 
 A Particular Additive Functional
 ====================================
