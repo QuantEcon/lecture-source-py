@@ -19,7 +19,6 @@ These lectures look at important concepts in time series that are used in econom
     arma
     estspec
     additive_functionals
-    multiplicative_functionals
     lu_tricks
     classical_filtering
 
