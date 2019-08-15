@@ -2,3 +2,10 @@ _build/
 _build_website/
 _build_coverage/
 dask-worker-space/
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+.DS_Store
+.DS_Store?
+**/.DS_Store
