@@ -2,3 +2,5 @@ _build/
 _build_website/
 _build_coverage/
 dask-worker-space/
+.DS_Store/
+
