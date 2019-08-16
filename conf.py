@@ -443,3 +443,7 @@ jupyter_images_markdown = True
 
 #This is set true by default to pass html to the notebooks
 jupyter_allow_html_only=True
+
+## Theme specific variables
+jupyter_theme_path = 'theme'
+jupyter_template_path = 'theme/templates'
