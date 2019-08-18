@@ -3,6 +3,14 @@
 
 """
 
+import numpy as np
+import scipy as sp
+import scipy.linalg as la
+from scipy.stats import norm, lognorm
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+
 class AMF_LSS_VAR:
     """
     This class transforms an additive (multiplicative)

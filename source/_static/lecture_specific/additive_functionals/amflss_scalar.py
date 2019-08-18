@@ -4,6 +4,10 @@
 
 """
 
+import numpy as np
+import scipy as sp
+import scipy.linalg as la
+
 class AMF_LSS_VAR:
     """
     This class is written to transform a scalar additive functional
