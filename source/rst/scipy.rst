@@ -204,7 +204,7 @@ For example, ``scipy.stats.linregress`` implements simple linear regression
     gradient, intercept
 
 
-To see the full list, consult the `documentation <http://docs.scipy.org/doc/scipy/reference/stats.html#statistical-functions>`__.
+To see the full list, consult the `documentation <https://docs.scipy.org/doc/scipy/reference/stats.html#statistical-functions-scipy-stats>`__.
 
 
 

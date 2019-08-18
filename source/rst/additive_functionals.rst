@@ -69,6 +69,18 @@ We describe how to construct,  simulate,  and interpret these components.
 
 More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`hansen2008robustness`.
 
+Let's start with some imports
+
+.. code-block:: python3
+
+    import numpy as np
+    import scipy as sp
+    import scipy.linalg as la
+    import quantecon as qe
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.stats import norm, lognorm
+
 
 A Particular Additive Functional
 ====================================
@@ -624,7 +636,7 @@ Let's write a program to simulate sample paths of :math:`\{ x_t, y_{t} \}_{t=0}^
 
 We'll do this by formulating the additive functional as a linear state space model and putting the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to work.
 
- .. literalinclude:: /_static/lecture_specific/multiplicative_functionals/amflss_scalar.py
+ .. literalinclude:: /_static/lecture_specific/additive_functionals/amflss_scalar.py
 
 The heavy lifting is done inside the `AMF_LSS_VAR` class.
 
