@@ -51,6 +51,16 @@ The Aiyagari model has been used to investigate many topics, including
 * etc., etc., etc.
 
 
+Let's start with following imports
+
+.. code-block:: ipython
+
+    import numpy as np
+    from numba import jit
+    import quantecon as qe
+    from quantecon.markov import DiscreteDP
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 References
