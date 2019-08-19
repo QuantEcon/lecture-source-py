@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class UncertaintyTrapEcon:
 
     def __init__(self,
