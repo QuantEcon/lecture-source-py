@@ -38,7 +38,11 @@ For us, the shortest path problem also provides a nice introduction to the logic
 
 Dynamic programming is an extremely powerful optimization technique that we apply in many lectures on this site.
 
+The only scientific library we'll need in what follows is NumPy:
 
+.. code-block:: python3
+   
+   import numpy as np
 
 
 
@@ -56,6 +60,8 @@ We wish to travel from node (vertex) A to node G at minimum cost
 * Arrows (edges) indicate the movements we can take.
 * Numbers on edges indicate the cost of traveling that edge.
 
+(Graphs such as the one above are called **weighted directed graphs**)
+
 Possible interpretations of the graph include
 
 * Minimum cost for supplier to reach a destination.
@@ -71,6 +77,7 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 * A, D, F, G at cost 8
 
 .. figure:: /_static/lecture_specific/short_path/graph3.png
+
 
 Finding Least-Cost Paths
 ========================
@@ -88,9 +95,9 @@ Note that :math:`J(G) = 0`.
 
 The best path can now be found as follows
 
-* Start at A
+#. Start at node :math:`v = A`
 
-* From node v, move to any node that solves
+#. From current node :math:`v`, move to any node that solves
 
 .. math::
     :label: spprebell
@@ -106,7 +113,7 @@ where
 
 Hence, if we know the function :math:`J`, then finding the best path is almost trivial.
 
-But how to find :math:`J`?
+But how can we find the cost-to-go function :math:`J`?
 
 Some thought will convince you that, for every node :math:`v`,
 the function :math:`J` satisfies
@@ -119,33 +126,121 @@ the function :math:`J` satisfies
 
 This is known as the *Bellman equation*, after the mathematician Richard Bellman.
 
+The Bellman equation can be thought of as a restriction that :math:`J` must
+satisfy.
 
+What we want to do now is use this restriction to compute :math:`J`.
 
 Solving for Minimum Cost-to-Go
 ==============================
 
-The standard algorithm for finding :math:`J` is to start with
+
+Let's look at an algorithm for computing :math:`J` and then think about how to
+implement it.
+
+The Algorithm
+--------------
+
+The standard algorithm for finding :math:`J` is to start an initial guess and then iterate.
+
+This is a standard approach to solving nonlinear equations, often called
+the method of **successive approximations**.
+
+Our initial guess will be 
 
 .. math::
     :label: spguess
 
-    J_0(v) = M \text{ if } v \not= \text{ destination, else } J_0(v) = 0
+    J_0(v) = 0 \text{ for all } v
 
 
-where :math:`M` is some large number.
-
-Now we use the following algorithm
+Now 
 
 #. Set :math:`n = 0`
+
 #. Set :math:`J_{n+1} (v) = \min_{w \in F_v} \{ c(v, w) + J_n(w) \}` for all :math:`v`
+
 #. If :math:`J_{n+1}` and :math:`J_n` are not equal then increment :math:`n`, go to 2
 
-In general, this sequence converges to :math:`J`---the proof is omitted.
+This sequence converges to :math:`J`.
+
+Although we omit the proof, we'll prove similar claims in our other lectures
+on dynamic programming.
 
 
+Implementation
+--------------
 
+Having an algorithm is a good start, but we also need to think about how to
+implement it on a computer.
 
+First, for the cost function :math:`c`, we'll implement it as a matrix
+:math:`Q`, where a typical element is 
 
+.. math::
+   
+   Q(v, w) 
+   =
+   \begin{cases}
+      & c(v, w) \text{ if } w \in F_v \\
+      & +\infty \text{ otherwise }
+   \end{cases}
+
+In this context :math:`Q` is usually called the **distance matrix**.
+
+We're also numbering the nodes now, with :math:`A = 0`, so, for example 
+
+.. math::
+   
+   Q(1, 2) 
+   =
+   \text{ the cost of traveling from B to C }
+
+For example, for the simple graph above, we set
+
+.. code-block:: python3
+
+   from numpy import inf
+
+   Q = np.array([[inf, 1,   5,   3,   inf, inf, inf], 
+                 [inf, inf, inf, 9,   6,   inf, inf], 
+                 [inf, inf, inf, inf, inf, 2,   inf], 
+                 [inf, inf, inf, inf, inf, 4,   8], 
+                 [inf, inf, inf, inf, inf, inf, 4], 
+                 [inf, inf, inf, inf, inf, inf, 1], 
+                 [inf, inf, inf, inf, inf, inf, 0]])
+
+Notice that the cost of staying still (on the principle diagonal) is set to 
+
+* `np.inf` for non-destination nodes --- moving on is required.
+* `0` for the destination node --- here is where we stop.
+
+For the sequence of approximations :math:`\{J_n\}` of the cost-to-go functions, we can use NumPy arrays.
+
+Let's try with this example and see how we go:
+
+.. code-block:: python3
+
+   num_nodes = 7
+   J = np.zeros(num_nodes, dtype=np.int)       # Initial guess
+   next_J = np.empty(num_nodes, dtype=np.int)  # Stores updated guess
+   max_iter = 500
+   i = 0
+
+   while i < max_iter:
+      for v in range(num_nodes):
+         next_J[v] = np.min(Q[v, :] + J)
+      if np.equal(next_J, J).all():
+         break
+      else:
+         J[:] = next_J   # Copy contents of next_J to J
+         i += 1
+
+   print("The cost-to-go function is", J)
+
+This matches with the numbers we obtained by inspection above.
+
+But, importantly, we now have a methodology for tackling large graphs.
 
 Exercises
 =========
@@ -155,11 +250,19 @@ Exercises
 Exercise 1
 ----------
 
-Use the algorithm given above to find the optimal path (and its cost) for the
-following graph.
+The text below describes a weighted directed graph.
 
-You can put it in a Jupyter notebook cell and hit Shift-Enter --- it
-will be saved in the local directory as file `graph.txt`.
+The line ``node0, node1 0.04, node8 11.11, node14 72.21`` means that from `node0` we can go to
+
+* `node1` at cost 0.04
+* `node8` at cost 11.11
+* `node14` at cost 72.21
+
+No other nodes can be reached directly from `node0`.
+
+Other lines have a similar interpretation.
+
+Your task is to use the algorithm given above to find the optimal path and its cost.  
 
 .. code-block:: python3
 
@@ -265,17 +368,7 @@ will be saved in the local directory as file `graph.txt`.
     node98, node99 0.33
     node99,
 
-Here the line ``node0, node1 0.04, node8 11.11, node14 72.21`` means that from `node0` we can go to
 
-* `node1` at cost 0.04
-* `node8` at cost 11.11
-* `node14` at cost 72.21
-
-and so on.
-
-According to our calculations, the optimal path and its cost are like `this <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/short_path/graph_out.txt>`__.
-
-Your code should replicate this result.
 
 
 
@@ -284,81 +377,99 @@ Solutions
 
 
 
-
 Exercise 1
 ----------
 
+First let's write a function that reads in the graph data above and builds a distance matrix.
+
 .. code-block:: python3
 
+   num_nodes = 100
+   destination_node = 99
 
-    def read_graph(in_file):
-        """ Read in the graph from the data file.  The graph is stored
-        as a dictionary, where the keys are the nodes and the values
-        are a list of pairs (d, c), where d is a node and c is a number.
-        If (d, c) is in the list for node n, then d can be reached from
-        n at cost c.
-        """
-        graph = {}
-        infile = open(in_file)
-        for line in infile:
-            elements = line.split(',')
-            node = elements.pop(0)
-            graph[node] = []
-            if node != 'node99':
-                for element in elements:
-                    destination, cost = element.split()
-                    graph[node].append((destination, float(cost)))
-        infile.close()
-        return graph
+   def map_graph_to_distance_matrix(in_file):
 
-    def update_J(J, graph):
-        "The Bellman operator."
-        next_J = {}
-        for node in graph:
-            if node == 'node99':
-                next_J[node] = 0
-            else:
-                next_J[node] = min(cost + J[dest] for dest, cost in graph[node])
-        return next_J
+      # First let's set of the distance matrix Q with inf everywhere
+      Q = np.ones((num_nodes, num_nodes))
+      Q = Q * np.inf  
 
-    def print_best_path(J, graph):
-        """ Given a cost-to-go function, computes the best path.  At each node n,
-        the function prints the current location, looks at all nodes that can be
-        reached from n, and moves to the node m which minimizes c + J[m], where c
-        is the cost of moving to m.
-        """
+      # Now we read in the data and modify Q
+      infile = open(in_file)
+      for line in infile:
+         elements = line.split(',')
+         node = elements.pop(0)
+         node = int(node[4:])    # convert node description to integer
+         if node != destination_node:
+             for element in elements:
+                 destination, cost = element.split()
+                 destination = int(destination[4:])
+                 Q[node, destination] = float(cost)
+      Q[destination_node, destination_node] = 0
+
+      infile.close()
+      return Q
+
+In addition, let's write 
+
+#. a "Bellman operator" function that takes a distance matrix and current guess of `J` and returns an updated guess of `J`, and
+   
+#. a function that takes a distance matrix and returns a cost-to-go function.
+
+We'll use the algorithm described above.
+
+.. code-block:: python3
+
+   def bellman(J, Q):
+      num_nodes = Q.shape[0]
+      next_J = np.empty_like(J)
+      for v in range(num_nodes):
+         next_J[v] = np.min(Q[v, :] + J)
+      return next_J
+
+
+   def compute_cost_to_go(Q):
+      J = np.zeros(num_nodes)      # Initial guess
+      next_J = np.empty(num_nodes)  # Stores updated guess
+      max_iter = 500
+      i = 0
+
+      while i < max_iter:
+         next_J = bellman(J, Q)
+         if np.allclose(next_J, J):
+            break
+         else:
+            J[:] = next_J   # Copy contents of next_J to J
+            i += 1
+
+      return(J)
+
+
+We used `np.allclose()` rather than testing exact equality because we are
+dealing with floating point numbers now.
+
+Finally, here's a function that uses the cost-to-go function to obtain the
+optimal path (and its cost).
+
+.. code-block:: python3
+
+    def print_best_path(J, Q):
         sum_costs = 0
-        current_location = 'node0'
-        while current_location != 'node99':
-            print(current_location)
-            running_min = 1e100  # Any big number
-            for destination, cost in graph[current_location]:
-                cost_of_path = cost + J[destination]
-                if cost_of_path < running_min:
-                    running_min = cost_of_path
-                    minimizer_cost = cost
-                    minimizer_dest = destination
-            current_location = minimizer_dest
-            sum_costs += minimizer_cost
+        current_node = 0
+        while current_node != destination_node:
+            print(current_node)
+            # Move to the next node and increment costs
+            next_node = np.argmin(Q[current_node, :] + J)
+            sum_costs += Q[current_node, next_node]
+            current_node = next_node
 
-        print('node99\n')
+        print(destination_node)
         print('Cost: ', sum_costs)
 
 
-    ## Main loop
+Okay, now we have the necessary functions, let's call them to do the job we were assigned.
 
-    graph = read_graph('graph.txt')
-    M = 1e10
-    J = {}
-    for node in graph:
-        J[node] = M
-    J['node99'] = 0
+.. code-block:: python3
 
-    while True:
-        next_J = update_J(J, graph)
-        if next_J == J:
-            break
-        else:
-            J = next_J
-
-    print_best_path(J, graph)
+   Q = map_graph_to_distance_matrix('graph.txt')
+   J = compute_cost_to_go(Q)
+   print_best_path(J, Q)
