@@ -38,7 +38,7 @@
 
         <link rel="stylesheet" href="/_static/css/basic.css">
         <link rel="stylesheet" href="/_static/css/qe.css">
-        <link rel="stylesheet" href="/_static/css/qe-menubar.css">
+        <link rel="stylesheet" href="https://assets.quantecon.org/css/qemb.css">
         <link rel="icon" href="/_static/img/favicon.ico" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Source+Sans+Pro:400,700" rel="stylesheet">
@@ -48,24 +48,43 @@
 
     <body class="{{nb_lang}}">
 
-        <div class="qe-menubar">
-        
-            <p class="qe-menubar-logo"><a href="https://quantecon.org/" title="quantecon.org"><img src="/_static/img/qe-menubar-logo.svg" alt="QuantEcon"></a></p>
-        
-            <ul class="qe-menubar-nav">
-                <li><a href="https://lectures.quantecon.org/" title="Lectures"><span>Lectures</span></a></li>
-                <li><a href="https://quantecon.org/quantecon-py" title="QuantEcon.py"><span>QuantEcon.py</span></a></li>
-                <li><a href="https://quantecon.org/quantecon-jl" title="QuantEcon.jl"><span>QuantEcon.jl</span></a></li>
-                <li><a href="http://notes.quantecon.org/" title="QE Notes"><span>QE Notes</span></a></li>
-                <li><a href="http://cheatsheets.quantecon.org/" title="Cheatsheets"><span>Cheatsheets</span></a></li>
-                <li><a href="http://blog.quantecon.org/" title="Blog"><span>Blog</span></a></li>
-                <li><a href="http://discourse.quantecon.org/" title="Forum"><span>Forum</span></a></li>
-                <li><a href="http://store.quantecon.org/" title="Store"><span class="show-for-sr">Store</span></a></li>
-                <li><a href="https://github.com/QuantEcon/" title="Repository"><span class="show-for-sr">Repository</span></a></li>
-                <li><a href="https://twitter.com/quantecon" title="Twitter"><span class="show-for-sr">Twitter</span></a></li>
-            </ul>
-            
-        </div>
+		<div class="qemb"> <!-- QuantEcon menubar -->
+
+			<p class="qemb-logo"><a href="https://quantecon.org/" title="quantecon.org"><span class="show-for-sr">QuantEcon</span></a></p>
+
+			<ul class="qemb-nav">
+			  <li class="qemb-dropdown"><a>Lectures</a>
+			    <ul>
+			      <li><a href="https://lectures.quantecon.org/" title="Lectures"><span>Lectures in Quantitative Economics</span></a></li>
+			      <li><a href="https://datascience.quantecon.org/" title="DataScience"><span>QuantEcon DataScience</span></a></li>
+			      <li><a href="http://cheatsheets.quantecon.org/" title="Cheatsheets"><span>Cheatsheets</span></a></li>
+			    </ul>
+			  </li>
+			  <li class="qemb-dropdown"><a>Code</a>
+			    <ul>
+			      <li><a href="https://quantecon.org/quantecon-py" title="QuantEcon.py"><span>QuantEcon.py</span></a></li>
+			      <li><a href="https://quantecon.org/quantecon-jl" title="QuantEcon.jl"><span>QuantEcon.jl</span></a></li>
+			      <li><a href="https://jupinx.quantecon.org/">Jupinx</a></li>
+			  </ul>
+			  </li>
+			  <li class="qemb-dropdown"><a>Notebooks</a>
+			    <ul>
+			      <li><a href="https://quantecon.org/notebooks" title="QuantEcon Notebook Library"><span>NB Library</span></a></li>
+			      <li><a href="http://notes.quantecon.org/" title="QE Notes"><span>QE Notes</span></a></li>
+			    </ul>
+			  </li>
+			  <li class="qemb-dropdown"><a>Community</a>
+			    <ul>
+			      <li><a href="http://blog.quantecon.org/" title="Blog"><span>Blog</span></a></li>
+			      <li><a href="http://discourse.quantecon.org/" title="Forum"><span>Forum</span></a></li>
+			    </ul>
+			  </li>
+			  <li><a href="http://store.quantecon.org/" title="Store"><span class="show-for-sr">Store</span></a></li>
+			  <li><a href="https://github.com/QuantEcon/" title="Repository"><span class="show-for-sr">Repository</span></a></li>
+			  <li><a href="https://twitter.com/quantecon" title="Twitter"><span class="show-for-sr">Twitter</span></a></li>
+			</ul>
+
+		</div>
 
         <div class="wrapper">
 
