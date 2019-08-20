@@ -42,9 +42,14 @@ We will focus on settings with
 
 Other references include chapter 7 of :cite:`Ljungqvist2012`.
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
 
-
+    import numpy as np
+    import quantecon as qe
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 Background
@@ -515,7 +520,26 @@ The following program
 
 * extracts and plots industry output :math:`q_t = q_{1t} + q_{2t}` and price :math:`p_t = a_0 - a_1 q_t`.
 
-.. literalinclude:: /_static/lecture_specific/markov_perf/duopoly_mpe_dynamics.py
+.. code-block:: python3
+
+    AF = A - B1 @ F1 - B2 @ F2
+    n = 20
+    x = np.empty((3, n))
+    x[:, 0] = 1, 1, 1
+    for t in range(n-1):
+        x[:, t+1] = AF @ x[:, t]
+    q1 = x[1, :]
+    q2 = x[2, :]
+    q = q1 + q2       # Total output, MPE
+    p = a0 - a1 * q   # Price, MPE
+
+    fig, ax = plt.subplots(figsize=(9, 5.8))
+    ax.plot(q, 'b-', lw=2, alpha=0.75, label='total output')
+    ax.plot(p, 'g-', lw=2, alpha=0.75, label='price')
+    ax.set_title('Output and prices, duopoly MPE')
+    ax.legend(frameon=False)
+    plt.show()
+
 
 Note that the initial condition has been set to :math:`q_{10} = q_{20} = 1.0`.
 
