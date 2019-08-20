@@ -369,7 +369,7 @@ To give an example, let's write the file `us_cities.txt`, which lists US cities 
 
 Suppose that we want to make the information more readable, by capitalizing names and adding commas to mark thousands.
 
-The program `us_cities.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_essentials/us_cities.py>`__ program reads the data in and makes the conversion:
+The program below reads the data in and makes the conversion:
 
 .. code-block:: python3
 

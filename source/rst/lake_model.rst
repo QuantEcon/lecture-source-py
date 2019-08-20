@@ -790,9 +790,9 @@ Fiscal Policy Code
 ------------------
 
 
-We will make use of code we wrote in the :doc:`McCall model lecture <mccall_model>`, embedded below for convenience.
+We will make use of techniques from the :doc:`McCall model lecture <mccall_model>`
 
-The first piece of code, repeated below, implements value function iteration
+The first piece of code implements value function iteration
 
 .. code-block:: python3
     :class: collapse
@@ -886,7 +886,7 @@ The first piece of code, repeated below, implements value function iteration
         return V, U
 
 
-The second piece of code repeated from :doc:`the McCall model lecture <mccall_model>` is used to complete the reservation wage
+The second piece of code is used to complete the reservation wage:
 
 
 .. code-block:: python3
