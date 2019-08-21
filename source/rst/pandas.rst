@@ -49,12 +49,13 @@ This lecture will provide a basic introduction to pandas.
 Throughout the lecture, we will assume that the following imports have taken
 place
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import pandas as pd
     import numpy as np
-
-
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import requests
 
 Series
 ======
@@ -244,10 +245,7 @@ One of the nice things about pandas ``DataFrame`` and ``Series`` objects is that
 
 For example, we can easily generate a bar plot of GDP per capita
 
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     df['GDP percap'].plot(kind='bar')
     plt.show()
@@ -308,8 +306,6 @@ One option is to use `requests <http://docs.python-requests.org/en/master/>`_, a
 To begin, try the following code on your computer
 
 .. code-block:: python3
-
-    import requests
 
     r = requests.get('http://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv')
 
@@ -395,7 +391,24 @@ data as an Excel file.
 The next program does this for you, reads an Excel file into a pandas
 DataFrame, and plots time series for the US and Australia
 
-.. literalinclude:: /_static/lecture_specific/pandas/wb_download.py
+.. code-block:: python3
+
+    # == Get data and read into file gd.xls == #
+    wb_data_query = "http://api.worldbank.org/v2/en/indicator/gc.dod.totl.gd.zs?downloadformat=excel"
+    r = requests.get(wb_data_query)
+    with open('gd.xls', 'wb') as output:
+        output.write(r.content)
+
+    # == Parse data into a DataFrame == #
+    govt_debt = pd.read_excel('gd.xls', sheet_name='Data', skiprows=3, index_col=1)
+
+    # == Take desired values and plot == #
+    govt_debt = govt_debt.transpose()
+    govt_debt = govt_debt[['AUS', 'USA']]
+    govt_debt = govt_debt[38:]
+    govt_debt.plot(lw=2)
+    plt.show()
+
 
 .. only:: html
 
