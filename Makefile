@@ -48,10 +48,10 @@ endif
 
 website:
 ifneq ($(strip $(parallel)),)
-	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_images_urlpath="https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="lectures-nbconvert.tpl" -D jupyter_download_nb_urlpath="https://lectures.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE) -D jupyter_number_workers=$(parallel)
+	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="lectures-nbconvert.tpl" -D jupyter_download_nb_urlpath="https://lectures.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE) -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_images_urlpath="https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="lectures-nbconvert.tpl" -D jupyter_download_nb_urlpath="https://lectures.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE)
+	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/lectures.quantecon.org/py/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="lectures-nbconvert.tpl" -D jupyter_download_nb_urlpath="https://lectures.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE)
 endif
 
 notebooks:

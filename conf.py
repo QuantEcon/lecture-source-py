@@ -415,7 +415,7 @@ jupyter_download_nb_urlpath = None
 jupyter_download_nb = False
 
 #Use urlprefix images
-jupyter_images_urlpath = None
+jupyter_download_nb_image_urlpath = None
 
 #Allow ipython as a language synonym for blocks to be ipython highlighted
 jupyter_lang_synonyms = ["ipython"]
