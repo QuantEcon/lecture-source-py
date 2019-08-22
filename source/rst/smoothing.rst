@@ -84,7 +84,15 @@ interpretation, the government's exogenous expenditure process):
 
 We'll spend most of this lecture studying the finite-state Markov specification, but will briefly treat the linear state space specification before concluding.
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
+
+    import numpy as np
+    import quantecon as qe
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import scipy.linalg as la
 
 Relationship to Other Lectures
 ------------------------------
@@ -396,7 +404,108 @@ Here's some code that, among other things, contains a function called `consumpti
 
 This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes given a set of parameters, under the assumption of complete markets
 
-.. literalinclude:: /_static/lecture_specific/smoothing/smoothing_actions.py
+.. code-block:: python3
+
+    class ConsumptionProblem:
+        """
+        The data for a consumption problem, including some default values.
+        """
+
+        def __init__(self,
+                    β=.96,
+                    y=[2, 1.5],
+                    b0=3,
+                    P=np.asarray([[.8, .2],
+                                [.4, .6]])):
+            """
+
+            Parameters
+            ----------
+
+            β : discount factor
+            P : 2x2 transition matrix
+            y : list containing the two income levels
+            b0 : debt in period 0 (= state_1 debt level)
+
+            """
+            self.β = β
+            self.y = y
+            self.b0 = b0
+            self.P = P
+
+
+    def consumption_complete(cp):
+        """
+        Computes endogenous values for the complete market case.
+
+        Parameters
+        ----------
+
+        cp : instance of ConsumptionProblem
+
+        Returns
+        -------
+
+            c_bar : constant consumption
+            b1 : rolled over b0
+            b2 : debt in state_2
+
+        associated with the price system 
+
+            Q = β * P
+
+        """
+        β, P, y, b0 = cp.β, cp.P, cp.y, cp.b0   # Unpack
+
+        y1, y2 = y                              # extract income levels
+        b1 = b0                                 # b1 is known to be equal to b0
+        Q = β * P                               # assumed price system
+
+        # Using equation (7) calculate b2
+        b2 = (y2 - y1 - (Q[0, 0] - Q[1, 0] - 1) * b1) / (Q[0, 1] + 1 - Q[1, 1])
+
+        # Using equation (5) calculate c_bar 
+        c_bar = y1 - b0 + Q[0, :] @ np.asarray([b1, b2])
+
+        return c_bar, b1, b2
+
+
+    def consumption_incomplete(cp, N_simul=150):
+        """
+        Computes endogenous values for the incomplete market case.
+
+        Parameters
+        ----------
+
+        cp : instance of ConsumptionProblem
+        N_simul : int
+
+        """
+
+        β, P, y, b0 = cp.β, cp.P, cp.y, cp.b0  # Unpack
+        # For the simulation define a quantecon MC class
+        mc = qe.MarkovChain(P)
+
+        # Useful variables
+        y = np.asarray(y).reshape(2, 1)
+        v = np.linalg.inv(np.eye(2) - β * P) @ y
+
+        # Simulat state path
+        s_path = mc.simulate(N_simul, init=0)
+
+        # Store consumption and debt path
+        b_path, c_path = np.ones(N_simul + 1), np.ones(N_simul)
+        b_path[0] = b0
+
+        # Optimal decisions from (12) and (13)
+        db = ((1 - β) * v - y) / β
+
+        for i, s in enumerate(s_path):
+            c_path[i] = (1 - β) * (v - b_path[i] * np.ones((2, 1)))[s, 0]
+            b_path[i + 1] = b_path[i] + db[s, 0]
+
+        return c_path, b_path[:-1], y[s_path], s_path
+
 
 Let's test by checking that :math:`\bar c` and :math:`b_2` satisfy the budget constraint
 
@@ -577,7 +686,35 @@ The code above also contains a function called `consumption_incomplete()` that u
 
 Let's try this, using the same parameters in both complete and incomplete markets economies
 
-.. literalinclude:: /_static/lecture_specific/smoothing/consumption_paths.py
+.. code-block:: python3
+
+    np.random.seed(1)
+    N_simul = 150
+    cp = ConsumptionProblem()
+
+    c_bar, b1, b2 = consumption_complete(cp)
+    debt_complete = np.asarray([b1, b2])
+
+    c_path, debt_path, y_path, s_path = consumption_incomplete(cp, N_simul=N_simul)
+
+    fig, ax = plt.subplots(1, 2, figsize=(15, 5))
+
+    ax[0].set_title('Consumption paths')
+    ax[0].plot(np.arange(N_simul), c_path, label='incomplete market')
+    ax[0].plot(np.arange(N_simul), c_bar * np.ones(N_simul), label='complete market')
+    ax[0].plot(np.arange(N_simul), y_path, label='income', alpha=.6, ls='--')
+    ax[0].legend()
+    ax[0].set_xlabel('Periods')
+
+    ax[1].set_title('Debt paths')
+    ax[1].plot(np.arange(N_simul), debt_path, label='incomplete market')
+    ax[1].plot(np.arange(N_simul), debt_complete[s_path], label='complete market')
+    ax[1].plot(np.arange(N_simul), y_path, label='income', alpha=.6, ls='--')
+    ax[1].legend()
+    ax[1].axhline(0, color='k', ls='--')
+    ax[1].set_xlabel('Periods')
+
+    plt.show()
 
 
 In the graph on the left, for the same sample path of nonfinancial
@@ -668,11 +805,63 @@ asset level to :math:`0`, so that :math:`b_1 =0`.
 
 Here's our code to compute a quantitative example with zero debt in peace time:
 
-.. literalinclude:: /_static/lecture_specific/smoothing/war_peace_example.py
+.. code-block:: python3
 
+    # Parameters
 
+    β = .96
+    y = [1, 2]
+    b0 = 0
+    P = np.asarray([[.8, .2],
+                    [.4, .6]])
 
+    cp = ConsumptionProblem(β, y, b0, P)
+    Q = β * P
+    N_simul = 150
 
+    c_bar, b1, b2 = consumption_complete(cp)
+    debt_complete = np.asarray([b1, b2])
+
+    print(f"P \n {P}")
+    print(f"Q \n {Q}")
+    print(f"Govt expenditures in peace and war = {y}")
+    print(f"Constant tax collections = {c_bar}")
+    print(f"Govt assets in two states = {debt_complete}")
+
+    msg = """
+    Now let's check the government's budget constraint in peace and war.
+    Our assumptions imply that the government always purchases 0 units of the
+    Arrow peace security.
+    """
+    print(msg)
+
+    AS1 = Q[0, 1] * b2
+    print(f"Spending on Arrow war security in peace = {AS1}")
+    AS2 = Q[1, 1] * b2
+    print(f"Spending on Arrow war security in war = {AS2}")
+
+    print("\n")
+    print("Government tax collections plus asset levels in peace and war")
+    TB1 = c_bar + b1
+    print(f"T+b in peace = {TB1}")
+    TB2 = c_bar + b2
+    print(f"T+b in war = {TB2}")
+
+    print("\n")
+    print("Total government spending in peace and war")
+    G1 = y[0] + AS1
+    G2 = y[1] + AS2
+    print(f"Peace = {G1}")
+    print(f"War = {G2}")
+
+    print("\n")
+    print("Let's see ex-post and ex-ante returns on Arrow securities")
+
+    Π = np.reciprocal(Q)
+    exret = Π
+    print(f"Ex-post returns to purchase of Arrow securities = {exret}")
+    exant = Π * P
+    print(f"Ex-ante returns to purchase of Arrow securities {exant}")
 
 
 Explanation
@@ -853,7 +1042,81 @@ the state :math:`x_t` described by :eq:`cs_15`.
 Here's an example that shows how in this setting the availability of insurance against fluctuating nonfinancial income
 allows the consumer completely to smooth consumption across time and across states of the world
 
-.. literalinclude:: /_static/lecture_specific/smoothing/lss_example.py
+.. code-block:: python3
+
+    def complete_ss(β, b0, x0, A, C, S_y, T=12):
+        """
+        Computes the path of consumption and debt for the previously described
+        complete markets model where exogenous income follows a linear
+        state space
+        """
+        # Create a linear state space for simulation purposes
+        # This adds "b" as a state to the linear state space system
+        # so that setting the seed places shocks in same place for
+        # both the complete and incomplete markets economy
+        # Atilde = np.vstack([np.hstack([A, np.zeros((A.shape[0], 1))]),
+        #                   np.zeros((1, A.shape[1] + 1))])
+        # Ctilde = np.vstack([C, np.zeros((1, 1))])
+        # S_ytilde = np.hstack([S_y, np.zeros((1, 1))])
+
+        lss = qe.LinearStateSpace(A, C, S_y, mu_0=x0)
+
+        # Add extra state to initial condition
+        # x0 = np.hstack([x0, np.zeros(1)])
+
+        # Compute the (I - β * A)^{-1}
+        rm = la.inv(np.eye(A.shape[0]) - β * A)
+
+        # Constant level of consumption
+        cbar = (1 - β) * (S_y @ rm @ x0 - b0)
+        c_hist = np.ones(T) * cbar
+
+        # Debt
+        x_hist, y_hist = lss.simulate(T)
+        b_hist = np.squeeze(S_y @ rm @ x_hist - cbar / (1 - β))
+
+
+        return c_hist, b_hist, np.squeeze(y_hist), x_hist
+
+
+    # Define parameters
+    N_simul = 150
+    α, ρ1, ρ2 = 10.0, 0.9, 0.0
+    σ = 1.0
+
+    A = np.array([[1., 0., 0.],
+                [α,  ρ1, ρ2],
+                [0., 1., 0.]])
+    C = np.array([[0.], [σ], [0.]])
+    S_y = np.array([[1,  1.0, 0.]])
+    β, b0 = 0.95, -10.0
+    x0 = np.array([1.0, α / (1 - ρ1), α / (1 - ρ1)])
+
+    # Do simulation for complete markets
+    s = np.random.randint(0, 10000)
+    np.random.seed(s)  # Seeds get set the same for both economies
+    out = complete_ss(β, b0, x0, A, C, S_y, 150)
+    c_hist_com, b_hist_com, y_hist_com, x_hist_com = out
+
+    fig, ax = plt.subplots(1, 2, figsize=(15, 5))
+
+    # Consumption plots
+    ax[0].set_title('Cons and income', fontsize=17)
+    ax[0].plot(np.arange(N_simul), c_hist_com, label='consumption')
+    ax[0].plot(np.arange(N_simul), y_hist_com, label='income', alpha=.6, linestyle='--')
+    ax[0].legend()
+    ax[0].set_xlabel('Periods')
+    ax[0].set_ylim([-5.0, 110])
+
+    # Debt plots
+    ax[1].set_title('Debt and income')
+    ax[1].plot(np.arange(N_simul), b_hist_com, label='debt')
+    ax[1].plot(np.arange(N_simul), y_hist_com, label='Income', alpha=.6, linestyle='--')
+    ax[1].legend()
+    ax[1].axhline(0, color='k')
+    ax[1].set_xlabel('Periods')
+
+    plt.show()
 
 
 Interpretation of Graph
