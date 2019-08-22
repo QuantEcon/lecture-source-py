@@ -18,6 +18,18 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ==========
 
+Let's start with following imports
+
+.. code-block:: ipython
+
+    import numpy as np
+    from scipy.optimize import root, fmin_slsqp
+    from scipy.interpolate import UnivariateSpline
+    from quantecon import MarkovChain
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+
 In :doc:`an earlier lecture<opt_tax_recur>`, we described a model of
 optimal taxation with state-contingent debt due to
 Robert E. Lucas, Jr.,  and Nancy Stokey  :cite:`LucasStokey1983`.
@@ -792,10 +804,7 @@ triangle denote war.
 
 
 
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     # Initialize μgrid for value function iteration
     μ_grid = np.linspace(-0.7, 0.01, 200)

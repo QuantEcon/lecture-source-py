@@ -51,7 +51,7 @@ The Aiyagari model has been used to investigate many topics, including
 * etc., etc., etc.
 
 
-Let's start with some standard imports
+Let's start with some standard imports:
 
   .. code-block:: ipython
 
