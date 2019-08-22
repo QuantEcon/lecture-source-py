@@ -135,7 +135,7 @@
 		        		<h2>Download PDF</h2>
 						<ul>
 							<li>
-								<a href="/_downloads/pdf/py/Quantitative Economics with Python.pdf"><span class="thumb"><img src="/_static/img/py-logo.png"></span><h3 class="title">Python <span class="icon icon-chevron-right"></span></h3></a>
+								<a href="/_downloads/pdf/py/quantitative_economics_with_python.pdf"><span class="thumb"><img src="/_static/img/py-logo.png"></span><h3 class="title">Python <span class="icon icon-chevron-right"></span></h3></a>
 							</li><li>
 								<a href="" title="Currently unavailable" style="cursor:default;opacity:0.2;"><span class="thumb"><img src="/_static/img/jl-logo.png"></span><h3 class="title">Julia <span class="icon icon-chevron-right"></span></h3></a>
 							</li>
