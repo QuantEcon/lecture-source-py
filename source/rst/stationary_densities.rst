@@ -61,6 +61,16 @@ such as simulation, distribution dynamics, stability, ergodicity, etc.
     mathematical literature (e.g., :cite:`MeynTweedie2009`) in using the term to refer to any discrete **time**
     Markov process.
 
+Let's start with some standard imports:
+
+.. code-block:: python3
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.stats import lognorm, beta
+    from quantecon import LAE
+    from scipy.stats import norm, gaussian_kde
 
 
 .. _statd_density_case:
@@ -496,13 +506,7 @@ The following code is an example of usage for the stochastic growth model :ref:`
 
 
 
-.. code-block:: ipython
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-    from scipy.stats import lognorm, beta
-    from quantecon import LAE
+.. code-block:: python3
 
     # == Define parameters == #
     s = 0.2
@@ -922,9 +926,20 @@ The three data sets we will use are:
 Here is the code and figure:
 
 
-.. literalinclude:: /_static/lecture_specific/stationary_densities/boxplot_example.py
+.. code-block:: python3
 
+    n = 500
+    x = np.random.randn(n)        # N(0, 1)
+    x = np.exp(x)                 # Map x to lognormal
+    y = np.random.randn(n) + 2.0  # N(2, 1)
+    z = np.random.randn(n) + 4.0  # N(4, 1)
 
+    fig, ax = plt.subplots(figsize=(10, 6.6))
+    ax.boxplot([x, y, z])
+    ax.set_xticks((1, 2, 3))
+    ax.set_ylim(-2, 14)
+    ax.set_xticklabels(('$X$', '$Y$', '$Z$'), fontsize=16)
+    plt.show()
 
 
 Each data set is represented by a box, where the top and bottom of the box are the third and first quartiles of the data, and the red line in the center is the median.
@@ -989,8 +1004,6 @@ and :math:`\xi_t \sim N(0,1)`.
 Try running at ``n = 10, 100, 1000, 10000`` to get an idea of the speed of convergence
 
 .. code-block:: python3
-
-    from scipy.stats import norm, gaussian_kde
 
     ϕ = norm()
     n = 500
