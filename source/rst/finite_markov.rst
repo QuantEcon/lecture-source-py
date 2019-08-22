@@ -496,7 +496,7 @@ In particular
 
 .. math::
 
-    \mathbb P \{X_{t+m} = y \} = P^m(x, y) = (x, y) \text{-th element of } P^m
+    \mathbb P \{X_{t+m} = y \,|\, X_t = x \} = P^m(x, y) = (x, y) \text{-th element of } P^m
 
 
 Example: Probability of Recession

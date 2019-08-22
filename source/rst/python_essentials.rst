@@ -369,9 +369,18 @@ To give an example, let's write the file `us_cities.txt`, which lists US cities 
 
 Suppose that we want to make the information more readable, by capitalizing names and adding commas to mark thousands.
 
-The program `us_cities.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_essentials/us_cities.py>`__ program reads the data in and makes the conversion:
+The program below reads the data in and makes the conversion:
 
-.. literalinclude:: /_static/lecture_specific/python_essentials/us_cities.py
+.. code-block:: python3
+
+    data_file = open('us_cities.txt', 'r')
+    for line in data_file:
+        city, population = line.split(':')         # Tuple unpacking
+        city = city.title()                        # Capitalize city names
+        population = f'{int(population):,}'        # Add commas to numbers
+        print(city.ljust(15) + population)
+    data_file.close()
+
 
 Here ``format()`` is a string method `used for inserting variables into strings <https://docs.python.org/3/library/string.html#formatspec>`_.
 

@@ -263,7 +263,25 @@ Here's a fairly simplistic implementation of the algorithm in Python.
 
 It works for all sufficiently well behaved increasing continuous functions with :math:`f(a) < 0 < f(b)`
 
-.. literalinclude:: /_static/lecture_specific/scipy/bisection.py
+.. code-block:: python3
+
+    def bisect(f, a, b, tol=10e-5):
+        """
+        Implements the bisection root finding algorithm, assuming that f is a
+        real-valued function on [a, b] satisfying f(a) < 0 < f(b).
+        """
+        lower, upper = a, b
+
+        while upper - lower > tol:
+            middle = 0.5 * (upper + lower)
+            # === if root is between lower and middle === #
+            if f(middle) > 0:
+                lower, upper = lower, middle
+            # === if root is between middle and upper  === #
+            else:              
+                lower, upper = middle, upper
+
+        return 0.5 * (upper + lower)
 
 
 In fact, SciPy provides its own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f`
@@ -488,7 +506,26 @@ Previously we discussed the concept of :ref:`recursive function calls <recursive
 
 Write a recursive implementation of the bisection function described above, which we repeat here for convenience.
 
-.. literalinclude:: /_static/lecture_specific/scipy/bisection.py
+.. code-block:: python3
+
+    def bisect(f, a, b, tol=10e-5):
+        """
+        Implements the bisection root finding algorithm, assuming that f is a
+        real-valued function on [a, b] satisfying f(a) < 0 < f(b).
+        """
+        lower, upper = a, b
+
+        while upper - lower > tol:
+            middle = 0.5 * (upper + lower)
+            # === if root is between lower and middle === #
+            if f(middle) > 0:
+                lower, upper = lower, middle
+            # === if root is between middle and upper  === #
+            else:              
+                lower, upper = middle, upper
+
+        return 0.5 * (upper + lower)
+
 
 Test it on the function ``f = lambda x: np.sin(4 * (x - 0.25)) + x + x**20 - 1`` discussed above.
 

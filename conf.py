@@ -379,7 +379,7 @@ jupyter_conversion_mode = "all"
 jupyter_write_metadata = False
 
 # Location for _static folder
-jupyter_static_file_path = ["source/_static"]
+jupyter_static_file_path = ["source/_static", "_static"]
 
 # Configure Jupyter Kernels
 jupyter_kernels = {
@@ -415,10 +415,10 @@ jupyter_download_nb_urlpath = None
 jupyter_download_nb = False
 
 #Use urlprefix images
-jupyter_images_urlpath = None
+jupyter_download_nb_image_urlpath = None
 
 #Allow ipython as a language synonym for blocks to be ipython highlighted
-jupyter_lang_synonyms = ["ipython"]
+jupyter_lang_synonyms = ["ipython", "ipython3"]
 
 #Execute skip-test code blocks for rendering of website (this will need to be ignored in coverage testing)
 jupyter_ignore_skip_test = True
