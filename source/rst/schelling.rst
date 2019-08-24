@@ -32,7 +32,7 @@ In recognition of this and other research, Schelling was awarded the 2005 Nobel 
 
 In this lecture, we (in fact you) will build and run a version of Schelling's model.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 
