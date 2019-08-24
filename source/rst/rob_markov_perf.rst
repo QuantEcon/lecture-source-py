@@ -38,6 +38,16 @@ These specifications simplify calculations and allow us to give a simple example
 This lecture is based on ideas described in chapter 15 of  :cite:`HansenSargent2008` and in :doc:`Markov perfect equilibrium<markov_perf>`
 and :doc:`Robustness<robustness>`.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import quantecon as qe
+    from scipy.linalg import solve
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
 Basic Setup
 -----------
 
@@ -492,15 +502,12 @@ The MPE with robustness function is ``nnash_robust``.
 
 The function's code is as follows
 
-.. code:: ipython
-
-    from scipy.linalg import solve
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     def nnash_robust(A, C, B1, B2, R1, R2, Q1, Q2, S1, S2, W1, W2, M1, M2,
                      θ1, θ2, beta=1.0, tol=1e-8, max_iter=1000):
-        r"""
+
+        """
         Compute the limit of a Nash linear quadratic dynamic game with
         robustness concern.
 
@@ -584,16 +591,17 @@ The function's code is as follows
             The steady-state solution to the associated discrete matrix
             Riccati equation for agent 2
         """
-        # == Unload parameters and make sure everything is a matrix == #
+
+        # Unload parameters and make sure everything is a matrix
         params = A, C, B1, B2, R1, R2, Q1, Q2, S1, S2, W1, W2, M1, M2
         params = map(np.asmatrix, params)
         A, C, B1, B2, R1, R2, Q1, Q2, S1, S2, W1, W2, M1, M2 = params
 
 
-        # == Multiply A, B1, B2 by sqrt(β) to enforce discounting == #
+        # Multiply A, B1, B2 by sqrt(β) to enforce discounting
         A, B1, B2 = [np.sqrt(β) * x for x in (A, B1, B2)]
 
-        # == Initial values == #
+        # Initial values
         n = A.shape[0]
         k_1 = B1.shape[1]
         k_2 = B2.shape[1]
@@ -607,7 +615,7 @@ The function's code is as follows
 
 
         for it in range(max_iter):
-            # update
+            # Update
             F10 = F1
             F20 = F2
 
@@ -628,7 +636,7 @@ The function's code is as follows
             H2 = G2 @ B2.T @ D2P2
             H1 = G1 @ B1.T @ D1P1
 
-            # break up the computation of F1, F2
+            # Break up the computation of F1, F2
             F1_left = v1 - (H1 @ B2 + G1 @ M1.T) @ (H2 @ B1 + G2 @ M2.T)
             F1_right = H1 @ A + G1 @ W1.T - \
                        (H1 @ B2 + G1 @ M1.T) @ (H2 @ A + G2 @ W2.T)
@@ -654,7 +662,8 @@ The function's code is as follows
                 break
 
         else:
-            raise ValueError(f'No convergence: Iteration limit of {maxiter} reached in nnash')
+            raise ValueError(f'No convergence: Iteration limit of {maxiter} \
+                reached in nnash')
 
         return F1, F2, P1, P2
 
@@ -726,16 +735,16 @@ The parameters of the duopoly model are:
   - :math:`\beta = 0.96`
   - :math:`\gamma = 12`
 
-.. code:: python3
+.. code-block:: python3
 
-    # == Parameters == #
+    # Parameters
     a0 = 10.0
     a1 = 2.0
     β = 0.96
     γ = 12.0
 
 
-    # == In LQ form == #
+    # In LQ form
     A = np.eye(3)
     B1 = np.array([[0.], [1.], [0.]])
     B2 = np.array([[0.], [0.], [1.]])
@@ -758,14 +767,14 @@ Consistency Check
 We first conduct a comparison test to check if ``nnash_robust`` agrees
 with ``qe.nnash`` in the non-robustness case in which each :math:`\theta_i \approx +\infty`
 
-.. code:: python3
+.. code-block:: python3
 
-    # == Solve using QE's nnash function == #
+    # Solve using QE's nnash function
     F1, F2, P1, P2 = qe.nnash(A, B1, B2, R1, R2, Q1,
                               Q2, S1, S2, W1, W2, M1,
                               M2, beta=β)
 
-    # == Solve using nnash_robust == #
+    # Solve using nnash_robust
     F1r, F2r, P1r, P2r = nnash_robust(A, np.zeros((3, 1)), B1, B2, R1, R2, Q1,
                                       Q2, S1, S2, W1, W2, M1, M2, 1e-10,
                                       1e-10, beta=β)
@@ -821,23 +830,23 @@ Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that
 
 
 
-.. code:: python3
+.. code-block:: python3
 
-    # == Robustness parameters and matrix == #
+    # Robustness parameters and matrix
     C = np.asmatrix([[0], [0.01], [0.01]])
     θ1 = 0.02
     θ2 = 0.04
     n = 20
 
 
-    # == Solve using nnash_robust == #
+    # Solve using nnash_robust
     F1r, F2r, P1r, P2r = nnash_robust(A, C, B1, B2, R1, R2, Q1,
                                       Q2, S1, S2, W1, W2, M1, M2,
                                       θ1, θ2, beta=β)
 
 
 
-    # == MPE output and price == #
+    # MPE output and price
     AF = A - B1 @ F1 - B2 @ F2
     x = np.empty((3, n))
     x[:, 0] = 1, 1, 1
@@ -849,7 +858,7 @@ Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that
     p = a0 - a1 * q   # Price, MPE
 
 
-    # == RMPE output and price == #
+    # RMPE output and price
     AO = A - B1 @ F1r - B2 @ F2r
     xr = np.empty((3, n))
     xr[:, 0] = 1, 1, 1
@@ -860,7 +869,7 @@ Because we have set :math:`\theta_1 < \theta_2 < + \infty` we know that
     qr = qr1 + qr2      # Total output, RMPE
     pr = a0 - a1 * qr   # Price, RMPE
 
-    # == RMPE heterogeneous beliefs output and price == #
+    # RMPE heterogeneous beliefs output and price
     I = np.eye(C.shape[1])
     INV1 = solve(θ1 * I - C.T @ P1 @ C, I)
     K1 =  P1 @ C @ INV1 @ C.T @ P1 @ AO
@@ -895,7 +904,7 @@ equilibrium objects presented.
 
 
 
-    .. code:: python3
+    .. code-block:: python3
 
         fig, axes = plt.subplots(2, 1, figsize=(9, 9))
 
@@ -922,7 +931,7 @@ and :math:`q_{2t}` in the Markov perfect equilibrium with robust firms and to co
 in the Markov perfect equilibrium without robust firms
 
 
-    .. code:: python3
+    .. code-block:: python3
 
         fig, axes = plt.subplots(2, 1, figsize=(9, 9))
 
@@ -985,28 +994,34 @@ From :math:`\{x_t\}` paths generated by  each of these transition laws, we pull 
 The following code plots them
 
 
-.. code:: python3
+.. code-block:: python3
 
     print('Baseline Robust transition matrix AO is: \n', np.round(AO, 3))
-    print('Player 1\'s worst-case transition matrix AOCK1 is: \n', np.round(AOCK1, 3))
-    print('Player 2\'s worst-case transition matrix AOCK2 is: \n', np.round(AOCK2, 3))
+    print('Player 1\'s worst-case transition matrix AOCK1 is: \n', \
+    np.round(AOCK1, 3))
+    print('Player 2\'s worst-case transition matrix AOCK2 is: \n', \
+    np.round(AOCK2, 3))
 
 
-.. code:: python3
+.. code-block:: python3
 
     # == Plot == #
     fig, axes = plt.subplots(2, 1, figsize=(9, 9))
 
     ax = axes[0]
-    ax.plot(qrp1, 'b--', lw=2, alpha=0.75, label='RMPE worst-case belief output player 1')
-    ax.plot(qrp2, 'r:', lw=2, alpha=0.75, label='RMPE worst-case belief output player 2')
+    ax.plot(qrp1, 'b--', lw=2, alpha=0.75,
+        label='RMPE worst-case belief output player 1')
+    ax.plot(qrp2, 'r:', lw=2, alpha=0.75,
+        label='RMPE worst-case belief output player 2')
     ax.plot(qr, 'm-', lw=2, alpha=0.75, label='RMPE output')
     ax.set(ylabel="output", xlabel="time", ylim=(2, 4))
     ax.legend(loc='upper left', frameon=0)
 
     ax = axes[1]
-    ax.plot(prp1, 'b--', lw=2, alpha=0.75, label='RMPE worst-case belief price player 1')
-    ax.plot(prp2, 'r:', lw=2, alpha=0.75, label='RMPE worst-case belief price player 2')
+    ax.plot(prp1, 'b--', lw=2, alpha=0.75,
+        label='RMPE worst-case belief price player 1')
+    ax.plot(prp2, 'r:', lw=2, alpha=0.75,
+        label='RMPE worst-case belief price player 2')
     ax.plot(pr, 'm-', lw=2, alpha=0.75, label='RMPE price')
     ax.set(ylabel="price", xlabel="time")
     ax.legend(loc='upper right', frameon=0)
