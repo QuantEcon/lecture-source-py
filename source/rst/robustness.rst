@@ -1076,17 +1076,19 @@ The code for producing the graph shown above, with blue being for the robust pol
                 [0.],
                 [σ_d]])
 
-    # -------------------------------------------------------------------------- #
+    # ----------------------------------------------------------------------- #
     #                                 Functions
-    # -------------------------------------------------------------------------- #
+    # ----------------------------------------------------------------------- #
 
 
     def evaluate_policy(θ, F):
+
         """
         Given θ (scalar, dtype=float) and policy F (array_like), returns the
-        value associated with that policy under the worst case path for {w_t}, as
-        well as the entropy level.
+        value associated with that policy under the worst case path for {w_t},
+        as well as the entropy level.
         """
+        
         rlq = qe.robustlq.RBLQ(Q, R, A, B, C, β, θ)
         K_F, P_F, d_F, O_F, o_F = rlq.evaluate_F(F)
         x0 = np.array([[1.], [0.], [0.]])
@@ -1096,6 +1098,7 @@ The code for producing the graph shown above, with blue being for the robust pol
 
 
     def value_and_entropy(emax, F, bw, grid_size=1000):
+
         """
         Compute the value function and entropy levels for a θ path
         increasing until it reaches the specified target entropy value.
@@ -1119,8 +1122,8 @@ The code for producing the graph shown above, with blue being for the robust pol
             A pandas DataFrame containing the value function and entropy
             values up to the emax parameter. The columns are 'value' and
             'entropy'.
-
         """
+
         if bw == 'worst':
             θs = 1 / np.linspace(1e-8, 1000, grid_size)
         else:
@@ -1137,9 +1140,9 @@ The code for producing the graph shown above, with blue being for the robust pol
         return df
 
 
-    # -------------------------------------------------------------------------- #
+    # ------------------------------------------------------------------------ #
     #                                    Main
-    # -------------------------------------------------------------------------- #
+    # ------------------------------------------------------------------------ #
 
 
     # == Compute the optimal rule == #
