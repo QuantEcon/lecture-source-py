@@ -42,6 +42,16 @@ like souped-up consumption-smoothing models.
 In this lecture, we try to capture the tax-smoothing problem of a
 government that faces **roll-over risk**.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import quantecon as qe
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+
 Roll-Over Risk
 ==============
 
@@ -156,13 +166,6 @@ example, from state 3 to state 1.
 
 Because state 3 is “bad today”, the next period cannot have “good yesterday”.
 
-.. code-block:: ipython
-
-    import quantecon as qe
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
 .. code-block:: python3
 
     # Model parameters
@@ -213,8 +216,8 @@ Because state 3 is “bad today”, the next period cannot have “good yesterda
     Qs = [Q, Q, Q, Q]
     Ws = [W, W, W, W]
 
-    MJLQBarro = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
-    MJLQBarro.stationary_values();
+    lqm = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
+    lqm.stationary_values();
 
 This model is simulated below, using the same process for :math:`G_t` as
 in :doc:`this lecture <tax_smoothing_2>`.
@@ -236,7 +239,7 @@ government uses those assets to lower taxation today.
 
     x0 = np.array([[0, 1, 25]])
     T = 300
-    x, u, w, state = MJLQBarro.compute_sequence(x0, ts_length=T)
+    x, u, w, state = lqm.compute_sequence(x0, ts_length=T)
 
     # Calculate taxation each period from the budget constraint and the Markov state
     tax = np.zeros([T, 1])
@@ -267,7 +270,7 @@ To accomplish this, we simply raise :math:`p^t_{t+1}` to
     Q = M.T @ M
     W = M.T @ S
 
-    # construct lists of matrices
+    # Construct lists of matrices
     As = [A, A, A, A]
     Bs = [B, B, B, B]
     Cs = [C, C, C, C]
@@ -275,10 +278,11 @@ To accomplish this, we simply raise :math:`p^t_{t+1}` to
     Qs = [Q, Q, Q, Q]
     Ws = [W, W, W, W]
 
-    MJLQBarro2 = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
-    x, u, w, state = MJLQBarro2.compute_sequence(x0, ts_length=T)
+    lqm2 = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
+    x, u, w, state = lqm2.compute_sequence(x0, ts_length=T)
 
-    # Calculate taxation each period from the budget constraint and the Markov state
+    # Calculate taxation each period from the budget constraint and the
+    # Markov state
     tax = np.zeros([T, 1])
     for i in range(T):
         tax[i, :] = S @ x[:, i] + M @ u[:, i]
