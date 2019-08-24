@@ -41,6 +41,11 @@ Let's start with some standard imports:
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
+
+We'll also use the following for various tasks described below:
+
+.. code-block:: ipython
+
     from quantecon import LinearStateSpace
     import cmath
     import math

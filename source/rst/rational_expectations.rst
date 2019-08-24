@@ -47,7 +47,6 @@ Except that for us
 
 * Instead of "little :math:`k`" it will be "little :math:`y`".
 
-We'll use the LQ class from quantecon.
 
 Let's start with some standard imports:
 
@@ -56,7 +55,13 @@ Let's start with some standard imports:
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
+
+We'll also use the LQ class from QuantEcon.py.
+
+.. code-block:: ipython
+
     from quantecon import LQ
+
 
 The Big Y, Little y Trick
 -------------------------
