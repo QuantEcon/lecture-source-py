@@ -407,12 +407,12 @@ moving from one to the other.
                   [0.1, 0.9]])
 
     # Construct and solve the model using the LQMarkov class
-    mjlq_barro = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
-    mjlq_barro.stationary_values()
+    lqm = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
+    lqm.stationary_values()
 
     # Simulate the model
     x0 = np.array([[100, 50, 1, 10]])
-    x, u, w, t = mjlq_barro.compute_sequence(x0, ts_length=300)
+    x, u, w, t = lqm.compute_sequence(x0, ts_length=300)
 
     # Plot of one and two-period debt issuance
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
@@ -455,11 +455,11 @@ two-period debt:
     Ws = [W1, W2]
 
     # Construct and solve the model using the LQMarkov class
-    mjlq_barro2 = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
-    mjlq_barro2.stationary_values()
+    lqm2 = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
+    lqm2.stationary_values()
 
     # Simulate the model
-    x, u, w, t = mjlq_barro2.compute_sequence(x0, ts_length=300)
+    x, u, w, t = lqm2.compute_sequence(x0, ts_length=300)
 
     # Plot of one and two-period debt issuance
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
@@ -710,11 +710,11 @@ above
     Ws = [W1, W2]
 
     # Construct and solve the model using the LQMarkov class
-    mjlq_barro3 = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
-    mjlq_barro3.stationary_values()
+    lqm3 = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
+    lqm3.stationary_values()
 
     x0 = np.array([[5000, 5000, 5000, 1, 10]])
-    x, u, w, t = mjlq_barro3.compute_sequence(x0, ts_length=300)
+    x, u, w, t = lqm3.compute_sequence(x0, ts_length=300)
 
 .. code-block:: python3
 
