@@ -418,7 +418,6 @@ This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes give
                     P=np.asarray([[.8, .2],
                                 [.4, .6]])):
             """
-
             Parameters
             ----------
 
@@ -426,7 +425,6 @@ This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes give
             P : 2x2 transition matrix
             y : list containing the two income levels
             b0 : debt in period 0 (= state_1 debt level)
-
             """
             self.β = β
             self.y = y
@@ -453,7 +451,6 @@ This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes give
         associated with the price system 
 
             Q = β * P
-
         """
         β, P, y, b0 = cp.β, cp.P, cp.y, cp.b0   # Unpack
 
@@ -479,7 +476,6 @@ This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes give
 
         cp : instance of ConsumptionProblem
         N_simul : int
-
         """
 
         β, P, y, b0 = cp.β, cp.P, cp.y, cp.b0  # Unpack
@@ -490,7 +486,7 @@ This function computes :math:`b(\bar s_1), b(\bar s_2), \bar c` as outcomes give
         y = np.asarray(y).reshape(2, 1)
         v = np.linalg.inv(np.eye(2) - β * P) @ y
 
-        # Simulat state path
+        # Simulate state path
         s_path = mc.simulate(N_simul, init=0)
 
         # Store consumption and debt path
