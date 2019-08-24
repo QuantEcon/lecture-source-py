@@ -1039,12 +1039,10 @@ The code for producing the graph shown above, with blue being for the robust pol
 .. code-block:: python3
 
     """
-
     Authors: Chase Coleman, Spencer Lyon, Thomas Sargent, John Stachurski
-
     """
 
-    # == model parameters == #
+    # Model parameters
 
     a_0 = 100
     a_1 = 0.5
@@ -1057,7 +1055,7 @@ The code for producing the graph shown above, with blue being for the robust pol
     θ = 0.002
     ac = (a_0 - c) / 2.0
 
-    # == Define LQ matrices == #
+    # Define LQ matrices
 
     R = np.array([[0.,   ac,   0.],
                 [ac, -a_1,  0.5],
@@ -1076,17 +1074,19 @@ The code for producing the graph shown above, with blue being for the robust pol
                 [0.],
                 [σ_d]])
 
-    # -------------------------------------------------------------------------- #
+    # ----------------------------------------------------------------------- #
     #                                 Functions
-    # -------------------------------------------------------------------------- #
+    # ----------------------------------------------------------------------- #
 
 
     def evaluate_policy(θ, F):
+
         """
         Given θ (scalar, dtype=float) and policy F (array_like), returns the
-        value associated with that policy under the worst case path for {w_t}, as
-        well as the entropy level.
+        value associated with that policy under the worst case path for {w_t},
+        as well as the entropy level.
         """
+
         rlq = qe.robustlq.RBLQ(Q, R, A, B, C, β, θ)
         K_F, P_F, d_F, O_F, o_F = rlq.evaluate_F(F)
         x0 = np.array([[1.], [0.], [0.]])
@@ -1096,6 +1096,7 @@ The code for producing the graph shown above, with blue being for the robust pol
 
 
     def value_and_entropy(emax, F, bw, grid_size=1000):
+
         """
         Compute the value function and entropy levels for a θ path
         increasing until it reaches the specified target entropy value.
@@ -1119,8 +1120,8 @@ The code for producing the graph shown above, with blue being for the robust pol
             A pandas DataFrame containing the value function and entropy
             values up to the emax parameter. The columns are 'value' and
             'entropy'.
-
         """
+
         if bw == 'worst':
             θs = 1 / np.linspace(1e-8, 1000, grid_size)
         else:
@@ -1137,21 +1138,21 @@ The code for producing the graph shown above, with blue being for the robust pol
         return df
 
 
-    # -------------------------------------------------------------------------- #
+    # ------------------------------------------------------------------------ #
     #                                    Main
-    # -------------------------------------------------------------------------- #
+    # ------------------------------------------------------------------------ #
 
 
-    # == Compute the optimal rule == #
+    # Compute the optimal rule
     optimal_lq = qe.lqcontrol.LQ(Q, R, A, B, C, beta=β)
     Po, Fo, do = optimal_lq.stationary_values()
 
-    # == Compute a robust rule given θ == #
+    # Compute a robust rule given θ
     baseline_robust = qe.robustlq.RBLQ(Q, R, A, B, C, β, θ)
     Fb, Kb, Pb = baseline_robust.robust_rule()
 
-    # == Check the positive definiteness of worst-case covariance matrix to == #
-    # == ensure that θ exceeds the breakdown point == #
+    # Check the positive definiteness of worst-case covariance matrix to
+    # ensure that θ exceeds the breakdown point
     test_matrix = np.identity(Pb.shape[0]) - (C.T @ Pb @ C) / θ
     eigenvals, eigenvecs = eig(test_matrix)
     assert (eigenvals >= 0).all(), 'θ below breakdown point.'
@@ -1194,14 +1195,14 @@ The code for producing the graph shown above, with blue being for the robust pol
     for c, df_pair in zip(colors, df_pairs):
         curves = []
         for df in df_pair:
-            # == Plot curves == #
+            # Plot curves
             x, y = df['entropy'], df['value']
             x, y = (np.asarray(a, dtype='float') for a in (x, y))
             egrid = np.linspace(0, emax, 100)
             curve = Curve(x, y)
             print(ax.plot(egrid, curve(egrid), color=c, **plot_args))
             curves.append(curve)
-        # == Color fill between curves == #
+        # Color fill between curves
         ax.fill_between(egrid,
                         curves[0](egrid),
                         curves[1](egrid),
