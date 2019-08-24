@@ -1055,8 +1055,8 @@ Here's one program that does the job
         d = s * x**α
         return ϕ.pdf((y - (1 - δ) * x) / d) / d
 
-    n = 1000                                 # Number of observations at each date t
-    T = 40                                   # Compute density of k_t at 1,...,T
+    n = 1000                            # Number of observations at each date t
+    T = 40                              # Compute density of k_t at 1,...,T
 
     fig, axes = plt.subplots(2, 2, figsize=(11, 8))
     axes = axes.flatten()
