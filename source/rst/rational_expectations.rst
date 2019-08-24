@@ -47,6 +47,16 @@ Except that for us
 
 * Instead of "little :math:`k`" it will be "little :math:`y`".
 
+We'll use the LQ class from quantecon.
+
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from quantecon import LQ
 
 The Big Y, Little y Trick
 -------------------------
@@ -674,21 +684,6 @@ Compare your results with the previous exercise -- comment.
 Solutions
 =========
 
-
-
-
-.. code-block:: ipython
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
-We'll use the LQ class from quantecon
-
-.. code-block:: python3
-
-    from quantecon import LQ
-
 Exercise 1
 ----------
 
@@ -762,19 +757,19 @@ Here's our solution
 .. code-block:: python3
 
 
-    # == Model parameters == #
+    # Model parameters
 
     a0 = 100
     a1 = 0.05
     β = 0.95
     γ = 10.0
 
-    # == Beliefs == #
+    # Beliefs
 
     κ0 = 95.5
     κ1 = 0.95
 
-    # == Formulate the LQ problem == #
+    # Formulate the LQ problem
 
     A = np.array([[1, 0, 0], [0, κ1, κ0], [0, 0, 1]])
     B = np.array([1, 0, 0])
@@ -782,7 +777,7 @@ Here's our solution
     R = np.array([[0, a1/2, -a0/2], [a1/2, 0, 0], [-a0/2, 0, 0]])
     Q = 0.5 * γ
 
-    # == Solve for the optimal policy == #
+    # Solve for the optimal policy
 
     lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values()
@@ -848,16 +843,16 @@ The following code implements this test
 
     for κ0, κ1 in candidates:
 
-        # == Form the associated law of motion == #
+        # Form the associated law of motion
         A = np.array([[1, 0, 0], [0, κ1, κ0], [0, 0, 1]])
 
-        # == Solve the LQ problem for the firm == #
+        # Solve the LQ problem for the firm
         lq = LQ(Q, R, A, B, beta=β)
         P, F, d = lq.stationary_values()
         F = F.flatten()
         h0, h1, h2 = -F[2], 1 - F[0], -F[1]
 
-        # == Test the equilibrium condition == #
+        # Test the equilibrium condition
         if np.allclose((κ0, κ1), (h0, h1 + h2)):
             print(f'Equilibrium pair = {κ0}, {κ1}')
             print('f(h0, h1, h2) = {h0}, {h1}, {h2}')
@@ -928,19 +923,19 @@ The Python code to solve this problem is below:
 .. code-block:: python3
 
 
-    # == Formulate the planner's LQ problem == #
+    # Formulate the planner's LQ problem
 
     A = np.array([[1, 0], [0, 1]])
     B = np.array([[1], [0]])
     R = np.array([[a1 / 2, -a0 / 2], [-a0 / 2, 0]])
     Q = γ / 2
 
-    # == Solve for the optimal policy == #
+    # Solve for the optimal policy
 
     lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values()
 
-    # == Print the results == #
+    # Print the results
 
     F = F.flatten()
     κ0, κ1 = -F[1], 1 - F[0]
