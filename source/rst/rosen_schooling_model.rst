@@ -174,7 +174,8 @@ To begin, we set :math:`k = 4` and :math:`\alpha_d = 0.1`
     α_s = 1
     ε_1 = 1e-7
     λ_1 = np.ones((1, k)) * ε_1
-    l_λ = np.hstack((α_d, λ_1))  # Use of ε_1 is trick to aquire detectability, see HS2013 p. 228 footnote 4
+    # Use of ε_1 is trick to aquire detectability, see HS2013 p. 228 footnote 4
+    l_λ = np.hstack((α_d, λ_1))
     π_h = np.array([[0]])
 
     δ_n = np.array([[0.95]])
@@ -206,11 +207,11 @@ To begin, we set :math:`k = 4` and :math:`\alpha_d = 0.1`
     ub = np.array([[30, 0, 1]])
     ud = np.array([[10, 1, 0], [0, 0, 0]])
 
-    Info1 = Information(a22, c2, ub, ud)
-    Tech1 = Technology(ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
-    Pref1 = Preferences(β, l_λ, π_h, δ_h, θ_h)
+    info1 = Information(a22, c2, ub, ud)
+    tech1 = Technology(ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
+    pref1 = Preferences(β, l_λ, π_h, δ_h, θ_h)
 
-    Econ1 = DLE(Info1, Tech1, Pref1)
+    econ1 = DLE(info1, tech1, pref1)
 
 We create three other instances by:
 
@@ -222,8 +223,8 @@ We create three other instances by:
 
     α_d = np.array([[2]])
     l_λ = np.hstack((α_d, λ_1))
-    Pref2 = Preferences(β, l_λ, π_h, δ_h, θ_h)
-    Econ2 = DLE(Info1, Tech1, Pref2)
+    pref2 = Preferences(β, l_λ, π_h, δ_h, θ_h)
+    econ2 = DLE(info1, tech1, pref2)
 
     α_d = np.array([[0.1]])
 
@@ -237,7 +238,7 @@ We create three other instances by:
                      np.ones((1, 1))))
 
     Pref3 = Preferences(β, l_λ, π_h, δ_h, θ_h)
-    Econ3 = DLE(Info1, Tech1, Pref3)
+    econ3 = DLE(info1, tech1, Pref3)
 
     k = 10
     λ_1 = np.ones((1, k)) * ε_1
@@ -248,15 +249,15 @@ We create three other instances by:
     θ_h = np.vstack((np.zeros((k, 1)),
                      np.ones((1, 1))))
 
-    Pref4 = Preferences(β, l_λ, π_h, δ_h, θ_h)
-    Econ4 = DLE(Info1, Tech1, Pref4)
+    pref4 = Preferences(β, l_λ, π_h, δ_h, θ_h)
+    econ4 = DLE(info1, tech1, pref4)
 
     shock_demand = np.array([[0], [1]])
 
-    Econ1.irf(ts_length=25, shock=shock_demand)
-    Econ2.irf(ts_length=25, shock=shock_demand)
-    Econ3.irf(ts_length=25, shock=shock_demand)
-    Econ4.irf(ts_length=25, shock=shock_demand)
+    econ1.irf(ts_length=25, shock=shock_demand)
+    econ2.irf(ts_length=25, shock=shock_demand)
+    econ3.irf(ts_length=25, shock=shock_demand)
+    econ4.irf(ts_length=25, shock=shock_demand)
 
 The first figure plots the impulse response of :math:`n_t` (on the left)
 and :math:`N_t` (on the right) to a positive demand shock, for
@@ -283,13 +284,13 @@ shock on :math:`N_t` is larger
 
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-    ax1.plot(Econ1.c_irf,label='$\\alpha_d = 0.1$')
-    ax1.plot(Econ2.c_irf,label='$\\alpha_d = 2$')
+    ax1.plot(econ1.c_irf,label='$\\alpha_d = 0.1$')
+    ax1.plot(econ2.c_irf,label='$\\alpha_d = 2$')
     ax1.legend()
     ax1.set_title('Response of $n_t$ to a demand shock')
 
-    ax2.plot(Econ1.h_irf[:, 0], label='$\\alpha_d = 0.1$')
-    ax2.plot(Econ2.h_irf[:, 0], label='$\\alpha_d = 24$')
+    ax2.plot(econ1.h_irf[:, 0], label='$\\alpha_d = 0.1$')
+    ax2.plot(econ2.h_irf[:, 0], label='$\\alpha_d = 24$')
     ax2.legend()
     ax2.set_title('Response of $N_t$ to a demand shock')
     plt.show()
@@ -301,15 +302,15 @@ and :math:`N_t` (on the right) to a positive demand shock, for
 .. code-block:: python3
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-    ax1.plot(Econ1.c_irf, label='$k=4$')
-    ax1.plot(Econ3.c_irf, label='$k=7$')
-    ax1.plot(Econ4.c_irf, label='$k=10$')
+    ax1.plot(econ1.c_irf, label='$k=4$')
+    ax1.plot(econ3.c_irf, label='$k=7$')
+    ax1.plot(econ4.c_irf, label='$k=10$')
     ax1.legend()
     ax1.set_title('Response of $n_t$ to a demand shock')
 
-    ax2.plot(Econ1.h_irf[:,0], label='$k=4$')
-    ax2.plot(Econ3.h_irf[:,0], label='$k=7$')
-    ax2.plot(Econ4.h_irf[:,0], label='$k=10$')
+    ax2.plot(econ1.h_irf[:,0], label='$k=4$')
+    ax2.plot(econ3.h_irf[:,0], label='$k=7$')
+    ax2.plot(econ4.h_irf[:,0], label='$k=10$')
     ax2.legend()
     ax2.set_title('Response of $N_t$ to a demand shock')
     plt.show()
