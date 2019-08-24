@@ -56,8 +56,8 @@ In fact, when we import SciPy we also get NumPy, as can be seen from the SciPy i
     __all__ += ['randn', 'rand', 'fft', 'ifft']
 
     del _num
-    # Remove the linalg imported from numpy so that the scipy.linalg package can be
-    # imported.
+    # Remove the linalg imported from numpy so that the scipy.linalg package
+    # can be imported.
     del linalg
     __all__.remove('linalg')
 
