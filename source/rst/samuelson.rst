@@ -34,7 +34,18 @@ Our objectives are to
 
 * review linear difference equations, both deterministic and stochastic
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from quantecon import LinearStateSpace
+    import cmath
+    import math
+    import sympy
+    from sympy import Symbol, init_printing
 
 
 Samuelson's Model
@@ -385,16 +396,14 @@ Implementation
 
 We'll start by drawing an informative graph from page 189 of :cite:`Sargent1987`
 
-.. code-block:: ipython
+.. code-block:: python3
     :class: collapse
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
 
     def param_plot():
 
-        """this function creates the graph on page 189 of Sargent Macroeconomic Theory, second edition, 1987"""
+        """This function creates the graph on page 189 of 
+        Sargent Macroeconomic Theory, second edition, 1987.
+        """
 
         fig, ax = plt.subplots(figsize=(10, 6))
         ax.set_aspect('equal')
@@ -488,7 +497,10 @@ Function to Describe Implications of Characteristic Polynomial
 .. code-block:: python3
 
     def categorize_solution(ρ1, ρ2):
-        """this function takes values of ρ1 and ρ2 and uses them to classify the type of solution"""
+
+        """This function takes values of ρ1 and ρ2 and uses them
+        to classify the type of solution
+        """
 
         discriminant = ρ1 ** 2 + 4 * ρ2
         if ρ2 > 1 + ρ1 or ρ2 < -1:
@@ -496,9 +508,11 @@ Function to Describe Implications of Characteristic Polynomial
         elif ρ1 + ρ2 > 1:
             print('Explosive growth')
         elif discriminant < 0:
-            print('Roots are complex with modulus less than one; therefore damped oscillations')
+            print('Roots are complex with modulus less than one; \
+    therefore damped oscillations')
         else:
-            print('Roots are real and absolute values are less than one; therefore get smooth convergence to a steady state')
+            print('Roots are real and absolute values are less than one; \
+    therefore get smooth convergence to a steady state')
 
 .. code-block:: python3
 
@@ -515,7 +529,9 @@ A useful function for our work below is
 .. code-block:: python3
 
     def plot_y(function=None):
-        """function plots path of Y_t"""
+
+        """Function plots path of Y_t"""
+
         plt.subplots(figsize=(10, 6))
         plt.plot(function)
         plt.xlabel('Time $t$')
@@ -542,9 +558,11 @@ that we set
 
     def y_nonstochastic(y_0=100, y_1=80, α=.92, β=.5, γ=10, n=80):
 
-        """Takes values of parameters and computes the roots of characteristic polynomial.
-           It tells whether they are real or complex and whether they are less than unity in absolute value.
-           It also computes a simulation of length n starting from the two given initial conditions for national income"""
+        """Takes values of parameters and computes the roots of characteristic
+        polynomial. It tells whether they are real or complex and whether they
+        are less than unity in absolute value.It also computes a simulation of
+        length n starting from the two given initial conditions for national income
+        """
 
         roots = []
 
@@ -606,9 +624,6 @@ phase :math:`\phi` of a conjugate pair of complex numbers in polar form
     ### code to reverse-engineer a cycle
     ### y_t = r^t (c_1 cos(ϕ t) + c2 sin(ϕ t))
     ###
-
-    import cmath
-    import math
 
     def f(r, ϕ):
         """
@@ -679,8 +694,10 @@ polynomial
 
     def y_nonstochastic(y_0=100, y_1=80, α=.9, β=.8, γ=10, n=80):
 
-        """ Rather than computing the roots of the characteristic polynomial by hand as we did earlier, this function
-        enlists numpy to do the work for us """
+        """ Rather than computing the roots of the characteristic
+        polynomial by hand as we did earlier, this function
+        enlists numpy to do the work for us 
+        """
 
         # Useful constants
         ρ1 = α + β
@@ -729,16 +746,17 @@ We'll generate an **undamped** cycle of period 10
 
 .. code-block:: python3
 
-    r = 1   # generates undamped, nonexplosive cycles
+    r = 1   # Generates undamped, nonexplosive cycles
 
-    period = 10   #  length of cycle in units of time
+    period = 10   # Length of cycle in units of time
     ϕ = 2 * math.pi/period
 
     ## Apply the reverse-engineering function f
 
     ρ1, ρ2, a, b = f(r, ϕ)
 
-    a = a.real  # drop the imaginary part so that it is a valid input into y_nonstochastic
+    # Drop the imaginary part so that it is a valid input into y_nonstochastic
+    a = a.real
     b = b.real
 
     print(f"a, b = {a}, {b}")
@@ -755,8 +773,6 @@ We can also use sympy to compute analytic formulas for the roots
 
 .. code-block:: python3
 
-    import sympy
-    from sympy import Symbol, init_printing
     init_printing()
 
     r1 = Symbol("ρ_1")
@@ -802,8 +818,10 @@ demand
 
     def y_stochastic(y_0=0, y_1=0, α=0.8, β=0.2, γ=10, n=100, σ=5):
 
-        """This function takes parameters of a stochastic version of the model and proceeds to analyze
-        the roots of the characteristic polynomial and also generate a simulation"""
+        """This function takes parameters of a stochastic version of
+        the model and proceeds to analyze the roots of the characteristic
+        polynomial and also generate a simulation.
+        """
 
         # Useful constants
         ρ1 = α + β
@@ -854,14 +872,15 @@ Let's do a simulation in which there are shocks and the characteristic polynomia
 
     r = .97
 
-    period = 10   #  length of cycle in units of time
+    period = 10   #  Length of cycle in units of time
     ϕ = 2 * math.pi/period
 
-    ### apply the  reverse-engineering function f
+    ### Apply the  reverse-engineering function f
 
     ρ1, ρ2, a, b = f(r, ϕ)
 
-    a = a.real  # drop the imaginary part so that it is a valid input into y_nonstochastic
+    # Drop the imaginary part so that it is a valid input into y_nonstochastic
+    a = a.real
     b = b.real
 
     print(f"a, b = {a}, {b}")
@@ -887,8 +906,9 @@ in government expenditures
                        g_t=0,
                        duration='permanent'):
 
-        """This program computes a response to a permanent increase in government expenditures that occurs
-           at time 20"""
+        """This program computes a response to a permanent increase
+        in government expenditures that occurs at time 20
+        """
 
         # Useful constants
         ρ1 = α + β
@@ -918,7 +938,8 @@ in government expenditures
 
         def transition(x, t, g):
 
-            # Non-stochastic - separated to avoid generating random series when not needed
+            # Non-stochastic - separated to avoid generating random series
+            # when not needed
             if σ == 0:
                 return ρ1 * x[t - 1] + ρ2 * x[t - 2] + γ + g
 
@@ -982,7 +1003,7 @@ for the Samuelson model
 
     class Samuelson():
 
-        r"""This class represents the Samuelson model, otherwise known as the
+        """This class represents the Samuelson model, otherwise known as the
         multiple-accelerator model. The model combines the Keynesian multiplier
         with the accelerator theory of investment.
 
@@ -1063,14 +1084,16 @@ for the Samuelson model
 
         def _transition(self, x, t, g):
 
-            # Non-stochastic - separated to avoid generating random series when not needed
+            # Non-stochastic - separated to avoid generating random series
+            # when not needed
             if self.σ == 0:
                 return self.ρ1 * x[t - 1] + self.ρ2 * x[t - 2] + self.γ + g
 
             # Stochastic
             else:
                 ϵ = np.random.normal(0, 1, self.n)
-                return self.ρ1 * x[t - 1] + self.ρ2 * x[t - 2] + self.γ + g + self.σ * ϵ[t]
+                return self.ρ1 * x[t - 1] + self.ρ2 * x[t - 2] + self.γ + g \
+                    + self.σ * ϵ[t]
 
         def generate_series(self):
 
@@ -1134,8 +1157,9 @@ for the Samuelson model
             ax.grid()
 
             # Add parameter values to plot
-            paramstr = f'$\\alpha={self.α:.2f}$ \n $\\beta={self.β:.2f}$ \n $\\gamma={self.γ:.2f}$ \n \
-    $\\sigma={self.σ:.2f}$ \n $\\rho_1={self.ρ1:.2f}$ \n $\\rho_2={self.ρ2:.2f}$'
+            paramstr = f'$\\alpha={self.α:.2f}$ \n $\\beta={self.β:.2f}$ \n \
+            $\\gamma={self.γ:.2f}$ \n $\\sigma={self.σ:.2f}$ \n \
+            $\\rho_1={self.ρ1:.2f}$ \n $\\rho_2={self.ρ2:.2f}$'
             props = dict(fc='white', pad=10, alpha=0.5)
             ax.text(0.87, 0.05, paramstr, transform=ax.transAxes,
                     fontsize=12, bbox=props, va='bottom')
@@ -1153,14 +1177,17 @@ for the Samuelson model
             # Add λ values to legend
             for i, root in enumerate(self.roots):
                 if isinstance(root, complex):
-                    operator = ['+', '']  # Need to fill operator for positive as string is split apart
-                    label = rf'$\lambda_{i+1} = {sam.roots[i].real:.2f} {operator[i]} {sam.roots[i].imag:.2f}i$'
+                    # Need to fill operator for positive as string is split apart
+                    operator = ['+', '']
+                    label = rf'$\lambda_{i+1} = {sam.roots[i].real:.2f} \
+                        {operator[i]} {sam.roots[i].imag:.2f}i$'
                 else:
                     label = rf'$\lambda_{i+1} = {sam.roots[i].real:.2f}$'
                 ax.scatter(0, 0, 0, label=label) # dummy to add to legend
 
             # Add ρ pair to plot
-            ax.scatter(self.ρ1, self.ρ2, 100, 'red', '+', label=r'$(\ \rho_1, \ \rho_2 \ )$', zorder=5)
+            ax.scatter(self.ρ1, self.ρ2, 100, 'red', '+',
+                label=r'$(\ \rho_1, \ \rho_2 \ )$', zorder=5)
 
             plt.legend(fontsize=12, loc=3)
 
@@ -1208,9 +1235,9 @@ Here is how we map the Samuelson model into an instance of a
 
 .. code-block:: python3
 
-    from quantecon import LinearStateSpace
-
-    """ This script maps the Samuelson model in the the ``LinearStateSpace`` class"""
+    """This script maps the Samuelson model in the the
+    ``LinearStateSpace`` class
+    """
     α = 0.8
     β = 0.9
     ρ1 = α + β
@@ -1292,8 +1319,8 @@ methods and attributes) to add more functions to use
     class SamuelsonLSS(LinearStateSpace):
 
         """
-        this subclass creates a Samuelson multiplier-accelerator model
-        as a linear state space system
+        This subclass creates a Samuelson multiplier-accelerator model
+        as a linear state space system.
         """
         def __init__(self,
                      y_0=100,
@@ -1336,13 +1363,16 @@ methods and attributes) to add more functions to use
             temp_μ = self.μ_0
             temp_Σ = self.Sigma_0
 
-            # Set distribution parameters equal to their stationary values for simulation
+            # Set distribution parameters equal to their stationary
+            # values for simulation
             if stationary == True:
                 try:
-                    self.μ_x, self.μ_y, self.σ_x, self.σ_y = self.stationary_distributions()
+                    self.μ_x, self.μ_y, self.σ_x, self.σ_y = \
+                        self.stationary_distributions()
                     self.μ_0 = self.μ_y
                     self.Σ_0 = self.σ_y
-                # Exception where no convergence achieved when calculating stationary distributions
+                # Exception where no convergence achieved when
+                #calculating stationary distributions
                 except ValueError:
                     print('Stationary distribution does not exist')
 
