@@ -24,6 +24,16 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Reader's Guide
 ==============
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import quantecon as qe
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+
 This lecture uses the method of   **Markov jump linear quadratic dynamic programming** that is described in lecture
 :doc:`Markov Jump LQ dynamic programming <markov_jump_lq>` 
 to extend the :cite:`Barro1979` model of optimal tax-smoothing and government debt in a 
@@ -262,13 +272,6 @@ To do this, we set
   A_{22} = \begin{bmatrix} 1 & 0 \\ \bar G & \rho \end{bmatrix} \hspace{2mm} ,
   \hspace{2mm} C_2 = \begin{bmatrix} 0 \\ \sigma \end{bmatrix}
 
-.. code-block:: ipython
-
-    import quantecon as qe
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
 .. code-block:: python3
 
     # Model parameters
@@ -450,18 +453,18 @@ a constant interest rate, government debt would explode.
     Ws = [W1, W2]
 
     # create Markov Jump LQ DP problem instance
-    MJLQBarro = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
-    MJLQBarro.stationary_values();
+    lqm = qe.LQMarkov(Π, Qs, Rs, As, Bs, Cs=Cs, Ns=Ws, beta=β)
+    lqm.stationary_values();
 
 The decision rules are now dependent on the Markov state:
 
 .. code-block:: python3
 
-    MJLQBarro.Fs[0]
+    lqm.Fs[0]
 
 .. code-block:: python3
 
-    MJLQBarro.Fs[1]
+    lqm.Fs[1]
 
 Simulating a large number of such economies over time reveals
 interesting dynamics.
@@ -474,7 +477,7 @@ recurrently surges temporarily to higher levels.
     T = 2000
     x0 = np.array([[1000, 1, 25]])
     for i in range(250):
-        x, u, w, s = MJLQBarro.compute_sequence(x0, ts_length=T)
+        x, u, w, s = lqm.compute_sequence(x0, ts_length=T)
         plt.plot(list(range(T+1)), x[0, :])
     plt.xlabel('Time')
     plt.ylabel('Taxation')
