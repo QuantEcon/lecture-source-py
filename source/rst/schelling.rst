@@ -32,6 +32,14 @@ In recognition of this and other research, Schelling was awarded the 2005 Nobel 
 
 In this lecture, we (in fact you) will build and run a version of Schelling's model.
 
+Let's start with some imports:
+
+.. code-block:: ipython
+
+    from random import uniform, seed
+    from math import sqrt
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 The Model
@@ -185,14 +193,9 @@ Here's one solution that does the job we want.
 If you feel like a further exercise, you can probably speed up some of the computations and
 then increase the number of agents.
 
-.. code-block:: ipython
+.. code-block:: python3
 
-    from random import uniform, seed
-    from math import sqrt
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
-    seed(10)  # for reproducible random numbers
+    seed(10)  # For reproducible random numbers
 
     class Agent:
 
@@ -248,7 +251,7 @@ then increase the number of agents.
         fig, ax = plt.subplots(figsize=(8, 8))
         plot_args = {'markersize': 8, 'alpha': 0.6}
         ax.set_facecolor('azure')
-        ax.plot(x_values_0, y_values_0, 'o', markerfacecolor='orange',  **plot_args)
+        ax.plot(x_values_0, y_values_0, 'o', markerfacecolor='orange', **plot_args)
         ax.plot(x_values_1, y_values_1, 'o', markerfacecolor='green', **plot_args)
         ax.set_title(f'Cycle {cycle_num-1}')
         plt.show()
