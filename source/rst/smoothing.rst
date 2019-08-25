@@ -249,7 +249,7 @@ state :math:`s_t` is
 where :math:`b_t` is the consumer's one-period debt that falls due at time :math:`t` and  :math:`b_{t+1}(\bar s_j\,|\, s_t)` are the consumer's time
 :math:`t` sales of the  time :math:`t+1` consumption good in Markov state :math:`\bar s_j`, a source of time :math:`t` revenues.
 
-An analog of Hall's assumption that the one-period risk-free gross
+A natural analog of Hall's assumption that the one-period risk-free gross
 interest rate is :math:`\beta^{-1}` is
 
 .. math::
@@ -268,7 +268,7 @@ period is
     \sum_j q(\bar s_j \,|\, \bar s_i) =  \sum_j \beta P_{ij} =  \beta
 
 
-This confirms that :eq:`cs_2` is a natural extension of Hall's assumption about the
+This confirms the sense in which  :eq:`cs_2` is a natural counterpart to Hall's assumption about the
 risk-free one-period interest rate.
 
 First-order necessary conditions for maximizing the consumer's expected utility subject to the sequence of budget constraints :eq:`cs_budget1` are
@@ -287,7 +287,8 @@ or, under our assumption :eq:`cs_2` about the values taken by  Arrow security pr
     c_{t+1} = c_t
 
 
-Thus, our consumer sets :math:`c_t = \bar c` for all :math:`t \geq 0` for some value :math:`\bar c` that it is our job now to determine.
+Thus, our consumer sets :math:`c_t = \bar c` for all :math:`t \geq 0` for some value :math:`\bar c` that it is our job now to determine along with 
+values for :math:`b_{t+1}(\bar s_j | s_t = \bar s_i)` for :math:`i=1,2` and :math:`j = 1,2`
 
 We'll use a *guess and verify* method
 
@@ -296,13 +297,13 @@ We'll use a *guess and verify* method
 .. math::
     :label: eq_guess
 
-    b_{t+1}(\bar s_j \,|\, s_t = \bar s_i) = b(\bar s_j) ,
+    b_{t+1}(s_{t+1} = \bar s_j \,|\, s_t = \bar s_i) = b(\bar s_j) ,
             \quad i=1,2; \;\; j= 1,2
 
 
 so that the amount borrowed today turns out to depend only on *tomorrow's* Markov state. (Why is this is a plausible guess?)
 
-To determine :math:`\bar c`, we shall pursue the implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess` about the consumer's debt level choices.
+To determine :math:`\bar c`, we shall pursue implications of the consumer's budget constraints in each Markov state today and  our guess :eq:`eq_guess` about the consumer's debt level choices.
 
 For :math:`t \geq 1`, these imply
 
@@ -344,7 +345,9 @@ To get a third equation, we assume that at time :math:`t=0`, :math:`b_0`
 is the debt due; and we assume that at time :math:`t=0`, the Markov
 state is :math:`\bar s_1`.
 
-Then the budget constraint at time :math:`t=0` is
+(We could instead have assumed that at time :math:`t=0` the Markov state :math:`s_0 = \bar s_2`)
+
+Since weh have  assumed that :math:`s_0 = \bar s_1`,  the budget constraint at time :math:`t=0` is
 
 .. math::
     :label: cs_5
@@ -370,7 +373,7 @@ We can then use the second equation of :eq:`cs_4a`  to deduce the restriction
     [q(\bar s_2\,|\,\bar s_1) + 1 - q(\bar s_2 \,|\, \bar s_2) ] b(\bar s_2) = 0 ,
 
 
-an equation in the unknown :math:`b(\bar s_2)`.
+an equation that we can solve for the unknown :math:`b(\bar s_2)`.
 
 Knowing :math:`b(\bar s_1)` and :math:`b(\bar s_2)`, we can solve equation :eq:`cs_5`  for the constant level of consumption :math:`\bar c`.
 
@@ -383,6 +386,8 @@ of our model, we obtain the following striking results:
 *  The consumer chooses to make consumption perfectly constant across
    time and Markov states.
 
+* State-contingent debt purchases :math:`b_{t+1}(s_{t+1} = \bar s_j | s_t = \bar s_i)` depend only on :math:`bar s_j`
+
 
 We computed the constant level of consumption :math:`\bar c` and indicated how that level depends on the underlying specifications of preferences, Arrow securities prices,  the stochastic process of exogenous nonfinancial income, and the initial debt level :math:`b_0`
 
@@ -393,7 +398,9 @@ We computed the constant level of consumption :math:`\bar c` and indicated how t
 
 *  We have verified guess :eq:`eq_guess`.
 
-We computed how one of those debt levels depends entirely on initial debt -- it equals it -- and how the other value depends on virtually all  remaining parameters of the model.
+*  When the state :math:`s_t` returns to the initial state :math:`s_0`, debt returns to the initial debt level assumed.
+
+*  Debt levels in all other steates depend on virtually all  remaining parameters of the model.
 
 
 
