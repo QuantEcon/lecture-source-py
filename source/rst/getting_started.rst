@@ -272,7 +272,7 @@ Inserting Unicode (e.g., Greek Letters)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Python 3 introduced support for `unicode characters <https://docs.python.org/3/howto/unicode.html>`__,
-allowing the use of characters such as `α` and `β` in your code.
+allowing the use of characters such as :math:`\alpha` and :math:`\beta` in your code.
 
 Unicode characters can be typed quickly in Jupyter using the `tab` key.
 
