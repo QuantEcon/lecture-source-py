@@ -48,9 +48,9 @@ We'll also require the following imports
     import numpy as np
     import scipy.linalg as la
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from quantecon import DLE
 
-    %matplotlib inline
     np.set_printoptions(suppress=True, precision=4)
 
 The Permanent Income Model
@@ -213,10 +213,10 @@ We set up this instance of the DLE class below:
 
     x0 = np.array([[0], [0], [1], [0], [0]])
 
-    Info1 = (a22, c2, ub, ud)
-    Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
-    Pref1 = (β, l_λ, π_h, δ_h, θ_h)
-    Econ1 = DLE(Info1, Tech1, Pref1)
+    info1 = (a22, c2, ub, ud)
+    tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
+    pref1 = (β, l_λ, π_h, δ_h, θ_h)
+    econ1 = DLE(info1, tech1, pref1)
 
 To check the solution of this model with that from the **LQ** problem,
 we select the :math:`S_c` matrix from the DLE class.
@@ -228,7 +228,7 @@ DLE economy has:
 
 .. code-block:: python3
 
-    Econ1.Sc
+    econ1.Sc
 
 The state vector in the DLE class is:
 
@@ -245,7 +245,7 @@ permanent income model.
 The state vector in the LQ problem is
 :math:`\begin{bmatrix} z_t \\ b_t \end{bmatrix}`.
 
-Consequently, the relevant elements of Econ1.Sc are the same as in
+Consequently, the relevant elements of econ1.Sc are the same as in
 :math:`-F` occur when we apply other approaches to the same model in the lecture
 :doc:`Optimal Savings II: LQ Techniques <perm_income_cons>` and this Jupyter
 notebook `<http://nbviewer.jupyter.org/github/QuantEcon/QuantEcon.notebooks/blob/master/permanent_income.ipynb>`__.
@@ -259,16 +259,16 @@ that lecture and that  notebook to confirm that the solutions are the same
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 5))
 
     for i in range(25):
-        Econ1.compute_sequence(x0, ts_length=150)
-        ax1.plot(Econ1.c[0], c='g')
-        ax1.plot(Econ1.d[0], c='b')
-    ax1.plot(Econ1.c[0], label='Consumption', c='g')
-    ax1.plot(Econ1.d[0], label='Income', c='b')
+        econ1.compute_sequence(x0, ts_length=150)
+        ax1.plot(econ1.c[0], c='g')
+        ax1.plot(econ1.d[0], c='b')
+    ax1.plot(econ1.c[0], label='Consumption', c='g')
+    ax1.plot(econ1.d[0], label='Income', c='b')
     ax1.legend()
 
     for i in range(25):
-        Econ1.compute_sequence(x0, ts_length=150)
-        ax2.plot(Econ1.k[0], color='r')
-    ax2.plot(Econ1.k[0], label='Debt', c='r')
+        econ1.compute_sequence(x0, ts_length=150)
+        ax2.plot(econ1.k[0], color='r')
+    ax2.plot(econ1.k[0], label='Debt', c='r')
     ax2.legend()
     plt.show()
