@@ -50,6 +50,8 @@ Classes are blueprints that help you build objects according to your own specifi
 
 It takes a little while to get used to the syntax so we'll provide plenty of examples.
 
+Let's start with some standard imports:
+
 .. code-block:: ipython
 
     import numpy as np
