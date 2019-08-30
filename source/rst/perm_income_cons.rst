@@ -66,7 +66,15 @@ The model will prove useful for illustrating concepts such as
 * ensemble moments and cross-section observations
 
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
+
+    import quantecon as qe
+    import numpy as np
+    import scipy.linalg as la
+    import matplotlib.pyplot as plt
+    %matplotlib inline
 
 
 Setup
@@ -361,13 +369,7 @@ First, we create the objects for the optimal linear regulator
 
 
 
-.. code-block:: ipython
-
-    import quantecon as qe
-    import numpy as np
-    import scipy.linalg as la
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     # Set parameters
     α, β, ρ1, ρ2, σ = 10.0, 0.95, 0.9, 0.0, 1.0
@@ -394,9 +396,9 @@ First, we create the objects for the optimal linear regulator
     bb = np.zeros((1, 4))
     sxo = np.vstack([aa, bb])
 
-    # These choices will initialize the state vector of an individual at zero debt
-    # and the ergodic distribution of the endowment process. Use these to create
-    # the Bewley economy.
+    # These choices will initialize the state vector of an individual at zero
+    # debt and the ergodic distribution of the endowment process. Use these to
+    # create the Bewley economy.
     mxbewley = mxo
     sxbewley = sxo
 
@@ -444,7 +446,7 @@ Now create the appropriate instance of an LQ model
 
 .. code-block:: python3
 
-    LQPI = qe.LQ(QLQ, RLQ, ALQ, BLQ, C=CLQ, beta=β_LQ)
+    lqpi = qe.LQ(QLQ, RLQ, ALQ, BLQ, C=CLQ, beta=β_LQ)
 
 
 
@@ -455,7 +457,7 @@ employing an alternative solution method
 
 .. code-block:: python3
 
-    P, F, d = LQPI.stationary_values()  # Compute value function and decision rule
+    P, F, d = lqpi.stationary_values()  # Compute value function and decision rule
     ABF = ALQ - BLQ @ F  #  Form closed loop system
 
 
@@ -588,7 +590,7 @@ Comparing sample paths with population distributions at each date :math:`t` is a
 
 .. code-block:: python3
 
-    LSS = qe.LinearStateSpace(A_LSS, C_LSS, G_LSS, mu_0=μ_0, Sigma_0=Σ_0)
+    lss = qe.LinearStateSpace(A_LSS, C_LSS, G_LSS, mu_0=μ_0, Sigma_0=Σ_0)
 
 
 
@@ -610,15 +612,15 @@ In the code below, we use the `LinearStateSpace <https://github.com/QuantEcon/Qu
 
     def income_consumption_debt_series(A, C, G, μ_0, Σ_0, T=150, npaths=25):
         """
-        This function takes initial conditions (μ_0, Σ_0) and uses the LinearStateSpace
-        class from QuantEcon to  simulate an economy npaths times for T periods.
-        It then uses that information to generate some graphs related to the discussion
-        below.
+        This function takes initial conditions (μ_0, Σ_0) and uses the
+        LinearStateSpace class from QuantEcon to  simulate an economy 
+        npaths times for T periods. It then uses that information to 
+        generate some graphs related to the discussion below.
         """
-        LSS = qe.LinearStateSpace(A, C, G, mu_0=μ_0, Sigma_0=Σ_0)
+        lss = qe.LinearStateSpace(A, C, G, mu_0=μ_0, Sigma_0=Σ_0)
 
         # Simulation/Moment Parameters
-        moment_generator = LSS.moment_sequence()
+        moment_generator = lss.moment_sequence()
 
         # Simulate various paths
         bsim = np.empty((npaths, T))
@@ -626,7 +628,7 @@ In the code below, we use the `LinearStateSpace <https://github.com/QuantEcon/Qu
         ysim = np.empty((npaths, T))
 
         for i in range(npaths):
-            sims = LSS.simulate(T)
+            sims = lss.simulate(T)
             bsim[i, :] = sims[0][-1, :]
             csim[i, :] = sims[1][1, :]
             ysim[i, :] = sims[1][0, :]
