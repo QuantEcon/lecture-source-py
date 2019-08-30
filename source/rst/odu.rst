@@ -628,10 +628,7 @@ operator ``Q``
         @njit(parallel=parallel_flag)
         def Q(ω):
             """
-
-            Updates the reservation wage function guess ω via the operator
-            Q.
-
+            Updates the reservation wage function guess ω via the operator Q.
             """
             ω_func = lambda p: interp(π_grid, ω, p)
             ω_new = np.empty_like(ω)
@@ -770,7 +767,8 @@ As a result, the unemployment rate spikes
 
     @njit
     def update(a, b, e, π):
-        "Update e and π by drawing wage offer from beta distribution with parameters a and b"
+        "Update e and π by drawing wage offer from beta distribution with \
+        parameters a and b"
 
         if e == False:
             w = np.random.beta(a, b)       # Draw random wage
@@ -791,7 +789,9 @@ As a result, the unemployment rate spikes
                       d=200,        # Change date
                       s=0.025):     # Separation rate
 
-        """Simulates path of employment for N number of works over T periods"""
+        """
+        Simulates path of employment for N number of works over T periods
+        """
 
         e = np.ones((N, T+1))
         π = np.ones((N, T+1)) * 1e-3
@@ -805,9 +805,11 @@ As a result, the unemployment rate spikes
 
             # Update each agent
             for n in range(N):
-                if e[n, t] == 1:                    # If agent is currently employment
+                # If agent is currently employed
+                if e[n, t] == 1:
                     p = np.random.uniform(0, 1)
-                    if p <= s:                      # Randomly separate with probability s
+                    # Randomly separate with probability s
+                    if p <= s:
                         e[n, t] = 0
 
                 new_e, new_π = update(a, b, e[n, t], π[n, t])
