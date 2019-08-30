@@ -50,6 +50,13 @@ Classes are blueprints that help you build objects according to your own specifi
 
 It takes a little while to get used to the syntax so we'll provide plenty of examples.
 
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.integrate import quad
+    from random import uniform
 
 OOP Review
 ==========
@@ -392,7 +399,7 @@ The methods ``steady_state`` and ``generate_sequence`` are fairly self-explanato
 .. code-block:: python3
 
     class Solow:
-        r"""
+        """
         Implements the Solow growth model with the update rule
 
             k_{t+1} = [(s z k^α_t) + (1 - δ)k_t] /(1 + n)
@@ -439,10 +446,7 @@ Here's a little program that uses the class to compute  time series from two dif
 
 The common steady state is also plotted for comparison
 
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     s1 = Solow()
     s2 = Solow(k=8.0)
@@ -485,8 +489,6 @@ The class provides methods to compute various values of interest, including comp
 Here's our implementation
 
 .. code-block:: python3
-
-    from scipy.integrate import quad
 
     class Market:
 
@@ -555,8 +557,6 @@ Here's a short program that uses this class to plot an inverse demand curve toge
 supply curves  with and without taxes
 
 .. code-block:: python3
-
-    import numpy as np
 
     # Baseline ad, bd, az, bz, tax
     baseline_params = 15, .5, -2, .5, 3
@@ -801,17 +801,15 @@ Your code should work as follows (modulo randomness)
 .. code-block:: python3
     :class: no-execute
 
-    from random import uniform
-
     samples = [uniform(0, 1) for i in range(10)]
-    F = ECDF(samples)
-    F(0.5)  # Evaluate ecdf at x = 0.5
+    f = ECDF(samples)
+    f(0.5)  # Evaluate ecdf at x = 0.5
 
 .. code-block:: python3
     :class: no-execute
 
-    F.observations = [uniform(0, 1) for i in range(1000)]
-    F(0.5)
+    f.observations = [uniform(0, 1) for i in range(1000)]
+    f(0.5)
 
 
 Aim for clarity, not efficiency.
@@ -871,16 +869,14 @@ Exercise 1
 
     # == test == #
 
-    from random import uniform
-
     samples = [uniform(0, 1) for i in range(10)]
-    F = ECDF(samples)
+    f = ECDF(samples)
 
-    print(F(0.5))  # Evaluate ecdf at x = 0.5
+    print(f(0.5))  # Evaluate ecdf at x = 0.5
 
-    F.observations = [uniform(0, 1) for i in range(1000)]
+    f.observations = [uniform(0, 1) for i in range(1000)]
 
-    print(F(0.5))
+    print(f(0.5))
 
 Exercise 2
 ----------
