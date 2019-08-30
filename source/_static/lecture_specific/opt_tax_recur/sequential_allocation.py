@@ -59,9 +59,10 @@ class SequentialAllocation:
             c = z[:S]
             n = z[S:2 * S]
             Ξ = z[2 * S:]
-            return np.hstack([Uc(c, n) - μ * (Ucc(c, n) * c + Uc(c, n)) - Ξ,          # FOC of c
-                              Un(c, n) - μ * (Unn(c, n) * n + Un(c, n)) + \
-                              Θ * Ξ,  # FOC of n
+            # FOC of c
+            return np.hstack([Uc(c, n) - μ * (Ucc(c, n) * c + Uc(c, n)) - Ξ,
+                              Un(c, n) - μ * (Unn(c, n) * n + Un(c, n)) \
+                              + Θ * Ξ,  # FOC of n
                               Θ * n - c - G])
 
         # Find the root of the first-order condition
@@ -79,7 +80,8 @@ class SequentialAllocation:
 
     def time0_allocation(self, B_, s_0):
         '''
-        Finds the optimal allocation given initial government debt B_ and state s_0
+        Finds the optimal allocation given initial government debt B_ and
+        state s_0
         '''
         model, π, Θ, G, β = self.model, self.π, self.Θ, self.G, self.β
         Uc, Ucc, Un, Unn = model.Uc, model.Ucc, model.Un, model.Unn
@@ -88,11 +90,12 @@ class SequentialAllocation:
         def FOC(z):
             μ, c, n, Ξ = z
             xprime = self.time1_allocation(μ)[2]
-            return np.hstack([Uc(c, n) * (c - B_) + Un(c, n) * n + β * π[s_0] @ xprime,
-                              Uc(c, n) - μ * (Ucc(c, n) *
-                                               (c - B_) + Uc(c, n)) - Ξ,
-                              Un(c, n) - μ * (Unn(c, n) * n +
-                                               Un(c, n)) + Θ[s_0] * Ξ,
+            return np.hstack([Uc(c, n) * (c - B_) + Un(c, n) * n + β * π[s_0]
+                                            @ xprime,
+                              Uc(c, n) - μ * (Ucc(c, n)
+                                            * (c - B_) + Uc(c, n)) - Ξ,
+                              Un(c, n) - μ * (Unn(c, n) * n
+                                            + Un(c, n)) + Θ[s_0] * Ξ,
                               (Θ * n - c - G)[s_0]])
 
         # Find root
