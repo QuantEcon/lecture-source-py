@@ -58,11 +58,16 @@ Its many applications include:
 
     * Sargent and Wallace's "unpleasant monetarist arithmetic," etc.
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
 
-
-
-
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from quantecon import LinearStateSpace
+    from scipy.stats import norm
+    import random
 
 The Linear State Space Model
 ============================
@@ -1405,14 +1410,6 @@ the bars are at dates 10, 50 and 75.
 Solutions
 =========
 
-
-
-.. code-block:: python3
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from quantecon import LinearStateSpace
-
 Exercise 1
 ----------
 
@@ -1471,9 +1468,6 @@ Exercise 3
 ----------
 
 .. code-block:: python3
-
-    from scipy.stats import norm
-    import random
 
     ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
     σ = 0.1
