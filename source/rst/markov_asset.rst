@@ -59,7 +59,15 @@ Key tools for the lecture are
 
 * a formula for predicting the discounted sum of future values of a Markov state
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import quantecon as qe
+    from numpy.linalg import eigvals, solve
 
 :index:`Pricing Models`
 =======================
@@ -330,17 +338,12 @@ The next figure shows a simulation, where
 
 .. code-block:: ipython
 
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-    import quantecon as qe
-
     mc = qe.tauchen(0.96, 0.25, n=25)
     sim_length = 80
 
     x_series = mc.simulate(sim_length, init=np.median(mc.state_values))
     g_series = np.exp(x_series)
-    d_series = np.cumprod(g_series) # assumes d_0 = 1
+    d_series = np.cumprod(g_series) # Assumes d_0 = 1
 
     series = [x_series, g_series, d_series, np.log(d_series)]
     labels = ['$X_t$', '$g_t$', '$d_t$', r'$\log \, d_t$']
@@ -437,9 +440,7 @@ Here's the code, including a test of the spectral radius condition
 
 .. code-block:: python3
 
-    from numpy.linalg import eigvals, solve
-
-    n = 25  # size of state space
+    n = 25  # Size of state space
     β = 0.9
     mc = qe.tauchen(0.96, 0.02, n=n)
 
@@ -614,7 +615,7 @@ the class `AssetPriceModel`
             self.β, self.γ = β, γ
             self.g = g
 
-            # == A default process for the Markov chain == #
+            # A default process for the Markov chain
             if mc is None:
                 self.ρ = 0.9
                 self.σ = 0.02
@@ -649,14 +650,14 @@ the class `AssetPriceModel`
             Lucas tree price-dividend ratio
 
         """
-        # == Simplify names, set up matrices  == #
+        # Simplify names, set up matrices
         β, γ, P, y = ap.β, ap.γ, ap.mc.P, ap.mc.state_values
         J = P * ap.g(y)**(1 - γ)
 
-        # == Make sure that a unique solution exists == #
+        # Make sure that a unique solution exists
         ap.test_stability(J)
 
-        # == Compute v == #
+        # Compute v
         I = np.identity(ap.n)
         Ones = np.ones(ap.n)
         v = solve(I - β * J, β * J @ Ones)
@@ -798,14 +799,14 @@ The above is implemented in the function `consol_price`.
             Console bond prices
 
         """
-        # == Simplify names, set up matrices  == #
+        # Simplify names, set up matrices
         β, γ, P, y = ap.β, ap.γ, ap.mc.P, ap.mc.state_values
         M = P * ap.g(y)**(- γ)
 
-        # == Make sure that a unique solution exists == #
+        # Make sure that a unique solution exists
         ap.test_stability(M)
 
-        # == Compute price == #
+        # Compute price
         I = np.identity(ap.n)
         Ones = np.ones(ap.n)
         p = solve(I - β * M, β * ζ * M @ Ones)
@@ -919,21 +920,21 @@ We can find the solution with the following function `call_option`
             Infinite horizon call option prices
 
         """
-        # == Simplify names, set up matrices  == #
+        # Simplify names, set up matrices
         β, γ, P, y = ap.β, ap.γ, ap.mc.P, ap.mc.state_values
         M = P * ap.g(y)**(- γ)
 
-        # == Make sure that a unique consol price exists == #
+        # Make sure that a unique consol price exists
         ap.test_stability(M)
 
-        # == Compute option price == #
+        # Compute option price
         p = consol_price(ap, ζ)
         w = np.zeros(ap.n)
         error = ϵ + 1
         while error > ϵ:
-            # == Maximize across columns == #
+            # Maximize across columns
             w_new = np.maximum(β * M @ w, p - p_s)
-            # == Find maximal difference of each component and update == #
+            # Find maximal difference of each component and update
             error = np.amax(np.abs(w - w_new))
             w = w_new
 
@@ -1045,7 +1046,8 @@ Consider the following primitives
     n = 5
     P = 0.0125 * np.ones((n, n))
     P += np.diag(0.95 - 0.0125 * np.ones(5))
-    s = np.array([0.95, 0.975, 1.0, 1.025, 1.05])  # state values of the Markov chain
+    # State values of the Markov chain
+    s = np.array([0.95, 0.975, 1.0, 1.025, 1.05])
     γ = 2.0
     β = 0.94
 
@@ -1151,7 +1153,7 @@ First, let's enter the parameters:
     n = 5
     P = 0.0125 * np.ones((n, n))
     P += np.diag(0.95 - 0.0125 * np.ones(5))
-    s = np.array([0.95, 0.975, 1.0, 1.025, 1.05])  # state values
+    s = np.array([0.95, 0.975, 1.0, 1.025, 1.05])  # State values
     mc = qe.MarkovChain(P, state_values=s)
 
     γ = 2.0
@@ -1211,19 +1213,19 @@ Here's a suitable function:
         """
         Computes k period option value.
         """
-        # == Simplify names, set up matrices  == #
+        # Simplify names, set up matrices
         β, γ, P, y = ap.β, ap.γ, ap.mc.P, ap.mc.state_values
         M = P * ap.g(y)**(- γ)
 
-        # == Make sure that a unique solution exists == #
+        # Make sure that a unique solution exists
         ap.test_stability(M)
 
 
-        # == Compute option price == #
+        # Compute option price
         p = consol_price(ap, ζ)
         w = np.zeros(ap.n)
         for i in range(k):
-            # == Maximize across columns == #
+            # Maximize across columns
             w = np.maximum(β * M @ w, p - p_s)
 
         return w
