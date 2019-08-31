@@ -45,6 +45,15 @@ Later, we will examine the close connection between LQ control and least-squares
 
 These classes of problems are connected in the sense that to solve each, essentially the same mathematics is used.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import scipy.stats as spst
+    import scipy.linalg as la
 
 References
 ----------
@@ -975,12 +984,9 @@ Here's some code that generates a plot when :math:`\gamma = 0.8`
 
 
 
-.. code-block:: ipython
+.. code-block:: python3
 
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
-    # == Set seed and generate a_t sequence == #
+    # Set seed and generate a_t sequence
     np.random.seed(123)
     n = 100
     a_seq = np.sin(np.linspace(0, 5 * np.pi, n)) + 2 + 0.1 * np.random.randn(n)
@@ -992,16 +998,19 @@ Here's some code that generates a plot when :math:`\gamma = 0.8`
 
         testlq = LQFilter(d, h, y_m)
         y_hist, L, U, y = testlq.optimal_y(a_seq)
-        y = y[::-1]  # reverse y
+        y = y[::-1]  # Reverse y
 
-        # == Plot simulation results == #
+        # Plot simulation results
 
         fig, ax = plt.subplots(figsize=(10, 6))
         p_args = {'lw' : 2, 'alpha' : 0.6}
         time = range(len(y))
         ax.plot(time, a_seq / h, 'k-o', ms=4, lw=2, alpha=0.6, label='$a_t$')
         ax.plot(time, y, 'b-o', ms=4, lw=2, alpha=0.6, label='$y_t$')
-        ax.set(title=rf'Dynamics with $\gamma = {γ}$', xlabel='Time', xlim=(0, max(time)))
+        ax.set(title=rf'Dynamics with $\gamma = {γ}$',
+               xlabel='Time',
+               xlim=(0, max(time))
+              )
         ax.legend()
         ax.grid()
         plt.show()
