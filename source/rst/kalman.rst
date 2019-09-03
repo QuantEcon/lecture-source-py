@@ -37,6 +37,21 @@ The second reference presents a  comprehensive treatment of the Kalman filter.
 
 Required knowledge: Familiarity with matrix manipulations, multivariate normal distributions, covariance matrices, etc.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    from scipy import linalg
+    import numpy as np
+    import matplotlib.cm as cm
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from quantecon import Kalman, LinearStateSpace
+    from scipy.stats import norm
+    from scipy.integrate import quad
+    from numpy.random import multivariate_normal
+    from scipy.linalg import eigvals
+
 
 The Basic Idea
 ==============
@@ -98,39 +113,34 @@ This density :math:`p(x)` is shown below as a contour map, with the center of th
 
 
 
-.. code-block:: ipython
+.. code-block:: python3
   :class: collapse
 
-  from scipy import linalg
-  import numpy as np
-  import matplotlib.cm as cm
-  import matplotlib.pyplot as plt
-  %matplotlib inline
 
-  # == Set up the Gaussian prior density p == #
+  # Set up the Gaussian prior density p
   Σ = [[0.4, 0.3], [0.3, 0.45]]
   Σ = np.matrix(Σ)
   x_hat = np.matrix([0.2, -0.2]).T
-  # == Define the matrices G and R from the equation y = G x + N(0, R) == #
+  # Define the matrices G and R from the equation y = G x + N(0, R)
   G = [[1, 0], [0, 1]]
   G = np.matrix(G)
   R = 0.5 * Σ
-  # == The matrices A and Q == #
+  # The matrices A and Q
   A = [[1.2, 0], [0, -0.2]]
   A = np.matrix(A)
   Q = 0.3 * Σ
-  # == The observed value of y == #
+  # The observed value of y
   y = np.matrix([2.3, -1.9]).T
 
-  # == Set up grid for plotting == #
+  # Set up grid for plotting
   x_grid = np.linspace(-1.5, 2.9, 100)
   y_grid = np.linspace(-3.1, 1.7, 100)
   X, Y = np.meshgrid(x_grid, y_grid)
 
   def bivariate_normal(x, y, σ_x=1.0, σ_y=1.0, μ_x=0.0, μ_y=0.0, σ_xy=0.0):
       """
-      Compute and return the probability density function of bivariate normal distribution
-      of normal random variables x and y
+      Compute and return the probability density function of bivariate normal
+      distribution of normal random variables x and y
 
       Parameters
       ----------
@@ -713,42 +723,33 @@ The interpretation is that more randomness in the law of motion for :math:`x_t` 
 Solutions
 ==========
 
-
-
-
-.. code-block:: python3
-
-    from quantecon import Kalman
-    from quantecon import LinearStateSpace
-    from scipy.stats import norm
-
 Exercise 1
 ----------
 
 .. code-block:: python3
 
-    # == parameters == #
+    # Parameters
     θ = 10  # Constant value of state x_t
     A, C, G, H = 1, 0, 1, 1
     ss = LinearStateSpace(A, C, G, H, mu_0=θ)
 
-    # == set prior, initialize kalman filter == #
+    # Set prior, initialize kalman filter
     x_hat_0, Σ_0 = 8, 1
     kalman = Kalman(ss, x_hat_0, Σ_0)
 
-    # == draw observations of y from state space model == #
+    # Draw observations of y from state space model
     N = 5
     x, y = ss.simulate(N)
     y = y.flatten()
 
-    # == set up plot == #
+    # Set up plot
     fig, ax = plt.subplots(figsize=(10,8))
     xgrid = np.linspace(θ - 5, θ + 2, 200)
 
     for i in range(N):
-        # == record the current predicted mean and variance == #
+        # Record the current predicted mean and variance
         m, v = [float(z) for z in (kalman.x_hat, kalman.Sigma)]
-        # == plot, update filter == #
+        # Plot, update filter
         ax.plot(xgrid, norm.pdf(xgrid, loc=m, scale=np.sqrt(v)), label=f'$t={i}$')
         kalman.update(y[i])
 
@@ -761,8 +762,6 @@ Exercise 2
 ----------
 
 .. code-block:: python3
-
-    from scipy.integrate import quad
 
     ϵ = 0.1
     θ = 10  # Constant value of state x_t
@@ -800,11 +799,7 @@ Exercise 3
 
 .. code-block:: python3
 
-    from numpy.random import multivariate_normal
-    from scipy.linalg import eigvals
-
-
-    # === Define A, C, G, H === #
+    # Define A, C, G, H
     G = np.identity(2)
     H = np.sqrt(0.5) * np.identity(2)
 
@@ -812,28 +807,28 @@ Exercise 3
          [0.6, 0.3]]
     C = np.sqrt(0.3) * np.identity(2)
 
-    # === Set up state space mode, initial value x_0 set to zero === #
+    # Set up state space mode, initial value x_0 set to zero
     ss = LinearStateSpace(A, C, G, H, mu_0 = np.zeros(2))
 
-    # === Define the prior density === #
+    # Define the prior density
     Σ = [[0.9, 0.3],
          [0.3, 0.9]]
     Σ = np.array(Σ)
     x_hat = np.array([8, 8])
 
-    # === Initialize the Kalman filter === #
+    # Initialize the Kalman filter
     kn = Kalman(ss, x_hat, Σ)
 
-    # == Print eigenvalues of A == #
+    # Print eigenvalues of A
     print("Eigenvalues of A:")
     print(eigvals(A))
 
-    # == Print stationary Σ == #
+    # Print stationary Σ
     S, K = kn.stationary_values()
     print("Stationary prediction error variance:")
     print(S)
 
-    # === Generate the plot === #
+    # Generate the plot
     T = 50
     x, y = ss.simulate(T)
 
@@ -846,8 +841,10 @@ Exercise 3
         e2[t-1] = np.sum((x[:, t] - A @ x[:, t-1])**2)
 
     fig, ax = plt.subplots(figsize=(9,6))
-    ax.plot(range(1, T), e1, 'k-', lw=2, alpha=0.6, label='Kalman filter error')
-    ax.plot(range(1, T), e2, 'g-', lw=2, alpha=0.6, label='Conditional expectation error')
+    ax.plot(range(1, T), e1, 'k-', lw=2, alpha=0.6,
+            label='Kalman filter error')
+    ax.plot(range(1, T), e2, 'g-', lw=2, alpha=0.6, 
+            label='Conditional expectation error')
     ax.legend()
     plt.show()
 
