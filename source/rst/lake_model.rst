@@ -827,9 +827,10 @@ The first piece of code implements value function iteration
             # Add a default wage vector and probabilities over the vector using
             # the beta-binomial distribution
             if w_vec is None:
-                n = 60  # number of possible outcomes for wage
-                self.w_vec = np.linspace(10, 20, n)     # wages between 10 and 20
-                a, b = 600, 400  # shape parameters
+                n = 60  # Number of possible outcomes for wage
+                # Wages between 10 and 20
+                self.w_vec = np.linspace(10, 20, n)
+                a, b = 600, 400  # Shape parameters
                 dist = BetaBinomial(n-1, a, b)
                 self.p_vec = dist.pdf()  
             else:
@@ -840,8 +841,8 @@ The first piece of code implements value function iteration
     def _update_bellman(α, β, γ, c, σ, w_vec, p_vec, V, V_new, U):
         """
         A jitted function to update the Bellman equations.  Note that V_new is
-        modified in place (i.e, modified by this function).  The new value of U is
-        returned.
+        modified in place (i.e, modified by this function).  The new value of U
+        is returned.
 
         """
         for w_idx, w in enumerate(w_vec):
@@ -956,17 +957,17 @@ function of the unemployment compensation rate
 
     def compute_optimal_quantities(c, τ):
         """
-        Compute the reservation wage, job finding rate and value functions of the
-        workers given c and τ.
+        Compute the reservation wage, job finding rate and value functions
+        of the workers given c and τ.
 
         """
 
         mcm = McCallModel(α=α_q,
                         β=β,
                         γ=γ,
-                        c=c-τ,          # post tax compensation
+                        c=c-τ,          # Post tax compensation
                         σ=σ,
-                        w_vec=w_vec-τ,  # post tax wages
+                        w_vec=w_vec-τ,  # Post tax wages
                         p_vec=p_vec)
 
         w_bar, V, U = compute_reservation_wage(mcm, return_values=True)
@@ -976,8 +977,8 @@ function of the unemployment compensation rate
     def compute_steady_state_quantities(c, τ):
         """
         Compute the steady state unemployment rate given c and τ using optimal
-        quantities from the McCall model and computing corresponding steady state
-        quantities
+        quantities from the McCall model and computing corresponding steady
+        state quantities
 
         """
         w_bar, λ, V, U = compute_optimal_quantities(c, τ)
@@ -1202,8 +1203,10 @@ Let's increase :math:`b` to the new value and simulate for 20 periods
 .. code-block:: python3
 
     lm.b = b_hat
-    X_path1 = np.vstack(tuple(lm.simulate_stock_path(x0 * N0, T_hat)))  # simulate stocks
-    x_path1 = np.vstack(tuple(lm.simulate_rate_path(x0, T_hat)))        # simulate rates
+    # Simulate stocks
+    X_path1 = np.vstack(tuple(lm.simulate_stock_path(x0 * N0, T_hat)))
+    # Simulate rates
+    x_path1 = np.vstack(tuple(lm.simulate_rate_path(x0, T_hat)))
 
 Now we reset :math:`b` to the original value and then, using the state
 after 20 periods for the new initial conditions, we simulate for the
@@ -1212,14 +1215,17 @@ additional 30 periods
 .. code-block:: python3
 
     lm.b = 0.0124
-    X_path2 = np.vstack(tuple(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)))  # simulate stocks
-    x_path2 = np.vstack(tuple(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1)))  # simulate rates
+    # Simulate stocks
+    X_path2 = np.vstack(tuple(lm.simulate_stock_path(X_path1[-1, :2], T-T_hat+1)))
+    # Simulate rates
+    x_path2 = np.vstack(tuple(lm.simulate_rate_path(x_path1[-1, :2], T-T_hat+1)))
 
 Finally, we combine these two paths and plot
 
 .. code-block:: python3
 
-  x_path = np.vstack([x_path1, x_path2[1:]]) # note [1:] to avoid doubling period 20
+  # note [1:] to avoid doubling period 20
+  x_path = np.vstack([x_path1, x_path2[1:]])
   X_path = np.vstack([X_path1, X_path2[1:]])
 
   fig, axes = plt.subplots(3, 1, figsize=[10, 9])
