@@ -41,13 +41,17 @@ These and other applications prove the truth of the wise crack that
     "in economics, a little knowledge of geometric series goes a long way "
 
 
-Below we'll use the following imports
+Below we'll use the following imports:
 
 .. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import numpy as np
-
+    import sympy as sym
+    from sympy import init_printing
+    from matplotlib import cm
+    from mpl_toolkits.mplot3d import Axes3D
 
 
 Key Formulas
@@ -717,7 +721,8 @@ Now we consider two different views of what happens as :math:`r` and
     g = 0.4
     ax.plot(finite_lease_pv(T, g, r, x_0), label='$r>g$', color='green')
 
-    # r ~ g, not defined when r = g, but approximately goes to straight line with slope 1
+    # r ~ g, not defined when r = g, but approximately goes to straight
+    # line with slope 1
     r = 0.4001
     g = 0.4
     ax.plot(finite_lease_pv(T, g, r, x_0), label=r'$r \approx g$', color='orange')
@@ -743,8 +748,6 @@ visualization!
 .. code-block:: python3
 
     # Second view
-    from matplotlib import cm
-    from mpl_toolkits.mplot3d import Axes3D
     fig = plt.figure()
     T = 3
     ax = fig.gca(projection='3d')
@@ -757,7 +760,8 @@ visualization!
     # Removes points where undefined
     same = (rr == gg)
     z[same] = np.nan
-    surf = ax.plot_surface(rr, gg, z, cmap=cm.coolwarm, antialiased=True, clim=(0, 15))
+    surf = ax.plot_surface(rr, gg, z, cmap=cm.coolwarm,
+        antialiased=True, clim=(0, 15))
     fig.colorbar(surf, shrink=0.5, aspect=5)
     ax.set_xlabel('$r$')
     ax.set_ylabel('$g$')
@@ -781,9 +785,6 @@ represents our present value formula for an infinite lease.
 After that, we'll use SymPy to compute derivatives
 
 .. code-block:: python3
-
-    import sympy as sym
-    from sympy import init_printing
 
     # Creates algebraic symbols that can be used in an algebraic expression
     g, r, x0 = sym.symbols('g, r, x0')
