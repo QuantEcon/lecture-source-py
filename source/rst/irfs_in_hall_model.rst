@@ -31,9 +31,9 @@ We'll make these imports
 
     import numpy as np
     import matplotlib.pyplot as plt
+    %matplotlib inline
     from quantecon import LQ
     from quantecon import DLE
-    %matplotlib inline
 
 This lecture shows how the DLE class can be used to create impulse
 response functions for three related economies, starting from
@@ -97,9 +97,9 @@ For simulations of this economy, we choose an initial condition of:
     ub = np.array([[30, 0, 0]])
     x0 = np.array([[5], [150], [1], [0], [0]])
 
-    Info1 = (a22, c2, ub, ud)
-    Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
-    Pref1 = (β, l_λ, π_h, δ_h, θ_h)
+    info1 = (a22, c2, ub, ud)
+    tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
+    pref1 = (β, l_λ, π_h, δ_h, θ_h)
 
 These parameter values are used to define an economy of the DLE class.
 
@@ -111,12 +111,12 @@ consumption and investment:
 
 .. code-block:: python3
 
-    Econ1 = DLE(Info1, Tech1, Pref1)
-    Econ1.compute_sequence(x0, ts_length=300)
+    econ1 = DLE(info1, tech1, pref1)
+    econ1.compute_sequence(x0, ts_length=300)
 
     # This is the right panel of Fig 5.7.1 from p.105 of HS2013
-    plt.plot(Econ1.c[0], label='Cons.')
-    plt.plot(Econ1.i[0], label='Inv.')
+    plt.plot(econ1.c[0], label='Cons.')
+    plt.plot(econ1.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -132,10 +132,10 @@ model:
 
 .. code-block:: python3
 
-    Econ1.irf(ts_length=40, shock=None)
+    econ1.irf(ts_length=40, shock=None)
     # This is the left panel of Fig 5.7.1 from p.105 of HS2013
-    plt.plot(Econ1.c_irf, label='Cons.')
-    plt.plot(Econ1.i_irf, label='Inv.')
+    plt.plot(econ1.c_irf, label='Cons.')
+    plt.plot(econ1.i_irf, label='Inv.')
     plt.legend()
     plt.show()
 
@@ -160,34 +160,34 @@ a value slightly below 1.
 
     ϕ_12 = 0.2
     ϕ_i2 = np.array([[1], [-ϕ_12]])
-    Tech2 = (ϕ_c, ϕ_g, ϕ_i2, γ, δ_k, θ_k)
+    tech2 = (ϕ_c, ϕ_g, ϕ_i2, γ, δ_k, θ_k)
 
-    Econ2 = DLE(Info1, Tech2, Pref1)
-    Econ2.compute_sequence(x0, ts_length = 300)
+    econ2 = DLE(info1, tech2, pref1)
+    econ2.compute_sequence(x0, ts_length = 300)
 
     # This is the right panel of Fig 5.8.1 from p.106 of HS2013
-    plt.plot(Econ2.c[0], label='Cons.')
-    plt.plot(Econ2.i[0], label='Inv.')
+    plt.plot(econ2.c[0], label='Cons.')
+    plt.plot(econ2.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
 .. code-block:: python3
 
-    Econ2.irf(ts_length=40,shock=None)
+    econ2.irf(ts_length=40,shock=None)
     # This is the left panel of Fig 5.8.1 from p.106 of HS2013
-    plt.plot(Econ2.c_irf,label='Cons.')
-    plt.plot(Econ2.i_irf,label='Inv.')
+    plt.plot(econ2.c_irf,label='Cons.')
+    plt.plot(econ2.i_irf,label='Inv.')
     plt.legend()
     plt.show()
 
 .. code-block:: python3
 
-    Econ2.endo
+    econ2.endo
 
 .. code-block:: python3
 
-    Econ2.compute_steadystate()
-    print(Econ2.css, Econ2.iss, Econ2.kss)
+    econ2.compute_steadystate()
+    print(econ2.css, econ2.iss, econ2.kss)
 
 The first graph shows that there seems to be a downward trend in both
 consumption and investment.
@@ -248,15 +248,15 @@ around its non-stochastic steady state.
 
     x01 = np.array([[150], [100], [1], [0], [0]])
 
-    Tech3 = (ϕ_c, ϕ_g, ϕ_i3, γ_2, δ_k, θ_k)
-    Pref2 = (β, l_λ2, π_h2, δ_h, θ_h)
+    tech3 = (ϕ_c, ϕ_g, ϕ_i3, γ_2, δ_k, θ_k)
+    pref2 = (β, l_λ2, π_h2, δ_h, θ_h)
 
-    Econ3 = DLE(Info1, Tech3, Pref2)
-    Econ3.compute_sequence(x01, ts_length=300)
+    econ3 = DLE(info1, tech3, pref2)
+    econ3.compute_sequence(x01, ts_length=300)
 
     # This is the right panel of Fig 5.11.1 from p.111 of HS2013
-    plt.plot(Econ3.c[0], label='Cons.')
-    plt.plot(Econ3.i[0], label='Inv.')
+    plt.plot(econ3.c[0], label='Cons.')
+    plt.plot(econ3.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -268,10 +268,10 @@ strong consumption smoothing result that Hall obtained.
 
 .. code-block:: python3
 
-    Econ3.irf(ts_length=40, shock=None)
+    econ3.irf(ts_length=40, shock=None)
     # This is the left panel of Fig 5.11.1 from p.111 of HS2013
-    plt.plot(Econ3.c_irf, label='Cons.')
-    plt.plot(Econ3.i_irf, label='Inv.')
+    plt.plot(econ3.c_irf, label='Cons.')
+    plt.plot(econ3.i_irf, label='Inv.')
     plt.legend()
     plt.show()
 
