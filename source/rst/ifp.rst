@@ -62,6 +62,7 @@ We'll need the following imports
     from numba import njit
     import matplotlib.pyplot as plt
     %matplotlib inline
+    from quantecon import MarkovChain
 
 
 References
@@ -406,7 +407,7 @@ First, we build a class called ``ConsumerProblem`` that stores the model primiti
 
     class ConsumerProblem:
         """
-        A class that stores primitives for the income fluctuation problem.  The
+        A class that stores primitives for the income fluctuation problem. The
         income process is assumed to be a finite state Markov chain.
         """
         def __init__(self,
@@ -438,7 +439,7 @@ The function ``operator_factory`` returns the operator ``K`` as specified above
 
         Here cp is an instance of ConsumerProblem.
         """
-        # === Simplify names, set up arrays === #
+        # Simplify names, set up arrays
         R, Π, β, u, b, du = cp.R, cp.Π, cp.β, cp.u, cp.b, cp.du
         asset_grid, z_vals = cp.asset_grid, cp.z_vals
         γ = R * β
@@ -453,7 +454,8 @@ The function ``operator_factory`` returns the operator ``K`` as specified above
             lhs = du(c)
             expectation = 0
             for i in range(len(z_vals)):
-                expectation += du(interp(asset_grid, σ[:, i], R * a + z - c)) * Π[i_z, i]
+                expectation += du(interp(asset_grid, σ[:, i], R * a + z - c)) \
+                    * Π[i_z, i]
             rhs = max(γ * expectation, du(R * a + z + b))
 
             return lhs - rhs
@@ -463,8 +465,8 @@ The function ``operator_factory`` returns the operator ``K`` as specified above
             """
             The operator K.
 
-            Iteration with this operator corresponds to time iteration on the Euler
-            equation.  Computes and returns the updated consumption policy
+            Iteration with this operator corresponds to time iteration on the
+            Euler equation.  Computes and returns the updated consumption policy
             σ.  The array σ is replaced with a function cf that implements
             univariate linear interpolation over the asset grid for each
             possible value of z.
@@ -474,7 +476,8 @@ The function ``operator_factory`` returns the operator ``K`` as specified above
                 a = asset_grid[i_a]
                 for i_z in range(len(z_vals)):
                     z = z_vals[i_z]
-                    c_star = brentq(euler_diff, 1e-8, R * a + z + b, args=(a, z, i_z, σ)).root
+                    c_star = brentq(euler_diff, 1e-8, R * a + z + b, \
+                        args=(a, z, i_z, σ)).root
                     σ_new[i_a, i_z] = c_star
 
             return σ_new
@@ -504,7 +507,7 @@ to iterate and find the optimal :math:`\sigma`.
         u, β, b, R = cp.u, cp.β, cp.b, cp.R
         asset_grid, z_vals = cp.asset_grid, cp.z_vals
 
-        # initial guess of σ
+        # Initial guess of σ
         σ = np.empty((len(asset_grid), len(z_vals)))
         for i_a, a in enumerate(asset_grid):
             for i_z, z in enumerate(z_vals):
@@ -693,12 +696,10 @@ Exercise 2
 
 .. code-block:: python3
 
-    from quantecon import MarkovChain
-
     def compute_asset_series(cp, T=500000, verbose=False):
         """
-        Simulates a time series of length T for assets, given optimal savings
-        behavior.
+        Simulates a time series of length T for assets, given optimal
+        savings behavior.
 
         cp is an instance of ConsumerProblem
         """
