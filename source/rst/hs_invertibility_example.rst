@@ -137,17 +137,18 @@ third-order pure moving average process.
     ud = np.array([[5, 1, 1, 0.8, 0.6, 0.4],
                    [0, 0, 0,   0,   0,   0]])
     a22 = np.zeros((6, 6))
-    a22[[0, 1, 3, 4, 5], [0, 1, 2, 3, 4]] = np.array([1.0, 0.9, 1.0, 1.0, 1.0])  # Chase's great trick
+    # Chase's great trick
+    a22[[0, 1, 3, 4, 5], [0, 1, 2, 3, 4]] = np.array([1.0, 0.9, 1.0, 1.0, 1.0])
     c2 = np.zeros((6, 2))
     c2[[1, 2], [0, 1]] = np.array([1.0, 4.0])
     ub = np.array([[30, 0, 0, 0, 0, 0]])
     x0 = np.array([[5], [150], [1], [0], [0], [0], [0], [0]])
 
-    Info1 = (a22, c2, ub, ud)
-    Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
-    Pref1 = (β, l_λ, π_h, δ_h, θ_h)
+    info1 = (a22, c2, ub, ud)
+    tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
+    pref1 = (β, l_λ, π_h, δ_h, θ_h)
 
-    Econ1 = DLE(Info1, Tech1, Pref1)
+    econ1 = DLE(info1, tech1, pref1)
 
 We define the household's net of interest deficit as :math:`c_t - d_t`.
 
@@ -219,19 +220,19 @@ illustrate these ideas:
 
     # This is Fig 8.E.1 from p.188 of HS2013
 
-    Econ1.irf(ts_length=40, shock=None)
+    econ1.irf(ts_length=40, shock=None)
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-    ax1.plot(Econ1.c_irf, label='Consumption')
-    ax1.plot(Econ1.c_irf - Econ1.d_irf[:,0].reshape(40,1), label='Deficit')
+    ax1.plot(econ1.c_irf, label='Consumption')
+    ax1.plot(econ1.c_irf - econ1.d_irf[:,0].reshape(40,1), label='Deficit')
     ax1.legend()
     ax1.set_title('Response to $w_{1t}$')
 
     shock2 = np.array([[0], [1]])
-    Econ1.irf(ts_length=40, shock=shock2)
+    econ1.irf(ts_length=40, shock=shock2)
 
-    ax2.plot(Econ1.c_irf, label='Consumption')
-    ax2.plot(Econ1.c_irf - Econ1.d_irf[:,0].reshape(40, 1), label='Deficit')
+    ax2.plot(econ1.c_irf, label='Consumption')
+    ax2.plot(econ1.c_irf - econ1.d_irf[:,0].reshape(40, 1), label='Deficit')
     ax2.legend()
     ax2.set_title('Response to $w_{2t}$')
     plt.show()
@@ -250,13 +251,13 @@ expected present value.
 
 .. code-block:: python3
 
-    G_HS = np.vstack([Econ1.Sc, Econ1.Sc-Econ1.Sd[0, :].reshape(1, 8)])
+    G_HS = np.vstack([econ1.Sc, econ1.Sc-econ1.Sd[0, :].reshape(1, 8)])
     H_HS = 1e-8 * np.eye(2)  # Set very small so there is no measurement error
-    LSS_HS = qe.LinearStateSpace(Econ1.A0, Econ1.C, G_HS, H_HS)
+    lss_hs = qe.LinearStateSpace(econ1.A0, econ1.C, G_HS, H_HS)
 
-    HS_kal = qe.Kalman(LSS_HS)
-    w_lss = HS_kal.whitener_lss()
-    ma_coefs = HS_kal.stationary_coefficients(50, 'ma')
+    hs_kal = qe.Kalman(lss_hs)
+    w_lss = hs_kal.whitener_lss()
+    ma_coefs = hs_kal.stationary_coefficients(50, 'ma')
 
     # This is Fig 8.E.2 from p.189 of HS2013
 
@@ -274,10 +275,10 @@ expected present value.
         y2_w2[t] = ma_coefs[t][1, 1]
 
     # This scales the impulse responses to match those in the book
-    y1_w1 = sqrt(HS_kal.stationary_innovation_covar()[0, 0]) * y1_w1
-    y2_w1 = sqrt(HS_kal.stationary_innovation_covar()[0, 0]) * y2_w1
-    y1_w2 = sqrt(HS_kal.stationary_innovation_covar()[1, 1]) * y1_w2
-    y2_w2 = sqrt(HS_kal.stationary_innovation_covar()[1, 1]) * y2_w2
+    y1_w1 = sqrt(hs_kal.stationary_innovation_covar()[0, 0]) * y1_w1
+    y2_w1 = sqrt(hs_kal.stationary_innovation_covar()[0, 0]) * y2_w1
+    y1_w2 = sqrt(hs_kal.stationary_innovation_covar()[1, 1]) * y1_w2
+    y2_w2 = sqrt(hs_kal.stationary_innovation_covar()[1, 1]) * y2_w2
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
     ax1.plot(y1_w1, label='Consumption')
