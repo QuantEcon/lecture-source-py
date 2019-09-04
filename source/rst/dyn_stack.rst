@@ -31,6 +31,18 @@ From the beginning, we carry along a linear-quadratic model of duopoly in
 which firms face adjustment costs that make them want to forecast
 actions of other firms that influence future prices.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import numpy.linalg as la
+    import quantecon as qe
+    from quantecon import LQ
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+
 Duopoly
 =======
 
@@ -880,18 +892,9 @@ Computing the Stackelberg Plan
 Here is our code to compute a Stackelberg plan via a linear-quadratic
 dynamic program as outlined above
 
-.. code:: ipython3
+.. code-block:: python3
 
-    import numpy as np
-    import numpy.linalg as la
-    import quantecon as qe
-    from quantecon import LQ
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
-.. code:: python3
-
-    # == Parameters == #
+    # Parameters
     a0 = 10
     a1 = 2
     β = 0.96
@@ -905,9 +908,9 @@ dynamic program as outlined above
     βs[1:] = β
     βs = βs.cumprod()
 
-.. code:: python3
+.. code-block:: python3
 
-    # == In LQ form == #
+    # In LQ form
     Alhs = np.eye(4)
 
     # Euler equation coefficients
@@ -929,7 +932,7 @@ dynamic program as outlined above
 
     Q = np.array([[γ]])
 
-    # == Solve using QE's LQ class == #
+    # Solve using QE's LQ class
     # LQ solves minimization problems which is why the sign of R and Q was changed
     lq = LQ(Q, R, A, B, beta=β)
     P, F, d = lq.stationary_values(method='doubling')
@@ -939,7 +942,7 @@ dynamic program as outlined above
     P22inv = la.inv(P22)
     H_0_0 = -P22inv @ P21
 
-    # == Simulate forward == #
+    # Simulate forward
 
     π_leader = np.zeros(n)
 
@@ -954,7 +957,7 @@ dynamic program as outlined above
     for t in range(n):
         π_leader[t] = -(yt[:, t].T @ π_matrix @ yt[:, t])
 
-    # == Display policies == #
+    # Display policies
     print("Computed policy for Stackelberg leader\n")
     print(f"F = {F}")
 
@@ -964,7 +967,7 @@ Implied Time Series for Price and Quantities
 
 The following code plots the price and quantities
 
-.. code:: python3
+.. code-block:: python3
 
     q_leader = yt[1, :-1]
     q_follower = yt[2, :-1]
@@ -989,24 +992,24 @@ We'll compute the present value earned by the Stackelberg leader.
 We'll compute it two ways (they give identical answers -- just a check
 on coding and thinking)
 
-.. code:: python3
+.. code-block:: python3
 
     v_leader_forward = np.sum(βs * π_leader)
     v_leader_direct = -yt[:, 0].T @ P @ yt[:, 0]
 
-    # == Display values == #
+    # Display values
     print("Computed values for the Stackelberg leader at t=0:\n")
     print(f"v_leader_forward(forward sim) = {v_leader_forward:.4f}")
     print(f"v_leader_direct (direct) = {v_leader_direct:.4f}")
 
-.. code:: python3
+.. code-block:: python3
 
     # Manually checks whether P is approximately a fixed point
     P_next = (R + F.T @ Q @ F + β * (A - B @ F).T @ P @ (A - B @ F))
     (P - P_next < tol0).all()
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Manually checks whether two different ways of computing the
     # value function give approximately the same answer
@@ -1029,7 +1032,7 @@ In the code below we compare two values
 The difference between these two values is a tell-tale time of the time
 inconsistency of the Stackelberg plan
 
-.. code:: python3
+.. code-block:: python3
 
     # Compute value function over time with a reset at time t
     vt_leader = np.zeros(n)
@@ -1042,12 +1045,14 @@ inconsistency of the Stackelberg plan
         vt_leader[t] = -yt[:, t].T @ P @ yt[:, t]
         vt_reset_leader[t] = -yt_reset[:, t].T @ P @ yt_reset[:, t]
 
-.. code:: python3
+.. code-block:: python3
 
     fig, axes = plt.subplots(3, 1, figsize=(10, 7))
 
-    axes[0].plot(range(n+1), (- F @ yt).flatten(), 'bo', label='Stackelberg leader', ms=2)
-    axes[0].plot(range(n+1), (- F @ yt_reset).flatten(), 'ro', label='continuation leader at t', ms=2)
+    axes[0].plot(range(n+1), (- F @ yt).flatten(), 'bo',
+        label='Stackelberg leader', ms=2)
+    axes[0].plot(range(n+1), (- F @ yt_reset).flatten(), 'ro',
+        label='continuation leader at t', ms=2)
     axes[0].set(title=r'Leader control variable $u_{t}$', xlabel='t')
     axes[0].legend()
 
@@ -1072,7 +1077,7 @@ problem.
 We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation of the follower's problem produces the same output path
 :math:`\vec q_1` that we computed when we solved the Stackelberg problem
 
-.. code:: python3
+.. code-block:: python3
 
     A_tilde = np.eye(5)
     A_tilde[:4, :4] = A - B @ F
@@ -1092,7 +1097,7 @@ We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation
     y0_tilde = np.vstack((y0, y0[2]))
     yt_tilde = lq_tilde.compute_sequence(y0_tilde, ts_length=n)[0]
 
-.. code:: python3
+.. code-block:: python3
 
     # Checks that the recursive formulation of the follower's problem gives
     # the same solution as the original Stackelberg problem
@@ -1106,14 +1111,15 @@ We check that the recursive **Big** :math:`K` **, little** :math:`k` formulation
 Note: Variables with ``_tilde`` are obtained from solving the follower's
 problem -- those without are from the Stackelberg problem
 
-.. code:: python3
+.. code-block:: python3
 
-    # Maximum absolute difference in quantities over time between the first and second solution methods
+    # Maximum absolute difference in quantities over time between
+    # the first and second solution methods
     np.max(np.abs(yt_tilde[4] - yt_tilde[2]))
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # x0 == x0_tilde
     yt[:, 0][-1] - (yt_tilde[:, 1] - yt_tilde[:, 0])[-1] < tol0
@@ -1132,35 +1138,35 @@ Can you spot what features of :math:`\tilde F` imply this?
 
 Hint: remember the components of :math:`X_t`
 
-.. code:: python3
+.. code-block:: python3
 
     # Policy function in the follower's problem
     F_tilde.round(4)
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Value function in the Stackelberg problem
     P
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Value function in the follower's problem
     P_tilde
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Manually check that P is an approximate fixed point
     (P  - ((R + F.T @ Q @ F) + β * (A - B @ F).T @ P @ (A - B @ F)) < tol0).all()
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Compute `P_guess` using `F_tilde_star`
     F_tilde_star = -np.array([[0, 0, 0, 1, 0]])
@@ -1172,20 +1178,20 @@ Hint: remember the components of :math:`X_t`
                    @ (A_tilde - B_tilde @ F_tilde_star))
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Value function in the follower's problem
     -(y0_tilde.T @ P_tilde @ y0_tilde)[0, 0]
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Value function with `P_guess`
     -(y0_tilde.T @ P_guess @ y0_tilde)[0, 0]
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Compute policy using policy iteration algorithm
     F_iter = (β * la.inv(Q + β * B_tilde.T @ P_guess @ B_tilde)
@@ -1195,17 +1201,17 @@ Hint: remember the components of :math:`X_t`
         # Compute P_iter
         P_iter = np.zeros((5, 5))
         for j in range(1000):
-            P_iter = ((R_tilde + F_iter.T @ Q @ F_iter) + β *
-                      (A_tilde - B_tilde @ F_iter).T @ P_iter @
-                      (A_tilde - B_tilde @ F_iter))
+            P_iter = ((R_tilde + F_iter.T @ Q @ F_iter) + β
+                      * (A_tilde - B_tilde @ F_iter).T @ P_iter
+                      @ (A_tilde - B_tilde @ F_iter))
 
         # Update F_iter
         F_iter = (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde)
                   @ B_tilde.T @ P_iter @ A_tilde)
 
-    dist_vec = (P_iter - ((R_tilde + F_iter.T @ Q @ F_iter) +
-                β * (A_tilde - B_tilde @ F_iter).T @ P_iter @
-                (A_tilde - B_tilde @ F_iter)))
+    dist_vec = (P_iter - ((R_tilde + F_iter.T @ Q @ F_iter)
+                + β * (A_tilde - B_tilde @ F_iter).T @ P_iter
+                @ (A_tilde - B_tilde @ F_iter)))
 
     if np.max(np.abs(dist_vec)) < 1e-8:
         dist_vec2 = (F_iter - (β * la.inv(Q + β * B_tilde.T @ P_iter @ B_tilde)
@@ -1214,19 +1220,23 @@ Hint: remember the components of :math:`X_t`
         if np.max(np.abs(dist_vec2)) < 1e-8:
             F_iter
         else:
-            print("The policy didn't converge: try increasing the number of outer loop iterations")
+            print("The policy didn't converge: try increasing the number of \
+                outer loop iterations")
     else:
-        print("`P_iter` didn't converge: try increasing the number of inner loop iterations")
+        print("`P_iter` didn't converge: try increasing the number of inner \
+            loop iterations")
 
-.. code:: python3
+.. code-block:: python3
 
-    # Simulate the system using `F_tilde_star` and check that it gives the same result as the original solution
+    # Simulate the system using `F_tilde_star` and check that it gives the
+    # same result as the original solution
 
     yt_tilde_star = np.zeros((n, 5))
     yt_tilde_star[0, :] = y0_tilde.flatten()
 
     for t in range(n-1):
-        yt_tilde_star[t+1, :] = (A_tilde - B_tilde @ F_tilde_star) @ yt_tilde_star[t, :]
+        yt_tilde_star[t+1, :] = (A_tilde - B_tilde @ F_tilde_star) \
+            @ yt_tilde_star[t, :]
 
     fig, ax = plt.subplots()
     ax.plot(yt_tilde_star[:, 4], 'r', label="q_tilde")
@@ -1234,7 +1244,7 @@ Hint: remember the components of :math:`X_t`
     ax.legend()
     plt.show()
 
-.. code:: python3
+.. code-block:: python3
 
     # Maximum absolute difference
     np.max(np.abs(yt_tilde_star[:, 4] - yt_tilde[2, :-1]))
@@ -1266,9 +1276,9 @@ and in the Markov perfect equilibrium, the state evolves according to
 
 .. math::  z_{t+1} = (A - B_1 F_1 - B_2 F_2) z_t
 
-.. code:: python3
+.. code-block:: python3
 
-    # == In LQ form == #
+    # In LQ form
     A = np.eye(3)
     B1 = np.array([[0], [0], [1]])
     B2 = np.array([[0], [1], [0]])
@@ -1284,25 +1294,25 @@ and in the Markov perfect equilibrium, the state evolves according to
     Q1 = Q2 = γ
     S1 = S2 = W1 = W2 = M1 = M2 = 0.0
 
-    # == Solve using QE's nnash function == #
+    # Solve using QE's nnash function
     F1, F2, P1, P2 = qe.nnash(A, B1, B2, R1, R2, Q1,
                               Q2, S1, S2, W1, W2, M1,
                               M2, beta=β, tol=tol1)
 
-    # == Simulate forward == #
+    # Simulate forward
     AF = A - B1 @ F1 - B2 @ F2
     z = np.empty((3, n))
     z[:, 0] = 1, 1, 1
     for t in range(n-1):
         z[:, t+1] = AF @ z[:, t]
 
-    # == Display policies == #
+    # Display policies
     print("Computed policies for firm 1 and firm 2:\n")
     print(f"F1 = {F1}")
     print(f"F2 = {F2}")
 
 
-.. code:: python3
+.. code-block:: python3
 
     q1 = z[1, :]
     q2 = z[2, :]
@@ -1318,14 +1328,14 @@ and in the Markov perfect equilibrium, the state evolves according to
     plt.show()
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Computes the maximum difference between the two quantities of the two firms
     np.max(np.abs(q1 - q2))
 
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Compute values
     u1 = (- F1 @ z).flatten()
@@ -1340,13 +1350,13 @@ and in the Markov perfect equilibrium, the state evolves according to
     v1_direct = (- z[:, 0].T @ P1 @ z[:, 0])
     v2_direct = (- z[:, 0].T @ P2 @ z[:, 0])
 
-    # == Display values == #
+    # Display values
     print("Computed values for firm 1 and firm 2:\n")
     print(f"v1(forward sim) = {v1_forward:.4f}; v1 (direct) = {v1_direct:.4f}")
     print(f"v2 (forward sim) = {v2_forward:.4f}; v2 (direct) = {v2_direct:.4f}")
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Sanity check
     Λ1 = A - B2 @ F2
@@ -1361,7 +1371,7 @@ and in the Markov perfect equilibrium, the state evolves according to
 MPE vs. Stackelberg
 ====================
 
-.. code:: python3
+.. code-block:: python3
 
     vt_MPE = np.zeros(n)
     vt_follower = np.zeros(n)
@@ -1380,16 +1390,16 @@ MPE vs. Stackelberg
     plt.show()
 
 
-.. code:: python3
+.. code-block:: python3
 
-    # == Display values == #
+    # Display values
     print("Computed values:\n")
     print(f"vt_leader(y0) = {vt_leader[0]:.4f}")
     print(f"vt_follower(y0) = {vt_follower[0]:.4f}")
     print(f"vt_MPE(y0) = {vt_MPE[0]:.4f}")
 
 
-.. code:: python3
+.. code-block:: python3
 
     # Compute the difference in total value between the Stackelberg and the MPE
     vt_leader[0] + vt_follower[0] - 2 * vt_MPE[0]
