@@ -38,7 +38,7 @@ It is a good example of how a clever algorithm can save a massive amount of comp
 
 The original reference is :cite:`Carroll2006`.
 
-Let's start with some imports
+Let's start with some standard imports:
 
 .. code-block:: ipython
 
@@ -185,10 +185,13 @@ model.
 
             self.β, self.μ, self.s = β, μ, s
             self.f, self.u = f, u
-            self.f_prime, self.u_prime, self.u_prime_inv = f_prime, u_prime, u_prime_inv
+            self.f_prime, self.u_prime, self.u_prime_inv = f_prime, u_prime, \
+                u_prime_inv
 
-            self.grid = np.linspace(1e-5, grid_max, grid_size)         # Set up grid
-            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
+            # Set up grid
+            self.grid = np.linspace(1e-5, grid_max, grid_size)
+            # Store shocks
+            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
 
 
 The Operator
@@ -389,9 +392,12 @@ We'll do so using the CRRA model adopted in the exercises of the :doc:`Euler equ
                             u_prime=u_prime,
                             u_prime_inv=u_prime_inv)
 
-    K_time = time_operator_factory(og)     # Standard Coleman-Reffett operator
-    K_time(grid)                           # Call once to compile jitted version
-    K_egm = egm_operator_factory(og)       # Coleman-Reffett operator with endogenous grid
+    # Standard Coleman-Reffett operator
+    K_time = time_operator_factory(og)
+    # Call once to compile jitted version
+    K_time(grid)
+    # Coleman-Reffett operator with endogenous grid
+    K_egm = egm_operator_factory(og)
 
 
 Here's the result
