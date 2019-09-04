@@ -36,8 +36,18 @@ We will also introduce some of the high-quality routines for working with Markov
 
 Prerequisite knowledge is basic probability and linear algebra.
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
 
+    import quantecon as qe
+    import numpy as np
+    from mpl_toolkits.mplot3d import Axes3D
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from quantecon import MarkovChain
+    import re
+    from operator import itemgetter
 
 
 Definitions
@@ -248,9 +258,6 @@ For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/
 
 .. code-block:: python3
 
-    import quantecon as qe
-    import numpy as np
-
     ψ = (0.1, 0.9)           # Probabilities over sample space {0, 1}
     cdf = np.cumsum(ψ)
     qe.random.draw(cdf, 5)   # Generate 5 independent draws from ψ
@@ -271,17 +278,17 @@ We'll write our code as a function that takes the following three arguments
 .. code-block:: python3
 
     def mc_sample_path(P, init=0, sample_size=1000):
-        # === make sure P is a NumPy array === #
+        # Make sure P is a NumPy array
         P = np.asarray(P)
-        # === allocate memory === #
+        # Allocate memory
         X = np.empty(sample_size, dtype=int)
         X[0] = init
-        # === convert each row of P into a distribution === #
+        # Convert each row of P into a distribution
         # In particular, P_dist[i] = the distribution corresponding to P[i, :]
         n = len(P)
         P_dist = [np.cumsum(P[i, :]) for i in range(n)]
 
-        # === generate the sample path === #
+        # Generate the sample path
         for t in range(sample_size - 1):
             X[t+1] = qe.random.draw(P_dist[X[t]])
 
@@ -343,7 +350,7 @@ In fact the `QuantEcon.py <http://quantecon.org/python_index.html>`__ routine is
 
 .. code-block:: ipython
 
-    %timeit mc_sample_path(P, sample_size=1000000) # our version
+    %timeit mc_sample_path(P, sample_size=1000000) # Our version
 
 .. code-block:: ipython
 
@@ -899,10 +906,6 @@ The convergence in the theorem is illustrated in the next figure
 
 .. code-block:: ipython
 
-  from mpl_toolkits.mplot3d import Axes3D
-  import matplotlib.pyplot as plt
-  %matplotlib inline
-
   P = ((0.971, 0.029, 0.000),
        (0.145, 0.778, 0.077),
        (0.000, 0.508, 0.492))
@@ -1298,8 +1301,6 @@ The following code snippet provides a hint as to how you can go about this
 
 .. code-block:: python3
 
-    import re
-
     re.findall('\w', 'x +++ y ****** z')  # \w matches alphanumerics
 
 .. code-block:: python3
@@ -1386,14 +1387,6 @@ The exercise is to write a function ``approx_markov(rho, sigma_u, m=3, n=7)`` th
 Solutions
 ===========
 
-
-
-.. code-block:: python3
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from quantecon import MarkovChain
-
 Exercise 1
 ----------
 
@@ -1417,14 +1410,15 @@ compare it to the stationary probability.
     ax.hlines(0, 0, N, lw=2, alpha=0.6)   # Horizonal line at zero
 
     for x0, col in ((0, 'blue'), (1, 'green')):
-        # == Generate time series for worker that starts at x0 == #
+        # Generate time series for worker that starts at x0 
         X = mc.simulate(N, init=x0)
-        # == Compute fraction of time spent unemployed, for each n == #
+        # Compute fraction of time spent unemployed, for each n 
         X_bar = (X == 0).cumsum() / (1 + np.arange(N, dtype=float))
-        # == Plot == #
+        # Plot 
         ax.fill_between(range(N), np.zeros(N), X_bar - p, color=col, alpha=0.1)
         ax.plot(X_bar - p, color=col, label=f'$X_0 = \, {x0} $')
-        ax.plot(X_bar - p, 'k-', alpha=0.6)  # Overlay in black--make lines clearer
+        # Overlay in black--make lines clearer
+        ax.plot(X_bar - p, 'k-', alpha=0.6)
 
     ax.legend(loc='upper right')
     plt.show()
@@ -1483,15 +1477,13 @@ executing the next cell
     """
     Return list of pages, ordered by rank
     """
-    import numpy as np
-    from operator import itemgetter
 
     infile = 'web_graph_data.txt'
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
     n = 14 # Total number of web pages (nodes)
 
-    # == Create a matrix Q indicating existence of links == #
+    # Create a matrix Q indicating existence of links 
     #  * Q[i, j] = 1 if there is a link from i to j
     #  * Q[i, j] = 0 otherwise
     Q = np.zeros((n, n), dtype=int)
@@ -1502,15 +1494,15 @@ executing the next cell
         from_node, to_node = re.findall('\w', edge)
         i, j = alphabet.index(from_node), alphabet.index(to_node)
         Q[i, j] = 1
-    # == Create the corresponding Markov matrix P == #
+    # Create the corresponding Markov matrix P 
     P = np.empty((n, n))
     for i in range(n):
         P[i, :] = Q[i, :] / Q[i, :].sum()
     mc = MarkovChain(P)
-    # == Compute the stationary distribution r == #
+    # Compute the stationary distribution r 
     r = mc.stationary_distributions[0]
     ranked_pages = {alphabet[i] : r[i] for i in range(n)}
-    # == Print solution, sorted from highest to lowest rank == #
+    # Print solution, sorted from highest to lowest rank 
     print('Rankings\n ***')
     for name, rank in sorted(ranked_pages.items(), key=itemgetter(1), reverse=1):
         print(f'{name}: {rank:.4}')
