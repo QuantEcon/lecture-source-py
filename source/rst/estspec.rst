@@ -39,6 +39,14 @@ Once the basic technique has been explained, we will apply it to the analysis of
 
 For supplementary reading, see :cite:`Sargent1987` or :cite:`CryerChan2008`.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from quantecon import ARMA, periodogram, ar_periodogram
 
 
 .. _periodograms:
@@ -222,10 +230,6 @@ where :math:`\{ \epsilon_t \}` is white noise with unit variance, and compares t
 
 .. code-block:: ipython
 
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-    from quantecon import ARMA, periodogram
-
     n = 40                          # Data size
     ϕ, θ = 0.5, (0, -0.8)           # AR and MA parameters
     lp = ARMA(ϕ, θ)
@@ -307,8 +311,6 @@ Note the smaller weights towards the edges and larger weights in the center, so 
 
 
 .. code-block:: python3
-
-    import numpy as np
 
     def hanning_window(M):
         w = [0.5 - 0.5 * np.cos(2 * np.pi * n/(M-1)) for n in range(M)]
@@ -525,13 +527,6 @@ All periodograms are fit with the "hamming" window and window length of 65.
 Solutions
 ============
 
-
-
-
-.. code-block:: python3
-
-    from quantecon import ar_periodogram
-
 Exercise 1
 ----------
 
@@ -547,7 +542,7 @@ Exercise 1
 
     fig, ax = plt.subplots(3, 1, figsize=(10, 12))
 
-    for i, wl in enumerate((15, 55, 175)):  # window lengths
+    for i, wl in enumerate((15, 55, 175)):  # Window lengths
 
         x, y = periodogram(X)
         ax[i].plot(x, y, 'b-', lw=2, alpha=0.5, label='periodogram')
@@ -578,13 +573,16 @@ Exercise 2
         ax[i].set_xlim(0, np.pi)
 
         x_sd, y_sd = lp.spectral_density(two_pi=False, res=180)
-        ax[i].semilogy(x_sd, y_sd, 'r-', lw=2, alpha=0.75, label='spectral density')
+        ax[i].semilogy(x_sd, y_sd, 'r-', lw=2, alpha=0.75,
+            label='spectral density')
 
         x, y_smoothed = periodogram(X, window='hamming', window_len=wl)
-        ax[i].semilogy(x, y_smoothed, 'k-', lw=2, alpha=0.75, label='standard smoothed periodogram')
+        ax[i].semilogy(x, y_smoothed, 'k-', lw=2, alpha=0.75,
+            label='standard smoothed periodogram')
 
         x, y_ar = ar_periodogram(X, window='hamming', window_len=wl)
-        ax[i].semilogy(x, y_ar, 'b-', lw=2, alpha=0.75, label='AR smoothed periodogram')
+        ax[i].semilogy(x, y_ar, 'b-', lw=2, alpha=0.75,
+            label='AR smoothed periodogram')
 
         ax[i].legend(loc='upper left')
     plt.show()
