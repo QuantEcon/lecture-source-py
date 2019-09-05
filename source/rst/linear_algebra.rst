@@ -59,7 +59,17 @@ We admit some overlap with :doc:`this lecture <numpy>`, where operations on NumP
 Note that this lecture is more theoretical than most, and contains background
 material that will be used in applications as we go along.
 
+Let's start with some standard imports:
 
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from matplotlib import cm
+    from mpl_toolkits.mplot3d import Axes3D
+    from scipy.interpolate import interp2d
+    from scipy.linalg import inv, solve, det, eig
 
 :index:`Vectors`
 ================
@@ -85,9 +95,6 @@ The following figure represents three vectors in this manner
 
 
 .. code-block:: ipython
-
-  import matplotlib.pyplot as plt
-  %matplotlib inline
 
   fig, ax = plt.subplots(figsize=(10, 8))
   # Set the axes through the origin
@@ -165,8 +172,6 @@ Scalar multiplication is illustrated in the next figure
 
 .. code-block:: python3
   :class: collapse
-
-  import numpy as np
 
   fig, ax = plt.subplots(figsize=(10, 8))
   # Set the axes through the origin
@@ -303,10 +308,6 @@ The span is a two-dimensional plane passing through these two points and the ori
 
 .. code-block:: python3
   :class: collapse
-
-  from matplotlib import cm
-  from mpl_toolkits.mplot3d import Axes3D
-  from scipy.interpolate import interp2d
 
   fig = plt.figure(figsize=(10, 8))
   ax = fig.gca(projection='3d')
@@ -978,8 +979,6 @@ All of these routines are Python front ends to time-tested and highly optimized 
 
 .. code-block:: python3
 
-    from scipy.linalg import inv, solve, det
-
     A = ((1, 2), (3, 4))
     A = np.array(A)
     y = np.ones((2, 1))  # Column vector
@@ -1046,8 +1045,6 @@ As expected, the image :math:`Av` of each :math:`v` is just a scaled version of 
 
 .. code-block:: python3
   :class: collapse
-
-  from scipy.linalg import eig
 
   A = ((1, 2),
        (2, 1))
