@@ -45,8 +45,11 @@ class LQFilter:
         #---------------------------------------------
         ϕ = np.zeros(2 * self.m + 1)
         for i in range(- self.m, self.m + 1):
-            ϕ[self.m - i] = np.sum(np.diag(self.d.reshape(self.m + 1, 1) @ \
-                                                  self.d.reshape(1, self.m + 1), k=-i))
+            ϕ[self.m - i] = np.sum(np.diag(self.d.reshape(self.m + 1, 1) \
+                                           @ self.d.reshape(1, self.m + 1),
+                                           k=-i
+                                           )
+                                    )
         ϕ[self.m] = ϕ[self.m] + self.h
         self.ϕ = ϕ
 
@@ -60,8 +63,11 @@ class LQFilter:
             self.k = self.r.shape[0] - 1
             ϕ_r = np.zeros(2 * self.k + 1)
             for i in range(- self.k, self.k + 1):
-                ϕ_r[self.k - i] = np.sum(np.diag(self.r.reshape(self.k + 1, 1) @ \
-                                                   self.r.reshape(1, self.k + 1), k=-i))
+                ϕ_r[self.k - i] = np.sum(np.diag(self.r.reshape(self.k + 1, 1) \
+                                                 @ self.r.reshape(1, self.k + 1),
+                                                 k=-i
+                                                 )
+                                        )
             if h_eps is None:
                 self.ϕ_r = ϕ_r
             else:
@@ -76,7 +82,8 @@ class LQFilter:
         else:
             self.β = β
             self.d = self.β**(np.arange(self.m + 1)/2) * self.d
-            self.y_m = self.y_m * (self.β**(- np.arange(1, self.m + 1)/2)).reshape(self.m, 1)
+            self.y_m = self.y_m * (self.β**(- np.arange(1, self.m + 1)/2)) \
+                                   .reshape(self.m, 1)
 
     def construct_W_and_Wm(self, N):
         """
@@ -132,13 +139,13 @@ class LQFilter:
 
     def roots_of_characteristic(self):
         """
-        This function calculates z_0 and the 2m roots of the characteristic equation
-        associated with the Euler equation (1.7)
+        This function calculates z_0 and the 2m roots of the characteristic
+        equation associated with the Euler equation (1.7)
 
         Note:
         ------
-        numpy.poly1d(roots, True) defines a polynomial using its roots that can be
-        evaluated at any point. If x_1, x_2, ... , x_m are the roots then
+        numpy.poly1d(roots, True) defines a polynomial using its roots that can
+        be evaluated at any point. If x_1, x_2, ... , x_m are the roots then
             p(x) = (x - x_1)(x - x_2)...(x - x_m)
         """
         m = self.m
@@ -146,11 +153,11 @@ class LQFilter:
 
         # Calculate the roots of the 2m-polynomial
         roots = np.roots(ϕ)
-        # sort the roots according to their length (in descending order)
+        # Sort the roots according to their length (in descending order)
         roots_sorted = roots[np.argsort(abs(roots))[::-1]]
 
         z_0 = ϕ.sum() / np.poly1d(roots, True)(1)
-        z_1_to_m = roots_sorted[:m]     # we need only those outside the unit circle
+        z_1_to_m = roots_sorted[:m]     # We need only those outside the unit circle
 
         λ = 1 / z_1_to_m
 
@@ -214,7 +221,8 @@ class LQFilter:
     def predict(self, a_hist, t):
         """
         This function implements the prediction formula discussed in section 6 (1.59)
-        It takes a realization for a^N, and the period in which the prediction is formed
+        It takes a realization for a^N, and the period in which the prediction is 
+        formed
 
         Output:  E[abar | a_t, a_{t-1}, ..., a_1, a_0]
         """
@@ -232,18 +240,20 @@ class LQFilter:
 
     def optimal_y(self, a_hist, t=None):
         """
-        - if t is NOT given it takes a_hist (list or numpy.array) as a deterministic a_t
-        - if t is given, it solves the combined control prediction problem (section 7)
-          (by default, t == None -> deterministic)
+        - if t is NOT given it takes a_hist (list or numpy.array) as a
+          deterministic a_t
+        - if t is given, it solves the combined control prediction problem 
+          (section 7)(by default, t == None -> deterministic)
 
-        for a given sequence of a_t (either deterministic or a particular realization),
-        it calculates the optimal y_t sequence using the method of the lecture
+        for a given sequence of a_t (either deterministic or a particular
+        realization), it calculates the optimal y_t sequence using the method
+        of the lecture
 
         Note:
         ------
         scipy.linalg.lu normalizes L, U so that L has unit diagonal elements
-        To make things consistent with the lecture, we need an auxiliary diagonal
-        matrix D which renormalizes L and U
+        To make things consistent with the lecture, we need an auxiliary
+        diagonal matrix D which renormalizes L and U
         """
 
         N = np.asarray(a_hist).shape[0] - 1
@@ -256,7 +266,7 @@ class LQFilter:
 
         J = np.fliplr(np.eye(N + 1))
 
-        if t is None:   # if the problem is deterministic
+        if t is None:   # If the problem is deterministic
 
             a_hist = J @ np.asarray(a_hist).reshape(N + 1, 1)
 
@@ -264,35 +274,39 @@ class LQFilter:
             # Transform the 'a' sequence if β is given
             #--------------------------------------------
             if self.β != 1:
-                a_hist =  a_hist * (self.β**(np.arange(N + 1) / 2))[::-1].reshape(N + 1, 1)
+                a_hist =  a_hist * (self.β**(np.arange(N + 1) / 2))[::-1] \
+                                    .reshape(N + 1, 1)
 
-            a_bar = a_hist - W_m @ self.y_m               # a_bar from the lecture
-            Uy = np.linalg.solve(L, a_bar)                # U @ y_bar = L^{-1}
-            y_bar = np.linalg.solve(U, Uy)                # y_bar = U^{-1}L^{-1}
+            a_bar = a_hist - W_m @ self.y_m            # a_bar from the lecture
+            Uy = np.linalg.solve(L, a_bar)             # U @ y_bar = L^{-1}
+            y_bar = np.linalg.solve(U, Uy)             # y_bar = U^{-1}L^{-1}
 
             # Reverse the order of y_bar with the matrix J
             J = np.fliplr(np.eye(N + self.m + 1))
-            y_hist = J @ np.vstack([y_bar, self.y_m])     # y_hist : concatenated y_m and y_bar
+            # y_hist : concatenated y_m and y_bar
+            y_hist = J @ np.vstack([y_bar, self.y_m])
 
             #--------------------------------------------
             # Transform the optimal sequence back if β is given
             #--------------------------------------------
             if self.β != 1:
-                y_hist = y_hist * (self.β**(- np.arange(-self.m, N + 1)/2)).reshape(N + 1 + self.m, 1)
+                y_hist = y_hist * (self.β**(- np.arange(-self.m, N + 1)/2)) \
+                                    .reshape(N + 1 + self.m, 1)
 
             return y_hist, L, U, y_bar
 
-        else:           # if the problem is stochastic and we look at it
+        else:           # If the problem is stochastic and we look at it
 
             Ea_hist = self.predict(a_hist, t).reshape(N + 1, 1)
             Ea_hist = J @ Ea_hist
 
-            a_bar = Ea_hist - W_m @ self.y_m              # a_bar from the lecture
-            Uy = np.linalg.solve(L, a_bar)                # U @ y_bar = L^{-1}
-            y_bar = np.linalg.solve(U, Uy)                # y_bar = U^{-1}L^{-1}
+            a_bar = Ea_hist - W_m @ self.y_m           # a_bar from the lecture
+            Uy = np.linalg.solve(L, a_bar)             # U @ y_bar = L^{-1}
+            y_bar = np.linalg.solve(U, Uy)             # y_bar = U^{-1}L^{-1}
 
             # Reverse the order of y_bar with the matrix J
             J = np.fliplr(np.eye(N + self.m + 1))
-            y_hist = J @ np.vstack([y_bar, self.y_m])     # y_hist : concatenated y_m and y_bar
+            # y_hist : concatenated y_m and y_bar
+            y_hist = J @ np.vstack([y_bar, self.y_m])
 
             return y_hist, L, U, y_bar
