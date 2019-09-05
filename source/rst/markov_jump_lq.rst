@@ -252,7 +252,7 @@ To begin, we import these Python modules
 
 .. code-block:: python3
 
-    # set discount factor
+    # Set discount factor
     β = 0.95
 
 Example 1
@@ -338,12 +338,12 @@ We can represent the one-period payoff function
         into a Markov jump linear quadratic dynamic programming problem
         """
 
-        # number of Markov states
+        # Number of Markov states
         m = len(f1_vals)
-        # number of state and control variables
+        # Number of state and control variables
         n, k = 2, 1
 
-        # construct sets of matrices for each state
+        # Construct sets of matrices for each state
         As = [np.eye(n) for i in range(m)]
         Bs = [np.array([[1, 0]]).T for i in range(m)]
 
@@ -359,7 +359,7 @@ We can represent the one-period payoff function
 
         Cs, Ns = None, None
 
-        # compute the optimal k level of the payoff function in each state
+        # Compute the optimal k level of the payoff function in each state
         k_star = np.empty(m)
         for i in range(m):
             k_star[i] = f1_vals[i] / (2 * f2_vals[i])
@@ -412,20 +412,20 @@ optimal value functions and optimal decision rules for each Markov state
 
 .. code-block:: python3
 
-    # construct Markov transition matrix
+    # Construct Markov transition matrix
     Π1 = np.array([[0., 1.],
                    [1., 0.]])
 
 .. code-block:: python3
 
-    # construct matrices
+    # Construct matrices
     Qs, Rs, Ns, As, Bs, Cs, k_star = construct_arrays1(d_vals=[1., 0.5])
 
 .. code-block:: python3
 
-    # construct a Markov Jump LQ problem
+    # Construct a Markov Jump LQ problem
     ex1_a = qe.LQMarkov(Π1, Qs, Rs, As, Bs, Cs=Cs, Ns=Ns, beta=β)
-    # solve for optimal value functions and decision rules
+    # Solve for optimal value functions and decision rules
     ex1_a.stationary_values();
 
 Let’s look at the value function matrices and the decision rules for
@@ -452,16 +452,16 @@ Now we’ll plot the decision rules and see if they make sense
 
     # Plot the optimal decision rules
     k_grid = np.linspace(0., 1., 100)
-    # optimal choice in state s1
+    # Optimal choice in state s1
     u1_star = - ex1_a.Fs[0, 0, 1] - ex1_a.Fs[0, 0, 0] * k_grid
-    # optimal choice in state s2
+    # Optimal choice in state s2
     u2_star = - ex1_a.Fs[1, 0, 1] - ex1_a.Fs[1, 0, 0] * k_grid
 
     fig, ax = plt.subplots()
     ax.plot(k_grid, k_grid + u1_star, label="$\overline{s}_1$ (high)")
     ax.plot(k_grid, k_grid + u2_star, label="$\overline{s}_2$ (low)")
 
-    # the optimal k*
+    # The optimal k*
     ax.scatter([0.5, 0.5], [0.5, 0.5], marker="*")
     ax.plot([k_star[0], k_star[0]], [0., 1.0], '--')
 
@@ -494,7 +494,7 @@ the Markov state :math:`s_t` takes a value that makes it cheaper.
 
 .. code-block:: python3
 
-    # compute time series
+    # Compute time series
     T = 20
     x0 = np.array([[0., 1.]]).T
     x_path = ex1_a.compute_sequence(x0, ts_length=T)[0]
@@ -652,8 +652,8 @@ decision rules for cases with different Markov transition matrices
 
         Qs, Rs, Ns, As, Bs, Cs, k_star = construct_func(**vals_dict)
 
-        # symmetric Π
-        # notice that pure periodic transition is a special case
+        # Symmetric Π
+        # Notice that pure periodic transition is a special case
         # when λ=1
         print("symmetric Π case:\n")
         λ_vals = np.linspace(0., 1., 10)
@@ -681,7 +681,7 @@ decision rules for cases with different Markov transition matrices
             ax.legend()
             plt.show()
 
-        # plot optimal k*(s_t) and k that optimal policies are targeting
+        # Plot optimal k*(s_t) and k that optimal policies are targeting
         # only for example 1
         if state_vec == ["k", "constant term"]:
             fig = plt.figure()
@@ -694,7 +694,7 @@ decision rules for cases with different Markov transition matrices
                 ax.plot(λ_vals, - F[:, 1] / F[:, 0], color=c,
                         label="$k^{target}(\overline{s}_"+str(i+1)+")$")
 
-            # plot a vertical line at λ=0.5
+            # Plot a vertical line at λ=0.5
             ax.plot([0.5, 0.5], [min(k_star), max(k_star)], "-.")
 
             ax.set_xlabel("$\lambda$")
@@ -704,7 +704,7 @@ decision rules for cases with different Markov transition matrices
             ax.legend(bbox_to_anchor=(1., 1.))
             plt.show()
 
-        # asymmetric Π
+        # Asymmetric Π
         print("asymmetric Π case:\n")
         δ_vals = np.linspace(0., 1., 10)
 
