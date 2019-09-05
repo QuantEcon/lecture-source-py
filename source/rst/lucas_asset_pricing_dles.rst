@@ -161,13 +161,13 @@ Asset Pricing Simulations
     ub = np.array([[30, 0, 0]])
     x0 = np.array([[5, 150, 1, 0, 0]]).T
 
-    Info1 = (a22, c2, ub, ud)
-    Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
-    Pref1 = (β, l_λ, π_h, δ_h, θ_h)
+    info1 = (a22, c2, ub, ud)
+    tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
+    pref1 = (β, l_λ, π_h, δ_h, θ_h)
 
 .. code-block:: python3
 
-    Econ1 = DLE(Info1, Tech1, Pref1)
+    econ1 = DLE(info1, tech1, pref1)
 
 After specifying a "Pay" matrix, we simulate the economy.
 
@@ -176,14 +176,14 @@ perpetual claim on the endowment process :math:`d_{1t}`
 
 .. code-block:: python3
 
-    Econ1.compute_sequence(x0, ts_length=100, Pay=np.array([Econ1.Sd[0, :]]))
+    econ1.compute_sequence(x0, ts_length=100, Pay=np.array([econ1.Sd[0, :]]))
 
 The graph below plots the price of this claim over time:
 
 .. code-block:: python3
 
     ### Fig 7.12.1 from p.147 of HS2013
-    plt.plot(Econ1.Pay_Price, label='Price of Tree')
+    plt.plot(econ1.Pay_Price, label='Price of Tree')
     plt.legend()
     plt.show()
 
@@ -193,14 +193,14 @@ tree" as well as on a risk-free one-period bond:
 .. code-block:: python3
 
     ### Left panel of Fig 7.12.2 from p.148 of HS2013
-    plt.plot(Econ1.Pay_Gross, label='Tree')
-    plt.plot(Econ1.R1_Gross, label='Risk-Free')
+    plt.plot(econ1.Pay_Gross, label='Tree')
+    plt.plot(econ1.R1_Gross, label='Risk-Free')
     plt.legend()
     plt.show()
 
 .. code-block:: python3
 
-    np.corrcoef(Econ1.Pay_Gross[1:, 0], Econ1.R1_Gross[1:, 0])
+    np.corrcoef(econ1.Pay_Gross[1:, 0], econ1.R1_Gross[1:, 0])
 
 
 Above we have also calculated the correlation coefficient between these
@@ -213,8 +213,8 @@ one-period and five-period risk-free bonds:
 .. code-block:: python3
 
     ### Right panel of Fig 7.12.2 from p.148 of HS2013
-    plt.plot(Econ1.R1_Net, label='One-Period')
-    plt.plot(Econ1.R5_Net, label='Five-Period')
+    plt.plot(econ1.R1_Net, label='One-Period')
+    plt.plot(econ1.R5_Net, label='Five-Period')
     plt.legend()
     plt.show()
 
@@ -234,22 +234,22 @@ the endowment process is reduced to 0.4:
     a22_2 = np.array([[1,   0,   0],
                       [0, 0.4,   0],
                       [0,   0, 0.5]])
-    Info2 = (a22_2, c2, ub, ud)
+    info2 = (a22_2, c2, ub, ud)
 
-    Econ2 = DLE(Info2, Tech1, Pref1)
-    Econ2.compute_sequence(x0, ts_length=100, Pay=np.array([Econ2.Sd[0, :]]))
+    econ2 = DLE(info2, tech1, pref1)
+    econ2.compute_sequence(x0, ts_length=100, Pay=np.array([econ2.Sd[0, :]]))
 
 .. code-block:: python3
 
     ### Left panel of Fig 7.12.3 from p.148 of HS2013
-    plt.plot(Econ2.Pay_Gross, label='Tree')
-    plt.plot(Econ2.R1_Gross, label='Risk-Free')
+    plt.plot(econ2.Pay_Gross, label='Tree')
+    plt.plot(econ2.R1_Gross, label='Risk-Free')
     plt.legend()
     plt.show()
 
 .. code-block:: python3
 
-    np.corrcoef(Econ2.Pay_Gross[1:, 0], Econ2.R1_Gross[1:, 0])
+    np.corrcoef(econ2.Pay_Gross[1:, 0], econ2.R1_Gross[1:, 0])
 
 
 The correlation between these two gross rates is now more negative.
@@ -260,8 +260,8 @@ five-period risk-free bonds:
 .. code-block:: python3
 
     ### Right panel of Fig 7.12.3 from p.148 of HS2013
-    plt.plot(Econ2.R1_Net, label='One-Period')
-    plt.plot(Econ2.R5_Net, label='Five-Period')
+    plt.plot(econ2.R1_Net, label='One-Period')
+    plt.plot(econ2.R5_Net, label='Five-Period')
     plt.legend()
     plt.show()
 
