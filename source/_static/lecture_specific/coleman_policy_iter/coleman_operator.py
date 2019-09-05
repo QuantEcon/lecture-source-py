@@ -1,3 +1,9 @@
+import numpy as np
+from interpolation import interp
+from numba import njit, prange
+from quantecon.optimize import brentq
+
+
 def time_operator_factory(og, parallel_flag=True):
     """
     A function factory for building the Coleman-Reffett operator.
