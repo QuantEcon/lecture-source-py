@@ -131,13 +131,13 @@ The stationary (i.e., invariant) distributions of these two matrices can be calc
 
     qa = np.array([[1/2, 1/2], [2/3, 1/3]])
     qb = np.array([[2/3, 1/3], [1/4, 3/4]])
-    mcA = qe.MarkovChain(qa)
-    mcB = qe.MarkovChain(qb)
-    mcA.stationary_distributions
+    mca = qe.MarkovChain(qa)
+    mcb = qe.MarkovChain(qb)
+    mca.stationary_distributions
 
 .. code-block:: python3
 
-    mcB.stationary_distributions
+    mcb.stationary_distributions
 
 
 
@@ -480,13 +480,17 @@ Here's code to solve for :math:`\bar p`, :math:`\hat p_a` and :math:`\hat p_b` u
         # We know this is a contraction mapping, so we can iterate to conv
         for i in range(max_iter):
             p_old = p_new
-            p_new = β * np.max([q @ p_old + q @ dividend_payoff for q in transitions], 1)
+            p_new = β * np.max([q @ p_old
+                                + q @ dividend_payoff for q in transitions],
+                                1)
 
             # If we succeed in converging, break out of for loop
             if np.max(np.sqrt((p_new - p_old)**2)) < 1e-12:
                 break
 
-        ptwiddle = β * np.min([q @ p_old + q @ dividend_payoff for q in transitions], 1)
+        ptwiddle = β * np.min([q @ p_old
+                              + q @ dividend_payoff for q in transitions],
+                              1)
 
         phat_a = np.array([p_new[0], ptwiddle[1]])
         phat_b = np.array([ptwiddle[0], p_new[1]])
@@ -546,7 +550,9 @@ Here's code to solve for :math:`\check p` using iteration
         # We know this is a contraction mapping, so we can iterate to conv
         for i in range(max_iter):
             p_old = p_new
-            p_new = β * np.min([q @ p_old + q @ dividend_payoff for q in transitions], 1)
+            p_new = β * np.min([q @ p_old
+                                + q @ dividend_payoff for q in transitions],
+                               1)
 
             # If we succeed in converging, break out of for loop
             if np.max(np.sqrt((p_new - p_old)**2)) < 1e-12:
@@ -622,8 +628,10 @@ investors are optimistic or pessimistic.
 
     qa = np.array([[1/2, 1/2], [2/3, 1/3]])    # Type a transition matrix
     qb = np.array([[2/3, 1/3], [1/4, 3/4]])    # Type b transition matrix
-    qopt = np.array([[1/2, 1/2], [1/4, 3/4]])  # Optimistic investor transition matrix
-    qpess = np.array([[2/3, 1/3], [2/3, 1/3]]) # Pessimistic investor transition matrix
+    # Optimistic investor transition matrix
+    qopt = np.array([[1/2, 1/2], [1/4, 3/4]])
+    # Pessimistic investor transition matrix
+    qpess = np.array([[2/3, 1/3], [2/3, 1/3]])
 
     dividendreturn = np.array([[0], [1]])
 
