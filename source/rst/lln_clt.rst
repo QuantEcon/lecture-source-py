@@ -37,6 +37,19 @@ In addition, we examine several useful extensions of the classical theorems, suc
 
 Some of these extensions are presented as exercises.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import random
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.stats import t, beta, lognorm, expon, gamma, uniform, cauchy
+    from scipy.stats import gaussian_kde, poisson, binom, norm, chi2
+    from mpl_toolkits.mplot3d import Axes3D
+    from matplotlib.collections import PolyCollection
+    from scipy.linalg import inv, sqrtm
 
 Relationships
 =============
@@ -214,17 +227,11 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
 
 
 
-.. code-block:: ipython
-
-    import random
-    import numpy as np
-    from scipy.stats import t, beta, lognorm, expon, gamma, poisson
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     n = 100
 
-    # == Arbitrary collection of distributions == #
+    # Arbitrary collection of distributions
     distributions = {"student's t with 10 degrees of freedom": t(10),
                      "β(2, 2)": beta(2, 2),
                      "lognormal LN(0, 1/2)": lognorm(0.5),
@@ -232,11 +239,11 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
                      "poisson(4)": poisson(4),
                      "exponential with λ = 1": expon(1)}
 
-    # == Create a figure and some axes == #
+    # Create a figure and some axes
     num_plots = 3
     fig, axes = plt.subplots(num_plots, 1, figsize=(20, 20))
 
-    # == Set some plotting parameters to improve layout == #
+    # Set some plotting parameters to improve layout
     bbox = (0., 1.02, 1., .102)
     legend_args = {'ncol': 2,
                    'bbox_to_anchor': bbox,
@@ -245,19 +252,19 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
     plt.subplots_adjust(hspace=0.5)
 
     for ax in axes:
-        # == Choose a randomly selected distribution == #
+        # Choose a randomly selected distribution
         name = random.choice(list(distributions.keys()))
         distribution = distributions.pop(name)
 
-        # == Generate n draws from the distribution == #
+        # Generate n draws from the distribution
         data = distribution.rvs(n)
 
-        # == Compute sample mean at each n == #
+        # Compute sample mean at each n
         sample_mean = np.empty(n)
         for i in range(n):
             sample_mean[i] = np.mean(data[:i+1])
 
-        # == Plot == #
+        # Plot
         ax.plot(list(range(n)), data, 'o', color='grey', alpha=0.5)
         axlabel = '$\\bar X_n$ for $X_i \sim$' + name
         ax.plot(list(range(n)), sample_mean, 'g-', lw=3, alpha=0.6, label=axlabel)
@@ -295,8 +302,6 @@ The next figure shows 100 independent draws from this distribution
 
 .. code-block:: python3
 
-    from scipy.stats import cauchy
-
     n = 100
     distribution = cauchy()
 
@@ -327,13 +332,13 @@ Let's now have a look at the behavior of the sample mean
     fig, ax = plt.subplots(figsize=(10, 6))
     data = distribution.rvs(n)
 
-    # == Compute sample mean at each n == #
+    # Compute sample mean at each n
     sample_mean = np.empty(n)
 
     for i in range(1, n):
         sample_mean[i] = np.mean(data[:i])
 
-    # == Plot == #
+    # Plot
     ax.plot(list(range(n)), sample_mean, 'r-', lw=3, alpha=0.6,
             label='$\\bar X_n$')
     ax.plot(list(range(n)), [0] * n, 'k--', lw=0.5)
@@ -451,8 +456,6 @@ The next figure plots the probability mass function of :math:`Y_n` for :math:`n 
 
 .. code-block:: python3
 
-    from scipy.stats import binom
-
     fig, axes = plt.subplots(2, 2, figsize=(10, 6))
     plt.subplots_adjust(hspace=0.4)
     axes = axes.flatten()
@@ -528,24 +531,20 @@ Here's some code that does exactly this for the exponential distribution
 
 .. code-block:: python3
 
-
-    from scipy.stats import norm
-
-
-    # == Set parameters == #
+    # Set parameters
     n = 250                  # Choice of n
     k = 100000               # Number of draws of Y_n
     distribution = expon(2)  # Exponential distribution, λ = 1/2
     μ, s = distribution.mean(), distribution.std()
 
-    # == Draw underlying RVs. Each row contains a draw of X_1,..,X_n == #
+    # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
     data = distribution.rvs((k, n))
-    # == Compute mean of each row, producing k draws of \bar X_n == #
+    # Compute mean of each row, producing k draws of \bar X_n
     sample_means = data.mean(axis=1)
-    # == Generate observations of Y_n == #
+    # Generate observations of Y_n
     Y = np.sqrt(n) * (sample_means - μ)
 
-    # == Plot == #
+    # Plot
     fig, ax = plt.subplots(figsize=(10, 6))
     xmin, xmax = -3 * s, 3 * s
     ax.set_xlim(xmin, xmax)
@@ -598,28 +597,23 @@ In the figure, the closest density is that of :math:`Y_1`, while the furthest is
 
 .. code-block:: python3
 
-    from scipy.stats import gaussian_kde
-    from mpl_toolkits.mplot3d import Axes3D
-    from matplotlib.collections import PolyCollection
-
-
     beta_dist = beta(2, 2)
 
     def gen_x_draws(k):
         """
         Returns a flat array containing k independent draws from the
-        distribution of X, the underlying random variable.  This distribution is
-        itself a convex combination of three beta distributions.
+        distribution of X, the underlying random variable.  This distribution
+        is itself a convex combination of three beta distributions.
         """
         bdraws = beta_dist.rvs((3, k))
-        # == Transform rows, so each represents a different distribution == #
+        # Transform rows, so each represents a different distribution
         bdraws[0, :] -= 0.5
         bdraws[1, :] += 0.6
         bdraws[2, :] -= 1.1
-        # == Set X[i] = bdraws[j, i], where j is a random draw from {0, 1, 2} == #
+        # Set X[i] = bdraws[j, i], where j is a random draw from {0, 1, 2}
         js = np.random.randint(0, 2, size=k)
         X = bdraws[js, np.arange(k)]
-        # == Rescale, so that the random variable is zero mean == #
+        # Rescale, so that the random variable is zero mean
         m, sigma = X.mean(), X.std()
         return (X - m) / sigma
 
@@ -627,17 +621,16 @@ In the figure, the closest density is that of :math:`Y_1`, while the furthest is
     reps = 100000
     ns = list(range(1, nmax + 1))
 
-    # == Form a matrix Z such that each column is reps independent draws of X == #
+    # Form a matrix Z such that each column is reps independent draws of X
     Z = np.empty((reps, nmax))
     for i in range(nmax):
         Z[:, i] = gen_x_draws(reps)
-    # == Take cumulative sum across columns
+    # Take cumulative sum across columns
     S = Z.cumsum(axis=1)
-    # == Multiply j-th column by sqrt j == #
+    # Multiply j-th column by sqrt j
     Y = (1 / np.sqrt(ns)) * S
 
-    # == Plot == #
-
+    # Plot
     fig = plt.figure(figsize = (10, 6))
     ax = fig.gca(projection='3d')
 
@@ -645,7 +638,7 @@ In the figure, the closest density is that of :math:`Y_1`, while the furthest is
     gs = 100
     xs = np.linspace(a, b, gs)
 
-    # == Build verts == #
+    # Build verts
     greys = np.linspace(0.3, 0.7, nmax)
     verts = []
     for n in ns:
@@ -661,7 +654,8 @@ In the figure, the closest density is that of :math:`Y_1`, while the furthest is
            xlabel=("n"), yticks=((-3, 0, 3)), ylim3d=(a, b),
            zlim3d=(0, 0.4), zticks=((0.2, 0.4)))
     ax.invert_xaxis()
-    ax.view_init(30, 45)  # Rotates the plot 30 deg on z axis and 45 deg on x axis
+    # Rotates the plot 30 deg on z axis and 45 deg on x axis
+    ax.view_init(30, 45)
     plt.show()
 
 
@@ -974,10 +968,7 @@ Here is one solution
     Illustrates the delta method, a consequence of the central limit theorem.
     """
 
-    from scipy.stats import uniform
-
-
-    # == Set parameters == #
+    # Set parameters
     n = 250
     replications = 100000
     distribution = uniform(loc=0, scale=(np.pi / 2))
@@ -986,12 +977,12 @@ Here is one solution
     g = np.sin
     g_prime = np.cos
 
-    # == Generate obs of sqrt{n} (g(X_n) - g(μ)) == #
+    # Generate obs of sqrt{n} (g(X_n) - g(μ))
     data = distribution.rvs((replications, n))
     sample_means = data.mean(axis=1)  # Compute mean of each row
     error_obs = np.sqrt(n) * (g(sample_means) - g(μ))
 
-    # == Plot == #
+    # Plot
     asymptotic_sd = g_prime(μ) * s
     fig, ax = plt.subplots(figsize=(10, 6))
     xmin = -3 * g_prime(μ) * s
@@ -1068,10 +1059,7 @@ Our solution is as follows
 
 .. code-block:: python3
 
-    from scipy.stats import chi2
-    from scipy.linalg import inv, sqrtm
-
-    # == Set parameters == #
+    # Set parameters
     n = 250
     replications = 50000
     dw = uniform(loc=-1, scale=2)  # Uniform(-1, 1)
@@ -1081,27 +1069,27 @@ Our solution is as follows
     Σ = ((vw, vw), (vw, vw + vu))
     Σ = np.array(Σ)
 
-    # == Compute Σ^{-1/2} == #
+    # Compute Σ^{-1/2}
     Q = inv(sqrtm(Σ))
 
-    # == Generate observations of the normalized sample mean == #
+    # Generate observations of the normalized sample mean
     error_obs = np.empty((2, replications))
     for i in range(replications):
-        # == Generate one sequence of bivariate shocks == #
+        # Generate one sequence of bivariate shocks
         X = np.empty((2, n))
         W = dw.rvs(n)
         U = du.rvs(n)
-        # == Construct the n observations of the random vector == #
+        # Construct the n observations of the random vector
         X[0, :] = W
         X[1, :] = W + U
-        # == Construct the i-th observation of Y_n == #
+        # Construct the i-th observation of Y_n
         error_obs[:, i] = np.sqrt(n) * X.mean(axis=1)
 
-    # == Premultiply by Q and then take the squared norm == #
+    # Premultiply by Q and then take the squared norm
     temp = Q @ error_obs
     chisq_obs = np.sum(temp**2, axis=0)
 
-    # == Plot == #
+    # Plot
     fig, ax = plt.subplots(figsize=(10, 6))
     xmax = 8
     ax.set_xlim(0, xmax)
