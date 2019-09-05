@@ -37,7 +37,7 @@ A side benefit of studying Lucas' model is that it provides a beautiful illustra
 
 Another difference to our :doc:`first asset pricing lecture <markov_asset>` is that the state space and shock will be continuous rather than discrete.
 
-Let's start with some imports
+Let's start with some standard imports:
 
 .. code-block:: ipython
 
@@ -451,18 +451,17 @@ We will set up a ``LucasTree`` class to hold parameters of the model
 
             self.γ, self.β, self.α, self.σ = γ, β, α, σ
 
-            # == Set the grid interval to contain most of the mass of the
-            # stationary distribution of the consumption endowment == #
+            # Set the grid interval to contain most of the mass of the
+            # stationary distribution of the consumption endowment
             ssd = self.σ / np.sqrt(1 - self.α**2)
             grid_min, grid_max = np.exp(-4 * ssd), np.exp(4 * ssd)
             self.grid = np.linspace(grid_min, grid_max, grid_size)
             self.grid_size = grid_size
 
-            # == set up distribution for shocks == #
+            # Set up distribution for shocks
             self.ϕ = lognorm(σ)
             self.draws = self.ϕ.rvs(500)
 
-            # == h(y) = β * int G(y,z)^(1-γ) ϕ(dz) == #
             self.h = np.empty(self.grid_size)
             for i, y in enumerate(self.grid):
                 self.h[i] = β * np.mean((y**α * self.draws)**(1 - γ))
@@ -493,11 +492,11 @@ jitted version of the Lucas operator
             The Lucas operator
             """
 
-            # == turn f into a function == #
+            # Turn f into a function
             Af = lambda x: interp(grid, f, x)
 
             Tf = np.empty_like(f)
-            # == Apply the T operator to f using Monte Carlo integration == #
+            # Apply the T operator to f using Monte Carlo integration
             for i in prange(len(grid)):
                 y = grid[i]
                 Tf[i] = h[i] + β * np.mean(Af(y**α * z_vec))
@@ -519,7 +518,7 @@ to find the fixed point.
         * tree is an instance of LucasTree
 
         """
-        # == simplify notation == #
+        # Simplify notation
         grid, grid_size = tree.grid, tree.grid_size
         γ = tree.γ
 
