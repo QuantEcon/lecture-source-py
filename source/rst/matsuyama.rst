@@ -413,7 +413,8 @@ Here's the main body of code
     @jit(nopython=True)
     def DHH(n1, n2, s1_ρ, s2_ρ, s1, s2, θ, δ, ρ):
         "Determine whether (n1, n2) is in the set DHH"
-        return (n1 >= _hj(1, n2, s1, s2, θ, δ, ρ)) and (n2 >= _hj(2, n1, s1, s2, θ, δ, ρ))
+        return (n1 >= _hj(1, n2, s1, s2, θ, δ, ρ)) and \
+               (n2 >= _hj(2, n1, s1, s2, θ, δ, ρ))
 
     @jit(nopython=True)
     def DHL(n1, n2, s1_ρ, s2_ρ, s1, s2, θ, δ, ρ):
@@ -523,7 +524,8 @@ Here's the main body of code
         return synchronized, pers_2_sync
 
     @jit(nopython=True)
-    def _create_attraction_basis(s1_ρ, s2_ρ, s1, s2, θ, δ, ρ, maxiter, npers, npts):
+    def _create_attraction_basis(s1_ρ, s2_ρ, s1, s2, θ, δ, ρ,
+            maxiter, npers, npts):
         # Create unit range with npts
         synchronized, pers_2_sync = False, 0
         unit_range = np.linspace(0.0, 1.0, npts)
@@ -533,9 +535,9 @@ Here's the main body of code
         # Iterate over initial conditions
         for (i, n1_0) in enumerate(unit_range):
             for (j, n2_0) in enumerate(unit_range):
-                synchronized, pers_2_sync = _pers_till_sync(n1_0, n2_0, s1_ρ, s2_ρ,
-                                                            s1, s2, θ, δ, ρ,
-                                                            maxiter, npers)
+                synchronized, pers_2_sync = _pers_till_sync(n1_0, n2_0, s1_ρ,
+                                                            s2_ρ, s1, s2, θ, δ,
+                                                            ρ, maxiter, npers)
                 time_2_sync[i, j] = pers_2_sync
 
         return time_2_sync
@@ -665,11 +667,13 @@ Here's the main body of code
             s1, s2, θ, δ, ρ = self._unpack_params()
             s1_ρ, s2_ρ = self.s1_ρ, self.s2_ρ
 
-            return _pers_till_sync(n1_0, n2_0, s1_ρ, s2_ρ, s1, s2, θ, δ, ρ, maxiter, npers)
+            return _pers_till_sync(n1_0, n2_0, s1_ρ, s2_ρ,
+                                  s1, s2, θ, δ, ρ, maxiter, npers)
 
         def create_attraction_basis(self, maxiter=250, npers=3, npts=50):
             """
-            Creates an attraction basis for values of n on [0, 1] X [0, 1] with npts in each dimension
+            Creates an attraction basis for values of n on [0, 1] X [0, 1]
+            with npts in each dimension
             """
             # Unpack parameters
             s1, s2, θ, δ, ρ = self._unpack_params()
@@ -695,7 +699,8 @@ Here's the function
 
 .. code-block:: python3
 
-    def plot_timeseries(n1_0, n2_0, s1=0.5, θ=2.5, δ=0.7, ρ=0.2, ax=None, title=''):
+    def plot_timeseries(n1_0, n2_0, s1=0.5, θ=2.5,
+            δ=0.7, ρ=0.2, ax=None, title=''):
         """
         Plot a single time series with initial conditions
         """
