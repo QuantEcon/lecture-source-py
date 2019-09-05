@@ -701,7 +701,7 @@ The shocks :math:`\{w_t\}` were taken to be IID and standard normal.
 
 .. code-block:: python3
 
-    # == Model parameters == #
+    # Model parameters
     r = 0.05
     β = 1/(1 + r)
     T = 45
@@ -710,7 +710,7 @@ The shocks :math:`\{w_t\}` were taken to be IID and standard normal.
     μ = 1
     q = 1e6
 
-    # == Formulate as an LQ problem == #
+    # Formulate as an LQ problem
     Q = 1
     R = np.zeros((2, 2))
     Rf = np.zeros((2, 2))
@@ -722,17 +722,17 @@ The shocks :math:`\{w_t\}` were taken to be IID and standard normal.
     C = [[σ],
         [0]]
 
-    # == Compute solutions and simulate == #
+    # Compute solutions and simulate
     lq = LQ(Q, R, A, B, C, beta=β, T=T, Rf=Rf)
     x0 = (0, 1)
     xp, up, wp = lq.compute_sequence(x0)
 
-    # == Convert back to assets, consumption and income == #
+    # Convert back to assets, consumption and income
     assets = xp[0, :]           # a_t
     c = up.flatten() + c_bar    # c_t
     income = σ * wp[0, 1:] + μ  # y_t
 
-    # == Plot results == #
+    # Plot results
     n_rows = 2
     fig, axes = plt.subplots(n_rows, 1, figsize=(12, 10))
 
@@ -792,17 +792,17 @@ relatively more weight on later consumption values.
 .. code-block:: python3
   :class: collapse
 
-  # == Compute solutions and simulate == #
+  # Compute solutions and simulate
   lq = LQ(Q, R, A, B, C, beta=0.96, T=T, Rf=Rf)
   x0 = (0, 1)
   xp, up, wp = lq.compute_sequence(x0)
 
-  # == Convert back to assets, consumption and income == #
+  # Convert back to assets, consumption and income
   assets = xp[0, :]           # a_t
   c = up.flatten() + c_bar    # c_t
   income = σ * wp[0, 1:] + μ  # y_t
 
-  # == Plot results == #
+  # Plot results
   n_rows = 2
   fig, axes = plt.subplots(n_rows, 1, figsize=(12, 10))
 
@@ -1437,7 +1437,7 @@ where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
 
 .. code-block:: python3
 
-    # == Model parameters == #
+    # Model parameters
     r = 0.05
     β = 1/(1 + r)
     T = 50
@@ -1448,7 +1448,7 @@ where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
     m1 = T * (μ/(T/2)**2)
     m2 = -(μ/(T/2)**2)
 
-    # == Formulate as an LQ problem == #
+    # Formulate as an LQ problem
     Q = 1
     R = np.zeros((4, 4))
     Rf = np.zeros((4, 4))
@@ -1466,19 +1466,19 @@ where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
          [0],
          [0]]
 
-    # == Compute solutions and simulate == #
+    # Compute solutions and simulate
     lq = LQ(Q, R, A, B, C, beta=β, T=T, Rf=Rf)
     x0 = (0, 1, 0, 0)
     xp, up, wp = lq.compute_sequence(x0)
 
-    # == Convert results back to assets, consumption and income == #
+    # Convert results back to assets, consumption and income
     ap = xp[0, :]               # Assets
     c = up.flatten() + c_bar    # Consumption
     time = np.arange(1, T+1)
     income = σ * wp[0, 1:] + m1 * time + m2 * time**2  # Income
 
 
-    # == Plot results == #
+    # Plot results
     n_rows = 2
     fig, axes = plt.subplots(n_rows, 1, figsize=(12, 10))
 
@@ -1488,7 +1488,8 @@ where :math:`\{w_t\}` is IID :math:`N(0, 1)` and the coefficients
     legend_args = {'bbox_to_anchor': bbox, 'loc': 3, 'mode': 'expand'}
     p_args = {'lw': 2, 'alpha': 0.7}
 
-    axes[0].plot(range(1, T+1), income, 'g-', label="non-financial income", **p_args)
+    axes[0].plot(range(1, T+1), income, 'g-', label="non-financial income",
+                **p_args)
     axes[0].plot(range(T), c, 'k-', label="consumption", **p_args)
 
     axes[1].plot(range(T+1), ap.flatten(), 'b-', label="assets", **p_args)
@@ -1512,7 +1513,7 @@ the lecture.
 
 .. code-block:: python3
 
-    # == Model parameters == #
+    # Model parameters
     r = 0.05
     β = 1/(1 + r)
     T = 60
@@ -1525,7 +1526,7 @@ the lecture.
     m1 = 2 * μ/K
     m2 = -μ/K**2
 
-    # == Formulate LQ problem 1 (retirement) == #
+    # Formulate LQ problem 1 (retirement)
     Q = 1
     R = np.zeros((4, 4))
     Rf = np.zeros((4, 4))
@@ -1543,14 +1544,14 @@ the lecture.
          [0],
          [0]]
 
-    # == Initialize LQ instance for retired agent == #
+    # Initialize LQ instance for retired agent
     lq_retired = LQ(Q, R, A, B, C, beta=β, T=T-K, Rf=Rf)
-    # == Iterate back to start of retirement, record final value function == #
+    # Iterate back to start of retirement, record final value function
     for i in range(T-K):
         lq_retired.update_values()
     Rf2 = lq_retired.P
 
-    # == Formulate LQ problem 2 (working life) == #
+    # Formulate LQ problem 2 (working life)
     R = np.zeros((4, 4))
     A = [[1 + r, -c_bar, m1, m2],
          [0,          1,  0,  0],
@@ -1565,16 +1566,16 @@ the lecture.
          [0],
          [0]]
 
-    # == Set up working life LQ instance with terminal Rf from lq_retired == #
+    # Set up working life LQ instance with terminal Rf from lq_retired
     lq_working = LQ(Q, R, A, B, C, beta=β, T=K, Rf=Rf2)
 
-    # == Simulate working state / control paths == #
+    # Simulate working state / control paths
     x0 = (0, 1, 0, 0)
     xp_w, up_w, wp_w = lq_working.compute_sequence(x0)
-    # == Simulate retirement paths (note the initial condition) == #
+    # Simulate retirement paths (note the initial condition)
     xp_r, up_r, wp_r = lq_retired.compute_sequence(xp_w[:, K])
 
-    # == Convert results back to assets, consumption and income == #
+    # Convert results back to assets, consumption and income
     xp = np.column_stack((xp_w, xp_r[:, 1:]))
     assets = xp[0, :]                  # Assets
 
@@ -1586,7 +1587,7 @@ the lecture.
     income_r = np.ones(T-K) * s
     income = np.concatenate((income_w, income_r))
 
-    # == Plot results == #
+    # Plot results
     n_rows = 2
     fig, axes = plt.subplots(n_rows, 1, figsize=(12, 10))
 
@@ -1596,7 +1597,8 @@ the lecture.
     legend_args = {'bbox_to_anchor': bbox, 'loc': 3, 'mode': 'expand'}
     p_args = {'lw': 2, 'alpha': 0.7}
 
-    axes[0].plot(range(1, T+1), income, 'g-', label="non-financial income", **p_args)
+    axes[0].plot(range(1, T+1), income, 'g-', label="non-financial income",
+                **p_args)
     axes[0].plot(range(T), c, 'k-', label="consumption", **p_args)
 
     axes[1].plot(range(T+1), assets, 'b-', label="assets", **p_args)
@@ -1649,7 +1651,7 @@ Our solution code is
 
 .. code-block:: python3
 
-    # == Model parameters == #
+    # Model parameters
     a0 = 5
     a1 = 0.5
     σ = 0.15
@@ -1659,11 +1661,11 @@ Our solution code is
     c = 2
     T = 120
 
-    # == Useful constants == #
+    # Useful constants
     m0 = (a0-c)/(2 * a1)
     m1 = 1/(2 * a1)
 
-    # == Formulate LQ problem == #
+    # Formulate LQ problem
     Q = γ
     R = [[ a1, -a1,  0],
          [-a1,  a1,  0],
@@ -1681,16 +1683,16 @@ Our solution code is
 
     lq = LQ(Q, R, A, B, C=C, beta=β)
 
-    # == Simulate state / control paths == #
+    # Simulate state / control paths
     x0 = (m0, 2, 1)
     xp, up, wp = lq.compute_sequence(x0, ts_length=150)
     q_bar = xp[0, :]
     q = xp[1, :]
 
-    # == Plot simulation results == #
+    # Plot simulation results
     fig, ax = plt.subplots(figsize=(10, 6.5))
 
-    # == Some fancy plotting stuff -- simplify if you prefer == #
+    # Some fancy plotting stuff -- simplify if you prefer
     bbox = (0., 1.01, 1., .101)
     legend_args = {'bbox_to_anchor': bbox, 'loc': 3, 'mode': 'expand'}
     p_args = {'lw': 2, 'alpha': 0.6}
