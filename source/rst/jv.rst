@@ -28,9 +28,9 @@ In this section, we solve a simple on-the-job search model
 
 * based on :cite:`Ljungqvist2012`, exercise 6.18, and :cite:`Jovanovic1979`
 
-Let's start with some imports
+Let's start with some imports:
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import scipy.stats as stats
@@ -213,7 +213,7 @@ We will set up a class ``JVWorker`` that holds the parameters of the model descr
             self.A, self.α, self.β, self.π = A, α, β, π
             self.mc_size, self.ɛ = mc_size, ɛ
 
-            self.g = njit(lambda x, ϕ: A * (x * ϕ)**α)     # Transition function
+            self.g = njit(lambda x, ϕ: A * (x * ϕ)**α)    # Transition function
             self.f_rvs = np.random.beta(a, b, mc_size)
 
             # Max of grid is the max of a large quantile value for f and the
@@ -298,7 +298,7 @@ given a value function.
             for i in prange(len(x_grid)):
                 x = x_grid[i]
 
-                # === Search on a grid === #
+                # Search on a grid
                 search_grid = np.linspace(ɛ, 1, 15)
                 max_val = -1
                 for s in search_grid:
@@ -319,7 +319,7 @@ given a value function.
 
             for i in range(len(x_grid)):
                 x = x_grid[i]
-                # === Search on a grid === #
+                # Search on a grid
                 search_grid = np.linspace(ɛ, 1, 15)
                 max_val = -1
                 for s in search_grid:
