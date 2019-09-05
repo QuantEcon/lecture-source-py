@@ -41,11 +41,9 @@ We require the following imports
 
     import numpy as np
     import matplotlib.pyplot as plt
-    from quantecon import LQ
-    from quantecon import DLE
     %matplotlib inline
-
-
+    from quantecon import LQ, DLE
+    
 
 Common Structure
 ================
@@ -282,22 +280,22 @@ For simulations of this economy, we choose an initial condition of
     # Initial condition
     x0 = np.array([[5], [150], [1], [0], [0]])
 
-    Info1 = (a22, c2, ub, ud)
-    Tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
-    Pref1 = (β, l_λ, π_h, δ_h, θ_h)
+    info1 = (a22, c2, ub, ud)
+    tech1 = (ϕ_c, ϕ_g, ϕ_i, γ, δ_k, θ_k)
+    pref1 = (β, l_λ, π_h, δ_h, θ_h)
 
 These parameter values are used to define an economy of the DLE class.
 
 .. code-block:: python3
 
-    Econ1 = DLE(Info1, Tech1, Pref1)
+    econ1 = DLE(info1, tech1, pref1)
 
 We can then simulate the economy for a chosen length of time, from our
 initial state vector :math:`x_0`
 
 .. code-block:: python3
 
-    Econ1.compute_sequence(x0, ts_length=300)
+    econ1.compute_sequence(x0, ts_length=300)
 
 The economy stores the simulated values for each variable. Below we plot
 consumption and investment
@@ -305,8 +303,8 @@ consumption and investment
 .. code-block:: python3
 
     # This is the right panel of Fig 5.7.1 from p.105 of HS2013
-    plt.plot(Econ1.c[0], label='Cons.')
-    plt.plot(Econ1.i[0], label='Inv.')
+    plt.plot(econ1.c[0], label='Cons.')
+    plt.plot(econ1.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -319,7 +317,7 @@ This is confirmed by checking the eigenvalues of :math:`A^o`
 
 .. code-block:: python3
 
-    Econ1.endo, Econ1.exo
+    econ1.endo, econ1.exo
 
 
 The endogenous eigenvalue that appears to be unity reflects the random
@@ -331,7 +329,7 @@ walk character of consumption in Hall's model.
 
 .. code-block:: python3
 
-    Econ1.endo[1]
+    econ1.endo[1]
 
 
 
@@ -342,9 +340,9 @@ steady state of consumption, investment and capital.
 
 .. code-block:: python3
 
-    Econ1.compute_steadystate()
+    econ1.compute_steadystate()
     np.set_printoptions(precision=3, suppress=True)
-    print(Econ1.css, Econ1.iss, Econ1.kss)
+    print(econ1.css, econ1.iss, econ1.kss)
 
 
 
@@ -389,7 +387,7 @@ Therefore, we need to define the following new parameters
     ϕ_12 = 1
     ϕ_i2 = np.array([[1], [-ϕ_12]])
 
-    Tech2 = (ϕ_c, ϕ_g, ϕ_i2, γ22, δ_k, θ_k)
+    tech2 = (ϕ_c, ϕ_g, ϕ_i2, γ22, δ_k, θ_k)
 
     x02 = np.array([[5], [20], [1], [0], [0]])
 
@@ -398,12 +396,12 @@ consumption and investment
 
 .. code-block:: python3
 
-    Econ2 = DLE(Info1, Tech2, Pref1)
+    econ2 = DLE(info1, tech2, pref1)
 
-    Econ2.compute_sequence(x02, ts_length=300)
+    econ2.compute_sequence(x02, ts_length=300)
 
-    plt.plot(Econ2.c[0], label='Cons.')
-    plt.plot(Econ2.i[0], label='Inv.')
+    plt.plot(econ2.c[0], label='Cons.')
+    plt.plot(econ2.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -417,8 +415,8 @@ level of consumption of 17.5, which we find as follows
 
 .. code-block:: python3
 
-    Econ2.compute_steadystate()
-    print(Econ2.css, Econ2.iss, Econ2.kss)
+    econ2.compute_steadystate()
+    print(econ2.css, econ2.iss, econ2.kss)
 
 
 
@@ -428,7 +426,7 @@ than 1.
 
 .. code-block:: python3
 
-    Econ2.endo, Econ2.exo
+    econ2.endo, econ2.exo
 
 
 
@@ -475,21 +473,21 @@ define the new value of :math:`\lambda`.
 .. code-block:: python3
 
     l_λ2 = np.array([[-1]])
-    Pref2 = (β, l_λ2, π_h, δ_h, θ_h)
+    pref2 = (β, l_λ2, π_h, δ_h, θ_h)
 
 .. code-block:: python3
 
-    Econ3 = DLE(Info1, Tech1, Pref2)
+    econ3 = DLE(info1, tech1, pref2)
 
 We simulate this economy from the original state vector
 
 .. code-block:: python3
 
-    Econ3.compute_sequence(x0, ts_length=300)
+    econ3.compute_sequence(x0, ts_length=300)
 
     # This is the right panel of Fig 5.10.1 from p.110 of HS2013
-    plt.plot(Econ3.c[0], label='Cons.')
-    plt.plot(Econ3.i[0], label='Inv.')
+    plt.plot(econ3.c[0], label='Cons.')
+    plt.plot(econ3.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -503,7 +501,7 @@ The eigenvalues of
 
 .. code-block:: python3
 
-    Econ3.endo, Econ3.exo
+    econ3.endo, econ3.exo
 
 
 
@@ -524,14 +522,14 @@ Next we raise :math:`\lambda` to -0.7
 .. code-block:: python3
 
     l_λ3 = np.array([[-0.7]])
-    Pref3 = (β, l_λ3, π_h, δ_h, θ_h)
+    pref3 = (β, l_λ3, π_h, δ_h, θ_h)
 
-    Econ4 = DLE(Info1, Tech1, Pref3)
+    econ4 = DLE(info1, tech1, pref3)
 
-    Econ4.compute_sequence(x0, ts_length=300)
+    econ4.compute_sequence(x0, ts_length=300)
 
-    plt.plot(Econ4.c[0], label='Cons.')
-    plt.plot(Econ4.i[0], label='Inv.')
+    plt.plot(econ4.c[0], label='Cons.')
+    plt.plot(econ4.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -544,7 +542,7 @@ eigenvalues is now less than 1.
 
 .. code-block:: python3
 
-    Econ4.endo, Econ4.exo
+    econ4.endo, econ4.exo
 
 
 
@@ -556,14 +554,14 @@ Next let's lower :math:`\beta` to 0.94
 .. code-block:: python3
 
     β_2 = np.array([[0.94]])
-    Pref4 = (β_2, l_λ, π_h, δ_h, θ_h)
+    pref4 = (β_2, l_λ, π_h, δ_h, θ_h)
 
-    Econ5 = DLE(Info1, Tech1, Pref4)
+    econ5 = DLE(info1, tech1, pref4)
 
-    Econ5.compute_sequence(x0, ts_length=300)
+    econ5.compute_sequence(x0, ts_length=300)
 
-    plt.plot(Econ5.c[0], label='Cons.')
-    plt.plot(Econ5.i[0], label='Inv.')
+    plt.plot(econ5.c[0], label='Cons.')
+    plt.plot(econ5.i[0], label='Inv.')
     plt.legend()
     plt.show()
 
@@ -579,4 +577,4 @@ being larger than one.
 
 .. code-block:: python3
 
-    Econ5.endo, Econ5.exo
+    econ5.endo, econ5.exo
