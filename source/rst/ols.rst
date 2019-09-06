@@ -40,6 +40,17 @@ The main contribution is the use of settler mortality rates as a source of *exog
 
 Such variation is needed to determine whether it is institutions that give rise to greater economic growth, rather than the other way around.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import pandas as pd
+    import statsmodels.api as sm
+    from statsmodels.iolib.summary2 import summary_col
+    from linearmodels.iv import IV2SLS
 
 
 Prerequisites
@@ -79,8 +90,6 @@ We will use pandas' ``.read_stata()`` function to read in data contained in the 
 
 .. code-block:: python3
 
-    import pandas as pd
-
     df1 = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/ols/maketable1.dta')
     df1.head()
 
@@ -90,10 +99,8 @@ Let's use a scatterplot to see whether any obvious relationship exists
 between GDP per capita and the protection against
 expropriation index
 
-.. code-block:: ipython
+.. code-block:: python3
 
-    import matplotlib.pyplot as plt
-    %matplotlib inline
     plt.style.use('seaborn')
 
     df1.plot(x='avexpr', y='logpgp95', kind='scatter')
@@ -133,8 +140,6 @@ fits the data, as in the following plot (Figure 2 in :cite:`Acemoglu2001`)
 
 .. code-block:: python3
 
-    import numpy as np
-
     # Dropping NA's is required to use numpy's polyfit
     df1_subset = df1.dropna(subset=['logpgp95', 'avexpr'])
 
@@ -161,7 +166,8 @@ fits the data, as in the following plot (Figure 2 in :cite:`Acemoglu2001`)
     ax.set_ylim([4,10.5])
     ax.set_xlabel('Average Expropriation Risk 1985-95')
     ax.set_ylabel('Log GDP per capita, PPP, 1995')
-    ax.set_title('Figure 2: OLS relationship between expropriation risk and income')
+    ax.set_title('Figure 2: OLS relationship between expropriation \
+        risk and income')
     plt.show()
 
 
@@ -195,9 +201,8 @@ We will use ``pandas`` dataframes with ``statsmodels``, however standard arrays 
 
 .. code-block:: python3
 
-    import statsmodels.api as sm
-
-    reg1 = sm.OLS(endog=df1['logpgp95'], exog=df1[['const', 'avexpr']], missing='drop')
+    reg1 = sm.OLS(endog=df1['logpgp95'], exog=df1[['const', 'avexpr']], \
+        missing='drop')
     type(reg1)
 
 
@@ -300,11 +305,13 @@ comparison purposes
     # Plot predicted values
 
     fix, ax = plt.subplots()
-    ax.scatter(df1_plot['avexpr'], results.predict(), alpha=0.5, label='predicted')
+    ax.scatter(df1_plot['avexpr'], results.predict(), alpha=0.5, 
+            label='predicted')
 
     # Plot observed values
 
-    ax.scatter(df1_plot['avexpr'], df1_plot['logpgp95'], alpha=0.5, label='observed')
+    ax.scatter(df1_plot['avexpr'], df1_plot['logpgp95'], alpha=0.5,
+            label='observed')
 
     ax.legend()
     ax.set_title('OLS predicted values')
@@ -359,8 +366,6 @@ display the results in a single table (model numbers correspond to those
 in the paper)
 
 .. code-block:: python3
-
-    from statsmodels.iolib.summary2 import summary_col
 
     info_dict={'R-squared' : lambda x: f"{x.rsquared:.2f}",
                'No. observations' : lambda x: f"{int(x.nobs):d}"}
@@ -453,7 +458,8 @@ condition of a valid instrument.
     ax.set_ylim([3.3,10.4])
     ax.set_xlabel('Log of Settler Mortality')
     ax.set_ylabel('Average Expropriation Risk 1985-95')
-    ax.set_title('Figure 3: First-stage relationship between settler mortality and expropriation risk')
+    ax.set_title('Figure 3: First-stage relationship between settler mortality \
+        and expropriation risk')
     plt.show()
 
 
@@ -551,10 +557,6 @@ OLS) is not recommended.
 We can correctly estimate a 2SLS regression in one step using the
 `linearmodels <https://github.com/bashtage/linearmodels>`__ package, an extension of ``statsmodels``
 
-
-.. code-block:: python3
-
-    from linearmodels.iv import IV2SLS
 
 Note that when using ``IV2SLS``, the exogenous and instrument variables
 are split up in the function arguments (whereas before the instrument
