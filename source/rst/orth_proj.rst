@@ -41,6 +41,14 @@ In this lecture, we focus on
 
 * least squares regression
 
+We'll require the following imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    from scipy.linalg import qr
+
+
 
 Further Reading
 ---------------
@@ -857,8 +865,6 @@ algorithm given in the lecture
 
 .. code-block:: python3
 
-    import numpy as np
-
     def gram_schmidt(X):
         """
         Implements Gram-Schmidt orthogonalization.
@@ -939,8 +945,6 @@ This is the same answer. So far so good. Finally, let's try the same
 thing but with the basis obtained via QR decomposition:
 
 .. code-block:: python3
-
-    from scipy.linalg import qr
 
     Q, R = qr(X, mode='economic')
     Q
