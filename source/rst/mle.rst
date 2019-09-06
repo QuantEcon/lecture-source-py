@@ -29,7 +29,7 @@ Here we illustrate maximum likelihood by replicating Daniel Treisman's (2016) pa
 The paper concludes that Russia has a higher number of billionaires than
 economic factors such as market size and tax rate predict.
 
-We'll require following imports:
+We'll require the following imports:
 
 .. code-block:: ipython
 
