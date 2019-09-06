@@ -29,7 +29,22 @@ Here we illustrate maximum likelihood by replicating Daniel Treisman's (2016) pa
 The paper concludes that Russia has a higher number of billionaires than
 economic factors such as market size and tax rate predict.
 
+We'll require the following imports:
 
+.. code-block:: ipython
+
+    import numpy as np
+    from numpy import exp
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.special import factorial
+    import pandas as pd
+    from mpl_toolkits.mplot3d import Axes3D
+    import statsmodels.api as sm
+    from statsmodels.api import Poisson
+    from scipy import stats
+    from scipy.stats import norm
+    from statsmodels.iolib.summary2 import summary_col
 
 Prerequisites
 -------------
@@ -97,12 +112,7 @@ We can plot the Poisson distribution over :math:`y` for different values of :mat
 
 
 
-.. code-block:: ipython
-
-    from numpy import exp
-    from scipy.special import factorial
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     poisson_pmf = lambda y, μ: μ**y / factorial(y) * exp(-μ)
     y_values = range(0, 25)
@@ -148,7 +158,6 @@ Treisman's main source of data is *Forbes'* annual rankings of billionaires and 
 
 .. code-block:: python3
 
-    import pandas as pd
     pd.options.display.max_columns = 10
 
     # Load in data and view
@@ -209,8 +218,6 @@ We use our ``poisson_pmf`` function from above and arbitrary values for
 :math:`\boldsymbol{\beta}` and :math:`\mathbf{x}_i`
 
 .. code-block:: python3
-
-  import numpy as np
 
   y_values = range(0, 20)
 
@@ -284,8 +291,6 @@ If :math:`y_i` follows a Poisson distribution with :math:`\lambda = 7`,
 we can visualize the joint pmf like so
 
 .. code-block:: python3
-
-    from mpl_toolkits.mplot3d import Axes3D
 
     def plot_joint_poisson(μ=7, y_n=20):
         yi_values = np.arange(0, y_n, 1)
@@ -482,8 +487,10 @@ for every iteration
         def __init__(self, y, X, β):
             self.X = X
             self.n, self.k = X.shape
-            self.y = y.reshape(self.n,1)         # Reshape y as a n_by_1 column vector
-            self.β = β.reshape(self.k,1)         # Reshape β as a k_by_1 column vector
+            # Reshape y as a n_by_1 column vector
+            self.y = y.reshape(self.n,1)
+            # Reshape β as a k_by_1 column vector
+            self.β = β.reshape(self.k,1)
 
         def μ(self):
             return np.exp(self.X @ self.β)
@@ -551,7 +558,8 @@ iteration.
         print(f'Number of iterations: {i}')
         print(f'β_hat = {model.β.flatten()}')
 
-        return model.β.flatten()        # Return a flat array for β (instead of a k_by_1 column vector)
+        # Return a flat array for β (instead of a k_by_1 column vector)
+        return model.β.flatten()
 
 Let's try out our algorithm with a small dataset of 5 observations and 3
 variables in :math:`\mathbf{X}`.
@@ -661,9 +669,6 @@ to confirm we obtain the same coefficients and log-likelihood value.
 
 .. code-block:: python3
 
-    from statsmodels.api import Poisson
-    from scipy import stats
-
     X = np.array([[1, 2, 5],
                   [1, 1, 3],
                   [1, 4, 2],
@@ -715,8 +720,6 @@ We'll use robust standard errors as in the author's paper
 
 .. code-block:: python3
 
-    import statsmodels.api as sm
-
     # Specify model
     poisson_reg = sm.Poisson(df[['numbil0']], df[reg1],
                              missing='drop').fit(cov_type='HC0')
@@ -735,8 +738,6 @@ them in a single table
 
 .. code-block:: python3
 
-    from statsmodels.iolib.summary2 import summary_col
-
     regs = [reg1, reg2, reg3]
     reg_names = ['Model 1', 'Model 2', 'Model 3']
     info_dict = {'Pseudo R-squared': lambda x: f"{x.prsquared:.2f}",
@@ -754,7 +755,8 @@ them in a single table
 
     for reg in regs:
         result = sm.Poisson(df[['numbil0']], df[reg],
-                            missing='drop').fit(cov_type='HC0', maxiter=100, disp=0)
+                            missing='drop').fit(cov_type='HC0',
+                                                maxiter=100, disp=0)
         results.append(result)
 
     results_table = summary_col(results=results,
@@ -763,7 +765,8 @@ them in a single table
                                 model_names=reg_names,
                                 info_dict=info_dict,
                                 regressor_order=regressor_order)
-    results_table.add_title('Table 1 - Explaining the Number of Billionaires in 2008')
+    results_table.add_title('Table 1 - Explaining the Number of Billionaires \
+                            in 2008')
     print(results_table)
 
 
@@ -792,7 +795,8 @@ plot the first 15
     results_df.sort_values('difference', ascending=False, inplace=True)
 
     # Plot the first 15 data points
-    results_df[:15].plot('country', 'difference', kind='bar', figsize=(12,8), legend=False)
+    results_df[:15].plot('country', 'difference', kind='bar',
+                        figsize=(12,8), legend=False)
     plt.ylabel('Number of billionaires above predicted level')
     plt.xlabel('Country')
     plt.show()
@@ -964,8 +968,6 @@ follows
 
 .. code-block:: python3
 
-    from scipy.stats import norm
-
     class ProbitRegression:
 
         def __init__(self, y, X, β):
@@ -985,7 +987,8 @@ follows
         def G(self):
             μ = self.μ()
             ϕ = self.ϕ()
-            return np.sum((X.T * y * ϕ / μ - X.T * (1 - y) * ϕ / (1 - μ)), axis=1)
+            return np.sum((X.T * y * ϕ / μ - X.T * (1 - y) * ϕ / (1 - μ)),
+                         axis=1)
 
         def H(self):
             X = self.X
