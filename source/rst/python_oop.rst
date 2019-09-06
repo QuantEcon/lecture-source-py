@@ -50,6 +50,15 @@ Classes are blueprints that help you build objects according to your own specifi
 
 It takes a little while to get used to the syntax so we'll provide plenty of examples.
 
+We'll use the following imports:
+
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
 
 OOP Review
 ==========
@@ -441,9 +450,6 @@ The common steady state is also plotted for comparison
 
 .. code-block:: ipython
 
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
     s1 = Solow()
     s2 = Solow(k=8.0)
 
@@ -556,7 +562,6 @@ supply curves  with and without taxes
 
 .. code-block:: python3
 
-    import numpy as np
 
     # Baseline ad, bd, az, bz, tax
     baseline_params = 15, .5, -2, .5, 3
