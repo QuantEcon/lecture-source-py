@@ -522,8 +522,7 @@ we can create an array for reservation wages for different values of :math:`c`,
 .. code-block:: python3
 
     grid_size = 25
-    # Values of unemployment compensation
-    c_vals = np.linspace(2, 12, grid_size)
+    c_vals = np.linspace(2, 12, grid_size)  # Unemployment compensation
     w_bar_vals = np.empty_like(c_vals)
 
     mcm = McCallModel()
