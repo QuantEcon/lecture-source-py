@@ -25,14 +25,13 @@ We'll also need the following imports
 .. code-block:: ipython
 
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import numpy as np
     import scipy.linalg as la
 
     from quantecon import Kalman
     from quantecon import LinearStateSpace
     from scipy.stats import norm
-
-    %matplotlib inline
     np.set_printoptions(linewidth=120, precision=4, suppress=True)
 
 
@@ -157,7 +156,8 @@ apply the quantecon ``Kalman`` class, then uses it to construct the associated "
     x_hat_0, Σ_0 = 10, 1
     kmuth = Kalman(ss, x_hat_0, Σ_0)
 
-    # Computes stationary values which we need for the innovation representation
+    # Computes stationary values which we need for the innovation
+    # representation
     S1, K1 = kmuth.stationary_values()
 
     # Form innovation representation state-space
@@ -216,7 +216,8 @@ simulate it
 
 .. code-block:: python3
 
-    # Create grand state-space for y_t, a_t as observed vars -- Use stacking trick above
+    # Create grand state-space for y_t, a_t as observed vars -- Use
+    # stacking trick above
     Af = np.array([[ 1,      0,        0],
                    [K1, 1 - K1, K1 * σ_y],
                    [ 0,      0,        0]])
