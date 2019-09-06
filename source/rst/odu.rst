@@ -767,8 +767,10 @@ As a result, the unemployment rate spikes
 
     @njit
     def update(a, b, e, π):
-        "Update e and π by drawing wage offer from beta distribution with \
-        parameters a and b"
+        """
+        Update e and π by drawing wage offer from beta distribution with 
+        parameters a and b
+        """
 
         if e == False:
             w = np.random.beta(a, b)       # Draw random wage
