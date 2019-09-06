@@ -1,3 +1,5 @@
+import numpy as np
+
 class LogUtility:
 
     def __init__(self,

@@ -1,5 +1,8 @@
+import numpy as np
 from scipy.interpolate import UnivariateSpline
 from scipy.optimize import fmin_slsqp
+from quantecon import MarkovChain
+from scipy.optimize import root
 
 
 class RecursiveAllocation:
@@ -22,19 +25,21 @@ class RecursiveAllocation:
 
     def solve_time1_bellman(self):
         '''
-        Solve the time 1 Bellman equation for calibration model and initial grid μgrid0
+        Solve the time 1 Bellman equation for calibration model and initial
+        grid μgrid0
         '''
         model, μgrid0 = self.model, self.μgrid
         S = len(model.π)
 
         # First get initial fit
-        PP = SequentialAllocation(model)
-        c, n, x, V = map(np.vstack, zip(*map(lambda μ: PP.time1_value(μ), μgrid0)))
+        pp = SequentialAllocation(model)
+        c, n, x, V = map(np.vstack, zip(*map(lambda μ: pp.time1_value(μ), μgrid0)))
 
         Vf, cf, nf, xprimef = {}, {}, {}, {}
         for s in range(2):
-            ind = np.argsort(x[:, s])                    # Sort x
-            c, n, x, V = c[ind], n[ind], x[ind], V[ind]  # Sort arrays according to x
+            ind = np.argsort(x[:, s])   # Sort x
+            # Sort arrays according to x
+            c, n, x, V = c[ind], n[ind], x[ind], V[ind]
             cf[s] = UnivariateSpline(x[:, s], c[:, s])
             nf[s] = UnivariateSpline(x[:, s], n[:, s])
             Vf[s] = UnivariateSpline(x[:, s], V[:, s])
@@ -67,7 +72,8 @@ class RecursiveAllocation:
 
     def fit_policy_function(self, PF):
         '''
-        Fits the policy functions PF using the points xgrid using UnivariateSpline
+        Fits the policy functions PF using the points xgrid using
+        UnivariateSpline
         '''
         xgrid, S = self.xgrid, self.S
 
@@ -96,7 +102,8 @@ class RecursiveAllocation:
 
     def time0_allocation(self, B_, s0):
         '''
-        Finds the optimal allocation given initial government debt B_ and state s_0
+        Finds the optimal allocation given initial government debt B_ and
+        state s_0
         '''
         PF = self.T(self.Vf)
         z0 = PF(B_, s0)
@@ -200,8 +207,8 @@ class BellmanEquation:
 
     def __call__(self, Vf):
         '''
-        Given continuation value function, next period return value function, this
-        period return T(V) and optimal policies
+        Given continuation value function, next period return value function,
+        this period return T(V) and optimal policies
         '''
         if not self.time_0:
             def PF(x, s): return self.get_policies_time1(x, s, Vf)
@@ -228,14 +235,15 @@ class BellmanEquation:
 
         def cons(z):
             c, n, xprime = z[0], z[1], z[2:]
-            return np.hstack([x - Uc(c, n) * c - Un(c, n) * n - β * π[s] @ xprime,
+            return np.hstack([x - Uc(c, n) * c - Un(c, n) * n - β * π[s]
+                              @ xprime,
                               (Θ * n - c - G)[s]])
 
         out, fx, _, imode, smode = fmin_slsqp(objf,
                                               self.z0[x, s],
                                               f_eqcons=cons,
-                                              bounds=[(0, 100), (0, 100)] +
-                                              [self.xbar] * S,
+                                              bounds=[(0, 100), (0, 100)]
+                                              + [self.xbar] * S,
                                               full_output=True,
                                               iprint=0,
                                               acc=1e-10)
@@ -265,13 +273,15 @@ class BellmanEquation:
 
         def cons(z):
             c, n, xprime = z[0], z[1], z[2:]
-            return np.hstack([-Uc(c, n) * (c - B_) - Un(c, n) * n - β * π[s0] @ xprime,
+            return np.hstack([-Uc(c, n) * (c - B_) - Un(c, n) * n - β * π[s0]
+                              @ xprime,
                               (Θ * n - c - G)[s0]])
 
         out, fx, _, imode, smode = fmin_slsqp(objf, self.zFB[s0], f_eqcons=cons,
-                                              bounds=[(0, 100), (0, 100)] +
-                                              [self.xbar] * S,
-                                              full_output=True, iprint=0, acc=1e-10)
+                                              bounds=[(0, 100), (0, 100)]
+                                              + [self.xbar] * S,
+                                              full_output=True, iprint=0,
+                                              acc=1e-10)
 
         if imode > 0:
             raise Exception(smode)

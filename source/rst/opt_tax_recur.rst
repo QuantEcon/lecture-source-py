@@ -54,6 +54,17 @@ responses of private agents to a Ramsey plan.
 
 See :doc:`Optimal taxation <lqramsey>` for analysis within a linear-quadratic setting.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.optimize import root
+    from quantecon import MarkovChain
+    from scipy.interpolate import UnivariateSpline
+    from scipy.optimize import fmin_slsqp
 
 A Competitive Equilibrium with Distorting Taxes
 ===============================================
@@ -1131,10 +1142,7 @@ We can now plot the Ramsey tax  under both realizations of time :math:`t = 3` go
 
 
 
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     time_π = np.array([[0, 1, 0,   0,   0,  0],
                        [0, 0, 1,   0,   0,  0],
@@ -1144,10 +1152,12 @@ We can now plot the Ramsey tax  under both realizations of time :math:`t = 3` go
                        [0, 0, 0,   0,   0,  1]])
 
     time_G = np.array([0.1, 0.1, 0.1, 0.2, 0.1, 0.1])
-    time_Θ = np.ones(6)                                      # Θ can in principle be random
+    # Θ can in principle be random
+    time_Θ = np.ones(6)
     time_example = CRRAutility(π=time_π, G=time_G, Θ=time_Θ)
 
-    time_allocation = SequentialAllocation(time_example)     # Solve sequential problem
+    # Solve sequential problem
+    time_allocation = SequentialAllocation(time_example)
     sHist_h = np.array([0, 1, 2, 3, 5, 5, 5])
     sHist_l = np.array([0, 1, 2, 4, 5, 5, 5])
     sim_seq_h = time_allocation.simulate(1, 0, 7, sHist_h)
@@ -1165,7 +1175,8 @@ We can now plot the Ramsey tax  under both realizations of time :math:`t = 3` go
     titles = ['Consumption', 'Labor Supply', 'Government Debt',
               'Tax Rate', 'Government Spending', 'Output']
 
-    for ax, title, sim_l, sim_h in zip(axes.flatten(), titles, sim_seq_l, sim_seq_h):
+    for ax, title, sim_l, sim_h in zip(axes.flatten(),
+            titles, sim_seq_l, sim_seq_h):
         ax.set(title=title)
         ax.plot(sim_l, '-ok', sim_h, '-or', alpha=0.7)
         ax.grid()
@@ -1444,11 +1455,13 @@ The figure below plots a sample path of the Ramsey tax rate
 .. code-block:: python3
 
     log_example = LogUtility()
-    seq_log = SequentialAllocation(log_example)         # Solve sequential problem
+    # Solve sequential problem
+    seq_log = SequentialAllocation(log_example)
 
     # Initialize grid for value function iteration and solve
     μ_grid = np.linspace(-0.6, 0.0, 200)
-    bel_log = RecursiveAllocation(log_example, μ_grid)  # Solve recursive problem
+    # Solve recursive problem
+    bel_log = RecursiveAllocation(log_example, μ_grid)
 
     T = 20
     sHist = np.array([0, 0, 0, 0, 0, 0, 0,
