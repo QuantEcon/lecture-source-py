@@ -605,8 +605,10 @@ and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standa
             self.β, self.μ, self.s = β, μ, s
             self.f, self.u = f, u
 
-            self.grid = np.linspace(1e-5, grid_max, grid_size)         # Set up grid
-            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
+            # Set up grid
+            self.grid = np.linspace(1e-5, grid_max, grid_size)
+            # Store shocks
+            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
 
 
 The Bellman Operator
@@ -916,7 +918,8 @@ Here's one solution (assuming as usual that you've executed everything above)
         v_solution = solve_model(og, verbose=False)
 
         σ_star = get_greedy(v_solution)
-        σ_func = lambda x: interp(grid, σ_star, x)  # Define an optimal policy function
+        # Define an optimal policy function
+        σ_func = lambda x: interp(grid, σ_star, x)
         y = simulate_og(σ_func, og, α)
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
 

@@ -1,3 +1,9 @@
+import numpy as np
+from interpolation import interp
+from numba import njit, prange
+from quantecon.optimize.scalar_maximization import brent_max
+
+
 def operator_factory(og, parallel_flag=True):
     """
     A function factory for building the Bellman operator, as well as

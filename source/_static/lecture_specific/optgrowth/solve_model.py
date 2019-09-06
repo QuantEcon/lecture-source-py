@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def solve_model(og,
                 use_parallel=True,
                 tol=1e-4,
