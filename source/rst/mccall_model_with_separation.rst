@@ -277,7 +277,7 @@ The default utility function is a CRRA utility function
             # the beta-binomial distribution
             if w_vals is None:
                 n = 60  # number of possible outcomes for wage
-                self.w_vals = np.linspace(10, 20, n)     # wages between 10 and 20
+                self.w_vals = np.linspace(10, 20, n)  # Wages between 10 and 20
                 a, b = 600, 400  # shape parameters
                 dist = BetaBinomial(n-1, a, b)
                 self.ϕ_vals = dist.pdf()
@@ -355,7 +355,8 @@ We'll use the default parameterizations found in the code above
     fig, ax = plt.subplots(figsize=(10, 6))
 
     ax.plot(mcm.w_vals, v, 'b-', lw=2, alpha=0.7, label='$v$')
-    ax.plot(mcm.w_vals, [h] * len(mcm.w_vals), 'g-', lw=2, alpha=0.7, label='$h$')
+    ax.plot(mcm.w_vals, [h] * len(mcm.w_vals), 
+            'g-', lw=2, alpha=0.7, label='$h$')
     ax.set_xlim(min(mcm.w_vals), max(mcm.w_vals))
     ax.legend()
     ax.grid()
@@ -408,7 +409,6 @@ If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
         the lowest wage in mcm.w_vals.
 
         If v(w) < h for all w, then w_bar is set to np.inf.
-
         """
 
         v, h = solve_model(mcm)
@@ -522,7 +522,7 @@ we can create an array for reservation wages for different values of :math:`c`,
 .. code-block:: python3
 
     grid_size = 25
-    c_vals = np.linspace(2, 12, grid_size)  # values of unemployment compensation
+    c_vals = np.linspace(2, 12, grid_size)  # Unemployment compensation
     w_bar_vals = np.empty_like(c_vals)
 
     mcm = McCallModel()
