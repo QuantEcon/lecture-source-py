@@ -41,7 +41,7 @@ In this lecture, we focus on
 
 * least squares regression
 
-We'll require following imports:
+We'll require the following imports:
 
 .. code-block:: ipython
 
