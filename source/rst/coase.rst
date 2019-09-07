@@ -33,6 +33,16 @@ The question Coase asked is this: if prices and free markets are so efficient, t
 
 Couldn't the associated within-firm planning be done more efficiently by the market?
 
+We'll use the following imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.optimize import fminbound
+    from interpolation import interp
+
 
 Why Firms Exist
 ---------------
@@ -124,15 +134,6 @@ In doing so we'll add a bit more structure than Coase did, but this price will b
 
 
 Our exposition is based on :cite:`kikuchi2018span`.
-
-We use the following standard imports:
-
-.. code-block:: ipython
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
 
 
 The Model
@@ -465,9 +466,6 @@ places.
 To begin, here's a class to store primitives and a grid
 
 .. code-block:: python3
-
-   from scipy.optimize import fminbound
-   from interpolation import interp
 
    class ProductionChain:
 
