@@ -57,13 +57,14 @@ This lecture covers
 * a powerful set of routines for solving discrete DPs from the `QuantEcon code library <http://quantecon.org/python_index.html>`_
 
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
+    import quantecon as qe
     import scipy.sparse as sparse
     from quantecon import compute_fixed_point
     from quantecon.markov import DiscreteDP
@@ -627,8 +628,6 @@ Let's create an instance using the objects stored in ``g``
 
 
 .. code-block:: python3
-
-    import quantecon as qe
 
     ddp = qe.markov.DiscreteDP(g.R, g.Q, g.β)
 
