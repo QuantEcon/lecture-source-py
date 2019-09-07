@@ -40,19 +40,15 @@ than value function iteration for this and some other closely related applicatio
 In a :doc:`subsequent lecture <egm_policy_iter>`, we'll see that the numerical implementation
 part of the Euler equation method can be further adjusted to obtain even more efficiency.
 
-Let's start with some imports
+Let's start with some imports:
 
 .. code-block:: ipython
 
     import numpy as np
     import quantecon as qe
-    from interpolation import interp
-    from numba import njit, prange
-    from quantecon.optimize import brentq
-    from quantecon.optimize.scalar_maximization import brent_max
     import matplotlib.pyplot as plt
     %matplotlib inline
-
+    from quantecon.optimize import brentq
 
 
 The Euler Equation
@@ -445,8 +441,9 @@ First, we'll store the parameters of the model in a class ``OptimalGrowthModel``
             self.f, self.u = f, u
             self.f_prime, self.u_prime = f_prime, u_prime
 
-            self.grid = np.linspace(1e-5, grid_max, grid_size)         # Set up grid
-            self.shocks = np.exp(μ + s * np.random.randn(shock_size))  # Store shocks
+            self.grid = np.linspace(1e-5, grid_max, grid_size)  # Set up grid
+            # Store shocks
+            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
 
 
 Here's some code that returns the Coleman-Reffett operator, :math:`K`.
