@@ -325,9 +325,9 @@ to generate cycles in quantities
 .. code-block:: python3
 
     # Calculation of y_t
-    TotalStock = econ1.k[0] + g * econ1.k[1] + g * econ1.k[2]
+    totalstock = econ1.k[0] + g * econ1.k[1] + g * econ1.k[2]
     fig, ax = plt.subplots()
-    ax.plot(TotalStock)
+    ax.plot(totalstock)
     ax.set_xlim((-1, 100))
     ax.set_title('Total number of cattle')
     plt.show()
@@ -380,16 +380,16 @@ We replicate their Figure 4 below
 
 .. code-block:: python3
 
-    Total1_irf = econ1.k_irf[:, 0] + g * econ1.k_irf[:, 1] + g * econ1.k_irf[:, 2]
-    Total3_irf = econ3.k_irf[:, 0] + g * econ3.k_irf[:, 1] + g * econ3.k_irf[:, 2]
+    total1_irf = econ1.k_irf[:, 0] + g * econ1.k_irf[:, 1] + g * econ1.k_irf[:, 2]
+    total3_irf = econ3.k_irf[:, 0] + g * econ3.k_irf[:, 1] + g * econ3.k_irf[:, 2]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
     ax1.plot(econ1.k_irf[:, 0], label='Breeding Stock')
-    ax1.plot(Total1_irf, label='Total Stock')
+    ax1.plot(total1_irf, label='Total Stock')
     ax1.set_title('$\\rho=0.6$')
 
     ax2.plot(econ3.k_irf[:, 0], label='Breeding Stock')
-    ax2.plot(Total3_irf, label='Total Stock')
+    ax2.plot(total3_irf, label='Total Stock')
     ax2.set_title('$\\rho=0$')
     plt.show()
 
