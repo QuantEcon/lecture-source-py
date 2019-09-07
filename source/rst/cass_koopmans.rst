@@ -68,7 +68,7 @@ The lecture uses important ideas including
 -  A non-stochastic version of a theory of the **term structure of
    interest rates**.
 
-Let's start with some imports
+Let's start with some standard imports:
 
 .. code-block:: ipython
 
@@ -346,7 +346,8 @@ problem with Python.
         See https://github.com/HIPS/autograd
         '''
         if γ == 1:
-            ## If γ = 1 we can show via L'hopital's Rule that the utility becomes log
+            # If γ = 1 we can show via L'hopital's Rule that the utility
+            # becomes log
             return np.log(c)
         else:
             return c**(1 - γ) / (1 - γ)
@@ -459,7 +460,8 @@ perfect, as we'll soon see.
     # Initial guesses
     T = 10
     c = np.zeros(T+1)  # T periods of consumption initialized to 0
-    k = np.zeros(T+2)  # T periods of capital initialized to 0 (T+2 to include t+1 variable as well)
+    # T periods of capital initialized to 0 (T+2 to include t+1 variable as well)
+    k = np.zeros(T+2)
     k[0] = 0.3  # Initial k
     c[0] = 0.2  # Guess of c_0
 
@@ -475,7 +477,8 @@ perfect, as we'll soon see.
         T = len(c) - 1
 
         for t in range(T):
-            k[t+1] = f(A=A, k=k[t], α=α) + (1 - δ) * k[t] - c[t]  # Equation 1 with inequality
+            # Equation 1 with inequality
+            k[t+1] = f(A=A, k=k[t], α=α) + (1 - δ) * k[t] - c[t]
             if k[t+1] < 0:   # Ensure nonnegativity
                 k[t+1] = 0
 
@@ -487,7 +490,8 @@ perfect, as we'll soon see.
                 # produce anything next period, so consumption will have to be 0
                 c[t+1] = 0
             else:
-                c[t+1] = u_prime_inv(u_prime(c=c[t], γ=γ) / (β * (f_prime(A=A, k=k[t+1], α=α) + (1 - δ))), γ=γ)
+                c[t+1] = u_prime_inv(u_prime(c=c[t], γ=γ) \
+                / (β * (f_prime(A=A, k=k[t+1], α=α) + (1 - δ))), γ=γ)
 
         # Terminal condition calculation
         k[T+1] = f(A=A, k=k[T], α=α) + (1 - δ) * k[T] - c[T]
@@ -552,7 +556,7 @@ tolerance bounds), stop and declare victory.
     def bisection_method(c,
                          k,
                          γ,              # Coefficient of relative risk aversion
-                         δ,              # Depreciation rate on capital# Depreciation rate
+                         δ,              # Depreciation rate
                          β,              # Discount factor
                          α,              # Return to capital per capita
                          A,              # Technology
@@ -567,16 +571,20 @@ tolerance bounds), stop and declare victory.
 
         path_c, path_k = shooting_method(c, k, γ, δ, β, α, A)
 
-        while (np.abs((path_k[T+1] - terminal)) > tol or path_k[T] == terminal) and i < max_iter:
+        while (np.abs((path_k[T+1] - terminal)) > tol or path_k[T] == terminal) \
+            and i < max_iter:
 
             if path_k[T+1] - terminal > tol:
-                # If assets are too high the c[0] we chose is now a lower bound on possible values of c[0]
+                # If assets are too high the c[0] we chose is now a lower bound
+                # on possible values of c[0]
                 c_low = c[0]
             elif path_k[T+1] - terminal < -tol:
-                # If assets fell too quickly, the c[0] we chose is now an upper bound on possible values of c[0]
+                # If assets fell too quickly, the c[0] we chose is now an upper
+                # bound on possible values of c[0]
                 c_high=c[0]
             elif path_k[T] == terminal:
-                # If assets fell  too quickly, the c[0] we chose is now an upper bound on possible values of c[0]
+                # If assets fell  too quickly, the c[0] we chose is now an upper
+                # bound on possible values of c[0]
                 c_high=c[0]
 
             c[0] = (c_high + c_low) / 2  # This is the bisection part
@@ -597,7 +605,8 @@ Now we can plot
 
     T = 10
     c = np.zeros(T+1) # T periods of consumption initialized to 0
-    k = np.zeros(T+2) # T periods of capital initialized to 0. T+2 to include t+1 variable as well.
+    # T periods of capital initialized to 0. T+2 to include t+1 variable as well
+    k = np.zeros(T+2)
 
     k[0] = 0.3 # initial k
     c[0] = 0.3 # our guess of c_0
