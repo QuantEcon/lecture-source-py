@@ -61,8 +61,11 @@ And we'll occasionally refer to some of these formulas from the infinite dimensi
 formulas and associated linear algebra.
 
 
+We'll start with the following standard import:
 
+.. code-block:: ipython
 
+    import numpy as np
 
 
 References
