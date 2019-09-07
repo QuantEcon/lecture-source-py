@@ -29,14 +29,14 @@ The model is originally due to Derek Neal :cite:`Neal1999`.
 
 This exposition draws on the presentation in :cite:`Ljungqvist2012`, section 6.5.
 
-We begin with some imports
+We begin with some imports:
 
 .. code-block:: ipython
 
-    import matplotlib.pyplot as plt
-    %matplotlib inline
     import numpy as np
     import quantecon as qe
+    import matplotlib.pyplot as plt
+    %matplotlib inline
     from numba import njit, prange
     from quantecon.distributions import BetaBinomial
     from scipy.special import binom, beta
@@ -202,8 +202,8 @@ default parameterizations of the model and an initial guess for the value functi
 
             self.β, self.grid_size, self.B = β, grid_size, B
 
-            self.θ = np.linspace(0, B, grid_size)     # set of θ values
-            self.ϵ = np.linspace(0, B, grid_size)     # set of ϵ values
+            self.θ = np.linspace(0, B, grid_size)     # Set of θ values
+            self.ϵ = np.linspace(0, B, grid_size)     # Set of ϵ values
 
             self.F_probs = BetaBinomial(grid_size - 1, F_a, F_b).pdf()
             self.G_probs = BetaBinomial(grid_size - 1, G_a, G_b).pdf()
@@ -244,9 +244,9 @@ In this model, :math:`T` is defined by :math:`Tv(\theta, \epsilon) = \max\{I, II
 
             for i in prange(len(v)):
                 for j in prange(len(v)):
-                    v1 = θ[i] + ϵ[j] + β * v[i, j]                    # stay put
-                    v2 = θ[i] + G_mean + β * v[i, :] @ G_probs        # new job
-                    v3 = G_mean + F_mean + β * F_probs @ v @ G_probs  # new life
+                    v1 = θ[i] + ϵ[j] + β * v[i, j]                    # Stay put
+                    v2 = θ[i] + G_mean + β * v[i, :] @ G_probs        # New job
+                    v3 = G_mean + F_mean + β * F_probs @ v @ G_probs  # New life
                     v_new[i, j] = max(v1, v2, v3)
 
             return v_new
