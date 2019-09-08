@@ -57,7 +57,7 @@ This can lead to
 Such dynamics are consistent with experiences of many countries.
 
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 
@@ -465,7 +465,7 @@ The output process is discretized using `Tauchen's quadrature method <https://gi
             # Alloc memory to store next iterate of value function
             V_upd = np.zeros((self.ny, self.nB))
 
-            # == Main loop == #
+            # Main loop
             while dist > tol and maxit > it:
 
                 # Compute expectations for this iteration
@@ -700,15 +700,15 @@ Compute the value function, policy and equilibrium prices
 
 .. code-block:: python3
 
-    ae = Arellano_Economy(β=.953,        # time discount factor
-                          γ=2.,          # risk aversion
-                          r=0.017,       # international interest rate
-                          ρ=.945,        # persistence in output
+    ae = Arellano_Economy(β=.953,        # Time discount factor
+                          γ=2.,          # Risk aversion
+                          r=0.017,       # International interest rate
+                          ρ=.945,        # Persistence in output
                           η=0.025,       # st dev of output shock
-                          θ=0.282,       # prob of regaining access
-                          ny=21,         # number of points in y grid
-                          nB=251,        # number of points in B grid
-                          tol=1e-8,      # error tolerance in iteration
+                          θ=0.282,       # Prob of regaining access
+                          ny=21,         # Number of points in y grid
+                          nB=251,        # Number of points in B grid
+                          tol=1e-8,      # Error tolerance in iteration
                           maxit=10000)
 
 
@@ -808,7 +808,7 @@ Plot a time series of major variables simulated from the model
     fig.subplots_adjust(hspace=0.3)
 
     for ax, series, title in zip(axes, plot_series, titles):
-        # determine suitable y limits
+        # Determine suitable y limits
         s_max, s_min = max(series), min(series)
         s_range = s_max - s_min
         y_max = s_max + s_range * 0.1
