@@ -83,6 +83,16 @@ For supplementary reading, see
     * :cite:`CryerChan2008`, all
 
 
+Let's start with some imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    import quantecon as qe
+
+
 Introduction
 =================================
 
@@ -242,11 +252,7 @@ The next figure plots an example of this function for :math:`\phi = 0.8` and :ma
 
 
 
-.. code-block:: ipython
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     num_rows, num_cols = 2, 1
     fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 8))
@@ -256,7 +262,8 @@ The next figure plots an example of this function for :math:`\phi = 0.8` and :ma
         ax = axes[i]
         times = list(range(16))
         acov = [ϕ**k / (1 - ϕ**2) for k in times]
-        ax.plot(times, acov, 'bo-', alpha=0.6, label=f'autocovariance, $\phi = {ϕ:.2}$')
+        ax.plot(times, acov, 'bo-', alpha=0.6,
+                label=f'autocovariance, $\phi = {ϕ:.2}$')
         ax.legend(loc='upper right')
         ax.set(xlabel='time', xlim=(0, 15))
         ax.hlines(0, 0, 15, linestyle='--', alpha=0.5)
@@ -516,7 +523,8 @@ Plotting :eq:`ar1_sd_ed` reveals the shape of the spectral density for the AR(1)
     for i, ϕ in enumerate((0.8, -0.8)):
         ax = axes[i]
         sd = ar1_sd(ϕ, ωs)
-        ax.plot(ωs, sd, 'b-', alpha=0.6, lw=2, label='spectral density, $\phi = {ϕ:.2}$')
+        ax.plot(ωs, sd, 'b-', alpha=0.6, lw=2,
+                label='spectral density, $\phi = {ϕ:.2}$')
         ax.legend(loc='upper center')
         ax.set(xlabel='frequency', xlim=(0, np.pi))
     plt.show()
@@ -841,8 +849,6 @@ As a warmup, let's make sure things look right when we for the pure white noise 
 
 
 .. code-block:: python3
-
-    import quantecon as qe
 
     ϕ = 0.0
     θ = 0.0
