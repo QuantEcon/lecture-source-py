@@ -150,8 +150,8 @@ class SequentialAllocation:
             u_c = Uc(c, n)
             s = sHist[t]
             Eu_c = π[sHist[t - 1]] @ u_c
-            cHist[t], nHist[t], Bhist[t], ΤHist[t] = c[s], n[s], x[s] / \
-                u_c[s], Τ[s]
+            cHist[t], nHist[t], Bhist[t], ΤHist[t] = c[s], n[s], x[s] / u_c[s], \
+                                                     Τ[s]
             RHist[t - 1] = Uc(cHist[t - 1], nHist[t - 1]) / (β * Eu_c)
             μHist[t] = μ
 

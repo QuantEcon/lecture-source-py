@@ -1,4 +1,7 @@
+import numpy as np
 from scipy.optimize import fmin_slsqp
+from scipy.optimize import root
+from quantecon import MarkovChain
 
 
 class RecursiveAllocationAMSS:
@@ -25,11 +28,11 @@ class RecursiveAllocationAMSS:
 
         # First get initial fit from Lucas Stokey solution.
         # Need to change things to be ex ante
-        PP = SequentialAllocation(model)
+        pp = SequentialAllocation(model)
         interp = interpolator_factory(2, None)
 
         def incomplete_allocation(μ_, s_):
-            c, n, x, V = PP.time1_value(μ_)
+            c, n, x, V = pp.time1_value(μ_)
             return c, n, π[s_] @ x, π[s_] @ V
         cf, nf, xgrid, Vf, xprimef = [], [], [], [], []
         for s_ in range(S):
@@ -64,7 +67,7 @@ class RecursiveAllocationAMSS:
             print(diff)
             Vf = Vfnew
 
-        # store value function policies and Bellman Equations
+        # Store value function policies and Bellman Equations
         self.Vf = Vf
         self.policies = policies
         self.T = T
@@ -119,13 +122,13 @@ class RecursiveAllocationAMSS:
             sHist = simulate_markov(π, s_0, T)
 
         cHist, nHist, Bhist, xHist, ΤHist, THist, μHist = np.zeros((7, T))
-        # time 0
+        # Time 0
         cHist[0], nHist[0], xHist[0], THist[0] = self.time0_allocation(B_, s_0)
         ΤHist[0] = self.Τ(cHist[0], nHist[0])[s_0]
         Bhist[0] = B_
         μHist[0] = self.Vf[s_0](xHist[0])
 
-        # time 1 onward
+        # Time 1 onward
         for t in range(1, T):
             s_, x, s = sHist[t - 1], xHist[t - 1], sHist[t]
             c, n, xprime, T = cf[s_, :](x), nf[s_, :](
@@ -272,7 +275,8 @@ class BellmanEquation:
         else:
             bounds = [(0., 100), (0., 100), self.xbar, (0., 0.)]
         out, fx, _, imode, smode = fmin_slsqp(objf, self.zFB[s0], f_eqcons=cons,
-                                              bounds=bounds, full_output=True, iprint=0)
+                                              bounds=bounds, full_output=True,
+                                              iprint=0)
 
         if imode > 0:
             raise Exception(smode)
