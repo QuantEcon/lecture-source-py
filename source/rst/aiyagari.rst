@@ -51,9 +51,9 @@ The Aiyagari model has been used to investigate many topics, including
 * etc., etc., etc.
 
 
-Let's start with some standard imports:
+Let's start with some imports:
 
-  .. code-block:: ipython
+.. code-block:: ipython
 
     import numpy as np
     import quantecon as qe
@@ -277,12 +277,12 @@ The class also includes a default set of parameters that we'll adopt unless othe
 
 
         def __init__(self,
-                    r=0.01,                      # interest rate
-                    w=1.0,                       # wages
-                    β=0.96,                      # discount factor
+                    r=0.01,                      # Interest rate
+                    w=1.0,                       # Wages
+                    β=0.96,                      # Discount factor
                     a_min=1e-10,
                     Π=[[0.9, 0.1], [0.1, 0.9]],  # Markov chain
-                    z_vals=[0.1, 1.0],           # exogenous states
+                    z_vals=[0.1, 1.0],           # Exogenous states
                     a_max=18,
                     a_size=200):
 
@@ -307,7 +307,7 @@ The class also includes a default set of parameters that we'll adopt unless othe
 
         def set_prices(self, r, w):
             """
-            Use this method to reset prices.  Calling the method will trigger a
+            Use this method to reset prices. Calling the method will trigger a
             re-build of R.
             """
             self.r, self.w = r, w
