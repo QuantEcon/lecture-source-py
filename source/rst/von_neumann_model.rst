@@ -32,6 +32,7 @@ following important tools:
 
 -  the Perron-Frobenius theorem
 
+We'll begin with some imports:
 
 .. code-block:: ipython
 

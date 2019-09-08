@@ -24,7 +24,7 @@ In addition to what's included in  Anaconda, this lecture uses the quantecon lib
 
   !pip install --upgrade quantecon
 
-We'll also need the following imports
+We'll also need the following imports:
 
 .. code-block:: ipython
 
