@@ -69,7 +69,7 @@ We describe how to construct,  simulate,  and interpret these components.
 
 More details about  these concepts and algorithms  can be found in Hansen and Sargent :cite:`hansen2008robustness`.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 
@@ -283,7 +283,7 @@ All of these objects are computed using the code below
             self.nx, self.nk = B.shape
             self.A, self.B = A, B
 
-            # checking the dimension of D (extended from the scalar case)
+            # Checking the dimension of D (extended from the scalar case)
             if len(D.shape) > 1 and D.shape[0] != 1:
                 self.nm = D.shape[0]
                 self.D = D
@@ -346,11 +346,14 @@ All of these objects are computed using the code below
 
             # Build A matrix for LSS
             # Order of states is: [1, t, xt, yt, mt]
-            A1 = np.hstack([1, 0, nx0r, ny0r, ny0r])            # Transition for 1
-            A2 = np.hstack([1, 1, nx0r, ny0r, ny0r])            # Transition for t
-            A3 = np.hstack([nx0c, nx0c, A, nyx0m.T, nyx0m.T])   # Transition for x_{t+1}
-            A4 = np.hstack([ν, ny0c, D, ny1m, ny0m])            # Transition for y_{t+1}
-            A5 = np.hstack([ny0c, ny0c, nyx0m, ny0m, ny1m])     # Transition for m_{t+1}
+            A1 = np.hstack([1, 0, nx0r, ny0r, ny0r])         # Transition for 1
+            A2 = np.hstack([1, 1, nx0r, ny0r, ny0r])         # Transition for t
+            # Transition for x_{t+1}
+            A3 = np.hstack([nx0c, nx0c, A, nyx0m.T, nyx0m.T])
+            # Transition for y_{t+1}
+            A4 = np.hstack([ν, ny0c, D, ny1m, ny0m])
+            # Transition for m_{t+1}    
+            A5 = np.hstack([ny0c, ny0c, nyx0m, ny0m, ny1m])
             Abar = np.vstack([A1, A2, A3, A4, A5])
 
             # Build B matrix for LSS
@@ -358,11 +361,13 @@ All of these objects are computed using the code below
 
             # Build G matrix for LSS
             # Order of observation is: [xt, yt, mt, st, tt]
-            G1 = np.hstack([nx0c, nx0c, np.eye(nx), nyx0m.T, nyx0m.T])    # Selector for x_{t}
-            G2 = np.hstack([ny0c, ny0c, nyx0m, ny1m, ny0m])               # Selector for y_{t}
-            G3 = np.hstack([ny0c, ny0c, nyx0m, ny0m, ny1m])               # Selector for martingale
-            G4 = np.hstack([ny0c, ny0c, -g, ny0m, ny0m])                  # Selector for stationary
-            G5 = np.hstack([ny0c, ν, nyx0m, ny0m, ny0m])                  # Selector for trend
+            # Selector for x_{t}
+            G1 = np.hstack([nx0c, nx0c, np.eye(nx), nyx0m.T, nyx0m.T])
+            G2 = np.hstack([ny0c, ny0c, nyx0m, ny1m, ny0m])   # Selector for y_{t}
+            # Selector for martingale
+            G3 = np.hstack([ny0c, ny0c, nyx0m, ny0m, ny1m])             
+            G4 = np.hstack([ny0c, ny0c, -g, ny0m, ny0m])  # Selector for stationary
+            G5 = np.hstack([ny0c, ν, nyx0m, ny0m, ny0m])  # Selector for trend
             Gbar = np.vstack([G1, G2, G3, G4, G5])
 
             # Build H matrix for LSS
@@ -378,10 +383,10 @@ All of these objects are computed using the code below
         def additive_decomp(self):
             """
             Return values for the martingale decomposition 
-                - ν         : unconditional mean difference in Y
-                - H         : coefficient for the (linear) martingale component (κ_a)
-                - g         : coefficient for the stationary component g(x)
-                - Y_0       : it should be the function of X_0 (for now set it to 0.0)
+                - ν     : unconditional mean difference in Y
+                - H     : coefficient for the (linear) martingale component (κ_a)
+                - g     : coefficient for the stationary component g(x)
+                - Y_0   : it should be the function of X_0 (for now set it to 0.0)
             """
             I = np.identity(self.nx)
             A_res = la.solve(I - self.A, I)
@@ -427,7 +432,8 @@ All of these objects are computed using the code below
             # Pull out right sizes so we know how to increment
             nx, nk, nm = self.nx, self.nk, self.nm
 
-            # Allocate space (nm is the number of additive functionals - we want npaths for each)
+            # Allocate space (nm is the number of additive functionals -
+            # we want npaths for each)
             mpath = np.empty((nm*npaths, T))
             mbounds = np.empty((nm*2, T))
             spath = np.empty((nm*npaths, T))
@@ -446,10 +452,12 @@ All of these objects are computed using the code below
                 # Lower and upper bounds - for each additive functional
                 for ii in range(nm):
                     li, ui = ii*2, (ii+1)*2
-                    madd_dist = norm(ymeans[nx+nm+ii], np.sqrt(yvar[nx+nm+ii, nx+nm+ii]))
+                    madd_dist = norm(ymeans[nx+nm+ii],
+                                     np.sqrt(yvar[nx+nm+ii, nx+nm+ii]))
                     mbounds[li:ui, t] = madd_dist.ppf([0.01, .99])
 
-                    sadd_dist = norm(ymeans[nx+2*nm+ii], np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii]))
+                    sadd_dist = norm(ymeans[nx+2*nm+ii],
+                                     np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii]))
                     sbounds[li:ui, t] = sadd_dist.ppf([0.01, .99])
 
             # Pull out paths
@@ -466,11 +474,17 @@ All of these objects are computed using the code below
             for ii in range(nm):
                 li, ui = npaths*(ii), npaths*(ii+1)
                 LI, UI = 2*(ii), 2*(ii+1)
-                add_figs.append(self.plot_given_paths(T, ypath[li:ui,:], mpath[li:ui,:], spath[li:ui,:],
-                                                    tpath[li:ui,:], mbounds[LI:UI,:], sbounds[LI:UI,:],
-                                                    show_trend=show_trend))
+                add_figs.append(self.plot_given_paths(T,
+                                                      ypath[li:ui,:],
+                                                      mpath[li:ui,:],
+                                                      spath[li:ui,:],
+                                                      tpath[li:ui,:], 
+                                                      mbounds[LI:UI,:],
+                                                      sbounds[LI:UI,:],
+                                                      show_trend=show_trend))
 
-                add_figs[ii].suptitle(f'Additive decomposition of $y_{ii+1}$', fontsize=14)
+                add_figs[ii].suptitle(f'Additive decomposition of $y_{ii+1}$',
+                                      fontsize=14)
 
             return add_figs
 
@@ -485,7 +499,8 @@ All of these objects are computed using the code below
             # Matrices for the multiplicative decomposition
             ν_tilde, H, g = self.multiplicative_decomp()
 
-            # Allocate space (nm is the number of functionals - we want npaths for each)
+            # Allocate space (nm is the number of functionals - 
+            # we want npaths for each)
             mpath_mult = np.empty((nm*npaths, T))
             mbounds_mult = np.empty((nm*2, T))
             spath_mult = np.empty((nm*npaths, T))
@@ -505,10 +520,21 @@ All of these objects are computed using the code below
                 for ii in range(nm):
                     li, ui = ii*2, (ii+1)*2
                     Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])), 
-                                    scale=np.asscalar( np.exp( ymeans[nx+nm+ii]- \
-                                                    t*(.5)*np.expand_dims(np.diag(H @ H.T),1)[ii])))
-                    Sdist = lognorm(np.asscalar(np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii])),
-                                    scale = np.asscalar( np.exp(-ymeans[nx+2*nm+ii])))
+                                    scale=np.asscalar(np.exp(ymeans[nx+nm+ii] \
+                                                            - t * (.5)
+                                                            * np.expand_dims(
+                                                                np.diag(H @ H.T),
+                                                                1
+                                                                )[ii]
+                                                            )
+                                                     )
+                                    )
+                    Sdist = lognorm(np.asscalar(np.sqrt(yvar[nx+2*nm+ii,
+                                                        nx+2*nm+ii])),
+                                    scale = np.asscalar(
+                                                np.exp(-ymeans[nx+2*nm+ii])
+                                                )
+                                    )
                     mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
                     sbounds_mult[li:ui, t] = Sdist.ppf([.01, .99])
 
@@ -517,9 +543,19 @@ All of these objects are computed using the code below
                 x, y = self.lss.simulate(T)
                 for ii in range(nm):
                     ypath_mult[npaths*ii+n, :] = np.exp(y[nx+ii, :])
-                    mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] - np.arange(T)*(.5)*np.expand_dims(np.diag(H @ H.T),1)[ii])
+                    mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] \
+                                                        - np.arange(T)*(.5)
+                                                        * np.expand_dims(np.diag(H
+                                                                            @ H.T),
+                                                                         1)[ii]
+                                                        )
                     spath_mult[npaths*ii+n, :] = 1/np.exp(-y[nx+2*nm + ii, :])
-                    tpath_mult[npaths*ii+n, :] = np.exp(y[nx+3*nm + ii, :] + np.arange(T)*(.5)*np.expand_dims(np.diag(H @ H.T),1)[ii])
+                    tpath_mult[npaths*ii+n, :] = np.exp(y[nx+3*nm + ii, :]
+                                                        + np.arange(T)*(.5)
+                                                        * np.expand_dims(np.diag(H
+                                                                            @ H.T),
+                                                                         1)[ii]
+                                                        )
 
             mult_figs = []
 
@@ -527,11 +563,17 @@ All of these objects are computed using the code below
                 li, ui = npaths*(ii), npaths*(ii+1)
                 LI, UI = 2*(ii), 2*(ii+1)
 
-                mult_figs.append(self.plot_given_paths(T, ypath_mult[li:ui,:], mpath_mult[li:ui,:], 
-                                                    spath_mult[li:ui,:], tpath_mult[li:ui,:], 
-                                                    mbounds_mult[LI:UI,:], sbounds_mult[LI:UI,:], 1, 
-                                                    show_trend=show_trend))
-                mult_figs[ii].suptitle(f'Multiplicative decomposition of $y_{ii+1}$', fontsize=14)
+                mult_figs.append(self.plot_given_paths(T,
+                                                       ypath_mult[li:ui,:],
+                                                       mpath_mult[li:ui,:], 
+                                                       spath_mult[li:ui,:],
+                                                       tpath_mult[li:ui,:], 
+                                                       mbounds_mult[LI:UI,:],
+                                                       sbounds_mult[LI:UI,:],
+                                                       1, 
+                                                       show_trend=show_trend))
+                mult_figs[ii].suptitle(f'Multiplicative decomposition of \
+                                         $y_{ii+1}$', fontsize=14)
 
             return mult_figs
 
@@ -542,7 +584,8 @@ All of these objects are computed using the code below
             # Matrices for the multiplicative decomposition
             ν_tilde, H, g = self.multiplicative_decomp()
 
-            # Allocate space (nm is the number of functionals - we want npaths for each)
+            # Allocate space (nm is the number of functionals - 
+            # we want npaths for each)
             mpath_mult = np.empty((nm*npaths, T))
             mbounds_mult = np.empty((nm*2, T))
 
@@ -557,16 +600,27 @@ All of these objects are computed using the code below
                 # Lower and upper bounds - for each functional
                 for ii in range(nm):
                     li, ui = ii*2, (ii+1)*2
-                    Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])), 
-                                    scale=np.asscalar( np.exp( ymeans[nx+nm+ii]- \
-                                                    t*(.5)*np.expand_dims(np.diag(H @ H.T),1)[ii])))
+                    Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])),
+                                    scale=np.asscalar( np.exp(ymeans[nx+nm+ii] \
+                                                              - t * (.5)
+                                                              * np.expand_dims(
+                                                                    np.diag(H @ H.T),
+                                                                    1)[ii]
+                                                             )
+                                                     )
+                                    )
                     mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
 
             # Pull out paths
             for n in range(npaths):
                 x, y = self.lss.simulate(T)
                 for ii in range(nm):
-                    mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] - np.arange(T)*(.5)*np.expand_dims(np.diag(H @ H.T),1)[ii])
+                    mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] \
+                                                       - np.arange(T) * (.5)
+                                                       * np.expand_dims(np.diag(H
+                                                                            @ H.T),
+                                                                        1)[ii]
+                                                        )
 
             mart_figs = []
 
@@ -576,7 +630,8 @@ All of these objects are computed using the code below
                 mart_figs.append(self.plot_martingale_paths(T, mpath_mult[li:ui, :],
                                                             mbounds_mult[LI:UI, :],
                                                             horline=1))
-                mart_figs[ii].suptitle(f'Martingale components for many paths of $y_{ii+1}$', fontsize=14)
+                mart_figs[ii].suptitle(f'Martingale components for many paths of \
+                                        $y_{ii+1}$', fontsize=14)
 
             return mart_figs
 
@@ -1065,11 +1120,11 @@ We'll do this by formulating the additive functional as a linear state space mod
     
             # Build G matrix for LSS
             # Order of observation is: [xt, yt, mt, st, tt]
-            G1 = np.hstack([0, 0, 1, 0, 0])               # Selector for x_{t}
-            G2 = np.hstack([0, 0, 0, 1, 0])               # Selector for y_{t}
-            G3 = np.hstack([0, 0, 0, 0, 1])               # Selector for martingale
-            G4 = np.hstack([0, 0, -g, 0, 0])              # Selector for stationary
-            G5 = np.hstack([0, ν, 0, 0, 0])               # Selector for trend
+            G1 = np.hstack([0, 0, 1, 0, 0])            # Selector for x_{t}
+            G2 = np.hstack([0, 0, 0, 1, 0])            # Selector for y_{t}
+            G3 = np.hstack([0, 0, 0, 0, 1])            # Selector for martingale
+            G4 = np.hstack([0, 0, -g, 0, 0])           # Selector for stationary
+            G5 = np.hstack([0, ν, 0, 0, 0])            # Selector for trend
             Gbar = np.vstack([G1, G2, G3, G4, G5])
     
             # Build H matrix for LSS
@@ -1078,17 +1133,18 @@ We'll do this by formulating the additive functional as a linear state space mod
             # Build LSS type
             x0 = np.hstack([1, 0, 0, 0, 0])
             S0 = np.zeros((5, 5))
-            lss = qe.lss.LinearStateSpace(Abar, Bbar, Gbar, Hbar, mu_0=x0, Sigma_0=S0)
+            lss = qe.lss.LinearStateSpace(Abar, Bbar, Gbar, Hbar,
+                                          mu_0=x0, Sigma_0=S0)
     
             return lss
     
         def additive_decomp(self):
             """
             Return values for the martingale decomposition (Proposition 4.3.3.)
-                - ν         : unconditional mean difference in Y
-                - H         : coefficient for the (linear) martingale component (kappa_a)
-                - g         : coefficient for the stationary component g(x)
-                - Y_0       : it should be the function of X_0 (for now set it to 0.0)
+               - ν     : unconditional mean difference in Y
+               - H     : coefficient for the (linear) martingale component (kappa_a)
+               - g     : coefficient for the stationary component g(x)
+               - Y_0   : it should be the function of X_0 (for now set it to 0.0)
             """
             A_res = 1 / (1 - self.A)
             g = self.D * A_res
@@ -1213,7 +1269,8 @@ simulations.
     print("The (min, mean, max) of additive Martingale component in period T is")
     print(f"\t ({np.min(amcT)}, {np.mean(amcT)}, {np.max(amcT)})")
 
-    print("The (min, mean, max) of multiplicative Martingale component in period T is")
+    print("The (min, mean, max) of multiplicative Martingale component \
+    in period T is")
     print(f"\t ({np.min(mmcT)}, {np.mean(mmcT)}, {np.max(mmcT)})")
 
 
