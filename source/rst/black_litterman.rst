@@ -46,6 +46,8 @@ Among the ideas in play in this lecture will be
 -  A risk-sensitivity operator and its connection to robust control
    theory
 
+Let's start with some imports:
+
 .. code-block:: ipython
 
     import numpy as np
@@ -161,11 +163,13 @@ manager cannot recommend them to a customer.
     w_m = np.random.rand(N)
     w_m = w_m / (w_m.sum())
 
-    # True risk premia and variance of excess return (constructed so that the Sharpe ratio is 1)
-    μ = (np.random.randn(N) + 5)  /100                   # Mean excess return (risk premium)
-    S = np.random.randn(N, N)                            # Random matrix for the covariance matrix
-    V = S @ S.T                                          # Turn the random matrix into symmetric psd
-    Σ = V * (w_m @ μ)**2 / (w_m @ V @ w_m)               # Make sure that the Sharpe ratio is one
+    # True risk premia and variance of excess return (constructed
+    # so that the Sharpe ratio is 1)
+    μ = (np.random.randn(N) + 5)  /100      # Mean excess return (risk premium)
+    S = np.random.randn(N, N)        # Random matrix for the covariance matrix
+    V = S @ S.T           # Turn the random matrix into symmetric psd
+    # Make sure that the Sharpe ratio is one
+    Σ = V * (w_m @ μ)**2 / (w_m @ V @ w_m) 
 
     # Risk aversion of market portfolio holder
     δ = 1 / np.sqrt(w_m @ Σ @ w_m)
@@ -181,7 +185,8 @@ manager cannot recommend them to a customer.
     w = np.linalg.solve(δ * Σ_est, μ_est)
 
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.set_title('Mean-variance portfolio weights recommendation and the market portfolio')
+    ax.set_title('Mean-variance portfolio weights recommendation \
+                  and the market portfolio')
     ax.plot(np.arange(N)+1, w, 'o', c='k', label='$w$ (mean-variance)')
     ax.plot(np.arange(N)+1, w_m, 'o', c='r', label='$w_m$ (market portfolio)')
     ax.vlines(np.arange(N)+1, 0, w, lw=1)
@@ -278,7 +283,7 @@ market portfolio.
     σ_m = w_m @ Σ_est @ w_m
 
     # Sharpe-ratio
-    SR_m = r_m / np.sqrt(σ_m)
+    sr_m = r_m / np.sqrt(σ_m)
 
     # Risk aversion of market portfolio holder
     d_m = r_m / σ_m
@@ -287,7 +292,8 @@ market portfolio.
     μ_m = (d_m * Σ_est @ w_m).reshape(N, 1)
 
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.set_title(r'Difference between $\hat{\mu}$ (estimate) and $\mu_{BL}$ (market implied)')
+    ax.set_title(r'Difference between $\hat{\mu}$ (estimate) and \
+                  $\mu_{BL}$ (market implied)')
     ax.plot(np.arange(N)+1, μ_est, 'o', c='k', label='$\hat{\mu}$')
     ax.plot(np.arange(N)+1, μ_m, 'o', c='r', label='$\mu_{BL}$')
     ax.vlines(np.arange(N) + 1, μ_m, μ_est, lw=1)
@@ -377,20 +383,25 @@ customer's portfolio will involve big short-long positions.
         w_tilde = np.linalg.solve(δ * Σ_est, μ_tilde)
 
         fig, ax = plt.subplots(1, 2, figsize=(16, 6))
-        ax[0].plot(np.arange(N)+1, μ_est, 'o', c='k', label=r'$\hat{\mu}$ (subj view)')
-        ax[0].plot(np.arange(N)+1, μ_m, 'o', c='r', label=r'$\mu_{BL}$ (market)')
-        ax[0].plot(np.arange(N)+1, μ_tilde, 'o', c='y', label=r'$\tilde{\mu}$ (mixture)')
+        ax[0].plot(np.arange(N)+1, μ_est, 'o', c='k',
+                   label=r'$\hat{\mu}$ (subj view)')
+        ax[0].plot(np.arange(N)+1, μ_m, 'o', c='r',
+                   label=r'$\mu_{BL}$ (market)')
+        ax[0].plot(np.arange(N)+1, μ_tilde, 'o', c='y',
+                   label=r'$\tilde{\mu}$ (mixture)')
         ax[0].vlines(np.arange(N)+1, μ_m, μ_est, lw=1)
         ax[0].axhline(0, c='k', ls='--')
         ax[0].set(xlim=(0, N+1), xlabel='Assets',
-                  title=r'Relationship between $\hat{\mu}$, $\mu_{BL}$and$\tilde{\mu}$')
+                  title=r'Relationship between $\hat{\mu}$, \
+                          $\mu_{BL}$and$\tilde{\mu}$')
         ax[0].xaxis.set_ticks(np.arange(1, N+1, 1))
         ax[0].legend(numpoints=1)
 
         ax[1].set_title('Black-Litterman portfolio weight recommendation')
         ax[1].plot(np.arange(N)+1, w, 'o', c='k', label=r'$w$ (mean-variance)')
         ax[1].plot(np.arange(N)+1, w_m, 'o', c='r', label=r'$w_{m}$ (market, BL)')
-        ax[1].plot(np.arange(N)+1, w_tilde, 'o', c='y', label=r'$\tilde{w}$ (mixture)')
+        ax[1].plot(np.arange(N)+1, w_tilde, 'o', c='y',
+                   label=r'$\tilde{w}$ (mixture)')
         ax[1].vlines(np.arange(N)+1, 0, w, lw=1)
         ax[1].vlines(np.arange(N)+1, 0, w_m, lw=1)
         ax[1].axhline(0, c='k')
@@ -1248,7 +1259,7 @@ compute in closed form.
 .. code-block:: python3
 
     # Generate large sample for different frequencies
-    N_app, M_app = 1000, 30000                      # Sample size, number of simulations
+    N_app, M_app = 1000, 30000        # Sample size, number of simulations
     h_grid = np.linspace(.1, 80, 30)
 
     var_est_store = []
@@ -1266,7 +1277,8 @@ compute in closed form.
 
     # Save mse of estimators
     mse_mean = np.var(mean_est_store, 1) + (np.mean(mean_est_store, 1) - μ)**2
-    mse_var = np.var(var_est_store, 1) + (np.mean(var_est_store, 1) - var_uncond)**2
+    mse_var = np.var(var_est_store, 1) \
+              + (np.mean(var_est_store, 1) - var_uncond)**2
 
     benchmark_rate = 2 * var_uncond       # IID case
 
@@ -1277,7 +1289,8 @@ compute in closed form.
     ax.plot(h_grid, rate_h, c='darkblue', lw=2,
             label=r'large sample relative MSE, $B(h)$')
     ax.axhline(benchmark_rate, c='k', ls='--', label=r'IID benchmark')
-    ax.set_title('Relative MSE for large samples as a function of sampling frequency \n MSE($S_N$) relative to MSE($\\bar X_N$)')
+    ax.set_title('Relative MSE for large samples as a function of sampling \
+                  frequency \n MSE($S_N$) relative to MSE($\\bar X_N$)')
     ax.set_xlabel('Sampling frequency, $h$')
     ax.legend()
     plt.show()
