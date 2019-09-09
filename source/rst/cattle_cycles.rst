@@ -32,7 +32,7 @@ of Rosen, Murphy and Scheinkman (1994) :cite:`rosen1994cattle`.
 That paper constructs a rational expectations equilibrium model to
 understand sources of recurrent cycles in US cattle stocks and prices.
 
-We make the following imports
+We make the following imports:
 
 .. code-block:: ipython
 
@@ -278,9 +278,9 @@ baseline case of :math:`\rho_3 = 0.6`).
 
 .. code-block:: python3
 
-    Info1 = Information(a22, c2, ub, ud)
-    Tech1 = Technology(ϕc, ϕg, ϕi, γ, δk, θk)
-    Pref1 = Preferences(β, lλ, πh, δh, θh)
+    info1 = Information(a22, c2, ub, ud)
+    tech1 = Technology(ϕc, ϕg, ϕi, γ, δk, θk)
+    pref1 = Preferences(β, lλ, πh, δh, θh)
 
     ρ3_2 = 1
     a22_2 = np.array([[1,  0,  0,    0],
@@ -288,7 +288,7 @@ baseline case of :math:`\rho_3 = 0.6`).
                       [0,  0, ρ2,    0],
                       [0,  0,  0, ρ3_2]])
 
-    Info2 = Information(a22_2, c2, ub, ud)
+    info2 = Information(a22_2, c2, ub, ud)
 
     ρ3_3 = 0
     a22_3 = np.array([[1,  0,  0,    0],
@@ -296,25 +296,25 @@ baseline case of :math:`\rho_3 = 0.6`).
                       [0,  0, ρ2,    0],
                       [0,  0,  0, ρ3_3]])
 
-    Info3 = Information(a22_3, c2, ub, ud)
+    info3 = Information(a22_3, c2, ub, ud)
 
     # Example of how we can look at the matrices associated with a given namedtuple
-    Info1.a22
+    info1.a22
 
 .. code-block:: python3
 
     # Use tuples to define DLE class
-    Econ1 = DLE(Info1, Tech1, Pref1)
-    Econ2 = DLE(Info2, Tech1, Pref1)
-    Econ3 = DLE(Info3, Tech1, Pref1)
+    econ1 = DLE(info1, tech1, pref1)
+    econ2 = DLE(info2, tech1, pref1)
+    econ3 = DLE(info3, tech1, pref1)
 
     # Calculate steady-state in baseline case and use to set the initial condition
-    Econ1.compute_steadystate(nnc=4)
-    x0 = Econ1.zz
+    econ1.compute_steadystate(nnc=4)
+    x0 = econ1.zz
 
 .. code-block:: python3
 
-    Econ1.compute_sequence(x0, ts_length=100)
+    econ1.compute_sequence(x0, ts_length=100)
 
 :cite:`rosen1994cattle` use the model to understand the
 sources of recurrent cycles in total cattle stocks.
@@ -324,9 +324,10 @@ to generate cycles in quantities
 
 .. code-block:: python3
 
-    TotalStock = Econ1.k[0] + g * Econ1.k[1] + g * Econ1.k[2]  # Calculation of y_t
+    # Calculation of y_t
+    totalstock = econ1.k[0] + g * econ1.k[1] + g * econ1.k[2]
     fig, ax = plt.subplots()
-    ax.plot(TotalStock)
+    ax.plot(totalstock)
     ax.set_xlim((-1, 100))
     ax.set_title('Total number of cattle')
     plt.show()
@@ -342,20 +343,20 @@ We replicate their Figure 3 below
 
     shock_demand = np.array([[0], [0], [1]])
 
-    Econ1.irf(ts_length=25, shock=shock_demand)
-    Econ2.irf(ts_length=25, shock=shock_demand)
-    Econ3.irf(ts_length=25, shock=shock_demand)
+    econ1.irf(ts_length=25, shock=shock_demand)
+    econ2.irf(ts_length=25, shock=shock_demand)
+    econ3.irf(ts_length=25, shock=shock_demand)
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-    ax1.plot(Econ1.c_irf, label='$\\rho=0.6$')
-    ax1.plot(Econ2.c_irf, label='$\\rho=1$')
-    ax1.plot(Econ3.c_irf, label='$\\rho=0$')
+    ax1.plot(econ1.c_irf, label='$\\rho=0.6$')
+    ax1.plot(econ2.c_irf, label='$\\rho=1$')
+    ax1.plot(econ3.c_irf, label='$\\rho=0$')
     ax1.set_title('Consumption response to demand shock')
     ax1.legend()
 
-    ax2.plot(Econ1.k_irf[:, 0], label='$\\rho=0.6$')
-    ax2.plot(Econ2.k_irf[:, 0], label='$\\rho=1$')
-    ax2.plot(Econ3.k_irf[:, 0], label='$\\rho=0$')
+    ax2.plot(econ1.k_irf[:, 0], label='$\\rho=0.6$')
+    ax2.plot(econ2.k_irf[:, 0], label='$\\rho=1$')
+    ax2.plot(econ3.k_irf[:, 0], label='$\\rho=0$')
     ax2.set_title('Breeding stock response to demand shock')
     ax2.legend()
     plt.show()
@@ -379,16 +380,16 @@ We replicate their Figure 4 below
 
 .. code-block:: python3
 
-    Total1_irf = Econ1.k_irf[:, 0] + g * Econ1.k_irf[:, 1] + g * Econ1.k_irf[:, 2]
-    Total3_irf = Econ3.k_irf[:, 0] + g * Econ3.k_irf[:, 1] + g * Econ3.k_irf[:, 2]
+    total1_irf = econ1.k_irf[:, 0] + g * econ1.k_irf[:, 1] + g * econ1.k_irf[:, 2]
+    total3_irf = econ3.k_irf[:, 0] + g * econ3.k_irf[:, 1] + g * econ3.k_irf[:, 2]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-    ax1.plot(Econ1.k_irf[:, 0], label='Breeding Stock')
-    ax1.plot(Total1_irf, label='Total Stock')
+    ax1.plot(econ1.k_irf[:, 0], label='Breeding Stock')
+    ax1.plot(total1_irf, label='Total Stock')
     ax1.set_title('$\\rho=0.6$')
 
-    ax2.plot(Econ3.k_irf[:, 0], label='Breeding Stock')
-    ax2.plot(Total3_irf, label='Total Stock')
+    ax2.plot(econ3.k_irf[:, 0], label='Breeding Stock')
+    ax2.plot(total3_irf, label='Total Stock')
     ax2.set_title('$\\rho=0$')
     plt.show()
 

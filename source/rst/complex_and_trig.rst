@@ -87,13 +87,14 @@ Three elementary trigonometric functions are
    \tan{\theta} = \frac{x}{y}
 
 
-We'll need the following imports
+We'll need the following imports:
 
 .. code-block:: ipython
 
    import numpy as np
    import matplotlib.pyplot as plt
    %matplotlib inline
+   from sympy import *
 
 
 An Example
@@ -127,24 +128,25 @@ Let's use Python to plot the trigonometric form of the complex number
     fig = plt.figure(figsize=(8, 8))
     ax = plt.subplot(111, projection='polar')
 
-    ax.plot((0, θ), (0, r), marker='o', color='b')          # plot r
-    ax.plot(zeros(x_range.shape), x_range, color='b')       # plot x
-    ax.plot(θ_range, x / np.cos(θ_range), color='b')        # plot y
-    ax.plot(θ_range, ones(θ_range.shape) * 0.1, color='r')  # plot θ
+    ax.plot((0, θ), (0, r), marker='o', color='b')          # Plot r
+    ax.plot(zeros(x_range.shape), x_range, color='b')       # Plot x
+    ax.plot(θ_range, x / np.cos(θ_range), color='b')        # Plot y
+    ax.plot(θ_range, ones(θ_range.shape) * 0.1, color='r')  # Plot θ
 
     ax.margins(0) # Let the plot starts at origin
 
-    ax.set_title("Trigonometry of complex numbers", va='bottom', fontsize='x-large')
+    ax.set_title("Trigonometry of complex numbers", va='bottom',
+        fontsize='x-large')
 
     ax.set_rmax(2)
-    ax.set_rticks((0.5, 1, 1.5, 2))  # less radial ticks
-    ax.set_rlabel_position(-88.5)    # get radial labels away from plotted line
+    ax.set_rticks((0.5, 1, 1.5, 2))  # Less radial ticks
+    ax.set_rlabel_position(-88.5)    # Get radial labels away from plotted line
 
-    ax.text(θ, r+0.01 , r'$z = x + iy = 1 + \sqrt{3}\, i$')   # label z
-    ax.text(θ+0.2, 1 , '$r = 2$')                             # label r
-    ax.text(0-0.2, 0.5, '$x = 1$')                            # label x
-    ax.text(0.5, 1.2, r'$y = \sqrt{3}$')                      # label y
-    ax.text(0.25, 0.15, r'$\theta = 60^o$')                   # label θ
+    ax.text(θ, r+0.01 , r'$z = x + iy = 1 + \sqrt{3}\, i$')   # Label z
+    ax.text(θ+0.2, 1 , '$r = 2$')                             # Label r
+    ax.text(0-0.2, 0.5, '$x = 1$')                            # Label x
+    ax.text(0.5, 1.2, r'$y = \sqrt{3}$')                      # Label y
+    ax.text(0.25, 0.15, r'$\theta = 60^o$')                   # Label θ
 
     ax.grid(True)
     plt.show()
@@ -286,8 +288,6 @@ condition:
 
 .. code-block:: python3
 
-    from sympy import *
-
     # Set parameters
     r = 0.9
     θ = π/4
@@ -332,7 +332,8 @@ and plot the dynamic.
     ax.plot(n, x(n))
     ax.set(xlim=(0, max_n), ylim=(-5, 5), xlabel='$n$', ylabel='$x_n$')
 
-    ax.spines['bottom'].set_position('center') # Set x-axis in the middle of the plot
+    # Set x-axis in the middle of the plot
+    ax.spines['bottom'].set_position('center')
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
     ax.xaxis.set_ticks_position('bottom')
@@ -407,8 +408,10 @@ can verify the equations using the ``simplify`` function in the
     ω, θ = symbols('ω θ', real=True)
 
     # Verify
-    print("cos(ω)cos(θ) - sin(ω)sin(θ) =", simplify(cos(ω)*cos(θ) - sin(ω) * sin(θ)))
-    print("cos(ω)sin(θ) + sin(ω)cos(θ) =", simplify(cos(ω)*sin(θ) + sin(ω) * cos(θ)))
+    print("cos(ω)cos(θ) - sin(ω)sin(θ) =",
+        simplify(cos(ω)*cos(θ) - sin(ω) * sin(θ)))
+    print("cos(ω)sin(θ) + sin(ω)cos(θ) =",
+        simplify(cos(ω)*sin(θ) + sin(ω) * cos(θ)))
 
 
 Trigonometric Integrals
@@ -473,5 +476,6 @@ We can verify the analytical as well as numerical results using
 
 .. code-block:: python3
 
-    print('The numerical solution for the integral of cos(ω)sin(ω) from -π to π is:')
+    print('The numerical solution for the integral of cos(ω)sin(ω) \
+    from -π to π is:')
     integrate(cos(ω) * sin(ω), (ω, -π, π))
