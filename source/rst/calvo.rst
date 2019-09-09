@@ -70,6 +70,15 @@ plan under a timing protocol in which a government chooses an infinite
 sequence of money supply growth rates once and for all at time
 :math:`0`.
 
+We'll start with some imports:
+
+.. code-block:: ipython
+
+    import numpy as np
+    from quantecon import LQ
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
 The Model
 ==========
 
@@ -571,13 +580,7 @@ The bliss level of inflation is denoted by :math:`\theta^*`.
 
 First, we will create a class `ChangLQ` that solves the models and stores their values
 
-.. code-block:: ipython
-
-    import numpy as np
-    from quantecon import LQ
-    import matplotlib.pyplot as plt
-    %matplotlib inline
-
+.. code-block:: python3
 
     class ChangLQ:
         """
@@ -618,12 +621,13 @@ First, we will create a class `ChangLQ` that solves the models and stores their 
             self.μ_check = -α * α1 / (α2 * α**2 + c)
 
             # Calculate value under MPE and Check economy
-            self.J_MPE  = (α0 + α1 * (-α * self.μ_MPE) - α2 / 2 *
-                          (-α * self.μ_MPE)**2 - c/2 * self.μ_MPE**2) / (1 - self.β)
-            self.J_check = (α0 + α1 * (-α * self.μ_check) - α2/2 *
-                           (-α * self.μ_check)**2 - c / 2 * self.μ_check**2) / (1 - self.β)
+            self.J_MPE  = (α0 + α1 * (-α * self.μ_MPE) - α2 / 2
+                          * (-α * self.μ_MPE)**2 - c/2 * self.μ_MPE**2) / (1 - self.β)
+            self.J_check = (α0 + α1 * (-α * self.μ_check) - α2/2
+                            * (-α * self.μ_check)**2 - c / 2 * self.μ_check**2) \
+                            / (1 - self.β)
 
-            # Siμlate Ramsey plan for large number of periods
+            # Simulate Ramsey plan for large number of periods
             θ_series = np.vstack((np.ones((1, T)), np.zeros((1, T))))
             μ_series = np.zeros(T)
             J_series = np.zeros(T)
@@ -656,7 +660,8 @@ First, we will create a class `ChangLQ` that solves the models and stores their 
             μ_space = np.zeros(200)
             θ_prime = np.zeros(200)
             for i in range(200):
-                J_space[i] = - np.array((1, θ_space[i])) @ self.P @ np.array((1, θ_space[i])).T
+                J_space[i] = - np.array((1, θ_space[i])) \
+                            @ self.P @ np.array((1, θ_space[i])).T
                 μ_space[i] = - self.F @ np.array((1, θ_space[i]))
                 x_prime = (A - B @ self.F) @ np.array((1, θ_space[i]))
                 θ_prime[i] = x_prime[1]
@@ -762,7 +767,8 @@ problem as well as that for a Ramsey planner that  must choose a constant
             ax.scatter(θ, check_LB + 0.02 * check_range, 60, 'k', 'v')
             ax.annotate(label,
                         xy=(θ, check_LB + 0.01 * check_range),
-                        xytext=(θ - 0.02 * check_range, check_LB + 0.08 * check_range),
+                        xytext=(θ - 0.02 * check_range,
+                                check_LB + 0.08 * check_range),
                         fontsize=18)
         plt.tight_layout()
         plt.show()
@@ -1168,8 +1174,8 @@ beginning, i.e., :math:`\theta^A_{t+10} =\theta^R_t \ \ \forall t \geq 0`.
         # Calculate utility of stick plan
         U_A = np.zeros(T)
         for t in range(T):
-            U_A[t] = clq.β**t * (clq.α0 + clq.α1 * (-clq.θ_A[t]) -
-                     clq.α2 / 2 * (-clq.θ_A[t])**2 - clq.c * clq.μ_A[t]**2)
+            U_A[t] = clq.β**t * (clq.α0 + clq.α1 * (-clq.θ_A[t])
+                     - clq.α2 / 2 * (-clq.θ_A[t])**2 - clq.c * clq.μ_A[t]**2)
 
         clq.V_A = np.zeros(T)
         for t in range(T):
@@ -1178,9 +1184,9 @@ beginning, i.e., :math:`\theta^A_{t+10} =\theta^R_t \ \ \forall t \geq 0`.
         # Make sure Abreu plan is self-enforcing
         clq.V_dev = np.zeros(T_Plot)
         for t in range(T_Plot):
-            clq.V_dev[t] = (clq.α0 + clq.α1 * (-clq.θ_A[t]) -
-                                clq.α2 / 2 * (-clq.θ_A[t])**2) + \
-                                clq.β * clq.V_A[0]
+            clq.V_dev[t] = (clq.α0 + clq.α1 * (-clq.θ_A[t])
+                            - clq.α2 / 2 * (-clq.θ_A[t])**2) \
+                            + clq.β * clq.V_A[0]
 
         fig, axes = plt.subplots(3, 1, figsize=(8, 12))
 
@@ -1230,8 +1236,9 @@ the Ramsey plan :math:`\vec \mu^R` is sustainable by verifying that:
         # Make sure Ramsey plan is sustainable
         R_dev = np.zeros(T)
         for t in range(T):
-            R_dev[t] = (clq.α0 + clq.α1 * (-clq.θ_series[1, t]) -
-                        clq.α2 / 2 * (-clq.θ_series[1, t])**2) + clq.β * clq.V_A[0]
+            R_dev[t] = (clq.α0 + clq.α1 * (-clq.θ_series[1, t])
+                        - clq.α2 / 2 * (-clq.θ_series[1, t])**2) \
+                        + clq.β * clq.V_A[0]
 
         return np.all(clq.J_series > R_dev)
 
