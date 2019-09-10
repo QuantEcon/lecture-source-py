@@ -66,7 +66,7 @@ The model will prove useful for illustrating concepts such as
 * ensemble moments and cross-section observations
 
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 
