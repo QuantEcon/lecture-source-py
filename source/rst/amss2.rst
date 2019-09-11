@@ -91,6 +91,14 @@ This lecture studies a special  AMSS model in which
 In a nutshell, the reason for this striking outcome is that at a particular level of risk-free government **assets**, fluctuations in the one-period risk-free interest
 rate provide the government with complete insurance against stochastically varying government expenditures.
 
+Let's start with some imports:
+
+.. code-block:: ipython
+
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.optimize import fsolve, fmin
+
 
 Forces at Work
 ===============
@@ -356,8 +364,6 @@ Here is code to do the calculations for us.
 
 .. code-block:: python3
 
-    from scipy.optimize import fsolve, fmin
-
     u = CRRAutility()
 
     def min_Φ(Φ):
@@ -381,9 +387,11 @@ Here is code to do the calculations for us.
 
         c1, c2 = fsolve(equations, np.ones(2), args=(Φ))
 
-        uc = u.Uc(np.array([c1, c2]), 1)                                   # uc(n - g)
-        ul = -u.Un(1, np.array([c1 + g1, c2 + g2])) * [c1 + g1, c2 + g2]   # ul(n) = -un(c + g)
-        x = np.linalg.solve(np.eye((2)) - u.β * u.π, uc * [c1, c2] - ul)   # solve for x
+        uc = u.Uc(np.array([c1, c2]), 1)                            # uc(n - g)
+        # ul(n) = -un(c + g)
+        ul = -u.Un(1, np.array([c1 + g1, c2 + g2])) * [c1 + g1, c2 + g2]
+        # Solve for x
+        x = np.linalg.solve(np.eye((2)) - u.β * u.π, uc * [c1, c2] - ul)
 
         global b                 # Update b globally
         b = x / uc
@@ -419,9 +427,9 @@ set up a function that returns two simultaneous equations.
         τ_0 = 1 + u.Un(1, c0 + g0) / u.Uc(c0, 1)
 
         eq1 = τ_0 * (c0 + g0) + b_bar / R_0 - b0 - g0
-        eq2 = (1 + Φ) * (u.Uc(c0, 1)  + u.Un(1, c0 + g0)) + \
-                Φ * (c0 * u.Ucc(c0, 1) + (c0 + g0) * u.Unn(1, c0 + g0)) - \
-                Φ * u.Ucc(c0, 1) * b0
+        eq2 = (1 + Φ) * (u.Uc(c0, 1)  + u.Un(1, c0 + g0)) \
+               + Φ * (c0 * u.Ucc(c0, 1) + (c0 + g0) * u.Unn(1, c0 + g0)) \
+               - Φ * u.Ucc(c0, 1) * b0
 
         return np.array([eq1, eq2], dtype='float64')
 
@@ -429,7 +437,8 @@ To solve the equations for :math:`c_0, b_0`, we use SciPy's fsolve function
 
 .. code-block:: python3
 
-    c0, b0 = fsolve(solve_cb, np.array([1., -1.], dtype='float64'), args=(Φ_star, b[0], 1), xtol=1.0e-12)
+    c0, b0 = fsolve(solve_cb, np.array([1., -1.], dtype='float64'), 
+                    args=(Φ_star, b[0], 1), xtol=1.0e-12)
     c0, b0
 
 Thus, we have reverse engineered an initial :math:`b0 = -1.038698407551764` that ought to render the AMSS measurability constraints slack.
@@ -443,18 +452,16 @@ debt equal to :math:`b_0 = -1.038698407551764`.
 
 These graphs report outcomes for both the Lucas-Stokey economy with complete markets and the AMSS economy with one-period risk-free debt only.
 
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     μ_grid = np.linspace(-0.09, 0.1, 100)
 
     log_example = CRRAutility()
 
-    log_example.transfers = True                        # Government can use transfers
+    log_example.transfers = True                    # Government can use transfers
     log_sequential = SequentialAllocation(log_example)  # Solve sequential problem
-    log_bellman = RecursiveAllocationAMSS(log_example, μ_grid, tol_diff=1e-10, tol=1e-12)
+    log_bellman = RecursiveAllocationAMSS(log_example, μ_grid,
+                                          tol_diff=1e-10, tol=1e-12)
 
     T = 20
     sHist = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
@@ -722,8 +729,8 @@ Now let's form the two random variables :math:`{\mathcal R}, {\mathcal X}` appea
     n = c + g     # Total population
     τ = lambda s: 1 + u.Un(1, n[s]) / u.Uc(c[s], 1)
 
-    R_s = lambda s: u.Uc(c[s], n[s]) / (u.β * (u.Uc(c[0], n[0]) * u.π[0, 0] + \
-                    u.Uc(c[1], n[1]) * u.π[1, 0]))
+    R_s = lambda s: u.Uc(c[s], n[s]) / (u.β * (u.Uc(c[0], n[0]) * u.π[0, 0] \
+                    + u.Uc(c[1], n[1]) * u.π[1, 0]))
     X_s = lambda s: u.Uc(c[s], n[s]) * (g[s] - τ(s) * n[s])
 
     R = [R_s(0), R_s(1)]
