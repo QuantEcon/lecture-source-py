@@ -20,7 +20,7 @@ In addition to what's in Anaconda, this lecture uses the quantecon library.
 
   !pip install --upgrade quantecon
 
-We'll also need the following imports
+We'll also need the following imports:
 
 .. code-block:: ipython
 

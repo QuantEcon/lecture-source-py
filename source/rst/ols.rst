@@ -40,7 +40,7 @@ The main contribution is the use of settler mortality rates as a source of *exog
 
 Such variation is needed to determine whether it is institutions that give rise to greater economic growth, rather than the other way around.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

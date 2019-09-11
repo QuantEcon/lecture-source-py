@@ -36,17 +36,17 @@ In the version considered below, the wage distribution is unknown and must be le
 
 * The following is based on the presentation in :cite:`Ljungqvist2012`, section 6.6.
 
-Let's start with some imports
+Let's start with some imports:
 
 .. code-block:: ipython
 
-    from numba import njit, prange, vectorize
-    from interpolation import mlinterp, interp
-    from math import gamma
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
     from matplotlib import cm
+    from numba import njit, prange, vectorize
+    from interpolation import mlinterp, interp
+    from math import gamma
 
 
 Model Features
