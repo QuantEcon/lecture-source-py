@@ -52,6 +52,8 @@ because it comes in handy later when we want to just-in-time compile our code.
 
 This library can be installed with the following command in Jupyter: ``!pip install interpolation``.
 
+Let's start with some imports:
+
 .. code-block:: ipython
 
     import numpy as np

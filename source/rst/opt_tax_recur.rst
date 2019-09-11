@@ -61,10 +61,7 @@ Let's start with some standard imports:
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
-    from scipy.optimize import root
-    from quantecon import MarkovChain
-    from scipy.interpolate import UnivariateSpline
-    from scipy.optimize import fmin_slsqp
+    
 
 A Competitive Equilibrium with Distorting Taxes
 ===============================================
