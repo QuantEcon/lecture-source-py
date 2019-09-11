@@ -84,7 +84,7 @@ interpretation, the government's exogenous expenditure process):
 
 We'll spend most of this lecture studying the finite-state Markov specification, but will briefly treat the linear state space specification before concluding.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 
@@ -698,20 +698,23 @@ Let's try this, using the same parameters in both complete and incomplete market
     c_bar, b1, b2 = consumption_complete(cp)
     debt_complete = np.asarray([b1, b2])
 
-    c_path, debt_path, y_path, s_path = consumption_incomplete(cp, N_simul=N_simul)
+    c_path, debt_path, y_path, s_path = consumption_incomplete(cp,
+                                                               N_simul=N_simul)
 
     fig, ax = plt.subplots(1, 2, figsize=(15, 5))
 
     ax[0].set_title('Consumption paths')
     ax[0].plot(np.arange(N_simul), c_path, label='incomplete market')
-    ax[0].plot(np.arange(N_simul), c_bar * np.ones(N_simul), label='complete market')
+    ax[0].plot(np.arange(N_simul), c_bar * np.ones(N_simul),
+                        label='complete market')
     ax[0].plot(np.arange(N_simul), y_path, label='income', alpha=.6, ls='--')
     ax[0].legend()
     ax[0].set_xlabel('Periods')
 
     ax[1].set_title('Debt paths')
     ax[1].plot(np.arange(N_simul), debt_path, label='incomplete market')
-    ax[1].plot(np.arange(N_simul), debt_complete[s_path], label='complete market')
+    ax[1].plot(np.arange(N_simul), debt_complete[s_path],
+               label='complete market')
     ax[1].plot(np.arange(N_simul), y_path, label='income', alpha=.6, ls='--')
     ax[1].legend()
     ax[1].axhline(0, color='k', ls='--')
@@ -748,15 +751,18 @@ We can simply relabel variables to acquire tax-smoothing interpretations of our 
 
     ax[0].set_title('Tax collection paths')
     ax[0].plot(np.arange(N_simul), c_path, label='incomplete market')
-    ax[0].plot(np.arange(N_simul), c_bar * np.ones(N_simul), label='complete market')
-    ax[0].plot(np.arange(N_simul), y_path, label='govt expenditures', alpha=.6, ls='--')
+    ax[0].plot(np.arange(N_simul), c_bar * np.ones(N_simul),
+               label='complete market')
+    ax[0].plot(np.arange(N_simul), y_path, label='govt expenditures',
+               alpha=.6, ls='--')
     ax[0].legend()
     ax[0].set_xlabel('Periods')
     ax[0].set_ylim([1.4, 2.1])
 
     ax[1].set_title('Government assets paths')
     ax[1].plot(np.arange(N_simul), debt_path, label='incomplete market')
-    ax[1].plot(np.arange(N_simul), debt_complete[s_path], label='complete market')
+    ax[1].plot(np.arange(N_simul), debt_complete[s_path],
+               label='complete market')
     ax[1].plot(np.arange(N_simul), y_path, label='govt expenditures', ls='--')
     ax[1].legend()
     ax[1].axhline(0, color='k', ls='--')
@@ -1106,7 +1112,8 @@ allows the consumer completely to smooth consumption across time and across stat
     # Consumption plots
     ax[0].set_title('Cons and income', fontsize=17)
     ax[0].plot(np.arange(N_simul), c_hist_com, label='consumption')
-    ax[0].plot(np.arange(N_simul), y_hist_com, label='income', alpha=.6, linestyle='--')
+    ax[0].plot(np.arange(N_simul), y_hist_com, label='income', alpha=.6, 
+               linestyle='--')
     ax[0].legend()
     ax[0].set_xlabel('Periods')
     ax[0].set_ylim([-5.0, 110])
@@ -1114,7 +1121,8 @@ allows the consumer completely to smooth consumption across time and across stat
     # Debt plots
     ax[1].set_title('Debt and income')
     ax[1].plot(np.arange(N_simul), b_hist_com, label='debt')
-    ax[1].plot(np.arange(N_simul), y_hist_com, label='Income', alpha=.6, linestyle='--')
+    ax[1].plot(np.arange(N_simul), y_hist_com, label='Income', alpha=.6,
+               linestyle='--')
     ax[1].legend()
     ax[1].axhline(0, color='k')
     ax[1].set_xlabel('Periods')

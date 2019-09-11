@@ -60,10 +60,9 @@ Key ideas in play will be:
 
 -  A **uniformly most powerful test**
 
-We'll begin with some imports
+We'll begin with some imports:
 
-.. code-block:: python3
-
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -184,7 +183,7 @@ The bottom panel presents mixtures of these distributions, with various mixing p
 
 
 
-.. code-block:: ipython
+.. code-block:: python3
 
     def beta_function_factory(a, b):
 

@@ -61,9 +61,9 @@ such as simulation, distribution dynamics, stability, ergodicity, etc.
     mathematical literature (e.g., :cite:`MeynTweedie2009`) in using the term to refer to any discrete **time**
     Markov process.
 
-Let's start with some standard imports:
+Let's begin with some imports:
 
-.. code-block:: python3
+.. code-block:: ipython
 
     import numpy as np
     import matplotlib.pyplot as plt

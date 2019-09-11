@@ -63,7 +63,7 @@ The original decision-maker uses those bounds to construct a decision rule with 
     In reading this lecture, please don't think that our decision-maker is paranoid when he conducts a worst-case analysis. By designing a rule that works well against a worst-case, his intention is to construct a rule that will work well across a *set* of models.
 
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

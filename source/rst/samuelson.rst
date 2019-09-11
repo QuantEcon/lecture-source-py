@@ -51,6 +51,7 @@ We'll also use the following for various tasks described below:
     import math
     import sympy
     from sympy import Symbol, init_printing
+    from cmath import sqrt
 
 
 Samuelson's Model
@@ -557,16 +558,15 @@ that we set
 
 .. code-block:: python3
 
-    from cmath import sqrt
-
-    ##=== This is a 'manual' method ===#
+    # This is a 'manual' method
 
     def y_nonstochastic(y_0=100, y_1=80, α=.92, β=.5, γ=10, n=80):
 
         """Takes values of parameters and computes the roots of characteristic
         polynomial. It tells whether they are real or complex and whether they
         are less than unity in absolute value.It also computes a simulation of
-        length n starting from the two given initial conditions for national income
+        length n starting from the two given initial conditions for national
+        income
         """
 
         roots = []

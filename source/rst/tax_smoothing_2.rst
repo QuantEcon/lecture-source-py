@@ -61,6 +61,15 @@ We assume
 -  that interest rates on those bonds are time-varying and in particular are
    governed by a jointly stationary stochastic process.
 
+Let's start with some standard imports:
+
+.. code-block:: ipython
+
+    import quantecon as qe
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
 Two example specifications
 ==========================
 
@@ -272,12 +281,7 @@ the ``LQMarkov`` class can solve Markov jump LQ problems when given the
 The function below maps the primitive matrices and parameters from the above
 two-period model into the matrices that the ``LQMarkov`` class requires:
 
-.. code-block:: ipython
-
-    import quantecon as qe
-    import numpy as np
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     def LQ_markov_mapping(A22, C2, Ug, p1, p2, c1=0):
 
