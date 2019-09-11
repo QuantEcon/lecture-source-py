@@ -18,16 +18,16 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ==========
 
-Let's start with following imports
+Let's start with following imports:
 
 .. code-block:: ipython
 
     import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
     from scipy.optimize import root, fmin_slsqp
     from scipy.interpolate import UnivariateSpline
     from quantecon import MarkovChain
-    import matplotlib.pyplot as plt
-    %matplotlib inline
 
 
 In :doc:`an earlier lecture<opt_tax_recur>`, we described a model of
@@ -821,9 +821,11 @@ triangle denote war.
     time_example.G = np.array([0.1, 0.1, 0.1, 0.2, 0.1, 0.1])
     time_example.Θ = np.ones(6)  # Θ can in principle be random
 
-    time_example.transfers = True                                  # Government can use transfers
-    time_sequential = SequentialAllocation(time_example)           # Solve sequential problem
-    time_bellman = RecursiveAllocationAMSS(time_example, μ_grid)   # Solve recursive problem
+    time_example.transfers = True             # Government can use transfers
+    # Solve sequential problem
+    time_sequential = SequentialAllocation(time_example)
+    # Solve recursive problem
+    time_bellman = RecursiveAllocationAMSS(time_example, μ_grid)
 
     sHist_h = np.array([0, 1, 2, 3, 5, 5, 5])
     sHist_l = np.array([0, 1, 2, 4, 5, 5, 5])
@@ -934,7 +936,7 @@ state contingent debt (circles) and the economy with only a risk-free bond
 .. code-block:: python3
 
     log_example = LogUtility()
-    log_example.transfers = True                        # Government can use transfers
+    log_example.transfers = True                    # Government can use transfers
     log_sequential = SequentialAllocation(log_example)  # Solve sequential problem
     log_bellman = RecursiveAllocationAMSS(log_example, μ_grid)
 
@@ -1005,7 +1007,8 @@ the two policies over 200 periods.
 
     fig, axes = plt.subplots(3, 2, figsize=(14, 10))
 
-    for ax, title, seq, bel in zip(axes.flatten(), titles, sim_seq_long, sim_bel_long):
+    for ax, title, seq, bel in zip(axes.flatten(), titles, sim_seq_long, \
+            sim_bel_long):
         ax.plot(seq, '-k', bel, '-.b', alpha=0.5)
         ax.set(title=title)
         ax.grid()
