@@ -61,6 +61,18 @@ We encountered problems with this structure in
 :doc:`optimal taxation with state-contingent debt<opt_tax_recur>`,
 and other lectures.
 
+
+We'll start with some standard imports:
+
+.. code-block:: ipython
+
+  import numpy as np
+  import polytope
+  import quantecon as qe
+  import matplotlib.pyplot as plt
+  %matplotlib inline
+
+
 The Setting
 -----------
 
@@ -853,12 +865,7 @@ code for now - we can increase accuracy by increasing the number of subgradients
     ch1 = ChangModel(β=0.3, mbar=30, h_min=0.9, h_max=2, n_h=8, n_m=35, N_g=10)
     ch1.solve_sustainable()
 
-.. code-block:: ipython
-
-  import polytope
-  import matplotlib.pyplot as plt
-  %matplotlib inline
-
+.. code-block:: python3
 
   def plot_competitive(ChangModel):
       """
@@ -893,7 +900,8 @@ code for now - we can increase accuracy by increasing the number of subgradients
 
 .. code-block:: python3
 
-    ch2 = ChangModel(β=0.8, mbar=30, h_min=0.9, h_max=1/0.8, n_h=8, n_m=35, N_g=10)
+    ch2 = ChangModel(β=0.8, mbar=30, h_min=0.9, h_max=1/0.8,
+                     n_h=8, n_m=35, N_g=10)
     ch2.solve_sustainable()
 
 .. code-block:: python3
@@ -947,8 +955,10 @@ From the figures earlier in this lecture,  we know that when :math:`\beta = 0.3`
 
 .. code-block:: python3
 
-    ch1 = ChangModel(β=0.3, mbar=30, h_min=0.99, h_max=1/0.3, n_h=8, n_m=35, N_g=50)
-    ch2 = ChangModel(β=0.8, mbar=30, h_min=0.1, h_max=1/0.8, n_h=20, n_m=50, N_g=50)
+    ch1 = ChangModel(β=0.3, mbar=30, h_min=0.99, h_max=1/0.3,
+                     n_h=8, n_m=35, N_g=50)
+    ch2 = ChangModel(β=0.8, mbar=30, h_min=0.1, h_max=1/0.8,
+                     n_h=20, n_m=50, N_g=50)
 
 .. code-block:: python3
 

@@ -55,15 +55,17 @@ class ChangModel:
                                  np.kron(A2, np.ones((n_h, 1)))), axis=1)
 
         # Pre-compute utility and output vectors
-        self.euler_vec = -np.multiply(self.A[:, 1], uc_p(f(self.A[:, 0], self.A[:, 1])) - v_p(self.A[:, 1]))
+        self.euler_vec = -np.multiply(self.A[:, 1], \
+            uc_p(f(self.A[:, 0], self.A[:, 1])) - v_p(self.A[:, 1]))
         self.u_vec = u(self.A[:, 0], self.A[:, 1])
         self.Θ_vec = θ(self.A[:, 0], self.A[:, 1])
         self.f_vec = f(self.A[:, 0], self.A[:, 1])
         self.bell_vec = np.multiply(uc_p(f(self.A[:, 0],
                                    self.A[:, 1])),
                                    np.multiply(self.A[:, 1],
-                                   (self.A[:, 0] - 1))) + np.multiply(self.A[:, 1],
-                                   v_p(self.A[:, 1]))
+                                   (self.A[:, 0] - 1))) \
+                        + np.multiply(self.A[:, 1],
+                                      v_p(self.A[:, 1]))
 
         # Find extrema of (w, θ) space for initial guess of equilibrium sets
         p_vec = np.zeros(self.N_a)
@@ -82,7 +84,8 @@ class ChangModel:
             """
             This function  initializes the subgradients, hyperplane levels,
             and extreme points of the value set by choosing an appropriate
-            origin and radius. It is based on a similar function in QuantEcon's Games.jl
+            origin and radius. It is based on a similar function in QuantEcon's
+            Games.jl
             """
 
             # First, create a unit circle. Want points placed on [0, 2π]
@@ -117,11 +120,15 @@ class ChangModel:
 
         C, self.H, Z = SG_H_V(N_g, w_space, p_space)
         C = C.reshape(N_g, 1)
-        self.c0_c, self.c0_s, self.c1_c, self.c1_s = np.copy(C), np.copy(C), np.copy(C), np.copy(C)
-        self.z0_s, self.z0_c, self.z1_s, self.z1_c = np.copy(Z), np.copy(Z), np.copy(Z), np.copy(Z)
+        self.c0_c, self.c0_s, self.c1_c, self.c1_s = np.copy(C), np.copy(C), \
+            np.copy(C), np.copy(C)
+        self.z0_s, self.z0_c, self.z1_s, self.z1_c = np.copy(Z), np.copy(Z), \
+            np.copy(Z), np.copy(Z)
 
-        self.w_bnds_s, self.w_bnds_c = (w_space[0], w_space[1]), (w_space[0], w_space[1])
-        self.p_bnds_s, self.p_bnds_c = (p_space[0], p_space[1]), (p_space[0], p_space[1])
+        self.w_bnds_s, self.w_bnds_c = (w_space[0], w_space[1]), \
+            (w_space[0], w_space[1])
+        self.p_bnds_s, self.p_bnds_c = (p_space[0], p_space[1]), \
+            (p_space[0], p_space[1])
 
         # Create dictionaries to save equilibrium set for each iteration
         self.c_dic_s, self.c_dic_c = {}, {}
@@ -184,8 +191,10 @@ class ChangModel:
 
         # Update maximal hyperplane level
         for i in range(self.N_g):
-            c_a1a2_c, t_a1a2_c = np.full(self.N_a, -np.inf), np.zeros((self.N_a, 2))
-            c_a1a2_s, t_a1a2_s = np.full(self.N_a, -np.inf), np.zeros((self.N_a, 2))
+            c_a1a2_c, t_a1a2_c = np.full(self.N_a, -np.inf), \
+                np.zeros((self.N_a, 2))
+            c_a1a2_s, t_a1a2_s = np.full(self.N_a, -np.inf), \
+                np.zeros((self.N_a, 2))
 
             c = [-self.H[i, 0], -self.H[i, 1]]
 
@@ -203,9 +212,11 @@ class ChangModel:
                     else:
                         beq_C = self.euler_vec[j]
                         res = linprog(c, A_ub=aineq_C, b_ub=bineq_C, A_eq = aeq_C,
-                                      b_eq = beq_C, bounds=(self.w_bnds_c, self.p_bnds_c))
+                                      b_eq = beq_C, bounds=(self.w_bnds_c, \
+                                          self.p_bnds_c))
                     if res.status == 0:
-                        c_a1a2_c[j] = self.H[i, 0]*(self.u_vec[j] + self.β * res.x[0]) + self.H[i, 1] * self.Θ_vec[j]
+                        c_a1a2_c[j] = self.H[i, 0] * (self.u_vec[j] \
+                            + self.β * res.x[0]) + self.H[i, 1] * self.Θ_vec[j]
                         t_a1a2_c[j] = res.x
 
                     # SUSTAINABLE EQUILIBRIA
@@ -220,17 +231,21 @@ class ChangModel:
                         bineq_S[-1] = self.u_vec[j] - self.br_z
                         beq_S = self.euler_vec[j]
                         res = linprog(c, A_ub=aineq_S, b_ub=bineq_S, A_eq = aeq_S,
-                                      b_eq = beq_S, bounds=(self.w_bnds_s, self.p_bnds_s))
+                                      b_eq = beq_S, bounds=(self.w_bnds_s, \
+                                          self.p_bnds_s))
                     if res.status == 0:
-                        c_a1a2_s[j] = self.H[i, 0] * (self.u_vec[j] + self.β*res.x[0]) + self.H[i, 1] * self.Θ_vec[j]
+                        c_a1a2_s[j] = self.H[i, 0] * (self.u_vec[j] \
+                            + self.β*res.x[0]) + self.H[i, 1] * self.Θ_vec[j]
                         t_a1a2_s[j] = res.x
 
             idx_c = np.where(c_a1a2_c == max(c_a1a2_c))[0][0]
-            self.z1_c[:, i] = np.array([self.u_vec[idx_c] + self.β * t_a1a2_c[idx_c, 0],
-                                              self.Θ_vec[idx_c]])
+            self.z1_c[:, i] = np.array([self.u_vec[idx_c]
+                                        + self.β * t_a1a2_c[idx_c, 0],
+                                        self.Θ_vec[idx_c]])
 
             idx_s = np.where(c_a1a2_s == max(c_a1a2_s))[0][0]
-            self.z1_s[:, i] = np.array([self.u_vec[idx_s] + self.β*t_a1a2_s[idx_s, 0],
+            self.z1_s[:, i] = np.array([self.u_vec[idx_s]
+                                        + self.β * t_a1a2_s[idx_s, 0],
                                         self.Θ_vec[idx_s]])
 
         for i in range(self.N_g):
@@ -264,21 +279,27 @@ class ChangModel:
             self.c0_c, self.c0_s = np.copy(self.c1_c), np.copy(self.c1_s)
 
             # Update bounds for w and θ
-            wmin_c, wmax_c = np.min(self.z1_c, axis=1)[0], np.max(self.z1_c, axis=1)[0]
-            pmin_c, pmax_c = np.min(self.z1_c, axis=1)[1], np.max(self.z1_c, axis=1)[1]
+            wmin_c, wmax_c = np.min(self.z1_c, axis=1)[0], \
+                np.max(self.z1_c, axis=1)[0]
+            pmin_c, pmax_c = np.min(self.z1_c, axis=1)[1], \
+                np.max(self.z1_c, axis=1)[1]
 
-            wmin_s, wmax_s = np.min(self.z1_s, axis=1)[0], np.max(self.z1_s, axis=1)[0]
-            pmin_S, pmax_S = np.min(self.z1_s, axis=1)[1], np.max(self.z1_s, axis=1)[1]
+            wmin_s, wmax_s = np.min(self.z1_s, axis=1)[0], \
+                np.max(self.z1_s, axis=1)[0]
+            pmin_S, pmax_S = np.min(self.z1_s, axis=1)[1], \
+                np.max(self.z1_s, axis=1)[1]
 
             self.w_bnds_s, self.w_bnds_c = (wmin_s, wmax_s), (wmin_c, wmax_c)
             self.p_bnds_s, self.p_bnds_c = (pmin_S, pmax_S), (pmin_c, pmax_c)
 
             # Save iteration
-            self.c_dic_c[iters], self.c_dic_s[iters] = np.copy(self.c1_c), np.copy(self.c1_s)
+            self.c_dic_c[iters], self.c_dic_s[iters] = np.copy(self.c1_c), \
+                np.copy(self.c1_s)
             self.iters = iters
 
         elapsed = time.time() - t
-        print('Convergence achieved after {} iterations and {} seconds'.format(iters, round(elapsed, 2)))
+        print('Convergence achieved after {} iterations and {} \
+            seconds'.format(iters, round(elapsed, 2)))
 
     def solve_bellman(self, θ_min, θ_max, order, disp=False, tol=1e-7, maxiters=100):
         """
@@ -322,18 +343,24 @@ class ChangModel:
         # Function to minimize and constraints
         def p_fun(x):
             scale = -1 + 2 * (x[2] - θ_min)/(θ_max - θ_min)
-            p_fun = - (u(x[0], x[1]) + self.β * np.dot(cheb.chebvander(scale, order - 1), c))
+            p_fun = - (u(x[0], x[1]) \
+                + self.β * np.dot(cheb.chebvander(scale, order - 1), c))
             return p_fun
 
         def p_fun2(x):
             scale = -1 + 2*(x[1] - θ_min)/(θ_max - θ_min)
-            p_fun = - (u(x[0],mbar) + self.β * np.dot(cheb.chebvander(scale, order - 1), c))
+            p_fun = - (u(x[0],mbar) \
+                + self.β * np.dot(cheb.chebvander(scale, order - 1), c))
             return p_fun
 
-        cons1 = ({'type': 'eq',   'fun': lambda x: uc_p(f(x[0], x[1])) * x[1] * (x[0] - 1) + v_p(x[1]) * x[1] + self.β * x[2] - θ},
-                 {'type': 'eq',   'fun': lambda x: uc_p(f(x[0], x[1])) * x[0] * x[1] - θ})
-        cons2 = ({'type': 'ineq', 'fun': lambda x: uc_p(f(x[0], mbar)) * mbar * (x[0] - 1) + v_p(mbar) * mbar + self.β * x[1] - θ},
-                 {'type': 'eq',   'fun': lambda x: uc_p(f(x[0], mbar)) * x[0] * mbar - θ})
+        cons1 = ({'type': 'eq',   'fun': lambda x: uc_p(f(x[0], x[1])) * x[1]
+                    * (x[0] - 1) + v_p(x[1]) * x[1] + self.β * x[2] - θ},
+                 {'type': 'eq',   'fun': lambda x: uc_p(f(x[0], x[1]))
+                    * x[0] * x[1] - θ})
+        cons2 = ({'type': 'ineq', 'fun': lambda x: uc_p(f(x[0], mbar)) * mbar
+                    * (x[0] - 1) + v_p(mbar) * mbar + self.β * x[1] - θ},
+                 {'type': 'eq',   'fun': lambda x: uc_p(f(x[0], mbar))
+                    * x[0] * mbar - θ})
 
         bnds1 = np.concatenate([lb1.reshape(3, 1), ub1.reshape(3, 1)], axis=1)
         bnds2 = np.concatenate([lb2.reshape(2, 1), ub2.reshape(2, 1)], axis=1)
