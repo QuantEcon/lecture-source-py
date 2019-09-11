@@ -62,7 +62,13 @@ We use code constructed :doc:`in a previous lecture <amss2>`.
 
 **Warning:** Key equations in  :cite:`BEGS1` section III.D carry  typos  that we correct below.
 
+Let's start with some imports:
 
+.. code-block:: ipython
+
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    from scipy.optimize import minimize
 
 
 The Economy
@@ -158,10 +164,7 @@ government debt equal to :math:`-.5`.
 
 Here is a graph of a long simulation of 102000 periods.
 
-.. code-block:: ipython
-
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+.. code-block:: python3
 
     μ_grid = np.linspace(-0.09, 0.1, 100)
 
@@ -169,7 +172,7 @@ Here is a graph of a long simulation of 102000 periods.
                               G=np.array([0.1, 0.2, .3]),
                               Θ=np.ones(3))
 
-    log_example.transfers = True                        # Government can use transfers
+    log_example.transfers = True        # Government can use transfers
     log_sequential = SequentialAllocation(log_example)  # Solve sequential problem
     log_bellman = RecursiveAllocationAMSS(log_example, μ_grid,
                                            tol=1e-12, tol_diff=1e-10)
@@ -229,9 +232,11 @@ respectively.
     fig, axes = plt.subplots(4, 1, figsize=(10, 15))
 
     for i, id in enumerate([2, 3]):
-        axes[i].plot(sim_seq_long[id][:99], '-k', sim_bel_long[id][:99], '-.b', alpha=0.5)
+        axes[i].plot(sim_seq_long[id][:99], '-k', sim_bel_long[id][:99],
+                     '-.b', alpha=0.5)
         axes[i+2].plot(range(100, 199), sim_seq_long[id][100:199], '-k',
-                       range(100, 199), sim_bel_long[id][100:199], '-.b', alpha=0.5)
+                       range(100, 199), sim_bel_long[id][100:199], '-.b',
+                       alpha=0.5)
         axes[i].set(title=titles[i])
         axes[i+2].set(title=titles[i])
         axes[i].grid()
@@ -541,7 +546,8 @@ Step 1
     def solve_c(c, τ, u):
         return (1 - τ) * c**(-u.σ) - (c + u.G)**u.γ
 
-    c = root(solve_c, np.ones(S), args=(τ, u)).x  # .x returns the result from root
+    # .x returns the result from root
+    c = root(solve_c, np.ones(S), args=(τ, u)).x
     c
 
 
@@ -557,7 +563,7 @@ Step 2
 
 .. code-block:: python3
 
-    n = c + u.G   # compute labor supply
+    n = c + u.G   # Compute labor supply
 
 Note about Code
 ----------------
@@ -582,7 +588,9 @@ according to our formulas
 
     def compute_R_X(τ, u, s):
         c = root(solve_c, np.ones(S), args=(τ, u)).x  # Solve for vector of c's
-        div = u.β * (u.Uc(c[0], n[0]) * u.π[s, 0]  +  u.Uc(c[1], n[1]) * u.π[s, 1] +  u.Uc(c[2], n[2]) * u.π[s, 2])
+        div = u.β * (u.Uc(c[0], n[0]) * u.π[s, 0]  \
+                     +  u.Uc(c[1], n[1]) * u.π[s, 1] \
+                     +  u.Uc(c[2], n[2]) * u.π[s, 2])
         R = c**(-u.σ) / (div)
         X = (c + u.G)**(1 + u.γ) - c**(1 - u.σ)
         return R, X
@@ -661,7 +669,7 @@ Let's try out our method computing :math:`\tau`
     s = 0
     B = 1.0
 
-    τ = root(solve_τ, .1, args=(B, u, s)).x[0]  # Very sensitive to starting value
+    τ = root(solve_τ, .1, args=(B, u, s)).x[0]  # Very sensitive to initial value
     τ
 
 
@@ -678,7 +686,8 @@ Step 4
 .. code-block:: python3
 
     def min_J(B, u, s):
-        τ = root(solve_τ, .5, args=(B, u, s)).x[0]  # very sensitive to initial value of τ
+        # Very sensitive to initial value of τ
+        τ = root(solve_τ, .5, args=(B, u, s)).x[0]
         R, X = compute_R_X(τ, u, s)
         return variance(R * B + X, s)
 
@@ -693,8 +702,6 @@ Step 6
 
 .. code-block:: python3
 
-    from scipy.optimize import minimize
-
     B_star = minimize(min_J, .5, args=(u, s)).x[0]
     B_star
 
@@ -702,11 +709,13 @@ Step 6
 
 .. code-block:: python3
 
-    n = c + u.G  # compute labor supply
+    n = c + u.G  # Compute labor supply
 
 .. code-block:: python3
 
-    div = u.β * (u.Uc(c[0], n[0]) * u.π[s, 0]  +  u.Uc(c[1], n[1]) * u.π[s, 1] +  u.Uc(c[2], n[2]) * u.π[s, 2])
+    div = u.β * (u.Uc(c[0], n[0]) * u.π[s, 0]  \
+                 +  u.Uc(c[1], n[1]) * u.π[s, 1] \
+                 +  u.Uc(c[2], n[2]) * u.π[s, 2])
 
 .. code-block:: python3
 
