@@ -620,7 +620,6 @@ Here's a function that generates a Bellman operator using linear interpolation
 
 .. literalinclude:: /_static/lecture_specific/optgrowth/bellman_operator.py
 
-optgro
 The function ``operator_factory`` takes a class that represents the growth model
 and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model.
 
