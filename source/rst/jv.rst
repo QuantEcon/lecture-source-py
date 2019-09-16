@@ -57,29 +57,27 @@ Model
 .. index::
     single: On-the-Job Search; Model
 
-Let
-
-* :math:`x_t` denote the time-:math:`t` job-specific human capital of a worker employed at a given firm
-* :math:`w_t` denote current wages
+Let :math:`x_t` denote the time-:math:`t` job-specific human capital of a worker employed at a given firm and let  :math:`w_t` denote current wages.
 
 Let :math:`w_t = x_t(1 - s_t - \phi_t)`, where
 
-* :math:`\phi_t` is investment in job-specific human capital for the current role
-* :math:`s_t` is search effort, devoted to obtaining new offers from other firms
+* :math:`\phi_t` is investment in job-specific human capital for the current role and
 
-For as long as the worker remains in the current job, evolution of
-:math:`\{x_t\}` is given by :math:`x_{t+1} = g(x_t, \phi_t)`.
+* :math:`s_t` is search effort, devoted to obtaining new offers from other firms.
 
-When search effort at :math:`t` is :math:`s_t`, the worker receives a new job
-offer with probability :math:`\pi(s_t) \in [0, 1]`.
+For as long as the worker remains in the current job, evolution of :math:`\{x_t\}` is given by :math:`x_{t+1} = g(x_t, \phi_t)`.
 
-Value of offer is :math:`u_{t+1}`, where :math:`\{u_t\}` is IID with common distribution :math:`f`.
+When search effort at :math:`t` is :math:`s_t`, the worker receives a new job offer with probability :math:`\pi(s_t) \in [0, 1]`.
 
-Worker has the right to reject the current offer and continue with existing job.
+The value of the offer, measured in job-specific human capital,  is :math:`u_{t+1}`, where :math:`\{u_t\}` is IID with common distribution :math:`f`.
 
-In particular, :math:`x_{t+1} = u_{t+1}` if accepts and :math:`x_{t+1} = g(x_t, \phi_t)` if rejects.
+The worker can reject the current offer and continue with existing job.
 
-Letting :math:`b_{t+1} \in \{0,1\}` be binary with :math:`b_{t+1} = 1` indicating an offer, we can write
+Hence :math:`x_{t+1} = u_{t+1}` if he/she accepts and :math:`x_{t+1} = g(x_t, \phi_t)` otherwise.
+
+Let :math:`b_{t+1} \in \{0,1\}` be a binary random variable, where :math:`b_{t+1} = 1` indicates that the worker receives an offer at the end of time :math:`t`. 
+
+We can write
 
 .. math::
     :label: jd
@@ -256,8 +254,8 @@ set up the function :math:`w(z) = w(s, \phi)` defined in :eq:`defw`.
 
 The function is maximized over all feasible :math:`(s, \phi)` pairs.
 
-Another function, ``get_greedy`` returns the optimal policies of ``s`` and :math:`\phi`
-given a value function.
+Another function, ``get_greedy`` returns the optimal choice of :math:`s` and :math:`\phi`
+at each :math:`x`, given a value function.
 
 .. code-block:: python3
 
@@ -382,7 +380,7 @@ Solving for Policies
 .. index::
     single: On-the-Job Search; Solving for Policies
 
-Let's plot the optimal policies and see what they look like.
+Let's generate the optimal policies and see what they look like.
 
 .. _jv_policies:
 
@@ -392,8 +390,14 @@ Let's plot the optimal policies and see what they look like.
     T, get_greedy = operator_factory(jv)
     v_star = solve_model(jv)
     s_star, ϕ_star = get_greedy(v_star)
+
+
+Here's the plots:
+
+.. code-block:: python3
+
     plots = [s_star, ϕ_star, v_star]
-    titles = ["ϕ policy", "s policy", "value function"]
+    titles = ["s policy", "ϕ policy",  "value function"]
 
     fig, axes = plt.subplots(3, 1, figsize=(12, 12))
 
