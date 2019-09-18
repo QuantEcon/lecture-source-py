@@ -403,21 +403,26 @@ cite, code, tt {
 
 .lecture-options {
 	display: flex;
-	justify-content: flex-end;
-	list-style: none;
+	justify-content: space-between;
 	margin:1rem 0;
-	padding: 7px 2rem 5px 2rem;
+	padding: 7px 1rem 5px 1rem;
 	border: 1px solid #ddd;
 	background: #f8f8f8;
 	border-radius: 2px;
 }
+.lecture-options ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	display: flex;
+}
 
 .lecture-options li {
-	margin:0 0 0 1.5rem;
+	margin: 0 0.5rem;
 }
 .lecture-options li a {
 	display: block;
-	color: #444;
+	color: #797979;
 	font-weight: 700;
 	font-size: 0.8rem;
 }
@@ -427,10 +432,18 @@ cite, code, tt {
 }
 .lecture-options li a svg {
 	margin:0 3px 0 0;
+	color: #ccc;
+}
+.lecture-options li a:hover svg {
+	color: #0072bc;
 }
 
-#home.section>h1 {
-	display: none; /* Hide H1 on homepage */
+/*h1#home {
+	display: none;  Hide H1 on homepage 
+}*/
+
+#qe-notebook-header {
+	display: none;
 }
 
 .internal em {
@@ -674,6 +687,9 @@ span.MathJax {font-size:0.92rem;}
 		border-width:1px 1px 0 1px;
 		border-radius: 0;
 		padding:0.5rem 1rem;
+	}
+	.lecture-options ul {
+		display: block;
 	}
 }
 

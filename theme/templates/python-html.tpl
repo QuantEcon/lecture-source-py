@@ -118,7 +118,7 @@
 					<ul>
 						<li><a href="https://quantecon.org/">Org</a> •</li>
 						<li><a href="/">Home</a> &raquo;</li>
-						<li><a href="/toc.html">Table of contents</a> &raquo;</li>
+						<li><a href="/index_toc.html">Table of contents</a> &raquo;</li>
 					  	<li>{{nb_title}}</li>
 					</ul>
 				</div>
@@ -130,14 +130,20 @@
 					<div class="document">
 
 {% if not indexPage %}
-						<ul class="lecture-options">
+						<div class="lecture-options">
+							<ul>
 {% if download_nb == True %}
-							<li><a href="/_downloads/pdf/{{nb_filename_with_path}}.pdf"><i class="fas fa-file-download"></i> Download PDF</a></li>
-							<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><i class="fas fa-file-download"></i> Download Notebook</a></li>
+								<li><a href="/_downloads/pdf/{{nb_filename_with_path}}.pdf"><i class="fas fa-file-download"></i> Download PDF</a></li>
+								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><i class="fas fa-file-download"></i> Download Notebook</a></li>
 {% endif %}
-							<li><a target="_blank" href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><i class="fas fa-rocket"></i> Launch Notebook</a></li>
-							<li><a target="_blank" href="https://github.com/QuantEcon/lecture-source-py/blob/master/source/rst/{{nb_filename_with_path}}.rst"><i class="fas fa-file-code"></i> View Source</a></li>
-						</ul>
+								<li><a target="_blank" href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><i class="fas fa-rocket"></i> Launch Notebook</a></li>
+								<li><a target="_blank" href="https://github.com/QuantEcon/lecture-source-py/blob/master/source/rst/{{nb_filename_with_path}}.rst"><i class="fas fa-file-code"></i> View Source</a></li>
+							</ul>
+							<ul>
+								<li><a href="#"><i class="fas fa-question-circle"></i> Troubleshooting</a></li>
+								<li><a href="#"><i class="fas fa-flag"></i> Report issue</a></li>
+							</ul>
+						</div>
 {% endif %}
 
 
@@ -434,33 +440,18 @@ var element = $('#{{ div_id }}');
 
 		</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="/_static/js/python.js?v=1.0"></script>
 
-		<script src="/_static/js/plugins.js"></script>
-		<script src="/_static/js/qe.js?v=2.4"></script>
-
-		<script>
-		  (function() {
-			var cx = '006559439261123061640:rgnmeebflcy';
-			var gcse = document.createElement('script');
-			gcse.type = 'text/javascript';
-			gcse.async = true;
-			gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(gcse, s);
-		  })();
-		</script>
+		<script async src="https://cse.google.com/cse.js?cx=006559439261123061640:j0o7s27tvxo"></script>
 
 		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		  ga('create', 'UA-54984338-1', 'auto');
-		  ga('send', 'pageview');
+		window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+		ga('create', 'UA-54984338-7', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
 		</script>
+		<script src="https://www.google-analytics.com/analytics.js" async></script>
 
 	</body>
 </html>

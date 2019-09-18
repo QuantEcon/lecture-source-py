@@ -1,10 +1,8 @@
 .. _toc:
 
-.. only:: html
+.. raw:: html
 
-    ****
-    Home
-    ****
+    <style type="text/css">.breadcrumbs{display:none;}</style>
 
 .. only:: latex
 
@@ -15,7 +13,7 @@
 
 .. raw:: html
 
-    <p id="numfocus_badge"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
+    <p id="numfocus_badge" style="float:right;margin:0 0 0 2rem;"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
 
 .. only:: html
 
@@ -35,7 +33,7 @@
     :maxdepth: 2
     :titlesonly:
 
-    about
+    about_lectures
     index_learning_python
     index_python_scientific_libraries
     index_advanced_python_programming
