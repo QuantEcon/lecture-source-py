@@ -32,11 +32,11 @@
 		<meta name="twitter:title" content="{{nb_title}}">
 		<meta name="twitter:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski.">
 		<meta name="twitter:creator" content="@quantecon">
-		<meta name="twitter:image" content="https://lectures.quantecon.org/_static/img/qeco-logo.png">
+		<meta name="twitter:image" content="https://python.quantecon.org/_static/img/qeco-logo.png">
 		<meta property="og:title" content="{{nb_title}}" />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://lectures.quantecon.org/{{nb_lang}}/{{nb_filename_with_path}}.html" />
-		<meta property="og:image" content="https://lectures.quantecon.org/_static/img/qeco-logo.png" />
+		<meta property="og:url" content="https://python.quantecon.org/{{nb_filename_with_path}}.html" />
+		<meta property="og:image" content="https://python.quantecon.org/_static/img/qeco-logo.png" />
 		<meta property="og:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski." />
 		<meta property="og:site_name" content="Quantitative Economics" />
 
@@ -102,9 +102,9 @@
 		        	<div class="branding">
 
 {% if nb_lang == 'py' %}
-			        	<p class="site-title"><a href="https://lectures.quantecon.org">Quantitative Economics with Python</a></p>
+			        	<p class="site-title"><a href="https://python.quantecon.org">Quantitative Economics with Python</a></p>
 {% elif nb_lang == 'jl' %}
-			        	<p class="site-title"><a href="https://lectures.quantecon.org">Quantitative Economics with Julia</a></p>
+			        	<p class="site-title"><a href="https://julia.quantecon.org">Quantitative Economics with Julia</a></p>
 {% endif %}
 
 			        	<p class="visuallyhidden"><a href="#skip">Skip to content</a></p>
@@ -122,9 +122,9 @@
 		        	<nav class="main-nav">
 
 			        	<ul>
-		        			<li class="section-home"><a href="/">Home</a></li>
-		        			<li class="section-py"><a href="/py/">Python</a></li>
-		        			<li class="section-jl"><a href="/jl/">Julia</a></li>
+		        			<li class="section-home"><a href="lectures.quantecon.org">Home</a></li>
+		        			<li class="section-py"><a href="/">Python</a></li>
+		        			<li class="section-jl"><a href="julia.quantecon.org">Julia</a></li>
 							<li><a href="#pdf-options" name="pdf-options" rel="leanModal">PDF</a></li>
 			        	</ul>
 
@@ -135,7 +135,7 @@
 		        		<h2>Download PDF</h2>
 						<ul>
 							<li>
-								<a href="/_downloads/pdf/py/quantitative_economics_with_python.pdf"><span class="thumb"><img src="/_static/img/py-logo.png"></span><h3 class="title">Python <span class="icon icon-chevron-right"></span></h3></a>
+								<a href="/_downloads/pdf/quantitative_economics_with_python.pdf"><span class="thumb"><img src="/_static/img/py-logo.png"></span><h3 class="title">Python <span class="icon icon-chevron-right"></span></h3></a>
 							</li><li>
 								<a href="" title="Currently unavailable" style="cursor:default;opacity:0.2;"><span class="thumb"><img src="/_static/img/jl-logo.png"></span><h3 class="title">Julia <span class="icon icon-chevron-right"></span></h3></a>
 							</li>
@@ -157,7 +157,7 @@
 					<ul>
 						<li><a href="https://quantecon.org/">Org</a> •</li>
 						<li><a href="https://lectures.quantecon.org">Lectures</a> &raquo;</li>
-						<li><a href="https://lectures.quantecon.org/{{nb_lang}}/">{{nb_kernel}} </a> &raquo;</li>
+						<li><a href="https://python.quantecon.org">{{nb_kernel}}</a> &raquo;</li>
 				      	<li>{{nb_title}}</li>
 					</ul>
 				</div>
@@ -174,10 +174,10 @@
 						<ul class="badges">
 							<li><a target="_blank" href="https://colab.research.google.com/github/QuantEcon/lecture-py-notebooks/blob/master/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-run-006400.svg" id="notebook_run_badge"></a></li>
 							{% if download_nb == True %}
-								<li><a href="/{{nb_lang}}/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
-								<li><a href="/_downloads/pdf/py/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
+								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><img src="/_static/img/jupyter-notebook-download-blue.svg" id="notebook_download_badge"></a></li>
+								<li><a href="/_downloads/pdf/{{nb_filename_with_path}}.pdf"><img src="/_static/img/pdf-download-blue.svg" id="pdf_download_badge"></a></li>
 							{% endif %}
-							<li><a href="/{{nb_lang}}/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
+							<li><a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-not%20available-lightgrey.svg" id="executability_status_badge"></a></li>
 							<li class="ml-a"><a target="_blank" href="https://github.com/QuantEcon/lecture-source-py/blob/master/source/rst/{{nb_filename_with_path}}.rst"><img src="/_static/img/github-icon.svg"></a></li>
 						</ul>
 
@@ -186,7 +186,7 @@
 							<div class="how-to-content">
 								<p>Code should execute sequentially if run in a Jupyter notebook</p>
 								<ul>
-									<li>See the <a href="/py/getting_started.html">set up page</a> to install Jupyter, Python and all necessary libraries</li>
+									<li>See the <a href="/getting_started.html">set up page</a> to install Jupyter, Python and all necessary libraries</li>
 									<li>Please direct feedback to <a href="mailto:contact@quantecon.org">contact@quantecon.org</a> or the <a href="http://discourse.quantecon.org/">discourse forum</a></li>
 								</ul>
 							</div>
