@@ -119,7 +119,8 @@ First, you can achieve speeds equal to or faster than those of compiled language
 
 Second, remember that the correct objective function to minimize is
 
-::
+.. code-block:: python 
+    :class: no-execute
 
     total time = development time + execution time
 
