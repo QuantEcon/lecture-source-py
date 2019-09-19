@@ -423,7 +423,6 @@ cite, code, tt {
 .lecture-options li a {
 	display: block;
 	color: #797979;
-	font-weight: 700;
 	font-size: 0.8rem;
 }
 .lecture-options li a:hover {
