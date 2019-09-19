@@ -151,9 +151,9 @@ function updateTable()
 }
 
 
-function load_status_table(lang)
+function load_status_table()
 {
-    $.getJSON( lang + "_static/code-execution-results.json", function( data )
+    $.getJSON( "_static/code-execution-results.json", function( data )
     {
         status_data = [];
         last_test_time = data.run_time;
@@ -230,7 +230,7 @@ function update_page_badge(page_status)
     that either the JSON file did not load or that the data it contains resulted in a percentage which lies outside
     of those boundaries.
 **/
-function get_badge(percentage, lang)
+function get_badge(percentage)
 {
     var color, badge;
 
@@ -241,17 +241,17 @@ function get_badge(percentage, lang)
       } else {
         color = 'brightgreen';
       }
-      badge = '<img src="https://img.shields.io/badge/' + lang + '%20coverage-' + percentage + '%25-' + color + '.svg">';
+      badge = '<img src="https://img.shields.io/badge/Total%20coverage-' + percentage + '%25-' + color + '.svg">';
     } else {
-      badge = '<img src="https://img.shields.io/badge/' + lang + '%20coverage-not%20available-lightgrey.svg">';
+      badge = '<img src="https://img.shields.io/badge/Total%20coverage-not%20available-lightgrey.svg">';
     }
     return badge;
 }
 
 
-function load_this_page_badge(lang)
+function load_this_page_badge()
 {
-  $.getJSON( lang + "_static/code-execution-results.json", function( data )
+  $.getJSON( "_static/code-execution-results.json", function( data )
   {
       status_data = [];
       for (var key in data.results)
@@ -284,7 +284,7 @@ function load_percentages(lang)
   var keys_list = [];
   var combined_percentage, py_percentage, jl_percentage;
 
-  $.getJSON(lang + "_static/code-execution-results.json", function( data )
+  $.getJSON( "_static/code-execution-results.json", function( data )
   {
     for (var key in data.results)
     {
@@ -375,16 +375,16 @@ $(function () {
 
 	/* Display a notebook execution badge on lecture pages */
 	if ( $('#executability_status_badge').length > 0 ) {
-		load_this_page_badge('py');
+		load_this_page_badge();
 	}
 
 	/* Display a notebook execution status table */
 	if ( $('#status_table').length > 0 ) {
-		load_status_table('py');
+		load_status_table();
 	}
 
 	/* Display coverage badges */
-	load_percentages('py');
+	load_percentages();
     
 
 });

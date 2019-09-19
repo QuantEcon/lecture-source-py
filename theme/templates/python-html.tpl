@@ -104,7 +104,11 @@
 
 				<div class="header-tools">
 
-					<div class="header-search"><gcse:searchbox-only></gcse:searchbox-only></div>
+					<div class="site-search">
+					<script async src="https://cse.google.com/cse.js?cx=006559439261123061640:j0o7s27tvxo"></script>
+					<div class="gcse-searchbox-only" data-resultsUrl="/search.html" enableAutoComplete="true"></div>
+					<script>window.onload = function(){ document.getElementById('gsc-i-id1').placeholder = 'Search'; };</script>
+					</div>
 
 					<p class="header-badge"><a href="/status.html"><img src="/_static/img/execution-test-not available-lightgrey.svg" id="executability_status_badge"></a></p>
 
@@ -118,10 +122,16 @@
 					<ul>
 						<li><a href="https://quantecon.org/">Org</a> •</li>
 						<li><a href="/">Home</a> &raquo;</li>
-						<li><a href="/index_toc.html">Table of contents</a> &raquo;</li>
+						<li><a href="/index_toc.html">Table of Contents</a> &raquo;</li>
 					  	<li>{{nb_title}}</li>
 					</ul>
 				</div>
+
+				<!--
+				<div class="announcement">
+					<p>The announcement...</p>
+				</div>
+				-->
 
 				<div class="content">
 
@@ -440,8 +450,8 @@ var element = $('#{{ div_id }}');
 
 		</div>
 
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		<script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+		<script src="https://code.jquery.com/jquery-1.11.0.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script src="/_static/js/python.js?v=1.0"></script>
 

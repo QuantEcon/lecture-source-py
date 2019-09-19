@@ -136,7 +136,7 @@ cite, code, tt {
 	color:#fff;text-decoration: none;
 }
 
-.header-search {
+.site-search {
 	display:block;
 	margin:0;
 	width: 215px;
@@ -144,25 +144,25 @@ cite, code, tt {
 .search-searchbox {
 	margin: 2rem 1rem;
 }
-.header-search .gsc-input {
+.site-search .gsc-input {
 	background: transparent !important;
 	color:#fff;
 	font-size: 0.9rem;
 }
-.header-search .gsc-input-box {
+.site-search .gsc-input-box {
 	background: transparent !important;
 	border:1px solid #a1a1a1;
 	border-radius:2px;
 }
-.header-search .gsib_b {
+.site-search .gsib_b {
 	display: none;
 }
-.header-search td.gsc-search-button {
+.site-search td.gsc-search-button {
 	background: url(/_static/img/search-icon.png) no-repeat left top;
 	background-size: 16px 16px;
 	background-position: 0 5px;
 }
-.header-search button.gsc-search-button {
+.site-search button.gsc-search-button {
 	border: 0;
 	width: 16px;
 	height: 16px;
@@ -456,16 +456,6 @@ cite, code, tt {
 	line-height: 1;
 }
 
-.status-table-container {
-	overflow-x: auto;
-}
-.status-table tr th {
-	display: table-cell;
-}
-.status-table tr td {
-	display: table-cell;
-}
-
 .index-tabs {
 	margin:3rem 0;
 	list-style: none;
@@ -570,7 +560,7 @@ div[class^='collapse'] .toggle em {
 div.collapse-5 .highlight {height:7em;}div.collapse-6 .highlight {height:8.4em;}div.collapse-7 .highlight {height:9.8em;}div.collapse-8 .highlight {height:11.2em;}div.collapse-9 .highlight {height:12.6em;}div.collapse-10 .highlight {height:14em;}div.collapse-11 .highlight {height:15.4em;}div.collapse-12 .highlight {height:16.8em;}div.collapse-13 .highlight {height:18.2em;}div.collapse-14 .highlight {height:19.6em;}div.collapse-15 .highlight {height:21em;}div.collapse-16 .highlight {height:22.4em;}div.collapse-17 .highlight {height:23.8em;}div.collapse-18 .highlight {height:25.2em;}div.collapse-19 .highlight {height:26.6em;}div.collapse-20 .highlight {height:28em;}div.collapse-21 .highlight {height:29.4em;}div.collapse-22 .highlight {height:30.8em;}div.collapse-23 .highlight {height:32.2em;}div.collapse-24 .highlight {height:33.6em;}div.collapse-25 .highlight {height:35em;}
 
 .status-table-container {
-	overflow-x: scroll;
+	/* overflow-x: scroll; */
 }
 .status-table {
 	width:100%;
@@ -580,7 +570,7 @@ div.collapse-5 .highlight {height:7em;}div.collapse-6 .highlight {height:8.4em;}
     background-color: #f9f9f9;
 }
 .status-table tr th {
-	display: none;
+	/* display: none; */
 	vertical-align: bottom;
 	border-bottom: 2px solid #ddd;
 	padding: 8px;
@@ -589,7 +579,7 @@ div.collapse-5 .highlight {height:7em;}div.collapse-6 .highlight {height:8.4em;}
 	font-weight: bold;
 }
 .status-table tr td {
-	display: block;
+	/* display: block; */
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
@@ -689,6 +679,15 @@ span.MathJax {font-size:0.92rem;}
 		padding:0.5rem 1rem;
 	}
 	.lecture-options ul {
+		display: block;
+	}
+	.status-table-container {
+		overflow-x: scroll;
+	}
+	.status-table tr th {
+		display: none;
+	}
+	.status-table tr td {
 		display: block;
 	}
 }
