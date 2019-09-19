@@ -55,7 +55,9 @@
 
     index_undergrad
     index_postgrad
-
+    404
+    search
+    status
 |
 
 .. image:: http://assets.quantecon.org/img/banner.png
