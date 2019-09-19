@@ -2,17 +2,6 @@
 
 .. raw:: html
 
-    <style type="text/css">.breadcrumbs{display:none;}</style>
-
-.. only:: latex
-
-    Quantitative Economics
-    ======================
-
-.. COMMENT: Link for Python Specific Badge <p id="py_percentage"><a href="/status.html"></a></p>
-
-.. raw:: html
-
     <p id="numfocus_badge" style="float:right;margin:0 0 0 2rem;"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
 
 .. only:: html
@@ -23,9 +12,9 @@
 .. raw:: html
 
     <ul class="index-tabs">
-        <li class="active"><a href="/py/">All</a></li>
-        <li><a href="/py/index_undergrad.html">Undergraduate course</a></li>
-        <li><a href="/py/index_postgrad.html">Graduate course</a></li>
+        <li class="active"><a href="/index_toc.html">All</a></li>
+        <li><a href="/index_undergrad.html">Undergraduate course</a></li>
+        <li><a href="/index_postgrad.html">Graduate course</a></li>
     </ul>
 
 

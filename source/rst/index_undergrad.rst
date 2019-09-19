@@ -1,17 +1,3 @@
-.. computational-economics documentation master file
-
-.. only:: html
-
-    ****
-    Home
-    ****
-
-.. only:: latex
-
-    Quantitative Economics
-    ======================
-
-.. COMMENT: Link for Python Specific Badge <p id="py_percentage"><a href="/status.html"></a></p>
 
 .. raw:: html
 
@@ -19,15 +5,15 @@
 
 .. only:: html
 
-    Table of Contents (Python)
-    *************************************************************
+    Table of Contents (Undergraduate course)
+    ****************************************
 
 .. raw:: html
 
     <ul class="index-tabs">
-        <li><a href="/py/">All</a></li>
-        <li class="active"><a href="/py/index_undergrad.html">Undergraduate course</a></li>
-        <li><a href="/py/index_postgrad.html">Graduate course</a></li>
+        <li><a href="/index_toc.html">All</a></li>
+        <li class="active"><a href="/index_undergrad.html">Undergraduate course</a></li>
+        <li><a href="/index_postgrad.html">Graduate course</a></li>
     </ul>
 
 .. toctree::
