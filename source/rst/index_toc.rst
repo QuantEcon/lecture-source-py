@@ -47,6 +47,7 @@
     404
     search
     status
+    troubleshooting
 
 |
 

@@ -1,6 +1,8 @@
 .. _index:
 
-.. highlight:: python3
+*****
+HOME
+*****
 
 .. toctree::
     :hidden:
