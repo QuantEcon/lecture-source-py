@@ -8,6 +8,8 @@
 About these Lectures
 *********************
 
+.. contents:: :depth: 2
+
 .. raw:: html
 
     <style type="text/css">.lecture-options{display:none;}</style>
