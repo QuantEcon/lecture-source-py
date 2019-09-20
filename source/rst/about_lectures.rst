@@ -96,7 +96,7 @@ Incidentally, if you decide to jump from MATLAB to Python, `this cheat-sheet <ht
 
 
 R
--
+---
 
 `R <https://cran.r-project.org/>`__ is a very useful open source statistical environment and programming language
 
