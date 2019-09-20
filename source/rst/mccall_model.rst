@@ -46,7 +46,7 @@ Here we set up McCall's model and adopt the same solution method.
 
 As we'll see, McCall's model is not only interesting in its own right but also an excellent vehicle for learning dynamic programming.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

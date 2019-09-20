@@ -60,7 +60,7 @@ Because the Lucas and Stokey model features state-contingent government debt, th
 
 We cover only the key features of the problem in this lecture, leaving you to refer to that source for additional results and intuition.
 
-Let's start with some standard imports:
+We'll need the following imports:
 
 .. code-block:: ipython
 

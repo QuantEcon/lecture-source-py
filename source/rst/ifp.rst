@@ -52,7 +52,7 @@ To solve the model we will use Euler equation based time iteration, similar to :
 
 This method turns out to be globally convergent under mild assumptions, even when utility is unbounded (both above and below).
 
-We'll need the following imports
+We'll need the following imports:
 
 .. code-block:: ipython
 

@@ -52,8 +52,7 @@ Let's start with some standard imports:
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
-    import scipy.stats as spst
-    import scipy.linalg as la
+
 
 References
 ----------
