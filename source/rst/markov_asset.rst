@@ -59,7 +59,7 @@ Key tools for the lecture are
 
 * a formula for predicting the discounted sum of future values of a Markov state
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

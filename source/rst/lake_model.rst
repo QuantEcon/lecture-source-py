@@ -52,7 +52,7 @@ We'll also use some nifty concepts like ergodicity, which provides a fundamental
 
 These concepts will help us build an equilibrium model of ex-ante homogeneous workers whose different luck generates variations in their ex post experiences.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

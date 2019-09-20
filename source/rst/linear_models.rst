@@ -58,7 +58,7 @@ Its many applications include:
 
     * Sargent and Wallace's "unpleasant monetarist arithmetic," etc.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

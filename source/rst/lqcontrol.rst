@@ -58,7 +58,7 @@ For additional reading on LQ control, see, for example,
 
 In order to focus on computation, we leave longer proofs to these sources (while trying to provide as much intuition as possible).
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

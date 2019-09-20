@@ -37,7 +37,7 @@ The second reference presents a  comprehensive treatment of the Kalman filter.
 
 Required knowledge: Familiarity with matrix manipulations, multivariate normal distributions, covariance matrices, etc.
 
-Let's start with some standard imports:
+We'll need the following imports:
 
 .. code-block:: ipython
 

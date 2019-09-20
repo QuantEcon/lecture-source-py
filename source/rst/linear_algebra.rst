@@ -59,7 +59,7 @@ We admit some overlap with :doc:`this lecture <numpy>`, where operations on NumP
 Note that this lecture is more theoretical than most, and contains background
 material that will be used in applications as we go along.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

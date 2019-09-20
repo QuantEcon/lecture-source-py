@@ -33,7 +33,7 @@ By contrast, in the model we consider in this lecture, synchronization is both e
 
 In particular, as trade costs fall and international competition increases, innovation incentives become aligned and countries synchronize their innovation cycles.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

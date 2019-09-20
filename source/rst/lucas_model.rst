@@ -37,7 +37,7 @@ A side benefit of studying Lucas' model is that it provides a beautiful illustra
 
 Another difference to our :doc:`first asset pricing lecture <markov_asset>` is that the state space and shock will be continuous rather than discrete.
 
-Let's start with some standard imports:
+Let's start with some imports:
 
 .. code-block:: ipython
 

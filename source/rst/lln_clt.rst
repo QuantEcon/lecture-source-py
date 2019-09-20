@@ -37,7 +37,7 @@ In addition, we examine several useful extensions of the classical theorems, suc
 
 Some of these extensions are presented as exercises.
 
-Let's start with some standard imports:
+We'll need the following imports:
 
 .. code-block:: ipython
 
