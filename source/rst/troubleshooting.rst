@@ -13,24 +13,51 @@ Troubleshooting
 This troubleshooting page is to help ensure you software environment is setup correctly
 to run this lecture set locally on your machine.
 
-Environments
-============
+Fixing Your Local Environment
+==============================
 
-Given the computation involved in this lecture series, your software environment matters when running the 
-code examples. 
+The basic assumption of the lectures is that code should execute on any
+machine that has the latest version of Anaconda Python installed.
 
-See the :doc:`set up <getting_started>` page to install Jupyter, Python and all necessary libraries
+You have installed Anaconda, haven't you, following the instructions in :doc:`this lecture <getting_started>`? 
 
+Assuming that you have, the most common source of problems for our readers is that their Anaconda distribution is not up to date.
 
-Alternatives
-============
+`Here's a useful article <https://www.anaconda.com/keeping-anaconda-date/>`__
+on how to update Anaconda.
 
-If your local environment is still not working you can:
+Another option is to simply remove Anaconda and reinstall.
 
-**Option 1:** use a `live` environment by clicking on the `Launch Notebook` icon available for each lecture
+You also need to keep the external code libraries, such as `QuantEcon.py
+<https://quantecon.org/quantecon-py>`__ up to date.
+
+For this task you can either
+
+* use `pip install --upgrade quantecon` on the command line, or
+
+* execute `!pip install --upgrade quantecon` within a Jupyter notebook.
+
+If your local environment is still not working you can do two things.
+
+First, you can use a remote machine instead, by clicking on the `Launch Notebook` icon available for each lecture
 
 .. image:: _static/lecture_specific/troubleshooting/launch.png
 
-**Option 2:** Raise an issue through our Issue Tracker `here <https://github.com/QuantEcon/lecture-source-py/issues>`__
+Second, you can report an issue, so we can try to fix your local set up.
 
-**Option 3:** Direct feedback to contact@quantecon.org or the `discourse forum <https://discourse.quantecon.org/>`__
+We like getting feedback on the lectures so please don't hesitate to get in
+touch.
+
+Reporting an Issue
+===================
+
+One way to give feedback is to raise an issue through our `issue tracker 
+<https://github.com/QuantEcon/lecture-source-py/issues>`__.
+
+Please be as specific as possible.  Tell us where the problem is and as much
+detail about your local set up as you can provide.
+
+Another feedback option is to use our `discourse forum <https://discourse.quantecon.org/>`__.
+
+Finally, you can provide direct feedback to contact@quantecon.org
+
