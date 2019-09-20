@@ -1,8 +1,14 @@
 .. _troubleshooting:
 
+.. include:: /_static/includes/header.raw
+
+.. highlight:: python3
+
 ***************
 Troubleshooting
 ***************
+
+.. contents:: :depth: 2
 
 This troubleshooting page is to help ensure you software environment is setup correctly
 to run this lecture set locally on your machine.
