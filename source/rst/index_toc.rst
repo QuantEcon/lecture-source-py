@@ -47,6 +47,7 @@
     404
     search
     status
+
 |
 
 .. image:: http://assets.quantecon.org/img/banner.png
