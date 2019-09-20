@@ -93,8 +93,10 @@ The code below provides the ``Neumann`` class
           self.m, self.n = self.A.shape
 
           # Check if (A, B) satisfy the basic assumptions
-          assert self.A.shape == self.B.shape, 'The input and output matrices must have the same dimensions!'
-          assert (self.A >= 0).all() and (self.B >= 0).all(), 'The input and output matrices must have only non-negative entries!'
+          assert self.A.shape == self.B.shape, 'The input and output matrices \
+                must have the same dimensions!'
+          assert (self.A >= 0).all() and (self.B >= 0).all(), 'The input and \
+                output matrices must have only non-negative entries!'
 
           # (1) Check whether Assumption I is satisfied:
           if (np.sum(B, 0) <= 0).any():
