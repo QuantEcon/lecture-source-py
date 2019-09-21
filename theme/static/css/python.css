@@ -423,16 +423,16 @@ cite, code, tt {
 }
 .lecture-options li a {
 	display: block;
-	color: #797979;
+	color: #444;
 	font-size: 0.8rem;
 }
 .lecture-options li a:hover {
-	color: #0072bc;
+	color: #004979;
 	text-decoration: none;
 }
 .lecture-options li a svg {
 	margin:0 3px 0 0;
-	color: #ccc;
+	color: #444;
 }
 .lecture-options li a:hover svg {
 	color: #0072bc;

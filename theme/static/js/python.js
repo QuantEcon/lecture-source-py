@@ -26,7 +26,6 @@ MathJax.Hub.Config({
       fF: "\\mathcal{F}",
       gG: "\\mathcal{G}",
       hH: "\\mathcal{H}",
-      
     }
   }
 });
@@ -38,26 +37,158 @@ MathJax.Hub.Config({
 });
 
 
-// Status Page and Badge for Lecture Executability Testing
+/* Collapsed code block */
 
-var status_data;
-var last_test_time;
+const collapsableCodeBlocks = document.querySelectorAll("div[class^='collapse'] .highlight");
+for (var i = 0; i < collapsableCodeBlocks.length; i++) {
+  const toggleContainer = document.createElement('div');
+  toggleContainer.innerHTML = '<a href="#" class="toggle toggle-less" style="display:none;"><span class="icon icon-angle-double-up"></span><em>Show less...</em></a><a href="#" class="toggle toggle-more"><span class="icon icon-angle-double-down"></span><em>Show more...</em></a>';
+  collapsableCodeBlocks[i].parentNode.insertBefore(toggleContainer, collapsableCodeBlocks[i].nextSibling);
+}
+
+const collapsableCodeToggles = document.querySelectorAll("div[class^='collapse'] .toggle");
+for (var i = 0; i < collapsableCodeToggles.length; i++) {
+  collapsableCodeToggles[i].addEventListener('click', function(e) {
+    e.preventDefault();
+    var codeBlock = this.closest('div[class^="collapse"]');
+    if ( codeBlock.classList.contains('expanded') ) {
+      codeBlock.classList.remove('expanded');
+      this.style.display = 'none';
+      this.nextSibling.style.display = 'block';  
+    } else {
+      codeBlock.classList.add('expanded');
+      this.style.display = 'none';
+      this.previousSibling.style.display = 'block';
+    }
+  });
+}
+
+
+// Populate status page from code execution results JSON
+
+function loadCodeExecutionJSON(callback) {   
+  var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/json");
+  xobj.open('GET', '_static/code-execution-results.json', true); // Replace 'appDataServices' with the path to your file
+  xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+          // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+          callback(xobj.responseText);
+        }
+  };
+  xobj.send(null);  
+}
+
+if ( document.getElementById('status_table') ) {
+
+  loadCodeExecutionJSON(function(response) {
+    // Parsing JSON string into object
+    var data = JSON.parse(response);
+    var status_data = [];
+    var last_test_time = data.run_time;
+    document.getElementById('last_test_time').textContent = last_test_time;
+    for (var key in data.results)
+    {
+        var new_record = {};
+        new_record['name'] = data.results[key].filename;
+        new_record['runtime'] = data.results[key].runtime;
+        new_record['extension'] = data.results[key].extension;
+        new_record['result'] = data.results[key].num_errors;
+        new_record['language'] = data.results[key].language;
+
+        status_data.push(new_record);
+    }
+
+    // empty the table
+    var table = document.getElementById("status_table");
+    while (table.firstChild)
+      table.removeChild(table.firstChild);
+      var rawHTML = "<tr><th class='resultsTableHeader'>Lecture File</th><th class='resultsTableHeader'>Language</th><th>Running Time</th><th></th></tr>";
+      table.innerHTML = rawHTML;
+    // add the data
+    for (var i = 0; i < status_data.length; i ++)
+    {
+      var table = document.getElementById("status_table");
+      var row = table.insertRow(-1);
+      row.setAttribute("id", status_data[i]['name'], 0);
+
+      // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+      var lectureCell = row.insertCell(0);
+      var langCell = row.insertCell(1);
+      var runtimeCell = row.insertCell(2);
+      var statusCell = row.insertCell(3);
+      var badge, status, color, lang, link;
+
+      if (status_data[i]['result'] === 0)
+      {
+          status = "passing";
+          color = "brightgreen";
+      }
+      else if (status_data[i]['result'] === 1)
+      {
+          status = "failing";
+          color = "red";
+      }
+      else if (status_data[i]['result'] === -1) {
+          status = "not available";
+          color = "lightgrey";
+      }
+
+      link = '/' + status_data[i]['name'] + '.html';
+
+      badge = '<a href="' + link + '"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
+
+      // Add some text to the new cells:
+      lectureCell.innerHTML = status_data[i]['name'];
+      langCell.innerHTML = status_data[i]['language'];
+      runtimeCell.innerHTML = status_data[i]['runtime'];
+      statusCell.innerHTML = badge;
+
+
+    }
+  })
+}
+
+
+// Show executability status badge in header
 
 const LECTURE_OK = 0;
 const LECTURE_FAILED = 1;
 const LECTURE_ERROR = -1;
 
-/**
-    A function that interrogates the JSON data produced by the execution testing system
-    to determine whether this lecture passed or failed the last test.
+function update_page_badge(page_status)
+{
+    var badge = document.getElementById("executability_status_badge");
+    var status, color;
 
-    The Javascript infers the name of the lecture file from the filename of the HTML file itself.
-    If the HTML filename is not a lecture, or otherwise cannot be found in the JSON data,
-    this function will return an error value.
+    if (page_status === LECTURE_OK)
+    {
+        status = "Passing";
+        color = "brightgreen";
+    }
+    else if (page_status == LECTURE_FAILED)
+    {
+        status = "Failing";
+        color = "red";
+    }
+    else if (page_status == LECTURE_ERROR)
+    {
+        status = "Not available";
+        color = "lightgrey";
+    }
+    else
+    {
+        console.log("Panic! Invalid parameter passed to update_page_badge().");
+    }
 
-    The return values are the constant expressions LECTURE_OK, LECTURE_FAILED and LECTURE_ERROR.
-**/
-function determine_page_status()
+    badge.innerHTML = '<a href="/status.html"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
+
+    //badge.style.display="block";
+
+    return;
+}
+
+function determine_page_status(status_data)
 {
     var path = window.location.pathname;
     var filename_parts = path.split("/");
@@ -81,155 +212,35 @@ function determine_page_status()
             }
         }
     }
-
     return res;
 }
 
-function emptyNode(myNode)
+function load_this_page_badge()
 {
-    while (myNode.firstChild)
-        myNode.removeChild(myNode.firstChild);
-}
-
-function regenerateTableHeaderRow(table)
-{
-    rawHTML = "<tr><th class='resultsTableHeader'>Lecture File</th><th class='resultsTableHeader'>Language</th><th>Running Time</th><th></th></tr>";
-    table.innerHTML = rawHTML;
-}
-
-function insertNewRow(newRow)
-{
-    var table = document.getElementById("status_table");
-    var row = table.insertRow(-1);
-    row.setAttribute("id", "statusTableRow" + newRow['id'], 0);
-
-    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-    var lectureCell = row.insertCell(0);
-    var langCell = row.insertCell(1);
-    var runtimeCell = row.insertCell(2);
-    var statusCell = row.insertCell(3);
-    var badge, status, color, lang, link;
-
-    if (newRow['result'] === 0)
+  loadCodeExecutionJSON(function(response) {
+    // Parsing JSON string into object
+    var data = JSON.parse(response);
+    status_data = [];
+    for (var key in data.results)
     {
-        status = "passing";
-        color = "brightgreen";
+        var new_record = {};
+        new_record['name'] = data.results[key].filename;
+        new_record['runtime'] = data.results[key].runtime;
+        new_record['extension'] = data.results[key].extension;
+        new_record['result'] = data.results[key].num_errors;
+        new_record['language'] = data.results[key].language;
+        status_data.push(new_record);
     }
-    else if (newRow['result'] === 1)
-    {
-        status = "failing";
-        color = "red";
-    }
-    else if (newRow['result'] === -1) {
-        status = "not available";
-        color = "lightgrey";
-    }
-
-    link = '/' + newRow['name'] + '.html';
-
-    badge = '<a href="' + link + '"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
-
-    // Add some text to the new cells:
-    lectureCell.innerHTML = newRow['name'];
-    langCell.innerHTML = newRow['language'];
-    runtimeCell.innerHTML = newRow['runtime'];
-    statusCell.innerHTML = badge;
-}
-
-function updateTable()
-{
-    // empty the table
-    table = document.getElementById("status_table");
-    emptyNode(table);
-    regenerateTableHeaderRow(table);
-
-    // add the data
-    for (var i = 0; i < status_data.length; i ++)
-    {
-        insertNewRow(status_data[i]);
-    }
+    var page_status = determine_page_status(status_data);
+    update_page_badge(page_status);
+  });
 }
 
 
-function load_status_table()
-{
-    $.getJSON( "_static/code-execution-results.json", function( data )
-    {
-        status_data = [];
-        last_test_time = data.run_time;
-        $('#last_test_time').text(last_test_time);
-        for (var key in data.results)
-        {
-            var new_record = {};
-            new_record['name'] = data.results[key].filename;
-            new_record['runtime'] = data.results[key].runtime;
-            new_record['extension'] = data.results[key].extension;
-            new_record['result'] = data.results[key].num_errors;
-            new_record['language'] = data.results[key].language;
-
-            status_data.push(new_record);
-        }
-
-        updateTable();
-    })
-    .error( function() {
-      console.log('Error reading code execution results JSON')
-      updateTable();
-    });
-};
 
 
-/**
-    Updates the "badge" on the lecture page with the result of the last execution test.
-    page_status will contain one of three constant values:
-
-        LECTURE_OK:     The code passed the last test successfully.
-        LECTURE_FAILED: The lecture did not pass the test.
-        LECTURE_ERROR:  Either this page is not a lecture that's been tested, or something's gone
-                        wrong sonewhere; either way, do not display a badge.
-**/
-function update_page_badge(page_status)
-{
-    var badge = document.getElementById("executability_status_badge");
-    var status, color;
-
-    if (page_status === LECTURE_OK)
-    {
-        status = "passing";
-        color = "brightgreen";
-    }
-    else if (page_status == LECTURE_FAILED)
-    {
-        status = "failing";
-        color = "red";
-    }
-    else if (page_status == LECTURE_ERROR)
-    {
-        status = "not available";
-        color = "lightgrey";
-    }
-    else
-    {
-        console.log("Panic! Invalid parameter passed to update_page_badge().");
-    }
-
-    badge.setAttribute("src", "/_static/img/execution-test-" + status + "-" + color + ".svg");
-
-    badge.style.display="block";
-
-    return;
-}
 
 
-/**
-    Updates the badge on the front page of the lectures. This badge displays the number of lectures
-    which passed the last execution test relative to the number of lectures which were tested overall.
-
-    percentage is an integer (or what passes for one in Javascript) which is guaranteed to be *either* between
-    zero and one hundred inclusive, which is the value to display to the user, or an error code of -1 which indicates
-    that either the JSON file did not load or that the data it contains resulted in a percentage which lies outside
-    of those boundaries.
-**/
 function get_badge(percentage)
 {
     var color, badge;
@@ -241,51 +252,23 @@ function get_badge(percentage)
       } else {
         color = 'brightgreen';
       }
-      badge = '<img src="https://img.shields.io/badge/Total%20coverage-' + percentage + '%25-' + color + '.svg">';
+      badge = 'https://img.shields.io/badge/Total%20coverage-' + percentage + '%25-' + color + '.svg';
     } else {
-      badge = '<img src="https://img.shields.io/badge/Total%20coverage-not%20available-lightgrey.svg">';
+      badge = 'https://img.shields.io/badge/Total%20coverage-not%20available-lightgrey.svg>';
     }
     return badge;
 }
 
-
-function load_this_page_badge()
-{
-  $.getJSON( "_static/code-execution-results.json", function( data )
-  {
-      status_data = [];
-      for (var key in data.results)
-      {
-          var new_record = {};
-          new_record['name'] = data.results[key].filename;
-          new_record['runtime'] = data.results[key].runtime;
-          new_record['extension'] = data.results[key].extension;
-          new_record['result'] = data.results[key].num_errors;
-          new_record['language'] = data.results[key].language;
-
-          status_data.push(new_record);
-      }
-
-      var page_status = determine_page_status();
-      update_page_badge(page_status);
-  })
-  .error( function( data ) {
-    console.log('Error reading code execution results JSON')
-    update_page_badge(-1);
-  });
-}
-
-
-
-function load_percentages(lang)
+function load_percentages()
 {
   var number_of_lectures = {};
   var number_which_passed = {};
   var keys_list = [];
-  var combined_percentage, py_percentage, jl_percentage;
+  var combined_percentage;
 
-  $.getJSON( "_static/code-execution-results.json", function( data )
-  {
+  loadCodeExecutionJSON(function(response) {
+    // Parsing JSON string into object
+    var data = JSON.parse(response);
     for (var key in data.results)
     {
       if (data.results[key].num_errors === 0)
@@ -342,49 +325,25 @@ function load_percentages(lang)
         combined_percentage = Math.floor(100 * total_passing / total_lectures);
     }
 
-    $('#combined_percentage a').html(get_badge(combined_percentage, 'Total'));
-    $('#py_percentage a').html(get_badge(py_percentage, 'Python'));
-    $('#jl_percentage a').html(get_badge(jl_percentage, 'Julia'));
-    
-  })
-  .error( function( data ) {
-    console.log('Error reading code execution results JSON');
+    var badge = document.getElementById("coverage_badge");
+    badge.innerHTML = '<a href="/status.html"><img src="' + get_badge(combined_percentage) + '"></a>';
+
   });
+
 }
 
-$(function () {
+if ( document.getElementById('executability_status_badge') ) {
 
-	/* Collapsed code block */
-	$("div[class^='collapse']").each(function(){
-		$('.highlight', this).after('<a href="#" class="toggle toggle-less" style="display:none;"><span class="icon icon-angle-double-up"></span><em>Show less...</em></a>');
-		$('.highlight', this).after('<a href="#" class="toggle toggle-more"><span class="icon icon-angle-double-down"></span><em>Show more...</em></a>');
-	});
+  //https://img.shields.io/badge/Execution%20test-Not%20available-lightgrey
+  //https://img.shields.io/badge/Execution%20test-Passing-brightgreen
+  //https://img.shields.io/badge/Execution%20test-Failing-red
 
-	$('div[class^="collapse"]').on('click', '.toggle', function(e){
-		var codeBlock = $(this).parents('div[class^="collapse"]');
-    	if ( codeBlock.hasClass('expanded') ) {
-    		codeBlock.removeClass('expanded').find('.toggle').toggle();
-    		$('html, body').animate({
-        		scrollTop: $(codeBlock).offset().top - 50
-    		}, 400);
-    	} else {
-    		codeBlock.addClass('expanded').find('.toggle').toggle();
-    	}
-    	e.preventDefault();
-	});
+  load_this_page_badge();
+}
 
-	/* Display a notebook execution badge on lecture pages */
-	if ( $('#executability_status_badge').length > 0 ) {
-		load_this_page_badge();
-	}
+if ( document.getElementById('coverage_badge') ) {
 
-	/* Display a notebook execution status table */
-	if ( $('#status_table').length > 0 ) {
-		load_status_table();
-	}
+  //https://img.shields.io/badge/Total%20coverage-Not%20available-lightgrey
 
-	/* Display coverage badges */
-	load_percentages();
-    
-
-});
+  load_percentages();
+}

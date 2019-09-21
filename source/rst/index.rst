@@ -1,8 +1,8 @@
 .. _index:
 
-*****
-HOME
-*****
+**********************************
+Quantitative Economics with Python
+**********************************
 
 .. toctree::
     :hidden:
@@ -12,7 +12,7 @@ HOME
 
 .. raw:: html
 
-    <div><style type="text/css">.breadcrumbs,#executability_status_badge{display:none;}</style></div>
+    <div><style type="text/css">h1,.breadcrumbs{display:none;}</style></div>
     <div class="home-blurb">
         <div class="desc">
             <p>This website presents a series of lectures on quantitative economic modeling, designed and written by <a href="http://www.tomsargent.com" target="_blank">Thomas J. Sargent</a> and <a href="http://johnstachurski.net" target="_blank">John Stachurski</a>.</p>

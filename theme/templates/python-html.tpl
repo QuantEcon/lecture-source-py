@@ -12,10 +12,14 @@
 
 {%- block header %}
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
+{% if nb_filename == 'index' %}
+		<title>Quantitative Economics with Python</title>
+{% else %}
 		<title>{{nb_title}} &ndash; Quantitative Economics with Python</title>
+{% endif %}
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="Quantitative Economics with Python">
 		<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski">
@@ -110,7 +114,11 @@
 					<script>window.onload = function(){ document.getElementById('gsc-i-id1').placeholder = 'Search'; };</script>
 					</div>
 
-					<p class="header-badge"><a href="/status.html"><img src="/_static/img/execution-test-not available-lightgrey.svg" id="executability_status_badge"></a></p>
+{% if indexPage or nb_filename == 'status' %}
+					<div class="header-badge" id="coverage_badge"></div>
+{% else %}
+					<div class="header-badge" id="executability_status_badge"></div>
+{% endif %}
 
 				</div>
 
@@ -122,8 +130,10 @@
 					<ul>
 						<li><a href="https://quantecon.org/">Org</a> •</li>
 						<li><a href="/">Home</a> &raquo;</li>
+{% if not nb_filename == 'index_toc' %}
 						<li><a href="/index_toc.html">Table of Contents</a> &raquo;</li>
-					  	<li>{{nb_title}}</li>
+{% endif %}
+						<li>{{nb_title}}</li>
 					</ul>
 				</div>
 
@@ -150,8 +160,8 @@
 								<li><a target="_blank" href="https://github.com/QuantEcon/lecture-source-py/blob/master/source/rst/{{nb_filename_with_path}}.rst"><i class="fas fa-file-code"></i> View Source</a></li>
 							</ul>
 							<ul>
-								<li><a href="#"><i class="fas fa-question-circle"></i> Troubleshooting</a></li>
-								<li><a href="#"><i class="fas fa-flag"></i> Report issue</a></li>
+								<li><a href="/troubleshooting.html"><i class="fas fa-question-circle"></i> Troubleshooting</a></li>
+								<li><a href="https://github.com/QuantEcon/lecture-source-py/issues"><i class="fas fa-flag"></i> Report issue</a></li>
 							</ul>
 						</div>
 {% endif %}
@@ -450,8 +460,6 @@ var element = $('#{{ div_id }}');
 
 		</div>
 
-		<script src="https://code.jquery.com/jquery-1.11.0.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		<script>window.jQuery || document.write('<script src="/_static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script src="/_static/js/python.js?v=1.0"></script>
 
