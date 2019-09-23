@@ -74,6 +74,37 @@ cite, code, tt {
 	font-size: 0.9em;
 }
 
+.content .table-container {
+	overflow-x: scroll;
+}
+.content table {
+    max-width: 100%;
+    border-collapse: collapse;
+    border:0;
+    background-color: transparent;
+}
+.content table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+.content table td, .content table th {
+    padding: .25rem 0.75rem;
+	text-align: left;
+    vertical-align: top;
+    border:0;
+}
+.content table th {
+    font-weight: bold;
+}
+.content table thead tr th {
+	text-align:left !important;
+}
+.content table thead th, .content table thead td {
+    vertical-align: bottom;
+    border:0;
+    border-top:0;
+    border-bottom: 1px solid #e1e1e1;
+}
+
 .wrapper {
 	width: 1024px;
 	box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.4);

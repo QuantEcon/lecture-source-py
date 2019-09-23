@@ -64,6 +64,17 @@ for (var i = 0; i < collapsableCodeToggles.length; i++) {
 }
 
 
+/* Wrap container around all tables allowing hirizontal scroll */
+
+const contentTables = document.querySelectorAll(".content table");
+for (var i = 0; i < contentTables.length; i++) {
+  var wrapper = document.createElement('div');
+  wrapper.classList.add('table-container');
+  contentTables[i].parentNode.insertBefore(wrapper, contentTables[i]);
+  wrapper.appendChild(contentTables[i]);
+}
+
+
 // Populate status page from code execution results JSON
 
 function loadCodeExecutionJSON(callback) {   
