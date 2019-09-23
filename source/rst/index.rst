@@ -48,7 +48,7 @@ Quantitative Economics with Python
         <h3>Other ways to access the lectures</h3>
         <ul>
             <li>
-                <a href="https://github.com/QuantEcon/lecture-py-notebooks.git">
+                <a href="https://github.com/QuantEcon/quantecon-notebooks-python">
                     <i class="fas fa-file-download"></i>
                     <h3>Notebooks</h3>
                     <p>Get the full set of Jupyter notebooks</p>
