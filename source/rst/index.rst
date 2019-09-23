@@ -36,7 +36,7 @@ Quantitative Economics with Python
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/_downloads/pdf/quantitative_economics_with_python.pdf">
                     <i class="fas fa-file-pdf"></i>
                     <h3>PDF Version</h3>
                     <p>A print-ready version for viewing offline</p>
@@ -48,14 +48,14 @@ Quantitative Economics with Python
         <h3>Other ways to access the lectures</h3>
         <ul>
             <li>
-                <a href="#">
+                <a href="https://github.com/QuantEcon/lecture-py-notebooks.git">
                     <i class="fas fa-file-download"></i>
                     <h3>Notebooks</h3>
                     <p>Get the full set of Jupyter notebooks</p>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="https://github.com/QuantEcon/lecture-source-py">
                     <i class="fab fa-github"></i>
                     <h3>GitHub Repository</h3>
                     <p>Edit the source files or report an issue</p>

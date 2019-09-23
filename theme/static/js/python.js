@@ -121,22 +121,22 @@ if ( document.getElementById('status_table') ) {
 
       if (status_data[i]['result'] === 0)
       {
-          status = "passing";
+          status = "Passing";
           color = "brightgreen";
       }
       else if (status_data[i]['result'] === 1)
       {
-          status = "failing";
+          status = "Failing";
           color = "red";
       }
       else if (status_data[i]['result'] === -1) {
-          status = "not available";
+          status = "Not available";
           color = "lightgrey";
       }
 
       link = '/' + status_data[i]['name'] + '.html';
 
-      badge = '<a href="' + link + '"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
+      badge = '<a href="' + link + '"><img src="https://img.shields.io/badge/Execution%20test-' + status + '-' + color + '.svg"></a>';
 
       // Add some text to the new cells:
       lectureCell.innerHTML = status_data[i]['name'];
@@ -181,7 +181,7 @@ function update_page_badge(page_status)
         console.log("Panic! Invalid parameter passed to update_page_badge().");
     }
 
-    badge.innerHTML = '<a href="/status.html"><img src="/_static/img/execution-test-' + status + '-' + color + '.svg"></a>';
+    badge.innerHTML = '<a href="/status.html"><img src="https://img.shields.io/badge/Execution%20test-' + status + '-' + color + '.svg"></a>';
 
     //badge.style.display="block";
 
@@ -333,17 +333,9 @@ function load_percentages()
 }
 
 if ( document.getElementById('executability_status_badge') ) {
-
-  //https://img.shields.io/badge/Execution%20test-Not%20available-lightgrey
-  //https://img.shields.io/badge/Execution%20test-Passing-brightgreen
-  //https://img.shields.io/badge/Execution%20test-Failing-red
-
   load_this_page_badge();
 }
 
 if ( document.getElementById('coverage_badge') ) {
-
-  //https://img.shields.io/badge/Total%20coverage-Not%20available-lightgrey
-
   load_percentages();
 }
