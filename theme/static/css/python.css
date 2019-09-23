@@ -161,6 +161,7 @@ cite, code, tt {
 	background: url(/_static/img/search-icon.png) no-repeat left top;
 	background-size: 16px 16px;
 	background-position: 0 5px;
+	cursor: pointer;
 }
 .site-search button.gsc-search-button {
 	border: 0;
@@ -169,6 +170,7 @@ cite, code, tt {
 	padding: 0px 0px;
 	outline: 0;
 	opacity: 0;
+	cursor: pointer;
 }
 .search-searchbox td.gsc-search-button {
 	background: url(/_static/img/search-icon.png) no-repeat left top;
@@ -437,10 +439,6 @@ cite, code, tt {
 .lecture-options li a:hover svg {
 	color: #0072bc;
 }
-
-/*h1#home {
-	display: none;  Hide H1 on homepage 
-}*/
 
 #qe-notebook-header {
 	display: none;
