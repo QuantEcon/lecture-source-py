@@ -311,8 +311,6 @@ cite, code, tt {
 .home-alternatives li a:hover {
 	border-color: #23262c;
 	text-decoration: none;
-	background: #efefef;
-
 	background:#23262c;
 	color:#fff;
 }

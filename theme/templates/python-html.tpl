@@ -29,11 +29,11 @@
 		<meta name="twitter:title" content="{{nb_title}}">
 		<meta name="twitter:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski.">
 		<meta name="twitter:creator" content="@quantecon">
-		<meta name="twitter:image" content="https://python.quantecon.org/_static/img/qeco-logo.png">
+		<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
 		<meta property="og:title" content="{{nb_title}}" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://python.quantecon.org/{{nb_filename_with_path}}.html" />
-		<meta property="og:image" content="https://python.quantecon.org/_static/img/qeco-logo.png" />
+		<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
 		<meta property="og:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski." />
 		<meta property="og:site_name" content="Quantitative Economics with Python" />
 
