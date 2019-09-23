@@ -442,7 +442,7 @@ var element = $('#{{ div_id }}');
 
 				<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.</p>
 
-				<p>&copy; Copyright 2019, Thomas J. Sargent and John Stachurski. Created using <a href="http://www.sphinx-doc.org/">Sphinx</a>, hosted with <a href="https://aws.amazon.com/">AWS</a>.</p>
+				<p>&copy; Copyright 2019, Thomas J. Sargent and John Stachurski. Created using <a href="https://jupinx.quantecon.org/">Jupinx</a>, hosted with <a href="https://aws.amazon.com/">AWS</a>.</p>
 
 			</footer>
 
