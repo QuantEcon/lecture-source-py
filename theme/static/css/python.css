@@ -47,6 +47,7 @@ a {
 	color:#0072bc;
 	text-decoration: none;
 	transition: all .15s linear;
+	overflow-wrap: break-word;
 }
 a:link {}
 a:hover {
@@ -72,6 +73,7 @@ cite, code, tt {
 	border-radius: 2px;
 	padding: 0 2px;
 	font-size: 0.9em;
+	overflow-wrap: break-word;
 }
 
 .content .table-container {
