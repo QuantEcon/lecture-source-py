@@ -14,39 +14,36 @@ Quantitative Economics with Python
 
     <div><style type="text/css">h1,.breadcrumbs{display:none;}</style></div>
     <h1 class="sr-only" style="display:block;">Quantitative Economics with Python</h1>
-    <div class="home-blurb">
-        <div class="desc">
-            <p>This website presents a series of lectures on quantitative economic modeling, designed and written by <a href="http://www.tomsargent.com" target="_blank">Thomas J. Sargent</a> and <a href="http://johnstachurski.net" target="_blank">John Stachurski</a>.</p>
-            <p>This website provides a hands on instruction manual, with all code written in modern, open source programming languages.</p>
-            <p>This is one of a <a href="#">series of lectures</a> by <a href="#">QuantEcon</a>.</p>
+    <div class="home-intro">
+        <div class="home-detail">
+            <div class="home-blurb">
+                <p>This website presents a series of lectures on quantitative economic modeling, designed and written by <a href="http://www.tomsargent.com" target="_blank">Thomas J. Sargent</a> and <a href="http://johnstachurski.net" target="_blank">John Stachurski</a>.</p>
+                <p>The language instruction is <a href="https://www.python.org/">Python</a>.</p>
+                <p>This is one of a <a href="https://lectures.quantecon.org/">series of lectures</a> by <a href="#">QuantEcon</a>.</p>
+            </div>
+            <div class="web-version">
+                <a href="/index_toc.html">
+                    <span class="thumb"><img src="/_static/img/py-logo.png"></span>
+                    <h2>Web Version</h2>
+                    <p>The recommended way to read the lectures</p>
+                </a>
+            </div>
         </div>
         <ul class="sponsor">
             <li><a href="http://www.sloan.org/" title="Alfred P. Sloan Foundation"><img src="/_static/sloan_logo.png" alt="Sponsored by the Alfred P. Sloan Foundation"></a></li>
             <li><a href="https://quantecon.org/"><img src="/_static/img/qe-logo.png" width="150"></a></li>
         </ul>
     </div>
-    <div class="home-versions">
-        <h2 class="sr-only">Get Started</h2>
-        <ul>
-            <li>
-                <a href="index_toc.html">
-                    <i class="fas fa-globe"></i>
-                    <h3>Web Version</h3>
-                    <p>The recommended way to read the lectures</p>
-                </a>
-            </li>
-            <li>
-                <a href="/_downloads/pdf/quantitative_economics_with_python.pdf">
-                    <i class="fas fa-file-pdf"></i>
-                    <h3>PDF Version</h3>
-                    <p>A print-ready version for viewing offline</p>
-                </a>
-            </li>
-        </ul>
-    </div>
     <div class="home-alternatives">
-        <h3>Other ways to access the lectures</h3>
+        <h2>Other ways to access the lectures</h2>
         <ul>
+			<li>
+				<a href="/_downloads/pdf/quantitative_economics_with_python.pdf">
+					<i class="fas fa-file-pdf"></i>
+					<h3>PDF Version</h3>
+					<p>A print-ready version for viewing offline</p>
+				</a>
+			</li>
             <li>
                 <a href="https://github.com/QuantEcon/quantecon-notebooks-python">
                     <i class="fas fa-file-download"></i>

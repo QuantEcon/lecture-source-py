@@ -245,78 +245,66 @@ cite, code, tt {
 
 /* Homepage */
 
-.home-blurb {
+.home-intro {
 	display: flex;
-	align-items: center;
-	padding:0rem 0rem;
+	align-content: center;
 }
-.home-blurb .desc {
+.home-detail {
+
+}
+.home-blurb {
 	font-size: 1.1rem;
-	line-height: 1.5;
+	line-height: 1.5;	
 }
-.home-blurb .sponsor {
+.home-intro .sponsor {
 	list-style: none;
 	padding:0;
 	flex-shrink: 0;
 	margin:0 60px 0 4rem;
 	text-align: center;
 }
-.home-blurb .sponsor li {
+.home-intro .sponsor li {
 	display: block;
 	margin:1rem 0;
 	padding:0;
 }
-
-.home-versions {
+.web-version {
+	display:inline-block;
 	padding: 2rem 0rem;
 }
-.home-versions ul {
-	list-style: none;
-	padding:0;
-	margin:0 0;
-	display: flex;
-	justify-content: space-between;
-}
-.home-versions li {
-	padding:0;
-	margin:1rem 1rem;
-}
-.home-versions li a {
+.web-version a {
 	display: block;
 	color: #23262c;
-	border:1px solid #ddd;
+	border:1px solid #23262c;
 	border-radius: 5px;
 	padding:1rem 40px 1rem 120px;
 	position: relative;
 }
-.home-versions li:first-child a {
-	border-color: #23262c;
-}
-.home-versions li a:hover {
+.web-version a:hover {
 	border-color: #23262c;
 	text-decoration: none;
 	background:#23262c;
 	color:#fff;
 }
-.home-versions li a:hover svg {
-	color: #fff;
-}
-.home-versions li a:hover p {
+.web-version a:hover p {
 	color: #eee;
 }
-.home-versions li a svg {
+.web-version a .thumb {
 	position: absolute;
 	left:40px;
 	top:1rem;
 	font-size:3.5rem;
 	color: #23262c;
 }
-.home-versions li a h3 {
+.web-version a .thumb img {
+	width:50px;
+}
+.web-version a h2 {
 	line-height: 1;
 	margin:0;
 	font-size: 1.4rem;
 }
-.home-versions li a p {
+.web-version a p {
 	margin:10px 0 0 0;
 	color: #444;
 }
@@ -669,22 +657,21 @@ span.MathJax {font-size:0.92rem;}
 }
 
 @media only screen and (max-width: 768px) {
-	.header, .footer, .content, .home-blurb, .home-versions, .home-alternatives {
+	.header, .footer, .content, .home-alternatives {
 		padding-left: 2.5rem;
 		padding-right: 2.5rem;
 	}
 	.header-tools {
 		display: none;
 	}
-	.home-blurb {
+	.home-intro {
 		display: block;
-		padding:0 0;
 	}
-	.home-versions {
-		padding: 2rem 0;
+	.home-intro .sponsor {
+		margin:0 auto;
 	}
-	.home-versions ul {
-		display: block;
+	.web-version {
+		display:block;
 	}
 	.home-alternatives {
 		padding: 2rem 0;
