@@ -919,7 +919,7 @@ This code does the job
 .. code-block:: python3
 
     def p(x, coef):
-        X = np.ones_like(coeffs)
+        X = np.ones_like(coef)
         X[1:] = x
         y = np.cumprod(X)   # y = [1, x, x**2,...]
         return coef @ y
