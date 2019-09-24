@@ -5,8 +5,8 @@
 
 .. only:: html
 
-    Table of Contents (Graduate course)
-    ***********************************
+    Graduate Course
+    ***************
 
 .. raw:: html
 

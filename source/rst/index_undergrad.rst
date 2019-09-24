@@ -5,8 +5,8 @@
 
 .. only:: html
 
-    Table of Contents (Undergraduate course)
-    ****************************************
+    Undergraduate Course
+    ********************
 
 .. raw:: html
 

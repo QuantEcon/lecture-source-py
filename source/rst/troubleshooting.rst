@@ -10,8 +10,7 @@ Troubleshooting
 
 .. contents:: :depth: 2
 
-This troubleshooting page is to help ensure you software environment is setup correctly
-to run this lecture set locally on your machine.
+This page is for readers experiencing errors when running the code from the lectures.
 
 Fixing Your Local Environment
 ==============================
