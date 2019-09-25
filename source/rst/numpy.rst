@@ -919,8 +919,7 @@ This code does the job
 .. code-block:: python3
 
     def p(x, coef):
-        X = np.empty(len(coef))
-        X[0] = 1
+        X = np.ones_like(coef)
         X[1:] = x
         y = np.cumprod(X)   # y = [1, x, x**2,...]
         return coef @ y
@@ -929,12 +928,13 @@ Let's test it
 
 .. code-block:: python3
 
-    coef = np.ones(3)
+    x = 2
+    coef = np.linspace(2, 4, 3)
     print(coef)
-    print(p(1, coef))
+    print(p(x, coef))
     # For comparison
-    q = np.poly1d(coef)
-    print(q(1))
+    q = np.poly1d(np.flip(coef))
+    print(q(x))
 
 
 Exercise 2
