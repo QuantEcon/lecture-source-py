@@ -23,18 +23,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="Quantitative Economics with Python">
 		<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski">
-		<meta name="description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski.">
+		<meta name="description" content="This website presents a set of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski.">
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:site" content="@quantecon">
 		<meta name="twitter:title" content="{{nb_title}}">
-		<meta name="twitter:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski.">
+		<meta name="twitter:description" content="This website presents a set of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski.">
 		<meta name="twitter:creator" content="@quantecon">
 		<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
 		<meta property="og:title" content="{{nb_title}}" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://python.quantecon.org/{{nb_filename_with_path}}.html" />
 		<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
-		<meta property="og:description" content="This website presents a series of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski." />
+		<meta property="og:description" content="This website presents a set of lectures on quantitative economic modeling, designed and written by Thomas J. Sargent and John Stachurski." />
 		<meta property="og:site_name" content="Quantitative Economics with Python" />
 
 		<link rel="stylesheet" href="/_static/css/python.css?v=1.0">

@@ -17,9 +17,9 @@ Quantitative Economics with Python
     <div class="home-intro">
         <div class="home-detail">
             <div class="home-blurb">
-                <p>This website presents a series of lectures on quantitative economic modeling, designed and written by <a href="http://www.tomsargent.com" target="_blank">Thomas J. Sargent</a> and <a href="http://johnstachurski.net" target="_blank">John Stachurski</a>.</p>
+                <p>This website presents a set of lectures on quantitative economic modeling, designed and written by <a href="http://www.tomsargent.com" target="_blank">Thomas J. Sargent</a> and <a href="http://johnstachurski.net" target="_blank">John Stachurski</a>.</p>
                 <p>The language instruction is <a href="https://www.python.org/">Python</a>.</p>
-                <p>This is one of a <a href="https://lectures.quantecon.org/">set of lectures</a> by <a href="#">QuantEcon</a>.</p>
+                <p>This is one of a <a href="https://lectures.quantecon.org/">series of lectures</a> by <a href="#">QuantEcon</a>.</p>
             </div>
             <div class="web-version">
                 <a href="/index_toc.html">
