@@ -1049,10 +1049,13 @@ Here's one solution:
 
 .. code-block:: python3
 
-    def count_uppercase_chars(s):
-        return sum([c.isupper() for c in s]
-
-    count_uppercase_chars('The Rain in Spain')
+    def f(string):
+        count = 0
+        for letter in string:
+            if letter == letter.upper() and letter.isalpha():
+                count += 1
+        return count
+    f('The Rain in Spain')
 
 
 Exercise 4
