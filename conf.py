@@ -447,6 +447,3 @@ jupyter_allow_html_only=True
 ## Theme specific variables
 jupyter_theme_path = 'theme'
 jupyter_template_path = 'theme/templates'
-
-# Exclude Document Patterns for PDF Construction
-jupyter_pdf_excludepatterns = ["404", "index", "references"]
