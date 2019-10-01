@@ -378,25 +378,22 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
     data['2006':'2012'].plot()
     plt.show()
 
-Please note pandas offers many other file type alternatives than reading csv data from the web. Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server. With the advent of the internet and its lingua franca being json, we find it particularly easy to retrieve and utilize custom data sources. For instance an Italian governmental source can be acquired in 3 lines of code:
+Note that pandas offers many other file type alternatives. 
 
-.. code-block:: python3
+Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server. 
 
-	url = "http://www.statweb.provincia.tn.it/indicatoristrutturali/exp.aspx?fmt=json&idind=102&t=n"
-	json = requests.get(url).json()
-	df = pd.DataFrame(json['Spesa pubblica totale'])
-	df.head()
 
-Using :index:`pandas_datareader` to access data
+Using :index:`pandas_datareader` to Access Data
 -----------------------------------------------
 
 .. index::
     single: Python; pandas-datareader
 
-The maker of pandas has also authored a library that gives programmatic access to many data sources straight from the jupyter notebook. Some sources might require an access key and some are premium sources but among the most important, such as FRED, OECD, EUROSTAT and the World Bank are free to use. We recommend consulting the `documentation <https://pandas-datareader.readthedocs.io/en/latest/index.html>`_ for a detailed view how to
-access the sources.
+The maker of pandas has also authored a library called `pandas_datareader` that gives programmatic access to many data sources straight from the Jupyter notebook. 
 
-Let's work through one example of downloading and plotting data --- this
+While some sources require an access key, many of the most important (e.g., FRED, OECD, EUROSTAT and the World Bank) are free to use. 
+
+For now let's work through one example of downloading and plotting data --- this
 time from the World Bank.
 
 The World Bank `collects and organizes data <http://data.worldbank.org/indicator>`_ on a huge range of indicators.
@@ -415,6 +412,10 @@ The next code example fetches the data for you and plots time series for the US 
     ax = govt_debt.plot(lw=2)
     plt.title("Government Debt to GDP (%)")
     plt.show()
+
+
+The `documentation <https://pandas-datareader.readthedocs.io/en/latest/index.html>`_ provides more details on how to access various data sources.
+
 
 Exercises
 =========
