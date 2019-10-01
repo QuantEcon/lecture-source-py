@@ -1,9 +1,9 @@
 
-# Lectures in Quantitative Economics: Source Files 
+# Lectures in Quantitative Economics: Source Files
 
 ### Python version
 
-This repository contains 
+This repository contains
 
 * the `rst` source files for each python lecture in [Quantitative Economics](https://lectures.quantecon.org/), in directory `source/rst`
 
@@ -14,17 +14,17 @@ This repository contains
 
 ## Installation
 
-1) Download and install [Anacoda](https://www.anaconda.com/distribution/) for your platform (Windows/Linux/Mac OS).
+1) Download and install [Anaconda](https://www.anaconda.com/distribution/) for your platform (Windows/Linux/Mac OS).
 
 2) Download or clone this repository.
 
 3) Enter your local copy of the repository and run `make setup`.
 
-The `make setup` command checks for and installs 
+The `make setup` command checks for and installs
 
-* the [quantecon package](https://quantecon.org/quantecon-py) and 
+* the [quantecon package](https://quantecon.org/quantecon-py) and
 
-* the [sphinxcontrib.jupyter extension](https://github.com/QuantEcon/sphinxcontrib-jupyter) for [Sphinx](https://www.sphinx-doc.org/). 
+* the [sphinxcontrib.jupyter extension](https://github.com/QuantEcon/sphinxcontrib-jupyter) for [Sphinx](https://www.sphinx-doc.org/).
 
 Other dependencies are included with Anaconda.
 
@@ -58,7 +58,7 @@ Standard workflow for editing, say, `lqcontrol.rst` in the master branch is
 1. Run `make notebooks`
 1. Run `make view lecture=lqcontrol` to see `lqcontrol.ipynb` in Jupyter
     * or just `make view` and then navigate to `lqcontrol.ipynb` in the browser window that pops up
-1.  Edit `lqcontrol.rst` in your favorite text editor 
+1.  Edit `lqcontrol.rst` in your favorite text editor
 1. Run `make notebooks` again to generate a new version of `lqcontrol.ipynb`
     * the build system uses caching so this should be quick
     * you might need to open a new terminal window to run this command
@@ -84,8 +84,8 @@ This guide is provided by TJS and requires pandoc 2.6 or newer
 2.  To convert, use
 
     *  `pandoc [myfilenamenew.pynb] -f ipynb+tex_math_dollars -t rst -s -o [newfilename.rst]`
-    
-    
+
+
 ## Style Guide - Writing Conventions
 
 ### Mathematical Notation
@@ -102,7 +102,7 @@ The headings should not use math-environment.
 
 Labels must be written in all small alphabetical letters. Any special character should be avoided in labels except "dash" i.e "-"
 
-All the cite key must use the default google scholar bibtex conventions. 
+All the cite key must use the default google scholar bibtex conventions.
 
 ### Emphasis and Definitions
 

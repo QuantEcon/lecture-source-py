@@ -11,6 +11,12 @@
 
 .. contents:: :depth: 2
 
+In addition to what’s in Anaconda, this lecture will need the following libraries:
+
+.. code-block:: ipython
+
+    !pip install --upgrade pandas-datareader
+
 Overview
 ============
 
@@ -372,53 +378,43 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
     data['2006':'2012'].plot()
     plt.show()
 
-Accessing World Bank Data
--------------------------
+Please note pandas offers many other file type alternatives than reading csv data from the web. Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server. With the advent of the internet and its lingua franca being json, we find it particularly easy to retrieve and utilize custom data sources. For instance an Italian governmental source can be acquired in 3 lines of code:
+
+.. code-block:: python3
+
+	url = "http://www.statweb.provincia.tn.it/indicatoristrutturali/exp.aspx?fmt=json&idind=102&t=n"
+	json = requests.get(url).json()
+	df = pd.DataFrame(json['Spesa pubblica totale'])
+	df.head()
+
+Using :index:`pandas_datareader` to access data
+-----------------------------------------------
 
 .. index::
-    single: Pandas; Accessing Data
+    single: Python; pandas-datareader
 
-Let's look at one more example of downloading and manipulating data --- this
+The maker of pandas has also authored a library that gives programmatic access to many data sources straight from the jupyter notebook. Some sources might require an access key and some are premium sources but among the most important, such as FRED, OECD, EUROSTAT and the World Bank are free to use. We recommend consulting the `documentation <https://pandas-datareader.readthedocs.io/en/latest/index.html>`_ for a detailed view how to
+access the sources.
+
+Let's work through one example of downloading and plotting data --- this
 time from the World Bank.
 
 The World Bank `collects and organizes data <http://data.worldbank.org/indicator>`_ on a huge range of indicators.
 
 For example, `here's <http://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS/countries>`__ some data on government debt as a ratio to GDP.
 
-If you click on "DOWNLOAD DATA" you will be given the option to download the
-data as an Excel file.
-
-The next program does this for you, reads an Excel file into a pandas
-DataFrame, and plots time series for the US and Australia
+The next code example fetches the data for you and plots time series for the US and Australia
 
 .. code-block:: python3
 
-    # == Get data and read into file gd.xls == #
-    wb_data_query = "http://api.worldbank.org/v2/en/indicator/gc.dod.totl.gd.zs?downloadformat=excel"
-    r = requests.get(wb_data_query)
-    with open('gd.xls', 'wb') as output:
-        output.write(r.content)
+    from pandas_datareader import wb
 
-    # == Parse data into a DataFrame == #
-    govt_debt = pd.read_excel('gd.xls', sheet_name='Data', skiprows=3, index_col=1)
-
-    # == Take desired values and plot == #
-    govt_debt = govt_debt.transpose()
-    govt_debt = govt_debt[['AUS', 'USA']]
-    govt_debt = govt_debt[38:]
-    govt_debt.plot(lw=2)
+    govt_debt = wb.download(indicator='GC.DOD.TOTL.GD.ZS', country=['US', 'AU'], start=2005, end=2016).stack().unstack(0)
+    ind = govt_debt.index.droplevel(-1)
+    govt_debt.index = ind
+    ax = govt_debt.plot(lw=2)
+    plt.title("Government Debt to GDP (%)")
     plt.show()
-
-
-.. only:: html
-
-    (The file is ``pandas/wb_download.py``, and can be downloaded
-    :download:`here <_static/lecture_specific/pandas/wb_download.py>`).
-
-.. only:: latex
-
-    (The file is ``pandas/wb_download.py``, and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas/wb_download.py>`__).
 
 Exercises
 =========
@@ -460,7 +456,6 @@ Write a program to calculate the percentage price change over 2013 for the follo
 Plot the result as a bar graph like follows
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
-
 
 
 Solutions
