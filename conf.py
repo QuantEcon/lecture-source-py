@@ -66,7 +66,7 @@ master_pdf_doc = 'index'
 
 # General information about the project.
 project = 'QuantEcon.lectures-python3'
-copyright = '2017, Thomas J. Sargent and John Stachurski'
+copyright = '2019, Thomas J. Sargent and John Stachurski'
 author = 'Thomas J. Sargent and John Stachurski'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -143,7 +143,7 @@ html_theme_path = ['_themes']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Quantitative Economics"
+html_title = "Quantitative Economics with Python"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None

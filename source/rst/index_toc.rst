@@ -1,3 +1,4 @@
+.. _toc:
 
 .. raw:: html
 
@@ -5,34 +6,48 @@
 
 .. only:: html
 
-    Undergraduate Course
-    ********************
+    Table of Contents
+    *****************
 
 .. raw:: html
 
     <ul class="index-tabs">
-        <li><a href="/index_toc.html">All</a></li>
-        <li class="active"><a href="/index_undergrad.html">Undergraduate course</a></li>
+        <li class="active"><a href="/index_toc.html">All</a></li>
+        <li><a href="/index_undergrad.html">Undergraduate course</a></li>
         <li><a href="/index_postgrad.html">Graduate course</a></li>
     </ul>
+
 
 .. toctree::
     :maxdepth: 2
     :titlesonly:
-
 
     about_lectures
     index_learning_python
     index_python_scientific_libraries
     index_advanced_python_programming
     index_data_and_empirics
-    index_tools_and_techniques_undergrad
-    index_dynamic_programming_undergrad
-    index_lq_control_undergrad
-    index_multi_agent_models_undergrad
-    index_asset_pricing_undergrad
+    index_tools_and_techniques
+    index_dynamic_programming
+    index_lq_control
+    index_multi_agent_models
+    index_hs_recursive_models
+    index_classic_linear_models
+    index_time_series_models
+    index_asset_pricing
+    index_dynamic_programming_squared
     zreferences
 
+
+.. toctree::
+    :hidden:
+
+    index_undergrad
+    index_postgrad
+    404
+    search
+    status
+    troubleshooting
 
 |
 

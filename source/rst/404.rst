@@ -1,0 +1,22 @@
+.. _404:
+
+***************
+Page Not Found
+***************
+
+.. raw:: html
+
+    <style type="text/css">.lecture-options{display:none;}</style>
+
+
+We couldn’t find the page you were looking for.
+
+Please check the URL or try a link below:
+
+*  `Home </>`_ 
+*  `QuantEcon <https://quantecon.org/>`_ 
+*  `Quantitative Economics with Python <https://python.quantecon.org/>`_ 
+*  `Quantitative Economics with Julia <https://julia.quantecon.org/>`_ 
+*  `QuantEcon DataScience <https://datascience.quantecon.org/>`_ 
+*  `Forum <http://discourse.quantecon.org/>`_ 
+*  `Contact us <mailto:contact@quantecon.org>`_ 
