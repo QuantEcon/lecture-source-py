@@ -23,15 +23,6 @@
 
     about_lectures
     index_learning_python
-    index_python_scientific_libraries
-    index_advanced_python_programming
-    index_data_and_empirics
-    index_tools_and_techniques_undergrad
-    index_dynamic_programming_undergrad
-    index_lq_control_undergrad
-    index_multi_agent_models_undergrad
-    index_asset_pricing_undergrad
-    zreferences
 
 
 |
