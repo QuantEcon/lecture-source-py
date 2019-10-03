@@ -1050,15 +1050,16 @@ Here's one solution:
 .. code-block:: python3
 
     def f(string):
-    count = 0
-    for letter in string:
-        if letter == letter.upper() and letter.isalpha():
-            count += 1
-    return count
+        count = 0
+        for letter in string:
+            if letter == letter.upper() and letter.isalpha():
+                count += 1
+        return count
+
     f('The Rain in Spain')
 
 
-An alternative, more pythonic solution, would be:
+An alternative, more pythonic solution:
 
 .. code-block:: python3
 
