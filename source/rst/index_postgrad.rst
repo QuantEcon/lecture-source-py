@@ -1,33 +1,19 @@
-.. computational-economics documentation master file
-
-.. only:: html
-
-    ****
-    Home
-    ****
-
-.. only:: latex
-
-    Quantitative Economics
-    ======================
-
-.. COMMENT: Link for Python Specific Badge <p id="py_percentage"><a href="/status.html"></a></p>
 
 .. raw:: html
 
-    <p id="numfocus_badge"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
+    <p id="numfocus_badge" style="float:right;margin:0 0 0 2rem;"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
 
 .. only:: html
 
-    Table of Contents (Python)
-    *************************************************************
+    Graduate Course
+    ***************
 
 .. raw:: html
 
     <ul class="index-tabs">
-        <li><a href="/py/">All</a></li>
-        <li><a href="/py/index_undergrad.html">Undergraduate course</a></li>
-        <li class="active"><a href="/py/index_postgrad.html">Graduate course</a></li>
+        <li><a href="/index_toc.html">All</a></li>
+        <li><a href="/index_undergrad.html">Undergraduate course</a></li>
+        <li class="active"><a href="/index_postgrad.html">Graduate course</a></li>
     </ul>
 
 .. toctree::
@@ -35,6 +21,7 @@
     :titlesonly:
 
 
+    about_lectures
     index_learning_python
     index_python_scientific_libraries
     index_advanced_python_programming

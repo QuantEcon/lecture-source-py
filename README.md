@@ -1,9 +1,9 @@
 
-# Lectures in Quantitative Economics: Source Files 
+# Lectures in Quantitative Economics: Source Files
 
 ### Python version
 
-This repository contains 
+This repository contains
 
 * the `rst` source files for each python lecture in [Quantitative Economics with Python](https://lectures.quantecon.org/py/), in directory `source/rst`
 
@@ -31,7 +31,7 @@ The headings should not use math-environment.
 
 Labels must be written in all small alphabetical letters. Any special character should be avoided in labels except "dash" i.e "-"
 
-All the cite key must use the default google scholar bibtex conventions. 
+All the cite key must use the default google scholar bibtex conventions.
 
 ### Emphasis and Definitions
 

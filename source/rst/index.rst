@@ -1,72 +1,69 @@
-.. computational-economics documentation master file
+.. _index:
 
-.. only:: html
-
-    ****
-    Home
-    ****
-
-.. only:: latex
-
-    Quantitative Economics
-    ======================
-
-.. COMMENT: Link for Python Specific Badge <p id="py_percentage"><a href="/status.html"></a></p>
-
-.. raw:: html
-
-    <p id="numfocus_badge"><a href="https://www.numfocus.org/"><img src="/_static/img/powered-by-NumFOCUS-orange.svg" alt="Powered by NumFOCUS logo"></a></p>
-
-.. only:: html
-
-    Table of Contents
-    *****************
-
-.. raw:: html
-
-    <ul class="index-tabs">
-        <li class="active"><a href="/py/">All</a></li>
-        <li><a href="/py/index_undergrad.html">Undergraduate course</a></li>
-        <li><a href="/py/index_postgrad.html">Graduate course</a></li>
-    </ul>
-
-
-.. toctree::
-    :maxdepth: 2
-    :titlesonly:
-
-    index_learning_python
-    index_python_scientific_libraries
-    index_advanced_python_programming
-    index_data_and_empirics
-    index_tools_and_techniques
-    index_dynamic_programming
-    index_lq_control
-    index_multi_agent_models
-    index_hs_recursive_models
-    index_classic_linear_models
-    index_time_series_models
-    index_asset_pricing
-    index_dynamic_programming_squared
-    zreferences
-
+**********************************
+Quantitative Economics with Python
+**********************************
 
 .. toctree::
     :hidden:
 
-    index_undergrad
-    index_postgrad
+    index_toc
 
-|
 
-.. image:: http://assets.quantecon.org/img/banner.png
-    :scale: 30%
-    :align: center
+.. raw:: html
 
-.. only:: latex
+    <div><style type="text/css">h1,.breadcrumbs{display:none;}</style></div>
+    <h1 class="sr-only" style="display:block;">Quantitative Economics with Python</h1>
+    <div class="home-intro">
+        <div class="home-detail">
+            <div class="home-blurb">
+                <p>This website presents a set of lectures on quantitative economic modeling, designed and written by <a href="http://www.tomsargent.com" target="_blank">Thomas J. Sargent</a> and <a href="http://johnstachurski.net" target="_blank">John Stachurski</a>.</p>
+                <p>The language instruction is <a href="https://www.python.org/">Python</a>.</p>
+                <p>This is one of a <a href="https://lectures.quantecon.org/">series of lectures</a> by <a href="#">QuantEcon</a>.</p>
+            </div>
+            <div class="web-version">
+                <a href="/index_toc.html">
+                    <span class="thumb"><img src="/_static/img/py-logo.png"></span>
+                    <h2>Web Version</h2>
+                    <p>The recommended way to read the lectures</p>
+                </a>
+            </div>
+        </div>
+        <ul class="sponsor">
+            <li><a href="http://www.sloan.org/" title="Alfred P. Sloan Foundation"><img src="/_static/sloan_logo.png" alt="Sponsored by the Alfred P. Sloan Foundation"></a></li>
+            <li><a href="https://quantecon.org/"><img src="/_static/img/qe-logo.png" width="150"></a></li>
+        </ul>
+    </div>
+    <div class="home-alternatives">
+        <h2>Other ways to access the lectures</h2>
+        <ul>
+			<li>
+				<a href="/_downloads/pdf/quantitative_economics_with_python.pdf">
+					<i class="fas fa-file-pdf"></i>
+					<h3>PDF Version</h3>
+					<p>A print-ready version for viewing offline</p>
+				</a>
+			</li>
+            <li>
+                <a href="https://github.com/QuantEcon/quantecon-notebooks-python">
+                    <i class="fas fa-file-download"></i>
+                    <h3>Notebooks</h3>
+                    <p>Get the full set of Jupyter notebooks</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="home-alternatives">
+        <h2>Open source lectures</h2>
+        <ul>
+            <li>
+                <a href="https://github.com/QuantEcon/lecture-source-py">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub Repository</h3>
+                    <p>The source files for these lectures are openly available and stored on GitHub.  We welcome feedback and improvements.  Readers can view the source files, report issues and submit pull requests (suggested changes).</p>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-    Acknowledgements:  These lectures have benefitted greatly from comments and
-    suggestion from our colleagues, students and friends.  Special thanks go to
-    Anmol Bhandari, Long Bui, Jeong-Hun Choi, Chase Coleman, David Evans, Shunsuke Hori,
-    Chenghan Hou, Doc-Jin Jang, Spencer Lyon, Qingyin Ma, Akira Matsushita,
-    Matthew McKay, Tomohito Okabe, Alex Olssen, Nathan Palmer and Yixiao Zhou.
+
