@@ -75,7 +75,7 @@
 \usepackage[document]{ragged2e}    
 \usepackage{fontspec, unicode-math}    
 \usepackage{xunicode}   
-\usepackage[Latin,greek,english]{babel}
+\usepackage[greek,english]{babel}
 \setmonofont{LiberationMono}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
