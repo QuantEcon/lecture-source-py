@@ -1,10 +1,12 @@
-# Minimal makefile for Sphinx documentation
+SHELL := bash
+#
+# Makefile for Sphinx Extension Test Cases
 #
 
 # You can set these variables from the command line.
 SPHINXOPTS    = -c "./"
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = lecture-source-jl
+SPHINXPROJ    = lecture-source-py
 SOURCEDIR     = source/rst
 BUILDDIR      = _build
 BUILDWEBSITE  = _build/website
@@ -46,7 +48,7 @@ clean-website:
 	rm -rf $(BUILDWEBSITE)
 
 clean-pdf:
-	rm -rf $(BUILDPDF)
+	rm -rf $(BUILDDIR)/jupyterpdf
 
 coverage:
 ifneq ($(strip $(parallel)),)
@@ -64,6 +66,14 @@ else
 endif
 
 pdf:
+ifneq ($(strip $(parallel)),)
+	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="latex.tpl" -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_target_pdf=1 -D jupyter_number_workers=$(parallel)
+
+else
+	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="latex.tpl" -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_target_pdf=1
+endif
+
+constructor-pdf:
 ifneq ($(strip $(parallel)),)
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDPDF)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_number_workers=$(parallel)
 
