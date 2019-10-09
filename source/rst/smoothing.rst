@@ -271,7 +271,7 @@ the state :math:`x_t` described by :eq:`cs_15`.
 Please recall that in the LQ permanent income model studied in first lecture on the :doc:`permanent income model <perm_income>`, the state is 
 :math:`x_t, b_t`, where :math:`b_t` is a complicated function of past state vectors :math:`x_{t-j}`.
 
-Notice that in contrast to that incomplete markets model, in our complete markets model , at time $t$ the state vector is :math:`x_t` alone.
+Notice that in contrast to that incomplete markets model, in our complete markets model , at time :math:`t` the state vector is :math:`x_t` alone.
 
 
 Here's an example that shows how in this setting the availability of insurance against fluctuating nonfinancial income
