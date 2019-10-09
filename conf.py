@@ -68,10 +68,6 @@ master_pdf_doc = 'index'
 project = 'QuantEcon.lectures-python3'
 copyright = '2019, Thomas J. Sargent and John Stachurski'
 author = 'Thomas J. Sargent and John Stachurski'
-site_title = 'Jupinx Base Theme'
-site_description = ''
-site_keywords = ''
-site_author = ''
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

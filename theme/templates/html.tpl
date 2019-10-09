@@ -1,5 +1,6 @@
 {%- extends 'display_priority.tpl' -%}
 
+{% set site_title = 'Lectures' %}
 {% set nb_title = nb.metadata.get('title', '') %}
 {% set nb_filename = nb.metadata.get('filename', '') %}
 {% set nb_filename_with_path = nb.metadata.get('filename_with_path','') %}
@@ -21,14 +22,14 @@
 		<title>{{nb_title}} &ndash; {{ site_title }}</title>
 {% endif %}
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="{{ site_author }}">
-		<meta name="keywords" content="{{ site_keywords }}">
-		<meta name="description" content="{{ site_description }}">
+		<meta name="author" content="">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
 		<meta property="og:title" content="{{nb_title}}" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="" />
 		<meta property="og:image" content="" />
-		<meta property="og:description" content="{{ site_description }}" />
+		<meta property="og:description" content="" />
 		<meta property="og:site_name" content="{{ site_title }}" />
 
 		<link rel="stylesheet" href="/_static/css/base.css">
