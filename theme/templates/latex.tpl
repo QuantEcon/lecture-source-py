@@ -224,11 +224,11 @@
 ((* endblock output_group *))
 
 % Display stream ouput with coloring
-((* block stream *))
-    \begin{Verbatim}[commandchars=\\\{\}, fontsize=\scriptsize]
-((( output.text | wrap_text(86) | escape_latex | ansi2latex )))
-    \end{Verbatim}
-((* endblock stream *))
+%((* block stream *))
+%   \begin{Verbatim}[commandchars=\\\{\}, fontsize=\footnotesize]
+%((( output.text | wrap_text(86) | escape_latex | ansi2latex )))
+%    \end{Verbatim}
+%((* endblock stream *))
 
 %==============================================================================
 % Define macro custom_add_prompt() (derived from add_prompt() macro in style_ipython.tplx)
@@ -238,10 +238,11 @@
     ((*- if cell.execution_count is defined -*))
     ((*- set execution_count = "" ~ (cell.execution_count | replace(None, " ")) -*))
     ((*- else -*))
-    ((*- set execution_count = " " -*))
+    ((*- set execution_count = "" -*))
+    ((*- set indention =  "" -*))
     ((*- endif -*))
-    ((*- set indention =  " " * (execution_count | length + 7) -*))
-\begin{Verbatim}[commandchars=\\\{\}, fontsize=\scriptsize]
+    ((*- set indention =  "" -*))
+\begin{Verbatim}[commandchars=\\\{\}, fontsize=\footnotesize]
 ((( text | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
 \end{Verbatim}
 ((*- endmacro *))
