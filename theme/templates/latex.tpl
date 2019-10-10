@@ -57,7 +57,6 @@
 \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
 \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
 \usepackage{fancyvrb} % verbatim replacement that allows latex
-\usepackage[greek,english]{babel}
 \usepackage{grffile} % extends the file name processing of package graphics
                      % to support a larger range
 % The hyperref package gives us a pdf with properly built
@@ -96,7 +95,6 @@
 % Set max figure width to be 80% of text width, for now hardcoded.
 \renewcommand{\includegraphics}[1]{\begin{center}\Oldincludegraphics[width=.8\maxwidth]{#1}\end{center}}
 \renewcommand \caption [2][]{} % removes captions from all figures
-
 ((* endblock packages *))
 
 % Colors for the hyperref package
