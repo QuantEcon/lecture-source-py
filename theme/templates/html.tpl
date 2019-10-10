@@ -33,6 +33,7 @@
 		<meta property="og:site_name" content="{{ site_title }}" />
 
 		<link rel="stylesheet" href="/_static/css/base.css">
+		<link rel="stylesheet" href="/_static/css/qe.python.css">
 		<link rel="icon" href="/_static/img/favicon.ico" type="image/x-icon" />
 
 	</head>
