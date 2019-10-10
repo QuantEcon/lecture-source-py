@@ -17,7 +17,7 @@ FILES         =
 THEMEPATH     = theme
 TEMPLATEPATH  = theme/template
 HTMLTEMPLATE  = html.tpl
-LATEXTEMPLATE = pdf.tpl
+LATEXTEMPLATE = latex.tpl
 COVERAGETEMPLATE = error_report_template.html
 
 # Put it first so that "make" without argument is like "make help".
