@@ -41,7 +41,6 @@
 \usepackage{float}
 \floatplacement{figure}{H}  % used to force figures for placement in text
 
-
 \usepackage{adjustbox} % Used to constrain images to a maximum size
 \usepackage{xcolor} % Allow colors to be defined
 \usepackage{enumerate} % Needed for markdown enumerations to work
@@ -74,14 +73,23 @@
 \usepackage{natbib}    
 \usepackage[document]{ragged2e}    
 \usepackage{fontspec, unicode-math}    
-\usepackage{xunicode}   
 \usepackage[greek,english]{babel}
+\usepackage{xunicode}   
+\usepackage{letltxmacro}
 \setmonofont{LiberationMono}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \DeclareMathOperator{\col}{col}
 \setlength{\parskip}{1.5ex plus0.5ex minus0.5ex}
 \setlength{\parindent}{0pt}
+
+\usepackage{letltxmacro}
+% https://tex.stackexchange.com/q/88001/5764
+\LetLtxMacro\oldttfamily\ttfamily
+\DeclareRobustCommand{\ttfamily}{\oldttfamily\csname ttsize\endcsname}
+\newcommand{\setttsize}[1]{\def\ttsize{#1}}%
+
+\DeclareTextFontCommand{\texttt}{\ttfamily}
 
 % renew commands %
 % Set max figure width to be 80% of text width, for now hardcoded.
@@ -173,6 +181,7 @@
 %===============================================================================
 
 ((* block maketitle *))
+\setttsize{\footnotesize}
 
 \title{((( nb.metadata.get("latex_metadata", {}).get("title", "") | escape_latex )))}
 
@@ -207,7 +216,7 @@
 ((( cell.metadata.get("hide_input", "") )))
 ((*- if cell.metadata.hide_input or nb.metadata.hide_input or cell.metadata.get("hide_input", ""): -*))
 ((*- else -*))
-   ((( custom_add_prompt(cell.source | wrap_text(88) | highlight_code(strip_verbatim=True), cell, 'In ', 'incolor') )))
+   ((( custom_add_prompt(cell.source | wrap_text(88) | highlight_code(strip_verbatim=True), cell, 'In ', 'incolor', 'plain') )))
 ((*- endif *))
 ((* endblock input *))
 
@@ -223,28 +232,59 @@
 ((*- endif -*))
 ((* endblock output_group *))
 
+((* block execute_result scoped *))
+    ((*- for type in output.data | filter_data_type -*))
+        ((*- if type in ['text/plain']*))
+            ((( custom_add_prompt(output.data['text/plain'] | wrap_text(88) | escape_latex | ansi2latex, cell, 'Out', 'outcolor', 'plain') )))
+        ((*- elif type in ['text/latex']*))
+            ((( custom_add_prompt(output.data['text/latex'] | wrap_text(88) | ansi2latex, cell, 'Out', 'outcolor', 'latex') )))
+        ((* else -*))
+            ((( " " )))
+            ((( draw_prompt(cell, 'Out', 'outcolor','') )))((( super() )))
+        ((*- endif -*))
+    ((*- endfor -*))
+((* endblock execute_result *))
+
 % Display stream ouput with coloring
 ((* block stream *))
-    \begin{Verbatim}[commandchars=\\\{\}, fontsize=\scriptsize]
-((( output.text | wrap_text(86) | escape_latex | ansi2latex )))
-    \end{Verbatim}
-((* endblock stream *))
+\begin{Verbatim}[commandchars=\\\{\}, fontsize=\footnotesize]
+    ((( output.text | wrap_text(86) | escape_latex | ansi2latex )))
+\end{Verbatim}
+%((* endblock stream *))
 
 %==============================================================================
 % Define macro custom_add_prompt() (derived from add_prompt() macro in style_ipython.tplx)
 %==============================================================================
 
-((* macro custom_add_prompt(text, cell, prompt, prompt_color) -*))
+((* macro custom_add_prompt(text, cell, prompt, prompt_color, type) -*))
     ((*- if cell.execution_count is defined -*))
     ((*- set execution_count = "" ~ (cell.execution_count | replace(None, " ")) -*))
     ((*- else -*))
-    ((*- set execution_count = " " -*))
+    ((*- set execution_count = "" -*))
     ((*- endif -*))
     ((*- set indention =  " " * (execution_count | length + 7) -*))
-\begin{Verbatim}[commandchars=\\\{\}, fontsize=\scriptsize]
-((( text | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
+\begin{Verbatim}[mathescape, commandchars=\\\{\}, fontsize=\small, xleftmargin=-3.9em]
+((( text.replace('$$','').replace('$','') | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
 \end{Verbatim}
 ((*- endmacro *))
+
+%==============================================================================
+% Support Macros
+%==============================================================================
+
+% Name: draw_prompt
+% Purpose: Renders an output/input prompt
+((* macro draw_prompt(cell, prompt, prompt_color, extra_space) -*))
+    ((*- if cell.execution_count is defined -*))
+    ((*- set execution_count = "" ~ (cell.execution_count | replace(None, " ")) -*))
+    ((*- else -*))((*- set execution_count = " " -*))((*- endif *))
+
+    ((*- if (resources.global_content_filter.include_output_prompt and prompt == 'Out')
+         or (resources.global_content_filter.include_input_prompt  and prompt == 'In' ) *))
+\prompt{(((prompt)))}{(((prompt_color)))}{(((execution_count)))}{(((extra_space)))}
+    ((*- endif -*))
+((*- endmacro *))
+
 
 %==============================================================================
 % Bibliography
