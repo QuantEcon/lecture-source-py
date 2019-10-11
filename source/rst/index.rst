@@ -23,15 +23,15 @@ Quantitative Economics with Python
             </div>
             <div class="web-version">
                 <a href="/index_toc.html">
-                    <span class="thumb"><img src="/_static/img/py-logo.png"></span>
+                    <span class="thumb"><img src="/_static/py-logo.png"></span>
                     <h2>Web Version</h2>
                     <p>The recommended way to read the lectures</p>
                 </a>
             </div>
         </div>
         <ul class="sponsor">
-            <li><a href="http://www.sloan.org/" title="Alfred P. Sloan Foundation"><img src="/_static/sloan_logo.png" alt="Sponsored by the Alfred P. Sloan Foundation"></a></li>
-            <li><a href="https://quantecon.org/"><img src="/_static/img/qe-logo.png" width="150"></a></li>
+            <li><a href="http://www.sloan.org/" title="Alfred P. Sloan Foundation"><img src="/_static/sloan-logo.png" alt="Sponsored by the Alfred P. Sloan Foundation"></a></li>
+            <li><a href="https://quantecon.org/"><img src="/_static/qe-logo.png" width="150"></a></li>
         </ul>
     </div>
     <div class="home-alternatives">

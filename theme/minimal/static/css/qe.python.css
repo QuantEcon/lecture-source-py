@@ -1,5 +1,4 @@
 /* Homepage */
-
 .home-intro {
 	display: flex;
 	align-content: center;
@@ -78,7 +77,6 @@
 }
 
 /* Tabs for alternate index tocs */
-
 .index-tabs {
 	margin:3rem 0;
 	list-style: none;
@@ -111,4 +109,9 @@
 	border-bottom:1px solid #fff;
 	background-color: #fff;
 	font-weight: 700;
+}
+
+/* Other */
+#qe-notebook-header {
+	display: none;
 }
