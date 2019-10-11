@@ -21,6 +21,7 @@ LQ Control
     perm_income
     perm_income_cons
     smoothing
+    smoothing_tax
     robustness
     markov_jump_lq
     tax_smoothing_1
