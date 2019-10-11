@@ -25,16 +25,9 @@
 		<meta name="author" content="">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
-		<meta property="og:title" content="{{nb_title}}" />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="" />
-		<meta property="og:image" content="" />
-		<meta property="og:description" content="" />
-		<meta property="og:site_name" content="{{ site_title }}" />
 
 		<link rel="stylesheet" href="/_static/css/base.css">
 		<link rel="stylesheet" href="/_static/css/qe.python.css">
-		<link rel="icon" href="/_static/img/favicon.ico" type="image/x-icon" />
 
 	</head>
 
@@ -349,12 +342,6 @@ var element = $('#{{ div_id }}');
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script src="/_static/js/base.js"></script>
-
-		<script>
-		window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-		ga('create', 'UA-XXXXXXXX-X', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
-		</script>
-		<script src="https://www.google-analytics.com/analytics.js" async></script>
 
 	</body>
 </html>
