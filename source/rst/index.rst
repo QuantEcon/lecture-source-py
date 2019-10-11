@@ -30,7 +30,7 @@ Quantitative Economics with Python
             </div>
         </div>
         <ul class="sponsor">
-            <li><a href="http://www.sloan.org/" title="Alfred P. Sloan Foundation"><img src="/_static/sloan-logo.png" alt="Sponsored by the Alfred P. Sloan Foundation"></a></li>
+            <li><a href="http://www.sloan.org/" title="Alfred P. Sloan Foundation"><img src="/_static/sloan_logo.png" alt="Sponsored by the Alfred P. Sloan Foundation"></a></li>
             <li><a href="https://quantecon.org/"><img src="/_static/qe-logo.png" width="150"></a></li>
         </ul>
     </div>
