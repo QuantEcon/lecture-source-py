@@ -336,7 +336,7 @@ Estimation with Smoothing
 
 Our next step is to provide code that will not only estimate the periodogram but also provide smoothing as required.
 
-Such functions have been written in  `estspec.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/estspec.py>`__ and are available once you've installed `QuantEcon.py <http://quantecon.org/python_index.html>`__.
+Such functions have been written in  `estspec.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/estspec.py>`__ and are available once you've installed `QuantEcon.py <http://quantecon.org/quantecon-py>`__.
 
 The `GitHub listing <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/estspec.py>`__ displays three functions,  ``smooth()``, ``periodogram()``, ``ar_periodogram()``. We will discuss the first two here and the third one :ref:`below <ar_periodograms>`.
 

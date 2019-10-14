@@ -541,7 +541,7 @@ The class ``Kalman`` from the `QuantEcon.py`_ package implements the Kalman filt
 
     * the moments :math:`(\hat x_t, \Sigma_t)` of the current prior.
 
-    * An instance of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
+    * An instance of the `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class from `QuantEcon.py <http://quantecon.org/quantecon-py>`_.
 
 
 The latter represents a linear state space model of the form
@@ -566,7 +566,7 @@ To connect this with the notation of this lecture we set
 
 
 
-* The class ``Kalman`` from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ package has a number of methods, some that we will wait to use until we study more advanced applications in subsequent lectures.
+* The class ``Kalman`` from the `QuantEcon.py <http://quantecon.org/quantecon-py>`_ package has a number of methods, some that we will wait to use until we study more advanced applications in subsequent lectures.
 
 * Methods pertinent for this lecture  are:
 

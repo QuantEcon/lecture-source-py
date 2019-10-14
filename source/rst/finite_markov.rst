@@ -32,7 +32,7 @@ You will find them in many of the workhorse models of economics and finance.
 
 In this lecture, we review some of the theory of Markov chains.
 
-We will also introduce some of the high-quality routines for working with Markov chains available in `QuantEcon.py <http://quantecon.org/python_index.html>`__.
+We will also introduce some of the high-quality routines for working with Markov chains available in `QuantEcon.py <http://quantecon.org/quantecon-py>`__.
 
 Prerequisite knowledge is basic probability and linear algebra.
 
@@ -228,11 +228,11 @@ One natural way to answer questions about Markov chains is to simulate them.
 
 (To approximate the probability of event :math:`E`, we can simulate many times and count the fraction of times that :math:`E` occurs).
 
-Nice functionality for simulating Markov chains exists in `QuantEcon.py <http://quantecon.org/python_index.html>`__.
+Nice functionality for simulating Markov chains exists in `QuantEcon.py <http://quantecon.org/quantecon-py>`__.
 
 * Efficient, bundled with lots of other useful routines for handling Markov chains.
 
-However, it's also a good exercise to roll our own routines --- let's do that first and then come back to the methods in `QuantEcon.py <http://quantecon.org/python_index.html>`__.
+However, it's also a good exercise to roll our own routines --- let's do that first and then come back to the methods in `QuantEcon.py <http://quantecon.org/quantecon-py>`__.
 
 In these exercises, we'll take the state space to be :math:`S = 0,\ldots, n-1`.
 
@@ -252,7 +252,7 @@ The Markov chain is then constructed as discussed above.  To repeat:
 
 In order to implement this simulation procedure, we need a method for generating draws from a discrete distribution.
 
-For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/python_index.html>`__.
+For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/quantecon-py>`__.
 
 
 
@@ -331,7 +331,7 @@ If you run the following code you should get roughly that answer
 Using QuantEcon's Routines
 ----------------------------
 
-As discussed above, `QuantEcon.py <http://quantecon.org/python_index.html>`__ has routines for handling Markov chains, including simulation.
+As discussed above, `QuantEcon.py <http://quantecon.org/quantecon-py>`__ has routines for handling Markov chains, including simulation.
 
 Here's an illustration using the same `P` as the preceding example
 
@@ -344,7 +344,7 @@ Here's an illustration using the same `P` as the preceding example
     X = mc.simulate(ts_length=1000000)
     np.mean(X == 0)
 
-In fact the `QuantEcon.py <http://quantecon.org/python_index.html>`__ routine is :ref:`JIT compiled <numba_link>` and much faster.
+In fact the `QuantEcon.py <http://quantecon.org/quantecon-py>`__ routine is :ref:`JIT compiled <numba_link>` and much faster.
 
 (Because it's JIT compiled the first run takes a bit longer --- the function has to be compiled and stored in memory)
 
@@ -622,7 +622,7 @@ there's no edge between nodes
 It's clear from the graph that this stochastic matrix is irreducible: we can
 reach any state from any other state eventually.
 
-We can also test this using `QuantEcon.py <http://quantecon.org/python_index.html>`__'s MarkovChain class
+We can also test this using `QuantEcon.py <http://quantecon.org/quantecon-py>`__'s MarkovChain class
 
 
 
@@ -874,7 +874,7 @@ But the zero vector solves this equation.
 
 Hence we need to impose the restriction that the solution must be a probability distribution.
 
-A suitable algorithm is implemented in `QuantEcon.py <http://quantecon.org/python_index.html>`__ --- the next code block illustrates
+A suitable algorithm is implemented in `QuantEcon.py <http://quantecon.org/quantecon-py>`__ --- the next code block illustrates
 
 
 
@@ -1338,7 +1338,7 @@ The variance of the stationary probability distribution of :math:`\{ y_t \}` is
 
 Tauchen's method :cite:`Tauchen1986` is the most common method for approximating this continuous state process with a finite state Markov chain.
 
-A routine for this already exists in `QuantEcon.py <http://quantecon.org/python_index.html>`__ but let's write our own version as an exercise.
+A routine for this already exists in `QuantEcon.py <http://quantecon.org/quantecon-py>`__ but let's write our own version as an exercise.
 
 As a first step, we choose
 
@@ -1381,7 +1381,7 @@ The exercise is to write a function ``approx_markov(rho, sigma_u, m=3, n=7)`` th
 :math:`\{x_0, \ldots, x_{n-1}\} \subset \mathbb R` and :math:`n \times n` matrix
 :math:`P` as described above.
 
-* Even better, write a function that returns an instance of `QuantEcon.py's <http://quantecon.org/python_index.html>`__ `MarkovChain` class.
+* Even better, write a function that returns an instance of `QuantEcon.py's <http://quantecon.org/quantecon-py>`__ `MarkovChain` class.
 
 
 Solutions
@@ -1511,7 +1511,7 @@ executing the next cell
 Exercise 3
 ----------
 
-A solution from the `QuantEcon.py <http://quantecon.org/python_index.html>`__ library
+A solution from the `QuantEcon.py <http://quantecon.org/quantecon-py>`__ library
 can be found `here <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`__.
 
 

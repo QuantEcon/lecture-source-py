@@ -760,7 +760,7 @@ Most code for working with covariance stationary models deals with ARMA models.
 
 Python code for studying ARMA models can be found in the ``tsa`` submodule of `statsmodels <http://statsmodels.sourceforge.net/>`_.
 
-Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/python_index.html>`_ package.
+Since this code doesn't quite cover our needs --- particularly vis-a-vis spectral analysis --- we've put together the module `arma.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/arma.py>`_, which is part of `QuantEcon.py <http://quantecon.org/quantecon-py>`_ package.
 
 The module provides functions for mapping ARMA(:math:`p,q`) models into their
 

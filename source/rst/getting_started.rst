@@ -434,11 +434,11 @@ Most of the libraries we need come in Anaconda.
 
 Other libraries can be installed with ``pip``.
 
-One library we'll be using is `QuantEcon.py <http://quantecon.org/python_index.html>`__.
+One library we'll be using is `QuantEcon.py <http://quantecon.org/quantecon-py>`__.
 
 .. _gs_install_qe:
 
-You can install `QuantEcon.py <http://quantecon.org/python_index.html>`__ by
+You can install `QuantEcon.py <http://quantecon.org/quantecon-py>`__ by
 starting Jupyter and typing
 
 
@@ -450,7 +450,7 @@ Alternatively, you can type the following into a terminal
 
     ``pip install quantecon``
 
-More instructions can be found on the `library page <http://quantecon.org/python_index.html>`__.
+More instructions can be found on the `library page <http://quantecon.org/quantecon-py>`__.
 
 To upgrade to the latest version, which you should do regularly, use
 

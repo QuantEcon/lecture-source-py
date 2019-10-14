@@ -1231,7 +1231,7 @@ The red :math:`+` sign shows the location of the roots
 Using the LinearStateSpace Class
 ================================
 
-It turns out that we can use the `QuantEcon.py <http://quantecon.org/python_index.html>`_
+It turns out that we can use the `QuantEcon.py <http://quantecon.org/quantecon-py>`_
 `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class to do
 much of the work that we have done from scratch above.
 
@@ -1497,5 +1497,5 @@ in :cite:`Samuelson1939`.
 We saw that different parameter values led to different output paths, which
 could either be stationary, explosive, or oscillating.
 
-We also were able to represent the model using the `QuantEcon.py <http://quantecon.org/python_index.html>`_
+We also were able to represent the model using the `QuantEcon.py <http://quantecon.org/quantecon-py>`_
 `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ class.

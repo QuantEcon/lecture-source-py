@@ -359,7 +359,7 @@ This is the approach we adopt in the next section.
 Implementation
 --------------
 
-We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/python_index.html>`__ that computes a Markov perfect equilibrium of the infinite horizon linear-quadratic dynamic game in the manner described above.
+We use the function `nnash <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqnash.py>`__ from `QuantEcon.py <http://quantecon.org/quantecon-py>`__ that computes a Markov perfect equilibrium of the infinite horizon linear-quadratic dynamic game in the manner described above.
 
 
 
@@ -475,7 +475,7 @@ Running the code produces the following output.
 
 
 
-One way to see that :math:`F_i` is indeed optimal for firm :math:`i` taking :math:`F_2` as given is to use `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class.
+One way to see that :math:`F_i` is indeed optimal for firm :math:`i` taking :math:`F_2` as given is to use `QuantEcon.py <http://quantecon.org/quantecon-py>`__'s `LQ` class.
 
 In particular, let's take `F2` as computed above, plug it into :eq:`eq_mpe_p1p` and :eq:`eq_mpe_p1d` to get firm 1's problem and solve it using `LQ`.
 
@@ -570,7 +570,7 @@ Replicate the :ref:`pair of figures <mpe_vs_monopolist>` showing the comparison 
 
 Parameters are as in `duopoly_mpe.py` and you can use that code to compute MPE policies under duopoly.
 
-The optimal policy in the monopolist case can be computed using `QuantEcon.py <http://quantecon.org/python_index.html>`__'s `LQ` class.
+The optimal policy in the monopolist case can be computed using `QuantEcon.py <http://quantecon.org/quantecon-py>`__'s `LQ` class.
 
 
 Exercise 2
