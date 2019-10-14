@@ -8,3 +8,4 @@ dask-worker-space/
 .DS_Store?
 **/.DS_Store
 venv/
+theme/quantecon
