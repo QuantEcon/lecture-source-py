@@ -203,7 +203,7 @@ This can be written as
 
 which is a standard linear state space system.
 
-To study it, we could map it into an instance of `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
+To study it, we could map it into an instance of `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/quantecon-py>`_.
 
 But here we will use a different set of code for simulation, for reasons described below.
 
@@ -794,7 +794,7 @@ It is convenient for us to introduce the following notation:
 
 We want to characterize and simulate components :math:`\tau_t, m_t, s_t` of the decomposition.
 
-A convenient way to do this is to construct an appropriate instance of a :doc:`linear state space system <linear_models>` by using `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
+A convenient way to do this is to construct an appropriate instance of a :doc:`linear state space system <linear_models>` by using `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from `QuantEcon.py <http://quantecon.org/quantecon-py>`_.
 
 This will allow us to use the routines in `LinearStateSpace <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ to study dynamics.
 

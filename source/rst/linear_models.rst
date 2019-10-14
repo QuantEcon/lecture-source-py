@@ -1333,7 +1333,7 @@ Code
 ====
 
 Our preceding simulations and calculations are based on code in
-the file `lss.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ package.
+the file `lss.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lss.py>`_ from the `QuantEcon.py <http://quantecon.org/quantecon-py>`_ package.
 
 
 

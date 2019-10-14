@@ -54,7 +54,7 @@ This lecture covers
 * the theory of dynamic programming in a discrete setting, plus examples and
   applications
 
-* a powerful set of routines for solving discrete DPs from the `QuantEcon code library <http://quantecon.org/python_index.html>`_
+* a powerful set of routines for solving discrete DPs from the `QuantEcon code library <http://quantecon.org/quantecon-py>`_
 
 
 Let's start with some imports:
@@ -400,7 +400,7 @@ Solving Discrete DPs
 
 Now that the theory has been set out, let's turn to solution methods.
 
-The code for solving discrete DPs is available in `ddp.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ code library.
+The code for solving discrete DPs is available in `ddp.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ from the `QuantEcon.py <http://quantecon.org/quantecon-py>`_ code library.
 
 It implements the three most important solution methods for discrete dynamic programs, namely
 
@@ -701,7 +701,7 @@ Another interesting object is ``results.mc``, which is the controlled chain defi
 
 In other words, it gives the dynamics of the state when the agent follows the optimal policy.
 
-Since this object is an instance of `MarkovChain` from  `QuantEcon.py <http://quantecon.org/python_index.html>`_ (see :doc:`this lecture <finite_markov>` for more discussion), we
+Since this object is an instance of `MarkovChain` from  `QuantEcon.py <http://quantecon.org/quantecon-py>`_ (see :doc:`this lecture <finite_markov>` for more discussion), we
 can easily simulate it, compute its stationary distribution and so on.
 
 

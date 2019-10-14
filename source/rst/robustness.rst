@@ -910,7 +910,7 @@ computations.
 Implementation
 ==============
 
-The `QuantEcon.py <http://quantecon.org/python_index.html>`_ package provides a class called ``RBLQ`` for implementation of robust LQ optimal control.
+The `QuantEcon.py <http://quantecon.org/quantecon-py>`_ package provides a class called ``RBLQ`` for implementation of robust LQ optimal control.
 
 The code can be found `on GitHub <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/robustlq.py>`__.
 

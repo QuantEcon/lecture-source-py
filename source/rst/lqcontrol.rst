@@ -595,7 +595,7 @@ Implementation
 ==============
 
 We will use code from `lqcontrol.py <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/lqcontrol.py>`__
-in `QuantEcon.py <http://quantecon.org/python_index.html>`_
+in `QuantEcon.py <http://quantecon.org/quantecon-py>`_
 to solve finite and infinite horizon linear quadratic control problems.
 
 In the module, the various updating, simulation and fixed point methods

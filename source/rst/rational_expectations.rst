@@ -599,7 +599,7 @@ Let the firm's belief function :math:`H` be as given in :eq:`ree_hlom2`.
 Formulate the firm's problem as a discounted optimal linear regulator problem, being careful to describe all of the objects needed.
 
 
-Use the class ``LQ`` from the `QuantEcon.py <http://quantecon.org/python_index.html>`_ package to solve the firm's problem for the following parameter values:
+Use the class ``LQ`` from the `QuantEcon.py <http://quantecon.org/quantecon-py>`_ package to solve the firm's problem for the following parameter values:
 
 .. math::
 

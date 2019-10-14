@@ -225,7 +225,7 @@ Code
 
 Let's look at how we might compute such an equilibrium in practice.
 
-To solve the household's dynamic programming problem we'll use the `DiscreteDP <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ class from `QuantEcon.py <http://quantecon.org/python_index.html>`_.
+To solve the household's dynamic programming problem we'll use the `DiscreteDP <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/ddp.py>`_ class from `QuantEcon.py <http://quantecon.org/quantecon-py>`_.
 
 Our first task is the least exciting one: write code that maps parameters for a household problem into the ``R`` and ``Q`` matrices needed to generate an instance of ``DiscreteDP``.
 
