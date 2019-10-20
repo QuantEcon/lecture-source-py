@@ -1,0 +1,117 @@
+/* Homepage */
+.home-intro {
+	display: flex;
+	align-content: center;
+}
+.home-blurb {
+	font-size: 1.1rem;
+	line-height: 1.5;	
+}
+.home-intro .sponsor {
+	list-style: none;
+	padding:0;
+	flex-shrink: 0;
+	margin:0 60px 0 4rem;
+	text-align: center;
+}
+.home-intro .sponsor li {
+	display: block;
+	margin:1rem 0;
+	padding:0;
+}
+.web-version {
+	display:inline-block;
+	padding: 2rem 0rem;
+}
+.web-version a {
+	display: block;
+	padding:1rem 40px 1rem 80px;
+	position: relative;
+}
+.web-version a .thumb {
+	position: absolute;
+	left:0px;
+	top:1rem;
+}
+.web-version a .thumb img {
+	width:50px;
+}
+.web-version a h2 {
+	line-height: 1;
+	margin:0;
+	font-size: 1.4rem;
+}
+.web-version a p {
+	margin:10px 0 0 0;
+}
+.home-alternatives {
+	padding: 1rem 0rem;
+}
+.home-alternatives ul {
+	list-style: none;
+	padding:0;
+	margin:0 0;
+}
+.home-alternatives li {
+	padding:0;
+	margin:1rem 1rem;
+}
+.home-alternatives li a {
+	display: block;
+}
+.home-alternatives li a h3 {
+	line-height: 1;
+	margin:0;
+	font-size: 1.2rem;
+}
+.home-alternatives li a p {
+	margin:10px 0 0 0;
+}
+@media only screen and (max-width: 768px) {
+	.home-intro {
+		display: block;
+	}
+	.home-intro .sponsor {
+		margin:0 auto;
+	}
+}
+
+/* Tabs for alternate index tocs */
+.index-tabs {
+	margin:3rem 0;
+	list-style: none;
+	padding:0;
+	display: flex;
+	border:1px solid #DEDEE2;
+	border-width: 0 0 1px 1px;
+	border-radius: 5px 5px 0 0;
+}
+.index-tabs li {
+	position: relative;
+	bottom:-1px;
+	margin:0;
+}
+.index-tabs li a {
+	border-width:1px 1px 1px 0;
+	border-radius: 5px 5px 0 0;
+	padding:1rem 2rem;
+	color: #444;
+	font-weight: 700;
+	display: block;
+	border:1px solid #DEDEE2;
+	background-color: #F2F2F6;
+}
+.index-tabs li a:hover {
+	background-color: #fbfbfb;
+	text-decoration: none;
+}
+.index-tabs li.active a {
+	border-bottom:1px solid #fff;
+	background-color: #fff;
+	font-weight: 700;
+}
+
+/* Other */
+#qe-notebook-header {
+	display: none;
+}
