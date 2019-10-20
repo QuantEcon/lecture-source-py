@@ -91,6 +91,9 @@
 
 \DeclareTextFontCommand{\texttt}{\ttfamily}
 
+% Enable Unicode characters in `Out` code-blocks within verbatim
+\usepackage{pmboxdraw}
+
 % renew commands %
 % Set max figure width to be 80% of text width, for now hardcoded.
 \renewcommand{\includegraphics}[1]{\begin{center}\Oldincludegraphics[width=.8\maxwidth]{#1}\end{center}}
