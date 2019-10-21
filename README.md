@@ -61,7 +61,7 @@ is rendered rendered in HTML and LaTex as:
 
 #### Adding a new reference to QuantEcon
 
-To add a new reference to the project, a bibtex entry needs to be added to `QuantEcon.lectures/_static/quant-econ.bib`.
+To add a new reference to the project, a bibtex entry needs to be added to `lecture-source-py/source/_static/quant-econ.bib`.
 
 ### Sphinx and Restructured Text
 
