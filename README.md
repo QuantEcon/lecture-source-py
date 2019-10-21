@@ -13,7 +13,7 @@ This repository contains
 
 ## Building notebooks
 
-(Jupinx)[https://jupinx.quantecon.org] should be used to build this set of lectures. 
+[Jupinx](https://jupinx.quantecon.org) should be used to build this set of lectures. 
 
 ## Style Guide - Writing Conventions
 
