@@ -454,7 +454,7 @@ Write a program to calculate the percentage price change over 2013 for the follo
     A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
     `here <https://lectures.quantecon.org/_downloads/pandas/data/ticker_data.csv>`__.
 
-Plot the result as a bar graph like follows
+Plot the result as a bar graph like this one
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
 
