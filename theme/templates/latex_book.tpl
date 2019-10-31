@@ -188,7 +188,9 @@
 ((* block maketitle *))
 \setttsize{\footnotesize}
 
-\title{\Huge \textbf{Quantitative Economics with Python}}
+((*- if nb.metadata.get("latex_metadata", {}).get("jupyter_pdf_book_title", ""): -*))
+\title{\Huge \textbf{((( nb.metadata["latex_metadata"]["jupyter_pdf_book_title"] )))}}
+((*- endif *))
 
 ((*- if nb.metadata.get("latex_metadata", {}).get("author", ""): -*))
 \author{\textsc{((( nb.metadata["latex_metadata"]["author"] )))}}
@@ -310,5 +312,5 @@
 ((* block bibliography *))
 % Add a bibliography block to the postdoc
 \bibliographystyle{plain}
-\bibliography{((( nb.metadata.get("latex_metadata", {}).get("bib", "quant-econ") )))}
+\bibliography{((( nb.metadata.get("latex_metadata", {}).get("bib", "bibliography-file") )))}
 ((* endblock bibliography *))

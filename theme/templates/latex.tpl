@@ -206,10 +206,9 @@
 \begin{center}
    \adjustimage{max size={0.6\linewidth}{0.6\paperheight}}{((( nb.metadata["latex_metadata"]["logo"] )))}
 \end{center}
-
-% delete-till-here-book %
 ((*- endif -*))
 
+% delete-till-here-book %
 ((* endblock maketitle *))
 
 

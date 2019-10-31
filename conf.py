@@ -467,5 +467,8 @@ jupyter_pdf_urlpath = "https://lectures.quantecon.org/py/"
 # make book
 jupyter_pdf_book = True
 
+# book title
+jupyter_pdf_book_title = "Quantitative Economics with Python"
+
 # pdf toc file
-jupyter_pdf_book_toc = "index_toc"
+jupyter_pdf_book_index = "index_toc"
