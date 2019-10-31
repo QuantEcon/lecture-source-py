@@ -57,6 +57,9 @@
 \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
 \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
 \usepackage{fancyvrb} % verbatim replacement that allows latex
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{escapeinside={<@}{@>}}
 \usepackage{grffile} % extends the file name processing of package graphics
                      % to support a larger range
 % The hyperref package gives us a pdf with properly built
@@ -203,6 +206,8 @@
 \begin{center}
    \adjustimage{max size={0.6\linewidth}{0.6\paperheight}}{((( nb.metadata["latex_metadata"]["logo"] )))}
 \end{center}
+
+% delete-till-here-book %
 ((*- endif -*))
 
 ((* endblock maketitle *))
@@ -266,9 +271,15 @@
     ((*- set execution_count = "" -*))
     ((*- endif -*))
     ((*- set indention =  " " * (execution_count | length + 7) -*))
+((*- if type == 'plain' -*))
 \begin{Verbatim}[commandchars=\\\{\}, fontsize=\small, xleftmargin=-3.9em]
 ((( text.replace('$$','').replace('$\\',"\\(\\").replace('$','\)') | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
 \end{Verbatim}
+((*- else -*))
+\begin{lstlisting}[mathescape, basicstyle=\small\ttfamily\color{black}, keywordstyle={\color{red}}, xleftmargin=-3.9em]
+((( text | add_prompts(first='<@\\textcolor{red}{' ~ prompt ~ '[' ~ execution_count ~ ']: }@>', cont=indention) )))
+\end{lstlisting}
+((*- endif -*))
 ((*- endmacro *))
 
 %==============================================================================
@@ -299,6 +310,7 @@
 
 
 ((* block bibliography *))
+% delete-from-here-book %
 ((*- if nb.metadata.get("latex_metadata", {}).get("bib_include", ""): -*))
 % Add a bibliography block to the postdoc
 \bibliographystyle{plain}
