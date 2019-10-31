@@ -275,7 +275,7 @@
 ((( text.replace('$$','').replace('$\\',"\\(\\").replace('$','\)') | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
 \end{Verbatim}
 ((*- else -*))
-\begin{lstlisting}[mathescape, basicstyle=\small\ttfamily\color{black}, keywordstyle={\color{red}}, xleftmargin=-3.9em]
+\begin{lstlisting}[mathescape, basicstyle=\small\ttfamily\color{black}, keywordstyle={\color{red}}, xleftmargin=-4.8em]
 ((( text | add_prompts(first='<@\\textcolor{red}{' ~ prompt ~ '[' ~ execution_count ~ ']: }@>', cont=indention) )))
 \end{lstlisting}
 ((*- endif -*))
