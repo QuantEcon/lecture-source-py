@@ -15,8 +15,11 @@ This page is for readers experiencing errors when running the code from the lect
 Fixing Your Local Environment
 ==============================
 
-The basic assumption of the lectures is that code should execute on any
-machine that has the latest version of Anaconda Python installed.
+The basic assumption of the lectures is that code in a lecture should execute whenever
+
+#. it is executed in a Jupyter notebook and
+
+#. the notebook is running on a machine with the latest version of Anaconda Python.
 
 You have installed Anaconda, haven't you, following the instructions in :doc:`this lecture <getting_started>`? 
 
