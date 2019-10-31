@@ -466,3 +466,6 @@ jupyter_pdf_urlpath = "https://lectures.quantecon.org/py/"
 
 # make book
 jupyter_pdf_book = True
+
+# pdf toc file
+jupyter_pdf_book_toc = "index_toc"
