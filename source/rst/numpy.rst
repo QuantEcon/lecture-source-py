@@ -27,7 +27,13 @@ Overview
 * Mature, fast, stable and under continuous development.
 
 
-In this lecture, we introduce NumPy arrays and the fundamental array processing operations provided by NumPy.
+We have already seen some code involving NumPy in the preceding lectures.
+
+In this lecture, we will start a more systematic discussion of both
+
+* NumPy arrays and
+
+* the fundamental array processing operations provided by NumPy.
 
 
 
@@ -41,64 +47,6 @@ References
 
 
 
-
-Introduction to NumPy
-=====================
-
-.. index::
-    single: NumPy
-
-The essential problem that NumPy solves is fast array processing.
-
-For example, suppose we want to create an array of 1 million random draws from a uniform distribution and compute the mean.
-
-If we did this in pure Python it would be orders of magnitude slower than C or Fortran.
-
-This is because
-
-* Loops in Python over Python data types like lists carry significant overhead.
-
-* C and Fortran code contains a lot of type information that can be used for optimization.
-
-* Various optimizations can be carried out during compilation when the compiler sees the instructions as a whole.
-
-
-However, for a task like the one described above, there's no need to switch back to C or Fortran.
-
-Instead, we can use NumPy, where the instructions look like this:
-
-.. code-block:: python3
-
-    import numpy as np
-
-    x = np.random.uniform(0, 1, size=1000000)
-    x.mean()
-
-The operations of creating the array and computing its mean are both passed out to carefully optimized machine code compiled from C.
-
-More generally, NumPy sends operations *in batches* to optimized C and Fortran code.
-
-This is similar in spirit to Matlab, which provides an interface to fast Fortran routines.
-
-
-
-A Comment on Vectorization
---------------------------
-
-NumPy is great for operations that are naturally *vectorized*.
-
-Vectorized operations are precompiled routines that can be sent in batches, like
-
-* matrix multiplication and other linear algebra routines
-
-* generating a vector of random numbers
-
-* applying a fixed transformation (e.g., sine or cosine) to an entire array
-
-In a :doc:`later lecture <numba>`, we'll discuss code that isn't easy to vectorize and how such routines can also be optimized.
-
-
-
 .. _numpy_array:
 
 NumPy Arrays
@@ -108,8 +56,9 @@ NumPy Arrays
     single: NumPy; Arrays
 
 
+The essential problem that NumPy solves is fast array processing.
 
-The most important thing that NumPy defines is an array data type formally called a `numpy.ndarray <http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html>`_.
+The most important structure that NumPy defines is an array data type formally called a `numpy.ndarray <http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html>`_.
 
 NumPy arrays power a large proportion of the scientific Python ecosystem.
 

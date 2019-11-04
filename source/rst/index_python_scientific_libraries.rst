@@ -18,6 +18,7 @@ Next we cover the third party libraries most useful for scientific work in Pytho
 .. toctree::
     :maxdepth: 2
 
+    need_for_speed
     numpy
     matplotlib
     scipy
