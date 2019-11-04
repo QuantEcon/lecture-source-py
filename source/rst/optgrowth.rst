@@ -44,13 +44,6 @@ treatments in our lectures on :doc:`shortest paths <short_path>` and
 We'll discuss some of the technical details of dynamic programming as we
 go along.
 
-Let's start with some imports.
-
-We use an interpolation function from the
-`interpolation.py package <https://github.com/EconForge/interpolation.py>`_
-because it comes in handy later when we want to just-in-time compile our code.
-
-This library can be installed with the following command in Jupyter: ``!pip install interpolation``.
 
 Let's start with some imports:
 
@@ -58,10 +51,22 @@ Let's start with some imports:
 
     import numpy as np
     import matplotlib.pyplot as plt
-    %matplotlib inline
     from interpolation import interp
-    from numba import njit, prange
+    from numba import jit, njit, jitclass, prange, float64, int32
     from quantecon.optimize.scalar_maximization import brent_max
+
+    %matplotlib inline
+
+
+We are using an interpolation function from
+`interpolation.py <https://github.com/EconForge/interpolation.py>`__ because it
+helps us JIT-compile our code.
+
+The function `brent_max` is also designed for embedding in JIT-compiled code.
+
+These are alternatives to similar functions in SciPy (which, unfortunately, are not JIT-aware).
+
+
 
 The Model
 =========
@@ -585,45 +590,80 @@ useful shape properties such as monotonicity and concavity/convexity.
 Optimal Growth Model
 --------------------
 
-We will hold the primitives of the optimal growth model in a class.
 
-The distribution :math:`\phi` of the shock is assumed to be lognormal,
-and so a draw from :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standard normal
+In terms of primitives, we will assume for now that
+
+* :math:`f(k) = k^{\alpha}`
+
+* :math:`u(c) = \ln c`
+
+* :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
+
+We will store these primitives of the optimal growth model in a class.
+
+In fact we are going to use :doc:`Numba's <numba>` `@jitclass` decorator to target our class for JIT compilation.
+
+Because we are going to use Numba to compile our class, we need to specify the
+types of the data:
 
 .. code-block:: python3
 
-    class OptimalGrowthModel:
+   opt_growth_data = [
+       ('α', float64),          # Production parameter
+       ('β', float64),          # Discount factor
+       ('μ', float64),          # Shock location parameter
+       ('s', float64),          # Shock scale parameter
+       ('grid', float64[:]),    # Grid (array)
+       ('shocks', float64[:])   # Shock draws (array)
+   ]
 
-        def __init__(self,
-                     f,                # Production function
-                     u,                # Utility function
-                     β=0.96,           # Discount factor
-                     μ=0,
-                     s=0.1,
-                     grid_max=4,
-                     grid_size=200,
-                     shock_size=250):
+Note the convention for specifying the types of each argument.
 
-            self.β, self.μ, self.s = β, μ, s
-            self.f, self.u = f, u
+Now we're ready to create our class, which will combine parameters and a
+method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
-            # Set up grid
-            self.grid = np.linspace(1e-5, grid_max, grid_size)
-            # Store shocks
-            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
+.. code-block:: python3
 
+   @jitclass(opt_growth_data)
+   class OptimalGrowthModel:
 
-The Bellman Operator
---------------------
+       def __init__(self,
+                    α=0.4, 
+                    β=0.96, 
+                    μ=0,
+                    s=0.1,
+                    grid_max=4,
+                    grid_size=200,
+                    shock_size=250):
 
-Here's a function that generates a Bellman operator using linear interpolation
+           self.α, self.β, self.μ, self.s = α, β, μ, s
 
-.. literalinclude:: /_static/lecture_specific/optgrowth/bellman_operator.py
+           # Set up grid
+           self.grid = np.linspace(1e-5, grid_max, grid_size)
+           # Store shocks
+           self.shocks = np.exp(μ + s * np.random.randn(shock_size))
+           
+       def f(self, k):
+           return k**self.α
+           
+       def u(self, c):
+           return np.log(c)
 
-The function ``operator_factory`` takes a class that represents the growth model
-and returns the operator ``T`` and a function ``get_greedy`` that we will use to solve the model.
+       def objective(self, c, y, v_array):
+           """
+           Right hand side of the Bellman equation.
+           """
 
-Notice that the expectation in :eq:`fcbell20_optgrowth` is computed via Monte Carlo, using the approximation
+           u, f, β, shocks = self.u, self.f, self.β, self.shocks
+
+           v = lambda x: interp(self.grid, v_array, x)
+
+           return u(c) + β * np.mean(v(f(y - c) * shocks))
+
+In the second last line we are using linear interpolation:
+
+In the last line, the expectation in :eq:`fcbell20_optgrowth` is
+computed via Monte Carlo, using the approximation
 
 .. math::
 
@@ -638,21 +678,67 @@ but it does have some theoretical advantages in the present setting.
 (For example, it preserves the contraction mapping property of the Bellman operator --- see, e.g., :cite:`pal2013`)
 
 
+The Bellman Operator
+--------------------
+
+Here's a function that implements the Bellman operator 
+
+.. code-block:: python3
+
+   @jit(nopython=True)
+   def T(og, v):
+       """
+       The Bellman operator.
+
+         * og is an instance of OptimalGrowthModel
+         * v is an array representing a guess of the value function
+       """
+       v_new = np.empty_like(v)
+       
+       for i in range(len(grid)):
+           y = grid[i]
+           
+           # Maximize RHS of Bellman equation at state y
+           v_max = brent_max(og.objective, 1e-10, y, args=(y, v))[1]
+           v_new[i] = v_max
+           
+       return v_new
+
+
+Here's another function, very similar to the last, that computes a :math:`v`-greedy
+policy:
+
+(The last two functions could be merged but we resisted doing so to increase efficiency.)
+
+.. code-block:: python3
+
+   @jit(nopython=True)
+   def get_greedy(og, v):
+       """
+       Compute a v-greedy policy.
+
+         * og is an instance of OptimalGrowthModel
+         * v is an array representing a guess of the value function
+       """
+       v_greedy = np.empty_like(v)
+       
+       for i in range(len(grid)):
+           y = grid[i]
+           
+           # Find maximizer of RHS of Bellman equation at state y
+           c_star = brent_max(og.objective, 1e-10, y, args=(y, v))[0]
+           v_greedy[i] = c_star
+           
+       return v_greedy
+
 
 .. _benchmark_growth_mod:
 
 An Example
 ----------
 
-Let's test out our operator when
-
-* :math:`f(k) = k^{\alpha}`
-
-* :math:`u(c) = \ln c`
-
-* :math:`\phi` is the distribution of :math:`\exp(\mu + \sigma \zeta)` when :math:`\zeta` is standard normal
-
-As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this particular problem an exact analytical solution is available, with
+As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this
+particular problem an exact analytical solution is available, with
 
 .. math::
     :label: dpi_tv
@@ -699,53 +785,25 @@ A First Test
 To test our code, we want to see if we can replicate the analytical solution
 numerically, using fitted value function iteration.
 
-First, having run the code for the general model shown above, let's
-generate an instance of the model and generate its Bellman operator.
-
-We first need to define a jitted version of the production function
+So let's create an instance of the model and assign it to the variable ``og``.
 
 .. code-block:: python3
 
-    α = 0.4  # Production function parameter
+    og = OptimalGrowthModel()
 
-    @njit
-    def f(k):
-        """
-        Cobb-Douglas production function
-        """
-        return k**α
+Now let's see what happens when we apply our Bellman operator to the exact
+solution :math:`v^*`.
 
-Now we will create an instance of the model and assign it to the variable ``og``.
-
-This instance will use the Cobb-Douglas production function and log utility
-
-.. code-block:: python3
-
-    og = OptimalGrowthModel(f=f, u=np.log)
-
-We will use ``og`` to generate the Bellman operator and a function that computes
-greedy policies
-
-.. code-block:: python3
-
-    T, get_greedy = operator_factory(og)
-
-
-Now let's do some tests.
-
-As one preliminary test, let's see what happens when we apply our Bellman operator to the exact solution :math:`v^*`.
-
-In theory, the resulting function should again be :math:`v^*`.
+In theory, since :math:`v^*` is a fixed point, the resulting function should again be :math:`v^*`.
 
 In practice, we expect some small numerical error
 
 .. code-block:: python3
 
     grid = og.grid
-    β, μ = og.β, og.μ
 
-    v_init = v_star(grid, α, β, μ)    # Start at the solution
-    v = T(v_init)                     # Apply the Bellman operator once
+    v_init = v_star(grid, og.α, og.β, og.μ)    # Start at the solution
+    v = T(og, v_init)                              # Apply T once
 
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.set_ylim(-35, -24)
@@ -760,7 +818,7 @@ The two functions are essentially indistinguishable, so we are off to a good sta
 Now let's have a look at iterating with the Bellman operator, starting off
 from an arbitrary initial condition.
 
-The initial condition we'll start with is :math:`v(y) = 5 \ln (y)`
+The initial condition we'll start with is, somewhat arbitrarily, :math:`v(y) = 5 \ln (y)`
 
 
 .. code-block:: python3
@@ -774,10 +832,10 @@ The initial condition we'll start with is :math:`v(y) = 5 \ln (y)`
             lw=2, alpha=0.6, label='Initial condition')
 
     for i in range(n):
-        v = T(v)  # Apply the Bellman operator
+        v = T(og, v)  # Apply the Bellman operator
         ax.plot(grid, v, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
 
-    ax.plot(grid, v_star(grid, α, β, μ), 'k-', lw=2,
+    ax.plot(grid, v_star(grid, og.α, og.β, og.μ), 'k-', lw=2,
             alpha=0.8, label='True value function')
 
     ax.legend()
@@ -798,8 +856,34 @@ We are clearly getting closer.
 We can write a function that iterates until the difference is below a particular
 tolerance level.
 
-.. literalinclude:: /_static/lecture_specific/optgrowth/solve_model.py
+.. code-block:: python3
 
+   def solve_model(og,
+                   tol=1e-4,
+                   max_iter=1000,
+                   verbose=True,
+                   print_skip=25):
+
+       # Set up loop
+       v = np.log(og.grid)  # Initial condition
+       i = 0
+       error = tol + 1
+
+       while i < max_iter and error > tol:
+           v_new = T(og, v)
+           error = np.max(np.abs(v - v_new))
+           i += 1
+           if verbose and i % print_skip == 0:
+               print(f"Error at iteration {i} is {error}.")
+           v = v_new
+
+       if i == max_iter:
+           print("Failed to converge!")
+
+       if verbose and i < max_iter:
+           print(f"\nConverged in {i} iterations.")
+
+       return v_new
 
 We can check our result by plotting it against the true value
 
@@ -812,7 +896,7 @@ We can check our result by plotting it against the true value
     ax.plot(grid, v_solution, lw=2, alpha=0.6,
             label='Approximate value function')
 
-    ax.plot(grid, v_star(grid, α, β, μ), lw=2,
+    ax.plot(grid, v_star(grid, og.α, og.β, og.μ), lw=2,
             alpha=0.6, label='True value function')
 
     ax.legend()
@@ -830,9 +914,7 @@ The Policy Function
 .. index::
     single: Optimal Growth; Policy Function
 
-To compute an approximate optimal policy, we will use the second function
-returned from ``operator_factory`` that backs out the optimal policy
-from the solution to the Bellman equation.
+Let's use `get_greedy` to compute an approximate optimal policy
 
 The next figure compares the result to the exact solution, which, as mentioned
 above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
@@ -841,10 +923,10 @@ above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
 
     fig, ax = plt.subplots(figsize=(9, 5))
 
-    ax.plot(grid, get_greedy(v_solution), lw=2,
+    ax.plot(grid, get_greedy(og, v_solution), lw=2,
             alpha=0.6, label='Approximate policy function')
 
-    ax.plot(grid, σ_star(grid, α, β),
+    ax.plot(grid, σ_star(grid, og.α, og.β),
             lw=2, alpha=0.6, label='True policy function')
 
     ax.legend()
@@ -892,11 +974,11 @@ Exercise 1
 ----------
 
 
-Here's one solution (assuming as usual that you've executed everything above)
+Here's one solution 
 
 .. code-block:: python3
 
-    def simulate_og(σ_func, og, α, y0=0.1, ts_length=100):
+    def simulate_og(σ_func, og, y0=0.1, ts_length=100):
         '''
         Compute a time series given consumption policy σ.
         '''
@@ -904,7 +986,7 @@ Here's one solution (assuming as usual that you've executed everything above)
         ξ = np.random.randn(ts_length-1)
         y[0] = y0
         for t in range(ts_length-1):
-            y[t+1] = (y[t] - σ_func(y[t]))**α * np.exp(og.μ + og.s * ξ[t])
+            y[t+1] = (y[t] - σ_func(y[t]))**og.α * np.exp(og.μ + og.s * ξ[t])
         return y
 
 .. code-block:: python3
@@ -913,15 +995,15 @@ Here's one solution (assuming as usual that you've executed everything above)
 
     for β in (0.8, 0.9, 0.98):
 
-        og = OptimalGrowthModel(f, np.log, β=β, s=0.05)
+        og = OptimalGrowthModel(β=β, s=0.05)
         grid = og.grid
 
         v_solution = solve_model(og, verbose=False)
 
-        σ_star = get_greedy(v_solution)
+        σ_star = get_greedy(og, v_solution)
         # Define an optimal policy function
         σ_func = lambda x: interp(grid, σ_star, x)
-        y = simulate_og(σ_func, og, α)
+        y = simulate_og(σ_func, og)
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
 
     ax.legend(loc='lower right')
