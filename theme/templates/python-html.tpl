@@ -15,6 +15,16 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-54984338-7"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-54984338-7');
+		</script>
+
 		<meta charset="utf-8">
 {% if nb_filename == 'index' %}
 		<title>Quantitative Economics with Python</title>
@@ -466,14 +476,6 @@ var element = $('#{{ div_id }}');
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script src="/_static/js/python.js?v=1.0"></script>
-
-		<script async src="https://cse.google.com/cse.js?cx=006559439261123061640:j0o7s27tvxo"></script>
-
-		<script>
-		window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-		ga('create', 'UA-54984338-7', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
-		</script>
-		<script src="https://www.google-analytics.com/analytics.js" async></script>
 
 	</body>
 </html>
