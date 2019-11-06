@@ -276,7 +276,7 @@ allowing the use of characters such as :math:`\alpha` and :math:`\beta` in your 
 
 Unicode characters can be typed quickly in Jupyter using the `tab` key.
 
-Try creating a new code cell and typing `\\alpha`, then hitting the `tab` key on your keyboard.
+Try creating a new code cell and typing ``\alpha``, then hitting the `tab` key on your keyboard.
 
 .. _a_test_program:
 
