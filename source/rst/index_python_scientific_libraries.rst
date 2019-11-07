@@ -23,4 +23,5 @@ Next we cover the third party libraries most useful for scientific work in Pytho
     matplotlib
     scipy
     numba
+    parallelization
     sci_libs
