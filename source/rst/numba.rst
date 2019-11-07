@@ -137,15 +137,16 @@ Let's time and compare identical function calls across these two versions:
 
 .. code-block:: python3
 
+    n = 1_000_000
     qe.util.tic()
-    qm(0.1, int(10**5))
+    qm(0.1, int(n))
     time1 = qe.util.toc()
 
 
 .. code-block:: python3
 
     qe.util.tic()
-    qm_numba(0.1, int(10**5))
+    qm_numba(0.1, int(n))
     time2 = qe.util.toc()
 
 
@@ -158,18 +159,18 @@ Next time and all subsequent times it runs much faster:
 .. code-block:: python3
 
     qe.util.tic()
-    qm_numba(0.1, int(10**5))
+    qm_numba(0.1, int(n))
     time2 = qe.util.toc()
 
 .. code-block:: python3
 
     time1 / time2  # Calculate speed gain
 
-That's a speed increase of two orders of magnitude!
+On our machines the output here is typically a two orders of magnitude speed gain.
 
-Your mileage will of course vary depending on hardware and so on.
+(Your mileage will vary depending on hardware and so on.)
 
-Nonetheless, two orders of magnitude is huge relative to how simple and clear the implementation is.
+Nonetheless, this kind of speed gain is huge relative to how simple and clear the implementation is.
 
 Decorator Notation
 ^^^^^^^^^^^^^^^^^^
@@ -307,4 +308,119 @@ In this case, we need to specify the types of our inputs and outputs
     qe.toc()
 
 Now our code runs significantly faster than the NumPy version.
+
+We'll discuss parallelization again below.
+
+Compiling Classes
+==================
+
+As mentioned above, at present Numba can only compile a subset of Python.
+
+However, that subset is ever expanding.
+
+Numba is now quite effective at compiling classes.
+
+If a class is successfully compiled, then its methods acts as JIT-compiled
+functions.
+
+To give one example, let's consider the class for analyzing the Solow growth model we
+created in :doc:`this lecture <python_oop>`.
+
+To compile this class we use the `@jitclass` decorator:
+
+.. code-block:: python3
+
+    from numba import jitclass, float64
+
+Notice that we also imported something called `float64`.
+
+This is a data type representing standard floating point numbers.
+
+We are importing it here because Numba needs a bit of extra help with types when it trys to deal with classes.
+
+Here's our code:
+
+.. code-block:: python3
+
+    solow_data = [
+        ('n', float64),
+        ('s', float64),
+        ('δ', float64),
+        ('α', float64),
+        ('z', float64),
+        ('k', float64)
+    ]
+
+    @jitclass(solow_data)
+    class Solow:
+        r"""
+        Implements the Solow growth model with the update rule
+
+            k_{t+1} = [(s z k^α_t) + (1 - δ)k_t] /(1 + n)
+
+        """
+        def __init__(self, n=0.05,  # population growth rate
+                           s=0.25,  # savings rate
+                           δ=0.1,   # depreciation rate
+                           α=0.3,   # share of labor
+                           z=2.0,   # productivity
+                           k=1.0):  # current capital stock
+
+            self.n, self.s, self.δ, self.α, self.z = n, s, δ, α, z
+            self.k = k
+
+        def h(self):
+            "Evaluate the h function"
+            # Unpack parameters (get rid of self to simplify notation)
+            n, s, δ, α, z = self.n, self.s, self.δ, self.α, self.z
+            # Apply the update rule
+            return (s * z * self.k**α + (1 - δ) * self.k) / (1 + n)
+
+        def update(self):
+            "Update the current state (i.e., the capital stock)."
+            self.k =  self.h()
+
+        def steady_state(self):
+            "Compute the steady state value of capital."
+            # Unpack parameters (get rid of self to simplify notation)
+            n, s, δ, α, z = self.n, self.s, self.δ, self.α, self.z
+            # Compute and return steady state
+            return ((s * z) / (n + δ))**(1 / (1 - α))
+
+        def generate_sequence(self, t):
+            "Generate and return a time series of length t"
+            path = []
+            for i in range(t):
+                path.append(self.k)
+                self.update()
+            return path
+
+First we specified the types of the instance data for the class in
+`solow_data`.
+
+After that, targeting the class for JIT compilation only requires adding
+`@jitclass(solow_data)` before the class definition.
+
+When we call the methods in the class, the methods are compiled just like functions.
+
+
+.. code-block:: python3
+
+    s1 = Solow()
+    s2 = Solow(k=8.0)
+
+    T = 60
+    fig, ax = plt.subplots(figsize=(9, 6))
+
+    # Plot the common steady state value of capital
+    ax.plot([s1.steady_state()]*T, 'k-', label='steady state')
+
+    # Plot time series for each economy
+    for s in s1, s2:
+        lb = f'capital series from initial state {s.k}'
+        ax.plot(s.generate_sequence(T), 'o-', lw=2, alpha=0.6, label=lb)
+
+    ax.legend()
+    plt.show()
+
 

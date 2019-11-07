@@ -23,3 +23,4 @@ This first part of the course provides a relatively fast-paced introduction to t
     python_by_example
     python_essentials
     oop_intro
+    python_oop

@@ -63,8 +63,7 @@ finding than to write a new one from scratch.
 
 But this is not the only reason that we use Python's scientific libraries.
 
-Another is that pure Python, while flexible and elegant, is not particular
-fast.
+Another is that pure Python, while flexible and elegant, is not fast.
 
 So we need libraries that help us accelerate our Python code.
 
@@ -279,15 +278,15 @@ Let's look at some ways around these problems.
 .. index::
     single: Python; Vectorization
 
-There is a clever method, sometimes called **vectorization**, that is often use
-to speed up high level languages.
+There is a clever method called **vectorization** that can be
+used to speed up high level languages in numerical applications.
 
 The key idea is to send array processing operations in batch to precompiled
 and efficient native machine code.
 
 The machine code itself is typically compiled from carefully optimized C or Fortran.
 
-This clever idea dates back to Matlab, which uses vectorization extensively.
+This clever idea dates back to MATLAB, which uses vectorization extensively.
 
 Vectorization can greatly accelerate many (but not all) numerical computations.
 
@@ -308,7 +307,7 @@ First, let's run some imports
     import numpy as np
     import quantecon as qe
 
-Next let's try some non-vectorized code, which uses a Python loop to generate,
+Next let's try some non-vectorized code, which uses a native Python loop to generate,
 square and then sum a large number of random variables:
 
 .. code-block:: python3
