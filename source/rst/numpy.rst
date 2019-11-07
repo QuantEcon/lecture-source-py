@@ -43,10 +43,6 @@ References
 * `The official NumPy documentation <http://docs.scipy.org/doc/numpy/reference/>`_.
 
 
-
-
-
-
 .. _numpy_array:
 
 NumPy Arrays
@@ -55,12 +51,17 @@ NumPy Arrays
 .. index::
     single: NumPy; Arrays
 
-
 The essential problem that NumPy solves is fast array processing.
 
 The most important structure that NumPy defines is an array data type formally called a `numpy.ndarray <http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html>`_.
 
 NumPy arrays power a large proportion of the scientific Python ecosystem.
+
+Let's first import the library.
+
+.. code-block:: python3
+
+    import numpy as np
 
 To create a NumPy array containing only zeros we use  `np.zeros <http://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html#numpy.zeros>`_
 
