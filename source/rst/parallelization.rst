@@ -23,33 +23,30 @@ Overview
 ========
 
 
-The growth of CPU clock speed (i.e., single thread execution speed) has slowed
-dramatically in recent years, due to inherent physical limitations on the
-construction of individual chips.
+The growth of CPU clock speed (i.e., the speed at which a single chain of logic can
+be run) has slowed dramatically in recent years.
 
-Chip designers and computer programmers have responded by seeking a different
-path to fast execution: parallelization.
+This is unlikely to change in the near future, due to inherent physical
+limitations on the construction of chips and circuit boards.
 
-On the part of hardware makers, this has lead to rapid growth in the number of
-cores (physical CPUs) embedded in each machine.
+Chip designers and computer programmers have responded to the slowdown by
+seeking a different path to fast execution: parallelization.
 
-For programmers, the challenge has been to exploit these multiple CPUs by 
-running many processes in parallel (i.e., simultaneously).
+Hardware makers have increased the number of cores (physical CPUs) embedded in each machine.
 
-This is particularly important in scientific programming, where we need to
-handle
+For programmers, the challenge has been to exploit these multiple CPUs by running many processes in parallel (i.e., simultaneously).
+
+This is particularly important in scientific programming, where we need to handle
 
 * large amounts of data and
 
 * CPU intensive simulations and other calculations.
 
-In this lecture we discuss parallelization for scientific computing, with a
-focus on
+In this lecture we discuss parallelization for scientific computing, with a focus on
 
-#. tools for parallelization in Python and 
+#. the best tools for parallelization in Python and 
 
 #. how these tools can be applied to quantitative economic problems.
-
 
 
 Let's start with some imports:
@@ -66,20 +63,42 @@ Let's start with some imports:
 Types of Parallelization
 ========================
 
-Large textbooks have been written on this topic but we don't want to spend too
-much time on the details.
+Large textbooks have been written on this topic but we have no wish to bog down in details.
 
-Instead, let's keep a tight focus on what's useful to us
+Instead, let's keep a tight focus on what's useful to us.
 
-Let's briefly review the two main kinds of parallelization and how they
-relate to modern scientific computing
+We will briefly review the two main kinds of parallelization in common use in
+scientific computing and discuss their pros and cons.
 
 Multiprocessing
 ---------------
 
+Multiprocessing means concurrent execution of multiple processes using more than one processor.
+
+In this context, a **process** is a chain of instructions (i.e., a program).
+
+Multiprocessing can be carried out on one machine with multiple CPUs or on a
+collection of machines connected by a network.
+
+In the latter case, the collection of machines is usually called a
+**cluster**.
+
+With multiprocessing, each process has its own memory space, although the
+physical memory chip might be shared.
+
 
 Multithreading
 --------------
+
+Multithreading is similar to multiprocessing, except that, during execution, the threads all share the same memory space.
+
+Native Python struggles to implement multithreading due to some legacy design
+features (Google Python GIL if you want to know more).
+
+But this is not a restriction for scientific libraries like NumPy and Numba.
+
+Functions imported from these libraries and JIT-compiled code run in low level
+execution environments where Python's legacy restrictions don't apply.
 
 
 Advantages and Disadvantages
