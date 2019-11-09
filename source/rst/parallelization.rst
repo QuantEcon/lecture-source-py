@@ -36,7 +36,7 @@ Hardware makers have increased the number of cores (physical CPUs) embedded in e
 
 For programmers, the challenge has been to exploit these multiple CPUs by running many processes in parallel (i.e., simultaneously).
 
-This is particularly important in scientific programming, where we need to handle
+This is particularly important in scientific programming, which requires handling
 
 * large amounts of data and
 
@@ -63,12 +63,11 @@ Let's start with some imports:
 Types of Parallelization
 ========================
 
-Large textbooks have been written on this topic but we have no wish to bog down in details.
-
-Instead, let's keep a tight focus on what's useful to us.
+Large textbooks have been written on different approaches to parallelization but we will keep a tight focus on what's most useful to us.
 
 We will briefly review the two main kinds of parallelization in common use in
 scientific computing and discuss their pros and cons.
+
 
 Multiprocessing
 ---------------
@@ -92,8 +91,8 @@ Multithreading
 
 Multithreading is similar to multiprocessing, except that, during execution, the threads all share the same memory space.
 
-Native Python struggles to implement multithreading due to some legacy design
-features (Google Python GIL if you want to know more).
+Native Python struggles to implement multithreading due to some `legacy design
+features <https://wiki.python.org/moin/GlobalInterpreterLock>`__.
 
 But this is not a restriction for scientific libraries like NumPy and Numba.
 
@@ -108,7 +107,7 @@ Multithreading is more lightweight because most system and memory resources
 are shared by the threads. 
 
 In addition, the fact that multiple threads all access a shared pool of memory
-is very convenient in terms of numerical programming.
+is extremely convenient for numerical programming.
 
 On the other hand, multiprocessing is more flexible and can be distributed
 across clusters.
@@ -120,17 +119,189 @@ suffice.
 Implicit Multithreading in NumPy
 ================================
 
-To be added.  Give an example and add a screenshot of htop.
+Actually, you have already been using multithreading in your Python code,
+although you might not have realized it.
+
+(We are, as usual, assuming that you are running the latest version of
+Anaconda Python.)
+
+This is because NumPy cleverly implements multithreading in a lot of its
+compiled code.
+
+Let's look at some examples to see this in action.
+
+A Matrix Operation
+------------------
+
+The next piece of code computes the eigenvalues of a large number of randomly
+generated matrices.
+
+It takes a few seconds to run.
+
+.. code-block:: python3
+
+    n = 20
+    m = 1000
+    for i in range(n):
+        X = np.random.randn(m, m)
+        λ = np.linalg.eigvals(X)
+
+Now, let's look at the output of the `htop` system monitor on our machine while
+this code is running:
+
+.. figure:: /_static/lecture_specific/parallelization/htop_parallel_npmat.png
+
+We can see that 4 of the 8 cores are running at full speed.
+
+
+This is because NumPy's ``eigvals`` routine neatly splits up the tasks and
+distributes them to different threads.
+
+
+A Multithreaded Ufunc
+---------------------
+
+Over the last few years, NumPy has managed to push this kind of multithreading
+out to more and more operations.
+
+For example, let's return to a maximization problem :ref:`discussed previously <ufuncs>`:
+
+.. code-block:: python3
+
+    def f(x, y):
+        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
+
+    grid = np.linspace(-3, 3, 1000)
+    x, y = np.meshgrid(grid, grid)
+
+    qe.tic()
+    np.max(f(x, y))
+    qe.toc()
+
+If you have a system monitor such as `htop` (Linux/Mac) or `perfmon`
+(Windows), then try running this and then observing the load on your CPUs.
+
+(You will probably need to bump up the grid size to see large effects.)
+
+At least on our machine, the output shows that the operation is successfully
+distributed across multiple threads.
+
+This is one of the reasons why the vectorized code above is fast.
+
+A Comparison with Numba
+-----------------------
+
+To get some basis for comparison for the last example, let's try the same
+thing with Numba.
+
+In fact there is an easy way to do this, since Numba can also be used to
+create custom :ref:`ufuncs <ufuncs>` with the `@vectorize
+<http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator.
+
+.. code-block:: python3
+
+    from numba import vectorize
+
+    @vectorize
+    def f_vec(x, y):
+        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
+
+    grid = np.linspace(-3, 3, 1000)
+    x, y = np.meshgrid(grid, grid)
+
+    np.max(f_vec(x, y))  # Run once to compile
+
+    qe.tic()
+    np.max(f_vec(x, y))
+    qe.toc()
+
+At least on our machine, the difference in the speed between the
+Numba version and the vectorized NumPy version shown above is not large.
+
+But there's quite a bit going on here so let's try to break down what is
+happening.
+
+Both Numba and NumPy use efficient machine code that's specialized to these
+floating point operations.
+
+However, the code NumPy uses is, in some ways, less efficient.
+
+The reason is that, in NumPy, the operation ``np.cos(x**2 + y**2) / (1 +
+x**2 + y**2)`` generates several intermediate arrays.
+
+For example, a new array is created when ``x**2`` is calculated.
+
+The same is true when ``y**2`` is calculated, and then ``x**2 + y**2`` and so on.
+
+Numba avoids creating all these intermediate arrays by compiling one
+function that is specialized to the entire operation.
+
+But if this is true, then why isn't the Numba code faster?
+
+The reason is that NumPy makes up for its disadvantages with implicit
+multithreading, as we've just discussed.
+
+Multithreading at Numba Ufunc
+-----------------------------
+
+Can we get both of these advantages at once?
+
+In other words, can we pair
+
+* the efficiency of Numba's highly specialized JIT compiled function and
+
+* the speed gains from parallelization obtained by NumPy's implict
+  multithreading?
+
+It turns out that we can, by adding some type information plus ``target='parallel'``.
+
+.. code-block:: python3
+
+    @vectorize('float64(float64, float64)', target='parallel')
+    def f_vec(x, y):
+        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
+
+    np.max(f_vec(x, y))  # Run once to compile
+
+    qe.tic()
+    np.max(f_vec(x, y))
+    qe.toc()
+
+Now our code runs significantly faster than the NumPy version!
 
 
 
-Multithreading with Numba
-=========================
+Multithreaded Loops in Numba
+============================
 
+We just saw one approach to parallelization in Numba, using the ``parallel``
+flag in ``@vectorize``.
+
+This is neat but, it turns out, not well suited to many problems we consider.
+
+Fortunately, Numba provides another approach to multithreading that will work
+for us almost everywhere parallelization is possible.
+
+To illustrate, let's look first at a simple, single-threaded (i.e., non-parallelized) piece of code.
+
+The code simulates updating the wealth :math:`w_t` of a household via the rule
+
+.. math::
+
+    w_{t+1} = R_{t+1} w_t + Y_{t+1}
+
+Here :math:`R` is the gross rate of return on assets and :math:`Y` is labor
+income.
+
+We model both :math:`R` and :math:`Y` as independent draws from a lognormal
+distribution.
+
+Here's the code:
 
 .. code-block:: ipython
 
     from numpy.random import randn
+    from numba import jit
 
     @jit
     def h(w, r=0.1, s=0.3, v1=0.1, v2=1.0):
@@ -146,6 +317,9 @@ Multithreading with Numba
         w = R * s * w + Y
         return w
 
+
+Let's have a look at how wealth evolves under this rule.
+
 .. code-block:: ipython
 
     fig, ax = plt.subplots(figsize=(9, 6))
@@ -159,10 +333,40 @@ Multithreading with Numba
     ax.plot(range(T), w)
 
 
+Now let's suppose that we have a large population of households and we want to
+know what median wealth will be.
+
+This is not easy to solve with pencil and paper, so we will use simulation
+instead.
+
+In particular, we will simulate a large number of households and then
+calculate median wealth for this group.
+
+Suppose we are interested in the long-run average of this median over time.
+
+It turns out that, for the specification that we've chosen above, we can
+calculate this this by taking a one-period snapshot of what has happened to median
+wealth of the group at the end of a long simulation.
+
+Moreover, provided the simulation period is long enough, initial conditions
+don't matter.
+
+* This is due to something called ergodicity, which we will discuss later on.
+
+So, in summary, we are going to simulate 50,000 households by
+
+#. arbitrarily setting initial wealth to 1 and
+
+#. simulating forward in time for 1,000 periods.
+
+Then we'll calculate median wealth at the end period.
+
+Here's the code:
+
 .. code-block:: ipython
 
     @jit
-    def compute_long_run_median(w0=5, T=1000, num_reps=50_000):
+    def compute_long_run_median(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
         for i in range(num_reps):
@@ -173,16 +377,24 @@ Multithreading with Numba
 
         return np.median(obs)
 
+Let's see how fast this runs:
 
 .. code-block:: ipython
 
     %%time
     compute_long_run_median()
 
+
+To speed this up, we're going to parallelize it via multithreading.
+
+To do so, we add the ``parallel=True`` flag and change ``range`` to ``prange``:
+
 .. code-block:: ipython
 
+    from numba import prange
+
     @jit(parallel=True)
-    def compute_long_run_median_parallel(w0=5, T=1000, num_reps=50_000):
+    def compute_long_run_median_parallel(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
         for i in prange(num_reps):
@@ -193,22 +405,36 @@ Multithreading with Numba
 
         return np.median(obs)
 
+Let's look at the timing:
 
 .. code-block:: ipython
 
     %%time
     compute_long_run_median_parallel()
 
+The speed-up is significant.
 
-Dask
-====
+A Warning
+---------
 
-To be added.
+Parallelization works well in the outer loop of the last example because the individual tasks inside the loop are independent of eachother.
+
+If this independence fails then parallelization is often problematic.
+
+For example, each step inside the inner loop depends on the last step, so
+independence fails, and this is why we use ordinary ``range`` instead of ``prange``.
+
+When you see us using ``prange`` in later lectures, it is because the
+independence of tasks hold true.
+
+When you see us using ordinary ``range`` in a jitted function, it is either because the speed gain from parallelization is small or because independence fails.
+
+.. Dask
+
+.. To be added.
 
 
-GPUs
-=====
+.. GPUs
 
-Just say a few words about them.  How do they relate to the foregoing? Explain that we can't introduce executable
-GPU code here.
+.. Just say a few words about them.  How do they relate to the foregoing? Explain that we can't introduce executable GPU code here.
 

@@ -32,20 +32,21 @@ Let's start with some imports:
 Overview
 ========
 
-In our lecture on :doc:`NumPy <numpy>`, we learned one method to improve speed
-and efficiency in numerical work.
+In an :doc:`earlier lecture <need_for_speed>` we learned about vectorization, which is one method to improve speed and efficiency in numerical work.
 
-That method, called *vectorization*, involved sending array processing
+Vectorization involves sending array processing
 operations in batch to efficient low-level code.
 
-Unfortunately, as we :ref:`discussed previously <numba-p_c_vectorization>`, vectorization is limited and has several weaknesses.
+However, as :ref:`discussed previously <numba-p_c_vectorization>`, vectorization has several weaknesses.
 
-One is that it is highly memory-intensive.
+One is that it is highly memory-intensive when working with large amounts of data.
 
-Another is that only some algorithms can be vectorized.
+Another is that the set of algorithms that can be entirely vectorized is not universal.
 
-In the last few years, a new Python library called `Numba
-<http://numba.pydata.org/>`__ has appeared that solves many of these problems.
+In fact, for some algorithms, vectorization is entirely ineffective.
+
+Fortunately, a new Python library called `Numba <http://numba.pydata.org/>`__
+solves many of these problems.
 
 It does so through something called **just in time (JIT) compilation**.
 
@@ -53,8 +54,7 @@ JIT compilation is effective in many numerical settings and can generate extreme
 
 It can also do other tricks such as multithreading (a form of parallelization well suited to numerical work).
 
-Numba will be a key part of our lectures --- especially those lectures
-involving dynamic programming.
+Numba will be a key part of our lectures --- especially those lectures involving dynamic programming.
 
 This lecture introduces the main ideas.
 
@@ -67,16 +67,18 @@ Numba aims to automatically compile functions to native machine code instruction
 When it succeeds, the compiled code is extremely fast.
 
 But the process isn't flawless, since Numba needs to infer type information on
-all variables to generate pure machine instructions.
+all variables to generate fast machine-level instructions.
 
-Inference isn't possible in every setting, so you will need to invest some time in learning how Numba works.
+(See our :doc:`earlier lecture <need_for_speed>` on scientific computing for a discussion of types.)
+
+Such inference isn't possible in every setting, so you will need to invest some time in learning how Numba works.
 
 However, you will find that, for simple routines, Numba infers types very well.
 
-Moreover, the "hot loops" that we actually need to speed up are often
-relatively simple.
+Moreover, the "hot loops" that we actually need to speed up often fit into this category.
 
-This explains why, despite its imperfections, we are huge fans of Numba at QuantEcon!
+This explains why, despite its imperfections, Numba is used to accelerate a
+great deal of our code.
 
 
 .. _numba_link:
@@ -96,12 +98,9 @@ machine code during runtime.
 An Example
 ----------
 
-Let's consider some problems that are difficult to vectorize.
+Let's consider a problem that is difficult to vectorize: generating the trajectory of a difference equation given an initial condition.
 
-One is generating the trajectory of a difference equation given an initial
-condition.
-
-Let's take the difference equation to be the quadratic map
+We will take the difference equation to be the quadratic map
 
 .. math::
 
@@ -131,17 +130,23 @@ To speed this up using Numba is trivial using Numba's ``jit`` function
 
     from numba import jit
 
-    qm_numba = jit(qm)  # qm_numba is now a 'compiled' version of qm
+    qm_numba = jit(qm)  
 
-Let's time and compare identical function calls across these two versions:
+The function `qm_numba` is a version of `qm` that is "targeted" for
+JIT-compilation.
+
+We will explain what this means momentarily.
+
+First let's time and compare identical function calls across these two versions, starting with the original function `qm`:
 
 .. code-block:: python3
 
-    n = 1_000_000
+    n = 10_000_000
     qe.util.tic()
     qm(0.1, int(n))
     time1 = qe.util.toc()
 
+Now let's try `qm_numba`
 
 .. code-block:: python3
 
@@ -149,10 +154,9 @@ Let's time and compare identical function calls across these two versions:
     qm_numba(0.1, int(n))
     time2 = qe.util.toc()
 
+This is already a massive speed gain.
 
-The first execution is relatively slow because of JIT compilation (see below).
-
-Next time and all subsequent times it runs much faster:
+In fact, the next time and all subsequent times it runs even faster:
 
 .. _qm_numba_result:
 
@@ -166,14 +170,44 @@ Next time and all subsequent times it runs much faster:
 
     time1 / time2  # Calculate speed gain
 
-On our machines the output here is typically a two orders of magnitude speed gain.
 
-(Your mileage will vary depending on hardware and so on.)
+This kind of speed gain is huge relative to how simple and clear the implementation is.
 
-Nonetheless, this kind of speed gain is huge relative to how simple and clear the implementation is.
+
+How and When it Works
+---------------------
+
+Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_.
+
+It does this by inferring type information on the fly.
+
+The basic idea is this: 
+
+* Python is very flexible and hence we could call the function `qm` with many
+  types.
+
+    * e.g., `x0` could be a NumPy array or a list, `n` could be an integer or a float, etc.
+
+* This makes it hard to *pre*-compile the function.
+
+* However, when we do actually call the function, by executing `qm(0.5, 10)`,
+  say, the types of `x0` and `n` become clear.
+
+* Moreover, the types of other variables in `qm` become clear at this point.
+
+* So the strategy of Numba and other JIT compilers is to wait until this
+  moment, and *then* compile the function.
+
+That's why it is called "just-in-time" compilation.
+
+Note that, if you make the call `qm(0.5, 10)` and then follow it with `qm(0.9, 20)`, compilation only takes place on the first call.
+
+The compiled code is then cached and recycled as required.
+
+
 
 Decorator Notation
-^^^^^^^^^^^^^^^^^^
+------------------
 
 If you don't need a separate name for the "numbafied" version of ``qm``,
 you can just put ``@jit`` before the function
@@ -192,14 +226,15 @@ you can just put ``@jit`` before the function
 This is equivalent to ``qm = jit(qm)``.
 
 
-How and When it Works
----------------------
 
-Numba attempts to generate fast machine code using the infrastructure provided by the `LLVM Project <http://llvm.org/>`_.
 
-It does this by inferring type information on the fly.
+How Well Does Numba Work?
+-------------------------
 
-As you can imagine, this is easier for simple Python objects (simple scalar data types, such as floats, integers, etc.).
+It is clear from the above discussion that type inference is a key part of JIT
+compilation.
+
+As you can imagine, inferring types is easier for simple Python objects (e.g., simple scalar data types, such as floats and integers).
 
 Numba also plays well with NumPy arrays, which it treats as typed memory regions.
 
@@ -213,13 +248,19 @@ When Numba cannot infer all type information, some Python objects are given gene
 
 In this second setting, Numba typically provides only minor speed gains --- or none at all.
 
+* Note that you can force an error when this occurs, so you know what is
+  happening, by using `@jit(nopython=True)` or `@njit` instead of `@jit`.
+
 Hence, it's prudent when using Numba to focus on speeding up small, time-critical snippets of code.
 
 This will give you much better performance than blanketing your Python programs with ``@jit`` statements.
 
 
+
 A Gotcha: Global Variables
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
+
+Here's one thing to be careful about when using Numba.
 
 Consider the following example
 
@@ -247,70 +288,6 @@ When Numba compiles machine code for functions, it treats global variables as co
 
 
 
-Numba for Vectorization
------------------------
-
-Numba can also be used to create custom :ref:`ufuncs <ufuncs>` with the `@vectorize <http://numba.pydata.org/numba-doc/dev/user/vectorize.html>`__ decorator.
-
-To illustrate the advantage of using Numba to vectorize a function, we
-return to a maximization problem :ref:`discussed previously <ufuncs>`
-
-.. code-block:: python3
-
-    def f(x, y):
-        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
-
-    grid = np.linspace(-3, 3, 1000)
-    x, y = np.meshgrid(grid, grid)
-
-    qe.tic()
-    np.max(f(x, y))
-    qe.toc()
-
-This is plain vanilla vectorized code using NumPy.
-
-Here's a Numba version that does the same task, using `@vectorize`
-
-.. code-block:: python3
-
-    from numba import vectorize
-
-    @vectorize
-    def f_vec(x, y):
-        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
-
-    grid = np.linspace(-3, 3, 1000)
-    x, y = np.meshgrid(grid, grid)
-
-    np.max(f_vec(x, y))  # Run once to compile
-
-    qe.tic()
-    np.max(f_vec(x, y))
-    qe.toc()
-
-So far there's no real advantage to using the `@vectorize` version.
-
-However, we can gain further speed improvements using Numba's automatic
-parallelization feature by specifying ``target='parallel'``.
-
-In this case, we need to specify the types of our inputs and outputs
-
-.. code-block:: python3
-
-    @vectorize('float64(float64, float64)', target='parallel')
-    def f_vec(x, y):
-        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
-
-    np.max(f_vec(x, y))  # Run once to compile
-
-    qe.tic()
-    np.max(f_vec(x, y))
-    qe.toc()
-
-Now our code runs significantly faster than the NumPy version.
-
-We'll discuss parallelization again below.
-
 Compiling Classes
 ==================
 
@@ -318,7 +295,7 @@ As mentioned above, at present Numba can only compile a subset of Python.
 
 However, that subset is ever expanding.
 
-Numba is now quite effective at compiling classes.
+For example, Numba is now quite effective at compiling classes.
 
 If a class is successfully compiled, then its methods acts as JIT-compiled
 functions.
@@ -423,4 +400,182 @@ When we call the methods in the class, the methods are compiled just like functi
     ax.legend()
     plt.show()
 
+
+
+
+Alternatives to Numba
+=====================
+
+.. index::
+    single: Python; Cython
+
+
+There are additional options for accelerating Python loops.
+
+Here we quickly review them.
+
+However, we do so only for interest and completeness.
+
+If you prefer, you can safely skip this section.
+
+Cython
+------
+
+Like :doc:`Numba <numba>`,  `Cython <http://cython.org/>`__ provides an approach to generating fast compiled code that can be used from Python.
+
+As was the case with Numba, a key problem is the fact that Python is dynamically typed.
+
+As you'll recall, Numba solves this problem (where possible) by inferring type.
+
+Cython's approach is different --- programmers add type definitions directly to their "Python" code.
+
+As such, the Cython language can be thought of as Python with type definitions.
+
+In addition to a language specification, Cython is also a language translator, transforming Cython code into optimized C and C++ code.
+
+Cython also takes care of building language extensions --- the wrapper code that interfaces between the resulting compiled code and Python.
+
+While Cython has certain advantages, we generally find it both slower and more
+cumbersome than Numba.
+
+Interfacing with Fortran via F2Py
+---------------------------------
+
+.. index::
+    single: Python; Interfacing with Fortran
+
+If you are comfortable writing Fortran you will find it very easy to create
+extension modules from Fortran code using `F2Py
+<https://docs.scipy.org/doc/numpy/f2py/>`_.
+
+F2Py is a Fortran-to-Python interface generator that is particularly simple to
+use.
+
+Robert Johansson provides a `nice introduction
+<http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-6A-Fortran-and-C.ipynb>`_
+to F2Py, among other things.
+
+Recently, `a Jupyter cell magic for Fortran
+<http://nbviewer.jupyter.org/github/mgaitan/fortran_magic/blob/master/documentation.ipynb>`_ has been developed --- you might want to give it a try.
+
+
+
+
+Exercises
+=========
+
+.. _speed_ex1:
+
+Exercise 1
+----------
+
+Later we'll learn all about :doc:`finite-state Markov chains <finite_markov>`.
+
+For now, let's just concentrate on simulating a very simple example of such a chain.
+
+Suppose that the volatility of returns on an asset can be in one of two regimes --- high or low.
+
+The transition probabilities across states are as follows
+
+.. figure:: /_static/lecture_specific/sci_libs/nfs_ex1.png
+
+
+For example, let the period length be one day, and suppose the current state is high.
+
+We see from the graph that the state tomorrow will be
+
+* high with probability 0.8
+
+* low with probability 0.2
+
+Your task is to simulate a sequence of daily volatility states according to this rule.
+
+Set the length of the sequence to ``n = 1_000_000`` and start in the high state.
+
+Implement a pure Python version and a Numba version, and compare speeds.
+
+To test your code, evaluate the fraction of time that the chain spends in the low state.
+
+If your code is correct, it should be about 2/3.
+
+
+
+Solutions
+=========
+
+
+
+Exercise 1
+----------
+
+We let
+
+-  0 represent "low"
+-  1 represent "high"
+
+.. code-block:: python3
+
+    p, q = 0.1, 0.2  # Prob of leaving low and high state respectively
+
+Here's a pure Python version of the function
+
+.. code-block:: python3
+
+    def compute_series(n):
+        x = np.empty(n, dtype=np.int_)
+        x[0] = 1  # Start in state 1
+        U = np.random.uniform(0, 1, size=n)
+        for t in range(1, n):
+            current_x = x[t-1]
+            if current_x == 0:
+                x[t] = U[t] < p
+            else:
+                x[t] = U[t] > q
+        return x
+
+Let's run this code and check that the fraction of time spent in the low
+state is about 0.666
+
+.. code-block:: python3
+
+    n = 1_000_000
+    x = compute_series(n)
+    print(np.mean(x == 0))  # Fraction of time x is in state 0
+
+
+Now let's time it
+
+.. code-block:: python3
+
+    qe.util.tic()
+    compute_series(n)
+    qe.util.toc()
+
+
+Next let's implement a Numba version, which is easy
+
+.. code-block:: python3
+
+    from numba import jit
+
+    compute_series_numba = jit(compute_series)
+
+Let's check we still get the right numbers
+
+.. code-block:: python3
+
+    x = compute_series_numba(n)
+    print(np.mean(x == 0))
+
+
+Let's see the time
+
+.. code-block:: python3
+
+    qe.util.tic()
+    compute_series_numba(n)
+    qe.util.toc()
+
+
+This is a nice speed improvement for one line of code!
 

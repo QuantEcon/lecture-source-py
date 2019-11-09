@@ -61,11 +61,14 @@ routines we want to use.
 For example, it's almost always better to use an existing routine for root
 finding than to write a new one from scratch.
 
+(For standard algorithms, efficiency is maximized if the community can coordinate on a
+common set of implementations, written by experts and tuned by users to be as fast and robust as possible.)
+
 But this is not the only reason that we use Python's scientific libraries.
 
 Another is that pure Python, while flexible and elegant, is not fast.
 
-So we need libraries that help us accelerate our Python code.
+So we need libraries that are designed to accelerate execution of Python code.
 
 As we'll see below, there are now Python libraries that can do this extremely well.
 
@@ -131,17 +134,19 @@ Indeed, the standard implementation of Python (called CPython) cannot match the 
 
 Does that mean that we should just switch to C or Fortran for everything?
 
-The answer is: no, no and one hundred times no!
+The answer is: No, no and one hundred times no!
+
+(This is what you should say to the senior professor insisting that the model
+needs to be rewritten in Fortran or C++.)
 
 There are two reasons why:
 
 First, for any given program, relatively few lines are ever going to
 be time-critical.
 
-Hence we should write most of our code in a high productivity language like
-Python.
+Hence it is far more efficient to write most of our code in a high productivity language like Python.
 
-Second, for those lines of code that *are* time-critical, we can now achieve the same speed as C or Fortran using Python's scientific libraries.
+Second, even for those lines of code that *are* time-critical, we can now achieve the same speed as C or Fortran using Python's scientific libraries.
 
 
 Where are the Bottlenecks?
@@ -149,6 +154,8 @@ Where are the Bottlenecks?
 
 Before we learn how to do this, let's try to understand why plain vanila
 Python is slower than C or Fortran.
+
+This will, in turn, help us figure out how to speed things up.
 
 
 Dynamic Typing
@@ -281,16 +288,19 @@ Let's look at some ways around these problems.
 There is a clever method called **vectorization** that can be
 used to speed up high level languages in numerical applications.
 
-The key idea is to send array processing operations in batch to precompiled
+The key idea is to send array processing operations in batch to pre-compiled
 and efficient native machine code.
 
 The machine code itself is typically compiled from carefully optimized C or Fortran.
 
+For example, when working in a high level language, the operation of inverting a large matrix can be subcontracted to efficient machine code that is pre-compiled for this purpose and supplied to users as part of a package.
+
 This clever idea dates back to MATLAB, which uses vectorization extensively.
 
-Vectorization can greatly accelerate many (but not all) numerical computations.
+Vectorization can greatly accelerate many numerical computations (but not all,
+as we shall see).
 
-Let's see how it works in Python, using NumPy.
+Let's see how vectorization works in Python, using NumPy.
 
 
 Operations on Arrays
@@ -471,13 +481,15 @@ In the vectorized version, all the looping takes place in compiled code.
 
 As you can see, the second version is **much** faster.
 
-(We'll make it even faster again below when we discuss Numba)
+(We'll make it even faster again later on, using more scientific programming tricks.)
+
 
 
 .. _numba-p_c_vectorization:
 
-Pros and Cons of Vectorization
-------------------------------
+Beyond Vectorization
+====================
+
 
 At its best, vectorization yields fast, simple code.
 
@@ -488,17 +500,17 @@ One issue is that it can be highly memory-intensive.
 For example, the vectorized maximization routine above is far more memory
 intensive than the non-vectorized version that preceded it.
 
+This is because vectorization tends to create many intermediate arrays before
+producing the final calculation.
+
 Another issue is that not all algorithms can be vectorized.
 
 In these kinds of settings, we need to go back to loops.
 
-Fortunately, there are nice ways to speed up Python loops.
+Fortunately, there are alternative ways to speed up Python loops that work in
+almost any setting.
 
-
-Beyond Vectorization
-====================
-
-In the last few years, a new Python library called `Numba
+For example, in the last few years, a new Python library called `Numba
 <http://numba.pydata.org/>`__ has appeared that solves the main problems
 with vectorization listed above.
 
