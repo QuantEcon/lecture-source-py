@@ -51,7 +51,7 @@ Let's start with some imports:
 .. code-block:: ipython
 
     import numpy as np
-    from numba import jit
+    from numba import jit, jitclass, float64
     import matplotlib.pyplot as plt
     %matplotlib inline
     import quantecon as qe
@@ -64,33 +64,57 @@ The McCall Model
 .. index::
     single: Models; McCall
 
-An unemployed worker receives in each period a job offer at wage :math:`W_t`.
+An unemployed agent receives in each period a job offer at wage :math:`w_t`.
 
-At time :math:`t`, our worker has two choices:
+The wage offer is a nonnegative function of some underlying state:
 
-#. Accept the offer and work permanently at constant wage :math:`W_t`.
+.. math::
+
+    w_t = w(s_t) \quad \text{where } \; s_t \in \mathbb{S}
+
+Here you should think of state process :math:`\{s_t\}` as some underlying, unspecified
+random factor that impacts on wages.
+
+(Introducing an exogenous stochastic state process is a standard way for
+economists to inject randomness into their models.) 
+
+We assume for simplicity that 
+
+* :math:`\{s_t\}` is IID,
+
+* the agent observes :math:`s_t` at the start of :math:`t` and hence knows
+  :math:`w_t = w(s_t)`,
+
+* :math:`q(s)` is the probability of observing state :math:`s` in :math:`\mathbb{S}` at each point in time, and
+
+* the set :math:`\mathbb S` is finite.
+
+
+At time :math:`t`, our agent has two choices:
+
+#. Accept the offer and work permanently at constant wage :math:`w_t`.
 
 #. Reject the offer, receive unemployment compensation :math:`c`, and reconsider next period.
 
-The wage sequence is assumed to be IID with probability mass function :math:`\phi`.
-
-Thus :math:`\phi (w)` is the probability of observing wage offer :math:`w` in the set :math:`w_1, \ldots, w_n`.
-
-The worker is infinitely lived and aims to maximize the expected discounted sum of earnings
+The agent is infinitely lived and aims to maximize the expected discounted
+sum of earnings
 
 .. math::
-    \mathbb{E} \sum_{t=0}^{\infty} \beta^t Y_t
+    \mathbb{E} \sum_{t=0}^{\infty} \beta^t y_t
 
 
 The constant :math:`\beta` lies in :math:`(0, 1)` and is called a **discount factor**.
 
-The smaller is :math:`\beta`, the more the worker discounts future utility relative to current utility.
+The smaller is :math:`\beta`, the more the agent discounts future utility relative to current utility.
 
-The variable  :math:`Y_t` is income, equal to
+The variable  :math:`y_t` is income, equal to
 
-* his wage :math:`W_t` when employed
+* his wage :math:`w_t` when employed
 
 * unemployment compensation :math:`c` when unemployed
+
+The agent is assumed to know that :math:`\{s_t\}` is IID with common
+distribution :math:`q` and can use this when computing expectations.
 
 
 
@@ -125,43 +149,55 @@ In order to optimally trade-off current and future rewards, we need to think abo
 
 #. the different states that those choices will lead to in next period (in this case, either employment or unemployment)
 
-To weigh these two aspects of the decision problem, we need to assign *values* to states.
+To weigh these two aspects of the decision problem, we need to assign *values*
+to states.
 
-To this end, let :math:`v^*(w)` be the total lifetime *value* accruing to an unemployed worker who enters the current period unemployed but with wage offer :math:`w` in hand.
+To this end, let :math:`v^*(s)` be the total lifetime *value* accruing to an
+unemployed worker who enters the current period unemployed when the state is
+:math:`s \in \mathbb{S}`
 
-More precisely, :math:`v^*(w)` denotes the value of the objective function :eq:`objective` when an agent in this situation makes *optimal* decisions now and at all future points in time.
+In particular, the agent has wage offer :math:`w(s)` in hand.
 
-Of course :math:`v^*(w)` is not trivial to calculate because we don't yet know what decisions are optimal and what aren't!
+More precisely, :math:`v^*(s)` denotes the value of the objective function
+:eq:`objective` when an agent in this situation makes *optimal* decisions now
+and at all future points in time.
 
-But think of :math:`v^*` as a function that assigns to each possible wage :math:`w` the maximal lifetime value that can be obtained with that offer in hand.
+Of course :math:`v^*(s)` is not trivial to calculate because we don't yet know
+what decisions are optimal and what aren't!
 
-A crucial observation is that this function :math:`v^*` must satisfy the recursion
+But think of :math:`v^*` as a function that assigns to each possible state
+:math:`s` the maximal lifetime value that can be obtained with that offer in
+hand.
+
+A crucial observation is that this function :math:`v^*` must satisfy the
+recursion
 
 .. math::
     :label: odu_pv
 
-    v^*(w)
+    v^*(s)
     = \max \left\{
-            \frac{w}{1 - \beta}, \, c + \beta \sum_{w'} v^*(w') \phi (w')
+            \frac{w(s)}{1 - \beta}, \, c + \beta 
+            \sum_{s' \in \mathbb{S}} v^*(w(s')) q (s')
         \right\}
 
-for every possible :math:`w`  in :math:`w_1, \ldots, w_n`.
+for every possible :math:`s`  in :math:`\mathbb S`.
 
 This important equation is a version of the **Bellman equation**, which is
 ubiquitous in economic dynamics and other fields involving planning over time.
 
 The intuition behind it is as follows:
 
-* the first term inside the max operation is the lifetime payoff from accepting current offer :math:`w`, since
+* the first term inside the max operation is the lifetime payoff from accepting current offer :math:`w = w(s)`, since
 
 .. math::
     w + \beta w + \beta^2 w + \cdots = \frac{w}{1 - \beta}
 
 * the second term inside the max operation is the **continuation value**, which is the lifetime payoff from rejecting the current offer and then behaving optimally in all subsequent periods
 
-If we optimize and pick the best of these two options, we obtain maximal lifetime value from today, given current offer :math:`w`.
+If we optimize and pick the best of these two options, we obtain maximal lifetime value from today, given current state :math:`s`.
 
-But this is precisely :math:`v^*(w)`, which is the l.h.s. of :eq:`odu_pv`.
+But this is precisely :math:`v^*(s)`, which is the l.h.s. of :eq:`odu_pv`.
 
 
 
@@ -179,9 +215,7 @@ All we have to do is select the maximal choice on the r.h.s. of :eq:`odu_pv`.
 The optimal action is best thought of as a **policy**, which is, in general, a map from
 states to actions.
 
-In our case, the state is the current wage offer :math:`w`.
-
-Given *any* :math:`w`, we can read off the corresponding best choice (accept or
+Given *any* :math:`s`, we can read off the corresponding best choice (accept or
 reject) by picking the max on the r.h.s. of :eq:`odu_pv`.
 
 Thus, we have a map from :math:`\mathbb R` to :math:`\{0, 1\}`, with 1 meaning accept and 0 meaning reject.
@@ -189,9 +223,10 @@ Thus, we have a map from :math:`\mathbb R` to :math:`\{0, 1\}`, with 1 meaning a
 We can write the policy as follows
 
 .. math::
-    \sigma(w) := \mathbf{1}
+    \sigma(s) := \mathbf{1}
         \left\{
-            \frac{w}{1 - \beta} \geq c + \beta \sum_{w'} v^*(w') \phi (w')
+            \frac{w(s)}{1 - \beta} \geq c + \beta \sum_{s' \in \mathbb S} 
+            v^*(w(s')) q (s')
         \right\}
 
 Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals 0 otherwise.
@@ -199,12 +234,12 @@ Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals 0 o
 We can also write this as
 
 .. math::
-    \sigma(w) := \mathbf{1} \{ w \geq \bar w \}
+    \sigma(s) := \mathbf{1} \{ w(s) \geq \bar w \}
 
 where
 
 .. math::
-    \bar w := (1 - \beta) \left\{ c + \beta \sum_{w'} v^*(w') \phi (w') \right\}
+    \bar w := (1 - \beta) \left\{ c + \beta \sum_{s'} v^*(w(s')) q (s') \right\}
 
 Here :math:`\bar w` is a constant depending on :math:`\beta, c` and the wage distribution called the *reservation wage*.
 
@@ -221,9 +256,12 @@ Computing the Optimal Policy: Take 1
 ====================================
 
 To put the above ideas into action, we need to compute the value function at
-points :math:`w_1, \ldots, w_n`.
+each possible state :math:`s \in \mathbb S`.
 
-In doing so, we can identify these values with the vector :math:`v^* = (v^*_i)` where :math:`v^*_i := v^*(w_i)`.
+Let's suppose that :math:`\mathbb S = \{1, \ldots, n\}`.
+
+The value function is then represented by the vector :math:`v^* =
+(v^*(i))_{i=1}^n`.
 
 In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 
@@ -231,9 +269,10 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 .. math::
     :label: odu_pv2
 
-    v^*_i
+    v^*(i)
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v^*_j \phi (w_j)
+            \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
+                v^*(w(j)) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -252,14 +291,15 @@ Step 2: compute a new vector :math:`v' \in \mathbb R^n` via
 .. math::
     :label: odu_pv2p
 
-    v'_i
+    v'(i)
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v_j \phi (w_j)
+            \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
+                v^*(w(j)) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
 
-Step 3: calculate a measure of the deviation between :math:`v` and :math:`v'`, such as :math:`\max_i |v_i - v_i'|`.
+Step 3: calculate a measure of the deviation between :math:`v` and :math:`v'`, such as :math:`\max_i |v(i)- v(i')|`.
 
 Step 4: if the deviation is larger than some fixed tolerance, set :math:`v = v'` and go to step 2, else continue.
 
@@ -283,9 +323,10 @@ itself via
 .. math::
     :label: odu_pv3
 
-    (Tv)_i
+    (Tv)(i)
     = \max \left\{
-            \frac{w_i}{1 - \beta}, \, c + \beta \sum_{j} v_j \phi (w_j)
+            \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
+                v^*(w(j)) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -313,94 +354,142 @@ generates a sequence that converges to the fixed point.
 Implementation
 --------------
 
-Here's the distribution of wage offers we'll work with
+Our default state process will be Beta-Binomial:
 
 
 .. code-block:: python3
 
     n, a, b = 50, 200, 100
-    w_min, w_max = 10, 60
-    w_vals = np.linspace(w_min, w_max, n+1)
     dist = BetaBinomial(n, a, b)
-    ϕ_vals = dist.pdf()
+    q_default = dist.pdf()
+
+Our default set of values for wages will be
+
+.. code-block:: python3
+
+    w_min, w_max = 10, 60
+    w_default = np.linspace(w_min, w_max, n+1)
+
+Here's a plot of wages vs probabilities:
+
+.. code-block:: python3
 
     fig, ax = plt.subplots(figsize=(9, 6.5))
-    ax.stem(w_vals, ϕ_vals, label='$\phi (w\')$')
+    ax.plot(w_default, q_default, 'o-', label='$q(w(i))$')
     ax.set_xlabel('wages')
     ax.set_ylabel('probabilities')
 
     plt.show()
 
+For the dynamic programming component, 
+we are going to use Numba to accelerate our code (see, in particular, the
+discussion of ``@jitclass`` in :doc:`our lecture on Numba <numba>`).
 
+The following helps Numba by providing some type information about the data we need.
 
+.. code-block:: python3
 
-First, let's have a look at the sequence of approximate value functions that
-the algorithm above generates.
+    mccall_data = [
+        ('c', float64),      # unemployment compensation
+        ('β', float64),      # discount factor
+        ('w', float64[:]),   # w[i] = w(i) = wage at state i
+        ('q', float64[:])    # q[i] = probability of state i
+    ]
 
-Default parameter values are embedded in the function.
+Here's a class that stores the data and the right hand side of the Bellman
+equation.
 
-Our initial guess :math:`v` is the value of accepting at every given wage.
-
+Default parameter values are embedded in the class.
 
 
 .. code-block:: python3
 
-    def plot_value_function_seq(ax,
-                                c=25,
-                                β=0.99,
-                                w_vals=w_vals,
-                                ϕ_vals=ϕ_vals,
-                                num_plots=6):
+    @jitclass(mccall_data)
+    class McCallModel:
 
-        v = w_vals / (1 - β)
+        def __init__(self, c=25, β=0.99, w=w_default, q=q_default):
+
+            self.c, self.β = c, β
+            self.w, self.q = w_default, q_default
+
+        def bellman(self, i, v):
+            """
+            The r.h.s. of the Bellman equation at state i.
+            """
+            stopping_value = self.w[i] / (1 - self.β)
+            continuation_value = self.c + self.β * np.sum(v * self.q)
+            max_value = max(stopping_value, continuation_value)
+            return(max_value)
+
+
+
+Based on these defaults, let's try plotting a sequence of value functions,
+starting from guess :math:`v` given by :math:`v(i) = w(i) / (1 - β)`.
+
+Here's a function to implement this:
+
+
+.. code-block:: python3
+
+    def plot_value_function_seq(mcm, ax, num_plots=6):
+        """
+        Plot a sequence of value functions.
+
+            * mcm is an instance of McCallModel
+            * ax is an axes object that implements a plot method.
+
+        """
+
+        n = len(mcm.w)
+        v = mcm.w / (1 - mcm.β)
         v_next = np.empty_like(v)
         for i in range(num_plots):
-            ax.plot(w_vals, v, label=f"iterate {i}")
+            ax.plot(mcm.w, v, label=f"iterate {i}")
             # Update guess
-            for j, w in enumerate(w_vals):
-                stop_val = w / (1 - β)
-                cont_val = c + β * np.sum(v * ϕ_vals)
-                v_next[j] = max(stop_val, cont_val)
-            v[:] = v_next
+            for i in range(n):
+                v_next[i] = mcm.bellman(i, v)
+            v[:] = v_next  # copy contents into v
 
         ax.legend(loc='lower right')
 
+Now let's create an instance of ``McCallModel`` and call the function:
+
+.. code-block:: python3
+
+    mcm = McCallModel()
 
     fig, ax = plt.subplots(figsize=(9, 6.5))
-    plot_value_function_seq(ax)
+    plot_value_function_seq(mcm, ax)
     plt.show()
 
+First, let's have a look at the sequence of approximate value functions that
+the algorithm above generates.
 
+Our initial guess :math:`v` is the value of accepting at every given wage.
 
 Here's more serious iteration effort, that continues until measured deviation
 between successive iterates is below `tol`.
-
-
 
 We'll be using JIT compilation via Numba to turbo charge our loops
 
 .. code-block:: python3
 
     @jit(nopython=True)
-    def compute_reservation_wage(c=25,
-                                 β=0.99,
-                                 w_vals=w_vals,
-                                 ϕ_vals=ϕ_vals,
+    def compute_reservation_wage(mcm,
                                  max_iter=500,
                                  tol=1e-6):
 
         # == First compute the value function == #
 
-        v = w_vals / (1 - β)
-        v_next = np.empty_like(v)
+        n = len(mcm.w)
+        v = mcm.w / (1 - mcm.β)          # initial guess
+        v_next = np.empty_like(v)    # storage
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
 
-            for j, w in enumerate(w_vals):
-                stop_val = w / (1 - β)
-                cont_val = c + β * np.sum(v * ϕ_vals)
-                v_next[j] = max(stop_val, cont_val)
+            for i in range(n):
+                v_next[i] = mcm.bellman(i, v)
 
             error = np.max(np.abs(v_next - v))
             i += 1
@@ -409,18 +498,16 @@ We'll be using JIT compilation via Numba to turbo charge our loops
 
         # == Now compute the reservation wage == #
 
-        return (1 - β) * (c + β * np.sum(v * ϕ_vals))
-
+        return (1 - mcm.β) * (mcm.c + mcm.β * np.sum(v * mcm.q))
 
 
 
 Let's compute the reservation wage at the default parameters
 
 
-
 .. code-block:: python3
 
-    compute_reservation_wage()
+    compute_reservation_wage(mcm)
 
 
 
@@ -436,7 +523,6 @@ In particular, let's look at what happens when we change :math:`\beta` and
 
 
 
-
 .. code-block:: python3
 
     grid_size = 25
@@ -447,10 +533,8 @@ In particular, let's look at what happens when we change :math:`\beta` and
 
     for i, c in enumerate(c_vals):
         for j, β in enumerate(β_vals):
-            R[i, j] = compute_reservation_wage(c=c, β=β)
-
-
-
+            mcm = McCallModel(c=c, β=β)
+            R[i, j] = compute_reservation_wage(mcm)
 
 
 
@@ -505,7 +589,7 @@ That is,
 
     h
     = c + \beta
-        \sum_{w'} v^*(w') \phi (w')
+        \sum_{s'} v^*(w(s')) q (s')
     \quad
 
 where :math:`v^*` is the value function.
@@ -514,8 +598,8 @@ By the Bellman equation, we then have
 
 .. math::
 
-    v^*(w')
-    = \max \left\{ \frac{w'}{1 - \beta}, \, h \right\}
+    v^*(s')
+    = \max \left\{ \frac{w(s')}{1 - \beta}, \, h \right\}
 
 Substituting this last equation into :eq:`j1` gives
 
@@ -525,10 +609,10 @@ Substituting this last equation into :eq:`j1` gives
 
     h
     = c + \beta
-        \sum_{w'}
+        \sum_{s' \in \mathbb S}
         \max \left\{
-            \frac{w'}{1 - \beta}, h
-        \right\}  \phi (w')
+            \frac{w(s')}{1 - \beta}, h
+        \right\}  q (s')
     \quad
 
 This is a nonlinear equation that we can solve for :math:`h`.
@@ -546,10 +630,10 @@ Step 2: compute the update :math:`h'` via
 
     h'
     = c + \beta
-        \sum_{w'}
+        \sum_{s' \in \mathbb S}
         \max \left\{
-            \frac{w'}{1 - \beta}, h
-        \right\}  \phi (w')
+            \frac{w(s')}{1 - \beta}, h
+        \right\}  q (s')
     \quad
 
 Step 3: calculate the deviation :math:`|h - h'|`.
@@ -572,22 +656,19 @@ Here's an implementation:
 .. code-block:: python3
 
     @jit(nopython=True)
-    def compute_reservation_wage_two(c=25,
-                                     β=0.99,
-                                     w_vals=w_vals,
-                                     ϕ_vals=ϕ_vals,
+    def compute_reservation_wage_two(mcm,
                                      max_iter=500,
                                      tol=1e-5):
 
-        # == First compute ϕ == #
+        # == First compute q == #
 
-        h = np.sum(w_vals * ϕ_vals) / (1 - β)
+        h = np.sum(mcm.w * mcm.q) / (1 - mcm.β)
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
 
-            s = np.maximum(w_vals / (1 - β), h)
-            h_next = c + β * np.sum(s * ϕ_vals)
+            s = np.maximum(mcm.w / (1 - mcm.β), h)
+            h_next = mcm.c + mcm.β * np.sum(s * mcm.q)
 
             error = np.abs(h_next - h)
             i += 1
@@ -596,7 +677,7 @@ Here's an implementation:
 
         # == Now compute the reservation wage == #
 
-        return (1 - β) * h
+        return (1 - mcm.β) * h
 
 
 You can use this code to solve the exercise below.
@@ -638,7 +719,7 @@ Here's one solution
 .. code-block:: python3
 
 
-    cdf = np.cumsum(ϕ_vals)
+    cdf = np.cumsum(q_default)
 
     @jit(nopython=True)
     def compute_stopping_time(w_bar, seed=1234):
@@ -647,7 +728,7 @@ Here's one solution
         t = 1
         while True:
             # Generate a wage draw
-            w = w_vals[qe.random.draw(cdf)]
+            w = w_default[qe.random.draw(cdf)]
             if w >= w_bar:
                 stopping_time = t
                 break
@@ -665,7 +746,8 @@ Here's one solution
     c_vals = np.linspace(10, 40, 25)
     stop_times = np.empty_like(c_vals)
     for i, c in enumerate(c_vals):
-        w_bar = compute_reservation_wage_two(c=c)
+        mcm = McCallModel(c=c)
+        w_bar = compute_reservation_wage_two(mcm)
         stop_times[i] = compute_mean_stopping_time(w_bar)
 
     fig, ax = plt.subplots(figsize=(9, 6.5))

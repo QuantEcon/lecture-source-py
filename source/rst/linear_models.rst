@@ -427,6 +427,7 @@ For instance, let
             0
       \end{bmatrix}
 
+and starting at initial condition :math:`x_0 = \begin{bmatrix} 0 & 1 & 1 \end{bmatrix}'`.
 
 It follows that
 

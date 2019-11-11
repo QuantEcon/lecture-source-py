@@ -16,7 +16,6 @@ This part provides a look at more advanced concepts in Python programming
     :maxdepth: 2
 
     writing_good_code
-    python_oop
-    samuelson
     python_advanced_features
+    samuelson
     debugging

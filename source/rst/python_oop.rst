@@ -488,7 +488,9 @@ Here
 
 The class provides methods to compute various values of interest, including competitive equilibrium price and quantity, tax revenue raised, consumer surplus and producer surplus.
 
-Here's our implementation
+Here's our implementation.
+
+(It uses a function from SciPy called `quad` for numerical integration---a topic we will say more about later on.)
 
 .. code-block:: python3
 
