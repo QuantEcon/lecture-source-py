@@ -29,6 +29,7 @@ agents as given.  Later we will look at full equilibrium problems.
     career
     jv
     optgrowth
+    optgrowth_fast
     coleman_policy_iter
     egm_policy_iter
     ifp

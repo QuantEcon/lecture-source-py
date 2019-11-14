@@ -50,36 +50,15 @@ solves many of these problems.
 
 It does so through something called **just in time (JIT) compilation**.
 
-JIT compilation is effective in many numerical settings and can generate extremely fast, efficient code.
+The key idea is to compile functions to native machine code instructions on the fly.
 
-It can also do other tricks such as multithreading (a form of parallelization well suited to numerical work).
+When it succeeds, the compiled code is extremely fast.
+
+Numba is specifically designed for numerical work and can also do other tricks such as multithreading.
 
 Numba will be a key part of our lectures --- especially those lectures involving dynamic programming.
 
 This lecture introduces the main ideas.
-
-
-A Cautionary Note
-------------------
-
-Numba aims to automatically compile functions to native machine code instructions on the fly.
-
-When it succeeds, the compiled code is extremely fast.
-
-But the process isn't flawless, since Numba needs to infer type information on
-all variables to generate fast machine-level instructions.
-
-(See our :doc:`earlier lecture <need_for_speed>` on scientific computing for a discussion of types.)
-
-Such inference isn't possible in every setting, so you will need to invest some time in learning how Numba works.
-
-However, you will find that, for simple routines, Numba infers types very well.
-
-Moreover, the "hot loops" that we actually need to speed up often fit into this category.
-
-This explains why, despite its imperfections, Numba is used to accelerate a
-great deal of our code.
-
 
 .. _numba_link:
 
@@ -181,6 +160,8 @@ Numba attempts to generate fast machine code using the infrastructure provided b
 
 It does this by inferring type information on the fly.
 
+(See our :doc:`earlier lecture <need_for_speed>` on scientific computing for a discussion of types.)
+
 The basic idea is this: 
 
 * Python is very flexible and hence we could call the function `qm` with many
@@ -206,11 +187,27 @@ The compiled code is then cached and recycled as required.
 
 
 
+Decorators and "nopython" Mode
+==============================
+
+In the code above we created a JIT compiled version of ``qm`` via the call
+
+.. code-block:: python3
+
+    qm_numba = jit(qm)  
+
+
+In practice this would typically be done using an alternative syntax based on
+decorators.
+
+Let's see how this is done.
+
 Decorator Notation
 ------------------
 
-If you don't need a separate name for the "numbafied" version of ``qm``,
-you can just put ``@jit`` before the function
+To target a function for JIT compilation we can put ``@jit`` before the function definition.
+
+Here's what this looks like for ``qm``
 
 .. code-block:: python3
 
@@ -223,20 +220,24 @@ you can just put ``@jit`` before the function
         return x
 
 
-This is equivalent to ``qm = jit(qm)``.
+This is equivalent to ``qm = jit(qm)``. 
+
+The following now uses the jitted version:
+
+.. code-block:: python3
+
+    qm(0.1, int(n))
 
 
 
+Type Inference and "nopython" Mode
+----------------------------------
 
-How Well Does Numba Work?
--------------------------
+Clearly type inference is a key part of JIT compilation.
 
-It is clear from the above discussion that type inference is a key part of JIT
-compilation.
+As you can imagine, inferring types is easier for simple Python objects (e.g., simple scalar data types such as floats and integers).
 
-As you can imagine, inferring types is easier for simple Python objects (e.g., simple scalar data types, such as floats and integers).
-
-Numba also plays well with NumPy arrays, which it treats as typed memory regions.
+Numba also plays well with NumPy arrays.
 
 In an ideal setting, Numba can infer all necessary type information.
 
@@ -244,48 +245,26 @@ This allows it to generate native machine code, without having to call the Pytho
 
 In such a setting, Numba will be on par with machine code from low-level languages.
 
-When Numba cannot infer all type information, some Python objects are given generic ``object`` status, and some code is generated using the Python runtime.
+When Numba cannot infer all type information, some Python objects are given generic ``object`` status and execution falls back to the Python runtime.
 
-In this second setting, Numba typically provides only minor speed gains --- or none at all.
+When this happens, Numba provides only minor speed gains or none at all.
 
-* Note that you can force an error when this occurs, so you know what is
-  happening, by using `@jit(nopython=True)` or `@njit` instead of `@jit`.
+We generally prefer to force an error when this occurs, so we know effective
+compilation is failing.
 
-Hence, it's prudent when using Numba to focus on speeding up small, time-critical snippets of code.
+This is done by using either ``@jit(nopython=True)`` or, equivalently, ``@njit`` instead of ``@jit``.
 
-This will give you much better performance than blanketing your Python programs with ``@jit`` statements.
-
-
-
-A Gotcha: Global Variables
---------------------------
-
-Here's one thing to be careful about when using Numba.
-
-Consider the following example
+For example, 
 
 .. code-block:: python3
 
-    a = 1
-
-    @jit
-    def add_x(x):
-        return a + x
-
-    print(add_x(10))
-
-.. code-block:: python3
-
-    a = 2
-
-    print(add_x(10))
-
-
-Notice that changing the global had no effect on the value returned by the
-function.
-
-When Numba compiles machine code for functions, it treats global variables as constants to ensure type stability.
-
+    @njit
+    def qm(x0, n):
+        x = np.empty(n+1)
+        x[0] = x0
+        for t in range(n):
+            x[t+1] = 4 * x[t] * (1 - x[t])
+        return x
 
 
 Compiling Classes
@@ -457,6 +436,60 @@ to F2Py, among other things.
 
 Recently, `a Jupyter cell magic for Fortran
 <http://nbviewer.jupyter.org/github/mgaitan/fortran_magic/blob/master/documentation.ipynb>`_ has been developed --- you might want to give it a try.
+
+
+Summary and Comments
+====================
+
+Let's review the above and add some cautionary notes.
+
+
+Limitations
+---------------
+
+As we've seen, Numba needs to infer type information on
+all variables to generate fast machine-level instructions.
+
+For simple routines, Numba infers types very well.
+
+For larger ones, or for routines using external libraries, it can easily fail.
+
+Hence, it's prudent when using Numba to focus on speeding up small, time-critical snippets of code.
+
+This will give you much better performance than blanketing your Python programs with ``@jit`` statements.
+
+
+
+A Gotcha: Global Variables
+--------------------------
+
+Here's another thing to be careful about when using Numba.
+
+Consider the following example
+
+.. code-block:: python3
+
+    a = 1
+
+    @jit
+    def add_x(x):
+        return a + x
+
+    print(add_x(10))
+
+.. code-block:: python3
+
+    a = 2
+
+    print(add_x(10))
+
+
+Notice that changing the global had no effect on the value returned by the
+function.
+
+When Numba compiles machine code for functions, it treats global variables as constants to ensure type stability.
+
+
 
 
 

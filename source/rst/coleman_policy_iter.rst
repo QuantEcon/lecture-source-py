@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 *********************************************
-:index:`Optimal Growth II: Time Iteration`
+:index:`Optimal Growth III: Time Iteration`
 *********************************************
 
 .. contents:: :depth: 2
