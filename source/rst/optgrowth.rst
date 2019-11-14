@@ -622,15 +622,14 @@ Optimal Growth Model
 --------------------
 
 
-In terms of primitives, we will assume for now that
+We will assume for now that :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal.
 
-* :math:`f(k) = k^{\alpha}`
+We will store this and other primitives of the optimal growth model in a class. 
 
-* :math:`u(c) = \ln c`
+The class, defined below, combines both parameters and a method that realizes the
+right hand side of the Bellman equation :eq:`fpb30`.
 
-* :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
 
-We will store these primitives of the optimal growth model in a class, which combines parameters and a method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
 .. code-block:: python3
 
@@ -688,7 +687,7 @@ The Bellman Operator
 The next function implements the Bellman operator.
 
 (We could have added it as a method to the ``OptimalGrowthModel`` class but we
-tend to prefer small classes rather than monolithic ones for this kind of
+prefer small classes rather than monolithic ones for this kind of
 numerical work.)
 
 .. code-block:: python3
@@ -722,8 +721,15 @@ numerical work.)
 An Example
 ----------
 
-As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this
-particular problem an exact analytical solution is available, with
+Let's suppose now that 
+
+.. math::
+
+    f(k) = k^{\alpha}
+    \quad \text{and} \quad
+    u(c) = \ln c
+
+For this particular problem, an exact analytical solution is available (see :cite:`Ljungqvist2012`, section 3.1.2), with
 
 .. math::
     :label: dpi_tv
@@ -736,22 +742,18 @@ particular problem an exact analytical solution is available, with
      \right] +
      \frac{1}{1 - \alpha \beta} \ln y
 
-
-The optimal consumption policy is
+and optimal consumption policy 
 
 .. math::
 
     \sigma^*(y) = (1 - \alpha \beta ) y
 
-We will define functions to compute the closed-form solutions to check our answers
+It is valuable to have these closed-form solutions because it lets us check
+whether our code works for this particular case.
+
+In Python, the functions above can be expressed as
 
 .. code-block:: python3
-
-    def σ_star(y, α, β):
-        """
-        True optimal policy
-        """
-        return (1 - α * β) * y
 
     def v_star(y, α, β, μ):
         """
@@ -763,19 +765,28 @@ We will define functions to compute the closed-form solutions to check our answe
         c4 = 1 / (1 - α * β)
         return c1 + c2 * (c3 - c4) + c4 * np.log(y)
 
+    def σ_star(y, α, β):
+        """
+        True optimal policy
+        """
+        return (1 - α * β) * y
+
 
 A First Test
 ------------
 
 To test our code, we want to see if we can replicate the analytical solution
-numerically, using fitted value function iteration.
+numerically.
 
-So let's create an instance of the model and assign it to the variable ``og``.
+So let's create an instance of the model with the above primitives and assign it to the variable ``og``.
 
 .. code-block:: python3
 
     α = 0.4  
-    og = OptimalGrowthModel(u=np.log, f=(lambda k: k**α))
+    def fcd(k):
+        return k**α
+
+    og = OptimalGrowthModel(u=np.log, f=fcd)
 
 Now let's see what happens when we apply our Bellman operator to the exact
 solution :math:`v^*`.
@@ -839,6 +850,9 @@ The sequence of iterates converges towards :math:`v^*`.
 
 We are clearly getting closer.
 
+Iterating to Convergence
+------------------------
+
 We can write a function that iterates until the difference is below a particular
 tolerance level.
 
@@ -874,7 +888,6 @@ tolerance level.
 
 Let's use this function to compute an approximate solution at the defaults.
 
-We're also going to use the ``%%time`` magic to track how long it takes.
 
 .. code-block:: python3
 
@@ -957,6 +970,26 @@ Notice that more patient agents typically have higher wealth.
 Replicate the figure modulo randomness.
 
 
+Exercise 2
+----------
+
+A common choice for utility function in this kind of work is the CRRA
+specification
+
+.. math::
+    u(c) = \frac{c^(1 - γ) - 1} {1 - γ}.
+
+Maintaining the other defaults, including the Cobb-Douglas production
+function,  solve the optimal growth model with this
+utility specification.  
+
+In doing so,
+
+* Set :math:`\gamma = 1.5`.
+* Use the ``solve_model`` function defined above.
+* Time how long this function takes to run, so we can compare it to faster
+  code developed in the :doc:`next lecture <optgrowth_fast>`
+
 
 Solutions
 =========
@@ -999,4 +1032,41 @@ Here's one solution
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
 
     ax.legend(loc='lower right')
+    plt.show()
+
+
+
+
+Exercise 2
+----------
+
+Here we set up the model.
+
+.. code-block:: python3
+
+    γ = 1.5   # Preference parameter
+
+    def u_crra(c):
+        return (c**(1 - γ) - 1) / (1 - γ)
+
+    og = OptimalGrowthModel(u=u_crra, f=fcd)
+
+Now let's run it, with a timer.
+
+.. code-block:: python3
+
+    %%time
+    v_greedy, v_solution = solve_model(og)
+
+
+Let's plot the policy function just to see what it looks like:
+
+.. code-block:: python3
+
+    fig, ax = plt.subplots(figsize=(9, 5))
+
+    ax.plot(grid, v_greedy, lw=2,
+            alpha=0.6, label='Approximate optimal policy')
+
+    ax.legend()
     plt.show()
