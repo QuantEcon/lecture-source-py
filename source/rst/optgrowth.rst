@@ -37,6 +37,8 @@ treatments in our lectures on :doc:`shortest paths <short_path>` and
 We'll discuss some of the technical details of dynamic programming as we
 go along.
 
+
+
 Code
 ----
 
@@ -580,6 +582,42 @@ function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
 Another advantage of piecewise linear interpolation is that it preserves
 useful shape properties such as monotonicity and concavity/convexity.
 
+Scalar Maximization
+-------------------
+
+
+To maximize the right hand side of the Bellman equation, we are going to use
+the ``minimize_scalar`` routine from SciPy.
+
+Since we are maximizing rather than minmizing, we will use the fact that the
+maximizer of :math:`g` on the interval :math:`[a, b]` is the minimizer of
+:math:`-g` on the same interval.
+
+
+To this end, and to keep the interface tidy, we will wrap ``minimize_scalar``
+in an outer function as follows:
+
+.. code-block:: python3
+
+    def maximize(g, a, b, args):
+        """
+        Maximize the function g over the interval [a, b].
+
+        We use the fact that the maximizer of g on any interval is 
+        also the minimizer of -g.  The tuple args collects any extra 
+        arguments to g.
+
+        Returns the maximal value and the maximizer.
+        """
+
+        objective = lambda x: -g(x, *args)
+        result = minimize_scalar(objective, bounds=(a, b), method='bounded')
+        maximizer, maximum = result.x, -result.fun
+        return maximizer, maximum
+
+
+
+
 Optimal Growth Model
 --------------------
 
@@ -592,9 +630,7 @@ In terms of primitives, we will assume for now that
 
 * :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
 
-We will store these primitives of the optimal growth model in a class,
- which combines parameters and a
-method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
+We will store these primitives of the optimal growth model in a class, which combines parameters and a method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
 .. code-block:: python3
 
@@ -654,25 +690,6 @@ The next function implements the Bellman operator.
 (We could have added it as a method to the ``OptimalGrowthModel`` class but we
 tend to prefer small classes rather than monolithic ones for this kind of
 numerical work.)
-
-.. code-block:: python3
-
-    def maximize(g, a, b, args):
-        """
-        Maximize the function g over the interval [a, b].
-
-        We use the fact that the maximizer of g on any interval is 
-        also the minimizer of -g.  The tuple args collects any extra 
-        arguments to g.
-
-        Returns the maximal value and the maximizer.
-        """
-
-        objective = lambda x: -g(x, *args)
-        result = minimize_scalar(objective, bounds=(a, b), method='bounded')
-        maximizer, maximum = result.x, -result.fun
-        return maximizer, maximum
-
 
 .. code-block:: python3
 
@@ -854,11 +871,19 @@ tolerance level.
 
        return v_greedy, v_new
 
-We can check our result by plotting it against the true value
+
+Let's use this function to compute an approximate solution at the defaults.
+
+We're also going to use the ``%%time`` magic to track how long it takes.
 
 .. code-block:: python3
 
+    %%time
     v_greedy, v_solution = solve_model(og)
+
+Now we check our result by plotting it against the true value:
+
+.. code-block:: python3
 
     fig, ax = plt.subplots()
 
@@ -873,7 +898,6 @@ We can check our result by plotting it against the true value
     plt.show()
 
 The figure shows that we are pretty much on the money.
-
 
 
 

@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ********************************************************
-:index:`Optimal Growth III: The Endogenous Grid Method`
+:index:`Optimal Growth IV: The Endogenous Grid Method`
 ********************************************************
 
 .. contents:: :depth: 2
