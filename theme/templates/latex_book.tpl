@@ -100,6 +100,7 @@
 % Set max figure width to be 80% of text width, for now hardcoded.
 \renewcommand{\includegraphics}[1]{\begin{center}\Oldincludegraphics[width=.8\maxwidth]{#1}\end{center}}
 \renewcommand \caption [2][]{} % removes captions from all figures
+\setlist[itemize]{nosep}
 ((* endblock packages *))
 
 % Colors for the hyperref package

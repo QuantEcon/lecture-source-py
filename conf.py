@@ -470,5 +470,8 @@ jupyter_pdf_book = True
 # book title
 jupyter_pdf_book_title = "Quantitative Economics with Python"
 
+# pdf book name
+jupyter_pdf_book_name = "quantitative_economics_with_python"
+
 # pdf toc file
 jupyter_pdf_book_index = "index_toc"
