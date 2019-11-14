@@ -11,13 +11,6 @@
 
 .. contents:: :depth: 2
 
-In addition to what's in Anaconda, this lecture will need the following libraries:
-
-.. code-block:: ipython
-  :class: hide-output
-
-  !pip install --upgrade quantecon
-  !pip install interpolation
 
 Overview
 ========
@@ -44,6 +37,17 @@ treatments in our lectures on :doc:`shortest paths <short_path>` and
 We'll discuss some of the technical details of dynamic programming as we
 go along.
 
+Code
+----
+
+Regarding code, our implementation in this lecture will focus on clarity and flexibility.
+
+Both of these things are nice, particularly for those readers still trying to understand
+the material, but they do cost us some speed --- as you will
+see when you run the code.
+
+In the :doc:`next lecture <optgrowth_fast>` we will sacrifice some of this
+clarity and flexibility in order to accelerate our code with just-in-time compilation.
 
 Let's start with some imports:
 
@@ -51,20 +55,10 @@ Let's start with some imports:
 
     import numpy as np
     import matplotlib.pyplot as plt
-    from interpolation import interp
-    from numba import jit, njit, jitclass, prange, float64, int32
-    from quantecon.optimize.scalar_maximization import brent_max
+    from scipy.interpolate import interp1d
+    from scipy.optimize import minimize_scalar
 
     %matplotlib inline
-
-
-We are using an interpolation function from
-`interpolation.py <https://github.com/EconForge/interpolation.py>`__ because it
-helps us JIT-compile our code.
-
-The function `brent_max` is also designed for embedding in JIT-compiled code.
-
-These are alternatives to similar functions in SciPy (which, unfortunately, are not JIT-aware).
 
 
 
@@ -569,13 +563,12 @@ function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
         y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
         return y1 + 2.5
 
-    def Af(x):
-        return interp(c_grid, f(c_grid), x)
-
     c_grid = np.linspace(0, 1, 6)
     f_grid = np.linspace(0, 1, 150)
 
-    fig, ax = plt.subplots(figsize=(10, 6))
+    Af = interp1d(c_grid, f(c_grid))
+
+    fig, ax = plt.subplots()
 
     ax.plot(f_grid, f(f_grid), 'b-', label='true function')
     ax.plot(f_grid, Af(f_grid), 'g-', label='linear approximation')
@@ -599,56 +592,31 @@ In terms of primitives, we will assume for now that
 
 * :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
 
-We will store these primitives of the optimal growth model in a class.
-
-In fact we are going to use :doc:`Numba's <numba>` `@jitclass` decorator to target our class for JIT compilation.
-
-Because we are going to use Numba to compile our class, we need to specify the
-types of the data:
-
-.. code-block:: python3
-
-   opt_growth_data = [
-       ('α', float64),          # Production parameter
-       ('β', float64),          # Discount factor
-       ('μ', float64),          # Shock location parameter
-       ('s', float64),          # Shock scale parameter
-       ('grid', float64[:]),    # Grid (array)
-       ('shocks', float64[:])   # Shock draws (array)
-   ]
-
-Note the convention for specifying the types of each argument.
-
-Now we're ready to create our class, which will combine parameters and a
+We will store these primitives of the optimal growth model in a class,
+ which combines parameters and a
 method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
 .. code-block:: python3
 
-   @jitclass(opt_growth_data)
    class OptimalGrowthModel:
 
        def __init__(self,
-                    α=0.4, 
-                    β=0.96, 
-                    μ=0,
-                    s=0.1,
+                    u,            # utility function
+                    f,            # production function
+                    β=0.96,       # discount factor
+                    μ=0,          # shock location parameter
+                    s=0.1,        # shock scale parameter
                     grid_max=4,
                     grid_size=200,
                     shock_size=250):
 
-           self.α, self.β, self.μ, self.s = α, β, μ, s
+           self.u, self.f, self.β, self.μ, self.s = u, f, β, μ, s
 
            # Set up grid
            self.grid = np.linspace(1e-5, grid_max, grid_size)
            # Store shocks
            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
            
-       def f(self, k):
-           return k**self.α
-           
-       def u(self, c):
-           return np.log(c)
-
        def objective(self, c, y, v_array):
            """
            Right hand side of the Bellman equation.
@@ -656,11 +624,11 @@ method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
            u, f, β, shocks = self.u, self.f, self.β, self.shocks
 
-           v = lambda x: interp(self.grid, v_array, x)
+           v = interp1d(self.grid, v_array)
 
            return u(c) + β * np.mean(v(f(y - c) * shocks))
 
-In the second last line we are using linear interpolation:
+In the second last line we are using linear interpolation.
 
 In the last line, the expectation in :eq:`fcbell20_optgrowth` is
 computed via Monte Carlo, using the approximation
@@ -681,55 +649,55 @@ but it does have some theoretical advantages in the present setting.
 The Bellman Operator
 --------------------
 
-Here's a function that implements the Bellman operator 
+The next function implements the Bellman operator.
+
+(We could have added it as a method to the ``OptimalGrowthModel`` class but we
+tend to prefer small classes rather than monolithic ones for this kind of
+numerical work.)
 
 .. code-block:: python3
 
-   @jit(nopython=True)
+    def maximize(g, a, b, args):
+        """
+        Maximize the function g over the interval [a, b].
+
+        We use the fact that the maximizer of g on any interval is 
+        also the minimizer of -g.  The tuple args collects any extra 
+        arguments to g.
+
+        Returns the maximal value and the maximizer.
+        """
+
+        objective = lambda x: -g(x, *args)
+        result = minimize_scalar(objective, bounds=(a, b), method='bounded')
+        maximizer, maximum = result.x, -result.fun
+        return maximizer, maximum
+
+
+.. code-block:: python3
+
    def T(og, v):
        """
-       The Bellman operator.
+       The Bellman operator.  Updates the guess of the value function 
+       and also computes a v-greedy policy.
 
          * og is an instance of OptimalGrowthModel
          * v is an array representing a guess of the value function
+
        """
        v_new = np.empty_like(v)
-       
-       for i in range(len(grid)):
-           y = grid[i]
-           
-           # Maximize RHS of Bellman equation at state y
-           v_max = brent_max(og.objective, 1e-10, y, args=(y, v))[1]
-           v_new[i] = v_max
-           
-       return v_new
-
-
-Here's another function, very similar to the last, that computes a :math:`v`-greedy
-policy:
-
-(The last two functions could be merged but we resisted doing so to increase efficiency.)
-
-.. code-block:: python3
-
-   @jit(nopython=True)
-   def get_greedy(og, v):
-       """
-       Compute a v-greedy policy.
-
-         * og is an instance of OptimalGrowthModel
-         * v is an array representing a guess of the value function
-       """
        v_greedy = np.empty_like(v)
        
        for i in range(len(grid)):
            y = grid[i]
            
-           # Find maximizer of RHS of Bellman equation at state y
-           c_star = brent_max(og.objective, 1e-10, y, args=(y, v))[0]
+           # Maximize RHS of Bellman equation at state y
+           c_star, v_max = maximize(og.objective, 1e-10, y, (y, v))
+           v_new[i] = v_max
            v_greedy[i] = c_star
            
-       return v_greedy
+       return v_greedy, v_new
+
 
 
 .. _benchmark_growth_mod:
@@ -789,7 +757,8 @@ So let's create an instance of the model and assign it to the variable ``og``.
 
 .. code-block:: python3
 
-    og = OptimalGrowthModel()
+    α = 0.4  
+    og = OptimalGrowthModel(u=np.log, f=(lambda k: k**α))
 
 Now let's see what happens when we apply our Bellman operator to the exact
 solution :math:`v^*`.
@@ -802,10 +771,10 @@ In practice, we expect some small numerical error
 
     grid = og.grid
 
-    v_init = v_star(grid, og.α, og.β, og.μ)    # Start at the solution
-    v = T(og, v_init)                              # Apply T once
+    v_init = v_star(grid, α, og.β, og.μ)    # Start at the solution
+    v_greedy, v = T(og, v_init)             # Apply T once
 
-    fig, ax = plt.subplots(figsize=(9, 5))
+    fig, ax = plt.subplots()
     ax.set_ylim(-35, -24)
     ax.plot(grid, v, lw=2, alpha=0.6, label='$Tv^*$')
     ax.plot(grid, v_init, lw=2, alpha=0.6, label='$v^*$')
@@ -826,16 +795,16 @@ The initial condition we'll start with is, somewhat arbitrarily, :math:`v(y) = 5
     v = 5 * np.log(grid)  # An initial condition
     n = 35
 
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots()
 
     ax.plot(grid, v, color=plt.cm.jet(0),
             lw=2, alpha=0.6, label='Initial condition')
 
     for i in range(n):
-        v = T(og, v)  # Apply the Bellman operator
+        v_greedy, v = T(og, v)  # Apply the Bellman operator
         ax.plot(grid, v, color=plt.cm.jet(i / n), lw=2, alpha=0.6)
 
-    ax.plot(grid, v_star(grid, og.α, og.β, og.μ), 'k-', lw=2,
+    ax.plot(grid, v_star(grid, α, og.β, og.μ), 'k-', lw=2,
             alpha=0.8, label='True value function')
 
     ax.legend()
@@ -870,7 +839,7 @@ tolerance level.
        error = tol + 1
 
        while i < max_iter and error > tol:
-           v_new = T(og, v)
+           v_greedy, v_new = T(og, v)
            error = np.max(np.abs(v - v_new))
            i += 1
            if verbose and i % print_skip == 0:
@@ -883,20 +852,20 @@ tolerance level.
        if verbose and i < max_iter:
            print(f"\nConverged in {i} iterations.")
 
-       return v_new
+       return v_greedy, v_new
 
 We can check our result by plotting it against the true value
 
 .. code-block:: python3
 
-    v_solution = solve_model(og)
+    v_greedy, v_solution = solve_model(og)
 
-    fig, ax = plt.subplots(figsize=(9, 5))
+    fig, ax = plt.subplots()
 
     ax.plot(grid, v_solution, lw=2, alpha=0.6,
             label='Approximate value function')
 
-    ax.plot(grid, v_star(grid, og.α, og.β, og.μ), lw=2,
+    ax.plot(grid, v_star(grid, α, og.β, og.μ), lw=2,
             alpha=0.6, label='True value function')
 
     ax.legend()
@@ -914,19 +883,19 @@ The Policy Function
 .. index::
     single: Optimal Growth; Policy Function
 
-Let's use `get_greedy` to compute an approximate optimal policy
+The policy ``v_greedy`` computed above corresponds to an approximate optimal policy.
 
-The next figure compares the result to the exact solution, which, as mentioned
+The next figure compares it to the exact solution, which, as mentioned
 above, is :math:`\sigma(y) = (1 - \alpha \beta) y`
 
 .. code-block:: python3
 
     fig, ax = plt.subplots(figsize=(9, 5))
 
-    ax.plot(grid, get_greedy(og, v_solution), lw=2,
+    ax.plot(grid, v_greedy, lw=2,
             alpha=0.6, label='Approximate policy function')
 
-    ax.plot(grid, σ_star(grid, og.α, og.β),
+    ax.plot(grid, σ_star(grid, α, og.β),
             lw=2, alpha=0.6, label='True policy function')
 
     ax.legend()
@@ -986,7 +955,7 @@ Here's one solution
         ξ = np.random.randn(ts_length-1)
         y[0] = y0
         for t in range(ts_length-1):
-            y[t+1] = (y[t] - σ_func(y[t]))**og.α * np.exp(og.μ + og.s * ξ[t])
+            y[t+1] = (y[t] - σ_func(y[t]))**α * np.exp(og.μ + og.s * ξ[t])
         return y
 
 .. code-block:: python3
@@ -995,14 +964,13 @@ Here's one solution
 
     for β in (0.8, 0.9, 0.98):
 
-        og = OptimalGrowthModel(β=β, s=0.05)
+        og = OptimalGrowthModel(u=np.log, f=(lambda k: k**α), β=β, s=0.05)
         grid = og.grid
 
-        v_solution = solve_model(og, verbose=False)
+        v_greedy, v_solution = solve_model(og, verbose=False)
 
-        σ_star = get_greedy(og, v_solution)
         # Define an optimal policy function
-        σ_func = lambda x: interp(grid, σ_star, x)
+        σ_func = interp1d(grid, v_greedy)
         y = simulate_og(σ_func, og)
         ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
 
