@@ -35,6 +35,10 @@ speed.
 The reason is that, when code is less flexible, we can exploit structure more
 easily.
 
+(This is true about algorithms and mathematical problems more generally: 
+more specific problems have more structure, which, with some thought, can be
+exploited for better results.)
+
 So, in this lecture, we are going to accept less flexibility while gaining
 speed, using just-in-time compilation to 
 accelerate our code.
@@ -69,7 +73,7 @@ The Model
     single: Optimal Growth; Model
 
 
-The model is s the same as discussed in :doc:`this lecture <optgrowth>`.
+The model is the same as discussed in :doc:`this lecture <optgrowth>`.
 
 We will use the same algorithm to solve it---the only difference is in the
 implementation itself.
@@ -95,7 +99,7 @@ Computation
 
 As before, we will store the primitives of the optimal growth model in a class.
 
-But now we are going to use :doc:`Numba's <numba>` `@jitclass` decorator to
+But now we are going to use :doc:`Numba's <numba>` ``@jitclass`` decorator to
 target our class for JIT compilation.
 
 Because we are going to use Numba to compile our class, we need to specify the
@@ -119,7 +123,8 @@ Now we're ready to create our class, which will combine parameters and a
 method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
 You will notice that, unlike in the :doc:`previous lecture <optgrowth>`, we
-hardwire the Cobb-Douglas production and CRRA utility specifications.
+hardwire the Cobb-Douglas production and CRRA utility specifications into the
+class.
 
 Thus, we are losing flexibility, but we will gain substantial speed.
 
@@ -222,7 +227,7 @@ policy:
 The last two functions could be merged, as they were in our :doc:`previous implementation <optgrowth>`, but we resisted doing so to increase efficiency.
 
 
-Here's a function that iterates until the difference is below a particular tolerance level.
+Here's a function that iterates from a starting guess of the value function until the difference between successive iterates is below a particular tolerance level.
 
 .. code-block:: python3
 
@@ -301,7 +306,12 @@ Exercises
 Exercise 1
 ----------
 
-Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`.
+Once an optimal consumption policy :math:`\sigma` is given, income follows
+
+.. math::
+
+    y_{t+1} = f(y_t - \sigma(y_t)) \xi_{t+1}
+
 
 The next figure shows a simulation of 100 elements of this sequence for three
 different discount factors (and hence three different policies)
@@ -346,13 +356,13 @@ Here's one solution
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots()
 
     for β in (0.8, 0.9, 0.98):
 
         og = OptimalGrowthModel(β=β, s=0.05)
 
-        v_solution = solve_model(og, verbose=False)
+        v_solution = solve_model(og)
         v_greedy = get_greedy(og, v_solution)
 
         # Define an optimal policy function

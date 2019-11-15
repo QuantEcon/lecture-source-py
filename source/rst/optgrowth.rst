@@ -775,13 +775,7 @@ In Python, the functions above can be expressed as
         return (1 - α * β) * y
 
 
-A First Test
-------------
-
-To test our code, we want to see if we can replicate the analytical solution
-numerically.
-
-So let's create an instance of the model with the above primitives and assign it to the variable ``og``.
+Next let's create an instance of the model with the above primitives and assign it to the variable ``og``.
 
 .. code-block:: python3
 
@@ -791,8 +785,9 @@ So let's create an instance of the model with the above primitives and assign it
 
     og = OptimalGrowthModel(u=np.log, f=fcd)
 
+
 Now let's see what happens when we apply our Bellman operator to the exact
-solution :math:`v^*`.
+solution :math:`v^*` in this case.
 
 In theory, since :math:`v^*` is a fixed point, the resulting function should again be :math:`v^*`.
 
@@ -852,6 +847,8 @@ The figure shows
 The sequence of iterates converges towards :math:`v^*`.
 
 We are clearly getting closer.
+
+
 
 Iterating to Convergence
 ------------------------
@@ -1003,7 +1000,7 @@ Let's plot the policy function just to see what it looks like:
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(9, 5))
+    fig, ax = plt.subplots()
 
     ax.plot(grid, v_greedy, lw=2,
             alpha=0.6, label='Approximate optimal policy')
