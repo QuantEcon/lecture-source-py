@@ -226,7 +226,7 @@ The following now uses the jitted version:
 
 .. code-block:: python3
 
-    qm(0.1, int(n))
+    qm(0.1, 10)
 
 
 
@@ -257,6 +257,8 @@ This is done by using either ``@jit(nopython=True)`` or, equivalently, ``@njit``
 For example, 
 
 .. code-block:: python3
+
+    from numba import njit
 
     @njit
     def qm(x0, n):
