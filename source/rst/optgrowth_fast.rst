@@ -69,8 +69,21 @@ The Model
     single: Optimal Growth; Model
 
 
-The model is exactly the same as discussed in :doc:`this lecture <optgrowth>`.
+The model is s the same as discussed in :doc:`this lecture <optgrowth>`.
 
+We will use the same algorithm to solve it---the only difference is in the
+implementation itself.
+
+We will use the CRRA utility specification
+
+.. math::
+    u(c) = \frac{c^{1 - γ} - 1} {1 - γ}
+
+We continue to assume that
+
+* :math:`f(k) = k^{\alpha}`
+
+* :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
 
 
 Computation
@@ -80,18 +93,10 @@ Computation
     single: Dynamic Programming; Computation
 
 
+As before, we will store the primitives of the optimal growth model in a class.
 
-In terms of primitives, we will assume for now that
-
-* :math:`f(k) = k^{\alpha}`
-
-* :math:`u(c) = \ln c`
-
-* :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
-
-We will store these primitives of the optimal growth model in a class.
-
-In fact we are going to use :doc:`Numba's <numba>` `@jitclass` decorator to target our class for JIT compilation.
+But now we are going to use :doc:`Numba's <numba>` `@jitclass` decorator to
+target our class for JIT compilation.
 
 Because we are going to use Numba to compile our class, we need to specify the
 types of the data:
@@ -102,6 +107,7 @@ types of the data:
        ('α', float64),          # Production parameter
        ('β', float64),          # Discount factor
        ('μ', float64),          # Shock location parameter
+       ('γ', float64),          # Preference parameter
        ('s', float64),          # Shock scale parameter
        ('grid', float64[:]),    # Grid (array)
        ('shocks', float64[:])   # Shock draws (array)
@@ -111,6 +117,11 @@ Note the convention for specifying the types of each argument.
 
 Now we're ready to create our class, which will combine parameters and a
 method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
+
+You will notice that, unlike in the :doc:`previous lecture <optgrowth>`, we
+hardwire the Cobb-Douglas production and CRRA utility specifications.
+
+Thus, we are losing flexibility, but we will gain substantial speed.
 
 .. code-block:: python3
 
@@ -122,22 +133,26 @@ method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
                     β=0.96, 
                     μ=0,
                     s=0.1,
+                    γ=1.5, 
                     grid_max=4,
-                    grid_size=200,
-                    shock_size=250):
+                    grid_size=120,
+                    shock_size=250,
+                    seed=1234):
 
-           self.α, self.β, self.μ, self.s = α, β, μ, s
+           self.α, self.β, self.γ, self.μ, self.s = α, β, γ, μ, s
 
            # Set up grid
            self.grid = np.linspace(1e-5, grid_max, grid_size)
-           # Store shocks
+
+           # Store shocks (with a seed, so results are reproducible)
+           np.random.seed(seed)
            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
            
        def f(self, k):
            return k**self.α
            
        def u(self, c):
-           return np.log(c)
+           return (c**(1 - self.γ) - 1) / (1 - self.γ)
 
        def objective(self, c, y, v_array):
            """
@@ -169,8 +184,8 @@ Here's a jitted function that implements the Bellman operator
        """
        v_new = np.empty_like(v)
        
-       for i in range(len(grid)):
-           y = grid[i]
+       for i in range(len(og.grid)):
+           y = og.grid[i]
            
            # Maximize RHS of Bellman equation at state y
            v_max = brent_max(og.objective, 1e-10, y, args=(y, v))[1]
@@ -195,8 +210,8 @@ policy:
        """
        v_greedy = np.empty_like(v)
        
-       for i in range(len(grid)):
-           y = grid[i]
+       for i in range(len(og.grid)):
+           y = og.grid[i]
            
            # Find maximizer of RHS of Bellman equation at state y
            c_star = brent_max(og.objective, 1e-10, y, args=(y, v))[0]
@@ -257,22 +272,9 @@ takes.
     %%time
     v_solution = solve_model(og)
 
-You will notice that this is *much* faster than our :doc:`original implementation <optgrowth>`.
+You will notice that this is *much* faster than our :ref:`original implementation <ogex1>`.
 
-Now let's plot our result.
-
-.. code-block:: python3
-
-    grid = og.grid
-    fig, ax = plt.subplots()
-
-    ax.plot(grid, v_solution, lw=2,
-            alpha=0.6, label='Approximate value function')
-
-    ax.legend(loc='lower right')
-    plt.show()
-
-Let's have a look at the policy too:
+Let's plot the resulting policy:
 
 .. code-block:: python3
 
@@ -280,11 +282,84 @@ Let's have a look at the policy too:
 
     fig, ax = plt.subplots()
 
-    ax.plot(grid, v_greedy, lw=2,
+    ax.plot(og.grid, v_greedy, lw=2,
             alpha=0.6, label='Approximate value function')
 
     ax.legend(loc='lower right')
     plt.show()
 
 Everything seems in order, so our code acceleration has been successful!
+
+
+
+
+
+Exercises
+=========
+
+
+Exercise 1
+----------
+
+Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`.
+
+The next figure shows a simulation of 100 elements of this sequence for three
+different discount factors (and hence three different policies)
+
+.. figure:: /_static/lecture_specific/optgrowth/solution_og_ex2.png
+
+In each sequence, the initial condition is :math:`y_0 = 0.1`.
+
+The discount factors are ``discount_factors = (0.8, 0.9, 0.98)``.
+
+We have also dialed down the shocks a bit with ``s = 0.05``.
+
+Otherwise, the parameters and primitives are the same as the log-linear model discussed earlier in the lecture.
+
+Notice that more patient agents typically have higher wealth.
+
+Replicate the figure modulo randomness.
+
+
+
+Solutions
+=========
+
+Exercise 1
+----------
+
+
+Here's one solution 
+
+.. code-block:: python3
+
+    def simulate_og(σ_func, og, y0=0.1, ts_length=100):
+        '''
+        Compute a time series given consumption policy σ.
+        '''
+        y = np.empty(ts_length)
+        ξ = np.random.randn(ts_length-1)
+        y[0] = y0
+        for t in range(ts_length-1):
+            y[t+1] = (y[t] - σ_func(y[t]))**og.α * np.exp(og.μ + og.s * ξ[t])
+        return y
+
+.. code-block:: python3
+
+    fig, ax = plt.subplots(figsize=(9, 6))
+
+    for β in (0.8, 0.9, 0.98):
+
+        og = OptimalGrowthModel(β=β, s=0.05)
+
+        v_solution = solve_model(og, verbose=False)
+        v_greedy = get_greedy(og, v_solution)
+
+        # Define an optimal policy function
+        σ_func = lambda x: interp(og.grid, v_greedy, x)
+        y = simulate_og(σ_func, og)
+        ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
+
+    ax.legend(loc='lower right')
+    plt.show()
 

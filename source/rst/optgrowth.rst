@@ -642,14 +642,17 @@ right hand side of the Bellman equation :eq:`fpb30`.
                     μ=0,          # shock location parameter
                     s=0.1,        # shock scale parameter
                     grid_max=4,
-                    grid_size=200,
-                    shock_size=250):
+                    grid_size=120,
+                    shock_size=250,
+                    seed=1234):
 
            self.u, self.f, self.β, self.μ, self.s = u, f, β, μ, s
 
            # Set up grid
            self.grid = np.linspace(1e-5, grid_max, grid_size)
-           # Store shocks
+
+           # Store shocks (with a seed, so results are reproducible)
+           np.random.seed(seed)
            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
            
        def objective(self, c, y, v_array):
@@ -891,7 +894,6 @@ Let's use this function to compute an approximate solution at the defaults.
 
 .. code-block:: python3
 
-    %%time
     v_greedy, v_solution = solve_model(og)
 
 Now we check our result by plotting it against the true value:
@@ -947,37 +949,15 @@ Exercises
 =========
 
 
+
 Exercise 1
-----------
-
-Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`.
-
-The next figure shows a simulation of 100 elements of this sequence for three
-different discount factors (and hence three different policies)
-
-.. figure:: /_static/lecture_specific/optgrowth/solution_og_ex2.png
-
-In each sequence, the initial condition is :math:`y_0 = 0.1`.
-
-The discount factors are ``discount_factors = (0.8, 0.9, 0.98)``.
-
-We have also dialed down the shocks a bit with ``s = 0.05``.
-
-Otherwise, the parameters and primitives are the same as the log-linear model discussed earlier in the lecture.
-
-Notice that more patient agents typically have higher wealth.
-
-Replicate the figure modulo randomness.
-
-
-Exercise 2
 ----------
 
 A common choice for utility function in this kind of work is the CRRA
 specification
 
 .. math::
-    u(c) = \frac{c^(1 - γ) - 1} {1 - γ}.
+    u(c) = \frac{c^{1 - γ} - 1} {1 - γ}
 
 Maintaining the other defaults, including the Cobb-Douglas production
 function,  solve the optimal growth model with this
@@ -994,51 +974,11 @@ In doing so,
 Solutions
 =========
 
-
+.. _ogex1:
 
 Exercise 1
 ----------
 
-
-Here's one solution 
-
-.. code-block:: python3
-
-    def simulate_og(σ_func, og, y0=0.1, ts_length=100):
-        '''
-        Compute a time series given consumption policy σ.
-        '''
-        y = np.empty(ts_length)
-        ξ = np.random.randn(ts_length-1)
-        y[0] = y0
-        for t in range(ts_length-1):
-            y[t+1] = (y[t] - σ_func(y[t]))**α * np.exp(og.μ + og.s * ξ[t])
-        return y
-
-.. code-block:: python3
-
-    fig, ax = plt.subplots(figsize=(9, 6))
-
-    for β in (0.8, 0.9, 0.98):
-
-        og = OptimalGrowthModel(u=np.log, f=(lambda k: k**α), β=β, s=0.05)
-        grid = og.grid
-
-        v_greedy, v_solution = solve_model(og, verbose=False)
-
-        # Define an optimal policy function
-        σ_func = interp1d(grid, v_greedy)
-        y = simulate_og(σ_func, og)
-        ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
-
-    ax.legend(loc='lower right')
-    plt.show()
-
-
-
-
-Exercise 2
-----------
 
 Here we set up the model.
 
