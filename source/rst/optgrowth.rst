@@ -622,15 +622,14 @@ Optimal Growth Model
 --------------------
 
 
-In terms of primitives, we will assume for now that
+We will assume for now that :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal.
 
-* :math:`f(k) = k^{\alpha}`
+We will store this and other primitives of the optimal growth model in a class. 
 
-* :math:`u(c) = \ln c`
+The class, defined below, combines both parameters and a method that realizes the
+right hand side of the Bellman equation :eq:`fpb30`.
 
-* :math:`\phi` is the distribution of :math:`\exp(\mu + s \zeta)` when :math:`\zeta` is standard normal
 
-We will store these primitives of the optimal growth model in a class, which combines parameters and a method that realizes the right hand side of the Bellman equation :eq:`fpb30`.
 
 .. code-block:: python3
 
@@ -643,14 +642,17 @@ We will store these primitives of the optimal growth model in a class, which com
                     μ=0,          # shock location parameter
                     s=0.1,        # shock scale parameter
                     grid_max=4,
-                    grid_size=200,
-                    shock_size=250):
+                    grid_size=120,
+                    shock_size=250,
+                    seed=1234):
 
            self.u, self.f, self.β, self.μ, self.s = u, f, β, μ, s
 
            # Set up grid
            self.grid = np.linspace(1e-5, grid_max, grid_size)
-           # Store shocks
+
+           # Store shocks (with a seed, so results are reproducible)
+           np.random.seed(seed)
            self.shocks = np.exp(μ + s * np.random.randn(shock_size))
            
        def objective(self, c, y, v_array):
@@ -688,7 +690,7 @@ The Bellman Operator
 The next function implements the Bellman operator.
 
 (We could have added it as a method to the ``OptimalGrowthModel`` class but we
-tend to prefer small classes rather than monolithic ones for this kind of
+prefer small classes rather than monolithic ones for this kind of
 numerical work.)
 
 .. code-block:: python3
@@ -722,8 +724,15 @@ numerical work.)
 An Example
 ----------
 
-As is well-known (see :cite:`Ljungqvist2012`, section 3.1.2), for this
-particular problem an exact analytical solution is available, with
+Let's suppose now that 
+
+.. math::
+
+    f(k) = k^{\alpha}
+    \quad \text{and} \quad
+    u(c) = \ln c
+
+For this particular problem, an exact analytical solution is available (see :cite:`Ljungqvist2012`, section 3.1.2), with
 
 .. math::
     :label: dpi_tv
@@ -736,22 +745,18 @@ particular problem an exact analytical solution is available, with
      \right] +
      \frac{1}{1 - \alpha \beta} \ln y
 
-
-The optimal consumption policy is
+and optimal consumption policy 
 
 .. math::
 
     \sigma^*(y) = (1 - \alpha \beta ) y
 
-We will define functions to compute the closed-form solutions to check our answers
+It is valuable to have these closed-form solutions because it lets us check
+whether our code works for this particular case.
+
+In Python, the functions above can be expressed as
 
 .. code-block:: python3
-
-    def σ_star(y, α, β):
-        """
-        True optimal policy
-        """
-        return (1 - α * β) * y
 
     def v_star(y, α, β, μ):
         """
@@ -763,19 +768,28 @@ We will define functions to compute the closed-form solutions to check our answe
         c4 = 1 / (1 - α * β)
         return c1 + c2 * (c3 - c4) + c4 * np.log(y)
 
+    def σ_star(y, α, β):
+        """
+        True optimal policy
+        """
+        return (1 - α * β) * y
+
 
 A First Test
 ------------
 
 To test our code, we want to see if we can replicate the analytical solution
-numerically, using fitted value function iteration.
+numerically.
 
-So let's create an instance of the model and assign it to the variable ``og``.
+So let's create an instance of the model with the above primitives and assign it to the variable ``og``.
 
 .. code-block:: python3
 
     α = 0.4  
-    og = OptimalGrowthModel(u=np.log, f=(lambda k: k**α))
+    def fcd(k):
+        return k**α
+
+    og = OptimalGrowthModel(u=np.log, f=fcd)
 
 Now let's see what happens when we apply our Bellman operator to the exact
 solution :math:`v^*`.
@@ -839,6 +853,9 @@ The sequence of iterates converges towards :math:`v^*`.
 
 We are clearly getting closer.
 
+Iterating to Convergence
+------------------------
+
 We can write a function that iterates until the difference is below a particular
 tolerance level.
 
@@ -874,11 +891,9 @@ tolerance level.
 
 Let's use this function to compute an approximate solution at the defaults.
 
-We're also going to use the ``%%time`` magic to track how long it takes.
 
 .. code-block:: python3
 
-    %%time
     v_greedy, v_solution = solve_model(og)
 
 Now we check our result by plotting it against the true value:
@@ -934,69 +949,64 @@ Exercises
 =========
 
 
+
 Exercise 1
 ----------
 
-Once an optimal consumption policy :math:`\sigma` is given, income follows :eq:`firstp0_og2`.
+A common choice for utility function in this kind of work is the CRRA
+specification
 
-The next figure shows a simulation of 100 elements of this sequence for three
-different discount factors (and hence three different policies)
+.. math::
+    u(c) = \frac{c^{1 - γ} - 1} {1 - γ}
 
-.. figure:: /_static/lecture_specific/optgrowth/solution_og_ex2.png
+Maintaining the other defaults, including the Cobb-Douglas production
+function,  solve the optimal growth model with this
+utility specification.  
 
-In each sequence, the initial condition is :math:`y_0 = 0.1`.
+In doing so,
 
-The discount factors are ``discount_factors = (0.8, 0.9, 0.98)``.
-
-We have also dialed down the shocks a bit with ``s = 0.05``.
-
-Otherwise, the parameters and primitives are the same as the log-linear model discussed earlier in the lecture.
-
-Notice that more patient agents typically have higher wealth.
-
-Replicate the figure modulo randomness.
-
+* Set :math:`\gamma = 1.5`.
+* Use the ``solve_model`` function defined above.
+* Time how long this function takes to run, so we can compare it to faster
+  code developed in the :doc:`next lecture <optgrowth_fast>`
 
 
 Solutions
 =========
 
-
+.. _ogex1:
 
 Exercise 1
 ----------
 
 
-Here's one solution 
+Here we set up the model.
 
 .. code-block:: python3
 
-    def simulate_og(σ_func, og, y0=0.1, ts_length=100):
-        '''
-        Compute a time series given consumption policy σ.
-        '''
-        y = np.empty(ts_length)
-        ξ = np.random.randn(ts_length-1)
-        y[0] = y0
-        for t in range(ts_length-1):
-            y[t+1] = (y[t] - σ_func(y[t]))**α * np.exp(og.μ + og.s * ξ[t])
-        return y
+    γ = 1.5   # Preference parameter
+
+    def u_crra(c):
+        return (c**(1 - γ) - 1) / (1 - γ)
+
+    og = OptimalGrowthModel(u=u_crra, f=fcd)
+
+Now let's run it, with a timer.
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(9, 6))
+    %%time
+    v_greedy, v_solution = solve_model(og)
 
-    for β in (0.8, 0.9, 0.98):
 
-        og = OptimalGrowthModel(u=np.log, f=(lambda k: k**α), β=β, s=0.05)
-        grid = og.grid
+Let's plot the policy function just to see what it looks like:
 
-        v_greedy, v_solution = solve_model(og, verbose=False)
+.. code-block:: python3
 
-        # Define an optimal policy function
-        σ_func = interp1d(grid, v_greedy)
-        y = simulate_og(σ_func, og)
-        ax.plot(y, lw=2, alpha=0.6, label=rf'$\beta = {β}$')
+    fig, ax = plt.subplots(figsize=(9, 5))
 
-    ax.legend(loc='lower right')
+    ax.plot(grid, v_greedy, lw=2,
+            alpha=0.6, label='Approximate optimal policy')
+
+    ax.legend()
     plt.show()
