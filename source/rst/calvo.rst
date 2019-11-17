@@ -233,12 +233,12 @@ Household welfare is summarized by:
 
     v_0 = - \sum_{t=0}^\infty \beta^t r(x_t,\mu_t) = - \sum_{t=0}^\infty \beta^t s(\theta_t,\mu_t)
 
-We can represent the dependence of  :math:`v_0` on :math:`(\vec \theta, \vec \mu)` recursively via
+We can represent the dependence of  :math:`v_0` on :math:`(\vec \theta, \vec \mu)` recursively via the linear difference equation
 
 .. math::
     :label: eq_old8
 
-    v_t = s(\theta_t, \mu_t) + \beta v_{t+1}
+    v_t = - s(\theta_t, \mu_t) + \beta v_{t+1}
 
 Structure
 ==========
@@ -256,7 +256,7 @@ These, in turn, induce a discounted value to a government sequence
 :math:`\vec v = \{v_t\}_{t=0}^\infty \in L^2` that satisfies the
 recursion
 
-.. math::  v_t = s(\theta_t,\mu_t) + \beta v_{t+1}
+.. math::  v_t = - s(\theta_t,\mu_t) + \beta v_{t+1}
 
 where we have called :math:`s(\theta_t, \mu_t) = r(x_t, \mu_t)` as
 above.
@@ -372,7 +372,7 @@ The value function
 
 .. math::
   J(x_0) = \max_{(\overrightarrow x_1, \overrightarrow \mu_0) \in \Omega(x_0)}
-  \sum_{t=0}^\infty \beta^t r(x_t,\mu_t)
+  - \sum_{t=0}^\infty \beta^t r(x_t,\mu_t)
 
 satisfies the Bellman equation
 
@@ -967,7 +967,7 @@ for each :math:`t \geq 0`:
    of real balances :math:`m_t - p_t = -\alpha\tilde \theta_t` at
    :math:`t`.
 
--  Given those expectations and an associated :math:`\theta_t`, at
+-  Given those expectations and an associated :math:`\theta_t = \tilde \theta_t`, at
    :math:`t` a government is free to set :math:`\mu_t \in {\bf R}`.
 
 -  If the government at :math:`t` **confirms** private agents'
@@ -991,7 +991,7 @@ The government's one-period return function :math:`s(\theta,\mu)`
 described in equation :eq:`eq_old6` above has the property that for all
 :math:`\theta`
 
-.. math::  s(\theta, 0 ) \geq s(\theta, \mu) \quad
+.. math::  - s(\theta, 0 ) \geq  - s(\theta, \mu) \quad
 
 This inequality implies that whenever the policy calls for the
 government to set :math:`\mu \neq 0`, the government could raise its
@@ -1066,8 +1066,8 @@ More precisely, a government plan :math:`\vec \mu^A` with equilibrium inflation 
     :label: eq_old10
 
     \begin{aligned}
-    v_j^A & = s(\theta^A_j, \mu^A_j) + \beta v_{j+1}^A \\
-    & \geq s(\theta^A_j, 0 ) + \beta v_0^A \equiv v_j^{A,D}, \quad j \geq 0
+    v_j^A & = - s(\theta^A_j, \mu^A_j) + \beta v_{j+1}^A \\
+    & \geq - s(\theta^A_j, 0 ) + \beta v_0^A \equiv v_j^{A,D}, \quad j \geq 0
     \end{aligned}
 
 (Here it is useful to recall that setting :math:`\mu=0` is the maximizing choice for the government's one-period return function)
@@ -1085,11 +1085,24 @@ Thus, where :math:`\vec v^A` is the value associated with a self-enforcing plan 
 a sufficient condition for another plan :math:`\vec \mu` associated with inflation :math:`\vec \theta` and value :math:`\vec v`  to be **credible** is that
 
 .. math::
+    :label: eq_old100a
 
     \begin{aligned}
-    v_j & = s( \theta_j, \mu_j) + \beta  v_{j+1} \\
-    & \geq s( \theta_j, 0) + \beta v_0^A \quad \forall j \geq 0
+    v_j & = - s( \theta_j, \mu_j) + \beta  v_{j+1} \\
+    & \geq  -s( \theta_j, 0) + \beta v_0^A \quad \forall j \geq 0
     \end{aligned}
+
+For this condition to be satisfied it is necessary and sufficient that 
+
+.. math:: 
+ 
+     -s( \theta_j, 0) - ( - s( \theta_j, \mu_j) )  <  \beta ( v_{j+1} - v_0^A )
+
+The left side of the above inequality is the government's **gain** from deviating from the plan, while the right side is the government's **loss** from deviating 
+from the plan.  
+
+A government never wants to deviate from a credible plan.  
+
 
 Abreu taught us that  key step in constructing a credible plan is first constructing a
 self-enforcing plan that has a low time :math:`0` value.
@@ -1130,7 +1143,7 @@ The sequence of inflation rates implied by this plan,
 
 The value of :math:`\{\theta_t^A,\mu_t^A \}_{t=0}^\infty` at time :math:`0` is
 
-.. math::  v^A_0 = \sum_{t=0}^{T_A-1} \beta^t s(\theta_t^A,\mu_t^A) +\beta^{T_A} J(\theta^R_0)
+.. math::  v^A_0 =  - \sum_{t=0}^{T_A-1} \beta^t s(\theta_t^A,\mu_t^A) +\beta^{T_A} J(\theta^R_0)
 
 For an appropriate :math:`T_A`, this plan can be verified to be self-enforcing and therefore credible.
 
@@ -1213,11 +1226,13 @@ plot an object that we call :math:`V_t^{A,D}`, defined in the key inequality in 
 
 :math:`V_t^{A,D}` is the value at :math:`t` of deviating from the
 self-enforcing plan :math:`\vec \mu^A` by setting :math:`\mu_t = 0` and
-then restarting the plan at :math:`v^A_0` at :math:`t+1`.
+then restarting the plan at :math:`v^A_0` at :math:`t+1`:
 
-Notice that  :math:`v_t^A > v_t^{A,D}`.
+.. math::
 
-This confirms that :math:`\vec \mu^A` is a self-enforcing plan.
+    v_t^{A,D} = -s( \theta_j, 0) + \beta v_0^A 
+
+In the above graph  :math:`v_t^A > v_t^{A,D}`, which confirms that :math:`\vec \mu^A` is a self-enforcing plan.
 
 We can also verify the inequalities required for :math:`\vec \mu^A` to
 be self-confirming numerically as follows
@@ -1230,7 +1245,7 @@ be self-confirming numerically as follows
 Given that plan :math:`\vec \mu^A` is self-enforcing, we can check that
 the Ramsey plan :math:`\vec \mu^R` is credible by verifying that:
 
-.. math::  v^R_t \geq s(\theta^R_t,0) + \beta v^A_0 , \quad \forall t \geq 0
+.. math::  v^R_t \geq - s(\theta^R_t,0) + \beta v^A_0 , \quad \forall t \geq 0
 
 .. code-block:: python3
 
@@ -1278,6 +1293,27 @@ depends on whether the government at :math:`t` confirms private agents'
 expectations by setting :math:`\mu_t` equal to the recommended value
 :math:`\hat \mu_t`, or whether it disappoints those expectations.
 
+
+Whose Credible Plan is it?
+===========================
+
+A credible government plan :math:`\vec \mu` plays multiple roles.
+
+* It is a sequence of actions chosen by the government.
+
+* It is a sequence of private agents' forecasts of government actions.
+
+Thus, :math:`\vec \mu` is both a government policy and a collection of private agents' forecasts of  government policy.
+
+Does the government *choose*  policy actions or does it simply *confirm* prior private sector forecasts of those actions?
+
+An argument in favor of the *government chooses* interpretation comes from noting that the theory of credible plans builds in a theory that the government each period chooses
+the action that it wants. 
+
+An argument in favor of the *simply confirm* interpretation is gathered from staring at the key inequality :eq:`eq_old100a` that defines a credible policy.
+
+
+
 Comparison of Equilibrium Values
 =================================
 
@@ -1314,7 +1350,7 @@ governments.
 
     clq.J_MPE
 
-We have also computed **sustainable plans** for a government or sequence
+We have also computed **credible plans** for a government or sequence
 of governments that choose sequentially.
 
 These include
