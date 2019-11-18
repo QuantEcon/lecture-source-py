@@ -78,7 +78,6 @@
 \usepackage[greek,english]{babel}
 \usepackage{xunicode}   
 \usepackage{letltxmacro}
-\setmonofont{LiberationMono}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \DeclareMathOperator{\col}{col}
@@ -101,6 +100,12 @@
 \renewcommand{\includegraphics}[1]{\begin{center}\Oldincludegraphics[width=.8\maxwidth]{#1}\end{center}}
 \renewcommand \caption [2][]{} % removes captions from all figures
 \setlist[itemize]{nosep}
+
+% using CMU Serif for greek and latin letters in code blocks and Liberation Mono for rest%
+\setmonofont{Liberation Mono}
+\usepackage[Latin,Greek]{ucharclasses}
+\newfontfamily\substitutefont{CMU Serif}
+\setTransitionsForGreek{\begingroup\substitutefont}{\endgroup}
 ((* endblock packages *))
 
 % Colors for the hyperref package
