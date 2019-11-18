@@ -95,14 +95,14 @@ Let's start with some standard imports:
 
 
 
-Relationship to Other lectures
+Relationship to Other Lectures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`, which can be viewed a warm-up for a model of tax smoothing described in :doc:`opt_tax_recur`.
 
 * In :doc:`lqramsey` and :doc:`opt_tax_recur`, the government  recognizes that its decisions affect prices.
 
-So these later lectures are partly about how a government  optimally  manipulate prices of government debt, albeit indirectly via the effects that distorting
+So these later lectures are partly about how a government  optimally  manipulates prices of government debt, albeit indirectly via effects distorting
 taxes have on equilibrium prices and allocations
 
 
@@ -110,13 +110,12 @@ taxes have on equilibrium prices and allocations
 Link to History
 ^^^^^^^^^^^^^^^^^^
 
-For those who love history, President Thomas Jefferson's Secretary of Treasury Albert Gallatin (1807) :cite:`Gallatin` advocated what 
-amounts to Barro's model :cite:`Barro1979`
+For those who love history, President Thomas Jefferson's Secretary of Treasury Albert Gallatin (1807) :cite:`Gallatin` prescribed policies that 
+come from Barro's model :cite:`Barro1979`
 
 
 
-To exploit the isomorphism between consumption-smoothing and tax-smoothing models, we bring in code from
-:doc:`smoothing` 
+To exploit the isomorphism between consumption-smoothing and tax-smoothing models, we bring in code from :doc:`smoothing` 
 
 Code
 ----
@@ -257,8 +256,9 @@ under the assumption of complete markets
 Revisiting the consumption-smoothing model 
 ---------------------------------------------
 
-It is convenient to remind ourselves of outcomes for the consumption-smoothing model from :doc:`smoothing` by reminding ourselves again that 
-the code above also contains a function called `consumption_incomplete()` that uses :eq:`cs_12` and :eq:`cs_13` to
+It is convenient to brush up on properties of  the consumption-smoothing model described in  :doc:`smoothing` 
+
+It is useful to recall that the code above also contains a function called `consumption_incomplete()` that uses :eq:`cs_12` and :eq:`cs_13` to
 
 *  simulate paths of :math:`y_t, c_t, b_{t+1}`
 
@@ -303,8 +303,7 @@ income :math:`y_t`, notice that
 
 *  the consumer's debt oscillates between two values that are functions
    of the Markov state in the complete markets model, while the
-   consumer's debt drifts in a "unit root" fashion in the incomplete
-   markets economy.
+   consumer's debt  in the incomplete markets economy drifts because it contains a unit root.
 
 
 
@@ -376,12 +375,12 @@ where
 is the price of one unit of goods when tomorrow's Markov  state is  :math:`j` and when
 today's Markov state is :math:`i`
 
-:math:`b_i` is the quantity of the government's
-level of *assets* in Markov state :math:`i`.
+:math:`b_i` is the government's level of *assets* when it arrives in Markov state :math:`i`.
 
-That is, :math:`b_i` equals  one-period state-contingent claims owed to the government that fall due at time :math:`t`.
+That is, :math:`b_i` equals  one-period state-contingent claims owed to the government that fall due at time :math:`t` when the Markov state is :math:`i`.
 
-Thus, if :math:`b_i < 0`, it means the government **owes** :math:`-b_i` to the private sector when the economy arrives in Markov state :math:`i`.
+Thus, if :math:`b_i < 0`, it means the government **owes** :math:`-b_i` when the economy arrives in Markov state :math:`i` at time 
+:math:`t`.
 
 In our examples below, this  happens when in a previous war-time  period the government has sold an Arrow securities paying off :math:`- b_i`
 in peacetime Markov state :math:`i`
@@ -389,7 +388,7 @@ in peacetime Markov state :math:`i`
 
 
 
-Returns on state-contingent debt
+Returns on State-Contingent Debt
 =================================
 
 The *ex post* one-period gross return on the portfolio of government assets  held from state :math:`i` at time :math:`t`
@@ -398,7 +397,8 @@ to state :math:`j` at time :math:`t+1`  is
 .. math::
     R(j | i) = \frac{b(j) }{ \sum_{j'=1}^N Q_{ij'} b(j') }
 
-where :math:`\sum_{j'=1}^N Q_{ij'} b(j')` is the total government expenditure on one-period state-contingent claims in state :math:`i` at time :math:`t`.
+where :math:`\sum_{j'=1}^N Q_{ij'} b(j')` is the amount that the government spends at time :math:`t` in Markov state :math:`i` to purchase
+one-period state-contingent claims that will pay off at time :math:`t+1` depending on what Markov state :math:`j` is realized then.
 
 The cumulative return earned from putting :math:`1` unit of time :math:`t` goods into the government portfolio of state-contingent securities at
 time :math:`t` and then rolling over the proceeds into the government portfolio each period thereafter is
@@ -446,11 +446,24 @@ Below we define two functions that calculate these return rates.
 
         return RT_path
 
-As above, we'll assume that the initial Markov state is state :math:`1`, which means we start from a state of peace.
+An Example of Tax Smoothing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The government  then experiences 3 time periods of war and come back to peace again.
+We'll study a tax-smoothing version of the two Markov state example studied above.
 
-The history of states is therefore :math:`\{ peace, war, war, war, peace \}`.
+There is peace and government expenditures are low in Markov state :math:`1`.
+
+There is war and government expenditures are high in Markov state :math:`2`.
+
+We'll compute optimal policies in both complete and incomplete markets settings.
+
+Then we'll feed in a **particular** assumed path of Markov states and study outcomes.
+
+* We'll assume that the initial Markov state is state :math:`1`, which means we start from a state of peace.
+
+* The government  then experiences 3 time periods of war and come back to peace again.
+
+* The history of Markov states is therefore :math:`\{ peace, war, war, war, peace \}`.
 
 In addition, as indicated above, to simplify our example, we'll set the government's initial
 asset level to :math:`1`, so that :math:`b_1 = 1`.
@@ -567,12 +580,6 @@ This is an example in which
 Also, start the system in Markov state :math:`2` (war) with initial
 government assets :math:`- 10`, so that the government starts the
 war in debt and :math:`b_2 = -10`.
-
-We provide further examples of tax-smoothing models with a finite Markov state in the lecture :doc:`More Finite Markov Chain Tax-Smoothing Examples <smoothing_tax>`.
-
-
-
-
 
 
 More Finite Markov Chain Tax-Smoothing Examples
