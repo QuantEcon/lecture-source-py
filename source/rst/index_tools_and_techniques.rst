@@ -24,10 +24,3 @@ tools and techniques
     complex_and_trig
     orth_proj
     lln_clt
-    scalar_dynam
-    linear_models
-    finite_markov
-    stationary_densities
-    cass_koopmans
-    kalman
-    muth_kalman

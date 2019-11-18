@@ -2,13 +2,12 @@
 
 .. highlight:: python3
 
-*****************************************
-OOP III: Samuelson Multiplier Accelerator
-*****************************************
+**************************************************
+Application: The Samuelson Multiplier-Accelerator
+**************************************************
 
 .. contents:: :depth: 2
 
-**Co-author: Natasha Watkins**
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -17,9 +16,13 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install --upgrade quantecon
 
+
+This lecture was created jointly with Natasha Watkins.
+
+
+
 Overview
 ========
-
 
 
 This lecture creates non-stochastic and stochastic versions of Paul Samuelson's celebrated multiplier accelerator model :cite:`Samuelson1939`.
