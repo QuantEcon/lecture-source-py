@@ -135,7 +135,7 @@ When models are nonlinear, however, the situation can be quite different.
 For example, recall how we :ref:`previously studied <oop_solow_growth>` the law of motion for the Solow growth model, a simplified version of which is
 
 .. math::
-    :label: solow_lom
+    :label: solow_lom2
 
     k_{t+1} = s z k_t^{\alpha} + (1 - \delta) k_t
 
@@ -214,7 +214,7 @@ great deal of intuition.
 
 This is a graphical approach based on **45 degree diagrams**.
 
-Let's look at an example: the Solow model with dynamics given in :eq:`solow_lom`.
+Let's look at an example: the Solow model with dynamics given in :eq:`solow_lom2`.
 
 We begin with some plotting code that you can ignore at first reading.
 
