@@ -24,3 +24,4 @@ Next we cover the third party libraries most useful for scientific work in Pytho
     scipy
     numba
     parallelization
+    pandas

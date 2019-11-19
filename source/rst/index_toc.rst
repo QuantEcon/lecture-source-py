@@ -26,10 +26,11 @@
     index_learning_python
     index_python_scientific_libraries
     index_advanced_python_programming
-    index_data_and_empirics
     index_tools_and_techniques
+    index_intro_dynam
     index_dynamic_programming
     index_lq_control
+    index_data_and_empirics
     index_multi_agent_models
     index_hs_recursive_models
     index_classic_linear_models
