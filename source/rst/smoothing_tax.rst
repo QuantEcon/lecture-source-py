@@ -447,7 +447,7 @@ Below we define two functions that calculate these return rates.
         return RT_path
 
 An Example of Tax Smoothing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 We'll study a tax-smoothing version of the two Markov state example studied above.
 

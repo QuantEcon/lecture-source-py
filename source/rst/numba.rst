@@ -43,7 +43,7 @@ One is that it is highly memory-intensive when working with large amounts of dat
 
 Another is that the set of algorithms that can be entirely vectorized is not universal.
 
-In fact, for some algorithms, vectorization is entirely ineffective.
+In fact, for some algorithms, vectorization is ineffective.
 
 Fortunately, a new Python library called `Numba <http://numba.pydata.org/>`__
 solves many of these problems.
@@ -135,7 +135,7 @@ Now let's try `qm_numba`
 
 This is already a massive speed gain.
 
-In fact, the next time and all subsequent times it runs even faster:
+In fact, the next time and all subsequent times it runs even faster as the function has been compiled and is in memory:
 
 .. _qm_numba_result:
 
@@ -174,7 +174,7 @@ The basic idea is this:
 * However, when we do actually call the function, by executing `qm(0.5, 10)`,
   say, the types of `x0` and `n` become clear.
 
-* Moreover, the types of other variables in `qm` become clear at this point.
+* Moreover, the types of other variables in `qm` can be inferred once the input is known.
 
 * So the strategy of Numba and other JIT compilers is to wait until this
   moment, and *then* compile the function.

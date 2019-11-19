@@ -17,7 +17,6 @@ Empirics using Python
 .. toctree::
     :maxdepth: 2
 
-    pandas
     pandas_panel
     ols
     mle
