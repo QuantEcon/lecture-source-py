@@ -224,9 +224,9 @@ happening.
 Both Numba and NumPy use efficient machine code that's specialized to these
 floating point operations.
 
-However, the code NumPy uses is, in some ways, less efficient.
+The code that NumPy uses is, in some ways, less efficient.
 
-The reason is that, in NumPy, the operation ``np.cos(x**2 + y**2) / (1 +
+The reason is that, in NumPy, the vectorized operation ``np.cos(x**2 + y**2) / (1 +
 x**2 + y**2)`` generates several intermediate arrays.
 
 For example, a new array is created when ``x**2`` is calculated.
@@ -270,7 +270,6 @@ It turns out that we can, by adding some type information plus ``target='paralle
 Now our code runs significantly faster than the NumPy version!
 
 
-
 Multithreaded Loops in Numba
 ============================
 
@@ -301,9 +300,9 @@ Here's the code:
 .. code-block:: ipython
 
     from numpy.random import randn
-    from numba import jit
+    from numba import njit
 
-    @jit
+    @njit
     def h(w, r=0.1, s=0.3, v1=0.1, v2=1.0):
         """
         Dynamics of wealth.
@@ -365,7 +364,7 @@ Here's the code:
 
 .. code-block:: ipython
 
-    @jit
+    @njit
     def compute_long_run_median(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
@@ -384,8 +383,15 @@ Let's see how fast this runs:
     %%time
     compute_long_run_median()
 
+And once more now that compilation is done:
 
-To speed this up, we're going to parallelize it via multithreading.
+.. code-block:: ipython
+
+    %%time
+    compute_long_run_median()
+
+
+This is not bad but we can speed it up by parallelizig it via multithreading.
 
 To do so, we add the ``parallel=True`` flag and change ``range`` to ``prange``:
 
@@ -412,7 +418,15 @@ Let's look at the timing:
     %%time
     compute_long_run_median_parallel()
 
-The speed-up is significant.
+The speed-up is significant.  We'll also get a bit more speed now compilation is done:
+
+.. code-block:: ipython
+
+    %%time
+    compute_long_run_median_parallel()
+
+
+
 
 A Warning
 ---------
