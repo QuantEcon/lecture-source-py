@@ -250,7 +250,7 @@ In other words, can we pair
 
 * the efficiency of Numba's highly specialized JIT compiled function and
 
-* the speed gains from parallelization obtained by NumPy's implict
+* the speed gains from parallelization obtained by NumPy's implicit
   multithreading?
 
 It turns out that we can, by adding some type information plus ``target='parallel'``.
@@ -417,7 +417,7 @@ The speed-up is significant.
 A Warning
 ---------
 
-Parallelization works well in the outer loop of the last example because the individual tasks inside the loop are independent of eachother.
+Parallelization works well in the outer loop of the last example because the individual tasks inside the loop are independent of each other.
 
 If this independence fails then parallelization is often problematic.
 
