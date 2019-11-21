@@ -22,7 +22,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ========
 
-On a :doc:`previous lecture <optgrowth>`, we studied a stochastic optimal
+In a :doc:`previous lecture <optgrowth>`, we studied a stochastic optimal
 growth model with one representative agent.
 
 We solved the model using dynamic programming.
