@@ -6,7 +6,7 @@
     single: python
 
 **********************************
-Complex Numbers and Trignometry
+Complex Numbers and Trigonometry
 **********************************
 
 .. contents:: :depth: 2
