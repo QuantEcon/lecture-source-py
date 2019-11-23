@@ -46,7 +46,7 @@ Barro :cite:`Barro1979` made an analogous assumption about the risk-free interes
 rate in a tax-smoothing model that turns out to have the same mathematical structure as Hall's
 consumption-smoothing model.
 
-To get Barro's model from Hall's, all we have to do is to rename variables
+To get Barro's model from Hall's, all we have to do is to rename variables.
 
 We maintain Hall and Barro's assumption about the interest rate when we describe an
 incomplete markets version of our model.
@@ -74,8 +74,8 @@ It is convenient that for each version of a consumption-smoothing model,  a tax-
 
 
 
-Thus, We can convert  the consumption-smoothing models in lecture :doc:`smoothing` into  tax-smoothing models by setting 
-:math:`c_t = T_t`, :math:`G_t = y_t`, and :math:`a_t = - b_t`  where :math:`T_t` is total tax
+Thus, we can convert  the consumption-smoothing models in lecture :doc:`smoothing` into  tax-smoothing models by setting 
+:math:`c_t = T_t`, :math:`y_t = G_t`, and :math:`- b_t = a_t`,  where :math:`T_t` is total tax
 collections, :math:`\{G_t\}` is an exogenous government expenditures
 process, and :math:`a_t` is the government's holdings of one-period risk-free bonds coming maturing at the due at the beginning of time :math:`t`.
 
@@ -932,7 +932,7 @@ with government expenditure levels for the seven states being
 
 
 
-Tax-smoothing interpretation of continuous-state Gaussian model
+Tax-Smoothing Interpretation of Continuous-State Gaussian Model
 ----------------------------------------------------------------
 
 In the tax-smoothing interpretation of the  complete markets consumption-smoothing model with a continuous state space that we presented in 
@@ -949,9 +949,9 @@ and
 
 .. math::
 
-    \mathbb E_t b_{t+1} \equiv \int q_{t+1}(x_{t+1} | x_t) b_{t+1}(x_{t+1}) d x_{t+1}
+    \beta \mathbb E_t b_{t+1} \equiv \int q_{t+1}(x_{t+1} | x_t) b_{t+1}(x_{t+1}) d x_{t+1}
 
-is the value of time :math:`t+1` state-contingent claims purchased  by the government  at time :math:`t`
+is the value of time :math:`t+1` state-contingent claims purchased  by the government  at time :math:`t`.
 
 
 As above with the consumption-smoothing model, we can solve the time :math:`t` budget constraint forward to obtain
@@ -966,9 +966,11 @@ which can be rearranged to become
 
     \mathbb E_t  \sum_{j=0}^\infty \beta^j g_{t+j}  = b_t + \mathbb E_t \sum_{j=0}^\infty \beta^j T_{t+j}
 
-which states that the present value of government purchases equals the value of government assets at :math:`t` plus the present value tax receipts.
+which states that the present value of government purchases equals the value of government assets at :math:`t` plus the present value tax
+receipts.
 
-With these relabelings, examples presented in :doc:`consumption smoothing with complete and incomplete markets<smoothing>` can be interpreted as tax-smoothing models.
+With these relabelings, examples presented in :doc:`consumption smoothing with complete and incomplete markets<smoothing>` can be 
+interpreted as tax-smoothing models.
 
 
 **Returns:** In the continuous state version of our incomplete markets model, the gross rate of return on the government portfolio equals
@@ -980,11 +982,11 @@ Relationship to Other Lectures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Throughout this lecture, we have taken one-period interest rates and Arrow security prices as exogenous objects determined outside the model
-and specified in ways designed to align our models closely with the consumption smoothing model of Barro :cite:`Barro1979`
+and specified in ways designed to align our models closely with the consumption smoothing model of Barro :cite:`Barro1979`.
 
 
 Other lectures make these objects endogenous and describe  how a government  optimally  manipulates prices of government debt, albeit indirectly via effects distorting
-taxes have on equilibrium prices and allocations
+taxes have on equilibrium prices and allocations.
 
 
 
@@ -992,7 +994,7 @@ In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optima
 models in which the government recognizes that it can manipulate  Arrow securities prices.
 
 
- * Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`
+ * Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`.
 
  * That lecture is a warm-up for the non-linear-quadratic model of tax smoothing described in :doc:`opt_tax_recur`.
 
