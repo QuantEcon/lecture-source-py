@@ -58,7 +58,11 @@ While in :doc:`smoothing` we  focus on  consumption-smoothing
 versions of these models, in this lecture we  study the  tax-smoothing
 interpretation.
 
-It is convenient that for each version of a consumption-smoothing model, there is a tax-smoothing counterpart obtained simply by
+
+Isomorphism between Consumption and Tax Smoothing
+---------------------------------------------
+
+It is convenient that for each version of a consumption-smoothing model,  a tax-smoothing counterpart can be obtained simply by
 
 *  relabeling consumption as tax collections 
 
@@ -69,13 +73,11 @@ It is convenient that for each version of a consumption-smoothing model, there i
 *  relabeling a consumer's *debt* as a government's *assets* 
 
 
-Convenient Isomorphism
------------------------
 
-We can convert  the consumption-smoothing models in lecture :doc:`smoothing` into  tax-smoothing models by setting 
-:math:`c_t = T_t` and :math:`G_t = y_t`, where :math:`T_t` is total tax
-collections and :math:`\{G_t\}` is an exogenous government expenditures
-process.
+Thus, We can convert  the consumption-smoothing models in lecture :doc:`smoothing` into  tax-smoothing models by setting 
+:math:`c_t = T_t`, :math:`G_t = y_t`, and :math:`a_t = - b_t`  where :math:`T_t` is total tax
+collections, :math:`\{G_t\}` is an exogenous government expenditures
+process, and :math:`a_t` is the government's holdings of one-period risk-free bonds coming maturing at the due at the beginning of time :math:`t`.
 
 For elaborations on this theme, please see :doc:`perm_income_cons` and later parts of this lecture.
 
@@ -83,7 +85,17 @@ For elaborations on this theme, please see :doc:`perm_income_cons` and later par
 We'll spend most of this lecture studying the finite-state Markov specification, 
 but will also  treat the linear state space specification.
 
+
+
+Link to History
+^^^^^^^^^^^^^^^^^^
+
+For those who love history, President Thomas Jefferson's Secretary of Treasury Albert Gallatin (1807) :cite:`Gallatin` prescribed policies that 
+come from Barro's model :cite:`Barro1979`
+
+
 Let's start with some standard imports:
+
 
 .. code-block:: ipython
 
@@ -94,24 +106,6 @@ Let's start with some standard imports:
     import scipy.linalg as la
 
 
-
-Relationship to Other Lectures
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`, which can be viewed a warm-up for a model of tax smoothing described in :doc:`opt_tax_recur`.
-
-* In :doc:`lqramsey` and :doc:`opt_tax_recur`, the government  recognizes that its decisions affect prices.
-
-So these later lectures are partly about how a government  optimally  manipulates prices of government debt, albeit indirectly via effects distorting
-taxes have on equilibrium prices and allocations
-
-
-
-Link to History
-^^^^^^^^^^^^^^^^^^
-
-For those who love history, President Thomas Jefferson's Secretary of Treasury Albert Gallatin (1807) :cite:`Gallatin` prescribed policies that 
-come from Barro's model :cite:`Barro1979`
 
 
 
@@ -346,7 +340,7 @@ We can  relabel variables to acquire tax-smoothing interpretations of the comple
 
 
 
-Example: Tax Smoothing with Complete Markets
+Tax Smoothing with Complete Markets
 ============================================
 
 It is instructive  to focus on a simple tax-smoothing example with complete markets.
@@ -379,11 +373,21 @@ today's Markov state is :math:`i`
 
 That is, :math:`b_i` equals  one-period state-contingent claims owed to the government that fall due at time :math:`t` when the Markov state is :math:`i`.
 
-Thus, if :math:`b_i < 0`, it means the government **owes** :math:`-b_i` when the economy arrives in Markov state :math:`i` at time 
+Thus, if :math:`b_i < 0`, it means the government **is owed** :math:`b_i` or owes** :math:`-b_i` when the economy arrives in Markov state :math:`i` at time 
 :math:`t`.
 
 In our examples below, this  happens when in a previous war-time  period the government has sold an Arrow securities paying off :math:`- b_i`
 in peacetime Markov state :math:`i`
+
+
+It can be enlightening to express the government's budget constraint in Markov state :math:`i` as
+
+.. math::
+
+    T_i = G_i +  \left(\sum_j Q_{ij} b_j -   b_i\right)
+
+in which the term :math:`(\sum_j Q_{ij} b_j -   b_i)`   equals the net amount that the government spends to purchase one-period Arrow securities
+that will pay off next period in Markov states :math:`j = 1, \ldots, N`. 
 
 
 
@@ -412,6 +416,9 @@ Below we define two functions that calculate these return rates.
 **Convention:**  When :math:`P_{ij}=0`,  we arbitrarily set :math:`R(j | i)` to be :math:`0`.
 
 
+
+Here is some code that computes one-period and cumulative returns on the government portfolio in the finite-state Markov version of our complete
+markets model.
 
 .. code-block:: python3
 
@@ -593,8 +600,8 @@ Here we give more examples of tax-smoothing models with both complete and incomp
 
 These examples differ in how Markov states are jumping between peace and war.
 
-To wrap the procedure of solving models, relabeling the graph so that we record government *debt* rather than *assets*,
-and displaying the results, we define a new class below.
+To wrap procedures for solving models, relabeling  graphs so that we record government *debt* rather than  government *assets*,
+and displaying  results, we construct a new class below.
 
 .. code-block:: python3
 
@@ -964,14 +971,37 @@ which states that the present value of government purchases equals the value of 
 With these relabelings, examples presented in :doc:`consumption smoothing with complete and incomplete markets<smoothing>` can be interpreted as tax-smoothing models.
 
 
+**Returns:** In the continuous state version of our incomplete markets model, the gross rate of return on the government portfolio equals
+
+..math::
+   R(x_{t+1} | x_t) = \frac{b(x_{t+1}}{\beta E (b(x_{t+1})| x_t)}
+
+Relationship to Other Lectures
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Throughout this lecture, we have taken one-period interest rates and Arrow security prices as exogenous objects determined outside the model
+and specified in ways designed to align our models closely with the consumption smoothing model of Barro :cite:`Barro1979`
 
 
-Government Manipulation of Arrow Securities Prices
---------------------------------------------------
+Other lectures make these objects endogenous and describe  how a government  optimally  manipulates prices of government debt, albeit indirectly via effects distorting
+taxes have on equilibrium prices and allocations
+
+
 
 In :doc:`optimal taxation in an LQ economy<lqramsey>` and :doc:`recursive optimal taxation <opt_tax_recur>`, we study **complete-markets**
 models in which the government recognizes that it can manipulate  Arrow securities prices.
 
 
-In :doc:`optimal taxation with incomplete markets <amss>`, we study an **incomplete-markets** model in which the government  manipulates asset prices.
+ * Linear-quadratic versions of the Lucas-Stokey tax-smoothing model are described in :doc:`lqramsey`
+
+ * That lecture is a warm-up for the non-linear-quadratic model of tax smoothing described in :doc:`opt_tax_recur`.
+
+ * In both :doc:`lqramsey` and :doc:`opt_tax_recur`, the government  recognizes that its decisions affect prices.
+
+
+In :doc:`optimal taxation with incomplete markets <amss>`, we study an **incomplete-markets** model in which the 
+government also manipulates  prices of government debt.
+
+
+
 
