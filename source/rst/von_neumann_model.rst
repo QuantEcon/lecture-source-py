@@ -14,8 +14,8 @@ Von Neumann Growth Model (and a Generalization)
 **Co-author:** Balint Szoke
 
 This notebook uses the class ``Neumann`` to calculate key objects of a
-linear growth model of John von Neumann (1937) :cite:`von1937uber` that was generalized by
-Kemeny, Moregenstern and Thompson (1956) :cite:`kemeny1956generalization`.
+linear growth model of John von Neumann :cite:`von1937uber` that was generalized by
+Kemeny, Morgenstern and Thompson :cite:`kemeny1956generalization`.
 
 Objects of interest are the maximal expansion rate (:math:`\alpha`), the
 interest factor (:math:`β`), and the optimal intensities (:math:`x`) and
@@ -55,8 +55,7 @@ The code below provides the ``Neumann`` class
 
       """
       This class describes the Generalized von Neumann growth model as it was
-      discussed in Kemeny et al. (1956, ECTA) :cite:`kemeny1956generalization`
-      and Gale (1960, Chapter 9.5) :cite:`gale1989theory`:
+      discussed in Kemeny et al. (1956, ECTA) and Gale (1960, Chapter 9.5):
 
       Let:
       n ... number of goods
@@ -141,7 +140,6 @@ The code below provides the ``Neumann`` class
           """
           Calculate the trivial upper and lower bounds for alpha (expansion rate)
           and beta (interest factor). See the proof of Theorem 9.8 in Gale (1960)
-          :cite:`gale1989theory`
           """
 
           n, m = self.n, self.m
@@ -409,7 +407,7 @@ for all :math:`j\in S`, :math:`\exists i\in T`, s.t. :math:`b_{i,j}>0`.
 The economy is **irreducible** if there are no proper independent
 subsets.
 
-We study two examples, both coming from Chapter 9.6 of Gale (1960) :cite:`gale1989theory`
+We study two examples, both coming from Chapter 9.6 of Gale :cite:`gale1989theory`
 
 .. code-block:: python3
 
@@ -540,7 +538,7 @@ and a number :math:`\alpha\in\mathbb{R}`, s.t.
     &\text{s.t. }\hspace{2mm}x^T B \geq \alpha x^T A
     \end{aligned}
 
-Theorem 9.3 of David Gale’s book :cite:`gale1989theory` assets that if Assumptions I and II are
+Theorem 9.3 of David Gale’s book :cite:`gale1989theory` asserts that if Assumptions I and II are
 both satisfied, then a maximum value of :math:`\alpha` exists and it is
 positive.
 
@@ -578,7 +576,7 @@ that under Assumptions I and II, :math:`\beta_0\leq \alpha_0`.
 But in the other direction, that is :math:`\beta_0\geq \alpha_0`,
 Assumptions I and II are not sufficient.
 
-Nevertheless, von Neumann (1937) :cite:`von1937uber` proved the following remarkable
+Nevertheless, von Neumann :cite:`von1937uber` proved the following remarkable
 “duality-type” result connecting TEP and EEP.
 
 **Theorem 1 (von Neumann):** If the economy :math:`(A,B)` satisfies
@@ -632,7 +630,7 @@ fact, it does not rule out (trivial) cases with :math:`x_0^TBp_0 = 0` so
 that nothing of value is produced.
 
 To exclude such uninteresting cases,
-Kemeny, Morgenstern and Thomspson (1956) add an extra requirement
+Kemeny, Morgenstern and Thomspson :cite:`kemeny1956generalization` add an extra requirement
 
 .. math:: x^T_0 B p_0 > 0
 
@@ -687,7 +685,7 @@ From the famous theorem of Nash (1951), it follows that there always
 exists a mixed strategy Nash equilibrium for any *finite* two-player
 zero-sum game.
 
-Moreover, von Neumann’s Minmax Theorem (1928) :cite:`neumann1928theorie` implies that
+Moreover, von Neumann’s Minmax Theorem :cite:`neumann1928theorie` implies that
 
 .. math::
    V(C) = \max_x \min_p \hspace{2mm} x^T C p = \min_p \max_x \hspace{2mm} x^T C p = (x^*)^T C p^*
@@ -730,7 +728,7 @@ of view) is the *dual* LP
   \end{aligned}
 
 
-Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` view the input-output pair of the
+Hamburger, Thompson and Weil :cite:`hamburger1967computation` view the input-output pair of the
 economy as payoff matrices of two-player zero-sum games. Using this
 interpretation, they restate Assumption I and II as follows
 
@@ -806,7 +804,7 @@ It is clear from the above argument that :math:`\beta_0`,
 :math:`\alpha_0` are the minimal and maximal :math:`\gamma` for which
 :math:`V(M(\gamma))=0`.
 
-Moreover, Hamburger et al. (1967) :cite:`hamburger1967computation` show that the
+Moreover, Hamburger et al. :cite:`hamburger1967computation` show that the
 function :math:`\gamma \mapsto V(M(\gamma))` is continuous and
 nonincreasing in :math:`\gamma`.
 
@@ -817,7 +815,7 @@ input-output pair :math:`(A, B)`.
 Algorithm
 ---------
 
-Hamburger, Thompson and Weil (1967) :cite:`hamburger1967computation` propose a simple bisection algorithm
+Hamburger, Thompson and Weil :cite:`hamburger1967computation` propose a simple bisection algorithm
 to find the minimal and maximal roots (i.e. :math:`\beta_0` and
 :math:`\alpha_0`) of the function :math:`\gamma \mapsto V(M(\gamma))`.
 
@@ -944,7 +942,7 @@ of the two methods we use.
 In particular, as will be shown below, in
 case of an irreducible :math:`(A,B)` (like in Example 1), the maximal
 and minimal roots of :math:`V(M(\gamma))` necessarily coincide implying
-a ‘’full duality’’ result, i.e. :math:`\alpha_0 = \beta_0 = \gamma^*`,
+a ‘‘full duality’’ result, i.e. :math:`\alpha_0 = \beta_0 = \gamma^*`,
 and that the expansion (and interest) rate :math:`\gamma^*` is unique.
 
 Uniqueness and Irreducibility
@@ -983,7 +981,7 @@ is a self-sufficient part of the economy (a sub-economy) that in
 equilibrium can expand independently with the expansion
 coefficient :math:`\gamma^*_i`.
 
-The following theorem (see Theorem 9.10. in Gale, 1960 :cite:`gale1989theory`) asserts that
+The following theorem (see Theorem 9.10. in Gale :cite:`gale1989theory`) asserts that
 imposing irreducibility is sufficient for uniqueness of
 :math:`(\gamma^*, x_0, p_0)`.
 
@@ -1005,7 +1003,7 @@ These assumptions imply that :math:`B=I_n`, i.e., that :math:`B` can be
 written as an identity matrix (possibly after reshuffling its rows and
 columns).
 
-The simple model has the following special property (Theorem 9.11. in :cite:`gale1989theory`): if :math:`x_0` and :math:`\alpha_0>0` solve the TEP
+The simple model has the following special property (Theorem 9.11. in Gale :cite:`gale1989theory`): if :math:`x_0` and :math:`\alpha_0>0` solve the TEP
 with :math:`(A,I_n)`, then
 
 .. math::
