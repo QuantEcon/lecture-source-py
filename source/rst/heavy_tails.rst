@@ -164,6 +164,210 @@ daily data, the heavy-tailedness of the distribution increases further.
 
 
 
+Failure of the LLN
+==================
+
+One impact of heavy tails is that sample averages can be poor estimators of
+the underlying mean of the distribution.
+
+To understand this point better, recall :doc:`our earlier discussion
+<lln_clt>` of the Law of Large Numbers, which considered iid :math:`X_1,
+\ldots, X_n` with common distribution :math:`F`
+
+If :math:`\mathbb E |X_i|` is finite, then
+the sample mean :math:`\bar X_n := \frac{1}{n} \sum_{i=1}^n X_i` satisfies
+
+.. math::
+    :label: lln_as2
+
+    \mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1
+
+where :math:`\mu := \mathbb E X_i = \int x F(x)` is the common mean of the sample.
+
+The condition :math:`\mathbb E | X_i | = \int |x| F(x) < \infty` holds
+in most cases but can fail if the distribution :math:`F` is very heavy tailed.
+
+For example, it fails for the Cauchy distribution 
+
+Let's have a look at the behavior of the sample mean in this case, and see
+whether or not the LLN is still valid.
+
+
+.. code-block:: python3
+
+    n = 1000
+    np.random.seed(1234)
+
+    distribution = cauchy()
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    data = distribution.rvs(n)
+
+    # Compute sample mean at each n
+    sample_mean = np.empty(n)
+
+    for i in range(1, n):
+        sample_mean[i] = np.mean(data[:i])
+
+    # Plot
+    ax.plot(list(range(n)), sample_mean, 'r-', lw=3, alpha=0.6,
+            label='$\\bar X_n$')
+    ax.plot(list(range(n)), [0] * n, 'k--', lw=0.5)
+    ax.legend()
+
+    plt.show()
+
+
+The sequence shows no sign of converging.
+
+Will convergence occur if we take :math:`n` even larger?
+
+The answer is no.
+
+To see this, recall that the `characteristic function <https://en.wikipedia.org/wiki/Characteristic_function_%28probability_theory%29>`_ of the Cauchy distribution is
+
+.. math::
+    :label: lln_cch
+
+    \phi(t) = \mathbb E e^{itX} = \int e^{i t x} f(x) dx = e^{-|t|}
+
+
+Using independence, the characteristic function of the sample mean becomes
+
+.. math::
+
+    \begin{aligned}
+        \mathbb E e^{i t \bar X_n }
+        & = \mathbb E \exp \left\{ i \frac{t}{n} \sum_{j=1}^n X_j \right\}
+        \\
+        & = \mathbb E \prod_{j=1}^n \exp \left\{ i \frac{t}{n} X_j \right\}
+        \\
+        & = \prod_{j=1}^n \mathbb E \exp \left\{ i \frac{t}{n} X_j \right\}
+        = [\phi(t/n)]^n
+    \end{aligned}
+
+
+In view of :eq:`lln_cch`, this is just :math:`e^{-|t|}`.
+
+Thus, in the case of the Cauchy distribution, the sample mean itself has the very same Cauchy distribution, regardless of :math:`n`!
+
+In particular, the sequence :math:`\bar X_n` does not converge to any point.
+
+
+.. _cltail:
+
+Classifying Tail Properties
+===========================
+
+To keep our discussion precise, we need some definitions concerning tail
+properties.  
+
+We will focus our attention on the right hand tails of
+nonnegative random variables and their distributions.  
+
+The definitions for
+left hand tails are very similar and we omit them to simplify the exposition.
+
+A distribution :math:`F` on :math:`\mathbb R_+` is called **heavy-tailed** if
+
+.. math::
+    :label: defht
+
+    \int_0^\infty \me^{tx} F(\diff x) = \infty \; \text{ for all } t > 0.
+
+We say that a nonnegative random variable :math:`X` is **heavy-tailed** if its distribution :math:`F(x) := \mathbb P\{X \leq x\}` is heavy-tailed.
+
+This is equivalent to stating that 
+its **moment generating function** 
+:math:`m(t) := \mathbb E \exp(t X)` is infinite for all :math:`t > 0`.
+
+* For example, the lognormal distribution is heavy-tailed because its
+  moment generating function is infinite everywhere on :math:`(0, \infty)`.
+
+A distribution :math:`F` on :math:`\RR_+` is called **light-tailed** if it is not heavy-tailed.  
+
+A nonnegative random variable :math:`X` is **light-tailed** if
+its distribution :math:`F` is light-tailed.
+
+* Example: Every random variable with bounded support is light-tailed. (Why?)
+
+* Example: If :math:`X` has the exponential distribution, with cdf :math:`F(x) = 1 - \exp(-\lambda x)` for some :math:`\lambda > 0`, then its moment generating function is finite whenever :math:`t < \lambda`.  Hence :math:`X` is light-tailed.
+
+One can show that if :math:`X` is light-tailed, then all of its moments are finite.
+
+The contrapositive is that if some moment is infinite, then :math:`X` is heavy-tailed.
+
+The latter condition is not necessary, however. 
+
+* Example: the lognormal distribution is heavy-tailed but every moment is finite.
+
+One specific class of heavy-tailed distributions has been found repeatedly in
+economic and social phenomena: the class of power laws.
+
+Specifically, given :math:`\alpha > 0`, a nonnegative random variable :math:`X` is said to have a **Pareto tail** with **tail index** :math:`\alpha` if 
+
+.. math::
+    :label: plrt
+
+    \lim_{x \to \infty} x^\alpha \, \mathbb P\{X > x\} = c.
+
+Evidently :eq:`plrl` implies the existence of positive constants :math:`b` and :math:`\bar x` such that :math:`\mathbb P\{X > x\} \geq b x^{- \alpha}` whenever :math:`x \geq \bar x`.  
+
+The implication is that :math:`\mathbb P\{X > x\}` converges to zero no faster than :math:`x^{-\alpha}`.  
+    
+In some sources, a random variable obeying :eq:`plrl` is said to have a **power law tail**.
+
+The primary example is the **Pareto distribution**, which has distribution
+
+.. math::
+    :label: pareto
+
+    F(x) =
+    \begin{cases}
+        1 - \left( \bar x/x \right)^{\alpha}
+            & \text{ if } x \geq \bar x
+        \\
+        0
+            & \text{ if } x < \bar x
+    \end{cases}
+
+for some positive constants :math:`\bar x` and :math:`\alpha`.
+
+It is easy to see that if :math:`X \sim F`, then :math:`\mathbb P\{X > x\}` satisfies :eq:`plrt`.  
+
+Thus, in line with the terminology, a Pareto distributed random variables have a Pareto tail.
+
+
+Rank-Size Plots
+---------------
+
+
+A graphical technique for investigating Pareto tails and power laws is the so-called **rank-size plot**.
+
+This kind of figure plots
+log size against log rank of the population (i.e., location in the population
+when sorted from smallest to largest).  
+
+Often just the largest 5 or 10\% of observations are plotted. 
+
+For a sufficiently large number of draws from a Pareto distribution, the plot generates a straight line. For distributions with thinner tails, the data points are concave.
+
+A discussion of why this occurs can be found in :cite:`nishiyama2004estimation`.
+
+The figure below provides one example, using simulated data.
+
+The rank-size plots shows draws from three different distributions: folded normal, chi squared with 1 degree of freedom and Pareto.  
+
+In each case, the largest 5\% of 1,000 draws are shown.  
+
+The Pareto sample produces a straight line, while the line produced by the other samples is concave.  
+
+.. _rank_size_fig1:
+
+.. figure::
+    /_static/lecture_specific/heavy_tails/rank_size_fig1.png
+
+
 Exercises
 =========
 
@@ -171,8 +375,37 @@ Exercises
 Exercise 1
 ----------
 
-Replicate :ref:`this figure <light_heavy_fig1>` .  Use ``np.random.seed(11)``
-to set the seed.
+Replicate :ref:`the figure presented above <light_heavy_fig1>` that compares normal and Cauchy draws.  
+
+Use ``np.random.seed(11)`` to set the seed.
+
+Exercise 2
+----------
+
+Prove: If :math:`X` has a Pareto tail with tail index :math:`\alpha`, then
+:math:`\mathbb E[X^r] = \infty` for all :math:`r \geq \alpha`.
+
+
+Exercise 3
+----------
+
+Repeat exercise 1, but replacing the three distributions (two normal, one
+Cauchy) with three Pareto distributions using different choices of
+:math:`\alpha`.
+
+For :math:`\alpha`, try 1.15, 1.5 and 1.75.
+
+Use ``np.random.seed(12)`` to set the seed.
+
+
+
+Exercise 4
+----------
+
+Replicate the rank-size plot figure :ref:`presented above <rank_size_fig1>`.
+
+Use ``np.random.seed(11)`` to set the seed.
+
 
 
 Solutions
@@ -211,4 +444,86 @@ Exercise 1
     plt.subplots_adjust(hspace=0.25)
 
     plt.show()
+
+Exercise 2
+----------
+
+Let :math:`X` have a Pareto tail with tail index :math:`\alpha` and let :math:`F` be its cdf. 
+
+Fix :math:`r \geq \alpha`.  
+
+As discussed after :eq:`plrt`, we can take positive constants :math:`b` and :math:`\bar x` such that 
+
+.. math::
+
+    \mathbb P\{X > x\} \geq b x^{- \alpha} \text{ whenever } x \geq \bar x  
+
+But then
+    
+.. math::
+        \mathbb E X^r = r \int_0^\infty x^{r-1} \mathbb P\{ X > x \} x
+        \geq 
+        r \int_0^{\bar x} x^{r-1} \mathbb P\{ X > x \} x
+        + r \int_{\bar x}^\infty  x^{r-1} b x^{-\alpha} x.
+    
+We know that :math:`\int_{\bar x}^\infty x^{r-\alpha-1} x = \infty` whenever :math:`r - \alpha - 1 \geq -1`.  
+
+Since :math:`r \geq \alpha`, we have :math:`\mathbb E X^r = \infty`.
+
+
+Exercise 3
+----------
+
+
+
+Exercise 4
+----------
+
+First we will create a function and then generate the plot
+
+.. code:: ipython3
+
+    def rank_size_data(data, c=0.95):
+        """
+        Generate rank-size data corresponding to distribution data.
+        
+            * data is array like
+            * c is a float indicating the top (c x 100)% of the 
+              distribution
+        """
+        w = - np.sort(- data)                  # Reverse sort
+        w = w[:int(len(w) * c)]                # extract top c%
+        rank_data = np.log(np.arange(len(w)) + 1)
+        size_data = np.log(w)
+        return rank_data, size_data
+
+    fig, axes = plt.subplots(3, 1, figsize=(6, 8))
+    axes = axes.flatten()
+    
+    sample_size = 1000
+    z = np.random.randn(sample_size)
+    
+    data_1 = np.abs(z)
+    data_2 = np.exp(z)
+    data_3 = np.exp(np.random.exponential(scale=1.0, size=sample_size))
+    
+    data_list = [data_1, data_2, data_3]
+    labels = ['$|z|$', '$\exp(z)$', 'Pareto with tail index $1.0$']
+    
+    
+    for data, label, ax in zip(data_list, labels, axes):
+        rank_data, size_data = rank_size_data(data)
+        ax.plot(rank_data, size_data, 'o', markersize=3.0, alpha=0.5, label=label)
+    
+        ax.set_xlabel("log rank")
+        ax.set_ylabel("log size")
+        ax.legend()
+    
+    
+    
+    fig.subplots_adjust(hspace=0.4)
+    
+    plt.savefig("rank_size_fig1.png")
+    plt.show()
+
 
