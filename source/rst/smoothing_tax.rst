@@ -60,7 +60,7 @@ interpretation.
 
 
 Isomorphism between Consumption and Tax Smoothing
----------------------------------------------
+-------------------------------------------------
 
 It is convenient that for each version of a consumption-smoothing model,  a tax-smoothing counterpart can be obtained simply by
 
