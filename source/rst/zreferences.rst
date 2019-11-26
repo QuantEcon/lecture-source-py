@@ -1,10 +1,8 @@
 .. _references:
 
-.. only:: html
-
-    **********
-    References
-    **********
+**********
+References
+**********
 
 .. bibliography:: /_static/quant-econ.bib
 	:cited:
