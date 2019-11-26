@@ -91,7 +91,8 @@ to plot independent draws and compare them side-by-side.
 A Simulation
 -------------
 
-The figure below shows a simulation.
+The figure below shows a simulation.  (You will be asked to replicate it in
+the exercises.)
 
 The top two subfigures each show 120 independent draws from the normal distribution, which is light-tailed.
 
@@ -268,26 +269,27 @@ nonnegative random variables and their distributions.
 The definitions for
 left hand tails are very similar and we omit them to simplify the exposition.
 
+Light and Heavy Tails
+---------------------
+
 A distribution :math:`F` on :math:`\mathbb R_+` is called **heavy-tailed** if
 
 .. math::
     :label: defht
 
-    \int_0^\infty \me^{tx} F(\diff x) = \infty \; \text{ for all } t > 0.
+    \int_0^\infty \exp(tx) F(x) = \infty \; \text{ for all } t > 0.
 
 We say that a nonnegative random variable :math:`X` is **heavy-tailed** if its distribution :math:`F(x) := \mathbb P\{X \leq x\}` is heavy-tailed.
 
-This is equivalent to stating that 
-its **moment generating function** 
+This is equivalent to stating that its **moment generating function** 
 :math:`m(t) := \mathbb E \exp(t X)` is infinite for all :math:`t > 0`.
 
 * For example, the lognormal distribution is heavy-tailed because its
   moment generating function is infinite everywhere on :math:`(0, \infty)`.
 
-A distribution :math:`F` on :math:`\RR_+` is called **light-tailed** if it is not heavy-tailed.  
+A distribution :math:`F` on :math:`\mathbb R_+` is called **light-tailed** if it is not heavy-tailed.  
 
-A nonnegative random variable :math:`X` is **light-tailed** if
-its distribution :math:`F` is light-tailed.
+A nonnegative random variable :math:`X` is **light-tailed** if its distribution :math:`F` is light-tailed.
 
 * Example: Every random variable with bounded support is light-tailed. (Why?)
 
@@ -301,8 +303,12 @@ The latter condition is not necessary, however.
 
 * Example: the lognormal distribution is heavy-tailed but every moment is finite.
 
+
+Pareto Tails
+------------
+
 One specific class of heavy-tailed distributions has been found repeatedly in
-economic and social phenomena: the class of power laws.
+economic and social phenomena: the class of so-called power laws.
 
 Specifically, given :math:`\alpha > 0`, a nonnegative random variable :math:`X` is said to have a **Pareto tail** with **tail index** :math:`\alpha` if 
 
@@ -311,11 +317,11 @@ Specifically, given :math:`\alpha > 0`, a nonnegative random variable :math:`X` 
 
     \lim_{x \to \infty} x^\alpha \, \mathbb P\{X > x\} = c.
 
-Evidently :eq:`plrl` implies the existence of positive constants :math:`b` and :math:`\bar x` such that :math:`\mathbb P\{X > x\} \geq b x^{- \alpha}` whenever :math:`x \geq \bar x`.  
+Evidently :eq:`plrt` implies the existence of positive constants :math:`b` and :math:`\bar x` such that :math:`\mathbb P\{X > x\} \geq b x^{- \alpha}` whenever :math:`x \geq \bar x`.  
 
 The implication is that :math:`\mathbb P\{X > x\}` converges to zero no faster than :math:`x^{-\alpha}`.  
     
-In some sources, a random variable obeying :eq:`plrl` is said to have a **power law tail**.
+In some sources, a random variable obeying :eq:`plrt` is said to have a **power law tail**.
 
 The primary example is the **Pareto distribution**, which has distribution
 
@@ -342,7 +348,7 @@ Rank-Size Plots
 ---------------
 
 
-A graphical technique for investigating Pareto tails and power laws is the so-called **rank-size plot**.
+One graphical technique for investigating Pareto tails and power laws is the so-called **rank-size plot**.
 
 This kind of figure plots
 log size against log rank of the population (i.e., location in the population
@@ -395,7 +401,7 @@ Cauchy) with three Pareto distributions using different choices of
 
 For :math:`\alpha`, try 1.15, 1.5 and 1.75.
 
-Use ``np.random.seed(12)`` to set the seed.
+Use ``np.random.seed(11)`` to set the seed.
 
 
 
@@ -404,7 +410,7 @@ Exercise 4
 
 Replicate the rank-size plot figure :ref:`presented above <rank_size_fig1>`.
 
-Use ``np.random.seed(11)`` to set the seed.
+Use ``np.random.seed(13)`` to set the seed.
 
 
 
@@ -475,6 +481,29 @@ Exercise 3
 ----------
 
 
+.. code:: ipython3
+
+    from scipy.stats import pareto
+
+    np.random.seed(11)
+
+    n = 120
+    alphas = [1.15, 1.50, 1.75]
+    
+    fig, axes = plt.subplots(3, 1, figsize=(6, 8))
+
+    for (a, ax) in zip(alphas, axes):
+        ax.set_ylim((-5, 50))
+        data = pareto.rvs(size=n, scale=1, b=a)
+        ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
+        ax.vlines(list(range(n)), 0, data, lw=0.2)
+        ax.set_title(f"Pareto draws with $\\alpha = {a}$", fontsize=11)
+    
+    plt.subplots_adjust(hspace=0.4)
+    
+    plt.show()
+
+
 
 Exercise 4
 ----------
@@ -499,8 +528,9 @@ First we will create a function and then generate the plot
 
     fig, axes = plt.subplots(3, 1, figsize=(6, 8))
     axes = axes.flatten()
-    
+
     sample_size = 1000
+    np.random.seed(13)   
     z = np.random.randn(sample_size)
     
     data_1 = np.abs(z)
@@ -523,7 +553,6 @@ First we will create a function and then generate the plot
     
     fig.subplots_adjust(hspace=0.4)
     
-    plt.savefig("rank_size_fig1.png")
     plt.show()
 
 
