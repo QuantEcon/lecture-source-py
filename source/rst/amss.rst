@@ -18,7 +18,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ==========
 
-Let's start with following imports:
+Let's start with following exports:
 
 .. code-block:: ipython
 
