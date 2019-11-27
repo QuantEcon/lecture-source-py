@@ -26,8 +26,7 @@ Overview
 :doc:`Previously <linear_models>` we learned about linear stochastic processes
 (linear state space models).
 
-Now we turn to a class of models that linear apart from the fact that the
-multiplicative component is stochastic.  
+Now we generalize these linear models slightly by allowing the multiplicative component to be stochastic.  
 
 Such processes are known as Kesten processes after German--American mathematician Harry Kesten (1931--2019)
 
@@ -37,6 +36,8 @@ Although simple to write down, Kesten processes are important for two reasons.
 
 2. Kesten processes generate interesting dynamics, including, in some cases, heavy-tailed cross-sectional distributions.
 
+
+We will discuss these issues as we go along.
 
 Let's start with some imports:
 
@@ -54,13 +55,16 @@ Kesten Processes
     single: Kesten processes; heavy tails
 
 
-Kesten processes are stochastic processes of the form
+A **Kesten process** is a stochastic processes of the form
 
 .. math::
     :label: kesproc
 
     x_{t+1} = a_{t+1} x_t + \eta_{t+1}
     \quad \text{with } x_0 \text{ given}
+
+where :math:`\{a_t\}_{t \geq 1}` and :math:`\{\eta_t\}_{t \geq 1}` are iid
+sequences.
 
 We will focus on the nonnegative scalar case, where :math:`x_t` takes values
 in :math:`\mathbb R_+`
@@ -270,6 +274,9 @@ a Pareto tail.
 This fact is highly significant for economics because of the prevalence of
 Pareto-tailed distributions.
 
+The Kesten-Goldie Theorem
+-------------------------
+
 To state the conditions, we recall that a random variable is called
 **nonarithmetic** if its distribution is not concentrated on :math:`t \mathbb
 Z` for any :math:`t \geq 0`.
@@ -307,12 +314,53 @@ More precisely, if :math:`F^*` is the unique stationary distribution and :math:`
 for some positive constant :math:`c`.
 
 
+An illustration Using Rank-Size Plots
+--------------------------------------
+
+To be added.
+
+
 
 
 Application: Firm Dynamics
 ==========================
 
 
+As noted in our :doc:`lecture on heavy tails`, for common measures of firm size such as revenue or employment,
+the US firm size distribution exhibits a Pareto tail (see, e.g., :cite:`axtell2001zipf`, :cite:`gabaix2016power`}).
+
+We can explain this rather striking fact using the Kesten--Goldie Theorem.
+
+For starts, it was postulated many years ago that firm size evolves according to
+Gibrat's law of proportional growth (see, e.g., XXX ).
+
+This can be expressed by stating that, for some suitable measure of firm size :math:`s_t`, we have
+
+.. math::
+    :label: firm_dynam_gb
+
+    \frac{s_{t+1}}{s_t} = a_{t+1} 
+    
+where :math:`\{a_t\}` is some positive iid sequence.
+
+In particular, Gibrat's law asserts that the growth rate of individual firms does not depend on firm size.
+
+However, over the last few decades, research contradicting Gibrat's law has
+accumulated in the literature.
+
+For example, it is commonly found that, on average,
+
+1. small firms grow faster than large firms and
+
+2. the growth rate of small firms is more volatile than that of large firms.
+
+See, for example. XXXX.
+
+On the other hand, Gibrat's law is generally agreed to be a reasonable
+approximation for large firms (see, e.g., XXXX).
+
+We can accommodate these empirical findings by modifying :eq:`firm_dynam_gb`
+to
 
 .. math::
     :label: firm_dynam
@@ -320,8 +368,18 @@ Application: Firm Dynamics
     s_{t+1} = a_{t+1} s_t + b_{t+1}
     
 
-If :math:`\{a_t\}` and :math:`\{b_t\}` are both iid, then :eq:`firm_dynam`
-is a Kesten process.
+where :math:`\{a_t\}` and :math:`\{b_t\}` are both iid and independent of each
+other.
+
+In the exercises below you are asked to show that :eq:`firm_dynam` is more
+consistent with the empirical findings than Gibrat's law in
+:eq:`firm_dynam_gb`.
+
+So what has this to do with heavy tails?
+
+The answer is that :eq:`firm_dynam` is a Kesten process.
+
+XX add discussion of conditions, refer to exercise below XX
 
 
 
@@ -344,8 +402,38 @@ Compare visually with the Nasdaq Composite Index returns :ref:`shown above <ndco
 While the time path differs, you should see bursts of high volatility.
 
 
+Exercise 2
+----------
+
+Forecast present discounted value of 10 years of corporate tax revenue, tax
+rate of 15%, 1e6 firms, revenue distribution predicted to follow either
+lognormal or Pareto.  
+
+Lognormal is matched to Pareto by maching the mean and the median.
+
+
+Exercise 3
+----------
+
+
+.. math::
+    :label: firm_dynam_ee
+
+    s_{t+1} = e_{t+1} \mathbb 1 \{s_t < \bar s\}
+        + (a_{t+1} s_t + b_{t+1}) \mathbb 1 \{s_t \geq \bar s\}
+
+Generate rank-size plot.
+
+
+
 Solutions
 =========
+
+Exercise 1
+----------
+
+Foobar
+
 
 Exercise 1
 ----------
