@@ -197,8 +197,9 @@ In the code above we created a JIT compiled version of ``qm`` via the call
     qm_numba = jit(qm)  
 
 
-In practice this would typically be done using an alternative syntax based on
-decorators.
+In practice this would typically be done using an alternative *decorator* syntax.
+
+(We will explain all about decorators in a :doc:`later lecture <python_advanced_features>` but you can skip the details at this stage.)
 
 Let's see how this is done.
 
