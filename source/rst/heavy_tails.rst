@@ -64,7 +64,7 @@ It matters for taxation and redistribution
 policies, as well as for flow-on effects for productivity growth, business
 cycles, and political economy 
 
-* see, e.g., :cite:`acemoglu2002political`, :cite:`glaeser2003injustice`, :cite:`bhandari2018inequality` or :cite:`ahn2018inequality`).  
+* see, e.g., :cite:`acemoglu2002political`, :cite:`glaeser2003injustice`, :cite:`bhandari2018inequality` or :cite:`ahn2018inequality`.  
 
 This lecture formalizes some of the concepts introduced above and reviews the
 key ideas.
@@ -123,7 +123,7 @@ Heavy Tails in Asset Returns
 Next let's look at some financial data.
 
 Our aim is to plot the daily change in the price of Amazon (AMZN) stock for
-the period 1st January 2015 to 1st November 2019, 
+the period from 1st January 2015 to 1st November 2019.
 
 This equates to daily returns if we set dividends aside.  
 
@@ -172,7 +172,7 @@ One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.
 
 To understand this point better, recall :doc:`our earlier discussion
-<lln_clt>` of the Law of Large Numbers, which considered iid :math:`X_1,
+<lln_clt>` of the Law of Large Numbers, which considered IID :math:`X_1,
 \ldots, X_n` with common distribution :math:`F`
 
 If :math:`\mathbb E |X_i|` is finite, then
@@ -395,7 +395,7 @@ Prove: If :math:`X` has a Pareto tail with tail index :math:`\alpha`, then
 Exercise 3
 ----------
 
-Repeat exercise 1, but replacing the three distributions (two normal, one
+Repeat exercise 1, but replace the three distributions (two normal, one
 Cauchy) with three Pareto distributions using different choices of
 :math:`\alpha`.
 
@@ -425,7 +425,7 @@ phenomena.
 
 To illustrate this fact in a simple way, let us consider an economy with
 100,000 firms, an interest rate of ``r = 0.05`` and a corporate tax rate of
-15%.
+15\%.
 
 Your task is to estimate the present discounted value of projected corporate
 tax revenue over the next 10 years.
