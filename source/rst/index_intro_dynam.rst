@@ -25,6 +25,7 @@ agents as given.  Later we will look at full equilibrium problems.
     finite_markov
     linear_models
     samuelson
+    kesten_processes
     stationary_densities
     cass_koopmans
     kalman
