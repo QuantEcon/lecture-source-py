@@ -26,6 +26,7 @@ agents as given.  Later we will look at full equilibrium problems.
     linear_models
     samuelson
     kesten_processes
+    inventory_dynamics
     stationary_densities
     cass_koopmans
     kalman
