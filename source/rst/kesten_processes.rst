@@ -30,7 +30,7 @@ Now we generalize these linear models slightly by allowing the multiplicative co
 
 Such processes are known as Kesten processes after German--American mathematician Harry Kesten (1931--2019)
 
-Although simple to write down, Kesten processes are important for two reasons.
+Although simple to write down, Kesten processes are interesting for at least two reasons:
 
 1. A number of significant economic processes are or can be described as Kesten processes.
 
@@ -67,7 +67,7 @@ where :math:`\{a_t\}_{t \geq 1}` and :math:`\{\eta_t\}_{t \geq 1}` are iid
 sequences.
 
 We will focus on the nonnegative scalar case, where :math:`x_t` takes values
-in :math:`\mathbb R_+`
+in :math:`\mathbb R_+`.
 
 In particular, we will assume that 
 
@@ -102,7 +102,7 @@ Composite Index for the period 1st January 2006 to 1st November 2019.
     
     fig, ax = plt.subplots()
     
-    ax.plot(r, alpha=0.7, ms=4)
+    ax.plot(r, alpha=0.7)
     
     ax.set_ylabel('returns', fontsize=12)
     ax.set_xlabel('date', fontsize=12)
@@ -277,18 +277,15 @@ Pareto-tailed distributions.
 The Kesten-Goldie Theorem
 -------------------------
 
-To state the conditions, we recall that a random variable is called
-**nonarithmetic** if its distribution is not concentrated on :math:`t \mathbb
-Z` for any :math:`t \geq 0`.
+To state the conditions under which the stationary distribution of a Kesten process has a Pareto tail, we first recall that a random variable is called **nonarithmetic** if its distribution is not concentrated on :math:`t \mathbb Z` for any :math:`t \geq 0`.
 
 For example, any random variable with a density is nonarithmetic.
 
-The famous Kesten--Goldie Theorem (see, e.g.,
-:cite:`buraczewski2016stochastic`, theorem 2.4.4) states that if
+The famous Kesten--Goldie Theorem (see, e.g., :cite:`buraczewski2016stochastic`, theorem 2.4.4) states that if
 
 1. The stationarity conditions in :eq:`kp_stat_cond` hold,
 
-2. The random variable $a_t$ is positive with probability one and nonarithmetic.
+2. The random variable :math:`a_t` is positive with probability one and nonarithmetic.
 
 3. :math:`\mathbb P\{a_t x + \eta_t = x\} < 1` for all :math:`x \in \mathbb R_+`.
 
@@ -314,11 +311,55 @@ More precisely, if :math:`F^*` is the unique stationary distribution and :math:`
 for some positive constant :math:`c`.
 
 
-An illustration Using Rank-Size Plots
---------------------------------------
+Intuition
+---------
 
-To be added.
+Later we will illustrate the Kesten-Goldie Theorem using rank-size plots.
 
+Prior to doing so, we can give the following intuition for the conditions.
+
+Two important conditions are that :math:`\mathbb E \ln a_t < 0`, so the model
+is stationary, and :math:`\mathbb E a_t^\alpha = 1` for some :math:`\alpha >
+0`.
+
+The first condition implies that the distribution of :math:`a_t` has a large amount of probability mass below 1.
+
+The second condition implies that the distribution of :math:`a_t` has at least some probability mass at or above 1.
+
+The first condition gives us existence of the stationary condition. 
+
+The second condition means that the current state can be expanded by :math:`a_t`.
+
+If this occurs for several concurrent periods, the effects compound each other, since :math:`a_t` is multiplicative.
+
+This leads to spikes in the time series, which fill out the extreme right hand tail of the distribution.
+
+The spikes in the time series are visible in the following simulation, which generates of 10 paths when :math:`a_t` and :math:`b_t` are lognormal.
+
+
+.. code:: ipython3
+
+    μ = -0.5
+    σ = 1.0
+    
+    def kesten_ts(ts_length=100):
+        x = np.zeros(ts_length)
+        for t in range(ts_length-1):
+            a = np.exp(μ + σ * np.random.randn())
+            b = np.exp(np.random.randn())
+            x[t+1] = a * x[t] + b
+        return x
+    
+    fig, ax = plt.subplots()
+    
+    num_paths = 10
+    np.random.seed(12)
+    
+    for i in range(num_paths):
+        ax.plot(kesten_ts())
+        
+    ax.set(xlabel='time', ylabel='$x_t$')    
+    plt.show()
 
 
 
@@ -326,38 +367,42 @@ Application: Firm Dynamics
 ==========================
 
 
-As noted in our :doc:`lecture on heavy tails`, for common measures of firm size such as revenue or employment,
-the US firm size distribution exhibits a Pareto tail (see, e.g., :cite:`axtell2001zipf`, :cite:`gabaix2016power`}).
+As noted in our :doc:`lecture on heavy tails <heavy_tails>`, for common measures of firm size such as revenue or employment, the US firm size distribution exhibits a Pareto tail (see, e.g., :cite:`axtell2001zipf`, :cite:`gabaix2016power`).
 
-We can explain this rather striking fact using the Kesten--Goldie Theorem.
+Let us try to explain this rather striking fact using the Kesten--Goldie Theorem.
 
-For starts, it was postulated many years ago that firm size evolves according to
-Gibrat's law of proportional growth (see, e.g., XXX ).
+Gibrat's Law
+------------
 
-This can be expressed by stating that, for some suitable measure of firm size :math:`s_t`, we have
+It was postulated many years ago by Robert Gibrat :cite:`gibrat1931inegalites` that firm size evolves according to a simple rule whereby size next period is proportional to current size.
+
+This is now know as Gibrat's law of proportional growth.
+
+We can express this idea by stating that a suitably defined measure 
+:math:`s_t` of firm size obeys
 
 .. math::
     :label: firm_dynam_gb
 
     \frac{s_{t+1}}{s_t} = a_{t+1} 
     
-where :math:`\{a_t\}` is some positive iid sequence.
+for some positive iid sequence :math:`\{a_t\}`.
 
-In particular, Gibrat's law asserts that the growth rate of individual firms does not depend on firm size.
+One implication of Gibrat's law is that the growth rate of individual firms
+does not depend on their size.
 
 However, over the last few decades, research contradicting Gibrat's law has
 accumulated in the literature.
 
 For example, it is commonly found that, on average,
 
-1. small firms grow faster than large firms and
+1. small firms grow faster than large firms (see, e.g., :cite:`evans1987relationship` and :cite:`hall1987relationship`) and
 
-2. the growth rate of small firms is more volatile than that of large firms.
+2. the growth rate of small firms is more volatile than that of large firms :cite:`dunne1989growth`.
 
-See, for example. XXXX.
+On the other hand, Gibrat's law is generally found to be a reasonable
+approximation for large firms :cite:`evans1987relationship`.
 
-On the other hand, Gibrat's law is generally agreed to be a reasonable
-approximation for large firms (see, e.g., XXXX).
 
 We can accommodate these empirical findings by modifying :eq:`firm_dynam_gb`
 to
@@ -371,17 +416,27 @@ to
 where :math:`\{a_t\}` and :math:`\{b_t\}` are both iid and independent of each
 other.
 
-In the exercises below you are asked to show that :eq:`firm_dynam` is more
-consistent with the empirical findings than Gibrat's law in
+In the exercises you are asked to show that :eq:`firm_dynam` is more
+consistent with the empirical findings presented above than Gibrat's law in
 :eq:`firm_dynam_gb`.
+
+
+Heavy Tails
+-----------
 
 So what has this to do with heavy tails?
 
 The answer is that :eq:`firm_dynam` is a Kesten process.
 
-XX add discussion of conditions, refer to exercise below XX
+If the conditions of the Kesten-Goldie Theorem are satisfied, then the firm
+size distribution is predicted to have heavy tails --- which is exactly what
+we see in the data.
 
+In the exercises below we explore this idea further, generalizing the firm
+size dynamics and examining the corresponding rank-size plots.
 
+We also try to illustrate why the Pareto tail finding is significant for
+quantitative analysis.
 
 
 Exercises
@@ -395,7 +450,7 @@ working days) the GARCH(1, 1) process in :eq:`garch11v`--:eq:`garch11r`.
 
 Take :math:`\xi_t` and :math:`\zeta_t` to be independent and standard normal.
 
-Set :math:`\alpha_0 = XX, \alpha_1 = XX, \beta = XX` and :math:`\sigma_0 = 0`.
+Set :math:`\alpha_0 = 0.00001, \alpha_1 = 0.1, \beta = 0.9` and :math:`\sigma_0 = 0`.
     
 Compare visually with the Nasdaq Composite Index returns :ref:`shown above <ndcode>`.
 
@@ -405,37 +460,98 @@ While the time path differs, you should see bursts of high volatility.
 Exercise 2
 ----------
 
-Forecast present discounted value of 10 years of corporate tax revenue, tax
-rate of 15%, 1e6 firms, revenue distribution predicted to follow either
-lognormal or Pareto.  
 
-Lognormal is matched to Pareto by maching the mean and the median.
+In our discussion of firm dynamics, it was claimed that :eq:`firm_dynam` is more consistent with the empirical literature than Gibrat's law in :eq:`firm_dynam_gb`.
 
+(The empirical literature was reviewed immediately above :eq:`firm_dynam`.) 
 
-Exercise 3
-----------
+In what sense is this true (or false)?
 
+.. Exercise 3
 
-.. math::
-    :label: firm_dynam_ee
+    .. math::
+        :label: firm_dynam_ee
 
-    s_{t+1} = e_{t+1} \mathbb 1 \{s_t < \bar s\}
-        + (a_{t+1} s_t + b_{t+1}) \mathbb 1 \{s_t \geq \bar s\}
+        s_{t+1} = e_{t+1} \mathbb 1 \{s_t < \bar s\}
+            + (a_{t+1} s_t + b_{t+1}) \mathbb 1 \{s_t \geq \bar s\}
 
-Generate rank-size plot.
+    Generate rank-size plot.
 
 
 
 Solutions
 =========
 
-Exercise 1
-----------
-
-Foobar
-
 
 Exercise 1
 ----------
 
-Foobar
+Here is one solution:
+
+
+.. code:: ipython3
+
+    α_0 = 1e-5
+    α_1 = 0.1
+    β = 0.9
+    
+    years = 15
+    days = years * 250
+    
+    def garch_ts(ts_length=days):
+        σ2 = 0
+        r = np.zeros(ts_length)
+        for t in range(ts_length-1):
+            ξ = np.random.randn()
+            σ2 = α_0 + σ2 * (α_1 * ξ**2 + β)
+            r[t] = np.sqrt(σ2) * np.random.randn()
+        return r
+    
+    fig, ax = plt.subplots()
+    
+    np.random.seed(12)
+    
+    ax.plot(garch_ts(), alpha=0.7)
+        
+    ax.set(xlabel='time', ylabel='$\\sigma_t^2$')    
+    plt.show()
+
+
+Exercise 2
+----------
+
+The empirical findings are that
+
+
+1. small firms grow faster than large firms  and
+
+2. the growth rate of small firms is more volatile than that of large firms.
+
+Also, Gibrat's law is generally found to be a reasonable approximation for
+large firms than for small firms 
+
+The claim is that the dynamics in :eq:`firm_dynam` are more consistent with
+points 1-2 than Gibrat's law.
+
+To see why, we rewrite :eq:`firm_dynam` in terms of growth dynamics:
+
+.. math::
+    :label: firm_dynam_2
+
+    \frac{s_{t+1}}{s_t} = a_{t+1} + \frac{b_{t+1}}{s_t}
+
+Taking :math:`s_t = s` as given, the mean and variance of firm growth are
+
+.. math::
+
+    \mathbb E a
+    + \frac{\mathbb E b}{s}
+    \quad \text{and} \quad
+    \mathbb V a
+    + \frac{\mathbb V b}{s^2}
+    
+Both of these decline with firm size :math:`s`, consistent with the data.
+
+Moreover, the law of motion :eq:`firm_dynam_2` clearly approaches Gibrat's law
+:eq:`firm_dynam_gb` as :math:`s_t` gets large.
+

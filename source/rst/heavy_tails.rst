@@ -55,7 +55,7 @@ settings include
 
 * the distribution of city sizes (:cite:`rozenfeld2011area`, :cite:`gabaix2016power`).
 
-These heavy tails turn out to be important for our understanding economic outcomes and their impact.
+These heavy tails turn out to be important for our understanding of economic outcomes.
 
 As one example, the heaviness of the tail in the wealth distribution is one
 natural measure of inequality. 
@@ -341,7 +341,7 @@ for some positive constants :math:`\bar x` and :math:`\alpha`.
 
 It is easy to see that if :math:`X \sim F`, then :math:`\mathbb P\{X > x\}` satisfies :eq:`plrt`.  
 
-Thus, in line with the terminology, a Pareto distributed random variables have a Pareto tail.
+Thus, in line with the terminology, Pareto distributed random variables have a Pareto tail.
 
 
 Rank-Size Plots
@@ -362,11 +362,11 @@ A discussion of why this occurs can be found in :cite:`nishiyama2004estimation`.
 
 The figure below provides one example, using simulated data.
 
-The rank-size plots shows draws from three different distributions: folded normal, chi squared with 1 degree of freedom and Pareto.  
+The rank-size plots shows draws from three different distributions: folded normal, chi-squared with 1 degree of freedom and Pareto.  
 
 In each case, the largest 5\% of 1,000 draws are shown.  
 
-The Pareto sample produces a straight line, while the line produced by the other samples is concave.  
+The Pareto sample produces a straight line, while the lines produced by the other samples are concave.  
 
 .. _rank_size_fig1:
 
@@ -411,6 +411,66 @@ Exercise 4
 Replicate the rank-size plot figure :ref:`presented above <rank_size_fig1>`.
 
 Use ``np.random.seed(13)`` to set the seed.
+
+
+Exercise 5
+----------
+
+There is an ongoing argument about whether the firm size distribution should
+be modeled as a Pareto distribution or a lognormal distribution (see, e.g.,
+:cite:`fujiwara2004pareto`, :cite:`kondo2018us` or :cite:`schluter2019size`).
+
+This sounds esoteric but has real implications for a variety of economic
+phenomena.
+
+To illustrate this fact in a simple way, let us consider an economy with
+100,000 firms, an interest rate of ``r = 0.05`` and a corporate tax rate of
+15%.
+
+Your task is to estimate the present discounted value of projected corporate
+tax revenue over the next 10 years.
+
+Because we are forecasting, we need a model.
+
+We will suppose that 
+
+1. the number of firms and the firm size distribution (measured in profits) remain fixed and
+
+2. the firm size distribution is either lognormal or Pareto.
+
+Present discounted value of tax revenue will be estimated by 
+
+1. generating 100,000 draws of firm profit from the firm size distribution, 
+
+2. multiplying by the tax rate, and 
+
+#. summing the results with discounting to obtain present value.
+
+The Pareto distribution is assumed to take the form :eq:`pareto` with :math:`\bar x = 1` and :math:`\alpha = 1.05`.
+
+(The value the tail index :math:`\alpha` is plausible given the data :cite:`gabaix2016power`.)
+
+To make the lognormal option as similar as possible to the Pareto option,
+choose its parameters such that the mean and median of both distributions are
+the same.
+
+Note that, for each distribution, your estimate of tax revenue will be random
+because it is based on a finite number of draws.
+
+To take this into account, generate 100 draws in each case and compare the two
+samples by
+
+* producing a `violin plot <https://en.wikipedia.org/wiki/Violin_plot>`__ visualizing the two samples side-by-side and
+
+* printing the mean and standard deviation of both samples.
+
+For the seed use ``np.random.seed(1234)``.
+
+What differences do you observe?
+
+(Note: a better approach to this problem would be to model firm dynamics and
+try to track individual firms given the current distribution.  We will discuss
+firm dynamics in later lectures.)
 
 
 
@@ -556,3 +616,112 @@ First we will create a function and then generate the plot
     plt.show()
 
 
+Exercise 5
+----------
+
+To do the exercise, we need to choose the parameters :math:`\mu`
+and :math:`\sigma` of the lognormal distribution to match the mean and median
+of the Pareto distribution.
+
+Here we understand the lognormal distribution as that of the random variable
+:math:`\exp(\mu + \sigma Z)` when :math:`Z` is standard normal.
+
+The mean and median of the Pareto distribution :eq:`pareto` with
+:math:`\bar x = 1` are
+
+.. math::
+
+    \text{mean } = \frac{\alpha}{\alpha - 1}
+    \quad \text{and} \quad
+    \text{median } = 2^{1/\alpha}
+
+Using the corresponding expressions for the lognormal distribution leads us to
+the equations
+
+.. math::
+    \frac{\alpha}{\alpha - 1} = \exp(\mu + \sigma^2/2)
+    \quad \text{and} \quad
+    2^{1/\alpha} = \exp(\mu)
+
+which we solve for :math:`\mu` and :math:`\sigma` given :math:`\alpha = 1.05`
+    
+Here is code that generates the two samples, produces the violin plot and
+prints the mean and standard deviation of the two samples.
+
+
+.. code:: ipython3
+
+    num_firms = 100_000
+    num_years = 10
+    tax_rate = 0.15
+    r = 0.05
+
+    β = 1 / (1 + r)    # discount factor
+
+    x_bar = 1.0
+    α = 1.05
+    
+    def pareto_rvs(n):
+        "Uses a standard method to generate Pareto draws."
+        u = np.random.uniform(size=n)
+        y = x_bar / (u**(1/α))
+        return y
+
+Let's compute the lognormal parameters:
+
+.. code:: ipython3
+
+    μ = np.log(2) / α
+    σ_sq = 2 * (np.log(α/(α - 1)) - np.log(2)/α)
+    σ = np.sqrt(σ_sq)
+
+Here's a function to compute a single estimate of tax revenue for a particular
+choice of distribution ``dist``.
+
+.. code:: ipython3
+
+    def tax_rev(dist):
+        tax_raised = 0
+        for t in range(num_years):
+            if dist == 'pareto':
+                π = pareto_rvs(num_firms)
+            else:
+                π = np.exp(μ + σ * np.random.randn(num_firms))
+            tax_raised += β**t * np.sum(π * tax_rate)
+        return tax_raised
+
+Now let's generate the violin plot.
+
+.. code:: ipython3
+
+    num_reps = 100
+    np.random.seed(1234)
+    
+    tax_rev_lognorm = np.empty(num_reps)
+    tax_rev_pareto = np.empty(num_reps)
+    
+    for i in range(num_reps):
+        tax_rev_pareto[i] = tax_rev('pareto')
+        tax_rev_lognorm[i] = tax_rev('lognorm')
+
+    fig, ax = plt.subplots()
+    
+    data = tax_rev_pareto, tax_rev_lognorm
+    
+    ax.violinplot(data)
+    
+    plt.show()
+
+Finally, let's print the means and standard deviations.
+
+.. code:: ipython3
+
+    tax_rev_pareto.mean(), tax_rev_pareto.std()
+
+.. code:: ipython3
+
+    tax_rev_lognorm.mean(), tax_rev_lognorm.std()
+
+
+Looking at the output of the code, our main conclusion is that the Pareto
+assumption leads to a lower mean and greater dispersion.
