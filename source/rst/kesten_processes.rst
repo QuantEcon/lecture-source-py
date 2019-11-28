@@ -55,7 +55,7 @@ Kesten Processes
     single: Kesten processes; heavy tails
 
 
-A **Kesten process** is a stochastic processes of the form
+A **Kesten process** is a stochastic process of the form
 
 .. math::
     :label: kesproc
@@ -230,7 +230,7 @@ Since :math:`F^*` is stationary for the wealth process, this is just
 Hence the fraction of households with wealth in :math:`[0, y]` is the same
 next period as it is this period.
 
-Since :math:`y` was chosen arbitrarily, the distribution is inchanged.
+Since :math:`y` was chosen arbitrarily, the distribution is unchanged.
 
 
 Conditions for Stationarity
