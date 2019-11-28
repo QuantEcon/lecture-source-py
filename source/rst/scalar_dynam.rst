@@ -15,10 +15,10 @@ Overview
 In this lecture we give a quick introduction to discrete time dynamics in one
 dimension.
 
-This means that the state of the system is described by a single variable.
+In one-dimensional models, the state of the system is described by a single variable.
 
-Although most interesting dynamic models need two or more state variables, the
-one dimensional setting is a good place to learn the foundations and build
+Although most interesting dynamic models have two or more state variables, the
+one-dimensional setting is a good place to learn the foundations of dynamics and build
 intuition.
 
 Let's start with some standard imports:
@@ -54,12 +54,10 @@ In the definition,
 
 * time homogeneity means that :math:`g` is the same at each time :math:`t`
 
-* first order means dependence on only one lag (:math:`x_{t+1} = g(x_t,
-  x_{t-1})$` is a second order difference equation and so on).
+* first order means dependence on only one lag (i.e., earlier states such as :math:`x_{t-1}` do not enter into :eq:`sdsod`).
 
 
-If :math:`x_0 \in S` is given, then :eq:`sdsod` recursively defines a sequence
-given by 
+If :math:`x_0 \in S` is given, then :eq:`sdsod` recursively defines the sequence
 
 .. math::
     :label: sdstraj
@@ -71,14 +69,13 @@ given by
 
 This sequence is called the **trajectory** of :math:`x_0` under :math:`g`.
 
-If we set :math:`g^n := n` compositions of :math:`g` with itself, then we can
-write the trajectory more simply as :math:`x_t = g^t(x_0)` for :math:`t \geq 0`.
+If we define :math:`g^n` to be :math:`n` compositions of :math:`g` with itself, then we can write the trajectory more simply as :math:`x_t = g^t(x_0)` for :math:`t \geq 0`.
 
 
 Example: A Linear Model
 -----------------------
 
-One easy to work with example is the **linear difference equation**
+One simple example is the **linear difference equation**
 
 .. math::
     x_{t+1} = a x_t + b, \qquad S = \mathbb R
