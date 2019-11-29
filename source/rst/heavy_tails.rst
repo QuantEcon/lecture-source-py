@@ -133,6 +133,13 @@ The code below produces the desired plot using Yahoo financial data via the ``yf
 
     import yfinance as yf
     import pandas as pd
+    
+    from pandas.plotting import register_matplotlib_converters    
+    register_matplotlib_converters()                          
+    # The two lines above allow us to safely use pandas time series 
+    # methods with a matplotlib plotting method
+    # This code will work without them (as of pandas v0.25.1) but would
+    # result in a FutureWarning, and could be broken by pandas updates
 
     s = yf.download('AMZN', '2015-1-1', '2019-11-1')['Adj Close']
     
