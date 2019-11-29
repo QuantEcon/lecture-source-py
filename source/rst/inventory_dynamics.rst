@@ -15,23 +15,21 @@ Inventory Dynamics
 Overview
 ========
 
-In this lecture we will study the time path of inventories for firms with 
-so-called S-s inventory dynamics.
+In this lecture we will study the time path of inventories for firms that
+follow so-called s-S inventory dynamics.
 
-Such firms allow inventory to fall until it goes below some level :math:`s`.
+Such firms 
 
-At that point, they order in sufficent quantities to bring their inventory up
-to capacity :math:`S`.
+1  wait until inventory falls below some level :math:`s` and then
+2. order sufficent quantities to bring their inventory back up to capacity :math:`S`.
 
-Such policies are common in practice and also optimal in certain
-circumstances.
+Such policies are common in practice and also optimal in certain circumstances.
 
-A review and a macroeconomic application can be found in :cite:`caplin1985variability`.
+A review of early literature and some macroeconomic implications can be found in :cite:`caplin1985variability`.
 
-Here our main aim is to learn more about simulation and Markov dynamics.
+Here our main aim is to learn more about simulation, time series and Markov dynamics.
 
-One change from the :doc:`lecture on finite Markov chains <finite_markov>` is
-that the state space will be a continuum.
+While our Markov environment is related to that found in our :doc:`lecture on finite Markov chains <finite_markov>`, the state space is a continuum in the current application.
 
 Let's start with some imports
 
