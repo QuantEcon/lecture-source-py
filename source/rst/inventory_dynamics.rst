@@ -144,7 +144,8 @@ Let's run a first simulation, of a single path:
     plt.show()
 
 
-Now let's simulate multiple paths:
+Now let's simulate multiple paths in order to build a more complete picture of
+the probabilities of different outcomes:
 
 .. code:: ipython3
 
@@ -163,25 +164,9 @@ Now let's simulate multiple paths:
     
     for i in range(400):
         X = firm.sim_inventory_path(x_init, sim_length)
-        ax.plot(X, alpha=0.2, lw=0.5)
+        ax.plot(X, 'b', alpha=0.2, lw=0.5)
     
     plt.show()
-
-What’s the probability that we need to order twice or more in the first
-50 periods?
-
-.. code:: ipython3
-
-    sim_length = 50
-    M = 100_000  
-    counter = 0
-    
-    for m in range(M):
-        X = firm.sim_inventory_path(x_init, sim_length)
-        if sum(X <= s) > 1:
-            counter += 1
-            
-    print(f"Frequency of at least two stock outs = {counter / M}")
 
 
 Marginal Distributions
@@ -190,10 +175,17 @@ Marginal Distributions
 Now let’s look at the marginal distribution :math:`\psi_T` of :math:`X_T` for some
 fixed :math:`T`.
 
+We will do this by generating many draws of :math:`X_T` given initial
+condition :math:`X_0`.
+
+With these draws of :math:`X_T` we can build up a picture of its distribution :math:`\psi_T` 
+
+Here's one visualization, with :math:`T=50`.
+
 .. code:: ipython3
 
     T = 50
-    M = 200
+    M = 200  # Number of draws
     
     ymin, ymax = 0, S + 10
     
@@ -214,7 +206,7 @@ fixed :math:`T`.
     sample = np.empty(M)
     for m in range(M):
         X = firm.sim_inventory_path(x_init, 2 * T)
-        ax.plot(X, lw=1, alpha=0.5)
+        ax.plot(X, 'b-', lw=1, alpha=0.5)
         ax.plot((T,), (X[T+1],), 'ko', alpha=0.5)
         sample[m] = X[T+1]
     
@@ -251,8 +243,19 @@ We can build up a clearer picture by drawing more samples
     
     plt.show()
 
-We can also approximate the distribution using a kernel density
-estimator. I’ll use one from Scikit Learn.
+Note that the distribution is bimodal
+
+* Most firms have restocked twice but a few have restocked only once (see figure with paths above).
+
+* Firms in the second category have lower inventory.
+
+We can also approximate the distribution using a kernel density estimator. 
+
+Kernel density estimators can be thought of as smoothed histograms.
+
+They are preferable to histograms when the distribution being estimated is likely to be smooth.
+
+We will use a kernel density estimator from Scikit Learn.
 
 .. code:: ipython3
 
@@ -284,6 +287,10 @@ Exercise 1
 This model is asymptotically stationary, with a unique stationary
 distribution.
 
+(See :doc:`our lecture on finite state Markov chains <finite_markov>` for
+background --- the state space is now continuous but the fundamental concepts
+are the same.)
+
 In particular, the sequence of marginal distributions :math:`\{\psi_t\}`
 is converging to a unique limiting distribution that does not depend on
 initial conditions.
@@ -297,6 +304,11 @@ You should see convergence. Try different initial conditions to verify
 that, in the long run, the distribution is invariant across initial
 conditions.
 
+Exercise 2
+----------
+
+Using simulation, calculate the probability that we need to order twice or more in the first
+50 periods?
 
 Solutions
 =========
@@ -351,4 +363,24 @@ testing a few of them.
     ax.set_ylabel('probability')
     ax.legend()
     plt.show()
+
+
+Exercise 2
+----------
+
+Here is one solution.
+
+.. code:: ipython3
+
+    sim_length = 50
+    M = 100_000  
+    counter = 0
+    
+    for m in range(M):
+        X = firm.sim_inventory_path(x_init, sim_length)
+        if sum(X <= s) > 1:
+            counter += 1
+            
+    print(f"Frequency of at least two stock outs = {counter / M}")
+
 
