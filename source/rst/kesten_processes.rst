@@ -63,7 +63,7 @@ A **Kesten process** is a stochastic process of the form
     x_{t+1} = a_{t+1} x_t + \eta_{t+1}
     \quad \text{with } x_0 \text{ given}
 
-where :math:`\{a_t\}_{t \geq 1}` and :math:`\{\eta_t\}_{t \geq 1}` are iid
+where :math:`\{a_t\}_{t \geq 1}` and :math:`\{\eta_t\}_{t \geq 1}` are IID
 sequences.
 
 We will focus on the nonnegative scalar case, where :math:`x_t` takes values
@@ -73,9 +73,9 @@ In particular, we will assume that
 
 * the initial condition :math:`x_0` is nonnegative,
 
-* :math:`\{a_t\}_{t \geq 1}` is a nonnegative iid stochastic process and
+* :math:`\{a_t\}_{t \geq 1}` is a nonnegative IID stochastic process and
 
-* :math:`\{\eta_t\}_{t \geq 1}` is another nonnegative iid stochastic process, independent of the first.
+* :math:`\{\eta_t\}_{t \geq 1}` is another nonnegative IID stochastic process, independent of the first.
 
 
 
@@ -122,7 +122,7 @@ The GARCH(1, 1) volatility process takes the form
 
     \sigma_{t+1}^2 = \alpha_0 + \sigma_t^2 (\alpha_1 \xi_{t+1}^2 + \beta)
     
-where :math:`\{\xi_t\}` is iid with :math:`\mathbb E \xi_t^2 = 1` and all parameters are positive.  
+where :math:`\{\xi_t\}` is IID with :math:`\mathbb E \xi_t^2 = 1` and all parameters are positive.  
 
 Returns on a given asset are then modeled as
 
@@ -131,7 +131,7 @@ Returns on a given asset are then modeled as
 
     r_t = \sigma_t \zeta_{t+1}
 
-where :math:`\{\zeta_t\}` is again iid and independent of :math:`\{\xi_t\}`.
+where :math:`\{\zeta_t\}` is again IID and independent of :math:`\{\xi_t\}`.
 
 Notice that the volatility sequence :math:`\{\sigma_t\}`, which drives the dynamics, is a Kesten process.
 
@@ -152,7 +152,7 @@ Wealth then evolves according to
     
 where :math:`\{R_t\}` is the gross rate of return on assets.
 
-If :math:`\{R_t\}` and :math:`\{y_t\}` are both iid, then :eq:`wealth_dynam`
+If :math:`\{R_t\}` and :math:`\{y_t\}` are both IID, then :eq:`wealth_dynam`
 is a Kesten process.
 
 
@@ -386,7 +386,7 @@ We can express this idea by stating that a suitably defined measure
 
     \frac{s_{t+1}}{s_t} = a_{t+1} 
     
-for some positive iid sequence :math:`\{a_t\}`.
+for some positive IID sequence :math:`\{a_t\}`.
 
 One implication of Gibrat's law is that the growth rate of individual firms
 does not depend on their size.
@@ -413,7 +413,7 @@ to
     s_{t+1} = a_{t+1} s_t + b_{t+1}
     
 
-where :math:`\{a_t\}` and :math:`\{b_t\}` are both iid and independent of each
+where :math:`\{a_t\}` and :math:`\{b_t\}` are both IID and independent of each
 other.
 
 In the exercises you are asked to show that :eq:`firm_dynam` is more

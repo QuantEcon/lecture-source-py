@@ -172,7 +172,7 @@ One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.
 
 To understand this point better, recall :doc:`our earlier discussion
-<lln_clt>` of the Law of Large Numbers, which considered iid :math:`X_1,
+<lln_clt>` of the Law of Large Numbers, which considered IID :math:`X_1,
 \ldots, X_n` with common distribution :math:`F`
 
 If :math:`\mathbb E |X_i|` is finite, then
