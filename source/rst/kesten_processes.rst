@@ -47,6 +47,13 @@ Let's start with some imports:
     import matplotlib.pyplot as plt
     %matplotlib inline
 
+The following two lines can be added to avoid an annoying FutureWarning, and prevent a specific compatibility issue between pandas and matplotlib from causing problems down the line:
+
+.. code-block:: ipython
+    
+    from pandas.plotting import register_matplotlib_converters
+    register_matplotlib_converters()
+
 
 Kesten Processes
 =================
