@@ -20,10 +20,10 @@ follow so-called s-S inventory dynamics.
 
 Such firms 
 
-1  wait until inventory falls below some level :math:`s` and then
+1.  wait until inventory falls below some level :math:`s` and then
 2. order sufficent quantities to bring their inventory back up to capacity :math:`S`.
 
-Such policies are common in practice and also optimal in certain circumstances.
+These kinds of policies are common in practice and also optimal in certain circumstances.
 
 A review of early literature and some macroeconomic implications can be found in :cite:`caplin1985variability`.
 
@@ -39,7 +39,7 @@ Let's start with some imports
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-    from numba import njit, jitclass, float64
+    from numba import njit, jitclass, float64, prange
 
 
 Sample Paths 
@@ -52,7 +52,8 @@ The firm waits until :math:`X_t \leq s` and then restocks up to :math:`S` units.
 It faces stochastic demand :math:`D_{t+1}`, where :math:`\{D_t\}` is
 IID with common density :math:`q`.
 
-Inventory follows
+With notation :math:`a^+ := \max\{a, 0\}`, inventory dynamics can be written
+as
 
 .. math::
 
@@ -62,7 +63,6 @@ Inventory follows
           ( X_t - D_{t+1} )^+ &  \quad \text{if } X_t > s
         \end{cases}
 
-Here :math:`a^+ := \max\{a, 0\}`.
 
 In what follows, we will assume that :math:`q` is lognormal, so that
 
@@ -87,7 +87,7 @@ Here's a class that stores parameters and generates time paths for inventory.
 
 
     @jitclass(firm_data)
-    class InventoryModel:
+    class Firm:
 
         def __init__(self, s=10, S=100, mu=1.0, sigma=0.5):
 
@@ -117,7 +117,7 @@ Let's run a first simulation, of a single path:
 
 .. code:: ipython3
 
-    firm = InventoryModel()
+    firm = Firm()
 
     s, S = firm.s, firm.S
     sim_length = 100
@@ -148,12 +148,7 @@ the probabilities of different outcomes:
 .. code:: ipython3
 
     sim_length=200
-    fig, ax = plt.subplots(figsize=(9, 6))
-    bbox = (0., 1.02, 1., .102)
-    legend_args = {'ncol': 3,
-                   'bbox_to_anchor': bbox,
-                   'loc': 3,
-                   'mode': 'expand'}
+    fig, ax = plt.subplots()
     
     ax.plot(s * np.ones(sim_length), 'k--', label="$s$")
     ax.plot(S * np.ones(sim_length), 'k-', label="$S$")
@@ -305,8 +300,11 @@ conditions.
 Exercise 2
 ----------
 
-Using simulation, calculate the probability that we need to order twice or more in the first
-50 periods?
+Using simulation, calculate the probability that firms that start with
+:math:`X_0 = 70` need to order twice or more in the first 50 periods.
+
+You will need a large sample size to get an accurate reading.
+
 
 Solutions
 =========
@@ -314,53 +312,72 @@ Solutions
 Exercise 1
 ----------
 
-Here’s one possible solution:
+Below is one possible solution:
+
+The computations involve a lot of CPU cycles so we have tried to write the
+code efficiently.
+
+This meant writing a specialized function rather than using the class above.
 
 .. code:: ipython3
 
-    M = 50_000  # Number of paths
-    T = 501
-    X = np.empty((M, T))
+    s, S, mu, sigma = firm.s, firm.S, firm.mu, firm.sigma
 
+    @njit
+    def shift_firms_forward(current_inventory_levels, num_periods):
+
+        num_firms = len(current_inventory_levels)
+        new_inventory_levels = np.empty(num_firms) 
+
+        for f in range(num_firms):
+            x = current_inventory_levels[f]
+            for t in range(num_periods):
+                Z = np.random.randn()
+                D = np.exp(mu + sigma * Z)
+                if x <= s:
+                    x = max(S - D, 0)
+                else:
+                    x = max(x - D, 0)
+            new_inventory_levels[f] = x
+
+        return new_inventory_levels
+                
+                
 .. code:: ipython3
 
-    for m in range(M):
-        X[m, :] = firm.sim_inventory_path(x_init, T)
-    
+    x_init = 50   
+    num_firms = 50_000       
+
+    sample_dates = 0, 10, 50, 250, 500, 750
+
+    first_diffs = np.diff(sample_dates)
+
     fig, ax = plt.subplots()
-    sample_dates = 10, 50, 200, 300, 400
+
+    X = np.ones(num_firms) * x_init
     
-    for t in sample_dates:
-        plot_kde(X[:, t], ax, label=f't = {t}')
+    current_date = 0
+    for d in first_diffs:
+        X = shift_firms_forward(X, d)
+        current_date += d
+        plot_kde(X, ax, label=f't = {current_date}')
     
     ax.set_xlabel('inventory')
     ax.set_ylabel('probability')
     ax.legend()
     plt.show()
 
-Notice that by :math:`t=300` or :math:`t=400` the densities are barely
+Notice that by :math:`t=500` or :math:`t=750` the densities are barely
 changing.
 
-We have reached a good approximation of the stationary density.
+We have reached a reasonable approximation of the stationary density.
 
 You can convince yourself that initial conditions don’t matter by
 testing a few of them.
 
-.. code:: ipython3
+For example, try rerunning the code above will all firms starting at
+:math:`X_0 = 20` or :math:`X_0 = 80`.
 
-    for m in range(M):
-        X[m, :] = firm.sim_inventory_path(80, T)
-    
-    fig, ax = plt.subplots()
-    sample_dates = 10, 50, 200, 300, 400
-    
-    for t in sample_dates:
-        plot_kde(X[:, t], ax, label=f't = {t}')
-    
-    ax.set_xlabel('inventory')
-    ax.set_ylabel('probability')
-    ax.legend()
-    plt.show()
 
 
 Exercise 2
@@ -368,17 +385,49 @@ Exercise 2
 
 Here is one solution.
 
+Again, the computations are relatively intensive so we have written a a
+specialized function rather than using the class above.
+
+We will also use parallelization across firms.
+
 .. code:: ipython3
 
-    sim_length = 50
-    M = 100_000  
-    counter = 0
-    
-    for m in range(M):
-        X = firm.sim_inventory_path(x_init, sim_length)
-        if sum(X <= s) > 1:
-            counter += 1
-            
-    print(f"Frequency of at least two stock outs = {counter / M}")
+    @njit(parallel=True)
+    def compute_freq(sim_length=50, x_init=70, num_firms=1_000_000):
+
+        firm_counter = 0  # Records number of firms that restock 2x or more
+        for m in prange(num_firms):
+            x = x_init
+            restock_counter = 0  # Will record number of restocks for firm m
+
+            for t in range(sim_length):
+                Z = np.random.randn()
+                D = np.exp(mu + sigma * Z)
+                if x <= s:
+                    x = max(S - D, 0)
+                    restock_counter += 1
+                else:
+                    x = max(x - D, 0)
+
+            if restock_counter > 1:
+                firm_counter += 1
+
+        return firm_counter / num_firms
+
+Note the time the routine takes to run, as well as the output.
+
+.. code:: ipython3
+
+    %%time
+
+    freq = compute_freq()
+    print(f"Frequency of at least two stock outs = {freq}")
+
+Try switching the ``parallel`` flag to ``False`` in the jitted function
+above.
+
+Depending on your system, the difference can be substantial.
+
+(On our desktop machine, the speed up is by a factor of 5.)
 
 
