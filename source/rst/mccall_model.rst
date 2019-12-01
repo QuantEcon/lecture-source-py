@@ -154,7 +154,7 @@ to states.
 
 To this end, let :math:`v^*(s)` be the total lifetime *value* accruing to an
 unemployed worker who enters the current period unemployed when the state is
-:math:`s \in \mathbb{S}`
+:math:`s \in \mathbb{S}`.
 
 In particular, the agent has wage offer :math:`w(s)` in hand.
 
@@ -309,7 +309,7 @@ This algorithm returns an arbitrarily good approximation to the true solution
 to :eq:`odu_pv2`, which represents the value function.
 
 (Arbitrarily good means here that the approximation converges to the true
-solution as the tolerance goes to zero)
+solution as the tolerance goes to zero.)
 
 
 The Fixed Point Theory
@@ -697,7 +697,7 @@ Compute the average duration of unemployment when :math:`\beta=0.99` and
 
     ``c_vals = np.linspace(10, 40, 25)``
 
-That is, start the agent off as unemployed, computed their reservation wage
+That is, start the agent off as unemployed, compute their reservation wage
 given the parameters, and then simulate to see how long it takes to accept.
 
 Repeat a large number of times and take the average.
