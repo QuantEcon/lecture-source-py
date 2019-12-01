@@ -26,7 +26,7 @@ Overview
 :doc:`Previously <linear_models>` we learned about linear stochastic processes
 (linear state space models).
 
-Now we generalize these linear models slightly by allowing the multiplicative component to be stochastic.  
+Now we generalize these linear models slightly by allowing the multiplicative coefficient to be stochastic.  
 
 Such processes are known as Kesten processes after German--American mathematician Harry Kesten (1931--2019)
 
@@ -47,12 +47,16 @@ Let's start with some imports:
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-The following two lines can be added to avoid an annoying FutureWarning, and prevent a specific compatibility issue between pandas and matplotlib from causing problems down the line:
+The following two lines are only added to avoid a ``FutureWarning`` caused by 
+compatibility issues between pandas and matplotlib.
 
 .. code-block:: ipython
     
     from pandas.plotting import register_matplotlib_converters
     register_matplotlib_converters()
+
+Additional technical background related to this lecture can be found in the
+monograph of :cite:`buraczewski2016stochastic`.
 
 
 Kesten Processes
@@ -68,13 +72,13 @@ A **Kesten process** is a stochastic process of the form
     :label: kesproc
 
     x_{t+1} = a_{t+1} x_t + \eta_{t+1}
-    \quad \text{with } x_0 \text{ given}
 
 where :math:`\{a_t\}_{t \geq 1}` and :math:`\{\eta_t\}_{t \geq 1}` are IID
 sequences.
 
-We will focus on the nonnegative scalar case, where :math:`x_t` takes values
-in :math:`\mathbb R_+`.
+We are interested in the dynamics of :math:`\{x_t\}_{t \geq 0}` when :math:`x_0` is given.
+
+We will focus on the nonnegative scalar case, where :math:`x_t` takes values in :math:`\mathbb R_+`.
 
 In particular, we will assume that 
 
@@ -91,7 +95,7 @@ Example: GARCH Volatility
 -------------------------
 
 
-The GARCH model is common in financial settings, where time series such as asset returns exhibit time varying volatility.
+The GARCH model is common in financial applications, where time series such as asset returns exhibit time varying volatility.
 
 For example, consider the following plot of daily returns on the Nasdaq
 Composite Index for the period 1st January 2006 to 1st November 2019. 
@@ -213,14 +217,17 @@ Suppose further that
 
 * there are many households.
 
-Then :math:`F^*` is a steady state for the wealth distribution.
+Then :math:`F^*` is a steady state for the cross-sectional wealth distribution in this country.
+
+In other words, if :math:`F^*` is the current wealth distribution then it will
+remain so in subsequent periods, *ceteris paribus*.
 
 To see this, suppose that :math:`F^*` is the current wealth distribution.
 
 What is the fraction of households with wealth less than :math:`y` next
 period?
 
-To obtain this, we sum the probability that wealth is less than :math:`y` tomorrow given that current wealth is :math:`w`, weighted by the fraction of households with wealth :math:`w`.  
+To obtain this, we sum the probability that wealth is less than :math:`y` tomorrow, given that current wealth is :math:`w`, weighted by the fraction of households with wealth :math:`w`.  
 
 .. If we randomly select a household and update it via :eq:`wealth_dynam`, then, by the definition of stationarity, we draw its new wealth according to :math:`F^*`
 
@@ -231,8 +238,7 @@ Noting that the fraction of households with wealth in interval :math:`dw` is :ma
 
     \int \mathbb P\{ R_{t+1} s w  + y_{t+1} \leq y\} F^*(dw)
 
-Since :math:`F^*` is stationary for the wealth process, this is just
-:math:`F^*(y)`.
+By the definition of stationarity and the assumption that :math:`F^*` is stationary for the wealth process, this is just :math:`F^*(y)`.
 
 Hence the fraction of households with wealth in :math:`[0, y]` is the same
 next period as it is this period.
@@ -267,7 +273,7 @@ then a unique stationary distribution exists on :math:`\mathbb R_+`.
 
 As one application of this result, we see that the wealth process
 :eq:`wealth_dynam` will have a unique stationary distribution whenever
-:math:`\mathbb E \ln R_t  + \ln s < 0`.
+labor income has finite mean and :math:`\mathbb E \ln R_t  + \ln s < 0`.
 
 
 Heavy Tails
@@ -281,22 +287,22 @@ a Pareto tail.
 This fact is highly significant for economics because of the prevalence of
 Pareto-tailed distributions.
 
-The Kesten-Goldie Theorem
--------------------------
+The Kesten--Goldie Theorem
+--------------------------
 
-To state the conditions under which the stationary distribution of a Kesten process has a Pareto tail, we first recall that a random variable is called **nonarithmetic** if its distribution is not concentrated on :math:`t \mathbb Z` for any :math:`t \geq 0`.
+To state the conditions under which the stationary distribution of a Kesten process has a Pareto tail, we first recall that a random variable is called **nonarithmetic** if its distribution is not concentrated on :math:`\{\dots, -2t, -t, 0, t, 2t, \ldots \}` for any :math:`t \geq 0`.
 
 For example, any random variable with a density is nonarithmetic.
 
 The famous Kesten--Goldie Theorem (see, e.g., :cite:`buraczewski2016stochastic`, theorem 2.4.4) states that if
 
-1. The stationarity conditions in :eq:`kp_stat_cond` hold,
+1. the stationarity conditions in :eq:`kp_stat_cond` hold,
 
-2. The random variable :math:`a_t` is positive with probability one and nonarithmetic.
+2. the random variable :math:`a_t` is positive with probability one and nonarithmetic,
 
-3. :math:`\mathbb P\{a_t x + \eta_t = x\} < 1` for all :math:`x \in \mathbb R_+`.
+3. :math:`\mathbb P\{a_t x + \eta_t = x\} < 1` for all :math:`x \in \mathbb R_+` and
 
-4. There exists a positive constant :math:`\alpha` such that
+4. there exists a positive constant :math:`\alpha` such that
 
 .. math::
 
@@ -321,7 +327,7 @@ for some positive constant :math:`c`.
 Intuition
 ---------
 
-Later we will illustrate the Kesten-Goldie Theorem using rank-size plots.
+Later we will illustrate the Kesten--Goldie Theorem using rank-size plots.
 
 Prior to doing so, we can give the following intuition for the conditions.
 
@@ -435,7 +441,7 @@ So what has this to do with heavy tails?
 
 The answer is that :eq:`firm_dynam` is a Kesten process.
 
-If the conditions of the Kesten-Goldie Theorem are satisfied, then the firm
+If the conditions of the Kesten--Goldie Theorem are satisfied, then the firm
 size distribution is predicted to have heavy tails --- which is exactly what
 we see in the data.
 
@@ -474,15 +480,108 @@ In our discussion of firm dynamics, it was claimed that :eq:`firm_dynam` is more
 
 In what sense is this true (or false)?
 
-.. Exercise 3
 
-    .. math::
-        :label: firm_dynam_ee
 
-        s_{t+1} = e_{t+1} \mathbb 1 \{s_t < \bar s\}
-            + (a_{t+1} s_t + b_{t+1}) \mathbb 1 \{s_t \geq \bar s\}
+Exercise 3
+----------
 
-    Generate rank-size plot.
+Consider an arbitrary Kesten process as given in :eq:`kesproc`.
+
+Suppose that :math:`\{a_t\}` is lognormal with parameters :math:`(\mu,
+\sigma)`.
+
+In other words, each :math:`a_t` has the same distribution as :math:`a = \exp(\mu + \sigma Z)` when :math:`Z` is standard normal.
+
+Suppose further that :math:`\mathbb E \eta_t^r < \infty` for every :math:`r > 0`, as
+would be the case if, say, :math:`\eta_t` is also lognormal.
+
+Show that the conditions of the Kesten--Goldie theorem are satisfied if and
+only if :math:`\mu < 0`.
+
+Obtain the value of :math:`\alpha` that makes the Kesten--Goldie conditions
+hold.
+
+
+Exercise 4
+----------
+
+One unrealistic aspect of the firm dynamics specified in :eq:`firm_dynam` is
+that it ignores entry and exit.
+
+In any given period and in any given market, we observe significant numbers of firms entering and exiting the market.
+
+Empirical discussion of this can be found in a famous paper by Hugo Hopenhayn :cite:`hopenhayn1992entry`.
+
+In the same paper, Hopenhayn builds a model of entry and exit that
+incorporates profit maximization by firms and market clearing quantities, wages and prices.
+
+In his model, a stationary equilibrium occurs when the number of entrants
+equals the number of exiting firms.
+
+In this setting, firm dynamics can be expressed as
+
+.. math::
+    :label: firm_dynam_ee
+
+    s_{t+1} = e_{t+1} \mathbb 1 \{s_t < \bar s\}
+        + (a_{t+1} s_t + b_{t+1}) \mathbb 1 \{s_t \geq \bar s\}
+
+Here
+
+* the state variable :math:`s_t` is represents productivity (which is a proxy
+  for output and hence firm size),
+* the IID sequence :math:`\{ e_t \}` is thought of as a productivity draw for a new
+  entrant and
+* the variable :math:`\bar s` is a threshold value that we take as given,
+  although it is determined endogenously in Hopenhayn's model.
+
+The idea behind :eq:`firm_dynam_ee` is that firms stay in the market as long
+as their productivity :math:`s_t` remains at or above :math:`\bar s`.
+
+* In this case, their productivity updates according to :eq:`firm_dynam`.
+
+Firms choose to exit when their productivity :math:`s_t` falls below :math:`\bar s`.
+
+
+* In this case, they are replaced by a new firm with productivity
+  :math:`e_{t+1}`.
+
+What can we say about dynamics?
+
+Although :eq:`firm_dynam_ee` is not a Kesten process, it does update in the
+same way as a Kesten process when :math:`s_t` is large.
+
+So perhaps its stationary distribution still has Pareto tails?
+
+Your task is to investigate this question via simulation and rank-size plots.
+
+The approach will be to 
+
+1. generate :math:`M` draws of :math:`s_T` when :math:`M` and :math:`T` are
+   large and
+
+2. plot the largest 1,000 of the resulting draws in a rank-size plot.
+
+(The distribution of :math:`s_T` will be close to the stationary distribution
+when :math:`T` is large.)
+
+In the simulation, assume that
+
+* each of :math:`a_t, b_t` and :math:`e_t` is lognormal,
+* the parameters are
+
+.. code:: ipython3
+
+    μ_a = -0.5        # location parameter for a
+    σ_a = 0.1         # scale parameter for a
+    μ_b = 0.0         # location parameter for b
+    σ_b = 0.5         # scale parameter for b
+    μ_e = 0.0         # location parameter for e
+    σ_e = 0.5         # scale parameter for e
+    s_bar = 1.0       # threshold
+    T = 500           # sampling date 
+    M = 1_000_000     # number of firms
+    s_init = 1.0      # initial condition for each firm
 
 
 
@@ -561,4 +660,97 @@ Both of these decline with firm size :math:`s`, consistent with the data.
 
 Moreover, the law of motion :eq:`firm_dynam_2` clearly approaches Gibrat's law
 :eq:`firm_dynam_gb` as :math:`s_t` gets large.
+
+
+Exercise 3
+----------
+
+Since :math:`a_t` has a density it is nonarithmetic.
+
+Since :math:`a_t` has the same density as :math:`a = \exp(\mu + \sigma Z)` when :math:`Z` is standard normal, we have
+
+.. math::
+
+    \mathbb E \ln a_t = \mathbb E (\mu + \sigma Z) = \mu,
+
+and since :math:`\eta_t` has finite moments of all orders, the stationarity
+condition holds if and only if :math:`\mu < 0`.
+
+Given the properties of the lognormal distribution (which has finite moments
+of all orders), the only other condition in doubt is existence of a positive constant
+:math:`\alpha` such that :math:`\mathbb E a_t^\alpha = 1`.
+
+This is equivalent to the statement
+
+.. math::
+
+    \exp \left( \alpha \mu + \frac{\alpha^2 \sigma^2}{2} \right) = 1.
+
+Solving for :math:`\alpha` gives :math:`\alpha = -2\mu / \sigma^2`.
+
+
+Exercise 4
+----------
+
+Here's one solution.
+
+
+.. code:: ipython3
+
+    from numba import njit, prange
+    from numpy.random import randn 
+    
+    def rank_size_data(data, largest=1_000):
+        """
+        Generate rank-size data corresponding to distribution data.
+    
+            * data is array like
+            * largest=n means take the n largest firms
+        """
+        w = - np.sort(- data)                  # Reverse sort
+        w = w[:largest]                
+        rank_data = np.log(np.arange(len(w)) + 1)
+        size_data = np.log(w)
+        return rank_data, size_data
+    
+    @njit(parallel=True)
+    def generate_draws(μ_a=-0.5,
+                       σ_a=0.1,
+                       μ_b=0.0,
+                       σ_b=0.5,
+                       μ_e=0.0,
+                       σ_e=0.5,
+                       s_bar=1.0,
+                       T=500,
+                       M=1_000_000, 
+                       s_init=1.0):
+        
+        draws = np.empty(M)
+        for m in prange(M):
+            s = s_init
+            for t in range(T):
+                if s < s_bar:
+                    new_s = np.exp(μ_e + σ_e *  randn())
+                else:
+                    a = np.exp(μ_a + σ_a * randn())
+                    b = np.exp(μ_b + σ_b * randn())
+                    new_s = a * s + b
+                s = new_s
+            draws[m] = s
+            
+        return draws
+    
+    rank_data, size_data = rank_size_data(generate_draws())
+    
+    fig, ax = plt.subplots()
+    
+    ax.plot(rank_data, size_data, 'o', markersize=3.0, alpha=0.5)
+    
+    ax.set_xlabel("log rank")
+    ax.set_ylabel("log size")
+    
+    ax.set_title("rank-size plot of firm size")
+    
+    plt.show()
+
 
