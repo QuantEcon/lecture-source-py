@@ -423,8 +423,10 @@ Default parameter values are embedded in the class.
 
 
 
-Based on these defaults, let's try plotting a sequence of value functions,
-starting from guess :math:`v` given by :math:`v(i) = w(i) / (1 - β)`.
+Based on these defaults, let's try plotting the first few approximate value functions
+in the sequence :math:`\{ T^n v \}`.
+
+We will start from guess :math:`v` given by :math:`v(i) = w(i) / (1 - β)`, which is the value of accepting at every given wage.
 
 Here's a function to implement this:
 
@@ -462,15 +464,10 @@ Now let's create an instance of ``McCallModel`` and call the function:
     plot_value_function_seq(mcm, ax)
     plt.show()
 
-First, let's have a look at the sequence of approximate value functions that
-the algorithm above generates.
-
-Our initial guess :math:`v` is the value of accepting at every given wage.
-
-Here's more serious iteration effort, that continues until measured deviation
+Here's a more serious iteration effort, that continues until measured deviation
 between successive iterates is below `tol`.
 
-We'll be using JIT compilation via Numba to turbo charge our loops
+We'll be using JIT compilation via Numba to turbocharge our loops
 
 .. code-block:: python3
 
