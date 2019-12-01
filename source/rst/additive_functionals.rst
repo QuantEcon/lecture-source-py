@@ -1357,7 +1357,7 @@ Here is some code that tackles these tasks
 
 These probability density functions help us understand mechanics underlying the  **peculiar property** of our multiplicative martingale
 
-* As :math:`T` grows, most of the probability mass shifts leftward toward zero --.
+* As :math:`T` grows, most of the probability mass shifts leftward toward zero.
 
 * For example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but
   most of it is near :math:`0` for :math:`T = 5000`.
