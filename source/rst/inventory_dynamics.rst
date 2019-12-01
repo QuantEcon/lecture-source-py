@@ -29,7 +29,7 @@ A review of early literature and some macroeconomic implications can be found in
 
 Here our main aim is to learn more about simulation, time series and Markov dynamics.
 
-While our Markov environment is related to that found in our :doc:`lecture on finite Markov chains <finite_markov>`, the state space is a continuum in the current application.
+While our Markov environment and many of the concepts we consider are related to those found in our :doc:`lecture on finite Markov chains <finite_markov>`, the state space is a continuum in the current application.
 
 Let's start with some imports
 
@@ -49,8 +49,7 @@ Consider a firm with inventory :math:`X_t`.
 
 The firm waits until :math:`X_t \leq s` and then restocks up to :math:`S` units.
 
-It faces stochastic demand :math:`D_{t+1}`, where :math:`\{D_t\}` is
-IID with common density :math:`q`.
+It faces stochastic demand :math:`\{ D_t \}`, which we assume is IID.
 
 With notation :math:`a^+ := \max\{a, 0\}`, inventory dynamics can be written
 as
@@ -64,7 +63,7 @@ as
         \end{cases}
 
 
-In what follows, we will assume that :math:`q` is lognormal, so that
+In what follows, we will assume that each :math:`D_t` is lognormal, so that
 
 .. math::  
 
@@ -242,13 +241,14 @@ Note that the distribution is bimodal
 
 * Firms in the second category have lower inventory.
 
-We can also approximate the distribution using a kernel density estimator. 
+We can also approximate the distribution using a `kernel density estimator
+<https://en.wikipedia.org/wiki/Kernel_density_estimation>`__. 
 
 Kernel density estimators can be thought of as smoothed histograms.
 
 They are preferable to histograms when the distribution being estimated is likely to be smooth.
 
-We will use a kernel density estimator from Scikit Learn.
+We will use a kernel density estimator from `scikit-learn <https://scikit-learn.org/stable/>`__
 
 .. code:: ipython3
 
@@ -269,7 +269,8 @@ We will use a kernel density estimator from Scikit Learn.
     plot_kde(sample, ax)
     plt.show()
 
-
+The allocation of probability mass is similar to what was shown by the
+histogram just above.
 
 Exercises
 =========
@@ -291,7 +292,7 @@ initial conditions.
 Although we will not prove this here, we can investigate it using simulation.
 
 Your task is to generate and plot the sequence :math:`\{\psi_t\}` at times
-:math:`t = 10, 50, 200, 300, 400` using the code above.
+:math:`t = 10, 50, 250, 500, 750` using the code above.
 
 You should see convergence. Try different initial conditions to verify
 that, in the long run, the distribution is invariant across initial
