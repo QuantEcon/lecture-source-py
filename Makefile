@@ -8,11 +8,10 @@ SPHINXOPTS    = -c "./"
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = lecture-source-py
 SOURCEDIR     = source/rst
-BUILDDIR      = _build
+BUILDDIR      = _build/codetree
 BUILDWEBSITE  = _build/website
 BUILDCOVERAGE = _build/coverage
 BUILDPDF      = _build/pdf
-BUILDCODE     = _build/codetree
 PORT          = 8890
 FILES         = 
 
@@ -46,6 +45,12 @@ clean-website:
 clean-pdf:
 	rm -rf $(BUILDDIR)/jupyterpdf
 
+clean-execute:
+	rm -rf $(BUILDDIR)/jupytercode
+
+clean-jupyter:
+	rm -rf $(BUILDDIR)/jupyter
+
 coverage:
 ifneq ($(strip $(parallel)),)
 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDCOVERAGE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_coverage=1 -D jupyter_execute_notebooks=1 -D jupyter_ignore_skip_test=0 -D jupyter_template_coverage_file_path="error_report_template.html" -D jupyter_number_workers=$(parallel) 
@@ -71,10 +76,10 @@ endif
 
 execute:
 ifneq ($(strip $(parallel)),)
-	@@$(SPHINXBUILD) -M jupytercodeexec "$(SOURCEDIR)" "$(BUILDCODE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_number_workers=$(parallel)
+	@@$(SPHINXBUILD) -M jupytercode "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M jupytercodeexec "$(SOURCEDIR)" "$(BUILDCODE)" $(FILES) $(SPHINXOPTS) $(O)
+	@$(SPHINXBUILD) -M jupytercode "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O)
 endif
 
 constructor-pdf:
