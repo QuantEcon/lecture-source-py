@@ -37,6 +37,9 @@ Once separation enters the picture, the agent comes to view
 
 *  a spell of unemployment as an *investment* in searching for an acceptable job
 
+The other minor addition is that a utility function will be included to make
+worker preferences slightly more sophisticated.
+
 We'll need the following imports
 
 .. code-block:: ipython
@@ -50,7 +53,10 @@ We'll need the following imports
 The Model
 =========
 
-The model concerns the life of an infinitely lived worker and
+The model is similar to that described in :doc:`our lecture <mccall_model>` on
+the McCall job search model.
+
+It concerns the life of an infinitely lived worker and
 
 * the opportunities he or she (let's say he to save one character) has to work at different wages
 
@@ -65,127 +71,192 @@ He wants to maximize
 .. math::
     :label: objective
 
-    {\mathbb E} \sum_{t=0}^\infty \beta^t u(Y_t)
+    {\mathbb E} \sum_{t=0}^\infty \beta^t u(y_t)
 
-The only difference from the :doc:`baseline model <mccall_model>` is that
-we've added some flexibility over preferences by introducing a utility function :math:`u`.
+At this stage the only difference from the :doc:`baseline model
+<mccall_model>` is that we've added some flexibility to preferences by
+introducing a utility function :math:`u`.
 
 It satisfies :math:`u'> 0` and :math:`u'' < 0`.
+
+
+The Wage Process
+----------------
+
+For now we will drop the separation of state process and wage process that we
+maintained for the :doc:`baseline model <mccall_model>`. 
+
+In particular, we simply suppose that wage offers :math:`\{ w_t \}` are IID with common distribution :math:`q`.
+
+The set of possible wage values is denoted by :math:`\mathbb W`.
+
+(Later we will go back to having a separate state process :math:`\{s_t\}`
+driving random outcomes, since this formulation is usually convenient in more sophisticated
+models.)
 
 
 
 Timing and Decisions
 --------------------
 
-Here's what happens at the start of a given period in our model with search and separation.
+At the start of each period, the agent can be either
 
-If currently *employed*, the worker consumes his wage :math:`w`, receiving utility :math:`u(w)`.
+* unemployed or
+* employed at some existing wage level :math:`w_e`.
 
-If currently *unemployed*, he
+At the start of a given period, the current wage offer :math:`w = w_t` is observed.
 
-* receives and consumes unemployment compensation :math:`c`
+If currently *employed*, the worker 
 
-* receives an offer to start work *next period* at a wage :math:`w'` drawn from a known distribution :math:`\phi`
+1. consumes his wage :math:`w_e`, receiving utility :math:`u(w_e)`, and then
+2. is fired with probability :math:`\alpha`.
 
-He can either accept or reject the offer.
+If currently *unemployed*, the worker either accepts or rejects the current offer 
 
-If he accepts the offer, he enters next period employed with wage :math:`w'`.
+If he accepts, then he begins work immediately at wage :math:`w_t`.
 
-If he rejects the offer, he enters next period unemployed.
+If he rejects, then he receives unemployment compensation :math:`c`.
 
-When employed, the agent faces a constant probability :math:`\alpha` of becoming unemployed at the end of the period.
-
-
-(Note: we do not allow for job search while employed---this topic is taken
-up in a :doc:`later lecture <jv>`)
+(Note: we do not allow for job search while employed---this topic is taken up in a :doc:`later lecture <jv>`)
 
 
 
 
 
-
-Solving the Model using Dynamic Programming
-===========================================
+Solving the Model 
+=================
 
 Let
 
-* :math:`v(w)` be the total lifetime value accruing to a worker who enters the current period *employed* with wage :math:`w`
+* :math:`v(w_e)` be total lifetime value accruing to a worker who enters the current period *employed* with existing wage :math:`w_e`
 
-* :math:`h` be the total lifetime value accruing to a worker who is *unemployed* this period
+* :math:`h(w)` be total lifetime value accruing to a worker who is *unemployed* this period and observes current wage :math:`w`.
 
 Here *value* means the value of the objective function :eq:`objective` when the worker makes optimal decisions at all future points in time.
 
-Suppose for now that the worker can calculate the function :math:`v` and the constant :math:`h` and use them in his decision making.
+Our first aim is to obtain these functions.
+
+The Bellman Equations
+---------------------
+
+Suppose for now that the worker can calculate the functions :math:`v` and :math:`h` and use them in his decision making.
 
 Then :math:`v` and :math:`h`  should satisfy
 
 .. math::
     :label: bell1_mccall
 
-    v(w) = u(w) + \beta [(1-\alpha)v(w) + \alpha h ]
-
+    v(w_e) = u(w_e) + \beta 
+        \left[
+            (1-\alpha)v(w_e) + \alpha \sum_{w' \in \mathbb W} h(w') q(w') 
+        \right]
 
 and
 
 .. math::
     :label: bell2_mccall
 
-    h = u(c) + \beta \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
+    h(w) = \max \left\{ v(w), \,  u(c) + \beta \sum_{w' \in \mathbb W} h(w') q(w') \right\} 
 
 
-Let's interpret these two equations in light of the fact that today's tomorrow is tomorrow's today
+Equation :eq:`bell1_mccall` expresses the value of being employed at wage :math:`w_e` in terms of 
 
-* The left-hand sides of equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the values of a worker in a particular situation *today*.
+* current reward :math:`u(w_e)` plus
+* discounted expected reward tomorrow, given the :math:`\alpha` probability of being fired 
 
-* The right-hand sides of the equations are the discounted (by :math:`\beta`) expected values of the possible situations that worker can be in *tomorrow*.
+Equation :eq:`bell2_mccall` expresses the value of being unemployed at current
+wage :math:`w` as a maximum over the value of two options: accept or reject
+the current offer :math:`w(s)`.
 
-*  But *tomorrow* the worker can be in only one of the situations whose values *today* are on the left sides of our two equations.
+Accepting transitions the worker to employment and hence yields current reward :math:`v(w)`.
 
-Equation :eq:`bell2_mccall` incorporates the fact that a currently unemployed worker will maximize his own welfare.
+Rejecting leads to unemployment compensation and unemployment tomorrow.
 
-In particular, if his next period wage offer is :math:`w'`, he will choose to remain unemployed unless  :math:`h < v(w')`.
+Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations for this model.
 
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations
-for this model.
-
-Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` provide enough information to solve out for both :math:`v` and :math:`h`.
-
-Before discussing this, however, let's make a small extension to the model.
+They provide enough information to solve out for both :math:`v` and :math:`h`.
 
 
+A Simplifying Transformation
+----------------------------
 
+Rather than jumping straight into solving these equations, let's see if we can
+simplify them somewhat.
 
+(This process will be analogous to our :ref:`second pass <mm_op2>` at the plain vanila
+McCall model, where we simplified the Bellman equation.)
 
-Stochastic Offers
------------------
-
-Let's suppose now that unemployed workers don't always receive job offers.
-
-Instead, let's suppose that unemployed workers only receive an offer with probability :math:`\gamma`.
-
-If our worker does receive an offer, the wage offer is drawn from :math:`\phi` as before.
-
-He either accepts or rejects the offer.
-
-Otherwise, the model is the same.
-
-
-With some thought, you  will be able to convince yourself that :math:`v` and :math:`h`  should now satisfy
+First, let 
 
 .. math::
-    :label: bell01_mccall
+    :label: defd_mm
 
-    v(w) = u(w) + \beta [(1-\alpha)v(w) + \alpha h ]
+    d := \sum_{w' \in \mathbb W} h(w') q(w')
+
+be the expected value of unemployment tomorrow.
+
+We can now write :eq:`bell2_mccall` as 
+
+.. math::
+
+    h(w) = \max \left\{ v(w), \,  u(c) + \beta d \right\} 
+
+or, shifting time forward one period 
+
+.. math::
+
+     \sum_{w' \in \mathbb W} h(w') q(w')
+      = \sum_{w' \in \mathbb W} \max \left\{ v(w'), \,  u(c) + \beta d \right\} q(w')
 
 
-and
+Using :eq:`defd_mm` again now gives
 
 .. math::
     :label: bell02_mccall
 
-    h = u(c) +
-      \beta (1 - \gamma) h +
-      \beta \gamma \sum_{w'} \max \left\{ h, v(w') \right\} \phi(w')
+      d = \sum_{w' \in \mathbb W} \max \left\{ v(w'), \,  u(c) + \beta d \right\} q(w')
+
+Finally, :eq:`bell1_mccall` can now be rewritten as
+
+.. math::
+    :label: bell01_mccall
+
+    v(w) = u(w) + \beta 
+        \left[
+            (1-\alpha)v(w) + \alpha d  
+        \right]
+
+In the last expression, we wrote :math:`w_e` as :math:`w` to make the notation
+simpler.
+
+
+The Reservation Wage
+--------------------
+
+Suppose we can use :eq:`bell02_mccall` and :math:`bell01_mccall` to solve for
+:math:`d` and :math:`v`.
+
+(We will see how to do this soon.)
+
+We can then determine optimal behavior for the worker.
+
+From :eq:`bell2_mccall`, we see that an unemployed agent accepts current offer
+:math:`w` if `v(w) \geq  u(c) + \beta d`.
+
+This means precisely that the value of accepting is higher than the expected
+value of rejecting.
+
+It is clear that :math:`v` is (at least weakly) increasing in :math:`w`, since the agent is
+never made worse off by a higher wage offer.
+
+Hence, we can express the optimal choice as accepting wage offer :math:`w` if
+and only if
+
+.. math::
+
+     w \geq \bar w 
+     \quad \text{where} \quad
+     \bar w \text{ solves } v(\bar w) =  u(c) + \beta d 
 
 
 Solving the Bellman Equations
@@ -197,12 +268,11 @@ adopted in the :doc:`first job search lecture <mccall_model>`.
 
 Here this amounts to
 
-#. make guesses for :math:`h` and :math:`v`
+#. make guesses for :math:`d` and :math:`v`
 
-#. plug these guesses into the right-hand sides of :eq:`bell01_mccall` and :eq:`bell02_mccall`
+#. plug these guesses into the right-hand sides of :eq:`bell02_mccall` and :eq:`bell01_mccall`
 
 #. update the left-hand sides from this rule and then repeat
-
 
 In other words, we are iterating using the rules
 
@@ -210,23 +280,21 @@ In other words, we are iterating using the rules
 .. math::
     :label: bell1001
 
-    v_{n+1} (w') = u(w') + \beta [(1-\alpha)v_n (w') + \alpha h_n ]
-
-
-and
+      d_{n+1} = \sum_{w' \in \mathbb W} 
+        \max \left\{ v(w'), \,  u(c) + \beta d_n \right\} q(w')
 
 .. math::
     :label: bell2001
 
-    h_{n+1} = u(c) +
-        \beta (1 - \gamma) h_n +
-        \beta \gamma \sum_{w'} \max \{ h_n, v_n(w') \} \phi(w')
+    v_{n+1}(w) = u(w) + \beta 
+        \left[
+            (1-\alpha)v_n(w) + \alpha d_n  
+        \right]
 
-
-starting from some initial conditions :math:`h_0, v_0`.
+starting from some initial conditions :math:`d_0, v_0`.
 
 As before, the system always converges to the true solutions---in this case,
-the :math:`v` and :math:`h` that solve :eq:`bell01_mccall` and :eq:`bell02_mccall`.
+the :math:`v` and :math:`d` that solve :eq:`bell02_mccall` and :eq:`bell01_mccall`.
 
 A proof can be obtained via the Banach contraction mapping theorem.
 
@@ -367,28 +435,6 @@ We'll use the default parameterizations found in the code above
 The value :math:`v` is increasing because higher :math:`w` generates a higher wage flow conditional on staying employed.
 
 
-
-
-The Reservation Wage
-====================
-
-Once :math:`v` and :math:`h` are known, the agent can use them to make decisions in the face of a given wage offer.
-
-If :math:`v(w) > h`, then working at wage :math:`w` is preferred to unemployment.
-
-If :math:`v(w) < h`, then remaining unemployed will generate greater lifetime value.
-
-Suppose in particular that :math:`v` crosses :math:`h` (as it does in the preceding figure).
-
-Then, since :math:`v` is increasing, there is a unique smallest :math:`w` in the set of possible wages such that :math:`v(w) \geq h`.
-
-We denote this wage :math:`\bar w` and call it the reservation wage.
-
-Optimal behavior for the worker is characterized by :math:`\bar w`
-
-*  if the  wage offer :math:`w` in hand is greater than or equal to :math:`\bar w`, then the worker accepts
-
-*  if the  wage offer :math:`w` in hand is less than :math:`\bar w`, then the worker rejects
 
 Here's a function ``compute_reservation_wage`` that takes an instance of ``McCallModel``
 and returns the reservation wage associated with a given model.
