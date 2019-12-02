@@ -565,7 +565,7 @@ unemployment compensation.
 
 
 
-
+.. _mm_op2:
 
 Computing the Optimal Policy: Take 2
 ====================================
