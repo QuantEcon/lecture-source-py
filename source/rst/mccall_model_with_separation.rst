@@ -182,6 +182,8 @@ Equations :eq:`bell1_mccall` and :eq:`bell2_mccall` are the Bellman equations fo
 They provide enough information to solve for both :math:`v` and :math:`h`.
 
 
+.. _ast_mcm:
+
 A Simplifying Transformation
 ----------------------------
 
@@ -437,7 +439,7 @@ The Reservation Wage: Computation
 ---------------------------------
 
 Here's a function ``compute_reservation_wage`` that takes an instance of ``McCallModel``
-and returns the reservation wage associated with a given model.
+and returns the associated reservation wage.
 
 It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`.
 

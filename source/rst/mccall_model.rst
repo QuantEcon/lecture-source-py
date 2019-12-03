@@ -752,9 +752,12 @@ Try to carry this out, setting
 You will need to implement a new version of the ``McCallModel`` class that
 assumes a lognormal wage distribution.
 
+Calculate the integral by Monte Carlo, by averaging over a large number of wage draws.
+
 For default parameters, use ``c=25, β=0.99, σ=0.5, μ=2.5``.
 
-
+Once your code is working, investigate how the reservation wage changes with :math:`c` and
+:math:`\beta`.
 
 Solutions
 =========
@@ -859,7 +862,10 @@ Exercise 2
 
         return (1 - β) * h
 
-Let's test it.
+Now we investigate how the reservation wage changes with :math:`c` and
+:math:`\beta`.
+
+We will do this using a contour plot.
 
 .. code-block:: python3
 
@@ -872,7 +878,7 @@ Let's test it.
     for i, c in enumerate(c_vals):
         for j, β in enumerate(β_vals):
             mcmc = McCallModelContinuous(c=c, β=β)
-            R[i, j] = compute_reservation_wage(mcmc)
+            R[i, j] = compute_reservation_wage_continuous(mcmc)
 
 
 .. code-block:: python3

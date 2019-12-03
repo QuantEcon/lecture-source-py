@@ -24,6 +24,7 @@ agents as given.  Later we will look at full equilibrium problems.
     short_path
     mccall_model
     mccall_model_with_separation
+    mccall_fitted_vfi
     mccall_correlated
     odu
     career

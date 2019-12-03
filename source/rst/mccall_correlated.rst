@@ -6,7 +6,7 @@
 
 
 **************************************
-Job Search III: Correlated Wage Offers
+Job Search IV: Correlated Wage Offers
 **************************************
 
 .. contents:: :depth: 2

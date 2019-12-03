@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ************************************
-Job Search III: Search with Learning
+Job Search V: Search with Learning
 ************************************
 
 .. contents:: :depth: 2
