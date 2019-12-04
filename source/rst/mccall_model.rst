@@ -657,7 +657,7 @@ Here's an implementation:
                                      max_iter=500,
                                      tol=1e-5):
 
-        # == First compute q == #
+        # == First compute h == #
 
         h = np.sum(mcm.w * mcm.q) / (1 - mcm.β)
         i = 0
@@ -701,6 +701,63 @@ Repeat a large number of times and take the average.
 
 Plot mean unemployment duration as a function of :math:`c` in ``c_vals``.
 
+
+
+Exercise 2
+----------
+
+The purpose of this exercise is to show how one can replace the discrete wage
+offer distribution used above with a continuous distribution.
+
+This is a significant topic because many convenient distributions are
+continuous (i.e., have a density).
+
+Fortunately, the theory changes little in our simple model.
+
+Recall that :math:`h` in :eq:`j1` denotes the value of not accepting a job in this period but
+then behaving optimally in all subsequent periods:
+
+To shift to a continuous offer distribution, we can replace :eq:`j1` by
+
+.. math::
+    :label: j1c
+
+    h
+    = c + \beta
+        \int v^*(w(s')) q (s') ds'.
+    \quad
+
+Following the same procedure as before, we obtain
+
+.. math::
+    :label: j2c
+
+    h
+    = c + \beta
+        \int
+        \max \left\{
+            \frac{w(s')}{1 - \beta}, h
+        \right\}  q (s') d s'
+    \quad
+
+
+The aim is to solve this nonlinear equation by iteration, and from it obtain
+the reservation wage.
+
+Try to carry this out, setting
+
+* the state sequence :math:`\{ s_t \}` to be IID and standard normal and
+* the wage function to be :math:`w(s) = \exp(\mu + \sigma s)`.
+
+You will need to implement a new version of the ``McCallModel`` class that
+assumes a lognormal wage distribution.
+
+Calculate the integral by Monte Carlo, by averaging over a large number of wage draws.
+
+For default parameters, use ``c=25, β=0.99, σ=0.5, μ=2.5``.
+
+Once your code is working, investigate how the reservation wage changes with :math:`c` and
+:math:`\beta`.
 
 Solutions
 =========
@@ -754,3 +811,93 @@ Here's one solution
     ax.legend()
 
     plt.show()
+
+
+Exercise 2
+----------
+
+
+.. code-block:: python3
+
+    mccall_data_continuous = [
+        ('c', float64),          # unemployment compensation
+        ('β', float64),          # discount factor
+        ('σ', float64),          # scale parameter in lognormal distribution
+        ('μ', float64),          # location parameter in lognormal distribution
+        ('w_draws', float64[:])  # draws of wages for Monte Carlo
+    ]
+
+    @jitclass(mccall_data_continuous)
+    class McCallModelContinuous:
+
+        def __init__(self, c=25, β=0.99, σ=0.5, μ=2.5, mc_size=1000):
+
+            self.c, self.β, self.σ, self.μ = c, β, σ, μ
+
+            # Draw and store shocks
+            np.random.seed(1234)
+            s = np.random.randn(mc_size)
+            self.w_draws = np.exp(μ+ σ * s)
+
+
+    @jit(nopython=True)
+    def compute_reservation_wage_continuous(mcmc, max_iter=500, tol=1e-5):
+
+        c, β, σ, μ, w_draws = mcmc.c, mcmc.β, mcmc.σ, mcmc.μ, mcmc.w_draws
+
+        h = np.mean(w_draws) / (1 - β)  # initial guess
+        i = 0
+        error = tol + 1
+        while i < max_iter and error > tol:
+
+            integral = np.mean(np.maximum(w_draws / (1 - β), h))
+            h_next = c + β * integral
+
+            error = np.abs(h_next - h)
+            i += 1
+
+            h = h_next
+
+        # == Now compute the reservation wage == #
+
+        return (1 - β) * h
+
+Now we investigate how the reservation wage changes with :math:`c` and
+:math:`\beta`.
+
+We will do this using a contour plot.
+
+.. code-block:: python3
+
+    grid_size = 25
+    R = np.empty((grid_size, grid_size))
+
+    c_vals = np.linspace(10.0, 30.0, grid_size)
+    β_vals = np.linspace(0.9, 0.99, grid_size)
+
+    for i, c in enumerate(c_vals):
+        for j, β in enumerate(β_vals):
+            mcmc = McCallModelContinuous(c=c, β=β)
+            R[i, j] = compute_reservation_wage_continuous(mcmc)
+
+
+.. code-block:: python3
+
+    fig, ax = plt.subplots(figsize=(10, 5.7))
+
+    cs1 = ax.contourf(c_vals, β_vals, R.T, alpha=0.75)
+    ctr1 = ax.contour(c_vals, β_vals, R.T)
+
+    plt.clabel(ctr1, inline=1, fontsize=13)
+    plt.colorbar(cs1, ax=ax)
+
+
+    ax.set_title("reservation wage")
+    ax.set_xlabel("$c$", fontsize=16)
+    ax.set_ylabel("$β$", fontsize=16)
+
+    ax.ticklabel_format(useOffset=False)
+
+    plt.show()
+
+

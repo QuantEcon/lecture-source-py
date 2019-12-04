@@ -5,7 +5,7 @@
 .. highlight:: python3
 
 ***************************************
-Job Search IV: Modeling Career Choice
+Job Search VI: Modeling Career Choice
 ***************************************
 
 .. index::

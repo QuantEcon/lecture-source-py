@@ -24,10 +24,12 @@ agents as given.  Later we will look at full equilibrium problems.
     short_path
     mccall_model
     mccall_model_with_separation
-    wald_friedman
+    mccall_fitted_vfi
+    mccall_correlated
     odu
     career
     jv
+    wald_friedman
     optgrowth
     optgrowth_fast
     coleman_policy_iter

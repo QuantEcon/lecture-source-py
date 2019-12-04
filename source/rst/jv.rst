@@ -4,9 +4,9 @@
 
 .. highlight:: python3
 
-****************************************
-:index:`Job Search V: On-the-Job Search`
-****************************************
+******************************************
+:index:`Job Search VII: On-the-Job Search`
+******************************************
 
 .. index::
     single: Models; On-the-Job Search
