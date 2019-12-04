@@ -21,9 +21,10 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
   !pip install --upgrade quantecon
 
+
+
 Overview
 ========
-
 
 Previously :doc:`we looked <mccall_model>` at the McCall job search model :cite:`McCall1970` as a way of understanding unemployment and worker decisions.
 
@@ -54,8 +55,7 @@ We'll need the following imports
 The Model
 =========
 
-The model is similar to that described in :doc:`our lecture <mccall_model>` on
-the McCall job search model.
+The model is similar to the :doc:`baseline McCall job search model <mccall_model>`.
 
 It concerns the life of an infinitely lived worker and
 
@@ -109,7 +109,7 @@ At the start of a given period, the current wage offer :math:`w_t` is observed.
 
 If currently *employed*, the worker 
 
-1. consumes his wage :math:`w_e`, receiving utility :math:`u(w_e)`, and then
+1. receives utility :math:`u(w_e)` and 
 2. is fired with some (small) probability :math:`\alpha`.
 
 If currently *unemployed*, the worker either accepts or rejects the current offer :math:`w_t`.
@@ -441,40 +441,31 @@ The Reservation Wage: Computation
 Here's a function ``compute_reservation_wage`` that takes an instance of ``McCallModel``
 and returns the associated reservation wage.
 
-It uses `np.searchsorted <https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html>`__ to obtain the first :math:`w` in the set of possible wages such that :math:`v(w) > h`.
-
-If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
 
 .. code-block:: python3
 
-    def compute_reservation_wage(mcm, return_values=False):
+    @njit
+    def compute_reservation_wage(mcm):
         """
         Computes the reservation wage of an instance of the McCall model
-        by finding the smallest w such that v(w) > h.
+        by finding the smallest w such that v(w) >= h.
 
-        If v(w) > h for all w, then the reservation wage w_bar is set to
-        the lowest wage in mcm.w_vals.
-
-        If v(w) < h for all w, then w_bar is set to np.inf.
+        If no such w exists, then w_bar is set to np.inf.
         """
 
         v, d = solve_model(mcm)
         h = u(mcm.c) + mcm.β * d
-        w_idx = np.searchsorted(v - h, 0)
 
-        if w_idx == len(v):
-            w_bar = np.inf
-        else:
-            w_bar = mcm.w[w_idx]
+        w_bar = np.inf
+        for i, wage in enumerate(mcm.w):
+            if v[i] > h:
+                w_bar = wage
+                break
 
-        if not return_values:
-            return w_bar
-        else:
-            return w_bar, v, h
+        return w_bar
+
 
 Next we will investigate how the reservation wage varies with parameters.
-
-
 
 Impact of Parameters
 ====================
