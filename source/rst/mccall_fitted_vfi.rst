@@ -377,7 +377,7 @@ Here is one solution.
 
     mcm = McCallModelContinuous()
     mu_vals = np.linspace(0.0, 2.0, 15)
-    w_bar_vals = np.empty_like(sigma_vals)
+    w_bar_vals = np.empty_like(mu_vals)
 
     fig, ax = plt.subplots()
     
@@ -387,7 +387,7 @@ Here is one solution.
         w_bar_vals[i] = w_bar
 
     ax.set(xlabel='mean', ylabel='reservation wage')
-    ax.plot(sigma_vals, w_bar_vals, label=r'$\bar w$ as a function of $\mu$')
+    ax.plot(mu_vals, w_bar_vals, label=r'$\bar w$ as a function of $\mu$')
     ax.legend()
 
     plt.show()
@@ -405,7 +405,7 @@ Here is one solution.
     mcm = McCallModelContinuous()
     s_vals = np.linspace(1.0, 2.0, 15)
     m = 2.0
-    w_bar_vals = np.empty_like(sigma_vals)
+    w_bar_vals = np.empty_like(s_vals)
 
     fig, ax = plt.subplots()
     
@@ -416,7 +416,7 @@ Here is one solution.
         w_bar_vals[i] = w_bar
 
     ax.set(xlabel='volatility', ylabel='reservation wage')
-    ax.plot(sigma_vals, w_bar_vals, label=r'$\bar w$ as a function of wage volatility')
+    ax.plot(s_vals, w_bar_vals, label=r'$\bar w$ as a function of wage volatility')
     ax.legend()
 
     plt.show()
@@ -424,9 +424,9 @@ Here is one solution.
 The reservation wage increases with volatility.
 
 One might think that higher volatility would make the agent more inclined to
-take a given offer, since this represents certainty and waiting represents
+take a given offer, since doing so represents certainty and waiting represents
 risk.
 
-But job search is like holding an option: the worker is only exposed to upside risk (since no one can force them to take an offer).
+But job search is like holding an option: the worker is only exposed to upside risk (since, in a free market, no one can force them to take a bad offer).
 
 More volatility means higher upside potential, which encourages the agent to wait.

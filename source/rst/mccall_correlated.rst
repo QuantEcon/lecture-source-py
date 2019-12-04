@@ -62,7 +62,7 @@ where
 
     y_t \sim \exp(\mu + s \zeta_t)  
     \quad \text{and} \quad
-    z_{t+1} = d + \rho z_t + \sigma \epsilon 
+    z_{t+1} = d + \rho z_t + \sigma \epsilon_{t+1}
 
 Here :math:`\{ \zeta_t \}` and :math:`\{ \epsilon_t \}` are both IID and standard normal.
 
@@ -84,9 +84,9 @@ The value function satisfies the Bellman equation
             \frac{u(w)}{1-\beta}, u(c) + \beta \, \mathbb E_z v^*(w', z') 
         \right\} 
 
-Here :math:`\mathbb E_z` is expectation of next period variables given current :math:`z`.
+In this express, :math:`u` is a utility function and :math:`\mathbb E_z` is expectation of next period variables given current :math:`z`.
 
-
+The variable :math:`z` enters as a state in the Bellman equation because its current value helps predict future wages.
 
 A Simplification
 ----------------
@@ -121,9 +121,6 @@ operator
     Qf(z) = u(c) + \beta \, \mathbb E_z \max \left\{ \frac{u(w')}{1-\beta}, f(z') \right\} 
 
 
-Iteration
----------
-
 By construction, :math:`f^*` is a fixed point of :math:`Q`, in the sense that
 :math:`Q f^* = f^*`.
 
@@ -131,7 +128,7 @@ Under mild assumptions, it can be shown that :math:`Q` is a `contraction mapping
 
 By Banach's contraction mapping theorem, this means that :math:`f^*` is the unique fixed point and we can calculate it by iterating with :math:`Q` from any reasonable initial condition.
 
-Once we have :math:`f^*`, we can solve the search problem by stopping when the reward for excepting exceeds the continuation value, or
+Once we have :math:`f^*`, we can solve the search problem by stopping when the reward for accepting exceeds the continuation value, or
 
 .. math::     
 
@@ -150,11 +147,6 @@ That is,
     \bar w (z) := \exp(f^*(z) (1-\beta)) 
 
 
-Note that the reservation wage is a function of the state :math:`z`.
-
-This is because the state can be used to predict future wages and hence
-becomes useful information in making an optimal choice.
-
 Our main aim is to solve for the reservation rule and study its properties and implications.
 
 
@@ -164,14 +156,15 @@ Implementation
 
 Let :math:`f` be our initial guess of :math:`f^*`.
 
-When we iterate, :math:`f` and all subsequent iterates are stored as a vector
-of values on a grid. 
+When we iterate, we use the :doc:`fitted value function iteration <mccall_fitted_vfi>` algorithm.
 
-These points are interpolated into a function as required using piecewise linear interpolation.
+In particular, :math:`f` and all subsequent iterates are stored as a vector of values on a grid. 
+
+These points are interpolated into a function as required, using piecewise linear interpolation.
 
 The integral in the definition of :math:`Qf` is calculated by Monte Carlo.
 
-The following helps Numba by providing some type information about the data we will work with.
+The following list helps Numba by providing some type information about the data we will work with.
 
 .. code-block:: python3
 
@@ -467,3 +460,5 @@ Here is one solution.
     plt.show()
 
 The figure shows that more patient individuals tend to wait longer before accepting an offer.
+
+
