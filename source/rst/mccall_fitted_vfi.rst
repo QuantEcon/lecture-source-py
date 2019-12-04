@@ -34,13 +34,13 @@ scalar value (the continuation value).
 Here, with separation, the change is less trivial, since a continuous wage distributions leads to an uncountably infinite state space.
 
 The infinite state spaces lead to additional challenges, particularly when it
-comes to applying apply value function iteration (VFI).
+comes to applying value function iteration (VFI).
 
-This will lead us to modify VFI by adding an interpolation step.
+These challenges will lead us to modify VFI by adding an interpolation step.
 
 The combination of VFI and this interpolation step is called **fitted value function iteration** (fitted VFI).
 
-Fitted VFI is a very common algorithm, so we will take some time to work through the details.
+Fitted VFI is very common in practice, so we will take some time to work through the details.
 
 We will use the following imports:
 
@@ -53,7 +53,7 @@ We will use the following imports:
     import quantecon as qe
     from interpolation import interp
     from numpy.random import randn
-    from numba import njit, jitclass, prange, float64
+    from numba import njit, jitclass, prange, float64, int32
 
 
 
@@ -61,13 +61,11 @@ We will use the following imports:
 The Algorithm
 =============
 
-The model is the same as :doc:`before <mccall_model_with_separation>` except for the assumption on the state space.
+The model is the same as the McCall model with job separation we :doc:`studied before <mccall_model_with_separation>`, except that the wage offer distribution is continuous.
 
+We are going to start with the two Bellman equations we obtained for the model with job separation after :ref:`a simplifying transformation <ast_mcm>`.
 
-We are going to start with the two Bellman equations we obtained after :ref:`a simplifying transformation <ast_mcm>`.
-
-Modified to accommodate continuous wage draws, they take th following form:
-
+Modified to accommodate continuous wage draws, they take the following form:
 
 .. math::
     :label: bell1mcmc
@@ -84,13 +82,15 @@ and
             (1-\alpha)v(w) + \alpha d  
         \right]
 
+The unknowns here are the function :math:`v` and the scalar :math:`d`.
 
-The main difference to the pair of Bellman equations we originally worked on is that, in :eq:`bell1mcmc`, what used to be a sum over a finite number of wage values is an integral over an infinite set.
+The difference between these and the pair of Bellman equations we previously worked on are
 
-In addition, the function :math:`v` in :eq:`bell2mcmc` is defined over all :math:`w \in \mathbb R_+`.
+#. in :eq:`bell1mcmc`, what used to be a sum over a finite number of wage values is an integral over an infinite set.
 
-The function :math:`q` in :eq:`bell1mcmc` is the density of the wage offer
-distribution.
+#. The function :math:`v` in :eq:`bell2mcmc` is defined over all :math:`w \in \mathbb R_+`.
+
+The function :math:`q` in :eq:`bell1mcmc` is the density of the wage offer distribution.
 
 Its support is taken as equal to :math:`\mathbb R_+`.
 
@@ -110,11 +110,11 @@ In theory, we should now proceed as follows:
    and go to step 2.
 
 However, there is a problem we must confront before we implement this procedure:
-The iterates can neither be calculated exactly nor stored on a computer.
+The iterates of the value function can neither be calculated exactly nor stored on a computer.
 
 To see the issue, consider :eq:`bell2mcmc`.
 
-Even if :math:`v` is a known function,  the only way to store :math:`v'` 
+Even if :math:`v` is a known function,  the only way to store its update :math:`v'` 
 is to record its value :math:`v'(w)` for every :math:`w \in \mathbb R_+`.
 
 Clearly, this is impossible.
@@ -130,7 +130,7 @@ The procedure is as follows:
 Let a current guess :math:`v` be given.
 
 Now we record the value of the function :math:`v'` at only
-finitely many "grid" points :math:`w_1 < w_2 < \cdots < w_I` and then reconstruct it from this information when required.
+finitely many "grid" points :math:`w_1 < w_2 < \cdots < w_I` and then reconstruct :math:`v'` from this information when required.
 
 More precisely, the algorithm will be
 
@@ -205,6 +205,17 @@ We will take the utility function to be the log function for this application, w
 We will adopt the lognormal distribution for wages, with :math:`w = \exp(\mu + \sigma z)`
 when :math:`z` is standard normal and :math:`\mu, \sigma` are parameters.
 
+
+.. code-block:: python3
+
+    @njit
+    def lognormal_draws(n=1000, μ=2.5, σ=0.5, seed=1234):
+        np.random.seed(seed)
+        z = np.random.randn(n)
+        w_draws = np.exp(μ + σ * z)
+        return w_draws
+
+
 Here's our class.
 
 .. code-block:: python3
@@ -225,26 +236,20 @@ Here's our class.
         def __init__(self, 
                      c=1, 
                      α=0.1, 
-                     β=0.99, 
-                     σ=0.5, 
-                     μ=2.5, 
+                     β=0.96, 
                      grid_min=1e-10,
                      grid_max=5,
                      grid_size=100,
-                     mc_seed=1234,
-                     mc_size=1000):
+                     w_draws=lognormal_draws()):
 
-            self.c, self.α, self.β, self.σ, self.μ = c, α, β, σ, μ
-
-            # Draw and store shocks
-            np.random.seed(mc_seed)
-            s = np.random.randn(mc_size)
-            self.w_draws = np.exp(μ+ σ * s)
+            self.c, self.α, self.β = c, α, β
 
             self.w_grid = np.linspace(grid_min, grid_max, grid_size)
+            self.w_draws = w_draws
 
         def update(self, v, d):
 
+            # Simplify names
             c, α, β, σ, μ = self.c, self.α, self.β, self.σ, self.μ 
             w = self.w_grid
             u = lambda x: np.log(x)
@@ -328,25 +333,100 @@ Exercises
 =========
 
 
+Exercise 1
+----------
+
+Use the code above to explore what happens to the reservation wage when the wage parameter :math:`\mu`
+changes. 
+
+Use the default parameters and :math:`\mu` in ``mu_vals = np.linspace(0.0, 2.0, 15)``
+
+Is the impact on the reservation wage as you expected?
+
+Exercise 2
+----------
+
+Let us now consider how the agent responds to an increase in volatility.
+
+To try to understand this, compute the reservation wage when the wage offer
+distribution is uniform on :math:`(m - s, m + s)` and :math:`s` varies.
+
+The idea here is that we are holding the mean constant and spreading the
+support.
+
+(This is a form of *mean-preserving spread*.)
+
+
+Use ``s_vals = np.linspace(1.0, 2.0, 15)`` and ``m = 2.0``.
+
+State how you expect the reservation wage vary with :math:`s`.  
+
+Now compute it.  Is this as you expected?
+
+Solutions
+=========
+
+
+Exercise 1
+----------
+
+Here is one solution.
+
+
 .. code-block:: python3
 
     mcm = McCallModelContinuous()
-    sigma_vals = np.linspace(1.0, 2.0, 15)
+    mu_vals = np.linspace(0.0, 2.0, 15)
     w_bar_vals = np.empty_like(sigma_vals)
 
     fig, ax = plt.subplots()
     
-    for i, σ in enumerate(sigma_vals):
-        mcm.σ = σ
-        mcm.μ = - σ**2 / 2
+    for i, m in enumerate(mu_vals):
+        mcm.w_draws = lognormal_draws(μ=m)
         w_bar = compute_reservation_wage(mcm)
         w_bar_vals[i] = w_bar
 
-    ax.set(xlabel='separation rate', ylabel='reservation wage')
+    ax.set(xlabel='mean', ylabel='reservation wage')
+    ax.plot(sigma_vals, w_bar_vals, label=r'$\bar w$ as a function of $\mu$')
+    ax.legend()
+
+    plt.show()
+
+Not surprisingly, the agent is more inclined to wait when the distribution of
+offers shifts to the right.
+
+Exercise 2
+----------
+
+Here is one solution.
+
+.. code-block:: python3
+
+    mcm = McCallModelContinuous()
+    s_vals = np.linspace(1.0, 2.0, 15)
+    m = 2.0
+    w_bar_vals = np.empty_like(sigma_vals)
+
+    fig, ax = plt.subplots()
+    
+    for i, s in enumerate(s_vals):
+        a, b = m - s, m + s
+        mcm.w_draws = np.random.uniform(low=a, high=b, size=10_000)
+        w_bar = compute_reservation_wage(mcm)
+        w_bar_vals[i] = w_bar
+
+    ax.set(xlabel='volatility', ylabel='reservation wage')
     ax.plot(sigma_vals, w_bar_vals, label=r'$\bar w$ as a function of wage volatility')
     ax.legend()
 
     plt.show()
 
-Solutions
-=========
+The reservation wage increases with volatility.
+
+One might think that higher volatility would make the agent more inclined to
+take a given offer, since this represents certainty and waiting represents
+risk.
+
+But job search is like holding an option: the worker is only exposed to upside risk (since no one can force them to take an offer).
+
+More volatility means higher upside potential, which encourages the agent to wait.
