@@ -300,30 +300,31 @@ and returns the associated reservation wage.
 
 If :math:`v(w) < h` for all :math:`w`, then the function returns `np.inf`
 
+
+
 .. code-block:: python3
 
-    def compute_reservation_wage(mcm, return_values=False):
+    @njit
+    def compute_reservation_wage(mcm):
         """
         Computes the reservation wage of an instance of the McCall model
-        by finding the smallest w such that v(w) > h.
+        by finding the smallest w such that v(w) >= h.
 
-        If v(w) > h for all w, then the reservation wage w_bar is set to
-        the lowest wage in mcm.w_vals.
-
-        If v(w) < h for all w, then w_bar is set to np.inf.
+        If no such w exists, then w_bar is set to np.inf.
         """
         u = lambda x: np.log(x)
 
         v, d = solve_model(mcm)
         h = u(mcm.c) + mcm.β * d
-        w_idx = np.searchsorted(v - h, 0)
 
-        if w_idx == len(v):
-            w_bar = np.inf
-        else:
-            w_bar = mcm.w_grid[w_idx]
+        w_bar = np.inf
+        for i, wage in enumerate(mcm.w_grid):
+            if v[i] > h:
+                w_bar = wage
+                break
 
         return w_bar
+
 
 
 The exercises ask you to explore the solution and how it changes with parameters.

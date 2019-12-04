@@ -78,17 +78,16 @@ random factor that impacts on wages.
 (Introducing an exogenous stochastic state process is a standard way for
 economists to inject randomness into their models.) 
 
-We assume for simplicity that 
+In this lecture, we adopt the following simple environment:
 
-* :math:`\{s_t\}` is IID,
+* :math:`\{s_t\}` is IID, with :math:`q(s)` being the probability of observing state :math:`s` in :math:`\mathbb{S}` at each point in time, and
 
 * the agent observes :math:`s_t` at the start of :math:`t` and hence knows
   :math:`w_t = w(s_t)`,
 
-* :math:`q(s)` is the probability of observing state :math:`s` in :math:`\mathbb{S}` at each point in time, and
-
 * the set :math:`\mathbb S` is finite.
 
+(In later lectures, we will relax all of these assumptions.)
 
 At time :math:`t`, our agent has two choices:
 
@@ -109,7 +108,7 @@ The smaller is :math:`\beta`, the more the agent discounts future utility relati
 
 The variable  :math:`y_t` is income, equal to
 
-* his wage :math:`w_t` when employed
+* his/her wage :math:`w_t` when employed
 
 * unemployment compensation :math:`c` when unemployed
 
@@ -178,7 +177,7 @@ recursion
     v^*(s)
     = \max \left\{
             \frac{w(s)}{1 - \beta}, \, c + \beta 
-            \sum_{s' \in \mathbb{S}} v^*(w(s')) q (s')
+            \sum_{s' \in \mathbb{S}} v^*(s') q (s')
         \right\}
 
 for every possible :math:`s`  in :math:`\mathbb S`.
@@ -226,7 +225,7 @@ We can write the policy as follows
     \sigma(s) := \mathbf{1}
         \left\{
             \frac{w(s)}{1 - \beta} \geq c + \beta \sum_{s' \in \mathbb S} 
-            v^*(w(s')) q (s')
+            v^*(s') q (s')
         \right\}
 
 Here :math:`\mathbf{1}\{ P \} = 1` if statement :math:`P` is true and equals 0 otherwise.
@@ -239,13 +238,15 @@ We can also write this as
 where
 
 .. math::
-    \bar w := (1 - \beta) \left\{ c + \beta \sum_{s'} v^*(w(s')) q (s') \right\}
+    :label: reswage
+
+    \bar w := (1 - \beta) \left\{ c + \beta \sum_{s'} v^*(s') q (s') \right\}
 
 Here :math:`\bar w` is a constant depending on :math:`\beta, c` and the wage distribution called the *reservation wage*.
 
 The agent should accept if and only if the current wage offer exceeds the reservation wage.
 
-Clearly, we can compute this reservation wage if we can compute the value function.
+In view of :eq:`reswage`, we can compute this reservation wage if we can compute the value function.
 
 
 
@@ -272,7 +273,7 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
     v^*(i)
     = \max \left\{
             \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
-                v^*(w(j)) q (j)
+                v^*(j) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -294,7 +295,7 @@ Step 2: compute a new vector :math:`v' \in \mathbb R^n` via
     v'(i)
     = \max \left\{
             \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
-                v^*(w(j)) q (j)
+                v^*(j) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -326,7 +327,7 @@ itself via
     (Tv)(i)
     = \max \left\{
             \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
-                v^*(w(j)) q (j)
+                v^*(j) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -354,14 +355,14 @@ generates a sequence that converges to the fixed point.
 Implementation
 --------------
 
-Our default state process will be Beta-Binomial:
+Our default for :math:`q`, the distribution of the state process, will be Beta-Binomial:
 
 
 .. code-block:: python3
 
     n, a, b = 50, 200, 100
     dist = BetaBinomial(n, a, b)
-    q_default = dist.pdf()
+    q_default = dist.pdf()          # default choice of q
 
 Our default set of values for wages will be
 
@@ -374,8 +375,8 @@ Here's a plot of wages vs probabilities:
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(9, 6.5))
-    ax.plot(w_default, q_default, 'o-', label='$q(w(i))$')
+    fig, ax = plt.subplots()
+    ax.plot(w_default, q_default, 'o', label='$q(w(i))$')
     ax.set_xlabel('wages')
     ax.set_ylabel('probabilities')
 
@@ -396,8 +397,8 @@ The following helps Numba by providing some type information about the data we n
         ('q', float64[:])    # q[i] = probability of state i
     ]
 
-Here's a class that stores the data and the right hand side of the Bellman
-equation.
+Here's a class that stores the data and computes the value on the right hand side of the Bellman
+equation :eq:`odu_pv2p`.
 
 Default parameter values are embedded in the class.
 
@@ -416,9 +417,10 @@ Default parameter values are embedded in the class.
             """
             The r.h.s. of the Bellman equation at state i.
             """
-            stopping_value = self.w[i] / (1 - self.β)
-            continuation_value = self.c + self.β * np.sum(v * self.q)
-            max_value = max(stopping_value, continuation_value)
+            # Simplify names
+            c, β, w, q = self.c, self.β, self.w, self.q 
+            # Evaluate right hand side of Bellman equation
+            max_value = max(w[i] / (1 - β), c + β * np.sum(v * q))
             return(max_value)
 
 
@@ -446,7 +448,7 @@ Here's a function to implement this:
         v = mcm.w / (1 - mcm.β)
         v_next = np.empty_like(v)
         for i in range(num_plots):
-            ax.plot(mcm.w, v, label=f"iterate {i}")
+            ax.plot(mcm.w, v, 'o', alpha=0.4, label=f"iterate {i}")
             # Update guess
             for i in range(n):
                 v_next[i] = mcm.bellman(i, v)
@@ -460,14 +462,15 @@ Now let's create an instance of ``McCallModel`` and call the function:
 
     mcm = McCallModel()
 
-    fig, ax = plt.subplots(figsize=(9, 6.5))
+    fig, ax = plt.subplots()
     plot_value_function_seq(mcm, ax)
     plt.show()
 
-Here's a more serious iteration effort, that continues until measured deviation
-between successive iterates is below `tol`.
+You can see that convergence is occuring: successive iterates are getting closer together.
 
-We'll be using JIT compilation via Numba to turbocharge our loops
+Here's a more serious iteration effort to compute the limit, which continues until measured deviation between successive iterates is below `tol`.
+
+We'll be using JIT compilation via Numba to turbocharge our loops.
 
 .. code-block:: python3
 
@@ -537,7 +540,7 @@ In particular, let's look at what happens when we change :math:`\beta` and
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(10, 5.7))
+    fig, ax = plt.subplots()
 
     cs1 = ax.contourf(c_vals, β_vals, R.T, alpha=0.75)
     ctr1 = ax.contour(c_vals, β_vals, R.T)
@@ -586,7 +589,7 @@ That is,
 
     h
     = c + \beta
-        \sum_{s'} v^*(w(s')) q (s')
+        \sum_{s'} v^*(s') q (s')
     \quad
 
 where :math:`v^*` is the value function.
@@ -724,7 +727,7 @@ To shift to a continuous offer distribution, we can replace :eq:`j1` by
 
     h
     = c + \beta
-        \int v^*(w(s')) q (s') ds'.
+        \int v^*(s') q (s') ds'.
     \quad
 
 Following the same procedure as before, we obtain
@@ -783,6 +786,7 @@ Here's one solution
         while True:
             # Generate a wage draw
             w = w_default[qe.random.draw(cdf)]
+            # Stop when the draw is above the reservation wage
             if w >= w_bar:
                 stopping_time = t
                 break
@@ -804,7 +808,7 @@ Here's one solution
         w_bar = compute_reservation_wage_two(mcm)
         stop_times[i] = compute_mean_stopping_time(w_bar)
 
-    fig, ax = plt.subplots(figsize=(9, 6.5))
+    fig, ax = plt.subplots()
 
     ax.plot(c_vals, stop_times, label="mean unemployment duration")
     ax.set(xlabel="unemployment compensation", ylabel="months")
@@ -883,7 +887,7 @@ We will do this using a contour plot.
 
 .. code-block:: python3
 
-    fig, ax = plt.subplots(figsize=(10, 5.7))
+    fig, ax = plt.subplots()
 
     cs1 = ax.contourf(c_vals, β_vals, R.T, alpha=0.75)
     ctr1 = ax.contour(c_vals, β_vals, R.T)
