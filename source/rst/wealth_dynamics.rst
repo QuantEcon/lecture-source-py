@@ -23,21 +23,22 @@ Overview
 This notebook gives an introduction to wealth distribution dynamics, with a
 focus on 
 
-- modeling and computing the wealth distribution via simulation
+* modeling and computing the wealth distribution via simulation,
 
-- measures of inequality such as the Lorenz curve and Gini coefficient
+* measures of inequality such as the Lorenz curve and Gini coefficient, and
 
-- how inequality is affected by the properties of wage income and returns on assets.
+* how inequality is affected by the properties of wage income and returns on assets.
 
 Clearly, the evolution of wealth for any given household depends on their
 savings behavior, and modeling such behavior will form an important part of
 this lecture series.
 
-However, in this lecture, we will be content with ad hoc but plausible savings rules.
+However, in this lecture, we will be content with ad hoc (but plausible) savings rules.
 
-We do this in order to easily explore the implications of different specifications for income and investment returns.
+We do this in order to more easily explore the implications of different
+specifications for income and investment returns.
 
-All of the techniques discussed here can be plugged into models that use more sophisticated methods to obtain savings rules.
+At the same time, all of the techniques discussed here can be plugged into models that use optimization to obtain savings rules.
 
 .. code:: ipython3
 
@@ -90,9 +91,9 @@ degrees in the figure, depending on the aspect ratio).
 
 A sample that produces this line exhibits perfect equality.
 
-The lognormal sample deviates significantly from this benchmark.
+The other line in the figure is the Lorenz curve for the lognormal sample, which deviates significantly from perfect equality.
 
-For example, the bottom 80% of the population holds only 40% of total wealth.
+For example, the bottom 80% of the population holds around 40% of total wealth.
 
 Here is another example, which shows how the Lorenz curve shifts as the
 underlying distribution changes.
@@ -103,11 +104,12 @@ observations.
 
 .. code:: ipython3
 
-    a_vals = (1, 2, 5, 10_000_000)  # Pareto tail index 
+    a_vals = (1, 2, 5)              # Pareto tail index 
     n = 10_000                      # size of each sample
     fig, ax = plt.subplots()
     for a in a_vals:
-        y = np.random.uniform(size=n)**(-1/a)      # Pareto with tail index a
+        u = np.random.uniform(size=n)
+        y = u**(-1/a)               # distributed as Pareto with tail index a
         f_vals, l_vals = qe.lorenz_curve(y)
         ax.plot(f_vals, l_vals, label=f'$a = {a}$')
     ax.plot(f_vals, f_vals, label='equality')
@@ -117,6 +119,8 @@ observations.
 You can see that, as the tail parameter of the Pareto distribution increases, inequality decreases.
 
 This is to be expected, because a higher tail index implies less weight in the tail of the Pareto distribution.
+
+
 
 The Gini Coefficient
 --------------------
@@ -166,7 +170,10 @@ Having discussed inequality measures, let us now turn to wealth dynamics.
 
 The model we will study is
 
-.. math::  w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1} 
+.. math::  
+    :label: wealth_dynam_ah
+
+    w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1} 
 
 where
 
@@ -205,7 +212,10 @@ independent across them.
 
 Regarding the savings function :math:`s`, our default model will be
 
-.. math::  s(w) = s_0 w \cdot \mathbb 1\{w \geq \hat w\} 
+.. math::  
+    :label: sav_ah
+
+    s(w) = s_0 w \cdot \mathbb 1\{w \geq \hat w\} 
 
 where :math:`s_0` is a positive constant.
 
@@ -366,6 +376,8 @@ time path of the aggregate state as an argument.
 Finally, here's function to simulate a cross section of households forward in
 time.
 
+Note the use of parallelization to speed up computation.
+
 .. code:: ipython3
 
     @njit(parallel=True)
@@ -394,6 +406,11 @@ time.
             new_distribution[i] = w
         return new_distribution
     
+Parallelization is very effective in the function above because the time path
+of each household can be calculated independently once the path for the
+aggregate state is known.
+
+
 
 
 Applications 
@@ -406,20 +423,22 @@ the implications for the wealth distribution.
 Time Series
 -----------
 
-Let’s look at the wealth dynamics of an individual household. Large
-spikes are indicative of heavy tails.
+Let's look at the wealth dynamics of an individual household. 
 
 .. code:: ipython3
 
-    wdy = WealthDynamics(σ_r=0.7)
+    wdy = WealthDynamics()
     
-    z = z_time_series(wdy, ts_length=100_000)
+    z = z_time_series(wdy, ts_length=10_000)
     w = wealth_time_series(wdy, wdy.y_mean, z)
     
     fig, ax = plt.subplots()
     ax.plot(w)
     plt.show()
 
+Notice the large spikes in wealth over time.
+
+Such spikes are similar to what we observed in time series when :doc:`we studied Kesten processes <kesten_processes>`.
 
 
 
@@ -427,7 +446,7 @@ Inequality Measures
 -------------------
 
 
-Let’s look at how inequality varies with returns on financial assets.
+Let's look at how inequality varies with returns on financial assets.
 
 
 The next function generates a cross section and then computes the Lorenz
@@ -444,9 +463,9 @@ curve and Gini coefficient.
         z_0 = wdy.z_mean
     
         ψ_star = update_cross_section(wdy, ψ_0, shift_length=T)
-        return gini(ψ_star), lorenz(ψ_star)
+        return qe.gini_coefficient(ψ_star), qe.lorenz_curve(ψ_star)
 
-Here’s the Lorenz curves as a function of :math:`\mu_r`, a parameter
+Here is the Lorenz curves as a function of :math:`\mu_r`, a parameter
 that shifts up mean returns.
 
 .. code:: ipython3
@@ -465,8 +484,7 @@ that shifts up mean returns.
     ax.legend(loc="upper left")
     plt.show()
 
-Here’s the Gini coefficient. Look how inequality increases with mean
-returns on financial income.
+Here is the Gini coefficient. 
 
 .. code:: ipython3
 
@@ -475,6 +493,11 @@ returns on financial income.
     ax.set_xlabel("$\mu_r$")
     ax.legend()
     plt.show()
+
+Look how inequality increases as returns on financial income rise.
+
+This makes sense because higher returns reinforce the effect of existing wealth.
+
 
 
 Exercises
@@ -502,8 +525,43 @@ Use sample of size 1,000 for each :math:`a` and the sampling method for generati
 Pareto draws employed in the discussion of Lorenz curves for the Pareto distribution.
 
 
+Exercise 2
+----------
+
+The wealth process :eq:`wealth_dynam_ah` is similar to a :doc:`Kesten process <kesten_processes>`.
+
+This is because, according to :eq:`sav_ah`, savings is constant for all wealth levels above :math:`\hat w`.
+
+When savings is constant, the wealth process has the same quasi-linear
+structure as a Kesten process, with multiplicative and additive shocks.
+
+The Kesten--Goldie theorem tells us that Kesten processes have Pareto tails under a range of parameterizations.
+
+The theorem does not directly apply here, since savings is not always constant and since the multiplicative and additive terms in :eq:`wealth_dynam_ah` are not IID.
+
+At the same time, given the similarities, perhaps Pareto tails will arise.
+
+To test this, run a simulation that generates a cross-section of wealth and
+generate a rank-size plot.
+
+In viewing the plot, remember that Pareto tails generate a straight line.  Is
+this what you see?
+
+For sample size and initial conditions, use
+
+.. code:: ipython3
+
+    num_households = 250_000
+    T = 500                                      # shift forward T periods 
+    ψ_0 = np.ones(num_households) * wdy.y_mean   # initial distribution 
+    z_0 = wdy.z_mean   
+        
+
 Solutions
 =========
+
+Here is one solution, which produces a good match between theory and
+simulation.
 
 Exercise 1
 ----------
@@ -521,4 +579,54 @@ Exercise 1
     ax.plot(a_vals, ginis, label='sampled')
     ax.plot(a_vals, 1/(2*a_vals - 1), label='theoretical')
     ax.legend()
+    plt.show()
+
+
+Exercise 2
+----------
+
+First let's generate the distribution:
+
+.. code:: ipython3
+
+    num_households = 250_000
+    T = 500  # how far to shift forward in time
+    ψ_0 = np.ones(num_households) * wdy.y_mean
+    z_0 = wdy.z_mean
+    
+    ψ_star = update_cross_section(wdy, ψ_0, shift_length=T)
+
+Here's a function to produce rank-size data for the plot.
+
+.. code:: ipython3
+
+    def rank_size_data(data, c=0.001):
+        """
+        Generate rank-size data corresponding to distribution data.
+        
+            * data is array like
+            * c is a float indicating the top (c x 100)% of the 
+              distribution
+        """
+        w = - np.sort(- data)                      # Reverse sort
+        w = w[:int(len(w) * c)]                    # extract top c%
+        rank_data = np.log(np.arange(len(w)) + 1)
+        size_data = np.log(w)
+        return rank_data, size_data
+
+
+Now let's see the rank-size plot.
+
+
+.. code:: ipython3
+
+
+    rank_data, size_data = rank_size_data(ψ_star)
+
+    fig, ax = plt.subplots()
+    ax.plot(rank_data, size_data, 'o', markersize=3.0, alpha=0.5)
+    
+    ax.set_xlabel("log rank")
+    ax.set_ylabel("log size")
+    
     plt.show()
