@@ -29,6 +29,23 @@ focus on
 
 * how inequality is affected by the properties of wage income and returns on assets.
 
+One interesting property of the wealth distribution we discuss is Pareto
+tails.
+
+The wealth distribution in many countries exhibits a Pareto tail 
+
+* See :doc:`this lecture <heavy_tails>` for a definition.
+
+* For a review of the empirical evidence, see, for example, :cite:`benhabib2018skewed`.
+
+This suggests high concentrations of wealth amongst the richest households.
+
+We will be interested in whether or not we can replicate Pareto tails from a relatively simple model.
+
+
+A Note on Assumptions
+---------------------
+
 Clearly, the evolution of wealth for any given household depends on their
 savings behavior, and modeling such behavior will form an important part of
 this lecture series.
@@ -39,6 +56,8 @@ We do this in order to more easily explore the implications of different
 specifications for income and investment returns.
 
 At the same time, all of the techniques discussed here can be plugged into models that use optimization to obtain savings rules.
+
+We will use the following imports.
 
 .. code:: ipython3
 
