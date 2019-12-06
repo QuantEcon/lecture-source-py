@@ -367,7 +367,7 @@ Here’s a function to simulate the aggregate state:
             z[t+1] = wdy.update_z(z[t])
         return z
 
-Here’s a function to simulate wealth of a single household, taken the
+Here’s a function to simulate the wealth of a single household, taking the
 time path of the aggregate state as an argument.
 
 .. code:: ipython3
@@ -484,7 +484,7 @@ curve and Gini coefficient.
         ψ_star = update_cross_section(wdy, ψ_0, shift_length=T)
         return qe.gini_coefficient(ψ_star), qe.lorenz_curve(ψ_star)
 
-Here is the Lorenz curves as a function of :math:`\mu_r`, a parameter
+Here are the Lorenz curves as a function of :math:`\mu_r`, a parameter
 that shifts up mean returns.
 
 .. code:: ipython3
@@ -526,7 +526,7 @@ Exercise 1
 ----------
 
 It was claimed in the discussion above that, when the tail index of the Pareto
-distribution increases, inequality fails, since a higher tail index implies
+distribution increases, inequality falls, since a higher tail index implies
 less weight in the right hand tail.
 
 In fact, it is possible to prove that the Gini coefficient of the Pareto
