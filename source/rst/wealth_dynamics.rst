@@ -282,10 +282,10 @@ the aggregate state and household wealth.
                      c_y=1.0, 
                      μ_y=1.5,
                      σ_y=0.2, 
-                     c_r=0.01,
+                     c_r=0.05,
                      μ_r=0.0, 
                      σ_r=0.6, 
-                     a=0.9,  
+                     a=0.85,  
                      b=0.0, 
                      σ_z=0.1):
         
