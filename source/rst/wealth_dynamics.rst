@@ -50,10 +50,9 @@ Clearly, the evolution of wealth for any given household depends on their
 savings behavior, and modeling such behavior will form an important part of
 this lecture series.
 
-However, in this lecture, we will be content with ad hoc (but plausible) savings rules.
+However, in this particular lecture, we will be content with ad hoc (but plausible) savings rules.
 
-We do this in order to more easily explore the implications of different
-specifications for income and investment returns.
+We do this to more easily explore the implications of different specifications of income dynamics and investment returns.
 
 At the same time, all of the techniques discussed here can be plugged into models that use optimization to obtain savings rules.
 
@@ -103,7 +102,7 @@ We can compute and plot the Lorenz curve as follows:
     ax.legend()
     plt.show()
 
-The construction of this curve is as follows: if point :math:`x,y` lies on the curve, it means that, collectively, the bottom :math:`(100x)\%` of the population holds :math:`(100y)\%` of the wealth.
+This curve can be understood as follows: if point :math:`(x,y)` lies on the curve, it means that, collectively, the bottom :math:`(100x)\%` of the population holds :math:`(100y)\%` of the wealth.
 
 The "equality" line is the 45 degree line (which might not be exactly 45
 degrees in the figure, depending on the aspect ratio).
@@ -286,7 +285,7 @@ the aggregate state and household wealth.
                      c_r=0.05,
                      μ_r=0.0, 
                      σ_r=0.6, 
-                     a=0.9,  
+                     a=0.85,  
                      b=0.0, 
                      σ_z=0.1):
         
@@ -467,7 +466,6 @@ Inequality Measures
 
 Let's look at how inequality varies with returns on financial assets.
 
-
 The next function generates a cross section and then computes the Lorenz
 curve and Gini coefficient.
 
@@ -484,8 +482,16 @@ curve and Gini coefficient.
         ψ_star = update_cross_section(wdy, ψ_0, shift_length=T)
         return qe.gini_coefficient(ψ_star), qe.lorenz_curve(ψ_star)
 
-Here are the Lorenz curves as a function of :math:`\mu_r`, a parameter
-that shifts up mean returns.
+Now we investigate how the Lorenz curves associated with the wealth distribution change
+as return to savings increase.
+
+The code below plots Lorenz curves for three different values of :math:`\mu_r`. 
+
+If you are running this yourself, note that it will take one or two minutes to execute.
+
+This is unavoidable because we are executing a CPU intensive task.
+
+In fact the code, which is JIT compiled and parallelized, runs extremely fast relative to the number of computations.
 
 .. code:: ipython3
 
@@ -503,7 +509,26 @@ that shifts up mean returns.
     ax.legend(loc="upper left")
     plt.show()
 
-Here is the Gini coefficient. 
+The Lorenz curve shifts downwards as returns on financial income rise, indicating a rise in inequality.
+
+We will look at this again via the Gini coefficient immediately below, but
+first consider the following image of our system resources when the code above
+is executing:
+
+.. _htop_again:
+
+.. figure:: /_static/lecture_specific/wealth_dynamics/htop_again.png
+   :scale: 80
+
+Notice how effectively Numba has implemented multithreading for this routine:
+all 8 CPUs on our workstation are running at maximum capacity (even though
+four of them are virtual).
+
+Since the code is both efficiently JIT compiled and fully parallelized, it's
+close to impossible to make this sequence of tasks run faster without changing
+hardware.
+
+Now let's check the Gini coefficient. 
 
 .. code:: ipython3
 
@@ -513,7 +538,8 @@ Here is the Gini coefficient.
     ax.legend()
     plt.show()
 
-Look how inequality increases as returns on financial income rise.
+Once again, we see that inequality increases as returns on financial income
+rise.
 
 This makes sense because higher returns reinforce the effect of existing wealth.
 
