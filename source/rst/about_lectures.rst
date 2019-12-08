@@ -64,9 +64,9 @@ This means that you, your coauthors and your students can install them and their
 Another advantage of open source libraries is that you can read them and learn
 how they work.
 
-For example, let’s say you want to know exactly how `pandas <http://pandas.pydata.org/>`__ computes Newey-West covariance matrices.
+For example, let’s say you want to know exactly how `statsmodels <https://github.com/statsmodels/statsmodels>`__ computes Newey-West covariance matrices.
 
-No problem: You can go ahead and `read the code <https://github.com/pydata/pandas/blob/master/pandas/stats/math.py>`__.
+No problem: You can go ahead and `read the code <https://github.com/statsmodels/statsmodels/blob/master/statsmodels/stats/sandwich_covariance.py>`__.
 
 While dipping into external code libraries takes a bit of coding maturity, it’s very useful for
 
