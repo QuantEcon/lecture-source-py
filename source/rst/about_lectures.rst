@@ -64,7 +64,7 @@ This means that you, your coauthors and your students can install them and their
 Another advantage of open source libraries is that you can read them and learn
 how they work.
 
-For example, let’s say you want to know exactly how `statsmodels <https://github.com/statsmodels/statsmodels>`__ computes Sandwhich covariance estimators.
+For example, let’s say you want to know exactly how `statsmodels <https://github.com/statsmodels/statsmodels>`__ computes Newey-West covariance matrices.
 
 No problem: You can go ahead and `read the code <https://github.com/statsmodels/statsmodels/blob/master/statsmodels/stats/sandwich_covariance.py>`__.
 
