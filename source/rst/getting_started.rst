@@ -54,7 +54,7 @@ Anaconda is
 
 * very popular
 
-* cross platform
+* cross-platform
 
 * comprehensive
 
@@ -64,7 +64,7 @@ Anaconda also comes with a great package management system to organize your code
 
 
 
-**All of what follows assumes that you adopt this recommendation!**.
+**All of what follows assumes that you adopt this recommendation!**
 
 
 
@@ -172,7 +172,7 @@ Either
 
     * Windows users should substitute "Anaconda command prompt" for "terminal" in the previous line.
 
-If you use the second option, you will see something like this (click to enlarge)
+If you use the second option, you will see something like this
 
 .. figure:: /_static/lecture_specific/getting_started/starting_nb.png
 
@@ -184,7 +184,7 @@ The output tells us the notebook is running at ``http://localhost:8888/``
 
 Thus, the Jupyter kernel is listening for Python commands on port 8888 of our local machine.
 
-Hopefully, your default browser has also opened up with a web page that looks something like this (click to enlarge)
+Hopefully, your default browser has also opened up with a web page that looks something like this
 
 .. figure:: /_static/lecture_specific/getting_started/nb.png
 
@@ -247,7 +247,7 @@ The two modes are
 
     * The green border is replaced by a grey border
 
-    * Key strokes are interpreted as commands --- for example, typing `b` adds a new cell below  the current one
+    * Keystrokes are interpreted as commands --- for example, typing `b` adds a new cell below  the current one
 
 
 To switch to
@@ -285,7 +285,7 @@ A Test Program
 
 Let's run a test program.
 
-Here's an arbitrary program we can use: http://matplotlib.org/1.4.1/examples/pie_and_polar_charts/polar_bar_demo.html.
+Here's an arbitrary program we can use: http://matplotlib.org/3.1.1/gallery/pie_and_polar_charts/polar_bar.html.
 
 On that page, you'll see the following code
 
@@ -295,24 +295,24 @@ On that page, you'll see the following code
     import matplotlib.pyplot as plt
     %matplotlib inline
 
+    # Fixing random state for reproducibility
+    np.random.seed(19680801)
+
+    # Compute pie slices
     N = 20
     θ = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
     radii = 10 * np.random.rand(N)
     width = np.pi / 4 * np.random.rand(N)
+    colors = plt.cm.viridis(radii / 10.)
 
-    ax = plt.subplot(111, polar=True)
-    bars = ax.bar(θ, radii, width=width, bottom=0.0)
-
-    # Use custom colors and opacity
-    for r, bar in zip(radii, bars):
-        bar.set_facecolor(plt.cm.jet(r / 10.))
-        bar.set_alpha(0.5)
+    ax = plt.subplot(111, projection='polar')
+    ax.bar(θ, radii, width=width, bottom=0.0, color=colors, alpha=0.5)
 
     plt.show()
 
 Don't worry about the details for now --- let's just run it and see what happens.
 
-The easiest way to run this code is to copy and paste into a cell in the notebook.
+The easiest way to run this code is to copy and paste it into a cell in the notebook.
 
 (In older versions of Jupyter you might need to add the command ``%matplotlib inline`` before you generate the figure)
 
@@ -340,7 +340,7 @@ After this import command, functions in NumPy can be accessed with ``np.<functio
 
 We can explore these attributes of ``np`` using the ``Tab`` key.
 
-For example, here we type ``np.ran`` and hit Tab (click to enlarge)
+For example, here we type ``np.ran`` and hit Tab
 
 .. figure:: /_static/lecture_specific/getting_started/nb6.png
 
@@ -482,7 +482,7 @@ The steps are:
 #. Copy and paste into a cell and ``Shift-Enter``.
 
 
-Method 2: Run
+Option 2: Run
 -------------
 
 Using the ``run`` command is often easier than copy and paste.
@@ -500,7 +500,7 @@ Let's look at a successful example, where we run a file ``test.py`` with content
     for i in range(5):
         print('foobar')
 
-Here's the notebook (click to enlarge)
+Here's the notebook 
 
 .. figure:: /_static/lecture_specific/getting_started/nb_run.png
 
@@ -526,7 +526,7 @@ But File X isn't in my PWD!
 
 If you're trying to run a file not in the present working directory, you'll get an error.
 
-To fix this error you need to either
+To fix this error, you need to either
 
 #. Shift the file into the PWD, or
 
@@ -628,7 +628,7 @@ A good text editor will provide
 
 Among the most popular are `Sublime Text <http://www.sublimetext.com/>`_ and `Atom <https://atom.io/>`_.
 
-For a top quality open source text editor with a steeper learning curve, try `Emacs <http://www.gnu.org/software/emacs/>`_.
+For a top-quality open source text editor with a steeper learning curve, try `Emacs <http://www.gnu.org/software/emacs/>`_.
 
 If you want an outstanding free text editor and don't mind a seemingly vertical learning curve plus long days of pain and suffering while all your neural pathways are rewired, try `Vim <http://www.vim.org/>`_.
 
@@ -661,7 +661,7 @@ The IPython shell has many of the features of the notebook: tab completion, colo
 
 It also has command history through the arrow key.
 
-The up arrow key to brings previously typed commands to the prompt.
+The up arrow key brings previously typed commands to the prompt.
 
 This saves a lot of typing...
 
@@ -755,7 +755,7 @@ There are two main flavors of Git
 
     * See, for example, the `GitHub version <https://desktop.github.com/>`_
 
-As an exercise, try
+As the 1st task, try
 
 #. Installing Git.
 
@@ -769,7 +769,7 @@ For example, if you've installed the command line version, open up a terminal an
 
 (This is just ``git clone`` in front of the URL for the repository)
 
-Even better,
+As the 2nd task,
 
 #. Sign up to `GitHub <https://github.com/>`_.
 

@@ -42,12 +42,12 @@ Note that there's also a related set of `Julia lectures <add link here>`.
 
 In terms of the differences,
 
-* Python is a general purpose language featuring a massive user community in the sciences and an outstanding scientific ecosystem.
+* Python is a general-purpose language featuring a massive user community in the sciences and an outstanding scientific ecosystem.
 
-* Julia is more recent language with many exciting features.
+* Julia is a more recent language with many exciting features.
 
-Both are modern, open source, high productivity languages with all the key features needed for 
-high performance computing.
+Both are modern, open-source, high productivity languages with all the key features needed for 
+high-performance computing.
 
 Julia has the advantage that third party libraries are often written entirely in Julia itself.
 
@@ -57,7 +57,7 @@ Python has the advantage of being supported by a vast collection of scientific l
 Open Source
 ===========
 
-All the computing environments we work with are free and open source.
+All the computing environments we work with are free and open-source.
 
 This means that you, your coauthors and your students can install them and their libraries on all of your computers without cost or concern about licenses.
 
@@ -72,11 +72,11 @@ While dipping into external code libraries takes a bit of coding maturity, it’
 
 #. helping you understand the details of a particular implementation, and
 
-#. building your programming skills by showing you code written by first rate programmers.
+#. building your programming skills by showing you code written by first-rate programmers.
 
 Also, you can modify the library to suit your needs: if the functionality provided is not exactly what you want, you are free to change it.
 
-Another, more philosophical advantage of open source software is that it conforms to the `scientific ideal of reproducibility <https://en.wikipedia.org/wiki/Scientific_method>`__.
+Another, a more philosophical advantage of open-source software is that it conforms to the `scientific ideal of reproducibility <https://en.wikipedia.org/wiki/Scientific_method>`__.
 
 
 
@@ -96,7 +96,7 @@ It can no longer match Python or Julia in terms of performance and design.
 
 MATLAB is also proprietary, which comes with its own set of disadvantages.
 
-Given what’s available now, it’s hard to find any good reasons to invest in MATLAB.
+Given what’s available now, it’s hard to find any good reason to invest in MATLAB.
 
 Incidentally, if you decide to jump from MATLAB to Python, `this cheat-sheet <http://cheatsheets.quantecon.org/>`__ will be useful.
 
@@ -108,7 +108,7 @@ R
 
 Its primary strength is its `vast collection <https://cran.r-project.org/web/packages>`__ of extension packages
 
-Python is more general purpose than R and hence a better fit for this course
+Python is more general-purpose than R and hence a better fit for this course
 
 Moreover, if there are R libraries you find you want to use, you can now call them from within Python or Julia
 
@@ -121,7 +121,7 @@ Isn’t Fortran / C / C++ faster than Python? In which case it must be better, r
 
 This is an outdated view.
 
-First, you can achieve speeds equal to or faster than those of compiled languages in Python through features like just-in-time compilation --- we'll talk about how later on.
+First, you can achieve speeds equal to or faster than those of compiled languages in Python through features like a just-in-time compilation --- we'll talk about how later on.
 
 Second, remember that the correct objective function to minimize is
 
