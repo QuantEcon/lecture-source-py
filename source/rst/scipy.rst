@@ -11,6 +11,10 @@
 
 .. contents:: :depth: 2
 
+
+Overview
+========
+
 `SciPy <http://www.scipy.org>`_ builds on top of NumPy to provide common tools for scientific programming such as
 
 
@@ -39,27 +43,15 @@ In this lecture, we aim only to highlight some useful parts of the package.
 
 SciPy is a package that contains various tools that are built on top of NumPy, using its array data type and related functionality.
 
-In fact, when we import SciPy we also get NumPy, as can be seen from the SciPy initialization file
+In fact, when we import SciPy we also get NumPy, as can be seen from this excerpt the SciPy initialization file:
 
 .. code-block:: python3
 
     # Import numpy symbols to scipy namespace
-    import numpy as _num
-    linalg = None
     from numpy import *
     from numpy.random import rand, randn
     from numpy.fft import fft, ifft
     from numpy.lib.scimath import *
-
-    __all__  = []
-    __all__ += _num.__all__
-    __all__ += ['randn', 'rand', 'fft', 'ifft']
-
-    del _num
-    # Remove the linalg imported from numpy so that the scipy.linalg package
-    # can be imported.
-    del linalg
-    __all__.remove('linalg')
 
 However, it's more common and better practice to use NumPy functionality explicitly
 
@@ -72,14 +64,6 @@ However, it's more common and better practice to use NumPy functionality explici
 What is useful in SciPy is the functionality in its sub-packages
 
 * ``scipy.optimize``, ``scipy.integrate``, ``scipy.stats``, etc.
-
-These sub-packages and their attributes need to be imported separately
-
-.. code-block:: python3
-
-    from scipy.integrate import quad
-    from scipy.optimize import brentq
-    # etc
 
 Let's explore some of the major sub-packages.
 
@@ -130,24 +114,17 @@ Here's an example of usage
     obs = q.rvs(2000)   # 2000 observations
     grid = np.linspace(0.01, 0.99, 100)
 
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots()
     ax.hist(obs, bins=40, density=True)
     ax.plot(grid, q.pdf(grid), 'k-', linewidth=2)
     plt.show()
 
-In this code, we created a so-called ``rv_frozen`` object, via the call ``q = beta(5, 5)``.
 
-The "frozen" part of the notation implies that ``q`` represents a particular distribution with a particular set of parameters.
-
-Once we've done so, we can then generate random numbers, evaluate the density, etc., all from this fixed distribution
+The object ``q`` that represents the distribution has additional useful methods, including
 
 .. code-block:: python3
 
     q.cdf(0.4)      # Cumulative distribution function
-
-.. code-block:: python3
-
-    q.pdf(0.4)      # Density function
 
 .. code-block:: python3
 
@@ -157,23 +134,23 @@ Once we've done so, we can then generate random numbers, evaluate the density, e
 
     q.mean()
 
-The general syntax for creating these objects is
+The general syntax for creating these objects that represent distributions (of type ``rv_frozen``) is
 
-    ``identifier = scipy.stats.distribution_name(shape_parameters)``
+    ``name = scipy.stats.distribution_name(shape_parameters, loc=c, scale=d)``
 
-where ``distribution_name`` is one of the distribution names in `scipy.stats <http://docs.scipy.org/doc/scipy/reference/stats.html>`_.
+Here ``distribution_name`` is one of the distribution names in `scipy.stats <http://docs.scipy.org/doc/scipy/reference/stats.html>`_.
 
-There are also two keyword arguments, ``loc`` and ``scale``, which following our example above, are called as
+The ``loc`` and ``scale`` parameters transform the original random variable
+:math:`X` into :math:`Y = c + d X`.
 
-    ``identifier = scipy.stats.distribution_name(shape_parameters, loc=c, scale=d)``
 
-These transform the original random variable :math:`X` into :math:`Y = c + d X`.
 
-The methods ``rvs``, ``pdf``, ``cdf``, etc. are transformed accordingly.
+Alternative Syntax
+------------------
 
-Before finishing this section, we note that there is an alternative way of calling the methods described above.
+There is an alternative way of calling the methods described above.
 
-For example, the previous code can be replaced by
+For example, the code that generates the figure above can be replaced by
 
 .. code-block:: python3
 
@@ -211,7 +188,7 @@ To see the full list, consult the `documentation <https://docs.scipy.org/doc/sci
 Roots and Fixed Points
 ======================
 
-A *root* of a real function :math:`f` on :math:`[a,b]` is an :math:`x \in [a, b]` such that :math:`f(x)=0`.
+A **root** or **zero** of a real function :math:`f` on :math:`[a,b]` is an :math:`x \in [a, b]` such that :math:`f(x)=0`.
 
 For example, if we plot the function
 
@@ -228,7 +205,7 @@ with :math:`x \in [0,1]` we get
   f = lambda x: np.sin(4 * (x - 1/4)) + x + x**20 - 1
   x = np.linspace(0, 1, 100)
 
-  fig, ax = plt.subplots(figsize=(10, 8))
+  fig, ax = plt.subplots()
   ax.plot(x, f(x))
   ax.axhline(ls='--', c='k')
   plt.show()
@@ -259,9 +236,11 @@ And so on.
 
 This is bisection.
 
-Here's a fairly simplistic implementation of the algorithm in Python.
+Here's a simplistic implementation of the algorithm in Python.
 
 It works for all sufficiently well behaved increasing continuous functions with :math:`f(a) < 0 < f(b)`
+
+.. _bisect_func:
 
 .. code-block:: python3
 
@@ -274,17 +253,23 @@ It works for all sufficiently well behaved increasing continuous functions with 
 
         while upper - lower > tol:
             middle = 0.5 * (upper + lower)
-            # === if root is between lower and middle === #
-            if f(middle) > 0:
+            if f(middle) > 0:   # root is between lower and middle 
                 lower, upper = lower, middle
-            # === if root is between middle and upper  === #
-            else:              
+            else:               # root is between middle and upper 
                 lower, upper = middle, upper
 
         return 0.5 * (upper + lower)
 
 
-In fact, SciPy provides its own bisection function, which we now test using the function :math:`f` defined in :eq:`root_f`
+Let's test it using the function :math:`f` defined in :eq:`root_f`
+
+.. code-block:: python3
+
+    bisect(f, 0, 1)
+
+Not surprisingly, SciPy provides its own bisection function. 
+
+Let's test it using the same function :math:`f` defined in :eq:`root_f`
 
 .. code-block:: python3
 
@@ -304,16 +289,11 @@ Another very common root-finding algorithm is the `Newton-Raphson method <https:
 
 In SciPy this algorithm is implemented by ``scipy.optimize.newton``.
 
-Unlike bisection, the Newton-Raphson method uses local slope information.
+Unlike bisection, the Newton-Raphson method uses local slope information in an attempt to increase the speed of convergence.
 
-This is a double-edged sword:
+Let's investigate this using the same function :math:`f` defined above.
 
-* When the function is well-behaved, the Newton-Raphson method is faster than bisection.
-
-* When the function is less well-behaved, the Newton-Raphson might fail.
-
-Let's investigate this using the same function :math:`f`, first looking at potential instability
-
+With a suitable initial condition for the search we get convergence:
 
 .. code-block:: python3
 
@@ -321,35 +301,22 @@ Let's investigate this using the same function :math:`f`, first looking at poten
 
     newton(f, 0.2)   # Start the search at initial condition x = 0.2
 
+But other initial conditions lead to failure of convergence:
+
 .. code-block:: python3
 
     newton(f, 0.7)   # Start the search at x = 0.7 instead
 
-The second initial condition leads to failure of convergence.
-
-On the other hand, using IPython's ``timeit`` magic, we see that ``newton`` can be much faster
-
-.. code-block:: ipython
-
-    %timeit bisect(f, 0, 1)
-
-.. code-block:: ipython
-
-    %timeit newton(f, 0.2)
 
 
 Hybrid Methods
 --------------
 
-So far we have seen that the Newton-Raphson method is fast but not robust.
+A general principle of numerical methods is as follows:
 
-This bisection algorithm is robust but relatively slow.
+* If you have specific knowledge about a given problem, you might be able to exploit it to generate efficiency.
 
-This illustrates a general principle
-
-* If you have specific knowledge about your function, you might be able to exploit it to generate efficiency.
-
-* If not, then the algorithm choice involves a trade-off between the speed of convergence and robustness.
+* If not, then the choice of algorithm involves a trade-off between speed and robustness.
 
 In practice, most default algorithms for root-finding, optimization and fixed points use *hybrid* methods.
 
@@ -363,13 +330,19 @@ In ``scipy.optimize``, the function ``brentq`` is such a hybrid method and a goo
 
 .. code-block:: python3
 
+    from scipy.optimize import newton
+
     brentq(f, 0, 1)
+
+Here the correct solution is found and the speed is better than bisection:
 
 .. code-block:: ipython
 
     %timeit brentq(f, 0, 1)
 
-Here the correct solution is found and the speed is almost the same as ``newton``.
+.. code-block:: ipython
+
+    %timeit bisect(f, 0, 1)
 
 
 Multivariate Root-Finding
@@ -385,6 +358,10 @@ See the `documentation <http://docs.scipy.org/doc/scipy/reference/generated/scip
 
 Fixed Points
 ------------
+
+A **fixed point** of a real function :math:`f` on :math:`[a,b]` is an :math:`x \in [a, b]` such that :math:`f(x)=x`.
+
+
 
 .. index::
     single: SciPy; Fixed Points
@@ -498,42 +475,19 @@ Exercises
 
 .. _sp_ex1:
 
+
 Exercise 1
 ----------
 
-
 Previously we discussed the concept of :ref:`recursive function calls <recursive_functions>`.
 
-Write a recursive implementation of the bisection function described above, which we repeat here for convenience.
+Try to write a recursive implementation of homemade bisection function :ref:`described above <bisect_func>`.
 
-.. code-block:: python3
-
-    def bisect(f, a, b, tol=10e-5):
-        """
-        Implements the bisection root finding algorithm, assuming that f is a
-        real-valued function on [a, b] satisfying f(a) < 0 < f(b).
-        """
-        lower, upper = a, b
-
-        while upper - lower > tol:
-            middle = 0.5 * (upper + lower)
-            # === if root is between lower and middle === #
-            if f(middle) > 0:
-                lower, upper = lower, middle
-            # === if root is between middle and upper  === #
-            else:              
-                lower, upper = middle, upper
-
-        return 0.5 * (upper + lower)
-
-
-Test it on the function ``f = lambda x: np.sin(4 * (x - 0.25)) + x + x**20 - 1`` discussed above.
+Test it on the function :eq:`root_f`.
 
 
 Solutions
 =========
-
-
 
 
 Exercise 1
