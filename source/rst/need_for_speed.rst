@@ -322,23 +322,25 @@ square and then sum a large number of random variables:
 
 .. code-block:: python3
 
-    qe.util.tic()   # Start timing
     n = 1_000_000
-    sum = 0
+
+.. code-block:: python3
+
+    %%time
+
+    y = 0      # Will accumulate and store sum
     for i in range(n):
         x = random.uniform(0, 1)
-        sum += x**2
-    qe.util.toc()   # End timing
+        y += x**2
 
 The following vectorized code achieves the same thing.
 
 .. code-block:: ipython
 
-    qe.util.tic()
-    n = 1_000_000
+    %%time
+
     x = np.random.uniform(0, 1, n)
-    np.sum(x**2)
-    qe.util.toc()
+    y = np.sum(x**2)
 
 
 As you can see, the second code block runs much faster.  Why?
@@ -443,38 +445,35 @@ To maximize it, we're going to use a naive grid search:
 
 #. Return the maximum of observed values.
 
-Here's a non-vectorized version that uses Python loops
+The grid will be
 
 .. code-block:: python3
 
-    def f(x, y):
-        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
-
     grid = np.linspace(-3, 3, 1000)
+
+Here's a non-vectorized version that uses Python loops.
+
+.. code-block:: python3
+
+    %%time
+
     m = -np.inf
 
-    qe.tic()
     for x in grid:
         for y in grid:
             z = f(x, y)
             if z > m:
                 m = z
 
-    qe.toc()
 
 And here's a vectorized version
 
 .. code-block:: python3
 
-    def f(x, y):
-        return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
+    %%time
 
-    grid = np.linspace(-3, 3, 1000)
     x, y = np.meshgrid(grid, grid)
-
-    qe.tic()
     np.max(f(x, y))
-    qe.toc()
 
 
 In the vectorized version, all the looping takes place in compiled code.
