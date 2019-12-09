@@ -27,7 +27,7 @@ setup:
 
 preview:
 ifneq (,$(filter $(target),website Website))
-	cd $(BUILDWEBSITE)/jupyter_html && python -m http.server $(PORT)
+	cd $(BUILDDIR)/jupyter_html && python -m http.server $(PORT)
 else
 ifdef lecture
 	cd $(BUILDDIR)/jupyter/ && jupyter notebook --port $(PORT) --port-retries=0 $(basename $(lecture)).ipynb
@@ -41,6 +41,7 @@ clean-coverage:
 
 clean-website:
 	rm -rf $(BUILDDIR)/jupyterhtml
+	rm -rf $(BUILDDIR)/jupyter_html
 
 clean-pdf:
 	rm -rf $(BUILDDIR)/jupyterpdf
@@ -60,10 +61,10 @@ endif
  
 website:
 ifneq ($(strip $(parallel)),)
-	@$(SPHINXBUILD) -M jupyterhtml "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/python.quantecon.org/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="python-html.tpl" -D jupyter_download_nb_urlpath="https://python.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE) -D jupyter_number_workers=$(parallel)
+	@$(SPHINXBUILD) -M jupyterhtml "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/python.quantecon.org/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="python-html.tpl" -D jupyter_download_nb_urlpath="https://python.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE) -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M jupyterhtml "$(SOURCEDIR)" "$(BUILDWEBSITE)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/python.quantecon.org/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="python-html.tpl" -D jupyter_download_nb_urlpath="https://python.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE)
+	@$(SPHINXBUILD) -M jupyterhtml "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_make_site=1 -D jupyter_generate_html=1 -D jupyter_download_nb=1 -D jupyter_execute_notebooks=1 -D jupyter_target_html=1 -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/python.quantecon.org/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="python-html.tpl" -D jupyter_download_nb_urlpath="https://python.quantecon.org/" -D jupyter_coverage_dir=$(BUILDCOVERAGE)
 endif
 
 pdf:
