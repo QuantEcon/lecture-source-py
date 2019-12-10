@@ -31,9 +31,9 @@ the change was relatively trivial in that case.
 This is because we were able to reduce the problem to solving for a single
 scalar value (the continuation value).
 
-Here, with separation, the change is less trivial, since a continuous wage distributions leads to an uncountably infinite state space.
+Here, with separation, the change is less trivial, since a continuous wage distribution leads to an uncountably infinite state space.
 
-The infinite state spaces lead to additional challenges, particularly when it
+The infinite state space leads to additional challenges, particularly when it
 comes to applying value function iteration (VFI).
 
 These challenges will lead us to modify VFI by adding an interpolation step.
