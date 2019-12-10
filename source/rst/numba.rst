@@ -102,7 +102,8 @@ Here's the plot of a typical trajectory, starting from :math:`x_0 = 0.1`, with :
         for t in range(n):
           x[t+1] = α * x[t] * (1 - x[t])
         return x
-
+    
+    x = qm(0.1, 250)
     fig, ax = plt.subplots()
     ax.plot(x, 'b-', lw=2, alpha=0.8)
     ax.set_xlabel('time', fontsize=16)
