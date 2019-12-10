@@ -242,7 +242,7 @@ where
 
     \bar w := (1 - \beta) \left\{ c + \beta \sum_{s'} v^*(s') q (s') \right\}
 
-Here :math:`\bar w` is a constant depending on :math:`\beta, c` and the wage distribution called the *reservation wage*.
+Here :math:`\bar w` (called the *reservation wage*) is a constant depending on :math:`\beta, c` and the wage distribution.
 
 The agent should accept if and only if the current wage offer exceeds the reservation wage.
 
@@ -448,7 +448,7 @@ Here's a function to implement this:
         v = mcm.w / (1 - mcm.β)
         v_next = np.empty_like(v)
         for i in range(num_plots):
-            ax.plot(mcm.w, v, 'o', alpha=0.4, label=f"iterate {i}")
+            ax.plot(mcm.w, v, '-', alpha=0.4, label=f"iterate {i}")
             # Update guess
             for i in range(n):
                 v_next[i] = mcm.bellman(i, v)
@@ -463,6 +463,8 @@ Now let's create an instance of ``McCallModel`` and call the function:
     mcm = McCallModel()
 
     fig, ax = plt.subplots()
+    ax.set_xlabel('wage')
+    ax.set_ylabel('value')
     plot_value_function_seq(mcm, ax)
     plt.show()
 

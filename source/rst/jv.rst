@@ -392,7 +392,7 @@ Let's generate the optimal policies and see what they look like.
     s_star, ϕ_star = get_greedy(v_star)
 
 
-Here's the plots:
+Here are the plots:
 
 .. code-block:: python3
 

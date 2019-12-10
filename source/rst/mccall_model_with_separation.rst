@@ -190,7 +190,7 @@ A Simplifying Transformation
 Rather than jumping straight into solving these equations, let's see if we can
 simplify them somewhat.
 
-(This process will be analogous to our :ref:`second pass <mm_op2>` at the plain vanila
+(This process will be analogous to our :ref:`second pass <mm_op2>` at the plain vanilla
 McCall model, where we simplified the Bellman equation.)
 
 First, let 
