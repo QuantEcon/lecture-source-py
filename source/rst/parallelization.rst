@@ -288,12 +288,15 @@ The code simulates updating the wealth :math:`w_t` of a household via the rule
 
 .. math::
 
-    w_{t+1} = R_{t+1} w_t + Y_{t+1}
+    w_{t+1} = R_{t+1} s w_t + y_{t+1}
 
-Here :math:`R` is the gross rate of return on assets and :math:`Y` is labor
-income.
+Here 
 
-We model both :math:`R` and :math:`Y` as independent draws from a lognormal
+* :math:`R` is the gross rate of return on assets 
+* :math:`s` is the savings rate of the household and 
+* :math:`y` is labor income.
+
+We model both :math:`R` and :math:`y` as independent draws from a lognormal
 distribution.
 
 Here's the code:
@@ -306,15 +309,15 @@ Here's the code:
     @jit
     def h(w, r=0.1, s=0.3, v1=0.1, v2=1.0):
         """
-        Dynamics of wealth.
+        Updates household wealth.
         """
 
         # Draw shocks
         R = np.exp(v1 * randn()) * (1 + r)
-        Y = np.exp(v2 * randn())
+        y = np.exp(v2 * randn())
 
         # Update wealth
-        w = R * s * w + Y
+        w = R * s * w + y
         return w
 
 
@@ -322,7 +325,7 @@ Let's have a look at how wealth evolves under this rule.
 
 .. code-block:: ipython
 
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots()
 
     T = 100
     w = np.empty(T)
@@ -330,7 +333,7 @@ Let's have a look at how wealth evolves under this rule.
     for t in range(T-1):
         w[t+1] = h(w[t])
 
-    ax.plot(range(T), w)
+    ax.plot(w)
 
 
 Now let's suppose that we have a large population of households and we want to
