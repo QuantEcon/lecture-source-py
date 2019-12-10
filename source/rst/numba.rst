@@ -83,27 +83,32 @@ We will take the difference equation to be the quadratic map
 
 .. math::
 
-    x_{t+1} = 4 x_t (1 - x_t)
+    x_{t+1} = \alpha x_t (1 - x_t)
 
+In what follows we set 
+
+.. code-block:: python3
+
+    α = 4.0
 
 Here's the plot of a typical trajectory, starting from :math:`x_0 = 0.1`, with :math:`t` on the x-axis
 
 .. code-block:: python3
 
-  def qm(x0, n):
-      x = np.empty(n+1)
-      x[0] = x0
-      for t in range(n):
-          x[t+1] = 4 * x[t] * (1 - x[t])
-      return x
 
-  x = qm(0.1, 250)
-  fig, ax = plt.subplots(figsize=(10, 6))
-  ax.plot(x, 'b-', lw=2, alpha=0.8)
-  ax.set_xlabel('time', fontsize=16)
-  plt.show()
+    def qm(x0, n):
+        x = np.empty(n+1)
+        x[0] = x0 
+        for t in range(n):
+          x[t+1] = α * x[t] * (1 - x[t])
+        return x
 
-To speed this up using Numba is trivial using Numba's ``jit`` function
+    fig, ax = plt.subplots()
+    ax.plot(x, 'b-', lw=2, alpha=0.8)
+    ax.set_xlabel('time', fontsize=16)
+    plt.show()
+
+To speed the function ``qm`` up using Numba, our first step is
 
 .. code-block:: python3
 
@@ -116,22 +121,23 @@ JIT-compilation.
 
 We will explain what this means momentarily.
 
-First let's time and compare identical function calls across these two versions, starting with the original function `qm`:
+Let's time and compare identical function calls across these two versions, starting with the original function `qm`:
 
 .. code-block:: python3
 
     n = 10_000_000
-    qe.util.tic()
+
+    qe.tic()
     qm(0.1, int(n))
-    time1 = qe.util.toc()
+    time1 = qe.toc()
 
 Now let's try `qm_numba`
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     qm_numba(0.1, int(n))
-    time2 = qe.util.toc()
+    time2 = qe.toc()
 
 This is already a massive speed gain.
 
@@ -141,9 +147,9 @@ In fact, the next time and all subsequent times it runs even faster as the funct
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     qm_numba(0.1, int(n))
-    time2 = qe.util.toc()
+    time2 = qe.toc()
 
 .. code-block:: python3
 
@@ -217,7 +223,7 @@ Here's what this looks like for ``qm``
         x = np.empty(n+1)
         x[0] = x0
         for t in range(n):
-            x[t+1] = 4 * x[t] * (1 - x[t])
+            x[t+1] = α * x[t] * (1 - x[t])
         return x
 
 
@@ -369,7 +375,7 @@ When we call the methods in the class, the methods are compiled just like functi
     s2 = Solow(k=8.0)
 
     T = 60
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots()
 
     # Plot the common steady state value of capital
     ax.plot([s1.steady_state()]*T, 'k-', label='steady state')
@@ -475,16 +481,16 @@ Consider the following example
     a = 1
 
     @jit
-    def add_x(x):
+    def add_a(x):
         return a + x
 
-    print(add_x(10))
+    print(add_a(10))
 
 .. code-block:: python3
 
     a = 2
 
-    print(add_x(10))
+    print(add_a(10))
 
 
 Notice that changing the global had no effect on the value returned by the
@@ -534,6 +540,11 @@ To test your code, evaluate the fraction of time that the chain spends in the lo
 
 If your code is correct, it should be about 2/3.
 
+Hints: 
+
+* Represent the low state as 0 and the high state as 1.
+
+* If you want to store integers in a NumPy array and then apply JIT compilation, use ``x = np.empty(n, dtype=np.int_)``.
 
 
 Solutions
@@ -578,14 +589,15 @@ state is about 0.666
     x = compute_series(n)
     print(np.mean(x == 0))  # Fraction of time x is in state 0
 
+This is (approximately) the right output.
 
-Now let's time it
+Now let's time it:
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     compute_series(n)
-    qe.util.toc()
+    qe.toc()
 
 
 Next let's implement a Numba version, which is easy
@@ -608,9 +620,9 @@ Let's see the time
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     compute_series_numba(n)
-    qe.util.toc()
+    qe.toc()
 
 
 This is a nice speed improvement for one line of code!
