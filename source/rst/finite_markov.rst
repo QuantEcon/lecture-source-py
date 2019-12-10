@@ -45,9 +45,7 @@ Let's start with some standard imports:
     from mpl_toolkits.mplot3d import Axes3D
     import matplotlib.pyplot as plt
     %matplotlib inline
-    from quantecon import MarkovChain
-    import re
-    from operator import itemgetter
+
 
 
 Definitions
@@ -158,6 +156,7 @@ In terms of a Markov model, we have
 We can write out the transition probabilities in matrix form as
 
 .. math::
+    :label: p_unempemp
 
     P
     = \left(
@@ -242,28 +241,24 @@ In these exercises, we'll take the state space to be :math:`S = 0,\ldots, n-1`.
 Rolling Our Own
 --------------------
 
-To simulate a Markov chain, we need its stochastic matrix :math:`P` and either an initial state or a probability distribution :math:`\psi` for initial state to be drawn from.
+To simulate a Markov chain, we need its stochastic matrix :math:`P` and a probability distribution :math:`\psi` for the initial state to be drawn from.
 
 The Markov chain is then constructed as discussed above.  To repeat:
 
-#. At time :math:`t=0`, the :math:`X_0` is set to some fixed state or chosen from :math:`\psi`.
+#. At time :math:`t=0`, the :math:`X_0` is chosen from :math:`\psi`.
 
 #. At each subsequent time :math:`t`, the new state :math:`X_{t+1}` is drawn from :math:`P(X_t, \cdot)`.
 
-In order to implement this simulation procedure, we need a method for generating draws from a discrete distribution.
+To implement this simulation procedure, we need a method for generating draws from a discrete distribution.
 
-For this task, we'll use `DiscreteRV <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/discrete_rv.py>`_ from `QuantEcon <http://quantecon.org/quantecon-py>`__.
-
+For this task, we'll use ``random.draw`` from `QuantEcon <http://quantecon.org/quantecon-py>`__, which works as follows:
 
 
 .. code-block:: python3
 
-    ψ = (0.1, 0.9)           # Probabilities over sample space {0, 1}
-    cdf = np.cumsum(ψ)
-    qe.random.draw(cdf, 5)   # Generate 5 independent draws from ψ
-
-
-
+    ψ = (0.3, 0.7)           # probabilities over {0, 1}
+    cdf = np.cumsum(ψ)       # convert into cummulative distribution
+    qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 
 We'll write our code as a function that takes the following three arguments
 
@@ -274,58 +269,54 @@ We'll write our code as a function that takes the following three arguments
 * A positive integer ``sample_size`` representing the length of the time series the function should return
 
 
-
 .. code-block:: python3
 
-    def mc_sample_path(P, init=0, sample_size=1000):
-        # Make sure P is a NumPy array
+    def mc_sample_path(P, ψ_0=None, sample_size=1_000):
+
+        # set up
         P = np.asarray(P)
-        # Allocate memory
         X = np.empty(sample_size, dtype=int)
-        X[0] = init
-        # Convert each row of P into a distribution
-        # In particular, P_dist[i] = the distribution corresponding to P[i, :]
+
+        # Convert each row of P into a cdf
         n = len(P)
         P_dist = [np.cumsum(P[i, :]) for i in range(n)]
 
-        # Generate the sample path
+        # draw initial state, defaulting to 0
+        if ψ_0 is not None:
+            X_0 = qe.random.draw(np.cumsum(ψ_0))
+        else:
+            X_0 = 0
+
+        # simulate
+        X[0] = X_0
         for t in range(sample_size - 1):
             X[t+1] = qe.random.draw(P_dist[X[t]])
 
         return X
 
 
-
-
-
 Let's see how it works using the small matrix
 
-.. math::
-    :label: fm_smat
+.. code-block:: python3
 
-    P :=
-    \left(
-      \begin{array}{cc}
-         0.4 & 0.6  \\
-         0.2 & 0.8
-      \end{array}
-    \right)
-
+    P = [[0.4, 0.6], 
+         [0.2, 0.8]]
 
 As we'll see later, for a long series drawn from ``P``, the fraction of the sample that takes value 0 will be about 0.25.
 
-If you run the following code you should get roughly that answer
+Moreover, this is true, regardless of the initial distribution from with
+:math:`X_0` is drawn.
 
+The following code illustrates this 
 
 
 .. code-block:: python3
 
-    P = [[0.4, 0.6], [0.2, 0.8]]
-    X = mc_sample_path(P, sample_size=100000)
+    X = mc_sample_path(P, ψ_0=[0.1, 0.9], sample_size=100_000)
     np.mean(X == 0)
 
-
-
+You can try changing the initial distribution to confirm that the output is
+always close to 0.25.
 
 
 Using QuantEcon's Routines
@@ -336,26 +327,23 @@ As discussed above, `QuantEcon.py <http://quantecon.org/quantecon-py>`__ has rou
 Here's an illustration using the same `P` as the preceding example
 
 
-
 .. code-block:: python3
 
-    P = [[0.4, 0.6], [0.2, 0.8]]
+    from quantecon import MarkovChain
+
     mc = qe.MarkovChain(P)
-    X = mc.simulate(ts_length=1000000)
+    X = mc.simulate(ts_length=1_000_000)
     np.mean(X == 0)
 
-In fact the `QuantEcon.py <http://quantecon.org/quantecon-py>`__ routine is :ref:`JIT compiled <numba_link>` and much faster.
-
-(Because it's JIT compiled the first run takes a bit longer --- the function has to be compiled and stored in memory)
+The `QuantEcon.py <http://quantecon.org/quantecon-py>`__ routine is :ref:`JIT compiled <numba_link>` and much faster.
 
 .. code-block:: ipython
 
-    %timeit mc_sample_path(P, sample_size=1000000) # Our version
+    %time mc_sample_path(P, sample_size=1_000_000) # Our version
 
 .. code-block:: ipython
 
-    %timeit mc.simulate(ts_length=1000000) # qe version
-
+    %time mc.simulate(ts_length=1_000_000) # qe version
 
 
 
@@ -411,10 +399,7 @@ Suppose that
 
 What then is the distribution of :math:`X_{t+1}`, or, more generally, of :math:`X_{t+m}`?
 
-Solution
-------------
-
-Let :math:`\psi_t` be the distribution of :math:`X_t` for :math:`t = 0, 1, 2, \ldots`.
+To answer this, we let :math:`\psi_t` be the distribution of :math:`X_t` for :math:`t = 0, 1, 2, \ldots`.
 
 Our first aim is to find :math:`\psi_{t + 1}` given :math:`\psi_t` and :math:`P`.
 
@@ -436,9 +421,9 @@ Rewriting this statement in terms of  marginal and conditional probabilities giv
 
 .. _mc_fdd:
 
-    .. math::
+.. math::
 
-        \psi_{t+1}(y) = \sum_{x \in S} P(x,y) \psi_t(x)
+    \psi_{t+1}(y) = \sum_{x \in S} P(x,y) \psi_t(x)
 
 
 There are :math:`n` such equations, one for each :math:`y \in S`.
@@ -547,15 +532,31 @@ probabilities or as cross-sectional frequencies in large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker :ref:`discussed above <mc_eg1>`.
 
-Consider a large (i.e., tending to infinite) population of workers, each of whose lifetime experience is described by the specified dynamics, independent of one another.
+Consider a large population of workers, each of whose lifetime experience is described by the specified dynamics, independent of one another.
 
 Let :math:`\psi` be the current *cross-sectional* distribution over :math:`\{ 0, 1 \}`.
 
-* For example, :math:`\psi(0)` is the unemployment rate.
-
 The cross-sectional distribution records the fractions of workers employed and unemployed at a given moment.
 
-The same distribution also describes the fractions of  a particular worker's career spent being employed and unemployed, respectively.
+* For example, :math:`\psi(0)` is the unemployment rate.
+
+What will the cross-sectional distribution be in 10 periods hence?
+
+The answer is :math:`\psi P^{10}`, where :math:`P` is the stochastic matrix in
+:eq:`p_unempemp`.
+
+This is because each worker is updated according to :math:`P`, so 
+:math:`\psi P^{10}` represents probabilities for a single randomly selected
+worker.
+
+But when the sample is large, outcomes and probabilities are roughly equal (by the Law
+of Large Numbers).
+
+So for a very large (tending to infinite) population, 
+:math:`\psi P^{10}` also represents the fraction of workers in
+each state.
+
+This is exactly the cross-sectional distribution.
 
 
 :index:`Irreducibility and Aperiodicity`
@@ -765,13 +766,12 @@ As seen in :eq:`fin_mc_fr`, we can shift probabilities forward one unit of time 
 Some distributions are invariant under this updating process --- for example,
 
 
-
 .. code-block:: python3
 
-    P = np.array([[.4, .6], [.2, .8]])
+    P = np.array([[0.4, 0.6], 
+                  [0.2, 0.8]])
     ψ = (0.25, 0.75)
     ψ @ P
-
 
 
 Such distributions are called **stationary**, or **invariant**.
@@ -880,7 +880,9 @@ A suitable algorithm is implemented in `QuantEcon.py <http://quantecon.org/quant
 
 .. code-block:: python3
 
-    P = [[0.4, 0.6], [0.2, 0.8]]
+    P = [[0.4, 0.6], 
+         [0.2, 0.8]]
+
     mc = qe.MarkovChain(P)
     mc.stationary_distributions  # Show all stationary distributions
 
@@ -1163,23 +1165,16 @@ employment, then :math:`\bar X_m \to p` as :math:`m \to \infty`, where
     \bar X_m := \frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = 0\}
 
 
-Your exercise is to illustrate this convergence.
+The exercise is to illustrate this convergence by computing 
+:math:`\bar X_m` for large :math:`m` and checking that 
+it is close to :math:`p`.
 
-First,
+You will see that this statement is true regardless of the choice of initial
+condition or the values of :math:`\alpha, \beta`, provided both lie in
+:math:`(0, 1)`.
 
-* generate one simulated time series :math:`\{X_t\}` of length 10,000, starting at :math:`X_0 = 0`
-* plot :math:`\bar X_m - p` against :math:`m`, where :math:`p` is as defined above
 
-Second, repeat the first step, but this time taking :math:`X_0 = 1`.
 
-In both cases, set :math:`\alpha = \beta = 0.1`.
-
-The result should look something like the following --- modulo randomness, of
-course
-
-.. figure:: /_static/lecture_specific/finite_markov/mc_ex1_plot.png
-
-(You don't need to add the fancy touches to the graph---see the solution if you're interested)
 
 
 
@@ -1301,6 +1296,7 @@ The following code snippet provides a hint as to how you can go about this
 
 .. code-block:: python3
 
+    import re
     re.findall('\w', 'x +++ y ****** z')  # \w matches alphanumerics
 
 .. code-block:: python3
@@ -1387,11 +1383,16 @@ The exercise is to write a function ``approx_markov(rho, sigma_u, m=3, n=7)`` th
 Solutions
 ===========
 
+
 Exercise 1
 ----------
 
-Compute the fraction of time that the worker spends unemployed, and
-compare it to the stationary probability.
+We will address this exercise graphically.
+
+The plots show the time series of :math:`\bar X_m - p` for two initial
+conditions.
+
+As :math:`m` gets large, both series converge to zero.
 
 .. code-block:: python3
 
@@ -1477,6 +1478,8 @@ executing the next cell
     """
     Return list of pages, ordered by rank
     """
+    import re
+    from operator import itemgetter
 
     infile = 'web_graph_data.txt'
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
