@@ -330,7 +330,7 @@ In ``scipy.optimize``, the function ``brentq`` is such a hybrid method and a goo
 
 .. code-block:: python3
 
-    from scipy.optimize import newton
+    from scipy.optimize import brentq
 
     brentq(f, 0, 1)
 
