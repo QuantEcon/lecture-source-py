@@ -102,7 +102,7 @@ In each subfigure, two parameters are held fixed while another varies
         k[0] = 1
         for t in range(49):
             k[t+1] = s[j] * k[t]**α + (1 - δ) * k[t]
-        axes[1].plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s},\; \delta={δ}$")
+        axes[1].plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s[j]},\; \delta={δ}$")
 
     axes[1].grid(lw=0.2)
     axes[1].set_xlabel('time')
