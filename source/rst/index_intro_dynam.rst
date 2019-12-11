@@ -24,6 +24,7 @@ agents as given.  Later we will look at full equilibrium problems.
     scalar_dynam
     finite_markov
     inventory_dynamics
+    ar1_processes
     linear_models
     samuelson
     kesten_processes
