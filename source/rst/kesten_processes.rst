@@ -23,8 +23,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Overview
 ========
 
-:doc:`Previously <linear_models>` we learned about linear stochastic processes
-(linear state space models).
+:doc:`Previously <ar1_processes>` we learned about linear scalar-valued stochastic processes (AR(1) models).
 
 Now we generalize these linear models slightly by allowing the multiplicative coefficient to be stochastic.  
 
@@ -36,7 +35,6 @@ Although simple to write down, Kesten processes are interesting for at least two
 
 2. Kesten processes generate interesting dynamics, including, in some cases, heavy-tailed cross-sectional distributions.
 
-
 We will discuss these issues as we go along.
 
 Let's start with some imports:
@@ -46,6 +44,8 @@ Let's start with some imports:
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
+
+    import quantecon as qe
 
 The following two lines are only added to avoid a ``FutureWarning`` caused by 
 compatibility issues between pandas and matplotlib.
@@ -71,18 +71,18 @@ A **Kesten process** is a stochastic process of the form
 .. math::
     :label: kesproc
 
-    x_{t+1} = a_{t+1} x_t + \eta_{t+1}
+    X_{t+1} = a_{t+1} X_t + \eta_{t+1}
 
 where :math:`\{a_t\}_{t \geq 1}` and :math:`\{\eta_t\}_{t \geq 1}` are IID
 sequences.
 
-We are interested in the dynamics of :math:`\{x_t\}_{t \geq 0}` when :math:`x_0` is given.
+We are interested in the dynamics of :math:`\{X_t\}_{t \geq 0}` when :math:`X_0` is given.
 
-We will focus on the nonnegative scalar case, where :math:`x_t` takes values in :math:`\mathbb R_+`.
+We will focus on the nonnegative scalar case, where :math:`X_t` takes values in :math:`\mathbb R_+`.
 
 In particular, we will assume that 
 
-* the initial condition :math:`x_0` is nonnegative,
+* the initial condition :math:`X_0` is nonnegative,
 
 * :math:`\{a_t\}_{t \geq 1}` is a nonnegative IID stochastic process and
 
@@ -144,7 +144,7 @@ Returns on a given asset are then modeled as
 
 where :math:`\{\zeta_t\}` is again IID and independent of :math:`\{\xi_t\}`.
 
-Notice that the volatility sequence :math:`\{\sigma_t\}`, which drives the dynamics, is a Kesten process.
+The volatility sequence :math:`\{\sigma_t^2 \}`, which drives the dynamics of returns, is a Kesten process.
 
 
 Example: Wealth Dynamics
@@ -170,7 +170,7 @@ is a Kesten process.
 Stationarity
 ------------
 
-In earlier lectures on :doc:`Markov chains <finite_markov>` and :doc:`linear state space models <linear_models>`, we introduced the notion of a stationary distribution.
+In earlier lectures, such as the one on :doc:`AR(1) processes <ar1_processes>`, we introduced the notion of a stationary distribution.
 
 In the present context, we can define a stationary distribution as follows:
 
@@ -180,12 +180,12 @@ Kesten process :eq:`kesproc` if
 .. math::
     :label: kp_stationary0
 
-    x_t \sim F^* 
+    X_t \sim F^* 
     \quad \implies \quad 
-    a_{t+1} x_t + \eta_{t+1} \sim F^*
+    a_{t+1} X_t + \eta_{t+1} \sim F^*
 
-In other words, if the current state :math:`x_t` has distribution :math:`F^*`,
-then so does the next period state :math:`x_{t+1}`.
+In other words, if the current state :math:`X_t` has distribution :math:`F^*`,
+then so does the next period state :math:`X_{t+1}`.
 
 We can write this alternatively as
 
@@ -249,11 +249,11 @@ Since :math:`y` was chosen arbitrarily, the distribution is unchanged.
 Conditions for Stationarity
 ---------------------------
 
-The Kesten process :math:`x_{t+1} = a_{t+1} x_t + \eta_{t+1}` does not always
+The Kesten process :math:`X_{t+1} = a_{t+1} X_t + \eta_{t+1}` does not always
 have a stationary distribution.
 
 For example, if :math:`a_t \equiv \eta_t \equiv 1` for all :math:`t`, then
-:math:`x_t = x_0 + t`, which diverges to infinity.
+:math:`X_t = X_0 + t`, which diverges to infinity.
 
 To prevent this kind of divergence, we require that :math:`\{a_t\}` is
 strictly less than 1 most of the time.
@@ -282,10 +282,9 @@ Heavy Tails
 Under certain conditions, the stationary distribution of a Kesten process has
 a Pareto tail.
 
-(See our :doc:`earlier lecture <heavy_tails>`  on heavy-tailed distributions for a discussion of Pareto tails.)
+(See our :doc:`earlier lecture <heavy_tails>`  on heavy-tailed distributions for background.)
 
-This fact is highly significant for economics because of the prevalence of
-Pareto-tailed distributions.
+This fact is significant for economics because of the prevalence of Pareto-tailed distributions.
 
 The Kesten--Goldie Theorem
 --------------------------
@@ -315,11 +314,11 @@ The famous Kesten--Goldie Theorem (see, e.g., :cite:`buraczewski2016stochastic`,
 then the stationary distribution of the Kesten process has a Pareto tail with
 tail index :math:`\alpha`.
 
-More precisely, if :math:`F^*` is the unique stationary distribution and :math:`x^* \sim F^*`, then 
+More precisely, if :math:`F^*` is the unique stationary distribution and :math:`X^* \sim F^*`, then 
 
 .. math::
 
-    \lim_{x \to \infty} x^\alpha \mathbb P\{x^* > x\} = c
+    \lim_{x \to \infty} x^\alpha \mathbb P\{X^* > x\} = c
     
 for some positive constant :math:`c`.
 
@@ -371,7 +370,7 @@ The spikes in the time series are visible in the following simulation, which gen
     for i in range(num_paths):
         ax.plot(kesten_ts())
         
-    ax.set(xlabel='time', ylabel='$x_t$')    
+    ax.set(xlabel='time', ylabel='$X_t$')    
     plt.show()
 
 
@@ -389,7 +388,8 @@ Gibrat's Law
 
 It was postulated many years ago by Robert Gibrat :cite:`gibrat1931inegalites` that firm size evolves according to a simple rule whereby size next period is proportional to current size.
 
-This is now know as Gibrat's law of proportional growth.
+This is now known as `Gibrat's law of proportional growth
+<https://en.wikipedia.org/wiki/Gibrat%27s_law>`__.
 
 We can express this idea by stating that a suitably defined measure 
 :math:`s_t` of firm size obeys
@@ -437,7 +437,7 @@ consistent with the empirical findings presented above than Gibrat's law in
 Heavy Tails
 -----------
 
-So what has this to do with heavy tails?
+So what has this to do with Pareto tails?
 
 The answer is that :eq:`firm_dynam` is a Kesten process.
 
@@ -459,7 +459,7 @@ Exercise 1
 ----------
 
 Simulate and plot 15 years of daily returns (consider each year as having 250
-working days) the GARCH(1, 1) process in :eq:`garch11v`--:eq:`garch11r`.
+working days) using the GARCH(1, 1) process in :eq:`garch11v`--:eq:`garch11r`.
 
 Take :math:`\xi_t` and :math:`\zeta_t` to be independent and standard normal.
 
@@ -490,7 +490,7 @@ Consider an arbitrary Kesten process as given in :eq:`kesproc`.
 Suppose that :math:`\{a_t\}` is lognormal with parameters :math:`(\mu,
 \sigma)`.
 
-In other words, each :math:`a_t` has the same distribution as :math:`a = \exp(\mu + \sigma Z)` when :math:`Z` is standard normal.
+In other words, each :math:`a_t` has the same distribution as :math:`\exp(\mu + \sigma Z)` when :math:`Z` is standard normal.
 
 Suppose further that :math:`\mathbb E \eta_t^r < \infty` for every :math:`r > 0`, as
 would be the case if, say, :math:`\eta_t` is also lognormal.
@@ -692,7 +692,7 @@ Solving for :math:`\alpha` gives :math:`\alpha = -2\mu / \sigma^2`.
 Exercise 4
 ----------
 
-Here's one solution.
+Here's one solution.  First we generate the observations:
 
 
 .. code:: ipython3
@@ -700,18 +700,6 @@ Here's one solution.
     from numba import njit, prange
     from numpy.random import randn 
     
-    def rank_size_data(data, largest=1_000):
-        """
-        Generate rank-size data corresponding to distribution data.
-    
-            * data is array like
-            * largest=n means take the n largest firms
-        """
-        w = - np.sort(- data)                  # Reverse sort
-        w = w[:largest]                
-        rank_data = np.log(np.arange(len(w)) + 1)
-        size_data = np.log(w)
-        return rank_data, size_data
     
     @njit(parallel=True)
     def generate_draws(μ_a=-0.5,
@@ -740,17 +728,18 @@ Here's one solution.
             
         return draws
     
-    rank_data, size_data = rank_size_data(generate_draws())
-    
+    data = generate_draws()
+
+Now we produce the rank-size plot:
+
+.. code:: ipython3
+
+
     fig, ax = plt.subplots()
     
-    ax.plot(rank_data, size_data, 'o', markersize=3.0, alpha=0.5)
-    
-    ax.set_xlabel("log rank")
-    ax.set_ylabel("log size")
-    
-    ax.set_title("rank-size plot of firm size")
+    qe.rank_size_plot(data, ax, c=0.01)
     
     plt.show()
 
+The plot produces a straight line, consistent with a Pareto tail.
 
