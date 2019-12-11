@@ -780,6 +780,9 @@ Such distributions are called **stationary**, or **invariant**.
 
 Formally, a distribution :math:`\psi^*` on :math:`S` is called **stationary** for :math:`P` if :math:`\psi^* = \psi^* P`.
 
+(This is the same notion of stationarity that we learned about in the
+:doc:`lecture on AR(1) processes <ar1_processes>` applied to a different setting.)
+
 From this equality, we immediately get :math:`\psi^* = \psi^* P^t` for all :math:`t`.
 
 This tells us an important fact: If the distribution of :math:`X_0` is a stationary distribution, then :math:`X_t` will have this same distribution for all :math:`t`.

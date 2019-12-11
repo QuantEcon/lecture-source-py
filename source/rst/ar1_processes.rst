@@ -24,10 +24,9 @@ These simple models are used again and again in economic research to represent t
 
 * labor income
 * dividends
-* productivity
-* etc.
+* productivity, etc.
 
-AR(1) processes can take negative values but are easily converted into positive processes by a transformation such as exponentiation.
+AR(1) processes can take negative values but are easily converted into positive processes when necessary by a transformation such as exponentiation.
 
 We are going to study AR(1) processes partly because they are useful and
 partly because they help us understand important concepts.
@@ -84,12 +83,11 @@ If we work all the way back to time zero, we get
        X_t = a^t X_0 + b \sum_{j=0}^{t-1} a^j +
             c \sum_{j=0}^{t-1} a^j  W_{t-j} 
 
-Thus, we see that :math:`X_t` is a well defined random variable that depends
-on 
+Equation :eq:`ar1_ma` shows that :math:`X_t` is a well defined random variable, the value of which depends on 
 
 * the parameters,
 * the initial condition :math:`X_0` and 
-* the shocks :math:`W_0, \ldots W_t`.
+* the shocks :math:`W_1, \ldots W_t` from time :math:`t=1` to the present.
 
 Throughout, the symbol :math:`\psi_t` will be used to refer to the
 density of this random variable :math:`X_t`.
@@ -106,9 +104,8 @@ To see this, we first note that :math:`X_t` is normally distributed for each :ma
 This is immediate form :eq:`ar1_ma`, since linear combinations of independent
 normal random variables are normal.
 
-
-Given that :math:`X_t` is normally distributed, we know the full distribution
-:math:`\psi_t` if we can work out the first two moments.
+Given that :math:`X_t` is normally distributed, we will know the full distribution
+:math:`\psi_t` if we can pin down its first two moments.
 
 Let :math:`\mu_t` and :math:`\sigma_t` denote the mean and standard deviation
 of :math:`X_t` respectively.
@@ -123,10 +120,21 @@ recursive expressions:
     \quad \text{and} \quad
     \sigma^2_{t+1} = a^2 \sigma^2_t + c^2
 
-These expressions are obtained from :eq:`can_ar1` by taking, respectively, the expectation
-and variance of both sides of the equality.
+These expressions are obtained from :eq:`can_ar1` by taking, respectively, the expectation and variance of both sides of the equality.
 
-The following code uses these laws of motion to track the sequence of marginal
+In calculating the second expression, we are using the fact that :math:`X_t`
+and :math:`W_{t+1}` are independent.
+
+(This follows from our assumptions and :eq:`ar1_ma`.)
+
+Given the dynamics in :eq:`ar1_ma` and initial conditions :math:`\mu_0,
+\sigma_0`, we obtain :math:`\mu_t, \sigma_t` and hence
+
+.. math::
+
+    \psi_t = N(\mu_t, \sigma_t^2)
+
+The following code uses these facts to track the sequence of marginal
 distributions :math:`\{ \psi_t \}`.
 
 The parameters are
@@ -135,12 +143,16 @@ The parameters are
 
     a, b, c = 0.9, 0.1, 0.5
 
-    mu, sigma = -3.0, 0.4  # initial condition
-    sim_length = 10
+    mu, sigma = -3.0, 0.4  # initial conditions mu_0, sigma_0
 
-    grid = np.linspace(-5, 7, 120)
+Here's the sequence of distributions:
+
+.. code-block:: python3
 
     from scipy.stats import norm
+
+    sim_length = 10
+    grid = np.linspace(-5, 7, 120)
 
     fig, ax = plt.subplots()
 
@@ -180,11 +192,9 @@ This is even clearer if we project forward further into the future:
     plt.show()
 
 
-This is indeed the case.
-
 Moreover, the limit does not depend on the initial condition.
 
-For example, this density sequence converges to the same limit.
+For example, this alternative density sequence also converges to the same limit.
 
 .. code-block:: python3
 
@@ -202,22 +212,22 @@ When :math:`|a| < 1`, these sequence converge to the respective limits
 .. math::
     :label: mu_sig_star
 
-    \mu_* := \frac{b}{1-a}
+    \mu^* := \frac{b}{1-a}
     \quad \text{and} \quad
-    \sigma^2_* = \frac{c^2}{1 - a^2}
+    v^* = \frac{c^2}{1 - a^2}
 
-(See our :doc:`lecture on one dimensional dynamics <scalar_dynam>` for background.)
+(See our :doc:`lecture on one dimensional dynamics <scalar_dynam>` for background on deterministic convergence.)
 
 Hence 
 
 .. math::
     :label: ar1_psi_star
 
-    \psi_t \to \psi_* = N(\mu_*, \sigma^2_*)
+    \psi_t \to \psi^* = N(\mu^*, v^*)
     \quad \text{as }
     t \to \infty
 
-We can confirm this works for the sequence above using the following code.
+We can confirm this is valid for the sequence above using the following code.
 
 
 .. code-block:: python3
@@ -226,25 +236,27 @@ We can confirm this works for the sequence above using the following code.
     plot_density_seq(ax, mu_0=3.0)
 
     mu_star = b / (1 - a)
-    sigma_star = np.sqrt(c**2 / (1 - a**2))
-    psi_star = norm.pdf(grid, loc=mu_star, scale=sigma_star)
-    ax.plot(grid, psi_star, 'k-', lw=2, label="$\psi_*$")
+    std_star = np.sqrt(c**2 / (1 - a**2))  # square root of v_star
+    psi_star = norm.pdf(grid, loc=mu_star, scale=std_star)
+    ax.plot(grid, psi_star, 'k-', lw=2, label="$\psi^*$")
     ax.legend()
 
     plt.show()
+
+As claimed, the sequence :math:`\{ \psi_t \}` converges to :math:`\psi^*`.
+
 
 
 Stationary Distributions
 ------------------------
 
-In our lecture on :doc:`finite Markov chains <finite_markov>` and also in our
-lecture on :doc:`inventory dynamics <inventory_dynamics>`, we discussed the
-notion of stationary distributions.
-
-In general, a stationary distribution is any distribution that is a fixed
+A stationary distribution is a distribution that is a fixed
 point of the update rule for distributions.
 
-A different way to put this, specialized to the current setting, is: a
+In other words, if :math:`\psi_t` is stationary, then :math:`\psi_{t+j} =
+\psi_t` for all :math:`j` in :math:`\mathbb N`.
+
+A different way to put this, specialized to the current setting, is as follows: a
 density :math:`\psi` on :math:`\mathbb R` is **stationary** for the AR(1) process if
 
 .. math::
@@ -252,27 +264,27 @@ density :math:`\psi` on :math:`\mathbb R` is **stationary** for the AR(1) proces
     \quad \implies \quad 
     a X_t + b + c W_{t+1} \sim \psi
 
-The distribution :math:`\psi_*` in :eq:`ar1_psi_star` has this property ---
+The distribution :math:`\psi^*` in :eq:`ar1_psi_star` has this property ---
 checking this is an exercise.
 
-(Of course, we are assuming that :math:`|a| < 1` so that :math:`\psi_*` is
+(Of course, we are assuming that :math:`|a| < 1` so that :math:`\psi^*` is
 well defined.)
 
 In fact, it can be shown that no other distribution on :math:`\mathbb R` has this property.
+
+Thus, when :math:`|a| < 1`, the AR(1) model has exactly one stationary density and that density is given by :math:`\psi^*`.
 
 
 Ergodicity
 ==========
 
-In :doc:`our lecture on finite Markov chains <finite_markov>`, we explored the
-notion of ergodicity.
+The concept of ergodicity is used in different ways by different authors.
 
-In that setting we found that, under some conditions that implied stability,
-averages over time series converge to expectations under the stationary
-distribution.
+One way to understand it in the present setting is that a version of the Law
+of Large Numbers is valid for :math:`\{X_t\}`, even though it is not IID.
 
-The same phenomenon can be observed here.
-
+In particular, averages over time series converge to expectations under the
+stationary distribution.
 
 Indeed, it can be proved that, whenever :math:`|a| < 1`, we have
 
@@ -283,13 +295,14 @@ Indeed, it can be proved that, whenever :math:`|a| < 1`, we have
     \int h(x) \psi^*(x) dx
         \quad \text{as } m \to \infty
 
-provided that the integral on the right hand side is finite.
+whenever the integral on the right hand side is finite and well defined.
 
-In :eq:`ar1_ergo`, convergence holds with probability one.
+Notes:
 
-The textbook by :cite:`MeynTweedie2009` is a classic reference on this topic.
+* In :eq:`ar1_ergo`, convergence holds with probability one.
+* The textbook by :cite:`MeynTweedie2009` is a classic reference on ergodicity.
 
-For example, if we consider the indicator function :math:`h(x) = x`, we get
+For example, if we consider the identity function :math:`h(x) = x`, we get
 
 .. math::
 
@@ -300,6 +313,8 @@ For example, if we consider the indicator function :math:`h(x) = x`, we get
 In other words, the time series sample mean converges to the mean of the
 stationary distribution.
 
+As will become clear over the next few lectures, ergodicity is a very
+important concept for statistics and simulation.
 
 Exercises
 =========
@@ -332,7 +347,7 @@ According to :eq:`ar1_ergo`, we should have, for any :math:`k \in \mathbb N`,
 .. math::
 
     \frac{1}{m} \sum_{t = 1}^m 
-        (X_t - \mu_* )^k
+        (X_t - \mu^* )^k
         \approx M_k
 
 when :math:`m` is large.
@@ -380,7 +395,7 @@ for distributions :math:`\phi` of the following types
    distribution <https://en.wikipedia.org/wiki/Beta_distribution>`__
    with :math:`\alpha = \beta = 0.5`
 
-Use :math:`n=100`.
+Use :math:`n=500`.
 
 Make a comment on your results. (Do you think this is a good estimator
 of these distributions?)
@@ -388,15 +403,14 @@ of these distributions?)
 Exercise 3
 ----------
 
-In class we discussed the following fact: For the :math:`AR(1)` process
+In the lecture we discussed the following fact: For the :math:`AR(1)` process
 
-.. math::  X_{t+1} = a X_t + b + c \xi_{t+1} 
+.. math::  X_{t+1} = a X_t + b + c W_{t+1} 
 
-with :math:`\{ \xi_t \}` iid and standard normal,
+with :math:`\{ W_t \}` iid and standard normal,
 
 .. math::
 
-    
        \psi_t = N(\mu, s^2) \implies \psi_{t+1} 
        = N(a \mu + b, a^2 s^2 + c^2) 
 
@@ -417,11 +431,11 @@ color) as follows:
 1. Generate :math:`n` draws of :math:`X_t` from the :math:`N(\mu, s^2)`
    distribution
 2. Update them all using the rule
-   :math:`X_{t+1} = a X_t + b + c \xi_{t+1}`
+   :math:`X_{t+1} = a X_t + b + c W_{t+1}`
 3. Use the resulting sample of :math:`X_{t+1}` values to produce a
    density estimate via kernel density estimation.
 
-Try this for several different values of :math:`n` and confirm that the
+Try this for :math:`n=2000` and confirm that the
 simulation based estimate of :math:`\psi_{t+1}` does converge to the
 theoretical distribution.
 
@@ -449,7 +463,7 @@ Exercise 1
 
     def true_moments_ar1(k):
         if k % 2 == 0:
-            return sigma_star**k * factorial2(k - 1)
+            return std_star**k * factorial2(k - 1)
         else:
             return 0
 
@@ -506,7 +520,7 @@ Here is one solution:
         x_data = ϕ.rvs(n)
         kde = KDE(x_data)
         
-        x_grid = np.linspace(-0.1, 1.1, 100)
+        x_grid = np.linspace(-0.2, 1.2, 100)
         fig, ax = plt.subplots()
         ax.plot(x_grid, kde.f(x_grid), label="estimate")
         ax.plot(x_grid, ϕ.pdf(x_grid), label="true density")
@@ -517,7 +531,7 @@ Here is one solution:
 
     from scipy.stats import beta
     
-    n = 100
+    n = 500
     parameter_pairs= (2, 2), (2, 5), (0.5, 0.5)
     for α, β in parameter_pairs:
         plot_kde(beta(α, β))
@@ -555,7 +569,7 @@ Here is our solution
 
 .. code:: ipython3
 
-    n = 1000
+    n = 2000
     x_draws = ψ.rvs(n)
     x_draws_next = a * x_draws + b + c * np.random.randn(n)
     kde = KDE(x_draws_next)

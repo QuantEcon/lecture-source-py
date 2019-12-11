@@ -20,7 +20,7 @@ follow so-called s-S inventory dynamics.
 
 Such firms 
 
-1.  wait until inventory falls below some level :math:`s` and then
+1. wait until inventory falls below some level :math:`s` and then
 2. order sufficent quantities to bring their inventory back up to capacity :math:`S`.
 
 These kinds of policies are common in practice and also optimal in certain circumstances.
@@ -281,9 +281,7 @@ Exercise 1
 This model is asymptotically stationary, with a unique stationary
 distribution.
 
-(See :doc:`our lecture on finite state Markov chains <finite_markov>` for
-background --- the state space is now continuous but the fundamental concepts
-are the same.)
+(See the discussion of stationarity in :doc:`our lecture on AR(1) processes <ar1_processes>` for background --- the fundamental concepts are the same.)
 
 In particular, the sequence of marginal distributions :math:`\{\psi_t\}`
 is converging to a unique limiting distribution that does not depend on
