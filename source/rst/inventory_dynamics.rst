@@ -292,11 +292,15 @@ initial conditions.
 Although we will not prove this here, we can investigate it using simulation.
 
 Your task is to generate and plot the sequence :math:`\{\psi_t\}` at times
-:math:`t = 10, 50, 250, 500, 750` using the code above.
+:math:`t = 10, 50, 250, 500, 750` based on the discussion above.
 
-You should see convergence. Try different initial conditions to verify
-that, in the long run, the distribution is invariant across initial
-conditions.
+(The kernel density estimator is probably the best way to present each
+distribution.)
+
+You should see convergence, in the sense that differences between successive distributions are getting smaller. 
+
+Try different initial conditions to verify that, in the long run, the distribution is invariant across initial conditions.
+
 
 Exercise 2
 ----------
@@ -324,13 +328,13 @@ This meant writing a specialized function rather than using the class above.
 
     s, S, mu, sigma = firm.s, firm.S, firm.mu, firm.sigma
 
-    @njit
+    @njit(parallel=True)
     def shift_firms_forward(current_inventory_levels, num_periods):
 
         num_firms = len(current_inventory_levels)
         new_inventory_levels = np.empty(num_firms) 
 
-        for f in range(num_firms):
+        for f in prange(num_firms):
             x = current_inventory_levels[f]
             for t in range(num_periods):
                 Z = np.random.randn()
