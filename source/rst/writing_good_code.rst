@@ -161,7 +161,7 @@ If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered
 
 These kinds of numeric literals in the body of your code are sometimes called "magic numbers".
 
-This is not a complement.
+This is not a compliment.
 
 While numeric literals are not all evil, the numbers shown in the program above
 should certainly be replaced by named constants.
@@ -239,7 +239,7 @@ Use Functions or Classes
 
 Fortunately, we can easily avoid the evils of global variables and WET code.
 
-* WET stands for "we love typing" and is the opposite of DRY.
+* WET stands for "we enjoy typing" and is the opposite of DRY.
 
 We can do this by making frequent use of functions or classes.
 
