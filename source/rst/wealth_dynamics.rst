@@ -38,19 +38,22 @@ The wealth distribution in many countries exhibits a Pareto tail
 
 * For a review of the empirical evidence, see, for example, :cite:`benhabib2018skewed`.
 
-This suggests high concentrations of wealth amongst the richest households.
+This is consistent with high concentration of wealth amongst the richest households.
 
-We will be interested in whether or not we can replicate Pareto tails from a relatively simple model.
+It also gives us a way to quantify such concentration, in terms of the tail index.
+
+One question of interest is whether or not we can replicate Pareto tails from a relatively simple model.
 
 
 A Note on Assumptions
 ---------------------
 
-Clearly, the evolution of wealth for any given household depends on their
-savings behavior, and modeling such behavior will form an important part of
-this lecture series.
+The evolution of wealth for any given household depends on their
+savings behavior. 
 
-However, in this particular lecture, we will be content with ad hoc (but plausible) savings rules.
+Modeling such behavior will form an important part of this lecture series.
+
+However, in this particular lecture, we will be content with rather ad hoc (but plausible) savings rules.
 
 We do this to more easily explore the implications of different specifications of income dynamics and investment returns.
 
@@ -551,10 +554,7 @@ Exercises
 Exercise 1
 ----------
 
-It was claimed in the discussion above that, when the tail index of the Pareto
-distribution increases, inequality falls, since a higher tail index implies
-less weight in the right hand tail.
-
+For a wealth or income distribution with Pareto tail, a higher tail index suggests lower
 In fact, it is possible to prove that the Gini coefficient of the Pareto
 distribution with tail index :math:`a` is :math:`1/(2a - 1)`.
 
@@ -568,6 +568,9 @@ For the values of the tail index, use ``a_vals = np.linspace(1, 10, 25)``.
 
 Use sample of size 1,000 for each :math:`a` and the sampling method for generating
 Pareto draws employed in the discussion of Lorenz curves for the Pareto distribution.
+
+To the extend that you can, interpret the monotone relationship between the
+Gini index and :math:`a`.
 
 
 Exercise 2
@@ -625,6 +628,15 @@ Exercise 1
     ax.plot(a_vals, 1/(2*a_vals - 1), label='theoretical')
     ax.legend()
     plt.show()
+
+
+In general, for a Pareto distribution, a higher tail index implies less weight
+in the right hand tail.
+
+This means less extreme values for wealth and hence more equality.
+
+More equality translates to a lower Gini index.
+
 
 
 Exercise 2
