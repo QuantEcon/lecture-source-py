@@ -507,7 +507,22 @@ When Numba compiles machine code for functions, it treats global variables as co
 Exercises
 =========
 
+
 .. _speed_ex1:
+
+Exercise 1
+----------
+
+:ref:`Previously <pbe_ex3>` we considered how to approximate :math:`\pi` by
+Monte Carlo.
+
+Use the same idea here, but make the code efficient using Numba.
+
+
+Compare speed with and without Numba when the sample size is large.
+
+
+.. _speed_ex2:
 
 Exercise 1
 ----------
@@ -554,6 +569,43 @@ Solutions
 
 
 Exercise 1
+----------
+
+Here is one solution:
+
+.. code-block:: python3
+
+    from random import uniform
+
+    @njit
+    def calculate_pi(n=1_000_000):
+        count = 0
+        for i in range(n):
+            u, v = uniform(0, 1), uniform(0, 1)
+            d = np.sqrt((u - 0.5)**2 + (v - 0.5)**2)
+            if d < 0.5:
+                count += 1
+
+        area_estimate = count / n
+        return area_estimate * 4  # dividing by radius**2
+
+Now let's see how fast it runs:
+
+.. code-block:: python3
+
+    %time calculate_pi()
+
+.. code-block:: python3
+
+    %time calculate_pi()
+
+If we switch of JIT compilation by removing ``@jit``, the code takes around
+150 times as long on our machine.
+
+So we get a speed gain of 2 orders of magnitude--which is huge--by adding four
+characters.
+
+Exercise 2
 ----------
 
 We let
