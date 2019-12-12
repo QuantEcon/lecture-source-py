@@ -721,9 +721,8 @@ Now we consider two different views of what happens as :math:`r` and
     T=np.arange(0, T_max+1)
 
     rs, gs = (0.9, 0.5, 0.4001, 0.4), (0.4, 0.4, 0.4, 0.5),
-    comparison = ('$\gg$', '$>$', r'$\approx$', '$<$')
-    for triple in zip(rs, gs, comparison):
-        r, g, comp = triple[0], triple[1], triple[2]
+    comparisons = ('$\gg$', '$>$', r'$\approx$', '$<$')
+    for r, g, comp in zip(rs, gs, comparisons):
         ax.plot(finite_lease_pv_true(T, g, r, x_0), label=f'r(={r}) {comp} g(={g})')
     
     ax.legend()
@@ -889,15 +888,13 @@ Now we will compare the effects on output of increases in investment and governm
         y = calculate_y(i_0, b, g, T, y_init)
         ax2.plot(x, y, label=f"g={g}")
 
-    plots = ax1, ax2
+    axes = ax1, ax2
     param_labels = "Investment", "Government Spending"
-    for pair in zip(plots, param_labels):
-        axes = pair[0]
-        param = pair[1]
-        axes.set_title(f'An Increase in {param} on Output')
-        axes.legend(loc ="lower right")
-        axes.set_ylabel('$y_t$')
-        axes.set_xlabel('$t$')
+    for ax, param in zip(axes, param_labels):
+        ax.set_title(f'An Increase in {param} on Output')
+        ax.legend(loc ="lower right")
+        ax.set_ylabel('$y_t$')
+        ax.set_xlabel('$t$')
     plt.show()
 
 
