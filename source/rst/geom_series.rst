@@ -889,8 +889,8 @@ Now we will compare the effects on output of increases in investment and governm
         y = calculate_y(i_0, b, g, T, y_init)
         ax2.plot(x, y, label=f"g={g}")
 
-    plots = [ax1, ax2]
-    param_labels = ["Investment", "Government Spending"]
+    plots = ax1, ax2
+    param_labels = "Investment", "Government Spending"
     for pair in zip(plots, param_labels):
         axes = pair[0]
         param = pair[1]
