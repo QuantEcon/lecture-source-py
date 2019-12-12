@@ -187,10 +187,10 @@ ubiquitous in economic dynamics and other fields involving planning over time.
 
 The intuition behind it is as follows:
 
-* the first term inside the max operation is the lifetime payoff from accepting current offer :math:`w = w(s)`, since
+* the first term inside the max operation is the lifetime payoff from accepting current offer, since
 
 .. math::
-    w + \beta w + \beta^2 w + \cdots = \frac{w}{1 - \beta}
+    \frac{w(s)}{1 - \beta} = w(s) + \beta w(s) + \beta^2 w(s) + \cdots 
 
 * the second term inside the max operation is the **continuation value**, which is the lifetime payoff from rejecting the current offer and then behaving optimally in all subsequent periods
 
@@ -282,7 +282,7 @@ In view of :eq:`odu_pv`, this vector satisfies the nonlinear system of equations
 The Algorithm
 -------------
 
-To compute this vector, we proceed as follows:
+To compute this vector, we use successive approximations:
 
 Step 1: pick an arbitrary initial guess :math:`v \in \mathbb R^n`.
 
@@ -306,17 +306,16 @@ Step 4: if the deviation is larger than some fixed tolerance, set :math:`v = v'`
 
 Step 5: return :math:`v`.
 
-This algorithm returns an arbitrarily good approximation to the true solution
-to :eq:`odu_pv2`, which represents the value function.
+Let :math:`\{ v_k \}` denote the sequence genererated by this algorithm.
 
-(Arbitrarily good means here that the approximation converges to the true
-solution as the tolerance goes to zero.)
+This sequence converges to the solution
+to :eq:`odu_pv2` as :math:`k \to \infty`, which is the value function :math:`v^*`.
 
 
 The Fixed Point Theory
 ----------------------
 
-What's the math behind these ideas?
+What's the mathematics behind these ideas?
 
 First, one defines a mapping :math:`T` from :math:`\mathbb R^n` to
 itself via
@@ -336,33 +335,40 @@ itself via
 (A new vector :math:`Tv` is obtained from given vector :math:`v` by evaluating
 the r.h.s. at each :math:`i`)
 
-One can show that the conditions of the Banach contraction mapping theorem are
-satisfied by :math:`T` as a self-mapping on :math:`\mathbb R^n`.
+The element :math:`v_k` in the sequence :math:`\{v_k\}` of successive
+approximations corresponds to :math:`T^k v`.
+
+* This is :math:`T` applied :math:`k` times, starting at the initial guess
+  :math:`v`
+
+One can show that the conditions of the `Banach fixed point theorem 
+<https://en.wikipedia.org/wiki/Banach_fixed-point_theorem>`__ are
+satisfied by :math:`T` on :math:`\mathbb R^n`.
 
 One implication is that :math:`T` has a unique fixed point in :math:`\mathbb R^n`.
 
+* That is, a unique vector :math:`\bar v` such that :math:`T \bar v = \bar v`.
+
 Moreover, it's immediate from the definition of :math:`T` that this fixed
-point is precisely the value function.
+point is :math:`v^*`.
 
-The iterative algorithm presented above corresponds to iterating with
-:math:`T` from some initial guess :math:`v`.
-
-The Banach contraction mapping theorem tells us that this iterative process
-generates a sequence that converges to the fixed point.
+A second implication of the  Banach contraction mapping theorem is that
+:math:`\{ T^k v \}` converges to the fixed point :math:`v^*` regardless of
+:math:`v`.
 
 
 
 Implementation
 --------------
 
-Our default for :math:`q`, the distribution of the state process, will be Beta-Binomial:
+Our default for :math:`q`, the distribution of the state process, will be 
+`Beta-binomial <https://en.wikipedia.org/wiki/Beta-binomial_distribution>`__.
 
 
 .. code-block:: python3
 
-    n, a, b = 50, 200, 100
-    dist = BetaBinomial(n, a, b)
-    q_default = dist.pdf()          # default choice of q
+    n, a, b = 50, 200, 100                        # default parameters
+    q_default = BetaBinomial(n, a, b).pdf()       # default choice of q
 
 Our default set of values for wages will be
 
@@ -371,34 +377,34 @@ Our default set of values for wages will be
     w_min, w_max = 10, 60
     w_default = np.linspace(w_min, w_max, n+1)
 
-Here's a plot of wages vs probabilities:
+Here's a plot of the probabilities of different wage outcomes:
 
 .. code-block:: python3
 
     fig, ax = plt.subplots()
-    ax.plot(w_default, q_default, 'o', label='$q(w(i))$')
+    ax.plot(w_default, q_default, '-o', label='$q(w(i))$')
     ax.set_xlabel('wages')
     ax.set_ylabel('probabilities')
 
     plt.show()
 
-For the dynamic programming component, 
-we are going to use Numba to accelerate our code (see, in particular, the
-discussion of ``@jitclass`` in :doc:`our lecture on Numba <numba>`).
+We are going to use Numba to accelerate our code.
 
-The following helps Numba by providing some type information about the data we need.
+* See, in particular, the discussion of ``@jitclass`` in :doc:`our lecture on Numba <numba>`.
+
+The following helps Numba by providing some type 
 
 .. code-block:: python3
 
     mccall_data = [
         ('c', float64),      # unemployment compensation
         ('β', float64),      # discount factor
-        ('w', float64[:]),   # w[i] = w(i) = wage at state i
-        ('q', float64[:])    # q[i] = probability of state i
+        ('w', float64[:]),   # array of wage values, w[i] = wage at state i
+        ('q', float64[:])    # array of probabilities
     ]
 
-Here's a class that stores the data and computes the value on the right hand side of the Bellman
-equation :eq:`odu_pv2p`.
+Here's a class that stores the data and computes the value on the right hand
+side of the Bellman equation :eq:`odu_pv2p`.
 
 Default parameter values are embedded in the class.
 
@@ -426,7 +432,7 @@ Default parameter values are embedded in the class.
 
 
 Based on these defaults, let's try plotting the first few approximate value functions
-in the sequence :math:`\{ T^n v \}`.
+in the sequence :math:`\{ T^k v \}`.
 
 We will start from guess :math:`v` given by :math:`v(i) = w(i) / (1 - β)`, which is the value of accepting at every given wage.
 
@@ -472,6 +478,9 @@ You can see that convergence is occuring: successive iterates are getting closer
 
 Here's a more serious iteration effort to compute the limit, which continues until measured deviation between successive iterates is below `tol`.
 
+Once we obtain a good approximation to the limit, we will use it to calculate
+the reservation wage.
+
 We'll be using JIT compilation via Numba to turbocharge our loops.
 
 .. code-block:: python3
@@ -481,11 +490,14 @@ We'll be using JIT compilation via Numba to turbocharge our loops.
                                  max_iter=500,
                                  tol=1e-6):
 
+        # Simplify names
+        c, β, w, q = mcm.c, mcm.β, mcm.w, mcm.q
+
         # == First compute the value function == #
 
-        n = len(mcm.w)
-        v = mcm.w / (1 - mcm.β)          # initial guess
-        v_next = np.empty_like(v)    # storage
+        n = len(w)
+        v = w / (1 - β)          # initial guess
+        v_next = np.empty_like(v)       
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
@@ -500,11 +512,11 @@ We'll be using JIT compilation via Numba to turbocharge our loops.
 
         # == Now compute the reservation wage == #
 
-        return (1 - mcm.β) * (mcm.c + mcm.β * np.sum(v * mcm.q))
+        return (1 - β) * (c + β * np.sum(v * q))
 
 
 
-Let's compute the reservation wage at the default parameters
+The next line computes the reservation wage at the default parameters
 
 
 .. code-block:: python3
@@ -581,10 +593,7 @@ broadly applicable.
 For this particular problem, there's also an easier way, which circumvents the
 need to compute the value function.
 
-Let :math:`h` denote the value of not accepting a job in this period but
-then behaving optimally in all subsequent periods.
-
-That is,
+Let :math:`h` denote the continuation value:
 
 .. math::
     :label: j1
@@ -594,17 +603,15 @@ That is,
         \sum_{s'} v^*(s') q (s')
     \quad
 
-where :math:`v^*` is the value function.
-
-By the Bellman equation, we then have
+The Bellman equation can now be written as
 
 .. math::
 
     v^*(s')
     = \max \left\{ \frac{w(s')}{1 - \beta}, \, h \right\}
 
-Substituting this last equation into :eq:`j1` gives
 
+Substituting this last equation into :eq:`j1` gives
 
 .. math::
     :label: j2
@@ -619,9 +626,7 @@ Substituting this last equation into :eq:`j1` gives
 
 This is a nonlinear equation that we can solve for :math:`h`.
 
-The natural solution method for this kind of nonlinear equation is iterative.
-
-That is,
+As before, we will use successive approximations: 
 
 Step 1: pick an initial guess :math:`h`.
 
@@ -640,13 +645,9 @@ Step 2: compute the update :math:`h'` via
 
 Step 3: calculate the deviation :math:`|h - h'|`.
 
-Step 4: if the deviation is larger than some fixed tolerance, set :math:`h = h'` and go to step 2, else continue.
-
-Step 5: return :math:`h`.
-
+Step 4: if the deviation is larger than some fixed tolerance, set :math:`h = h'` and go to step 2, else return :math:`h`.
 
 Once again, one can use the Banach contraction mapping theorem to show that this process always converges.
-
 
 The big difference here, however, is that we're iterating on a single number, rather than an :math:`n`-vector.
 
@@ -662,15 +663,18 @@ Here's an implementation:
                                      max_iter=500,
                                      tol=1e-5):
 
+        # Simplify names
+        c, β, w, q = mcm.c, mcm.β, mcm.w, mcm.q
+
         # == First compute h == #
 
-        h = np.sum(mcm.w * mcm.q) / (1 - mcm.β)
+        h = np.sum(w * q) / (1 - β)
         i = 0
         error = tol + 1
         while i < max_iter and error > tol:
 
-            s = np.maximum(mcm.w / (1 - mcm.β), h)
-            h_next = mcm.c + mcm.β * np.sum(s * mcm.q)
+            s = np.maximum(w / (1 - β), h)
+            h_next = c + β * np.sum(s * q)
 
             error = np.abs(h_next - h)
             i += 1
@@ -679,7 +683,7 @@ Here's an implementation:
 
         # == Now compute the reservation wage == #
 
-        return (1 - mcm.β) * h
+        return (1 - β) * h
 
 
 You can use this code to solve the exercise below.
@@ -711,7 +715,7 @@ Plot mean unemployment duration as a function of :math:`c` in ``c_vals``.
 Exercise 2
 ----------
 
-The purpose of this exercise is to show how one can replace the discrete wage
+The purpose of this exercise is to show how to replace the discrete wage
 offer distribution used above with a continuous distribution.
 
 This is a significant topic because many convenient distributions are
@@ -732,7 +736,7 @@ To shift to a continuous offer distribution, we can replace :eq:`j1` by
         \int v^*(s') q (s') ds'.
     \quad
 
-Following the same procedure as before, we obtain
+Equation :eq:`j2` becomes
 
 .. math::
     :label: j2c
@@ -761,8 +765,7 @@ Calculate the integral by Monte Carlo, by averaging over a large number of wage 
 
 For default parameters, use ``c=25, β=0.99, σ=0.5, μ=2.5``.
 
-Once your code is working, investigate how the reservation wage changes with :math:`c` and
-:math:`\beta`.
+Once your code is working, investigate how the reservation wage changes with :math:`c` and :math:`\beta`.
 
 Solutions
 =========
