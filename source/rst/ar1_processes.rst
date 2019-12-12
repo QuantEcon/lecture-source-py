@@ -336,8 +336,8 @@ When that random variable is :math:`N(\mu, \sigma^2)`, it is know that
 
     M_k = 
     \begin{cases}
-        0 & \text{ if } k \text{ is even} \\
-        \sigma^k (k-1)!! & \text{ if } k \text{ is odd} 
+        0 & \text{ if } k \text{ is odd} \\
+        \sigma^k (k-1)!! & \text{ if } k \text{ is even} 
     \end{cases}
 
 Here :math:`n!!` is the double factorial.
