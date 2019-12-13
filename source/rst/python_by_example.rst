@@ -712,7 +712,7 @@ Your hints are as follows:
 
 * If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`.
 * If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`.
-* For a circle, area = pi * radius^2.
+* For a circle, :math:`area = \pi * radius^2`.
 
 
 
