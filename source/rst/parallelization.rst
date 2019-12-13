@@ -441,3 +441,66 @@ When you see us using ordinary ``range`` in a jitted function, it is either beca
 
 .. Just say a few words about them.  How do they relate to the foregoing? Explain that we can't introduce executable GPU code here.
 
+
+Exercises
+=========
+
+Exercise 1
+----------
+
+In :ref:`an earlier exercise <speed_ex1>`, we used Numba to accelerate an
+effort to compute the constant :math:`\pi` by Monte Carlo.
+
+Now try adding parallelization and see if you get further speed gains.
+
+For the size of the Monte Carlo simulation, use something substantial, such as
+``n = 100_000_000``.
+
+
+Solutions
+=========
+
+Exercise 1
+----------
+
+Here is one solution:
+
+.. code-block:: python3
+
+    from random import uniform
+
+    @njit(parallel=True)
+    def calculate_pi(n=1_000_000):
+        count = 0
+        for i in prange(n):
+            u, v = uniform(0, 1), uniform(0, 1)
+            d = np.sqrt((u - 0.5)**2 + (v - 0.5)**2)
+            if d < 0.5:
+                count += 1
+
+        area_estimate = count / n
+        return area_estimate * 4  # dividing by radius**2
+
+Now let's see how fast it runs:
+
+.. code-block:: ipython3
+
+    %time calculate_pi()
+
+.. code-block:: ipython3
+
+    %time calculate_pi()
+
+By switching parallelization on and off (selecting ``True`` or
+``False`` in the ``@jnit`` annotation), we can test the speed gain that
+multithreading provides on top of JIT compilation.
+
+On our workstation, we find that parallelization increases execution speed by
+a factor of 3 or 4.
+
+(If you are executing locally, you will get different numbers, depending mainly
+on the number of CPUs on your machine.)
+
+
+
+

@@ -591,15 +591,15 @@ Here is one solution:
 
 Now let's see how fast it runs:
 
-.. code-block:: python3
+.. code-block:: ipython3
 
     %time calculate_pi()
 
-.. code-block:: python3
+.. code-block:: ipython3
 
     %time calculate_pi()
 
-If we switch of JIT compilation by removing ``@jit``, the code takes around
+If we switch of JIT compilation by removing ``@njit``, the code takes around
 150 times as long on our machine.
 
 So we get a speed gain of 2 orders of magnitude--which is huge--by adding four
