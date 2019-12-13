@@ -304,9 +304,9 @@ Here's the code:
 .. code-block:: ipython
 
     from numpy.random import randn
-    from numba import jit
+    from numba import njit
 
-    @jit
+    @njit
     def h(w, r=0.1, s=0.3, v1=0.1, v2=1.0):
         """
         Updates household wealth.
@@ -368,7 +368,7 @@ Here's the code:
 
 .. code-block:: ipython
 
-    @jit
+    @njit
     def compute_long_run_median(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
@@ -396,7 +396,7 @@ To do so, we add the ``parallel=True`` flag and change ``range`` to ``prange``:
 
     from numba import prange
 
-    @jit(parallel=True)
+    @njit(parallel=True)
     def compute_long_run_median_parallel(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
@@ -453,6 +453,17 @@ effort to compute the constant :math:`\pi` by Monte Carlo.
 
 Now try adding parallelization and see if you get further speed gains.
 
+You should not expect huge gains here because, while there are many
+independent tasks (draw point and test if in circle), each one has low
+execution time.
+
+Generally speaking, parallelization is less effective when the individual
+tasks to be parallelized are very small relative to total execution time.
+
+This is due to overheads associated with spreading all of these small tasks across multiple CPUs.
+
+Nevertheless, with suitable hardware, it is possible to get nontrivial speed gains in this exercise.
+
 For the size of the Monte Carlo simulation, use something substantial, such as
 ``n = 100_000_000``.
 
@@ -496,7 +507,7 @@ By switching parallelization on and off (selecting ``True`` or
 multithreading provides on top of JIT compilation.
 
 On our workstation, we find that parallelization increases execution speed by
-a factor of 3 or 4.
+a factor of 2 or 3.
 
 (If you are executing locally, you will get different numbers, depending mainly
 on the number of CPUs on your machine.)
