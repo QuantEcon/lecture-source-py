@@ -251,9 +251,7 @@ Here's a version that illustrates loops and Python lists.
 
 In brief,
 
-* The first pair of lines ``import`` functionality as before.
-
-* The next line sets the desired length of the time series.
+* The first line sets the desired length of the time series.
 
 * The next line creates an empty *list* called ``ϵ_values`` that will store the :math:`\epsilon_t` values as we generate them.
 
