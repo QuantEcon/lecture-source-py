@@ -623,7 +623,7 @@ Two more useful built-in functions are ``any()`` and ``all()``
     any(bools)  # False if all are False and True otherwise
 
 
-The full list of Python built-ins is `here <https://docs.python.org/2/library/functions.html>`_.
+The full list of Python built-ins is `here <https://docs.python.org/library/functions.html>`_.
 
 Now let's talk some more about user-defined functions constructed using the keyword ``def``.
 
