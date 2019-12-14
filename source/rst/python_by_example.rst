@@ -21,7 +21,7 @@ But don't give up if you have none---you are not excluded.
 
 You just need to cover a few of the fundamentals of programming before returning here.
 
-Good references for first time programmers include:
+Good references for first-time programmers include:
 
 * The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_.
 
@@ -130,7 +130,7 @@ Why all the Imports?
 
 Remember that Python is a general-purpose language.
 
-The core language is quite small so it's easy to learn and maintain.
+The core language is quite small, so it's easy to learn and maintain.
 
 When you want to do something interesting with Python, you almost always need
 to import additional functionality.
@@ -282,7 +282,7 @@ For example, try
     x = [10, 'foo', False]  # We can include heterogeneous data inside a list
     type(x)
 
-The first element of ``x`` is an `integer <https://en.wikipedia.org/wiki/Integer_%28computer_science%29>`_, the next is a `string <https://en.wikipedia.org/wiki/String_%28computer_science%29>`_ and the third is a `Boolean value <https://en.wikipedia.org/wiki/Boolean_data_type>`_.
+The first element of ``x`` is an `integer <https://en.wikipedia.org/wiki/Integer_%28computer_science%29>`_, the next is a `string <https://en.wikipedia.org/wiki/String_%28computer_science%29>`_, and the third is a `Boolean value <https://en.wikipedia.org/wiki/Boolean_data_type>`_.
 
 When adding a value to a list, we can use the syntax ``list_name.append(some_value)``
 
@@ -424,9 +424,9 @@ One small "gotcha" here is the mixing of tabs and spaces, which often leads to e
 
 You can use your ``Tab`` key to insert 4 spaces, but you need to make sure it's configured to do so.
 
-If you are using a Jupyter notebook you will have no problems here.
+If you are using a Jupyter notebook, you will have no problems here.
 
-Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- trying searching online.
+Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- try searching online.
 
 
 While Loops
@@ -529,7 +529,7 @@ Our function ``generate_data()`` is rather limited.
 
 Let's make it slightly more useful by giving it the ability to return either standard normals or uniform random variables on :math:`(0, 1)` as required.
 
-This is achieved the next piece of code.
+This is achieved in the next piece of code.
 
 
 .. _funcloopprog2:
