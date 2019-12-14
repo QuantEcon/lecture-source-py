@@ -620,7 +620,7 @@ List Comprehensions
 
 We can also simplify the code for generating the list of random draws considerably by using something called a *list comprehension*.
 
-List comprehensions are an elegant Python tool for creating lists.
+`List comprehensions <https://en.wikipedia.org/wiki/List_comprehension>`_ are an elegant Python tool for creating lists.
 
 Consider the following example, where the list comprehension is on the
 right-hand side of the second line
