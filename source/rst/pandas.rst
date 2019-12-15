@@ -26,7 +26,7 @@ Overview
 Its popularity has surged in recent years, coincident with the rise
 of fields such as data science and machine learning.
 
-Here's a popularity comparison over time against STATA and SAS, courtesy of Stack Overflow Trends
+Here's a popularity comparison over time against STATA, SAS, and dplyr courtesy of Stack Overflow Trends
 
 .. figure:: /_static/lecture_specific/pandas/pandas_vs_rest.png
 
@@ -379,9 +379,9 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
     data['2006':'2012'].plot()
     plt.show()
 
-Note that pandas offers many other file type alternatives. 
+Note that pandas offers many other file type alternatives.
 
-Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server. 
+Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server.
 
 
 Using :index:`pandas_datareader` to Access Data
@@ -390,9 +390,9 @@ Using :index:`pandas_datareader` to Access Data
 .. index::
     single: Python; pandas-datareader
 
-The maker of pandas has also authored a library called `pandas_datareader` that gives programmatic access to many data sources straight from the Jupyter notebook. 
+The maker of pandas has also authored a library called `pandas_datareader` that gives programmatic access to many data sources straight from the Jupyter notebook.
 
-While some sources require an access key, many of the most important (e.g., FRED, OECD, EUROSTAT and the World Bank) are free to use. 
+While some sources require an access key, many of the most important (e.g., FRED, OECD, EUROSTAT and the World Bank) are free to use.
 
 For now let's work through one example of downloading and plotting data --- this
 time from the World Bank.
@@ -458,7 +458,7 @@ Write a program to calculate the percentage price change over 2013 for the follo
 Plot the result as a bar graph like this one
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
-
+   :scale: 90 %
 
 Solutions
 =========

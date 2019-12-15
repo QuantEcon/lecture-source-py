@@ -96,9 +96,7 @@ As long as you're using Python 3.x, division of integers yields floats
     1 / 2
 
 
-But be careful! If you're still using Python 2.x, division of two integers returns only the integer part.
-
-For integer division in Python 3.x use this syntax:
+To return only the integer part of the division of two integers in Python 3.x, use this syntax:
 
 .. code-block:: python3
 
@@ -625,7 +623,7 @@ Two more useful built-in functions are ``any()`` and ``all()``
     any(bools)  # False if all are False and True otherwise
 
 
-The full list of Python built-ins is `here <https://docs.python.org/2/library/functions.html>`_.
+The full list of Python built-ins is `here <https://docs.python.org/library/functions.html>`_.
 
 Now let's talk some more about user-defined functions constructed using the keyword ``def``.
 
