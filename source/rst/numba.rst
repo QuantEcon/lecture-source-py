@@ -524,7 +524,7 @@ Compare speed with and without Numba when the sample size is large.
 
 .. _speed_ex2:
 
-Exercise 1
+Exercise 2
 ----------
 
 Later we'll learn all about :doc:`finite-state Markov chains <finite_markov>`.
