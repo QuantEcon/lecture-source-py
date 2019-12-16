@@ -241,8 +241,8 @@ But if this is true, then why isn't the Numba code faster?
 The reason is that NumPy makes up for its disadvantages with implicit
 multithreading, as we've just discussed.
 
-Multithreading at Numba Ufunc
------------------------------
+Multithreading a Numba Ufunc
+----------------------------
 
 Can we get both of these advantages at once?
 
