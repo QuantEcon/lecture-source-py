@@ -59,7 +59,7 @@ This is called the **state process** and the state space is :math:`\mathbb R`.
 To make things even simpler, we will assume that
 
 * the process :math:`\{ W_t \}` is IID and standard normal,
-* the initial condition :math:`X_0` is drawn from the normal distribution :math:`N(\mu_0, \sigma_0^2)` and
+* the initial condition :math:`X_0` is drawn from the normal distribution :math:`N(\mu_0, v_0)` and
 * the initial condition :math:`X_0` is independent of :math:`\{ W_t \}`.
 
 
@@ -107,7 +107,7 @@ normal random variables are normal.
 Given that :math:`X_t` is normally distributed, we will know the full distribution
 :math:`\psi_t` if we can pin down its first two moments.
 
-Let :math:`\mu_t` and :math:`\sigma_t` denote the mean and standard deviation
+Let :math:`\mu_t` and :math:`v_t` denote the mean and variance
 of :math:`X_t` respectively.
 
 We can pin down these values from :eq:`ar1_ma` or we can use the following
@@ -118,7 +118,7 @@ recursive expressions:
 
     \mu_{t+1} = a \mu_t + b
     \quad \text{and} \quad
-    \sigma^2_{t+1} = a^2 \sigma^2_t + c^2
+    v_{t+1} = a^2 v_t + c^2
 
 These expressions are obtained from :eq:`can_ar1` by taking, respectively, the expectation and variance of both sides of the equality.
 
@@ -128,11 +128,11 @@ and :math:`W_{t+1}` are independent.
 (This follows from our assumptions and :eq:`ar1_ma`.)
 
 Given the dynamics in :eq:`ar1_ma` and initial conditions :math:`\mu_0,
-\sigma_0`, we obtain :math:`\mu_t, \sigma_t` and hence
+v_0`, we obtain :math:`\mu_t, v_t` and hence
 
 .. math::
 
-    \psi_t = N(\mu_t, \sigma_t^2)
+    \psi_t = N(\mu_t, v_t)
 
 The following code uses these facts to track the sequence of marginal
 distributions :math:`\{ \psi_t \}`.
@@ -143,7 +143,7 @@ The parameters are
 
     a, b, c = 0.9, 0.1, 0.5
 
-    mu, sigma = -3.0, 0.4  # initial conditions mu_0, sigma_0
+    mu, v = -3.0, 0.6  # initial conditions mu_0, v_0
 
 Here's the sequence of distributions:
 
@@ -158,8 +158,8 @@ Here's the sequence of distributions:
 
     for t in range(sim_length):
         mu = a * mu + b
-        sigma = np.sqrt(a**2 * sigma**2 + c**2)
-        ax.plot(grid, norm.pdf(grid, loc=mu, scale=sigma), 
+        v = a**2 * v + c**2
+        ax.plot(grid, norm.pdf(grid, loc=mu, scale=np.sqrt(v)), 
                 label=f"$\psi_{t}$",
                 alpha=0.7)
 
@@ -180,12 +180,14 @@ This is even clearer if we project forward further into the future:
 
 .. code-block:: python3
 
-    def plot_density_seq(ax, mu_0=-3.0, sigma_0=0.4, sim_length=60):
-        mu, sigma = mu_0, sigma_0
+    def plot_density_seq(ax, mu_0=-3.0, v_0=0.6, sim_length=60):
+        mu, v = mu_0, v_0
         for t in range(sim_length):
             mu = a * mu + b
-            sigma = np.sqrt(a**2 * sigma**2 + c**2)
-            ax.plot(grid, norm.pdf(grid, loc=mu, scale=sigma),  alpha=0.5)
+            v = a**2 * v + c**2
+            ax.plot(grid, 
+                    norm.pdf(grid, loc=mu, scale=np.sqrt(v)),  
+                    alpha=0.5)
 
     fig, ax = plt.subplots()
     plot_density_seq(ax)
