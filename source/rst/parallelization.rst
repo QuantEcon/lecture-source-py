@@ -171,12 +171,12 @@ For example, let's return to a maximization problem :ref:`discussed previously <
     def f(x, y):
         return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
 
-    grid = np.linspace(-3, 3, 1000)
+    grid = np.linspace(-3, 3, 5000)
     x, y = np.meshgrid(grid, grid)
 
-    qe.tic()
-    np.max(f(x, y))
-    qe.toc()
+.. code-block:: ipython3
+
+    %timeit np.max(f(x, y))
 
 If you have a system monitor such as `htop` (Linux/Mac) or `perfmon`
 (Windows), then try running this and then observing the load on your CPUs.
@@ -206,14 +206,11 @@ create custom :ref:`ufuncs <ufuncs>` with the `@vectorize
     def f_vec(x, y):
         return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
 
-    grid = np.linspace(-3, 3, 1000)
-    x, y = np.meshgrid(grid, grid)
-
     np.max(f_vec(x, y))  # Run once to compile
 
-    qe.tic()
-    np.max(f_vec(x, y))
-    qe.toc()
+.. code-block:: ipython3
+
+    %timeit np.max(f_vec(x, y))
 
 At least on our machine, the difference in the speed between the
 Numba version and the vectorized NumPy version shown above is not large.
@@ -263,11 +260,11 @@ It turns out that we can, by adding some type information plus ``target='paralle
 
     np.max(f_vec(x, y))  # Run once to compile
 
-    qe.tic()
-    np.max(f_vec(x, y))
-    qe.toc()
+.. code-block:: ipython3
 
-Now our code runs significantly faster than the NumPy version!
+    %timeit np.max(f_vec(x, y))
+
+Now our code runs significantly faster than the NumPy version.
 
 
 
