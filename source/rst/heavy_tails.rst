@@ -77,7 +77,6 @@ Let's start with some imports:
     import matplotlib.pyplot as plt
     %matplotlib inline
 
-    from scipy.stats import cauchy
 
 The following two lines can be added to avoid an annoying FutureWarning, and prevent a specific compatibility issue between pandas and matplotlib from causing problems down the line:
 
@@ -202,24 +201,25 @@ whether or not the LLN is still valid.
 
 .. code-block:: python3
 
-    n = 1000
+    from scipy.stats import cauchy
+
     np.random.seed(1234)
+    N = 1_000
 
     distribution = cauchy()
 
-    fig, ax = plt.subplots(figsize=(10, 6))
-    data = distribution.rvs(n)
+    fig, ax = plt.subplots()
+    data = distribution.rvs(N)
 
     # Compute sample mean at each n
-    sample_mean = np.empty(n)
-
-    for i in range(1, n):
-        sample_mean[i] = np.mean(data[:i])
+    sample_mean = np.empty(N)
+    for n in range(1, N):
+        sample_mean[n] = np.mean(data[:n])
 
     # Plot
-    ax.plot(list(range(n)), sample_mean, 'r-', lw=3, alpha=0.6,
-            label='$\\bar X_n$')
-    ax.plot(list(range(n)), [0] * n, 'k--', lw=0.5)
+    ax.plot(range(N), sample_mean, alpha=0.6, label='$\\bar X_n$')
+
+    ax.plot(range(N), np.zeros(N), 'k--', lw=0.5)
     ax.legend()
 
     plt.show()
@@ -456,15 +456,11 @@ The Pareto distribution is assumed to take the form :eq:`pareto` with :math:`\ba
 
 (The value the tail index :math:`\alpha` is plausible given the data :cite:`gabaix2016power`.)
 
-To make the lognormal option as similar as possible to the Pareto option,
-choose its parameters such that the mean and median of both distributions are
-the same.
+To make the lognormal option as similar as possible to the Pareto option, choose its parameters such that the mean and median of both distributions are the same.
 
-Note that, for each distribution, your estimate of tax revenue will be random
-because it is based on a finite number of draws.
+Note that, for each distribution, your estimate of tax revenue will be random because it is based on a finite number of draws.
 
-To take this into account, generate 100 draws in each case and compare the two
-samples by
+To take this into account, generate 100 replications (evaluations of tax revenue) for each of the two distributions and compare the two samples by
 
 * producing a `violin plot <https://en.wikipedia.org/wiki/Violin_plot>`__ visualizing the two samples side-by-side and
 
