@@ -77,10 +77,10 @@ endif
 
 execute:
 ifneq ($(strip $(parallel)),)
-	@@$(SPHINXBUILD) -M codetree "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_number_workers=$(parallel)
+	@@$(SPHINXBUILD) -M codetree "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="error_report_template.html" -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M codetree "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O)
+	@$(SPHINXBUILD) -M codetree "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="error_report_template.html"
 endif
 
 constructor-pdf:

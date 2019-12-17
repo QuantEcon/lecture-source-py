@@ -426,6 +426,9 @@ jupyter_ignore_skip_test = True
 #allow execution of notebooks
 jupyter_execute_notebooks = False
 
+#allow errors during execution
+jupyter_execute_allow_errors = True
+
 # Location of template folder for coverage reports
 jupyter_template_coverage_file_path = False
 
