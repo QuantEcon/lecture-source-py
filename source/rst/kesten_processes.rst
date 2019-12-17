@@ -523,8 +523,8 @@ In this setting, firm dynamics can be expressed as
 .. math::
     :label: firm_dynam_ee
 
-    s_{t+1} = e_{t+1} \mathbb 1 \{s_t < \bar s\}
-        + (a_{t+1} s_t + b_{t+1}) \mathbb 1 \{s_t \geq \bar s\}
+    s_{t+1} = e_{t+1} \mathbb{1}\{s_t < \bar s\} + 
+    (a_{t+1} s_t + b_{t+1}) \mathbb{1}\{s_t \geq \bar s\}
 
 Here
 

@@ -370,9 +370,9 @@ The figure below provides one example, using simulated data.
 
 The rank-size plots shows draws from three different distributions: folded normal, chi-squared with 1 degree of freedom and Pareto.  
 
-In each case, the largest 5\% of 1,000 draws are shown.  
-
 The Pareto sample produces a straight line, while the lines produced by the other samples are concave.  
+
+You are asked to reproduce this figure in the exercises.
 
 .. _rank_size_fig1:
 
@@ -415,6 +415,8 @@ Exercise 4
 ----------
 
 Replicate the rank-size plot figure :ref:`presented above <rank_size_fig1>`.
+
+For each sample that you plot, you will need to reverse sort it, from largest to smallest, in order to generate the plot.
 
 Use ``np.random.seed(13)`` to set the seed.
 
@@ -574,7 +576,7 @@ First we will create a function and then generate the plot
 
 .. code:: ipython3
 
-    def rank_size_data(data, c=0.95):
+    def rank_size_data(data, c=1.0):
         """
         Generate rank-size data corresponding to distribution data.
         
