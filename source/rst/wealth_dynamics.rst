@@ -221,15 +221,9 @@ normal in :math:`\mathbb R^3`.
 The value of :math:`c_r` should be close to zero, since rates of return
 on assets do not exhibit large trends.
 
-When we simulate a population of households, we will take
+When we simulate a population of households, we will assume all shocks are idiosyncratic.
 
--  :math:`\{z_t\}` to be an **aggregate shock** that is common to all
-   households
--  :math:`\{\xi_t\}` and :math:`\{\zeta_t\}` to be **idiosyncratic
-   shocks**
-
-Idiosyncratic shocks are specific to individual households and
-independent across them.
+Idiosyncratic shocks are specific to individual households and independent across them.
 
 Regarding the savings function :math:`s`, our default model will be
 
@@ -246,6 +240,7 @@ their wealth.
 
 We are using something akin to a fixed savings rate model, while
 acknowledging that low wealth households tend to save very little.
+
 
 Implementation
 ==============
@@ -267,6 +262,7 @@ Here's some type information to help Numba.
         ('b',      float64),    # aggregate shock parameter
         ('σ_z',    float64),    # aggregate shock parameter
         ('z_mean', float64),    # mean of z process
+        ('z_var', float64),     # variance of z process
         ('y_mean', float64),    # mean of y process
         ('R_mean', float64)     # mean of R process
     ]
@@ -299,8 +295,8 @@ the aggregate state and household wealth.
             
             # Record stationary moments
             self.z_mean = b / (1 - a)
-            z_var = σ_z**2 / (1 - a**2)
-            exp_z_mean = np.exp(self.z_mean + z_var / 2)
+            self.z_var = σ_z**2 / (1 - a**2)
+            exp_z_mean = np.exp(self.z_mean + self.z_var / 2)
             self.R_mean = c_r * exp_z_mean + np.exp(μ_r + σ_r**2 / 2)
             self.y_mean = c_y * exp_z_mean + np.exp(μ_y + σ_y**2 / 2)
             
@@ -320,26 +316,16 @@ the aggregate state and household wealth.
                           self.a, self.b, self.σ_z)
             return parameters
             
-        def update_z(self, z):
+        def update_states(self, w, z):
             """
-            Update exogenous state one period, given current state z.
+            Update one period, given current wealth w and persistent 
+            state z.
             """   
+
             # Simplify names
             params = self.parameters()
             w_hat, s_0, c_y, μ_y, σ_y, c_r, μ_r, σ_r, a, b, σ_z = params
-            
-            # Update z
             zp = a * z + b + σ_z * np.random.randn()
-            return zp
-            
-        def update_wealth(self, w, zp):
-            """
-            Update one period, given current wealth w and next period 
-            exogenous state zp.
-            """   
-            # Simplify names
-            params = self.parameters()
-            w_hat, s_0, c_y, μ_y, σ_y, c_r, μ_r, σ_r, a, b, σ_z = params
 
             # Update wealth
             y = c_y * np.exp(zp) + np.exp(μ_y + σ_y * np.random.randn())   
@@ -347,55 +333,37 @@ the aggregate state and household wealth.
             if w >= w_hat:
                 R = c_r * np.exp(zp) + np.exp(μ_r + σ_r * np.random.randn())
                 wp += R * s_0 * w 
-            return wp
+            return wp, zp
             
-        
-Here’s a function to simulate the aggregate state:
+
+Here's function to simulate the time series of wealth for in individual households.
 
 .. code:: ipython3
 
     @njit
-    def z_time_series(wdy, ts_length=10_000):
+    def wealth_time_series(wdy, w_0, n):
         """
-        Generate a single time series of length ts_length for the 
-        aggregate shock process {z_t}.
+        Generate a single time series of length n for wealth given 
+        initial value w_0.
 
-        * wdy is an instance of WealthDynamics
+        The initial persistent state z_0 for each household is drawn from
+        the stationary distribution of the AR(1) process.
+
+            * wdy: an instance of WealthDynamics
+            * w_0: scalar
+            * n: int
+
 
         """
-        z = np.empty(ts_length)
-        z[0] = wdy.z_mean
-        for t in range(ts_length-1):
-            z[t+1] = wdy.update_z(z[t])
-        return z
-
-Here’s a function to simulate the wealth of a single household, taking the
-time path of the aggregate state as an argument.
-
-.. code:: ipython3
-
-    @njit
-    def wealth_time_series(wdy, w_0, z):
-        """
-        Generate a single time series for wealth given aggregate shock 
-        sequence z.
-
-        * wdy: an instance of WealthDynamics
-        * w_0: a scalar representing initial wealth.
-        * z: array_like
-        
-        The returned time series w satisfies len(w) = len(z).
-        """
-        n = len(z)
+        z = wdy.z_mean + np.sqrt(wdy.z_var) * np.random.randn()
         w = np.empty(n)
         w[0] = w_0
         for t in range(n-1):
-            w[t+1] = wdy.update_wealth(w[t], z[t+1])
+            w[t+1], z = wdy.update_states(w[t], z)
         return w
 
 
-Finally, here's function to simulate a cross section of households forward in
-time.
+Now here's function to simulate a cross section of households forward in time.
 
 Note the use of parallelization to speed up computation.
 
@@ -414,16 +382,16 @@ Note the use of parallelization to speed up computation.
         j = shift_length.  
         
         Returns the new distribution.
+
         """
         new_distribution = np.empty_like(w_distribution)
     
-        z = z_time_series(wdy, ts_length=shift_length)
-    
         # Update each household
         for i in prange(len(new_distribution)):
+            z = wdy.z_mean + np.sqrt(wdy.z_var) * np.random.randn()
             w = w_distribution[i]
             for t in range(shift_length-1):
-                w = wdy.update_wealth(w, z[t+1])
+                w, z = wdy.update_states(w, z)
             new_distribution[i] = w
         return new_distribution
     
@@ -450,8 +418,8 @@ Let's look at the wealth dynamics of an individual household.
 
     wdy = WealthDynamics()
     
-    z = z_time_series(wdy, ts_length=10_000)
-    w = wealth_time_series(wdy, wdy.y_mean, z)
+    ts_length = 200
+    w = wealth_time_series(wdy, wdy.y_mean, ts_length)
     
     fig, ax = plt.subplots()
     ax.plot(w)
