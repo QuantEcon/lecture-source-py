@@ -283,7 +283,7 @@ A distribution :math:`F` on :math:`\mathbb R_+` is called **heavy-tailed** if
 .. math::
     :label: defht
 
-    \int_0^\infty \exp(tx) F(x) = \infty \; \text{ for all } t > 0.
+    \int_0^\infty \exp(tx) F(dx) = \infty \; \text{ for all } t > 0.
 
 We say that a nonnegative random variable :math:`X` is **heavy-tailed** if its distribution :math:`F(x) := \mathbb P\{X \leq x\}` is heavy-tailed.
 
