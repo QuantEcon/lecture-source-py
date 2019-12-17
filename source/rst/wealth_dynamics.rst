@@ -522,7 +522,7 @@ volatility term :math:`\sigma_r` in financial returns.
     for σ_r in σ_r_vals:
         wdy = WealthDynamics(σ_r=σ_r)
         gv, (f_vals, l_vals) = generate_lorenz_and_gini(wdy)
-        ax.plot(f_vals, l_vals, label=f'$\psi^*$ at $\mu_r = {σ_r:0.2}$')
+        ax.plot(f_vals, l_vals, label=f'$\psi^*$ at $\sigma_r = {σ_r:0.2}$')
         gini_vals.append(gv)
         
     ax.plot(f_vals, f_vals, label='equality')
