@@ -221,9 +221,7 @@ normal in :math:`\mathbb R^3`.
 The value of :math:`c_r` should be close to zero, since rates of return
 on assets do not exhibit large trends.
 
-When we simulate a population of households, we will assume all shocks are idiosyncratic.
-
-Idiosyncratic shocks are specific to individual households and independent across them.
+When we simulate a population of households, we will assume all shocks are idiosyncratic (i.e.,  specific to individual households and independent across them).
 
 Regarding the savings function :math:`s`, our default model will be
 
@@ -276,15 +274,15 @@ the aggregate state and household wealth.
     class WealthDynamics:
         
         def __init__(self,
-                     w_hat=10.0,
+                     w_hat=1.0,
                      s_0=0.75, 
                      c_y=1.0, 
-                     μ_y=1.5,
+                     μ_y=1.0,
                      σ_y=0.2, 
                      c_r=0.05,
-                     μ_r=0.0, 
-                     σ_r=0.6, 
-                     a=0.85,  
+                     μ_r=0.1, 
+                     σ_r=0.5, 
+                     a=0.5,  
                      b=0.0, 
                      σ_z=0.1):
         
@@ -442,7 +440,7 @@ curve and Gini coefficient.
 
 .. code:: ipython3
 
-    def generate_lorenz_and_gini(wdy, num_households=250_000, T=500):
+    def generate_lorenz_and_gini(wdy, num_households=100_000, T=500):
         """
         Generate the Lorenz curve data and gini coefficient corresponding to a 
         WealthDynamics mode by simulating num_households forward to time T.
@@ -453,8 +451,7 @@ curve and Gini coefficient.
         ψ_star = update_cross_section(wdy, ψ_0, shift_length=T)
         return qe.gini_coefficient(ψ_star), qe.lorenz_curve(ψ_star)
 
-Now we investigate how the Lorenz curves associated with the wealth distribution change
-as return to savings increase.
+Now we investigate how the Lorenz curves associated with the wealth distribution change as return to savings varies.
 
 The code below plots Lorenz curves for three different values of :math:`\mu_r`. 
 
@@ -467,7 +464,7 @@ In fact the code, which is JIT compiled and parallelized, runs extremely fast re
 .. code:: ipython3
 
     fig, ax = plt.subplots()
-    μ_r_vals = np.linspace(0.0, 0.05, 3)
+    μ_r_vals = (0.0, 0.025, 0.05)
     gini_vals = []
     
     for μ_r in μ_r_vals:
@@ -512,8 +509,28 @@ Now let's check the Gini coefficient.
 Once again, we see that inequality increases as returns on financial income
 rise.
 
-This makes sense because higher returns reinforce the effect of existing wealth.
+Let's finish this section by investigating what happens when we change the
+volatility term :math:`\sigma_r` in financial returns.
 
+
+.. code:: ipython3
+
+    fig, ax = plt.subplots()
+    σ_r_vals = (0.35, 0.45, 0.52)
+    gini_vals = []
+    
+    for σ_r in σ_r_vals:
+        wdy = WealthDynamics(σ_r=σ_r)
+        gv, (f_vals, l_vals) = generate_lorenz_and_gini(wdy)
+        ax.plot(f_vals, l_vals, label=f'$\psi^*$ at $\mu_r = {σ_r:0.2}$')
+        gini_vals.append(gv)
+        
+    ax.plot(f_vals, f_vals, label='equality')
+    ax.legend(loc="upper left")
+    plt.show()
+
+
+We see that greater volatility has the effect of increasing inequality in this model.
 
 
 Exercises
@@ -522,20 +539,19 @@ Exercises
 Exercise 1
 ----------
 
-For a wealth or income distribution with Pareto tail, a higher tail index suggests lower
-In fact, it is possible to prove that the Gini coefficient of the Pareto
+For a wealth or income distribution with Pareto tail, a higher tail index suggests lower inequality.
+
+Indeed, it is possible to prove that the Gini coefficient of the Pareto
 distribution with tail index :math:`a` is :math:`1/(2a - 1)`.
 
 To the extent that you can, confirm this by simulation.
 
 In particular, generate a plot of the Gini coefficient against the tail index
-using both the theoretical value and the value computed from a sample via
-``qe.gini_coefficient``.
+using both the theoretical value just given and the value computed from a sample via ``qe.gini_coefficient``.
 
 For the values of the tail index, use ``a_vals = np.linspace(1, 10, 25)``.
 
-Use sample of size 1,000 for each :math:`a` and the sampling method for generating
-Pareto draws employed in the discussion of Lorenz curves for the Pareto distribution.
+Use sample of size 1,000 for each :math:`a` and the sampling method for generating Pareto draws employed in the discussion of Lorenz curves for the Pareto distribution.
 
 To the extend that you can, interpret the monotone relationship between the
 Gini index and :math:`a`.
