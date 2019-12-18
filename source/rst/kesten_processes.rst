@@ -140,7 +140,7 @@ Returns on a given asset are then modeled as
 .. math::
     :label: garch11r
 
-    r_t = \sigma_t \zeta_{t+1}
+    r_t = \sigma_t \zeta_t
 
 where :math:`\{\zeta_t\}` is again IID and independent of :math:`\{\xi_t\}`.
 
