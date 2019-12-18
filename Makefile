@@ -62,10 +62,10 @@ endif
 
 pdf:
 ifneq ($(strip $(parallel)),)
-	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="latex.tpl" -D jupyter_latex_template_book="latex_book.tpl" -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_target_pdf=1 -D jupyter_number_workers=$(parallel)
+	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="latex.tpl" -D jupyter_latex_template_book="latex_book.tpl" -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_pdf_book=1 -D jupyter_target_pdf=1 -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="latex.tpl" -D jupyter_latex_template_book="latex_book.tpl" -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_target_pdf=1
+	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="latex.tpl" -D jupyter_latex_template_book="latex_book.tpl" -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_pdf_book=1 -D jupyter_target_pdf=1
 endif
 
 constructor-pdf:

@@ -465,7 +465,7 @@ jupyter_pdf_excludepatterns = ["404", "index", "references"]
 jupyter_pdf_urlpath = "https://lectures.quantecon.org/py/"
 
 # make book
-jupyter_pdf_book = True
+jupyter_pdf_book = False
 
 # book title
 jupyter_pdf_book_title = "Quantitative Economics with Python"
