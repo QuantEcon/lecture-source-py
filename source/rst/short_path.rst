@@ -221,22 +221,29 @@ Let's try with this example and see how we go:
 
 .. code-block:: python3
 
-   num_nodes = 7
-   J = np.zeros(num_nodes, dtype=np.int)       # Initial guess
-   next_J = np.empty(num_nodes, dtype=np.int)  # Stores updated guess
-   max_iter = 500
-   i = 0
+    nodes = range(7)                              # Nodes = 0, 1, ..., 6
+    J = np.zeros_like(nodes, dtype=np.int)        # Initial guess
+    next_J = np.empty_like(nodes, dtype=np.int)   # Stores updated guess
 
-   while i < max_iter:
-      for v in range(num_nodes):
-         next_J[v] = np.min(Q[v, :] + J)
-      if np.equal(next_J, J).all():
-         break
-      else:
-         J[:] = next_J   # Copy contents of next_J to J
-         i += 1
+    max_iter = 500
+    i = 0
 
-   print("The cost-to-go function is", J)
+    while i < max_iter:
+        for v in nodes:
+            # minimize Q[v, w] + J[w] over all choices of w
+            lowest_cost = inf
+            for w in nodes:
+                cost = Q[v, w] + J[w]
+                if cost < lowest_cost:
+                    lowest_cost = cost
+            next_J[v] = lowest_cost
+        if np.equal(next_J, J).all():
+            break
+        else:
+            J[:] = next_J   # Copy contents of next_J to J
+            i += 1
+
+    print("The cost-to-go function is", J)
 
 This matches with the numbers we obtained by inspection above.
 
@@ -263,6 +270,9 @@ No other nodes can be reached directly from `node0`.
 Other lines have a similar interpretation.
 
 Your task is to use the algorithm given above to find the optimal path and its cost.  
+
+Note: You will be dealing with floating point numbers now, rather than
+integers, so consider replacing ``np.equal()`` with ``np.allclose()``.
 
 .. code-block:: python3
 
@@ -384,30 +394,30 @@ First let's write a function that reads in the graph data above and builds a dis
 
 .. code-block:: python3
 
-   num_nodes = 100
-   destination_node = 99
+    num_nodes = 100
+    destination_node = 99
 
-   def map_graph_to_distance_matrix(in_file):
+    def map_graph_to_distance_matrix(in_file):
 
-      # First let's set of the distance matrix Q with inf everywhere
-      Q = np.ones((num_nodes, num_nodes))
-      Q = Q * np.inf  
+        # First let's set of the distance matrix Q with inf everywhere
+        Q = np.ones((num_nodes, num_nodes))
+        Q = Q * np.inf  
 
-      # Now we read in the data and modify Q
-      infile = open(in_file)
-      for line in infile:
-         elements = line.split(',')
-         node = elements.pop(0)
-         node = int(node[4:])    # convert node description to integer
-         if node != destination_node:
-             for element in elements:
-                 destination, cost = element.split()
-                 destination = int(destination[4:])
-                 Q[node, destination] = float(cost)
-      Q[destination_node, destination_node] = 0
+        # Now we read in the data and modify Q
+        infile = open(in_file)
+        for line in infile:
+            elements = line.split(',')
+            node = elements.pop(0)
+            node = int(node[4:])    # convert node description to integer
+            if node != destination_node:
+                for element in elements:
+                    destination, cost = element.split()
+                    destination = int(destination[4:])
+                    Q[node, destination] = float(cost)
+            Q[destination_node, destination_node] = 0
 
-      infile.close()
-      return Q
+        infile.close()
+        return Q
 
 In addition, let's write 
 
@@ -417,31 +427,33 @@ In addition, let's write
 
 We'll use the algorithm described above.
 
+The minimization step is vectorized to make it faster.
+
 .. code-block:: python3
 
-   def bellman(J, Q):
-      num_nodes = Q.shape[0]
-      next_J = np.empty_like(J)
-      for v in range(num_nodes):
-         next_J[v] = np.min(Q[v, :] + J)
-      return next_J
+    def bellman(J, Q):
+        num_nodes = Q.shape[0]
+        next_J = np.empty_like(J)
+        for v in range(num_nodes):
+            next_J[v] = np.min(Q[v, :] + J)
+        return next_J
 
 
-   def compute_cost_to_go(Q):
-      J = np.zeros(num_nodes)      # Initial guess
-      next_J = np.empty(num_nodes)  # Stores updated guess
-      max_iter = 500
-      i = 0
+    def compute_cost_to_go(Q):
+        J = np.zeros(num_nodes)      # Initial guess
+        next_J = np.empty(num_nodes)  # Stores updated guess
+        max_iter = 500
+        i = 0
 
-      while i < max_iter:
-         next_J = bellman(J, Q)
-         if np.allclose(next_J, J):
-            break
-         else:
-            J[:] = next_J   # Copy contents of next_J to J
-            i += 1
+        while i < max_iter:
+            next_J = bellman(J, Q)
+            if np.allclose(next_J, J):
+                break
+            else:
+                J[:] = next_J   # Copy contents of next_J to J
+                i += 1
 
-      return(J)
+        return(J)
 
 
 We used `np.allclose()` rather than testing exact equality because we are
