@@ -295,7 +295,7 @@ Step 2: compute a new vector :math:`v' \in \mathbb R^n` via
     v'(i)
     = \max \left\{
             \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
-                v^*(j) q (j)
+                v(j) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
@@ -326,7 +326,7 @@ itself via
     (Tv)(i)
     = \max \left\{
             \frac{w(i)}{1 - \beta}, \, c + \beta \sum_{1 \leq j \leq n} 
-                v^*(j) q (j)
+                v(j) q (j)
         \right\}
     \quad
     \text{for } i = 1, \ldots, n
