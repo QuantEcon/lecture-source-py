@@ -359,8 +359,8 @@ This implies that
 .. math::
    :label: eq_Bayes103
 
-   \frac{\pi_{t+1}}{\pi_{t}}=\frac{l\left(w_{t+1}\right)}{\pi_{t}l\left(w_{t+1}\right)+\left(1-\pi_{t}\right)}\begin{cases}
-   >1 & \text{if }l\left(w_{t+1}\right)>1\\
+   \frac{\pi_{t+1}}{\pi_{t}}=\frac{l\left(w_{t+1}\right)}{\pi_{t}l\left(w_{t+1}\right)+\left(1-\pi_{t}\right)}\begin{cases} >1 & 
+   \text{if }l\left(w_{t+1}\right)>1\\
    \leq1 & \text{if }l\left(w_{t+1}\right)\leq1
    \end{cases}
 
