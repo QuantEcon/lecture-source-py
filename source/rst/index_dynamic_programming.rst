@@ -26,6 +26,7 @@ agents as given.  Later we will look at full equilibrium problems.
     mccall_model_with_separation
     mccall_fitted_vfi
     mccall_correlated
+    exchangeable
     odu
     career
     jv
