@@ -702,7 +702,7 @@ Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then th
 Exercise 3
 ----------
 
-Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besides
+Compute an approximation to :math:`\pi` using `Monte Carlo <https://en.wikipedia.org/wiki/Monte_Carlo_method>`_.  Use no imports besides
 
 .. code-block:: python3
 
