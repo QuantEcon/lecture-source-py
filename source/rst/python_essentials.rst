@@ -365,6 +365,8 @@ To give an example, let's write the file `us_cities.txt`, which lists US cities 
     dallas: 1223229
 
 
+Here `%%file` is an `IPython cell magic <https://ipython.readthedocs.io/en/stable/interactive/magics.html#cell-magics>`_.
+
 Suppose that we want to make the information more readable, by capitalizing names and adding commas to mark thousands.
 
 The program below reads the data in and makes the conversion:
