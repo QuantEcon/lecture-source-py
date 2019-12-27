@@ -464,6 +464,8 @@ The common steady state is also plotted for comparison
         lb = f'capital series from initial state {s.k}'
         ax.plot(s.generate_sequence(T), 'o-', lw=2, alpha=0.6, label=lb)
 
+    ax.set_xlabel('$k_{t+1}$', fontsize=14)
+    ax.set_ylabel('$k_t$', fontsize=14)
     ax.legend()
     plt.show()
 
@@ -691,6 +693,7 @@ The next piece of code provides a bifurcation diagram
         r = r + 0.005
 
     ax.set_xlabel('$r$', fontsize=16)
+    ax.set_ylabel('$x_t$', fontsize=16)
     plt.show()
 
 On the horizontal axis is the parameter :math:`r` in :eq:`quadmap2`.
