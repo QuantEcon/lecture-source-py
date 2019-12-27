@@ -387,7 +387,7 @@ the details of which can be left till later.
 
 The interesting part of this program for us is line 2, which shows that
 
-#. The file object ``f`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop.
+#. The file object ``data_file`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop.
 #. Iteration steps through each line in the file.
 
 This leads to the clean, convenient syntax shown in our program.
