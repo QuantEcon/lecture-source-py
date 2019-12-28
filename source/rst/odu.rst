@@ -5,8 +5,10 @@
 .. highlight:: python3
 
 
-Job Search III: Search with Learning
+Job Search V: Search with Learning
 ====================================
+
+.. contents:: :depth: 2
 
 
 In addition to what’s in Anaconda, this lecture will need the following libraries:
@@ -851,7 +853,7 @@ employment.
                        N=10000, T=600):
         """
         Simulates population for computing empirical cumulative
-        distribution of unempoyment duration and π at time when
+        distribution of unemployment duration and π at time when
         the worker accepts the wage offer. For each job searching
         problem, we simulate for two cases that either f or g is
         the true offer distribution.
@@ -930,7 +932,7 @@ In addition, it computes empirical cumulative distributions of two key objects.
         """
         Given the parameters that specify F and G distributions,
         calculate and display the rejection and acceptance area,
-        the evolution of belief π, and the probabiilty of accepting
+        the evolution of belief π, and the probability of accepting
         an offer at different π level, and simulate and calculate
         the empirical cumulative distribution of the duration of
         unemployment and π at the time the worker accepts the offer.
@@ -1079,11 +1081,11 @@ Two countervailing effects are at work.
 -  if f generates successive wage offers, then :math:`w` is more likely to be low, but 
    :math:`\pi` is moving up toward to 1, which lowers the reservation wage, 
    i.e., the worker becomes  less selective the longer he or she remains unemployed.
--  if g generates wage offers , then :math:`w` is more likely to be high, but
+-  if g generates wage offers, then :math:`w` is more likely to be high, but
    :math:`\pi` is moving downward toward 0, increasing the reservation wage, i.e., the worker becomes  more selective
    the longer he or she remains unemployed. 
 
-Quantitatively, the lower right figure sheds lights on which effect dominates in this example.
+Quantitatively, the lower right figure sheds light on which effect dominates in this example.
 
 It shows the probability that a previously unemployed  worker
 accepts an offer at different values of :math:`\pi` when :math:`f` or :math:`g` generates
@@ -1138,7 +1140,7 @@ Example 4
 :math:`F` ~ Beta(1, 1), :math:`G` ~ Beta(3, 1.2), and :math:`c`\ =0.8.
 
 In this example, we keep the parameters of beta distributions to be the
-same with the baseline case, but increase the unemployment compensation
+same with the baseline case but increase the unemployment compensation
 :math:`c`. 
 
 Comparing outcomes to the baseline case (example 1) in which 
