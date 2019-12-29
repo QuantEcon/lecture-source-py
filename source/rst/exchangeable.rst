@@ -4,9 +4,14 @@
 
 .. highlight:: python3
 
-
+*************************************
 Exchangeability and Bayesian Updating
-======================================
+*************************************
+
+
+.. contents:: :depth: 2
+
+**Co-author: Zejin Shi**
 
 Overview
 ---------

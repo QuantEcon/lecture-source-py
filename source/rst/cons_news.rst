@@ -10,7 +10,7 @@ Information and Consumption Smoothing
 
 .. contents:: :depth: 2
 
-**Co-authors: Thomas J. Sargent and Zejin Shi**
+**Co-author: Zejin Shi**
 
 In addition to what's in Anaconda, this lecture employs the following libraries:
 
