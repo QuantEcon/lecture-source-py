@@ -11,7 +11,7 @@ Job Search V: Search with Learning
 .. contents:: :depth: 2
 
 
-In addition to what’s in Anaconda, this lecture will need the following libraries:
+In addition to what’s in Anaconda, this lecture deploys the libraries:
 
 .. code-block:: ipython
   :class: hide-output
@@ -31,7 +31,7 @@ lecture <exchangeable>` on the topic of exchangeability and its relationship to
 the concept of IID (identically and independently distributed) random variables and to  Bayesian updating. 
 
 In the McCall model, an unemployed worker decides when to accept a
-permanent position at a specified wage, given
+permanent job at a specific fixed wage, given
 
 -  his or her discount factor
 -  the level of unemployment compensation

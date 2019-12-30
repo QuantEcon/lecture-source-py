@@ -41,8 +41,11 @@ that are
 
 - exchangeable
 
-Under standing the distinction between these concepts is essential for appreciating how Bayesian updating 
+Understanding the distinction between these concepts is essential for appreciating how Bayesian updating 
 works in our example.
+
+You can read about exchangeability `here <https://en.wikipedia.org/wiki/Exchangeable_random_variables>`__
+
 
 
 Below, we'll often use 

@@ -76,7 +76,7 @@ The first type of geometric that interests us is the infinite series
 
 .. math:: 1 + c + c^2 + c^3 + \cdots
 
-Where :math:`\cdots` means that the series continues without limit.
+Where :math:`\cdots` means that the series continues without end.
 
 The key formula is
 
@@ -109,7 +109,7 @@ set :math:`(-1,1)`.
 
 
 
-We now move on to describe some famuous economic applications of
+We now move on to describe some famous economic applications of
 geometric series.
 
 
@@ -395,7 +395,7 @@ Evidently, as :math:`t \rightarrow + \infty`,
 
 **Remark 1:** The above formula is often applied to assert that an
 exogenous increase in investment of :math:`\Delta i` at time :math:`0`
-ignites a dynamic process of increases in national income by amounts
+ignites a dynamic process of increases in national income by successive amounts
 
 .. math:: \Delta i, (1 + b )\Delta i, (1+b + b^2) \Delta i , \cdots
 
