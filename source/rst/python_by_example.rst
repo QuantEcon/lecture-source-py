@@ -725,7 +725,7 @@ Exercise 4
 Write a program that prints one realization of the following random device:
 
 * Flip an unbiased coin 10 times.
-* If 3 consecutive heads occur one or more times within this sequence, pay one dollar.
+* If a head occurs three or more times within this sequence, pay one dollar.
 * If not, pay nothing.
 
 Use no import besides ``from numpy.random import uniform``.
