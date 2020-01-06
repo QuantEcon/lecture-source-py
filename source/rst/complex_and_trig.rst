@@ -479,3 +479,19 @@ We can verify the analytical as well as numerical results using
     print('The numerical solution for the integral of cos(ω)sin(ω) \
     from -π to π is:')
     integrate(cos(ω) * sin(ω), (ω, -π, π))
+
+Exercises
+-----------
+
+We invite the reader to verify analytically and with the ``sympy'' package the following two equalities:
+
+
+.. math::
+
+   \int_{-\pi}^{\pi} \cos (\omega)^2 \, d\omega = \frac{\pi}{2}
+
+
+
+.. math::
+
+   \int_{-\pi}^{\pi} \sin (\omega)^2 \, d\omega = \frac{\pi}{2}  

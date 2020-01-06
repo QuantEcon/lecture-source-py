@@ -5,9 +5,9 @@
 .. highlight:: python3
 
 
-********************************************
-Credible Government Policies in Chang Model
-********************************************
+*************************************************
+Credible Government Policies in a Model of Chang
+*************************************************
 
 
 .. contents:: :depth: 2

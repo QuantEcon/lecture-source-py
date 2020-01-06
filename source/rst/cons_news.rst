@@ -899,3 +899,11 @@ Thus, we compute
 We can verify that we recover the same :math:`\{a_t\}` sequence
 computed earlier.
 
+Another Invertibility Issue 
+----------------------------
+
+This :doc:`quantecon lecture<hs_invertibility_example>` contains another example of a shock-invertibility issue that is endemic 
+to the LQ permanent income or consumption smoothing model.  
+
+The technical issue discussed there is ultimately the source of the shock-invertibility issues discussed by 
+Eric Leeper, Todd Walker, and Susan Yang :cite:`Leeper_Walker_Yang` in their  analysis of **fiscal foresight**.

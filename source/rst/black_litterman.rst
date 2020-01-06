@@ -6,7 +6,7 @@
     single: python
 
 ****************************************************
-Two Modifications of Mean-variance Portfolio Theory
+Two Modifications of Mean-Variance Portfolio Theory
 ****************************************************
 
 .. contents:: :depth: 2

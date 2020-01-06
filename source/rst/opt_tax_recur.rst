@@ -769,9 +769,9 @@ To express a Ramsey plan recursively, we imagine that a time :math:`0`
 Ramsey planner is followed by a sequence of continuation Ramsey planners
 at times :math:`t = 1, 2, \ldots`.
 
-A “continuation Ramsey planner” has a
-different objective function and faces different constraints than a
-Ramsey planner.
+A “continuation Ramsey planner” at times :math:`t \geq 1` has a
+different objective function and faces different constraints and state variabls than does the
+Ramsey planner at time :math:`t =0`.
 
 A key step in representing a Ramsey plan recursively is
 to regard the marginal utility scaled government debts
@@ -782,22 +782,23 @@ obligated to attain.
 Continuation Ramsey planners do this by choosing continuation policies that induce the representative
 household to make choices that imply that :math:`u_c(s^t) b_t(s_t|s^{t-1})= x_t(s^t)`.
 
+A time :math:`t \geq 1` continuation Ramsey planner faces :math:`x_t, s_t` as
+state variables.
+
 A time :math:`t\geq 1` continuation Ramsey planner
 delivers :math:`x_t` by choosing a suitable :math:`n_t, c_t` pair and a list of
 :math:`s_{t+1}`-contingent continuation quantities :math:`x_{t+1}` to
 bequeath to a time :math:`t+1` continuation Ramsey planner.
 
-A time :math:`t \geq 1` continuation Ramsey planner faces :math:`x_t, s_t` as
-state variables.
-
-But the time :math:`0` Ramsey planner faces :math:`b_0`, not :math:`x_0`,
+While a time :math:`t \geq 1` continuation Ramsey planner faces :math:`x_t, s_t` as
+state variables,  the time :math:`0` Ramsey planner faces :math:`b_0`, not :math:`x_0`,
 as a state variable.
 
 Furthermore, the Ramsey planner cares about :math:`(c_0(s_0), \ell_0(s_0))`, while
 continuation Ramsey planners do not.
 
 The time :math:`0` Ramsey planner
-hands :math:`x_1` as a function of :math:`s_1` to a time :math:`1`
+hands a state-contingent function that make :math:`x_1` a function of :math:`s_1` to a time :math:`1`
 continuation Ramsey planner.
 
 These lines of delegated authorities and
