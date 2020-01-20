@@ -20,7 +20,7 @@ Overview
 In this lecture we are going to study a very simple class of stochastic
 models called AR(1) processes.
 
-These simple models are used again and again in economic research to represent the dynamics of series such as
+These simple models are used again and again in economic research to represent the dynamics of series such as:
 
 * labor income
 * dividends
@@ -58,7 +58,7 @@ This is called the **state process** and the state space is :math:`\mathbb R`.
 
 To make things even simpler, we will assume that
 
-* the process :math:`\{ W_t \}` is IID and standard normal,
+* the process :math:`\{ W_t \}` is independent and identically distributed (IID) and standard normal,
 * the initial condition :math:`X_0` is drawn from the normal distribution :math:`N(\mu_0, v_0)` and
 * the initial condition :math:`X_0` is independent of :math:`\{ W_t \}`.
 
@@ -83,7 +83,7 @@ If we work all the way back to time zero, we get
        X_t = a^t X_0 + b \sum_{j=0}^{t-1} a^j +
             c \sum_{j=0}^{t-1} a^j  W_{t-j} 
 
-Equation :eq:`ar1_ma` shows that :math:`X_t` is a well defined random variable, the value of which depends on 
+Equation :eq:`ar1_ma` shows that :math:`X_t` is a well defined random variable, the value of which depends on: 
 
 * the parameters,
 * the initial condition :math:`X_0` and 
@@ -96,8 +96,8 @@ density of this random variable :math:`X_t`.
 Distribution Dynamics
 ---------------------
 
-One of the nice things about this model is that it's so easy to trace out the sequence of distributions :math:`\{ \psi_t \}` corresponding to the time
-series :math:`\{ X_t\}`.
+One of the neat things about this model is that using it makes tracing out the sequence of distributions :math:`\{ \psi_t \}` corresponding to the time
+series :math:`\{ X_t\}` very easy.
 
 To see this, we first note that :math:`X_t` is normally distributed for each :math:`t`.
 
@@ -110,7 +110,7 @@ Given that :math:`X_t` is normally distributed, we will know the full distributi
 Let :math:`\mu_t` and :math:`v_t` denote the mean and variance
 of :math:`X_t` respectively.
 
-We can pin down these values from :eq:`ar1_ma` or we can use the following
+We can pin down these values from :eq:`ar1_ma`, or we can use the following
 recursive expressions:
 
 .. math::
@@ -128,7 +128,7 @@ and :math:`W_{t+1}` are independent.
 (This follows from our assumptions and :eq:`ar1_ma`.)
 
 Given the dynamics in :eq:`ar1_ma` and initial conditions :math:`\mu_0,
-v_0`, we obtain :math:`\mu_t, v_t` and hence
+v_0`, we obtain :math:`\mu_t, v_t` and hence,
 
 .. math::
 
@@ -220,7 +220,7 @@ When :math:`|a| < 1`, these sequence converge to the respective limits
 
 (See our :doc:`lecture on one dimensional dynamics <scalar_dynam>` for background on deterministic convergence.)
 
-Hence 
+Hence, 
 
 .. math::
     :label: ar1_psi_star
@@ -258,7 +258,7 @@ point of the update rule for distributions.
 In other words, if :math:`\psi_t` is stationary, then :math:`\psi_{t+j} =
 \psi_t` for all :math:`j` in :math:`\mathbb N`.
 
-A different way to put this, specialized to the current setting, is as follows: a
+A different way to put this, with reference to the current setting, is as follows: a
 density :math:`\psi` on :math:`\mathbb R` is **stationary** for the AR(1) process if
 
 .. math::
@@ -299,7 +299,7 @@ Indeed, it can be proved that, whenever :math:`|a| < 1`, we have
 
 whenever the integral on the right hand side is finite and well defined.
 
-Notes:
+Note:
 
 * In :eq:`ar1_ergo`, convergence holds with probability one.
 * The textbook by :cite:`MeynTweedie2009` is a classic reference on ergodicity.
@@ -332,7 +332,7 @@ The :math:`k`-th central moment of a  random variable is defined as
 
     M_k := \mathbb E [ (X - \mathbb E X )^k ]
 
-When that random variable is :math:`N(\mu, \sigma^2)`, it is know that
+When that random variable is :math:`N(\mu, \sigma^2)`, it is known that
 
 .. math::
 
@@ -379,13 +379,13 @@ density).
 Write the class so that the bandwidth defaults to Silverman’s rule (see
 the “rule of thumb” discussion on `this
 page <https://en.wikipedia.org/wiki/Kernel_density_estimation>`__). Test
-the class you have written by going through the steps
+the class you have written by going through the steps:
 
 1. simulate data :math:`X_1, \ldots, X_n` from distribution :math:`\phi`
 2. plot the kernel density estimate over a suitable range
 3. plot the density of :math:`\phi` on the same figure
 
-for distributions :math:`\phi` of the following types
+for distributions :math:`\phi` of the following types:
 
 -  `beta
    distribution <https://en.wikipedia.org/wiki/Beta_distribution>`__
@@ -405,7 +405,7 @@ of these distributions?)
 Exercise 3
 ----------
 
-In the lecture we discussed the following fact: For the :math:`AR(1)` process
+In the lecture we discussed the following fact: for the :math:`AR(1)` process
 
 .. math::  X_{t+1} = a X_t + b + c W_{t+1} 
 
@@ -544,7 +544,7 @@ distribution is smooth but less so otherwise.
 Exercise 3
 ----------
 
-Here is our solution
+Here is our solution.
 
 .. code:: ipython3
 
