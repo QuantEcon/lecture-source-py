@@ -332,7 +332,7 @@ The :math:`k`-th central moment of a  random variable is defined as
 
     M_k := \mathbb E [ (X - \mathbb E X )^k ]
 
-When that random variable is :math:`N(\mu, \sigma^2)`, it is know that
+When that random variable is :math:`N(\mu, \sigma^2)`, it is known that
 
 .. math::
 
@@ -405,7 +405,7 @@ of these distributions?)
 Exercise 3
 ----------
 
-In the lecture we discussed the following fact: For the :math:`AR(1)` process
+In the lecture we discussed the following fact: for the :math:`AR(1)` process
 
 .. math::  X_{t+1} = a X_t + b + c W_{t+1} 
 
