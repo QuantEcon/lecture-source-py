@@ -454,14 +454,6 @@ To understand what ``enumerate()`` does, consider the following example
     for index, letter in enumerate(letter_list):
         print(f"letter_list[{index}] = '{letter}'")
 
-The output of the loop is
-
-.. code-block:: python3
-
-    letter_list[0] = 'a'
-    letter_list[1] = 'b'
-    letter_list[2] = 'c'
-
 
 
 
