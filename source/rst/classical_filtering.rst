@@ -240,7 +240,7 @@ It follows that
 Implementation
 ----------------
 
-Code that computes solutions to  LQ control and filtering problems  using the methods described here and in :doc:`Classical Control with Linear Algebra <lu_tricks>` can be found in the file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__.
+Code that computes solutions to  LQ control and filtering problems  using the methods described here and in :doc:`lu_tricks` can be found in the file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__.
 
 Here's how it looks
 
@@ -763,11 +763,11 @@ Combining :eq:`eq_29`  and :eq:`eq_33`  gives
     d(z) \,d(z^{-1}) + h = c \, (z) \,c\,(z^{-1})
 
 
-.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`.
+.. An identical equation :ref:`can be found <oneeight_ref>` in the lecture :doc:`lu_tricks`.
 
 .. Add the next sentence once Sphinx starts supporting cross file equation references (due in next release).
 
-.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`Classical Control with Linear Algebra <lu_tricks>`.
+.. Further, the conditions that :eq:`eq_31`  imposes on :math:`c(z)`, that its zeros not lie inside the unit circle, are analogous with those imposed in  equation (17) in lecture :doc:`lu_tricks`.
 
 Therefore, we have already shown constructively how to factor the covariance generating function :math:`g_X(z) = d(z)\,d\,(z^{-1}) + h`.
 
@@ -928,7 +928,7 @@ Thus, we have
     \, X_t
 
 
-This formula is useful in solving stochastic versions of problem 1 of lecture :doc:`Classical Control with Linear Algebra <lu_tricks>` in which the randomness emerges because :math:`\{a_t\}` is a stochastic
+This formula is useful in solving stochastic versions of problem 1 of lecture :doc:`lu_tricks` in which the randomness emerges because :math:`\{a_t\}` is a stochastic
 process.
 
 The problem is to maximize
