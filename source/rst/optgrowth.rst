@@ -44,12 +44,12 @@ Code
 
 Regarding code, our implementation in this lecture will focus on clarity and flexibility.
 
-Both of these things are nice, particularly for those readers still trying to understand
+Both of these things are helpful, particularly for those readers still trying to understand
 the material, but they do cost us some speed --- as you will
 see when you run the code.
 
 In the :doc:`next lecture <optgrowth_fast>` we will sacrifice some of this
-clarity and flexibility in order to accelerate our code with just-in-time compilation.
+clarity and flexibility in order to accelerate our code with just-in-time (JIT) compilation.
 
 Let's start with some imports:
 
@@ -192,7 +192,7 @@ For dynamic programming problems such as this one (in fact for any `Markov decis
 In other words, the current state :math:`y_t` provides a sufficient statistic
 for the history in terms of making an optimal decision today.
 
-This is quite intuitive but if you wish you can find proofs in texts such as :cite:`StokeyLucas1989` (section 4.1).
+This is quite intuitive, but if you wish you can find proofs in texts such as :cite:`StokeyLucas1989` (section 4.1).
 
 Hereafter we focus on finding the best Markov policy.
 
@@ -378,7 +378,7 @@ How, then, should we compute the value function?
 
 One way is to use the so-called **Bellman operator**.
 
-(An operator is a map that sends functions into functions)
+(An operator is a map that sends functions into functions.)
 
 The Bellman operator is denoted by :math:`T` and defined by
 
@@ -433,7 +433,7 @@ continuous bounded functions on :math:`\mathbb R_+` under the supremum distance
 
 See  `EDTC <http://johnstachurski.net/edtc.html>`__, lemma 10.1.18.
 
-Hence it has exactly one fixed point in this set, which we know is equal to the value function.
+Hence, it has exactly one fixed point in this set, which we know is equal to the value function.
 
 It follows that
 
@@ -450,7 +450,7 @@ We also know that a feasible policy is optimal if and only if it is :math:`v^*`-
 It's not too hard to show that a :math:`v^*`-greedy policy exists
 (see  `EDTC <http://johnstachurski.net/edtc.html>`__, theorem 10.1.11 if you get stuck).
 
-Hence at least one optimal policy exists.
+Hence, at least one optimal policy exists.
 
 Our problem now is how to compute it.
 
@@ -614,7 +614,7 @@ The Bellman Operator
 
 The next function implements the Bellman operator.
 
-(We could have added it as a method to the ``OptimalGrowthModel`` class but we
+(We could have added it as a method to the ``OptimalGrowthModel`` class, but we
 prefer small classes rather than monolithic ones for this kind of
 numerical work.)
 
