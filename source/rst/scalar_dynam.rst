@@ -202,7 +202,7 @@ We will see examples below where the converse is not true.
 Graphical Analysis
 ==================
 
-As we saw above, analyzing the dynamics for nonlinear models is non-trivial.
+As we saw above, analyzing the dynamics for nonlinear models is nontrivial.
 
 There is no single way to tackle all nonlinear models.
 
