@@ -119,7 +119,7 @@ below.
 
 
 
-Example: A Non-linear Model
+Example: A Nonlinear Model
 --------------------------
 
 In the linear example above, we obtained an exact analytical expression for :math:`x_t`
@@ -127,7 +127,7 @@ in terms of arbitrary :math:`t` and :math:`x_0`.
 
 This made analysis of dynamics very easy.
 
-When models are non-linear, however, the situation can be quite different.
+When models are nonlinear, however, the situation can be quite different.
 
 For example, recall how we :ref:`previously studied <oop_solow_growth>` the law of motion for the Solow growth model, a simplified version of which is
 
@@ -202,9 +202,9 @@ We will see examples below where the converse is not true.
 Graphical Analysis
 ==================
 
-As we saw above, analyzing the dynamics for non-linear models is non-trivial.
+As we saw above, analyzing the dynamics for nonlinear models is non-trivial.
 
-There is no single way to tackle all non-linear models.
+There is no single way to tackle all nonlinear models.
 
 However, there is one technique for one-dimensional models that provides a
 great deal of intuition.
@@ -407,7 +407,7 @@ Here is the time series:
 Complex Dynamics
 ----------------
 
-The Solow model is non-linear but still generates very regular dynamics.
+The Solow model is nonlinear but still generates very regular dynamics.
 
 One model that generates irregular dynamics is the **quadratic map**
 
