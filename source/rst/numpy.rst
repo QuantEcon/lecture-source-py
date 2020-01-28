@@ -653,8 +653,6 @@ You can also use ``np.vectorize`` to vectorize a given function
 
 .. code-block:: python3
 
-    def f(x): return 1 if x > 0 else 0
-
     f = np.vectorize(f)
     f(x)                # Passing the same vector x as in the previous example
 
