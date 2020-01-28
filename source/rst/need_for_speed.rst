@@ -437,6 +437,8 @@ Here's a plot of :math:`f`
                   alpha=0.7,
                   linewidth=0.25)
   ax.set_zlim(-0.5, 1.0)
+  ax.set_xlabel('$x$', fontsize=14)
+  ax.set_ylabel('$y$', fontsize=14)
   plt.show()
 
 To maximize it, we're going to use a naive grid search:
