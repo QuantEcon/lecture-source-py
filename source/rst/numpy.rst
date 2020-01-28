@@ -51,7 +51,7 @@ NumPy Arrays
 .. index::
     single: NumPy; Arrays
 
-The essential problem that NumPy solves is fast array processing.
+The essential problem that NumPy solves is a fast array processing.
 
 The most important structure that NumPy defines is an array data type formally called a `numpy.ndarray <http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html>`_.
 
@@ -81,7 +81,7 @@ NumPy arrays are somewhat like native Python lists, except that
 * Data *must be homogeneous* (all elements of the same type).
 * These types must be one of the data types (``dtypes``) provided by NumPy.
 
-The most important of these dtypes are:
+The most important dtypes are:
 
 *    float64: 64 bit floating-point number
 *    int64: 64 bit integer
