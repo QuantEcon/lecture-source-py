@@ -299,7 +299,7 @@ condition:
 
     # Solve for ω
     ## Note: we choose the solution near 0
-    eq1 = Eq(x1/x0 - r * cos(ω+θ) / cos(ω))
+    eq1 = Eq(x1/x0 - r * cos(ω+θ) / cos(ω), 0)
     ω = nsolve(eq1, ω, 0)
     ω = np.float(ω)
     print(f'ω = {ω:1.3f}')
