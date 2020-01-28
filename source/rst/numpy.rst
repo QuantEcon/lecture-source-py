@@ -828,7 +828,7 @@ Your exercise is to speed it up using NumPy, avoiding explicit loops
 
 * Hint: Use ``np.searchsorted`` and ``np.cumsum``
 
-If you can, implement the functionality as a class called ``discreteRV``, where
+If you can, implement the functionality as a class called ``DiscreteRV``, where
 
 * the data for an instance of the class is the vector of probabilities ``q``
 * the class has a ``draw()`` method, which returns one draw according to the algorithm described above
