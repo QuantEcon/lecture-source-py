@@ -1000,7 +1000,7 @@ from QuantEcon and added in a plot method
             """
             return np.mean(self.observations <= x)
 
-        def plot(self, a=None, b=None):
+        def plot(self, ax, a=None, b=None):
             """
             Plot the ecdf on the interval [a, b].
 
@@ -1022,13 +1022,14 @@ from QuantEcon and added in a plot method
             # === generate plot === #
             x_vals = np.linspace(a, b, num=100)
             f = np.vectorize(self.__call__)
-            plt.plot(x_vals, f(x_vals))
+            ax.plot(x_vals, f(x_vals))
             plt.show()
 
 Here's an example of usage
 
 .. code-block:: python3
 
+    fig, ax = plt.subplots()
     X = np.random.randn(1000)
     F = ECDF(X)
-    F.plot()
+    F.plot(ax)
