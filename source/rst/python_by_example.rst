@@ -858,11 +858,11 @@ If we know :math:`\pi` then we can compute :math:`A` via
 But here the point is to compute :math:`\pi`, which we can do by
 :math:`\pi = A / r^2`.
 
-Summary: If we can estimate the area of the unit circle, then dividing
+Summary: If we can estimate the area of a circle with diameter 1, then dividing
 by :math:`r^2 = (1/2)^2 = 1/4` gives an estimate of :math:`\pi`.
 
 We estimate the area by sampling bivariate uniforms and looking at the
-fraction that falls into the unit circle
+fraction that falls into the circle.
 
 .. code-block:: python3
 
