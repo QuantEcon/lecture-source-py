@@ -79,7 +79,7 @@ To create a NumPy array containing only zeros we use  `np.zeros <http://docs.sci
 NumPy arrays are somewhat like native Python lists, except that
 
 * Data *must be homogeneous* (all elements of the same type).
-* These types must be one of the data types (``dtypes``) provided by NumPy.
+* These types must be one of the `data types <https://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html>`_ (``dtypes``) provided by NumPy.
 
 The most important of these dtypes are:
 
