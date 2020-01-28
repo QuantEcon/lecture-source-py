@@ -38,7 +38,7 @@ This section sets out the objects of interest and the kinds of properties we stu
 Difference Equations
 --------------------
 
-A **time homgeneous first order difference equation** is an equation of the
+A **time homogeneous first order difference equation** is an equation of the
 form
 
 .. math::
@@ -202,7 +202,7 @@ We will see examples below where the converse is not true.
 Graphical Analysis
 ==================
 
-We saw above that, for nonlinear models, analyzing dynamics is nontrivial.
+As we saw above, analyzing the dynamics for nonlinear models is nontrivial.
 
 There is no single way to tackle all nonlinear models.
 
@@ -304,7 +304,7 @@ plots.
         ax.set_xticks(range(ts_length))
         plt.show()
 
-Let's create a 45 degree diagram for the Solow model at a fixed set of
+Let's create a 45 degree diagram for the Solow model with a fixed set of
 parameters
 
 .. code-block:: ipython
@@ -350,7 +350,7 @@ For the Solow model, there are two steady states when :math:`S = \mathbb R_+ =
 
 * the unique positive number such that :math:`k = s z k^{\alpha} + (1 - \delta) k`.
 
-A bit of algebra shows that, in the second case, the steady state is
+By using some algebra, we can show that in the second case, the steady state is
 
 .. math::
 
@@ -387,7 +387,7 @@ Here's a somewhat longer view:
     ts_plot(g, xmin, xmax, k0, ts_length=20, var='k')
 
 
-When capital stock is higher than the unique positive steady state we see that
+When capital stock is higher than the unique positive steady state, we see that
 it declines:
 
 .. code-block:: ipython
@@ -440,7 +440,7 @@ Here is the corresponding time series plot.
     ts_plot(g, xmin, xmax, x0, ts_length=6)
 
 
-The irregularity is even clearer over a longer horizon:
+The irregularity is even clearer over a longer time horizon:
 
 .. code-block:: ipython
 
@@ -526,7 +526,7 @@ state.
 
     ts_plot(g, xmin, xmax, x0, ts_length=10)
 
-Once again we have convergence to the steady state but the nature of
+Once again, we have convergence to the steady state but the nature of
 convergence differs.
 
 In particular, the time series jumps from above the steady state to below it
