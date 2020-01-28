@@ -106,7 +106,7 @@ But first, let's quickly review how they fit together.
 
 * Pandas provides types and functions for empirical work (e.g., manipulating data).
 
-* Numba accellerates execution via JIT compilation --- we'll learn about this
+* Numba accelerates execution via JIT compilation --- we'll learn about this
   soon.
 
 
@@ -152,7 +152,7 @@ Second, even for those lines of code that *are* time-critical, we can now achiev
 Where are the Bottlenecks?
 --------------------------
 
-Before we learn how to do this, let's try to understand why plain vanila
+Before we learn how to do this, let's try to understand why plain vanilla
 Python is slower than C or Fortran.
 
 This will, in turn, help us figure out how to speed things up.
