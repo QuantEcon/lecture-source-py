@@ -88,7 +88,7 @@ Recall that ``numpy.random`` provides functions for generating random variables
 
     np.random.beta(5, 5, size=3)
 
-This generates a draw from the distribution below when ``a, b = 5, 5``
+This generates a draw from the distribution with the density function below when ``a, b = 5, 5``
 
 .. math::
     :label: betadist2
