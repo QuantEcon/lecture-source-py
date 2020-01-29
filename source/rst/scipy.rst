@@ -29,7 +29,7 @@ Overview
 
 Like NumPy, SciPy is stable, mature and widely used.
 
-Many SciPy routines are thin wrappers around industry-standard Fortran libraries such as LAPACK, BLAS, etc.
+Many SciPy routines are thin wrappers around industry-standard Fortran libraries such as `LAPACK <https://en.wikipedia.org/wiki/LAPACK>`_, `BLAS <https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms>`_, etc.
 
 It's not really necessary to "learn" SciPy as a whole.
 
