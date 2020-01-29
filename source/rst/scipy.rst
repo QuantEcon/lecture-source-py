@@ -167,7 +167,7 @@ For example, the code that generates the figure above can be replaced by
 Other Goodies in scipy.stats
 ----------------------------
 
-There are a variety statistical functions in ``scipy.stats``.
+There are a variety of statistical functions in ``scipy.stats``.
 
 For example, ``scipy.stats.linregress`` implements simple linear regression
 
