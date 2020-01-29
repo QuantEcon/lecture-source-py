@@ -207,7 +207,10 @@ with :math:`x \in [0,1]` we get
 
   fig, ax = plt.subplots()
   ax.plot(x, f(x))
-  ax.axhline(ls='--', c='k')
+  ax.axhline(ls='--', c='k', label='$f(x)$')
+  ax.set_xlabel('$x$', fontsize=12)
+  ax.set_ylabel('$f(x)$', fontsize=12)
+  ax.legend(fontsize=12)
   plt.show()
 
 The unique root is approximately 0.408.
