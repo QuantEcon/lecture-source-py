@@ -931,6 +931,6 @@ Exercise 6
         for i in range(ts_length):
             x_values.append(current_x)
             current_x = α * current_x + np.random.randn()
-        plt.plot(x_values, label=f'α = {α}')
+        plt.plot(x_values, label=f'$\\alpha = {α}$')
     plt.legend()
     plt.show()
