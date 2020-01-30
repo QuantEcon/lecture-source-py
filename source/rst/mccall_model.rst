@@ -300,7 +300,7 @@ Step 2: compute a new vector :math:`v' \in \mathbb R^n` via
     \quad
     \text{for } i = 1, \ldots, n
 
-Step 3: calculate a measure of the deviation between :math:`v` and :math:`v'`, such as :math:`\max_i |v(i)- v(i')|`.
+Step 3: calculate a measure of the deviation between :math:`v` and :math:`v'`, such as :math:`\max_i |v(i)- v'(i)|`.
 
 Step 4: if the deviation is larger than some fixed tolerance, set :math:`v = v'` and go to step 2, else continue.
 
