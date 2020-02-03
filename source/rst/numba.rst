@@ -151,11 +151,11 @@ In fact, the next time and all subsequent times it runs even faster as the funct
 
     qe.tic()
     qm_numba(0.1, int(n))
-    time2 = qe.toc()
+    time3 = qe.toc()
 
 .. code-block:: python3
 
-    time1 / time2  # Calculate speed gain
+    time1 / time3  # Calculate speed gain
 
 
 This kind of speed gain is huge relative to how simple and clear the implementation is.
@@ -287,7 +287,7 @@ However, that subset is ever expanding.
 
 For example, Numba is now quite effective at compiling classes.
 
-If a class is successfully compiled, then its methods acts as JIT-compiled
+If a class is successfully compiled, then its methods act as JIT-compiled
 functions.
 
 To give one example, let's consider the class for analyzing the Solow growth model we
