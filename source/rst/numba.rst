@@ -254,7 +254,7 @@ This allows it to generate native machine code, without having to call the Pytho
 
 In such a setting, Numba will be on par with machine code from low-level languages.
 
-When Numba cannot infer all type information, some Python objects are given generic ``object`` status and execution falls back to the Python runtime.
+When Numba cannot infer all type information, some Python objects are given generic object status and execution falls back to the Python runtime.
 
 When this happens, Numba provides only minor speed gains or none at all.
 
