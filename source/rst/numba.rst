@@ -54,7 +54,7 @@ The key idea is to compile functions to native machine code instructions on the 
 
 When it succeeds, the compiled code is extremely fast.
 
-Numba is specifically designed for numerical work and can also do other tricks such as multithreading.
+Numba is specifically designed for numerical work and can also do other tricks such as `multithreading <https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)>`_.
 
 Numba will be a key part of our lectures --- especially those lectures involving dynamic programming.
 
