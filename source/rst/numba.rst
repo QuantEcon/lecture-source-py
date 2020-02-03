@@ -106,7 +106,8 @@ Here's the plot of a typical trajectory, starting from :math:`x_0 = 0.1`, with :
     x = qm(0.1, 250)
     fig, ax = plt.subplots()
     ax.plot(x, 'b-', lw=2, alpha=0.8)
-    ax.set_xlabel('time', fontsize=16)
+    ax.set_xlabel('$t$', fontsize=12)
+    ax.set_ylabel($x_{t}$, fontsize = 12)
     plt.show()
 
 To speed the function ``qm`` up using Numba, our first step is
@@ -385,7 +386,8 @@ When we call the methods in the class, the methods are compiled just like functi
     for s in s1, s2:
         lb = f'capital series from initial state {s.k}'
         ax.plot(s.generate_sequence(T), 'o-', lw=2, alpha=0.6, label=lb)
-
+    ax.set_ylabel('$k_{t}$', fontsize=12)
+    ax.set_xlabel('$t$', fontsize=12)
     ax.legend()
     plt.show()
 
