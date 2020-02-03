@@ -54,7 +54,7 @@ The key idea is to compile functions to native machine code instructions on the 
 
 When it succeeds, the compiled code is extremely fast.
 
-Numba is specifically designed for numerical work and can also do other tricks such as multithreading.
+Numba is specifically designed for numerical work and can also do other tricks such as `multithreading <https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)>`_.
 
 Numba will be a key part of our lectures --- especially those lectures involving dynamic programming.
 
@@ -106,7 +106,8 @@ Here's the plot of a typical trajectory, starting from :math:`x_0 = 0.1`, with :
     x = qm(0.1, 250)
     fig, ax = plt.subplots()
     ax.plot(x, 'b-', lw=2, alpha=0.8)
-    ax.set_xlabel('time', fontsize=16)
+    ax.set_xlabel('$t$', fontsize=12)
+    ax.set_ylabel($x_{t}$, fontsize = 12)
     plt.show()
 
 To speed the function ``qm`` up using Numba, our first step is
@@ -150,11 +151,11 @@ In fact, the next time and all subsequent times it runs even faster as the funct
 
     qe.tic()
     qm_numba(0.1, int(n))
-    time2 = qe.toc()
+    time3 = qe.toc()
 
 .. code-block:: python3
 
-    time1 / time2  # Calculate speed gain
+    time1 / time3  # Calculate speed gain
 
 
 This kind of speed gain is huge relative to how simple and clear the implementation is.
@@ -178,8 +179,8 @@ The basic idea is this:
 
 * This makes it hard to *pre*-compile the function.
 
-* However, when we do actually call the function, by executing ``qm(0.5, 10)``,
-  say, the types of ``x0`` and ``n`` become clear.
+* However, when we do actually call the function, say by executing ``qm(0.5, 10)``, 
+  the types of ``x0`` and ``n`` become clear.
 
 * Moreover, the types of other variables in ``qm`` can be inferred once the input is known.
 
@@ -253,7 +254,7 @@ This allows it to generate native machine code, without having to call the Pytho
 
 In such a setting, Numba will be on par with machine code from low-level languages.
 
-When Numba cannot infer all type information, some Python objects are given generic ``object`` status and execution falls back to the Python runtime.
+When Numba cannot infer all type information, some Python objects are given generic object status and execution falls back to the Python runtime.
 
 When this happens, Numba provides only minor speed gains or none at all.
 
@@ -286,7 +287,7 @@ However, that subset is ever expanding.
 
 For example, Numba is now quite effective at compiling classes.
 
-If a class is successfully compiled, then its methods acts as JIT-compiled
+If a class is successfully compiled, then its methods act as JIT-compiled
 functions.
 
 To give one example, let's consider the class for analyzing the Solow growth model we
@@ -385,7 +386,8 @@ When we call the methods in the class, the methods are compiled just like functi
     for s in s1, s2:
         lb = f'capital series from initial state {s.k}'
         ax.plot(s.generate_sequence(T), 'o-', lw=2, alpha=0.6, label=lb)
-
+    ax.set_ylabel('$k_{t}$', fontsize=12)
+    ax.set_xlabel('$t$', fontsize=12)
     ax.legend()
     plt.show()
 
