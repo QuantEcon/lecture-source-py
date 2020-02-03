@@ -179,8 +179,8 @@ The basic idea is this:
 
 * This makes it hard to *pre*-compile the function.
 
-* However, when we do actually call the function, by executing `qm(0.5, 10)`,
-  say, the types of `x0` and `n` become clear.
+* However, when we do actually call the function, say by executing `qm(0.5, 10)`, 
+  the types of `x0` and `n` become clear.
 
 * Moreover, the types of other variables in `qm` can be inferred once the input is known.
 
