@@ -331,7 +331,9 @@ Let's have a look at how wealth evolves under this rule.
         w[t+1] = h(w[t])
 
     ax.plot(w)
-
+    ax.set_xlabel('$t$', fontsize=12)
+    ax.set_ylabel('$w_{t}$', fontsize=12)
+    plt.show()
 
 Now let's suppose that we have a large population of households and we want to
 know what median wealth will be.
