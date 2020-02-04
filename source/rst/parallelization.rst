@@ -351,7 +351,7 @@ wealth of the group at the end of a long simulation.
 Moreover, provided the simulation period is long enough, initial conditions
 don't matter.
 
-* This is due to something called ergodicity, which we will discuss later on.
+* This is due to something called ergodicity, which we will discuss `later on <https://python.quantecon.org/finite_markov.html#Ergodicity>`_.
 
 So, in summary, we are going to simulate 50,000 households by
 
