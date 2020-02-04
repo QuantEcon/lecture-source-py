@@ -47,7 +47,7 @@ clean-pdf:
 	rm -rf $(BUILDDIR)/jupyterpdf
 
 clean-execute:
-	rm -rf $(BUILDDIR)/codetree
+	rm -rf $(BUILDDIR)/execute
 
 clean-jupyter:
 	rm -rf $(BUILDDIR)/jupyter
@@ -77,10 +77,10 @@ endif
 
 execute:
 ifneq ($(strip $(parallel)),)
-	@@$(SPHINXBUILD) -M codetree "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="error_report_template.html" -D jupyter_number_workers=$(parallel)
+	@@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="error_report_template.html" -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M codetree "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="error_report_template.html"
+	@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="error_report_template.html"
 endif
 
 constructor-pdf:

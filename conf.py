@@ -417,8 +417,11 @@ jupyter_download_nb = False
 #Use urlprefix images
 jupyter_download_nb_image_urlpath = None
 
-#Allow ipython as a language synonym for blocks to be ipython highlighted
-jupyter_lang_synonyms = ["ipython", "ipython3"]
+# Default language for Jupyter notebooks
+jupyter_language = "python3"
+
+# Add Ipython, Pycon and python as language synonyms
+jupyter_language_synonyms = ["ipython", "python", "pycon", "ipython3"]
 
 #Execute skip-test code blocks for rendering of website (this will need to be ignored in coverage testing)
 jupyter_ignore_skip_test = True
