@@ -65,7 +65,7 @@ Types of Parallelization
 
 Large textbooks have been written on different approaches to parallelization but we will keep a tight focus on what's most useful to us.
 
-We will briefly review the two main kinds of parallelization in common use in
+We will briefly review the two main kinds of parallelization commonly used in
 scientific computing and discuss their pros and cons.
 
 
@@ -151,7 +151,7 @@ this code is running:
 
 .. figure:: /_static/lecture_specific/parallelization/htop_parallel_npmat.png
 
-We can see that 4 of the 8 cores are running at full speed.
+We can see that 4 of the 8 CPUs are running at full speed.
 
 
 This is because NumPy's ``eigvals`` routine neatly splits up the tasks and
@@ -345,7 +345,7 @@ calculate median wealth for this group.
 Suppose we are interested in the long-run average of this median over time.
 
 It turns out that, for the specification that we've chosen above, we can
-calculate this this by taking a one-period snapshot of what has happened to median
+calculate this by taking a one-period snapshot of what has happened to median
 wealth of the group at the end of a long simulation.
 
 Moreover, provided the simulation period is long enough, initial conditions
@@ -425,7 +425,7 @@ For example, each step inside the inner loop depends on the last step, so
 independence fails, and this is why we use ordinary ``range`` instead of ``prange``.
 
 When you see us using ``prange`` in later lectures, it is because the
-independence of tasks hold true.
+independence of tasks holds true.
 
 When you see us using ordinary ``range`` in a jitted function, it is either because the speed gain from parallelization is small or because independence fails.
 
@@ -500,7 +500,7 @@ Now let's see how fast it runs:
     %time calculate_pi()
 
 By switching parallelization on and off (selecting ``True`` or
-``False`` in the ``@jnit`` annotation), we can test the speed gain that
+``False`` in the ``@njit`` annotation), we can test the speed gain that
 multithreading provides on top of JIT compilation.
 
 On our workstation, we find that parallelization increases execution speed by
