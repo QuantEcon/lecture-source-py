@@ -118,12 +118,12 @@ To speed the function ``qm`` up using Numba, our first step is
 
     qm_numba = jit(qm)  
 
-The function `qm_numba` is a version of `qm` that is "targeted" for
+The function ``qm_numba`` is a version of ``qm`` that is "targeted" for
 JIT-compilation.
 
 We will explain what this means momentarily.
 
-Let's time and compare identical function calls across these two versions, starting with the original function `qm`:
+Let's time and compare identical function calls across these two versions, starting with the original function ``qm``:
 
 .. code-block:: python3
 
@@ -175,21 +175,21 @@ The basic idea is this:
 * Python is very flexible and hence we could call the function `qm` with many
   types.
 
-    * e.g., `x0` could be a NumPy array or a list, `n` could be an integer or a float, etc.
+    * e.g., ``x0`` could be a NumPy array or a list, ``n`` could be an integer or a float, etc.
 
 * This makes it hard to *pre*-compile the function.
 
-* However, when we do actually call the function, say by executing `qm(0.5, 10)`, 
-  the types of `x0` and `n` become clear.
+* However, when we do actually call the function, say by executing ``qm(0.5, 10)``, 
+  the types of ``x0`` and ``n`` become clear.
 
-* Moreover, the types of other variables in `qm` can be inferred once the input is known.
+* Moreover, the types of other variables in ``qm`` can be inferred once the input is known.
 
 * So the strategy of Numba and other JIT compilers is to wait until this
   moment, and *then* compile the function.
 
 That's why it is called "just-in-time" compilation.
 
-Note that, if you make the call `qm(0.5, 10)` and then follow it with `qm(0.9, 20)`, compilation only takes place on the first call.
+Note that, if you make the call ``qm(0.5, 10)`` and then follow it with ``qm(0.9, 20)``, compilation only takes place on the first call.
 
 The compiled code is then cached and recycled as required.
 
@@ -293,13 +293,13 @@ functions.
 To give one example, let's consider the class for analyzing the Solow growth model we
 created in :doc:`this lecture <python_oop>`.
 
-To compile this class we use the `@jitclass` decorator:
+To compile this class we use the ``@jitclass`` decorator:
 
 .. code-block:: python3
 
     from numba import jitclass, float64
 
-Notice that we also imported something called `float64`.
+Notice that we also imported something called ``float64``.
 
 This is a data type representing standard floating point numbers.
 
@@ -363,10 +363,10 @@ Here's our code:
             return path
 
 First we specified the types of the instance data for the class in
-`solow_data`.
+``solow_data``.
 
 After that, targeting the class for JIT compilation only requires adding
-`@jitclass(solow_data)` before the class definition.
+``@jitclass(solow_data)`` before the class definition.
 
 When we call the methods in the class, the methods are compiled just like functions.
 
