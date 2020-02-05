@@ -172,7 +172,7 @@ Here's the content of ``test_pwt.csv``
     "Uruguay","URY","2000","3219.793","12.099591667","25255.961693","78.978740282","5.108067988"
 
 
-Supposing you have this data saved as `test_pwt.csv` in the present working directory (type `%pwd` in Jupyter to see what this is), it can be read in as follows:
+Supposing you have this data saved as ``test_pwt.csv`` in the present working directory (type ``%pwd`` in Jupyter to see what this is), it can be read in as follows:
 
 
 .. code-block:: python3
