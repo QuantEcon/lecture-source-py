@@ -26,7 +26,7 @@ Overview
 Its popularity has surged in recent years, coincident with the rise
 of fields such as data science and machine learning.
 
-Here's a popularity comparison over time against STATA, SAS, and dplyr courtesy of Stack Overflow Trends
+Here's a popularity comparison over time against STATA, SAS, and `dplyr <https://dplyr.tidyverse.org/>`_ courtesy of Stack Overflow Trends
 
 .. figure:: /_static/lecture_specific/pandas/pandas_vs_rest.png
 
@@ -392,7 +392,7 @@ Using :index:`pandas_datareader` to Access Data
 
 The maker of pandas has also authored a library called `pandas_datareader` that gives programmatic access to many data sources straight from the Jupyter notebook.
 
-While some sources require an access key, many of the most important (e.g., FRED, OECD, EUROSTAT and the World Bank) are free to use.
+While some sources require an access key, many of the most important (e.g., FRED, `OECD <https://data.oecd.org/>`_, `EUROSTAT <https://ec.europa.eu/eurostat/data/database>`_ and the World Bank) are free to use.
 
 For now let's work through one example of downloading and plotting data --- this
 time from the World Bank.
