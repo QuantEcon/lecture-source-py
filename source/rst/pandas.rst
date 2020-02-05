@@ -445,17 +445,13 @@ Write a program to calculate the percentage price change over 2013 for the follo
                    'PTR': 'PetroChina'}
 
 
-.. only:: html
+Here's the first line of the program
 
-    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    :download:`here <_static/lecture_specific/pandas/data/ticker_data.csv>`.
+.. code-block:: python3
 
-.. only:: latex
+    ticker = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas/data/ticker_data.csv')
 
-    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas/data/ticker_data.csv>`__.
-
-Plot the result as a bar graph like this one
+Complete the program to plot the result as a bar graph like this one
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
    :scale: 90 %
@@ -471,7 +467,6 @@ Exercise 1
 
 .. code-block:: python3
 
-    ticker = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas/data/ticker_data.csv')
     ticker.set_index('Date', inplace=True)
 
     ticker_list = {'INTC': 'Intel',
