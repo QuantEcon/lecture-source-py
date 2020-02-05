@@ -209,7 +209,7 @@ To select rows and columns using a mixture of integers and labels, the ``loc`` a
 
     df.loc[df.index[2:5], ['country', 'tcgdp']]
 
-Let's imagine that we're only interested in population and total GDP (``tcgdp``).
+Let's imagine that we're only interested in population (``POP``) and total GDP (``tcgdp``).
 
 One way to strip the data frame ``df`` down to only these variables is to overwrite the dataframe using the selection method described above
 
