@@ -177,7 +177,7 @@ Supposing you have this data saved as ``test_pwt.csv`` in the present working di
 
 .. code-block:: python3
 
-    df = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas/data/test_pwt.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas/data/test_pwt.csv')
     type(df)
 
 .. code-block:: python3
