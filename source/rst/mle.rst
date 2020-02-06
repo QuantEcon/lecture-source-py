@@ -161,7 +161,7 @@ Treisman's main source of data is *Forbes'* annual rankings of billionaires and 
     pd.options.display.max_columns = 10
 
     # Load in data and view
-    df = pd.read_stata('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/mle/fp.dta')
+    df = pd.read_stata('https://github.com/QuantEcon/lecture-source-py/blob/master/source/_static/lecture_specific/mle/fp.dta?raw=true')
     df.head()
 
 
