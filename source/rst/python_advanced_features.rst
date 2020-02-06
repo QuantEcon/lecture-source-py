@@ -1769,7 +1769,7 @@ Write a function to recursively compute the :math:`t`-th Fibonacci number for an
 Exercise 2
 ----------
 
-Complete the following code, and test it using `this csv file <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/python_advanced_features/test_table.csv>`__, which we assume that you've put in your current working directory
+Complete the following code, and test it using `this csv file <https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/python_advanced_features/test_table.csv>`__, which we assume that you've put in your current working directory
 
 
 .. code-block:: python3
