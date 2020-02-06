@@ -423,9 +423,6 @@ jupyter_language = "python3"
 # Add Ipython, Pycon and python as language synonyms
 jupyter_language_synonyms = ["ipython", "python", "pycon", "ipython3"]
 
-#Execute skip-test code blocks for rendering of website (this will need to be ignored in coverage testing)
-jupyter_ignore_skip_test = True
-
 #allow execution of notebooks
 jupyter_execute_notebooks = False
 
