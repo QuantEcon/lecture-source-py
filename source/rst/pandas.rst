@@ -254,7 +254,9 @@ For example, we can easily generate a bar plot of GDP per capita
 
 .. code-block:: python3
 
-    df['GDP percap'].plot(kind='bar')
+    ax = df['GDP percap'].plot(kind='bar')
+    ax.set_xlabel('country', fontsize=12)
+    ax.set_ylabel('GDP per capita', fontsize=12)
     plt.show()
 
 At the moment the data frame is ordered alphabetically on the countries---let's change it to GDP per capita
@@ -268,8 +270,10 @@ Plotting as before now yields
 
 .. code-block:: python3
 
-  df['GDP percap'].plot(kind='bar')
-  plt.show()
+    ax = df['GDP percap'].plot(kind='bar')
+    ax.set_xlabel('country', fontsize=12)
+    ax.set_ylabel('GDP per capita', fontsize=12)
+    plt.show()
 
 
 
@@ -376,7 +380,9 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
 
 .. code-block:: python3
 
-    data['2006':'2012'].plot()
+    ax = data['2006':'2012'].plot(title='US Unemployment Rate', legend=False)
+    ax.set_xlabel('year', fontsize=12)
+    ax.set_ylabel('%', fontsize=12)
     plt.show()
 
 Note that pandas offers many other file type alternatives.
@@ -411,6 +417,7 @@ The next code example fetches the data for you and plots time series for the US 
     ind = govt_debt.index.droplevel(-1)
     govt_debt.index = ind
     ax = govt_debt.plot(lw=2)
+    ax.set_xlabel('year', fontsize=12)
     plt.title("Government Debt to GDP (%)")
     plt.show()
 
@@ -492,6 +499,8 @@ Exercise 1
 
     price_change.sort_values(inplace=True)
     fig, ax = plt.subplots(figsize=(10,8))
+    ax.set_xlabel('stock', fontsize=12)
+    ax.set_ylabel('percentage change in price', fontsize=12)
     price_change.plot(kind='bar', ax=ax)
     plt.show()
 
