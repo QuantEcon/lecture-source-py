@@ -371,13 +371,6 @@ linkcheck_timeout = 30
 # jupyter Sphinx Extension conversion settings
 # --------------------------------------------
 
-# Conversion Mode Settings
-# If "all", convert codes and texts into notebook
-# If "code", convert codes only
-jupyter_conversion_mode = "all"
-
-jupyter_write_metadata = False
-
 # Location for _static folder
 jupyter_static_file_path = ["source/_static", "_static"]
 
@@ -418,26 +411,17 @@ jupyter_language = "python3"
 # Add Ipython, Pycon and python as language synonyms
 jupyter_language_synonyms = ["ipython", "python", "pycon", "ipython3"]
 
-#allow execution of notebooks
-jupyter_execute_notebooks = False
-
 #allow errors during execution
 jupyter_execute_allow_errors = True
 
 # Location of template folder for coverage reports
-jupyter_template_coverage_file_path = False
-
-# generate html from IPYNB files
-jupyter_generate_html = False
+jupyter_coverage_template = False
 
 # html template specific to your website needs
 jupyter_html_template = ""
 
 # latex template specific to your website needs
-jupyter_latex_template = ""
-
-#make website
-jupyter_make_site = False
+jupyter_template_latex = ""
 
 #force markdown image inclusion
 jupyter_images_markdown = True
