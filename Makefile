@@ -56,14 +56,14 @@ website:
 	@$(SPHINXBUILD) -M jupyterhtml "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_download_nb_image_urlpath="https://s3-ap-southeast-2.amazonaws.com/python.quantecon.org/_static/" -D jupyter_images_markdown=0 -D jupyter_html_template="theme/templates/python-html.tpl" -D jupyter_download_nb_urlpath="https://python.quantecon.org/"
 
 pdf:
-	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_latex_template="theme/templates/latex.tpl" -D jupyter_latex_template_book="theme/templates/latex_book.tpl" -D jupyter_images_markdown=1 -D jupyter_target_pdf=1
+	@$(SPHINXBUILD) -M jupyterpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_latex="theme/templates/latex.tpl" -D jupyter_template_latexbook="theme/templates/latex_book.tpl" -D jupyter_images_markdown=1
 
 execute:
 ifneq ($(strip $(parallel)),)
-	@@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="theme/templates/error_report_template.html" -D jupyter_number_workers=$(parallel)
+	@@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_coverage_template="theme/templates/error_report_template.html" -D jupyter_number_workers=$(parallel)
 
 else
-	@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="theme/templates/error_report_template.html"
+	@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_coverage_template="theme/templates/error_report_template.html"
 endif
 
 notebooks:
