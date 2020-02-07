@@ -451,8 +451,7 @@ jupyter_images_markdown = True
 jupyter_allow_html_only=True
 
 ## Theme specific variables
-jupyter_theme_path = 'theme'
-jupyter_template_path = 'theme/templates'
+jupyter_theme = 'theme'
 
 ### pdf options
 jupyter_pdf_logo = "_static/img/qe-menubar-logo.png"
