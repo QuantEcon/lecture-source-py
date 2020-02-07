@@ -374,33 +374,8 @@ linkcheck_timeout = 30
 # Location for _static folder
 jupyter_static_file_path = ["source/_static", "_static"]
 
-# Configure Jupyter Kernels
-jupyter_kernels = {
-    "python3": {
-        "kernelspec": {
-            "display_name": "Python",
-            "language": "python3",
-            "name": "python3"
-            },
-        "file_extension": ".py",
-    },
-}
-
-# Configure jupyter headers
-jupyter_headers = {
-    "python3": [
-        # nbformat.v4.new_code_cell("%autosave 0")      #@mmcky please make this an option
-        ],
-    "julia": [
-        ],
-}
-
-# Filename for the file containing the welcome block
-jupyter_welcome_block = ""
-
 #path to download notebooks from 
 jupyter_download_nb_urlpath = None
-
 
 #Use urlprefix images
 jupyter_download_nb_image_urlpath = None
