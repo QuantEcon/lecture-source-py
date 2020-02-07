@@ -66,14 +66,6 @@ else
 	@$(SPHINXBUILD) -M execute "$(SOURCEDIR)" "$(BUILDDIR)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_template_coverage_file_path="theme/templates/error_report_template.html"
 endif
 
-# constructor-pdf:
-# ifneq ($(strip $(parallel)),)
-# 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDPDF)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1 -D jupyter_number_workers=$(parallel)
-
-# else
-# 	@$(SPHINXBUILD) -M jupyter "$(SOURCEDIR)" "$(BUILDPDF)" $(FILES) $(SPHINXOPTS) $(O) -D jupyter_images_markdown=1 -D jupyter_execute_notebooks=1
-# endif
-
 notebooks:
 	make jupyter
 

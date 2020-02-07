@@ -5,7 +5,6 @@
 {% set nb_filename = nb.metadata.get('filename', '') %}
 {% set nb_filename_with_path = nb.metadata.get('filename_with_path','') %}
 {% set indexPage = nb_filename.startswith('index') %}
-{% set download_nb = nb.metadata.get('download_nb','') %}
 {% set download_nb_path = nb.metadata.get('download_nb_path','') %}
 {% if nb_filename.endswith('.rst') %}
 {% set nb_filename = nb_filename[:-4] %}
@@ -175,10 +174,8 @@
 {% if not indexPage %}
 						<div class="lecture-options">
 							<ul>
-{% if download_nb == True %}
 								<li><a href="/_downloads/pdf/{{nb_filename_with_path}}.pdf"><i class="fas fa-file-download"></i> Download PDF</a></li>
 								<li><a href="/_downloads/ipynb/{{nb_filename_with_path}}.ipynb"><i class="fas fa-file-download"></i> Download Notebook</a></li>
-{% endif %}
 								<li><a target="_blank" href="https://colab.research.google.com/github/QuantEcon/quantecon-notebooks-python/blob/master/{{nb_filename_with_path}}.ipynb"><i class="fas fa-rocket"></i> Launch Notebook</a></li>
 								<li><a target="_blank" href="https://github.com/QuantEcon/lecture-source-py/blob/master/source/rst/{{nb_filename_with_path}}.rst"><i class="fas fa-file-code"></i> View Source</a></li>
 							</ul>

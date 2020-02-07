@@ -405,14 +405,9 @@ jupyter_headers = {
 # Filename for the file containing the welcome block
 jupyter_welcome_block = ""
 
-#Adjust links to target html (rather than ipynb)
-jupyter_target_html = False
-
 #path to download notebooks from 
 jupyter_download_nb_urlpath = None
 
-#allow downloading of notebooks
-jupyter_download_nb = False
 
 #Use urlprefix images
 jupyter_download_nb_image_urlpath = None
