@@ -240,9 +240,7 @@ It follows that
 Implementation
 ----------------
 
-Code that computes solutions to  LQ control and filtering problems  using the methods described here and in :doc:`lu_tricks` can be found in the file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__.
-
-Here's how it looks
+Here's the code that computes solutions to LQ control and filtering problems using the methods described here and in :doc: `lu_tricks`.
 
 .. literalinclude:: /_static/lecture_specific/lu_tricks/control_and_filter.py
 
