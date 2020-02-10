@@ -975,17 +975,17 @@ Wald notes that
 
 Wald summarizes Neyman and Pearson's setup as follows:
 
-   Neyman and Pearson show that a region consisting of all samples
-   :math:`(z_1, z_2, \ldots, z_n)` which satisfy the inequality
+  Neyman and Pearson show that a region consisting of all samples
+  :math:`(z_1, z_2, \ldots, z_n)` which satisfy the inequality
 
-    .. math::
+  .. math::
 
-        \frac{ f_1(z_1) \cdots f_1(z_n)}{f_0(z_1) \cdots f_0(z_n)} \geq k
-
-   is a most powerful critical region for testing the hypothesis
-   :math:`H_0` against the alternative hypothesis :math:`H_1`. The term
-   :math:`k` on the right side is a constant chosen so that the region
-   will have the required size :math:`\alpha`.
+    \frac{ f_1(z_1) \cdots f_1(z_n)}{f_0(z_1) \cdots f_0(z_n)} \geq k
+ 
+  is a most powerful critical region for testing the hypothesis
+  :math:`H_0` against the alternative hypothesis :math:`H_1`. The term
+  :math:`k` on the right side is a constant chosen so that the region
+  will have the required size :math:`\alpha`.
 
 
 Wald goes on to discuss Neyman and Pearson's concept of *uniformly most
