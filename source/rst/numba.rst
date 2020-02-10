@@ -107,7 +107,7 @@ Here's the plot of a typical trajectory, starting from :math:`x_0 = 0.1`, with :
     fig, ax = plt.subplots()
     ax.plot(x, 'b-', lw=2, alpha=0.8)
     ax.set_xlabel('$t$', fontsize=12)
-    ax.set_ylabel($x_{t}$, fontsize = 12)
+    ax.set_ylabel('$x_{t}$', fontsize = 12)
     plt.show()
 
 To speed the function ``qm`` up using Numba, our first step is
