@@ -264,6 +264,7 @@ This system also constructs the components of the decompositions of :math:`y_t` 
 
 All of these objects are computed using the code below
 
+.. _amf_lss:
 
 .. code-block:: python3
 
@@ -886,9 +887,9 @@ interest.
 Code
 =====================
 
-The class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ mentioned above does all that we want to study our additive functional.
+The class ``AMF_LSS_VAR`` mentioned :ref:`above <amf_lss>` does all that we want to study our additive functional.
 
-In fact, `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ does more
+In fact, ``AMF_LSS_VAR`` does more
 because it allows us to study  an associated multiplicative functional as well.
 
 (A hint that it does more is the name of the class -- here AMF stands for
