@@ -60,7 +60,7 @@ Background
 
 Markov perfect equilibrium is a refinement of the concept of Nash equilibrium.
 
-It is used to study settings where multiple decision-makers interact non-cooperatively over time, each seeking pursuing its own objective.
+It is used to study settings where multiple decision-makers interact non-cooperatively over time, each pursuing its own objective.
 
 The agents in the model face a common state vector, the time path of which is influenced by -- and influences -- their decisions.
 
