@@ -126,11 +126,23 @@ A Dynamic Programming Approach
 The following presentation of the problem closely follows Dmitri
 Berskekas's treatment in **Dynamic Programming and Stochastic Control** :cite:`Bertekas75`.
 
-A decision-maker observes IID draws of a random variable :math:`z`.
+A decision-maker observes a sequence of draws of a random variable :math:`z`.
 
 He (or she) wants to know which of two probability distributions :math:`f_0` or :math:`f_1` governs :math:`z`.
 
-After a number of draws, also to be determined, he makes a decision as to
+Conditional on knowing that successive observations are drawn from distribution :math:`f_0`, the sequence of 
+random variables is independently and identically distributed (IID).
+
+
+Conditional on knowing that successive observations are drawn from distribution :math:`f_1`, the sequence of 
+random variables is also independently and identically distributed (IID).
+
+But the observer does not know which of the two distributions generated the sequence.
+
+For reasons explained  :doc:`Exchangeability and Bayesian Updating<exchangeable>`, this means that the sequence is not 
+IID and that the observer has something to learn, even though he knows both :math:`f_0` and :math:`f_1`.
+
+After a number of draws, also to be determined, he makes a decision about
 which of the distributions is generating the draws he observes.
 
 He starts with prior
@@ -970,7 +982,6 @@ Wald summarizes Neyman and Pearson's setup as follows:
 
         \frac{ f_1(z_1) \cdots f_1(z_n)}{f_0(z_1) \cdots f_0(z_n)} \geq k
 
-
    is a most powerful critical region for testing the hypothesis
    :math:`H_0` against the alternative hypothesis :math:`H_1`. The term
    :math:`k` on the right side is a constant chosen so that the region
@@ -999,8 +1010,6 @@ Here is how Wald introduces the notion of a sequential test
 
 .. rubric:: Footnotes
 
-.. [#f1] Because the decision-maker believes that :math:`z_{k+1}` is
-    drawn from a mixture of two IID distributions, he does *not*
-    believe that the sequence :math:`[z_{k+1}, z_{k+2}, \ldots]` is IID
-    Instead, he believes that it is *exchangeable*. See :cite:`Kreps88`
-    chapter 11, for a discussion of exchangeability.
+.. [#f1] The decision maker acts as if he believes that the sequence of random variables
+    :math:`[z_{0}, z_{1}, \ldots]` is *exchangeable*.  See :doc:`Exchangeability and Bayesian Updating<exchangeable>` and 
+    :cite:`Kreps88` chapter 11, for  discussions of exchangeability.
