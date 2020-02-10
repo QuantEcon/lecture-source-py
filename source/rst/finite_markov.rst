@@ -954,7 +954,7 @@ Here
 
 * The black dot is :math:`\psi^*`.
 
-The code for the figure can be found `here <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/finite_markov/mc_convergence_plot.py>`__ --- you might like to try experimenting with different initial conditions.
+You might like to try experimenting with different initial conditions.
 
 
 
