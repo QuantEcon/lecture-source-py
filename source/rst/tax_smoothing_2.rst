@@ -14,7 +14,7 @@ How to Pay for a War: Part 2
 
 **Co-author**: `Sebastian Graves <https://github.com/sebgraves>`__
 
-In addition to what's in Anaconda, this lecture will need the following libraries:
+In addition to what's in Anaconda, this lecture  deploys the quantecon library:
 
 .. code-block:: ipython
   :class: hide-output
@@ -84,7 +84,7 @@ We’ll describe two possible specifications
 -  In the second, the government redesigns the maturity
    structure of the debt each period.
 
-A Model with Two-period Debt and No Restructuring
+One- and Two-period Bonds but No Restructuring
 =================================================
 
 Let :math:`T_t` denote tax collections, :math:`\beta` a discount factor,
@@ -112,14 +112,14 @@ subject to the constraints
 
 .. math:: \begin{aligned}
  T_t & = G_t + b_{t-2,t} + b_{t-1,t} - p_{t,t+2} b_{t,t+2} - p_{t,t+1} b_{t,t+1} \cr
-   G_t &  = U_{g,t} z_t \cr
-   z_{t+1} & = A_{22,t} z_t + C_{2,t} w_{t+1} \cr
+   G_t &  = U_{g,s_t} z_t \cr
+   z_{t+1} & = A_{22,s_t} z_t + C_{2,s_t} w_{t+1} \cr
    \begin{bmatrix}
     p_{t,t+1} \cr
     p_{t,t+2} \cr
-    U_{g,t} \cr
-    A_{22,t} \cr
-    C_{2,t}
+    U_{g,s_t} \cr
+    A_{22,s_t} \cr
+    C_{2,s_t}
    \end{bmatrix} & \sim \textrm{functions of Markov state with transition matrix } \Pi \end{aligned}
 
 
@@ -143,9 +143,13 @@ maturities. An example below will show this in action.
 
 As well as extending the model to allow for a maturity decision for
 government debt, we can also in principle allow the matrices
-:math:`U_{g,t}, A_{22,t}, C_{2,t}` to depend on the Markov state.
+:math:`U_{g,s_t}, A_{22,s_t}, C_{2,s_t}` to depend on the Markov state :math:`s_t`.
 
-Mapping the Two-period Model into an LQ Markov Jump Problem
+Below, we will often adopt the convention that for matrices appearing in a linear state space,
+:math:`A_t \equiv A_{s_t}, C_t \equiv C_{s_t}` and so on, so that dependence on :math:`t` is always
+intermediated through the Markov state :math:`s_t`. 
+
+Mapping into an LQ Markov Jump Problem
 ===========================================================
 
 First, define
@@ -275,7 +279,7 @@ on the Markov state at time :math:`t`.
 
 
 As shown in the :doc:`previous lecture <tax_smoothing_1>`,
-the ``LQMarkov`` class can solve Markov jump LQ problems when given the
+the ``LQMarkov`` class can solve Markov jump LQ problems when provided with the
 :math:`A, B, C, R, Q, W` matrices for each Markov state.
 
 The function below maps the primitive matrices and parameters from the above
@@ -344,8 +348,8 @@ With the above function, we can proceed to solve the model in two steps:
 2. Use the ``LQMarkov`` class to solve the resulting n-state Markov
    jump LQ problem.
 
-Example Showing the Importance of the Penalty on Different Issuance Across Maturities
-=====================================================================================
+Penalty on Different Issuance Across Maturities
+================================================
 
 To implement a simple example of the two-period model, we assume that
 :math:`G_t` follows an AR(1) process:
@@ -563,6 +567,11 @@ where
 
 .. math::  R_t = S_t'S_t , \hspace{5mm} Q_t = p_t p_t' , \hspace{5mm} W_t = -p_t S_t
 
+where to economize on notation we adopt the convention that for the linear state matrices
+:math:`R_t \equiv R_{s_t}, Q_t \equiv W_{s_t}` and so on.
+
+We'll continue to use this convention also for the linear state matrices :math:`A, B, W` and so on below. 
+
 Because the payoff function also includes the penalty parameter for
 rescheduling, we have:
 
@@ -607,7 +616,7 @@ where
 
 This completes the mapping into a Markov jump LQ problem.
 
-Model with Restructuring as a Markov Jump Linear Quadratic Control Problem
+Restructuring as a Markov Jump Linear Quadratic Control Problem
 ============================================================================================
 
 As with the previous model, we can use a function to map the primitives
@@ -662,7 +671,7 @@ class requires:
 
         return A, B, C, R_c, Q_c, W_c
 
-Example Model with Restructuring
+Example with Restructuring
 --------------------------------
 
 As an example of the model with restructuring, consider this model

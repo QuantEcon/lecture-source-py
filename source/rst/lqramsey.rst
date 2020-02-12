@@ -25,8 +25,8 @@ Overview
 
 In this lecture, we study optimal fiscal policy in a linear quadratic setting.
 
-We slightly modify a well-known model of Robert Lucas and Nancy Stokey :cite:`LucasStokey1983` so that convenient formulas for
-solving linear-quadratic models can be applied to simplify the calculations.
+We modify a model of Robert Lucas and Nancy Stokey :cite:`LucasStokey1983` so that convenient formulas for
+solving linear-quadratic models can be applied.
 
 The economy consists of a representative household and a benevolent government.
 
