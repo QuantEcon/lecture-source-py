@@ -43,7 +43,7 @@ of
 -  the ability of **finite state Markov chains** to represent
    interesting patterns of random variation.
 
-The idea is to replace the constant matrices that define a **linear quadratic dynamic programming problem** 
+The idea is to replace the constant matrices that define a **linear quadratic dynamic programming problem**
 with :math:`N` sets of matrices that are fixed functions of
 the state of an :math:`N` state Markov chain.
 
@@ -136,7 +136,7 @@ state, and so fluctuate through time in limited ways.
 In particular, we use the following extension of a discrete-time linear
 quadratic dynamic programming problem.
 
-We let :math:`s(t) \equiv s_t \in [1, 2, \ldots, N]` be a time :math:`t` realization of an
+We let :math:`s_t \in [1, 2, \ldots, N]` be a time :math:`t` realization of an
 :math:`N`-state Markov chain with transition matrix :math:`\Pi` having
 typical element :math:`\Pi_{ij}`.
 
@@ -145,22 +145,22 @@ Here :math:`i` denotes today and
 
 .. math::  \Pi_{ij} = {\rm Prob}(s_{t+1} = j |s_t = i)
 
-We’ll switch between labeling today’s state as :math:`s(t)` and
-:math:`i` and between labeling tomorrow’s state as :math:`s(t+1)` or
+We’ll switch between labeling today’s state as :math:`s_t` and
+:math:`i` and between labeling tomorrow’s state as :math:`s_{t+1}` or
 :math:`j`.
 
 The decision-maker solves the minimization problem:
 
 .. math::
 
-  \min_{\{u_t\}_{t=0}^\infty} E \sum_{t=0}^{\infty} \beta^t r(x_t, s(t), u_t)
+  \min_{\{u_t\}_{t=0}^\infty} E \sum_{t=0}^{\infty} \beta^t r(x_t, s_t, u_t)
 
 
 with
 
 .. math::
 
-  r(x_t, s(t), u_t) = -( x_t' R_{s_t} x_t + u_t' Q_{s_t} u_t + 2 u_t' W_{s_t} x_t)
+  r(x_t, s_t, u_t) = -( x_t' R_{s_t} x_t + u_t' Q_{s_t} u_t + 2 u_t' W_{s_t} x_t)
 
 
 subject to linear laws of motion with matrices :math:`(A,B,C)` each
@@ -193,18 +193,18 @@ interrelated Bellman equations
 .. math::
 
     \begin{split}
-    -x' P_i x - \rho_i & = \max_u - 
-      \\ 
+    -x' P_i x - \rho_i & = \max_u -
+      \\
       &
-       \left[ 
+       \left[
          x'R_i x + u' Q_i u + 2 u' W_i x -
                  \beta \sum_j \Pi_{ij}E ((A_i x + B_i u + C_i w)' P_j
-                 (A_i x + B_i u + C_i w) x + \rho_j) 
-       \right] 
+                 (A_i x + B_i u + C_i w) x + \rho_j)
+       \right]
     \end{split}
 
 
-The matrices :math:`P(s(t)) = P_i` and the scalars
+The matrices :math:`P_{s_t} = P_i` and the scalars
 :math:`\rho_{s_t} = \rho_i, i = 1, \ldots`, n satisfy the following stacked system of
 **algebraic matrix Riccati** equations:
 
@@ -274,11 +274,9 @@ where the one-period payoff function is
 .. math::
 
 
-   r\left(s_{t},k_{t}\right)=f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)\left(k_{t+1}-k_{t}\right)^{2},
+   r(s_{t},k_{t})=f_{1,s_t} k_{t}-f_{2,s_t} k_{t}^{2}-d_{s_t}(k_{t+1}-k_{t})^{2},
 
-:math:`E_0` is a mathematical expectation conditioned on time :math:`0`
-information :math:`x_0, s_0`
-
+:math:`E_0` is a mathematical expectation conditioned on time :math:`0` information :math:`x_0, s_0`
 and the transition law for continuous state variable :math:`k_t` is
 
 .. math::
@@ -309,11 +307,11 @@ We can represent the one-period payoff function
 
 
     \begin{aligned}
-   r\left(s_{t},k_{t}\right)   =f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)u_{t}{}^{2} \\
-       =-\left(x_{t}^{\prime}\underset{\equiv R\left(s_{t}\right)}{\underbrace{\begin{bmatrix}
-   f_{2}\left(s_{t}\right) & -\frac{f_{1}\left(s_{t}\right)}{2}\\
-   -\frac{f_{1}\left(s_{t}\right)}{2} & 0
-   \end{bmatrix}}}x_{t}+\underset{\equiv Q\left(s_{t}\right)}{\underbrace{d\left(s_{t}\right)}}u_{t}{}^{2}\right)
+   r\left(s_{t},k_{t}\right)   =f_{1,s_t} k_{t}-f_{2,s_t} k_{t}^{2}-d_{s_t} u_{t}{}^{2} \\
+       =-x_{t}^{\prime}\underset{\equiv R(s_{t})}{\underbrace{\begin{bmatrix}
+   f_{2,s_t} & -\frac{f_{1,s_t}}{2}\\
+   -\frac{f_{1,s_t}}{2} & 0
+   \end{bmatrix}}}x_{t}+\underset{\equiv Q\left(s_{t}\right)}{\underbrace{d_{s_t}}}u_{t}{}^{2}
     \end{aligned}
 
 
@@ -334,7 +332,7 @@ We can represent the one-period payoff function
                           f2_vals=[1., 1.],
                           d_vals=[1., 1.]):
         """
-        Construct matrices that maps the problem described in example 1
+        Construct matrices that map the problem described in example 1
         into a Markov jump linear quadratic dynamic programming problem
         """
 
@@ -488,7 +486,7 @@ in which the adjustment cost is lower, makes :math:`k_{t+1}` a flatter
 function of :math:`k_t` in Markov state :math:`2`.
 
 This happens because when :math:`k_t` is not at its fixed point,
-:math:`\left| u_{t,2}| > \left| u_{t,2} |`, so
+:math:`| u_{t,2}| > | u_{t,2} |`, so
 that the decision-maker adjusts toward the fixed point faster when
 the Markov state :math:`s_t` takes a value that makes it cheaper.
 
@@ -737,7 +735,7 @@ decision rules for cases with different Markov transition matrices
             plt.show()
 
 To illustrate the code with another example, we shall set
-:math:`f_2_{s_t}` and :math:`d_{s_t}` as constant functions and
+:math:`f_{2,s_t}` and :math:`d_{s_t}` as constant functions and
 
 .. math::
 
@@ -819,7 +817,7 @@ function the product of :math:`w_t` and :math:`k_t`
 .. math::
 
 
-   r\left(s_{t},k_{t},w_{t}\right)=f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)\left(k_{t+1}-k_{t}\right)^{2}-w_{t}k_{t},
+   r(s_{t},k_{t},w_{t})=f_{1,s_{t}} k_{t}-f_{2, s_{t}} k_{t}^{2}-d_{s_{t}} (k_{t+1}-k_{t})^{2}-w_{t}k_{t},
 
 We now let the continuous part of the state at time :math:`t` be
 :math:`x_{t}=\begin{bmatrix} k_{t}\\ 1\\ w_{t} \end{bmatrix}`
@@ -831,7 +829,7 @@ We can write the one-period payoff function
 .. math::
 
    \begin{aligned}
-   r\left(s_{t},k_{t},w_{t}\right) 
+   r\left(s_{t},k_{t},w_{t}\right)
      & =f_{1}\left(s_{t}\right)k_{t}-f_{2}\left(s_{t}\right)k_{t}^{2}-d\left(s_{t}\right)\left(k_{t+1}-k_{t}\right)^{2}-w_{t}k_{t} \\
      & =-\left(x_{t}^{\prime}\underset{\equiv R\left(s_{t}\right)}{\underbrace{
       \begin{bmatrix}
