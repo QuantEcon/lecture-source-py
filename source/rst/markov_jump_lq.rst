@@ -89,7 +89,7 @@ The problem is
 
 subject to the transition law for the state.
 
-The optimal decision rule for this problem has the form
+The optimal decision rule  has the form
 
 .. math::  u_t = - F x_t
 
@@ -160,7 +160,7 @@ with
 
 .. math::
 
-  r(x_t, s(t), u_t) = -( x_t' R(s_t) x_t + u_t' Q(s_t) u_t + 2 u_t' W(s_t) x_t)
+  r(x_t, s(t), u_t) = -( x_t' R_{s_t} x_t + u_t' Q_{s_t} u_t + 2 u_t' W_{s_t} x_t)
 
 
 subject to linear laws of motion with matrices :math:`(A,B,C)` each
@@ -169,18 +169,18 @@ possibly dependent on the Markov-state-\ :math:`s_t`:
 .. math::
 
 
-    x_{t+1} = A(s_t) x_t + B(s_t) u_t + C(s_t) w_{t+1}
+    x_{t+1} = A_{s_t} x_t + B_{s_t} u_t + C_{s_t} w_{t+1}
 
 where :math:`\{w_{t+1}\}` is an i.i.d. stochastic process with
 :math:`w_{t+1} \sim {\cal N}(0,I)`.
 
 The optimal decision rule for this problem has the form
 
-.. math::  u_t = - F(s_t) x_t
+.. math::  u_t = - F_{s_t} x_t
 
 and the optimal value functions are of the form
 
-.. math::  -\left( x_t' P(s_t) x_t  + \rho(s_t) \right)
+.. math::  -\left( x_t' P_{s_t} x_t  + \rho_{s_t} \right)
 
 or equivalently
 
@@ -205,7 +205,7 @@ interrelated Bellman equations
 
 
 The matrices :math:`P(s(t)) = P_i` and the scalars
-:math:`\rho(s_t) = \rho_i, i = 1, \ldots`, n satisfy the following stacked system of
+:math:`\rho_{s_t} = \rho_i, i = 1, \ldots`, n satisfy the following stacked system of
 **algebraic matrix Riccati** equations:
 
 .. math::
@@ -293,12 +293,12 @@ We assume that :math:`f_{1}\left(s_{t}\right)>0`,
 :math:`f_{2}\left(s_{t}\right)>0`, and :math:`d\left(s_{t}\right)>0`.
 
 Denote the state transition matrix for Markov state
-:math:`s_{t}\in\left\{ \bar{s}_{1},\bar{s}_{2}\right\}` as :math:`\Pi`:
+:math:`s_{t}\in\left\{1,2 \right\}` as :math:`\Pi`:
 
 .. math::
 
 
-   \Pr \left(s_{t+1}=\bar{s}_{j}\mid s_{t}=\bar{s}_{i}\right)=\Pi_{ij}
+   \Pr \left(s_{t+1}=j \mid s_{t}= i \right)=\Pi_{ij}
 
 Let :math:`x_{t}=\begin{bmatrix} k_{t}\\ 1 \end{bmatrix}`
 
@@ -384,28 +384,28 @@ strictly periodic:
    1 & 0
    \end{bmatrix},
 
-We set :math:`f_1(s_t)` and :math:`f_2(s_t)` to be independent of the
+We set :math:`f_{1,{s_t}}` and :math:`f_{2,{s_t}}` to be independent of the
 Markov state :math:`s_t`
 
 .. math::
 
 
-   f_1(\bar{s_1})=f_1(\bar{s_2}) = 1,
+   f_{1,1}=f_{1,2} = 1,
 
 .. math::
 
 
-   f_2(\bar{s_1})=f_2(\bar{s_2}) = 1
+   f_{2,1} =f_{2,2} = 1
 
-In contrast to :math:`f_1(s_t)` and :math:`f_2(s_t)`, we make the
-adjustment cost :math:`d(s_t)` vary across Markov states :math:`s_t`.
+In contrast to :math:`f_{1,{s_t}}` and :math:`f_{2,{s_t}}`, we make the
+adjustment cost :math:`d_{s_t}` vary across Markov states :math:`s_t`.
 
-We set the adjustment cost to be lower in Markov state :math:`\bar{s}_2`
+We set the adjustment cost to be lower in Markov state :math:`2`
 
 .. math::
 
 
-   d(\bar{s_1})=1, d(\bar{s_2}) = 0.5
+   d_1=1, d_2 = 0.5
 
 The following code forms a Markov switching LQ problem and computes the
 optimal value functions and optimal decision rules for each Markov state
@@ -483,12 +483,12 @@ Notice that the two :math:`s_t`-dependent *closed loop* functions that
 determine :math:`k_{t+1}` as functions of :math:`k_t` share the same
 rest point (also called a fixed point) at :math:`k_t = 0.5`.
 
-Evidently, the optimal decision rule in Markov state :math:`\bar{s}_2`,
+Evidently, the optimal decision rule in Markov state :math:`2`,
 in which the adjustment cost is lower, makes :math:`k_{t+1}` a flatter
-function of :math:`k_t` in Markov state :math:`\bar{s}_2`.
+function of :math:`k_t` in Markov state :math:`2`.
 
 This happens because when :math:`k_t` is not at its fixed point,
-:math:`\left| u_t(\bar{s}_2)\right| > \left| u_t(\bar{s}_1)\right|`, so
+:math:`\left| u_{t,2}| > \left| u_{t,2} |`, so
 that the decision-maker adjusts toward the fixed point faster when
 the Markov state :math:`s_t` takes a value that makes it cheaper.
 
@@ -565,7 +565,7 @@ We can plot optimal decision rules associated with different
         ax.plot(λ_vals, F2[:, i], label="$\overline{s}_2$", color="r")
 
         ax.set_xlabel("$\lambda$")
-        ax.set_ylabel("$F(s_t)$")
+        ax.set_ylabel("$F_{s_t}$")
         ax.set_title(f"Coefficient on {state_var}")
         ax.legend()
         plt.show()
@@ -635,7 +635,7 @@ We can plot optimal decision rules for different :math:`\lambda` and
         ax.plot_surface(λ_grid, δ_grid, F2_grid[:, :, i], color="r")
         ax.set_xlabel("$\lambda$")
         ax.set_ylabel("$\delta$")
-        ax.set_zlabel("$F(s_t)$")
+        ax.set_zlabel("$F_{s_t}$")
         ax.set_title(f"coefficient on {state_var}")
         plt.show()
 
@@ -681,7 +681,7 @@ decision rules for cases with different Markov transition matrices
             ax.legend()
             plt.show()
 
-        # Plot optimal k*(s_t) and k that optimal policies are targeting
+        # Plot optimal k*_{s_t} and k that optimal policies are targeting
         # only for example 1
         if state_vec == ["k", "constant term"]:
             fig = plt.figure()
@@ -737,12 +737,12 @@ decision rules for cases with different Markov transition matrices
             plt.show()
 
 To illustrate the code with another example, we shall set
-:math:`f_2(s_t)` and :math:`d(s_t)` as constant functions and
+:math:`f_2_{s_t}` and :math:`d_{s_t}` as constant functions and
 
 .. math::
 
 
-   f_1(\bar{s}_1) = 0.5, f_1(\bar{s}_2) = 1
+   f_{1,1} = 0.5, f_{1,2} = 1
 
 Thus, the sole role of the Markov jump state :math:`s_t` is to identify
 times in which capital is very productive and other times in which it is
@@ -751,24 +751,24 @@ less productive.
 The example below reveals much about the structure of the optimum
 problem and optimal policies.
 
-Only :math:`f_1(s_t)` varies with :math:`s_t`.
+Only :math:`f_{1,{s_t}}` varies with :math:`s_t`.
 
 So there are different :math:`s_t`-dependent optimal static :math:`k`
-level in different states :math:`k^*(s_t)=\frac{f_1(s_t)}{2 f_2(s_t)}`,
+level in different states :math:`k^*_{s_t}=\frac{f_{1,{s_t}}}{2 f_{2,{s_t}}}`,
 values of :math:`k` that maximize one-period payoff functions in each
 state.
 
-We denote a target :math:`k` level as :math:`k^{target}(s_t)`, the fixed
+We denote a target :math:`k` level as :math:`k^{target}_{s_t}`, the fixed
 point of the optimal policies in each state, given the value of
 :math:`\lambda`.
 
-We call :math:`k^{target}(s_t)` a “target” because in each Markov state
+We call :math:`k^{target}_{s_t}` a “target” because in each Markov state
 :math:`s_t`, optimal policies are contraction mappings and will push
-:math:`k_t` towards a fixed point :math:`k^{target}(s_t)`.
+:math:`k_t` towards a fixed point :math:`k^{target}_{s_t}`.
 
 When :math:`\lambda \rightarrow 0`, each Markov state becomes close to
 absorbing state and consequently
-:math:`k^{target}(s_t) \rightarrow k^*(s_t)`.
+:math:`k^{target}_{s_t} \rightarrow k^*_{s_t}`.
 
 But when :math:`\lambda \rightarrow 1`, the Markov transition matrix
 becomes more nearly periodic, so the optimum decision rules target more
@@ -788,12 +788,12 @@ levels change as :math:`\lambda` changes.
 
 
 
-Set :math:`f_1(s_t)` and :math:`d(s_t)` as constant functions and
+Set :math:`f_{1,{s_t}}` and :math:`d_{s_t}` as constant functions and
 
 .. math::
 
 
-   f_2(\bar{s}_1) = 0.5, f_2(\bar{s}_2) = 1
+   f_{2,1} = 0.5, f_{2,2} = 1
 
 .. code-block:: python3
 
@@ -917,7 +917,7 @@ and
 
 
 
-Only :math:`d(s_t)` depends on :math:`s_t`.
+Only :math:`d_{s_t}` depends on :math:`s_t`.
 
 .. code-block:: python3
 
@@ -925,7 +925,7 @@ Only :math:`d(s_t)` depends on :math:`s_t`.
 
 
 
-Only :math:`f_1(s_t)` depends on :math:`s_t`.
+Only :math:`f_{1,{s_t}}` depends on :math:`s_t`.
 
 .. code-block:: python3
 
@@ -933,7 +933,7 @@ Only :math:`f_1(s_t)` depends on :math:`s_t`.
 
 
 
-Only :math:`f_2(s_t)` depends on :math:`s_t`.
+Only :math:`f_{2,{s_t}}` depends on :math:`s_t`.
 
 .. code-block:: python3
 
@@ -949,7 +949,7 @@ Only :math:`\alpha_0(s_t)` depends on :math:`s_t`.
 
 
 
-Only :math:`\rho(s_t)` depends on :math:`s_t`.
+Only :math:`\rho_{s_t}` depends on :math:`s_t`.
 
 .. code-block:: python3
 
@@ -957,7 +957,7 @@ Only :math:`\rho(s_t)` depends on :math:`s_t`.
 
 
 
-Only :math:`\sigma(s_t)` depends on :math:`s_t`.
+Only :math:`\sigma_{s_t}` depends on :math:`s_t`.
 
 .. code-block:: python3
 

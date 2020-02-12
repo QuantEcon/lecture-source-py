@@ -14,7 +14,7 @@ How to Pay for a War: Part 1
 
 **Co-author:** `Sebastian Graves <https://github.com/sebgraves>`__
 
-In addition to what's in Anaconda, this lecture will need the following libraries:
+In addition to what's in Anaconda, this lecture will deploy quantecon:
 
 .. code-block:: ipython
   :class: hide-output
@@ -212,9 +212,9 @@ subject to the constraints
 
 .. math::  T_t + p_{t,t+1} b_{t,t+1} = G_t + b_{t-1,t}
 
-.. math:: G_t = U_{g,t} z_t
+.. math:: G_t = U_{g} z_t
 
-.. math::  z_{t+1} = A_{22,t} z_t + C_{2,t} w_{t+1}
+.. math::  z_{t+1} = A_{22} z_t + C_{2} w_{t+1}
 
 where :math:`w_{t+1} \sim {\cal N}(0,I)`
 
@@ -332,8 +332,8 @@ and
 
 .. math::  T_{t+1} = (S-MF)x_{t+1} = (S-MF)(Ax_t + B u_t + C w_{t+1}) = (S-MF)((A-BF)x_t + C w_{t+1})
 
-Therefore, the conditional expectation of :math:`T_{t+1}` at time
-:math:`t` is
+Therefore, the mathematical expectation of :math:`T_{t+1}` conditional on  time
+:math:`t` information is
 
 .. math::  E_t T_{t+1} = (S-MF)(A-BF)x_t
 
@@ -347,7 +347,8 @@ which holds in this case:
 
     S - M @ F, (S - M @ F) @ (A - B @ F)
 
-This explains the gradual fanning out of taxation if we simulate the
+This explains the  fanning out of the conditional empirical  distribution of  taxation across time, computing
+by simulation the
 Barro model a large number of times:
 
 .. code-block:: python3
@@ -363,8 +364,6 @@ Barro model a large number of times:
 We can see a similar, but a smoother pattern, if we plot government debt
 over time.
 
-Debt is smoother due to the persistence of the government
-spending process.
 
 .. code-block:: python3
 
@@ -373,7 +372,7 @@ spending process.
         x, u, w = LQBarro.compute_sequence(x0, ts_length=T)
         plt.plot(list(range(T+1)), x[0, :])
     plt.xlabel('Time')
-    plt.ylabel('Taxation')
+    plt.ylabel('Govt Debt')
     plt.show()
 
 Python Class to Solve Markov Jump Linear Quadratic Control Problems
@@ -393,10 +392,10 @@ The code for the class can be viewed
 
 The class takes lists of matrices that corresponds to :math:`N` Markov states.
 
-The value and policy functions are then found by iterating on the system of
-algebraic matrix Riccati equations.
+The value and policy functions are then found by iterating on  a coupled system of matrix Riccati difference
+equations.
 
-The solutions for :math:`Ps,Fs,ds` are stored as attributes.
+Optimal  :math:`P_s,F_s,d_s`  are stored as attributes.
 
 The class also contains a “method” for simulating the model.
 
@@ -412,8 +411,8 @@ is to allow the interest rate to take two possible values. We set:
 
 .. math::  p^2_{t,t+1} = \beta - 0.017 = 0.933
 
-Thus, the first Markov state  has a low-interest rate, and the
-second Markov state has a high-interest rate.
+Thus, the first Markov state  has a low interest rate, and the
+second Markov state has a high interest rate.
 
 We also need to specify a transition matrix for the Markov state.
 
@@ -470,7 +469,7 @@ Simulating a large number of such economies over time reveals
 interesting dynamics.
 
 Debt tends to stay low and stable but
-recurrently surges temporarily to higher levels.
+recurrently surges.
 
 .. code-block:: python3
 
@@ -480,5 +479,5 @@ recurrently surges temporarily to higher levels.
         x, u, w, s = lqm.compute_sequence(x0, ts_length=T)
         plt.plot(list(range(T+1)), x[0, :])
     plt.xlabel('Time')
-    plt.ylabel('Taxation')
+    plt.ylabel('Govt Debt')
     plt.show()
