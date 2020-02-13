@@ -241,7 +241,7 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
 
     # Create a figure and some axes
     num_plots = 3
-    fig, axes = plt.subplots(num_plots, 1, figsize=(20, 20))
+    fig, axes = plt.subplots(num_plots, 1, figsize=(10, 20))
 
     # Set some plotting parameters to improve layout
     bbox = (0., 1.02, 1., .102)
@@ -271,7 +271,7 @@ In each of the three cases, convergence of :math:`\bar X_n` to :math:`\mu` occur
         m = distribution.mean()
         ax.plot(list(range(n)), [m] * n, 'k--', lw=1.5, label='$\mu$')
         ax.vlines(list(range(n)), m, data, lw=0.2)
-        ax.legend(**legend_args)
+        ax.legend(**legend_args, fontsize=12)
 
     plt.show()
 
