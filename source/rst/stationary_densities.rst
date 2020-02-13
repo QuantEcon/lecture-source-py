@@ -504,7 +504,7 @@ Example
 
 The following code is an example of usage for the stochastic growth model :ref:`described above <solow_swan>`
 
-
+.. _stoch_growth:
 
 .. code-block:: python3
 
@@ -889,7 +889,7 @@ Replicate the figure on global convergence :ref:`shown above <statd_egs>`.
 
 The densities come from the stochastic growth model treated :ref:`at the start of the lecture <solow_swan>`.
 
-Begin with the code found in `stochasticgrowth.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/stationary_densities/stochasticgrowth.py>`__.
+Begin with the code found :ref:`above <stoch_growth>`.
 
 Use the same parameters.
 
