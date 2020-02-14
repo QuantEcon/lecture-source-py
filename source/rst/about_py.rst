@@ -86,7 +86,7 @@ Relative Popularity
 
 The following chart, produced using Stack Overflow Trends, shows one measure of the relative popularity of Python
 
-.. figure:: /_static/lecture_specific/about_py/python_vs_rest.png
+.. figure:: /_static/lecture_specific/about_py/python_vs_matlab.png
 
 The figure indicates not only that Python is widely used but also that adoption of Python has accelerated significantly since 2012.
 
