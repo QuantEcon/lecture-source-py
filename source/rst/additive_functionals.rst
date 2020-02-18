@@ -264,6 +264,7 @@ This system also constructs the components of the decompositions of :math:`y_t` 
 
 All of these objects are computed using the code below
 
+.. _amf_lss:
 
 .. code-block:: python3
 
@@ -886,9 +887,9 @@ interest.
 Code
 =====================
 
-The class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ mentioned above does all that we want to study our additive functional.
+The class ``AMF_LSS_VAR`` mentioned :ref:`above <amf_lss>` does all that we want to study our additive functional.
 
-In fact, `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ does more
+In fact, ``AMF_LSS_VAR`` does more
 because it allows us to study  an associated multiplicative functional as well.
 
 (A hint that it does more is the name of the class -- here AMF stands for
@@ -995,7 +996,7 @@ Let's see what happens when we set :math:`T = 12000` instead of :math:`150`.
 Peculiar Large Sample Property
 ----------------------------------
 
-Hansen and Sargent :cite:`hansen2008robustness` (ch. 8) note that the martingale component
+Hansen and Sargent :cite:`hansen2008robustness` (ch. 8) describe the following two properties of the  martingale component
 :math:`\widetilde M_t` of the multiplicative decomposition
 
 *  while :math:`E_0 \widetilde M_t = 1` for all :math:`t \geq 0`,
@@ -1004,10 +1005,10 @@ Hansen and Sargent :cite:`hansen2008robustness` (ch. 8) note that the martingale
 *  as :math:`t \rightarrow +\infty`, :math:`\widetilde M_t` converges to
    zero almost surely
 
-The first property follows from :math:`\widetilde M_t` being a multiplicative martingale with initial condition
+The first property follows from the fact that :math:`\widetilde M_t` is a multiplicative martingale with initial condition
 :math:`\widetilde M_0 = 1`.
 
-The second is the **peculiar property** noted and proved by Hansen and Sargent :cite:`hansen2008robustness`.
+The second is a **peculiar property** noted and proved by Hansen and Sargent :cite:`hansen2008robustness`.
 
 The following simulation of many paths of :math:`\widetilde M_t` illustrates both properties
 
@@ -1024,7 +1025,7 @@ The dotted line in the above graph is the mean :math:`E \tilde M_t = 1` of the m
 
 It remains constant at unity, illustrating the first property.
 
-The purple 95 percent coverage intervale collapses around zero, illustrating the second property.
+The purple 95 percent frequency coverage interval collapses around zero, illustrating the second property.
 
 
 
@@ -1054,7 +1055,7 @@ Next, we want a program to simulate the likelihood ratio process :math:`\{ \tild
 In particular, we want to simulate 5000 sample paths of length :math:`T` for the case in which :math:`x` is a scalar and
 :math:`[A, B, D, F] = [0.8, 0.001, 1.0, 0.01]` and :math:`\nu = 0.005`.
 
-After accomplishing this, we want to display and stare at  histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T`.
+After accomplishing this, we want to display and study histograms of :math:`\tilde{M}_T^i` for various values of  :math:`T`.
 
 
 
@@ -1357,7 +1358,7 @@ Here is some code that tackles these tasks
 
 These probability density functions help us understand mechanics underlying the  **peculiar property** of our multiplicative martingale
 
-* As :math:`T` grows, most of the probability mass shifts leftward toward zero --.
+* As :math:`T` grows, most of the probability mass shifts leftward toward zero.
 
 * For example, note that most  mass is near :math:`1` for :math:`T =10` or :math:`T = 100` but
   most of it is near :math:`0` for :math:`T = 5000`.
@@ -1373,7 +1374,7 @@ Multiplicative Martingale as Likelihood Ratio Process
 
 A forthcoming  lecture studies **likelihood processes** and **likelihood ratio processes**.
 
-A likelihood ratio process is defined as a  multiplicative  martingale with mean unity.
+A **likelihood ratio process** is defined as a  multiplicative  martingale with mean unity.
 
 Likelihood ratio processes exhibit the peculiar property discussed here.
 

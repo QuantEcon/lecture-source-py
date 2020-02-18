@@ -65,7 +65,7 @@ Types of Parallelization
 
 Large textbooks have been written on different approaches to parallelization but we will keep a tight focus on what's most useful to us.
 
-We will briefly review the two main kinds of parallelization in common use in
+We will briefly review the two main kinds of parallelization commonly used in
 scientific computing and discuss their pros and cons.
 
 
@@ -151,7 +151,7 @@ this code is running:
 
 .. figure:: /_static/lecture_specific/parallelization/htop_parallel_npmat.png
 
-We can see that 4 of the 8 cores are running at full speed.
+We can see that 4 of the 8 CPUs are running at full speed.
 
 
 This is because NumPy's ``eigvals`` routine neatly splits up the tasks and
@@ -171,12 +171,12 @@ For example, let's return to a maximization problem :ref:`discussed previously <
     def f(x, y):
         return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
 
-    grid = np.linspace(-3, 3, 1000)
+    grid = np.linspace(-3, 3, 5000)
     x, y = np.meshgrid(grid, grid)
 
-    qe.tic()
-    np.max(f(x, y))
-    qe.toc()
+.. code-block:: ipython3
+
+    %timeit np.max(f(x, y))
 
 If you have a system monitor such as `htop` (Linux/Mac) or `perfmon`
 (Windows), then try running this and then observing the load on your CPUs.
@@ -206,14 +206,11 @@ create custom :ref:`ufuncs <ufuncs>` with the `@vectorize
     def f_vec(x, y):
         return np.cos(x**2 + y**2) / (1 + x**2 + y**2)
 
-    grid = np.linspace(-3, 3, 1000)
-    x, y = np.meshgrid(grid, grid)
-
     np.max(f_vec(x, y))  # Run once to compile
 
-    qe.tic()
-    np.max(f_vec(x, y))
-    qe.toc()
+.. code-block:: ipython3
+
+    %timeit np.max(f_vec(x, y))
 
 At least on our machine, the difference in the speed between the
 Numba version and the vectorized NumPy version shown above is not large.
@@ -241,8 +238,8 @@ But if this is true, then why isn't the Numba code faster?
 The reason is that NumPy makes up for its disadvantages with implicit
 multithreading, as we've just discussed.
 
-Multithreading at Numba Ufunc
------------------------------
+Multithreading a Numba Ufunc
+----------------------------
 
 Can we get both of these advantages at once?
 
@@ -263,11 +260,11 @@ It turns out that we can, by adding some type information plus ``target='paralle
 
     np.max(f_vec(x, y))  # Run once to compile
 
-    qe.tic()
-    np.max(f_vec(x, y))
-    qe.toc()
+.. code-block:: ipython3
 
-Now our code runs significantly faster than the NumPy version!
+    %timeit np.max(f_vec(x, y))
+
+Now our code runs significantly faster than the NumPy version.
 
 
 
@@ -288,12 +285,15 @@ The code simulates updating the wealth :math:`w_t` of a household via the rule
 
 .. math::
 
-    w_{t+1} = R_{t+1} w_t + Y_{t+1}
+    w_{t+1} = R_{t+1} s w_t + y_{t+1}
 
-Here :math:`R` is the gross rate of return on assets and :math:`Y` is labor
-income.
+Here 
 
-We model both :math:`R` and :math:`Y` as independent draws from a lognormal
+* :math:`R` is the gross rate of return on assets 
+* :math:`s` is the savings rate of the household and 
+* :math:`y` is labor income.
+
+We model both :math:`R` and :math:`y` as independent draws from a lognormal
 distribution.
 
 Here's the code:
@@ -301,20 +301,20 @@ Here's the code:
 .. code-block:: ipython
 
     from numpy.random import randn
-    from numba import jit
+    from numba import njit
 
-    @jit
+    @njit
     def h(w, r=0.1, s=0.3, v1=0.1, v2=1.0):
         """
-        Dynamics of wealth.
+        Updates household wealth.
         """
 
         # Draw shocks
         R = np.exp(v1 * randn()) * (1 + r)
-        Y = np.exp(v2 * randn())
+        y = np.exp(v2 * randn())
 
         # Update wealth
-        w = R * s * w + Y
+        w = R * s * w + y
         return w
 
 
@@ -322,7 +322,7 @@ Let's have a look at how wealth evolves under this rule.
 
 .. code-block:: ipython
 
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots()
 
     T = 100
     w = np.empty(T)
@@ -330,8 +330,10 @@ Let's have a look at how wealth evolves under this rule.
     for t in range(T-1):
         w[t+1] = h(w[t])
 
-    ax.plot(range(T), w)
-
+    ax.plot(w)
+    ax.set_xlabel('$t$', fontsize=12)
+    ax.set_ylabel('$w_{t}$', fontsize=12)
+    plt.show()
 
 Now let's suppose that we have a large population of households and we want to
 know what median wealth will be.
@@ -345,13 +347,13 @@ calculate median wealth for this group.
 Suppose we are interested in the long-run average of this median over time.
 
 It turns out that, for the specification that we've chosen above, we can
-calculate this this by taking a one-period snapshot of what has happened to median
+calculate this by taking a one-period snapshot of what has happened to median
 wealth of the group at the end of a long simulation.
 
 Moreover, provided the simulation period is long enough, initial conditions
 don't matter.
 
-* This is due to something called ergodicity, which we will discuss later on.
+* This is due to something called ergodicity, which we will discuss `later on <https://python.quantecon.org/finite_markov.html#Ergodicity>`_.
 
 So, in summary, we are going to simulate 50,000 households by
 
@@ -365,7 +367,7 @@ Here's the code:
 
 .. code-block:: ipython
 
-    @jit
+    @njit
     def compute_long_run_median(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
@@ -393,7 +395,7 @@ To do so, we add the ``parallel=True`` flag and change ``range`` to ``prange``:
 
     from numba import prange
 
-    @jit(parallel=True)
+    @njit(parallel=True)
     def compute_long_run_median_parallel(w0=1, T=1000, num_reps=50_000):
 
         obs = np.empty(num_reps)
@@ -425,7 +427,7 @@ For example, each step inside the inner loop depends on the last step, so
 independence fails, and this is why we use ordinary ``range`` instead of ``prange``.
 
 When you see us using ``prange`` in later lectures, it is because the
-independence of tasks hold true.
+independence of tasks holds true.
 
 When you see us using ordinary ``range`` in a jitted function, it is either because the speed gain from parallelization is small or because independence fails.
 
@@ -437,4 +439,78 @@ When you see us using ordinary ``range`` in a jitted function, it is either beca
 .. GPUs
 
 .. Just say a few words about them.  How do they relate to the foregoing? Explain that we can't introduce executable GPU code here.
+
+
+Exercises
+=========
+
+Exercise 1
+----------
+
+In :ref:`an earlier exercise <speed_ex1>`, we used Numba to accelerate an
+effort to compute the constant :math:`\pi` by Monte Carlo.
+
+Now try adding parallelization and see if you get further speed gains.
+
+You should not expect huge gains here because, while there are many
+independent tasks (draw point and test if in circle), each one has low
+execution time.
+
+Generally speaking, parallelization is less effective when the individual
+tasks to be parallelized are very small relative to total execution time.
+
+This is due to overheads associated with spreading all of these small tasks across multiple CPUs.
+
+Nevertheless, with suitable hardware, it is possible to get nontrivial speed gains in this exercise.
+
+For the size of the Monte Carlo simulation, use something substantial, such as
+``n = 100_000_000``.
+
+
+Solutions
+=========
+
+Exercise 1
+----------
+
+Here is one solution:
+
+.. code-block:: python3
+
+    from random import uniform
+
+    @njit(parallel=True)
+    def calculate_pi(n=1_000_000):
+        count = 0
+        for i in prange(n):
+            u, v = uniform(0, 1), uniform(0, 1)
+            d = np.sqrt((u - 0.5)**2 + (v - 0.5)**2)
+            if d < 0.5:
+                count += 1
+
+        area_estimate = count / n
+        return area_estimate * 4  # dividing by radius**2
+
+Now let's see how fast it runs:
+
+.. code-block:: ipython3
+
+    %time calculate_pi()
+
+.. code-block:: ipython3
+
+    %time calculate_pi()
+
+By switching parallelization on and off (selecting ``True`` or
+``False`` in the ``@njit`` annotation), we can test the speed gain that
+multithreading provides on top of JIT compilation.
+
+On our workstation, we find that parallelization increases execution speed by
+a factor of 2 or 3.
+
+(If you are executing locally, you will get different numbers, depending mainly
+on the number of CPUs on your machine.)
+
+
+
 

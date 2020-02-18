@@ -17,7 +17,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   :class: hide-output
 
   !pip install --upgrade quantecon
-  !pip install interpolation
+  !pip install --upgrade interpolation
 
 Overview
 ========
@@ -29,7 +29,7 @@ We solved the model using dynamic programming.
 
 In writing our code, we focused on clarity and flexibility.
 
-These are good things but there's often a trade-off between flexibility and
+These are important, but there's often a trade-off between flexibility and
 speed.
 
 The reason is that, when code is less flexible, we can exploit structure more
@@ -40,7 +40,7 @@ more specific problems have more structure, which, with some thought, can be
 exploited for better results.)
 
 So, in this lecture, we are going to accept less flexibility while gaining
-speed, using just-in-time compilation to 
+speed, using just-in-time (JIT) compilation to 
 accelerate our code.
 
 Let's start with some imports:
@@ -175,7 +175,7 @@ Thus, we are losing flexibility, but we will gain substantial speed.
 The Bellman Operator
 --------------------
 
-Here's a jitted function that implements the Bellman operator 
+Here's a function that uses JIT compilation to accelerate the Bellman operator
 
 .. code-block:: python3
 
@@ -314,7 +314,7 @@ Once an optimal consumption policy :math:`\sigma` is given, income follows
 
 
 The next figure shows a simulation of 100 elements of this sequence for three
-different discount factors (and hence three different policies)
+different discount factors (and hence three different policies).
 
 .. figure:: /_static/lecture_specific/optgrowth/solution_og_ex2.png
 

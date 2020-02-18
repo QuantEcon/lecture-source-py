@@ -37,18 +37,24 @@ We'll make these imports:
     %matplotlib inline
 
 This lecture can be viewed as introducing  an early contribution to what is now often called
-a **news and noise** issue.
+a **news and noise** issue. 
 
-In particular, it analyzes and illustrates an **invertibility** issue that is
+In particular, it analyzes  a **shock-invertibility** issue that is
 endemic within a class of permanent income models.
 
 Technically, the invertibility problem indicates a situation in which
 histories of the shocks in an econometrician's autoregressive or Wold
 moving average representation span a smaller information space than do
-the shocks seen by the agent inside the econometrician's model.
+the shocks that are seen by the agents inside the econometrician's model.
 
 This situation sets the stage for an econometrician who is unaware of the
-problem to  misinterpret  shocks and likely responses to them.
+problem and consequently  misinterprets  shocks and likely responses to them.
+
+A shock-invertibility that is technically close to the one studied here is discussed by 
+Eric Leeper, Todd Walker, and Susan Yang :cite:`Leeper_Walker_Yang` in their  analysis of **fiscal foresight**.
+
+A distinct shock-invertibility issue is present in the special LQ consumption smoothing model 
+in :doc:`quantecon lecture<cons_news>`.
 
 Model
 =====

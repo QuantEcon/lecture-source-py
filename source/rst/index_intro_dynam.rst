@@ -22,9 +22,13 @@ agents as given.  Later we will look at full equilibrium problems.
     :maxdepth: 2
 
     scalar_dynam
+    ar1_processes
     finite_markov
+    inventory_dynamics
     linear_models
     samuelson
+    kesten_processes
+    wealth_dynamics
     stationary_densities
     cass_koopmans
     kalman

@@ -340,11 +340,14 @@ Here's one solution
 
 .. code:: ipython3
 
+    def f(x, θ):
+        return np.cos(np.pi * θ * x ) * np.exp(- x)
+    
     θ_vals = np.linspace(0, 2, 10)
     x = np.linspace(0, 5, 200)
     fig, ax = plt.subplots()
 
     for θ in θ_vals:
-        ax.plot(x, np.cos(np.pi * θ * x) * np.exp(- x))
+        ax.plot(x, f(x, θ))
 
     plt.show()

@@ -54,7 +54,7 @@ The key idea is to compile functions to native machine code instructions on the 
 
 When it succeeds, the compiled code is extremely fast.
 
-Numba is specifically designed for numerical work and can also do other tricks such as multithreading.
+Numba is specifically designed for numerical work and can also do other tricks such as `multithreading <https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)>`_.
 
 Numba will be a key part of our lectures --- especially those lectures involving dynamic programming.
 
@@ -83,27 +83,34 @@ We will take the difference equation to be the quadratic map
 
 .. math::
 
-    x_{t+1} = 4 x_t (1 - x_t)
+    x_{t+1} = \alpha x_t (1 - x_t)
 
+In what follows we set 
+
+.. code-block:: python3
+
+    α = 4.0
 
 Here's the plot of a typical trajectory, starting from :math:`x_0 = 0.1`, with :math:`t` on the x-axis
 
 .. code-block:: python3
 
-  def qm(x0, n):
-      x = np.empty(n+1)
-      x[0] = x0
-      for t in range(n):
-          x[t+1] = 4 * x[t] * (1 - x[t])
-      return x
 
-  x = qm(0.1, 250)
-  fig, ax = plt.subplots(figsize=(10, 6))
-  ax.plot(x, 'b-', lw=2, alpha=0.8)
-  ax.set_xlabel('time', fontsize=16)
-  plt.show()
+    def qm(x0, n):
+        x = np.empty(n+1)
+        x[0] = x0 
+        for t in range(n):
+          x[t+1] = α * x[t] * (1 - x[t])
+        return x
+    
+    x = qm(0.1, 250)
+    fig, ax = plt.subplots()
+    ax.plot(x, 'b-', lw=2, alpha=0.8)
+    ax.set_xlabel('$t$', fontsize=12)
+    ax.set_ylabel('$x_{t}$', fontsize = 12)
+    plt.show()
 
-To speed this up using Numba is trivial using Numba's ``jit`` function
+To speed the function ``qm`` up using Numba, our first step is
 
 .. code-block:: python3
 
@@ -111,27 +118,28 @@ To speed this up using Numba is trivial using Numba's ``jit`` function
 
     qm_numba = jit(qm)  
 
-The function `qm_numba` is a version of `qm` that is "targeted" for
+The function ``qm_numba`` is a version of ``qm`` that is "targeted" for
 JIT-compilation.
 
 We will explain what this means momentarily.
 
-First let's time and compare identical function calls across these two versions, starting with the original function `qm`:
+Let's time and compare identical function calls across these two versions, starting with the original function ``qm``:
 
 .. code-block:: python3
 
     n = 10_000_000
-    qe.util.tic()
+
+    qe.tic()
     qm(0.1, int(n))
-    time1 = qe.util.toc()
+    time1 = qe.toc()
 
 Now let's try `qm_numba`
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     qm_numba(0.1, int(n))
-    time2 = qe.util.toc()
+    time2 = qe.toc()
 
 This is already a massive speed gain.
 
@@ -141,13 +149,13 @@ In fact, the next time and all subsequent times it runs even faster as the funct
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     qm_numba(0.1, int(n))
-    time2 = qe.util.toc()
+    time3 = qe.toc()
 
 .. code-block:: python3
 
-    time1 / time2  # Calculate speed gain
+    time1 / time3  # Calculate speed gain
 
 
 This kind of speed gain is huge relative to how simple and clear the implementation is.
@@ -167,21 +175,21 @@ The basic idea is this:
 * Python is very flexible and hence we could call the function `qm` with many
   types.
 
-    * e.g., `x0` could be a NumPy array or a list, `n` could be an integer or a float, etc.
+    * e.g., ``x0`` could be a NumPy array or a list, ``n`` could be an integer or a float, etc.
 
 * This makes it hard to *pre*-compile the function.
 
-* However, when we do actually call the function, by executing `qm(0.5, 10)`,
-  say, the types of `x0` and `n` become clear.
+* However, when we do actually call the function, say by executing ``qm(0.5, 10)``, 
+  the types of ``x0`` and ``n`` become clear.
 
-* Moreover, the types of other variables in `qm` can be inferred once the input is known.
+* Moreover, the types of other variables in ``qm`` can be inferred once the input is known.
 
 * So the strategy of Numba and other JIT compilers is to wait until this
   moment, and *then* compile the function.
 
 That's why it is called "just-in-time" compilation.
 
-Note that, if you make the call `qm(0.5, 10)` and then follow it with `qm(0.9, 20)`, compilation only takes place on the first call.
+Note that, if you make the call ``qm(0.5, 10)`` and then follow it with ``qm(0.9, 20)``, compilation only takes place on the first call.
 
 The compiled code is then cached and recycled as required.
 
@@ -197,8 +205,9 @@ In the code above we created a JIT compiled version of ``qm`` via the call
     qm_numba = jit(qm)  
 
 
-In practice this would typically be done using an alternative syntax based on
-decorators.
+In practice this would typically be done using an alternative *decorator* syntax.
+
+(We will explain all about decorators in a :doc:`later lecture <python_advanced_features>` but you can skip the details at this stage.)
 
 Let's see how this is done.
 
@@ -216,7 +225,7 @@ Here's what this looks like for ``qm``
         x = np.empty(n+1)
         x[0] = x0
         for t in range(n):
-            x[t+1] = 4 * x[t] * (1 - x[t])
+            x[t+1] = α * x[t] * (1 - x[t])
         return x
 
 
@@ -245,7 +254,7 @@ This allows it to generate native machine code, without having to call the Pytho
 
 In such a setting, Numba will be on par with machine code from low-level languages.
 
-When Numba cannot infer all type information, some Python objects are given generic ``object`` status and execution falls back to the Python runtime.
+When Numba cannot infer all type information, some Python objects are given generic object status and execution falls back to the Python runtime.
 
 When this happens, Numba provides only minor speed gains or none at all.
 
@@ -278,19 +287,19 @@ However, that subset is ever expanding.
 
 For example, Numba is now quite effective at compiling classes.
 
-If a class is successfully compiled, then its methods acts as JIT-compiled
+If a class is successfully compiled, then its methods act as JIT-compiled
 functions.
 
 To give one example, let's consider the class for analyzing the Solow growth model we
 created in :doc:`this lecture <python_oop>`.
 
-To compile this class we use the `@jitclass` decorator:
+To compile this class we use the ``@jitclass`` decorator:
 
 .. code-block:: python3
 
     from numba import jitclass, float64
 
-Notice that we also imported something called `float64`.
+Notice that we also imported something called ``float64``.
 
 This is a data type representing standard floating point numbers.
 
@@ -354,10 +363,10 @@ Here's our code:
             return path
 
 First we specified the types of the instance data for the class in
-`solow_data`.
+``solow_data``.
 
 After that, targeting the class for JIT compilation only requires adding
-`@jitclass(solow_data)` before the class definition.
+``@jitclass(solow_data)`` before the class definition.
 
 When we call the methods in the class, the methods are compiled just like functions.
 
@@ -368,7 +377,7 @@ When we call the methods in the class, the methods are compiled just like functi
     s2 = Solow(k=8.0)
 
     T = 60
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots()
 
     # Plot the common steady state value of capital
     ax.plot([s1.steady_state()]*T, 'k-', label='steady state')
@@ -377,7 +386,8 @@ When we call the methods in the class, the methods are compiled just like functi
     for s in s1, s2:
         lb = f'capital series from initial state {s.k}'
         ax.plot(s.generate_sequence(T), 'o-', lw=2, alpha=0.6, label=lb)
-
+    ax.set_ylabel('$k_{t}$', fontsize=12)
+    ax.set_xlabel('$t$', fontsize=12)
     ax.legend()
     plt.show()
 
@@ -474,16 +484,16 @@ Consider the following example
     a = 1
 
     @jit
-    def add_x(x):
+    def add_a(x):
         return a + x
 
-    print(add_x(10))
+    print(add_a(10))
 
 .. code-block:: python3
 
     a = 2
 
-    print(add_x(10))
+    print(add_a(10))
 
 
 Notice that changing the global had no effect on the value returned by the
@@ -499,9 +509,24 @@ When Numba compiles machine code for functions, it treats global variables as co
 Exercises
 =========
 
+
 .. _speed_ex1:
 
 Exercise 1
+----------
+
+:ref:`Previously <pbe_ex3>` we considered how to approximate :math:`\pi` by
+Monte Carlo.
+
+Use the same idea here, but make the code efficient using Numba.
+
+
+Compare speed with and without Numba when the sample size is large.
+
+
+.. _speed_ex2:
+
+Exercise 2
 ----------
 
 Later we'll learn all about :doc:`finite-state Markov chains <finite_markov>`.
@@ -533,6 +558,11 @@ To test your code, evaluate the fraction of time that the chain spends in the lo
 
 If your code is correct, it should be about 2/3.
 
+Hints: 
+
+* Represent the low state as 0 and the high state as 1.
+
+* If you want to store integers in a NumPy array and then apply JIT compilation, use ``x = np.empty(n, dtype=np.int_)``.
 
 
 Solutions
@@ -541,6 +571,43 @@ Solutions
 
 
 Exercise 1
+----------
+
+Here is one solution:
+
+.. code-block:: python3
+
+    from random import uniform
+
+    @njit
+    def calculate_pi(n=1_000_000):
+        count = 0
+        for i in range(n):
+            u, v = uniform(0, 1), uniform(0, 1)
+            d = np.sqrt((u - 0.5)**2 + (v - 0.5)**2)
+            if d < 0.5:
+                count += 1
+
+        area_estimate = count / n
+        return area_estimate * 4  # dividing by radius**2
+
+Now let's see how fast it runs:
+
+.. code-block:: ipython3
+
+    %time calculate_pi()
+
+.. code-block:: ipython3
+
+    %time calculate_pi()
+
+If we switch of JIT compilation by removing ``@njit``, the code takes around
+150 times as long on our machine.
+
+So we get a speed gain of 2 orders of magnitude--which is huge--by adding four
+characters.
+
+Exercise 2
 ----------
 
 We let
@@ -577,14 +644,15 @@ state is about 0.666
     x = compute_series(n)
     print(np.mean(x == 0))  # Fraction of time x is in state 0
 
+This is (approximately) the right output.
 
-Now let's time it
+Now let's time it:
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     compute_series(n)
-    qe.util.toc()
+    qe.toc()
 
 
 Next let's implement a Numba version, which is easy
@@ -607,9 +675,9 @@ Let's see the time
 
 .. code-block:: python3
 
-    qe.util.tic()
+    qe.tic()
     compute_series_numba(n)
-    qe.util.toc()
+    qe.toc()
 
 
 This is a nice speed improvement for one line of code!

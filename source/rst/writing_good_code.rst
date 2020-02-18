@@ -33,8 +33,8 @@ We also touch on modern developments in scientific computing --- such as just in
 
 
 
-An Example of Bad Code
-======================
+An Example of Poor Code
+=======================
 
 Let's have a look at some poorly written code.
 
@@ -74,7 +74,7 @@ In each subfigure, two parameters are held fixed while another varies
     # Allocate memory for time series
     k = np.empty(50)
 
-    fig, axes = plt.subplots(3, 1, figsize=(12, 15))
+    fig, axes = plt.subplots(3, 1, figsize=(6, 14))
 
     # Trajectories with different α
     δ = 0.1
@@ -91,7 +91,7 @@ In each subfigure, two parameters are held fixed while another varies
     axes[0].set_ylim(0, 18)
     axes[0].set_xlabel('time')
     axes[0].set_ylabel('capital')
-    axes[0].legend(loc='upper left', frameon=True, fontsize=14)
+    axes[0].legend(loc='upper left', frameon=True)
 
     # Trajectories with different s
     δ = 0.1
@@ -102,13 +102,13 @@ In each subfigure, two parameters are held fixed while another varies
         k[0] = 1
         for t in range(49):
             k[t+1] = s[j] * k[t]**α + (1 - δ) * k[t]
-        axes[1].plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s},\; \delta={δ}$")
+        axes[1].plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s[j]},\; \delta={δ}$")
 
     axes[1].grid(lw=0.2)
     axes[1].set_xlabel('time')
     axes[1].set_ylabel('capital')
     axes[1].set_ylim(0, 18)
-    axes[1].legend(loc='upper left', frameon=True, fontsize=14)
+    axes[1].legend(loc='upper left', frameon=True)
 
     # Trajectories with different δ
     δ = (0.05, 0.1, 0.15)
@@ -125,7 +125,7 @@ In each subfigure, two parameters are held fixed while another varies
     axes[2].set_xlabel('time')
     axes[2].set_ylabel('capital')
     axes[2].grid(lw=0.2)
-    axes[2].legend(loc='upper left', frameon=True, fontsize=14)
+    axes[2].legend(loc='upper left', frameon=True)
 
     plt.show()
 
@@ -161,7 +161,7 @@ If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered
 
 These kinds of numeric literals in the body of your code are sometimes called "magic numbers".
 
-This is not a complement.
+This is not a compliment.
 
 While numeric literals are not all evil, the numbers shown in the program above
 should certainly be replaced by named constants.
@@ -224,17 +224,14 @@ While the odd global in small scripts is no big deal, we recommend that you teac
 JIT Compilation
 ^^^^^^^^^^^^^^^
 
-In fact, there's now another good reason to avoid global variables.
+For scientific computing, there is another good reason to avoid global variables.
 
-In scientific computing, we're witnessing the rapid growth of just in time (JIT) compilation.
+As :doc:`we've seen in previous lectures <numba>`, JIT compilation can generate excellent performance for scripting languages like Python.
 
-JIT compilation can generate excellent performance for scripting languages like Python and Julia.
+But the task of the compiler used for JIT compilation becomes harder when global variables are present.
 
-But the task of the compiler used for JIT compilation becomes much harder when
-many global variables are present.
-
-(This is because data type instability hinders the generation of efficient machine code --- we'll learn more about such topics :doc:`later on <numba>`)
-
+Put differently, the type inference required for JIT compilation is safer and
+more effective when variables are sandboxed inside a function.
 
 
 Use Functions or Classes
@@ -242,7 +239,7 @@ Use Functions or Classes
 
 Fortunately, we can easily avoid the evils of global variables and WET code.
 
-* WET stands for "we love typing" and is the opposite of DRY.
+* WET stands for "we enjoy typing" and is the opposite of DRY.
 
 We can do this by making frequent use of functions or classes.
 
@@ -267,15 +264,6 @@ Revisiting the Example
 
 Here's some code that reproduces the plot above with better coding style.
 
-It uses a function to avoid repetition.
-
-Note also that
-
-* global variables are quarantined by collecting together at the end, not the start of the program
-
-* magic numbers are avoided
-
-* the loop at the end where the actual work is done is short and relatively simple
 
 .. code-block:: python3
 
@@ -293,13 +281,12 @@ Note also that
                 k[t+1] = s * k[t]**α + (1 - δ) * k[t]
             ax.plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s},\; \delta = {δ}$")
 
-        ax.grid(lw=0.2)
         ax.set_xlabel('time')
         ax.set_ylabel('capital')
         ax.set_ylim(0, 18)
-        ax.legend(loc='upper left', frameon=True, fontsize=14)
+        ax.legend(loc='upper left', frameon=True)
 
-    fig, axes = plt.subplots(3, 1, figsize=(12, 15))
+    fig, axes = plt.subplots(3, 1, figsize=(6, 14))
 
     # Parameters (αs, s_vals, δs)
     set_one = ([0.25, 0.33, 0.45], [0.4], [0.1])
@@ -312,11 +299,206 @@ Note also that
 
     plt.show()
 
-Summary
-=======
 
-Writing decent code isn't hard.
+If you inspect this code, you will see that 
 
-It's also fun and intellectually satisfying.
+* it uses a function to avoid repetition.
+* Global variables are quarantined by collecting them together at the end, not the start of the program.
+* Magic numbers are avoided.
+* The loop at the end where the actual work is done is short and relatively simple.
 
-We recommend that you cultivate good habits and style even when you write relatively short programs.
+Exercises
+=========
+
+Exercise 1
+----------
+
+Here is some code that needs improving. 
+
+It involves a basic supply and demand problem.  
+
+Supply is given by
+
+.. math::  q_s(p) = \exp(\alpha p) - \beta. 
+
+The demand curve is
+
+.. math::  q_d(p) = \gamma p^{-\delta}.  
+
+The values :math:`\alpha`, :math:`\beta`, :math:`\gamma` and
+:math:`\delta` are **parameters**
+
+The equilibrium :math:`p^*` is the price such that
+:math:`q_d(p) = q_s(p)`.
+
+We can solve for this equilibrium using a root finding algorithm.
+Specifically, we will find the :math:`p` such that :math:`h(p) = 0`,
+where
+
+.. math::  h(p) := q_d(p) - q_s(p) 
+
+This yields the equilibrium price :math:`p^*`. From this we get the
+equilibrium price by :math:`q^* = q_s(p^*)`
+
+The parameter values will be
+
+-  :math:`\alpha = 0.1`
+-  :math:`\beta = 1`
+-  :math:`\gamma = 1`
+-  :math:`\delta = 1`
+
+.. code:: ipython3
+
+    from scipy.optimize import brentq
+
+    # Compute equilibrium
+    def h(p):
+        return p**(-1) - (np.exp(0.1 * p) - 1)  # demand - supply
+    
+    p_star = brentq(h, 2, 4)
+    q_star = np.exp(0.1 * p_star) - 1
+    
+    print(f'Equilibrium price is {p_star: .2f}')
+    print(f'Equilibrium quantity is {q_star: .2f}')
+
+Let's also plot our results. 
+
+.. code:: ipython3
+
+    # Now plot
+    grid = np.linspace(2, 4, 100)
+    fig, ax = plt.subplots()
+    
+    qs = np.exp(0.1 * grid) - 1
+    qd = grid**(-1)
+    
+    
+    ax.plot(grid, qd, 'b-', lw=2, label='demand')
+    ax.plot(grid, qs, 'g-', lw=2, label='supply')
+    
+    ax.set_xlabel('price')
+    ax.set_ylabel('quantity')
+    ax.legend(loc='upper center')
+    
+    plt.show()
+
+We also want to consider supply and demand shifts.
+
+For example, let's see what happens when demand shifts up, with :math:`\gamma` increasing to :math:`1.25`:
+
+.. code:: ipython3
+
+    # Compute equilibrium
+    def h(p):
+        return 1.25 * p**(-1) - (np.exp(0.1 * p) - 1)
+    
+    p_star = brentq(h, 2, 4)
+    q_star = np.exp(0.1 * p_star) - 1
+    
+    print(f'Equilibrium price is {p_star: .2f}')
+    print(f'Equilibrium quantity is {q_star: .2f}')
+
+.. code:: ipython3
+
+    # Now plot
+    p_grid = np.linspace(2, 4, 100)
+    fig, ax = plt.subplots()
+    
+    qs = np.exp(0.1 * p_grid) - 1
+    qd = 1.25 * p_grid**(-1)
+    
+    
+    ax.plot(grid, qd, 'b-', lw=2, label='demand')
+    ax.plot(grid, qs, 'g-', lw=2, label='supply')
+    
+    ax.set_xlabel('price')
+    ax.set_ylabel('quantity')
+    ax.legend(loc='upper center')
+    
+    plt.show()
+
+
+Now we might consider supply shifts, but you already get the idea that there's
+a lot of repeated code here.
+
+Refactor and improve clarity in the code above using the principles discussed
+in this lecture.
+
+
+
+Solutions
+=========
+
+Exercise 1
+----------
+
+Here's one solution, that uses a class:
+
+
+.. code:: ipython3
+
+    class Equilibrium:
+        
+        def __init__(self, α=0.12, β=1, γ=1, δ=1):
+            self.α, self.β, self.γ, self.δ = α, β, γ, δ
+    
+        def qs(self, p):
+            return np.exp(self.α * p) - self.β
+        
+        def qd(self, p):
+            return self.γ * p**(-self.δ)
+            
+        def compute_equilibrium(self):
+            def h(p):
+                return self.qd(p) - self.qs(p)
+            p_star = brentq(h, 2, 4)
+            q_star = np.exp(self.α * p_star) - self.β
+    
+            print(f'Equilibrium price is {p_star: .2f}')
+            print(f'Equilibrium quantity is {q_star: .2f}')
+    
+        def plot_equilibrium(self):
+            # Now plot
+            grid = np.linspace(2, 4, 100)
+            fig, ax = plt.subplots()
+    
+            ax.plot(grid, self.qd(grid), 'b-', lw=2, label='demand')
+            ax.plot(grid, self.qs(grid), 'g-', lw=2, label='supply')
+    
+            ax.set_xlabel('price')
+            ax.set_ylabel('quantity')
+            ax.legend(loc='upper center')
+    
+            plt.show()
+
+Let's create an instance at the default parameter values.
+
+.. code:: ipython3
+
+    eq = Equilibrium()
+
+Now we'll compute the equilibrium and plot it.
+
+.. code:: ipython3
+
+    eq.compute_equilibrium()
+
+.. code:: ipython3
+
+    eq.plot_equilibrium()
+
+One of the nice things about our refactored code is that, when we change
+parameters, we don't need to repeat ourselves:
+
+.. code:: ipython3
+
+    eq.α = 0.12
+
+.. code:: ipython3
+
+    eq.compute_equilibrium()
+
+.. code:: ipython3
+
+    eq.plot_equilibrium()
+

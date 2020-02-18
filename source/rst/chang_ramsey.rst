@@ -4,7 +4,7 @@
 
 
 ********************************************
-Competitive Equilibria of Chang Model
+Competitive Equilibria of a Model of Chang 
 ********************************************
 
 

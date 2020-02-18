@@ -44,12 +44,12 @@ Code
 
 Regarding code, our implementation in this lecture will focus on clarity and flexibility.
 
-Both of these things are nice, particularly for those readers still trying to understand
+Both of these things are helpful, particularly for those readers still trying to understand
 the material, but they do cost us some speed --- as you will
 see when you run the code.
 
 In the :doc:`next lecture <optgrowth_fast>` we will sacrifice some of this
-clarity and flexibility in order to accelerate our code with just-in-time compilation.
+clarity and flexibility in order to accelerate our code with just-in-time (JIT) compilation.
 
 Let's start with some imports:
 
@@ -192,7 +192,7 @@ For dynamic programming problems such as this one (in fact for any `Markov decis
 In other words, the current state :math:`y_t` provides a sufficient statistic
 for the history in terms of making an optimal decision today.
 
-This is quite intuitive but if you wish you can find proofs in texts such as :cite:`StokeyLucas1989` (section 4.1).
+This is quite intuitive, but if you wish you can find proofs in texts such as :cite:`StokeyLucas1989` (section 4.1).
 
 Hereafter we focus on finding the best Markov policy.
 
@@ -378,7 +378,7 @@ How, then, should we compute the value function?
 
 One way is to use the so-called **Bellman operator**.
 
-(An operator is a map that sends functions into functions)
+(An operator is a map that sends functions into functions.)
 
 The Bellman operator is denoted by :math:`T` and defined by
 
@@ -433,7 +433,7 @@ continuous bounded functions on :math:`\mathbb R_+` under the supremum distance
 
 See  `EDTC <http://johnstachurski.net/edtc.html>`__, lemma 10.1.18.
 
-Hence it has exactly one fixed point in this set, which we know is equal to the value function.
+Hence, it has exactly one fixed point in this set, which we know is equal to the value function.
 
 It follows that
 
@@ -450,7 +450,7 @@ We also know that a feasible policy is optimal if and only if it is :math:`v^*`-
 It's not too hard to show that a :math:`v^*`-greedy policy exists
 (see  `EDTC <http://johnstachurski.net/edtc.html>`__, theorem 10.1.11 if you get stuck).
 
-Hence at least one optimal policy exists.
+Hence, at least one optimal policy exists.
 
 Our problem now is how to compute it.
 
@@ -487,43 +487,10 @@ Computation
 
 Let's now look at computing the value function and the optimal policy.
 
+We will use fitted value function iteration, which was described in detail in
+a :doc:`previous lecture <mccall_fitted_vfi>`.
 
-
-Fitted Value Iteration
-----------------------
-
-.. index::
-    single: Dynamic Programming; Value Function Iteration
-
-The first step is to compute the value function by value function iteration.
-
-In theory, the algorithm is as follows
-
-#. Begin with a function :math:`v` --- an initial condition.
-
-#. Solving :eq:`fcbell20_optgrowth`, obtain the function :math:`Tv`.
-
-#. Unless some stopping condition is satisfied, set :math:`v = Tv` and go to step 2.
-
-This generates the sequence :math:`v, Tv, T^2v, \ldots`.
-
-However, there is a problem we must confront before we implement this procedure:
-The iterates can neither be calculated exactly nor stored on a computer.
-
-To see the issue, consider :eq:`fcbell20_optgrowth`.
-
-Even if :math:`v` is a known function, unless :math:`Tv` can be shown to have
-some special structure, the only way to store it is to record the
-value :math:`Tv(y)` for every :math:`y \in \mathbb R_+`.
-
-Clearly, this is impossible.
-
-What we will do instead is use **fitted value function iteration**.
-
-The procedure is to record the value of the function :math:`Tv` at only
-finitely many "grid" points :math:`y_1 < y_2 < \cdots < y_I` and reconstruct it from this information when required.
-
-More precisely, the algorithm will be
+The algorithm will be
 
 .. _fvi_alg:
 
@@ -531,7 +498,7 @@ More precisely, the algorithm will be
    the values of some initial function :math:`v` on the grid points :math:`\{ y_1, \ldots, y_I \}`.
 
 #. Build a function :math:`\hat v` on the state space :math:`\mathbb R_+` by
-   interpolation or approximation, based on these data points.
+   linear interpolation, based on these data points.
 
 #. Obtain and record the value :math:`T \hat v(y_i)` on each grid point
    :math:`y_i` by repeatedly solving :eq:`fcbell20_optgrowth`.
@@ -539,48 +506,6 @@ More precisely, the algorithm will be
 #. Unless some stopping condition is satisfied, set
    :math:`\{ v_1, \ldots, v_I \} = \{ T \hat v(y_1), \ldots, T \hat v(y_I) \}` and go to step 2.
 
-How should we go about step 2?
-
-This is a problem of function approximation, and there are many ways to approach it.
-
-What's important here is that the function approximation scheme must not only
-produce a good approximation to :math:`Tv`, but also combine well with the broader iteration algorithm described above.
-
-.. only:: html
-
-    One good choice from both respects is continuous piecewise linear interpolation (see :download:`this paper <_static/lecture_specific/optgrowth/3ndp.pdf>` for further discussion).
-
-.. only:: latex
-
-    One good choice from both respects is continuous piecewise linear interpolation (see `this paper <https://lectures.quantecon.org/_downloads/3ndp.pdf>`__ for further discussion).
-
-The next figure illustrates piecewise linear interpolation of an arbitrary
-function on grid points :math:`0, 0.2, 0.4, 0.6, 0.8, 1`
-
-
-.. code-block:: python3
-
-
-    def f(x):
-        y1 = 2 * np.cos(6 * x) + np.sin(14 * x)
-        return y1 + 2.5
-
-    c_grid = np.linspace(0, 1, 6)
-    f_grid = np.linspace(0, 1, 150)
-
-    Af = interp1d(c_grid, f(c_grid))
-
-    fig, ax = plt.subplots()
-
-    ax.plot(f_grid, f(f_grid), 'b-', label='true function')
-    ax.plot(f_grid, Af(f_grid), 'g-', label='linear approximation')
-    ax.vlines(c_grid, c_grid * 0, f(c_grid), linestyle='dashed', alpha=0.5)
-
-    ax.set(xlim=(0, 1), ylim=(0, 6))
-    plt.show()
-
-Another advantage of piecewise linear interpolation is that it preserves
-useful shape properties such as monotonicity and concavity/convexity.
 
 Scalar Maximization
 -------------------
@@ -689,7 +614,7 @@ The Bellman Operator
 
 The next function implements the Bellman operator.
 
-(We could have added it as a method to the ``OptimalGrowthModel`` class but we
+(We could have added it as a method to the ``OptimalGrowthModel`` class, but we
 prefer small classes rather than monolithic ones for this kind of
 numerical work.)
 

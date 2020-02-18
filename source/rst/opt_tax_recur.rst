@@ -769,9 +769,9 @@ To express a Ramsey plan recursively, we imagine that a time :math:`0`
 Ramsey planner is followed by a sequence of continuation Ramsey planners
 at times :math:`t = 1, 2, \ldots`.
 
-A “continuation Ramsey planner” has a
-different objective function and faces different constraints than a
-Ramsey planner.
+A “continuation Ramsey planner” at times :math:`t \geq 1` has a
+different objective function and faces different constraints and state variabls than does the
+Ramsey planner at time :math:`t =0`.
 
 A key step in representing a Ramsey plan recursively is
 to regard the marginal utility scaled government debts
@@ -782,22 +782,23 @@ obligated to attain.
 Continuation Ramsey planners do this by choosing continuation policies that induce the representative
 household to make choices that imply that :math:`u_c(s^t) b_t(s_t|s^{t-1})= x_t(s^t)`.
 
+A time :math:`t \geq 1` continuation Ramsey planner faces :math:`x_t, s_t` as
+state variables.
+
 A time :math:`t\geq 1` continuation Ramsey planner
 delivers :math:`x_t` by choosing a suitable :math:`n_t, c_t` pair and a list of
 :math:`s_{t+1}`-contingent continuation quantities :math:`x_{t+1}` to
 bequeath to a time :math:`t+1` continuation Ramsey planner.
 
-A time :math:`t \geq 1` continuation Ramsey planner faces :math:`x_t, s_t` as
-state variables.
-
-But the time :math:`0` Ramsey planner faces :math:`b_0`, not :math:`x_0`,
+While a time :math:`t \geq 1` continuation Ramsey planner faces :math:`x_t, s_t` as
+state variables,  the time :math:`0` Ramsey planner faces :math:`b_0`, not :math:`x_0`,
 as a state variable.
 
 Furthermore, the Ramsey planner cares about :math:`(c_0(s_0), \ell_0(s_0))`, while
 continuation Ramsey planners do not.
 
 The time :math:`0` Ramsey planner
-hands :math:`x_1` as a function of :math:`s_1` to a time :math:`1`
+hands a state-contingent function that make :math:`x_1` a function of :math:`s_1` to a time :math:`1`
 continuation Ramsey planner.
 
 These lines of delegated authorities and
@@ -1206,7 +1207,7 @@ It sets the time :math:`t=0` tax rate partly with an eye to reducing the value :
 It does this by increasing consumption at time :math:`t=0` relative to
 consumption in later periods.
 
-This has the consequence of *raising* the time :math:`t=0` value of the  gross
+This has the consequence of *lowering* the time :math:`t=0` value of the  gross
 interest  rate for risk-free loans between periods :math:`t` and :math:`t+1`, which  equals
 
 .. math::
@@ -1214,10 +1215,10 @@ interest  rate for risk-free loans between periods :math:`t` and :math:`t+1`, wh
     R_t = \frac{u_{c,t}}{\beta\mathbb E_{t}[u_{c,t+1}]}
 
 
-A tax policy that makes  time :math:`t=0` consumption be  higher than time :math:`t=1` consumption evidently increases the
+A tax policy that makes  time :math:`t=0` consumption be  higher than time :math:`t=1` consumption evidently decreases the
 risk-free rate one-period interest rate, :math:`R_t`, at :math:`t=0`.
 
-Raising the time :math:`t=0` risk-free interest rate makes time :math:`t=0`
+Lowering the time :math:`t=0` risk-free interest rate makes time :math:`t=0`
 consumption goods cheaper relative to consumption goods at later dates, thereby
 lowering the value :math:`u_{c,0} b_0` of initial government debt :math:`b_0`.
 
@@ -1267,17 +1268,17 @@ to hedge against  war at :math:`t=3`.
      constant tax rate set at times :math:`t\geq 1`.
 
 At times :math:`t \geq 4` the government rolls over its debt, knowing that the
-tax rate is set at level required to service the interest payments
-on the debt and government expenditures.
+tax rate is set at a level that raises enough revenue to pay for government purchases and interest payments
+on its debt.
 
 Time 0 Manipulation of Interest Rate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have seen that when :math:`b_0>0`, the Ramsey plan sets the time :math:`t=0`
-tax rate partly with an eye toward raising a risk-free interest
+tax rate partly with an eye toward lowering a risk-free interest
 rate for one-period loans between times :math:`t=0` and :math:`t=1`.
 
-By raising this interest rate, the plan makes time :math:`t=0` goods cheap
+By lowering this interest rate, the plan makes time :math:`t=0` goods cheap
 relative to consumption goods at later times.
 
 By doing this, it lowers the value of time :math:`t=0` debt that it has inherited
@@ -1342,8 +1343,8 @@ It does this by increasing :math:`c_0` and thereby lowering :math:`u_{c,0}`.
 Conversely, if  :math:`b_{0} < 0`, the Ramsey planner sets the tax rate at :math:`t=0`
 higher than in  subsequent periods.
 
-A side effect of lowering time :math:`t=0` consumption  is that it raises  the
-one-period  interest rate at time 0 above that of subsequent periods.
+A side effect of lowering time :math:`t=0` consumption  is that it lowers  the
+one-period  interest rate at time :math:`t=0` below  that of subsequent periods.
 
 There are only two values of initial government debt at which  the tax rate is
 constant for all :math:`t \geq 0`.
@@ -1506,7 +1507,7 @@ Further Comments
 A :doc:`related lecture <amss>` describes an extension of the Lucas-Stokey model
 by  Aiyagari, Marcet, Sargent, and Seppälä (2002) :cite:`aiyagari2002optimal`.
 
-In th AMSS economy, only a risk-free bond is traded.
+In the AMSS economy, only a risk-free bond is traded.
 
 That lecture compares the recursive representation of the Lucas-Stokey model
 presented in this lecture with  one for an AMSS economy.

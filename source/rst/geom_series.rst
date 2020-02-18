@@ -76,7 +76,7 @@ The first type of geometric that interests us is the infinite series
 
 .. math:: 1 + c + c^2 + c^3 + \cdots
 
-Where :math:`\cdots` means that the series continues without limit.
+Where :math:`\cdots` means that the series continues without end.
 
 The key formula is
 
@@ -109,7 +109,7 @@ set :math:`(-1,1)`.
 
 
 
-We now move on to describe some famuous economic applications of
+We now move on to describe some famous economic applications of
 geometric series.
 
 
@@ -142,7 +142,7 @@ Economists and financiers often define the **supply of money** as an
 economy-wide sum of **cash** plus **deposits**.
 
 In a **fractional reserve banking system** (one in which the reserve
-ratio :math:`r` satisfying :math:`0 < r < 1`), **banks create money** by issuing deposits *backed* by fractional reserves plus loans that they make to their customers.
+ratio :math:`r` satisfies :math:`0 < r < 1`), **banks create money** by issuing deposits *backed* by fractional reserves plus loans that they make to their customers.
 
 A geometric series is a key tool for understanding how banks create
 money (i.e., deposits) in a fractional reserve system.
@@ -177,7 +177,7 @@ bank stating promises to redeem note for gold or silver on demand).
 .. Dongchen: is there a way to add a little balance sheet here?
 .. with assets on the left side and liabilities on the right side?
 
-Ecah bank :math:`i` sets its reserves to satisfy the equation
+Each bank :math:`i` sets its reserves to satisfy the equation
 
 .. math::
   :label: reserves
@@ -395,7 +395,7 @@ Evidently, as :math:`t \rightarrow + \infty`,
 
 **Remark 1:** The above formula is often applied to assert that an
 exogenous increase in investment of :math:`\Delta i` at time :math:`0`
-ignites a dynamic process of increases in national income by amounts
+ignites a dynamic process of increases in national income by successive amounts
 
 .. math:: \Delta i, (1 + b )\Delta i, (1+b + b^2) \Delta i , \cdots
 
@@ -554,7 +554,7 @@ The **present value** of the lease is
 where the last line uses the formula for an infinite geometric series.
 
 Recall that :math:`R = 1+r` and :math:`G = 1+g` and that :math:`R > G`
-and :math:`r > g` and that :math:`r` and\ :math:`g` are typically small
+and :math:`r > g` and that :math:`r` and :math:`g` are typically small
 numbers, e.g., .05 or .03.
 
 Use the Taylor series of :math:`\frac{1}{1+r}` about :math:`r=0`,
@@ -562,7 +562,7 @@ namely,
 
 .. math:: \frac{1}{1+r} = 1 - r + r^2 - r^3 + \cdots
 
-and the fact that :math:`r` is small to aproximate
+and the fact that :math:`r` is small to approximate
 :math:`\frac{1}{1+r} \approx 1 - r`.
 
 Use this approximation to write :math:`p_0` as
@@ -619,7 +619,7 @@ We could have also approximated by removing the second term
 approximation.
 
 We will plot the true finite stream present-value and the two
-approximations, under different values of :math:`T`, and :math:`g` and :math:`r` in python.
+approximations, under different values of :math:`T`, and :math:`g` and :math:`r` in Python.
 
 First we plot the true finite stream present-value after computing it
 below
@@ -627,18 +627,18 @@ below
 .. code-block:: python3
 
     # True present value of a finite lease
-    def finite_lease_pv(T, g, r, x_0):
+    def finite_lease_pv_true(T, g, r, x_0):
         G = (1 + g)
         R = (1 + r)
         return (x_0 * (1 - G**(T + 1) * R**(-T - 1))) / (1 - G * R**(-1))
     # First approximation for our finite lease
 
-    def finite_lease_pv_approx_f(T, g, r, x_0):
+    def finite_lease_pv_approx_1(T, g, r, x_0):
         p = x_0 * (T + 1) + x_0 * r * g * (T + 1) / (r - g)
         return p
 
     # Second approximation for our finite lease
-    def finite_lease_pv_approx_s(T, g, r, x_0):
+    def finite_lease_pv_approx_2(T, g, r, x_0):
         return (x_0 * (T + 1))
 
     # Infinite lease
@@ -648,25 +648,32 @@ below
         return x_0 / (1 - G * R**(-1))
 
 
-Now that we have test run our functions, we can plot some outcomes.
+Now that we have defined our functions, we can plot some outcomes.
 
 First we study the quality of our approximations
 
 .. code-block:: python3
 
+    def plot_function(axes, x_vals, func, args):
+        axes.plot(x_vals, func(*args), label=func.__name__)
+
+    T_max = 50
+        
+    T = np.arange(0, T_max+1)
     g = 0.02
     r = 0.03
     x_0 = 1
-    T_max = 50
-    T = np.arange(0, T_max+1)
+
+    our_args = (T, g, r, x_0)
+    funcs = [finite_lease_pv_true, 
+            finite_lease_pv_approx_1,
+            finite_lease_pv_approx_2] 
+            ## the three functions we want to compare 
+
     fig, ax = plt.subplots()
     ax.set_title('Finite Lease Present Value $T$ Periods Ahead')
-    y_1 = finite_lease_pv(T, g, r, x_0)
-    y_2 = finite_lease_pv_approx_f(T, g, r, x_0)
-    y_3 = finite_lease_pv_approx_s(T, g, r, x_0)
-    ax.plot(T, y_1, label='True T-period Lease PV')
-    ax.plot(T, y_2, label='T-period Lease First-order Approx.')
-    ax.plot(T, y_3, label='T-period Lease First-order Approx. adj.')
+    for f in funcs:
+        plot_function(ax, T, f, our_args)
     ax.legend()
     ax.set_xlabel('$T$ Periods Ahead')
     ax.set_ylabel('Present Value, $p_0$')
@@ -686,18 +693,18 @@ over different lease lengths :math:`T`.
     T = np.arange(0, T_max+1)
     fig, ax = plt.subplots()
     ax.set_title('Infinite and Finite Lease Present Value $T$ Periods Ahead')
-    y_1 = finite_lease_pv(T, g, r, x_0)
-    y_2 = np.ones(T_max+1)*infinite_lease(g, r, x_0)
-    ax.plot(T, y_1, label='T-period lease PV')
-    ax.plot(T, y_2, '--', label='Infinite lease PV')
+    f_1 = finite_lease_pv_true(T, g, r, x_0)
+    f_2 = np.ones(T_max+1)*infinite_lease(g, r, x_0)
+    ax.plot(T, f_1, label='T-period lease PV')
+    ax.plot(T, f_2, '--', label='Infinite lease PV')
     ax.set_xlabel('$T$ Periods Ahead')
     ax.set_ylabel('Present Value, $p_0$')
     ax.legend()
     plt.show()
 
-The above graphs shows how as duration :math:`T \rightarrow +\infty`,
+The graph above shows how as duration :math:`T \rightarrow +\infty`,
 the value of a lease of duration :math:`T` approaches the value of a
-perpetural lease.
+perpetual lease.
 
 Now we consider two different views of what happens as :math:`r` and
 :math:`g` covary
@@ -712,30 +719,18 @@ Now we consider two different views of what happens as :math:`r` and
     ax.set_xlabel('$T$ periods ahead')
     T_max = 10
     T=np.arange(0, T_max+1)
-    # r >> g, much bigger than g
-    r = 0.9
-    g = 0.4
-    ax.plot(finite_lease_pv(T, g, r, x_0), label='$r\gg g$')
-    # r > g
-    r = 0.5
-    g = 0.4
-    ax.plot(finite_lease_pv(T, g, r, x_0), label='$r>g$', color='green')
 
-    # r ~ g, not defined when r = g, but approximately goes to straight
-    # line with slope 1
-    r = 0.4001
-    g = 0.4
-    ax.plot(finite_lease_pv(T, g, r, x_0), label=r'$r \approx g$', color='orange')
-
-    # r < g
-    r = 0.4
-    g = 0.5
-    ax.plot(finite_lease_pv(T, g, r, x_0), label='$r<g$', color='red')
+    rs, gs = (0.9, 0.5, 0.4001, 0.4), (0.4, 0.4, 0.4, 0.5),
+    comparisons = ('$\gg$', '$>$', r'$\approx$', '$<$')
+    for r, g, comp in zip(rs, gs, comparisons):
+        ax.plot(finite_lease_pv_true(T, g, r, x_0), label=f'r(={r}) {comp} g(={g})')
+    
     ax.legend()
     plt.show()
 
 
-The above graphs gives a big hint for why the condition :math:`r > g` is
+
+This graph gives a big hint for why the condition :math:`r > g` is
 necessary if a lease of length :math:`T = +\infty` is to have finite
 value.
 
@@ -755,7 +750,7 @@ visualization!
     g = np.arange(0.011, 0.991, 0.005)
 
     rr, gg = np.meshgrid(r, g)
-    z = finite_lease_pv(T, gg, rr, x_0)
+    z = finite_lease_pv_true(T, gg, rr, x_0)
 
     # Removes points where undefined
     same = (rr == gg)
@@ -809,10 +804,10 @@ After that, we'll use SymPy to compute derivatives
 
 We can see that for :math:`\frac{\partial p_0}{\partial r}<0` as long as
 :math:`r>g`, :math:`r>0` and :math:`g>0` and :math:`x_0` is positive,
-this equation will always be negative.
+so :math:`\frac{\partial p_0}{\partial r}` will always be negative.
 
-Similarly, :math:`\frac{\partial p_0}{\partial g}>0` as long as :math:`r>g`, :math:`r>0` and :math:`g>0` and :math:`x_0` is positive, this equation
-will always be postive.
+Similarly, :math:`\frac{\partial p_0}{\partial g}>0` as long as :math:`r>g`, :math:`r>0` and :math:`g>0` and :math:`x_0` is positive, so :math:`\frac{\partial p_0}{\partial g}`
+will always be positive.
 
 
 
@@ -859,53 +854,49 @@ i.e., the fraction of income that is consumed
 
 .. code-block:: python3
 
-    # Changing fraction of consumption
-    b_0 = 1/3
-    b_1 = 2/3
-    b_2 = 5/6
-    b_3 = 0.9
+    bs = (1/3, 2/3, 5/6, 0.9)
 
     fig,ax = plt.subplots()
     ax.set_title('Changing Consumption as a Fraction of Income')
     ax.set_ylabel('$y_t$')
     ax.set_xlabel('$t$')
     x = np.arange(0, T+1)
-    for b in (b_0, b_1, b_2, b_3):
+    for b in bs:
         y = calculate_y(i_0, b, g_0, T, y_init)
         ax.plot(x, y, label=r'$b=$'+f"{b:.2f}")
     ax.legend()
     plt.show()
 
-Increasing the marginal propensity to consumer :math:`b` increases the
-path of output over time
+
+Increasing the marginal propensity to consume :math:`b` increases the
+path of output over time.
+
+Now we will compare the effects on output of increases in investment and government spending.
 
 .. code-block:: python3
 
-    x = np.arange(0, T+1)
-    y_0 = calculate_y(i_0, b, g_0, T, y_init)
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 10))
     fig.subplots_adjust(hspace=0.3)
+    
+    x = np.arange(0, T+1)
+    values = [0.3, 0.4]
 
-    # Changing initial investment:
-    i_1 = 0.4
-    y_1 = calculate_y(i_1, b, g_0, T, y_init)
-    ax1.set_title('An Increase in Investment on Output')
-    ax1.plot(x, y_0, label=r'$i=0.3$', linestyle='--')
-    ax1.plot(x, y_1, label=r'$i=0.4$')
-    ax1.legend()
-    ax1.set_ylabel('$y_t$')
-    ax1.set_xlabel('$t$')
+    for i in values:
+        y = calculate_y(i, b, g_0, T, y_init)
+        ax1.plot(x, y, label=f"i={i}")
+    for g in values:
+        y = calculate_y(i_0, b, g, T, y_init)
+        ax2.plot(x, y, label=f"g={g}")
 
-    # Changing government spending
-    g_1 = 0.4
-    y_1 = calculate_y(i_0, b, g_1, T, y_init)
-    ax2.set_title('An Increase in Government Spending on Output')
-    ax2.plot(x, y_0, label=r'$g=0.3$', linestyle='--')
-    ax2.plot(x, y_1, label=r'$g=0.4$')
-    ax2.legend()
-    ax2.set_ylabel('$y_t$')
-    ax2.set_xlabel('$t$')
+    axes = ax1, ax2
+    param_labels = "Investment", "Government Spending"
+    for ax, param in zip(axes, param_labels):
+        ax.set_title(f'An Increase in {param} on Output')
+        ax.legend(loc ="lower right")
+        ax.set_ylabel('$y_t$')
+        ax.set_xlabel('$t$')
     plt.show()
+
 
 Notice here, whether government spending increases from 0.3 to 0.4 or
 investment increases from 0.3 to 0.4, the shifts in the graphs are

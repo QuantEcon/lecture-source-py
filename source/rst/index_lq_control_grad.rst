@@ -20,6 +20,7 @@ LQ Control
     lqcontrol
     perm_income
     perm_income_cons
+    cons_news
     smoothing
     smoothing_tax
     robustness
@@ -27,4 +28,6 @@ LQ Control
     tax_smoothing_1
     tax_smoothing_2
     tax_smoothing_3
+    lq_inventories
+
     

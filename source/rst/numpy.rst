@@ -79,7 +79,7 @@ To create a NumPy array containing only zeros we use  `np.zeros <http://docs.sci
 NumPy arrays are somewhat like native Python lists, except that
 
 * Data *must be homogeneous* (all elements of the same type).
-* These types must be one of the data types (``dtypes``) provided by NumPy.
+* These types must be one of the `data types <https://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html>`_ (``dtypes``) provided by NumPy.
 
 The most important of these dtypes are:
 
@@ -653,8 +653,6 @@ You can also use ``np.vectorize`` to vectorize a given function
 
 .. code-block:: python3
 
-    def f(x): return 1 if x > 0 else 0
-
     f = np.vectorize(f)
     f(x)                # Passing the same vector x as in the previous example
 
@@ -828,7 +826,7 @@ Your exercise is to speed it up using NumPy, avoiding explicit loops
 
 * Hint: Use ``np.searchsorted`` and ``np.cumsum``
 
-If you can, implement the functionality as a class called ``discreteRV``, where
+If you can, implement the functionality as a class called ``DiscreteRV``, where
 
 * the data for an instance of the class is the vector of probabilities ``q``
 * the class has a ``draw()`` method, which returns one draw according to the algorithm described above
@@ -1000,7 +998,7 @@ from QuantEcon and added in a plot method
             """
             return np.mean(self.observations <= x)
 
-        def plot(self, a=None, b=None):
+        def plot(self, ax, a=None, b=None):
             """
             Plot the ecdf on the interval [a, b].
 
@@ -1022,13 +1020,14 @@ from QuantEcon and added in a plot method
             # === generate plot === #
             x_vals = np.linspace(a, b, num=100)
             f = np.vectorize(self.__call__)
-            plt.plot(x_vals, f(x_vals))
+            ax.plot(x_vals, f(x_vals))
             plt.show()
 
 Here's an example of usage
 
 .. code-block:: python3
 
+    fig, ax = plt.subplots()
     X = np.random.randn(1000)
     F = ECDF(X)
-    F.plot()
+    F.plot(ax)

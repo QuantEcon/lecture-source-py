@@ -14,7 +14,7 @@ How to Pay for a War: Part 3
 
 **Co-author**: `Sebastian Graves <https://github.com/sebgraves>`__
 
-In addition to what's in Anaconda, this lecture will need the following libraries:
+In addition to what's in Anaconda, this lecture deploys the quantecon library:
 
 .. code-block:: ipython
   :class: hide-output
@@ -39,7 +39,7 @@ Technically, Barro’s 1979 :cite:`Barro1979` model looks a lot like a consumpti
 Our generalizations of his 1979 model will also look
 like souped-up consumption-smoothing models.
 
-In this lecture, we try to capture the tax-smoothing problem of a
+In this lecture, we describe a  tax-smoothing problem of a
 government that faces **roll-over risk**.
 
 Let's start with some standard imports:
@@ -121,7 +121,7 @@ cheap (Our Riccati equations will discover this for us!).
 
 Thus, we must represent “roll-over risk” some other way.
 
-A Better Representation of Roll-Over Risk
+Better Representation of Roll-Over Risk
 =========================================
 
 To force the government to set :math:`b_{t,t+1} = 0`, we can instead

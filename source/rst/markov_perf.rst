@@ -60,7 +60,7 @@ Background
 
 Markov perfect equilibrium is a refinement of the concept of Nash equilibrium.
 
-It is used to study settings where multiple decision-makers interact non-cooperatively over time, each seeking to pursue its own objective.
+It is used to study settings where multiple decision-makers interact non-cooperatively over time, each pursuing its own objective.
 
 The agents in the model face a common state vector, the time path of which is influenced by -- and influences -- their decisions.
 
@@ -83,7 +83,7 @@ Example: A Duopoly Model
 ------------------------
 
 
-Two firms are the only producers of a good the demand for which is governed by a linear inverse demand function
+Two firms are the only producers of a good, the demand for which is governed by a linear inverse demand function
 
 .. math::
     :label: game2
@@ -137,9 +137,9 @@ Given :math:`f_{-i}`, the Bellman equation of firm :math:`i` is
 
 **Definition**  A *Markov perfect equilibrium* of the duopoly model is a pair of value functions :math:`(v_1, v_2)` and a pair of policy functions :math:`(f_1, f_2)` such that, for each :math:`i \in \{1, 2\}` and each possible state,
 
-* The value function :math:`v_i` satisfies the Bellman equation :eq:`game4`.
+* The value function :math:`v_i` satisfies  Bellman equation :eq:`game4`.
 
-* The maximizer on the right side of :eq:`game4` is equal to :math:`f_i(q_i, q_{-i})`.
+* The maximizer on the right side of :eq:`game4`  equals :math:`f_i(q_i, q_{-i})`.
 
 
 The adjective "Markov" denotes that the equilibrium decision rules depend only on the current values of the state variables, not other parts of their histories.
@@ -169,7 +169,7 @@ Imagine constructing the iterates
 
 These iterations can be challenging to implement computationally.
 
-However, they simplify for the case in which the one-period payoff functions are quadratic and the transition laws are linear --- which takes us to our next topic.
+However, they simplify for the case in which  one-period payoff functions are quadratic and  transition laws are linear --- which takes us to our next topic.
 
 
 
@@ -275,7 +275,7 @@ where
 
 This is an LQ dynamic programming problem that can be solved by working backwards.
 
-The policy rule that solves this problem is
+Decision rules that solve this problem are
 
 .. math::
     :label: orig-3
@@ -297,7 +297,7 @@ where :math:`P_{1t}` solves the matrix Riccati difference equation
     \beta \Lambda_{1t}' P_{1t+1} \Lambda_{1t}
 
 
-Similarly, the policy that solves player 2's problem is
+Similarly, decision rules that solve player 2's problem are
 
 .. math::
     :label: orig-5
@@ -318,7 +318,7 @@ where :math:`P_{2t}` solves
     \beta \Lambda_{2t}' P_{2t+1} \Lambda_{2t}
 
 
-Here in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`.
+Here, in all cases :math:`t = t_0, \ldots, t_1 - 1` and the terminal conditions are :math:`P_{it_1} = 0`.
 
 The solution procedure is to use equations :eq:`orig-3`, :eq:`orig-4`, :eq:`orig-5`, and :eq:`orig-6`, and "work backwards" from time :math:`t_1 - 1`.
 

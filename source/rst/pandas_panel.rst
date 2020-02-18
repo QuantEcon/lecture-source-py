@@ -54,17 +54,12 @@ Slicing and Reshaping Data
 We will read in a dataset from the OECD of real minimum wages in 32
 countries and assign it to ``realwage``.
 
-.. only:: html
+The dataset can be accessed with the following link:
 
-    The dataset ``pandas_panel/realwage.csv`` can be downloaded
-    :download:`here <_static/lecture_specific/pandas_panel/realwage.csv>`.
+.. code-block:: python3
+   
+   url1 = 'https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas_panel/realwage.csv'
 
-.. only:: latex
-
-    The dataset ``pandas_panel/realwage.csv`` can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas_panel/realwage.csv>`__.
-
-Make sure the file is in your current working directory
 
 .. code-block:: python3
 
@@ -76,7 +71,7 @@ Make sure the file is in your current working directory
     # Reduce decimal points to 2
     pd.options.display.float_format = '{:,.2f}'.format
 
-    realwage = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas_panel/realwage.csv')
+    realwage = pd.read_csv(url1)
 
 
 Let's have a look at what we've got to work with
@@ -163,8 +158,6 @@ Selecting one year and stacking the two lower levels of the
 
     realwage['2015'].stack(level=(1, 2)).transpose().head()
 
-
-
 For the rest of lecture, we will work with a dataframe of the hourly
 real minimum wages across countries and time, measured in 2015 US
 dollars.
@@ -191,19 +184,16 @@ Using country information from
 the continent of each country to ``realwage_f`` with the ``merge``
 function.
 
-.. only:: html
-
-    The CSV file can be found in ``pandas_panel/countries.csv`` and can be downloaded
-    :download:`here <_static/lecture_specific/pandas_panel/countries.csv>`.
-
-.. only:: latex
-
-    The CSV file can be found in ``pandas_panel/countries.csv`` and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas_panel/countries.csv>`__.
+The dataset can be accessed with the following link:
 
 .. code-block:: python3
 
-    worlddata = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas_panel/countries.csv', sep=';')
+    url2 = 'https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas_panel/countries.csv'
+
+
+.. code-block:: python3
+
+    worlddata = pd.read_csv(url2, sep=';')
     worlddata.head()
 
 
@@ -545,19 +535,14 @@ Exercise 1
 In these exercises, you'll work with a dataset of employment rates
 in Europe by age and sex from `Eurostat <http://ec.europa.eu/eurostat/data/database>`__.
 
-.. only:: html
+The dataset can be accessed with the following link:
 
-    The dataset ``pandas_panel/employ.csv`` can be downloaded
-    :download:`here <_static/lecture_specific/pandas_panel/employ.csv>`.
+.. code-block:: python3
 
-.. only:: latex
-
-    The dataset ``pandas_panel/employ.csv`` can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas_panel/employ.csv>`__.
+    url3 = 'https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas_panel/employ.csv'
 
 Reading in the CSV file returns a panel dataset in long format. Use ``.pivot_table()`` to construct
 a wide format dataframe with a ``MultiIndex`` in the columns.
-
 
 
 Start off by exploring the dataframe and the variables available in the
@@ -586,7 +571,7 @@ Exercise 1
 
 .. code-block:: python3
 
-    employ = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas_panel/employ.csv')
+    employ = pd.read_csv(url3)
     employ = employ.pivot_table(values='Value',
                                 index=['DATE'],
                                 columns=['UNIT','AGE', 'SEX', 'INDIC_EM', 'GEO'])

@@ -14,6 +14,7 @@
 In addition to what’s in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
+    :class: hide-output
 
     !pip install --upgrade pandas-datareader
 
@@ -25,7 +26,7 @@ Overview
 Its popularity has surged in recent years, coincident with the rise
 of fields such as data science and machine learning.
 
-Here's a popularity comparison over time against STATA and SAS, courtesy of Stack Overflow Trends
+Here's a popularity comparison over time against STATA, SAS, and `dplyr <https://dplyr.tidyverse.org/>`_ courtesy of Stack Overflow Trends
 
 .. figure:: /_static/lecture_specific/pandas/pandas_vs_rest.png
 
@@ -171,12 +172,12 @@ Here's the content of ``test_pwt.csv``
     "Uruguay","URY","2000","3219.793","12.099591667","25255.961693","78.978740282","5.108067988"
 
 
-Supposing you have this data saved as `test_pwt.csv` in the present working directory (type `%pwd` in Jupyter to see what this is), it can be read in as follows:
+Supposing you have this data saved as ``test_pwt.csv`` in the present working directory (type ``%pwd`` in Jupyter to see what this is), it can be read in as follows:
 
 
 .. code-block:: python3
 
-    df = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas/data/test_pwt.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas/data/test_pwt.csv')
     type(df)
 
 .. code-block:: python3
@@ -208,7 +209,7 @@ To select rows and columns using a mixture of integers and labels, the ``loc`` a
 
     df.loc[df.index[2:5], ['country', 'tcgdp']]
 
-Let's imagine that we're only interested in population and total GDP (``tcgdp``).
+Let's imagine that we're only interested in population (``POP``) and total GDP (``tcgdp``).
 
 One way to strip the data frame ``df`` down to only these variables is to overwrite the dataframe using the selection method described above
 
@@ -253,7 +254,9 @@ For example, we can easily generate a bar plot of GDP per capita
 
 .. code-block:: python3
 
-    df['GDP percap'].plot(kind='bar')
+    ax = df['GDP percap'].plot(kind='bar')
+    ax.set_xlabel('country', fontsize=12)
+    ax.set_ylabel('GDP per capita', fontsize=12)
     plt.show()
 
 At the moment the data frame is ordered alphabetically on the countries---let's change it to GDP per capita
@@ -267,8 +270,10 @@ Plotting as before now yields
 
 .. code-block:: python3
 
-  df['GDP percap'].plot(kind='bar')
-  plt.show()
+    ax = df['GDP percap'].plot(kind='bar')
+    ax.set_xlabel('country', fontsize=12)
+    ax.set_ylabel('GDP per capita', fontsize=12)
+    plt.show()
 
 
 
@@ -375,12 +380,14 @@ We can also plot the unemployment rate from 2006 to 2012 as follows
 
 .. code-block:: python3
 
-    data['2006':'2012'].plot()
+    ax = data['2006':'2012'].plot(title='US Unemployment Rate', legend=False)
+    ax.set_xlabel('year', fontsize=12)
+    ax.set_ylabel('%', fontsize=12)
     plt.show()
 
-Note that pandas offers many other file type alternatives. 
+Note that pandas offers many other file type alternatives.
 
-Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server. 
+Pandas has `a wide variety <https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html>`_ of top-level methods that we can use to read, excel, json, parquet or plug straight into a database server.
 
 
 Using :index:`pandas_datareader` to Access Data
@@ -389,9 +396,9 @@ Using :index:`pandas_datareader` to Access Data
 .. index::
     single: Python; pandas-datareader
 
-The maker of pandas has also authored a library called `pandas_datareader` that gives programmatic access to many data sources straight from the Jupyter notebook. 
+The maker of pandas has also authored a library called `pandas_datareader` that gives programmatic access to many data sources straight from the Jupyter notebook.
 
-While some sources require an access key, many of the most important (e.g., FRED, OECD, EUROSTAT and the World Bank) are free to use. 
+While some sources require an access key, many of the most important (e.g., FRED, `OECD <https://data.oecd.org/>`_, `EUROSTAT <https://ec.europa.eu/eurostat/data/database>`_ and the World Bank) are free to use.
 
 For now let's work through one example of downloading and plotting data --- this
 time from the World Bank.
@@ -410,6 +417,7 @@ The next code example fetches the data for you and plots time series for the US 
     ind = govt_debt.index.droplevel(-1)
     govt_debt.index = ind
     ax = govt_debt.plot(lw=2)
+    ax.set_xlabel('year', fontsize=12)
     plt.title("Government Debt to GDP (%)")
     plt.show()
 
@@ -444,20 +452,16 @@ Write a program to calculate the percentage price change over 2013 for the follo
                    'PTR': 'PetroChina'}
 
 
-.. only:: html
+Here's the first line of the program
 
-    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    :download:`here <_static/lecture_specific/pandas/data/ticker_data.csv>`.
+.. code-block:: python3
 
-.. only:: latex
+    ticker = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas/data/ticker_data.csv')
 
-    A dataset of daily closing prices for the above firms can be found in ``pandas/data/ticker_data.csv`` and can be downloaded
-    `here <https://lectures.quantecon.org/_downloads/pandas/data/ticker_data.csv>`__.
-
-Plot the result as a bar graph like this one
+Complete the program to plot the result as a bar graph like this one
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
-
+   :scale: 90 %
 
 Solutions
 =========
@@ -470,7 +474,6 @@ Exercise 1
 
 .. code-block:: python3
 
-    ticker = pd.read_csv('https://github.com/QuantEcon/QuantEcon.lectures.code/raw/master/pandas/data/ticker_data.csv')
     ticker.set_index('Date', inplace=True)
 
     ticker_list = {'INTC': 'Intel',
@@ -496,6 +499,8 @@ Exercise 1
 
     price_change.sort_values(inplace=True)
     fig, ax = plt.subplots(figsize=(10,8))
+    ax.set_xlabel('stock', fontsize=12)
+    ax.set_ylabel('percentage change in price', fontsize=12)
     price_change.plot(kind='bar', ax=ax)
     plt.show()
 

@@ -24,3 +24,4 @@ tools and techniques
     complex_and_trig
     orth_proj
     lln_clt
+    heavy_tails

@@ -96,9 +96,7 @@ As long as you're using Python 3.x, division of integers yields floats
     1 / 2
 
 
-But be careful! If you're still using Python 2.x, division of two integers returns only the integer part.
-
-For integer division in Python 3.x use this syntax:
+To return only the integer part of the division of two integers in Python 3.x, use this syntax:
 
 .. code-block:: python3
 
@@ -367,6 +365,8 @@ To give an example, let's write the file `us_cities.txt`, which lists US cities 
     dallas: 1223229
 
 
+Here `%%file` is an `IPython cell magic <https://ipython.readthedocs.io/en/stable/interactive/magics.html#cell-magics>`_.
+
 Suppose that we want to make the information more readable, by capitalizing names and adding commas to mark thousands.
 
 The program below reads the data in and makes the conversion:
@@ -389,7 +389,7 @@ the details of which can be left till later.
 
 The interesting part of this program for us is line 2, which shows that
 
-#. The file object ``f`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop.
+#. The file object ``data_file`` is iterable, in the sense that it can be placed to the right of ``in`` within a ``for`` loop.
 #. Iteration steps through each line in the file.
 
 This leads to the clean, convenient syntax shown in our program.
@@ -453,14 +453,6 @@ To understand what ``enumerate()`` does, consider the following example
     letter_list = ['a', 'b', 'c']
     for index, letter in enumerate(letter_list):
         print(f"letter_list[{index}] = '{letter}'")
-
-The output of the loop is
-
-.. code-block:: python3
-
-    letter_list[0] = 'a'
-    letter_list[1] = 'b'
-    letter_list[2] = 'c'
 
 
 
@@ -625,7 +617,7 @@ Two more useful built-in functions are ``any()`` and ``all()``
     any(bools)  # False if all are False and True otherwise
 
 
-The full list of Python built-ins is `here <https://docs.python.org/2/library/functions.html>`_.
+The full list of Python built-ins is `here <https://docs.python.org/library/functions.html>`_.
 
 Now let's talk some more about user-defined functions constructed using the keyword ``def``.
 

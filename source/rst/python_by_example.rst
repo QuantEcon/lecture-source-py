@@ -21,7 +21,7 @@ But don't give up if you have none---you are not excluded.
 
 You just need to cover a few of the fundamentals of programming before returning here.
 
-Good references for first time programmers include:
+Good references for first-time programmers include:
 
 * The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_.
 
@@ -130,7 +130,7 @@ Why all the Imports?
 
 Remember that Python is a general-purpose language.
 
-The core language is quite small so it's easy to learn and maintain.
+The core language is quite small, so it's easy to learn and maintain.
 
 When you want to do something interesting with Python, you almost always need
 to import additional functionality.
@@ -251,9 +251,7 @@ Here's a version that illustrates loops and Python lists.
 
 In brief,
 
-* The first pair of lines ``import`` functionality as before.
-
-* The next line sets the desired length of the time series.
+* The first line sets the desired length of the time series.
 
 * The next line creates an empty *list* called ``ϵ_values`` that will store the :math:`\epsilon_t` values as we generate them.
 
@@ -284,7 +282,7 @@ For example, try
     x = [10, 'foo', False]  # We can include heterogeneous data inside a list
     type(x)
 
-The first element of ``x`` is an `integer <https://en.wikipedia.org/wiki/Integer_%28computer_science%29>`_, the next is a `string <https://en.wikipedia.org/wiki/String_%28computer_science%29>`_ and the third is a `Boolean value <https://en.wikipedia.org/wiki/Boolean_data_type>`_.
+The first element of ``x`` is an `integer <https://en.wikipedia.org/wiki/Integer_%28computer_science%29>`_, the next is a `string <https://en.wikipedia.org/wiki/String_%28computer_science%29>`_, and the third is a `Boolean value <https://en.wikipedia.org/wiki/Boolean_data_type>`_.
 
 When adding a value to a list, we can use the syntax ``list_name.append(some_value)``
 
@@ -426,9 +424,9 @@ One small "gotcha" here is the mixing of tabs and spaces, which often leads to e
 
 You can use your ``Tab`` key to insert 4 spaces, but you need to make sure it's configured to do so.
 
-If you are using a Jupyter notebook you will have no problems here.
+If you are using a Jupyter notebook, you will have no problems here.
 
-Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- trying searching online.
+Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- try searching online.
 
 
 While Loops
@@ -531,7 +529,7 @@ Our function ``generate_data()`` is rather limited.
 
 Let's make it slightly more useful by giving it the ability to return either standard normals or uniform random variables on :math:`(0, 1)` as required.
 
-This is achieved the next piece of code.
+This is achieved in the next piece of code.
 
 
 .. _funcloopprog2:
@@ -622,7 +620,7 @@ List Comprehensions
 
 We can also simplify the code for generating the list of random draws considerably by using something called a *list comprehension*.
 
-List comprehensions are an elegant Python tool for creating lists.
+`List comprehensions <https://en.wikipedia.org/wiki/List_comprehension>`_ are an elegant Python tool for creating lists.
 
 Consider the following example, where the list comprehension is on the
 right-hand side of the second line
@@ -704,7 +702,7 @@ Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then th
 Exercise 3
 ----------
 
-Compute an approximation to :math:`\pi` using Monte Carlo.  Use no imports besides
+Compute an approximation to :math:`\pi` using `Monte Carlo <https://en.wikipedia.org/wiki/Monte_Carlo_method>`_.  Use no imports besides
 
 .. code-block:: python3
 
@@ -714,7 +712,7 @@ Your hints are as follows:
 
 * If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`.
 * If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`.
-* For a circle, area = pi * radius^2.
+* For a circle, :math:`area = \pi * radius^2`.
 
 
 
@@ -727,7 +725,7 @@ Exercise 4
 Write a program that prints one realization of the following random device:
 
 * Flip an unbiased coin 10 times.
-* If 3 consecutive heads occur one or more times within this sequence, pay one dollar.
+* If a head occurs three or more times within this sequence, pay one dollar.
 * If not, pay nothing.
 
 Use no import besides ``from numpy.random import uniform``.
@@ -860,11 +858,11 @@ If we know :math:`\pi` then we can compute :math:`A` via
 But here the point is to compute :math:`\pi`, which we can do by
 :math:`\pi = A / r^2`.
 
-Summary: If we can estimate the area of the unit circle, then dividing
+Summary: If we can estimate the area of a circle with diameter 1, then dividing
 by :math:`r^2 = (1/2)^2 = 1/4` gives an estimate of :math:`\pi`.
 
 We estimate the area by sampling bivariate uniforms and looking at the
-fraction that falls into the unit circle
+fraction that falls into the circle.
 
 .. code-block:: python3
 
@@ -933,6 +931,6 @@ Exercise 6
         for i in range(ts_length):
             x_values.append(current_x)
             current_x = α * current_x + np.random.randn()
-        plt.plot(x_values, label=f'α = {α}')
+        plt.plot(x_values, label=f'$\\alpha = {α}$')
     plt.legend()
     plt.show()

@@ -434,9 +434,11 @@ Unfortunately, the mapping :math:`\Phi` is not a contraction.
 
 In particular, there is no guarantee that direct iterations on :math:`\Phi` converge [#fn_im]_.
 
+Furthermore, there are examples in which these iterations diverge.
+
 Fortunately, there is another method that works here.
 
-The method exploits a general connection between equilibrium and Pareto optimality expressed in
+The method exploits a  connection between equilibrium and Pareto optimality expressed in
 the fundamental theorems of welfare economics (see, e.g, :cite:`MCWG1995`).
 
 Lucas and Prescott :cite:`LucasPrescott1971` used this method to construct a rational expectations equilibrium.

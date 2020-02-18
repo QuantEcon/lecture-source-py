@@ -944,10 +944,8 @@ solving a related undiscounted problem.
 Implementation
 ==============
 
-Code that computes solutions to the LQ problem using the methods described
-above can be found in file `control_and_filter.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/lu_tricks/control_and_filter.py>`__.
-
-Here's how it looks
+Here's the code that computes solutions to the LQ problem using the methods described
+above.
 
 .. literalinclude:: /_static/lecture_specific/lu_tricks/control_and_filter.py
 

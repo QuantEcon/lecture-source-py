@@ -15,10 +15,10 @@ Overview
 In this lecture we give a quick introduction to discrete time dynamics in one
 dimension.
 
-This means that the state of the system is described by a single variable.
+In one-dimensional models, the state of the system is described by a single variable.
 
-Although most interesting dynamic models need two or more state variables, the
-one dimensional setting is a good place to learn the foundations and build
+Although most interesting dynamic models have two or more state variables, the
+one-dimensional setting is a good place to learn the foundations of dynamics and build
 intuition.
 
 Let's start with some standard imports:
@@ -38,7 +38,7 @@ This section sets out the objects of interest and the kinds of properties we stu
 Difference Equations
 --------------------
 
-A **time homgeneous first order difference equation** is an equation of the
+A **time homogeneous first order difference equation** is an equation of the
 form
 
 .. math::
@@ -54,12 +54,10 @@ In the definition,
 
 * time homogeneity means that :math:`g` is the same at each time :math:`t`
 
-* first order means dependence on only one lag (:math:`x_{t+1} = g(x_t,
-  x_{t-1})$` is a second order difference equation and so on).
+* first order means dependence on only one lag (i.e., earlier states such as :math:`x_{t-1}` do not enter into :eq:`sdsod`).
 
 
-If :math:`x_0 \in S` is given, then :eq:`sdsod` recursively defines a sequence
-given by 
+If :math:`x_0 \in S` is given, then :eq:`sdsod` recursively defines the sequence
 
 .. math::
     :label: sdstraj
@@ -71,14 +69,13 @@ given by
 
 This sequence is called the **trajectory** of :math:`x_0` under :math:`g`.
 
-If we set :math:`g^n := n` compositions of :math:`g` with itself, then we can
-write the trajectory more simply as :math:`x_t = g^t(x_0)` for :math:`t \geq 0`.
+If we define :math:`g^n` to be :math:`n` compositions of :math:`g` with itself, then we can write the trajectory more simply as :math:`x_t = g^t(x_0)` for :math:`t \geq 0`.
 
 
 Example: A Linear Model
 -----------------------
 
-One easy to work with example is the **linear difference equation**
+One simple example is the **linear difference equation**
 
 .. math::
     x_{t+1} = a x_t + b, \qquad S = \mathbb R
@@ -205,7 +202,7 @@ We will see examples below where the converse is not true.
 Graphical Analysis
 ==================
 
-We saw above that, for nonlinear models, analyzing dynamics is nontrivial.
+As we saw above, analyzing the dynamics for nonlinear models is nontrivial.
 
 There is no single way to tackle all nonlinear models.
 
@@ -307,7 +304,7 @@ plots.
         ax.set_xticks(range(ts_length))
         plt.show()
 
-Let's create a 45 degree diagram for the Solow model at a fixed set of
+Let's create a 45 degree diagram for the Solow model with a fixed set of
 parameters
 
 .. code-block:: ipython
@@ -353,7 +350,7 @@ For the Solow model, there are two steady states when :math:`S = \mathbb R_+ =
 
 * the unique positive number such that :math:`k = s z k^{\alpha} + (1 - \delta) k`.
 
-A bit of algebra shows that, in the second case, the steady state is
+By using some algebra, we can show that in the second case, the steady state is
 
 .. math::
 
@@ -390,7 +387,7 @@ Here's a somewhat longer view:
     ts_plot(g, xmin, xmax, k0, ts_length=20, var='k')
 
 
-When capital stock is higher than the unique positive steady state we see that
+When capital stock is higher than the unique positive steady state, we see that
 it declines:
 
 .. code-block:: ipython
@@ -443,7 +440,7 @@ Here is the corresponding time series plot.
     ts_plot(g, xmin, xmax, x0, ts_length=6)
 
 
-The irregularity is even clearer over a longer horizon:
+The irregularity is even clearer over a longer time horizon:
 
 .. code-block:: ipython
 
@@ -529,7 +526,7 @@ state.
 
     ts_plot(g, xmin, xmax, x0, ts_length=10)
 
-Once again we have convergence to the steady state but the nature of
+Once again, we have convergence to the steady state but the nature of
 convergence differs.
 
 In particular, the time series jumps from above the steady state to below it
