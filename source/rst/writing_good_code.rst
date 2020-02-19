@@ -439,7 +439,7 @@ Here's one solution, that uses a class:
 
     class Equilibrium:
         
-        def __init__(self, α=0.12, β=1, γ=1, δ=1):
+        def __init__(self, α=0.1, β=1, γ=1, δ=1):
             self.α, self.β, self.γ, self.δ = α, β, γ, δ
     
         def qs(self, p):
@@ -492,7 +492,7 @@ parameters, we don't need to repeat ourselves:
 
 .. code:: ipython3
 
-    eq.α = 0.12
+    eq.γ = 1.25
 
 .. code:: ipython3
 
