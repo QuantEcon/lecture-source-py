@@ -157,7 +157,7 @@ Here are some basic precepts.
 Don't Use Magic Numbers
 -----------------------
 
-If you look at the code above, you'll see numbers like 50 and 49 and 3 scattered through the code.
+If you look at the code above, you'll see numbers like ``50`` and ``49`` and ``3`` scattered through the code.
 
 These kinds of numeric literals in the body of your code are sometimes called "magic numbers".
 
@@ -166,9 +166,9 @@ This is not a compliment.
 While numeric literals are not all evil, the numbers shown in the program above
 should certainly be replaced by named constants.
 
-For example, the code above could declare the variable `time_series_length = 50`.
+For example, the code above could declare the variable ``time_series_length = 50``.
 
-Then in the loops, 49 should be replaced by `time_series_length - 1`.
+Then in the loops, ``49`` should be replaced by ``time_series_length - 1``.
 
 The advantages are:
 
