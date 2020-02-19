@@ -34,8 +34,7 @@ For example, outputs, prices, and dividends typically display  irregular but per
 
 Asymptotic stationarity and ergodicity are key assumptions needed to make it possible to learn by applying statistical methods.
 
-Are there ways to model  time series having persistent growth that still enables statistical learning based on a law of large number for
-an asymptotically stationary and ergodic process?
+Are there ways to model time series that have persistent growth that still enable statistical learning based on a law of large numbers for an asymptotically stationary and ergodic process?
 
 The answer provided by Hansen and Scheinkman :cite:`hansen2009long` is yes.
 
@@ -55,7 +54,7 @@ Hansen and Sargent :cite:`hansen2008robustness` (chs. 5 and 8) describe discrete
 
 In this lecture, we describe both  additive functionals and multiplicative functionals.
 
-We also describe  and compute  decompositions of additive and multiplicative processes into four components
+We also describe and compute decompositions of additive and multiplicative processes into four components:
 
 #. a **constant**
 
@@ -267,13 +266,14 @@ All of these objects are computed using the code below
 .. _amf_lss:
 
 .. code-block:: python3
-
+    
     """ 
     @authors: Chase Coleman, Balint Szoke, Tom Sargent
 
     """
 
     class AMF_LSS_VAR:
+
         """
         This class transforms an additive (multiplicative)
         functional into a QuantEcon linear state space system.
@@ -454,11 +454,11 @@ All of these objects are computed using the code below
                 for ii in range(nm):
                     li, ui = ii*2, (ii+1)*2
                     madd_dist = norm(ymeans[nx+nm+ii],
-                                     np.sqrt(yvar[nx+nm+ii, nx+nm+ii]))
+                                    np.sqrt(yvar[nx+nm+ii, nx+nm+ii]))
                     mbounds[li:ui, t] = madd_dist.ppf([0.01, .99])
 
                     sadd_dist = norm(ymeans[nx+2*nm+ii],
-                                     np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii]))
+                                    np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii]))
                     sbounds[li:ui, t] = sadd_dist.ppf([0.01, .99])
 
             # Pull out paths
@@ -520,21 +520,19 @@ All of these objects are computed using the code below
                 # Lower and upper bounds - for each multiplicative functional
                 for ii in range(nm):
                     li, ui = ii*2, (ii+1)*2
-                    Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])), 
-                                    scale=np.asscalar(np.exp(ymeans[nx+nm+ii] \
+                    Mdist = lognorm(np.sqrt(yvar[nx+nm+ii, nx+nm+ii]).item(),
+                                    scale=np.exp(ymeans[nx+nm+ii] \
                                                             - t * (.5)
                                                             * np.expand_dims(
                                                                 np.diag(H @ H.T),
                                                                 1
                                                                 )[ii]
-                                                            )
-                                                     )
+                                                            ).item()
+                                                    
                                     )
-                    Sdist = lognorm(np.asscalar(np.sqrt(yvar[nx+2*nm+ii,
-                                                        nx+2*nm+ii])),
-                                    scale = np.asscalar(
-                                                np.exp(-ymeans[nx+2*nm+ii])
-                                                )
+                    Sdist = lognorm(np.sqrt(yvar[nx+2*nm+ii,
+                                                        nx+2*nm+ii]).item(),
+                                    scale = np.exp(-ymeans[nx+2*nm+ii]).item()            
                                     )
                     mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
                     sbounds_mult[li:ui, t] = Sdist.ppf([.01, .99])
@@ -555,7 +553,7 @@ All of these objects are computed using the code below
                                                         + np.arange(T)*(.5)
                                                         * np.expand_dims(np.diag(H
                                                                             @ H.T),
-                                                                         1)[ii]
+                                                                        1)[ii]
                                                         )
 
             mult_figs = []
@@ -601,14 +599,13 @@ All of these objects are computed using the code below
                 # Lower and upper bounds - for each functional
                 for ii in range(nm):
                     li, ui = ii*2, (ii+1)*2
-                    Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])),
-                                    scale=np.asscalar( np.exp(ymeans[nx+nm+ii] \
-                                                              - t * (.5)
-                                                              * np.expand_dims(
+                    Mdist = lognorm(np.sqrt(yvar[nx+nm+ii, nx+nm+ii]).item(),
+                                    scale= np.exp(ymeans[nx+nm+ii] \
+                                                            - t * (.5)
+                                                            * np.expand_dims(
                                                                     np.diag(H @ H.T),
                                                                     1)[ii]
-                                                             )
-                                                     )
+                                                            ).item()          
                                     )
                     mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
 
