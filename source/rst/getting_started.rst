@@ -16,15 +16,13 @@ Overview
 
 In this lecture, you will learn how to
 
-#. get a Python environment up and running with all the necessary tools
+#. get a Python environment up and running 
 
 #. execute simple Python commands
 
 #. run a sample program
 
 #. install the code libraries that underpin these lectures
-
-
 
 
 
@@ -38,14 +36,14 @@ These lectures require the entire scientific programming ecosystem, which
 
 * the core installation doesn't provide
 
-* is painful to install one piece at a time
+* is painful to install one piece at a time.
 
 
-Hence the best approach for our purposes is to install a free Python distribution that contains
+Hence the best approach for our purposes is to install a Python distribution that contains
 
 #. the core Python language **and**
 
-#. the most popular scientific libraries
+#. compatible versions of the most popular scientific libraries.
 
 
 The best such distribution is `Anaconda <https://www.anaconda.com/what-is-anaconda/>`__.
@@ -58,7 +56,7 @@ Anaconda is
 
 * comprehensive
 
-* completely unrelated to the `Nicki Minaj song <https://www.youtube.com/watch?v=LDZX4ooRsWs>`_ of the same name
+* completely unrelated to the Nicki Minaj song of the same name
 
 Anaconda also comes with a great package management system to organize your code libraries.
 
@@ -79,16 +77,14 @@ Installing Anaconda
 
 
 
-Installing Anaconda is straightforward: `download <https://www.anaconda.com/download/>`_ the binary and follow the instructions.
-
+To instal Anaconda, `download <https://www.anaconda.com/download/>`_ the binary and follow the instructions.
 
 Important points:
 
-* Install the latest version.
+* Install the latest version!
 
-* If you are asked during the installation process whether you'd like to make Anaconda your default Python installation, say **yes**.
+* If you are asked during the installation process whether you'd like to make Anaconda your default Python installation, say yes.
 
-* Otherwise, you can accept all of the defaults.
 
 
 Updating Anaconda
@@ -105,6 +101,8 @@ As a practice run, please execute the following
 #. Type ``conda update anaconda``
 
 For more information on `conda`,  type `conda help` in a terminal.
+
+
 
 
 
@@ -132,17 +130,12 @@ They use  a *browser-based* interface to Python with
 
 * The option to mix in formatted text and mathematical expressions.
 
-
-
-Because of these possibilities, Jupyter is fast turning into a major player in the scientific computing ecosystem.
+Because of these features, Jupyter is now a major player in the scientific computing ecosystem.
 
 Here's an image showing execution of some code (borrowed from `here <http://matplotlib.org/examples/pylab_examples/hexbin_demo.html>`__) in a Jupyter notebook
 
 .. figure:: /_static/lecture_specific/getting_started/jp_demo.png
 
-
-
-You can find a nice example of the kinds of things you can do in a Jupyter notebook (such as include maths and text) `here <http://nbviewer.jupyter.org/github/QuantEcon/TaxSmoothing/blob/master/Tax_Smoothing_1.ipynb>`__.
 
 While Jupyter isn't the only way to code in Python, it's great for when you wish to
 
@@ -215,11 +208,11 @@ Let's start with how to edit code and run simple programs.
 Running Cells
 ^^^^^^^^^^^^^
 
-Notice that in the previous figure the cell is surrounded by a green border.
+Notice that, in the previous figure, the cell is surrounded by a green border.
 
 This means that the cell is in *edit mode*.
 
-As a result, you can type in Python code and it will appear in the cell.
+In this mode, whatever you type will appear in the cell with the flashing cursor.
 
 When you're ready to execute the code in a cell, hit ``Shift-Enter`` instead of the usual ``Enter``.
 
@@ -239,13 +232,13 @@ The two modes are
 
 #. Edit mode
 
-    * Indicated by a green border around one cell
+    * Indicated by a green border around one cell, plus a blinking cursor
 
     * Whatever you type appears as is in that cell
 
 #. Command mode
 
-    * The green border is replaced by a grey border
+    * The green border is replaced by a grey (or grey and blue) border 
 
     * Keystrokes are interpreted as commands --- for example, typing `b` adds a new cell below  the current one
 
@@ -256,27 +249,17 @@ To switch to
 
 * edit mode from command mode, hit ``Enter`` or click in a cell
 
-The modal behavior of the Jupyter notebook is a little tricky at first but very efficient when you get used to it.
+The modal behavior of the Jupyter notebook is very efficient when you get used to it.
 
 
-User Interface Tour
-^^^^^^^^^^^^^^^^^^^
-
-At this stage, we recommend you take your time to
-
-* look at the various options in the menus and see what they do
-
-* take the "user interface tour", which can be accessed through the help menu
 
 Inserting Unicode (e.g., Greek Letters)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Python 3 introduced support for `unicode characters <https://docs.python.org/3/howto/unicode.html>`__,
-allowing the use of characters such as :math:`\alpha` and :math:`\beta` in your code.
+Python supports `unicode<https://docs.python.org/3/howto/unicode.html>`__, allowing the use of characters such as :math:`\alpha` and :math:`\beta` as names in your code.
 
-Unicode characters can be typed quickly in Jupyter using the `tab` key.
+In a code cell, try typing ``\alpha`` and then hitting the `tab` key on your keyboard.
 
-Try creating a new code cell and typing ``\alpha``, then hitting the `tab` key on your keyboard.
 
 .. _a_test_program:
 
@@ -314,11 +297,7 @@ Don't worry about the details for now --- let's just run it and see what happens
 
 The easiest way to run this code is to copy and paste it into a cell in the notebook.
 
-(In older versions of Jupyter you might need to add the command ``%matplotlib inline`` before you generate the figure)
-
-
-
-
+Hopefully you will get a similar plot.
 
 
 Working with the Notebook
@@ -463,158 +442,68 @@ This can be installed by typing in Jupyter
     ``!pip install interpolation``
 
 
-Working with Files
-==================
-
-How does one run a locally saved Python file?
-
-There are a number of ways to do this but let's focus on methods using Jupyter notebooks.
-
-Option 1: Copy and Paste
-------------------------
-
-The steps are:
-
-#. Navigate to your file with your mouse/trackpad using a file browser.
-
-#. Click on your file to open it with a text editor.
-
-#. Copy and paste into a cell and ``Shift-Enter``.
 
 
-Option 2: Run
--------------
+Working with Python Files
+=========================
 
-Using the ``run`` command is often easier than copy and paste.
+So far we've focused on executing Python code entered into a Jupyter notebook
+cell.
 
-* For example, ``%run test.py`` will run the file ``test.py``.
+Traditionally most Python code has been run in a different way.
 
-(You might find that the ``%`` is unnecessary --- use ``%automagic`` to toggle the need for ``%``)
+Code is first saved in a text file on a local machine
 
-Note that Jupyter only looks for ``test.py`` in the present working directory (PWD).
+By convention, these text files have a ``.py`` extension.
 
-If ``test.py`` isn't in that directory, you will get an error.
-
-Let's look at a successful example, where we run a file ``test.py`` with contents::
-
-    for i in range(5):
-        print('foobar')
-
-Here's the notebook 
-
-.. figure:: /_static/lecture_specific/getting_started/nb_run.png
-
-Here
-
-* ``pwd`` asks Jupyter to show the PWD (or ``%pwd`` --- see the comment about automagic above)
-
-    * This is where Jupyter is going to look for files to run.
-
-    * Your output will look a bit different depending on your OS.
-
-* ``ls`` asks Jupyter to list files in the PWD (or ``%ls``)
-
-   * Note that ``test.py`` is there (on our computer, because we saved it there earlier).
-
-* ``cat test.py`` asks Jupyter to print the contents of ``test.py`` (or ``!type test.py`` on Windows)
-
-* ``run test.py`` runs the file and prints any output
+We can create an example of such a file as follows:
 
 
-But File X isn't in my PWD!
----------------------------
+.. code-block:: ipython
 
-If you're trying to run a file not in the present working directory, you'll get an error.
+    %%file foo.py
 
-To fix this error, you need to either
+    print("foobar")
 
-#. Shift the file into the PWD, or
-
-#. Change the PWD to where the file lives
-
-One way to achieve the first option is to use the ``Upload`` button
-
-*  The button is on the top level dashboard, where Jupyter first opened to
-
-*  Look where the pointer is in this picture
-
-.. figure:: /_static/lecture_specific/getting_started/nb_upload.png
-
-The second option can be achieved using the ``cd`` command
-
-    * On Windows it might look like this ``cd C:/Python27/Scripts/dir``
-
-    * On Linux / OSX it might look like this ``cd /home/user/scripts/dir``
-
-Note: You can type the first letter or two of each directory name and then use the tab key to expand.
-
-
-
-Loading Files
--------------
-
-It's often convenient to be able to see your code before you run it.
-
-In the following example, we execute ``load white_noise_plot.py`` where ``white_noise_plot.py`` is in the PWD.
-
-(Use ``%load`` if automagic is off)
-
-Now the code from the file appears in a cell ready to execute.
-
-.. figure:: /_static/lecture_specific/getting_started/nb_wntest2.png
-
-
-
-Saving Files
-------------
-
-To save the contents of a cell as file ``foo.py``
-
-* put ``%%file foo.py`` as the first line of the cell
-
-* ``Shift+Enter``
+This writes the line ``print("foobar")`` into a file called ``foo.py`` in the local directory.
 
 Here ``%%file`` is an example of a `cell magic <http://ipython.readthedocs.org/en/stable/interactive/magics.html#cell-magics>`_.
 
 
+Editing and Execution
+---------------------
+
+If you come across code saved in a ``*.py`` file, you'll need to consider the
+following questions:
+
+#. how should you execute it?
+
+#. How should you modify or edit it?
 
 
 
-
-
-
-
-Editors and IDEs
-================
-
-The preceding discussion covers most of what you need to know to interact with
-this website.
-
-However, as you start to write longer programs, you might want to experiment
-with your workflow.
-
-There are many different options and we mention them only in passing.
-
-
-
-
-:index:`JupyterLab`
--------------------
+Option 1: :index:`JupyterLab`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index::
     single: JupyterLab
 
+`JupyterLab <https://github.com/jupyterlab/jupyterlab>`__ is an integrated development environment built on top of Jupyter notebooks.
 
-`JupyterLab <https://github.com/jupyterlab/jupyterlab>`__ is an integrated development environment centered around Jupyter notebooks.
+With JupyterLab you can edit and run ``*.py`` files as well as Jupyter notebooks.
 
-It is available through Anaconda and will soon be made the default environment for Jupyter notebooks.
+To start JupyterLab, search for it in the applications menu or type ``jupyter-lab`` in a terminal.
 
-Reading the docs or searching for a recent YouTube video will give you more information.
+Now you should be able to open, edit and run the file ``foo.py`` created above by opening it in JupyterLab.
+
+Read the docs or search for a recent YouTube video to find more information.
 
 
+Option 2: Using a Text Editor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:index:`Text Editors`
----------------------
+One can also edit files using a text editor and then run them from within
+Jupyter notebooks.
 
 A text editor is an application that is specifically designed to work with text files --- such as Python programs.
 
@@ -626,67 +515,11 @@ A good text editor will provide
 
     * syntax highlighting, etc.
 
-Among the most popular are `Sublime Text <http://www.sublimetext.com/>`_ and `Atom <https://atom.io/>`_.
+Right now, an extremely popular text editor for coding is `VS Code <https://code.visualstudio.com/>`__.
 
-For a top-quality open source text editor with a steeper learning curve, try `Emacs <http://www.gnu.org/software/emacs/>`_.
+VS Code is easy to use out of the box and has many high quality extensions.
 
-If you want an outstanding free text editor and don't mind a seemingly vertical learning curve plus long days of pain and suffering while all your neural pathways are rewired, try `Vim <http://www.vim.org/>`_.
-
-
-
-
-Text Editors Plus IPython Shell
--------------------------------
-
-.. _ipython_shell:
-
-
-.. index::
-    single: IPython; Shell
-
-
-A text editor is for writing programs.
-
-To run them you can continue to use Jupyter as described above.
-
-Another option is to use the excellent `IPython shell <https://ipython.org>`_.
-
-To use an IPython shell, open up a terminal and type ``ipython``.
-
-You should see something like this
-
-.. figure:: /_static/lecture_specific/getting_started/ipython_shell.png
-
-The IPython shell has many of the features of the notebook: tab completion, color syntax, etc.
-
-It also has command history through the arrow key.
-
-The up arrow key brings previously typed commands to the prompt.
-
-This saves a lot of typing...
-
-Here's one set up, on a Linux box, with
-
-* a file being edited in  `Vim <http://www.vim.org/>`_
-
-* an IPython shell next to it, to run the file
-
-.. figure:: /_static/lecture_specific/getting_started/editing_vim.png
-
-
-
-IDEs
-----
-
-IDEs are Integrated Development Environments, which allow you to edit, execute
-and interact with code from an integrated environment.
-
-One of the most popular in recent times is VS Code, which is `now available
-via Anaconda <https://www.anaconda.com/blog/company-blog/vs-code-in-anaconda-distribution-5-1/>`__.
-
-We hear good things about VS Code --- please tell us about your experiences on
-`the forum <http://discourse.quantecon.org/>`__.
-
+Alternatively, if you want an outstanding free text editor and don't mind a seemingly vertical learning curve plus long days of pain and suffering while all your neural pathways are rewired, try `Vim <http://www.vim.org/>`_.
 
 
 
@@ -700,7 +533,8 @@ Exercises
 Exercise 1
 ----------
 
-If Jupyter is still running, quit by using ``Ctrl-C`` at the terminal where you started it.
+If Jupyter is still running, quit by using ``Ctrl-C`` at the terminal where
+you started it.
 
 Now launch again, but this time using ``jupyter notebook --no-browser``.
 
