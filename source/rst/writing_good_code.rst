@@ -269,15 +269,15 @@ Here's some code that reproduces the plot above with better coding style.
 
     from itertools import product
 
-    def plot_path(ax, αs, s_vals, δs, series_length=50):
+    def plot_path(ax, αs, s_vals, δs, time_series_length=50):
         """
         Add a time series plot to the axes ax for all given parameters.
         """
-        k = np.empty(series_length)
+        k = np.empty(time_series_length)
 
         for (α, s, δ) in product(αs, s_vals, δs):
             k[0] = 1
-            for t in range(series_length-1):
+            for t in range(time_series_length-1):
                 k[t+1] = s * k[t]**α + (1 - δ) * k[t]
             ax.plot(k, 'o-', label=rf"$\alpha = {α},\; s = {s},\; \delta = {δ}$")
 
