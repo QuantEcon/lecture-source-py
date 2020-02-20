@@ -961,7 +961,7 @@ and
     \tilde e(x) = \exp[g(x)] = \exp \bigl[ D' (I - A)^{-1} x \bigr]
 
 
-An instance of class `AMF_LSS_VAR <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/additive_functionals/amflss.py>`__ includes this associated multiplicative functional as an attribute.
+An instance of class ``AMF_LSS_VAR`` (:ref:`above <amf_lss>`)  includes this associated multiplicative functional as an attribute.
 
 Let's plot this multiplicative functional for our example.
 
@@ -1182,9 +1182,9 @@ We'll do this by formulating the additive functional as a linear state space mod
             return llh[-1]
 
 
-The heavy lifting is done inside the `AMF_LSS_VAR` class.
+The heavy lifting is done inside the ``AMF_LSS_VAR`` class.
 
-The following code adds some simple functions that make it straightforward to generate sample paths from an instance of `AMF_LSS_VAR`.
+The following code adds some simple functions that make it straightforward to generate sample paths from an instance of ``AMF_LSS_VAR``.
 
 
 
