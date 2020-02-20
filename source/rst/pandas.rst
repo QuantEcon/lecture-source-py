@@ -433,7 +433,14 @@ Exercises
 Exercise 1
 ----------
 
-Write a program to calculate the percentage price change over 2013 for the following shares
+With these imports:
+
+.. code-block:: python3
+
+    import datetime as dt 
+    from pandas_datareader import data
+
+Write a program to calculate the percentage price change over 2019 for the following shares:
 
 .. code-block:: python3
 
@@ -452,13 +459,29 @@ Write a program to calculate the percentage price change over 2013 for the follo
                    'PTR': 'PetroChina'}
 
 
-Here's the first line of the program
+Here's the first part of the program
 
 .. code-block:: python3
 
-    ticker = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-source-py/master/source/_static/lecture_specific/pandas/data/ticker_data.csv')
+    def read_data(ticker_list,
+              start=dt.datetime(2019, 1, 2),
+              end=dt.datetime(2019, 12, 31)): 
+        """
+        This function reads in closing price data from Yahoo 
+        for each tick in the ticker_list.
+        """
+        ticker = pd.DataFrame()
+    
+        for tick in ticker_list:
+            prices = data.DataReader(tick, 'yahoo', start, end)
+            closing_prices = prices['Close']
+            ticker[tick] = closing_prices
+        
+        return ticker
 
-Complete the program to plot the result as a bar graph like this one
+    ticker = read_data(ticker_list)
+
+Complete the program to plot the result as a bar graph like this one:
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
    :scale: 90 %
@@ -474,28 +497,9 @@ Exercise 1
 
 .. code-block:: python3
 
-    ticker.set_index('Date', inplace=True)
-
-    ticker_list = {'INTC': 'Intel',
-                   'MSFT': 'Microsoft',
-                   'IBM': 'IBM',
-                   'BHP': 'BHP',
-                   'TM': 'Toyota',
-                   'AAPL': 'Apple',
-                   'AMZN': 'Amazon',
-                   'BA': 'Boeing',
-                   'QCOM': 'Qualcomm',
-                   'KO': 'Coca-Cola',
-                   'GOOG': 'Google',
-                   'SNE': 'Sony',
-                   'PTR': 'PetroChina'}
-
-    price_change = pd.Series()
-
-    for tick in ticker_list:
-        change = 100 * (ticker.loc[ticker.index[-1], tick] - ticker.loc[ticker.index[0], tick]) / ticker.loc[ticker.index[0], tick]
-        name = ticker_list[tick]
-        price_change[name] = change
+    change = ticker.pct_change(periods=len(ticker)-1, axis='rows')*100
+    price_change = change.loc[change.index[-1]]
+    price_change = price_change.rename(index=ticker_list)
 
     price_change.sort_values(inplace=True)
     fig, ax = plt.subplots(figsize=(10,8))
