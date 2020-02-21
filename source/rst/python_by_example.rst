@@ -60,10 +60,10 @@ process :math:`\epsilon_0, \epsilon_1, \ldots, \epsilon_T`, where each draw :mat
 
 In other words, we want to generate figures that look something like this:
 
-
 .. figure:: /_static/lecture_specific/python_by_example/test_program_1_updated.png
 
 We'll do this in several different ways.
+
 
 Version 1
 =========
@@ -279,7 +279,7 @@ For example, try
 
 .. code-block:: python3
 
-    x = [10, 'foo', False]  # We can include heterogeneous data inside a list
+    x = [10, 'foo', False]  
     type(x)
 
 The first element of ``x`` is an `integer <https://en.wikipedia.org/wiki/Integer_%28computer_science%29>`_, the next is a `string <https://en.wikipedia.org/wiki/String_%28computer_science%29>`_, and the third is a `Boolean value <https://en.wikipedia.org/wiki/Boolean_data_type>`_.
@@ -300,8 +300,8 @@ Here ``append()`` is what's called a *method*, which is a function "attached to"
 
 We'll learn all about methods later on, but just to give you some idea,
 
-* Python objects such as lists, strings, etc. all have methods that are used
-  to manipulate the data contained in the object.
+* Python objects such as lists, strings, etc. all have methods that are used to manipulate the data contained in the object.
+
 * String objects have `string methods <https://docs.python.org/3/library/stdtypes.html#string-methods>`_, list objects have `list methods <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_, etc.
 
 Another useful list method is ``pop()``
@@ -415,18 +415,6 @@ On the other hand, it takes a bit of care to get right, so please remember:
 
 * The Python standard is 4 spaces, and that's what you should use.
 
-Tabs vs Spaces
-^^^^^^^^^^^^^^
-
-One small "gotcha" here is the mixing of tabs and spaces, which often leads to errors.
-
-(Important: Within text files, the internal representation of tabs and spaces is not the same)
-
-You can use your ``Tab`` key to insert 4 spaces, but you need to make sure it's configured to do so.
-
-If you are using a Jupyter notebook, you will have no problems here.
-
-Also, good text editors will allow you to configure the Tab key to insert spaces instead of tabs --- try searching online.
 
 
 While Loops
@@ -789,6 +777,7 @@ one for each of the cases :math:`\alpha=0`, :math:`\alpha=0.8` and :math:`\alpha
 In particular, you should produce (modulo randomness) a figure that looks as follows
 
 .. figure:: /_static/lecture_specific/python_by_example/pbe_ex2_fig.png
+    :scale: 80
 
 (The figure nicely illustrates how time series with the same one-step-ahead conditional volatilities, as these three processes have, can have very different unconditional volatilities.)
 
