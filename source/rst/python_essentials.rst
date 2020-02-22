@@ -8,7 +8,15 @@ Python Essentials
 
 .. contents:: :depth: 2
 
-In this lecture, we'll cover features of the language that are essential to reading and writing Python code.
+
+Overview
+========
+
+We have covered a lot of material quite quickly, with a focus on examples.
+
+Now let's cover some core features of Python in a more systematic way.
+
+This approach is less exciting but helps clear up some details.
 
 
 
@@ -18,9 +26,25 @@ Data Types
 .. index::
     single: Python; Data Types
 
+Computer programs typically keep track of a range of data types.
 
-We've already met several built-in Python data types, such as strings, integers, floats and lists.
+For example, ``1.5`` is a floating point number, while ``1`` is an integer.
 
+Programs need to distinguish between these two types for various reasons.
+
+One is that they are stored in memory differently.
+
+Another is that arithmetic operations are different 
+
+* For example, floating point arithmetic is implemented on most machines by a
+  specialized Floating Point Unit (FPU).
+
+In general, floats are more informative but arithmetic operations on integers
+are faster and more accurate.
+
+Python provides numerous other built-in Python data types, some of which we've already met
+
+* strings, lists, etc.
 
 Let's learn a bit more about them.
 
@@ -36,6 +60,12 @@ One simple data type is **Boolean values**, which can be either ``True`` or ``Fa
     x = True
     x
 
+We can check the type of any object in memory using the ``type()`` function.
+
+.. code-block:: python3
+
+    type(x)
+
 In the next line of code, the interpreter evaluates the expression on the right of `=` and binds `y` to this value
 
 .. code-block:: python3
@@ -46,7 +76,6 @@ In the next line of code, the interpreter evaluates the expression on the right 
 .. code-block:: python3
 
     type(y)
-
 
 
 In arithmetic expressions, ``True`` is converted to ``1`` and ``False`` is converted ``0``.
@@ -74,43 +103,15 @@ Here are some examples
     sum(bools)
 
 
-The two most common data types used to represent numbers are integers and floats
-
-.. code-block:: python3
-
-    a, b = 1, 2
-    c, d = 2.5, 10.0
-    type(a)
-
-.. code-block:: python3
-
-    type(c)
-
-Computers distinguish between the two because, while floats are more
-informative, arithmetic operations on integers are faster and more accurate.
-
-As long as you're using Python 3.x, division of integers yields floats
-
-.. code-block:: python3
-
-    1 / 2
-
-
-To return only the integer part of the division of two integers in Python 3.x, use this syntax:
-
-.. code-block:: python3
-
-    1 // 2
-
 Complex numbers are another primitive data type in Python
 
 .. code-block:: python3
 
     x = complex(1, 2)
     y = complex(2, 1)
-    x * y
+    print(x * y)
 
-
+    type(x)
 
 Containers
 ----------
@@ -456,6 +457,39 @@ To understand what ``enumerate()`` does, consider the following example
 
 
 
+List Comprehensions
+-------------------
+
+.. index::
+    single: Python; List comprehension
+
+We can also simplify the code for generating the list of random draws considerably by using something called a *list comprehension*.
+
+`List comprehensions <https://en.wikipedia.org/wiki/List_comprehension>`_ are an elegant Python tool for creating lists.
+
+Consider the following example, where the list comprehension is on the
+right-hand side of the second line
+
+.. code-block:: python3
+
+    animals = ['dog', 'cat', 'bird']
+    plurals = [animal + 's' for animal in animals]
+    plurals
+
+Here's another example
+
+.. code-block:: python3
+
+    range(8)
+
+.. code-block:: python3
+
+    doubles = [2 * x for x in range(8)]
+    doubles
+
+
+
+
 
 
 Comparisons and Logical Operators
@@ -578,61 +612,6 @@ More Functions
     single: Python; Functions
 
 Let's talk a bit more about functions, which are all important for good programming style.
-
-Python has a number of built-in functions that are available without ``import``.
-
-We have already met some
-
-
-.. code-block:: python3
-
-    max(19, 20)
-
-.. code-block:: python3
-
-    range(4)  # in python3 this returns a range iterator object
-
-.. code-block:: python3
-
-    list(range(4))  # will evaluate the range iterator and create a list
-
-.. code-block:: python3
-
-    str(22)
-
-.. code-block:: python3
-
-    type(22)
-
-
-Two more useful built-in functions are ``any()`` and ``all()``
-
-.. code-block:: python3
-
-    bools = False, True, True
-    all(bools)  # True if all are True and False otherwise
-
-.. code-block:: python3
-
-    any(bools)  # False if all are False and True otherwise
-
-
-The full list of Python built-ins is `here <https://docs.python.org/library/functions.html>`_.
-
-Now let's talk some more about user-defined functions constructed using the keyword ``def``.
-
-
-Why Write Functions?
---------------------
-
-User-defined functions are important for improving the clarity of your code by
-
-* separating different strands of logic
-* facilitating code reuse
-
-(Writing the same thing twice is `almost always a bad idea <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_)
-
-The basics of user-defined functions were discussed :ref:`here <user_defined_functions>`.
 
 
 The Flexibility of Python Functions
@@ -770,15 +749,14 @@ Keyword Arguments
 .. index::
     single: Python; keyword arguments
 
-If you did the exercises in the :ref:`previous lecture <python_by_example>`, you would have come across the statement
+In a :ref:`previous lecture <python_by_example>`, you came across the statement
 
 .. code-block:: python3
     :class: no-execute
 
     plt.plot(x, 'b-', label="white noise")
 
-In this call to Matplotlib's ``plot`` function, notice that the last
-argument is passed in ``name=argument`` syntax.
+In this call to Matplotlib's ``plot`` function, notice that the last argument is passed in ``name=argument`` syntax.
 
 This is called a *keyword argument*, with ``label`` being the keyword.
 
@@ -942,6 +920,26 @@ In particular, without using any imports, write a function ``linapprox`` that ta
 and returns the `piecewise linear interpolation <https://en.wikipedia.org/wiki/Linear_interpolation>`_ of ``f`` at ``x``, based on ``n`` evenly spaced grid points ``a = point[0] < point[1] < ... < point[n-1] = b``.
 
 Aim for clarity, not efficiency.
+
+
+
+Exercise 6
+----------
+
+
+Using list comprehension syntax, we can simplify the loop in the following
+code.
+
+.. code-block:: python3
+
+    import numpy as np
+
+    n = 100
+    ϵ_values = []
+    for i in range(n):
+        e = np.random.randn()
+        ϵ_values.append(e)
+
 
 
 
@@ -1127,3 +1125,17 @@ Exercise 5
         u, v = point - step, point
 
         return f(u) + (x - u) * (f(v) - f(u)) / (v - u)
+
+
+
+Exercise 6
+----------
+
+Here's one solution.
+
+.. code-block:: python3
+
+    n = 100
+    ϵ_values = [np.random.randn() for i in range(n)]
+
+
