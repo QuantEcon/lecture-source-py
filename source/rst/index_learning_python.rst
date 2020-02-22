@@ -21,6 +21,7 @@ This first part of the course provides a relatively fast-paced introduction to t
     about_py
     getting_started
     python_by_example
+    functions
     python_essentials
     oop_intro
     python_oop

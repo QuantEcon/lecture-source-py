@@ -256,7 +256,7 @@ The modal behavior of the Jupyter notebook is very efficient when you get used t
 Inserting Unicode (e.g., Greek Letters)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Python supports `unicode<https://docs.python.org/3/howto/unicode.html>`__, allowing the use of characters such as :math:`\alpha` and :math:`\beta` as names in your code.
+Python supports `unicode <https://docs.python.org/3/howto/unicode.html>`__, allowing the use of characters such as :math:`\alpha` and :math:`\beta` as names in your code.
 
 In a code cell, try typing ``\alpha`` and then hitting the `tab` key on your keyboard.
 
@@ -313,7 +313,7 @@ In the previous program, we executed the line ``import numpy as np``
 
 * NumPy is a numerical library we'll work with in depth.
 
-After this import command, functions in NumPy can be accessed with ``np.<function_name>`` type syntax.
+After this import command, functions in NumPy can be accessed with ``np.function_name`` type syntax.
 
 * For example, try ``np.random.randn(3)``.
 

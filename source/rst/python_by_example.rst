@@ -4,6 +4,8 @@
 
 .. highlight:: python3
 
+
+
 ***********************
 An Introductory Example
 ***********************
@@ -13,29 +15,12 @@ An Introductory Example
 
 .. contents:: :depth: 2
 
-We're now ready to start learning the Python language itself.
-
-The level of this and the next few lectures will suit those with some basic knowledge of programming.
-
-But don't give up if you have none---you are not excluded.
-
-You just need to cover a few of the fundamentals of programming before returning here.
-
-Good references for first-time programmers include:
-
-* The first 5 or 6 chapters of `How to Think Like a Computer Scientist <http://openbookproject.net/thinkcs/python/english3e>`_.
-
-* `Automate the Boring Stuff with Python <https://automatetheboringstuff.com/>`_.
-
-* The start of `Dive into Python 3 <http://www.diveintopython3.net/>`_.
-
-Note: These references offer help on installing Python but you should probably stick with the method on our :doc:`set up page <getting_started>`.
-
-You'll then have an outstanding scientific computing environment (Anaconda) and be ready to move on to the rest of our course.
 
 
 Overview
 ========
+
+We're now ready to start learning the Python language itself.
 
 In this lecture, we will write and then pick apart small Python programs.
 
@@ -43,11 +28,7 @@ The objective is to introduce you to basic Python syntax and data structures.
 
 Deeper concepts will be covered in later lectures.
 
-Prerequisites
--------------
-
-The :doc:`lecture <getting_started>` on getting started with Python.
-
+You should have read the :doc:`lecture <getting_started>` on getting started with Python before beginning this one.
 
 
 
@@ -62,7 +43,17 @@ In other words, we want to generate figures that look something like this:
 
 .. figure:: /_static/lecture_specific/python_by_example/test_program_1_updated.png
 
-We'll do this in several different ways.
+We'll do this in several different ways, each time learning something more
+about Python.
+
+
+We run the following command first, which helps ensure that plots appear in the
+notebook if you run it on your own machine.
+
+.. code-block:: ipython
+
+    %matplotlib inline
+
 
 
 Version 1
@@ -77,10 +68,9 @@ Here are a few lines of code that perform the task we set
 
     import numpy as np
     import matplotlib.pyplot as plt
-    %matplotlib inline
 
-    x = np.random.randn(100)
-    plt.plot(x)
+    ϵ_values = np.random.randn(100)
+    plt.plot(ϵ_values)
     plt.show()
 
 
@@ -89,10 +79,11 @@ Let's break this program down and see how it works.
 
 .. _import:
 
-Import Statements
------------------
+Imports
+-------
 
-The first two lines of the program import functionality.
+The first two lines of the program import functionality from external code
+libraries.
 
 The first line imports :doc:`NumPy <numpy>`, a favorite Python package for tasks like
 
@@ -105,17 +96,20 @@ The first line imports :doc:`NumPy <numpy>`, a favorite Python package for tasks
 * linear algebra, etc.
 
 
-After ``import numpy as np`` we have access to these attributes via the syntax ``np.``.
+After ``import numpy as np`` we have access to these attributes via the syntax ``np.attribute``.
 
-Here's another example
+Here's two more examples
 
 .. code-block:: python3
 
-    import numpy as np
-
     np.sqrt(4)
 
-We could also just write
+.. code-block:: python3
+
+    np.log(4)
+
+
+We could also use the following syntax:
 
 .. code-block:: python3
 
@@ -123,21 +117,20 @@ We could also just write
 
     numpy.sqrt(4)
 
-But the former method is convenient and more standard.
+But the former method (using the short name ``np``) is convenient and more standard.
 
-Why all the Imports?
+
+
+Why So Many Imports?
 ^^^^^^^^^^^^^^^^^^^^
 
-Remember that Python is a general-purpose language.
+Python programs typically require several import statements.
 
-The core language is quite small, so it's easy to learn and maintain.
+The reason is that the core language is deliberately kept small, so that it's easy to learn and maintain.
 
 When you want to do something interesting with Python, you almost always need
 to import additional functionality.
 
-Scientific work in Python is no exception.
-
-Most of our programs start off with lines similar to the ``import`` statements seen above.
 
 Packages
 ^^^^^^^^
@@ -147,7 +140,7 @@ Packages
 
 As stated above, NumPy is a Python *package*.
 
-Packages are used by developers to organize a code library.
+Packages are used by developers to organize code they wish to share.
 
 In fact, a package is just a directory containing
 
@@ -157,14 +150,15 @@ In fact, a package is just a directory containing
 
 #. a file called ``__init__.py`` that specifies what will be executed when we type ``import package_name``
 
-In fact, you can find and explore the directory for NumPy on your computer easily enough if you look around.
+In fact, you can find and explore the directory for NumPy on your computer
+easily enough if you look around.
 
 On this machine, it's located in
 
 .. code-block:: ipython
     :class: no-execute
 
-    anaconda3/lib/python3.6/site-packages/numpy
+    anaconda3/lib/python3.7/site-packages/numpy
 
 Subpackages
 ^^^^^^^^^^^
@@ -173,11 +167,9 @@ Subpackages
     single: Python; Subpackages
 
 
-Consider the line ``x = np.random.randn(100)``.
+Consider the line ``ϵ_values = np.random.randn(100)``.
 
 Here ``np`` refers to the package NumPy, while ``random`` is a **subpackage** of NumPy.
-
-You can see the contents `here <https://github.com/numpy/numpy/tree/master/numpy/random>`__.
 
 Subpackages are just packages that are subdirectories of another package.
 
@@ -216,31 +208,28 @@ Then it's harder for readers to know where ``sqrt`` came from, should they wish 
 
 
 
-Alternative Versions
-====================
+Alternative Implementations
+===========================
 
-Let's try writing some alternative versions of :ref:`our first program <ourfirstprog>`.
+Let's try writing some alternative versions of :ref:`our first program <ourfirstprog>`, which plotted IID draws from the normal distribution.
 
-Our aim in doing this is to illustrate some more Python syntax and semantics.
+The programs below are less efficient than the original one, and hence
+somewhat artificial.
 
-The programs below are less efficient but
-
-* help us understand basic constructs like loops
-
-* illustrate common data types like lists
+But they do help us illustrate some important Python syntax and semantics in a familiar setting.
 
 
 A Version with a For Loop
 -------------------------
 
-Here's a version that illustrates loops and Python lists.
+Here's a version that illustrates ``for`` loops and Python lists.
 
 .. _firstloopprog:
 
 .. code-block:: python3
 
     ts_length = 100
-    ϵ_values = []   # Empty list
+    ϵ_values = []   # empty list
 
     for i in range(ts_length):
         e = np.random.randn()
@@ -254,6 +243,8 @@ In brief,
 * The first line sets the desired length of the time series.
 
 * The next line creates an empty *list* called ``ϵ_values`` that will store the :math:`\epsilon_t` values as we generate them.
+
+* The statement ``# empty list`` is a *comment*, and is ignored by Python's interpreter.
 
 * The next three lines are the ``for`` loop, which repeatedly draws a new random number :math:`\epsilon_t` and appends it to the end of the list ``ϵ_values``.
 
@@ -319,21 +310,16 @@ Another useful list method is ``pop()``
 
     x
 
-The full set of list methods can be found `here <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_.
-
-Following C, C++, Java, etc., lists in Python are zero-based
+Lists in Python are zero-based (as in C, Java or Go), so the first element is referenced by ``x[0]``
 
 .. code-block:: python3
 
-    x
+    x[0]   # first element of x
 
 .. code-block:: python3
 
-    x[0]
+    x[1]   # second element of x
 
-.. code-block:: python3
-
-    x[1]
 
 
 The For Loop
@@ -384,8 +370,8 @@ The ``sequence`` object can in fact be a very general object, as we'll see
 soon enough.
 
 
-Code Blocks and Indentation
----------------------------
+A Comment on Indentation
+------------------------
 
 .. index::
     single: Python; Indentation
@@ -452,200 +438,52 @@ Note that
 
 
 
-.. _user_defined_functions:
 
-User-Defined Functions
-----------------------
+Another Application
+===================
 
-.. index::
-    single: Python; Functions
+Let's do one more application before we turn to exercises.
 
-Now let's go back to the ``for`` loop, but restructure our program to make the logic clearer.
+In this application, we plot the balance of a bank account over time.
 
-To this end, we will break our program into two parts:
+There are no withdraws over the time period, the last date of which is denoted
+by :math:`T`.
 
-#. A *user-defined function* that generates a list of random variables.
+The initial balance is :math:`b_0` and the interest rate is :math:`r`.
 
-#. The main part of the program that
+The balance updates from period :math:`t` to :math:`t+1` according to :math:`b_{t+1} = (1 + r) b_t`.
 
-    #. calls this function to get data
+In the code below, we generate and plot the sequence :math:`b_0, b_1, \ldots, b_T`.
 
-    #. plots the data
-
-This is accomplished in the next program
-
-.. _funcloopprog:
+Instead of using a Python list to store this sequence, we will use a NumPy
+array.
 
 .. code-block:: python3
 
-    def generate_data(n):
-        ϵ_values = []
-        for i in range(n):
-            e = np.random.randn()
-            ϵ_values.append(e)
-        return ϵ_values
+    r = 0.025         # interest rate 
+    T = 50            # end date
+    b = np.empty(T+1) # an empty NumPy array, to store all b_t
+    b[0] = 10         # initial balance
 
-    data = generate_data(100)
-    plt.plot(data)
+    for t in range(T):
+        b[t+1] = (1 + r) * b[t]
+
+    plt.plot(b, label='bank balance')
+    plt.legend()
     plt.show()
 
-Let's go over this carefully, in case you're not familiar with functions and
-how they work.
+The statement ``b = np.empty(T+1)`` allocates storage in memory for ``T+1``
+(floating point) numbers.
 
-We have defined a function called ``generate_data()`` as follows
+These numbers are filled in by the ``for`` loop.
 
-* ``def`` is a Python keyword used to start function definitions.
-* ``def generate_data(n):`` indicates that the function is called ``generate_data`` and that it has a single argument ``n``.
-* The indented code is a code block called the *function body*---in this case, it creates an IID list of random draws using the same logic as before.
-* The ``return`` keyword indicates that ``ϵ_values`` is the object that should be returned to the calling code.
+Allocating memory at the start is more efficient than using a Python list and
+``append``, since the latter must repeatedly ask for storage space from the
+operating system.
 
-This whole function definition is read by the Python interpreter and stored in memory.
+Notice that we added a legend to the plot --- a feature you will be asked to
+use in the exercises.
 
-When the interpreter gets to the expression ``generate_data(100)``, it executes the function body with ``n`` set equal to 100.
-
-The net result is that the name ``data`` is *bound* to the list ``ϵ_values`` returned by the function.
-
-
-
-Conditions
-----------
-
-.. index::
-    single: Python; Conditions
-
-Our function ``generate_data()`` is rather limited.
-
-Let's make it slightly more useful by giving it the ability to return either standard normals or uniform random variables on :math:`(0, 1)` as required.
-
-This is achieved in the next piece of code.
-
-
-.. _funcloopprog2:
-
-.. code-block:: python3
-
-
-    def generate_data(n, generator_type):
-        ϵ_values = []
-        for i in range(n):
-            if generator_type == 'U':
-                e = np.random.uniform(0, 1)
-            else:
-                e = np.random.randn()
-            ϵ_values.append(e)
-        return ϵ_values
-
-    data = generate_data(100, 'U')
-    plt.plot(data)
-    plt.show()
-
-Hopefully, the syntax of the if/else clause is self-explanatory, with indentation again delimiting the extent of the code blocks.
-
-Notes
-
-* We are passing the argument ``U`` as a string, which is why we write it as ``'U'``.
-
-* Notice that equality is tested with the ``==`` syntax, not ``=``.
-
-    * For example, the statement ``a = 10`` assigns the name ``a`` to the value ``10``.
-
-    * The expression ``a == 10`` evaluates to either ``True`` or ``False``, depending on the value of ``a``.
-
-Now, there are several ways that we can simplify the code above.
-
-For example, we can get rid of the conditionals all together by just passing the desired generator type *as a function*.
-
-To understand this, consider the following version.
-
-.. _test_program_6:
-
-.. code-block:: python3
-
-
-    def generate_data(n, generator_type):
-        ϵ_values = []
-        for i in range(n):
-            e = generator_type()
-            ϵ_values.append(e)
-        return ϵ_values
-
-    data = generate_data(100, np.random.uniform)
-    plt.plot(data)
-    plt.show()
-
-
-Now, when we call the function ``generate_data()``, we pass ``np.random.uniform``
-as the second argument.
-
-This object is a *function*.
-
-When the function call  ``generate_data(100, np.random.uniform)`` is executed, Python runs the function code block with ``n`` equal to 100 and the name ``generator_type`` "bound" to the function ``np.random.uniform``.
-
-* While these lines are executed, the names ``generator_type`` and ``np.random.uniform`` are "synonyms", and can be used in identical ways.
-
-This principle works more generally---for example, consider the following piece of code
-
-.. code-block:: python3
-
-    max(7, 2, 4)   # max() is a built-in Python function
-
-.. code-block:: python3
-
-    m = max
-    m(7, 2, 4)
-
-Here we created another name for the built-in function ``max()``, which could then be used in identical ways.
-
-In the context of our program, the ability to bind new names to functions means that there is no problem *passing a function as an argument to another function*---as we did above.
-
-
-
-List Comprehensions
--------------------
-
-.. index::
-    single: Python; List comprehension
-
-We can also simplify the code for generating the list of random draws considerably by using something called a *list comprehension*.
-
-`List comprehensions <https://en.wikipedia.org/wiki/List_comprehension>`_ are an elegant Python tool for creating lists.
-
-Consider the following example, where the list comprehension is on the
-right-hand side of the second line
-
-.. code-block:: python3
-
-    animals = ['dog', 'cat', 'bird']
-    plurals = [animal + 's' for animal in animals]
-    plurals
-
-Here's another example
-
-.. code-block:: python3
-
-    range(8)
-
-.. code-block:: python3
-
-    doubles = [2 * x for x in range(8)]
-    doubles
-
-With the list comprehension syntax, we can simplify the lines
-
-.. code-block:: python3
-    :class: no-execute
-
-    ϵ_values = []
-    for i in range(n):
-        e = generator_type()
-        ϵ_values.append(e)
-
-into
-
-.. code-block:: python3
-    :class: no-execute
-
-    ϵ_values = [generator_type() for i in range(n)]
 
 
 
@@ -654,78 +492,14 @@ into
 Exercises
 =========
 
-.. _pbe_ex1:
+Now we turn to exercises.  It is important that you complete them before
+continuing, since they present new concepts we will need.
+
 
 Exercise 1
 ----------
 
-Recall that :math:`n!` is read as ":math:`n` factorial" and defined as
-:math:`n! = n \times (n - 1) \times \cdots \times 2 \times 1`.
-
-There are functions to compute this in various modules, but let's
-write our own version as an exercise.
-
-In particular, write a function ``factorial`` such that ``factorial(n)`` returns :math:`n!`
-for any positive integer :math:`n`.
-
-
-
-.. _pbe_ex2:
-
-Exercise 2
-----------
-
-The `binomial random variable <https://en.wikipedia.org/wiki/Binomial_distribution>`_ :math:`Y \sim Bin(n, p)` represents the number of successes in :math:`n` binary trials, where each trial succeeds with probability :math:`p`.
-
-Without any import besides ``from numpy.random import uniform``, write a function
-``binomial_rv`` such that ``binomial_rv(n, p)`` generates one draw of :math:`Y`.
-
-Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then the expression ``U < p`` evaluates to ``True`` with probability :math:`p`.
-
-
-
-
-.. _pbe_ex3:
-
-Exercise 3
-----------
-
-Compute an approximation to :math:`\pi` using `Monte Carlo <https://en.wikipedia.org/wiki/Monte_Carlo_method>`_.  Use no imports besides
-
-.. code-block:: python3
-
-    import numpy as np
-
-Your hints are as follows:
-
-* If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`.
-* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`.
-* For a circle, :math:`area = \pi * radius^2`.
-
-
-
-
-.. _pbe_ex4:
-
-Exercise 4
-----------
-
-Write a program that prints one realization of the following random device:
-
-* Flip an unbiased coin 10 times.
-* If a head occurs three or more times within this sequence, pay one dollar.
-* If not, pay nothing.
-
-Use no import besides ``from numpy.random import uniform``.
-
-
-
-.. _pbe_ex5:
-
-Exercise 5
-----------
-
-Your next task is to simulate and plot the correlated time series
+Your first task is to simulate and plot the correlated time series
 
 .. math::
 
@@ -749,37 +523,12 @@ Set :math:`T=200` and :math:`\alpha = 0.9`.
 
 
 
-
-.. _pbe_ex6:
-
-Exercise 6
+Exercise 2
 ----------
 
-To do the next exercise, you will need to know how to produce a plot legend.
 
-The following example should be sufficient to convey the idea
-
-.. code-block:: python3
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-
-    x = [np.random.randn() for i in range(100)]
-    plt.plot(x, label="white noise")
-    plt.legend()
-    plt.show()
-
-
-Now, starting with your solution to exercise 5, plot three simulated time series,
+Starting with your solution to exercise 5, plot three simulated time series,
 one for each of the cases :math:`\alpha=0`, :math:`\alpha=0.8` and :math:`\alpha=0.98`.
-
-
-In particular, you should produce (modulo randomness) a figure that looks as follows
-
-.. figure:: /_static/lecture_specific/python_by_example/pbe_ex2_fig.png
-    :scale: 80
-
-(The figure nicely illustrates how time series with the same one-step-ahead conditional volatilities, as these three processes have, can have very different unconditional volatilities.)
 
 Use a ``for`` loop to step through the :math:`\alpha` values.
 
@@ -787,9 +536,80 @@ Important hints:
 
 * If you call the ``plot()`` function multiple times before calling ``show()``, all of the lines you produce will end up on the same figure.
 
-    * And if you omit the argument ``'b-'`` to the plot function, Matplotlib will automatically select different colors for each line.
+* If you omit the argument ``'b-'`` to the plot function, Matplotlib will automatically select different colors for each line.
 
 * The expression ``'foo' + str(42)`` evaluates to ``'foo42'``.
+
+
+
+Exercise 3
+----------
+
+Similar to the previous exercises, plot the time series 
+
+.. math::
+
+    x_{t+1} = \alpha \, |x_t| + \epsilon_{t+1}
+    \quad \text{where} \quad
+    x_0 = 0
+    \quad \text{and} \quad t = 0,\ldots,T
+
+Use :math:`T=200`, :math:`\alpha = 0.9` and :math:`\{\epsilon_t\}` as before.
+
+Search online for a function that can be used to compute the absolute value :math:`|x_t|`.
+
+
+Exercise 4
+----------
+
+One important aspect of essentially all programming languages is branching and
+conditions.
+
+In Python, conditions are usually implemented with if--else syntax.
+
+Here's an example, that prints -1 for each negative number in an array and 1
+for each nonnegative number
+
+
+.. code-block:: python3
+
+    numbers = [-9, 2.3, -11, 0]
+
+.. code-block:: python3
+
+    for x in numbers:
+        if x < 0:
+            print(-1)
+        else:
+            print(1)
+
+
+Now, write a new solution to Exercise 3 that does not use an existing function
+to compute the absolute value.
+
+Replace this existing function with an if--else condition.
+
+
+.. _pbe_ex3:
+
+Exercise 5
+----------
+
+Here's a harder exercise, that takes some thought and planning.
+
+The task is to compute an approximation to :math:`\pi` using `Monte Carlo <https://en.wikipedia.org/wiki/Monte_Carlo_method>`_.  
+
+Use no imports besides
+
+.. code-block:: python3
+
+    import numpy as np
+
+Your hints are as follows:
+
+* If :math:`U` is a bivariate uniform random variable on the unit square :math:`(0, 1)^2`, then the probability that :math:`U` lies in a subset :math:`B` of :math:`(0,1)^2` is equal to the area of :math:`B`.
+* If :math:`U_1,\ldots,U_n` are IID copies of :math:`U`, then, as :math:`n` gets large, the fraction that falls in :math:`B`, converges to the probability of landing in :math:`B`.
+* For a circle, :math:`area = \pi * radius^2`.
 
 
 
@@ -798,21 +618,24 @@ Solutions
 =========
 
 
-
-
 Exercise 1
 ----------
 
+Here's one solution.
+
 .. code-block:: python3
 
-    def factorial(n):
-        k = 1
-        for i in range(n):
-            k = k * (i + 1)
-        return k
 
-    factorial(4)
+    α = 0.9
+    T = 200
+    x = np.empty(T+1) 
+    x[0] = 0
 
+    for t in range(T):
+        x[t+1] = α * x[t] + np.random.randn()
+
+    plt.plot(x)
+    plt.show()
 
 
 Exercise 2
@@ -820,21 +643,86 @@ Exercise 2
 
 .. code-block:: python3
 
-    from numpy.random import uniform
+    α_values = [0.0, 0.8, 0.98]
+    T = 200
+    x = np.empty(T+1) 
 
-    def binomial_rv(n, p):
-        count = 0
-        for i in range(n):
-            U = uniform()
-            if U < p:
-                count = count + 1    # Or count += 1
-        return count
+    for α in α_values:
+        x[0] = 0
+        for t in range(T):
+            x[t+1] = α * x[t] + np.random.randn()
+        plt.plot(x, label=f'$\\alpha = {α}$')
 
-    binomial_rv(10, 0.5)
-
+    plt.legend()
+    plt.show()
 
 
 Exercise 3
+----------
+
+Here's one solution:
+
+.. code-block:: python3
+
+
+    α = 0.9
+    T = 200
+    x = np.empty(T+1) 
+    x[0] = 0
+
+    for t in range(T):
+        x[t+1] = α * np.abs(x[t]) + np.random.randn()
+
+    plt.plot(x)
+    plt.show()
+
+
+Exercise 4
+----------
+
+Here's one way:
+
+.. code-block:: python3
+
+
+    α = 0.9
+    T = 200
+    x = np.empty(T+1) 
+    x[0] = 0
+
+    for t in range(T):
+        if x[t] < 0:
+            abs_x = - x[t]
+        else:
+            abs_x = x[t]
+        x[t+1] = α * abs_x + np.random.randn()
+
+    plt.plot(x)
+    plt.show()
+
+
+Here's a shorter way to write the same thing:
+
+.. code-block:: python3
+
+
+    α = 0.9
+    T = 200
+    x = np.empty(T+1) 
+    x[0] = 0
+
+    for t in range(T):
+        abs_x = - x[t] if x[t] < 0 else x[t]
+        x[t+1] = α * abs_x + np.random.randn()
+
+    plt.plot(x)
+    plt.show()
+
+
+
+
+
+Exercise 5
 ----------
 
 Consider the circle of diameter 1 embedded in the unit square.
@@ -867,59 +755,3 @@ fraction that falls into the circle.
     area_estimate = count / n
 
     print(area_estimate * 4)  # dividing by radius**2
-
-Exercise 4
-----------
-
-.. code-block:: python3
-
-    from numpy.random import uniform
-
-    payoff = 0
-    count = 0
-
-    for i in range(10):
-        U = uniform()
-        count = count + 1 if U < 0.5 else 0
-        if count == 3:
-            payoff = 1
-
-    print(payoff)
-
-
-Exercise 5
-----------
-
-The next line embeds all subsequent figures in the browser itself
-
-.. code-block:: python3
-
-
-    α = 0.9
-    ts_length = 200
-    current_x = 0
-
-    x_values = []
-    for i in range(ts_length + 1):
-        x_values.append(current_x)
-        current_x = α * current_x + np.random.randn()
-    plt.plot(x_values)
-    plt.show()
-
-Exercise 6
-----------
-
-.. code-block:: python3
-
-    αs = [0.0, 0.8, 0.98]
-    ts_length = 200
-
-    for α in αs:
-        x_values = []
-        current_x = 0
-        for i in range(ts_length):
-            x_values.append(current_x)
-            current_x = α * current_x + np.random.randn()
-        plt.plot(x_values, label=f'$\\alpha = {α}$')
-    plt.legend()
-    plt.show()
