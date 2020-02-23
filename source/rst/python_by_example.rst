@@ -43,6 +43,9 @@ In other words, we want to generate figures that look something like this:
 
 .. figure:: /_static/lecture_specific/python_by_example/test_program_1_updated.png
 
+(Here :math:`t` is on the horizontal axis and :math:`\epsilon_t` is on the
+vertical axis.)
+
 We'll do this in several different ways, each time learning something more
 about Python.
 
@@ -205,6 +208,27 @@ The disadvantage is that, in a long program, these two lines might be
 separated by many other lines.
 
 Then it's harder for readers to know where ``sqrt`` came from, should they wish to.
+
+
+
+Random Draws
+------------
+
+Returning to our program that plots white noise, the remaining three lines
+after the import statements are
+
+.. code-block:: ipython
+
+    ϵ_values = np.random.randn(100)
+    plt.plot(ϵ_values)
+    plt.show()
+
+The first line generates 100 (quasi) independent standard normals and stores
+them in ``ϵ_values``.
+
+The next two lines genererate the plot.
+
+We can and will look at various ways to configure and improve this plot below.
 
 
 
@@ -527,18 +551,18 @@ Exercise 2
 ----------
 
 
-Starting with your solution to exercise 5, plot three simulated time series,
+Starting with your solution to exercise 2, plot three simulated time series,
 one for each of the cases :math:`\alpha=0`, :math:`\alpha=0.8` and :math:`\alpha=0.98`.
 
 Use a ``for`` loop to step through the :math:`\alpha` values.
 
-Important hints:
+If you can, add a legend, to help distinguish between the three time series.
+
+Hints:
 
 * If you call the ``plot()`` function multiple times before calling ``show()``, all of the lines you produce will end up on the same figure.
 
-* If you omit the argument ``'b-'`` to the plot function, Matplotlib will automatically select different colors for each line.
-
-* The expression ``'foo' + str(42)`` evaluates to ``'foo42'``.
+* For the legend, noted that the expression ``'foo' + str(42)`` evaluates to ``'foo42'``.
 
 
 
