@@ -393,7 +393,7 @@ Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then th
 
 
 
-Exercise 4
+Exercise 3
 ----------
 
 Write a function that returns one realization of the following random device:
@@ -449,7 +449,7 @@ Exercise 2
 
 
 
-Exercise 4
+Exercise 3
 ----------
 
 .. code-block:: python3
