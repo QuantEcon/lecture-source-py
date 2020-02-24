@@ -402,17 +402,10 @@ and starting at initial condition :math:`x_0 = \begin{bmatrix} 0 & 1\end{bmatrix
 
 In fact, it's possible to use the state-space system to represent polynomial trends of any order.
 
-For instance, let
+For instance, we can represent the model :math:`y_t = a t^2 + bt + c` in the linear state space form by taking
 
 .. math::
 
-    x_0
-    = \begin{bmatrix}
-            0 \\
-            0 \\
-            1
-      \end{bmatrix}
-    \qquad
     A
     = \begin{bmatrix}
         1 & 1 & 0 \\
@@ -426,8 +419,13 @@ For instance, let
             0 \\
             0
       \end{bmatrix}
+    \qquad
+    G
+    = \begin{bmatrix}
+            2a & a + b & c 
+      \end{bmatrix}
 
-and starting at initial condition :math:`x_0 = \begin{bmatrix} 0 & 1 & 1 \end{bmatrix}'`.
+and starting at initial condition :math:`x_0 = \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}'`.
 
 It follows that
 
@@ -441,8 +439,7 @@ It follows that
     \end{bmatrix}
 
 
-Then :math:`x_t^\prime = \begin{bmatrix} t(t-1)/2 &t & 1 \end{bmatrix}`, so that :math:`x_t` contains
-linear and quadratic time trends.
+Then :math:`x_t^\prime = \begin{bmatrix} t(t-1)/2 &t & 1 \end{bmatrix}`. You can now confirm that :math:`y_t = G x_t` has the correct form.
 
 
 
