@@ -463,7 +463,7 @@ Exercise 4
 
         for i in range(10):
             U = uniform()
-            count = count + 1 if U < 0.5 else 0
+            count = count + (1 if U < 0.5 else 0)
             if count == k:
                 payoff = 1
 
