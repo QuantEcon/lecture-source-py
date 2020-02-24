@@ -22,7 +22,7 @@ About Python
 Overview
 ============
 
-In this lecture we will
+In this lecture we will:
 
 * Outline what Python is
 * Showcase some of its abilities
@@ -49,7 +49,7 @@ Python has experienced rapid adoption in the last decade and is now one of the m
 Common Uses
 ------------
 
-:index:`Python <single: Python; common uses>` is a general-purpose language used in almost all application domains
+:index:`Python <single: Python; common uses>` is a general-purpose language used in almost all application domains:
 
 * communications
 
@@ -57,11 +57,11 @@ Common Uses
 
 * CGI and graphical user interfaces
 
-* games
+* game development
 
 * multimedia, data processing, security, etc., etc., etc.
 
-Used extensively by Internet service and high tech companies such as
+Used extensively by Internet services and high tech companies including: 
 
 * `Google <https://www.google.com/>`_
 
@@ -75,10 +75,11 @@ Used extensively by Internet service and high tech companies such as
 
 Often used to `teach computer science and programming <http://cacm.acm.org/blogs/blog-cacm/176450-python-is-now-the-most-popular-introductory-teaching-language-at-top-us-universities/fulltext>`_.
 
-For reasons we will discuss, Python is particularly popular within the scientific community
+For reasons we will discuss, Python is particularly popular within the scientific community:
 
-* academia, NASA, CERN, Wall St., etc., etc.
+* academia, NASA, CERN, etc., etc.
 
+It is also `replacing familiar tools like Excel <https://news.efinancialcareers.com/us-en/3002556/python-replaced-excel-banking>`_ in the fields of finance and banking.
 
 
 Relative Popularity
@@ -99,10 +100,10 @@ For example, the popularity of `pandas <http://pandas.pydata.org/>`_, a library 
 
 .. figure:: /_static/lecture_specific/about_py/pandas_vs_matlab.png
 
-Note that pandas takes off in 2012, which is the same year that we seek
+Note that pandas takes off in 2012, which is the same year that we see
 Python's popularity begin to spike in the first figure.
 
-Overall, it's clear that
+Overall, it's clear that:
 
 * Python is `one of the most popular programming languages worldwide <http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages>`__.
 
@@ -118,11 +119,11 @@ Python is a `high-level language <https://en.wikipedia.org/wiki/High-level_progr
 
 It has a relatively small core language supported by many libraries.
 
-Other features
+Other features of Python:
 
-* A multiparadigm language, in that multiple programming styles are supported (procedural, object-oriented, functional, etc.).
+* multiple programming styles are supported (procedural, object-oriented, functional, etc.) i.e. Python is a *multiparadigm language*
 
-* Interpreted rather than compiled.
+* it is interpreted rather than compiled.
 
 
 
@@ -140,7 +141,7 @@ Remembering how to read from files, sort dictionaries and other such routine tas
 
 Closely related to elegant syntax is an elegant design.
 
-Features like iterators, generators, decorators, list comprehensions, etc. make Python highly expressive, allowing you to get more done with less code.
+Features like iterators, generators, decorators and list comprehensions make Python highly expressive, allowing you to get more done with less code.
 
 `Namespaces <https://en.wikipedia.org/wiki/Namespace>`_ improve productivity by cutting down on bugs and syntax errors.
 
@@ -155,7 +156,7 @@ Scientific Programming
 
 Python has become one of the core languages of scientific computing.
 
-It's either the dominant player or a major player in
+It's either the dominant player or a major player in:
 
 * `Machine learning and data science <http://scikit-learn.org/stable/>`_
 * `Astronomy <http://www.astropy.org/>`_
@@ -251,7 +252,7 @@ Graphics
 
 The most popular and comprehensive Python library for creating figures and graphs is `Matplotlib <http://matplotlib.org/>`_.
 
-* Plots, histograms, contour images, 3D, bar charts, etc., etc.
+* Plots, histograms, contour images, 3D graphs, bar charts etc.
 
 * Output in many formats (PDF, PNG, EPS, etc.)
 
@@ -271,7 +272,7 @@ Example 3D plot
 
 More examples can be found in the `Matplotlib thumbnail gallery <http://matplotlib.org/gallery.html>`_.
 
-Other graphics libraries include
+Other graphics libraries include:
 
 * `Plotly <https://plot.ly/python/>`_
 * `Bokeh <http://bokeh.pydata.org/en/latest/>`_
@@ -333,9 +334,9 @@ and calculate limits, derivatives and integrals
     diff(sin(x), x)
 
 
-The beauty of importing this functionality into Python is that we are working within a fully fledged programming language.
-
-Can easily create tables of derivatives, generate LaTeX output, add it to figures, etc., etc.
+The beauty of importing this functionality into Python is that we are working within 
+a fully fledged programming language. We can easily create tables of derivatives, 
+generate LaTeX output, add that output to figures and so on.
 
 
 Statistics
@@ -353,7 +354,8 @@ One of the most popular libraries for working with data is `pandas <http://panda
 
 Pandas is fast, efficient, flexible and well designed.
 
-Here's a simple example, using some fake data
+Here's a simple example, using some dummy data generated with Numpy's excellent 
+``random`` functionality.
 
 .. code-block:: python3
 
@@ -405,13 +407,12 @@ Python has many libraries for studying graphs.
 .. index::
     single: NetworkX
 
-One well-known example is `NetworkX <http://networkx.github.io/>`_
+One well-known example is `NetworkX <http://networkx.github.io/>`_. 
+Its features include, among many other things:
 
-* Standard graph algorithms for analyzing network structure, etc.
+* Standard graph algorithms for analyzing networks
 
 * Plotting routines
-
-* etc., etc.
 
 Here's some example code that generates and plots a random graph, with node color determined by shortest path length from a central node.
 
