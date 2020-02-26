@@ -20,6 +20,7 @@ before_install:
   - export PATH=/home/travis/anaconda3/bin:$PATH
 
 install:
+  - conda install dask=2.5.2 distributed=2.5.2
   - pip install quantecon
   - pip install joblib
   - pip install sphinxcontrib-jupyter
