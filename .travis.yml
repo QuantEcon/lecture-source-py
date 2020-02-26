@@ -18,12 +18,11 @@ before_install:
   - chmod +x anaconda3.sh
   - ./anaconda3.sh -b
   - export PATH=/home/travis/anaconda3/bin:$PATH
+  - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter; cd sphinxcontrib-jupyter; python setup.py install
 
 install:
-  - conda install dask=2.5.2 distributed=2.5.2
   - pip install quantecon
   - pip install joblib
-  - pip install sphinxcontrib-jupyter
   - make setup
 
 script:
