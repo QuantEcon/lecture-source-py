@@ -18,7 +18,7 @@ before_install:
   - chmod +x anaconda3.sh
   - ./anaconda3.sh -b
   - export PATH=/home/travis/anaconda3/bin:$PATH
-  - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter; cd sphinxcontrib-jupyter; python setup.py install
+  - git clone https://github.com/QuantEcon/sphinxcontrib-jupyter; cd sphinxcontrib-jupyter; python setup.py install; cd ..
 
 install:
   - pip install quantecon
