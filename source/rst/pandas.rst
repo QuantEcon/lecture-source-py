@@ -484,32 +484,46 @@ Here's the first part of the program
 Complete the program to plot the result as a bar graph like this one:
 
 .. figure:: /_static/lecture_specific/pandas/pandas_share_prices.png
-   :scale: 90 %
+   :scale: 80%
 
 Solutions
 =========
 
-
-
-
 Exercise 1
 ----------
+
+There are a few ways to approach this problem using Pandas to calculate
+the percentage change. 
+
+First, you can extract the data and perform the calculation such as:
+
+.. code-block:: python3
+
+    p1 = ticker.iloc[0]    #Get the first set of prices as a Series
+    p2 = ticker.iloc[-1]   #Get the last set of prices as a Series
+    price_change = (p2 - p1) / p1 * 100
+    price_change
+
+Alternatively you can use an inbuilt method ``pct_change`` and configure it to 
+perform the correct calculation using ``periods`` argument.
 
 .. code-block:: python3
 
     change = ticker.pct_change(periods=len(ticker)-1, axis='rows')*100
-    price_change = change.loc[change.index[-1]]
-    price_change = price_change.rename(index=ticker_list)
+    price_change = change.iloc[-1]
+    price_change
+
+Then to plot the chart
+
+.. code-block:: python3
 
     price_change.sort_values(inplace=True)
+    price_change = price_change.rename(index=ticker_list)
     fig, ax = plt.subplots(figsize=(10,8))
     ax.set_xlabel('stock', fontsize=12)
     ax.set_ylabel('percentage change in price', fontsize=12)
     price_change.plot(kind='bar', ax=ax)
     plt.show()
-
-
-
 
 .. rubric:: Footnotes
 
