@@ -399,7 +399,7 @@ Exercise 3
 Write a function that returns one realization of the following random device:
 
 * Flip an unbiased coin 10 times.
-* If a head occurs ``k`` or more times within this sequence, pay one dollar.
+* If a head occurs more than ``k`` times consecutively within this sequence at least once, pay one dollar.
 * If not, pay nothing.
 
 Use no import besides ``from numpy.random import uniform``.
