@@ -77,7 +77,7 @@ Installing Anaconda
 
 
 
-To instal Anaconda, `download <https://www.anaconda.com/download/>`_ the binary and follow the instructions.
+To install Anaconda, `download <https://www.anaconda.com/download/>`_ the binary and follow the instructions.
 
 Important points:
 
