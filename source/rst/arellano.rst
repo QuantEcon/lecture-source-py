@@ -355,8 +355,8 @@ Computation
 
 Let's now compute an equilibrium of Arellano's model.
 
-The equilibrium objects are the value function :math:`v(B, y)`, the associated default decision
-rule, and the pricing function :math:`q(B', y)`.
+The equilibrium objects are the value function :math:`v(B, y)`, the associated
+default decision rule, and the pricing function :math:`q(B', y)`.
 
 We'll use our code to replicate Arellano's results.
 
@@ -390,10 +390,12 @@ We use simple discretization on a grid of asset holdings and income levels.
 
 The output process is discretized using `Tauchen's quadrature method <https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py>`_.
 
-As we have in other places, we will accelerate our code using Numba. We start by defining the
-data structure that will help us compile the class (for more information on why we do this, see
-the :doc:`lecture on numba <numba>`. Additionally, we define some helper functions that help
-limit the number of times we repeat ourselves.
+As we have in other places, we will accelerate our code using Numba. 
+
+We start by defining the data structure that will help us compile the class
+(for more information on why we do this, see the :doc:`lecture on numba
+<numba>`.)
+
 
 .. code-block:: python3
 
@@ -405,18 +407,18 @@ limit the number of times we repeat ourselves.
         ('def_y', float64[:])
     ]
 
+    # Define utility function
     @jit(nopython=True)
     def u(c, γ):
         return c**(1-γ)/(1-γ)
 
 
-We then define our ``jitclass`` that will store various parameters and contain the code that can
-apply the Bellman operators and determine the savings policy given prices and value functions
+We then define our ``jitclass`` that will store various parameters and contain the code that can apply the Bellman operators and determine the savings policy given prices and value functions
 
 .. code-block:: python3
 
     @jitclass(arellano_data)
-    class Arellano_Economy(object):
+    class Arellano_Economy:
         """
         Arellano 2008 deals with a small open economy whose government
         invests in foreign assets in order to smooth the consumption of
@@ -468,7 +470,7 @@ apply the Bellman operators and determine the savings policy given prices and va
             β, γ, θ = self.β, self.γ, self.θ
 
             # Compute continuation value
-            zero_ind = nB // 2
+            zero_ind = len(self.B) // 2
             cont_value = θ * EV[iy, zero_ind] + (1 - θ) * EVd[iy]
 
             return u(self.def_y[iy], γ) + β*cont_value
