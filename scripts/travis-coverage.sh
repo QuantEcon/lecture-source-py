@@ -6,5 +6,4 @@ if [ -z "$CHANGED_FILES"]; then
     echo "No RST Files have changed -- nothing to do in this PR"
 else
     make coverage FILES=$CHANGED_FILES
-    more _build/coverage/jupyter/reports/code-execution-results.json
 fi
