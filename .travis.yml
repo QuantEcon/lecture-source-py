@@ -26,4 +26,4 @@ install:
   - make setup
 
 script:
-  - travis_wait 30 bash scripts/travis-coverage.sh
+  - make coverage
