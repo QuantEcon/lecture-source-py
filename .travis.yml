@@ -4,8 +4,6 @@ sudo: false
 language: python
 dist: xenial
 
-language: python
-
 notifications:
   email: false
 
@@ -26,4 +24,4 @@ install:
   - make setup
 
 script:
-  - make coverage
+  - travis_wait 120 make coverage
