@@ -574,7 +574,7 @@ right hand side of the Bellman equation :eq:`fpb30`.
            self.u, self.f, self.β, self.μ, self.s = u, f, β, μ, s
 
            # Set up grid
-           self.grid = np.linspace(1e-5, grid_max, grid_size)
+           self.grid = np.linspace(1e-4, grid_max, grid_size)
 
            # Store shocks (with a seed, so results are reproducible)
            np.random.seed(seed)
