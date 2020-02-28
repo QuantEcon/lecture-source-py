@@ -396,11 +396,15 @@ Hint: If :math:`U` is uniform on :math:`(0, 1)` and :math:`p \in (0,1)`, then th
 Exercise 3
 ----------
 
-Write a function that returns one realization of the following random device:
+First, write a function that returns one realization of the following random device
 
-* Flip an unbiased coin 10 times.
-* If a head occurs more than ``k`` times consecutively within this sequence at least once, pay one dollar.
-* If not, pay nothing.
+1. Flip an unbiased coin 10 times.
+2. If a head occurs ``k`` or more times consecutively within this sequence at least once, pay one dollar.
+3. If not, pay nothing.
+
+Second, write another function that does the same task except that the second rule of the above random device becomes
+
+- If a head occurs ``k`` or more times within this sequence, pay one dollar.
 
 Use no import besides ``from numpy.random import uniform``.
 
@@ -452,11 +456,13 @@ Exercise 2
 Exercise 3
 ----------
 
+Here's a function for the first random device.
+
 .. code-block:: python3
 
     from numpy.random import uniform
 
-    def draw(k):  # pays if k successes in a row
+    def draw(k):  # pays if k consecutive successes in a sequence
 
         payoff = 0
         count = 0
@@ -464,11 +470,32 @@ Exercise 3
         for i in range(10):
             U = uniform()
             count = count + 1 if U < 0.5 else 0
+            print(count)    # print counts for clarity
             if count == k:
                 payoff = 1
 
         return payoff
 
     draw(3)
+
+Here's another function for the second random device.
+
+.. code-block:: python3
+
+    def draw_new(k):  # pays if k successes in a sequence
+
+        payoff = 0
+        count = 0
+
+        for i in range(10):
+            U = uniform()
+            count = count + ( 1 if U < 0.5 else 0 )
+            print(count)    
+            if count == k:
+                payoff = 1
+
+        return payoff
+
+    draw_new(3)
 
 
