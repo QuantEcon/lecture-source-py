@@ -80,6 +80,11 @@ Let's start with some imports:
     %matplotlib inline
     from scipy.stats import norm, lognorm
 
+We will also set the Numpy seed so that our output is consistent:
+
+.. code-block:: ipython
+
+    np.random.seed(10021987)
 
 A Particular Additive Functional
 ====================================
