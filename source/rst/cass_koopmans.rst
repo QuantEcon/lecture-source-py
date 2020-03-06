@@ -11,8 +11,6 @@ Cass-Koopmans Optimal Growth Model
 
 .. contents:: :depth: 2
 
-**Coauthor: Brandon Kaplowitz**
-
 Overview
 =========
 

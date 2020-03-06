@@ -22,4 +22,5 @@ equilibrium concepts.
     schelling
     lake_model
     rational_expectations
+    re_with_feedback
     markov_perf
