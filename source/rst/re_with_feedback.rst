@@ -923,23 +923,23 @@ Then from :math:`P_{t+1} = F^* m_{t+1}` and :math:`m_{t+1} = \rho m_t + \delta P
 
 or 
 
- .. math::
+.. math::
 
-     x_{t+1} = A x_t 
+    x_{t+1} = A x_t 
 
 where :math:`x_t = \begin{bmatrix} m_t \cr P_t \end{bmatrix}`. 
 
 Then apply formula :eq:`equation_5` for :math:`F` to deduce that 
 
- .. math::
+.. math::
 
-     p_t = F \begin{bmatrix} m_t \cr P_t \end{bmatrix} = F \begin{bmatrix} m_t \cr F^* m_t \end{bmatrix}  
+    p_t = F \begin{bmatrix} m_t \cr P_t \end{bmatrix} = F \begin{bmatrix} m_t \cr F^* m_t \end{bmatrix}  
 
 which implies that
 
- .. math:: 
+.. math:: 
 
-     p_t = \begin{bmatrix} F_1 & F_2 \end{bmatrix}    \begin{bmatrix} m_t \cr F^* m_t \end{bmatrix} = F_1 m_t + F_2 F^* m_t
+    p_t = \begin{bmatrix} F_1 & F_2 \end{bmatrix}    \begin{bmatrix} m_t \cr F^* m_t \end{bmatrix} = F_1 m_t + F_2 F^* m_t
 
 so that we expect to have
 
@@ -963,7 +963,7 @@ computations.
    :math:`\begin{bmatrix}  F_1 &  F_2 \end{bmatrix} \equiv F`
    from equation :eq:`equation_5` above.
 
-3. We compute :math:` F_1 +  F_2 F^*` and compare it
+3. We compute :math:`F_1 +  F_2 F^*` and compare it
    with :math:`F^*` and verify equality.
 
 .. code-block:: python3
