@@ -77,6 +77,15 @@ The syntax of the source files is reStructuredText.
 * [Another rst primer](http://docutils.sourceforge.net/docs/user/rst/quickstart.html)
 
 
+## Building Lectures on OS X
+
+You will need to fetch the Liberation Mono fonts for this repository to build the LaTeX components. 
+
+```bash
+brew tap homebrew/cask-fonts
+brew cask install font-liberation-sans
+```
+
 ## Converting notebooks to RST files
 
 Sometimes it's convenient to write a lecture as a notebook and then convert to
