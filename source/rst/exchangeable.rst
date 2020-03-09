@@ -11,10 +11,9 @@ Exchangeability and Bayesian Updating
 
 .. contents:: :depth: 2
 
-**Co-author: Zejin Shi**
 
 Overview
----------
+=========
 
 This lecture studies an example  of learning 
 via Bayes' Law.
@@ -69,7 +68,7 @@ Let’s start with some imports:
 
 
 Independently and Identically Distributed 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================================
 
 We begin by looking at the notion of an  **independently and identically  distributed sequence** of random variables.
 
@@ -142,7 +141,7 @@ Please keep your eye out for **what** there is to learn from past data.
 
 
 A Setting in Which Past Observations Are Informative
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=====================================================
 
 We now turn to a setting in which there **is** something to learn.  
 
@@ -193,7 +192,7 @@ But what do we mean by the *appropriate joint distribution*?
 We'll discuss that next and in the process describe the concept of **exchangeability**.
 
 Relationship Between IID and Exchangeable 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================================
 
 
 
@@ -252,7 +251,7 @@ So there is something to learn.
 But what and how?
 
 Exchangeability 
-^^^^^^^^^^^^^^^     
+================= 
 
 While the sequence :math:`W_0, W_1, \ldots` is not IID, it can be verified that it is
 **exchangeable**, which means that
@@ -279,7 +278,7 @@ Bernoulli paramter :math:`\theta`.
 
 
 Bayes' Law
-^^^^^^^^^^^^
+============
 
 We noted above that in our example model there is something to learn about about the future from past data drawn 
 from our particular instance of a process that is exchangeable but not IID.
@@ -341,7 +340,7 @@ tells us that
    \mathbb{P}\{W = w\} = \sum_{\omega \in \{f, g\}} \mathbb{P}\{W = w \,|\, q = \omega\} \mathbb{P}\{q = \omega\}
 
 More Details about Bayesian Updating 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=====================================
 
 Let's stare at and rearrange Bayes' Law as represented in equation :eq:`eq_Bayes102` with the aim of understanding
 how the **posterior** :math:`\pi_{t+1}` is influenced by the **prior** :math:`\pi_t` and the **likelihood ratio**
@@ -531,7 +530,7 @@ Notice how the likelihood ratio, the middle graph, and the arrows compare with t
 
 
 Appendix 
------------
+=========
 
 Sample Paths of :math:`\pi_t`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
