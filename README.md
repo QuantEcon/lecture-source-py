@@ -33,6 +33,8 @@ Labels must be written in all small alphabetical letters. Any special character 
 
 All the cite key must use the default google scholar bibtex conventions.
 
+Math lines contained in `.. math::` directives should never start with `+` or `-` as they get interpreted as markdown. This is a temporary issue with `nbconvert`
+
 ### Emphasis and Definitions
 
 Use **bold** for definitions and _italic_ for emphasis. For example,
