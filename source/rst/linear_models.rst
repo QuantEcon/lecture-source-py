@@ -209,8 +209,37 @@ The next figure shows the dynamics of this process when :math:`\phi_0 = 1.1, \ph
 
 .. _lss_sode_fig:
 
-.. figure::
-    /_static/lecture_specific/linear_models/solution_lss_ex1.png
+.. code-block:: python3
+
+    def plot_lss(A,
+             C,
+             G,
+             n=3,
+             ts_length=50):
+    
+        ar = LinearStateSpace(A, C, G, mu_0=np.ones(n))
+        x, y = ar.simulate(ts_length)
+
+        fig, ax = plt.subplots()
+        y = y.flatten()
+        ax.plot(y, 'b-', lw=2, alpha=0.7)
+        ax.grid()
+        ax.set_xlabel('time', fontsize=12)
+        ax.set_ylabel('$y_t$', fontsize=12)
+        plt.show()
+
+.. code-block:: python3
+
+    ϕ_0, ϕ_1, ϕ_2 = 1.1, 0.8, -0.8
+
+    A = [[1,     0,     0  ],
+         [ϕ_0,   ϕ_1,   ϕ_2],
+         [0,     1,     0  ]]
+    
+    C = np.zeros((3, 1))
+    G = [0, 1, 0]
+
+    plot_lss(A, C, G)
 
 Later you'll be asked to recreate this figure.
 
@@ -270,8 +299,24 @@ The next figure shows the dynamics of this process when
 
 .. _lss_uap_fig:
 
-.. figure::
-    /_static/lecture_specific/linear_models/solution_lss_ex2.png
+.. code-block:: python3
+
+    ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
+    σ = 0.2
+
+    A_1 = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
+           [1,     0,     0,     0  ],
+           [0,     1,     0,     0  ],
+           [0,     0,     1,     0  ]]
+
+    C_1 = [[σ],
+           [0],
+           [0],
+           [0]]
+
+    G_1 = [1, 0, 0, 0]
+
+    plot_lss(A_1, C_1, G_1, n=4, ts_length=200)
 
 Vector Autoregressions
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -670,24 +715,101 @@ The system in question is the univariate autoregressive model :eq:`eq_ar_rep`.
 
 The values of :math:`y_T` are represented by black dots in the left-hand figure
 
-.. figure::
-    /_static/lecture_specific/linear_models/tsh0.png
+.. code-block:: python3
+
+    def cross_section_plot(A,
+                       C,
+                       G,
+                       T=20,                 # Set the time
+                       ymin=-0.8,  
+                       ymax=1.25,  
+                       sample_size = 20,     # 20 observations/simulations
+                       n=4):                 # The number of dimensions for the initial x0
+
+        ar = LinearStateSpace(A, C, G, mu_0=np.ones(n))
+    
+        fig, axes = plt.subplots(1, 2, figsize=(16, 5))
+    
+        for ax in axes:
+            ax.grid(alpha=0.4)
+            ax.set_ylim(ymin, ymax)
+            
+        ax = axes[0]
+        ax.set_ylim(ymin, ymax)
+        ax.set_ylabel('$y_t$', fontsize=12)
+        ax.set_xlabel('time', fontsize=12)
+        ax.vlines((T,), -1.5, 1.5)
+    
+        ax.set_xticks((T,))
+        ax.set_xticklabels(('$T$',))
+        
+        sample = []
+        for i in range(sample_size):
+            rcolor = random.choice(('c', 'g', 'b', 'k'))
+            x, y = ar.simulate(ts_length=T+15)
+            y = y.flatten()
+            ax.plot(y, color=rcolor, lw=1, alpha=0.5)
+            ax.plot((T,), (y[T],), 'ko', alpha=0.5)
+            sample.append(y[T])
+            
+        y = y.flatten()
+        axes[1].set_ylim(ymin, ymax)
+        axes[1].set_ylabel('$y_t$', fontsize=12)
+        axes[1].set_xlabel('relative frequency', fontsize=12)
+        axes[1].hist(sample, bins=16, density=True, orientation='horizontal', alpha=0.5)
+        plt.show()
+
+.. code-block:: python3
+
+    ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
+    σ = 0.1
+
+    A_2 = [[ϕ_1, ϕ_2, ϕ_3, ϕ_4],
+           [1,     0,     0,     0],
+           [0,     1,     0,     0],
+           [0,     0,     1,     0]]
+
+    C_2 = [[σ], [0], [0], [0]]
+
+    G_2 = [1, 0, 0, 0]
+
+    cross_section_plot(A_2, C_2, G_2)
 
 
 In the right-hand figure, these values are converted into a rotated histogram
 that shows relative frequencies from our sample of 20 :math:`y_T`'s.
 
-(The parameters and source code for the figures can be found in file `linear_models/paths_and_hist.py <https://github.com/QuantEcon/QuantEcon.lectures.code/blob/master/linear_models/paths_and_hist.py>`__)
-
 Here is another figure, this time with 100 observations
 
-.. figure::
-    /_static/lecture_specific/linear_models/tsh.png
+.. code-block:: python3
+
+    t = 100 
+    cross_section_plot(A_2, C_2, G_2, T=t)
 
 Let's now try with 500,000 observations, showing only the histogram (without rotation)
 
-.. figure::
-    /_static/lecture_specific/linear_models/tsh_hg.png
+.. code-block:: python3
+
+    T = 100 
+    ymin=-0.8
+    ymax=1.25  
+    sample_size = 500_000
+    
+    ar = LinearStateSpace(A_2, C_2, G_2, mu_0=np.ones(4))
+    fig, ax = plt.subplots()
+    x, y = ar.simulate(sample_size)
+    mu_x, mu_y, Sigma_x, Sigma_y = ar.stationary_distributions()
+    f_y = norm(loc=float(mu_y), scale=float(np.sqrt(Sigma_y)))
+    y = y.flatten()
+    ygrid = np.linspace(ymin, ymax, 150)
+    
+    ax.hist(y, bins=50, density=True, alpha=0.4)
+    ax.plot(ygrid, f_y.pdf(ygrid), 'k-', lw=2, alpha=0.8, label=r'true density')
+    ax.set_xlim(ymin, ymax)
+    ax.set_xlabel('$y_t$', fontsize=12)
+    ax.set_ylabel('relative frequency', fontsize=12)
+    ax.legend(fontsize=12)
+    plt.show()
 
 The black line is the population density of :math:`y_T` calculated from :eq:`lss_mgs_y`.
 
@@ -726,8 +848,39 @@ and the sample size is relatively small (:math:`I=20`).
 
 .. _lss_em_fig:
 
-.. figure::
-    /_static/lecture_specific/linear_models/ensemble_mean.png
+.. code-block:: python3
+
+    I = 20
+    T = 50
+    ymin = -0.5
+    ymax = 1.15
+
+    ar = LinearStateSpace(A_2, C_2, G_2, mu_0=np.ones(4))
+
+    fig, ax = plt.subplots()
+
+    ensemble_mean = np.zeros(T)
+    for i in range(I):
+        x, y = ar.simulate(ts_length=T)
+        y = y.flatten()
+        ax.plot(y, 'c-', lw=0.8, alpha=0.5)
+        ensemble_mean = ensemble_mean + y
+    
+    ensemble_mean = ensemble_mean / I
+    ax.plot(ensemble_mean, color='b', lw=2, alpha=0.8, label='$\\bar y_t$')
+    m = ar.moment_sequence()
+
+    population_means = []
+    for t in range(T):
+        μ_x, μ_y, Σ_x, Σ_y = next(m)
+        population_means.append(float(μ_y))
+    
+    ax.plot(population_means, color='g', lw=2, alpha=0.8, label='$G\mu_t$')
+    ax.set_ylim(ymin, ymax)
+    ax.set_xlabel('time', fontsize=12)
+    ax.set_ylabel('$y_t$', fontsize=12)
+    ax.legend(ncol=2)
+    plt.show()
 
 The ensemble mean for :math:`x_t` is
 
@@ -838,8 +991,49 @@ Let's look at some more time series from the same model that we analyzed above.
 This picture shows cross-sectional distributions for :math:`y` at times
 :math:`T, T', T''`
 
-.. figure::
-    /_static/lecture_specific/linear_models/paths_and_stationarity.png
+.. code-block:: python3
+
+    def cross_plot(A, 
+                C, 
+                G, 
+                steady_state='False',
+                T0 = 10,
+                T1 = 50,
+                T2 = 75,
+                T4 = 100):
+    
+        ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
+    
+        if steady_state == 'True':
+            μ_x, μ_y, Σ_x, Σ_y = ar.stationary_distributions()
+            ar_state = LinearStateSpace(A, C, G, mu_0=μ_x, Sigma_0=Σ_x)
+        
+        ymin, ymax = -0.6, 0.6
+        fig, ax = plt.subplots()
+        ax.grid(alpha=0.4)
+        ax.set_ylim(ymin, ymax)
+        ax.set_ylabel('$y_t$', fontsize=12)
+        ax.set_xlabel('$time$', fontsize=12)
+    
+        ax.vlines((T0, T1, T2), -1.5, 1.5)
+        ax.set_xticks((T0, T1, T2))
+        ax.set_xticklabels(("$T$", "$T'$", "$T''$"), fontsize=12)
+        for i in range(80):
+            rcolor = random.choice(('c', 'g', 'b'))
+        
+            if steady_state == 'True':
+                x, y = ar_state.simulate(ts_length=T4)
+            else:
+                x, y = ar.simulate(ts_length=T4)
+            
+            y = y.flatten()
+            ax.plot(y, color=rcolor, lw=0.8, alpha=0.5)
+            ax.plot((T0, T1, T2), (y[T0], y[T1], y[T2],), 'ko', alpha=0.5)
+        plt.show()
+
+.. code-block:: python3
+
+    cross_plot(A_2, C_2, G_2)
 
 Note how the time series "settle down" in the sense that the distributions at
 :math:`T'` and :math:`T''` are relatively similar to each other --- but unlike
@@ -888,8 +1082,9 @@ Let's see what happens to the preceding figure if we start :math:`x_0` at the st
 
 .. _lss_s_fig:
 
-.. figure::
-    /_static/lecture_specific/linear_models/covariance_stationary.png
+.. code-block:: python3
+
+    cross_plot(A_2, C_2, G_2, steady_state='True')
 
 Now the  differences in the observed distributions at :math:`T, T'` and :math:`T''` come entirely from random fluctuations due to the finite sample size.
 
@@ -1278,55 +1473,6 @@ Weaker sufficient conditions for convergence  associate eigenvalues equaling or 
 
 .. _lm_fgs:
 
-Forecasts of Geometric Sums
----------------------------
-
-In several contexts, we want to compute forecasts of  geometric sums of future random variables governed by the linear state-space system :eq:`st_space_rep`.
-
-We want the following objects
-
-*  Forecast of a geometric sum of future :math:`x`'s, or :math:`\mathbb{E}_t \left[ \sum_{j=0}^\infty \beta^j x_{t+j} \right]`.
-
-*  Forecast of a geometric sum of future :math:`y`'s, or :math:`\mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right]`.
-
-These objects are important components of some famous and  interesting dynamic models.
-
-For example,
-
-* if :math:`\{y_t\}` is a stream of dividends, then :math:`\mathbb{E} \left[\sum_{j=0}^\infty \beta^j y_{t+j} | x_t \right]` is a model of a stock price
-
-* if :math:`\{y_t\}` is  the money supply, then :math:`\mathbb{E} \left[\sum_{j=0}^\infty \beta^j y_{t+j} | x_t \right]` is a  model of the price level
-
-
-
-Formulas
-^^^^^^^^
-
-Fortunately, it is easy to use a little matrix algebra to compute these objects.
-
-Suppose that every eigenvalue of :math:`A` has modulus strictly less than :math:`\frac{1}{\beta}`.
-
-It :ref:`then follows <la_neumann_remarks>` that :math:`I + \beta A + \beta^2 A^2 + \cdots = \left[I - \beta A \right]^{-1}`.
-
-This leads to our formulas:
-
-* Forecast of a geometric sum of future :math:`x`'s
-
-.. math::
-
-    \mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j x_{t+j} \right]
-    = [I + \beta A + \beta^2 A^2 + \cdots \ ] x_t = [I - \beta A]^{-1} x_t
-
-
-* Forecast of a geometric sum of future :math:`y`'s
-
-.. math::
-
-    \mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right]
-    = G [I + \beta A + \beta^2 A^2 + \cdots \ ] x_t
-    = G[I - \beta A]^{-1} x_t
-
-
 Code
 ====
 
@@ -1359,48 +1505,34 @@ Exercises
 
 Exercise 1
 ----------
+In several contexts, we want to compute forecasts of  geometric sums of future random variables governed by the linear state-space system :eq:`st_space_rep`.
 
-Replicate :ref:`this figure <lss_sode_fig>` using the ``LinearStateSpace`` class from ``lss.py``.
+We want the following objects
 
+*  Forecast of a geometric sum of future :math:`x`'s, or :math:`\mathbb{E}_t \left[ \sum_{j=0}^\infty \beta^j x_{t+j} \right]`.
 
+*  Forecast of a geometric sum of future :math:`y`'s, or :math:`\mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right]`.
 
+These objects are important components of some famous and  interesting dynamic models.
 
-.. _lss_ex2:
+For example,
 
-Exercise 2
-----------
+* if :math:`\{y_t\}` is a stream of dividends, then :math:`\mathbb{E} \left[\sum_{j=0}^\infty \beta^j y_{t+j} | x_t \right]` is a model of a stock price
 
-Replicate :ref:`this figure <lss_uap_fig>` modulo randomness using the same class.
+* if :math:`\{y_t\}` is  the money supply, then :math:`\mathbb{E} \left[\sum_{j=0}^\infty \beta^j y_{t+j} | x_t \right]` is a  model of the price level
 
+Show that:
 
+.. math::
 
+    \mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j x_{t+j} \right] = [I - \beta A]^{-1} x_t
 
-.. _lss_ex3:
+and
 
-Exercise 3
-----------
+.. math::
+    \mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right] = G[I - \beta A]^{-1} x_t
 
-Replicate :ref:`this figure <lss_em_fig>` modulo randomness using the same class.
-
-The state space model and parameters are the same as for the preceding exercise.
-
-
-
-.. _lss_ex4:
-
-Exercise 4
-----------
-
-Replicate :ref:`this figure <lss_s_fig>` modulo randomness using the same class.
-
-The state space model and parameters are the same as for the preceding exercise, except that the initial condition is the stationary distribution.
-
-Hint: You can use the ``stationary_distributions`` method to get the initial conditions.
-
-The number of sample paths is 80, and the time horizon in the figure is 100.
-
-Producing the vertical bars and dots is optional, but if you wish to try,
-the bars are at dates 10, 50 and 75.
+what must the modulus for every eigenvalue of :math:`A` be less than?
 
 
 
@@ -1411,154 +1543,27 @@ Solutions
 Exercise 1
 ----------
 
-.. code-block:: python3
+Suppose that every eigenvalue of :math:`A` has modulus strictly less than :math:`\frac{1}{\beta}`.
 
-    ϕ_0, ϕ_1, ϕ_2 = 1.1, 0.8, -0.8
+It :ref:`then follows <la_neumann_remarks>` that :math:`I + \beta A + \beta^2 A^2 + \cdots = \left[I - \beta A \right]^{-1}`.
 
-    A = [[1,     0,     0  ],
-         [ϕ_0,   ϕ_1,   ϕ_2],
-         [0,     1,     0  ]]
-    C = np.zeros((3, 1))
-    G = [0, 1, 0]
+This leads to our formulas:
 
-    ar = LinearStateSpace(A, C, G, mu_0=np.ones(3))
-    x, y = ar.simulate(ts_length=50)
+* Forecast of a geometric sum of future :math:`x`'s
 
-    fig, ax = plt.subplots(figsize=(10, 6))
-    y = y.flatten()
-    ax.plot(y, 'b-', lw=2, alpha=0.7)
-    ax.grid()
-    ax.set_xlabel('time')
-    ax.set_ylabel('$y_t$', fontsize=16)
-    plt.show()
+.. math::
+
+    \mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j x_{t+j} \right]
+    = [I + \beta A + \beta^2 A^2 + \cdots \ ] x_t = [I - \beta A]^{-1} x_t
 
 
-Exercise 2
-----------
+* Forecast of a geometric sum of future :math:`y`'s
 
-.. code-block:: python3
+.. math::
 
-    ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
-    σ = 0.2
-
-    A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
-         [1,     0,     0,     0  ],
-         [0,     1,     0,     0  ],
-         [0,     0,     1,     0  ]]
-    C = [[σ],
-         [0],
-         [0],
-         [0]]
-    G = [1, 0, 0, 0]
-
-    ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
-    x, y = ar.simulate(ts_length=200)
-
-    fig, ax = plt.subplots(figsize=(10, 6))
-    y = y.flatten()
-    ax.plot(y, 'b-', lw=2, alpha=0.7)
-    ax.grid()
-    ax.set_xlabel('time')
-    ax.set_ylabel('$y_t$', fontsize=16)
-    plt.show()
-
-Exercise 3
-----------
-
-.. code-block:: python3
-
-    ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
-    σ = 0.1
-
-    A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
-         [1,     0,     0,     0  ],
-         [0,     1,     0,     0  ],
-         [0,     0,     1,     0  ]]
-    C = [[σ],
-         [0],
-         [0],
-         [0]]
-    G = [1, 0, 0, 0]
-
-    I = 20
-    T = 50
-    ar = LinearStateSpace(A, C, G, mu_0=np.ones(4))
-    ymin, ymax = -0.5, 1.15
-
-    fig, ax = plt.subplots(figsize=(8, 5))
-
-    ax.set_ylim(ymin, ymax)
-    ax.set_xlabel('time', fontsize=16)
-    ax.set_ylabel('$y_t$', fontsize=16)
-
-    ensemble_mean = np.zeros(T)
-    for i in range(I):
-        x, y = ar.simulate(ts_length=T)
-        y = y.flatten()
-        ax.plot(y, 'c-', lw=0.8, alpha=0.5)
-        ensemble_mean = ensemble_mean + y
-
-    ensemble_mean = ensemble_mean / I
-    ax.plot(ensemble_mean, color='b', lw=2, alpha=0.8, label='$\\bar y_t$')
-
-    m = ar.moment_sequence()
-    population_means = []
-    for t in range(T):
-        μ_x, μ_y, Σ_x, Σ_y = next(m)
-        population_means.append(float(μ_y))
-    ax.plot(population_means, color='g', lw=2, alpha=0.8, label='$G\mu_t$')
-    ax.legend(ncol=2)
-    plt.show()
-
-Exercise 4
-----------
-
-.. code-block:: python3
-
-    ϕ_1, ϕ_2, ϕ_3, ϕ_4 = 0.5, -0.2, 0, 0.5
-    σ = 0.1
-
-    A = [[ϕ_1,   ϕ_2,   ϕ_3,   ϕ_4],
-         [1,     0,     0,     0  ],
-         [0,     1,     0,     0  ],
-         [0,     0,     1,     0  ]]
-    C = [[σ],
-         [0],
-         [0],
-         [0]]
-    G = [1, 0, 0, 0]
-
-    T0 = 10
-    T1 = 50
-    T2 = 75
-    T4 = 100
-
-    ar = LinearStateSpace(A, C, G, mu_0=np.ones(4), Sigma_0=Σ_x)
-    ymin, ymax = -0.6, 0.6
-
-    fig, ax = plt.subplots(figsize=(8, 5))
-
-    ax.grid(alpha=0.4)
-    ax.set_ylim(ymin, ymax)
-    ax.set_ylabel('$y_t$', fontsize=16)
-    ax.vlines((T0, T1, T2), -1.5, 1.5)
-
-    ax.set_xticks((T0, T1, T2))
-    ax.set_xticklabels(("$T$", "$T'$", "$T''$"), fontsize=14)
-
-    μ_x, μ_y, Σ_x, Σ_y = ar.stationary_distributions()
-    ar.mu_0 = μ_x
-    ar.Sigma_0 = Σ_x
-
-    for i in range(80):
-        rcolor = random.choice(('c', 'g', 'b'))
-        x, y = ar.simulate(ts_length=T4)
-        y = y.flatten()
-        ax.plot(y, color=rcolor, lw=0.8, alpha=0.5)
-        ax.plot((T0, T1, T2), (y[T0], y[T1], y[T2],), 'ko', alpha=0.5)
-    plt.show()
-
-
+    \mathbb{E}_t \left[\sum_{j=0}^\infty \beta^j y_{t+j} \right]
+    = G [I + \beta A + \beta^2 A^2 + \cdots \ ] x_t
+    = G[I - \beta A]^{-1} x_t
 
 
 
