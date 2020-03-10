@@ -312,7 +312,7 @@ Accessing Data with :index:`requests`
 .. index::
     single: Python; requests
 
-One option is to use `requests <http://docs.python-requests.org/en/master/>`_, a standard Python library for requesting data over the Internet.
+One option is to use `requests <https://requests.readthedocs.io/en/master/>`_, a standard Python library for requesting data over the Internet.
 
 To begin, try the following code on your computer
 
@@ -332,7 +332,7 @@ In the second case, you can either
 
 * switch to another machine
 
-* solve your proxy problem by reading `the documentation <http://docs.python-requests.org/en/master/>`_
+* solve your proxy problem by reading `the documentation <https://requests.readthedocs.io/en/master/>`_
 
 Assuming that all is working, you can now proceed to use the ``source`` object returned by the call ``requests.get('http://research.stlouisfed.org/fred2/series/UNRATE/downloaddata/UNRATE.csv')``
 
