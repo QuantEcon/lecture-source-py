@@ -84,6 +84,7 @@ You will need to fetch the Liberation Mono fonts for this repository to build th
 ```bash
 brew tap homebrew/cask-fonts
 brew cask install font-liberation-sans
+brew cask install font-computer-modern
 ```
 
 ## Converting notebooks to RST files
