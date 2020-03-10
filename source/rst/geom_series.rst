@@ -162,6 +162,7 @@ reserves :math:`R_i` must satisfy the balance sheet equation (because
 **balance sheets balance**):
 
 .. math:: L_i + R_i = D_i
+  :label: balance
 
 The left side of the above equation is the sum of the bank's **assets**,
 namely, the loans :math:`L_i` it has outstanding plus its reserves of
@@ -214,7 +215,7 @@ depositor put into the first bank in the system, bank number :math:`i=0`.
 
 Now we do a little algebra.
 
-Combining equations :eq:`reserves` and :eq:`deposits` tells us that
+Combining equations :eq:`balance` and :eq:`reserves` tells us that
 
 .. math::
   :label: fraction
