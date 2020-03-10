@@ -80,11 +80,6 @@ Let's start with some imports:
     %matplotlib inline
     from scipy.stats import norm, lognorm
 
-We will also set the Numpy seed so that our output is consistent:
-
-.. code-block:: ipython
-
-    np.random.seed(10021987)
 
 A Particular Additive Functional
 ====================================
@@ -461,6 +456,7 @@ The code below adds some functions that generate plots for instances of the ``AM
         ax[0, 1].plot(trange, mpath.T, alpha=0.45, color="m")
         ub = mbounds[1, :]
         lb = mbounds[0, :]
+
         ax[0, 1].fill_between(trange, lb, ub, alpha=0.25, color="m")
         ax[0, 1].set_title("Martingale Components for Many Paths")
         ax[0, 1].axhline(horline, color="k", linestyle="-.")
@@ -514,9 +510,9 @@ The code below adds some functions that generate plots for instances of the ``AM
                 mscale = np.sqrt(yvar[nx+nm+ii, nx+nm+ii])
                 sscale = np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii])
                 if mscale == 0.0:
-                    mscale = 1e-12   # avoids a runtime warning from calculating ppf    
+                    mscale = 1e-12   # avoids a RuntimeWarning from calculating ppf    
                 if sscale == 0.0:    # of normal distribution with std dev = 0.
-                    sscale = 1e-12   # sets std dev to arbitrary small value instead
+                    sscale = 1e-12   # sets std dev to small value instead
                 
                 madd_dist = norm(ymeans[nx+nm+ii], mscale)
                 sadd_dist = norm(ymeans[nx+2*nm+ii], sscale)
@@ -1024,7 +1020,6 @@ The second is a **peculiar property** noted and proved by Hansen and Sargent :ci
 The following simulation of many paths of :math:`\widetilde M_t` illustrates both properties
 
 
-
 .. code-block:: python3
 
     np.random.seed(10021987)
@@ -1244,7 +1239,7 @@ The following code adds some simple functions that make it straightforward to ge
 
 
 
-Now that we have these functions in our tool kit, let's apply them to run some
+Now that we have these functions in our toolkit, let's apply them to run some
 simulations.
 
 
@@ -1350,7 +1345,7 @@ Here is some code that tackles these tasks
     ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0,
                         xmax=10.0), times_to_plot)
 
-    fig, ax = plt.subplots(3, 2, figsize=(8, 14))
+    fig, ax = plt.subplots(3, 2, figsize=(14, 14))
     ax = ax.flatten()
 
     fig.suptitle(r"Densities of $\tilde{M}_t$", fontsize=18, y=1.02)
