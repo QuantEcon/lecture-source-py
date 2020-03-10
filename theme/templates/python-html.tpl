@@ -461,11 +461,11 @@ var element = $('#{{ div_id }}');
 
 				<p class="logo"><a href="#"><img src="/_static/img/qe-logo.png"></a></p>
 
-				<p><a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nd/4.0/80x15.png" /></a></p>
+				<p><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a></p>
 
-				<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.</p>
+				<p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
 
-				<p>&copy; Copyright 2019, Thomas J. Sargent and John Stachurski. Created using <a href="https://jupinx.quantecon.org/">Jupinx</a>, hosted with <a href="https://aws.amazon.com/">AWS</a>.</p>
+				<p>&copy; Copyright 2020, Thomas J. Sargent and John Stachurski. Created using <a href="https://jupinx.quantecon.org/">Jupinx</a>, hosted with <a href="https://aws.amazon.com/">AWS</a>.</p>
 
 			</footer>
 
