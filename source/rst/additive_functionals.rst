@@ -34,8 +34,7 @@ For example, outputs, prices, and dividends typically display  irregular but per
 
 Asymptotic stationarity and ergodicity are key assumptions needed to make it possible to learn by applying statistical methods.
 
-Are there ways to model  time series having persistent growth that still enables statistical learning based on a law of large number for
-an asymptotically stationary and ergodic process?
+Are there ways to model time series that have persistent growth that still enable statistical learning based on a law of large numbers for an asymptotically stationary and ergodic process?
 
 The answer provided by Hansen and Scheinkman :cite:`hansen2009long` is yes.
 
@@ -55,7 +54,7 @@ Hansen and Sargent :cite:`hansen2008robustness` (chs. 5 and 8) describe discrete
 
 In this lecture, we describe both  additive functionals and multiplicative functionals.
 
-We also describe  and compute  decompositions of additive and multiplicative processes into four components
+We also describe and compute decompositions of additive and multiplicative processes into four components:
 
 #. a **constant**
 
@@ -425,285 +424,293 @@ All of these objects are computed using the code below
             return llh[-1]
 
 
-        def plot_additive(self, T, npaths=25, show_trend=True):
-            """
-            Plots for the additive decomposition
+Plotting
+^^^^^^^^
 
-            """
-            # Pull out right sizes so we know how to increment
-            nx, nk, nm = self.nx, self.nk, self.nm
+The code below adds some functions that generate plots for instances of the ``AMF_LSS_VAR`` :ref:`class <amf_lss>`.
 
-            # Allocate space (nm is the number of additive functionals -
-            # we want npaths for each)
-            mpath = np.empty((nm*npaths, T))
-            mbounds = np.empty((nm*2, T))
-            spath = np.empty((nm*npaths, T))
-            sbounds = np.empty((nm*2, T))
-            tpath = np.empty((nm*npaths, T))
-            ypath = np.empty((nm*npaths, T))
+.. code-block:: python3
+    :class: collapse
 
-            # Simulate for as long as we wanted
-            moment_generator = self.lss.moment_sequence()
-            # Pull out population moments
-            for t in range (T):
-                tmoms = next(moment_generator)
-                ymeans = tmoms[1]
-                yvar = tmoms[3]
+    def plot_given_paths(amf, T, ypath, mpath, spath, tpath,
+                        mbounds, sbounds, horline=0, show_trend=True):
 
-                # Lower and upper bounds - for each additive functional
-                for ii in range(nm):
-                    li, ui = ii*2, (ii+1)*2
-                    madd_dist = norm(ymeans[nx+nm+ii],
-                                     np.sqrt(yvar[nx+nm+ii, nx+nm+ii]))
-                    mbounds[li:ui, t] = madd_dist.ppf([0.01, .99])
+        # Allocate space
+        trange = np.arange(T)
 
-                    sadd_dist = norm(ymeans[nx+2*nm+ii],
-                                     np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii]))
-                    sbounds[li:ui, t] = sadd_dist.ppf([0.01, .99])
+        # Create figure
+        fig, ax = plt.subplots(2, 2, sharey=True, figsize=(15, 8))
 
-            # Pull out paths
-            for n in range(npaths):
-                x, y = self.lss.simulate(T)
-                for ii in range(nm):
-                    ypath[npaths*ii+n, :] = y[nx+ii, :]
-                    mpath[npaths*ii+n, :] = y[nx+nm + ii, :]
-                    spath[npaths*ii+n, :] = y[nx+2*nm + ii, :]
-                    tpath[npaths*ii+n, :] = y[nx+3*nm + ii, :]
+        # Plot all paths together
+        ax[0, 0].plot(trange, ypath[0, :], label="$y_t$", color="k")
+        ax[0, 0].plot(trange, mpath[0, :], label="$m_t$", color="m")
+        ax[0, 0].plot(trange, spath[0, :], label="$s_t$", color="g")
+        if show_trend:
+            ax[0, 0].plot(trange, tpath[0, :], label="$t_t$", color="r")
+        ax[0, 0].axhline(horline, color="k", linestyle="-.")
+        ax[0, 0].set_title("One Path of All Variables")
+        ax[0, 0].legend(loc="upper left")
+            
+        # Plot Martingale Component
+        ax[0, 1].plot(trange, mpath[0, :], "m")
+        ax[0, 1].plot(trange, mpath.T, alpha=0.45, color="m")
+        ub = mbounds[1, :]
+        lb = mbounds[0, :]
 
-            add_figs = []
+        ax[0, 1].fill_between(trange, lb, ub, alpha=0.25, color="m")
+        ax[0, 1].set_title("Martingale Components for Many Paths")
+        ax[0, 1].axhline(horline, color="k", linestyle="-.")
 
+        # Plot Stationary Component
+        ax[1, 0].plot(spath[0, :], color="g")
+        ax[1, 0].plot(spath.T, alpha=0.25, color="g")
+        ub = sbounds[1, :]
+        lb = sbounds[0, :]
+        ax[1, 0].fill_between(trange, lb, ub, alpha=0.25, color="g")
+        ax[1, 0].axhline(horline, color="k", linestyle="-.")
+        ax[1, 0].set_title("Stationary Components for Many Paths")
+
+        # Plot Trend Component
+        if show_trend:
+            ax[1, 1].plot(tpath.T, color="r")
+        ax[1, 1].set_title("Trend Components for Many Paths")
+        ax[1, 1].axhline(horline, color="k", linestyle="-.")
+
+        return fig
+
+    def plot_additive(amf, T, npaths=25, show_trend=True):
+        """
+        Plots for the additive decomposition.
+        Acts on an instance amf of the AMF_LSS_VAR class
+
+        """
+        # Pull out right sizes so we know how to increment
+        nx, nk, nm = amf.nx, amf.nk, amf.nm
+
+        # Allocate space (nm is the number of additive functionals -
+        # we want npaths for each)
+        mpath = np.empty((nm*npaths, T))
+        mbounds = np.empty((nm*2, T))
+        spath = np.empty((nm*npaths, T))
+        sbounds = np.empty((nm*2, T))
+        tpath = np.empty((nm*npaths, T))
+        ypath = np.empty((nm*npaths, T))
+
+        # Simulate for as long as we wanted
+        moment_generator = amf.lss.moment_sequence()
+        # Pull out population moments
+        for t in range (T):
+            tmoms = next(moment_generator)
+            ymeans = tmoms[1]
+            yvar = tmoms[3]
+
+            # Lower and upper bounds - for each additive functional
             for ii in range(nm):
-                li, ui = npaths*(ii), npaths*(ii+1)
-                LI, UI = 2*(ii), 2*(ii+1)
-                add_figs.append(self.plot_given_paths(T,
-                                                      ypath[li:ui,:],
-                                                      mpath[li:ui,:],
-                                                      spath[li:ui,:],
-                                                      tpath[li:ui,:], 
-                                                      mbounds[LI:UI,:],
-                                                      sbounds[LI:UI,:],
-                                                      show_trend=show_trend))
+                li, ui = ii*2, (ii+1)*2
+                mscale = np.sqrt(yvar[nx+nm+ii, nx+nm+ii])
+                sscale = np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii])
+                if mscale == 0.0:
+                    mscale = 1e-12   # avoids a RuntimeWarning from calculating ppf    
+                if sscale == 0.0:    # of normal distribution with std dev = 0.
+                    sscale = 1e-12   # sets std dev to small value instead
+                
+                madd_dist = norm(ymeans[nx+nm+ii], mscale)
+                sadd_dist = norm(ymeans[nx+2*nm+ii], sscale)
+                
+                mbounds[li:ui, t] = madd_dist.ppf([0.01, .99])
+                sbounds[li:ui, t] = sadd_dist.ppf([0.01, .99])
+                
+        # Pull out paths
+        for n in range(npaths):
+            x, y = amf.lss.simulate(T)
+            for ii in range(nm):
+                ypath[npaths*ii+n, :] = y[nx+ii, :]
+                mpath[npaths*ii+n, :] = y[nx+nm + ii, :]
+                spath[npaths*ii+n, :] = y[nx+2*nm + ii, :]
+                tpath[npaths*ii+n, :] = y[nx+3*nm + ii, :]
 
-                add_figs[ii].suptitle(f'Additive decomposition of $y_{ii+1}$',
-                                      fontsize=14)
+        add_figs = []
 
-            return add_figs
+        for ii in range(nm):
+            li, ui = npaths*(ii), npaths*(ii+1)
+            LI, UI = 2*(ii), 2*(ii+1)
+            add_figs.append(plot_given_paths(amf, T,
+                                                    ypath[li:ui,:],
+                                                    mpath[li:ui,:],
+                                                    spath[li:ui,:],
+                                                    tpath[li:ui,:],
+                                                    mbounds[LI:UI,:],
+                                                    sbounds[LI:UI,:],
+                                                    show_trend=show_trend))
+
+            add_figs[ii].suptitle(f'Additive decomposition of $y_{ii+1}$',
+                                    fontsize=14)
+
+        return add_figs
 
 
-        def plot_multiplicative(self, T, npaths=25, show_trend=True):
-            """
-            Plots for the multiplicative decomposition
+    def plot_multiplicative(amf, T, npaths=25, show_trend=True):
+        """
+        Plots for the multiplicative decomposition
 
-            """
-            # Pull out right sizes so we know how to increment
-            nx, nk, nm = self.nx, self.nk, self.nm
-            # Matrices for the multiplicative decomposition
-            ν_tilde, H, g = self.multiplicative_decomp()
+        """
+        # Pull out right sizes so we know how to increment
+        nx, nk, nm = amf.nx, amf.nk, amf.nm
+        # Matrices for the multiplicative decomposition
+        ν_tilde, H, g = amf.multiplicative_decomp()
 
-            # Allocate space (nm is the number of functionals - 
-            # we want npaths for each)
-            mpath_mult = np.empty((nm*npaths, T))
-            mbounds_mult = np.empty((nm*2, T))
-            spath_mult = np.empty((nm*npaths, T))
-            sbounds_mult = np.empty((nm*2, T))
-            tpath_mult = np.empty((nm*npaths, T))
-            ypath_mult = np.empty((nm*npaths, T))
+        # Allocate space (nm is the number of functionals -
+        # we want npaths for each)
+        mpath_mult = np.empty((nm*npaths, T))
+        mbounds_mult = np.empty((nm*2, T))
+        spath_mult = np.empty((nm*npaths, T))
+        sbounds_mult = np.empty((nm*2, T))
+        tpath_mult = np.empty((nm*npaths, T))
+        ypath_mult = np.empty((nm*npaths, T))
 
-            # Simulate for as long as we wanted
-            moment_generator = self.lss.moment_sequence()
-            # Pull out population moments
-            for t in range(T):
-                tmoms = next(moment_generator)
-                ymeans = tmoms[1]
-                yvar = tmoms[3]
+        # Simulate for as long as we wanted
+        moment_generator = amf.lss.moment_sequence()
+        # Pull out population moments
+        for t in range(T):
+            tmoms = next(moment_generator)
+            ymeans = tmoms[1]
+            yvar = tmoms[3]
 
-                # Lower and upper bounds - for each multiplicative functional
-                for ii in range(nm):
-                    li, ui = ii*2, (ii+1)*2
-                    Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])), 
-                                    scale=np.asscalar(np.exp(ymeans[nx+nm+ii] \
+            # Lower and upper bounds - for each multiplicative functional
+            for ii in range(nm):
+                li, ui = ii*2, (ii+1)*2
+                Mdist = lognorm(np.sqrt(yvar[nx+nm+ii, nx+nm+ii]).item(),
+                                scale=np.exp(ymeans[nx+nm+ii] \
+                                                        - t * (.5)
+                                                        * np.expand_dims(
+                                                            np.diag(H @ H.T),
+                                                            1
+                                                            )[ii]
+                                                        ).item()
+                                                    )
+                Sdist = lognorm(np.sqrt(yvar[nx+2*nm+ii, nx+2*nm+ii]).item(),
+                                scale = np.exp(-ymeans[nx+2*nm+ii]).item())
+                mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
+                sbounds_mult[li:ui, t] = Sdist.ppf([.01, .99])
+
+        # Pull out paths
+        for n in range(npaths):
+            x, y = amf.lss.simulate(T)
+            for ii in range(nm):
+                ypath_mult[npaths*ii+n, :] = np.exp(y[nx+ii, :])
+                mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] \
+                                                    - np.arange(T)*(.5)
+                                                    * np.expand_dims(np.diag(H
+                                                                        @ H.T),
+                                                                        1)[ii]
+                                                    )
+                spath_mult[npaths*ii+n, :] = 1/np.exp(-y[nx+2*nm + ii, :])
+                tpath_mult[npaths*ii+n, :] = np.exp(y[nx+3*nm + ii, :]
+                                                    + np.arange(T)*(.5)
+                                                    * np.expand_dims(np.diag(H
+                                                                        @ H.T),
+                                                                        1)[ii]
+                                                    )
+
+        mult_figs = []
+
+        for ii in range(nm):
+            li, ui = npaths*(ii), npaths*(ii+1)
+            LI, UI = 2*(ii), 2*(ii+1)
+
+            mult_figs.append(plot_given_paths(amf,T,
+                                                    ypath_mult[li:ui,:],
+                                                    mpath_mult[li:ui,:],
+                                                    spath_mult[li:ui,:],
+                                                    tpath_mult[li:ui,:],
+                                                    mbounds_mult[LI:UI,:],
+                                                    sbounds_mult[LI:UI,:],
+                                                    1,
+                                                    show_trend=show_trend))
+            mult_figs[ii].suptitle(f'Multiplicative decomposition of \
+                                        $y_{ii+1}$', fontsize=14)
+
+        return mult_figs
+
+    def plot_martingale_paths(amf, T, mpath, mbounds, horline=1, show_trend=False):
+        # Allocate space
+        trange = np.arange(T)
+
+        # Create figure
+        fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+
+        # Plot Martingale Component
+        ub = mbounds[1, :]
+        lb = mbounds[0, :]
+        ax.fill_between(trange, lb, ub, color="#ffccff")
+        ax.axhline(horline, color="k", linestyle="-.")
+        ax.plot(trange, mpath.T, linewidth=0.25, color="#4c4c4c")
+
+        return fig
+
+    def plot_martingales(amf, T, npaths=25):
+
+        # Pull out right sizes so we know how to increment
+        nx, nk, nm = amf.nx, amf.nk, amf.nm
+        # Matrices for the multiplicative decomposition
+        ν_tilde, H, g = amf.multiplicative_decomp()
+
+        # Allocate space (nm is the number of functionals -
+        # we want npaths for each)
+        mpath_mult = np.empty((nm*npaths, T))
+        mbounds_mult = np.empty((nm*2, T))
+
+        # Simulate for as long as we wanted
+        moment_generator = amf.lss.moment_sequence()
+        # Pull out population moments
+        for t in range (T):
+            tmoms = next(moment_generator)
+            ymeans = tmoms[1]
+            yvar = tmoms[3]
+
+            # Lower and upper bounds - for each functional
+            for ii in range(nm):
+                li, ui = ii*2, (ii+1)*2
+                Mdist = lognorm(np.sqrt(yvar[nx+nm+ii, nx+nm+ii]).item(),
+                                scale= np.exp(ymeans[nx+nm+ii] \
                                                             - t * (.5)
                                                             * np.expand_dims(
                                                                 np.diag(H @ H.T),
-                                                                1
-                                                                )[ii]
-                                                            )
-                                                     )
-                                    )
-                    Sdist = lognorm(np.asscalar(np.sqrt(yvar[nx+2*nm+ii,
-                                                        nx+2*nm+ii])),
-                                    scale = np.asscalar(
-                                                np.exp(-ymeans[nx+2*nm+ii])
-                                                )
-                                    )
-                    mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
-                    sbounds_mult[li:ui, t] = Sdist.ppf([.01, .99])
+                                                                1)[ii]
 
-            # Pull out paths
-            for n in range(npaths):
-                x, y = self.lss.simulate(T)
-                for ii in range(nm):
-                    ypath_mult[npaths*ii+n, :] = np.exp(y[nx+ii, :])
-                    mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] \
-                                                        - np.arange(T)*(.5)
-                                                        * np.expand_dims(np.diag(H
-                                                                            @ H.T),
-                                                                         1)[ii]
-                                                        )
-                    spath_mult[npaths*ii+n, :] = 1/np.exp(-y[nx+2*nm + ii, :])
-                    tpath_mult[npaths*ii+n, :] = np.exp(y[nx+3*nm + ii, :]
-                                                        + np.arange(T)*(.5)
-                                                        * np.expand_dims(np.diag(H
-                                                                            @ H.T),
-                                                                         1)[ii]
-                                                        )
+                                                    ).item()
+                                )
+                mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
 
-            mult_figs = []
-
+        # Pull out paths
+        for n in range(npaths):
+            x, y = amf.lss.simulate(T)
             for ii in range(nm):
-                li, ui = npaths*(ii), npaths*(ii+1)
-                LI, UI = 2*(ii), 2*(ii+1)
-
-                mult_figs.append(self.plot_given_paths(T,
-                                                       ypath_mult[li:ui,:],
-                                                       mpath_mult[li:ui,:], 
-                                                       spath_mult[li:ui,:],
-                                                       tpath_mult[li:ui,:], 
-                                                       mbounds_mult[LI:UI,:],
-                                                       sbounds_mult[LI:UI,:],
-                                                       1, 
-                                                       show_trend=show_trend))
-                mult_figs[ii].suptitle(f'Multiplicative decomposition of \
-                                         $y_{ii+1}$', fontsize=14)
-
-            return mult_figs
-
-        def plot_martingales(self, T, npaths=25):
-
-            # Pull out right sizes so we know how to increment
-            nx, nk, nm = self.nx, self.nk, self.nm
-            # Matrices for the multiplicative decomposition
-            ν_tilde, H, g = self.multiplicative_decomp()
-
-            # Allocate space (nm is the number of functionals - 
-            # we want npaths for each)
-            mpath_mult = np.empty((nm*npaths, T))
-            mbounds_mult = np.empty((nm*2, T))
-
-            # Simulate for as long as we wanted
-            moment_generator = self.lss.moment_sequence()
-            # Pull out population moments
-            for t in range (T):
-                tmoms = next(moment_generator)
-                ymeans = tmoms[1]
-                yvar = tmoms[3]
-
-                # Lower and upper bounds - for each functional
-                for ii in range(nm):
-                    li, ui = ii*2, (ii+1)*2
-                    Mdist = lognorm(np.asscalar(np.sqrt(yvar[nx+nm+ii, nx+nm+ii])),
-                                    scale=np.asscalar( np.exp(ymeans[nx+nm+ii] \
-                                                              - t * (.5)
-                                                              * np.expand_dims(
-                                                                    np.diag(H @ H.T),
+                mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] \
+                                                    - np.arange(T) * (.5)
+                                                    * np.expand_dims(np.diag(H
+                                                                        @ H.T),
                                                                     1)[ii]
-                                                             )
-                                                     )
-                                    )
-                    mbounds_mult[li:ui, t] = Mdist.ppf([.01, .99])
+                                                    )
 
-            # Pull out paths
-            for n in range(npaths):
-                x, y = self.lss.simulate(T)
-                for ii in range(nm):
-                    mpath_mult[npaths*ii+n, :] = np.exp(y[nx+nm + ii, :] \
-                                                       - np.arange(T) * (.5)
-                                                       * np.expand_dims(np.diag(H
-                                                                            @ H.T),
-                                                                        1)[ii]
-                                                        )
+        mart_figs = []
 
-            mart_figs = []
+        for ii in range(nm):
+            li, ui = npaths*(ii), npaths*(ii+1)
+            LI, UI = 2*(ii), 2*(ii+1)
+            mart_figs.append(plot_martingale_paths(amf, T, mpath_mult[li:ui, :],
+                                                        mbounds_mult[LI:UI, :],
+                                                        horline=1))
+            mart_figs[ii].suptitle(f'Martingale components for many paths of \
+                                    $y_{ii+1}$', fontsize=14)
 
-            for ii in range(nm):
-                li, ui = npaths*(ii), npaths*(ii+1)
-                LI, UI = 2*(ii), 2*(ii+1)
-                mart_figs.append(self.plot_martingale_paths(T, mpath_mult[li:ui, :],
-                                                            mbounds_mult[LI:UI, :],
-                                                            horline=1))
-                mart_figs[ii].suptitle(f'Martingale components for many paths of \
-                                        $y_{ii+1}$', fontsize=14)
-
-            return mart_figs
-
-
-        def plot_given_paths(self, T, ypath, mpath, spath, tpath,
-                            mbounds, sbounds, horline=0, show_trend=True):
-
-            # Allocate space
-            trange = np.arange(T)
-
-            # Create figure
-            fig, ax = plt.subplots(2, 2, sharey=True, figsize=(15, 8))
-
-            # Plot all paths together
-            ax[0, 0].plot(trange, ypath[0, :], label="$y_t$", color="k")
-            ax[0, 0].plot(trange, mpath[0, :], label="$m_t$", color="m")
-            ax[0, 0].plot(trange, spath[0, :], label="$s_t$", color="g")
-            if show_trend:
-                ax[0, 0].plot(trange, tpath[0, :], label="$t_t$", color="r")
-            ax[0, 0].axhline(horline, color="k", linestyle="-.")
-            ax[0, 0].set_title("One Path of All Variables")
-            ax[0, 0].legend(loc="upper left")
-
-            # Plot Martingale Component
-            ax[0, 1].plot(trange, mpath[0, :], "m")
-            ax[0, 1].plot(trange, mpath.T, alpha=0.45, color="m")
-            ub = mbounds[1, :]
-            lb = mbounds[0, :]
-            ax[0, 1].fill_between(trange, lb, ub, alpha=0.25, color="m")
-            ax[0, 1].set_title("Martingale Components for Many Paths")
-            ax[0, 1].axhline(horline, color="k", linestyle="-.")
-
-            # Plot Stationary Component
-            ax[1, 0].plot(spath[0, :], color="g")
-            ax[1, 0].plot(spath.T, alpha=0.25, color="g")
-            ub = sbounds[1, :]
-            lb = sbounds[0, :]
-            ax[1, 0].fill_between(trange, lb, ub, alpha=0.25, color="g")
-            ax[1, 0].axhline(horline, color="k", linestyle="-.")
-            ax[1, 0].set_title("Stationary Components for Many Paths")
-
-            # Plot Trend Component
-            if show_trend:
-                ax[1, 1].plot(tpath.T, color="r")
-            ax[1, 1].set_title("Trend Components for Many Paths")
-            ax[1, 1].axhline(horline, color="k", linestyle="-.")
-
-            return fig
-
-        def plot_martingale_paths(self, T, mpath, mbounds,
-                                horline=1, show_trend=False):
-            # Allocate space
-            trange = np.arange(T)
-
-            # Create figure
-            fig, ax = plt.subplots(1, 1, figsize=(10, 6))
-
-            # Plot Martingale Component
-            ub = mbounds[1, :]
-            lb = mbounds[0, :]
-            ax.fill_between(trange, lb, ub, color="#ffccff")
-            ax.axhline(horline, color="k", linestyle="-.")
-            ax.plot(trange, mpath.T, linewidth=0.25, color="#4c4c4c")
-
-            return fig
+        return mart_figs
 
 
 For now, we just plot :math:`y_t` and :math:`x_t`, postponing until later a description of exactly how we compute them.
 
-.. _addfunc_egcode:
 
+.. _addfunc_egcode:
 
 
 .. code-block:: python3
@@ -905,7 +912,7 @@ you will generate (modulo randomness) the plot
 
 .. code-block:: python3
 
-    amf.plot_additive(T)
+    plot_additive(amf, T)
     plt.show()
 
 
@@ -974,7 +981,7 @@ obtain the graph in the next cell.
 
 .. code-block:: python3
 
-    amf.plot_multiplicative(T)
+    plot_multiplicative(amf, T)
     plt.show()
 
 
@@ -1013,11 +1020,10 @@ The second is a **peculiar property** noted and proved by Hansen and Sargent :ci
 The following simulation of many paths of :math:`\widetilde M_t` illustrates both properties
 
 
-
 .. code-block:: python3
 
     np.random.seed(10021987)
-    amf.plot_martingales(12000)
+    plot_martingales(amf, 12000)
     plt.show()
 
 
@@ -1233,7 +1239,7 @@ The following code adds some simple functions that make it straightforward to ge
 
 
 
-Now that we have these functions in our took kit, let's apply them to run some
+Now that we have these functions in our toolkit, let's apply them to run some
 simulations.
 
 
@@ -1339,7 +1345,7 @@ Here is some code that tackles these tasks
     ldens_to_plot = map(lambda t: logMtilde_t_density(amf_2, t, xmin=-10.0,
                         xmax=10.0), times_to_plot)
 
-    fig, ax = plt.subplots(3, 2, figsize=(8, 14))
+    fig, ax = plt.subplots(3, 2, figsize=(14, 14))
     ax = ax.flatten()
 
     fig.suptitle(r"Densities of $\tilde{M}_t$", fontsize=18, y=1.02)
