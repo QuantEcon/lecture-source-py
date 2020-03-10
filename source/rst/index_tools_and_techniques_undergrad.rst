@@ -25,5 +25,4 @@ tools and techniques
     lln_clt
     linear_models
     finite_markov
-    cass_koopmans
     kalman

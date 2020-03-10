@@ -25,6 +25,5 @@ tools and techniques
     linear_models
     finite_markov
     stationary_densities
-    cass_koopmans
     kalman
     muth_kalman

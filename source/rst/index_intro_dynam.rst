@@ -30,6 +30,5 @@ agents as given.  Later we will look at full equilibrium problems.
     kesten_processes
     wealth_dynamics
     stationary_densities
-    cass_koopmans
     kalman
     muth_kalman
