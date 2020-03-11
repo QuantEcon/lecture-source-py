@@ -8,8 +8,6 @@ Robust Markov Perfect Equilibrium
 
 .. contents:: :depth: 2
 
-**Co-author: Dongchen Zou**
-
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython

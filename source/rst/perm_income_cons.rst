@@ -13,9 +13,6 @@
 
 .. contents:: :depth: 2
 
-
-**Co-author: Chase Coleman**
-
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython

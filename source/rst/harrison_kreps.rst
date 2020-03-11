@@ -324,12 +324,6 @@ Here's a function that can be used to compute these values
 
 .. code-block:: python3
 
-    """
-
-    Authors: Chase Coleman, Tom Sargent
-
-    """
-
     def price_single_beliefs(transition, dividend_payoff, β=.75):
         """
         Function to Solve Single Beliefs

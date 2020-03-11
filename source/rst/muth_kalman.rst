@@ -11,8 +11,6 @@ Reverse Engineering a la Muth
 
 .. contents:: :depth: 2
 
-**Co-author: Chase Coleman**
-
 In addition to what's in Anaconda, this lecture uses the quantecon library.
 
 .. code-block:: ipython

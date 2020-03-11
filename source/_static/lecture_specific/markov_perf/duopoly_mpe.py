@@ -1,7 +1,3 @@
-"""
-@authors: Chase Coleman, Thomas Sargent, John Stachurski
-"""
-
 import numpy as np
 import quantecon as qe
 

@@ -12,8 +12,6 @@ How to Pay for a War: Part 2
 
 .. contents:: :depth: 2
 
-**Co-author**: `Sebastian Graves <https://github.com/sebgraves>`__
-
 In addition to what's in Anaconda, this lecture  deploys the quantecon library:
 
 .. code-block:: ipython

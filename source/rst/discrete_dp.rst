@@ -89,8 +89,6 @@ The objective of this lecture is to provide a more systematic and theoretical tr
 Code
 -----
 
-The code discussed below was authored primarily by `Daisuke Oyama <https://github.com/oyamad>`_.
-
 Among other things, it offers
 
 * a flexible, well-designed interface
@@ -800,7 +798,6 @@ Solutions
 
 
 
-Written jointly with `Diasuke Oyama <https://github.com/oyamad>`__.
 
 
 Setup

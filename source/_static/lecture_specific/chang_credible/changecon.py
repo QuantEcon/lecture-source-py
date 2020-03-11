@@ -1,6 +1,4 @@
 """
-Author: Sebastian Graves
-
 Provides a class called ChangModel to solve different
 parameterizations of the Chang (1998) model.
 """

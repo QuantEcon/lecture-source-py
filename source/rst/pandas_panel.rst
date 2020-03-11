@@ -45,8 +45,6 @@ Additional detail will be added to our ``DataFrame`` using pandas'
 ``merge`` function, and data will be summarized with the ``groupby``
 function.
 
-Most of this lecture was created by `Natasha Watkins <https://github.com/natashawatkins>`__.
-
 
 Slicing and Reshaping Data
 ==========================

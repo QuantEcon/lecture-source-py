@@ -11,7 +11,6 @@ Two Modifications of Mean-Variance Portfolio Theory
 
 .. contents:: :depth: 2
 
-**Authors:** Daniel Csaba, Thomas J. Sargent and Balint Szoke
 
 Overview
 =========

@@ -17,10 +17,6 @@ In addition to what's in Anaconda, this lecture will need the following librarie
   !pip install --upgrade quantecon
 
 
-This lecture was created jointly with Natasha Watkins.
-
-
-
 Overview
 ========
 

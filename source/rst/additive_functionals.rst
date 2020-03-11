@@ -15,9 +15,6 @@ Additive and Multiplicative Functionals
 
 .. contents:: :depth: 2
 
-
-**Co-authors: Chase Coleman and Balint Szoke**
-
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython
@@ -266,11 +263,6 @@ All of these objects are computed using the code below
 .. _amf_lss:
 
 .. code-block:: python3
-
-    """ 
-    @authors: Chase Coleman, Balint Szoke, Tom Sargent
-
-    """
 
     class AMF_LSS_VAR:
         """
@@ -1077,12 +1069,6 @@ We'll do this by formulating the additive functional as a linear state space mod
 
 
 .. code-block:: python3
-
-    """ 
-
-    @authors: Chase Coleman, Balint Skoze, Tom Sargent
-
-    """
 
     class AMF_LSS_VAR:
         """
