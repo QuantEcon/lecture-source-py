@@ -12,9 +12,6 @@ Growth in Dynamic Linear Economies
 
 .. contents:: :depth: 2
 
-**Co-author:** Sebastian Graves
-
-
 
 This is another member of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.

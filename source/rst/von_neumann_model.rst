@@ -11,7 +11,6 @@ Von Neumann Growth Model (and a Generalization)
 
 .. contents:: :depth: 2
 
-**Co-author:** Balint Szoke
 
 This notebook uses the class ``Neumann`` to calculate key objects of a
 linear growth model of John von Neumann :cite:`von1937uber` that was generalized by

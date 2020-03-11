@@ -10,8 +10,6 @@ Information and Consumption Smoothing
 
 .. contents:: :depth: 2
 
-**Co-author: Zejin Shi**
-
 In addition to what's in Anaconda, this lecture employs the following libraries:
 
 .. code-block:: ipython

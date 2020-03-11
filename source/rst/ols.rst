@@ -62,14 +62,6 @@ For an introductory text covering these topics, see, for example,
 :cite:`Wooldridge2015`.
 
 
-
-Comments
---------
-
-This lecture is coauthored with `Natasha Watkins <https://github.com/natashawatkins>`__.
-
-
-
 Simple Linear Regression
 ========================
 

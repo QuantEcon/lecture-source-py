@@ -15,8 +15,6 @@ Ramsey Plans, Time Inconsistency, Sustainable Plans
 
 .. contents:: :depth: 2
 
-**Co-author: Sebastian Graves**
-
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython

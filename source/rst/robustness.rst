@@ -1038,10 +1038,6 @@ The code for producing the graph shown above, with blue being for the robust pol
 
 .. code-block:: python3
 
-    """
-    Authors: Chase Coleman, Spencer Lyon, Thomas Sargent, John Stachurski
-    """
-
     # Model parameters
 
     a_0 = 100

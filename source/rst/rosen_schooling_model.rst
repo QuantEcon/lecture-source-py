@@ -11,8 +11,6 @@ Rosen Schooling Model
 
 .. contents:: :depth: 2
 
-**Co-author:** Sebastian Graves
-
 
 This lecture is yet another part of a suite of lectures that use the quantecon DLE class to instantiate models within the
 :cite:`HS2013` class of models described in detail in :doc:`Recursive Models of Dynamic Linear Economies<hs_recursive_models>`.

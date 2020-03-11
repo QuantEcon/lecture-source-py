@@ -52,13 +52,6 @@ Prerequisites
 We assume familiarity with basic probability and multivariate calculus.
 
 
-Comments
---------
-
-This lecture is co-authored with `Natasha Watkins <https://github.com/natashawatkins>`__.
-
-
-
 Set Up and Assumptions
 ======================
 

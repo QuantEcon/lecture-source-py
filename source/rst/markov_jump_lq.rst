@@ -13,8 +13,6 @@ Markov Jump Linear Quadratic Dynamic Programming
 
 .. contents:: :depth: 2
 
-**Co-authors:** `Sebastian Graves <https://github.com/sebgraves>`__ and Zejin Shi
-
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 .. code-block:: ipython

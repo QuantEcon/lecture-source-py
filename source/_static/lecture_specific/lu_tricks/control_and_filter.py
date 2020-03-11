@@ -1,9 +1,3 @@
-"""
-
-Authors: Balint Skoze, Tom Sargent, John Stachurski
-
-"""
-
 import numpy as np
 import scipy.stats as spst
 import scipy.linalg as la
