@@ -45,13 +45,13 @@ Likelihood Ratio Process
 A nonnegative random variable :math:`W` has one of two probability density functions, either
 :math:`f` or :math:`g`.
 
-Before the beginning of time, nature once and all decides whether she will draw a sequence of i.i.d. draws from either
+Before the beginning of time, nature once and for all decides whether she will draw a sequence of IID draws from either
 :math:`f` or :math:`g`.
 
 We will sometimes let :math:`q` be the density that nature chose once and for all, so
 that :math:`q` is either :math:`f` or :math:`g`, permanently.
 
-Nature knows which density it permanently draws from, but we the observers don't know.
+Nature knows which density it permanently draws from, but we the observers do not.
 
 We do know both :math:`f` and :math:`g` but we don’t know which density nature
 chose.
@@ -60,7 +60,7 @@ But we want to know.
 
 To do that, we use observations.
 
-We observe a sequence :math:`\{w_t\}_{t=1}^T` of :math:`T` i.i.d. draws 
+We observe a sequence :math:`\{w_t\}_{t=1}^T` of :math:`T` IID draws 
 from either :math:`f` or :math:`g`.
 
 We want to use these observations to infer whether nature chose :math:`f` or
@@ -72,37 +72,36 @@ To begin, we define the key component of a likelihood ratio process, namely, the
 
 .. math::
 
-
-   l\left(w_{t}\right)=\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)},\quad t\geq1.
+   \ell (w_t)=\frac{f\left(w_t\right)}{g\left(w_t\right)},\quad t\geq1.
 
 
 We assume that :math:`f` and :math:`g` both put positive probabilities on the
 same intervals of possible realizations of :math:`w_t`.
 
-That means that under the :math:`g` density,  :math:`l\left(w_{t}\right)=\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}`
+That means that under the :math:`g` density,  :math:`\ell (w_t)=
+\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}`
 is evidently a nonnegative  random variable with mean :math:`1`.     
 
 
 A **likelihood ratio process** for sequence
-:math:`\left\{ l\left(w_{t}\right)\right\} _{t=1}^{\infty}` is defined as
+:math:`\left\{ \ell \left(w_{t}\right)\right\} _{t=1}^{\infty}` is defined as
 
 .. math::
 
 
-   L\left(w^{t}\right)=\prod_{i=1}^{t}l\left(w_{i}\right).
+   L\left(w^{t}\right)=\prod_{i=1}^{t} \ell (w_i).
 
-where :math:`w^{t}=\left\{ w_{1},\dots,w_{t}\right\}` is a history of
+where :math:`w^t=\{ w_1,\dots,w_t\}` is a history of
 observations up to and including time :math:`t`.
 
-Sometimes for shorthand we'll write :math:`L_t =  L\left(w^{t}\right)`.
+Sometimes for shorthand we'll write :math:`L_t =  L(w^t)`.
 
 Notice that the likelihood process satisfies the *recursion* or
 *multiplicative decomposition*
 
 .. math::
 
-
-   L\left(w^t\right) = l\left(w_t\right) L\left(w^{t-1}\right) .
+   L(w^t) = \ell (w_t) L (w^{t-1}) .
 
 The likelihood ratio and its logarithm are key tools for making
 inferences using a classic frequentist approach due to Neyman and
@@ -110,11 +109,12 @@ Pearson :cite:`Neyman_Pearson`.
 
 To help us appreciate how things work, the following Python code evaluates :math:`f` and :math:`g` as different
 beta distributions, then computes and simulates an associated likelihood
-ratio process by generating a sequence :math:`w^t` from **some**
-probability distribution, for example, a sequence of  i.i.d. draws from :math:`g`.
+ratio process by generating a sequence :math:`w^t` from *some*
+probability distribution, for example, a sequence of  IID draws from :math:`g`.
 
 .. code-block:: python3
 
+    # Parameters in the two beta distributions.
     F_a, F_b = 1, 1
     G_a, G_b = 3, 1.2
 
@@ -123,6 +123,7 @@ probability distribution, for example, a sequence of  i.i.d. draws from :math:`g
         r = gamma(a + b) / (gamma(a) * gamma(b))
         return r * x** (a-1) * (1 - x) ** (b-1)
 
+    # The two density functions.
     f = njit(lambda x: p(x, F_a, F_b))
     g = njit(lambda x: p(x, G_a, G_b))
 
@@ -130,6 +131,11 @@ probability distribution, for example, a sequence of  i.i.d. draws from :math:`g
 
     @njit
     def simulate(a, b, T=50, N=500):
+        '''
+        Generate N sets of T observations of the likelihood ratio, 
+        return as N x T matrix.
+
+        '''
 
         l_arr = np.empty((N, T))
 
@@ -181,14 +187,14 @@ ratio process is that the unconditional mean of
 identically :math:`1` for all :math:`t`.
 
 To verify this assertion, first notice that as mentioned earlier the unconditional mean
-:math:`E_{0}\left[l\left(w_{t}\right)\bigm|q=g\right]` is :math:`1` for
+:math:`E_{0}\left[\ell \left(w_{t}\right)\bigm|q=g\right]` is :math:`1` for
 all :math:`t`:
 
 .. math::
 
 
    \begin{aligned}
-   E_{0}\left[l\left(w_{t}\right)\bigm|q=g\right]  &=\int\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}g\left(w_{t}\right)dw_{t} \\
+   E_{0}\left[\ell \left(w_{t}\right)\bigm|q=g\right]  &=\int\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}g\left(w_{t}\right)dw_{t} \\
        &=\int f\left(w_{t}\right)dw_{t} \\
        &=1,
    \end{aligned}
@@ -199,20 +205,20 @@ which immediately implies
 
 
    \begin{aligned}
-   E_{0}\left[L\left(w^{1}\right)\bigm|q=g\right]  &=E_{0}\left[l\left(w_{1}\right)\bigm|q=g\right]\\
+   E_{0}\left[L\left(w^{1}\right)\bigm|q=g\right]  &=E_{0}\left[\ell \left(w_{1}\right)\bigm|q=g\right]\\
        &=1.\\
    \end{aligned}
 
 Because :math:`L(w^t)` is a multiplicative process and
-:math:`\{w_t\}_{t=1}^t` is an i.i.d. sequence, we have
+:math:`\{w_t\}_{t=1}^t` is an IID sequence, we have
 
 .. math::
 
 
    \begin{aligned}
-   E_{0}\left[L\left(w^{t}\right)\bigm|q=g\right]  &=E_{0}\left[L\left(w^{t-1}\right)l\left(w_{t}\right)\bigm|q=g\right] \\
-       &=E_{0}\left[L\left(w^{t-1}\right)E\left[l\left(w_{t}\right)\bigm|q=g,w^{t-1}\right]\bigm|q=g\right] \\
-       &=E_{0}\left[L\left(w^{t-1}\right)E\left[l\left(w_{t}\right)\bigm|q=g\right]\bigm|q=g\right] \\
+   E_{0}\left[L\left(w^{t}\right)\bigm|q=g\right]  &=E_{0}\left[L\left(w^{t-1}\right)\ell \left(w_{t}\right)\bigm|q=g\right] \\
+       &=E_{0}\left[L\left(w^{t-1}\right)E\left[\ell \left(w_{t}\right)\bigm|q=g,w^{t-1}\right]\bigm|q=g\right] \\
+       &=E_{0}\left[L\left(w^{t-1}\right)E\left[\ell \left(w_{t}\right)\bigm|q=g\right]\bigm|q=g\right] \\
        &=E_{0}\left[L\left(w^{t-1}\right)\bigm|q=g\right] \\
    \end{aligned}
 
@@ -262,7 +268,7 @@ Nature Permanently Draws from Density f
 
 Now suppose that before time :math:`0` nature permanently decided to draw repeatedly from density :math:`f`.
 
-A useful property is that while the mean of the likelihood ratio :math:`l\left(w_{t}\right)` under density 
+A useful property is that while the mean of the likelihood ratio :math:`\ell \left(w_{t}\right)` under density 
 :math:`g` is :math:`1`, its mean under the density :math:`f` exceeds one.  
 
 To see this, we compute 
@@ -271,12 +277,12 @@ To see this, we compute
 
 
    \begin{aligned}
-   E_{0}\left[l\left(w_{t}\right)\bigm|q=f\right]  &=\int\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}f\left(w_{t}\right)dw_{t} \\
+   E_{0}\left[\ell \left(w_{t}\right)\bigm|q=f\right]  &=\int\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}f\left(w_{t}\right)dw_{t} \\
        &=\int\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}\frac{f\left(w_{t}\right)}{g\left(w_{t}\right)}g\left(w_{t}\right)dw_{t} \\
-       &=\int l\left(w_{t}\right)^{2}g\left(w_{t}\right)dw_{t} \\
-       &=E_{0}\left[l\left(w_{t}\right)^{2}\mid q=g\right] \\
-       &=E_{0}\left[l\left(w_{t}\right)\mid q=g\right]^{2}+Var\left(l\left(w_{t}\right)\mid q=g\right) \\
-       &>E_{0}\left[l\left(w_{t}\right)\mid q=g\right]^{2} \\
+       &=\int \ell \left(w_{t}\right)^{2}g\left(w_{t}\right)dw_{t} \\
+       &=E_{0}\left[\ell \left(w_{t}\right)^{2}\mid q=g\right] \\
+       &=E_{0}\left[\ell \left(w_{t}\right)\mid q=g\right]^{2}+Var\left(\ell \left(w_{t}\right)\mid q=g\right) \\
+       &>E_{0}\left[\ell \left(w_{t}\right)\mid q=g\right]^{2} \\
        &=1 \\
    \end{aligned}
 
@@ -328,7 +334,7 @@ with :math:`\pi_{0}` be a Bayesian prior probability that :math:`q = f`,
 i.e., a belief about :math:`q` based on having seen no data.
 
 Below we define a Python function that updates belief :math:`\pi` using
-likelihood ratio :math:`l` according to  recursion :eq:`eq_recur1`
+likelihood ratio :math:`\ell` according to  recursion :eq:`eq_recur1`
 
 .. code-block:: python3
 
@@ -343,16 +349,18 @@ likelihood ratio :math:`l` according to  recursion :eq:`eq_recur1`
 
 Formula :eq:`eq_recur1` can be generalized in a useful way.
 
-We do this by iterating on recursion :eq:`eq_recur1` in order to derive an expression for  the time :math:`t` posterior 
-:math:`\pi_{t+1}` as a function of the time :math:`0` prior :math:`\pi_0` and the likelihood ratio process
+We do this by iterating on recursion :eq:`eq_recur1` in order to derive an
+expression for  the time :math:`t` posterior :math:`\pi_{t+1}` as a function
+of the time :math:`0` prior :math:`\pi_0` and the likelihood ratio process
 :math:`L(w^{t+1})` at time :math:`t`.
 
 To begin, notice that the updating rule
 
 .. math::
 
-
-   \pi_{t+1}=\frac{\pi_{t}l\left(w_{t+1}\right)}{\pi_{t}l\left(w_{t+1}\right)+\left(1-\pi_{t}\right)}
+   \pi_{t+1}
+   =\frac{\pi_{t}\ell \left(w_{t+1}\right)}
+   {\pi_{t}\ell \left(w_{t+1}\right)+\left(1-\pi_{t}\right)}
 
 implies
 
@@ -360,14 +368,18 @@ implies
 
 
    \begin{aligned}
-   \frac{1}{\pi_{t+1}} &=\frac{\pi_{t}l\left(w_{t+1}\right)+\left(1-\pi_{t}\right)}{\pi_{t}l\left(w_{t+1}\right)} \\
-       &=1-\frac{1}{l\left(w_{t+1}\right)}+\frac{1}{l\left(w_{t+1}\right)}\frac{1}{\pi_{t}}.
+   \frac{1}{\pi_{t+1}} 
+       &=\frac{\pi_{t}\ell \left(w_{t+1}\right)
+           +\left(1-\pi_{t}\right)}{\pi_{t}\ell \left(w_{t+1}\right)} \\
+       &=1-\frac{1}{\ell \left(w_{t+1}\right)}
+           +\frac{1}{\ell \left(w_{t+1}\right)}\frac{1}{\pi_{t}}.
    \end{aligned}
 
 .. math::
 
-
-   \Rightarrow\frac{1}{\pi_{t+1}}-1=\frac{1}{l\left(w_{t+1}\right)}\left(\frac{1}{\pi_{t}}-1\right).
+   \Rightarrow
+   \frac{1}{\pi_{t+1}}-1
+   =\frac{1}{\ell \left(w_{t+1}\right)}\left(\frac{1}{\pi_{t}}-1\right).
 
 Therefore
 
@@ -375,7 +387,9 @@ Therefore
 
 
    \begin{aligned}
-   \frac{1}{\pi_{t+1}}-1   =\frac{1}{\prod_{i=1}^{t+1}l\left(w_{i}\right)}\left(\frac{1}{\pi_{0}}-1\right)
+       \frac{1}{\pi_{t+1}}-1   
+       =\frac{1}{\prod_{i=1}^{t+1}\ell \left(w_{i}\right)}
+           \left(\frac{1}{\pi_{0}}-1\right)
        =\frac{1}{L\left(w^{t+1}\right)}\left(\frac{1}{\pi_{0}}-1\right).
    \end{aligned}
 
@@ -415,7 +429,7 @@ First, we specify the two values of :math:`\pi_0`.
 
     π1, π2 = 0.2, 0.8
 
-Next we generate paths of the likelihood ratio process :math:`L_t` and the posteior :math:`\pi_t` for a history drawn as i.i.d.
+Next we generate paths of the likelihood ratio process :math:`L_t` and the posteior :math:`\pi_t` for a history drawn as IID
 draws from density :math:`f`.
 
 .. code-block:: python3
@@ -452,7 +466,7 @@ The dotted line in the graph above records the logarithm of the  likelihood rati
 
 Please note that there are two different scales on the :math:`y` axis.
 
-Now let's study what happens when the history consists of i.i.d. draws from density :math:`g`
+Now let's study what happens when the history consists of IID draws from density :math:`g`
 
 
 .. code-block:: python3
@@ -507,7 +521,7 @@ Having seen how the likelihood ratio process is a key ingredient of the formula 
 a Bayesian's posteior probabilty that nature has drawn history :math:`w^t` as repeated draws from density 
 :math:`g`, we now turn to how a frequentist statistician would employ the hypothesis testing theory
 of Neyman and Pearson :cite:`Neyman_Pearson` to test the hypothesis that  history :math:`w^t` is generated by repeated
-i.i.d. draws from density :math:`g`. 
+IID draws from density :math:`g`. 
 
 Denote :math:`q` as the data generating process, so that
 :math:`q=f \text{ or } g`.
