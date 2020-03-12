@@ -88,7 +88,7 @@ The algebra of lag and forward shift operators often simplifies formulas for lin
 solutions.
 
 First order
-^^^^^^^^^^^^^^^^^^^^^
+-----------
 
 We want to solve a linear first-order scalar difference equation.
 
@@ -169,7 +169,7 @@ The distributed lead in :math:`u` in :eq:`equn_5` need not
 converge when :math:`|\lambda| < 1`.
 
 Second order
-^^^^^^^^^^^^^^^^^^^^^^
+------------
 
 Now consider the second order difference equation
 
@@ -470,7 +470,8 @@ The following code block performs the calculation with that code.
     plt.show()
 
 Special case
-^^^^^^^^^^^^^^^^^^^^^^
+------------
+
 
 To simplify our presentation in ways that will let focus on an important
 idea, in the above second-order difference equation :eq:`equation_6` that governs
