@@ -32,3 +32,5 @@ agents as given.  Later we will look at full equilibrium problems.
     stationary_densities
     kalman
     muth_kalman
+    cass_koopmans_1
+    cass_koopmans_2
