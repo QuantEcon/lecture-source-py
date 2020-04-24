@@ -1,6 +1,16 @@
 
 # Lectures in Quantitative Economics: Source Files
 
+This repository is being **Archived**. 
+
+The python lecture series has been moved into three different series
+
+New repositories:
+
+1. [Python Programming](https://github.com/QuantEcon/lecture-python-programming)
+2. [Introductory Quantitative Economics with Python](https://github.com/QuantEcon/lecture-python-intro)
+3. [Advanced Economics with Python](https://github.com/QuantEcon/lecture-python-advanced)
+
 ### Python version
 
 This repository contains
